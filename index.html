@@ -367,7 +367,7 @@ footer .fline{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
       <a href="#library" data-i18n="nav.library">Schedario</a>
       <a href="#characters" data-i18n="nav.characters">Dossier</a>
       <a href="#founder" data-i18n="nav.founder">Fondatore</a>
-      <a href="#" id="navAdmin" data-i18n="nav.admin">Amministra</a>
+      <a href="#" id="navAdmin" class="hidden" data-i18n="nav.admin">Amministra</a>
     </nav>
     <div class="topbar-tools">
       <label class="mature-toggle">
@@ -558,7 +558,7 @@ footer .fline{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
     <div class="sub" data-i18n="auth.sub">Account personale</div>
     <div class="field">
       <label data-i18n="auth.username">Nome utente</label>
-      <input type="text" id="authUser" autocomplete="username">
+      <input type="email" id="authUser" autocomplete="email">
     </div>
     <div class="field">
       <label data-i18n="auth.password">Password</label>
@@ -570,7 +570,7 @@ footer .fline{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
       <button class="btn btn-ghost" id="authCancel" data-i18n="auth.cancel">Annulla</button>
     </div>
     <div class="modal-switch">
-      <span data-i18n="auth.switchToRegister">Non hai un account?</span>
+      <span id="authSwitchText" data-i18n="auth.switchToRegister">Non hai un account?</span>
       <button id="authSwitch" data-i18n="auth.switchToRegisterBtn">Registrati</button>
     </div>
     <div class="form-note" data-i18n="auth.note">Nota: l'account salva solo la tua preferenza di lingua per questo sito, in locale su questo browser.</div>
@@ -673,7 +673,7 @@ var STR = {
     "admin.add":"Aggiungi allo schedario","admin.export":"Esporta JSON","admin.import":"Importa JSON",
     "footer.line":"ARCHIVIO APERTO A TUTTI · SEZIONE 18+ SU RICHIESTA · TRAD.CLAB WORKS",
     "auth.loginTitle":"Accedi all'Archivio","auth.registerTitle":"Crea il tuo Account","auth.sub":"Account personale",
-    "auth.username":"Nome utente","auth.password":"Password","auth.loginBtn":"Accedi","auth.registerBtn":"Registrati","auth.cancel":"Annulla",
+    "auth.username":"Email","auth.password":"Password","auth.loginBtn":"Accedi","auth.registerBtn":"Registrati","auth.cancel":"Annulla",
     "auth.switchToRegister":"Non hai un account?","auth.switchToRegisterBtn":"Registrati",
     "auth.switchToLogin":"Hai già un account?","auth.switchToLoginBtn":"Accedi",
     "auth.note":"Nota: l'account salva solo la tua preferenza di lingua per questo sito, in locale su questo browser.",
@@ -732,7 +732,7 @@ var STR = {
     "admin.add":"Add to index","admin.export":"Export JSON","admin.import":"Import JSON",
     "footer.line":"OPEN ARCHIVE · 18+ SECTION ON REQUEST · TRAD.CLAB WORKS",
     "auth.loginTitle":"Sign in to the Archive","auth.registerTitle":"Create your Account","auth.sub":"Personal account",
-    "auth.username":"Username","auth.password":"Password","auth.loginBtn":"Sign in","auth.registerBtn":"Register","auth.cancel":"Cancel",
+    "auth.username":"Email","auth.password":"Password","auth.loginBtn":"Sign in","auth.registerBtn":"Register","auth.cancel":"Cancel",
     "auth.switchToRegister":"No account yet?","auth.switchToRegisterBtn":"Register",
     "auth.switchToLogin":"Already have an account?","auth.switchToLoginBtn":"Sign in",
     "auth.note":"Note: the account only stores your language preference for this site, locally on this browser.",
@@ -791,7 +791,7 @@ var STR = {
     "admin.add":"Añadir al índice","admin.export":"Exportar JSON","admin.import":"Importar JSON",
     "footer.line":"ARCHIVO ABIERTO A TODOS · SECCIÓN 18+ BAJO PETICIÓN · TRAD.CLAB WORKS",
     "auth.loginTitle":"Acceder al Archivo","auth.registerTitle":"Crea tu Cuenta","auth.sub":"Cuenta personal",
-    "auth.username":"Usuario","auth.password":"Contraseña","auth.loginBtn":"Acceder","auth.registerBtn":"Registrarse","auth.cancel":"Cancelar",
+    "auth.username":"Email","auth.password":"Contraseña","auth.loginBtn":"Acceder","auth.registerBtn":"Registrarse","auth.cancel":"Cancelar",
     "auth.switchToRegister":"¿No tienes cuenta?","auth.switchToRegisterBtn":"Registrarse",
     "auth.switchToLogin":"¿Ya tienes cuenta?","auth.switchToLoginBtn":"Acceder",
     "auth.note":"Nota: la cuenta solo guarda tu preferencia de idioma para este sitio, localmente en este navegador.",
@@ -850,7 +850,7 @@ var STR = {
     "admin.add":"Ajouter à l'index","admin.export":"Exporter JSON","admin.import":"Importer JSON",
     "footer.line":"ARCHIVE OUVERTE À TOUS · SECTION 18+ SUR DEMANDE · TRAD.CLAB WORKS",
     "auth.loginTitle":"Se connecter à l'Archive","auth.registerTitle":"Créer votre Compte","auth.sub":"Compte personnel",
-    "auth.username":"Nom d'utilisateur","auth.password":"Mot de passe","auth.loginBtn":"Connexion","auth.registerBtn":"S'inscrire","auth.cancel":"Annuler",
+    "auth.username":"Email","auth.password":"Mot de passe","auth.loginBtn":"Connexion","auth.registerBtn":"S'inscrire","auth.cancel":"Annuler",
     "auth.switchToRegister":"Pas encore de compte ?","auth.switchToRegisterBtn":"S'inscrire",
     "auth.switchToLogin":"Déjà un compte ?","auth.switchToLoginBtn":"Connexion",
     "auth.note":"Note : le compte enregistre uniquement votre préférence de langue pour ce site, localement sur ce navigateur.",
@@ -909,7 +909,7 @@ var STR = {
     "admin.add":"Zum Index hinzufügen","admin.export":"JSON exportieren","admin.import":"JSON importieren",
     "footer.line":"OFFENES ARCHIV · 18+ BEREICH AUF ANFRAGE · TRAD.CLAB WORKS",
     "auth.loginTitle":"Im Archiv anmelden","auth.registerTitle":"Konto erstellen","auth.sub":"Persönliches Konto",
-    "auth.username":"Benutzername","auth.password":"Passwort","auth.loginBtn":"Anmelden","auth.registerBtn":"Registrieren","auth.cancel":"Abbrechen",
+    "auth.username":"Email","auth.password":"Passwort","auth.loginBtn":"Anmelden","auth.registerBtn":"Registrieren","auth.cancel":"Abbrechen",
     "auth.switchToRegister":"Noch kein Konto?","auth.switchToRegisterBtn":"Registrieren",
     "auth.switchToLogin":"Schon ein Konto?","auth.switchToLoginBtn":"Anmelden",
     "auth.note":"Hinweis: Das Konto speichert nur Ihre Sprachpräferenz für diese Seite, lokal in diesem Browser.",
@@ -1102,7 +1102,7 @@ function openAuth(mode){
   document.getElementById('authTitle').textContent = t(titleKey);
   document.getElementById('authSubmit').textContent = t(authMode === 'login' ? 'auth.loginBtn' : 'auth.registerBtn');
   var switchLabel = document.getElementById('authSwitch');
-  var switchText = switchLabel.previousSibling;
+  var switchText = document.getElementById('authSwitchText');
   if(authMode === 'login'){
     switchText.textContent = t('auth.switchToRegister');
     switchLabel.textContent = t('auth.switchToRegisterBtn');
@@ -1174,8 +1174,10 @@ function refreshAdminUI(){
   var manageBox = document.getElementById('adminManageBox');
   var gateMsg = document.getElementById('adminGateMessage');
   var gateSignIn = document.getElementById('btnGateSignIn');
+  var navAdmin = document.getElementById('navAdmin');
   if(!gateBox || !manageBox) return;
   var admin = isAdmin();
+  navAdmin.classList.toggle('hidden', !admin); // only the admin ever sees this link exists
   gateBox.classList.toggle('hidden', admin);
   manageBox.classList.toggle('hidden', !admin);
   if(admin){
@@ -1185,9 +1187,11 @@ function refreshAdminUI(){
   } else if(isSignedIn()){
     gateMsg.textContent = t('admin.gate.notAdmin').replace('{email}', currentUserEmail());
     gateSignIn.classList.add('hidden');
+    document.getElementById('adminSection').classList.add('hidden'); // no dangling section for non-admins
   } else {
     gateMsg.textContent = t('admin.gate.notSignedIn');
     gateSignIn.classList.remove('hidden');
+    document.getElementById('adminSection').classList.add('hidden');
   }
   updateSyncStatus();
 }
