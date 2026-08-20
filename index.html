@@ -2500,9 +2500,9 @@ function renderPagesPreview(){
 function rewatermarkExistingItem(itemId, pages, btnEl){
   if(!pages || pages.length === 0) return;
   var status = document.getElementById('pagesUploadStatus');
-  var session = getSession();
   if(btnEl) btnEl.disabled = true;
   var i = 0;
+  var session;
   function next(){
     if(i >= pages.length) return Promise.resolve();
     if(status) status.textContent = t('rewatermark.progress').replace('{n}', i + 1).replace('{total}', pages.length);
@@ -2512,30 +2512,40 @@ function rewatermarkExistingItem(itemId, pages, btnEl){
     var path = markerIdx !== -1 ? url.slice(markerIdx + marker.length).split('?')[0] : null;
     if(!path) { i++; return next(); } // unexpected URL shape — skip rather than fail the whole batch
     return fetch(url).then(function(r){
-      if(!r.ok) throw new Error('fetch existing page failed: ' + r.status);
+      if(!r.ok) throw new Error('Pagina ' + (i+1) + ': lettura fallita (HTTP ' + r.status + ')');
       return r.blob();
     }).then(function(rawBlob){
-      return watermarkImageFile(rawBlob);
+      return watermarkImageFile(rawBlob).catch(function(){
+        throw new Error('Pagina ' + (i+1) + ': elaborazione immagine fallita — il file potrebbe essere danneggiato o in un formato non supportato');
+      });
     }).then(function(watermarkedBlob){
       return fetch(SUPABASE_URL + '/storage/v1/object/comic-pages/' + path, {
         method:'POST',
         headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'x-upsert':'true', 'Content-Type':'image/jpeg' },
         body: watermarkedBlob
+      }).then(function(r){
+        if(!r.ok){
+          return r.text().then(function(bodyText){
+            throw new Error('Pagina ' + (i+1) + ': caricamento fallito (HTTP ' + r.status + ') — ' + bodyText.slice(0,200));
+          });
+        }
+        i++;
+        return next();
       });
-    }).then(function(r){
-      if(!r.ok) throw new Error('rewatermark upload failed: ' + r.status);
-      i++;
-      return next();
     });
   }
-  next().then(function(){
+  refreshSessionIfNeeded().then(function(){
+    session = getSession();
+    if(!session){ throw new Error('Sessione scaduta — esci e accedi di nuovo, poi riprova.'); }
+    return next();
+  }).then(function(){
     if(status) status.textContent = '';
     if(btnEl) btnEl.disabled = false;
   }).catch(function(err){
     console.warn('Rewatermark failed:', err);
     if(status) status.textContent = '';
     if(btnEl) btnEl.disabled = false;
-    alert(t('rewatermark.error'));
+    alert(t('rewatermark.error') + '\n\n' + (err && err.message ? err.message : err));
   });
 }
 
