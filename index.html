@@ -33,9 +33,44 @@
   --sal: env(safe-area-inset-left, 0px);
   --sar: env(safe-area-inset-right, 0px);
 }
+/* ============ LIGHT THEME (day mode) ============ */
+body.theme-light{
+  --void:#f4efe2;
+  --void-2:#ffffff;
+  --wine:#8a1a2c;
+  --wine-deep:#6e1423;
+  --gold:#8a6a1f;
+  --gold-bright:#6e5015;
+  --parchment:#241a12;
+  --parchment-dim:#5c4a38;
+  --verdigris:#2f5443;
+  --ember:#b8481f;
+  --line:rgba(138,26,44,0.18);
+  --shadow-deep: 0 12px 40px rgba(80,60,40,0.15);
+}
+body.theme-light .btn:hover{background:var(--wine);color:#fff;border-color:var(--wine);}
+body.theme-light .btn-primary{color:#fff;}
+body.theme-light .switch input:checked + .slider:before{background:#fff;}
+body.theme-light .card-idx-cover .mature,
+body.theme-light .card-idx-cover .allages{color:#fff;}
+/* The header stays permanently dark-styled in both themes (see header.topbar
+   background below), so its own text must stay on the light/gold palette
+   regardless of --parchment being redefined dark for the rest of the page. */
+body.theme-light .theme-toggle-btn,
+body.theme-light .mature-toggle,
+body.theme-light nav.mainnav a,
+body.theme-light .acct-chip,
+body.theme-light .brand-text .l1{color:#ece2c6;}
+body.theme-light nav.mainnav a:hover{color:#e3c273;}
+body.theme-light .langsel{background:#150c0d;color:#ece2c6;border-color:rgba(201,162,77,0.35);}
+body.theme-light header.topbar .btn{color:#ece2c6;border-color:#c9a24d;}
+body.theme-light header.topbar .btn:hover{color:#0b0607;}
+body.theme-light header.topbar .btn-primary{background:var(--wine);color:#fff;}
+body.theme-light::selection, body.theme-light ::selection{background:var(--wine);color:#fff;}
 *{box-sizing:border-box;}
 html,body{margin:0;padding:0;}
 body{
+  transition:background-color 0.25s ease, color 0.25s ease;
   background:
     radial-gradient(ellipse 900px 600px at 15% -10%, rgba(110,20,35,0.35), transparent 60%),
     radial-gradient(ellipse 700px 500px at 100% 10%, rgba(63,107,87,0.15), transparent 55%),
@@ -142,6 +177,7 @@ select.langsel{
   padding:8px 10px;font-family:'Space Mono',monospace;font-size:12px;
 }
 .acct-chip{font-family:'Space Mono',monospace;font-size:11px;color:var(--gold-bright);padding:8px 4px;}
+.theme-toggle-btn{font-size:15px;padding:8px 12px;line-height:1;}
 
 /* ============ HERO ============ */
 .hero{
@@ -375,6 +411,7 @@ footer .fline{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
       <a href="#" id="navAdmin" class="hidden" data-i18n="nav.admin">Amministra</a>
     </nav>
     <div class="topbar-tools">
+      <button class="btn btn-sm btn-ghost theme-toggle-btn" id="btnTheme" aria-label="Cambia tema" title="Giorno / Notte">🌙</button>
       <label class="mature-toggle">
         <span data-i18n="toggle.mature">Contenuti 18+</span>
         <span class="switch"><input type="checkbox" id="matureSwitch"><span class="slider"></span></span>
@@ -1009,13 +1046,33 @@ function getSession(){
   try{ return JSON.parse(localStorage.getItem('lux_session') || 'null'); }catch(e){ return null; }
 }
 function setSession(session){
-  if(session){ localStorage.setItem('lux_session', JSON.stringify(session)); }
-  else{ localStorage.removeItem('lux_session'); }
+  if(session){
+    session.expires_at = Date.now() + (session.expires_in || 3600) * 1000;
+    localStorage.setItem('lux_session', JSON.stringify(session));
+  } else { localStorage.removeItem('lux_session'); }
 }
 function isSignedIn(){ var s = getSession(); return !!(s && s.access_token); }
 function isAdmin(){ var s = getSession(); return isSignedIn() && s.user && s.user.email === ADMIN_EMAIL; }
 function currentUserId(){ var s = getSession(); return s && s.user ? s.user.id : null; }
 function currentUserEmail(){ var s = getSession(); return s && s.user ? s.user.email : null; }
+
+// Access tokens expire after ~1 hour. Refresh a bit before that so the
+// person never silently "falls out" of their session while the tab is open.
+function refreshSessionIfNeeded(){
+  var s = getSession();
+  if(!s || !s.refresh_token) return Promise.resolve(false);
+  var msLeft = (s.expires_at || 0) - Date.now();
+  if(msLeft > 5 * 60 * 1000) return Promise.resolve(true); // still fresh, nothing to do
+  return fetch(SUPABASE_URL + '/auth/v1/token?grant_type=refresh_token', {
+    method:'POST',
+    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Content-Type':'application/json' },
+    body: JSON.stringify({refresh_token: s.refresh_token})
+  }).then(function(r){ return r.json().then(function(data){
+    if(!r.ok || !data.access_token){ setSession(null); return false; }
+    setSession(data);
+    return true;
+  }); }).catch(function(){ setSession(null); return false; });
+}
 
 function authSignIn(email, password){
   return fetch(SUPABASE_URL + '/auth/v1/token?grant_type=password', {
@@ -1062,6 +1119,24 @@ function setMatureVisible(on){
 function updateMatureStateLabel(){
   var el = document.getElementById('matureStateLabel');
   if(el) el.textContent = t(matureVisible ? 'state.mature' : 'state.allages');
+}
+
+/* ============ DAY / NIGHT THEME ============ */
+function applyTheme(theme){
+  document.body.classList.toggle('theme-light', theme === 'light');
+  document.getElementById('btnTheme').textContent = theme === 'light' ? '☀️' : '🌙';
+  document.querySelector('meta[name="theme-color"]').setAttribute('content', theme === 'light' ? '#f4efe2' : '#6e1423');
+  localStorage.setItem('lux_theme', theme);
+}
+function initTheme(){
+  var saved = localStorage.getItem('lux_theme');
+  if(!saved){
+    saved = (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) ? 'light' : 'dark';
+  }
+  applyTheme(saved);
+  document.getElementById('btnTheme').addEventListener('click', function(){
+    applyTheme(document.body.classList.contains('theme-light') ? 'dark' : 'light');
+  });
 }
 
 function initMatureToggle(){
@@ -1836,14 +1911,23 @@ document.addEventListener('DOMContentLoaded', function(){
   document.querySelectorAll('.seal-img[data-size="sm"]').forEach(function(img){ img.src = LOGO_SM; });
   document.querySelectorAll('.seal-img[data-size="lg"]').forEach(function(img){ img.src = LOGO_LG; });
   initMatureToggle();
+  initTheme();
   applyI18n();
   renderDossiers();
   renderCatalog();
-  refreshAuthUI();
-  refreshAdminUI();
+
+  // Restore a still-valid session (refreshing the token first if it's close
+  // to expiring) before deciding what the header/admin area should show —
+  // this is what keeps a login feeling continuous across visits/reloads.
+  refreshSessionIfNeeded().then(function(){
+    refreshAuthUI();
+    refreshAdminUI();
+    loadFavorites();
+  });
+  setInterval(refreshSessionIfNeeded, 4 * 60 * 1000); // keep the token fresh while the tab stays open
+
   renderCartCount();
   fetchSocialLinks();
-  loadFavorites();
 
   document.getElementById('langSelect').addEventListener('change', function(e){
     setLang(e.target.value);
