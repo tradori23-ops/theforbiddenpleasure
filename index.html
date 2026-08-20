@@ -866,6 +866,8 @@ var STR = {
     "pages.uploading":"Caricamento pagina {n} di {total}…","pages.uploadError":"Caricamento pagine non riuscito. Riprova.",
     "cover.label":"Copertina (immagine di anteprima nello schedario)","cover.uploading":"Caricamento copertina…",
     "cover.change":"Cambia copertina","cover.addExisting":"Aggiungi copertina",
+    "synopsis.translating":"Traduzione sinossi in corso…","synopsis.translateExisting":"Traduci sinossi",
+    "synopsis.retranslate":"Ritraduci sinossi","synopsis.translateError":"Traduzione non riuscita. Riprova.",
     "collab.name":"Collaboratore (opzionale)","collab.url":"Link al profilo (es. Instagram)",
     "collab.credit":"In collaborazione con",
     "collab.viewAll":"vedi tutte le opere insieme","collab.collectionBanner":"Opere realizzate con","collab.showAll":"Mostra tutto",
@@ -942,6 +944,8 @@ var STR = {
     "pages.uploading":"Uploading page {n} of {total}…","pages.uploadError":"Page upload failed. Try again.",
     "cover.label":"Cover (preview image in the catalog)","cover.uploading":"Uploading cover…",
     "cover.change":"Change cover","cover.addExisting":"Add cover",
+    "synopsis.translating":"Translating synopsis…","synopsis.translateExisting":"Translate synopsis",
+    "synopsis.retranslate":"Re-translate synopsis","synopsis.translateError":"Translation failed. Try again.",
     "collab.name":"Collaborator (optional)","collab.url":"Profile link (e.g. Instagram)",
     "collab.credit":"In collaboration with",
     "collab.viewAll":"see all titles together","collab.collectionBanner":"Titles made with","collab.showAll":"Show all",
@@ -1018,6 +1022,8 @@ var STR = {
     "pages.uploading":"Subiendo página {n} de {total}…","pages.uploadError":"Error al subir las páginas. Inténtalo de nuevo.",
     "cover.label":"Portada (imagen de vista previa en el catálogo)","cover.uploading":"Subiendo portada…",
     "cover.change":"Cambiar portada","cover.addExisting":"Añadir portada",
+    "synopsis.translating":"Traduciendo sinopsis…","synopsis.translateExisting":"Traducir sinopsis",
+    "synopsis.retranslate":"Volver a traducir","synopsis.translateError":"Error al traducir. Inténtalo de nuevo.",
     "collab.name":"Colaborador (opcional)","collab.url":"Enlace al perfil (p. ej. Instagram)",
     "collab.credit":"En colaboración con",
     "collab.viewAll":"ver todas las obras juntas","collab.collectionBanner":"Obras realizadas con","collab.showAll":"Mostrar todo",
@@ -1094,6 +1100,8 @@ var STR = {
     "pages.uploading":"Envoi de la page {n} sur {total}…","pages.uploadError":"Échec de l'envoi des pages. Réessayez.",
     "cover.label":"Couverture (image d'aperçu dans le catalogue)","cover.uploading":"Envoi de la couverture…",
     "cover.change":"Changer la couverture","cover.addExisting":"Ajouter une couverture",
+    "synopsis.translating":"Traduction du synopsis…","synopsis.translateExisting":"Traduire le synopsis",
+    "synopsis.retranslate":"Retraduire le synopsis","synopsis.translateError":"Échec de la traduction. Réessayez.",
     "collab.name":"Collaborateur (facultatif)","collab.url":"Lien du profil (ex. Instagram)",
     "collab.credit":"En collaboration avec",
     "collab.viewAll":"voir toutes les œuvres ensemble","collab.collectionBanner":"Œuvres réalisées avec","collab.showAll":"Tout afficher",
@@ -1170,6 +1178,8 @@ var STR = {
     "pages.uploading":"Lade Seite {n} von {total} hoch…","pages.uploadError":"Hochladen der Seiten fehlgeschlagen. Erneut versuchen.",
     "cover.label":"Cover (Vorschaubild im Katalog)","cover.uploading":"Cover wird hochgeladen…",
     "cover.change":"Cover ändern","cover.addExisting":"Cover hinzufügen",
+    "synopsis.translating":"Synopsis wird übersetzt…","synopsis.translateExisting":"Synopsis übersetzen",
+    "synopsis.retranslate":"Erneut übersetzen","synopsis.translateError":"Übersetzung fehlgeschlagen. Erneut versuchen.",
     "collab.name":"Mitarbeiter*in (optional)","collab.url":"Profillink (z. B. Instagram)",
     "collab.credit":"In Zusammenarbeit mit",
     "collab.viewAll":"alle gemeinsamen Werke ansehen","collab.collectionBanner":"Werke entstanden mit","collab.showAll":"Alle anzeigen",
@@ -1834,6 +1844,8 @@ function renderAdminList(){
     row.className = 'admin-row';
     var ratingLabel = item.mature ? '18+' : t('badge.allages');
     var coverLabel = item.cover_url ? t('cover.change') : t('cover.addExisting');
+    var hasAllTranslations = item.synopsis_it && item.synopsis_es && item.synopsis_fr && item.synopsis_de;
+    var translateLabel = hasAllTranslations ? t('synopsis.retranslate') : t('synopsis.translateExisting');
     row.innerHTML =
       '<div class="info"><div class="t">'+escapeHtml(item.title)+'</div>'+
       '<div class="m">'+item.character+' · '+(item.issue||'')+' · '+(item.date||'')+' · '+ratingLabel+'</div></div>'+
@@ -1841,6 +1853,7 @@ function renderAdminList(){
         '<label class="btn btn-sm btn-ghost cover-upload-btn">'+coverLabel+
           '<input type="file" accept="image/*" class="hidden" data-cover-for="'+item.id+'">'+
         '</label>'+
+        '<button class="btn btn-sm btn-ghost" data-translate-for="'+item.id+'">'+translateLabel+'</button>'+
         '<button class="btn btn-sm btn-ghost" data-del="'+item.id+'">×</button>'+
       '</div>';
     row.querySelector('[data-del]').addEventListener('click', function(){
@@ -1854,7 +1867,46 @@ function renderAdminList(){
     row.querySelector('[data-cover-for]').addEventListener('change', function(e){
       if(e.target.files[0]) uploadCoverForExistingItem(item.id, e.target.files[0]);
     });
+    row.querySelector('[data-translate-for]').addEventListener('click', function(){
+      translateSynopsisForExistingItem(item.id, item.synopsis);
+    });
     list.appendChild(row);
+  });
+}
+
+function translateSynopsisForExistingItem(itemId, englishSynopsis){
+  var status = document.getElementById('pagesUploadStatus');
+  if(status) status.textContent = t('synopsis.translating');
+  translateSynopsis(englishSynopsis).then(function(result){
+    var session = getSession();
+    return fetch(SUPABASE_URL + '/rest/v1/catalog?id=eq.' + encodeURIComponent(itemId), {
+      method:'PATCH',
+      headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
+      body: JSON.stringify({
+        synopsis_it: result.it || null,
+        synopsis_es: result.es || null,
+        synopsis_fr: result.fr || null,
+        synopsis_de: result.de || null
+      })
+    }).then(function(r){
+      if(!r.ok) throw new Error('synopsis translation save failed');
+      var items = getCatalog();
+      var item = items.find(function(i){ return i.id === itemId; });
+      if(item){
+        item.synopsis_it = result.it || null;
+        item.synopsis_es = result.es || null;
+        item.synopsis_fr = result.fr || null;
+        item.synopsis_de = result.de || null;
+        saveCatalogLocal(items);
+      }
+      if(status) status.textContent = '';
+      renderCatalog();
+      renderAdminList();
+    });
+  }).catch(function(err){
+    console.warn('Synopsis translation for existing item failed:', err);
+    if(status) status.textContent = '';
+    alert(t('synopsis.translateError'));
   });
 }
 
@@ -1913,6 +1965,26 @@ function clearPendingPdf(){
   document.getElementById('fPdf').value = '';
   document.getElementById('pdfSelectedNote').classList.add('hidden');
 }
+/* ============ SYNOPSIS AUTO-TRANSLATION (English source → IT/ES/FR/DE via DeepL,
+   routed through an Edge Function so the paid API key never reaches the browser) ============ */
+function synopsisForCurrentLang(item){
+  var field = 'synopsis_' + currentLang;
+  if(currentLang !== 'en' && item[field]) return item[field];
+  return item.synopsis || ''; // English source, or fallback if that language isn't translated yet
+}
+function translateSynopsis(englishText){
+  var session = getSession();
+  if(!session) return Promise.reject(new Error('not signed in'));
+  return fetch(SUPABASE_URL + '/functions/v1/translate-synopsis', {
+    method:'POST',
+    headers:{ 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
+    body: JSON.stringify({text: englishText})
+  }).then(function(r){
+    if(!r.ok) throw new Error('translation failed: ' + r.status);
+    return r.json(); // {it, es, fr, de}
+  });
+}
+
 function uploadCatalogAsset(file, path){
   var session = getSession();
   return fetch(SUPABASE_URL + '/storage/v1/object/comic-pages/' + path, {
@@ -2038,13 +2110,29 @@ function handleAddEntry(){
     price: price ? Number(price) : null,
     collaborator_name: collabName || null,
     collaborator_url: collabUrl || null,
-    synopsis: synopsis, mature: mature, pages: [], cover_url: null, pdf_url: null
+    synopsis: synopsis, mature: mature, pages: [], cover_url: null, pdf_url: null,
+    synopsis_it: null, synopsis_es: null, synopsis_fr: null, synopsis_de: null
   };
 
   var btn = document.getElementById('btnAddEntry');
   btn.disabled = true;
 
   var uploadSteps = Promise.resolve();
+
+  // translate the synopsis into IT/ES/FR/DE up front — best-effort: if DeepL
+  // isn't configured yet or the call fails, the title still saves fine and
+  // just falls back to the English synopsis until it's translated later
+  uploadSteps = uploadSteps.then(function(){
+    status.textContent = t('synopsis.translating');
+    return translateSynopsis(synopsis).then(function(result){
+      newItem.synopsis_it = result.it || null;
+      newItem.synopsis_es = result.es || null;
+      newItem.synopsis_fr = result.fr || null;
+      newItem.synopsis_de = result.de || null;
+    }).catch(function(err){
+      console.warn('Synopsis translation failed, continuing without it:', err);
+    });
+  });
 
   if(pendingCover){
     var coverExtMatch = /\.([a-zA-Z0-9]+)$/.exec(pendingCover.file.name || '');
@@ -2316,7 +2404,7 @@ function openTitleModal(item){
   currentModalCatalogId = item.id;
   document.getElementById('titleModalTitle').textContent = item.title;
   document.getElementById('titleModalMeta').textContent = item.character + ' · ' + (item.issue || '') + ' · ' + (item.date || '');
-  document.getElementById('titleModalSynopsis').textContent = item.synopsis || '';
+  document.getElementById('titleModalSynopsis').textContent = synopsisForCurrentLang(item);
   refreshTitleModalFav(item.id);
   refreshTitleModalLike(item.id);
   openPageReader(item.pages || []);
