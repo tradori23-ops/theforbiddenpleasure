@@ -166,7 +166,7 @@ select.langsel{
   padding:8px 10px;font-family:'Space Mono',monospace;font-size:12px;
 }
 .acct-chip{font-family:'Space Mono',monospace;font-size:11px;color:var(--gold-bright);padding:8px 4px;}
-.theme-toggle-btn{font-size:15px;padding:8px 12px;line-height:1;}
+.theme-toggle-btn{padding:9px 12px;line-height:1;display:flex;align-items:center;}
 
 /* ============ HERO ============ */
 .hero{
@@ -303,6 +303,41 @@ select.langsel{
 .admin-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
 @media (max-width:560px){.admin-grid{grid-template-columns:1fr;}}
 .admin-list{margin-top:30px;border-top:1px solid var(--line);padding-top:20px;}
+.pages-preview{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px;}
+.page-thumb{
+  width:88px;height:88px;position:relative;border:1px solid var(--line);
+  cursor:grab;background:var(--void);overflow:hidden;
+}
+.page-thumb.dragging{opacity:0.4;}
+.page-thumb.drag-over{border-color:var(--gold-bright);box-shadow:0 0 0 2px var(--gold-bright) inset;}
+.page-thumb img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;}
+.page-thumb .num{
+  position:absolute;bottom:0;left:0;background:rgba(11,6,7,0.8);color:var(--gold-bright);
+  font-family:'Space Mono',monospace;font-size:10px;padding:2px 5px;pointer-events:none;
+}
+.page-thumb .rm{
+  position:absolute;top:0;right:0;background:rgba(11,6,7,0.8);color:var(--parchment);
+  border:none;width:20px;height:20px;font-size:12px;line-height:1;cursor:pointer;
+}
+/* ============ COMIC PAGE READER (public, title detail modal) ============ */
+.page-reader{margin:18px 0;}
+.page-reader-main{position:relative;background:var(--void);border:1px solid var(--line);}
+.page-reader-main img{width:100%;max-height:60vh;object-fit:contain;display:block;margin:0 auto;}
+.page-reader-nav{
+  position:absolute;top:50%;transform:translateY(-50%);
+  background:rgba(11,6,7,0.6);color:#ece2c6;border:1px solid var(--gold);
+  width:36px;height:36px;font-size:20px;line-height:1;cursor:pointer;
+}
+.page-reader-nav.prev{left:8px;}
+.page-reader-nav.next{right:8px;}
+.page-reader-nav:disabled{opacity:0.3;cursor:default;}
+.page-reader-count{text-align:center;font-size:11px;color:var(--parchment-dim);margin-top:8px;}
+.page-reader-thumbs{display:flex;gap:6px;overflow-x:auto;margin-top:10px;padding-bottom:4px;}
+.page-reader-thumbs img{
+  width:48px;height:48px;object-fit:cover;flex:none;cursor:pointer;
+  border:1px solid var(--line);opacity:0.6;
+}
+.page-reader-thumbs img.active{opacity:1;border-color:var(--gold-bright);}
 .admin-row{
   display:flex;justify-content:space-between;align-items:center;gap:12px;
   padding:12px 0;border-bottom:1px solid var(--line);flex-wrap:wrap;
@@ -401,7 +436,10 @@ footer .fline{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
       <a href="#" id="navAdmin" class="hidden" data-i18n="nav.admin">Amministra</a>
     </nav>
     <div class="topbar-tools">
-      <button class="btn btn-sm btn-ghost theme-toggle-btn" id="btnTheme" aria-label="Cambia tema" title="Giorno / Notte">🌙</button>
+      <button class="btn btn-sm btn-ghost theme-toggle-btn" id="btnTheme" aria-label="Cambia tema" title="Giorno / Notte">
+        <svg id="themeIconMoon" viewBox="0 0 24 24" width="15" height="15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        <svg id="themeIconSun" class="hidden" viewBox="0 0 24 24" width="15" height="15" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"/><path d="M12 2.5v2.4M12 19.1v2.4M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </button>
       <label class="mature-toggle">
         <span data-i18n="toggle.mature">Contenuti 18+</span>
         <span class="switch"><input type="checkbox" id="matureSwitch"><span class="slider"></span></span>
@@ -561,6 +599,12 @@ footer .fline{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
             <span class="switch"><input type="checkbox" id="fMature"><span class="slider"></span></span>
           </label>
         </div>
+        <div class="field" style="grid-column:1/-1">
+          <label data-i18n="pages.label">Pagine del fumetto (immagini 1:1, tipo carosello) — trascina per riordinare</label>
+          <input type="file" id="fPages" accept="image/*" multiple>
+          <div class="pages-preview" id="pagesPreview"></div>
+          <div class="form-note" id="pagesUploadStatus"></div>
+        </div>
       </div>
       <div class="form-error" id="adminError"></div>
       <div class="modal-actions">
@@ -616,6 +660,15 @@ footer .fline{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
     <div class="sub mono" id="titleModalMeta"></div>
     <h3 id="titleModalTitle"></h3>
     <p class="detail-synopsis" id="titleModalSynopsis"></p>
+    <div id="pageReader" class="page-reader hidden">
+      <div class="page-reader-main">
+        <button type="button" class="page-reader-nav prev" id="pageReaderPrev" aria-label="Pagina precedente">‹</button>
+        <img id="pageReaderImg" src="" alt="">
+        <button type="button" class="page-reader-nav next" id="pageReaderNext" aria-label="Pagina successiva">›</button>
+      </div>
+      <div class="page-reader-count mono" id="pageReaderCount"></div>
+      <div class="page-reader-thumbs" id="pageReaderThumbs"></div>
+    </div>
     <div class="modal-actions" style="margin-top:6px;">
       <button class="btn btn-ghost btn-sm" id="titleModalFav" data-i18n="fav.add">♡ Salva</button>
       <button class="btn btn-primary btn-sm hidden" id="titleModalAddCart" data-i18n="cart.add">Aggiungi al carrello</button>
@@ -723,6 +776,8 @@ var STR = {
     "admin.gate.notSignedIn":"Accedi dal pulsante \"Accedi\" in alto per amministrare lo schedario.",
     "admin.gate.notAdmin":"L'account {email} non ha permessi di amministrazione.",
     "admin.f.price":"Prezzo (EUR, opzionale)",
+    "pages.label":"Pagine del fumetto (immagini 1:1, tipo carosello) — trascina per riordinare",
+    "pages.uploading":"Caricamento pagina {n} di {total}…","pages.uploadError":"Caricamento pagine non riuscito. Riprova.",
     "social.title":"Link social (visibili nel footer)","social.save":"Salva link social",
     "comments.moderationTitle":"Commenti in attesa di approvazione",
     "comments.title":"Commenti","comments.submit":"Invia commento",
@@ -782,6 +837,8 @@ var STR = {
     "admin.gate.notSignedIn":"Sign in from the \"Sign in\" button above to administer the index.",
     "admin.gate.notAdmin":"The account {email} doesn't have admin permissions.",
     "admin.f.price":"Price (EUR, optional)",
+    "pages.label":"Comic pages (1:1 images, carousel-style) — drag to reorder",
+    "pages.uploading":"Uploading page {n} of {total}…","pages.uploadError":"Page upload failed. Try again.",
     "social.title":"Social links (shown in the footer)","social.save":"Save social links",
     "comments.moderationTitle":"Comments pending approval",
     "comments.title":"Comments","comments.submit":"Submit comment",
@@ -841,6 +898,8 @@ var STR = {
     "admin.gate.notSignedIn":"Accede desde el botón \"Acceder\" arriba para administrar el índice.",
     "admin.gate.notAdmin":"La cuenta {email} no tiene permisos de administrador.",
     "admin.f.price":"Precio (EUR, opcional)",
+    "pages.label":"Páginas del cómic (imágenes 1:1, tipo carrusel) — arrastra para reordenar",
+    "pages.uploading":"Subiendo página {n} de {total}…","pages.uploadError":"Error al subir las páginas. Inténtalo de nuevo.",
     "social.title":"Enlaces sociales (visibles en el pie de página)","social.save":"Guardar enlaces sociales",
     "comments.moderationTitle":"Comentarios pendientes de aprobación",
     "comments.title":"Comentarios","comments.submit":"Enviar comentario",
@@ -900,6 +959,8 @@ var STR = {
     "admin.gate.notSignedIn":"Connectez-vous via le bouton \"Connexion\" en haut pour administrer l'index.",
     "admin.gate.notAdmin":"Le compte {email} n'a pas les droits d'administration.",
     "admin.f.price":"Prix (EUR, facultatif)",
+    "pages.label":"Pages de la BD (images 1:1, type carrousel) — glissez pour réorganiser",
+    "pages.uploading":"Envoi de la page {n} sur {total}…","pages.uploadError":"Échec de l'envoi des pages. Réessayez.",
     "social.title":"Liens sociaux (affichés en pied de page)","social.save":"Enregistrer les liens sociaux",
     "comments.moderationTitle":"Commentaires en attente d'approbation",
     "comments.title":"Commentaires","comments.submit":"Envoyer le commentaire",
@@ -959,6 +1020,8 @@ var STR = {
     "admin.gate.notSignedIn":"Melden Sie sich oben über \"Anmelden\" an, um den Index zu verwalten.",
     "admin.gate.notAdmin":"Das Konto {email} hat keine Admin-Rechte.",
     "admin.f.price":"Preis (EUR, optional)",
+    "pages.label":"Comicseiten (1:1-Bilder, Karussell-Stil) — zum Sortieren ziehen",
+    "pages.uploading":"Lade Seite {n} von {total} hoch…","pages.uploadError":"Hochladen der Seiten fehlgeschlagen. Erneut versuchen.",
     "social.title":"Social-Links (im Footer angezeigt)","social.save":"Social-Links speichern",
     "comments.moderationTitle":"Kommentare zur Freigabe",
     "comments.title":"Kommentare","comments.submit":"Kommentar senden",
@@ -1114,7 +1177,8 @@ function updateMatureStateLabel(){
 /* ============ DAY / NIGHT THEME ============ */
 function applyTheme(theme){
   document.body.classList.toggle('theme-light', theme === 'light');
-  document.getElementById('btnTheme').textContent = theme === 'light' ? '☀️' : '🌙';
+  document.getElementById('themeIconMoon').classList.toggle('hidden', theme === 'light');
+  document.getElementById('themeIconSun').classList.toggle('hidden', theme !== 'light');
   document.querySelector('meta[name="theme-color"]').setAttribute('content', theme === 'light' ? '#f4efe2' : '#6e1423');
   localStorage.setItem('lux_theme', theme);
 }
@@ -1568,6 +1632,93 @@ function renderAdminList(){
   });
 }
 
+/* ============ COMIC PAGES CAROUSEL (admin, new-title upload) ============ */
+var pendingPages = []; // [{file, previewUrl}] — order here is upload order, drag-reorderable
+
+function renderPagesPreview(){
+  var box = document.getElementById('pagesPreview');
+  box.innerHTML = '';
+  pendingPages.forEach(function(p, idx){
+    var thumb = document.createElement('div');
+    thumb.className = 'page-thumb';
+    thumb.draggable = true;
+    thumb.innerHTML =
+      '<img src="' + p.previewUrl + '" alt="">' +
+      '<span class="num">' + (idx + 1) + '</span>' +
+      '<button type="button" class="rm" data-rm="' + idx + '">×</button>';
+    thumb.querySelector('[data-rm]').addEventListener('click', function(e){
+      e.stopPropagation();
+      URL.revokeObjectURL(pendingPages[idx].previewUrl);
+      pendingPages.splice(idx, 1);
+      renderPagesPreview();
+    });
+    thumb.addEventListener('dragstart', function(e){
+      thumb.classList.add('dragging');
+      e.dataTransfer.setData('text/plain', String(idx));
+      e.dataTransfer.effectAllowed = 'move';
+    });
+    thumb.addEventListener('dragend', function(){ thumb.classList.remove('dragging'); });
+    thumb.addEventListener('dragover', function(e){ e.preventDefault(); thumb.classList.add('drag-over'); });
+    thumb.addEventListener('dragleave', function(){ thumb.classList.remove('drag-over'); });
+    thumb.addEventListener('drop', function(e){
+      e.preventDefault();
+      thumb.classList.remove('drag-over');
+      var fromIdx = Number(e.dataTransfer.getData('text/plain'));
+      if(fromIdx === idx || isNaN(fromIdx)) return;
+      var moved = pendingPages.splice(fromIdx, 1)[0];
+      pendingPages.splice(idx, 0, moved);
+      renderPagesPreview();
+    });
+    box.appendChild(thumb);
+  });
+}
+
+function uploadComicPage(file, path){
+  var session = getSession();
+  return fetch(SUPABASE_URL + '/storage/v1/object/comic-pages/' + path, {
+    method:'POST',
+    headers:{
+      'apikey':SUPABASE_ANON_KEY,
+      'Authorization':'Bearer ' + session.access_token,
+      'Content-Type': file.type || 'image/jpeg'
+    },
+    body: file
+  }).then(function(r){
+    if(!r.ok) throw new Error('page upload failed: ' + r.status);
+    return SUPABASE_URL + '/storage/v1/object/public/comic-pages/' + path;
+  });
+}
+
+function uploadAllPendingPages(comicId){
+  var status = document.getElementById('pagesUploadStatus');
+  if(pendingPages.length === 0) return Promise.resolve([]);
+  var urls = [];
+  var i = 0;
+  function next(){
+    if(i >= pendingPages.length) return Promise.resolve(urls);
+    status.textContent = t('pages.uploading').replace('{n}', i + 1).replace('{total}', pendingPages.length);
+    var file = pendingPages[i].file;
+    var extMatch = /\.([a-zA-Z0-9]+)$/.exec(file.name || '');
+    var ext = extMatch ? extMatch[1].toLowerCase() : 'jpg';
+    var pageNum = String(i + 1);
+    while(pageNum.length < 3) pageNum = '0' + pageNum;
+    var path = comicId + '/' + pageNum + '.' + ext;
+    return uploadComicPage(file, path).then(function(url){
+      urls.push(url);
+      i++;
+      return next();
+    });
+  }
+  return next();
+}
+
+function clearPendingPages(){
+  pendingPages.forEach(function(p){ URL.revokeObjectURL(p.previewUrl); });
+  pendingPages = [];
+  renderPagesPreview();
+  document.getElementById('fPages').value = '';
+}
+
 function handleAddEntry(){
   var title = document.getElementById('fTitle').value.trim();
   var character = document.getElementById('fCharacter').value;
@@ -1577,7 +1728,9 @@ function handleAddEntry(){
   var synopsis = document.getElementById('fSynopsis').value.trim();
   var mature = document.getElementById('fMature').checked;
   var err = document.getElementById('adminError');
+  var status = document.getElementById('pagesUploadStatus');
   err.textContent = '';
+  status.textContent = '';
   if(!title || !synopsis){
     err.textContent = t('err.required');
     return;
@@ -1587,20 +1740,35 @@ function handleAddEntry(){
     character: character, title: title, issue: issue,
     date: date || new Date().toISOString().slice(0,10),
     price: price ? Number(price) : null,
-    synopsis: synopsis, mature: mature
+    synopsis: synopsis, mature: mature, pages: []
   };
-  var items = getCatalog();
-  items.push(newItem);
-  saveCatalogLocal(items);
-  document.getElementById('fTitle').value = '';
-  document.getElementById('fIssue').value = '';
-  document.getElementById('fDate').value = '';
-  document.getElementById('fPrice').value = '';
-  document.getElementById('fSynopsis').value = '';
-  document.getElementById('fMature').checked = false;
-  renderCatalog();
-  renderAdminList();
-  supabaseInsert(newItem);
+
+  var btn = document.getElementById('btnAddEntry');
+  btn.disabled = true;
+
+  uploadAllPendingPages(newItem.id).then(function(urls){
+    newItem.pages = urls;
+    status.textContent = '';
+    var items = getCatalog();
+    items.push(newItem);
+    saveCatalogLocal(items);
+    document.getElementById('fTitle').value = '';
+    document.getElementById('fIssue').value = '';
+    document.getElementById('fDate').value = '';
+    document.getElementById('fPrice').value = '';
+    document.getElementById('fSynopsis').value = '';
+    document.getElementById('fMature').checked = false;
+    clearPendingPages();
+    renderCatalog();
+    renderAdminList();
+    supabaseInsert(newItem);
+  }).catch(function(e){
+    status.textContent = '';
+    err.textContent = t('pages.uploadError');
+    console.warn('Page upload failed:', e);
+  }).then(function(){
+    btn.disabled = false;
+  });
 }
 
 function handleExport(){
@@ -1730,6 +1898,7 @@ function openTitleModal(item){
   document.getElementById('titleModalMeta').textContent = item.character + ' · ' + (item.issue || '') + ' · ' + (item.date || '');
   document.getElementById('titleModalSynopsis').textContent = item.synopsis || '';
   refreshTitleModalFav(item.id);
+  openPageReader(item.pages || []);
 
   var addCartBtn = document.getElementById('titleModalAddCart');
   if(item.price){
@@ -1750,6 +1919,39 @@ function openTitleModal(item){
   document.getElementById('titleModal').classList.remove('hidden');
 }
 function closeTitleModal(){ document.getElementById('titleModal').classList.add('hidden'); currentModalCatalogId = null; }
+
+/* ============ COMIC PAGE READER (viewer inside title detail modal) ============ */
+var readerPages = [];
+var readerIndex = 0;
+
+function openPageReader(pages){
+  readerPages = pages || [];
+  readerIndex = 0;
+  var reader = document.getElementById('pageReader');
+  if(readerPages.length === 0){ reader.classList.add('hidden'); return; }
+  reader.classList.remove('hidden');
+  var thumbs = document.getElementById('pageReaderThumbs');
+  thumbs.innerHTML = '';
+  readerPages.forEach(function(url, idx){
+    var img = document.createElement('img');
+    img.src = url;
+    img.alt = 'Pagina ' + (idx + 1);
+    img.addEventListener('click', function(){ showReaderPage(idx); });
+    thumbs.appendChild(img);
+  });
+  showReaderPage(0);
+}
+function showReaderPage(idx){
+  if(idx < 0 || idx >= readerPages.length) return;
+  readerIndex = idx;
+  document.getElementById('pageReaderImg').src = readerPages[idx];
+  document.getElementById('pageReaderCount').textContent = (idx + 1) + ' / ' + readerPages.length;
+  document.getElementById('pageReaderPrev').disabled = idx === 0;
+  document.getElementById('pageReaderNext').disabled = idx === readerPages.length - 1;
+  document.querySelectorAll('#pageReaderThumbs img').forEach(function(img, i){
+    img.classList.toggle('active', i === idx);
+  });
+}
 function refreshTitleModalFav(catalogId){
   var btn = document.getElementById('titleModalFav');
   var active = favoriteIds.has(catalogId);
@@ -1948,6 +2150,13 @@ document.addEventListener('DOMContentLoaded', function(){
   document.getElementById('btnGateSignIn').addEventListener('click', function(){ openAuth('login'); });
 
   document.getElementById('btnAddEntry').addEventListener('click', handleAddEntry);
+  document.getElementById('fPages').addEventListener('change', function(e){
+    Array.from(e.target.files).forEach(function(file){
+      pendingPages.push({file: file, previewUrl: URL.createObjectURL(file)});
+    });
+    renderPagesPreview();
+    e.target.value = ''; // lets the same file be re-picked later if it was removed
+  });
   document.getElementById('btnExport').addEventListener('click', handleExport);
   document.getElementById('btnImport').addEventListener('click', function(){
     document.getElementById('importFile').click();
@@ -1975,6 +2184,8 @@ document.addEventListener('DOMContentLoaded', function(){
   document.getElementById('titleModalFav').addEventListener('click', function(){
     if(currentModalCatalogId) toggleFavorite(currentModalCatalogId);
   });
+  document.getElementById('pageReaderPrev').addEventListener('click', function(){ showReaderPage(readerIndex - 1); });
+  document.getElementById('pageReaderNext').addEventListener('click', function(){ showReaderPage(readerIndex + 1); });
   document.getElementById('btnSubmitComment').addEventListener('click', submitComment);
 
   document.getElementById('btnCart').addEventListener('click', openCartModal);
