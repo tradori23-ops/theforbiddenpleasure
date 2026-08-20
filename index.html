@@ -302,6 +302,19 @@ select.langsel{
 
 /* ============ ADMIN ============ */
 .admin-panel{border:1px solid var(--gold);background:var(--void-2);padding:28px;}
+.admin-tabs{
+  display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 24px;
+  border-bottom:1px solid var(--line);padding-bottom:14px;
+}
+.admin-tab{
+  font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;
+  background:transparent;border:1px solid var(--line);color:var(--parchment-dim);
+  padding:9px 16px;cursor:pointer;transition:all 0.15s;
+}
+.admin-tab:hover{border-color:var(--gold);color:var(--parchment);}
+.admin-tab.active{background:var(--wine);border-color:var(--wine);color:#ece2c6;}
+.admin-tab-panel{animation:fadeIn 0.15s;}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
 .admin-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
 @media (max-width:560px){.admin-grid{grid-template-columns:1fr;}}
 .admin-list{margin-top:30px;border-top:1px solid var(--line);padding-top:20px;}
@@ -584,116 +597,137 @@ footer .fcopy{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
     <!-- Management box: shown once signed in as admin -->
     <div class="admin-panel hidden" id="adminManageBox">
       <div class="notice"><b data-i18n="admin.noticeLabel">Stato —</b> <span id="syncStatus2"></span></div>
-      <div class="notice">
-        <label class="mature-toggle" style="cursor:pointer;">
-          <span data-i18n="social.title">Link social (visibili nel footer)</span>
-        </label>
-        <div class="admin-grid" style="margin-top:14px;">
-          <div class="field"><label>Instagram</label><input type="url" id="fSocialInstagram" placeholder="https://instagram.com/..."></div>
-          <div class="field"><label>Facebook</label><input type="url" id="fSocialFacebook" placeholder="https://facebook.com/..."></div>
-          <div class="field"><label>LinkedIn</label><input type="url" id="fSocialLinkedin" placeholder="https://linkedin.com/..."></div>
-          <div class="field"><label>Telegram</label><input type="url" id="fSocialTelegram" placeholder="https://t.me/..."></div>
-        </div>
-        <div class="modal-actions" style="margin-top:10px;">
-          <button class="btn btn-ghost btn-sm" id="btnSaveSocial" data-i18n="social.save">Salva link social</button>
-        </div>
-      </div>
-      <div class="notice">
-        <div data-i18n="charimg.title" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Immagini profilo personaggi</div>
-        <div class="char-image-row" id="charImageRow"></div>
-      </div>
-      <div class="notice">
-        <div data-i18n="comments.moderationTitle" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Commenti in attesa di approvazione</div>
-        <div id="modQueue"></div>
-      </div>
-      <div class="notice">
-        <div data-i18n="stats.title" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Statistiche per titolo</div>
-        <p class="form-note" data-i18n="stats.purchaseNote">Gli "acquisti" non sono ancora reali — nessun processore di pagamento è collegato. "Carrello" conta l'interesse (quante volte è stato aggiunto), non vendite confermate.</p>
-        <div id="statsPanel"></div>
-      </div>
-      <div class="modal-actions" style="margin-top:0;margin-bottom:24px;">
-        <button class="btn btn-ghost btn-sm" id="btnResync" data-i18n="sync.resync">Sincronizza ora</button>
+
+      <div class="admin-tabs" id="adminTabs">
+        <button class="admin-tab active" data-tab="catalog" data-i18n="admin.tab.catalog">Catalogo</button>
+        <button class="admin-tab" data-tab="stats" data-i18n="admin.tab.stats">Statistiche</button>
+        <button class="admin-tab" data-tab="social" data-i18n="admin.tab.social">Personaggi &amp; Social</button>
+        <button class="admin-tab" data-tab="comments" data-i18n="admin.tab.comments">Commenti</button>
+        <button class="admin-tab" data-tab="maintenance" data-i18n="admin.tab.maintenance">Manutenzione</button>
       </div>
 
-      <div class="notice">
-        <label class="mature-toggle" style="cursor:pointer;">
-          <span data-i18n="maintenance.toggle">Modalità manutenzione (visibile a tutti i visitatori)</span>
-          <span class="switch"><input type="checkbox" id="maintenanceSwitch"><span class="slider"></span></span>
-        </label>
-      </div>
-
-      <div class="admin-grid">
-        <div class="field">
-          <label data-i18n="admin.f.title">Titolo</label>
-          <input type="text" id="fTitle" placeholder="Midnight Cathedral">
-        </div>
-        <div class="field">
-          <label data-i18n="admin.f.character">Personaggio</label>
-          <select id="fCharacter">
-            <option value="Lucifer">Lucifer</option>
-            <option value="Lilith">Lilith</option>
-            <option value="Lucifera">Lucifera</option>
-            <option value="Lucio">Lucio</option>
-          </select>
-        </div>
-        <div class="field">
-          <label data-i18n="admin.f.issue">Numero / Volume</label>
-          <input type="text" id="fIssue" placeholder="Vol. 1 — Ch. 3">
-        </div>
-        <div class="field">
-          <label data-i18n="admin.f.date">Data pubblicazione</label>
-          <input type="date" id="fDate">
-        </div>
-        <div class="field">
-          <label data-i18n="admin.f.price">Prezzo (EUR, opzionale)</label>
-          <input type="number" id="fPrice" min="0" step="0.01" placeholder="4.99">
-        </div>
-        <div class="field">
-          <label data-i18n="collab.name">Collaboratore (opzionale)</label>
-          <input type="text" id="fCollabName" placeholder="Nome o @username">
-        </div>
-        <div class="field">
-          <label data-i18n="collab.url">Link al profilo (es. Instagram)</label>
-          <input type="url" id="fCollabUrl" placeholder="https://instagram.com/...">
-        </div>
-        <div class="field" style="grid-column:1/-1">
-          <label data-i18n="admin.f.synopsis">Sinossi (inglese — testo delle opere)</label>
-          <textarea id="fSynopsis" placeholder="A forbidden bond forms in the shadow of the cathedral bells..."></textarea>
-        </div>
-        <div class="field" style="grid-column:1/-1">
-          <label class="mature-toggle" style="cursor:pointer;">
-            <span data-i18n="admin.f.mature">Contenuto per adulti (18+)</span>
-            <span class="switch"><input type="checkbox" id="fMature"><span class="slider"></span></span>
-          </label>
-        </div>
-        <div class="field" style="grid-column:1/-1">
-          <label data-i18n="cover.label">Copertina (immagine di anteprima nello schedario)</label>
-          <input type="file" id="fCover" accept="image/*">
-          <div class="cover-preview hidden" id="coverPreview">
-            <img id="coverPreviewImg" src="" alt="">
-            <button type="button" class="rm" id="btnRemoveCover">×</button>
+      <div class="admin-tab-panel" data-tab-panel="catalog">
+        <div class="admin-grid">
+          <div class="field">
+            <label data-i18n="admin.f.title">Titolo</label>
+            <input type="text" id="fTitle" placeholder="Midnight Cathedral">
+          </div>
+          <div class="field">
+            <label data-i18n="admin.f.character">Personaggio</label>
+            <select id="fCharacter">
+              <option value="Lucifer">Lucifer</option>
+              <option value="Lilith">Lilith</option>
+              <option value="Lucifera">Lucifera</option>
+              <option value="Lucio">Lucio</option>
+            </select>
+          </div>
+          <div class="field">
+            <label data-i18n="admin.f.issue">Numero / Volume</label>
+            <input type="text" id="fIssue" placeholder="Vol. 1 — Ch. 3">
+          </div>
+          <div class="field">
+            <label data-i18n="admin.f.date">Data pubblicazione</label>
+            <input type="date" id="fDate">
+          </div>
+          <div class="field">
+            <label data-i18n="admin.f.price">Prezzo (EUR, opzionale)</label>
+            <input type="number" id="fPrice" min="0" step="0.01" placeholder="4.99">
+          </div>
+          <div class="field">
+            <label data-i18n="collab.name">Collaboratore (opzionale)</label>
+            <input type="text" id="fCollabName" placeholder="Nome o @username">
+          </div>
+          <div class="field">
+            <label data-i18n="collab.url">Link al profilo (es. Instagram)</label>
+            <input type="url" id="fCollabUrl" placeholder="https://instagram.com/...">
+          </div>
+          <div class="field" style="grid-column:1/-1">
+            <label data-i18n="admin.f.synopsis">Sinossi (inglese — testo delle opere)</label>
+            <textarea id="fSynopsis" placeholder="A forbidden bond forms in the shadow of the cathedral bells..."></textarea>
+          </div>
+          <div class="field" style="grid-column:1/-1">
+            <label class="mature-toggle" style="cursor:pointer;">
+              <span data-i18n="admin.f.mature">Contenuto per adulti (18+)</span>
+              <span class="switch"><input type="checkbox" id="fMature"><span class="slider"></span></span>
+            </label>
+          </div>
+          <div class="field" style="grid-column:1/-1">
+            <label data-i18n="cover.label">Copertina (immagine di anteprima nello schedario)</label>
+            <input type="file" id="fCover" accept="image/*">
+            <div class="cover-preview hidden" id="coverPreview">
+              <img id="coverPreviewImg" src="" alt="">
+              <button type="button" class="rm" id="btnRemoveCover">×</button>
+            </div>
+          </div>
+          <div class="field" style="grid-column:1/-1">
+            <label data-i18n="pages.label">Pagine del fumetto (immagini 1:1, tipo carosello) — trascina per riordinare</label>
+            <input type="file" id="fPages" accept="image/*" multiple>
+            <div class="pages-preview" id="pagesPreview"></div>
+            <div class="form-note" id="pagesUploadStatus"></div>
+          </div>
+          <div class="field" style="grid-column:1/-1">
+            <label data-i18n="pdf.label">Oppure carica il fumetto come PDF (A4) invece delle pagine singole</label>
+            <input type="file" id="fPdf" accept="application/pdf">
+            <div class="form-note hidden" id="pdfSelectedNote"></div>
           </div>
         </div>
-        <div class="field" style="grid-column:1/-1">
-          <label data-i18n="pages.label">Pagine del fumetto (immagini 1:1, tipo carosello) — trascina per riordinare</label>
-          <input type="file" id="fPages" accept="image/*" multiple>
-          <div class="pages-preview" id="pagesPreview"></div>
-          <div class="form-note" id="pagesUploadStatus"></div>
+        <div class="form-error" id="adminError"></div>
+        <div class="modal-actions">
+          <button class="btn btn-primary" id="btnAddEntry" data-i18n="admin.add">Aggiungi allo schedario</button>
+          <button class="btn btn-ghost" id="btnExport" data-i18n="admin.export">Esporta JSON</button>
+          <button class="btn btn-ghost" id="btnImport" data-i18n="admin.import">Importa JSON</button>
+          <input type="file" id="importFile" accept="application/json" class="hidden">
         </div>
-        <div class="field" style="grid-column:1/-1">
-          <label data-i18n="pdf.label">Oppure carica il fumetto come PDF (A4) invece delle pagine singole</label>
-          <input type="file" id="fPdf" accept="application/pdf">
-          <div class="form-note hidden" id="pdfSelectedNote"></div>
+        <div class="admin-list" id="adminList"></div>
+      </div>
+
+      <div class="admin-tab-panel hidden" data-tab-panel="stats">
+        <div class="notice">
+          <div data-i18n="stats.title" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Statistiche per titolo</div>
+          <p class="form-note" data-i18n="stats.purchaseNote">Gli "acquisti" non sono ancora reali — nessun processore di pagamento è collegato. "Carrello" conta l'interesse (quante volte è stato aggiunto), non vendite confermate.</p>
+          <div id="statsPanel"></div>
         </div>
       </div>
-      <div class="form-error" id="adminError"></div>
-      <div class="modal-actions">
-        <button class="btn btn-primary" id="btnAddEntry" data-i18n="admin.add">Aggiungi allo schedario</button>
-        <button class="btn btn-ghost" id="btnExport" data-i18n="admin.export">Esporta JSON</button>
-        <button class="btn btn-ghost" id="btnImport" data-i18n="admin.import">Importa JSON</button>
-        <input type="file" id="importFile" accept="application/json" class="hidden">
+
+      <div class="admin-tab-panel hidden" data-tab-panel="social">
+        <div class="notice">
+          <label class="mature-toggle" style="cursor:pointer;">
+            <span data-i18n="social.title">Link social (visibili nel footer)</span>
+          </label>
+          <div class="admin-grid" style="margin-top:14px;">
+            <div class="field"><label>Instagram</label><input type="url" id="fSocialInstagram" placeholder="https://instagram.com/..."></div>
+            <div class="field"><label>Facebook</label><input type="url" id="fSocialFacebook" placeholder="https://facebook.com/..."></div>
+            <div class="field"><label>LinkedIn</label><input type="url" id="fSocialLinkedin" placeholder="https://linkedin.com/..."></div>
+            <div class="field"><label>Telegram</label><input type="url" id="fSocialTelegram" placeholder="https://t.me/..."></div>
+          </div>
+          <div class="modal-actions" style="margin-top:10px;">
+            <button class="btn btn-ghost btn-sm" id="btnSaveSocial" data-i18n="social.save">Salva link social</button>
+          </div>
+        </div>
+        <div class="notice">
+          <div data-i18n="charimg.title" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Immagini profilo personaggi</div>
+          <div class="char-image-row" id="charImageRow"></div>
+        </div>
       </div>
-      <div class="admin-list" id="adminList"></div>
+
+      <div class="admin-tab-panel hidden" data-tab-panel="comments">
+        <div class="notice">
+          <div data-i18n="comments.moderationTitle" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Commenti in attesa di approvazione</div>
+          <div id="modQueue"></div>
+        </div>
+      </div>
+
+      <div class="admin-tab-panel hidden" data-tab-panel="maintenance">
+        <div class="modal-actions" style="margin-top:0;margin-bottom:24px;">
+          <button class="btn btn-ghost btn-sm" id="btnResync" data-i18n="sync.resync">Sincronizza ora</button>
+        </div>
+        <div class="notice">
+          <label class="mature-toggle" style="cursor:pointer;">
+            <span data-i18n="maintenance.toggle">Modalità manutenzione (visibile a tutti i visitatori)</span>
+            <span class="switch"><input type="checkbox" id="maintenanceSwitch"><span class="slider"></span></span>
+          </label>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -831,6 +865,8 @@ var STR = {
     "founder.body":"Nox Morningstar ha fondato LUX COMICS & MEDUSA COMICS come rifugio per storie che altrove non troverebbero casa: opere disegnate per un pubblico adulto e consapevole, dove il proibito è materia narrativa, non provocazione fine a sé stessa. Ogni collana — Lucifer, Lilith, Lucifera, Lucio — porta la sua firma sotto forma di sigillo, garanzia di un'unica visione editoriale dietro voci diverse.",
     "admin.eyebrow":"Area Riservata","admin.title":"Amministrazione Schedario",
     "admin.noticeLabel":"Stato —",
+    "admin.tab.catalog":"Catalogo","admin.tab.stats":"Statistiche","admin.tab.social":"Personaggi & Social",
+    "admin.tab.comments":"Commenti","admin.tab.maintenance":"Manutenzione",
     "sync.notConfigured":"Backend Supabase non ancora collegato — il sito funziona in locale, in attesa della configurazione.",
     "sync.configuredNoToken":"Connesso a Supabase in lettura. Accedi con le credenziali admin per poter pubblicare le modifiche.",
     "sync.ready":"Connesso a Supabase — sei autenticato come amministratore, le modifiche sono pubbliche per tutti.",
@@ -909,6 +945,8 @@ var STR = {
     "founder.body":"Nox Morningstar founded LUX COMICS & MEDUSA COMICS as a home for stories that would find no shelf elsewhere: works drawn for a mature, consenting audience, where the forbidden is narrative material, not provocation for its own sake. Each line — Lucifer, Lilith, Lucifera, Lucio — carries the founder's signature in the form of a seal, a guarantee of one editorial vision behind different voices.",
     "admin.eyebrow":"Private Area","admin.title":"Index Administration",
     "admin.noticeLabel":"Status —",
+    "admin.tab.catalog":"Catalog","admin.tab.stats":"Stats","admin.tab.social":"Characters & Social",
+    "admin.tab.comments":"Comments","admin.tab.maintenance":"Maintenance",
     "sync.notConfigured":"Supabase backend not yet connected — the site runs locally while it's being set up.",
     "sync.configuredNoToken":"Connected to Supabase for reading. Sign in with the admin credentials to publish changes.",
     "sync.ready":"Connected to Supabase — you're authenticated as admin, changes are public for everyone.",
@@ -987,6 +1025,8 @@ var STR = {
     "founder.body":"Nox Morningstar fundó LUX COMICS & MEDUSA COMICS como refugio para historias que no tendrían lugar en otro sitio: obras pensadas para un público adulto y consciente, donde lo prohibido es materia narrativa, no provocación gratuita. Cada colección — Lucifer, Lilith, Lucifera, Lucio — lleva su firma en forma de sello, garantía de una única visión editorial detrás de voces distintas.",
     "admin.eyebrow":"Área Privada","admin.title":"Administración del Índice",
     "admin.noticeLabel":"Estado —",
+    "admin.tab.catalog":"Catálogo","admin.tab.stats":"Estadísticas","admin.tab.social":"Personajes y redes",
+    "admin.tab.comments":"Comentarios","admin.tab.maintenance":"Mantenimiento",
     "sync.notConfigured":"Backend de Supabase aún no conectado — el sitio funciona en local mientras se configura.",
     "sync.configuredNoToken":"Conectado a Supabase en lectura. Accede con las credenciales de administrador para publicar cambios.",
     "sync.ready":"Conectado a Supabase — has iniciado sesión como administrador, los cambios son públicos para todos.",
@@ -1065,6 +1105,8 @@ var STR = {
     "founder.body":"Nox Morningstar a fondé LUX COMICS & MEDUSA COMICS comme refuge pour des histoires qui ne trouveraient leur place nulle part ailleurs : des œuvres pensées pour un public adulte et consentant, où l'interdit est matière narrative, non provocation gratuite. Chaque collection — Lucifer, Lilith, Lucifera, Lucio — porte sa signature sous forme de sceau, garantie d'une seule vision éditoriale derrière des voix différentes.",
     "admin.eyebrow":"Espace Privé","admin.title":"Administration de l'Index",
     "admin.noticeLabel":"État —",
+    "admin.tab.catalog":"Catalogue","admin.tab.stats":"Statistiques","admin.tab.social":"Personnages & réseaux",
+    "admin.tab.comments":"Commentaires","admin.tab.maintenance":"Maintenance",
     "sync.notConfigured":"Backend Supabase pas encore connecté — le site fonctionne en local en attendant la configuration.",
     "sync.configuredNoToken":"Connecté à Supabase en lecture. Connectez-vous avec les identifiants admin pour publier des modifications.",
     "sync.ready":"Connecté à Supabase — vous êtes authentifié comme administrateur, les modifications sont publiques pour tous.",
@@ -1143,6 +1185,8 @@ var STR = {
     "founder.body":"Nox Morningstar gründete LUX COMICS & MEDUSA COMICS als Zuflucht für Geschichten, die anderswo keinen Platz fänden: Werke für ein erwachsenes, einwilligendes Publikum, in denen das Verbotene erzählerisches Material ist, keine Provokation um ihrer selbst willen. Jede Reihe — Lucifer, Lilith, Lucifera, Lucio — trägt seine Signatur in Form eines Siegels, Garant einer einzigen redaktionellen Vision hinter unterschiedlichen Stimmen.",
     "admin.eyebrow":"Privater Bereich","admin.title":"Index-Verwaltung",
     "admin.noticeLabel":"Status —",
+    "admin.tab.catalog":"Katalog","admin.tab.stats":"Statistiken","admin.tab.social":"Figuren & Social",
+    "admin.tab.comments":"Kommentare","admin.tab.maintenance":"Wartung",
     "sync.notConfigured":"Supabase-Backend noch nicht verbunden — die Seite läuft lokal, bis die Einrichtung erfolgt.",
     "sync.configuredNoToken":"Mit Supabase zum Lesen verbunden. Melden Sie sich mit den Admin-Zugangsdaten an, um Änderungen zu veröffentlichen.",
     "sync.ready":"Mit Supabase verbunden — Sie sind als Administrator angemeldet, Änderungen sind für alle öffentlich.",
@@ -2598,6 +2642,15 @@ function submitComment(){
 }
 
 /* ============ MODERATION QUEUE (admin) ============ */
+function switchAdminTab(tabName){
+  document.querySelectorAll('.admin-tab').forEach(function(btn){
+    btn.classList.toggle('active', btn.dataset.tab === tabName);
+  });
+  document.querySelectorAll('.admin-tab-panel').forEach(function(panel){
+    panel.classList.toggle('hidden', panel.dataset.tabPanel !== tabName);
+  });
+}
+
 function renderStatsPanel(){
   if(!isAdmin()) return;
   var box = document.getElementById('statsPanel');
@@ -2845,6 +2898,10 @@ document.addEventListener('DOMContentLoaded', function(){
   });
   document.getElementById('importFile').addEventListener('change', function(e){
     if(e.target.files[0]) handleImport(e.target.files[0]);
+  });
+
+  document.querySelectorAll('.admin-tab').forEach(function(btn){
+    btn.addEventListener('click', function(){ switchAdminTab(btn.dataset.tab); });
   });
 
   document.getElementById('btnResync').addEventListener('click', function(){
