@@ -194,6 +194,25 @@ select.langsel{
 
 /* ============ CHARACTER DOSSIERS ============ */
 .dossier-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;}
+.announcements-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;}
+.announcement-card{border:1px solid var(--gold);background:var(--void-2);padding:20px 22px;}
+.announcement-card h4{font-size:16px;margin-bottom:8px;}
+.announcement-card p{color:var(--parchment-dim);font-size:13.5px;line-height:1.7;margin-bottom:8px;}
+.announcement-card .date{font-family:'Space Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:10px;}
+.announcement-card a.link{font-family:'Space Mono',monospace;font-size:11px;color:var(--gold-bright);text-decoration:underline;}
+.latest-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;}
+.latest-card{cursor:pointer;border:1px solid var(--line);background:var(--void-2);}
+.latest-card-cover{aspect-ratio:3/4;position:relative;background:linear-gradient(160deg, var(--wine-deep), var(--void));display:flex;align-items:center;justify-content:center;}
+.latest-card-cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.latest-card-cover .init{font-family:'Cinzel Decorative',serif;font-size:32px;color:rgba(201,162,77,0.35);}
+.latest-card-cover .new-tag{
+  position:absolute;top:8px;left:8px;background:var(--wine);color:#ece2c6;
+  font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.08em;text-transform:uppercase;
+  padding:3px 7px;
+}
+.latest-card-body{padding:12px 14px;}
+.latest-card-body h5{font-size:13.5px;margin-bottom:3px;}
+.latest-card-body .character{font-family:'Space Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:0.06em;text-transform:uppercase;}
 .dossier{
   border:1px solid var(--line);
   background:linear-gradient(180deg, rgba(110,20,35,0.06), transparent 40%), var(--void-2);
@@ -567,6 +586,28 @@ footer .fcopy{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
     </div>
   </section>
 
+  <!-- ============ ANNOUNCEMENTS (admin-written, not tied to any single title) ============ -->
+  <section class="section announcements-section hidden" id="announcementsSection">
+    <div class="section-head">
+      <div>
+        <div class="section-eyebrow" data-i18n="announcements.eyebrow">Dalla Redazione</div>
+        <h2 data-i18n="announcements.title">Novità</h2>
+      </div>
+    </div>
+    <div class="announcements-grid" id="announcementsGrid"></div>
+  </section>
+
+  <!-- ============ LATEST CHAPTERS (auto-populated from the catalog, newest first) ============ -->
+  <section class="section latest-section hidden" id="latestSection">
+    <div class="section-head">
+      <div>
+        <div class="section-eyebrow" data-i18n="latest.eyebrow">Appena Pubblicato</div>
+        <h2 data-i18n="latest.title">Ultimi Capitoli</h2>
+      </div>
+    </div>
+    <div class="latest-grid" id="latestGrid"></div>
+  </section>
+
   <!-- ============ CHARACTERS ============ -->
   <section class="section" id="characters">
     <div class="section-head">
@@ -640,6 +681,7 @@ footer .fcopy{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
         <button class="admin-tab" data-tab="social" data-i18n="admin.tab.social">Personaggi &amp; Social</button>
         <button class="admin-tab" data-tab="comments" data-i18n="admin.tab.comments">Commenti</button>
         <button class="admin-tab" data-tab="requests" data-i18n="admin.tab.requests">Richieste</button>
+        <button class="admin-tab" data-tab="announcements" data-i18n="admin.tab.announcements">Novità</button>
         <button class="admin-tab" data-tab="maintenance" data-i18n="admin.tab.maintenance">Manutenzione</button>
       </div>
 
@@ -764,6 +806,34 @@ footer .fcopy{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
         <div class="notice">
           <div data-i18n="requests.adminTitle" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Richieste ricevute</div>
           <div id="adminRequestsList"></div>
+        </div>
+      </div>
+
+      <div class="admin-tab-panel hidden" data-tab-panel="announcements">
+        <div class="notice">
+          <div data-i18n="announcements.newTitle" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Nuovo annuncio</div>
+          <div class="admin-grid">
+            <div class="field" style="grid-column:1/-1">
+              <label data-i18n="announcements.f.title">Titolo</label>
+              <input type="text" id="fAnnTitle" placeholder="Aggiornamento del sito, evento, pausa uscite...">
+            </div>
+            <div class="field" style="grid-column:1/-1">
+              <label data-i18n="announcements.f.body">Testo</label>
+              <textarea id="fAnnBody" rows="3"></textarea>
+            </div>
+            <div class="field" style="grid-column:1/-1">
+              <label data-i18n="announcements.f.link">Link (opzionale)</label>
+              <input type="url" id="fAnnLink" placeholder="https://...">
+            </div>
+          </div>
+          <div class="form-error" id="announcementError"></div>
+          <div class="modal-actions">
+            <button class="btn btn-primary btn-sm" id="btnAddAnnouncement" data-i18n="announcements.publish">Pubblica annuncio</button>
+          </div>
+        </div>
+        <div class="notice">
+          <div data-i18n="announcements.existingTitle" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Annunci pubblicati</div>
+          <div id="adminAnnouncementsList"></div>
         </div>
       </div>
 
@@ -977,7 +1047,13 @@ var STR = {
     "admin.eyebrow":"Area Riservata","admin.title":"Amministrazione Schedario",
     "admin.noticeLabel":"Stato —",
     "admin.tab.catalog":"Catalogo","admin.tab.stats":"Statistiche","admin.tab.social":"Personaggi & Social",
-    "admin.tab.comments":"Commenti","admin.tab.requests":"Richieste","admin.tab.maintenance":"Manutenzione",
+    "admin.tab.comments":"Commenti","admin.tab.requests":"Richieste","admin.tab.announcements":"Novità","admin.tab.maintenance":"Manutenzione",
+    "announcements.eyebrow":"Dalla Redazione","announcements.title":"Novità","announcements.readMore":"Leggi",
+    "announcements.newTitle":"Nuovo annuncio","announcements.f.title":"Titolo","announcements.f.body":"Testo","announcements.f.link":"Link (opzionale)",
+    "announcements.publish":"Pubblica annuncio","announcements.publishError":"Pubblicazione non riuscita. Riprova.",
+    "announcements.existingTitle":"Annunci pubblicati","announcements.empty":"Nessun annuncio ancora.",
+    "announcements.statusPublished":"Pubblicato","announcements.statusHidden":"Nascosto","announcements.hide":"Nascondi","announcements.show":"Mostra",
+    "latest.eyebrow":"Appena Pubblicato","latest.title":"Ultimi Capitoli","latest.newTag":"Nuovo",
     "profile.title":"Il mio profilo","profile.sub":"Visibile agli altri quando commenti",
     "profile.displayName":"Nome visibile","profile.bio":"Bio (opzionale)","profile.favChars":"Personaggi preferiti",
     "profile.save":"Salva profilo","profile.saveError":"Salvataggio non riuscito. Riprova.",
@@ -1072,7 +1148,13 @@ var STR = {
     "admin.eyebrow":"Private Area","admin.title":"Index Administration",
     "admin.noticeLabel":"Status —",
     "admin.tab.catalog":"Catalog","admin.tab.stats":"Stats","admin.tab.social":"Characters & Social",
-    "admin.tab.comments":"Comments","admin.tab.requests":"Requests","admin.tab.maintenance":"Maintenance",
+    "admin.tab.comments":"Comments","admin.tab.requests":"Requests","admin.tab.announcements":"News","admin.tab.maintenance":"Maintenance",
+    "announcements.eyebrow":"From the Editors","announcements.title":"News","announcements.readMore":"Read",
+    "announcements.newTitle":"New announcement","announcements.f.title":"Title","announcements.f.body":"Text","announcements.f.link":"Link (optional)",
+    "announcements.publish":"Publish announcement","announcements.publishError":"Publishing failed. Try again.",
+    "announcements.existingTitle":"Published announcements","announcements.empty":"No announcements yet.",
+    "announcements.statusPublished":"Published","announcements.statusHidden":"Hidden","announcements.hide":"Hide","announcements.show":"Show",
+    "latest.eyebrow":"Just Released","latest.title":"Latest Chapters","latest.newTag":"New",
     "profile.title":"My profile","profile.sub":"Visible to others when you comment",
     "profile.displayName":"Display name","profile.bio":"Bio (optional)","profile.favChars":"Favorite characters",
     "profile.save":"Save profile","profile.saveError":"Save failed. Try again.",
@@ -1167,7 +1249,13 @@ var STR = {
     "admin.eyebrow":"Área Privada","admin.title":"Administración del Índice",
     "admin.noticeLabel":"Estado —",
     "admin.tab.catalog":"Catálogo","admin.tab.stats":"Estadísticas","admin.tab.social":"Personajes y redes",
-    "admin.tab.comments":"Comentarios","admin.tab.requests":"Solicitudes","admin.tab.maintenance":"Mantenimiento",
+    "admin.tab.comments":"Comentarios","admin.tab.requests":"Solicitudes","admin.tab.announcements":"Novedades","admin.tab.maintenance":"Mantenimiento",
+    "announcements.eyebrow":"De la Redacción","announcements.title":"Novedades","announcements.readMore":"Leer",
+    "announcements.newTitle":"Nuevo anuncio","announcements.f.title":"Título","announcements.f.body":"Texto","announcements.f.link":"Enlace (opcional)",
+    "announcements.publish":"Publicar anuncio","announcements.publishError":"Error al publicar. Inténtalo de nuevo.",
+    "announcements.existingTitle":"Anuncios publicados","announcements.empty":"Aún no hay anuncios.",
+    "announcements.statusPublished":"Publicado","announcements.statusHidden":"Oculto","announcements.hide":"Ocultar","announcements.show":"Mostrar",
+    "latest.eyebrow":"Recién Publicado","latest.title":"Últimos Capítulos","latest.newTag":"Nuevo",
     "profile.title":"Mi perfil","profile.sub":"Visible para otros cuando comentas",
     "profile.displayName":"Nombre visible","profile.bio":"Bio (opcional)","profile.favChars":"Personajes favoritos",
     "profile.save":"Guardar perfil","profile.saveError":"Error al guardar. Inténtalo de nuevo.",
@@ -1262,7 +1350,13 @@ var STR = {
     "admin.eyebrow":"Espace Privé","admin.title":"Administration de l'Index",
     "admin.noticeLabel":"État —",
     "admin.tab.catalog":"Catalogue","admin.tab.stats":"Statistiques","admin.tab.social":"Personnages & réseaux",
-    "admin.tab.comments":"Commentaires","admin.tab.requests":"Demandes","admin.tab.maintenance":"Maintenance",
+    "admin.tab.comments":"Commentaires","admin.tab.requests":"Demandes","admin.tab.announcements":"Actualités","admin.tab.maintenance":"Maintenance",
+    "announcements.eyebrow":"De la Rédaction","announcements.title":"Actualités","announcements.readMore":"Lire",
+    "announcements.newTitle":"Nouvelle annonce","announcements.f.title":"Titre","announcements.f.body":"Texte","announcements.f.link":"Lien (facultatif)",
+    "announcements.publish":"Publier l'annonce","announcements.publishError":"Échec de la publication. Réessayez.",
+    "announcements.existingTitle":"Annonces publiées","announcements.empty":"Aucune annonce pour le moment.",
+    "announcements.statusPublished":"Publiée","announcements.statusHidden":"Masquée","announcements.hide":"Masquer","announcements.show":"Afficher",
+    "latest.eyebrow":"Vient de Paraître","latest.title":"Derniers Chapitres","latest.newTag":"Nouveau",
     "profile.title":"Mon profil","profile.sub":"Visible par les autres quand vous commentez",
     "profile.displayName":"Nom affiché","profile.bio":"Bio (facultatif)","profile.favChars":"Personnages préférés",
     "profile.save":"Enregistrer le profil","profile.saveError":"Échec de l'enregistrement. Réessayez.",
@@ -1357,7 +1451,13 @@ var STR = {
     "admin.eyebrow":"Privater Bereich","admin.title":"Index-Verwaltung",
     "admin.noticeLabel":"Status —",
     "admin.tab.catalog":"Katalog","admin.tab.stats":"Statistiken","admin.tab.social":"Figuren & Social",
-    "admin.tab.comments":"Kommentare","admin.tab.requests":"Anfragen","admin.tab.maintenance":"Wartung",
+    "admin.tab.comments":"Kommentare","admin.tab.requests":"Anfragen","admin.tab.announcements":"Neuigkeiten","admin.tab.maintenance":"Wartung",
+    "announcements.eyebrow":"Von der Redaktion","announcements.title":"Neuigkeiten","announcements.readMore":"Lesen",
+    "announcements.newTitle":"Neue Ankündigung","announcements.f.title":"Titel","announcements.f.body":"Text","announcements.f.link":"Link (optional)",
+    "announcements.publish":"Ankündigung veröffentlichen","announcements.publishError":"Veröffentlichung fehlgeschlagen. Erneut versuchen.",
+    "announcements.existingTitle":"Veröffentlichte Ankündigungen","announcements.empty":"Noch keine Ankündigungen.",
+    "announcements.statusPublished":"Veröffentlicht","announcements.statusHidden":"Verborgen","announcements.hide":"Verbergen","announcements.show":"Anzeigen",
+    "latest.eyebrow":"Gerade Erschienen","latest.title":"Neueste Kapitel","latest.newTag":"Neu",
     "profile.title":"Mein Profil","profile.sub":"Für andere sichtbar, wenn du kommentierst",
     "profile.displayName":"Anzeigename","profile.bio":"Bio (optional)","profile.favChars":"Lieblingscharaktere",
     "profile.save":"Profil speichern","profile.saveError":"Speichern fehlgeschlagen. Erneut versuchen.",
@@ -1744,6 +1844,7 @@ function refreshAdminUI(){
     renderCharImageAdmin();
     renderStatsPanel();
     renderAdminRequests();
+    renderAdminAnnouncements();
   } else if(isSignedIn()){
     gateMsg.textContent = t('admin.gate.notAdmin').replace('{email}', currentUserEmail());
     gateSignIn.classList.add('hidden');
@@ -1932,6 +2033,63 @@ function setMaintenanceStatus(on){
 var activeFilter = 'all';
 var activeCollabFilter = null; // {name, url} | null — takes precedence over activeFilter when set
 
+/* ============ ANNOUNCEMENTS (homepage, public) ============ */
+function fetchAnnouncements(){
+  var section = document.getElementById('announcementsSection');
+  var grid = document.getElementById('announcementsGrid');
+  if(!SUPABASE_URL) return Promise.resolve();
+  return fetch(SUPABASE_URL + '/rest/v1/announcements?select=*&published=eq.true&order=created_at.desc&limit=6', {
+    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + SUPABASE_ANON_KEY }
+  })
+    .then(function(r){ if(!r.ok) throw new Error('announcements read failed'); return r.json(); })
+    .then(function(rows){
+      grid.innerHTML = '';
+      if(rows.length === 0){ section.classList.add('hidden'); return; }
+      section.classList.remove('hidden');
+      rows.forEach(function(a){
+        var card = document.createElement('div');
+        card.className = 'announcement-card';
+        var dateStr = a.created_at ? a.created_at.slice(0,10) : '';
+        var linkHtml = a.link_url ? '<a class="link" href="' + escapeHtml(a.link_url) + '" target="_blank" rel="noopener">' + t('announcements.readMore') + ' →</a>' : '';
+        card.innerHTML =
+          '<div class="date">' + dateStr + '</div>' +
+          '<h4>' + escapeHtml(a.title) + '</h4>' +
+          '<p>' + escapeHtml(a.body) + '</p>' +
+          linkHtml;
+        grid.appendChild(card);
+      });
+    })
+    .catch(function(err){ console.warn('Announcements load failed:', err); section.classList.add('hidden'); });
+}
+
+/* ============ LATEST CHAPTERS (homepage, public — auto from catalog) ============ */
+function renderLatestChapters(){
+  var section = document.getElementById('latestSection');
+  var grid = document.getElementById('latestGrid');
+  var items = getCatalog();
+  if(!matureVisible){
+    items = items.filter(function(i){ return !i.mature; });
+  }
+  items = items.slice().sort(function(a,b){ return (b.date||'').localeCompare(a.date||''); }).slice(0, 6);
+  grid.innerHTML = '';
+  if(items.length === 0){ section.classList.add('hidden'); return; }
+  section.classList.remove('hidden');
+  var newestDate = items[0].date;
+  items.forEach(function(item){
+    var card = document.createElement('div');
+    card.className = 'latest-card';
+    var coverInner = item.cover_url
+      ? '<img src="' + item.cover_url + '" alt="">'
+      : '<span class="init">' + item.character.charAt(0) + '</span>';
+    var newTag = item.date === newestDate ? '<span class="new-tag">' + t('latest.newTag') + '</span>' : '';
+    card.innerHTML =
+      '<div class="latest-card-cover">' + coverInner + newTag + '</div>' +
+      '<div class="latest-card-body"><h5>' + escapeHtml(item.title) + '</h5><div class="character">' + item.character + '</div></div>';
+    card.addEventListener('click', function(){ openTitleModal(item); });
+    grid.appendChild(card);
+  });
+}
+
 function renderDossiers(){
   var grid = document.getElementById('dossierGrid');
   grid.innerHTML = '';
@@ -2009,6 +2167,7 @@ function renderCatalog(){
   renderFilters();
   updateMatureStateLabel();
   renderCollabBanner();
+  renderLatestChapters();
   var grid = document.getElementById('catalogGrid');
   var items = getCatalog();
   if(!matureVisible){
@@ -3170,6 +3329,73 @@ function renderStatsPanel(){
   });
 }
 
+function handleAddAnnouncement(){
+  var title = document.getElementById('fAnnTitle').value.trim();
+  var body = document.getElementById('fAnnBody').value.trim();
+  var link = document.getElementById('fAnnLink').value.trim();
+  var err = document.getElementById('announcementError');
+  err.textContent = '';
+  if(!title || !body){ err.textContent = t('err.required'); return; }
+  var session = getSession();
+  fetch(SUPABASE_URL + '/rest/v1/announcements', {
+    method:'POST',
+    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json', 'Prefer':'return=representation' },
+    body: JSON.stringify({ title: title, body: body, link_url: link || null, published: true })
+  }).then(function(r){
+    if(!r.ok) throw new Error('announcement insert failed');
+    document.getElementById('fAnnTitle').value = '';
+    document.getElementById('fAnnBody').value = '';
+    document.getElementById('fAnnLink').value = '';
+    renderAdminAnnouncements();
+    fetchAnnouncements();
+  }).catch(function(e){
+    console.warn('Announcement publish failed:', e);
+    err.textContent = t('announcements.publishError');
+  });
+}
+
+function renderAdminAnnouncements(){
+  if(!isAdmin()) return;
+  var list = document.getElementById('adminAnnouncementsList');
+  var session = getSession();
+  fetch(SUPABASE_URL + '/rest/v1/announcements?select=*&order=created_at.desc', {
+    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
+  })
+    .then(function(r){ if(!r.ok) throw new Error('admin announcements read failed'); return r.json(); })
+    .then(function(rows){
+      list.innerHTML = '';
+      if(rows.length === 0){ list.innerHTML = '<p class="form-note">' + t('announcements.empty') + '</p>'; return; }
+      rows.forEach(function(a){
+        var row = document.createElement('div');
+        row.className = 'admin-row';
+        var dateStr = a.created_at ? a.created_at.slice(0,10) : '';
+        row.innerHTML =
+          '<div class="info"><div class="t">' + escapeHtml(a.title) + '</div>' +
+          '<div class="m">' + dateStr + ' · ' + (a.published ? t('announcements.statusPublished') : t('announcements.statusHidden')) + '</div></div>' +
+          '<div class="admin-actions">' +
+            '<button class="btn btn-sm btn-ghost" data-toggle-ann="' + a.id + '">' + (a.published ? t('announcements.hide') : t('announcements.show')) + '</button>' +
+            '<button class="btn btn-sm btn-ghost" data-del-ann="' + a.id + '">×</button>' +
+          '</div>';
+        row.querySelector('[data-toggle-ann]').addEventListener('click', function(){
+          fetch(SUPABASE_URL + '/rest/v1/announcements?id=eq.' + encodeURIComponent(a.id), {
+            method:'PATCH',
+            headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
+            body: JSON.stringify({published: !a.published})
+          }).then(function(r){ if(r.ok){ renderAdminAnnouncements(); fetchAnnouncements(); } });
+        });
+        row.querySelector('[data-del-ann]').addEventListener('click', function(){
+          if(!confirm(t('admin.confirmDelete'))) return;
+          fetch(SUPABASE_URL + '/rest/v1/announcements?id=eq.' + encodeURIComponent(a.id), {
+            method:'DELETE',
+            headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
+          }).then(function(r){ if(r.ok){ renderAdminAnnouncements(); fetchAnnouncements(); } });
+        });
+        list.appendChild(row);
+      });
+    })
+    .catch(function(err){ console.warn('Admin announcements load failed:', err); });
+}
+
 function renderAdminRequests(){
   if(!isAdmin()) return;
   var list = document.getElementById('adminRequestsList');
@@ -3374,6 +3600,7 @@ document.addEventListener('DOMContentLoaded', function(){
   renderCartCount();
   fetchSocialLinks();
   fetchCharacterImages();
+  fetchAnnouncements();
 
   document.getElementById('langSelect').addEventListener('change', function(e){
     setLang(e.target.value);
@@ -3444,6 +3671,7 @@ document.addEventListener('DOMContentLoaded', function(){
   });
   document.getElementById('btnSaveProfile').addEventListener('click', saveProfile);
   document.getElementById('btnSubmitRequest').addEventListener('click', submitRequest);
+  document.getElementById('btnAddAnnouncement').addEventListener('click', handleAddAnnouncement);
 
   document.getElementById('btnResync').addEventListener('click', function(){
     fetchCatalogFromSupabase().then(function(){ renderCatalog(); renderAdminList(); });
