@@ -201,6 +201,7 @@ select.langsel{
 }
 .dossier:hover{border-color:var(--gold);transform:translateY(-3px);}
 .dossier .sig{width:40px;height:40px;margin-bottom:16px;}
+.dossier .sig-photo{border-radius:50%;object-fit:cover;border:1px solid var(--gold);}
 .dossier h3{font-size:19px;margin-bottom:4px;}
 .dossier .role{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.16em;color:var(--gold);text-transform:uppercase;margin-bottom:14px;}
 .dossier p{font-size:14px;line-height:1.75;color:var(--parchment-dim);margin:0;}
@@ -233,6 +234,7 @@ select.langsel{
   background:linear-gradient(160deg, var(--wine-deep), var(--void));
 }
 .card-idx-cover .init{font-family:'Cinzel Decorative',serif;font-size:44px;color:rgba(201,162,77,0.35);}
+.card-idx-cover .cover-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
 .card-idx-cover .mature{
   position:absolute;top:8px;right:8px;
   font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.1em;
@@ -319,6 +321,20 @@ select.langsel{
   position:absolute;top:0;right:0;background:rgba(11,6,7,0.8);color:var(--parchment);
   border:none;width:20px;height:20px;font-size:12px;line-height:1;cursor:pointer;
 }
+.cover-preview{position:relative;width:130px;aspect-ratio:3/4;margin-top:12px;border:1px solid var(--line);}
+.cover-preview img{width:100%;height:100%;object-fit:cover;display:block;}
+.cover-preview .rm{
+  position:absolute;top:0;right:0;background:rgba(11,6,7,0.8);color:var(--parchment);
+  border:none;width:22px;height:22px;font-size:13px;line-height:1;cursor:pointer;
+}
+.char-image-row{display:flex;flex-wrap:wrap;gap:16px;margin-top:8px;}
+.char-image-item{width:110px;text-align:center;}
+.char-image-item .thumb{
+  width:88px;height:88px;border-radius:50%;border:1px solid var(--gold);
+  object-fit:cover;display:block;margin:0 auto 8px;background:var(--void);
+}
+.char-image-item .name{font-family:'Space Mono',monospace;font-size:10px;color:var(--parchment-dim);margin-bottom:6px;}
+.char-image-item input[type="file"]{font-size:10px;width:100%;}
 /* ============ COMIC PAGE READER (public, title detail modal) ============ */
 .page-reader{margin:18px 0;}
 .page-reader-main{position:relative;background:var(--void);border:1px solid var(--line);}
@@ -377,6 +393,7 @@ footer .fsocial a{
 }
 footer .fsocial a:hover{color:var(--gold-bright);border-color:var(--gold);}
 footer .fline{font-family:'Space Mono',monospace;font-size:10px;color:var(--parchment-dim);letter-spacing:0.1em;margin-top:8px;}
+footer .fcopy{font-family:'Space Mono',monospace;font-size:10px;color:var(--parchment-dim);opacity:0.7;margin-top:10px;}
 
 /* ============ FAVORITE / CART UI ============ */
 .card-idx-fav{
@@ -565,6 +582,10 @@ footer .fline{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
         </div>
       </div>
       <div class="notice">
+        <div data-i18n="charimg.title" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Immagini profilo personaggi</div>
+        <div class="char-image-row" id="charImageRow"></div>
+      </div>
+      <div class="notice">
         <div data-i18n="comments.moderationTitle" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Commenti in attesa di approvazione</div>
         <div id="modQueue"></div>
       </div>
@@ -616,10 +637,23 @@ footer .fline{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
           </label>
         </div>
         <div class="field" style="grid-column:1/-1">
+          <label data-i18n="cover.label">Copertina (immagine di anteprima nello schedario)</label>
+          <input type="file" id="fCover" accept="image/*">
+          <div class="cover-preview hidden" id="coverPreview">
+            <img id="coverPreviewImg" src="" alt="">
+            <button type="button" class="rm" id="btnRemoveCover">×</button>
+          </div>
+        </div>
+        <div class="field" style="grid-column:1/-1">
           <label data-i18n="pages.label">Pagine del fumetto (immagini 1:1, tipo carosello) — trascina per riordinare</label>
           <input type="file" id="fPages" accept="image/*" multiple>
           <div class="pages-preview" id="pagesPreview"></div>
           <div class="form-note" id="pagesUploadStatus"></div>
+        </div>
+        <div class="field" style="grid-column:1/-1">
+          <label data-i18n="pdf.label">Oppure carica il fumetto come PDF (A4) invece delle pagine singole</label>
+          <input type="file" id="fPdf" accept="application/pdf">
+          <div class="form-note hidden" id="pdfSelectedNote"></div>
         </div>
       </div>
       <div class="form-error" id="adminError"></div>
@@ -638,6 +672,7 @@ footer .fline{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
     <div class="fbrand">LUX COMICS &amp; MEDUSA COMICS</div>
     <div class="fsocial" id="footerSocial"></div>
     <div class="fline" data-i18n="footer.line">ARCHIVIO RISERVATO · SOLO 18+ · TRAD.CLAB WORKS</div>
+    <div class="fcopy">© 2026–2028 TRAD.CLAB WORKS</div>
   </footer>
 
 </div>
@@ -688,6 +723,7 @@ footer .fline{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
     <div class="modal-actions" style="margin-top:6px;">
       <button class="btn btn-ghost btn-sm" id="titleModalFav" data-i18n="fav.add">♡ Salva</button>
       <button class="btn btn-primary btn-sm hidden" id="titleModalAddCart" data-i18n="cart.add">Aggiungi al carrello</button>
+      <a class="btn btn-ghost btn-sm hidden" id="titleModalPdf" href="#" target="_blank" rel="noopener" data-i18n="pdf.download">Scarica PDF</a>
     </div>
     <div style="margin-top:26px;">
       <div class="sub mono" data-i18n="comments.title">Commenti</div>
@@ -794,6 +830,10 @@ var STR = {
     "admin.f.price":"Prezzo (EUR, opzionale)",
     "pages.label":"Pagine del fumetto (immagini 1:1, tipo carosello) — trascina per riordinare",
     "pages.uploading":"Caricamento pagina {n} di {total}…","pages.uploadError":"Caricamento pagine non riuscito. Riprova.",
+    "cover.label":"Copertina (immagine di anteprima nello schedario)","cover.uploading":"Caricamento copertina…",
+    "pdf.label":"Oppure carica il fumetto come PDF (A4) invece delle pagine singole",
+    "pdf.uploading":"Caricamento PDF…","pdf.download":"Scarica PDF",
+    "charimg.title":"Immagini profilo personaggi",
     "social.title":"Link social (visibili nel footer)","social.save":"Salva link social",
     "comments.moderationTitle":"Commenti in attesa di approvazione",
     "comments.title":"Commenti","comments.submit":"Invia commento",
@@ -855,6 +895,10 @@ var STR = {
     "admin.f.price":"Price (EUR, optional)",
     "pages.label":"Comic pages (1:1 images, carousel-style) — drag to reorder",
     "pages.uploading":"Uploading page {n} of {total}…","pages.uploadError":"Page upload failed. Try again.",
+    "cover.label":"Cover (preview image in the catalog)","cover.uploading":"Uploading cover…",
+    "pdf.label":"Or upload the comic as a PDF (A4) instead of individual pages",
+    "pdf.uploading":"Uploading PDF…","pdf.download":"Download PDF",
+    "charimg.title":"Character profile images",
     "social.title":"Social links (shown in the footer)","social.save":"Save social links",
     "comments.moderationTitle":"Comments pending approval",
     "comments.title":"Comments","comments.submit":"Submit comment",
@@ -916,6 +960,10 @@ var STR = {
     "admin.f.price":"Precio (EUR, opcional)",
     "pages.label":"Páginas del cómic (imágenes 1:1, tipo carrusel) — arrastra para reordenar",
     "pages.uploading":"Subiendo página {n} de {total}…","pages.uploadError":"Error al subir las páginas. Inténtalo de nuevo.",
+    "cover.label":"Portada (imagen de vista previa en el catálogo)","cover.uploading":"Subiendo portada…",
+    "pdf.label":"O sube el cómic como PDF (A4) en lugar de páginas individuales",
+    "pdf.uploading":"Subiendo PDF…","pdf.download":"Descargar PDF",
+    "charimg.title":"Imágenes de perfil de los personajes",
     "social.title":"Enlaces sociales (visibles en el pie de página)","social.save":"Guardar enlaces sociales",
     "comments.moderationTitle":"Comentarios pendientes de aprobación",
     "comments.title":"Comentarios","comments.submit":"Enviar comentario",
@@ -977,6 +1025,10 @@ var STR = {
     "admin.f.price":"Prix (EUR, facultatif)",
     "pages.label":"Pages de la BD (images 1:1, type carrousel) — glissez pour réorganiser",
     "pages.uploading":"Envoi de la page {n} sur {total}…","pages.uploadError":"Échec de l'envoi des pages. Réessayez.",
+    "cover.label":"Couverture (image d'aperçu dans le catalogue)","cover.uploading":"Envoi de la couverture…",
+    "pdf.label":"Ou téléversez la BD en PDF (A4) au lieu de pages individuelles",
+    "pdf.uploading":"Envoi du PDF…","pdf.download":"Télécharger le PDF",
+    "charimg.title":"Images de profil des personnages",
     "social.title":"Liens sociaux (affichés en pied de page)","social.save":"Enregistrer les liens sociaux",
     "comments.moderationTitle":"Commentaires en attente d'approbation",
     "comments.title":"Commentaires","comments.submit":"Envoyer le commentaire",
@@ -1038,6 +1090,10 @@ var STR = {
     "admin.f.price":"Preis (EUR, optional)",
     "pages.label":"Comicseiten (1:1-Bilder, Karussell-Stil) — zum Sortieren ziehen",
     "pages.uploading":"Lade Seite {n} von {total} hoch…","pages.uploadError":"Hochladen der Seiten fehlgeschlagen. Erneut versuchen.",
+    "cover.label":"Cover (Vorschaubild im Katalog)","cover.uploading":"Cover wird hochgeladen…",
+    "pdf.label":"Oder Comic als PDF (A4) statt Einzelseiten hochladen",
+    "pdf.uploading":"PDF wird hochgeladen…","pdf.download":"PDF herunterladen",
+    "charimg.title":"Profilbilder der Charaktere",
     "social.title":"Social-Links (im Footer angezeigt)","social.save":"Social-Links speichern",
     "comments.moderationTitle":"Kommentare zur Freigabe",
     "comments.title":"Kommentare","comments.submit":"Kommentar senden",
@@ -1308,7 +1364,15 @@ function refreshAuthUI(){
   var btnLogin = document.getElementById('btnLoginTop');
   var btnLogout = document.getElementById('btnLogoutTop');
   if(isSignedIn()){
-    chip.textContent = '@' + currentUserEmail();
+    // Never show the raw email in the UI — for the admin account it would
+    // expose a real name via the address. Show the public persona instead;
+    // for any other signed-in visitor, show just the part before "@".
+    if(isAdmin()){
+      chip.textContent = 'Nox Morningstar';
+    } else {
+      var email = currentUserEmail() || '';
+      chip.textContent = '@' + email.split('@')[0];
+    }
     chip.classList.remove('hidden');
     btnLogin.classList.add('hidden');
     btnLogout.classList.remove('hidden');
@@ -1334,6 +1398,7 @@ function refreshAdminUI(){
     renderAdminList();
     renderModerationQueue();
     loadSocialLinksIntoForm();
+    renderCharImageAdmin();
   } else if(isSignedIn()){
     gateMsg.textContent = t('admin.gate.notAdmin').replace('{email}', currentUserEmail());
     gateSignIn.classList.add('hidden');
@@ -1529,11 +1594,15 @@ function renderDossiers(){
     var lang = STR[currentLang] ? currentLang : 'it';
     var div = document.createElement('div');
     div.className = 'dossier';
+    var imgUrl = characterImages[name];
+    var sigMarkup = imgUrl
+      ? '<img class="sig sig-photo" src="'+imgUrl+'" alt="'+name+'">'
+      : '<svg class="sig" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">'+
+        '<circle cx="50" cy="50" r="44" fill="none" stroke="#6e1423" stroke-width="2"/>'+
+        '<path d="M50 22 C37 31, 32 45, 41 54 C32 57, 30 68, 41 75 C46 70, 50 70, 50 75 C50 70, 54 70, 59 75 C70 68, 68 57, 59 54 C68 45, 63 31, 50 22 Z" fill="none" stroke="#c9a24d" stroke-width="1.4"/>'+
+        '</svg>';
     div.innerHTML =
-      '<svg class="sig" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">'+
-      '<circle cx="50" cy="50" r="44" fill="none" stroke="#6e1423" stroke-width="2"/>'+
-      '<path d="M50 22 C37 31, 32 45, 41 54 C32 57, 30 68, 41 75 C46 70, 50 70, 50 75 C50 70, 54 70, 59 75 C70 68, 68 57, 59 54 C68 45, 63 31, 50 22 Z" fill="none" stroke="#c9a24d" stroke-width="1.4"/>'+
-      '</svg>'+
+      sigMarkup+
       '<h3>'+name+'</h3>'+
       '<div class="role">'+meta.role[lang]+'</div>'+
       '<p>'+meta.bio[lang]+'</p>'+
@@ -1591,9 +1660,12 @@ function renderCatalog(){
     var badge = item.mature ? '<span class="mature">18+</span>' : '<span class="allages">'+t('badge.allages')+'</span>';
     var isFav = favoriteIds.has(item.id);
     var priceTxt = item.price ? '<span class="card-idx-price">€'+Number(item.price).toFixed(2)+'</span>' : '';
+    var coverInner = item.cover_url
+      ? '<img class="cover-img" src="'+item.cover_url+'" alt="">'
+      : '<span class="init">'+item.character.charAt(0)+'</span>';
     card.innerHTML =
       '<div class="card-idx-cover">'+
-        '<span class="init">'+item.character.charAt(0)+'</span>'+
+        coverInner+
         badge+
         '<span class="card-idx-fav'+(isFav?' active':'')+'" data-fav="'+item.id+'">'+(isFav?'♥':'♡')+'</span>'+
       '</div>'+
@@ -1650,6 +1722,47 @@ function renderAdminList(){
 
 /* ============ COMIC PAGES CAROUSEL (admin, new-title upload) ============ */
 var pendingPages = []; // [{file, previewUrl}] — order here is upload order, drag-reorderable
+var pendingCover = null; // {file, previewUrl} | null
+var pendingPdf = null; // File | null
+
+function handleCoverSelected(file){
+  if(pendingCover) URL.revokeObjectURL(pendingCover.previewUrl);
+  pendingCover = {file: file, previewUrl: URL.createObjectURL(file)};
+  document.getElementById('coverPreviewImg').src = pendingCover.previewUrl;
+  document.getElementById('coverPreview').classList.remove('hidden');
+}
+function clearPendingCover(){
+  if(pendingCover) URL.revokeObjectURL(pendingCover.previewUrl);
+  pendingCover = null;
+  document.getElementById('coverPreview').classList.add('hidden');
+  document.getElementById('fCover').value = '';
+}
+function handlePdfSelected(file){
+  pendingPdf = file;
+  var note = document.getElementById('pdfSelectedNote');
+  note.textContent = file.name;
+  note.classList.remove('hidden');
+}
+function clearPendingPdf(){
+  pendingPdf = null;
+  document.getElementById('fPdf').value = '';
+  document.getElementById('pdfSelectedNote').classList.add('hidden');
+}
+function uploadCatalogAsset(file, path){
+  var session = getSession();
+  return fetch(SUPABASE_URL + '/storage/v1/object/comic-pages/' + path, {
+    method:'POST',
+    headers:{
+      'apikey':SUPABASE_ANON_KEY,
+      'Authorization':'Bearer ' + session.access_token,
+      'Content-Type': file.type || 'application/octet-stream'
+    },
+    body: file
+  }).then(function(r){
+    if(!r.ok) throw new Error('asset upload failed: ' + r.status);
+    return SUPABASE_URL + '/storage/v1/object/public/comic-pages/' + path;
+  });
+}
 
 function renderPagesPreview(){
   var box = document.getElementById('pagesPreview');
@@ -1756,13 +1869,35 @@ function handleAddEntry(){
     character: character, title: title, issue: issue,
     date: date || new Date().toISOString().slice(0,10),
     price: price ? Number(price) : null,
-    synopsis: synopsis, mature: mature, pages: []
+    synopsis: synopsis, mature: mature, pages: [], cover_url: null, pdf_url: null
   };
 
   var btn = document.getElementById('btnAddEntry');
   btn.disabled = true;
 
-  uploadAllPendingPages(newItem.id).then(function(urls){
+  var uploadSteps = Promise.resolve();
+
+  if(pendingCover){
+    var coverExtMatch = /\.([a-zA-Z0-9]+)$/.exec(pendingCover.file.name || '');
+    var coverExt = coverExtMatch ? coverExtMatch[1].toLowerCase() : 'jpg';
+    uploadSteps = uploadSteps.then(function(){
+      status.textContent = t('cover.uploading');
+      return uploadCatalogAsset(pendingCover.file, newItem.id + '/cover.' + coverExt);
+    }).then(function(url){ newItem.cover_url = url; });
+  }
+
+  if(pendingPdf){
+    uploadSteps = uploadSteps.then(function(){
+      status.textContent = t('pdf.uploading');
+      return uploadCatalogAsset(pendingPdf, newItem.id + '/comic.pdf');
+    }).then(function(url){ newItem.pdf_url = url; });
+  }
+
+  uploadSteps = uploadSteps.then(function(){
+    return uploadAllPendingPages(newItem.id);
+  });
+
+  uploadSteps.then(function(urls){
     newItem.pages = urls;
     status.textContent = '';
     var items = getCatalog();
@@ -1775,13 +1910,15 @@ function handleAddEntry(){
     document.getElementById('fSynopsis').value = '';
     document.getElementById('fMature').checked = false;
     clearPendingPages();
+    clearPendingCover();
+    clearPendingPdf();
     renderCatalog();
     renderAdminList();
     supabaseInsert(newItem);
   }).catch(function(e){
     status.textContent = '';
     err.textContent = t('pages.uploadError');
-    console.warn('Page upload failed:', e);
+    console.warn('Asset upload failed:', e);
   }).then(function(){
     btn.disabled = false;
   });
@@ -1915,6 +2052,14 @@ function openTitleModal(item){
   document.getElementById('titleModalSynopsis').textContent = item.synopsis || '';
   refreshTitleModalFav(item.id);
   openPageReader(item.pages || []);
+
+  var pdfLink = document.getElementById('titleModalPdf');
+  if(item.pdf_url){
+    pdfLink.href = item.pdf_url;
+    pdfLink.classList.remove('hidden');
+  } else {
+    pdfLink.classList.add('hidden');
+  }
 
   var addCartBtn = document.getElementById('titleModalAddCart');
   if(item.price){
@@ -2066,6 +2211,61 @@ function moderateComment(id, approve){
 }
 
 /* ============ SOCIAL LINKS (admin-managed, public footer) ============ */
+/* ============ CHARACTER PROFILE IMAGES (Dossier photos, admin-managed) ============ */
+var characterImages = {};
+var CHAR_LIST = ['Lucifer','Lilith','Lucifero','Lucio'];
+
+function fetchCharacterImages(){
+  if(!SUPABASE_URL) return Promise.resolve();
+  return fetch(SUPABASE_URL + '/rest/v1/character_images?select=*', {
+    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + SUPABASE_ANON_KEY }
+  })
+    .then(function(r){ if(!r.ok) throw new Error('character images read failed'); return r.json(); })
+    .then(function(rows){
+      characterImages = {};
+      rows.forEach(function(row){ if(row.image_url) characterImages[row.character] = row.image_url; });
+      renderDossiers();
+    })
+    .catch(function(err){ console.warn('Character images load failed:', err); });
+}
+
+function renderCharImageAdmin(){
+  if(!isAdmin()) return;
+  var row = document.getElementById('charImageRow');
+  row.innerHTML = '';
+  CHAR_LIST.forEach(function(name){
+    var item = document.createElement('div');
+    item.className = 'char-image-item';
+    var thumbSrc = characterImages[name] || '';
+    item.innerHTML =
+      '<img class="thumb" src="'+thumbSrc+'" alt="'+name+'" style="'+(thumbSrc ? '' : 'opacity:0.25;')+'">'+
+      '<div class="name">'+name+'</div>'+
+      '<input type="file" accept="image/*" data-char="'+name+'">';
+    item.querySelector('input').addEventListener('change', function(e){
+      if(e.target.files[0]) uploadCharacterImage(name, e.target.files[0]);
+    });
+    row.appendChild(item);
+  });
+}
+
+function uploadCharacterImage(name, file){
+  var extMatch = /\.([a-zA-Z0-9]+)$/.exec(file.name || '');
+  var ext = extMatch ? extMatch[1].toLowerCase() : 'jpg';
+  uploadCatalogAsset(file, 'characters/' + name.toLowerCase() + '.' + ext).then(function(url){
+    var session = getSession();
+    return fetch(SUPABASE_URL + '/rest/v1/character_images?character=eq.' + encodeURIComponent(name), {
+      method:'PATCH',
+      headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
+      body: JSON.stringify({image_url: url})
+    }).then(function(r){
+      if(!r.ok) throw new Error('character image save failed');
+      characterImages[name] = url;
+      renderDossiers();
+      renderCharImageAdmin();
+    });
+  }).catch(function(err){ console.warn('Character image upload failed:', err); });
+}
+
 function fetchSocialLinks(){
   var footer = document.getElementById('footerSocial');
   if(!SUPABASE_URL) return;
@@ -2136,6 +2336,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
   renderCartCount();
   fetchSocialLinks();
+  fetchCharacterImages();
 
   document.getElementById('langSelect').addEventListener('change', function(e){
     setLang(e.target.value);
@@ -2172,6 +2373,13 @@ document.addEventListener('DOMContentLoaded', function(){
     });
     renderPagesPreview();
     e.target.value = ''; // lets the same file be re-picked later if it was removed
+  });
+  document.getElementById('fCover').addEventListener('change', function(e){
+    if(e.target.files[0]) handleCoverSelected(e.target.files[0]);
+  });
+  document.getElementById('btnRemoveCover').addEventListener('click', clearPendingCover);
+  document.getElementById('fPdf').addEventListener('change', function(e){
+    if(e.target.files[0]) handlePdfSelected(e.target.files[0]);
   });
   document.getElementById('btnExport').addEventListener('click', handleExport);
   document.getElementById('btnImport').addEventListener('click', function(){
