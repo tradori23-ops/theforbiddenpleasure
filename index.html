@@ -491,6 +491,7 @@ footer .fcopy{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
 .comment-item{border-top:1px solid var(--line);padding:12px 0;font-size:13px;}
 .comment-item .author{font-family:'Space Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:0.06em;}
 .comment-item .pending-tag{color:var(--ember);font-family:'Space Mono',monospace;font-size:9px;text-transform:uppercase;margin-left:8px;}
+.watermark-done-tag{color:var(--verdigris);font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.06em;text-transform:uppercase;align-self:center;}
 .profile-avatar-wrap{margin-bottom:10px;}
 .profile-avatar{
   width:76px;height:76px;border-radius:50%;object-fit:cover;
@@ -1102,7 +1103,7 @@ var STR = {
     "cover.change":"Cambia copertina","cover.addExisting":"Aggiungi copertina",
     "synopsis.translating":"Traduzione sinossi in corso…","synopsis.translateExisting":"Traduci sinossi",
     "synopsis.retranslate":"Ritraduci sinossi","synopsis.translateError":"Traduzione non riuscita. Riprova.",
-    "rewatermark.button":"Ri-filigrana pagine","rewatermark.progress":"Filigrana pagina {n} di {total}…","rewatermark.error":"Filigrana non riuscita. Riprova.",
+    "rewatermark.button":"Ri-filigrana pagine","rewatermark.progress":"Filigrana pagina {n} di {total}…","rewatermark.error":"Filigrana non riuscita. Riprova.","rewatermark.done":"Filigranato",
     "collab.name":"Collaboratore (opzionale)","collab.url":"Link al profilo (es. Instagram)",
     "collab.verified":"Collaboratore verificato (mostra la spunta blu)",
     "verified.label":"Verificato","verified.commenter":"Email verificata","verified.founder":"Account ufficiale","verified.collaborator":"Collaboratore verificato",
@@ -1203,7 +1204,7 @@ var STR = {
     "cover.change":"Change cover","cover.addExisting":"Add cover",
     "synopsis.translating":"Translating synopsis…","synopsis.translateExisting":"Translate synopsis",
     "synopsis.retranslate":"Re-translate synopsis","synopsis.translateError":"Translation failed. Try again.",
-    "rewatermark.button":"Re-watermark pages","rewatermark.progress":"Watermarking page {n} of {total}…","rewatermark.error":"Watermarking failed. Try again.",
+    "rewatermark.button":"Re-watermark pages","rewatermark.progress":"Watermarking page {n} of {total}…","rewatermark.error":"Watermarking failed. Try again.","rewatermark.done":"Watermarked",
     "collab.name":"Collaborator (optional)","collab.url":"Profile link (e.g. Instagram)",
     "collab.verified":"Verified collaborator (shows the blue checkmark)",
     "verified.label":"Verified","verified.commenter":"Verified email","verified.founder":"Official account","verified.collaborator":"Verified collaborator",
@@ -1304,7 +1305,7 @@ var STR = {
     "cover.change":"Cambiar portada","cover.addExisting":"Añadir portada",
     "synopsis.translating":"Traduciendo sinopsis…","synopsis.translateExisting":"Traducir sinopsis",
     "synopsis.retranslate":"Volver a traducir","synopsis.translateError":"Error al traducir. Inténtalo de nuevo.",
-    "rewatermark.button":"Volver a marcar páginas","rewatermark.progress":"Marcando página {n} de {total}…","rewatermark.error":"Error al aplicar la marca. Inténtalo de nuevo.",
+    "rewatermark.button":"Volver a marcar páginas","rewatermark.progress":"Marcando página {n} de {total}…","rewatermark.error":"Error al aplicar la marca. Inténtalo de nuevo.","rewatermark.done":"Marcada",
     "collab.name":"Colaborador (opcional)","collab.url":"Enlace al perfil (p. ej. Instagram)",
     "collab.verified":"Colaborador verificado (muestra la marca azul)",
     "verified.label":"Verificado","verified.commenter":"Email verificado","verified.founder":"Cuenta oficial","verified.collaborator":"Colaborador verificado",
@@ -1405,7 +1406,7 @@ var STR = {
     "cover.change":"Changer la couverture","cover.addExisting":"Ajouter une couverture",
     "synopsis.translating":"Traduction du synopsis…","synopsis.translateExisting":"Traduire le synopsis",
     "synopsis.retranslate":"Retraduire le synopsis","synopsis.translateError":"Échec de la traduction. Réessayez.",
-    "rewatermark.button":"Filigraner les pages","rewatermark.progress":"Filigrane page {n} sur {total}…","rewatermark.error":"Échec du filigrane. Réessayez.",
+    "rewatermark.button":"Filigraner les pages","rewatermark.progress":"Filigrane page {n} sur {total}…","rewatermark.error":"Échec du filigrane. Réessayez.","rewatermark.done":"Filigrané",
     "collab.name":"Collaborateur (facultatif)","collab.url":"Lien du profil (ex. Instagram)",
     "collab.verified":"Collaborateur vérifié (affiche le badge bleu)",
     "verified.label":"Vérifié","verified.commenter":"Email vérifié","verified.founder":"Compte officiel","verified.collaborator":"Collaborateur vérifié",
@@ -1506,7 +1507,7 @@ var STR = {
     "cover.change":"Cover ändern","cover.addExisting":"Cover hinzufügen",
     "synopsis.translating":"Synopsis wird übersetzt…","synopsis.translateExisting":"Synopsis übersetzen",
     "synopsis.retranslate":"Erneut übersetzen","synopsis.translateError":"Übersetzung fehlgeschlagen. Erneut versuchen.",
-    "rewatermark.button":"Seiten neu wasserzeichen","rewatermark.progress":"Wasserzeichen Seite {n} von {total}…","rewatermark.error":"Wasserzeichen fehlgeschlagen. Erneut versuchen.",
+    "rewatermark.button":"Seiten neu wasserzeichen","rewatermark.progress":"Wasserzeichen Seite {n} von {total}…","rewatermark.error":"Wasserzeichen fehlgeschlagen. Erneut versuchen.","rewatermark.done":"Wasserzeichen gesetzt",
     "collab.name":"Mitarbeiter*in (optional)","collab.url":"Profillink (z. B. Instagram)",
     "collab.verified":"Verifizierte*r Mitarbeiter*in (zeigt das blaue Häkchen)",
     "verified.label":"Verifiziert","verified.commenter":"E-Mail verifiziert","verified.founder":"Offizieller Account","verified.collaborator":"Verifizierte*r Mitarbeiter*in",
@@ -2274,6 +2275,7 @@ function renderAdminList(){
         '</label>'+
         '<button class="btn btn-sm btn-ghost" data-translate-for="'+item.id+'">'+translateLabel+'</button>'+
         (hasPages ? '<button class="btn btn-sm btn-ghost" data-rewatermark-for="'+item.id+'">'+t('rewatermark.button')+'</button>' : '') +
+        (hasPages && item.pages_watermarked ? '<span class="watermark-done-tag">✓ '+t('rewatermark.done')+'</span>' : '') +
         '<button class="btn btn-sm btn-ghost" data-del="'+item.id+'">×</button>'+
       '</div>';
     row.querySelector('[data-del]').addEventListener('click', function(){
@@ -2541,6 +2543,18 @@ function rewatermarkExistingItem(itemId, pages, btnEl){
   }).then(function(){
     if(status) status.textContent = '';
     if(btnEl) btnEl.disabled = false;
+    // mark as done — both on Supabase and in the local cached copy, so the
+    // "Filigranato" tag shows immediately without needing a page reload
+    var items = getCatalog();
+    var target = items.find(function(x){ return x.id === itemId; });
+    if(target) target.pages_watermarked = true;
+    saveCatalogLocal(items);
+    renderAdminList();
+    fetch(SUPABASE_URL + '/rest/v1/catalog?id=eq.' + encodeURIComponent(itemId), {
+      method:'PATCH',
+      headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
+      body: JSON.stringify({pages_watermarked: true})
+    }).catch(function(err){ console.warn('Marking pages_watermarked failed (non-blocking):', err); });
   }).catch(function(err){
     console.warn('Rewatermark failed:', err);
     if(status) status.textContent = '';
@@ -2714,6 +2728,7 @@ function handleAddEntry(){
 
   uploadSteps.then(function(urls){
     newItem.pages = urls;
+    newItem.pages_watermarked = urls.length > 0; // new uploads always go through the watermark step
     status.textContent = '';
     var items = getCatalog();
     items.push(newItem);
