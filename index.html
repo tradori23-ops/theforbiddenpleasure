@@ -133,8 +133,8 @@ button{font-family:inherit;cursor:pointer;}
 .mature-toggle{display:flex;align-items:center;gap:8px;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--parchment-dim);}
 .switch{position:relative;display:inline-block;width:38px;height:20px;flex:none;}
 .switch input{opacity:0;width:0;height:0;position:absolute;}
-.switch .slider{position:absolute;inset:0;cursor:pointer;background:var(--void-2);border:1px solid var(--line);transition:.2s;}
-.switch .slider:before{position:absolute;content:'';height:14px;width:14px;left:2px;top:2px;background:var(--parchment-dim);transition:.2s;}
+.switch .slider{position:absolute;inset:0;cursor:pointer;background:var(--void-2);border:1px solid var(--line);border-radius:20px;transition:.2s;}
+.switch .slider:before{position:absolute;content:'';height:14px;width:14px;left:2px;top:2px;border-radius:50%;background:var(--parchment-dim);transition:.2s;}
 .switch input:checked + .slider{background:var(--wine);border-color:var(--gold);}
 .switch input:checked + .slider:before{transform:translateX(17px);background:var(--gold-bright);}
 
@@ -357,7 +357,7 @@ select.langsel{
 /* ============ COMIC PAGE READER (public, title detail modal) ============ */
 .page-reader{margin:18px 0;}
 .page-reader-main{position:relative;background:var(--void);border:1px solid var(--line);}
-.page-reader-main img{width:100%;max-height:60vh;object-fit:contain;display:block;margin:0 auto;}
+.page-reader-main img{width:100%;max-height:60vh;object-fit:contain;display:block;margin:0 auto;-webkit-user-drag:none;user-select:none;-webkit-touch-callout:none;}
 .page-reader-nav{
   position:absolute;top:50%;transform:translateY(-50%);
   background:rgba(11,6,7,0.6);color:#ece2c6;border:1px solid var(--gold);
@@ -477,8 +477,9 @@ footer .fcopy{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
   width:76px;height:76px;border-radius:50%;object-fit:cover;
   border:1px solid var(--gold);background:var(--void);display:inline-block;
 }
-.fav-char-options{display:flex;flex-wrap:wrap;gap:14px;font-size:13px;color:var(--parchment-dim);}
-.fav-char-options label{display:flex;align-items:center;gap:6px;cursor:pointer;}
+.fav-char-options{display:flex;flex-wrap:wrap;gap:10px 24px;font-size:13px;color:var(--parchment-dim);}
+.fav-char-options label.mature-toggle span:first-child{color:var(--gold-bright);font-weight:600;}
+.fav-char-options label.mature-toggle{width:auto;margin:0;}
 .my-request-item{border-bottom:1px solid var(--line);padding:8px 0;font-size:12.5px;color:var(--parchment-dim);}
 .my-request-item .status{font-family:'Space Mono',monospace;font-size:9px;text-transform:uppercase;color:var(--gold);margin-left:6px;}
 .comment-item .body{color:var(--parchment-dim);margin-top:4px;line-height:1.6;}
@@ -828,10 +829,10 @@ footer .fcopy{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
     <div class="field">
       <label data-i18n="profile.favChars">Personaggi preferiti</label>
       <div class="fav-char-options" id="favCharOptions">
-        <label><input type="checkbox" value="Lucifer" class="fav-char-cb"> Lucifer</label>
-        <label><input type="checkbox" value="Lilith" class="fav-char-cb"> Lilith</label>
-        <label><input type="checkbox" value="Lucifera" class="fav-char-cb"> Lucifera</label>
-        <label><input type="checkbox" value="Lucio" class="fav-char-cb"> Lucio</label>
+        <label class="mature-toggle"><span>Lucifer</span><span class="switch"><input type="checkbox" value="Lucifer" class="fav-char-cb"><span class="slider"></span></span></label>
+        <label class="mature-toggle"><span>Lilith</span><span class="switch"><input type="checkbox" value="Lilith" class="fav-char-cb"><span class="slider"></span></span></label>
+        <label class="mature-toggle"><span>Lucifera</span><span class="switch"><input type="checkbox" value="Lucifera" class="fav-char-cb"><span class="slider"></span></span></label>
+        <label class="mature-toggle"><span>Lucio</span><span class="switch"><input type="checkbox" value="Lucio" class="fav-char-cb"><span class="slider"></span></span></label>
       </div>
     </div>
     <div class="form-error" id="profileError"></div>
@@ -889,7 +890,7 @@ footer .fcopy{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
     <div id="pageReader" class="page-reader hidden">
       <div class="page-reader-main">
         <button type="button" class="page-reader-nav prev" id="pageReaderPrev" aria-label="Pagina precedente">‹</button>
-        <img id="pageReaderImg" src="" alt="">
+        <img id="pageReaderImg" src="" alt="" oncontextmenu="return false" draggable="false">
         <button type="button" class="page-reader-nav next" id="pageReaderNext" aria-label="Pagina successiva">›</button>
       </div>
       <div class="page-reader-count mono" id="pageReaderCount"></div>
@@ -1025,6 +1026,7 @@ var STR = {
     "cover.change":"Cambia copertina","cover.addExisting":"Aggiungi copertina",
     "synopsis.translating":"Traduzione sinossi in corso…","synopsis.translateExisting":"Traduci sinossi",
     "synopsis.retranslate":"Ritraduci sinossi","synopsis.translateError":"Traduzione non riuscita. Riprova.",
+    "rewatermark.button":"Ri-filigrana pagine","rewatermark.progress":"Filigrana pagina {n} di {total}…","rewatermark.error":"Filigrana non riuscita. Riprova.",
     "collab.name":"Collaboratore (opzionale)","collab.url":"Link al profilo (es. Instagram)",
     "collab.verified":"Collaboratore verificato (mostra la spunta blu)",
     "verified.label":"Verificato","verified.commenter":"Email verificata","verified.founder":"Account ufficiale","verified.collaborator":"Collaboratore verificato",
@@ -1119,6 +1121,7 @@ var STR = {
     "cover.change":"Change cover","cover.addExisting":"Add cover",
     "synopsis.translating":"Translating synopsis…","synopsis.translateExisting":"Translate synopsis",
     "synopsis.retranslate":"Re-translate synopsis","synopsis.translateError":"Translation failed. Try again.",
+    "rewatermark.button":"Re-watermark pages","rewatermark.progress":"Watermarking page {n} of {total}…","rewatermark.error":"Watermarking failed. Try again.",
     "collab.name":"Collaborator (optional)","collab.url":"Profile link (e.g. Instagram)",
     "collab.verified":"Verified collaborator (shows the blue checkmark)",
     "verified.label":"Verified","verified.commenter":"Verified email","verified.founder":"Official account","verified.collaborator":"Verified collaborator",
@@ -1213,6 +1216,7 @@ var STR = {
     "cover.change":"Cambiar portada","cover.addExisting":"Añadir portada",
     "synopsis.translating":"Traduciendo sinopsis…","synopsis.translateExisting":"Traducir sinopsis",
     "synopsis.retranslate":"Volver a traducir","synopsis.translateError":"Error al traducir. Inténtalo de nuevo.",
+    "rewatermark.button":"Volver a marcar páginas","rewatermark.progress":"Marcando página {n} de {total}…","rewatermark.error":"Error al aplicar la marca. Inténtalo de nuevo.",
     "collab.name":"Colaborador (opcional)","collab.url":"Enlace al perfil (p. ej. Instagram)",
     "collab.verified":"Colaborador verificado (muestra la marca azul)",
     "verified.label":"Verificado","verified.commenter":"Email verificado","verified.founder":"Cuenta oficial","verified.collaborator":"Colaborador verificado",
@@ -1307,6 +1311,7 @@ var STR = {
     "cover.change":"Changer la couverture","cover.addExisting":"Ajouter une couverture",
     "synopsis.translating":"Traduction du synopsis…","synopsis.translateExisting":"Traduire le synopsis",
     "synopsis.retranslate":"Retraduire le synopsis","synopsis.translateError":"Échec de la traduction. Réessayez.",
+    "rewatermark.button":"Filigraner les pages","rewatermark.progress":"Filigrane page {n} sur {total}…","rewatermark.error":"Échec du filigrane. Réessayez.",
     "collab.name":"Collaborateur (facultatif)","collab.url":"Lien du profil (ex. Instagram)",
     "collab.verified":"Collaborateur vérifié (affiche le badge bleu)",
     "verified.label":"Vérifié","verified.commenter":"Email vérifié","verified.founder":"Compte officiel","verified.collaborator":"Collaborateur vérifié",
@@ -1401,6 +1406,7 @@ var STR = {
     "cover.change":"Cover ändern","cover.addExisting":"Cover hinzufügen",
     "synopsis.translating":"Synopsis wird übersetzt…","synopsis.translateExisting":"Synopsis übersetzen",
     "synopsis.retranslate":"Erneut übersetzen","synopsis.translateError":"Übersetzung fehlgeschlagen. Erneut versuchen.",
+    "rewatermark.button":"Seiten neu wasserzeichen","rewatermark.progress":"Wasserzeichen Seite {n} von {total}…","rewatermark.error":"Wasserzeichen fehlgeschlagen. Erneut versuchen.",
     "collab.name":"Mitarbeiter*in (optional)","collab.url":"Profillink (z. B. Instagram)",
     "collab.verified":"Verifizierte*r Mitarbeiter*in (zeigt das blaue Häkchen)",
     "verified.label":"Verifiziert","verified.commenter":"E-Mail verifiziert","verified.founder":"Offizieller Account","verified.collaborator":"Verifizierte*r Mitarbeiter*in",
@@ -2099,6 +2105,7 @@ function renderAdminList(){
     var coverLabel = item.cover_url ? t('cover.change') : t('cover.addExisting');
     var hasAllTranslations = item.synopsis_it && item.synopsis_es && item.synopsis_fr && item.synopsis_de;
     var translateLabel = hasAllTranslations ? t('synopsis.retranslate') : t('synopsis.translateExisting');
+    var hasPages = item.pages && item.pages.length > 0;
     row.innerHTML =
       '<div class="info"><div class="t">'+escapeHtml(item.title)+'</div>'+
       '<div class="m">'+item.character+' · '+(item.issue||'')+' · '+(item.date||'')+' · '+ratingLabel+'</div></div>'+
@@ -2107,6 +2114,7 @@ function renderAdminList(){
           '<input type="file" accept="image/*" class="hidden" data-cover-for="'+item.id+'">'+
         '</label>'+
         '<button class="btn btn-sm btn-ghost" data-translate-for="'+item.id+'">'+translateLabel+'</button>'+
+        (hasPages ? '<button class="btn btn-sm btn-ghost" data-rewatermark-for="'+item.id+'">'+t('rewatermark.button')+'</button>' : '') +
         '<button class="btn btn-sm btn-ghost" data-del="'+item.id+'">×</button>'+
       '</div>';
     row.querySelector('[data-del]').addEventListener('click', function(){
@@ -2123,6 +2131,12 @@ function renderAdminList(){
     row.querySelector('[data-translate-for]').addEventListener('click', function(){
       translateSynopsisForExistingItem(item.id, item.synopsis);
     });
+    var rewatermarkBtn = row.querySelector('[data-rewatermark-for]');
+    if(rewatermarkBtn){
+      rewatermarkBtn.addEventListener('click', function(){
+        rewatermarkExistingItem(item.id, item.pages, rewatermarkBtn);
+      });
+    }
     list.appendChild(row);
   });
 }
@@ -2321,6 +2335,97 @@ function renderPagesPreview(){
   });
 }
 
+/* ============ WATERMARK (baked into the actual image pixels, not a removable CSS
+   overlay — this is what makes it real: it survives screenshots, saved files,
+   and disabling any page styling, because it's part of the file itself) ============ */
+function rewatermarkExistingItem(itemId, pages, btnEl){
+  if(!pages || pages.length === 0) return;
+  var status = document.getElementById('pagesUploadStatus');
+  var session = getSession();
+  if(btnEl) btnEl.disabled = true;
+  var i = 0;
+  function next(){
+    if(i >= pages.length) return Promise.resolve();
+    if(status) status.textContent = t('rewatermark.progress').replace('{n}', i + 1).replace('{total}', pages.length);
+    var url = pages[i];
+    var marker = '/comic-pages/';
+    var markerIdx = url.indexOf(marker);
+    var path = markerIdx !== -1 ? url.slice(markerIdx + marker.length).split('?')[0] : null;
+    if(!path) { i++; return next(); } // unexpected URL shape — skip rather than fail the whole batch
+    return fetch(url).then(function(r){
+      if(!r.ok) throw new Error('fetch existing page failed: ' + r.status);
+      return r.blob();
+    }).then(function(rawBlob){
+      return watermarkImageFile(rawBlob);
+    }).then(function(watermarkedBlob){
+      return fetch(SUPABASE_URL + '/storage/v1/object/comic-pages/' + path, {
+        method:'POST',
+        headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'x-upsert':'true', 'Content-Type':'image/jpeg' },
+        body: watermarkedBlob
+      });
+    }).then(function(r){
+      if(!r.ok) throw new Error('rewatermark upload failed: ' + r.status);
+      i++;
+      return next();
+    });
+  }
+  next().then(function(){
+    if(status) status.textContent = '';
+    if(btnEl) btnEl.disabled = false;
+  }).catch(function(err){
+    console.warn('Rewatermark failed:', err);
+    if(status) status.textContent = '';
+    if(btnEl) btnEl.disabled = false;
+    alert(t('rewatermark.error'));
+  });
+}
+
+function watermarkImageFile(file){
+  return new Promise(function(resolve, reject){
+    var img = new Image();
+    var objectUrl = URL.createObjectURL(file);
+    img.onload = function(){
+      URL.revokeObjectURL(objectUrl);
+      var canvas = document.createElement('canvas');
+      canvas.width = img.naturalWidth;
+      canvas.height = img.naturalHeight;
+      var ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0);
+
+      // repeating diagonal watermark text, tiled across the whole page
+      var text = 'LUX COMICS & MEDUSA COMICS';
+      var fontSize = Math.max(16, Math.round(canvas.width / 22));
+      ctx.font = fontSize + 'px "Space Mono", monospace';
+      ctx.fillStyle = 'rgba(255,255,255,0.16)';
+      ctx.strokeStyle = 'rgba(0,0,0,0.10)';
+      ctx.lineWidth = 1;
+      ctx.textBaseline = 'middle';
+      var textWidth = ctx.measureText(text).width;
+      var stepX = textWidth + fontSize * 3;
+      var stepY = fontSize * 5;
+      ctx.save();
+      ctx.translate(canvas.width / 2, canvas.height / 2);
+      ctx.rotate(-Math.PI / 8);
+      ctx.translate(-canvas.width / 2, -canvas.height / 2);
+      var diag = Math.sqrt(canvas.width * canvas.width + canvas.height * canvas.height);
+      for(var y = -diag; y < diag; y += stepY){
+        for(var x = -diag; x < diag; x += stepX){
+          ctx.fillText(text, x, y);
+          ctx.strokeText(text, x, y);
+        }
+      }
+      ctx.restore();
+
+      canvas.toBlob(function(blob){
+        if(!blob){ reject(new Error('watermark canvas export failed')); return; }
+        resolve(blob);
+      }, 'image/jpeg', 0.92);
+    };
+    img.onerror = function(){ URL.revokeObjectURL(objectUrl); reject(new Error('image load failed for watermarking')); };
+    img.src = objectUrl;
+  });
+}
+
 function uploadComicPage(file, path){
   var session = getSession();
   return fetch(SUPABASE_URL + '/storage/v1/object/comic-pages/' + path, {
@@ -2346,12 +2451,12 @@ function uploadAllPendingPages(comicId){
     if(i >= pendingPages.length) return Promise.resolve(urls);
     status.textContent = t('pages.uploading').replace('{n}', i + 1).replace('{total}', pendingPages.length);
     var file = pendingPages[i].file;
-    var extMatch = /\.([a-zA-Z0-9]+)$/.exec(file.name || '');
-    var ext = extMatch ? extMatch[1].toLowerCase() : 'jpg';
     var pageNum = String(i + 1);
     while(pageNum.length < 3) pageNum = '0' + pageNum;
-    var path = comicId + '/' + pageNum + '.' + ext;
-    return uploadComicPage(file, path).then(function(url){
+    var path = comicId + '/' + pageNum + '.jpg'; // watermarking always re-encodes to JPEG
+    return watermarkImageFile(file).then(function(watermarkedBlob){
+      return uploadComicPage(watermarkedBlob, path);
+    }).then(function(url){
       urls.push(url);
       i++;
       return next();
