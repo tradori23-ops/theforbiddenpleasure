@@ -318,7 +318,7 @@ footer .fline{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
       <a href="#library" data-i18n="nav.library">Schedario</a>
       <a href="#characters" data-i18n="nav.characters">Dossier</a>
       <a href="#founder" data-i18n="nav.founder">Fondatore</a>
-      <a href="#" id="navAdmin" class="hidden" data-i18n="nav.admin">Amministra</a>
+      <a href="#" id="navAdmin" data-i18n="nav.admin">Amministra</a>
     </nav>
     <div class="topbar-tools">
       <label class="mature-toggle">
@@ -394,7 +394,7 @@ footer .fline{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
     </div>
   </section>
 
-  <!-- ============ ADMIN (hidden unless admin session) ============ -->
+  <!-- ============ ADMIN (click "Amministra" to reveal; content gated by Supabase auth) ============ -->
   <section class="section hidden" id="adminSection">
     <div class="section-head">
       <div>
@@ -402,8 +402,35 @@ footer .fline{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
         <h2 data-i18n="admin.title">Amministrazione Schedario</h2>
       </div>
     </div>
-    <div class="admin-panel">
-      <div class="notice"><b data-i18n="admin.noticeLabel">Nota tecnica —</b> <span data-i18n="admin.notice">questo pannello salva le uscite solo su questo dispositivo/browser (localStorage). Per pubblicarle davvero per tutti i visitatori serve collegare uno storage condiviso (es. Gist, come già fatto per gli altri tuoi progetti) — dimmelo quando vuoi e lo aggiungiamo.</span></div>
+
+    <!-- Sign-in box: shown when no valid Supabase admin session -->
+    <div class="admin-panel" id="adminSignInBox">
+      <div class="notice" id="syncNotice"><b data-i18n="admin.noticeLabel">Stato —</b> <span id="syncStatus" data-i18n="sync.notConfigured">Backend Supabase non ancora collegato.</span></div>
+      <div class="admin-grid">
+        <div class="field" style="grid-column:1/-1">
+          <label data-i18n="admin.signin.email">Email amministratore</label>
+          <input type="email" id="fAdminEmail" autocomplete="username">
+        </div>
+        <div class="field" style="grid-column:1/-1">
+          <label data-i18n="admin.signin.password">Password</label>
+          <input type="password" id="fAdminPassword" autocomplete="current-password">
+        </div>
+      </div>
+      <div class="form-error" id="adminSignInError"></div>
+      <div class="modal-actions">
+        <button class="btn btn-primary" id="btnAdminSignIn" data-i18n="admin.signin.btn">Accedi come admin</button>
+      </div>
+    </div>
+
+    <!-- Management box: shown once signed in -->
+    <div class="admin-panel hidden" id="adminManageBox">
+      <div class="notice"><b data-i18n="admin.noticeLabel">Stato —</b> <span id="syncStatus2"></span></div>
+      <div class="modal-actions" style="margin-top:0;margin-bottom:24px;">
+        <span class="acct-chip" id="adminEmailChip" style="padding:8px 4px 8px 0;"></span>
+        <button class="btn btn-ghost btn-sm" id="btnAdminSignOut" data-i18n="admin.signOut">Esci da admin</button>
+        <button class="btn btn-ghost btn-sm" id="btnResync" data-i18n="sync.resync">Sincronizza ora</button>
+      </div>
+
       <div class="admin-grid">
         <div class="field">
           <label data-i18n="admin.f.title">Titolo</label>
@@ -523,8 +550,16 @@ var STR = {
     "founder.eyebrow":"Casa Editrice","founder.title":"Il Fondatore","founder.role":"Fondatore & Direttore Editoriale",
     "founder.body":"Nox Morningstar ha fondato LUX COMICS & MEDUSA COMICS come rifugio per storie che altrove non troverebbero casa: opere disegnate per un pubblico adulto e consapevole, dove il proibito è materia narrativa, non provocazione fine a sé stessa. Ogni collana — Lucifer, Lilith, Lucifero, Lucio — porta la sua firma sotto forma di sigillo, garanzia di un'unica visione editoriale dietro voci diverse.",
     "admin.eyebrow":"Area Riservata","admin.title":"Amministrazione Schedario",
-    "admin.noticeLabel":"Nota tecnica —",
-    "admin.notice":"questo pannello salva le uscite solo su questo dispositivo/browser (localStorage). Per pubblicarle davvero per tutti i visitatori serve collegare uno storage condiviso (es. Gist, come già fatto per gli altri tuoi progetti) — dimmelo quando vuoi e lo aggiungiamo.",
+    "admin.noticeLabel":"Stato —",
+    "sync.notConfigured":"Backend Supabase non ancora collegato — il sito funziona in locale, in attesa della configurazione.",
+    "sync.configuredNoToken":"Connesso a Supabase in lettura. Accedi con le credenziali admin per poter pubblicare le modifiche.",
+    "sync.ready":"Connesso a Supabase — sei autenticato come amministratore, le modifiche sono pubbliche per tutti.",
+    "sync.syncing":"Sincronizzazione in corso…",
+    "sync.error":"Errore di sincronizzazione — le modifiche restano salvate solo qui, riprova più tardi.",
+    "sync.resync":"Sincronizza ora",
+    "admin.signin.email":"Email amministratore","admin.signin.password":"Password",
+    "admin.signin.btn":"Accedi come admin","admin.signin.error":"Credenziali non valide o backend non raggiungibile.",
+    "admin.signOut":"Esci da admin",
     "admin.f.title":"Titolo","admin.f.character":"Personaggio","admin.f.issue":"Numero / Volume","admin.f.date":"Data pubblicazione","admin.f.synopsis":"Sinossi (inglese — testo delle opere)",
     "admin.add":"Aggiungi allo schedario","admin.export":"Esporta JSON","admin.import":"Importa JSON",
     "footer.line":"ARCHIVIO APERTO A TUTTI · SEZIONE 18+ SU RICHIESTA · TRAD.CLAB WORKS",
@@ -558,8 +593,16 @@ var STR = {
     "founder.eyebrow":"Publishing House","founder.title":"The Founder","founder.role":"Founder & Editorial Director",
     "founder.body":"Nox Morningstar founded LUX COMICS & MEDUSA COMICS as a home for stories that would find no shelf elsewhere: works drawn for a mature, consenting audience, where the forbidden is narrative material, not provocation for its own sake. Each line — Lucifer, Lilith, Lucifero, Lucio — carries the founder's signature in the form of a seal, a guarantee of one editorial vision behind different voices.",
     "admin.eyebrow":"Private Area","admin.title":"Index Administration",
-    "admin.noticeLabel":"Technical note —",
-    "admin.notice":"this panel currently saves entries only on this device/browser (localStorage). To publish them for every visitor you'll need shared storage (e.g. a Gist, as already done for your other projects) — just ask and we'll wire it up.",
+    "admin.noticeLabel":"Status —",
+    "sync.notConfigured":"Supabase backend not yet connected — the site runs locally while it's being set up.",
+    "sync.configuredNoToken":"Connected to Supabase for reading. Sign in with the admin credentials to publish changes.",
+    "sync.ready":"Connected to Supabase — you're authenticated as admin, changes are public for everyone.",
+    "sync.syncing":"Syncing…",
+    "sync.error":"Sync error — changes are saved only here for now, try again later.",
+    "sync.resync":"Sync now",
+    "admin.signin.email":"Admin email","admin.signin.password":"Password",
+    "admin.signin.btn":"Sign in as admin","admin.signin.error":"Invalid credentials or backend unreachable.",
+    "admin.signOut":"Sign out of admin",
     "admin.f.title":"Title","admin.f.character":"Character","admin.f.issue":"Issue / Volume","admin.f.date":"Publish date","admin.f.synopsis":"Synopsis (English — text of the works)",
     "admin.add":"Add to index","admin.export":"Export JSON","admin.import":"Import JSON",
     "footer.line":"OPEN ARCHIVE · 18+ SECTION ON REQUEST · TRAD.CLAB WORKS",
@@ -593,8 +636,16 @@ var STR = {
     "founder.eyebrow":"Casa Editorial","founder.title":"El Fundador","founder.role":"Fundador y Director Editorial",
     "founder.body":"Nox Morningstar fundó LUX COMICS & MEDUSA COMICS como refugio para historias que no tendrían lugar en otro sitio: obras pensadas para un público adulto y consciente, donde lo prohibido es materia narrativa, no provocación gratuita. Cada colección — Lucifer, Lilith, Lucifero, Lucio — lleva su firma en forma de sello, garantía de una única visión editorial detrás de voces distintas.",
     "admin.eyebrow":"Área Privada","admin.title":"Administración del Índice",
-    "admin.noticeLabel":"Nota técnica —",
-    "admin.notice":"este panel guarda las obras solo en este dispositivo/navegador (localStorage). Para publicarlas de verdad para todos los visitantes hace falta un almacenamiento compartido (p. ej. un Gist, como en tus otros proyectos) — dilo cuando quieras y lo conectamos.",
+    "admin.noticeLabel":"Estado —",
+    "sync.notConfigured":"Backend de Supabase aún no conectado — el sitio funciona en local mientras se configura.",
+    "sync.configuredNoToken":"Conectado a Supabase en lectura. Accede con las credenciales de administrador para publicar cambios.",
+    "sync.ready":"Conectado a Supabase — has iniciado sesión como administrador, los cambios son públicos para todos.",
+    "sync.syncing":"Sincronizando…",
+    "sync.error":"Error de sincronización — los cambios solo se guardan aquí por ahora, inténtalo más tarde.",
+    "sync.resync":"Sincronizar ahora",
+    "admin.signin.email":"Email de administrador","admin.signin.password":"Contraseña",
+    "admin.signin.btn":"Acceder como admin","admin.signin.error":"Credenciales no válidas o backend inaccesible.",
+    "admin.signOut":"Salir de admin",
     "admin.f.title":"Título","admin.f.character":"Personaje","admin.f.issue":"Número / Volumen","admin.f.date":"Fecha de publicación","admin.f.synopsis":"Sinopsis (inglés — texto de las obras)",
     "admin.add":"Añadir al índice","admin.export":"Exportar JSON","admin.import":"Importar JSON",
     "footer.line":"ARCHIVO ABIERTO A TODOS · SECCIÓN 18+ BAJO PETICIÓN · TRAD.CLAB WORKS",
@@ -628,8 +679,16 @@ var STR = {
     "founder.eyebrow":"Maison d'Édition","founder.title":"Le Fondateur","founder.role":"Fondateur & Directeur Éditorial",
     "founder.body":"Nox Morningstar a fondé LUX COMICS & MEDUSA COMICS comme refuge pour des histoires qui ne trouveraient leur place nulle part ailleurs : des œuvres pensées pour un public adulte et consentant, où l'interdit est matière narrative, non provocation gratuite. Chaque collection — Lucifer, Lilith, Lucifero, Lucio — porte sa signature sous forme de sceau, garantie d'une seule vision éditoriale derrière des voix différentes.",
     "admin.eyebrow":"Espace Privé","admin.title":"Administration de l'Index",
-    "admin.noticeLabel":"Note technique —",
-    "admin.notice":"ce panneau enregistre les parutions uniquement sur cet appareil/navigateur (localStorage). Pour les publier réellement pour tous les visiteurs, il faudra un stockage partagé (ex. un Gist, comme pour vos autres projets) — dites-le quand vous voulez et on le branche.",
+    "admin.noticeLabel":"État —",
+    "sync.notConfigured":"Backend Supabase pas encore connecté — le site fonctionne en local en attendant la configuration.",
+    "sync.configuredNoToken":"Connecté à Supabase en lecture. Connectez-vous avec les identifiants admin pour publier des modifications.",
+    "sync.ready":"Connecté à Supabase — vous êtes authentifié comme administrateur, les modifications sont publiques pour tous.",
+    "sync.syncing":"Synchronisation en cours…",
+    "sync.error":"Erreur de synchronisation — les modifications restent enregistrées ici pour l'instant, réessayez plus tard.",
+    "sync.resync":"Synchroniser maintenant",
+    "admin.signin.email":"Email administrateur","admin.signin.password":"Mot de passe",
+    "admin.signin.btn":"Connexion admin","admin.signin.error":"Identifiants invalides ou backend inaccessible.",
+    "admin.signOut":"Déconnexion admin",
     "admin.f.title":"Titre","admin.f.character":"Personnage","admin.f.issue":"Numéro / Volume","admin.f.date":"Date de publication","admin.f.synopsis":"Synopsis (anglais — texte des œuvres)",
     "admin.add":"Ajouter à l'index","admin.export":"Exporter JSON","admin.import":"Importer JSON",
     "footer.line":"ARCHIVE OUVERTE À TOUS · SECTION 18+ SUR DEMANDE · TRAD.CLAB WORKS",
@@ -663,8 +722,16 @@ var STR = {
     "founder.eyebrow":"Verlagshaus","founder.title":"Der Gründer","founder.role":"Gründer & Verlagsleiter",
     "founder.body":"Nox Morningstar gründete LUX COMICS & MEDUSA COMICS als Zuflucht für Geschichten, die anderswo keinen Platz fänden: Werke für ein erwachsenes, einwilligendes Publikum, in denen das Verbotene erzählerisches Material ist, keine Provokation um ihrer selbst willen. Jede Reihe — Lucifer, Lilith, Lucifero, Lucio — trägt seine Signatur in Form eines Siegels, Garant einer einzigen redaktionellen Vision hinter unterschiedlichen Stimmen.",
     "admin.eyebrow":"Privater Bereich","admin.title":"Index-Verwaltung",
-    "admin.noticeLabel":"Technischer Hinweis —",
-    "admin.notice":"dieses Panel speichert Einträge derzeit nur auf diesem Gerät/Browser (localStorage). Um sie wirklich für alle Besucher zu veröffentlichen, braucht es einen geteilten Speicher (z. B. ein Gist, wie bei Ihren anderen Projekten) — sagen Sie Bescheid, wir binden es an.",
+    "admin.noticeLabel":"Status —",
+    "sync.notConfigured":"Supabase-Backend noch nicht verbunden — die Seite läuft lokal, bis die Einrichtung erfolgt.",
+    "sync.configuredNoToken":"Mit Supabase zum Lesen verbunden. Melden Sie sich mit den Admin-Zugangsdaten an, um Änderungen zu veröffentlichen.",
+    "sync.ready":"Mit Supabase verbunden — Sie sind als Administrator angemeldet, Änderungen sind für alle öffentlich.",
+    "sync.syncing":"Synchronisierung läuft…",
+    "sync.error":"Sync-Fehler — Änderungen sind vorerst nur hier gespeichert, später erneut versuchen.",
+    "sync.resync":"Jetzt synchronisieren",
+    "admin.signin.email":"Admin-E-Mail","admin.signin.password":"Passwort",
+    "admin.signin.btn":"Als Admin anmelden","admin.signin.error":"Ungültige Anmeldedaten oder Backend nicht erreichbar.",
+    "admin.signOut":"Admin abmelden",
     "admin.f.title":"Titel","admin.f.character":"Figur","admin.f.issue":"Nummer / Band","admin.f.date":"Veröffentlichungsdatum","admin.f.synopsis":"Zusammenfassung (Englisch — Text der Werke)",
     "admin.add":"Zum Index hinzufügen","admin.export":"JSON exportieren","admin.import":"JSON importieren",
     "footer.line":"OFFENES ARCHIV · 18+ BEREICH AUF ANFRAGE · TRAD.CLAB WORKS",
@@ -740,6 +807,7 @@ function setLang(lang){
   renderDossiers();
   renderCatalog();
   renderAdminList();
+  updateSyncStatus();
 }
 
 /* ============ MATURE CONTENT TOGGLE ============ */
@@ -810,13 +878,58 @@ function simpleHash(str){
 function getSession(){ return localStorage.getItem('lux_session') || null; }
 function setSession(username){ if(username){ localStorage.setItem('lux_session', username); } else { localStorage.removeItem('lux_session'); } }
 
-function ensureAdminSeed(){
-  var users = getUsers();
-  if(!users.some(function(u){return u.username === 'admin';})){
-    users.push({username:'admin', pass:simpleHash('changeme123'), lang:'it', isAdmin:true});
-    saveUsers(users);
-  }
+/* ============ SUPABASE ADMIN AUTH ============ */
+// Real authentication now, via Supabase — no more locally-derived passwords.
+// SUPABASE_URL and SUPABASE_ANON_KEY are meant to be public (Supabase's anon
+// key is safe to embed client-side by design; access control is enforced
+// server-side by Row Level Security policies on the `catalog` table, not by
+// hiding this key). The admin's actual email/password live only in Supabase's
+// own Auth system — nothing admin-identifying is stored in this file.
+var SUPABASE_URL = '';
+var SUPABASE_ANON_KEY = '';
+
+function getAdminSession(){
+  try{ return JSON.parse(localStorage.getItem('lux_admin_session') || 'null'); }catch(e){ return null; }
 }
+function setAdminSession(session){
+  if(session){ localStorage.setItem('lux_admin_session', JSON.stringify(session)); }
+  else{ localStorage.removeItem('lux_admin_session'); }
+}
+function isAdminSignedIn(){
+  var s = getAdminSession();
+  return !!(s && s.access_token);
+}
+
+function adminSignIn(email, password){
+  return fetch(SUPABASE_URL + '/auth/v1/token?grant_type=password', {
+    method:'POST',
+    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Content-Type':'application/json' },
+    body: JSON.stringify({email:email, password:password})
+  }).then(function(r){
+    return r.json().then(function(data){
+      if(!r.ok) throw new Error(data.error_description || data.msg || ('sign-in failed: ' + r.status));
+      return data;
+    });
+  });
+}
+function adminSignOut(){ setAdminSession(null); }
+
+function refreshAdminUI(){
+  var signedIn = isAdminSignedIn() && !!SUPABASE_URL;
+  var signInBox = document.getElementById('adminSignInBox');
+  var manageBox = document.getElementById('adminManageBox');
+  if(!signInBox || !manageBox) return;
+  signInBox.classList.toggle('hidden', signedIn);
+  manageBox.classList.toggle('hidden', !signedIn);
+  if(signedIn){
+    var s = getAdminSession();
+    var chip = document.getElementById('adminEmailChip');
+    if(chip) chip.textContent = '@' + (s.user && s.user.email ? s.user.email : 'admin');
+    renderAdminList();
+  }
+  updateSyncStatus();
+}
+
 
 var authMode = 'login';
 function openAuth(mode){
@@ -863,7 +976,7 @@ function handleAuthSubmit(){
   closeAuth();
   refreshAuthUI();
   applyI18n();
-  renderDossiers(); renderCatalog(); renderAdminList();
+  renderDossiers(); renderCatalog(); renderAdminList(); updateSyncStatus();
 }
 
 function refreshAuthUI(){
@@ -871,28 +984,21 @@ function refreshAuthUI(){
   var chip = document.getElementById('acctChip');
   var btnLogin = document.getElementById('btnLoginTop');
   var btnLogout = document.getElementById('btnLogoutTop');
-  var navAdmin = document.getElementById('navAdmin');
-  var adminSection = document.getElementById('adminSection');
   if(session){
     chip.textContent = '@' + session;
     chip.classList.remove('hidden');
     btnLogin.classList.add('hidden');
     btnLogout.classList.remove('hidden');
-    var users = getUsers();
-    var u = users.find(function(x){return x.username === session;});
-    var isAdmin = !!(u && u.isAdmin);
-    navAdmin.classList.toggle('hidden', !isAdmin);
-    if(!isAdmin) adminSection.classList.add('hidden');
   } else {
     chip.classList.add('hidden');
     btnLogin.classList.remove('hidden');
     btnLogout.classList.add('hidden');
-    navAdmin.classList.add('hidden');
-    adminSection.classList.add('hidden');
   }
 }
 
-/* ============ CATALOG ============ */
+/* ============ CATALOG (local cache + Supabase sync) ============ */
+var syncState = 'idle'; // idle | syncing | error
+
 function getCatalog(){
   try{
     var raw = localStorage.getItem('lux_catalog');
@@ -923,7 +1029,102 @@ function getCatalog(){
   localStorage.setItem('lux_catalog', JSON.stringify(seed));
   return seed;
 }
-function saveCatalog(items){ localStorage.setItem('lux_catalog', JSON.stringify(items)); }
+function saveCatalogLocal(items){ localStorage.setItem('lux_catalog', JSON.stringify(items)); }
+
+function updateSyncStatus(){
+  var els = [document.getElementById('syncStatus'), document.getElementById('syncStatus2')];
+  var text;
+  if(!SUPABASE_URL){ text = t('sync.notConfigured'); }
+  else if(syncState === 'syncing'){ text = t('sync.syncing'); }
+  else if(syncState === 'error'){ text = t('sync.error'); }
+  else if(!isAdminSignedIn()){ text = t('sync.configuredNoToken'); }
+  else { text = t('sync.ready'); }
+  els.forEach(function(el){ if(el) el.textContent = text; });
+}
+
+function fetchCatalogFromSupabase(){
+  if(!SUPABASE_URL) return Promise.resolve(null);
+  syncState = 'syncing'; updateSyncStatus();
+  return fetch(SUPABASE_URL + '/rest/v1/catalog?select=*&order=date.desc', {
+    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + SUPABASE_ANON_KEY }
+  })
+    .then(function(r){ if(!r.ok) throw new Error('read failed: ' + r.status); return r.json(); })
+    .then(function(items){
+      saveCatalogLocal(items);
+      syncState = 'idle'; updateSyncStatus();
+      return items;
+    })
+    .catch(function(err){
+      syncState = 'error'; updateSyncStatus();
+      console.warn('Supabase sync (read) failed:', err);
+      return null;
+    });
+}
+
+function supabaseInsert(item){
+  var session = getAdminSession();
+  if(!SUPABASE_URL || !session) return Promise.resolve(false);
+  syncState = 'syncing'; updateSyncStatus();
+  return fetch(SUPABASE_URL + '/rest/v1/catalog', {
+    method:'POST',
+    headers:{
+      'apikey':SUPABASE_ANON_KEY,
+      'Authorization':'Bearer ' + session.access_token,
+      'Content-Type':'application/json',
+      'Prefer':'return=representation'
+    },
+    body: JSON.stringify(item)
+  })
+    .then(function(r){
+      if(!r.ok) return r.json().then(function(e){ throw new Error(e.message || ('insert failed: ' + r.status)); });
+      return r.json();
+    })
+    .then(function(){ syncState = 'idle'; updateSyncStatus(); return true; })
+    .catch(function(err){
+      syncState = 'error'; updateSyncStatus();
+      console.warn('Supabase sync (insert) failed:', err);
+      return false;
+    });
+}
+
+function supabaseDelete(id){
+  var session = getAdminSession();
+  if(!SUPABASE_URL || !session) return Promise.resolve(false);
+  syncState = 'syncing'; updateSyncStatus();
+  return fetch(SUPABASE_URL + '/rest/v1/catalog?id=eq.' + encodeURIComponent(id), {
+    method:'DELETE',
+    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
+  })
+    .then(function(r){ if(!r.ok) throw new Error('delete failed: ' + r.status); syncState = 'idle'; updateSyncStatus(); return true; })
+    .catch(function(err){
+      syncState = 'error'; updateSyncStatus();
+      console.warn('Supabase sync (delete) failed:', err);
+      return false;
+    });
+}
+
+function supabaseBulkUpsert(items){
+  var session = getAdminSession();
+  if(!SUPABASE_URL || !session) return Promise.resolve(false);
+  syncState = 'syncing'; updateSyncStatus();
+  return fetch(SUPABASE_URL + '/rest/v1/catalog?on_conflict=id', {
+    method:'POST',
+    headers:{
+      'apikey':SUPABASE_ANON_KEY,
+      'Authorization':'Bearer ' + session.access_token,
+      'Content-Type':'application/json',
+      'Prefer':'resolution=merge-duplicates,return=representation'
+    },
+    body: JSON.stringify(items)
+  })
+    .then(function(r){ if(!r.ok) throw new Error('bulk upsert failed: ' + r.status); return r.json(); })
+    .then(function(){ syncState = 'idle'; updateSyncStatus(); return true; })
+    .catch(function(err){
+      syncState = 'error'; updateSyncStatus();
+      console.warn('Supabase sync (bulk upsert) failed:', err);
+      return false;
+    });
+}
 
 var activeFilter = 'all';
 
@@ -1019,10 +1220,7 @@ function escapeHtml(str){
 
 /* ============ ADMIN ============ */
 function renderAdminList(){
-  var session = getSession();
-  var users = getUsers();
-  var u = users.find(function(x){return x.username === session;});
-  if(!u || !u.isAdmin) return;
+  if(!isAdminSignedIn()) return;
   var list = document.getElementById('adminList');
   var items = getCatalog();
   items.sort(function(a,b){ return (b.date||'').localeCompare(a.date||''); });
@@ -1038,9 +1236,10 @@ function renderAdminList(){
     row.querySelector('[data-del]').addEventListener('click', function(){
       if(!confirm(t('admin.confirmDelete'))) return;
       var all = getCatalog().filter(function(x){return x.id !== item.id;});
-      saveCatalog(all);
+      saveCatalogLocal(all);
       renderCatalog();
       renderAdminList();
+      supabaseDelete(item.id);
     });
     list.appendChild(row);
   });
@@ -1059,14 +1258,15 @@ function handleAddEntry(){
     err.textContent = t('err.required');
     return;
   }
-  var items = getCatalog();
-  items.push({
+  var newItem = {
     id: 'c' + Date.now(),
     character: character, title: title, issue: issue,
     date: date || new Date().toISOString().slice(0,10),
     synopsis: synopsis, mature: mature
-  });
-  saveCatalog(items);
+  };
+  var items = getCatalog();
+  items.push(newItem);
+  saveCatalogLocal(items);
   document.getElementById('fTitle').value = '';
   document.getElementById('fIssue').value = '';
   document.getElementById('fDate').value = '';
@@ -1074,6 +1274,7 @@ function handleAddEntry(){
   document.getElementById('fMature').checked = false;
   renderCatalog();
   renderAdminList();
+  supabaseInsert(newItem);
 }
 
 function handleExport(){
@@ -1094,9 +1295,16 @@ function handleImport(file){
     try{
       var data = JSON.parse(e.target.result);
       if(Array.isArray(data)){
-        saveCatalog(data);
+        // merge into local cache (existing ids updated, new ids added)
+        var current = getCatalog();
+        var byId = {};
+        current.forEach(function(i){ byId[i.id] = i; });
+        data.forEach(function(i){ byId[i.id] = i; });
+        var merged = Object.keys(byId).map(function(k){ return byId[k]; });
+        saveCatalogLocal(merged);
         renderCatalog();
         renderAdminList();
+        supabaseBulkUpsert(data); // note: import adds/updates but doesn't delete titles missing from the file
       }
     }catch(err){
       alert('JSON non valido / Invalid JSON');
@@ -1110,12 +1318,11 @@ document.addEventListener('DOMContentLoaded', function(){
   document.querySelectorAll('.seal-img[data-size="sm"]').forEach(function(img){ img.src = LOGO_SM; });
   document.querySelectorAll('.seal-img[data-size="lg"]').forEach(function(img){ img.src = LOGO_LG; });
   initMatureToggle();
-  ensureAdminSeed();
   applyI18n();
   renderDossiers();
   renderCatalog();
   refreshAuthUI();
-  renderAdminList();
+  refreshAdminUI();
 
   document.getElementById('langSelect').addEventListener('change', function(e){
     setLang(e.target.value);
@@ -1125,8 +1332,6 @@ document.addEventListener('DOMContentLoaded', function(){
   document.getElementById('btnLogoutTop').addEventListener('click', function(){
     setSession(null);
     refreshAuthUI();
-    renderAdminList();
-    document.getElementById('adminSection').classList.add('hidden');
   });
   document.getElementById('authClose').addEventListener('click', closeAuth);
   document.getElementById('authCancel').addEventListener('click', closeAuth);
@@ -1142,7 +1347,7 @@ document.addEventListener('DOMContentLoaded', function(){
     e.preventDefault();
     document.getElementById('adminSection').classList.remove('hidden');
     document.getElementById('adminSection').scrollIntoView({behavior:'smooth'});
-    renderAdminList();
+    refreshAdminUI();
   });
 
   document.getElementById('btnAddEntry').addEventListener('click', handleAddEntry);
@@ -1152,6 +1357,35 @@ document.addEventListener('DOMContentLoaded', function(){
   });
   document.getElementById('importFile').addEventListener('change', function(e){
     if(e.target.files[0]) handleImport(e.target.files[0]);
+  });
+
+  document.getElementById('btnAdminSignIn').addEventListener('click', function(){
+    var email = document.getElementById('fAdminEmail').value.trim();
+    var pass = document.getElementById('fAdminPassword').value;
+    var err = document.getElementById('adminSignInError');
+    err.textContent = '';
+    if(!SUPABASE_URL){ err.textContent = t('sync.notConfigured'); return; }
+    if(!email || !pass){ err.textContent = t('err.required'); return; }
+    adminSignIn(email, pass).then(function(data){
+      setAdminSession(data);
+      document.getElementById('fAdminPassword').value = '';
+      refreshAdminUI();
+    }).catch(function(e){
+      err.textContent = t('admin.signin.error');
+      console.warn('Admin sign-in failed:', e);
+    });
+  });
+  document.getElementById('btnAdminSignOut').addEventListener('click', function(){
+    adminSignOut();
+    refreshAdminUI();
+  });
+  document.getElementById('btnResync').addEventListener('click', function(){
+    fetchCatalogFromSupabase().then(function(){ renderCatalog(); renderAdminList(); });
+  });
+
+  updateSyncStatus();
+  fetchCatalogFromSupabase().then(function(items){
+    if(items){ renderCatalog(); renderAdminList(); }
   });
 });
 })();
