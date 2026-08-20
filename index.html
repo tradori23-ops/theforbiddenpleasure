@@ -361,7 +361,8 @@ select.langsel{
 .admin-row .info{font-size:13px;}
 .admin-row .info .t{font-family:'Cinzel',serif;font-size:14px;}
 .admin-row .info .m{font-family:'Space Mono',monospace;font-size:10px;color:var(--parchment-dim);}
-.admin-actions{display:flex;gap:8px;}
+.admin-actions{display:flex;gap:8px;flex-wrap:wrap;}
+.cover-upload-btn{cursor:pointer;white-space:nowrap;}
 .notice{
   border:1px solid var(--ember);background:rgba(212,98,47,0.08);color:var(--parchment);
   padding:14px 16px;font-size:13px;line-height:1.6;margin-bottom:20px;
@@ -414,6 +415,21 @@ footer .fcopy{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
 /* ============ TITLE DETAIL MODAL ============ */
 .detail-modal{max-width:640px;}
 .detail-synopsis{color:var(--parchment-dim);line-height:1.8;font-size:15px;margin:14px 0;}
+.collab-credit{font-family:'Space Mono',monospace;font-size:11px;color:var(--gold);letter-spacing:0.05em;margin:-6px 0 14px;}
+.collab-credit a{color:var(--gold-bright);text-decoration:underline;}
+.engagement-counts{font-size:11px;color:var(--parchment-dim);align-self:center;}
+.stats-row{border-bottom:1px solid var(--line);padding:12px 0;}
+.stats-row .stats-title{font-family:'Cinzel',serif;font-size:14px;margin-bottom:6px;}
+.stats-row .stats-numbers{font-family:'Space Mono',monospace;font-size:11px;color:var(--parchment-dim);margin-bottom:8px;}
+.stats-bar-track{height:8px;background:var(--void);border:1px solid var(--line);overflow:hidden;}
+.stats-bar-fill{height:100%;background:linear-gradient(90deg, var(--wine), var(--gold));}
+.collab-banner{
+  border:1px solid var(--gold);background:rgba(201,162,77,0.08);
+  padding:14px 18px;margin-bottom:20px;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
+  font-family:'Space Mono',monospace;font-size:12px;color:var(--parchment-dim);
+}
+.collab-banner strong{color:var(--gold-bright);}
 .comment-item{border-top:1px solid var(--line);padding:12px 0;font-size:13px;}
 .comment-item .author{font-family:'Space Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:0.06em;}
 .comment-item .pending-tag{color:var(--ember);font-family:'Space Mono',monospace;font-size:9px;text-transform:uppercase;margin-left:8px;}
@@ -495,7 +511,7 @@ footer .fcopy{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
     <img class="seal seal-lg seal-img" data-size="lg" alt="LUX COMICS &amp; MEDUSA COMICS">
     <h1><span data-i18n="hero.title1">L'ARCHIVIO DEL</span> <span class="amp">&amp;</span> <span data-i18n="hero.title2">PIACERE PROIBITO</span></h1>
     <div class="tagline" data-i18n="hero.tagline">Fumetti d'autore — edizione riservata</div>
-    <p class="lede" data-i18n="hero.lede">Quattro sigilli, quattro voci: Lucifer, Lilith, Lucifero e Lucio custodiscono le collane di questa casa. Lo schedario è aperto a tutti — i contenuti 18+ restano dietro un interruttore separato, da sbloccare quando vuoi. Ogni tavola nasce in inglese ed entra nello schedario così com'è — solo la tua lingua d'accesso è cosa nostra.</p>
+    <p class="lede" data-i18n="hero.lede">Quattro sigilli, quattro voci: Lucifer, Lilith, Lucifera e Lucio custodiscono le collane di questa casa. Lo schedario è aperto a tutti — i contenuti 18+ restano dietro un interruttore separato, da sbloccare quando vuoi. Ogni tavola nasce in inglese ed entra nello schedario così com'è — solo la tua lingua d'accesso è cosa nostra.</p>
     <div class="cta-row">
       <a href="#library" class="btn btn-primary" data-i18n="hero.cta1">Sfoglia lo schedario</a>
       <a href="#characters" class="btn btn-ghost" data-i18n="hero.cta2">Incontra i dossier</a>
@@ -524,6 +540,7 @@ footer .fcopy{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
       </div>
       <div class="catalog-filters" id="catalogFilters"></div>
     </div>
+    <div class="collab-banner hidden" id="collabBanner"></div>
     <div class="catalog-grid" id="catalogGrid"></div>
   </section>
 
@@ -542,7 +559,7 @@ footer .fcopy{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
       <div class="founder-text">
         <h3>Nox Morningstar</h3>
         <div class="role" data-i18n="founder.role">Fondatore &amp; Direttore Editoriale</div>
-        <p data-i18n="founder.body">Nox Morningstar ha fondato LUX COMICS &amp; MEDUSA COMICS come rifugio per storie che altrove non troverebbero casa: opere disegnate per un pubblico adulto e consapevole, dove il proibito è materia narrativa, non provocazione fine a sé stessa. Ogni collana — Lucifer, Lilith, Lucifero, Lucio — porta la sua firma sotto forma di sigillo, garanzia di un'unica visione editoriale dietro voci diverse.</p>
+        <p data-i18n="founder.body">Nox Morningstar ha fondato LUX COMICS &amp; MEDUSA COMICS come rifugio per storie che altrove non troverebbero casa: opere disegnate per un pubblico adulto e consapevole, dove il proibito è materia narrativa, non provocazione fine a sé stessa. Ogni collana — Lucifer, Lilith, Lucifera, Lucio — porta la sua firma sotto forma di sigillo, garanzia di un'unica visione editoriale dietro voci diverse.</p>
       </div>
     </div>
   </section>
@@ -589,6 +606,11 @@ footer .fcopy{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
         <div data-i18n="comments.moderationTitle" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Commenti in attesa di approvazione</div>
         <div id="modQueue"></div>
       </div>
+      <div class="notice">
+        <div data-i18n="stats.title" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Statistiche per titolo</div>
+        <p class="form-note" data-i18n="stats.purchaseNote">Gli "acquisti" non sono ancora reali — nessun processore di pagamento è collegato. "Carrello" conta l'interesse (quante volte è stato aggiunto), non vendite confermate.</p>
+        <div id="statsPanel"></div>
+      </div>
       <div class="modal-actions" style="margin-top:0;margin-bottom:24px;">
         <button class="btn btn-ghost btn-sm" id="btnResync" data-i18n="sync.resync">Sincronizza ora</button>
       </div>
@@ -610,7 +632,7 @@ footer .fcopy{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
           <select id="fCharacter">
             <option value="Lucifer">Lucifer</option>
             <option value="Lilith">Lilith</option>
-            <option value="Lucifero">Lucifero</option>
+            <option value="Lucifera">Lucifera</option>
             <option value="Lucio">Lucio</option>
           </select>
         </div>
@@ -625,6 +647,14 @@ footer .fcopy{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
         <div class="field">
           <label data-i18n="admin.f.price">Prezzo (EUR, opzionale)</label>
           <input type="number" id="fPrice" min="0" step="0.01" placeholder="4.99">
+        </div>
+        <div class="field">
+          <label data-i18n="collab.name">Collaboratore (opzionale)</label>
+          <input type="text" id="fCollabName" placeholder="Nome o @username">
+        </div>
+        <div class="field">
+          <label data-i18n="collab.url">Link al profilo (es. Instagram)</label>
+          <input type="url" id="fCollabUrl" placeholder="https://instagram.com/...">
         </div>
         <div class="field" style="grid-column:1/-1">
           <label data-i18n="admin.f.synopsis">Sinossi (inglese — testo delle opere)</label>
@@ -711,6 +741,7 @@ footer .fcopy{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
     <div class="sub mono" id="titleModalMeta"></div>
     <h3 id="titleModalTitle"></h3>
     <p class="detail-synopsis" id="titleModalSynopsis"></p>
+    <p class="collab-credit hidden" id="titleModalCollab"></p>
     <div id="pageReader" class="page-reader hidden">
       <div class="page-reader-main">
         <button type="button" class="page-reader-nav prev" id="pageReaderPrev" aria-label="Pagina precedente">‹</button>
@@ -722,8 +753,11 @@ footer .fcopy{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
     </div>
     <div class="modal-actions" style="margin-top:6px;">
       <button class="btn btn-ghost btn-sm" id="titleModalFav" data-i18n="fav.add">♡ Salva</button>
+      <button class="btn btn-ghost btn-sm" id="titleModalLike" data-i18n="like.add">👍 Mi piace</button>
+      <span class="engagement-counts mono" id="titleModalCounts"></span>
       <button class="btn btn-primary btn-sm hidden" id="titleModalAddCart" data-i18n="cart.add">Aggiungi al carrello</button>
       <a class="btn btn-ghost btn-sm hidden" id="titleModalPdf" href="#" target="_blank" rel="noopener" data-i18n="pdf.download">Scarica PDF</a>
+      <button class="btn btn-ghost btn-sm" id="titleModalShare" data-i18n="share.button">Condividi</button>
     </div>
     <div style="margin-top:26px;">
       <div class="sub mono" data-i18n="comments.title">Commenti</div>
@@ -789,12 +823,12 @@ var STR = {
     "nav.library":"Schedario","nav.characters":"Dossier","nav.founder":"Fondatore","nav.admin":"Amministra","nav.login":"Accedi","nav.logout":"Esci",
     "hero.title1":"L'ARCHIVIO DEL","hero.title2":"PIACERE PROIBITO",
     "hero.tagline":"Fumetti d'autore — edizione riservata",
-    "hero.lede":"Quattro sigilli, quattro voci: Lucifer, Lilith, Lucifero e Lucio custodiscono le collane di questa casa. Lo schedario è aperto a tutti — i contenuti 18+ restano dietro un interruttore separato, da sbloccare quando vuoi. Ogni tavola nasce in inglese ed entra nello schedario così com'è — solo la tua lingua d'accesso è cosa nostra.",
+    "hero.lede":"Quattro sigilli, quattro voci: Lucifer, Lilith, Lucifera e Lucio custodiscono le collane di questa casa. Lo schedario è aperto a tutti — i contenuti 18+ restano dietro un interruttore separato, da sbloccare quando vuoi. Ogni tavola nasce in inglese ed entra nello schedario così com'è — solo la tua lingua d'accesso è cosa nostra.",
     "hero.cta1":"Sfoglia lo schedario","hero.cta2":"Incontra i dossier",
     "characters.eyebrow":"Dossier","characters.title":"I Quattro Sigilli","characters.desc":"Ogni personaggio guida una collana propria, con tono e mitologia distinti.",
     "library.eyebrow":"Schedario","library.title":"Catalogo delle Opere",
     "founder.eyebrow":"Casa Editrice","founder.title":"Il Fondatore","founder.role":"Fondatore & Direttore Editoriale",
-    "founder.body":"Nox Morningstar ha fondato LUX COMICS & MEDUSA COMICS come rifugio per storie che altrove non troverebbero casa: opere disegnate per un pubblico adulto e consapevole, dove il proibito è materia narrativa, non provocazione fine a sé stessa. Ogni collana — Lucifer, Lilith, Lucifero, Lucio — porta la sua firma sotto forma di sigillo, garanzia di un'unica visione editoriale dietro voci diverse.",
+    "founder.body":"Nox Morningstar ha fondato LUX COMICS & MEDUSA COMICS come rifugio per storie che altrove non troverebbero casa: opere disegnate per un pubblico adulto e consapevole, dove il proibito è materia narrativa, non provocazione fine a sé stessa. Ogni collana — Lucifer, Lilith, Lucifera, Lucio — porta la sua firma sotto forma di sigillo, garanzia di un'unica visione editoriale dietro voci diverse.",
     "admin.eyebrow":"Area Riservata","admin.title":"Amministrazione Schedario",
     "admin.noticeLabel":"Stato —",
     "sync.notConfigured":"Backend Supabase non ancora collegato — il sito funziona in locale, in attesa della configurazione.",
@@ -831,6 +865,13 @@ var STR = {
     "pages.label":"Pagine del fumetto (immagini 1:1, tipo carosello) — trascina per riordinare",
     "pages.uploading":"Caricamento pagina {n} di {total}…","pages.uploadError":"Caricamento pagine non riuscito. Riprova.",
     "cover.label":"Copertina (immagine di anteprima nello schedario)","cover.uploading":"Caricamento copertina…",
+    "cover.change":"Cambia copertina","cover.addExisting":"Aggiungi copertina",
+    "collab.name":"Collaboratore (opzionale)","collab.url":"Link al profilo (es. Instagram)",
+    "collab.credit":"In collaborazione con",
+    "collab.viewAll":"vedi tutte le opere insieme","collab.collectionBanner":"Opere realizzate con","collab.showAll":"Mostra tutto",
+    "share.button":"Condividi","share.tagline":"su LUX COMICS & MEDUSA COMICS",
+    "share.copied":"Link copiato — incollalo dove vuoi condividerlo.",
+    "share.manual":"Copia questo testo per condividerlo:",
     "pdf.label":"Oppure carica il fumetto come PDF (A4) invece delle pagine singole",
     "pdf.uploading":"Caricamento PDF…","pdf.download":"Scarica PDF",
     "charimg.title":"Immagini profilo personaggi",
@@ -841,6 +882,10 @@ var STR = {
     "comments.empty":"Nessun commento ancora.","comments.pending":"in attesa","comments.noPending":"Nessun commento in attesa.",
     "comments.submittedPending":"Inviato — in attesa di approvazione.",
     "fav.add":"♡ Salva","fav.remove":"♥ Salvato",
+    "like.add":"👍 Mi piace","like.remove":"👍 Ti piace",
+    "stats.title":"Statistiche per titolo","stats.empty":"Nessun titolo ancora pubblicato.",
+    "stats.purchaseNote":"Gli \"acquisti\" non sono ancora reali — nessun processore di pagamento è collegato. \"Carrello\" conta l'interesse (quante volte è stato aggiunto), non vendite confermate.",
+    "stats.views":"visualizzazioni","stats.likes":"mi piace","stats.saves":"salvataggi","stats.shares":"condivisioni","stats.cartAdds":"aggiunte al carrello",
     "cart.open":"Carrello","cart.title":"Il tuo carrello","cart.pending":"Pagamento in configurazione",
     "cart.notice":"Il carrello è pronto, ma il pagamento non è ancora collegato a nessun processore. Quando l'admin ne sceglierà uno, potrai completare l'acquisto qui.",
     "cart.clear":"Svuota carrello","cart.empty":"Il carrello è vuoto.","cart.add":"Aggiungi al carrello",
@@ -854,12 +899,12 @@ var STR = {
     "nav.library":"Index","nav.characters":"Dossiers","nav.founder":"Founder","nav.admin":"Admin","nav.login":"Sign in","nav.logout":"Sign out",
     "hero.title1":"THE ARCHIVE OF","hero.title2":"FORBIDDEN PLEASURE",
     "hero.tagline":"Author comics — restricted edition",
-    "hero.lede":"Four seals, four voices: Lucifer, Lilith, Lucifero and Lucio each guard a line of this house. The index is open to everyone — 18+ titles sit behind a separate switch, unlockable whenever you like. Every page is drawn in English and enters the index as-is — only your access language is yours to choose.",
+    "hero.lede":"Four seals, four voices: Lucifer, Lilith, Lucifera and Lucio each guard a line of this house. The index is open to everyone — 18+ titles sit behind a separate switch, unlockable whenever you like. Every page is drawn in English and enters the index as-is — only your access language is yours to choose.",
     "hero.cta1":"Browse the index","hero.cta2":"Meet the dossiers",
     "characters.eyebrow":"Dossiers","characters.title":"The Four Seals","characters.desc":"Each character leads their own line, with a distinct tone and mythology.",
     "library.eyebrow":"Index","library.title":"Catalog of Works",
     "founder.eyebrow":"Publishing House","founder.title":"The Founder","founder.role":"Founder & Editorial Director",
-    "founder.body":"Nox Morningstar founded LUX COMICS & MEDUSA COMICS as a home for stories that would find no shelf elsewhere: works drawn for a mature, consenting audience, where the forbidden is narrative material, not provocation for its own sake. Each line — Lucifer, Lilith, Lucifero, Lucio — carries the founder's signature in the form of a seal, a guarantee of one editorial vision behind different voices.",
+    "founder.body":"Nox Morningstar founded LUX COMICS & MEDUSA COMICS as a home for stories that would find no shelf elsewhere: works drawn for a mature, consenting audience, where the forbidden is narrative material, not provocation for its own sake. Each line — Lucifer, Lilith, Lucifera, Lucio — carries the founder's signature in the form of a seal, a guarantee of one editorial vision behind different voices.",
     "admin.eyebrow":"Private Area","admin.title":"Index Administration",
     "admin.noticeLabel":"Status —",
     "sync.notConfigured":"Supabase backend not yet connected — the site runs locally while it's being set up.",
@@ -896,6 +941,13 @@ var STR = {
     "pages.label":"Comic pages (1:1 images, carousel-style) — drag to reorder",
     "pages.uploading":"Uploading page {n} of {total}…","pages.uploadError":"Page upload failed. Try again.",
     "cover.label":"Cover (preview image in the catalog)","cover.uploading":"Uploading cover…",
+    "cover.change":"Change cover","cover.addExisting":"Add cover",
+    "collab.name":"Collaborator (optional)","collab.url":"Profile link (e.g. Instagram)",
+    "collab.credit":"In collaboration with",
+    "collab.viewAll":"see all titles together","collab.collectionBanner":"Titles made with","collab.showAll":"Show all",
+    "share.button":"Share","share.tagline":"on LUX COMICS & MEDUSA COMICS",
+    "share.copied":"Link copied — paste it wherever you'd like to share it.",
+    "share.manual":"Copy this text to share it:",
     "pdf.label":"Or upload the comic as a PDF (A4) instead of individual pages",
     "pdf.uploading":"Uploading PDF…","pdf.download":"Download PDF",
     "charimg.title":"Character profile images",
@@ -906,6 +958,10 @@ var STR = {
     "comments.empty":"No comments yet.","comments.pending":"pending","comments.noPending":"No pending comments.",
     "comments.submittedPending":"Submitted — pending approval.",
     "fav.add":"♡ Save","fav.remove":"♥ Saved",
+    "like.add":"👍 Like","like.remove":"👍 Liked",
+    "stats.title":"Stats per title","stats.empty":"No titles published yet.",
+    "stats.purchaseNote":"\"Purchases\" aren't real yet — no payment processor is connected. \"Cart\" counts interest (how many times it was added), not confirmed sales.",
+    "stats.views":"views","stats.likes":"likes","stats.saves":"saves","stats.shares":"shares","stats.cartAdds":"cart adds",
     "cart.open":"Cart","cart.title":"Your cart","cart.pending":"Payment being set up",
     "cart.notice":"The cart is ready, but no payment processor is connected yet. Once the admin picks one, you'll be able to complete checkout here.",
     "cart.clear":"Clear cart","cart.empty":"Your cart is empty.","cart.add":"Add to cart",
@@ -919,12 +975,12 @@ var STR = {
     "nav.library":"Índice","nav.characters":"Expedientes","nav.founder":"Fundador","nav.admin":"Admin","nav.login":"Acceder","nav.logout":"Salir",
     "hero.title1":"EL ARCHIVO DEL","hero.title2":"PLACER PROHIBIDO",
     "hero.tagline":"Cómics de autor — edición restringida",
-    "hero.lede":"Cuatro sellos, cuatro voces: Lucifer, Lilith, Lucifero y Lucio custodian las colecciones de esta casa. El índice está abierto a todos — los títulos 18+ quedan tras un interruptor aparte, que puedes desbloquear cuando quieras. Cada página se dibuja en inglés y entra al índice tal cual — solo tu idioma de acceso es asunto tuyo.",
+    "hero.lede":"Cuatro sellos, cuatro voces: Lucifer, Lilith, Lucifera y Lucio custodian las colecciones de esta casa. El índice está abierto a todos — los títulos 18+ quedan tras un interruptor aparte, que puedes desbloquear cuando quieras. Cada página se dibuja en inglés y entra al índice tal cual — solo tu idioma de acceso es asunto tuyo.",
     "hero.cta1":"Explorar el índice","hero.cta2":"Conocer los expedientes",
     "characters.eyebrow":"Expedientes","characters.title":"Los Cuatro Sellos","characters.desc":"Cada personaje lidera su propia colección, con tono y mitología distintos.",
     "library.eyebrow":"Índice","library.title":"Catálogo de Obras",
     "founder.eyebrow":"Casa Editorial","founder.title":"El Fundador","founder.role":"Fundador y Director Editorial",
-    "founder.body":"Nox Morningstar fundó LUX COMICS & MEDUSA COMICS como refugio para historias que no tendrían lugar en otro sitio: obras pensadas para un público adulto y consciente, donde lo prohibido es materia narrativa, no provocación gratuita. Cada colección — Lucifer, Lilith, Lucifero, Lucio — lleva su firma en forma de sello, garantía de una única visión editorial detrás de voces distintas.",
+    "founder.body":"Nox Morningstar fundó LUX COMICS & MEDUSA COMICS como refugio para historias que no tendrían lugar en otro sitio: obras pensadas para un público adulto y consciente, donde lo prohibido es materia narrativa, no provocación gratuita. Cada colección — Lucifer, Lilith, Lucifera, Lucio — lleva su firma en forma de sello, garantía de una única visión editorial detrás de voces distintas.",
     "admin.eyebrow":"Área Privada","admin.title":"Administración del Índice",
     "admin.noticeLabel":"Estado —",
     "sync.notConfigured":"Backend de Supabase aún no conectado — el sitio funciona en local mientras se configura.",
@@ -961,6 +1017,13 @@ var STR = {
     "pages.label":"Páginas del cómic (imágenes 1:1, tipo carrusel) — arrastra para reordenar",
     "pages.uploading":"Subiendo página {n} de {total}…","pages.uploadError":"Error al subir las páginas. Inténtalo de nuevo.",
     "cover.label":"Portada (imagen de vista previa en el catálogo)","cover.uploading":"Subiendo portada…",
+    "cover.change":"Cambiar portada","cover.addExisting":"Añadir portada",
+    "collab.name":"Colaborador (opcional)","collab.url":"Enlace al perfil (p. ej. Instagram)",
+    "collab.credit":"En colaboración con",
+    "collab.viewAll":"ver todas las obras juntas","collab.collectionBanner":"Obras realizadas con","collab.showAll":"Mostrar todo",
+    "share.button":"Compartir","share.tagline":"en LUX COMICS & MEDUSA COMICS",
+    "share.copied":"Enlace copiado — pégalo donde quieras compartirlo.",
+    "share.manual":"Copia este texto para compartirlo:",
     "pdf.label":"O sube el cómic como PDF (A4) en lugar de páginas individuales",
     "pdf.uploading":"Subiendo PDF…","pdf.download":"Descargar PDF",
     "charimg.title":"Imágenes de perfil de los personajes",
@@ -971,6 +1034,10 @@ var STR = {
     "comments.empty":"Aún no hay comentarios.","comments.pending":"pendiente","comments.noPending":"No hay comentarios pendientes.",
     "comments.submittedPending":"Enviado — pendiente de aprobación.",
     "fav.add":"♡ Guardar","fav.remove":"♥ Guardado",
+    "like.add":"👍 Me gusta","like.remove":"👍 Te gusta",
+    "stats.title":"Estadísticas por título","stats.empty":"Aún no hay títulos publicados.",
+    "stats.purchaseNote":"Las \"compras\" aún no son reales — no hay ningún procesador de pago conectado. \"Carrito\" cuenta el interés (cuántas veces se añadió), no ventas confirmadas.",
+    "stats.views":"visualizaciones","stats.likes":"me gusta","stats.saves":"guardados","stats.shares":"veces compartido","stats.cartAdds":"añadidos al carrito",
     "cart.open":"Carrito","cart.title":"Tu carrito","cart.pending":"Pago en configuración",
     "cart.notice":"El carrito está listo, pero aún no hay ningún procesador de pago conectado. Cuando el admin elija uno, podrás completar la compra aquí.",
     "cart.clear":"Vaciar carrito","cart.empty":"Tu carrito está vacío.","cart.add":"Añadir al carrito",
@@ -984,12 +1051,12 @@ var STR = {
     "nav.library":"Index","nav.characters":"Dossiers","nav.founder":"Fondateur","nav.admin":"Admin","nav.login":"Connexion","nav.logout":"Déconnexion",
     "hero.title1":"L'ARCHIVE DU","hero.title2":"PLAISIR INTERDIT",
     "hero.tagline":"Bandes dessinées d'auteur — édition réservée",
-    "hero.lede":"Quatre sceaux, quatre voix : Lucifer, Lilith, Lucifero et Lucio veillent chacun sur une collection de cette maison. L'index est ouvert à tous — les titres 18+ restent derrière un interrupteur séparé, à débloquer quand vous voulez. Chaque planche est dessinée en anglais et entre dans l'index telle quelle — seule votre langue d'accès vous appartient.",
+    "hero.lede":"Quatre sceaux, quatre voix : Lucifer, Lilith, Lucifera et Lucio veillent chacun sur une collection de cette maison. L'index est ouvert à tous — les titres 18+ restent derrière un interrupteur séparé, à débloquer quand vous voulez. Chaque planche est dessinée en anglais et entre dans l'index telle quelle — seule votre langue d'accès vous appartient.",
     "hero.cta1":"Parcourir l'index","hero.cta2":"Découvrir les dossiers",
     "characters.eyebrow":"Dossiers","characters.title":"Les Quatre Sceaux","characters.desc":"Chaque personnage mène sa propre collection, avec un ton et une mythologie distincts.",
     "library.eyebrow":"Index","library.title":"Catalogue des Œuvres",
     "founder.eyebrow":"Maison d'Édition","founder.title":"Le Fondateur","founder.role":"Fondateur & Directeur Éditorial",
-    "founder.body":"Nox Morningstar a fondé LUX COMICS & MEDUSA COMICS comme refuge pour des histoires qui ne trouveraient leur place nulle part ailleurs : des œuvres pensées pour un public adulte et consentant, où l'interdit est matière narrative, non provocation gratuite. Chaque collection — Lucifer, Lilith, Lucifero, Lucio — porte sa signature sous forme de sceau, garantie d'une seule vision éditoriale derrière des voix différentes.",
+    "founder.body":"Nox Morningstar a fondé LUX COMICS & MEDUSA COMICS comme refuge pour des histoires qui ne trouveraient leur place nulle part ailleurs : des œuvres pensées pour un public adulte et consentant, où l'interdit est matière narrative, non provocation gratuite. Chaque collection — Lucifer, Lilith, Lucifera, Lucio — porte sa signature sous forme de sceau, garantie d'une seule vision éditoriale derrière des voix différentes.",
     "admin.eyebrow":"Espace Privé","admin.title":"Administration de l'Index",
     "admin.noticeLabel":"État —",
     "sync.notConfigured":"Backend Supabase pas encore connecté — le site fonctionne en local en attendant la configuration.",
@@ -1026,6 +1093,13 @@ var STR = {
     "pages.label":"Pages de la BD (images 1:1, type carrousel) — glissez pour réorganiser",
     "pages.uploading":"Envoi de la page {n} sur {total}…","pages.uploadError":"Échec de l'envoi des pages. Réessayez.",
     "cover.label":"Couverture (image d'aperçu dans le catalogue)","cover.uploading":"Envoi de la couverture…",
+    "cover.change":"Changer la couverture","cover.addExisting":"Ajouter une couverture",
+    "collab.name":"Collaborateur (facultatif)","collab.url":"Lien du profil (ex. Instagram)",
+    "collab.credit":"En collaboration avec",
+    "collab.viewAll":"voir toutes les œuvres ensemble","collab.collectionBanner":"Œuvres réalisées avec","collab.showAll":"Tout afficher",
+    "share.button":"Partager","share.tagline":"sur LUX COMICS & MEDUSA COMICS",
+    "share.copied":"Lien copié — collez-le où vous voulez le partager.",
+    "share.manual":"Copiez ce texte pour le partager :",
     "pdf.label":"Ou téléversez la BD en PDF (A4) au lieu de pages individuelles",
     "pdf.uploading":"Envoi du PDF…","pdf.download":"Télécharger le PDF",
     "charimg.title":"Images de profil des personnages",
@@ -1036,6 +1110,10 @@ var STR = {
     "comments.empty":"Pas encore de commentaires.","comments.pending":"en attente","comments.noPending":"Aucun commentaire en attente.",
     "comments.submittedPending":"Envoyé — en attente d'approbation.",
     "fav.add":"♡ Enregistrer","fav.remove":"♥ Enregistré",
+    "like.add":"👍 J'aime","like.remove":"👍 Aimé",
+    "stats.title":"Statistiques par titre","stats.empty":"Aucun titre publié pour l'instant.",
+    "stats.purchaseNote":"Les « achats » ne sont pas encore réels — aucun processeur de paiement n'est connecté. « Panier » compte l'intérêt (le nombre d'ajouts), pas les ventes confirmées.",
+    "stats.views":"vues","stats.likes":"j'aime","stats.saves":"enregistrements","stats.shares":"partages","stats.cartAdds":"ajouts au panier",
     "cart.open":"Panier","cart.title":"Votre panier","cart.pending":"Paiement en cours de configuration",
     "cart.notice":"Le panier est prêt, mais aucun processeur de paiement n'est encore connecté. Une fois que l'admin en choisira un, vous pourrez finaliser l'achat ici.",
     "cart.clear":"Vider le panier","cart.empty":"Votre panier est vide.","cart.add":"Ajouter au panier",
@@ -1049,12 +1127,12 @@ var STR = {
     "nav.library":"Index","nav.characters":"Dossiers","nav.founder":"Gründer","nav.admin":"Admin","nav.login":"Anmelden","nav.logout":"Abmelden",
     "hero.title1":"DAS ARCHIV DER","hero.title2":"VERBOTENEN LUST",
     "hero.tagline":"Autoren-Comics — exklusive Ausgabe",
-    "hero.lede":"Vier Siegel, vier Stimmen: Lucifer, Lilith, Lucifero und Lucio hüten je eine Reihe dieses Hauses. Der Index steht allen offen — 18+-Titel liegen hinter einem eigenen Schalter, den Sie jederzeit freischalten können. Jede Seite entsteht auf Englisch und kommt so in den Index — nur Ihre Zugangssprache liegt bei Ihnen.",
+    "hero.lede":"Vier Siegel, vier Stimmen: Lucifer, Lilith, Lucifera und Lucio hüten je eine Reihe dieses Hauses. Der Index steht allen offen — 18+-Titel liegen hinter einem eigenen Schalter, den Sie jederzeit freischalten können. Jede Seite entsteht auf Englisch und kommt so in den Index — nur Ihre Zugangssprache liegt bei Ihnen.",
     "hero.cta1":"Index durchsuchen","hero.cta2":"Dossiers entdecken",
     "characters.eyebrow":"Dossiers","characters.title":"Die Vier Siegel","characters.desc":"Jede Figur leitet eine eigene Reihe mit eigenem Ton und eigener Mythologie.",
     "library.eyebrow":"Index","library.title":"Werkkatalog",
     "founder.eyebrow":"Verlagshaus","founder.title":"Der Gründer","founder.role":"Gründer & Verlagsleiter",
-    "founder.body":"Nox Morningstar gründete LUX COMICS & MEDUSA COMICS als Zuflucht für Geschichten, die anderswo keinen Platz fänden: Werke für ein erwachsenes, einwilligendes Publikum, in denen das Verbotene erzählerisches Material ist, keine Provokation um ihrer selbst willen. Jede Reihe — Lucifer, Lilith, Lucifero, Lucio — trägt seine Signatur in Form eines Siegels, Garant einer einzigen redaktionellen Vision hinter unterschiedlichen Stimmen.",
+    "founder.body":"Nox Morningstar gründete LUX COMICS & MEDUSA COMICS als Zuflucht für Geschichten, die anderswo keinen Platz fänden: Werke für ein erwachsenes, einwilligendes Publikum, in denen das Verbotene erzählerisches Material ist, keine Provokation um ihrer selbst willen. Jede Reihe — Lucifer, Lilith, Lucifera, Lucio — trägt seine Signatur in Form eines Siegels, Garant einer einzigen redaktionellen Vision hinter unterschiedlichen Stimmen.",
     "admin.eyebrow":"Privater Bereich","admin.title":"Index-Verwaltung",
     "admin.noticeLabel":"Status —",
     "sync.notConfigured":"Supabase-Backend noch nicht verbunden — die Seite läuft lokal, bis die Einrichtung erfolgt.",
@@ -1091,6 +1169,13 @@ var STR = {
     "pages.label":"Comicseiten (1:1-Bilder, Karussell-Stil) — zum Sortieren ziehen",
     "pages.uploading":"Lade Seite {n} von {total} hoch…","pages.uploadError":"Hochladen der Seiten fehlgeschlagen. Erneut versuchen.",
     "cover.label":"Cover (Vorschaubild im Katalog)","cover.uploading":"Cover wird hochgeladen…",
+    "cover.change":"Cover ändern","cover.addExisting":"Cover hinzufügen",
+    "collab.name":"Mitarbeiter*in (optional)","collab.url":"Profillink (z. B. Instagram)",
+    "collab.credit":"In Zusammenarbeit mit",
+    "collab.viewAll":"alle gemeinsamen Werke ansehen","collab.collectionBanner":"Werke entstanden mit","collab.showAll":"Alle anzeigen",
+    "share.button":"Teilen","share.tagline":"auf LUX COMICS & MEDUSA COMICS",
+    "share.copied":"Link kopiert — fügen Sie ihn ein, wo Sie ihn teilen möchten.",
+    "share.manual":"Diesen Text zum Teilen kopieren:",
     "pdf.label":"Oder Comic als PDF (A4) statt Einzelseiten hochladen",
     "pdf.uploading":"PDF wird hochgeladen…","pdf.download":"PDF herunterladen",
     "charimg.title":"Profilbilder der Charaktere",
@@ -1101,6 +1186,10 @@ var STR = {
     "comments.empty":"Noch keine Kommentare.","comments.pending":"ausstehend","comments.noPending":"Keine ausstehenden Kommentare.",
     "comments.submittedPending":"Gesendet — wartet auf Freigabe.",
     "fav.add":"♡ Speichern","fav.remove":"♥ Gespeichert",
+    "like.add":"👍 Gefällt mir","like.remove":"👍 Gefällt dir",
+    "stats.title":"Statistiken pro Titel","stats.empty":"Noch keine Titel veröffentlicht.",
+    "stats.purchaseNote":"\u201eKäufe\u201c sind noch nicht real — es ist kein Zahlungsanbieter verbunden. \u201eWarenkorb\u201c zählt Interesse (wie oft hinzugefügt), keine bestätigten Verkäufe.",
+    "stats.views":"Aufrufe","stats.likes":"Gefällt mir","stats.saves":"Gespeichert","stats.shares":"Geteilt","stats.cartAdds":"In den Warenkorb",
     "cart.open":"Warenkorb","cart.title":"Ihr Warenkorb","cart.pending":"Zahlung wird eingerichtet",
     "cart.notice":"Der Warenkorb ist bereit, aber es ist noch kein Zahlungsanbieter verbunden. Sobald der Admin einen auswählt, können Sie hier bezahlen.",
     "cart.clear":"Warenkorb leeren","cart.empty":"Ihr Warenkorb ist leer.","cart.add":"In den Warenkorb",
@@ -1121,12 +1210,12 @@ var CHAR_META = {
          es:"Voz femenina de la casa: autonomía, seducción y mito reescritos por ella misma.",
          fr:"Voix féminine de la maison : autonomie, séduction et mythe réécrits à sa manière.",
          de:"Die weibliche Stimme des Hauses: Autonomie, Verführung und neu geschriebener Mythos."}},
-  Lucifero:{role:{it:"Lo Specchio Oscuro",en:"The Dark Mirror",es:"El Espejo Oscuro",fr:"Le Miroir Sombre",de:"Der Dunkle Spiegel"},
-    bio:{it:"Controcanto italiano di Lucifer: stessa natura, tono più intimo e terreno.",
-         en:"Lucifer's Italian counterpoint: same nature, a more intimate, earthbound tone.",
-         es:"Contrapunto italiano de Lucifer: misma naturaleza, tono más íntimo y terrenal.",
-         fr:"Contrepoint italien de Lucifer : même nature, ton plus intime et terrestre.",
-         de:"Italienisches Gegenstück zu Lucifer: gleiches Wesen, intimerer, geerdeter Ton."}},
+  Lucifera:{role:{it:"La Sorella Oscura",en:"The Dark Sister",es:"La Hermana Oscura",fr:"La Sœur Sombre",de:"Die Dunkle Schwester"},
+    bio:{it:"Sorella di Lucifer: la sua stessa fiamma, portata con uno sguardo tutto suo — più intima, più terrena.",
+         en:"Lucifer's sister: the same flame, carried in her own way — more intimate, more earthbound.",
+         es:"Hermana de Lucifer: la misma llama, llevada a su manera — más íntima, más terrenal.",
+         fr:"Sœur de Lucifer : la même flamme, portée à sa façon — plus intime, plus terrestre.",
+         de:"Lucifers Schwester: dieselbe Flamme, auf ihre eigene Art getragen — intimer, geerdeter."}},
   Lucio:{role:{it:"Il Volto Umano",en:"The Human Face",es:"El Rostro Humano",fr:"Le Visage Humain",de:"Das Menschliche Gesicht"},
     bio:{it:"Il quarto sigillo, il più vicino al lettore: tentazioni piccole, quotidiane, riconoscibili.",
          en:"The fourth seal, closest to the reader: small, everyday, recognizable temptations.",
@@ -1266,8 +1355,7 @@ function initTheme(){
 }
 
 function initMatureToggle(){
-  var sw = document.getElementById('matureSwitch');
-  matureVisible = false; // always starts off on load/refresh, regardless of prior age verification
+  var sw = document.getElementById('matureSwitch');  matureVisible = false; // always starts off on load/refresh, regardless of prior age verification
   sw.checked = false;
   updateMatureStateLabel();
 
@@ -1289,9 +1377,15 @@ function initMatureToggle(){
     localStorage.setItem('lux_age_ok','1');
     closeMatureModal();
     setMatureVisible(true);
+    if(pendingDeepLinkItem){
+      var toOpen = pendingDeepLinkItem;
+      pendingDeepLinkItem = null;
+      openTitleModal(toOpen);
+    }
   });
   document.getElementById('gateLeave').addEventListener('click', function(){
     closeMatureModal();
+    pendingDeepLinkItem = null;
   });
   document.getElementById('matureModal').addEventListener('click', function(e){
     if(e.target.id === 'matureModal') closeMatureModal();
@@ -1357,6 +1451,7 @@ function afterAuthChange(){
   refreshAdminUI();
   renderCatalog();
   loadFavorites();
+  loadLikes();
 }
 
 function refreshAuthUI(){
@@ -1399,6 +1494,7 @@ function refreshAdminUI(){
     renderModerationQueue();
     loadSocialLinksIntoForm();
     renderCharImageAdmin();
+    renderStatsPanel();
   } else if(isSignedIn()){
     gateMsg.textContent = t('admin.gate.notAdmin').replace('{email}', currentUserEmail());
     gateSignIn.classList.add('hidden');
@@ -1428,7 +1524,7 @@ function getCatalog(){
      synopsis:'Before the myths rewrote her, there was a garden and a choice. Lilith tells it her way, on her terms.'},
     {id:'c4', character:'Lilith', title:"Serpent's Ledger", issue:'Vol. 1 — Ch. 2', date:'2026-04-11', mature:true,
      synopsis:'Every debt Lilith has ever collected comes due at once, in a court that was never built to judge her.'},
-    {id:'c5', character:'Lucifero', title:'Cattedrale di Vetro', issue:'Vol. 1 — Cap. 1', date:'2026-02-28', mature:true,
+    {id:'c5', character:'Lucifera', title:'Cattedrale di Vetro', issue:'Vol. 1 — Cap. 1', date:'2026-02-28', mature:true,
      synopsis:'An intimate counterpart to the flagship line: the same fall, seen from ground level, one street at a time.'},
     {id:'c6', character:'Lucio', title:'Ordinary Hours', issue:'Vol. 1 — Ch. 1', date:'2026-03-07', mature:true,
      synopsis:"Temptation doesn't always wear a crown. Sometimes it clocks in at nine and waits by the coffee machine."},
@@ -1585,11 +1681,12 @@ function setMaintenanceStatus(on){
 }
 
 var activeFilter = 'all';
+var activeCollabFilter = null; // {name, url} | null — takes precedence over activeFilter when set
 
 function renderDossiers(){
   var grid = document.getElementById('dossierGrid');
   grid.innerHTML = '';
-  ['Lucifer','Lilith','Lucifero','Lucio'].forEach(function(name){
+  ['Lucifer','Lilith','Lucifera','Lucio'].forEach(function(name){
     var meta = CHAR_META[name];
     var lang = STR[currentLang] ? currentLang : 'it';
     var div = document.createElement('div');
@@ -1616,10 +1713,36 @@ function renderDossiers(){
   });
 }
 
+function showCollaboratorCollection(item){
+  if(!item.collaborator_name) return;
+  activeCollabFilter = { name: item.collaborator_name, url: item.collaborator_url || null };
+  activeFilter = 'all';
+  closeTitleModal();
+  document.getElementById('library').scrollIntoView({behavior:'smooth'});
+  renderCatalog();
+}
+function clearCollabFilter(){
+  activeCollabFilter = null;
+  renderCatalog();
+}
+function renderCollabBanner(){
+  var el = document.getElementById('collabBanner');
+  if(!activeCollabFilter){
+    el.classList.add('hidden');
+    el.innerHTML = '';
+    return;
+  }
+  el.classList.remove('hidden');
+  el.innerHTML =
+    '<span>' + t('collab.collectionBanner') + ' <strong>' + escapeHtml(activeCollabFilter.name) + '</strong></span>' +
+    '<button class="btn btn-ghost btn-sm" id="btnClearCollabFilter">' + t('collab.showAll') + '</button>';
+  document.getElementById('btnClearCollabFilter').addEventListener('click', clearCollabFilter);
+}
+
 function renderFilters(){
   var wrap = document.getElementById('catalogFilters');
   wrap.innerHTML = '';
-  var opts = ['all','Lucifer','Lilith','Lucifero','Lucio'];
+  var opts = ['all','Lucifer','Lilith','Lucifera','Lucio'];
   opts.forEach(function(opt){
     var btn = document.createElement('button');
     btn.className = 'filter-chip' + (activeFilter === opt ? ' active' : '');
@@ -1636,12 +1759,18 @@ function renderFilters(){
 function renderCatalog(){
   renderFilters();
   updateMatureStateLabel();
+  renderCollabBanner();
   var grid = document.getElementById('catalogGrid');
   var items = getCatalog();
   if(!matureVisible){
     items = items.filter(function(i){return !i.mature;});
   }
-  if(activeFilter !== 'all'){
+  if(activeCollabFilter){
+    items = items.filter(function(i){
+      if(activeCollabFilter.url) return i.collaborator_url === activeCollabFilter.url;
+      return i.collaborator_name === activeCollabFilter.name;
+    });
+  } else if(activeFilter !== 'all'){
     items = items.filter(function(i){return i.character === activeFilter;});
   }
   grid.innerHTML = '';
@@ -1704,10 +1833,16 @@ function renderAdminList(){
     var row = document.createElement('div');
     row.className = 'admin-row';
     var ratingLabel = item.mature ? '18+' : t('badge.allages');
+    var coverLabel = item.cover_url ? t('cover.change') : t('cover.addExisting');
     row.innerHTML =
       '<div class="info"><div class="t">'+escapeHtml(item.title)+'</div>'+
       '<div class="m">'+item.character+' · '+(item.issue||'')+' · '+(item.date||'')+' · '+ratingLabel+'</div></div>'+
-      '<div class="admin-actions"><button class="btn btn-sm btn-ghost" data-del="'+item.id+'">×</button></div>';
+      '<div class="admin-actions">'+
+        '<label class="btn btn-sm btn-ghost cover-upload-btn">'+coverLabel+
+          '<input type="file" accept="image/*" class="hidden" data-cover-for="'+item.id+'">'+
+        '</label>'+
+        '<button class="btn btn-sm btn-ghost" data-del="'+item.id+'">×</button>'+
+      '</div>';
     row.querySelector('[data-del]').addEventListener('click', function(){
       if(!confirm(t('admin.confirmDelete'))) return;
       var all = getCatalog().filter(function(x){return x.id !== item.id;});
@@ -1716,7 +1851,37 @@ function renderAdminList(){
       renderAdminList();
       supabaseDelete(item.id);
     });
+    row.querySelector('[data-cover-for]').addEventListener('change', function(e){
+      if(e.target.files[0]) uploadCoverForExistingItem(item.id, e.target.files[0]);
+    });
     list.appendChild(row);
+  });
+}
+
+function uploadCoverForExistingItem(itemId, file){
+  var extMatch = /\.([a-zA-Z0-9]+)$/.exec(file.name || '');
+  var ext = extMatch ? extMatch[1].toLowerCase() : 'jpg';
+  var status = document.getElementById('pagesUploadStatus');
+  if(status) status.textContent = t('cover.uploading');
+  uploadCatalogAsset(file, itemId + '/cover.' + ext).then(function(url){
+    var session = getSession();
+    return fetch(SUPABASE_URL + '/rest/v1/catalog?id=eq.' + encodeURIComponent(itemId), {
+      method:'PATCH',
+      headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
+      body: JSON.stringify({cover_url: url})
+    }).then(function(r){
+      if(!r.ok) throw new Error('cover update failed');
+      var items = getCatalog();
+      var item = items.find(function(i){ return i.id === itemId; });
+      if(item) item.cover_url = url;
+      saveCatalogLocal(items);
+      if(status) status.textContent = '';
+      renderCatalog();
+      renderAdminList();
+    });
+  }).catch(function(err){
+    console.warn('Cover update for existing item failed:', err);
+    if(status) status.textContent = '';
   });
 }
 
@@ -1854,6 +2019,8 @@ function handleAddEntry(){
   var issue = document.getElementById('fIssue').value.trim();
   var date = document.getElementById('fDate').value;
   var price = document.getElementById('fPrice').value;
+  var collabName = document.getElementById('fCollabName').value.trim();
+  var collabUrl = document.getElementById('fCollabUrl').value.trim();
   var synopsis = document.getElementById('fSynopsis').value.trim();
   var mature = document.getElementById('fMature').checked;
   var err = document.getElementById('adminError');
@@ -1869,6 +2036,8 @@ function handleAddEntry(){
     character: character, title: title, issue: issue,
     date: date || new Date().toISOString().slice(0,10),
     price: price ? Number(price) : null,
+    collaborator_name: collabName || null,
+    collaborator_url: collabUrl || null,
     synopsis: synopsis, mature: mature, pages: [], cover_url: null, pdf_url: null
   };
 
@@ -1907,6 +2076,8 @@ function handleAddEntry(){
     document.getElementById('fIssue').value = '';
     document.getElementById('fDate').value = '';
     document.getElementById('fPrice').value = '';
+    document.getElementById('fCollabName').value = '';
+    document.getElementById('fCollabUrl').value = '';
     document.getElementById('fSynopsis').value = '';
     document.getElementById('fMature').checked = false;
     clearPendingPages();
@@ -1978,6 +2149,79 @@ function loadFavorites(){
     .catch(function(err){ console.warn('Favorites load failed:', err); });
 }
 
+/* ============ ENGAGEMENT COUNTERS (views / likes / shares / saves / cart-adds) ============ */
+var likedIds = new Set();
+
+function loadLikes(){
+  likedIds = new Set();
+  if(!isSignedIn() || !SUPABASE_URL) return Promise.resolve();
+  var session = getSession();
+  return fetch(SUPABASE_URL + '/rest/v1/likes?select=catalog_id&user_id=eq.' + encodeURIComponent(currentUserId()), {
+    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
+  })
+    .then(function(r){ if(!r.ok) throw new Error('likes read failed'); return r.json(); })
+    .then(function(rows){ likedIds = new Set(rows.map(function(r){ return r.catalog_id; })); })
+    .catch(function(err){ console.warn('Likes load failed:', err); });
+}
+
+function toggleLike(catalogId){
+  if(!isSignedIn()){ openAuth('login'); return; }
+  var session = getSession();
+  var isLiked = likedIds.has(catalogId);
+  var req = isLiked
+    ? fetch(SUPABASE_URL + '/rest/v1/likes?user_id=eq.' + encodeURIComponent(currentUserId()) + '&catalog_id=eq.' + encodeURIComponent(catalogId), {
+        method:'DELETE',
+        headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
+      })
+    : fetch(SUPABASE_URL + '/rest/v1/likes', {
+        method:'POST',
+        headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
+        body: JSON.stringify({user_id: currentUserId(), catalog_id: catalogId})
+      });
+  req.then(function(r){
+    if(!r.ok) throw new Error('like toggle failed');
+    if(isLiked){ likedIds.delete(catalogId); } else { likedIds.add(catalogId); }
+    trackLikeDelta(catalogId, isLiked ? -1 : 1);
+    var items = getCatalog();
+    var item = items.find(function(i){ return i.id === catalogId; });
+    if(item){
+      item.like_count = Math.max((item.like_count || 0) + (isLiked ? -1 : 1), 0);
+      saveCatalogLocal(items);
+    }
+    refreshTitleModalLike(catalogId);
+  }).catch(function(err){ console.warn('Like toggle failed:', err); });
+}
+
+function callCounterRpc(fnName, body){
+  if(!SUPABASE_URL) return Promise.resolve();
+  var session = getSession();
+  return fetch(SUPABASE_URL + '/rest/v1/rpc/' + fnName, {
+    method:'POST',
+    headers:{
+      'apikey':SUPABASE_ANON_KEY,
+      'Authorization':'Bearer ' + (session ? session.access_token : SUPABASE_ANON_KEY),
+      'Content-Type':'application/json'
+    },
+    body: JSON.stringify(body)
+  }).catch(function(err){ console.warn(fnName + ' failed:', err); });
+}
+function trackView(catalogId){ callCounterRpc('increment_view_count', {cid: catalogId}); }
+function trackShare(catalogId){ callCounterRpc('increment_share_count', {cid: catalogId}); }
+function trackCartAdd(catalogId){ callCounterRpc('increment_cart_add_count', {cid: catalogId}); }
+function trackLikeDelta(catalogId, delta){ callCounterRpc('adjust_like_count', {cid: catalogId, delta: delta}); }
+function trackSaveDelta(catalogId, delta){ callCounterRpc('adjust_save_count', {cid: catalogId, delta: delta}); }
+
+// Keeps the visible engagement numbers in sync with actions taken during this
+// session, without waiting for the next resync from Supabase.
+function bumpLocalCount(catalogId, field, delta){
+  var items = getCatalog();
+  var item = items.find(function(i){ return i.id === catalogId; });
+  if(!item) return;
+  item[field] = Math.max((item[field] || 0) + delta, 0);
+  saveCatalogLocal(items);
+  updateEngagementCountsLabel(catalogId);
+}
+
 function toggleFavorite(catalogId){
   if(!isSignedIn()){ openAuth('login'); return; }
   var session = getSession();
@@ -1995,6 +2239,8 @@ function toggleFavorite(catalogId){
   req.then(function(r){
     if(!r.ok) throw new Error('favorite toggle failed');
     if(isFav){ favoriteIds.delete(catalogId); } else { favoriteIds.add(catalogId); }
+    trackSaveDelta(catalogId, isFav ? -1 : 1);
+    bumpLocalCount(catalogId, 'save_count', isFav ? -1 : 1);
     renderCatalog();
     if(!document.getElementById('titleModal').classList.contains('hidden')) refreshTitleModalFav(catalogId);
   }).catch(function(err){ console.warn('Favorite toggle failed:', err); });
@@ -2017,6 +2263,8 @@ function addToCart(item){
   cart.push({id:item.id, title:item.title, price:item.price});
   saveCart();
   renderCartModal();
+  trackCartAdd(item.id); // interest signal only — not a real purchase until a payment processor is connected
+  bumpLocalCount(item.id, 'cart_add_count', 1);
 }
 function removeFromCart(id){
   cart = cart.filter(function(i){ return i.id !== id; });
@@ -2044,6 +2292,25 @@ function renderCartModal(){
 
 /* ============ COMMENTS (with moderation) ============ */
 var currentModalCatalogId = null;
+var pendingDeepLinkItem = null; // set when a shared link points to a mature title still locked behind the age gate
+var deepLinkChecked = false;
+
+function checkDeepLinkOnLoad(){
+  var params = new URLSearchParams(window.location.search);
+  var titleId = params.get('title');
+  if(!titleId) return;
+  var items = getCatalog();
+  var item = items.find(function(i){ return i.id === titleId; });
+  if(!item) return; // not loaded yet — will retry once Supabase data arrives
+  deepLinkChecked = true;
+  if(item.mature && !matureVisible){
+    pendingDeepLinkItem = item;
+    openMatureModal();
+  } else {
+    openTitleModal(item);
+  }
+}
+
 
 function openTitleModal(item){
   currentModalCatalogId = item.id;
@@ -2051,7 +2318,40 @@ function openTitleModal(item){
   document.getElementById('titleModalMeta').textContent = item.character + ' · ' + (item.issue || '') + ' · ' + (item.date || '');
   document.getElementById('titleModalSynopsis').textContent = item.synopsis || '';
   refreshTitleModalFav(item.id);
+  refreshTitleModalLike(item.id);
   openPageReader(item.pages || []);
+
+  // count this as a view, once per open, and reflect it immediately in the local number
+  var catItems = getCatalog();
+  var freshItem = catItems.find(function(i){ return i.id === item.id; });
+  if(freshItem){
+    freshItem.view_count = (freshItem.view_count || 0) + 1;
+    saveCatalogLocal(catItems);
+    item.view_count = freshItem.view_count;
+  }
+  trackView(item.id);
+  updateEngagementCountsLabel(item.id);
+
+  var collabEl = document.getElementById('titleModalCollab');
+  if(item.collaborator_name){
+    var nameLink = item.collaborator_url
+      ? '<a href="' + escapeHtml(item.collaborator_url) + '" target="_blank" rel="noopener">' + escapeHtml(item.collaborator_name) + '</a>'
+      : escapeHtml(item.collaborator_name);
+    collabEl.innerHTML = t('collab.credit') + ' ' + nameLink +
+      ' · <a href="#" id="titleModalCollabAll">' + t('collab.viewAll') + '</a>';
+    var viewAllLink = document.getElementById('titleModalCollabAll');
+    if(viewAllLink){
+      viewAllLink.addEventListener('click', function(e){
+        e.preventDefault();
+        showCollaboratorCollection(item);
+      });
+    }
+    collabEl.classList.remove('hidden');
+  } else {
+    collabEl.classList.add('hidden');
+  }
+
+  document.getElementById('titleModalShare').onclick = function(){ shareTitle(item); };
 
   var pdfLink = document.getElementById('titleModalPdf');
   if(item.pdf_url){
@@ -2080,6 +2380,31 @@ function openTitleModal(item){
   document.getElementById('titleModal').classList.remove('hidden');
 }
 function closeTitleModal(){ document.getElementById('titleModal').classList.add('hidden'); currentModalCatalogId = null; }
+
+/* ============ SHARE (native share sheet on mobile — Instagram appears there
+   as one of the OS-level options, same as any app; no website can post to
+   Instagram directly, that's Instagram's own restriction, not ours) ============ */
+function shareTitle(item){
+  var shareText = item.title + ' — ' + t('share.tagline') +
+    (item.collaborator_name ? ' ' + t('collab.credit') + ' ' + item.collaborator_name : '');
+  var shareUrl = window.location.href.split('#')[0].split('?')[0] + '?title=' + encodeURIComponent(item.id);
+  trackShare(item.id); // counts the share action being taken, not confirmed completion — noted to the user
+  bumpLocalCount(item.id, 'share_count', 1);
+  if(navigator.share){
+    navigator.share({ title: item.title, text: shareText, url: shareUrl }).catch(function(){ /* user cancelled — fine */ });
+  } else {
+    var full = shareText + ' ' + shareUrl;
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(full).then(function(){
+        alert(t('share.copied'));
+      }).catch(function(){
+        alert(t('share.manual') + '\n\n' + full);
+      });
+    } else {
+      alert(t('share.manual') + '\n\n' + full);
+    }
+  }
+}
 
 /* ============ COMIC PAGE READER (viewer inside title detail modal) ============ */
 var readerPages = [];
@@ -2118,6 +2443,24 @@ function refreshTitleModalFav(catalogId){
   var active = favoriteIds.has(catalogId);
   btn.textContent = active ? t('fav.remove') : t('fav.add');
   btn.classList.toggle('active', active);
+}
+function refreshTitleModalLike(catalogId){
+  var btn = document.getElementById('titleModalLike');
+  var active = likedIds.has(catalogId);
+  btn.textContent = active ? t('like.remove') : t('like.add');
+  btn.classList.toggle('active', active);
+  updateEngagementCountsLabel(catalogId);
+}
+function updateEngagementCountsLabel(catalogId){
+  var items = getCatalog();
+  var item = items.find(function(i){ return i.id === catalogId; });
+  var el = document.getElementById('titleModalCounts');
+  if(!item || !el) return;
+  el.textContent =
+    (item.view_count || 0) + ' ' + t('stats.views') + ' · ' +
+    (item.like_count || 0) + ' ' + t('stats.likes') + ' · ' +
+    (item.save_count || 0) + ' ' + t('stats.saves') + ' · ' +
+    (item.share_count || 0) + ' ' + t('stats.shares');
 }
 
 function loadComments(catalogId){
@@ -2167,6 +2510,32 @@ function submitComment(){
 }
 
 /* ============ MODERATION QUEUE (admin) ============ */
+function renderStatsPanel(){
+  if(!isAdmin()) return;
+  var box = document.getElementById('statsPanel');
+  var items = getCatalog().slice();
+  if(items.length === 0){ box.innerHTML = '<p class="form-note">' + t('stats.empty') + '</p>'; return; }
+  items.sort(function(a,b){ return (b.view_count||0) - (a.view_count||0); });
+  var maxViews = Math.max.apply(null, items.map(function(i){ return i.view_count || 0; })) || 1;
+  box.innerHTML = '';
+  items.forEach(function(item){
+    var row = document.createElement('div');
+    row.className = 'stats-row';
+    var pct = Math.round(((item.view_count || 0) / maxViews) * 100);
+    row.innerHTML =
+      '<div class="stats-title">' + escapeHtml(item.title) + '</div>' +
+      '<div class="stats-numbers">' +
+        (item.view_count||0) + ' ' + t('stats.views') + ' · ' +
+        (item.like_count||0) + ' ' + t('stats.likes') + ' · ' +
+        (item.save_count||0) + ' ' + t('stats.saves') + ' · ' +
+        (item.share_count||0) + ' ' + t('stats.shares') + ' · ' +
+        (item.cart_add_count||0) + ' ' + t('stats.cartAdds') +
+      '</div>' +
+      '<div class="stats-bar-track"><div class="stats-bar-fill" style="width:' + pct + '%"></div></div>';
+    box.appendChild(row);
+  });
+}
+
 function renderModerationQueue(){
   var box = document.getElementById('modQueue');
   if(!SUPABASE_URL || !isAdmin()) return;
@@ -2213,7 +2582,7 @@ function moderateComment(id, approve){
 /* ============ SOCIAL LINKS (admin-managed, public footer) ============ */
 /* ============ CHARACTER PROFILE IMAGES (Dossier photos, admin-managed) ============ */
 var characterImages = {};
-var CHAR_LIST = ['Lucifer','Lilith','Lucifero','Lucio'];
+var CHAR_LIST = ['Lucifer','Lilith','Lucifera','Lucio'];
 
 function fetchCharacterImages(){
   if(!SUPABASE_URL) return Promise.resolve();
@@ -2331,6 +2700,7 @@ document.addEventListener('DOMContentLoaded', function(){
     refreshAuthUI();
     refreshAdminUI();
     loadFavorites();
+    loadLikes();
   });
   setInterval(refreshSessionIfNeeded, 4 * 60 * 1000); // keep the token fresh while the tab stays open
 
@@ -2408,6 +2778,9 @@ document.addEventListener('DOMContentLoaded', function(){
   document.getElementById('titleModalFav').addEventListener('click', function(){
     if(currentModalCatalogId) toggleFavorite(currentModalCatalogId);
   });
+  document.getElementById('titleModalLike').addEventListener('click', function(){
+    if(currentModalCatalogId) toggleLike(currentModalCatalogId);
+  });
   document.getElementById('pageReaderPrev').addEventListener('click', function(){ showReaderPage(readerIndex - 1); });
   document.getElementById('pageReaderNext').addEventListener('click', function(){ showReaderPage(readerIndex + 1); });
   document.getElementById('btnSubmitComment').addEventListener('click', submitComment);
@@ -2422,8 +2795,10 @@ document.addEventListener('DOMContentLoaded', function(){
   });
 
   updateSyncStatus();
+  checkDeepLinkOnLoad(); // try immediately in case the title is already in local cache
   fetchCatalogFromSupabase().then(function(items){
     if(items){ renderCatalog(); renderAdminList(); }
+    if(!deepLinkChecked) checkDeepLinkOnLoad(); // retry once fresh data has arrived
   });
   fetchMaintenanceStatus();
   setInterval(fetchMaintenanceStatus, 60000); // light polling so visitors already on the page see it too
