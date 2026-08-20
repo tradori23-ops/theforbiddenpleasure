@@ -223,13 +223,9 @@ select.langsel{
   display:flex;flex-direction:column;
   position:relative;overflow:hidden;
 }
-.card-idx::before{
-  content:'';position:absolute;top:0;left:22px;width:1px;height:100%;background:var(--line);
-}
 .card-idx-cover{
   aspect-ratio:3/4;
   display:flex;align-items:center;justify-content:center;
-  border-bottom:1px dashed var(--line);
   position:relative;
   background:linear-gradient(160deg, var(--wine-deep), var(--void));
 }
@@ -249,7 +245,16 @@ select.langsel{
 .card-idx-body .num{font-family:'Space Mono',monospace;font-size:10px;color:var(--verdigris);letter-spacing:0.1em;}
 .card-idx-body h4{font-family:'Cinzel',serif;font-size:15px;margin:0;line-height:1.3;}
 .card-idx-body .character{font-family:'Space Mono',monospace;font-size:10px;color:var(--gold);text-transform:uppercase;letter-spacing:0.08em;}
-.card-idx-body .synopsis{font-size:12.5px;color:var(--parchment-dim);line-height:1.6;flex:1;}
+.card-idx-body .synopsis{
+  font-size:12.5px;color:var(--parchment-dim);line-height:1.6;flex:1;
+  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;
+}
+.card-idx-body .synopsis.expanded{-webkit-line-clamp:unset;overflow:visible;}
+.card-idx-body .synopsis-toggle{
+  font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.06em;text-transform:uppercase;
+  color:var(--gold-bright);background:none;border:none;padding:6px 0 0;cursor:pointer;text-align:left;
+}
+.card-idx-body .synopsis-toggle:hover{text-decoration:underline;}
 .card-idx-body .meta-row{display:flex;justify-content:space-between;align-items:center;margin-top:8px;font-family:'Space Mono',monospace;font-size:10px;color:var(--parchment-dim);border-top:1px solid var(--line);padding-top:10px;}
 .card-idx-actions{display:flex;gap:6px;padding:0 16px 14px;}
 
@@ -920,6 +925,7 @@ var STR = {
     "comments.empty":"Nessun commento ancora.","comments.pending":"in attesa","comments.noPending":"Nessun commento in attesa.",
     "comments.submittedPending":"Inviato — in attesa di approvazione.",
     "fav.add":"♡ Salva","fav.remove":"♥ Salvato",
+    "card.readMore":"Leggi tutto ↓","card.readLess":"Mostra meno ↑",
     "like.add":"👍 Mi piace","like.remove":"👍 Ti piace",
     "stats.title":"Statistiche per titolo","stats.empty":"Nessun titolo ancora pubblicato.",
     "stats.purchaseNote":"Gli \"acquisti\" non sono ancora reali — nessun processore di pagamento è collegato. \"Carrello\" conta l'interesse (quante volte è stato aggiunto), non vendite confermate.",
@@ -1000,6 +1006,7 @@ var STR = {
     "comments.empty":"No comments yet.","comments.pending":"pending","comments.noPending":"No pending comments.",
     "comments.submittedPending":"Submitted — pending approval.",
     "fav.add":"♡ Save","fav.remove":"♥ Saved",
+    "card.readMore":"Read more ↓","card.readLess":"Show less ↑",
     "like.add":"👍 Like","like.remove":"👍 Liked",
     "stats.title":"Stats per title","stats.empty":"No titles published yet.",
     "stats.purchaseNote":"\"Purchases\" aren't real yet — no payment processor is connected. \"Cart\" counts interest (how many times it was added), not confirmed sales.",
@@ -1080,6 +1087,7 @@ var STR = {
     "comments.empty":"Aún no hay comentarios.","comments.pending":"pendiente","comments.noPending":"No hay comentarios pendientes.",
     "comments.submittedPending":"Enviado — pendiente de aprobación.",
     "fav.add":"♡ Guardar","fav.remove":"♥ Guardado",
+    "card.readMore":"Leer más ↓","card.readLess":"Mostrar menos ↑",
     "like.add":"👍 Me gusta","like.remove":"👍 Te gusta",
     "stats.title":"Estadísticas por título","stats.empty":"Aún no hay títulos publicados.",
     "stats.purchaseNote":"Las \"compras\" aún no son reales — no hay ningún procesador de pago conectado. \"Carrito\" cuenta el interés (cuántas veces se añadió), no ventas confirmadas.",
@@ -1160,6 +1168,7 @@ var STR = {
     "comments.empty":"Pas encore de commentaires.","comments.pending":"en attente","comments.noPending":"Aucun commentaire en attente.",
     "comments.submittedPending":"Envoyé — en attente d'approbation.",
     "fav.add":"♡ Enregistrer","fav.remove":"♥ Enregistré",
+    "card.readMore":"Lire la suite ↓","card.readLess":"Réduire ↑",
     "like.add":"👍 J'aime","like.remove":"👍 Aimé",
     "stats.title":"Statistiques par titre","stats.empty":"Aucun titre publié pour l'instant.",
     "stats.purchaseNote":"Les « achats » ne sont pas encore réels — aucun processeur de paiement n'est connecté. « Panier » compte l'intérêt (le nombre d'ajouts), pas les ventes confirmées.",
@@ -1240,6 +1249,7 @@ var STR = {
     "comments.empty":"Noch keine Kommentare.","comments.pending":"ausstehend","comments.noPending":"Keine ausstehenden Kommentare.",
     "comments.submittedPending":"Gesendet — wartet auf Freigabe.",
     "fav.add":"♡ Speichern","fav.remove":"♥ Gespeichert",
+    "card.readMore":"Mehr lesen ↓","card.readLess":"Weniger anzeigen ↑",
     "like.add":"👍 Gefällt mir","like.remove":"👍 Gefällt dir",
     "stats.title":"Statistiken pro Titel","stats.empty":"Noch keine Titel veröffentlicht.",
     "stats.purchaseNote":"\u201eKäufe\u201c sind noch nicht real — es ist kein Zahlungsanbieter verbunden. \u201eWarenkorb\u201c zählt Interesse (wie oft hinzugefügt), keine bestätigten Verkäufe.",
@@ -1856,7 +1866,8 @@ function renderCatalog(){
         '<div class="num mono">'+(item.issue||'')+'</div>'+
         '<h4>'+escapeHtml(item.title)+'</h4>'+
         '<div class="character">'+item.character+'</div>'+
-        '<div class="synopsis">'+escapeHtml(item.synopsis||'')+'</div>'+
+        '<div class="synopsis">'+escapeHtml(synopsisForCurrentLang(item))+'</div>'+
+        '<button type="button" class="synopsis-toggle hidden" data-toggle-synopsis>'+t('card.readMore')+'</button>'+
         '<div class="meta-row"><span>'+(item.date||'')+'</span>'+priceTxt+'</div>'+
       '</div>';
     card.querySelector('[data-fav]').addEventListener('click', function(e){
@@ -1866,7 +1877,18 @@ function renderCatalog(){
     card.querySelector('[data-open]').addEventListener('click', function(){
       openTitleModal(item);
     });
+    var synEl = card.querySelector('.synopsis');
+    var toggleBtn = card.querySelector('[data-toggle-synopsis]');
+    toggleBtn.addEventListener('click', function(e){
+      e.stopPropagation();
+      var expanded = synEl.classList.toggle('expanded');
+      toggleBtn.textContent = expanded ? t('card.readLess') : t('card.readMore');
+    });
     grid.appendChild(card);
+    // only show the toggle when the text actually overflows the 3-line clamp
+    if(synEl.scrollHeight > synEl.clientHeight + 1){
+      toggleBtn.classList.remove('hidden');
+    }
   });
 }
 
