@@ -286,6 +286,17 @@ select.langsel{
 }
 .notice b{color:var(--ember);}
 
+/* ============ MAINTENANCE BANNER ============ */
+.maintenance-banner{
+  display:none;
+  background:var(--wine);color:var(--parchment);
+  text-align:center;padding:12px 16px;
+  padding-top:calc(12px + var(--sat));
+  font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.05em;
+  border-bottom:1px solid var(--gold);
+}
+.maintenance-banner.show{display:block;}
+
 /* ============ FOOTER ============ */
 footer{
   border-top:1px solid var(--line);padding:40px calc(24px + var(--sal)) calc(40px + var(--sab)) calc(24px + var(--sar));
@@ -293,7 +304,43 @@ footer{
 }
 footer .seal{width:30px;height:30px;margin-bottom:14px;opacity:0.8;}
 footer .fbrand{font-family:'Cinzel Decorative',serif;font-size:14px;color:var(--gold-bright);letter-spacing:0.05em;}
+footer .fsocial{display:flex;gap:14px;justify-content:center;margin-top:14px;}
+footer .fsocial a{
+  font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--parchment-dim);text-decoration:none;border:1px solid var(--line);padding:6px 12px;
+}
+footer .fsocial a:hover{color:var(--gold-bright);border-color:var(--gold);}
 footer .fline{font-family:'Space Mono',monospace;font-size:10px;color:var(--parchment-dim);letter-spacing:0.1em;margin-top:8px;}
+
+/* ============ FAVORITE / CART UI ============ */
+.card-idx-fav{
+  position:absolute;top:8px;left:8px;
+  width:26px;height:26px;border:1px solid var(--gold);background:rgba(11,6,7,0.7);
+  color:var(--parchment-dim);font-size:14px;line-height:1;
+  display:flex;align-items:center;justify-content:center;cursor:pointer;
+}
+.card-idx-fav.active{background:var(--wine);color:var(--gold-bright);border-color:var(--gold-bright);}
+.card-idx-price{font-family:'Space Mono',monospace;font-size:11px;color:var(--gold-bright);}
+.cart-btn{position:relative;}
+.cart-count{
+  position:absolute;top:-6px;right:-6px;background:var(--wine);color:var(--parchment);
+  font-family:'Space Mono',monospace;font-size:9px;border:1px solid var(--gold);
+  width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+}
+
+/* ============ TITLE DETAIL MODAL ============ */
+.detail-modal{max-width:640px;}
+.detail-synopsis{color:var(--parchment-dim);line-height:1.8;font-size:15px;margin:14px 0;}
+.comment-item{border-top:1px solid var(--line);padding:12px 0;font-size:13px;}
+.comment-item .author{font-family:'Space Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:0.06em;}
+.comment-item .pending-tag{color:var(--ember);font-family:'Space Mono',monospace;font-size:9px;text-transform:uppercase;margin-left:8px;}
+.comment-item .body{color:var(--parchment-dim);margin-top:4px;line-height:1.6;}
+.mod-row{
+  display:flex;justify-content:space-between;align-items:flex-start;gap:12px;
+  padding:10px 0;border-bottom:1px solid var(--line);font-size:12.5px;
+}
+.mod-row .txt{color:var(--parchment-dim);}
+.mod-row .who{font-family:'Space Mono',monospace;font-size:10px;color:var(--gold);}
 
 @media (max-width:640px){
   nav.mainnav{order:3;width:100%;justify-content:center;padding-top:10px;border-top:1px solid var(--line);margin-top:10px;}
@@ -305,6 +352,8 @@ footer .fline{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
 
 <!-- ============ APP ============ -->
 <div id="app">
+
+  <div class="maintenance-banner" id="maintenanceBanner" data-i18n="maintenance.text">Sito in manutenzione — stiamo aggiornando l'archivio, torna a breve.</div>
 
   <header class="topbar">
     <div class="brand">
@@ -335,6 +384,7 @@ footer .fline{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
       <span class="acct-chip hidden" id="acctChip"></span>
       <button class="btn btn-sm" id="btnLoginTop" data-i18n="nav.login">Accedi</button>
       <button class="btn btn-sm btn-ghost hidden" id="btnLogoutTop" data-i18n="nav.logout">Esci</button>
+      <button class="btn btn-sm btn-ghost cart-btn" id="btnCart"><span data-i18n="cart.open">Carrello</span><span class="cart-count hidden" id="cartCount">0</span></button>
     </div>
   </header>
 
@@ -403,32 +453,44 @@ footer .fline{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
       </div>
     </div>
 
-    <!-- Sign-in box: shown when no valid Supabase admin session -->
-    <div class="admin-panel" id="adminSignInBox">
-      <div class="notice" id="syncNotice"><b data-i18n="admin.noticeLabel">Stato —</b> <span id="syncStatus" data-i18n="sync.notConfigured">Backend Supabase non ancora collegato.</span></div>
-      <div class="admin-grid">
-        <div class="field" style="grid-column:1/-1">
-          <label data-i18n="admin.signin.email">Email amministratore</label>
-          <input type="email" id="fAdminEmail" autocomplete="username">
-        </div>
-        <div class="field" style="grid-column:1/-1">
-          <label data-i18n="admin.signin.password">Password</label>
-          <input type="password" id="fAdminPassword" autocomplete="current-password">
-        </div>
-      </div>
-      <div class="form-error" id="adminSignInError"></div>
+    <!-- Gate box: shown when not signed in, or signed in without admin rights -->
+    <div class="admin-panel" id="adminGateBox">
+      <p id="adminGateMessage" data-i18n="admin.gate.notSignedIn">Accedi dal pulsante "Accedi" in alto per amministrare lo schedario.</p>
       <div class="modal-actions">
-        <button class="btn btn-primary" id="btnAdminSignIn" data-i18n="admin.signin.btn">Accedi come admin</button>
+        <button class="btn btn-primary hidden" id="btnGateSignIn" data-i18n="nav.login">Accedi</button>
       </div>
     </div>
 
-    <!-- Management box: shown once signed in -->
+    <!-- Management box: shown once signed in as admin -->
     <div class="admin-panel hidden" id="adminManageBox">
       <div class="notice"><b data-i18n="admin.noticeLabel">Stato —</b> <span id="syncStatus2"></span></div>
+      <div class="notice">
+        <label class="mature-toggle" style="cursor:pointer;">
+          <span data-i18n="social.title">Link social (visibili nel footer)</span>
+        </label>
+        <div class="admin-grid" style="margin-top:14px;">
+          <div class="field"><label>Instagram</label><input type="url" id="fSocialInstagram" placeholder="https://instagram.com/..."></div>
+          <div class="field"><label>Facebook</label><input type="url" id="fSocialFacebook" placeholder="https://facebook.com/..."></div>
+          <div class="field"><label>LinkedIn</label><input type="url" id="fSocialLinkedin" placeholder="https://linkedin.com/..."></div>
+          <div class="field"><label>Telegram</label><input type="url" id="fSocialTelegram" placeholder="https://t.me/..."></div>
+        </div>
+        <div class="modal-actions" style="margin-top:10px;">
+          <button class="btn btn-ghost btn-sm" id="btnSaveSocial" data-i18n="social.save">Salva link social</button>
+        </div>
+      </div>
+      <div class="notice">
+        <div data-i18n="comments.moderationTitle" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Commenti in attesa di approvazione</div>
+        <div id="modQueue"></div>
+      </div>
       <div class="modal-actions" style="margin-top:0;margin-bottom:24px;">
-        <span class="acct-chip" id="adminEmailChip" style="padding:8px 4px 8px 0;"></span>
-        <button class="btn btn-ghost btn-sm" id="btnAdminSignOut" data-i18n="admin.signOut">Esci da admin</button>
         <button class="btn btn-ghost btn-sm" id="btnResync" data-i18n="sync.resync">Sincronizza ora</button>
+      </div>
+
+      <div class="notice">
+        <label class="mature-toggle" style="cursor:pointer;">
+          <span data-i18n="maintenance.toggle">Modalità manutenzione (visibile a tutti i visitatori)</span>
+          <span class="switch"><input type="checkbox" id="maintenanceSwitch"><span class="slider"></span></span>
+        </label>
       </div>
 
       <div class="admin-grid">
@@ -452,6 +514,10 @@ footer .fline{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
         <div class="field">
           <label data-i18n="admin.f.date">Data pubblicazione</label>
           <input type="date" id="fDate">
+        </div>
+        <div class="field">
+          <label data-i18n="admin.f.price">Prezzo (EUR, opzionale)</label>
+          <input type="number" id="fPrice" min="0" step="0.01" placeholder="4.99">
         </div>
         <div class="field" style="grid-column:1/-1">
           <label data-i18n="admin.f.synopsis">Sinossi (inglese — testo delle opere)</label>
@@ -478,6 +544,7 @@ footer .fline{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
   <footer>
     <img class="seal seal-img" data-size="sm" alt="LUX COMICS &amp; MEDUSA COMICS">
     <div class="fbrand">LUX COMICS &amp; MEDUSA COMICS</div>
+    <div class="fsocial" id="footerSocial"></div>
     <div class="fline" data-i18n="footer.line">ARCHIVIO RISERVATO · SOLO 18+ · TRAD.CLAB WORKS</div>
   </footer>
 
@@ -507,6 +574,48 @@ footer .fline{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
       <button id="authSwitch" data-i18n="auth.switchToRegisterBtn">Registrati</button>
     </div>
     <div class="form-note" data-i18n="auth.note">Nota: l'account salva solo la tua preferenza di lingua per questo sito, in locale su questo browser.</div>
+  </div>
+</div>
+
+<!-- ============ TITLE DETAIL MODAL (synopsis, favorite, comments) ============ -->
+<div class="modal-backdrop hidden" id="titleModal">
+  <div class="modal detail-modal">
+    <button class="modal-close" id="titleModalClose" aria-label="Chiudi">×</button>
+    <div class="sub mono" id="titleModalMeta"></div>
+    <h3 id="titleModalTitle"></h3>
+    <p class="detail-synopsis" id="titleModalSynopsis"></p>
+    <div class="modal-actions" style="margin-top:6px;">
+      <button class="btn btn-ghost btn-sm" id="titleModalFav" data-i18n="fav.add">♡ Salva</button>
+      <button class="btn btn-primary btn-sm hidden" id="titleModalAddCart" data-i18n="cart.add">Aggiungi al carrello</button>
+    </div>
+    <div style="margin-top:26px;">
+      <div class="sub mono" data-i18n="comments.title">Commenti</div>
+      <div id="commentsList"></div>
+      <div id="commentFormBox" class="hidden" style="margin-top:14px;">
+        <div class="field">
+          <textarea id="fCommentBody" placeholder="Scrivi un commento…" rows="3"></textarea>
+        </div>
+        <div class="form-error" id="commentError"></div>
+        <button class="btn btn-ghost btn-sm" id="btnSubmitComment" data-i18n="comments.submit">Invia commento</button>
+      </div>
+      <p class="form-note hidden" id="commentLoginPrompt" data-i18n="comments.loginToComment">Accedi per lasciare un commento.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============ CART MODAL ============ -->
+<div class="modal-backdrop hidden" id="cartModal">
+  <div class="modal">
+    <button class="modal-close" id="cartModalClose" aria-label="Chiudi">×</button>
+    <h3 data-i18n="cart.title">Il tuo carrello</h3>
+    <div class="sub mono" data-i18n="cart.pending">Pagamento in configurazione</div>
+    <div id="cartItems"></div>
+    <div class="notice" style="margin-top:16px;">
+      <span data-i18n="cart.notice">Il carrello è pronto, ma il pagamento non è ancora collegato a nessun processore. Quando l'admin ne sceglierà uno, potrai completare l'acquisto qui.</span>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" id="btnClearCart" data-i18n="cart.clear">Svuota carrello</button>
+    </div>
   </div>
 </div>
 
@@ -571,12 +680,28 @@ var STR = {
     "err.userExists":"Nome utente già in uso.","err.badLogin":"Credenziali non valide.","err.required":"Compila tutti i campi.",
     "admin.deleted":"rimosso","admin.confirmDelete":"Rimuovere questo titolo dallo schedario?",
     "filter.all":"Tutti",
+    "maintenance.text":"Sito in manutenzione — stiamo aggiornando l'archivio, torna a breve.",
+    "maintenance.toggle":"Modalità manutenzione (visibile a tutti i visitatori)",
     "gate.title":"Sblocca i Contenuti 18+",
     "toggle.mature":"Contenuti 18+",
     "admin.f.mature":"Contenuto per adulti (18+)",
     "badge.allages":"Tutti",
     "state.allages":"Stai vedendo: contenuti per tutti i pubblici.",
-    "state.mature":"Stai vedendo: contenuti per tutti i pubblici + 18+ sbloccati."
+    "state.mature":"Stai vedendo: contenuti per tutti i pubblici + 18+ sbloccati.",
+    "admin.gate.notSignedIn":"Accedi dal pulsante \"Accedi\" in alto per amministrare lo schedario.",
+    "admin.gate.notAdmin":"L'account {email} non ha permessi di amministrazione.",
+    "admin.f.price":"Prezzo (EUR, opzionale)",
+    "social.title":"Link social (visibili nel footer)","social.save":"Salva link social",
+    "comments.moderationTitle":"Commenti in attesa di approvazione",
+    "comments.title":"Commenti","comments.submit":"Invia commento",
+    "comments.loginToComment":"Accedi per lasciare un commento.",
+    "comments.empty":"Nessun commento ancora.","comments.pending":"in attesa","comments.noPending":"Nessun commento in attesa.",
+    "comments.submittedPending":"Inviato — in attesa di approvazione.",
+    "fav.add":"♡ Salva","fav.remove":"♥ Salvato",
+    "cart.open":"Carrello","cart.title":"Il tuo carrello","cart.pending":"Pagamento in configurazione",
+    "cart.notice":"Il carrello è pronto, ma il pagamento non è ancora collegato a nessun processore. Quando l'admin ne sceglierà uno, potrai completare l'acquisto qui.",
+    "cart.clear":"Svuota carrello","cart.empty":"Il carrello è vuoto.","cart.add":"Aggiungi al carrello",
+    "auth.confirmEmailSent":"Controlla la tua email per confermare l'account, poi accedi."
   },
   en:{
     "gate.sub":"Adult content",
@@ -614,12 +739,28 @@ var STR = {
     "err.userExists":"Username already taken.","err.badLogin":"Invalid credentials.","err.required":"Fill in every field.",
     "admin.deleted":"removed","admin.confirmDelete":"Remove this title from the index?",
     "filter.all":"All",
+    "maintenance.text":"Site under maintenance — we're updating the archive, check back soon.",
+    "maintenance.toggle":"Maintenance mode (visible to every visitor)",
     "gate.title":"Unlock 18+ Content",
     "toggle.mature":"18+ Content",
     "admin.f.mature":"Adult content (18+)",
     "badge.allages":"All Ages",
     "state.allages":"You're viewing: all-ages content.",
-    "state.mature":"You're viewing: all-ages content + 18+ unlocked."
+    "state.mature":"You're viewing: all-ages content + 18+ unlocked.",
+    "admin.gate.notSignedIn":"Sign in from the \"Sign in\" button above to administer the index.",
+    "admin.gate.notAdmin":"The account {email} doesn't have admin permissions.",
+    "admin.f.price":"Price (EUR, optional)",
+    "social.title":"Social links (shown in the footer)","social.save":"Save social links",
+    "comments.moderationTitle":"Comments pending approval",
+    "comments.title":"Comments","comments.submit":"Submit comment",
+    "comments.loginToComment":"Sign in to leave a comment.",
+    "comments.empty":"No comments yet.","comments.pending":"pending","comments.noPending":"No pending comments.",
+    "comments.submittedPending":"Submitted — pending approval.",
+    "fav.add":"♡ Save","fav.remove":"♥ Saved",
+    "cart.open":"Cart","cart.title":"Your cart","cart.pending":"Payment being set up",
+    "cart.notice":"The cart is ready, but no payment processor is connected yet. Once the admin picks one, you'll be able to complete checkout here.",
+    "cart.clear":"Clear cart","cart.empty":"Your cart is empty.","cart.add":"Add to cart",
+    "auth.confirmEmailSent":"Check your email to confirm your account, then sign in."
   },
   es:{
     "gate.sub":"Contenido para adultos",
@@ -657,12 +798,28 @@ var STR = {
     "err.userExists":"El nombre de usuario ya existe.","err.badLogin":"Credenciales no válidas.","err.required":"Completa todos los campos.",
     "admin.deleted":"eliminado","admin.confirmDelete":"¿Eliminar este título del índice?",
     "filter.all":"Todos",
+    "maintenance.text":"Sitio en mantenimiento — estamos actualizando el archivo, vuelve pronto.",
+    "maintenance.toggle":"Modo mantenimiento (visible para todos los visitantes)",
     "gate.title":"Desbloquear Contenido 18+",
     "toggle.mature":"Contenido 18+",
     "admin.f.mature":"Contenido para adultos (18+)",
     "badge.allages":"Todos",
     "state.allages":"Estás viendo: contenido para todos los públicos.",
-    "state.mature":"Estás viendo: contenido para todos + 18+ desbloqueado."
+    "state.mature":"Estás viendo: contenido para todos + 18+ desbloqueado.",
+    "admin.gate.notSignedIn":"Accede desde el botón \"Acceder\" arriba para administrar el índice.",
+    "admin.gate.notAdmin":"La cuenta {email} no tiene permisos de administrador.",
+    "admin.f.price":"Precio (EUR, opcional)",
+    "social.title":"Enlaces sociales (visibles en el pie de página)","social.save":"Guardar enlaces sociales",
+    "comments.moderationTitle":"Comentarios pendientes de aprobación",
+    "comments.title":"Comentarios","comments.submit":"Enviar comentario",
+    "comments.loginToComment":"Accede para dejar un comentario.",
+    "comments.empty":"Aún no hay comentarios.","comments.pending":"pendiente","comments.noPending":"No hay comentarios pendientes.",
+    "comments.submittedPending":"Enviado — pendiente de aprobación.",
+    "fav.add":"♡ Guardar","fav.remove":"♥ Guardado",
+    "cart.open":"Carrito","cart.title":"Tu carrito","cart.pending":"Pago en configuración",
+    "cart.notice":"El carrito está listo, pero aún no hay ningún procesador de pago conectado. Cuando el admin elija uno, podrás completar la compra aquí.",
+    "cart.clear":"Vaciar carrito","cart.empty":"Tu carrito está vacío.","cart.add":"Añadir al carrito",
+    "auth.confirmEmailSent":"Revisa tu correo para confirmar la cuenta y luego accede."
   },
   fr:{
     "gate.sub":"Contenu pour adultes",
@@ -700,12 +857,28 @@ var STR = {
     "err.userExists":"Nom d'utilisateur déjà utilisé.","err.badLogin":"Identifiants invalides.","err.required":"Remplissez tous les champs.",
     "admin.deleted":"supprimé","admin.confirmDelete":"Supprimer ce titre de l'index ?",
     "filter.all":"Tous",
+    "maintenance.text":"Site en maintenance — nous mettons à jour l'archive, revenez bientôt.",
+    "maintenance.toggle":"Mode maintenance (visible pour tous les visiteurs)",
     "gate.title":"Débloquer le Contenu 18+",
     "toggle.mature":"Contenu 18+",
     "admin.f.mature":"Contenu pour adultes (18+)",
     "badge.allages":"Tout public",
     "state.allages":"Vous voyez : contenu tout public.",
-    "state.mature":"Vous voyez : contenu tout public + 18+ débloqué."
+    "state.mature":"Vous voyez : contenu tout public + 18+ débloqué.",
+    "admin.gate.notSignedIn":"Connectez-vous via le bouton \"Connexion\" en haut pour administrer l'index.",
+    "admin.gate.notAdmin":"Le compte {email} n'a pas les droits d'administration.",
+    "admin.f.price":"Prix (EUR, facultatif)",
+    "social.title":"Liens sociaux (affichés en pied de page)","social.save":"Enregistrer les liens sociaux",
+    "comments.moderationTitle":"Commentaires en attente d'approbation",
+    "comments.title":"Commentaires","comments.submit":"Envoyer le commentaire",
+    "comments.loginToComment":"Connectez-vous pour laisser un commentaire.",
+    "comments.empty":"Pas encore de commentaires.","comments.pending":"en attente","comments.noPending":"Aucun commentaire en attente.",
+    "comments.submittedPending":"Envoyé — en attente d'approbation.",
+    "fav.add":"♡ Enregistrer","fav.remove":"♥ Enregistré",
+    "cart.open":"Panier","cart.title":"Votre panier","cart.pending":"Paiement en cours de configuration",
+    "cart.notice":"Le panier est prêt, mais aucun processeur de paiement n'est encore connecté. Une fois que l'admin en choisira un, vous pourrez finaliser l'achat ici.",
+    "cart.clear":"Vider le panier","cart.empty":"Votre panier est vide.","cart.add":"Ajouter au panier",
+    "auth.confirmEmailSent":"Vérifiez votre email pour confirmer le compte, puis connectez-vous."
   },
   de:{
     "gate.sub":"Inhalt für Erwachsene",
@@ -743,12 +916,28 @@ var STR = {
     "err.userExists":"Benutzername bereits vergeben.","err.badLogin":"Ungültige Anmeldedaten.","err.required":"Bitte alle Felder ausfüllen.",
     "admin.deleted":"entfernt","admin.confirmDelete":"Diesen Titel aus dem Index entfernen?",
     "filter.all":"Alle",
+    "maintenance.text":"Seite in Wartung — wir aktualisieren gerade das Archiv, schau bald wieder vorbei.",
+    "maintenance.toggle":"Wartungsmodus (für alle Besucher sichtbar)",
     "gate.title":"18+ Inhalte freischalten",
     "toggle.mature":"18+ Inhalte",
     "admin.f.mature":"Inhalt für Erwachsene (18+)",
     "badge.allages":"Alle",
     "state.allages":"Sie sehen: Inhalte für alle Altersgruppen.",
-    "state.mature":"Sie sehen: Inhalte für alle + 18+ freigeschaltet."
+    "state.mature":"Sie sehen: Inhalte für alle + 18+ freigeschaltet.",
+    "admin.gate.notSignedIn":"Melden Sie sich oben über \"Anmelden\" an, um den Index zu verwalten.",
+    "admin.gate.notAdmin":"Das Konto {email} hat keine Admin-Rechte.",
+    "admin.f.price":"Preis (EUR, optional)",
+    "social.title":"Social-Links (im Footer angezeigt)","social.save":"Social-Links speichern",
+    "comments.moderationTitle":"Kommentare zur Freigabe",
+    "comments.title":"Kommentare","comments.submit":"Kommentar senden",
+    "comments.loginToComment":"Melden Sie sich an, um einen Kommentar zu hinterlassen.",
+    "comments.empty":"Noch keine Kommentare.","comments.pending":"ausstehend","comments.noPending":"Keine ausstehenden Kommentare.",
+    "comments.submittedPending":"Gesendet — wartet auf Freigabe.",
+    "fav.add":"♡ Speichern","fav.remove":"♥ Gespeichert",
+    "cart.open":"Warenkorb","cart.title":"Ihr Warenkorb","cart.pending":"Zahlung wird eingerichtet",
+    "cart.notice":"Der Warenkorb ist bereit, aber es ist noch kein Zahlungsanbieter verbunden. Sobald der Admin einen auswählt, können Sie hier bezahlen.",
+    "cart.clear":"Warenkorb leeren","cart.empty":"Ihr Warenkorb ist leer.","cart.add":"In den Warenkorb",
+    "auth.confirmEmailSent":"Bestätigen Sie Ihr Konto per E-Mail und melden Sie sich dann an."
   }
 };
 
@@ -796,19 +985,58 @@ function applyI18n(){
 function setLang(lang){
   currentLang = lang;
   localStorage.setItem('lux_lang', lang);
-  // if a user is logged in, persist their preference on their account too
-  var session = getSession();
-  if(session){
-    var users = getUsers();
-    var u = users.find(function(x){return x.username === session;});
-    if(u){ u.lang = lang; saveUsers(users); }
-  }
   applyI18n();
   renderDossiers();
   renderCatalog();
   renderAdminList();
   updateSyncStatus();
 }
+
+/* ============ UNIFIED SUPABASE AUTH (regular visitors + admin, same accounts) ============ */
+// SUPABASE_URL and SUPABASE_ANON_KEY are meant to be public (Supabase's anon
+// key is safe to embed client-side by design; access control is enforced
+// server-side by Row Level Security policies, not by hiding this key).
+var SUPABASE_URL = 'https://ukafvwyxdjsfzzoewujq.supabase.co';
+var SUPABASE_ANON_KEY = 'sb_publishable_-jO_WGzMVo-3Xp5J75RwiA__u49YnPr';
+var ADMIN_EMAIL = 'sergio.tradori@outlook.it'; // UI-gating only; real enforcement is server-side RLS
+
+function getSession(){
+  try{ return JSON.parse(localStorage.getItem('lux_session') || 'null'); }catch(e){ return null; }
+}
+function setSession(session){
+  if(session){ localStorage.setItem('lux_session', JSON.stringify(session)); }
+  else{ localStorage.removeItem('lux_session'); }
+}
+function isSignedIn(){ var s = getSession(); return !!(s && s.access_token); }
+function isAdmin(){ var s = getSession(); return isSignedIn() && s.user && s.user.email === ADMIN_EMAIL; }
+function currentUserId(){ var s = getSession(); return s && s.user ? s.user.id : null; }
+function currentUserEmail(){ var s = getSession(); return s && s.user ? s.user.email : null; }
+
+function authSignIn(email, password){
+  return fetch(SUPABASE_URL + '/auth/v1/token?grant_type=password', {
+    method:'POST',
+    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Content-Type':'application/json' },
+    body: JSON.stringify({email:email, password:password})
+  }).then(function(r){
+    return r.json().then(function(data){
+      if(!r.ok) throw new Error(data.error_description || data.msg || ('sign-in failed: ' + r.status));
+      return data;
+    });
+  });
+}
+function authSignUp(email, password){
+  return fetch(SUPABASE_URL + '/auth/v1/signup', {
+    method:'POST',
+    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Content-Type':'application/json' },
+    body: JSON.stringify({email:email, password:password})
+  }).then(function(r){
+    return r.json().then(function(data){
+      if(!r.ok) throw new Error(data.error_description || data.msg || ('sign-up failed: ' + r.status));
+      return data; // data.session is null if email confirmation is required
+    });
+  });
+}
+function authSignOut(){ setSession(null); }
 
 /* ============ MATURE CONTENT TOGGLE ============ */
 // Site defaults to all-ages. The 18+ switch reveals mature titles too, and
@@ -864,73 +1092,6 @@ function initMatureToggle(){
   });
 }
 
-/* ============ USERS / AUTH (client-side, localStorage — see admin notice for limits) ============ */
-function getUsers(){
-  try{ return JSON.parse(localStorage.getItem('lux_users') || '[]'); }catch(e){ return []; }
-}
-function saveUsers(users){ localStorage.setItem('lux_users', JSON.stringify(users)); }
-function simpleHash(str){
-  // Not real cryptography — a static demo site has no server, this only avoids storing raw plaintext at rest.
-  var h = 0;
-  for(var i=0;i<str.length;i++){ h = (Math.imul(31,h) + str.charCodeAt(i))|0; }
-  return 'h'+h;
-}
-function getSession(){ return localStorage.getItem('lux_session') || null; }
-function setSession(username){ if(username){ localStorage.setItem('lux_session', username); } else { localStorage.removeItem('lux_session'); } }
-
-/* ============ SUPABASE ADMIN AUTH ============ */
-// Real authentication now, via Supabase — no more locally-derived passwords.
-// SUPABASE_URL and SUPABASE_ANON_KEY are meant to be public (Supabase's anon
-// key is safe to embed client-side by design; access control is enforced
-// server-side by Row Level Security policies on the `catalog` table, not by
-// hiding this key). The admin's actual email/password live only in Supabase's
-// own Auth system — nothing admin-identifying is stored in this file.
-var SUPABASE_URL = '';
-var SUPABASE_ANON_KEY = '';
-
-function getAdminSession(){
-  try{ return JSON.parse(localStorage.getItem('lux_admin_session') || 'null'); }catch(e){ return null; }
-}
-function setAdminSession(session){
-  if(session){ localStorage.setItem('lux_admin_session', JSON.stringify(session)); }
-  else{ localStorage.removeItem('lux_admin_session'); }
-}
-function isAdminSignedIn(){
-  var s = getAdminSession();
-  return !!(s && s.access_token);
-}
-
-function adminSignIn(email, password){
-  return fetch(SUPABASE_URL + '/auth/v1/token?grant_type=password', {
-    method:'POST',
-    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Content-Type':'application/json' },
-    body: JSON.stringify({email:email, password:password})
-  }).then(function(r){
-    return r.json().then(function(data){
-      if(!r.ok) throw new Error(data.error_description || data.msg || ('sign-in failed: ' + r.status));
-      return data;
-    });
-  });
-}
-function adminSignOut(){ setAdminSession(null); }
-
-function refreshAdminUI(){
-  var signedIn = isAdminSignedIn() && !!SUPABASE_URL;
-  var signInBox = document.getElementById('adminSignInBox');
-  var manageBox = document.getElementById('adminManageBox');
-  if(!signInBox || !manageBox) return;
-  signInBox.classList.toggle('hidden', signedIn);
-  manageBox.classList.toggle('hidden', !signedIn);
-  if(signedIn){
-    var s = getAdminSession();
-    var chip = document.getElementById('adminEmailChip');
-    if(chip) chip.textContent = '@' + (s.user && s.user.email ? s.user.email : 'admin');
-    renderAdminList();
-  }
-  updateSyncStatus();
-}
-
-
 var authMode = 'login';
 function openAuth(mode){
   authMode = mode || 'login';
@@ -954,38 +1115,50 @@ function openAuth(mode){
 function closeAuth(){ document.getElementById('authModal').classList.add('hidden'); }
 
 function handleAuthSubmit(){
-  var user = document.getElementById('authUser').value.trim();
+  var email = document.getElementById('authUser').value.trim();
   var pass = document.getElementById('authPass').value;
   var err = document.getElementById('authError');
   err.textContent = '';
-  if(!user || !pass){ err.textContent = t('err.required'); return; }
-  var users = getUsers();
+  if(!email || !pass){ err.textContent = t('err.required'); return; }
+  if(!SUPABASE_URL){ err.textContent = t('sync.notConfigured'); return; }
+
   if(authMode === 'register'){
-    if(users.some(function(u){return u.username === user;})){
-      err.textContent = t('err.userExists'); return;
-    }
-    users.push({username:user, pass:simpleHash(pass), lang:currentLang, isAdmin:false});
-    saveUsers(users);
-    setSession(user);
+    authSignUp(email, pass).then(function(data){
+      if(data.session){
+        setSession(data.session);
+        closeAuth();
+        afterAuthChange();
+      } else {
+        closeAuth();
+        alert(t('auth.confirmEmailSent'));
+      }
+    }).catch(function(e){
+      err.textContent = e.message || t('err.badLogin');
+    });
   } else {
-    var found = users.find(function(u){return u.username === user && u.pass === simpleHash(pass);});
-    if(!found){ err.textContent = t('err.badLogin'); return; }
-    setSession(user);
-    if(found.lang){ currentLang = found.lang; localStorage.setItem('lux_lang', currentLang); }
+    authSignIn(email, pass).then(function(data){
+      setSession(data);
+      closeAuth();
+      afterAuthChange();
+    }).catch(function(e){
+      err.textContent = t('err.badLogin');
+    });
   }
-  closeAuth();
+}
+
+function afterAuthChange(){
   refreshAuthUI();
-  applyI18n();
-  renderDossiers(); renderCatalog(); renderAdminList(); updateSyncStatus();
+  refreshAdminUI();
+  renderCatalog();
+  loadFavorites();
 }
 
 function refreshAuthUI(){
-  var session = getSession();
   var chip = document.getElementById('acctChip');
   var btnLogin = document.getElementById('btnLoginTop');
   var btnLogout = document.getElementById('btnLogoutTop');
-  if(session){
-    chip.textContent = '@' + session;
+  if(isSignedIn()){
+    chip.textContent = '@' + currentUserEmail();
     chip.classList.remove('hidden');
     btnLogin.classList.add('hidden');
     btnLogout.classList.remove('hidden');
@@ -994,6 +1167,29 @@ function refreshAuthUI(){
     btnLogin.classList.remove('hidden');
     btnLogout.classList.add('hidden');
   }
+}
+
+function refreshAdminUI(){
+  var gateBox = document.getElementById('adminGateBox');
+  var manageBox = document.getElementById('adminManageBox');
+  var gateMsg = document.getElementById('adminGateMessage');
+  var gateSignIn = document.getElementById('btnGateSignIn');
+  if(!gateBox || !manageBox) return;
+  var admin = isAdmin();
+  gateBox.classList.toggle('hidden', admin);
+  manageBox.classList.toggle('hidden', !admin);
+  if(admin){
+    renderAdminList();
+    renderModerationQueue();
+    loadSocialLinksIntoForm();
+  } else if(isSignedIn()){
+    gateMsg.textContent = t('admin.gate.notAdmin').replace('{email}', currentUserEmail());
+    gateSignIn.classList.add('hidden');
+  } else {
+    gateMsg.textContent = t('admin.gate.notSignedIn');
+    gateSignIn.classList.remove('hidden');
+  }
+  updateSyncStatus();
 }
 
 /* ============ CATALOG (local cache + Supabase sync) ============ */
@@ -1032,12 +1228,12 @@ function getCatalog(){
 function saveCatalogLocal(items){ localStorage.setItem('lux_catalog', JSON.stringify(items)); }
 
 function updateSyncStatus(){
-  var els = [document.getElementById('syncStatus'), document.getElementById('syncStatus2')];
+  var els = [document.getElementById('syncStatus2')];
   var text;
   if(!SUPABASE_URL){ text = t('sync.notConfigured'); }
   else if(syncState === 'syncing'){ text = t('sync.syncing'); }
   else if(syncState === 'error'){ text = t('sync.error'); }
-  else if(!isAdminSignedIn()){ text = t('sync.configuredNoToken'); }
+  else if(!isAdmin()){ text = t('sync.configuredNoToken'); }
   else { text = t('sync.ready'); }
   els.forEach(function(el){ if(el) el.textContent = text; });
 }
@@ -1062,7 +1258,7 @@ function fetchCatalogFromSupabase(){
 }
 
 function supabaseInsert(item){
-  var session = getAdminSession();
+  var session = getSession();
   if(!SUPABASE_URL || !session) return Promise.resolve(false);
   syncState = 'syncing'; updateSyncStatus();
   return fetch(SUPABASE_URL + '/rest/v1/catalog', {
@@ -1088,7 +1284,7 @@ function supabaseInsert(item){
 }
 
 function supabaseDelete(id){
-  var session = getAdminSession();
+  var session = getSession();
   if(!SUPABASE_URL || !session) return Promise.resolve(false);
   syncState = 'syncing'; updateSyncStatus();
   return fetch(SUPABASE_URL + '/rest/v1/catalog?id=eq.' + encodeURIComponent(id), {
@@ -1104,7 +1300,7 @@ function supabaseDelete(id){
 }
 
 function supabaseBulkUpsert(items){
-  var session = getAdminSession();
+  var session = getSession();
   if(!SUPABASE_URL || !session) return Promise.resolve(false);
   syncState = 'syncing'; updateSyncStatus();
   return fetch(SUPABASE_URL + '/rest/v1/catalog?on_conflict=id', {
@@ -1124,6 +1320,49 @@ function supabaseBulkUpsert(items){
       console.warn('Supabase sync (bulk upsert) failed:', err);
       return false;
     });
+}
+
+/* ============ MAINTENANCE MODE (shared via Supabase, localized banner) ============ */
+var maintenanceOn = false;
+
+function renderMaintenanceBanner(){
+  var el = document.getElementById('maintenanceBanner');
+  if(!el) return;
+  el.classList.toggle('show', maintenanceOn);
+}
+
+function fetchMaintenanceStatus(){
+  if(!SUPABASE_URL) return Promise.resolve(null);
+  return fetch(SUPABASE_URL + '/rest/v1/site_status?select=maintenance&id=eq.1', {
+    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + SUPABASE_ANON_KEY }
+  })
+    .then(function(r){ if(!r.ok) throw new Error('maintenance read failed: ' + r.status); return r.json(); })
+    .then(function(rows){
+      maintenanceOn = !!(rows && rows[0] && rows[0].maintenance);
+      renderMaintenanceBanner();
+      var sw = document.getElementById('maintenanceSwitch');
+      if(sw) sw.checked = maintenanceOn;
+      return maintenanceOn;
+    })
+    .catch(function(err){ console.warn('Maintenance status read failed:', err); return null; });
+}
+
+function setMaintenanceStatus(on){
+  var session = getSession();
+  if(!SUPABASE_URL || !session) return Promise.resolve(false);
+  return fetch(SUPABASE_URL + '/rest/v1/site_status?id=eq.1', {
+    method:'PATCH',
+    headers:{
+      'apikey':SUPABASE_ANON_KEY,
+      'Authorization':'Bearer ' + session.access_token,
+      'Content-Type':'application/json',
+      'Prefer':'return=representation'
+    },
+    body: JSON.stringify({maintenance: on})
+  })
+    .then(function(r){ if(!r.ok) throw new Error('maintenance write failed: ' + r.status); return r.json(); })
+    .then(function(){ maintenanceOn = on; renderMaintenanceBanner(); return true; })
+    .catch(function(err){ console.warn('Maintenance status write failed:', err); return false; });
 }
 
 var activeFilter = 'all';
@@ -1196,18 +1435,28 @@ function renderCatalog(){
     var card = document.createElement('div');
     card.className = 'card-idx';
     var badge = item.mature ? '<span class="mature">18+</span>' : '<span class="allages">'+t('badge.allages')+'</span>';
+    var isFav = favoriteIds.has(item.id);
+    var priceTxt = item.price ? '<span class="card-idx-price">€'+Number(item.price).toFixed(2)+'</span>' : '';
     card.innerHTML =
       '<div class="card-idx-cover">'+
         '<span class="init">'+item.character.charAt(0)+'</span>'+
         badge+
+        '<span class="card-idx-fav'+(isFav?' active':'')+'" data-fav="'+item.id+'">'+(isFav?'♥':'♡')+'</span>'+
       '</div>'+
-      '<div class="card-idx-body">'+
+      '<div class="card-idx-body" style="cursor:pointer;" data-open="'+item.id+'">'+
         '<div class="num mono">'+(item.issue||'')+'</div>'+
         '<h4>'+escapeHtml(item.title)+'</h4>'+
         '<div class="character">'+item.character+'</div>'+
         '<div class="synopsis">'+escapeHtml(item.synopsis||'')+'</div>'+
-        '<div class="meta-row"><span>'+(item.date||'')+'</span></div>'+
+        '<div class="meta-row"><span>'+(item.date||'')+'</span>'+priceTxt+'</div>'+
       '</div>';
+    card.querySelector('[data-fav]').addEventListener('click', function(e){
+      e.stopPropagation();
+      toggleFavorite(item.id);
+    });
+    card.querySelector('[data-open]').addEventListener('click', function(){
+      openTitleModal(item);
+    });
     grid.appendChild(card);
   });
 }
@@ -1220,7 +1469,7 @@ function escapeHtml(str){
 
 /* ============ ADMIN ============ */
 function renderAdminList(){
-  if(!isAdminSignedIn()) return;
+  if(!isAdmin()) return;
   var list = document.getElementById('adminList');
   var items = getCatalog();
   items.sort(function(a,b){ return (b.date||'').localeCompare(a.date||''); });
@@ -1250,6 +1499,7 @@ function handleAddEntry(){
   var character = document.getElementById('fCharacter').value;
   var issue = document.getElementById('fIssue').value.trim();
   var date = document.getElementById('fDate').value;
+  var price = document.getElementById('fPrice').value;
   var synopsis = document.getElementById('fSynopsis').value.trim();
   var mature = document.getElementById('fMature').checked;
   var err = document.getElementById('adminError');
@@ -1262,6 +1512,7 @@ function handleAddEntry(){
     id: 'c' + Date.now(),
     character: character, title: title, issue: issue,
     date: date || new Date().toISOString().slice(0,10),
+    price: price ? Number(price) : null,
     synopsis: synopsis, mature: mature
   };
   var items = getCatalog();
@@ -1270,6 +1521,7 @@ function handleAddEntry(){
   document.getElementById('fTitle').value = '';
   document.getElementById('fIssue').value = '';
   document.getElementById('fDate').value = '';
+  document.getElementById('fPrice').value = '';
   document.getElementById('fSynopsis').value = '';
   document.getElementById('fMature').checked = false;
   renderCatalog();
@@ -1313,7 +1565,264 @@ function handleImport(file){
   reader.readAsText(file);
 }
 
-/* ============ WIRE UP ============ */
+/* ============ FAVORITES ============ */
+var favoriteIds = new Set();
+
+function loadFavorites(){
+  favoriteIds = new Set();
+  if(!isSignedIn() || !SUPABASE_URL) { renderCatalog(); return Promise.resolve(); }
+  var session = getSession();
+  return fetch(SUPABASE_URL + '/rest/v1/favorites?select=catalog_id&user_id=eq.' + encodeURIComponent(currentUserId()), {
+    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
+  })
+    .then(function(r){ if(!r.ok) throw new Error('favorites read failed'); return r.json(); })
+    .then(function(rows){
+      favoriteIds = new Set(rows.map(function(r){ return r.catalog_id; }));
+      renderCatalog();
+    })
+    .catch(function(err){ console.warn('Favorites load failed:', err); });
+}
+
+function toggleFavorite(catalogId){
+  if(!isSignedIn()){ openAuth('login'); return; }
+  var session = getSession();
+  var isFav = favoriteIds.has(catalogId);
+  var req = isFav
+    ? fetch(SUPABASE_URL + '/rest/v1/favorites?user_id=eq.' + encodeURIComponent(currentUserId()) + '&catalog_id=eq.' + encodeURIComponent(catalogId), {
+        method:'DELETE',
+        headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
+      })
+    : fetch(SUPABASE_URL + '/rest/v1/favorites', {
+        method:'POST',
+        headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
+        body: JSON.stringify({user_id: currentUserId(), catalog_id: catalogId})
+      });
+  req.then(function(r){
+    if(!r.ok) throw new Error('favorite toggle failed');
+    if(isFav){ favoriteIds.delete(catalogId); } else { favoriteIds.add(catalogId); }
+    renderCatalog();
+    if(!document.getElementById('titleModal').classList.contains('hidden')) refreshTitleModalFav(catalogId);
+  }).catch(function(err){ console.warn('Favorite toggle failed:', err); });
+}
+
+/* ============ CART (client-side only — no payment processor connected yet) ============ */
+var cart = [];
+try{ cart = JSON.parse(localStorage.getItem('lux_cart') || '[]'); }catch(e){ cart = []; }
+
+function saveCart(){ localStorage.setItem('lux_cart', JSON.stringify(cart)); renderCartCount(); }
+function openCartModal(){ renderCartModal(); document.getElementById('cartModal').classList.remove('hidden'); }
+function closeCartModal(){ document.getElementById('cartModal').classList.add('hidden'); }
+function renderCartCount(){
+  var el = document.getElementById('cartCount');
+  if(cart.length > 0){ el.textContent = cart.length; el.classList.remove('hidden'); }
+  else { el.classList.add('hidden'); }
+}
+function addToCart(item){
+  if(cart.some(function(i){ return i.id === item.id; })) return;
+  cart.push({id:item.id, title:item.title, price:item.price});
+  saveCart();
+  renderCartModal();
+}
+function removeFromCart(id){
+  cart = cart.filter(function(i){ return i.id !== id; });
+  saveCart();
+  renderCartModal();
+}
+function renderCartModal(){
+  var box = document.getElementById('cartItems');
+  if(cart.length === 0){
+    box.innerHTML = '<p class="form-note">' + t('cart.empty') + '</p>';
+    return;
+  }
+  box.innerHTML = '';
+  cart.forEach(function(item){
+    var row = document.createElement('div');
+    row.className = 'admin-row';
+    var priceTxt = item.price ? '€' + Number(item.price).toFixed(2) : '—';
+    row.innerHTML =
+      '<div class="info"><div class="t">' + escapeHtml(item.title) + '</div><div class="m">' + priceTxt + '</div></div>' +
+      '<div class="admin-actions"><button class="btn btn-sm btn-ghost" data-rm="' + item.id + '">×</button></div>';
+    row.querySelector('[data-rm]').addEventListener('click', function(){ removeFromCart(item.id); });
+    box.appendChild(row);
+  });
+}
+
+/* ============ COMMENTS (with moderation) ============ */
+var currentModalCatalogId = null;
+
+function openTitleModal(item){
+  currentModalCatalogId = item.id;
+  document.getElementById('titleModalTitle').textContent = item.title;
+  document.getElementById('titleModalMeta').textContent = item.character + ' · ' + (item.issue || '') + ' · ' + (item.date || '');
+  document.getElementById('titleModalSynopsis').textContent = item.synopsis || '';
+  refreshTitleModalFav(item.id);
+
+  var addCartBtn = document.getElementById('titleModalAddCart');
+  if(item.price){
+    addCartBtn.classList.remove('hidden');
+    addCartBtn.onclick = function(){ addToCart(item); };
+  } else {
+    addCartBtn.classList.add('hidden');
+  }
+
+  var loginPrompt = document.getElementById('commentLoginPrompt');
+  var formBox = document.getElementById('commentFormBox');
+  loginPrompt.classList.toggle('hidden', isSignedIn());
+  formBox.classList.toggle('hidden', !isSignedIn());
+  document.getElementById('fCommentBody').value = '';
+  document.getElementById('commentError').textContent = '';
+
+  loadComments(item.id);
+  document.getElementById('titleModal').classList.remove('hidden');
+}
+function closeTitleModal(){ document.getElementById('titleModal').classList.add('hidden'); currentModalCatalogId = null; }
+function refreshTitleModalFav(catalogId){
+  var btn = document.getElementById('titleModalFav');
+  var active = favoriteIds.has(catalogId);
+  btn.textContent = active ? t('fav.remove') : t('fav.add');
+  btn.classList.toggle('active', active);
+}
+
+function loadComments(catalogId){
+  var list = document.getElementById('commentsList');
+  list.innerHTML = '<p class="form-note">…</p>';
+  if(!SUPABASE_URL) { list.innerHTML = ''; return; }
+  var headers = { 'apikey':SUPABASE_ANON_KEY };
+  var session = getSession();
+  headers['Authorization'] = 'Bearer ' + (session ? session.access_token : SUPABASE_ANON_KEY);
+  fetch(SUPABASE_URL + '/rest/v1/comments?catalog_id=eq.' + encodeURIComponent(catalogId) + '&select=*&order=created_at.desc', { headers: headers })
+    .then(function(r){ if(!r.ok) throw new Error('comments read failed'); return r.json(); })
+    .then(function(rows){
+      list.innerHTML = '';
+      if(rows.length === 0){ list.innerHTML = '<p class="form-note">' + t('comments.empty') + '</p>'; return; }
+      rows.forEach(function(c){
+        var div = document.createElement('div');
+        div.className = 'comment-item';
+        var pendingTag = !c.approved ? '<span class="pending-tag">' + t('comments.pending') + '</span>' : '';
+        div.innerHTML = '<span class="author">' + escapeHtml(c.author_name) + '</span>' + pendingTag +
+          '<div class="body">' + escapeHtml(c.body) + '</div>';
+        list.appendChild(div);
+      });
+    })
+    .catch(function(err){ list.innerHTML = ''; console.warn('Comments load failed:', err); });
+}
+
+function submitComment(){
+  var body = document.getElementById('fCommentBody').value.trim();
+  var err = document.getElementById('commentError');
+  err.textContent = '';
+  if(!body){ err.textContent = t('err.required'); return; }
+  if(!isSignedIn()){ openAuth('login'); return; }
+  var session = getSession();
+  fetch(SUPABASE_URL + '/rest/v1/comments', {
+    method:'POST',
+    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json', 'Prefer':'return=representation' },
+    body: JSON.stringify({ catalog_id: currentModalCatalogId, user_id: currentUserId(), author_name: currentUserEmail(), body: body, approved: false })
+  }).then(function(r){
+    if(!r.ok) throw new Error('comment insert failed');
+    document.getElementById('fCommentBody').value = '';
+    err.textContent = t('comments.submittedPending');
+    loadComments(currentModalCatalogId);
+  }).catch(function(e){
+    err.textContent = t('err.required');
+    console.warn('Comment submit failed:', e);
+  });
+}
+
+/* ============ MODERATION QUEUE (admin) ============ */
+function renderModerationQueue(){
+  var box = document.getElementById('modQueue');
+  if(!SUPABASE_URL || !isAdmin()) return;
+  var session = getSession();
+  fetch(SUPABASE_URL + '/rest/v1/comments?approved=eq.false&select=*&order=created_at.asc', {
+    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
+  })
+    .then(function(r){ if(!r.ok) throw new Error('moderation read failed'); return r.json(); })
+    .then(function(rows){
+      box.innerHTML = '';
+      if(rows.length === 0){ box.innerHTML = '<p class="form-note">' + t('comments.noPending') + '</p>'; return; }
+      var items = getCatalog();
+      rows.forEach(function(c){
+        var titleObj = items.find(function(i){ return i.id === c.catalog_id; });
+        var row = document.createElement('div');
+        row.className = 'mod-row';
+        row.innerHTML =
+          '<div><div class="who">' + escapeHtml(c.author_name) + ' · ' + (titleObj ? escapeHtml(titleObj.title) : c.catalog_id) + '</div>' +
+          '<div class="txt">' + escapeHtml(c.body) + '</div></div>' +
+          '<div class="admin-actions"><button class="btn btn-sm btn-ghost" data-approve="' + c.id + '">✓</button><button class="btn btn-sm btn-ghost" data-reject="' + c.id + '">×</button></div>';
+        row.querySelector('[data-approve]').addEventListener('click', function(){ moderateComment(c.id, true); });
+        row.querySelector('[data-reject]').addEventListener('click', function(){ moderateComment(c.id, false); });
+        box.appendChild(row);
+      });
+    })
+    .catch(function(err){ console.warn('Moderation queue load failed:', err); });
+}
+function moderateComment(id, approve){
+  var session = getSession();
+  var req = approve
+    ? fetch(SUPABASE_URL + '/rest/v1/comments?id=eq.' + encodeURIComponent(id), {
+        method:'PATCH',
+        headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
+        body: JSON.stringify({approved:true})
+      })
+    : fetch(SUPABASE_URL + '/rest/v1/comments?id=eq.' + encodeURIComponent(id), {
+        method:'DELETE',
+        headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
+      });
+  req.then(function(r){ if(!r.ok) throw new Error('moderation action failed'); renderModerationQueue(); })
+     .catch(function(err){ console.warn('Moderation action failed:', err); });
+}
+
+/* ============ SOCIAL LINKS (admin-managed, public footer) ============ */
+function fetchSocialLinks(){
+  var footer = document.getElementById('footerSocial');
+  if(!SUPABASE_URL) return;
+  fetch(SUPABASE_URL + '/rest/v1/social_links?select=*&enabled=eq.true', {
+    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + SUPABASE_ANON_KEY }
+  })
+    .then(function(r){ if(!r.ok) throw new Error('social read failed'); return r.json(); })
+    .then(function(rows){
+      footer.innerHTML = '';
+      rows.forEach(function(row){
+        if(!row.url) return;
+        var a = document.createElement('a');
+        a.href = row.url; a.target = '_blank'; a.rel = 'noopener';
+        a.textContent = row.id.charAt(0).toUpperCase() + row.id.slice(1);
+        footer.appendChild(a);
+      });
+    })
+    .catch(function(err){ console.warn('Social links load failed:', err); });
+}
+function loadSocialLinksIntoForm(){
+  if(!SUPABASE_URL || !isAdmin()) return;
+  var session = getSession();
+  fetch(SUPABASE_URL + '/rest/v1/social_links?select=*', {
+    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
+  })
+    .then(function(r){ if(!r.ok) throw new Error('social admin read failed'); return r.json(); })
+    .then(function(rows){
+      rows.forEach(function(row){
+        var input = document.getElementById('fSocial' + row.id.charAt(0).toUpperCase() + row.id.slice(1));
+        if(input) input.value = row.url || '';
+      });
+    })
+    .catch(function(err){ console.warn('Social admin load failed:', err); });
+}
+function saveSocialLinks(){
+  var session = getSession();
+  var platforms = ['instagram','facebook','linkedin','telegram'];
+  var updates = platforms.map(function(p){
+    var input = document.getElementById('fSocial' + p.charAt(0).toUpperCase() + p.slice(1));
+    var url = input.value.trim();
+    return fetch(SUPABASE_URL + '/rest/v1/social_links?id=eq.' + p, {
+      method:'PATCH',
+      headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
+      body: JSON.stringify({url: url, enabled: !!url})
+    });
+  });
+  Promise.all(updates).then(function(){ fetchSocialLinks(); }).catch(function(err){ console.warn('Social save failed:', err); });
+}
+
 document.addEventListener('DOMContentLoaded', function(){
   document.querySelectorAll('.seal-img[data-size="sm"]').forEach(function(img){ img.src = LOGO_SM; });
   document.querySelectorAll('.seal-img[data-size="lg"]').forEach(function(img){ img.src = LOGO_LG; });
@@ -1323,6 +1832,9 @@ document.addEventListener('DOMContentLoaded', function(){
   renderCatalog();
   refreshAuthUI();
   refreshAdminUI();
+  renderCartCount();
+  fetchSocialLinks();
+  loadFavorites();
 
   document.getElementById('langSelect').addEventListener('change', function(e){
     setLang(e.target.value);
@@ -1330,8 +1842,9 @@ document.addEventListener('DOMContentLoaded', function(){
 
   document.getElementById('btnLoginTop').addEventListener('click', function(){ openAuth('login'); });
   document.getElementById('btnLogoutTop').addEventListener('click', function(){
-    setSession(null);
-    refreshAuthUI();
+    authSignOut();
+    favoriteIds = new Set();
+    afterAuthChange();
   });
   document.getElementById('authClose').addEventListener('click', closeAuth);
   document.getElementById('authCancel').addEventListener('click', closeAuth);
@@ -1349,6 +1862,7 @@ document.addEventListener('DOMContentLoaded', function(){
     document.getElementById('adminSection').scrollIntoView({behavior:'smooth'});
     refreshAdminUI();
   });
+  document.getElementById('btnGateSignIn').addEventListener('click', function(){ openAuth('login'); });
 
   document.getElementById('btnAddEntry').addEventListener('click', handleAddEntry);
   document.getElementById('btnExport').addEventListener('click', handleExport);
@@ -1359,34 +1873,42 @@ document.addEventListener('DOMContentLoaded', function(){
     if(e.target.files[0]) handleImport(e.target.files[0]);
   });
 
-  document.getElementById('btnAdminSignIn').addEventListener('click', function(){
-    var email = document.getElementById('fAdminEmail').value.trim();
-    var pass = document.getElementById('fAdminPassword').value;
-    var err = document.getElementById('adminSignInError');
-    err.textContent = '';
-    if(!SUPABASE_URL){ err.textContent = t('sync.notConfigured'); return; }
-    if(!email || !pass){ err.textContent = t('err.required'); return; }
-    adminSignIn(email, pass).then(function(data){
-      setAdminSession(data);
-      document.getElementById('fAdminPassword').value = '';
-      refreshAdminUI();
-    }).catch(function(e){
-      err.textContent = t('admin.signin.error');
-      console.warn('Admin sign-in failed:', e);
-    });
-  });
-  document.getElementById('btnAdminSignOut').addEventListener('click', function(){
-    adminSignOut();
-    refreshAdminUI();
-  });
   document.getElementById('btnResync').addEventListener('click', function(){
     fetchCatalogFromSupabase().then(function(){ renderCatalog(); renderAdminList(); });
+    fetchMaintenanceStatus();
+  });
+  document.getElementById('maintenanceSwitch').addEventListener('change', function(e){
+    var on = e.target.checked;
+    setMaintenanceStatus(on).then(function(ok){
+      if(!ok) e.target.checked = !on; // revert on failure
+    });
+  });
+  document.getElementById('btnSaveSocial').addEventListener('click', saveSocialLinks);
+
+  document.getElementById('titleModalClose').addEventListener('click', closeTitleModal);
+  document.getElementById('titleModal').addEventListener('click', function(e){
+    if(e.target.id === 'titleModal') closeTitleModal();
+  });
+  document.getElementById('titleModalFav').addEventListener('click', function(){
+    if(currentModalCatalogId) toggleFavorite(currentModalCatalogId);
+  });
+  document.getElementById('btnSubmitComment').addEventListener('click', submitComment);
+
+  document.getElementById('btnCart').addEventListener('click', openCartModal);
+  document.getElementById('cartModalClose').addEventListener('click', closeCartModal);
+  document.getElementById('cartModal').addEventListener('click', function(e){
+    if(e.target.id === 'cartModal') closeCartModal();
+  });
+  document.getElementById('btnClearCart').addEventListener('click', function(){
+    cart = []; saveCart(); renderCartModal();
   });
 
   updateSyncStatus();
   fetchCatalogFromSupabase().then(function(items){
     if(items){ renderCatalog(); renderAdminList(); }
   });
+  fetchMaintenanceStatus();
+  setInterval(fetchMaintenanceStatus, 60000); // light polling so visitors already on the page see it too
 });
 })();
 </script>
