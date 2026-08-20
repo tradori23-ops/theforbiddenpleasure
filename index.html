@@ -159,7 +159,7 @@ nav.mainnav a{
   color:var(--parchment-dim);text-decoration:none;position:relative;padding:4px 0;
 }
 nav.mainnav a:hover{color:var(--gold-bright);}
-.topbar-tools{display:flex;align-items:center;gap:10px;}
+.topbar-tools{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end;}
 select.langsel{
   background:var(--void-2);color:var(--parchment);
   border:1px solid var(--line);
@@ -411,6 +411,22 @@ footer .fline{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
 @media (max-width:640px){
   nav.mainnav{order:3;width:100%;justify-content:center;padding-top:10px;border-top:1px solid var(--line);margin-top:10px;}
   .section{padding-left:calc(18px + var(--sal));padding-right:calc(18px + var(--sar));}
+  .topbar-tools{width:100%;justify-content:center;}
+  .langsel{flex:1 1 auto;min-width:0;}
+  header.topbar .mature-toggle{white-space:nowrap;}
+  .admin-panel .mature-toggle{align-items:flex-start;}
+  .admin-panel .mature-toggle .switch{flex:none;margin-top:2px;}
+  .modal{padding:26px 20px;}
+  .founder-wordmark{padding:14px;}
+  .card-idx-cover{aspect-ratio:1/1;}
+  .hero{padding-top:56px;padding-bottom:44px;}
+  .page-reader-nav{width:32px;height:32px;font-size:17px;}
+}
+@media (max-width:400px){
+  .brand-text .l1{font-size:14px;}
+  .brand-text .l2{font-size:9px;}
+  .btn-sm{padding:7px 12px;font-size:10px;}
+  header.topbar{gap:10px;}
 }
 </style>
 </head>
