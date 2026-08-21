@@ -287,6 +287,7 @@ select.langsel{
 }
 .card-idx-body .synopsis-toggle:hover{text-decoration:underline;}
 .card-idx-body .meta-row{display:flex;justify-content:space-between;align-items:center;margin-top:8px;font-family:'Space Mono',monospace;font-size:10px;color:var(--parchment-dim);border-top:1px solid var(--line);padding-top:10px;}
+.card-idx-engagement{margin-top:6px;font-family:'Space Mono',monospace;font-size:10px;color:var(--parchment-dim);opacity:0.85;}
 .card-idx-actions{display:flex;gap:6px;padding:0 16px 14px;}
 
 .empty-state{
@@ -1159,7 +1160,7 @@ var STR = {
     "like.add":"👍 Mi piace","like.remove":"👍 Ti piace",
     "stats.title":"Statistiche per titolo","stats.empty":"Nessun titolo ancora pubblicato.",
     "stats.purchaseNote":"Gli \"acquisti\" non sono ancora reali — nessun processore di pagamento è collegato. \"Carrello\" conta l'interesse (quante volte è stato aggiunto), non vendite confermate.",
-    "stats.views":"visualizzazioni","stats.likes":"mi piace","stats.saves":"salvataggi","stats.shares":"condivisioni","stats.cartAdds":"aggiunte al carrello",
+    "stats.views":"visualizzazioni","stats.comments":"commenti","stats.likes":"mi piace","stats.saves":"salvataggi","stats.shares":"condivisioni","stats.cartAdds":"aggiunte al carrello",
     "cart.open":"Carrello","cart.title":"Il tuo carrello","cart.pending":"Pagamento in configurazione",
     "cart.notice":"Il carrello è pronto, ma il pagamento non è ancora collegato a nessun processore. Quando l'admin ne sceglierà uno, potrai completare l'acquisto qui.",
     "cart.clear":"Svuota carrello","cart.empty":"Il carrello è vuoto.","cart.add":"Aggiungi al carrello",
@@ -1264,7 +1265,7 @@ var STR = {
     "like.add":"👍 Like","like.remove":"👍 Liked",
     "stats.title":"Stats per title","stats.empty":"No titles published yet.",
     "stats.purchaseNote":"\"Purchases\" aren't real yet — no payment processor is connected. \"Cart\" counts interest (how many times it was added), not confirmed sales.",
-    "stats.views":"views","stats.likes":"likes","stats.saves":"saves","stats.shares":"shares","stats.cartAdds":"cart adds",
+    "stats.views":"views","stats.comments":"comments","stats.likes":"likes","stats.saves":"saves","stats.shares":"shares","stats.cartAdds":"cart adds",
     "cart.open":"Cart","cart.title":"Your cart","cart.pending":"Payment being set up",
     "cart.notice":"The cart is ready, but no payment processor is connected yet. Once the admin picks one, you'll be able to complete checkout here.",
     "cart.clear":"Clear cart","cart.empty":"Your cart is empty.","cart.add":"Add to cart",
@@ -1369,7 +1370,7 @@ var STR = {
     "like.add":"👍 Me gusta","like.remove":"👍 Te gusta",
     "stats.title":"Estadísticas por título","stats.empty":"Aún no hay títulos publicados.",
     "stats.purchaseNote":"Las \"compras\" aún no son reales — no hay ningún procesador de pago conectado. \"Carrito\" cuenta el interés (cuántas veces se añadió), no ventas confirmadas.",
-    "stats.views":"visualizaciones","stats.likes":"me gusta","stats.saves":"guardados","stats.shares":"veces compartido","stats.cartAdds":"añadidos al carrito",
+    "stats.views":"visualizaciones","stats.comments":"comentarios","stats.likes":"me gusta","stats.saves":"guardados","stats.shares":"veces compartido","stats.cartAdds":"añadidos al carrito",
     "cart.open":"Carrito","cart.title":"Tu carrito","cart.pending":"Pago en configuración",
     "cart.notice":"El carrito está listo, pero aún no hay ningún procesador de pago conectado. Cuando el admin elija uno, podrás completar la compra aquí.",
     "cart.clear":"Vaciar carrito","cart.empty":"Tu carrito está vacío.","cart.add":"Añadir al carrito",
@@ -1474,7 +1475,7 @@ var STR = {
     "like.add":"👍 J'aime","like.remove":"👍 Aimé",
     "stats.title":"Statistiques par titre","stats.empty":"Aucun titre publié pour l'instant.",
     "stats.purchaseNote":"Les « achats » ne sont pas encore réels — aucun processeur de paiement n'est connecté. « Panier » compte l'intérêt (le nombre d'ajouts), pas les ventes confirmées.",
-    "stats.views":"vues","stats.likes":"j'aime","stats.saves":"enregistrements","stats.shares":"partages","stats.cartAdds":"ajouts au panier",
+    "stats.views":"vues","stats.comments":"commentaires","stats.likes":"j'aime","stats.saves":"enregistrements","stats.shares":"partages","stats.cartAdds":"ajouts au panier",
     "cart.open":"Panier","cart.title":"Votre panier","cart.pending":"Paiement en cours de configuration",
     "cart.notice":"Le panier est prêt, mais aucun processeur de paiement n'est encore connecté. Une fois que l'admin en choisira un, vous pourrez finaliser l'achat ici.",
     "cart.clear":"Vider le panier","cart.empty":"Votre panier est vide.","cart.add":"Ajouter au panier",
@@ -1579,7 +1580,7 @@ var STR = {
     "like.add":"👍 Gefällt mir","like.remove":"👍 Gefällt dir",
     "stats.title":"Statistiken pro Titel","stats.empty":"Noch keine Titel veröffentlicht.",
     "stats.purchaseNote":"\u201eKäufe\u201c sind noch nicht real — es ist kein Zahlungsanbieter verbunden. \u201eWarenkorb\u201c zählt Interesse (wie oft hinzugefügt), keine bestätigten Verkäufe.",
-    "stats.views":"Aufrufe","stats.likes":"Gefällt mir","stats.saves":"Gespeichert","stats.shares":"Geteilt","stats.cartAdds":"In den Warenkorb",
+    "stats.views":"Aufrufe","stats.comments":"Kommentare","stats.likes":"Gefällt mir","stats.saves":"Gespeichert","stats.shares":"Geteilt","stats.cartAdds":"In den Warenkorb",
     "cart.open":"Warenkorb","cart.title":"Ihr Warenkorb","cart.pending":"Zahlung wird eingerichtet",
     "cart.notice":"Der Warenkorb ist bereit, aber es ist noch kein Zahlungsanbieter verbunden. Sobald der Admin einen auswählt, können Sie hier bezahlen.",
     "cart.clear":"Warenkorb leeren","cart.empty":"Ihr Warenkorb ist leer.","cart.add":"In den Warenkorb",
@@ -1984,6 +1985,19 @@ function fetchCatalogFromSupabase(){
   })
     .then(function(r){ if(!r.ok) throw new Error('read failed: ' + r.status); return r.json(); })
     .then(function(items){
+      return fetch(SUPABASE_URL + '/rest/v1/comment_counts?select=*', {
+        headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + SUPABASE_ANON_KEY }
+      })
+        .then(function(r2){ return r2.ok ? r2.json() : []; })
+        .catch(function(){ return []; })
+        .then(function(counts){
+          var countMap = {};
+          counts.forEach(function(c){ countMap[c.catalog_id] = c.comment_count; });
+          items.forEach(function(item){ item.comment_count = countMap[item.id] || 0; });
+          return items;
+        });
+    })
+    .then(function(items){
       saveCatalogLocal(items);
       syncState = 'idle'; updateSyncStatus();
       return items;
@@ -2286,6 +2300,7 @@ function renderCatalog(){
         '<div class="synopsis">'+escapeHtml(synopsisForCurrentLang(item))+'</div>'+
         '<button type="button" class="synopsis-toggle hidden" data-toggle-synopsis>'+t('card.readMore')+'</button>'+
         '<div class="meta-row"><span>'+(item.date||'')+'</span>'+priceTxt+'</div>'+
+        '<div class="card-idx-engagement">'+(item.view_count||0)+' '+t('stats.views')+' · '+(item.comment_count||0)+' '+t('stats.comments')+'</div>'+
       '</div>';
     card.querySelector('[data-fav]').addEventListener('click', function(e){
       e.stopPropagation();
@@ -3329,6 +3344,7 @@ function updateEngagementCountsLabel(catalogId){
   if(!item || !el) return;
   el.textContent =
     (item.view_count || 0) + ' ' + t('stats.views') + ' · ' +
+    (item.comment_count || 0) + ' ' + t('stats.comments') + ' · ' +
     (item.like_count || 0) + ' ' + t('stats.likes') + ' · ' +
     (item.save_count || 0) + ' ' + t('stats.saves') + ' · ' +
     (item.share_count || 0) + ' ' + t('stats.shares');
@@ -3415,6 +3431,7 @@ function submitComment(){
     if(!r.ok) throw new Error('comment insert failed');
     document.getElementById('fCommentBody').value = '';
     err.textContent = autoApproved ? t('comments.submittedPublished') : t('comments.submittedPending');
+    if(autoApproved) bumpLocalCommentCount(currentModalCatalogId, 1);
     loadComments(currentModalCatalogId);
   }).catch(function(e){
     err.textContent = t('err.required');
@@ -3635,14 +3652,14 @@ function renderModerationQueue(){
           '<div><div class="who">' + escapeHtml(c.author_name) + ' · ' + (titleObj ? escapeHtml(titleObj.title) : c.catalog_id) + '</div>' +
           '<div class="txt">' + escapeHtml(c.body) + '</div></div>' +
           '<div class="admin-actions"><button class="btn btn-sm btn-ghost" data-approve="' + c.id + '">✓</button><button class="btn btn-sm btn-ghost" data-reject="' + c.id + '">×</button></div>';
-        row.querySelector('[data-approve]').addEventListener('click', function(){ moderateComment(c.id, true); });
-        row.querySelector('[data-reject]').addEventListener('click', function(){ moderateComment(c.id, false); });
+        row.querySelector('[data-approve]').addEventListener('click', function(){ moderateComment(c.id, true, c.catalog_id); });
+        row.querySelector('[data-reject]').addEventListener('click', function(){ moderateComment(c.id, false, c.catalog_id); });
         box.appendChild(row);
       });
     })
     .catch(function(err){ console.warn('Moderation queue load failed:', err); });
 }
-function moderateComment(id, approve){
+function moderateComment(id, approve, catalogId){
   var session = getSession();
   var req = approve
     ? fetch(SUPABASE_URL + '/rest/v1/comments?id=eq.' + encodeURIComponent(id), {
@@ -3654,8 +3671,20 @@ function moderateComment(id, approve){
         method:'DELETE',
         headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
       });
-  req.then(function(r){ if(!r.ok) throw new Error('moderation action failed'); renderModerationQueue(); })
-     .catch(function(err){ console.warn('Moderation action failed:', err); });
+  req.then(function(r){
+    if(!r.ok) throw new Error('moderation action failed');
+    if(approve && catalogId) bumpLocalCommentCount(catalogId, 1);
+    renderModerationQueue();
+  }).catch(function(err){ console.warn('Moderation action failed:', err); });
+}
+function bumpLocalCommentCount(catalogId, delta){
+  var items = getCatalog();
+  var item = items.find(function(i){ return i.id === catalogId; });
+  if(!item) return;
+  item.comment_count = Math.max(0, (item.comment_count || 0) + delta);
+  saveCatalogLocal(items);
+  renderCatalog();
+  if(currentModalCatalogId === catalogId) updateEngagementCountsLabel(catalogId);
 }
 
 /* ============ SOCIAL LINKS (admin-managed, public footer) ============ */
