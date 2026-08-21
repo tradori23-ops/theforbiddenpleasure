@@ -791,6 +791,7 @@ footer .fcopy{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
               <option value="Lilith">Lilith</option>
               <option value="Lucifera">Lucifera</option>
               <option value="Lucio">Lucio</option>
+              <option value="Collaboratori" data-i18n="collab.categoryOption">Collaboratori (fuori dai 4 personaggi)</option>
             </select>
           </div>
           <div class="field">
@@ -1040,19 +1041,30 @@ footer .fcopy{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
     <button class="modal-close" id="authClose" aria-label="Chiudi">×</button>
     <h3 id="authTitle" data-i18n="auth.loginTitle">Accedi all'Archivio</h3>
     <div class="sub" data-i18n="auth.sub">Account personale</div>
-    <div class="field">
-      <label data-i18n="auth.username">Nome utente</label>
-      <input type="email" id="authUser" autocomplete="email">
+
+    <div class="quiz-gate hidden" id="registerQuizGate">
+      <p class="form-note" data-i18n="quiz.intro">Prima di registrarti, dimostra di conoscere l'Archivio.</p>
+      <div id="quizQuestionText" class="quiz-question"></div>
+      <div id="quizOptions" class="quiz-options"></div>
+      <div class="form-error" id="quizError"></div>
     </div>
-    <div class="field">
-      <label data-i18n="auth.password">Password</label>
-      <input type="password" id="authPass" autocomplete="current-password">
+
+    <div id="authFieldsWrap">
+      <div class="field">
+        <label data-i18n="auth.username">Nome utente</label>
+        <input type="email" id="authUser" autocomplete="email">
+      </div>
+      <div class="field">
+        <label data-i18n="auth.password">Password</label>
+        <input type="password" id="authPass" autocomplete="current-password">
+      </div>
+      <div class="form-error" id="authError"></div>
+      <div class="modal-actions">
+        <button class="btn btn-primary" id="authSubmit" data-i18n="auth.loginBtn">Accedi</button>
+        <button class="btn btn-ghost" id="authCancel" data-i18n="auth.cancel">Annulla</button>
+      </div>
     </div>
-    <div class="form-error" id="authError"></div>
-    <div class="modal-actions">
-      <button class="btn btn-primary" id="authSubmit" data-i18n="auth.loginBtn">Accedi</button>
-      <button class="btn btn-ghost" id="authCancel" data-i18n="auth.cancel">Annulla</button>
-    </div>
+
     <div class="modal-switch">
       <span id="authSwitchText" data-i18n="auth.switchToRegister">Non hai un account?</span>
       <button id="authSwitch" data-i18n="auth.switchToRegisterBtn">Registrati</button>
@@ -1226,7 +1238,7 @@ var STR = {
     "collab.name":"Collaboratore (opzionale)","collab.url":"Link al profilo (es. Instagram)",
     "collab.verified":"Collaboratore verificato (mostra la spunta blu)",
     "verified.label":"Verificato","verified.commenter":"Email verificata","verified.founder":"Account ufficiale","verified.collaborator":"Collaboratore verificato",
-    "collab.credit":"In collaborazione con",
+    "collab.credit":"In collaborazione con","collab.categoryLabel":"Collaboratori","collab.categoryOption":"Collaboratori (fuori dai 4 personaggi)",
     "collab.viewAll":"vedi tutte le opere insieme","collab.collectionBanner":"Opere realizzate con","collab.showAll":"Mostra tutto",
     "share.button":"Condividi","share.tagline":"su LUX COMICS & MEDUSA COMICS",
     "share.copied":"Link copiato — incollalo dove vuoi condividerlo.",
@@ -1336,7 +1348,7 @@ var STR = {
     "collab.name":"Collaborator (optional)","collab.url":"Profile link (e.g. Instagram)",
     "collab.verified":"Verified collaborator (shows the blue checkmark)",
     "verified.label":"Verified","verified.commenter":"Verified email","verified.founder":"Official account","verified.collaborator":"Verified collaborator",
-    "collab.credit":"In collaboration with",
+    "collab.credit":"In collaboration with","collab.categoryLabel":"Collaborators","collab.categoryOption":"Collaborators (outside the 4 characters)",
     "collab.viewAll":"see all titles together","collab.collectionBanner":"Titles made with","collab.showAll":"Show all",
     "share.button":"Share","share.tagline":"on LUX COMICS & MEDUSA COMICS",
     "share.copied":"Link copied — paste it wherever you'd like to share it.",
@@ -1446,7 +1458,7 @@ var STR = {
     "collab.name":"Colaborador (opcional)","collab.url":"Enlace al perfil (p. ej. Instagram)",
     "collab.verified":"Colaborador verificado (muestra la marca azul)",
     "verified.label":"Verificado","verified.commenter":"Email verificado","verified.founder":"Cuenta oficial","verified.collaborator":"Colaborador verificado",
-    "collab.credit":"En colaboración con",
+    "collab.credit":"En colaboración con","collab.categoryLabel":"Colaboradores","collab.categoryOption":"Colaboradores (fuera de los 4 personajes)",
     "collab.viewAll":"ver todas las obras juntas","collab.collectionBanner":"Obras realizadas con","collab.showAll":"Mostrar todo",
     "share.button":"Compartir","share.tagline":"en LUX COMICS & MEDUSA COMICS",
     "share.copied":"Enlace copiado — pégalo donde quieras compartirlo.",
@@ -1556,7 +1568,7 @@ var STR = {
     "collab.name":"Collaborateur (facultatif)","collab.url":"Lien du profil (ex. Instagram)",
     "collab.verified":"Collaborateur vérifié (affiche le badge bleu)",
     "verified.label":"Vérifié","verified.commenter":"Email vérifié","verified.founder":"Compte officiel","verified.collaborator":"Collaborateur vérifié",
-    "collab.credit":"En collaboration avec",
+    "collab.credit":"En collaboration avec","collab.categoryLabel":"Collaborateurs","collab.categoryOption":"Collaborateurs (hors des 4 personnages)",
     "collab.viewAll":"voir toutes les œuvres ensemble","collab.collectionBanner":"Œuvres réalisées avec","collab.showAll":"Tout afficher",
     "share.button":"Partager","share.tagline":"sur LUX COMICS & MEDUSA COMICS",
     "share.copied":"Lien copié — collez-le où vous voulez le partager.",
@@ -1666,7 +1678,7 @@ var STR = {
     "collab.name":"Mitarbeiter*in (optional)","collab.url":"Profillink (z. B. Instagram)",
     "collab.verified":"Verifizierte*r Mitarbeiter*in (zeigt das blaue Häkchen)",
     "verified.label":"Verifiziert","verified.commenter":"E-Mail verifiziert","verified.founder":"Offizieller Account","verified.collaborator":"Verifizierte*r Mitarbeiter*in",
-    "collab.credit":"In Zusammenarbeit mit",
+    "collab.credit":"In Zusammenarbeit mit","collab.categoryLabel":"Mitwirkende","collab.categoryOption":"Mitwirkende (außerhalb der 4 Charaktere)",
     "collab.viewAll":"alle gemeinsamen Werke ansehen","collab.collectionBanner":"Werke entstanden mit","collab.showAll":"Alle anzeigen",
     "share.button":"Teilen","share.tagline":"auf LUX COMICS & MEDUSA COMICS",
     "share.copied":"Link kopiert — fügen Sie ihn ein, wo Sie ihn teilen möchten.",
@@ -2481,11 +2493,11 @@ function renderCollabBanner(){
 function renderFilters(){
   var wrap = document.getElementById('catalogFilters');
   wrap.innerHTML = '';
-  var opts = ['all','Lucifer','Lilith','Lucifera','Lucio'];
+  var opts = ['all','Lucifer','Lilith','Lucifera','Lucio','Collaboratori'];
   opts.forEach(function(opt){
     var btn = document.createElement('button');
     btn.className = 'filter-chip' + (activeFilter === opt ? ' active' : '');
-    btn.textContent = opt === 'all' ? t('filter.all') : opt;
+    btn.textContent = opt === 'all' ? t('filter.all') : (opt === 'Collaboratori' ? t('collab.categoryLabel') : opt);
     btn.addEventListener('click', function(){
       activeFilter = opt;
       renderFilters();
