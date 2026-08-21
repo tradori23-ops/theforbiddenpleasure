@@ -185,16 +185,46 @@ select.langsel{
   padding:80px calc(24px + var(--sal)) 60px calc(24px + var(--sal));
   text-align:center;position:relative;
   border-bottom:1px solid var(--line);
+  overflow:hidden;
 }
+.hero-bg{
+  position:absolute;inset:0;z-index:0;
+  display:flex;
+  background-image:url('hero-bg.jpg');
+  background-size:cover;
+  background-position:center 30%;
+}
+.hero-bg .char-slice{
+  flex:1;position:relative;overflow:hidden;
+}
+.hero-bg .char-slice img{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center;
+  filter:sepia(0.85) saturate(0.7) contrast(1.05) brightness(0.55);
+  opacity:0.4;
+}
+.hero-bg::after{
+  content:'';position:absolute;inset:0;
+  background:
+    repeating-radial-gradient(rgba(0,0,0,0.05) 0, transparent 2px),
+    linear-gradient(to bottom, rgba(11,6,7,0.85) 0%, rgba(11,6,7,0.35) 30%, rgba(11,6,7,0.4) 70%, rgba(11,6,7,0.9) 100%);
+}
+body.theme-light .hero-bg::after{
+  background:
+    repeating-radial-gradient(rgba(0,0,0,0.04) 0, transparent 2px),
+    linear-gradient(to bottom, rgba(11,6,7,0.7) 0%, rgba(11,6,7,0.28) 30%, rgba(11,6,7,0.32) 70%, rgba(11,6,7,0.75) 100%);
+}
+.hero > *:not(.hero-bg){position:relative;z-index:1;}
 .hero .seal-lg{width:92px;height:92px;margin-bottom:26px;}
-.hero h1{font-size:clamp(32px,6vw,58px);line-height:1.05;}
-.hero h1 .amp{color:var(--verdigris);font-family:'Cinzel Decorative',serif;}
+.hero h1{font-size:clamp(32px,6vw,58px);line-height:1.05;color:#f2e8d0;text-shadow:0 2px 14px rgba(0,0,0,0.75);}
+.hero h1 .amp{color:#8fd4b8;text-shadow:0 2px 14px rgba(0,0,0,0.75);}
 .hero .tagline{
-  margin-top:18px;color:var(--gold);
+  margin-top:18px;color:#e3c273;text-shadow:0 1px 8px rgba(0,0,0,0.8);
   font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.3em;text-transform:uppercase;
 }
-.hero .lede{max-width:560px;margin:24px auto 0;color:var(--parchment-dim);line-height:1.8;font-size:16px;font-style:italic;}
+.hero .lede{max-width:560px;margin:24px auto 0;color:#ece2d0;text-shadow:0 1px 8px rgba(0,0,0,0.8);line-height:1.8;font-size:16px;font-style:italic;}
 .hero .cta-row{margin-top:34px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+.hero .btn-ghost{border-color:#e3c273;color:#f2e8d0;background:rgba(11,6,7,0.35);}
+.hero .btn-ghost:hover{background:rgba(11,6,7,0.55);}
 
 /* ============ SECTION WRAP ============ */
 .section{padding:70px calc(24px + var(--sal)) 70px calc(24px + var(--sar));max-width:1180px;margin:0 auto;}
@@ -599,6 +629,7 @@ footer .fcopy{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
   </header>
 
   <section class="hero">
+    <div class="hero-bg" id="heroBg"></div>
     <img class="seal seal-lg seal-img" data-size="lg" alt="LUX COMICS &amp; MEDUSA COMICS">
     <h1><span data-i18n="hero.title1">L'ARCHIVIO DEL</span> <span class="amp">&amp;</span> <span data-i18n="hero.title2">PIACERE PROIBITO</span></h1>
     <div class="tagline" data-i18n="hero.tagline">Fumetti d'autore — edizione riservata</div>
@@ -3703,8 +3734,22 @@ function fetchCharacterImages(){
       characterImages = {};
       rows.forEach(function(row){ if(row.image_url) characterImages[row.character] = row.image_url; });
       renderDossiers();
+      renderHeroBg();
     })
     .catch(function(err){ console.warn('Character images load failed:', err); });
+}
+function renderHeroBg(){
+  var box = document.getElementById('heroBg');
+  if(!box) return;
+  box.innerHTML = '';
+  CHAR_LIST.forEach(function(name){
+    var url = characterImages[name];
+    if(!url) return;
+    var slice = document.createElement('div');
+    slice.className = 'char-slice';
+    slice.innerHTML = '<img src="' + url + '" alt="">';
+    box.appendChild(slice);
+  });
 }
 
 function renderCharImageAdmin(){
