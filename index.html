@@ -138,6 +138,8 @@ button{font-family:inherit;cursor:pointer;}
 .btn-ghost{border-color:var(--line);color:var(--parchment-dim);}
 .btn-ghost:hover{background:transparent;border-color:var(--gold);color:var(--gold-bright);}
 .btn-sm{padding:8px 16px;font-size:11px;}
+.btn:disabled,.btn[disabled]{opacity:0.35;cursor:not-allowed;color:var(--parchment-dim);}
+.btn:disabled:hover,.btn[disabled]:hover{background:transparent;border-color:var(--line);color:var(--parchment-dim);}
 .gate-legal{margin-top:22px;font-size:11px;color:var(--parchment-dim);opacity:0.7;line-height:1.6;}
 
 /* ============ MATURE TOGGLE SWITCH ============ */
@@ -1182,7 +1184,7 @@ var STR = {
     "admin.tab.comments":"Commenti","admin.tab.requests":"Richieste","admin.tab.announcements":"Novità","admin.tab.users":"Utenti","admin.tab.maintenance":"Manutenzione",
     "users.title":"Utenti registrati","users.hint":"La spunta blu si può assegnare solo dopo 90 giorni dall'iscrizione. Decidi tu, titolo per titolo.",
     "users.empty":"Nessun utente registrato ancora.","users.noName":"Utente","users.joined":"Iscritto il","users.daysHere":"{n} giorni sul sito",
-    "users.eligible":"Idoneo","users.waitingDays":"ancora {n} giorni","users.grant":"Assegna spunta","users.revoke":"Rimuovi spunta",
+    "users.eligible":"Idoneo","users.waitingDays":"ancora {n} giorni","users.grant":"Assegna spunta","users.revoke":"Rimuovi spunta","users.earlyGrantConfirm":"{name} non ha ancora raggiunto i 90 giorni (ne mancano {n}). Vuoi assegnare comunque la spunta come eccezione?",
     "users.onlineNow":"{n} utenti online ora","users.onlineTag":"Online ora",
     "announcements.eyebrow":"Dalla Redazione","announcements.title":"Novità","announcements.readMore":"Leggi","announcements.share":"Condividi",
     "announcements.archived":"Archiviato","announcements.expiresIn":"scade tra {h}h","announcements.extend":"Estendi 24h",
@@ -1293,7 +1295,7 @@ var STR = {
     "admin.tab.comments":"Comments","admin.tab.requests":"Requests","admin.tab.announcements":"News","admin.tab.users":"Users","admin.tab.maintenance":"Maintenance",
     "users.title":"Registered users","users.hint":"The blue checkmark can only be granted 90 days after sign-up. You decide, one at a time.",
     "users.empty":"No registered users yet.","users.noName":"User","users.joined":"Joined on","users.daysHere":"{n} days on the site",
-    "users.eligible":"Eligible","users.waitingDays":"{n} days to go","users.grant":"Grant checkmark","users.revoke":"Remove checkmark",
+    "users.eligible":"Eligible","users.waitingDays":"{n} days to go","users.grant":"Grant checkmark","users.revoke":"Remove checkmark","users.earlyGrantConfirm":"{name} hasn't reached 90 days yet ({n} to go). Grant the checkmark anyway as an exception?",
     "users.onlineNow":"{n} users online now","users.onlineTag":"Online now",
     "announcements.eyebrow":"From the Editors","announcements.title":"News","announcements.readMore":"Read","announcements.share":"Share",
     "announcements.archived":"Archived","announcements.expiresIn":"expires in {h}h","announcements.extend":"Extend 24h",
@@ -1404,7 +1406,7 @@ var STR = {
     "admin.tab.comments":"Comentarios","admin.tab.requests":"Solicitudes","admin.tab.announcements":"Novedades","admin.tab.users":"Usuarios","admin.tab.maintenance":"Mantenimiento",
     "users.title":"Usuarios registrados","users.hint":"La marca azul solo se puede otorgar 90 días después del registro. Decides tú, uno por uno.",
     "users.empty":"Aún no hay usuarios registrados.","users.noName":"Usuario","users.joined":"Registrado el","users.daysHere":"{n} días en el sitio",
-    "users.eligible":"Apto","users.waitingDays":"faltan {n} días","users.grant":"Otorgar marca","users.revoke":"Quitar marca",
+    "users.eligible":"Apto","users.waitingDays":"faltan {n} días","users.grant":"Otorgar marca","users.revoke":"Quitar marca","users.earlyGrantConfirm":"{name} aún no ha alcanzado los 90 días (faltan {n}). ¿Otorgar la marca de todos modos como excepción?",
     "users.onlineNow":"{n} usuarios en línea ahora","users.onlineTag":"En línea ahora",
     "announcements.eyebrow":"De la Redacción","announcements.title":"Novedades","announcements.readMore":"Leer","announcements.share":"Compartir",
     "announcements.archived":"Archivado","announcements.expiresIn":"caduca en {h}h","announcements.extend":"Extender 24h",
@@ -1515,7 +1517,7 @@ var STR = {
     "admin.tab.comments":"Commentaires","admin.tab.requests":"Demandes","admin.tab.announcements":"Actualités","admin.tab.users":"Utilisateurs","admin.tab.maintenance":"Maintenance",
     "users.title":"Utilisateurs inscrits","users.hint":"Le badge bleu ne peut être accordé que 90 jours après l'inscription. C'est vous qui décidez, au cas par cas.",
     "users.empty":"Aucun utilisateur inscrit pour l'instant.","users.noName":"Utilisateur","users.joined":"Inscrit le","users.daysHere":"{n} jours sur le site",
-    "users.eligible":"Éligible","users.waitingDays":"encore {n} jours","users.grant":"Accorder le badge","users.revoke":"Retirer le badge",
+    "users.eligible":"Éligible","users.waitingDays":"encore {n} jours","users.grant":"Accorder le badge","users.revoke":"Retirer le badge","users.earlyGrantConfirm":"{name} n'a pas encore atteint 90 jours ({n} restants). Accorder le badge quand même, à titre exceptionnel ?",
     "users.onlineNow":"{n} utilisateurs en ligne","users.onlineTag":"En ligne",
     "announcements.eyebrow":"De la Rédaction","announcements.title":"Actualités","announcements.readMore":"Lire","announcements.share":"Partager",
     "announcements.archived":"Archivée","announcements.expiresIn":"expire dans {h}h","announcements.extend":"Prolonger 24h",
@@ -1626,7 +1628,7 @@ var STR = {
     "admin.tab.comments":"Kommentare","admin.tab.requests":"Anfragen","admin.tab.announcements":"Neuigkeiten","admin.tab.users":"Nutzer","admin.tab.maintenance":"Wartung",
     "users.title":"Registrierte Nutzer","users.hint":"Das blaue Häkchen kann erst 90 Tage nach der Anmeldung vergeben werden. Du entscheidest, einzeln.",
     "users.empty":"Noch keine registrierten Nutzer.","users.noName":"Nutzer","users.joined":"Angemeldet am","users.daysHere":"{n} Tage dabei",
-    "users.eligible":"Berechtigt","users.waitingDays":"noch {n} Tage","users.grant":"Häkchen vergeben","users.revoke":"Häkchen entfernen",
+    "users.eligible":"Berechtigt","users.waitingDays":"noch {n} Tage","users.grant":"Häkchen vergeben","users.revoke":"Häkchen entfernen","users.earlyGrantConfirm":"{name} hat die 90 Tage noch nicht erreicht (noch {n} Tage). Häkchen trotzdem als Ausnahme vergeben?",
     "users.onlineNow":"{n} Nutzer gerade online","users.onlineTag":"Gerade online",
     "announcements.eyebrow":"Von der Redaktion","announcements.title":"Neuigkeiten","announcements.readMore":"Lesen","announcements.share":"Teilen",
     "announcements.archived":"Archiviert","announcements.expiresIn":"läuft in {h}Std ab","announcements.extend":"24Std verlängern",
@@ -4020,17 +4022,20 @@ function renderAdminUsers(){
           '<div class="info"><div class="t">' + onlineHtml + displayLabel + (u.verified ? ' ' + verifiedBadge('verified.commenter') : '') + '</div>' +
           '<div class="m">' + t('users.joined') + ' ' + joined.toISOString().slice(0,10) + ' · ' + t('users.daysHere').replace('{n}', daysHere) + ' · ' + statusHtml + '</div></div>' +
           '<div class="admin-actions">' +
-            '<button class="btn btn-sm btn-ghost" data-toggle-verified="' + u.id + '"' + (eligible ? '' : ' disabled') + '>' +
+            '<button class="btn btn-sm btn-ghost" data-toggle-verified="' + u.id + '">' +
               (u.verified ? t('users.revoke') : t('users.grant')) +
             '</button>' +
           '</div>';
         row.querySelector('[data-toggle-verified]').addEventListener('click', function(){
-          if(!eligible) return;
+          if(!eligible && !u.verified){
+            var msg = t('users.earlyGrantConfirm').replace('{n}', VERIFICATION_MIN_DAYS - daysHere).replace('{name}', displayLabel);
+            if(!window.confirm(msg)) return;
+          }
           fetch(SUPABASE_URL + '/rest/v1/profiles?id=eq.' + encodeURIComponent(u.id), {
             method:'PATCH',
             headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
             body: JSON.stringify({verified: !u.verified})
-          }).then(function(r){ if(r.ok) renderAdminUsers(); });
+          }).then(function(r){ if(r.ok) renderAdminUsers(); else r.json().then(function(e){ window.alert((e && e.message) || 'Errore'); }).catch(function(){ window.alert('Errore'); }); });
         });
         list.appendChild(row);
       });
