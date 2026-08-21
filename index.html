@@ -178,6 +178,44 @@ button{font-family:inherit;cursor:pointer;}
   color:var(--parchment-dim);text-transform:uppercase;letter-spacing:0.05em;
 }
 .notif-empty{padding:24px 16px;text-align:center;color:var(--parchment-dim);font-size:13px;}
+
+.community-tabs{display:flex;gap:10px;margin-bottom:20px;border-bottom:1px solid var(--line);}
+.community-tab{
+  background:none;border:none;cursor:pointer;padding:10px 4px;
+  font-family:'Cinzel',serif;font-size:13px;letter-spacing:0.05em;
+  color:var(--parchment-dim);border-bottom:2px solid transparent;margin-bottom:-1px;
+}
+.community-tab.active{color:var(--gold-bright);border-bottom-color:var(--gold);}
+.channel-create-row{display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap;}
+.channel-create-row input{flex:1;min-width:200px;}
+.channels-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;}
+.channel-card{
+  border:1px solid var(--gold);background:var(--void-2);padding:16px;cursor:pointer;text-align:left;
+  font-family:inherit;color:var(--parchment);
+}
+.channel-card:hover{border-color:var(--gold-bright);}
+.channel-card .name{font-family:'Cinzel',serif;font-size:15px;color:var(--gold-bright);}
+.channel-card .meta{font-family:'Space Mono',monospace;font-size:10px;color:var(--parchment-dim);margin-top:6px;text-transform:uppercase;}
+.channel-messages{max-height:420px;overflow-y:auto;border:1px solid var(--line);margin:16px 0;padding:6px 0;}
+.channel-msg{padding:10px 16px;border-bottom:1px solid var(--line);}
+.channel-msg .author{color:var(--gold-bright);font-weight:bold;font-size:13px;}
+.channel-msg .body{font-size:13.5px;line-height:1.6;margin-top:4px;white-space:pre-wrap;}
+.channel-msg .msg-actions{display:flex;gap:14px;margin-top:6px;}
+.channel-msg .msg-actions button{
+  background:none;border:none;padding:0;cursor:pointer;
+  font-family:'Space Mono',monospace;font-size:10px;text-transform:uppercase;
+  color:var(--parchment-dim);text-decoration:underline;
+}
+.channel-msg .msg-actions button:hover{color:var(--gold);}
+.channel-msg.flagged{background:rgba(110,20,35,0.14);}
+.channel-compose{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end;}
+.channel-compose textarea{flex:1;min-width:200px;}
+.dm-threads-list{display:flex;flex-direction:column;gap:8px;margin-bottom:16px;}
+.dm-thread-item{
+  border:1px solid var(--line);background:var(--void-2);padding:12px 16px;cursor:pointer;text-align:left;
+  font-family:inherit;color:var(--parchment);
+}
+.dm-thread-item:hover{border-color:var(--gold);}
 .gate-legal{margin-top:22px;font-size:11px;color:var(--parchment-dim);opacity:0.7;line-height:1.6;}
 
 /* ============ MATURE TOGGLE SWITCH ============ */
@@ -690,6 +728,7 @@ footer .fcopy{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
       <a href="#library" data-i18n="nav.library">Schedario</a>
       <a href="#characters" data-i18n="nav.characters">Dossier</a>
       <a href="#founder" data-i18n="nav.founder">Fondatore</a>
+      <a href="#communitySection" id="navCommunity" class="hidden" data-i18n="nav.community">Community</a>
       <a href="#" id="navAdmin" class="hidden" data-i18n="nav.admin">Amministra</a>
     </nav>
     <div class="topbar-tools">
@@ -805,6 +844,62 @@ footer .fcopy{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
     </div>
   </section>
 
+  <!-- ============ COMMUNITY (canali a tema creati dagli utenti + messaggi privati — visibile solo a chi ha fatto accesso) ============ -->
+  <section class="section hidden" id="communitySection">
+    <div class="section-head">
+      <div>
+        <div class="section-eyebrow" data-i18n="community.eyebrow">Fuori dallo Schedario</div>
+        <h2 data-i18n="community.title">Community</h2>
+        <div class="section-desc" data-i18n="community.rule">Niente materiale pornografico: al massimo contenuti sensuali. Chi viola la regola viene bannato ed eliminato dal sito.</div>
+      </div>
+    </div>
+
+    <div class="community-tabs">
+      <button type="button" class="community-tab active" data-ctab="channels" data-i18n="community.tabChannels">Canali</button>
+      <button type="button" class="community-tab" data-ctab="dms" data-i18n="community.tabDms">Messaggi privati</button>
+    </div>
+
+    <!-- CANALI -->
+    <div class="community-panel" data-cpanel="channels">
+      <div id="channelListView">
+        <div class="channel-create-row">
+          <input type="text" id="fNewChannelName" maxlength="40" data-i18n-placeholder="community.newChannelPh" placeholder="Nome nuovo canale (es. Cinema)">
+          <button type="button" class="btn btn-primary btn-sm" id="btnCreateChannel" data-i18n="community.createChannel">Crea canale</button>
+        </div>
+        <div class="form-error" id="channelCreateError"></div>
+        <div id="channelsList" class="channels-grid"></div>
+      </div>
+      <div id="channelDetailView" class="hidden">
+        <button type="button" class="btn btn-ghost btn-sm" id="btnBackToChannels" data-i18n="community.back">&larr; Torna ai canali</button>
+        <h3 id="channelDetailName"></h3>
+        <div id="channelMessages" class="channel-messages"></div>
+        <div class="channel-compose">
+          <textarea id="fChannelMessage" rows="2" data-i18n-placeholder="community.messagePh" placeholder="Scrivi un messaggio…"></textarea>
+          <button type="button" class="btn btn-primary btn-sm" id="btnSendChannelMessage" data-i18n="community.send">Invia</button>
+        </div>
+        <div class="form-error" id="channelMessageError"></div>
+      </div>
+    </div>
+
+    <!-- MESSAGGI PRIVATI -->
+    <div class="community-panel hidden" data-cpanel="dms">
+      <div id="dmListView">
+        <div id="dmThreadsList" class="dm-threads-list"></div>
+        <p class="form-note" data-i18n="community.dmHint">Per scrivere in privato a qualcuno, apri un suo messaggio in un canale e usa "Messaggio privato".</p>
+      </div>
+      <div id="dmDetailView" class="hidden">
+        <button type="button" class="btn btn-ghost btn-sm" id="btnBackToDms" data-i18n="community.back">&larr; Torna ai messaggi</button>
+        <h3 id="dmDetailName"></h3>
+        <div id="dmMessages" class="channel-messages"></div>
+        <div class="channel-compose">
+          <textarea id="fDmMessage" rows="2" data-i18n-placeholder="community.messagePh" placeholder="Scrivi un messaggio…"></textarea>
+          <button type="button" class="btn btn-primary btn-sm" id="btnSendDmMessage" data-i18n="community.send">Invia</button>
+        </div>
+        <div class="form-error" id="dmMessageError"></div>
+      </div>
+    </div>
+  </section>
+
   <!-- ============ ADMIN (click "Amministra" to reveal; content gated by Supabase auth) ============ -->
   <section class="section hidden" id="adminSection">
     <div class="section-head">
@@ -835,6 +930,7 @@ footer .fcopy{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
         <button class="admin-tab" data-tab="announcements" data-i18n="admin.tab.announcements">Novità</button>
         <button class="admin-tab" data-tab="users" data-i18n="admin.tab.users">Utenti</button>
         <button class="admin-tab" data-tab="maintenance" data-i18n="admin.tab.maintenance">Manutenzione</button>
+        <button class="admin-tab" data-tab="moderation" data-i18n="admin.tab.moderation">Moderazione Community</button>
       </div>
 
       <div class="admin-tab-panel" data-tab-panel="catalog">
@@ -1018,6 +1114,21 @@ footer .fcopy{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
           <p class="form-note" data-i18n="offline.hint">Scarica tutti i titoli, le pagine e le copertine in un unico file compresso sul tuo computer — visibile solo qui, mai ai visitatori.</p>
           <button class="btn btn-ghost btn-sm" id="btnExportOffline" data-i18n="offline.export">Scarica tutto per uso offline</button>
           <div class="form-note" id="offlineExportStatus" style="margin-top:8px;"></div>
+        </div>
+      </div>
+
+      <div class="admin-tab-panel hidden" data-tab-panel="moderation">
+        <div class="notice">
+          <div data-i18n="mod.reportsTitle" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Segnalazioni aperte</div>
+          <div id="modReportsList"></div>
+        </div>
+        <div class="notice">
+          <div data-i18n="mod.flaggedTitle" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Messaggi segnalati automaticamente</div>
+          <div id="modFlaggedList"></div>
+        </div>
+        <div class="notice">
+          <div data-i18n="mod.bannedTitle" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Utenti bannati (email bloccate)</div>
+          <div id="modBannedList"></div>
         </div>
       </div>
     </div>
@@ -1235,6 +1346,8 @@ var STR = {
     "users.empty":"Nessun utente registrato ancora.","users.noName":"Utente","users.joined":"Iscritto il","users.daysHere":"{n} giorni sul sito",
     "users.eligible":"Idoneo","users.waitingDays":"ancora {n} giorni","users.grant":"Assegna spunta","users.revoke":"Rimuovi spunta","users.earlyGrantConfirm":"{name} non ha ancora raggiunto i 90 giorni (ne mancano {n}). Vuoi assegnare comunque la spunta come eccezione?",
     "notif.title":"Notifiche","notif.markAll":"Segna tutte come lette","notif.empty":"Nessuna notifica.","notif.someone":"Qualcuno","notif.justNow":"Adesso","notif.minsAgo":"{n} min fa","notif.hoursAgo":"{n} h fa","notif.daysAgo":"{n} g fa",
+    "nav.community":"Community","community.eyebrow":"Fuori dallo Schedario","community.title":"Community","community.rule":"Niente materiale pornografico: al massimo contenuti sensuali. Chi viola la regola viene bannato ed eliminato dal sito.","community.tabChannels":"Canali","community.tabDms":"Messaggi privati","community.newChannelPh":"Nome nuovo canale (es. Cinema)","community.createChannel":"Crea canale","community.back":"← Torna","community.messagePh":"Scrivi un messaggio…","community.send":"Invia","community.dmHint":"Per scrivere in privato a qualcuno, apri un suo messaggio in un canale e usa \"Messaggio privato\".","community.noChannels":"Nessun canale ancora. Creane uno tu.","community.noMessages":"Nessun messaggio ancora.","community.noDms":"Nessuna conversazione privata ancora.","community.privateMessage":"Messaggio privato","community.report":"Segnala","community.reportPrompt":"Perché segnali questo messaggio? (opzionale)","community.reportSent":"Segnalazione inviata, grazie.","community.you":"Tu",
+    "admin.tab.moderation":"Moderazione Community","mod.reportsTitle":"Segnalazioni aperte","mod.flaggedTitle":"Messaggi segnalati automaticamente","mod.bannedTitle":"Utenti bannati (email bloccate)","mod.empty":"Niente al momento.","mod.typeChannel":"Messaggio in canale","mod.typeDm":"Messaggio privato","mod.hide":"Nascondi","mod.ban":"Banna ed elimina","mod.noUser":"Utente non trovato.","mod.banConfirm":"Confermi? L'utente verrà bannato, il suo account eliminato e non potrà registrarsi di nuovo con la stessa email.","mod.banFailed":"Operazione non riuscita.",
     "users.onlineNow":"{n} utenti online ora","users.onlineTag":"Online ora",
     "announcements.eyebrow":"Dalla Redazione","announcements.title":"Novità","announcements.readMore":"Leggi","announcements.share":"Condividi",
     "announcements.archived":"Archiviato","announcements.expiresIn":"scade tra {h}h","announcements.extend":"Estendi 24h",
@@ -1347,6 +1460,8 @@ var STR = {
     "users.empty":"No registered users yet.","users.noName":"User","users.joined":"Joined on","users.daysHere":"{n} days on the site",
     "users.eligible":"Eligible","users.waitingDays":"{n} days to go","users.grant":"Grant checkmark","users.revoke":"Remove checkmark","users.earlyGrantConfirm":"{name} hasn't reached 90 days yet ({n} to go). Grant the checkmark anyway as an exception?",
     "notif.title":"Notifications","notif.markAll":"Mark all as read","notif.empty":"No notifications.","notif.someone":"Someone","notif.justNow":"Just now","notif.minsAgo":"{n} min ago","notif.hoursAgo":"{n} h ago","notif.daysAgo":"{n} d ago",
+    "nav.community":"Community","community.eyebrow":"Beyond the Archive","community.title":"Community","community.rule":"No pornographic material: sensual at most. Anyone who breaks the rule is banned and removed from the site.","community.tabChannels":"Channels","community.tabDms":"Private messages","community.newChannelPh":"New channel name (e.g. Movies)","community.createChannel":"Create channel","community.back":"← Back","community.messagePh":"Write a message…","community.send":"Send","community.dmHint":"To message someone privately, open one of their messages in a channel and use \"Private message\".","community.noChannels":"No channels yet. Create one.","community.noMessages":"No messages yet.","community.noDms":"No private conversations yet.","community.privateMessage":"Private message","community.report":"Report","community.reportPrompt":"Why are you reporting this message? (optional)","community.reportSent":"Report sent, thank you.","community.you":"You",
+    "admin.tab.moderation":"Community Moderation","mod.reportsTitle":"Open reports","mod.flaggedTitle":"Auto-flagged messages","mod.bannedTitle":"Banned users (blocked emails)","mod.empty":"Nothing right now.","mod.typeChannel":"Channel message","mod.typeDm":"Private message","mod.hide":"Hide","mod.ban":"Ban and delete","mod.noUser":"User not found.","mod.banConfirm":"Confirm? The user will be banned, their account deleted, and they won't be able to register again with the same email.","mod.banFailed":"Operation failed.",
     "users.onlineNow":"{n} users online now","users.onlineTag":"Online now",
     "announcements.eyebrow":"From the Editors","announcements.title":"News","announcements.readMore":"Read","announcements.share":"Share",
     "announcements.archived":"Archived","announcements.expiresIn":"expires in {h}h","announcements.extend":"Extend 24h",
@@ -1459,6 +1574,8 @@ var STR = {
     "users.empty":"Aún no hay usuarios registrados.","users.noName":"Usuario","users.joined":"Registrado el","users.daysHere":"{n} días en el sitio",
     "users.eligible":"Apto","users.waitingDays":"faltan {n} días","users.grant":"Otorgar marca","users.revoke":"Quitar marca","users.earlyGrantConfirm":"{name} aún no ha alcanzado los 90 días (faltan {n}). ¿Otorgar la marca de todos modos como excepción?",
     "notif.title":"Notificaciones","notif.markAll":"Marcar todas como leídas","notif.empty":"No hay notificaciones.","notif.someone":"Alguien","notif.justNow":"Ahora mismo","notif.minsAgo":"hace {n} min","notif.hoursAgo":"hace {n} h","notif.daysAgo":"hace {n} d",
+    "nav.community":"Comunidad","community.eyebrow":"Fuera del Archivo","community.title":"Comunidad","community.rule":"Nada de material pornográfico: como mucho contenido sensual. Quien incumpla la regla será baneado y eliminado del sitio.","community.tabChannels":"Canales","community.tabDms":"Mensajes privados","community.newChannelPh":"Nombre del nuevo canal (ej. Cine)","community.createChannel":"Crear canal","community.back":"← Volver","community.messagePh":"Escribe un mensaje…","community.send":"Enviar","community.dmHint":"Para escribir en privado a alguien, abre uno de sus mensajes en un canal y usa \"Mensaje privado\".","community.noChannels":"Aún no hay canales. Crea uno.","community.noMessages":"Aún no hay mensajes.","community.noDms":"Aún no hay conversaciones privadas.","community.privateMessage":"Mensaje privado","community.report":"Denunciar","community.reportPrompt":"¿Por qué denuncias este mensaje? (opcional)","community.reportSent":"Denuncia enviada, gracias.","community.you":"Tú",
+    "admin.tab.moderation":"Moderación de Comunidad","mod.reportsTitle":"Denuncias abiertas","mod.flaggedTitle":"Mensajes marcados automáticamente","mod.bannedTitle":"Usuarios baneados (emails bloqueados)","mod.empty":"Nada por ahora.","mod.typeChannel":"Mensaje en canal","mod.typeDm":"Mensaje privado","mod.hide":"Ocultar","mod.ban":"Banear y eliminar","mod.noUser":"Usuario no encontrado.","mod.banConfirm":"¿Confirmas? El usuario será baneado, su cuenta eliminada y no podrá registrarse de nuevo con el mismo email.","mod.banFailed":"Operación fallida.",
     "users.onlineNow":"{n} usuarios en línea ahora","users.onlineTag":"En línea ahora",
     "announcements.eyebrow":"De la Redacción","announcements.title":"Novedades","announcements.readMore":"Leer","announcements.share":"Compartir",
     "announcements.archived":"Archivado","announcements.expiresIn":"caduca en {h}h","announcements.extend":"Extender 24h",
@@ -1571,6 +1688,8 @@ var STR = {
     "users.empty":"Aucun utilisateur inscrit pour l'instant.","users.noName":"Utilisateur","users.joined":"Inscrit le","users.daysHere":"{n} jours sur le site",
     "users.eligible":"Éligible","users.waitingDays":"encore {n} jours","users.grant":"Accorder le badge","users.revoke":"Retirer le badge","users.earlyGrantConfirm":"{name} n'a pas encore atteint 90 jours ({n} restants). Accorder le badge quand même, à titre exceptionnel ?",
     "notif.title":"Notifications","notif.markAll":"Tout marquer comme lu","notif.empty":"Aucune notification.","notif.someone":"Quelqu'un","notif.justNow":"À l'instant","notif.minsAgo":"il y a {n} min","notif.hoursAgo":"il y a {n} h","notif.daysAgo":"il y a {n} j",
+    "nav.community":"Communauté","community.eyebrow":"En dehors de l'Archive","community.title":"Communauté","community.rule":"Aucun contenu pornographique : sensuel tout au plus. Toute violation entraîne le bannissement et la suppression du site.","community.tabChannels":"Canaux","community.tabDms":"Messages privés","community.newChannelPh":"Nom du nouveau canal (ex. Cinéma)","community.createChannel":"Créer un canal","community.back":"← Retour","community.messagePh":"Écrivez un message…","community.send":"Envoyer","community.dmHint":"Pour écrire en privé à quelqu'un, ouvrez un de ses messages dans un canal et utilisez \"Message privé\".","community.noChannels":"Aucun canal pour l'instant. Créez-en un.","community.noMessages":"Aucun message pour l'instant.","community.noDms":"Aucune conversation privée pour l'instant.","community.privateMessage":"Message privé","community.report":"Signaler","community.reportPrompt":"Pourquoi signalez-vous ce message ? (facultatif)","community.reportSent":"Signalement envoyé, merci.","community.you":"Vous",
+    "admin.tab.moderation":"Modération Communauté","mod.reportsTitle":"Signalements ouverts","mod.flaggedTitle":"Messages signalés automatiquement","mod.bannedTitle":"Utilisateurs bannis (emails bloqués)","mod.empty":"Rien pour l'instant.","mod.typeChannel":"Message de canal","mod.typeDm":"Message privé","mod.hide":"Masquer","mod.ban":"Bannir et supprimer","mod.noUser":"Utilisateur introuvable.","mod.banConfirm":"Confirmer ? L'utilisateur sera banni, son compte supprimé, et il ne pourra plus se réinscrire avec le même email.","mod.banFailed":"Échec de l'opération.",
     "users.onlineNow":"{n} utilisateurs en ligne","users.onlineTag":"En ligne",
     "announcements.eyebrow":"De la Rédaction","announcements.title":"Actualités","announcements.readMore":"Lire","announcements.share":"Partager",
     "announcements.archived":"Archivée","announcements.expiresIn":"expire dans {h}h","announcements.extend":"Prolonger 24h",
@@ -1683,6 +1802,8 @@ var STR = {
     "users.empty":"Noch keine registrierten Nutzer.","users.noName":"Nutzer","users.joined":"Angemeldet am","users.daysHere":"{n} Tage dabei",
     "users.eligible":"Berechtigt","users.waitingDays":"noch {n} Tage","users.grant":"Häkchen vergeben","users.revoke":"Häkchen entfernen","users.earlyGrantConfirm":"{name} hat die 90 Tage noch nicht erreicht (noch {n} Tage). Häkchen trotzdem als Ausnahme vergeben?",
     "notif.title":"Benachrichtigungen","notif.markAll":"Alle als gelesen markieren","notif.empty":"Keine Benachrichtigungen.","notif.someone":"Jemand","notif.justNow":"Gerade eben","notif.minsAgo":"vor {n} Min","notif.hoursAgo":"vor {n} Std","notif.daysAgo":"vor {n} T",
+    "nav.community":"Community","community.eyebrow":"Jenseits des Archivs","community.title":"Community","community.rule":"Keine pornografischen Inhalte: höchstens sinnlich. Wer gegen die Regel verstößt, wird gesperrt und von der Seite entfernt.","community.tabChannels":"Kanäle","community.tabDms":"Private Nachrichten","community.newChannelPh":"Name des neuen Kanals (z. B. Kino)","community.createChannel":"Kanal erstellen","community.back":"← Zurück","community.messagePh":"Nachricht schreiben…","community.send":"Senden","community.dmHint":"Um jemandem privat zu schreiben, öffne eine seiner Nachrichten in einem Kanal und nutze \"Private Nachricht\".","community.noChannels":"Noch keine Kanäle. Erstelle einen.","community.noMessages":"Noch keine Nachrichten.","community.noDms":"Noch keine privaten Gespräche.","community.privateMessage":"Private Nachricht","community.report":"Melden","community.reportPrompt":"Warum meldest du diese Nachricht? (optional)","community.reportSent":"Meldung gesendet, danke.","community.you":"Du",
+    "admin.tab.moderation":"Community-Moderation","mod.reportsTitle":"Offene Meldungen","mod.flaggedTitle":"Automatisch markierte Nachrichten","mod.bannedTitle":"Gesperrte Nutzer (blockierte E-Mails)","mod.empty":"Aktuell nichts.","mod.typeChannel":"Kanal-Nachricht","mod.typeDm":"Private Nachricht","mod.hide":"Ausblenden","mod.ban":"Sperren und löschen","mod.noUser":"Nutzer nicht gefunden.","mod.banConfirm":"Bestätigen? Der Nutzer wird gesperrt, sein Konto gelöscht, und er kann sich nicht erneut mit derselben E-Mail registrieren.","mod.banFailed":"Vorgang fehlgeschlagen.",
     "users.onlineNow":"{n} Nutzer gerade online","users.onlineTag":"Gerade online",
     "announcements.eyebrow":"Von der Redaktion","announcements.title":"Neuigkeiten","announcements.readMore":"Lesen","announcements.share":"Teilen",
     "announcements.archived":"Archiviert","announcements.expiresIn":"läuft in {h}Std ab","announcements.extend":"24Std verlängern",
@@ -2162,6 +2283,8 @@ function refreshAuthUI(){
   var chip = document.getElementById('acctChip');
   var btnLogin = document.getElementById('btnLoginTop');
   var btnLogout = document.getElementById('btnLogoutTop');
+  var navCommunity = document.getElementById('navCommunity');
+  var communitySection = document.getElementById('communitySection');
   if(isSignedIn()){
     // Never show the raw email in the UI — for the admin account it would
     // expose a real name via the address. Show the public persona instead;
@@ -2175,10 +2298,15 @@ function refreshAuthUI(){
     chip.classList.remove('hidden');
     btnLogin.classList.add('hidden');
     btnLogout.classList.remove('hidden');
+    if(navCommunity) navCommunity.classList.remove('hidden');
+    if(communitySection) communitySection.classList.remove('hidden');
+    loadChannels();
   } else {
     chip.classList.add('hidden');
     btnLogin.classList.remove('hidden');
     btnLogout.classList.add('hidden');
+    if(navCommunity) navCommunity.classList.add('hidden');
+    if(communitySection) communitySection.classList.add('hidden');
   }
 }
 
@@ -3582,6 +3710,401 @@ function updateNotifBadgeFromCache(){
   else { badge.classList.add('hidden'); }
 }
 
+/* ============ COMMUNITY (canali a tema creati dagli utenti + messaggi privati) ============ */
+var currentChannelId = null;
+var currentChannelName = null;
+var currentDmThreadId = null;
+var currentDmOtherName = null;
+var displayNameCache = {}; // id -> display_name, per non richiederlo ad ogni messaggio
+
+function communityHeaders(){
+  var session = getSession();
+  return { 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + (session ? session.access_token : SUPABASE_ANON_KEY) };
+}
+
+function switchCommunityTab(tab){
+  document.querySelectorAll('.community-tab').forEach(function(btn){
+    btn.classList.toggle('active', btn.dataset.ctab === tab);
+  });
+  document.querySelectorAll('.community-panel').forEach(function(panel){
+    panel.classList.toggle('hidden', panel.dataset.cpanel !== tab);
+  });
+  if(tab === 'dms') loadDmThreads();
+}
+
+function loadChannels(){
+  if(!isSignedIn()) return;
+  fetch(SUPABASE_URL + '/rest/v1/channels?select=*&order=created_at.desc', { headers: communityHeaders() })
+    .then(function(r){ if(!r.ok) throw new Error('channels read failed'); return r.json(); })
+    .then(function(rows){
+      var list = document.getElementById('channelsList');
+      if(!list) return;
+      list.innerHTML = '';
+      if(rows.length === 0){ list.innerHTML = '<p class="form-note">' + t('community.noChannels') + '</p>'; return; }
+      rows.forEach(function(ch){
+        var card = document.createElement('button');
+        card.type = 'button';
+        card.className = 'channel-card';
+        card.innerHTML = '<div class="name">#' + escapeHtml(ch.name) + '</div>' +
+          (ch.description ? '<div class="meta">' + escapeHtml(ch.description) + '</div>' : '');
+        card.addEventListener('click', function(){ openChannel(ch.id, ch.name); });
+        list.appendChild(card);
+      });
+    })
+    .catch(function(err){ console.warn('Channels load failed:', err); });
+}
+
+function createChannel(){
+  var input = document.getElementById('fNewChannelName');
+  var err = document.getElementById('channelCreateError');
+  var name = input.value.trim();
+  err.textContent = '';
+  if(!name){ err.textContent = t('err.required'); return; }
+  if(!isSignedIn()){ openAuth('login'); return; }
+  var session = getSession();
+  fetch(SUPABASE_URL + '/rest/v1/channels', {
+    method:'POST',
+    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json', 'Prefer':'return=representation' },
+    body: JSON.stringify({ name: name, created_by: currentUserId() })
+  }).then(function(r){
+    if(!r.ok) throw new Error('channel insert failed');
+    input.value = '';
+    loadChannels();
+  }).catch(function(e){
+    err.textContent = t('err.required');
+    console.warn('Channel create failed:', e);
+  });
+}
+
+function openChannel(id, name){
+  currentChannelId = id;
+  currentChannelName = name;
+  document.getElementById('channelListView').classList.add('hidden');
+  document.getElementById('channelDetailView').classList.remove('hidden');
+  document.getElementById('channelDetailName').textContent = '#' + name;
+  loadChannelMessages();
+}
+
+function backToChannels(){
+  currentChannelId = null;
+  document.getElementById('channelDetailView').classList.add('hidden');
+  document.getElementById('channelListView').classList.remove('hidden');
+  loadChannels();
+}
+
+function getDisplayName(userId){
+  if(displayNameCache[userId]) return Promise.resolve(displayNameCache[userId]);
+  return fetch(SUPABASE_URL + '/rest/v1/profiles?id=eq.' + encodeURIComponent(userId) + '&select=display_name', { headers: communityHeaders() })
+    .then(function(r){ return r.ok ? r.json() : []; })
+    .then(function(rows){
+      var name = (rows[0] && rows[0].display_name) ? rows[0].display_name : t('notif.someone');
+      displayNameCache[userId] = name;
+      return name;
+    })
+    .catch(function(){ return t('notif.someone'); });
+}
+
+function loadChannelMessages(){
+  var wrap = document.getElementById('channelMessages');
+  wrap.innerHTML = '<p class="form-note">…</p>';
+  fetch(SUPABASE_URL + '/rest/v1/channel_messages?channel_id=eq.' + encodeURIComponent(currentChannelId) + '&select=*&order=created_at.asc', { headers: communityHeaders() })
+    .then(function(r){ if(!r.ok) throw new Error('channel messages read failed'); return r.json(); })
+    .then(function(rows){
+      wrap.innerHTML = '';
+      if(rows.length === 0){ wrap.innerHTML = '<p class="form-note">' + t('community.noMessages') + '</p>'; return; }
+      rows.forEach(function(m){ wrap.appendChild(renderChannelMessage(m)); });
+      wrap.scrollTop = wrap.scrollHeight;
+    })
+    .catch(function(err){ wrap.innerHTML = ''; console.warn('Channel messages load failed:', err); });
+}
+
+function renderChannelMessage(m){
+  var div = document.createElement('div');
+  div.className = 'channel-msg' + (m.flagged ? ' flagged' : '');
+  var isOwn = m.user_id === currentUserId();
+  div.innerHTML = '<span class="author">' + escapeHtml(m.author_name) + '</span>' +
+    '<div class="body">' + escapeHtml(m.body) + '</div>' +
+    '<div class="msg-actions">' +
+      (!isOwn ? '<button type="button" class="dm-btn">' + t('community.privateMessage') + '</button>' : '') +
+      '<button type="button" class="report-btn">' + t('community.report') + '</button>' +
+    '</div>';
+  var dmBtn = div.querySelector('.dm-btn');
+  if(dmBtn) dmBtn.addEventListener('click', function(){ startDmWith(m.user_id, m.author_name); });
+  div.querySelector('.report-btn').addEventListener('click', function(){ reportContent('channel_message', m.id); });
+  return div;
+}
+
+function sendChannelMessage(){
+  var box = document.getElementById('fChannelMessage');
+  var err = document.getElementById('channelMessageError');
+  var body = box.value.trim();
+  err.textContent = '';
+  if(!body){ err.textContent = t('err.required'); return; }
+  if(!isSignedIn()){ openAuth('login'); return; }
+  var session = getSession();
+  var nameStep = currentProfile !== null ? Promise.resolve(currentProfile) : loadOwnProfile().then(function(){ return currentProfile; });
+  nameStep.then(function(profile){
+    var authorName = (profile && profile.display_name) ? profile.display_name : currentUserEmail();
+    return fetch(SUPABASE_URL + '/rest/v1/channel_messages', {
+      method:'POST',
+      headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
+      body: JSON.stringify({ channel_id: currentChannelId, user_id: currentUserId(), author_name: authorName, body: body })
+    });
+  }).then(function(r){
+    if(!r.ok) throw new Error('channel message insert failed');
+    box.value = '';
+    loadChannelMessages();
+  }).catch(function(e){
+    err.textContent = t('err.required');
+    console.warn('Channel message send failed:', e);
+  });
+}
+
+/* ---- Messaggi privati ---- */
+function loadDmThreads(){
+  var list = document.getElementById('dmThreadsList');
+  if(!list || !isSignedIn()) return;
+  var uid = currentUserId();
+  fetch(SUPABASE_URL + '/rest/v1/dm_threads?select=*&or=(user_a.eq.' + encodeURIComponent(uid) + ',user_b.eq.' + encodeURIComponent(uid) + ')&order=created_at.desc', { headers: communityHeaders() })
+    .then(function(r){ if(!r.ok) throw new Error('dm threads read failed'); return r.json(); })
+    .then(function(rows){
+      list.innerHTML = '';
+      if(rows.length === 0){ list.innerHTML = '<p class="form-note">' + t('community.noDms') + '</p>'; return; }
+      rows.forEach(function(th){
+        var otherId = th.user_a === uid ? th.user_b : th.user_a;
+        getDisplayName(otherId).then(function(name){
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'dm-thread-item';
+          btn.textContent = name;
+          btn.addEventListener('click', function(){ openDmThread(th.id, name); });
+          list.appendChild(btn);
+        });
+      });
+    })
+    .catch(function(err){ console.warn('DM threads load failed:', err); });
+}
+
+function startDmWith(otherUserId, otherName){
+  if(!isSignedIn()){ openAuth('login'); return; }
+  var uid = currentUserId();
+  if(otherUserId === uid) return;
+  var userA = uid < otherUserId ? uid : otherUserId;
+  var userB = uid < otherUserId ? otherUserId : uid;
+  var session = getSession();
+  // cerca una thread già esistente tra i due, altrimenti la crea
+  fetch(SUPABASE_URL + '/rest/v1/dm_threads?user_a=eq.' + encodeURIComponent(userA) + '&user_b=eq.' + encodeURIComponent(userB) + '&select=id', { headers: communityHeaders() })
+    .then(function(r){ return r.ok ? r.json() : []; })
+    .then(function(rows){
+      if(rows.length > 0) return rows[0].id;
+      return fetch(SUPABASE_URL + '/rest/v1/dm_threads', {
+        method:'POST',
+        headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json', 'Prefer':'return=representation' },
+        body: JSON.stringify({ user_a: userA, user_b: userB })
+      }).then(function(r2){ if(!r2.ok) throw new Error('dm thread create failed'); return r2.json(); })
+        .then(function(rows2){ return rows2[0].id; });
+    })
+    .then(function(threadId){
+      switchCommunityTab('dms');
+      openDmThread(threadId, otherName);
+      document.getElementById('communitySection').scrollIntoView({behavior:'smooth'});
+    })
+    .catch(function(err){ console.warn('Start DM failed:', err); });
+}
+
+function openDmThread(id, otherName){
+  currentDmThreadId = id;
+  currentDmOtherName = otherName;
+  document.getElementById('dmListView').classList.add('hidden');
+  document.getElementById('dmDetailView').classList.remove('hidden');
+  document.getElementById('dmDetailName').textContent = otherName;
+  loadDmMessages();
+}
+
+function backToDms(){
+  currentDmThreadId = null;
+  document.getElementById('dmDetailView').classList.add('hidden');
+  document.getElementById('dmListView').classList.remove('hidden');
+  loadDmThreads();
+}
+
+function loadDmMessages(){
+  var wrap = document.getElementById('dmMessages');
+  wrap.innerHTML = '<p class="form-note">…</p>';
+  fetch(SUPABASE_URL + '/rest/v1/dm_messages?thread_id=eq.' + encodeURIComponent(currentDmThreadId) + '&select=*&order=created_at.asc', { headers: communityHeaders() })
+    .then(function(r){ if(!r.ok) throw new Error('dm messages read failed'); return r.json(); })
+    .then(function(rows){
+      wrap.innerHTML = '';
+      if(rows.length === 0){ wrap.innerHTML = '<p class="form-note">' + t('community.noMessages') + '</p>'; return; }
+      var uid = currentUserId();
+      var chain = Promise.resolve();
+      rows.forEach(function(m){
+        chain = chain.then(function(){
+          return getDisplayName(m.sender_id).then(function(name){
+            var div = document.createElement('div');
+            div.className = 'channel-msg' + (m.flagged ? ' flagged' : '');
+            div.innerHTML = '<span class="author">' + escapeHtml(m.sender_id === uid ? t('community.you') : name) + '</span>' +
+              '<div class="body">' + escapeHtml(m.body) + '</div>' +
+              '<div class="msg-actions"><button type="button" class="report-btn">' + t('community.report') + '</button></div>';
+            div.querySelector('.report-btn').addEventListener('click', function(){ reportContent('dm_message', m.id); });
+            wrap.appendChild(div);
+          });
+        });
+      });
+      chain.then(function(){ wrap.scrollTop = wrap.scrollHeight; });
+    })
+    .catch(function(err){ wrap.innerHTML = ''; console.warn('DM messages load failed:', err); });
+}
+
+function sendDmMessage(){
+  var box = document.getElementById('fDmMessage');
+  var err = document.getElementById('dmMessageError');
+  var body = box.value.trim();
+  err.textContent = '';
+  if(!body){ err.textContent = t('err.required'); return; }
+  if(!isSignedIn()){ openAuth('login'); return; }
+  var session = getSession();
+  fetch(SUPABASE_URL + '/rest/v1/dm_messages', {
+    method:'POST',
+    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
+    body: JSON.stringify({ thread_id: currentDmThreadId, sender_id: currentUserId(), body: body })
+  }).then(function(r){
+    if(!r.ok) throw new Error('dm message insert failed');
+    box.value = '';
+    loadDmMessages();
+  }).catch(function(e){
+    err.textContent = t('err.required');
+    console.warn('DM message send failed:', e);
+  });
+}
+
+/* ---- Segnalazioni ---- */
+function reportContent(targetType, targetId){
+  if(!isSignedIn()){ openAuth('login'); return; }
+  var reason = window.prompt(t('community.reportPrompt'));
+  if(reason === null) return; // annullato
+  var session = getSession();
+  fetch(SUPABASE_URL + '/rest/v1/content_reports', {
+    method:'POST',
+    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
+    body: JSON.stringify({ reporter_id: currentUserId(), target_type: targetType, target_id: targetId, reason: reason || '' })
+  }).then(function(r){
+    if(!r.ok) throw new Error('report insert failed');
+    window.alert(t('community.reportSent'));
+  }).catch(function(e){ console.warn('Report failed:', e); });
+}
+
+/* ---- Moderazione (solo admin) ---- */
+function renderCommunityModeration(){
+  if(!isAdmin()) return;
+  var session = getSession();
+  var headers = { 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token };
+
+  // Segnalazioni aperte
+  var reportsBox = document.getElementById('modReportsList');
+  reportsBox.innerHTML = '<p class="form-note">…</p>';
+  fetch(SUPABASE_URL + '/rest/v1/content_reports?status=eq.open&select=*&order=created_at.desc', { headers: headers })
+    .then(function(r){ return r.ok ? r.json() : []; })
+    .then(function(rows){
+      reportsBox.innerHTML = '';
+      if(rows.length === 0){ reportsBox.innerHTML = '<p class="form-note">' + t('mod.empty') + '</p>'; return; }
+      rows.forEach(function(rep){ renderModRow(reportsBox, rep.target_type, rep.target_id, rep.reason, rep.id); });
+    })
+    .catch(function(err){ console.warn('Reports load failed:', err); });
+
+  // Messaggi segnalati automaticamente (canali + privati)
+  var flaggedBox = document.getElementById('modFlaggedList');
+  flaggedBox.innerHTML = '<p class="form-note">…</p>';
+  Promise.all([
+    fetch(SUPABASE_URL + '/rest/v1/channel_messages?flagged=eq.true&hidden=eq.false&select=*&order=created_at.desc', { headers: headers }).then(function(r){ return r.ok ? r.json() : []; }),
+    fetch(SUPABASE_URL + '/rest/v1/dm_messages?flagged=eq.true&hidden=eq.false&select=*&order=created_at.desc', { headers: headers }).then(function(r){ return r.ok ? r.json() : []; })
+  ]).then(function(results){
+    flaggedBox.innerHTML = '';
+    var chMsgs = results[0], dmMsgs = results[1];
+    if(chMsgs.length === 0 && dmMsgs.length === 0){ flaggedBox.innerHTML = '<p class="form-note">' + t('mod.empty') + '</p>'; return; }
+    chMsgs.forEach(function(m){ renderModRow(flaggedBox, 'channel_message', m.id, m.body, null, m.user_id); });
+    dmMsgs.forEach(function(m){ renderModRow(flaggedBox, 'dm_message', m.id, m.body, null, m.sender_id); });
+  }).catch(function(err){ console.warn('Flagged messages load failed:', err); });
+
+  // Utenti bannati
+  var bannedBox = document.getElementById('modBannedList');
+  bannedBox.innerHTML = '<p class="form-note">…</p>';
+  fetch(SUPABASE_URL + '/rest/v1/banned_users?select=*&order=banned_at.desc', { headers: headers })
+    .then(function(r){ return r.ok ? r.json() : []; })
+    .then(function(rows){
+      bannedBox.innerHTML = '';
+      if(rows.length === 0){ bannedBox.innerHTML = '<p class="form-note">' + t('mod.empty') + '</p>'; return; }
+      rows.forEach(function(b){
+        var row = document.createElement('div');
+        row.className = 'admin-row';
+        row.innerHTML = '<div class="info"><div class="t">' + escapeHtml(b.email) + '</div>' +
+          '<div class="m">' + (b.reason ? escapeHtml(b.reason) : '') + '</div></div>';
+        bannedBox.appendChild(row);
+      });
+    })
+    .catch(function(err){ console.warn('Banned list load failed:', err); });
+}
+
+function renderModRow(box, targetType, targetId, text, reportId, knownUserId){
+  var session = getSession();
+  var row = document.createElement('div');
+  row.className = 'admin-row';
+  row.innerHTML = '<div class="info"><div class="t">' + escapeHtml(text || '') + '</div>' +
+    '<div class="m">' + (targetType === 'channel_message' ? t('mod.typeChannel') : t('mod.typeDm')) + '</div></div>' +
+    '<div class="admin-actions">' +
+      '<button class="btn btn-sm btn-ghost" data-hide>' + t('mod.hide') + '</button>' +
+      '<button class="btn btn-sm btn-ghost" data-ban>' + t('mod.ban') + '</button>' +
+    '</div>';
+
+  row.querySelector('[data-hide]').addEventListener('click', function(){
+    var table = targetType === 'channel_message' ? 'channel_messages' : 'dm_messages';
+    fetch(SUPABASE_URL + '/rest/v1/' + table + '?id=eq.' + encodeURIComponent(targetId), {
+      method:'PATCH',
+      headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
+      body: JSON.stringify({hidden:true})
+    }).then(function(){
+      if(reportId){
+        return fetch(SUPABASE_URL + '/rest/v1/content_reports?id=eq.' + encodeURIComponent(reportId), {
+          method:'PATCH',
+          headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
+          body: JSON.stringify({status:'reviewed'})
+        });
+      }
+    }).then(function(){ renderCommunityModeration(); });
+  });
+
+  row.querySelector('[data-ban]').addEventListener('click', function(){
+    var doBan = function(userId){
+      if(!userId){ window.alert(t('mod.noUser')); return; }
+      if(!window.confirm(t('mod.banConfirm'))) return;
+      fetch(SUPABASE_URL + '/rest/v1/rpc/admin_ban_and_delete_user', {
+        method:'POST',
+        headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
+        body: JSON.stringify({ target_user_id: userId, target_reason: text || '' })
+      }).then(function(r){ if(!r.ok) throw new Error('ban failed'); return r.json ? r.json().catch(function(){return null;}) : null; })
+        .then(function(){
+          if(reportId){
+            fetch(SUPABASE_URL + '/rest/v1/content_reports?id=eq.' + encodeURIComponent(reportId), {
+              method:'PATCH',
+              headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
+              body: JSON.stringify({status:'reviewed'})
+            });
+          }
+          renderCommunityModeration();
+        })
+        .catch(function(e){ window.alert(t('mod.banFailed')); console.warn('Ban failed:', e); });
+    };
+    if(knownUserId){ doBan(knownUserId); return; }
+    var table = targetType === 'channel_message' ? 'channel_messages' : 'dm_messages';
+    var userField = targetType === 'channel_message' ? 'user_id' : 'sender_id';
+    fetch(SUPABASE_URL + '/rest/v1/' + table + '?id=eq.' + encodeURIComponent(targetId) + '&select=' + userField, { headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token } })
+      .then(function(r){ return r.ok ? r.json() : []; })
+      .then(function(rows){ doBan(rows[0] ? rows[0][userField] : null); });
+  });
+
+  box.appendChild(row);
+}
+
 function loadFavorites(){
   favoriteIds = new Set();
   if(!isSignedIn() || !SUPABASE_URL) { renderCatalog(); return Promise.resolve(); }
@@ -4060,6 +4583,7 @@ function switchAdminTab(tabName){
   document.querySelectorAll('.admin-tab-panel').forEach(function(panel){
     panel.classList.toggle('hidden', panel.dataset.tabPanel !== tabName);
   });
+  if(tabName === 'moderation') renderCommunityModeration();
 }
 
 function renderStatsPanel(){
@@ -4579,6 +5103,15 @@ document.addEventListener('DOMContentLoaded', function(){
       panel.classList.add('hidden');
     }
   });
+
+  document.querySelectorAll('.community-tab').forEach(function(btn){
+    btn.addEventListener('click', function(){ switchCommunityTab(btn.dataset.ctab); });
+  });
+  document.getElementById('btnCreateChannel').addEventListener('click', createChannel);
+  document.getElementById('btnBackToChannels').addEventListener('click', backToChannels);
+  document.getElementById('btnSendChannelMessage').addEventListener('click', sendChannelMessage);
+  document.getElementById('btnBackToDms').addEventListener('click', backToDms);
+  document.getElementById('btnSendDmMessage').addEventListener('click', sendDmMessage);
 
   document.getElementById('profileModalClose').addEventListener('click', closeProfileModal);
   document.getElementById('profileModal').addEventListener('click', function(e){
