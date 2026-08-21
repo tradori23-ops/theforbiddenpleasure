@@ -216,6 +216,7 @@ button{font-family:inherit;cursor:pointer;}
   font-family:inherit;color:var(--parchment);
 }
 .dm-thread-item:hover{border-color:var(--gold);}
+.mini-heading{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
 .gate-legal{margin-top:22px;font-size:11px;color:var(--parchment-dim);opacity:0.7;line-height:1.6;}
 
 /* ============ MATURE TOGGLE SWITCH ============ */
@@ -565,8 +566,13 @@ body.theme-light .hero-bg::after{
 .maintenance-lock{
   position:fixed;inset:0;z-index:150;
   background:var(--void);
+  background-image:linear-gradient(rgba(6,4,5,0.82),rgba(6,4,5,0.92)), url('maintenance-bg.jpg');
+  background-size:cover;background-position:center;
   display:flex;align-items:center;justify-content:center;
   padding:20px;text-align:center;
+}
+.maintenance-lock.night-lock{
+  background-image:linear-gradient(rgba(6,4,5,0.82),rgba(6,4,5,0.92)), url('night-bg.jpg');
 }
 .maintenance-lock-box{max-width:420px;}
 .maintenance-lock-box .seal{width:64px;height:64px;display:inline-block;margin-bottom:20px;}
@@ -712,7 +718,18 @@ footer .fcopy{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
       <img class="seal seal-img" data-size="sm" alt="LUX COMICS &amp; MEDUSA COMICS">
       <h2 data-i18n="maintenance.lockTitle">Sito in manutenzione</h2>
       <p data-i18n="maintenance.lockText">Stiamo aggiornando l'archivio. Torna tra poco.</p>
+      <p id="maintenanceReasonText" class="hidden"></p>
+      <p id="maintenanceScheduleText" class="hidden" style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.04em;color:var(--gold);"></p>
       <button type="button" class="btn btn-ghost btn-sm" id="maintenanceLockLogin" data-i18n="auth.loginBtn">Accedi</button>
+    </div>
+  </div>
+  <div class="maintenance-lock night-lock hidden" id="nightClosureLock">
+    <div class="maintenance-lock-box">
+      <img class="seal seal-img" data-size="sm" alt="LUX COMICS &amp; MEDUSA COMICS">
+      <h2 data-i18n="night.lockTitle">Buonanotte</h2>
+      <p data-i18n="night.lockText">L'archivio chiude di notte e riapre al mattino.</p>
+      <p id="nightScheduleText" style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.04em;color:var(--gold);"></p>
+      <button type="button" class="btn btn-ghost btn-sm" id="nightLockLogin" data-i18n="auth.loginBtn">Accedi</button>
     </div>
   </div>
 
@@ -856,6 +873,7 @@ footer .fcopy{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
 
     <div class="community-tabs">
       <button type="button" class="community-tab active" data-ctab="channels" data-i18n="community.tabChannels">Canali</button>
+      <button type="button" class="community-tab" data-ctab="friends" data-i18n="community.tabFriends">Amici</button>
       <button type="button" class="community-tab" data-ctab="dms" data-i18n="community.tabDms">Messaggi privati</button>
     </div>
 
@@ -881,11 +899,27 @@ footer .fcopy{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
       </div>
     </div>
 
+    <!-- AMICI -->
+    <div class="community-panel hidden" data-cpanel="friends">
+      <div class="notice">
+        <div class="mini-heading" data-i18n="community.pendingReceived">Richieste ricevute</div>
+        <div id="friendRequestsReceived"></div>
+      </div>
+      <div class="notice">
+        <div class="mini-heading" data-i18n="community.pendingSent">Richieste inviate</div>
+        <div id="friendRequestsSent"></div>
+      </div>
+      <div class="notice">
+        <div class="mini-heading" data-i18n="community.friendsList">I tuoi amici</div>
+        <div id="friendsList"></div>
+      </div>
+    </div>
+
     <!-- MESSAGGI PRIVATI -->
     <div class="community-panel hidden" data-cpanel="dms">
       <div id="dmListView">
         <div id="dmThreadsList" class="dm-threads-list"></div>
-        <p class="form-note" data-i18n="community.dmHint">Per scrivere in privato a qualcuno, apri un suo messaggio in un canale e usa "Messaggio privato".</p>
+        <p class="form-note" data-i18n="community.dmHint">Per scrivere in privato a qualcuno, prima diventate amici: apri un suo messaggio in un canale e manda una richiesta di amicizia.</p>
       </div>
       <div id="dmDetailView" class="hidden">
         <button type="button" class="btn btn-ghost btn-sm" id="btnBackToDms" data-i18n="community.back">&larr; Torna ai messaggi</button>
@@ -1108,6 +1142,43 @@ footer .fcopy{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
             <span data-i18n="maintenance.toggle">Modalità manutenzione (visibile a tutti i visitatori)</span>
             <span class="switch"><input type="checkbox" id="maintenanceSwitch"><span class="slider"></span></span>
           </label>
+        </div>
+        <div class="notice">
+          <div data-i18n="maintenance.scheduleTitle" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Cosa vedono i visitatori</div>
+          <p class="form-note" data-i18n="maintenance.scheduleHint">Spiega perché il sito è in pausa e per quanto — resta salvato anche a interruttore spento, così puoi prepararlo prima.</p>
+          <label data-i18n="maintenance.reasonLabel" style="display:block;margin-top:14px;margin-bottom:6px;font-size:12px;color:var(--parchment-dim);">Motivazione (cosa stai facendo)</label>
+          <textarea id="fMaintenanceReason" rows="2" data-i18n-placeholder="maintenance.reasonPh" placeholder="Es. Sto caricando nuovi capitoli e sistemando il lettore pagine."></textarea>
+          <div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:14px;">
+            <div>
+              <label data-i18n="maintenance.startLabel" style="display:block;margin-bottom:6px;font-size:12px;color:var(--parchment-dim);">Inizio previsto</label>
+              <input type="datetime-local" id="fMaintenanceStart">
+            </div>
+            <div>
+              <label data-i18n="maintenance.endLabel" style="display:block;margin-bottom:6px;font-size:12px;color:var(--parchment-dim);">Fine prevista</label>
+              <input type="datetime-local" id="fMaintenanceEnd">
+            </div>
+          </div>
+          <button class="btn btn-ghost btn-sm" id="btnSaveMaintenanceSchedule" data-i18n="maintenance.saveSchedule" style="margin-top:14px;">Salva dettagli</button>
+          <div class="form-note" id="maintenanceScheduleStatus" style="margin-top:8px;"></div>
+        </div>
+        <div class="notice">
+          <label class="mature-toggle" style="cursor:pointer;">
+            <span data-i18n="night.toggle">Chiusura notturna automatica</span>
+            <span class="switch"><input type="checkbox" id="fNightEnabled"><span class="slider"></span></span>
+          </label>
+          <p class="form-note" data-i18n="night.hint">Il sito si blocca da solo ogni notte in questa fascia oraria, per non restare aperto inutilmente, e si riapre da solo al mattino.</p>
+          <div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:14px;">
+            <div>
+              <label data-i18n="night.startLabel" style="display:block;margin-bottom:6px;font-size:12px;color:var(--parchment-dim);">Chiude alle</label>
+              <input type="time" id="fNightStart">
+            </div>
+            <div>
+              <label data-i18n="night.endLabel" style="display:block;margin-bottom:6px;font-size:12px;color:var(--parchment-dim);">Riapre alle</label>
+              <input type="time" id="fNightEnd">
+            </div>
+          </div>
+          <button class="btn btn-ghost btn-sm" id="btnSaveNightSchedule" data-i18n="maintenance.saveSchedule" style="margin-top:14px;">Salva dettagli</button>
+          <div class="form-note" id="nightScheduleStatus" style="margin-top:8px;"></div>
         </div>
         <div class="notice">
           <div data-i18n="offline.title" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Copia offline (solo per te)</div>
@@ -1346,7 +1417,7 @@ var STR = {
     "users.empty":"Nessun utente registrato ancora.","users.noName":"Utente","users.joined":"Iscritto il","users.daysHere":"{n} giorni sul sito",
     "users.eligible":"Idoneo","users.waitingDays":"ancora {n} giorni","users.grant":"Assegna spunta","users.revoke":"Rimuovi spunta","users.earlyGrantConfirm":"{name} non ha ancora raggiunto i 90 giorni (ne mancano {n}). Vuoi assegnare comunque la spunta come eccezione?",
     "notif.title":"Notifiche","notif.markAll":"Segna tutte come lette","notif.empty":"Nessuna notifica.","notif.someone":"Qualcuno","notif.justNow":"Adesso","notif.minsAgo":"{n} min fa","notif.hoursAgo":"{n} h fa","notif.daysAgo":"{n} g fa",
-    "nav.community":"Community","community.eyebrow":"Fuori dallo Schedario","community.title":"Community","community.rule":"Niente materiale pornografico: al massimo contenuti sensuali. Chi viola la regola viene bannato ed eliminato dal sito.","community.tabChannels":"Canali","community.tabDms":"Messaggi privati","community.newChannelPh":"Nome nuovo canale (es. Cinema)","community.createChannel":"Crea canale","community.back":"← Torna","community.messagePh":"Scrivi un messaggio…","community.send":"Invia","community.dmHint":"Per scrivere in privato a qualcuno, apri un suo messaggio in un canale e usa \"Messaggio privato\".","community.noChannels":"Nessun canale ancora. Creane uno tu.","community.noMessages":"Nessun messaggio ancora.","community.noDms":"Nessuna conversazione privata ancora.","community.privateMessage":"Messaggio privato","community.report":"Segnala","community.reportPrompt":"Perché segnali questo messaggio? (opzionale)","community.reportSent":"Segnalazione inviata, grazie.","community.you":"Tu",
+    "nav.community":"Community","community.eyebrow":"Fuori dallo Schedario","community.title":"Community","community.rule":"Niente materiale pornografico: al massimo contenuti sensuali. Chi viola la regola viene bannato ed eliminato dal sito.","community.tabChannels":"Canali","community.tabDms":"Messaggi privati","community.newChannelPh":"Nome nuovo canale (es. Cinema)","community.createChannel":"Crea canale","community.back":"← Torna","community.messagePh":"Scrivi un messaggio…","community.send":"Invia","community.dmHint":"Per scrivere in privato a qualcuno, apri un suo messaggio in un canale e usa \"Messaggio privato\".","community.noChannels":"Nessun canale ancora. Creane uno tu.","community.noMessages":"Nessun messaggio ancora.","community.noDms":"Nessuna conversazione privata ancora.","community.privateMessage":"Messaggio privato","community.report":"Segnala","community.reportPrompt":"Perché segnali questo messaggio? (opzionale)","community.reportSent":"Segnalazione inviata, grazie.","community.you":"Tu","community.tabFriends":"Amici","community.addFriend":"Aggiungi amico","community.requestSent":"Richiesta inviata","community.acceptFriend":"Accetta amicizia","community.declineFriend":"Rifiuta","community.pendingReceived":"Richieste ricevute","community.pendingSent":"Richieste inviate","community.friendsList":"I tuoi amici",
     "admin.tab.moderation":"Moderazione Community","mod.reportsTitle":"Segnalazioni aperte","mod.flaggedTitle":"Messaggi segnalati automaticamente","mod.bannedTitle":"Utenti bannati (email bloccate)","mod.empty":"Niente al momento.","mod.typeChannel":"Messaggio in canale","mod.typeDm":"Messaggio privato","mod.hide":"Nascondi","mod.ban":"Banna ed elimina","mod.noUser":"Utente non trovato.","mod.banConfirm":"Confermi? L'utente verrà bannato, il suo account eliminato e non potrà registrarsi di nuovo con la stessa email.","mod.banFailed":"Operazione non riuscita.",
     "users.onlineNow":"{n} utenti online ora","users.onlineTag":"Online ora",
     "announcements.eyebrow":"Dalla Redazione","announcements.title":"Novità","announcements.readMore":"Leggi","announcements.share":"Condividi",
@@ -1389,7 +1460,8 @@ var STR = {
     "admin.deleted":"rimosso","admin.confirmDelete":"Rimuovere questo titolo dallo schedario?",
     "filter.all":"Tutti",
     "maintenance.text":"Sito in manutenzione — stiamo aggiornando l'archivio, torna a breve.",
-    "maintenance.toggle":"Modalità manutenzione (visibile a tutti i visitatori)",
+    "maintenance.toggle":"Modalità manutenzione (visibile a tutti i visitatori)","maintenance.scheduleTitle":"Cosa vedono i visitatori","maintenance.scheduleHint":"Spiega perché il sito è in pausa e per quanto — resta salvato anche a interruttore spento, così puoi prepararlo prima.","maintenance.reasonLabel":"Motivazione (cosa stai facendo)","maintenance.reasonPh":"Es. Sto caricando nuovi capitoli e sistemando il lettore pagine.","maintenance.startLabel":"Inizio previsto","maintenance.endLabel":"Fine prevista","maintenance.saveSchedule":"Salva dettagli","maintenance.scheduleSaved":"Salvato.","maintenance.fromLabel":"Dalle","maintenance.toLabel":"alle",
+    "night.toggle":"Chiusura notturna automatica","night.hint":"Il sito si blocca da solo ogni notte in questa fascia oraria, per non restare aperto inutilmente, e si riapre da solo al mattino.","night.startLabel":"Chiude alle","night.endLabel":"Riapre alle","night.lockTitle":"Buonanotte","night.lockText":"L'archivio chiude di notte e riapre al mattino.","night.reopensAt":"Riapre alle {time}",
     "offline.title":"Copia offline (solo per te)","offline.hint":"Scarica tutti i titoli, le pagine e le copertine in un unico file compresso sul tuo computer — visibile solo qui, mai ai visitatori.",
     "offline.export":"Scarica tutto per uso offline","offline.preparing":"Preparazione…","offline.progress":"{done}/{total} — {label}","offline.zipping":"Compressione del file…","offline.done":"Fatto — controlla i download del browser.","offline.error":"Esportazione non riuscita.",
     "gate.title":"Sblocca i Contenuti 18+",
@@ -1460,7 +1532,7 @@ var STR = {
     "users.empty":"No registered users yet.","users.noName":"User","users.joined":"Joined on","users.daysHere":"{n} days on the site",
     "users.eligible":"Eligible","users.waitingDays":"{n} days to go","users.grant":"Grant checkmark","users.revoke":"Remove checkmark","users.earlyGrantConfirm":"{name} hasn't reached 90 days yet ({n} to go). Grant the checkmark anyway as an exception?",
     "notif.title":"Notifications","notif.markAll":"Mark all as read","notif.empty":"No notifications.","notif.someone":"Someone","notif.justNow":"Just now","notif.minsAgo":"{n} min ago","notif.hoursAgo":"{n} h ago","notif.daysAgo":"{n} d ago",
-    "nav.community":"Community","community.eyebrow":"Beyond the Archive","community.title":"Community","community.rule":"No pornographic material: sensual at most. Anyone who breaks the rule is banned and removed from the site.","community.tabChannels":"Channels","community.tabDms":"Private messages","community.newChannelPh":"New channel name (e.g. Movies)","community.createChannel":"Create channel","community.back":"← Back","community.messagePh":"Write a message…","community.send":"Send","community.dmHint":"To message someone privately, open one of their messages in a channel and use \"Private message\".","community.noChannels":"No channels yet. Create one.","community.noMessages":"No messages yet.","community.noDms":"No private conversations yet.","community.privateMessage":"Private message","community.report":"Report","community.reportPrompt":"Why are you reporting this message? (optional)","community.reportSent":"Report sent, thank you.","community.you":"You",
+    "nav.community":"Community","community.eyebrow":"Beyond the Archive","community.title":"Community","community.rule":"No pornographic material: sensual at most. Anyone who breaks the rule is banned and removed from the site.","community.tabChannels":"Channels","community.tabDms":"Private messages","community.newChannelPh":"New channel name (e.g. Movies)","community.createChannel":"Create channel","community.back":"← Back","community.messagePh":"Write a message…","community.send":"Send","community.dmHint":"To message someone privately, open one of their messages in a channel and use \"Private message\".","community.noChannels":"No channels yet. Create one.","community.noMessages":"No messages yet.","community.noDms":"No private conversations yet.","community.privateMessage":"Private message","community.report":"Report","community.reportPrompt":"Why are you reporting this message? (optional)","community.reportSent":"Report sent, thank you.","community.you":"You","community.tabFriends":"Friends","community.addFriend":"Add friend","community.requestSent":"Request sent","community.acceptFriend":"Accept friend request","community.declineFriend":"Decline","community.pendingReceived":"Received requests","community.pendingSent":"Sent requests","community.friendsList":"Your friends",
     "admin.tab.moderation":"Community Moderation","mod.reportsTitle":"Open reports","mod.flaggedTitle":"Auto-flagged messages","mod.bannedTitle":"Banned users (blocked emails)","mod.empty":"Nothing right now.","mod.typeChannel":"Channel message","mod.typeDm":"Private message","mod.hide":"Hide","mod.ban":"Ban and delete","mod.noUser":"User not found.","mod.banConfirm":"Confirm? The user will be banned, their account deleted, and they won't be able to register again with the same email.","mod.banFailed":"Operation failed.",
     "users.onlineNow":"{n} users online now","users.onlineTag":"Online now",
     "announcements.eyebrow":"From the Editors","announcements.title":"News","announcements.readMore":"Read","announcements.share":"Share",
@@ -1503,7 +1575,8 @@ var STR = {
     "admin.deleted":"removed","admin.confirmDelete":"Remove this title from the index?",
     "filter.all":"All",
     "maintenance.text":"Site under maintenance — we're updating the archive, check back soon.",
-    "maintenance.toggle":"Maintenance mode (visible to every visitor)",
+    "maintenance.toggle":"Maintenance mode (visible to every visitor)","maintenance.scheduleTitle":"What visitors see","maintenance.scheduleHint":"Explain why the site is paused and for how long — saved even while the switch is off, so you can prepare it in advance.","maintenance.reasonLabel":"Reason (what you're working on)","maintenance.reasonPh":"E.g. Uploading new chapters and fixing the page reader.","maintenance.startLabel":"Expected start","maintenance.endLabel":"Expected end","maintenance.saveSchedule":"Save details","maintenance.scheduleSaved":"Saved.","maintenance.fromLabel":"From","maintenance.toLabel":"to",
+    "night.toggle":"Automatic night closure","night.hint":"The site locks itself every night during this time window, so it doesn't stay open needlessly, and reopens on its own in the morning.","night.startLabel":"Closes at","night.endLabel":"Reopens at","night.lockTitle":"Good night","night.lockText":"The archive closes at night and reopens in the morning.","night.reopensAt":"Reopens at {time}",
     "offline.title":"Offline copy (just for you)","offline.hint":"Download every title, page and cover into a single compressed file on your computer — visible only here, never to visitors.",
     "offline.export":"Download everything for offline use","offline.preparing":"Preparing…","offline.progress":"{done}/{total} — {label}","offline.zipping":"Compressing the file…","offline.done":"Done — check your browser's downloads.","offline.error":"Export failed.",
     "gate.title":"Unlock 18+ Content",
@@ -1574,7 +1647,7 @@ var STR = {
     "users.empty":"Aún no hay usuarios registrados.","users.noName":"Usuario","users.joined":"Registrado el","users.daysHere":"{n} días en el sitio",
     "users.eligible":"Apto","users.waitingDays":"faltan {n} días","users.grant":"Otorgar marca","users.revoke":"Quitar marca","users.earlyGrantConfirm":"{name} aún no ha alcanzado los 90 días (faltan {n}). ¿Otorgar la marca de todos modos como excepción?",
     "notif.title":"Notificaciones","notif.markAll":"Marcar todas como leídas","notif.empty":"No hay notificaciones.","notif.someone":"Alguien","notif.justNow":"Ahora mismo","notif.minsAgo":"hace {n} min","notif.hoursAgo":"hace {n} h","notif.daysAgo":"hace {n} d",
-    "nav.community":"Comunidad","community.eyebrow":"Fuera del Archivo","community.title":"Comunidad","community.rule":"Nada de material pornográfico: como mucho contenido sensual. Quien incumpla la regla será baneado y eliminado del sitio.","community.tabChannels":"Canales","community.tabDms":"Mensajes privados","community.newChannelPh":"Nombre del nuevo canal (ej. Cine)","community.createChannel":"Crear canal","community.back":"← Volver","community.messagePh":"Escribe un mensaje…","community.send":"Enviar","community.dmHint":"Para escribir en privado a alguien, abre uno de sus mensajes en un canal y usa \"Mensaje privado\".","community.noChannels":"Aún no hay canales. Crea uno.","community.noMessages":"Aún no hay mensajes.","community.noDms":"Aún no hay conversaciones privadas.","community.privateMessage":"Mensaje privado","community.report":"Denunciar","community.reportPrompt":"¿Por qué denuncias este mensaje? (opcional)","community.reportSent":"Denuncia enviada, gracias.","community.you":"Tú",
+    "nav.community":"Comunidad","community.eyebrow":"Fuera del Archivo","community.title":"Comunidad","community.rule":"Nada de material pornográfico: como mucho contenido sensual. Quien incumpla la regla será baneado y eliminado del sitio.","community.tabChannels":"Canales","community.tabDms":"Mensajes privados","community.newChannelPh":"Nombre del nuevo canal (ej. Cine)","community.createChannel":"Crear canal","community.back":"← Volver","community.messagePh":"Escribe un mensaje…","community.send":"Enviar","community.dmHint":"Para escribir en privado a alguien, abre uno de sus mensajes en un canal y usa \"Mensaje privado\".","community.noChannels":"Aún no hay canales. Crea uno.","community.noMessages":"Aún no hay mensajes.","community.noDms":"Aún no hay conversaciones privadas.","community.privateMessage":"Mensaje privado","community.report":"Denunciar","community.reportPrompt":"¿Por qué denuncias este mensaje? (opcional)","community.reportSent":"Denuncia enviada, gracias.","community.you":"Tú","community.tabFriends":"Amigos","community.addFriend":"Añadir amigo","community.requestSent":"Solicitud enviada","community.acceptFriend":"Aceptar amistad","community.declineFriend":"Rechazar","community.pendingReceived":"Solicitudes recibidas","community.pendingSent":"Solicitudes enviadas","community.friendsList":"Tus amigos",
     "admin.tab.moderation":"Moderación de Comunidad","mod.reportsTitle":"Denuncias abiertas","mod.flaggedTitle":"Mensajes marcados automáticamente","mod.bannedTitle":"Usuarios baneados (emails bloqueados)","mod.empty":"Nada por ahora.","mod.typeChannel":"Mensaje en canal","mod.typeDm":"Mensaje privado","mod.hide":"Ocultar","mod.ban":"Banear y eliminar","mod.noUser":"Usuario no encontrado.","mod.banConfirm":"¿Confirmas? El usuario será baneado, su cuenta eliminada y no podrá registrarse de nuevo con el mismo email.","mod.banFailed":"Operación fallida.",
     "users.onlineNow":"{n} usuarios en línea ahora","users.onlineTag":"En línea ahora",
     "announcements.eyebrow":"De la Redacción","announcements.title":"Novedades","announcements.readMore":"Leer","announcements.share":"Compartir",
@@ -1617,7 +1690,8 @@ var STR = {
     "admin.deleted":"eliminado","admin.confirmDelete":"¿Eliminar este título del índice?",
     "filter.all":"Todos",
     "maintenance.text":"Sitio en mantenimiento — estamos actualizando el archivo, vuelve pronto.",
-    "maintenance.toggle":"Modo mantenimiento (visible para todos los visitantes)",
+    "maintenance.toggle":"Modo mantenimiento (visible para todos los visitantes)","maintenance.scheduleTitle":"Lo que ven los visitantes","maintenance.scheduleHint":"Explica por qué el sitio está en pausa y por cuánto tiempo — se guarda aunque el interruptor esté apagado, así puedes prepararlo antes.","maintenance.reasonLabel":"Motivo (en qué estás trabajando)","maintenance.reasonPh":"Ej. Subiendo nuevos capítulos y arreglando el lector de páginas.","maintenance.startLabel":"Inicio previsto","maintenance.endLabel":"Fin previsto","maintenance.saveSchedule":"Guardar detalles","maintenance.scheduleSaved":"Guardado.","maintenance.fromLabel":"Desde las","maintenance.toLabel":"hasta las",
+    "night.toggle":"Cierre nocturno automático","night.hint":"El sitio se bloquea solo cada noche en esta franja horaria, para no permanecer abierto innecesariamente, y se reabre solo por la mañana.","night.startLabel":"Cierra a las","night.endLabel":"Reabre a las","night.lockTitle":"Buenas noches","night.lockText":"El archivo cierra de noche y reabre por la mañana.","night.reopensAt":"Reabre a las {time}",
     "offline.title":"Copia sin conexión (solo para ti)","offline.hint":"Descarga todos los títulos, páginas y portadas en un único archivo comprimido en tu ordenador — visible solo aquí, nunca para los visitantes.",
     "offline.export":"Descargar todo para uso sin conexión","offline.preparing":"Preparando…","offline.progress":"{done}/{total} — {label}","offline.zipping":"Comprimiendo el archivo…","offline.done":"Listo — revisa las descargas de tu navegador.","offline.error":"Error al exportar.",
     "gate.title":"Desbloquear Contenido 18+",
@@ -1688,7 +1762,7 @@ var STR = {
     "users.empty":"Aucun utilisateur inscrit pour l'instant.","users.noName":"Utilisateur","users.joined":"Inscrit le","users.daysHere":"{n} jours sur le site",
     "users.eligible":"Éligible","users.waitingDays":"encore {n} jours","users.grant":"Accorder le badge","users.revoke":"Retirer le badge","users.earlyGrantConfirm":"{name} n'a pas encore atteint 90 jours ({n} restants). Accorder le badge quand même, à titre exceptionnel ?",
     "notif.title":"Notifications","notif.markAll":"Tout marquer comme lu","notif.empty":"Aucune notification.","notif.someone":"Quelqu'un","notif.justNow":"À l'instant","notif.minsAgo":"il y a {n} min","notif.hoursAgo":"il y a {n} h","notif.daysAgo":"il y a {n} j",
-    "nav.community":"Communauté","community.eyebrow":"En dehors de l'Archive","community.title":"Communauté","community.rule":"Aucun contenu pornographique : sensuel tout au plus. Toute violation entraîne le bannissement et la suppression du site.","community.tabChannels":"Canaux","community.tabDms":"Messages privés","community.newChannelPh":"Nom du nouveau canal (ex. Cinéma)","community.createChannel":"Créer un canal","community.back":"← Retour","community.messagePh":"Écrivez un message…","community.send":"Envoyer","community.dmHint":"Pour écrire en privé à quelqu'un, ouvrez un de ses messages dans un canal et utilisez \"Message privé\".","community.noChannels":"Aucun canal pour l'instant. Créez-en un.","community.noMessages":"Aucun message pour l'instant.","community.noDms":"Aucune conversation privée pour l'instant.","community.privateMessage":"Message privé","community.report":"Signaler","community.reportPrompt":"Pourquoi signalez-vous ce message ? (facultatif)","community.reportSent":"Signalement envoyé, merci.","community.you":"Vous",
+    "nav.community":"Communauté","community.eyebrow":"En dehors de l'Archive","community.title":"Communauté","community.rule":"Aucun contenu pornographique : sensuel tout au plus. Toute violation entraîne le bannissement et la suppression du site.","community.tabChannels":"Canaux","community.tabDms":"Messages privés","community.newChannelPh":"Nom du nouveau canal (ex. Cinéma)","community.createChannel":"Créer un canal","community.back":"← Retour","community.messagePh":"Écrivez un message…","community.send":"Envoyer","community.dmHint":"Pour écrire en privé à quelqu'un, ouvrez un de ses messages dans un canal et utilisez \"Message privé\".","community.noChannels":"Aucun canal pour l'instant. Créez-en un.","community.noMessages":"Aucun message pour l'instant.","community.noDms":"Aucune conversation privée pour l'instant.","community.privateMessage":"Message privé","community.report":"Signaler","community.reportPrompt":"Pourquoi signalez-vous ce message ? (facultatif)","community.reportSent":"Signalement envoyé, merci.","community.you":"Vous","community.tabFriends":"Amis","community.addFriend":"Ajouter un ami","community.requestSent":"Demande envoyée","community.acceptFriend":"Accepter l'amitié","community.declineFriend":"Refuser","community.pendingReceived":"Demandes reçues","community.pendingSent":"Demandes envoyées","community.friendsList":"Vos amis",
     "admin.tab.moderation":"Modération Communauté","mod.reportsTitle":"Signalements ouverts","mod.flaggedTitle":"Messages signalés automatiquement","mod.bannedTitle":"Utilisateurs bannis (emails bloqués)","mod.empty":"Rien pour l'instant.","mod.typeChannel":"Message de canal","mod.typeDm":"Message privé","mod.hide":"Masquer","mod.ban":"Bannir et supprimer","mod.noUser":"Utilisateur introuvable.","mod.banConfirm":"Confirmer ? L'utilisateur sera banni, son compte supprimé, et il ne pourra plus se réinscrire avec le même email.","mod.banFailed":"Échec de l'opération.",
     "users.onlineNow":"{n} utilisateurs en ligne","users.onlineTag":"En ligne",
     "announcements.eyebrow":"De la Rédaction","announcements.title":"Actualités","announcements.readMore":"Lire","announcements.share":"Partager",
@@ -1731,7 +1805,8 @@ var STR = {
     "admin.deleted":"supprimé","admin.confirmDelete":"Supprimer ce titre de l'index ?",
     "filter.all":"Tous",
     "maintenance.text":"Site en maintenance — nous mettons à jour l'archive, revenez bientôt.",
-    "maintenance.toggle":"Mode maintenance (visible pour tous les visiteurs)",
+    "maintenance.toggle":"Mode maintenance (visible pour tous les visiteurs)","maintenance.scheduleTitle":"Ce que voient les visiteurs","maintenance.scheduleHint":"Expliquez pourquoi le site est en pause et pour combien de temps — enregistré même si l'interrupteur est éteint, pour tout préparer à l'avance.","maintenance.reasonLabel":"Motif (sur quoi vous travaillez)","maintenance.reasonPh":"Ex. Ajout de nouveaux chapitres et correction du lecteur de pages.","maintenance.startLabel":"Début prévu","maintenance.endLabel":"Fin prévue","maintenance.saveSchedule":"Enregistrer les détails","maintenance.scheduleSaved":"Enregistré.","maintenance.fromLabel":"De","maintenance.toLabel":"à",
+    "night.toggle":"Fermeture nocturne automatique","night.hint":"Le site se verrouille automatiquement chaque nuit pendant cette plage horaire, pour ne pas rester ouvert inutilement, et se rouvre seul le matin.","night.startLabel":"Ferme à","night.endLabel":"Rouvre à","night.lockTitle":"Bonne nuit","night.lockText":"L'archive ferme la nuit et rouvre le matin.","night.reopensAt":"Rouvre à {time}",
     "offline.title":"Copie hors ligne (rien que pour vous)","offline.hint":"Téléchargez tous les titres, pages et couvertures dans un seul fichier compressé sur votre ordinateur — visible ici seulement, jamais pour les visiteurs.",
     "offline.export":"Tout télécharger pour un usage hors ligne","offline.preparing":"Préparation…","offline.progress":"{done}/{total} — {label}","offline.zipping":"Compression du fichier…","offline.done":"Terminé — vérifiez les téléchargements de votre navigateur.","offline.error":"Échec de l'exportation.",
     "gate.title":"Débloquer le Contenu 18+",
@@ -1802,7 +1877,7 @@ var STR = {
     "users.empty":"Noch keine registrierten Nutzer.","users.noName":"Nutzer","users.joined":"Angemeldet am","users.daysHere":"{n} Tage dabei",
     "users.eligible":"Berechtigt","users.waitingDays":"noch {n} Tage","users.grant":"Häkchen vergeben","users.revoke":"Häkchen entfernen","users.earlyGrantConfirm":"{name} hat die 90 Tage noch nicht erreicht (noch {n} Tage). Häkchen trotzdem als Ausnahme vergeben?",
     "notif.title":"Benachrichtigungen","notif.markAll":"Alle als gelesen markieren","notif.empty":"Keine Benachrichtigungen.","notif.someone":"Jemand","notif.justNow":"Gerade eben","notif.minsAgo":"vor {n} Min","notif.hoursAgo":"vor {n} Std","notif.daysAgo":"vor {n} T",
-    "nav.community":"Community","community.eyebrow":"Jenseits des Archivs","community.title":"Community","community.rule":"Keine pornografischen Inhalte: höchstens sinnlich. Wer gegen die Regel verstößt, wird gesperrt und von der Seite entfernt.","community.tabChannels":"Kanäle","community.tabDms":"Private Nachrichten","community.newChannelPh":"Name des neuen Kanals (z. B. Kino)","community.createChannel":"Kanal erstellen","community.back":"← Zurück","community.messagePh":"Nachricht schreiben…","community.send":"Senden","community.dmHint":"Um jemandem privat zu schreiben, öffne eine seiner Nachrichten in einem Kanal und nutze \"Private Nachricht\".","community.noChannels":"Noch keine Kanäle. Erstelle einen.","community.noMessages":"Noch keine Nachrichten.","community.noDms":"Noch keine privaten Gespräche.","community.privateMessage":"Private Nachricht","community.report":"Melden","community.reportPrompt":"Warum meldest du diese Nachricht? (optional)","community.reportSent":"Meldung gesendet, danke.","community.you":"Du",
+    "nav.community":"Community","community.eyebrow":"Jenseits des Archivs","community.title":"Community","community.rule":"Keine pornografischen Inhalte: höchstens sinnlich. Wer gegen die Regel verstößt, wird gesperrt und von der Seite entfernt.","community.tabChannels":"Kanäle","community.tabDms":"Private Nachrichten","community.newChannelPh":"Name des neuen Kanals (z. B. Kino)","community.createChannel":"Kanal erstellen","community.back":"← Zurück","community.messagePh":"Nachricht schreiben…","community.send":"Senden","community.dmHint":"Um jemandem privat zu schreiben, öffne eine seiner Nachrichten in einem Kanal und nutze \"Private Nachricht\".","community.noChannels":"Noch keine Kanäle. Erstelle einen.","community.noMessages":"Noch keine Nachrichten.","community.noDms":"Noch keine privaten Gespräche.","community.privateMessage":"Private Nachricht","community.report":"Melden","community.reportPrompt":"Warum meldest du diese Nachricht? (optional)","community.reportSent":"Meldung gesendet, danke.","community.you":"Du","community.tabFriends":"Freunde","community.addFriend":"Freund hinzufügen","community.requestSent":"Anfrage gesendet","community.acceptFriend":"Freundschaft annehmen","community.declineFriend":"Ablehnen","community.pendingReceived":"Erhaltene Anfragen","community.pendingSent":"Gesendete Anfragen","community.friendsList":"Deine Freunde",
     "admin.tab.moderation":"Community-Moderation","mod.reportsTitle":"Offene Meldungen","mod.flaggedTitle":"Automatisch markierte Nachrichten","mod.bannedTitle":"Gesperrte Nutzer (blockierte E-Mails)","mod.empty":"Aktuell nichts.","mod.typeChannel":"Kanal-Nachricht","mod.typeDm":"Private Nachricht","mod.hide":"Ausblenden","mod.ban":"Sperren und löschen","mod.noUser":"Nutzer nicht gefunden.","mod.banConfirm":"Bestätigen? Der Nutzer wird gesperrt, sein Konto gelöscht, und er kann sich nicht erneut mit derselben E-Mail registrieren.","mod.banFailed":"Vorgang fehlgeschlagen.",
     "users.onlineNow":"{n} Nutzer gerade online","users.onlineTag":"Gerade online",
     "announcements.eyebrow":"Von der Redaktion","announcements.title":"Neuigkeiten","announcements.readMore":"Lesen","announcements.share":"Teilen",
@@ -1845,7 +1920,8 @@ var STR = {
     "admin.deleted":"entfernt","admin.confirmDelete":"Diesen Titel aus dem Index entfernen?",
     "filter.all":"Alle",
     "maintenance.text":"Seite in Wartung — wir aktualisieren gerade das Archiv, schau bald wieder vorbei.",
-    "maintenance.toggle":"Wartungsmodus (für alle Besucher sichtbar)",
+    "maintenance.toggle":"Wartungsmodus (für alle Besucher sichtbar)","maintenance.scheduleTitle":"Was Besucher sehen","maintenance.scheduleHint":"Erkläre, warum die Seite pausiert und für wie lange — bleibt gespeichert, auch wenn der Schalter aus ist, damit du im Voraus vorbereiten kannst.","maintenance.reasonLabel":"Grund (woran du arbeitest)","maintenance.reasonPh":"Z. B. Neue Kapitel hochladen und den Seitenleser reparieren.","maintenance.startLabel":"Voraussichtlicher Start","maintenance.endLabel":"Voraussichtliches Ende","maintenance.saveSchedule":"Details speichern","maintenance.scheduleSaved":"Gespeichert.","maintenance.fromLabel":"Von","maintenance.toLabel":"bis",
+    "night.toggle":"Automatische Nachtschließung","night.hint":"Die Seite sperrt sich jede Nacht in diesem Zeitfenster automatisch, damit sie nicht unnötig offen bleibt, und öffnet sich morgens von selbst wieder.","night.startLabel":"Schließt um","night.endLabel":"Öffnet wieder um","night.lockTitle":"Gute Nacht","night.lockText":"Das Archiv schließt nachts und öffnet morgens wieder.","night.reopensAt":"Öffnet wieder um {time}",
     "offline.title":"Offline-Kopie (nur für dich)","offline.hint":"Lade alle Titel, Seiten und Cover als eine komprimierte Datei auf deinen Computer herunter — nur hier sichtbar, nie für Besucher.",
     "offline.export":"Alles für Offline-Nutzung herunterladen","offline.preparing":"Vorbereitung…","offline.progress":"{done}/{total} — {label}","offline.zipping":"Datei wird komprimiert…","offline.done":"Fertig — prüfe die Downloads deines Browsers.","offline.error":"Export fehlgeschlagen.",
     "gate.title":"18+ Inhalte freischalten",
@@ -1976,6 +2052,15 @@ function isSignedIn(){ var s = getSession(); return !!(s && s.access_token); }
 function isAdmin(){ var s = getSession(); return isSignedIn() && s.user && s.user.email === ADMIN_EMAIL; }
 function currentUserId(){ var s = getSession(); return s && s.user ? s.user.id : null; }
 function currentUserEmail(){ var s = getSession(); return s && s.user ? s.user.email : null; }
+
+// Nome da mostrare ad ALTRI utenti (commenti, canali, messaggi privati) — non deve
+// mai contenere l'email, che è un dato privato. Se l'utente non ha ancora scelto
+// un nome visualizzato, si usa un nome anonimo ma stabile basato sul suo id.
+function publicDisplayName(profile){
+  if(profile && profile.display_name) return profile.display_name;
+  var uid = currentUserId();
+  return uid ? (t('notif.someone') + ' ' + uid.slice(0,6)) : t('notif.someone');
+}
 
 // Access tokens expire after ~1 hour. Refresh a bit before that so the
 // person never silently "falls out" of their session while the tab is open.
@@ -2275,6 +2360,7 @@ function afterAuthChange(){
   loadNotifications();
   sendHeartbeat();
   renderMaintenanceBanner(); // se chi si è appena autenticato è l'admin, il blocco manutenzione deve sparire subito
+  renderNightClosureLock(); // idem per la chiusura notturna
   var reader = document.getElementById('pageReader');
   if(reader && !reader.classList.contains('hidden')){ showReaderPage(readerIndex); } // aggiorna subito alla versione pulita se stava già leggendo
 }
@@ -2487,6 +2573,18 @@ function supabaseBulkUpsert(items){
 
 /* ============ MAINTENANCE MODE (shared via Supabase, localized banner) ============ */
 var maintenanceOn = false;
+var maintenanceReason = '';
+var maintenanceStart = null;
+var maintenanceEnd = null;
+
+function formatMaintenanceDate(iso){
+  if(!iso) return '';
+  var d = new Date(iso);
+  if(isNaN(d.getTime())) return '';
+  var datePart = d.toLocaleDateString(currentLang, {day:'2-digit', month:'2-digit'});
+  var timePart = d.toLocaleTimeString(currentLang, {hour:'2-digit', minute:'2-digit'});
+  return datePart + ' ' + timePart;
+}
 
 function renderMaintenanceBanner(){
   var el = document.getElementById('maintenanceBanner');
@@ -2494,22 +2592,158 @@ function renderMaintenanceBanner(){
   el.classList.toggle('show', maintenanceOn);
   var lock = document.getElementById('maintenanceLock');
   if(lock) lock.classList.toggle('hidden', !(maintenanceOn && !isAdmin()));
+
+  var reasonEl = document.getElementById('maintenanceReasonText');
+  var scheduleEl = document.getElementById('maintenanceScheduleText');
+  if(reasonEl){
+    if(maintenanceReason){ reasonEl.textContent = maintenanceReason; reasonEl.classList.remove('hidden'); }
+    else { reasonEl.classList.add('hidden'); }
+  }
+  if(scheduleEl){
+    var startStr = formatMaintenanceDate(maintenanceStart);
+    var endStr = formatMaintenanceDate(maintenanceEnd);
+    if(startStr || endStr){
+      var parts = [];
+      if(startStr) parts.push(t('maintenance.fromLabel') + ' ' + startStr);
+      if(endStr) parts.push(t('maintenance.toLabel') + ' ' + endStr);
+      scheduleEl.textContent = parts.join(' · ');
+      scheduleEl.classList.remove('hidden');
+    } else {
+      scheduleEl.classList.add('hidden');
+    }
+  }
 }
 
 function fetchMaintenanceStatus(){
   if(!SUPABASE_URL) return Promise.resolve(null);
-  return fetch(SUPABASE_URL + '/rest/v1/site_status?select=maintenance&id=eq.1', {
+  return fetch(SUPABASE_URL + '/rest/v1/site_status?select=maintenance,maintenance_reason,maintenance_start,maintenance_end,night_closure_enabled,night_start_time,night_end_time&id=eq.1', {
     headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + SUPABASE_ANON_KEY }
   })
     .then(function(r){ if(!r.ok) throw new Error('maintenance read failed: ' + r.status); return r.json(); })
     .then(function(rows){
-      maintenanceOn = !!(rows && rows[0] && rows[0].maintenance);
+      var row = rows && rows[0] ? rows[0] : {};
+      maintenanceOn = !!row.maintenance;
+      maintenanceReason = row.maintenance_reason || '';
+      maintenanceStart = row.maintenance_start || null;
+      maintenanceEnd = row.maintenance_end || null;
+      nightClosureEnabled = !!row.night_closure_enabled;
+      nightStartTime = row.night_start_time ? row.night_start_time.slice(0,5) : '';
+      nightEndTime = row.night_end_time ? row.night_end_time.slice(0,5) : '';
       renderMaintenanceBanner();
+      renderNightClosureLock();
       var sw = document.getElementById('maintenanceSwitch');
       if(sw) sw.checked = maintenanceOn;
+      var reasonBox = document.getElementById('fMaintenanceReason');
+      if(reasonBox && document.activeElement !== reasonBox) reasonBox.value = maintenanceReason;
+      var startBox = document.getElementById('fMaintenanceStart');
+      if(startBox && document.activeElement !== startBox) startBox.value = maintenanceStart ? maintenanceStart.slice(0,16) : '';
+      var endBox = document.getElementById('fMaintenanceEnd');
+      if(endBox && document.activeElement !== endBox) endBox.value = maintenanceEnd ? maintenanceEnd.slice(0,16) : '';
+      var nightSw = document.getElementById('fNightEnabled');
+      if(nightSw) nightSw.checked = nightClosureEnabled;
+      var nightStartBox = document.getElementById('fNightStart');
+      if(nightStartBox && document.activeElement !== nightStartBox) nightStartBox.value = nightStartTime;
+      var nightEndBox = document.getElementById('fNightEnd');
+      if(nightEndBox && document.activeElement !== nightEndBox) nightEndBox.value = nightEndTime;
       return maintenanceOn;
     })
     .catch(function(err){ console.warn('Maintenance status read failed:', err); return null; });
+}
+
+function saveMaintenanceSchedule(){
+  var session = getSession();
+  var status = document.getElementById('maintenanceScheduleStatus');
+  if(!SUPABASE_URL || !session) return;
+  var reason = document.getElementById('fMaintenanceReason').value.trim();
+  var startVal = document.getElementById('fMaintenanceStart').value;
+  var endVal = document.getElementById('fMaintenanceEnd').value;
+  status.textContent = '…';
+  fetch(SUPABASE_URL + '/rest/v1/site_status?id=eq.1', {
+    method:'PATCH',
+    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json', 'Prefer':'return=representation' },
+    body: JSON.stringify({
+      maintenance_reason: reason || null,
+      maintenance_start: startVal ? new Date(startVal).toISOString() : null,
+      maintenance_end: endVal ? new Date(endVal).toISOString() : null
+    })
+  }).then(function(r){
+    if(!r.ok) throw new Error('maintenance schedule write failed');
+    maintenanceReason = reason;
+    maintenanceStart = startVal ? new Date(startVal).toISOString() : null;
+    maintenanceEnd = endVal ? new Date(endVal).toISOString() : null;
+    renderMaintenanceBanner();
+    status.textContent = t('maintenance.scheduleSaved');
+  }).catch(function(e){
+    status.textContent = t('mod.banFailed');
+    console.warn('Maintenance schedule save failed:', e);
+  });
+}
+
+/* ---- Chiusura notturna automatica (fascia oraria ricorrente, fuso Europe/Rome) ---- */
+var nightClosureEnabled = false;
+var nightStartTime = ''; // 'HH:MM'
+var nightEndTime = '';   // 'HH:MM'
+
+function timeStringToMinutes(hhmm){
+  if(!hhmm) return null;
+  var p = hhmm.split(':');
+  return (parseInt(p[0],10) * 60) + parseInt(p[1],10);
+}
+
+function currentRomeMinutes(){
+  var now = new Date();
+  var romeStr = now.toLocaleString('en-GB', { timeZone:'Europe/Rome', hour:'2-digit', minute:'2-digit', hour12:false });
+  var p = romeStr.split(':');
+  return (parseInt(p[0],10) * 60) + parseInt(p[1],10);
+}
+
+function isWithinNightWindow(){
+  if(!nightClosureEnabled || !nightStartTime || !nightEndTime) return false;
+  var s = timeStringToMinutes(nightStartTime), e = timeStringToMinutes(nightEndTime), now = currentRomeMinutes();
+  if(s === null || e === null || s === e) return false;
+  if(s < e) return now >= s && now < e;       // fascia nello stesso giorno
+  return now >= s || now < e;                  // fascia che attraversa la mezzanotte
+}
+
+function renderNightClosureLock(){
+  var lock = document.getElementById('nightClosureLock');
+  if(!lock) return;
+  var scheduleEl = document.getElementById('nightScheduleText');
+  if(scheduleEl && nightStartTime && nightEndTime){
+    scheduleEl.textContent = t('night.reopensAt').replace('{time}', nightEndTime);
+  }
+  // la manutenzione manuale ha la precedenza se attiva insieme alla chiusura notturna
+  var active = isWithinNightWindow() && !maintenanceOn;
+  lock.classList.toggle('hidden', !(active && !isAdmin()));
+}
+
+function saveNightSchedule(){
+  var session = getSession();
+  var status = document.getElementById('nightScheduleStatus');
+  if(!SUPABASE_URL || !session) return;
+  var enabled = document.getElementById('fNightEnabled').checked;
+  var startVal = document.getElementById('fNightStart').value;
+  var endVal = document.getElementById('fNightEnd').value;
+  status.textContent = '…';
+  fetch(SUPABASE_URL + '/rest/v1/site_status?id=eq.1', {
+    method:'PATCH',
+    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json', 'Prefer':'return=representation' },
+    body: JSON.stringify({
+      night_closure_enabled: enabled,
+      night_start_time: startVal || null,
+      night_end_time: endVal || null
+    })
+  }).then(function(r){
+    if(!r.ok) throw new Error('night schedule write failed');
+    nightClosureEnabled = enabled;
+    nightStartTime = startVal;
+    nightEndTime = endVal;
+    renderNightClosureLock();
+    status.textContent = t('maintenance.scheduleSaved');
+  }).catch(function(e){
+    status.textContent = t('mod.banFailed');
+    console.warn('Night schedule save failed:', e);
+  });
 }
 
 function setMaintenanceStatus(on){
@@ -3730,6 +3964,7 @@ function switchCommunityTab(tab){
     panel.classList.toggle('hidden', panel.dataset.cpanel !== tab);
   });
   if(tab === 'dms') loadDmThreads();
+  if(tab === 'friends') loadFriendsPanel();
 }
 
 function loadChannels(){
@@ -3824,14 +4059,148 @@ function renderChannelMessage(m){
   var isOwn = m.user_id === currentUserId();
   div.innerHTML = '<span class="author">' + escapeHtml(m.author_name) + '</span>' +
     '<div class="body">' + escapeHtml(m.body) + '</div>' +
-    '<div class="msg-actions">' +
-      (!isOwn ? '<button type="button" class="dm-btn">' + t('community.privateMessage') + '</button>' : '') +
+    '<div class="msg-actions"><span class="friend-action-slot"></span>' +
       '<button type="button" class="report-btn">' + t('community.report') + '</button>' +
     '</div>';
-  var dmBtn = div.querySelector('.dm-btn');
-  if(dmBtn) dmBtn.addEventListener('click', function(){ startDmWith(m.user_id, m.author_name); });
   div.querySelector('.report-btn').addEventListener('click', function(){ reportContent('channel_message', m.id); });
+  if(!isOwn) renderFriendActionSlot(div.querySelector('.friend-action-slot'), m.user_id, m.author_name);
   return div;
+}
+
+/* ---- Amicizia (necessaria prima di poter scrivere in privato) ---- */
+var friendshipCache = {}; // otherUserId -> {status, requesterId, id}
+
+function loadFriendshipMap(){
+  if(!isSignedIn()) return Promise.resolve({});
+  var uid = currentUserId();
+  return fetch(SUPABASE_URL + '/rest/v1/friendships?select=*&or=(requester_id.eq.' + encodeURIComponent(uid) + ',addressee_id.eq.' + encodeURIComponent(uid) + ')', { headers: communityHeaders() })
+    .then(function(r){ return r.ok ? r.json() : []; })
+    .then(function(rows){
+      friendshipCache = {};
+      rows.forEach(function(f){
+        var otherId = f.requester_id === uid ? f.addressee_id : f.requester_id;
+        friendshipCache[otherId] = f;
+      });
+      return friendshipCache;
+    })
+    .catch(function(){ return {}; });
+}
+
+function renderFriendActionSlot(slot, otherUserId, otherName){
+  var uid = currentUserId();
+  loadFriendshipMap().then(function(){
+    slot.innerHTML = '';
+    var f = friendshipCache[otherUserId];
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    if(!f){
+      btn.textContent = t('community.addFriend');
+      btn.addEventListener('click', function(){ sendFriendRequest(otherUserId); });
+    } else if(f.status === 'accepted'){
+      btn.textContent = t('community.privateMessage');
+      btn.addEventListener('click', function(){ startDmWith(otherUserId, otherName); });
+    } else if(f.status === 'pending' && f.requester_id === uid){
+      btn.textContent = t('community.requestSent');
+      btn.disabled = true;
+    } else if(f.status === 'pending' && f.addressee_id === uid){
+      btn.textContent = t('community.acceptFriend');
+      btn.addEventListener('click', function(){ respondFriendRequest(f.id, true); });
+    }
+    slot.appendChild(btn);
+  });
+}
+
+function sendFriendRequest(otherUserId){
+  if(!isSignedIn()){ openAuth('login'); return; }
+  var session = getSession();
+  fetch(SUPABASE_URL + '/rest/v1/friendships', {
+    method:'POST',
+    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
+    body: JSON.stringify({ requester_id: currentUserId(), addressee_id: otherUserId })
+  }).then(function(r){
+    if(!r.ok) throw new Error('friend request failed');
+    if(currentChannelId) loadChannelMessages();
+  }).catch(function(e){ console.warn('Friend request failed:', e); });
+}
+
+function respondFriendRequest(friendshipId, accept){
+  var session = getSession();
+  var action = accept
+    ? fetch(SUPABASE_URL + '/rest/v1/friendships?id=eq.' + encodeURIComponent(friendshipId), {
+        method:'PATCH',
+        headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
+        body: JSON.stringify({status:'accepted'})
+      })
+    : fetch(SUPABASE_URL + '/rest/v1/friendships?id=eq.' + encodeURIComponent(friendshipId), {
+        method:'DELETE',
+        headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
+      });
+  action.then(function(){
+    loadFriendsPanel();
+    if(currentChannelId) loadChannelMessages();
+  }).catch(function(e){ console.warn('Friend response failed:', e); });
+}
+
+function loadFriendsPanel(){
+  if(!isSignedIn()) return;
+  var uid = currentUserId();
+  var receivedBox = document.getElementById('friendRequestsReceived');
+  var sentBox = document.getElementById('friendRequestsSent');
+  var friendsBox = document.getElementById('friendsList');
+  receivedBox.innerHTML = '<p class="form-note">…</p>';
+  sentBox.innerHTML = '<p class="form-note">…</p>';
+  friendsBox.innerHTML = '<p class="form-note">…</p>';
+
+  fetch(SUPABASE_URL + '/rest/v1/friendships?select=*&or=(requester_id.eq.' + encodeURIComponent(uid) + ',addressee_id.eq.' + encodeURIComponent(uid) + ')', { headers: communityHeaders() })
+    .then(function(r){ if(!r.ok) throw new Error('friendships read failed'); return r.json(); })
+    .then(function(rows){
+      var received = rows.filter(function(f){ return f.status === 'pending' && f.addressee_id === uid; });
+      var sent = rows.filter(function(f){ return f.status === 'pending' && f.requester_id === uid; });
+      var accepted = rows.filter(function(f){ return f.status === 'accepted'; });
+
+      receivedBox.innerHTML = received.length === 0 ? '<p class="form-note">' + t('mod.empty') + '</p>' : '';
+      received.forEach(function(f){
+        getDisplayName(f.requester_id).then(function(name){
+          var row = document.createElement('div');
+          row.className = 'admin-row';
+          row.innerHTML = '<div class="info"><div class="t">' + escapeHtml(name) + '</div></div>' +
+            '<div class="admin-actions">' +
+              '<button class="btn btn-sm btn-ghost" data-accept>' + t('community.acceptFriend') + '</button>' +
+              '<button class="btn btn-sm btn-ghost" data-decline>' + t('community.declineFriend') + '</button>' +
+            '</div>';
+          row.querySelector('[data-accept]').addEventListener('click', function(){ respondFriendRequest(f.id, true); });
+          row.querySelector('[data-decline]').addEventListener('click', function(){ respondFriendRequest(f.id, false); });
+          receivedBox.appendChild(row);
+        });
+      });
+
+      sentBox.innerHTML = sent.length === 0 ? '<p class="form-note">' + t('mod.empty') + '</p>' : '';
+      sent.forEach(function(f){
+        getDisplayName(f.addressee_id).then(function(name){
+          var row = document.createElement('div');
+          row.className = 'admin-row';
+          row.innerHTML = '<div class="info"><div class="t">' + escapeHtml(name) + '</div><div class="m">' + t('community.requestSent') + '</div></div>';
+          sentBox.appendChild(row);
+        });
+      });
+
+      friendsBox.innerHTML = accepted.length === 0 ? '<p class="form-note">' + t('mod.empty') + '</p>' : '';
+      accepted.forEach(function(f){
+        var otherId = f.requester_id === uid ? f.addressee_id : f.requester_id;
+        getDisplayName(otherId).then(function(name){
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'dm-thread-item';
+          btn.textContent = name;
+          btn.addEventListener('click', function(){
+            switchCommunityTab('dms');
+            startDmWith(otherId, name);
+          });
+          friendsBox.appendChild(btn);
+        });
+      });
+    })
+    .catch(function(err){ console.warn('Friends panel load failed:', err); });
 }
 
 function sendChannelMessage(){
@@ -3844,7 +4213,7 @@ function sendChannelMessage(){
   var session = getSession();
   var nameStep = currentProfile !== null ? Promise.resolve(currentProfile) : loadOwnProfile().then(function(){ return currentProfile; });
   nameStep.then(function(profile){
-    var authorName = (profile && profile.display_name) ? profile.display_name : currentUserEmail();
+    var authorName = publicDisplayName(profile);
     return fetch(SUPABASE_URL + '/rest/v1/channel_messages', {
       method:'POST',
       headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
@@ -4557,7 +4926,7 @@ function submitComment(){
     : loadOwnProfile().then(function(){ return currentProfile; });
 
   nameStep.then(function(profile){
-    var authorName = (profile && profile.display_name) ? profile.display_name : currentUserEmail();
+    var authorName = publicDisplayName(profile);
     return fetch(SUPABASE_URL + '/rest/v1/comments', {
       method:'POST',
       headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json', 'Prefer':'return=representation' },
@@ -5142,8 +5511,11 @@ document.addEventListener('DOMContentLoaded', function(){
       if(!ok) e.target.checked = !on; // revert on failure
     });
   });
+  document.getElementById('btnSaveMaintenanceSchedule').addEventListener('click', saveMaintenanceSchedule);
+  document.getElementById('btnSaveNightSchedule').addEventListener('click', saveNightSchedule);
   document.getElementById('btnExportOffline').addEventListener('click', exportEverythingOffline);
   document.getElementById('maintenanceLockLogin').addEventListener('click', function(){ openAuth('login'); });
+  document.getElementById('nightLockLogin').addEventListener('click', function(){ openAuth('login'); });
   document.getElementById('btnSaveSocial').addEventListener('click', saveSocialLinks);
 
   document.getElementById('titleModalClose').addEventListener('click', closeTitleModal);
@@ -5177,6 +5549,7 @@ document.addEventListener('DOMContentLoaded', function(){
   });
   fetchMaintenanceStatus();
   setInterval(fetchMaintenanceStatus, 60000); // light polling so visitors already on the page see it too
+  setInterval(renderNightClosureLock, 30000); // ricontrolla l'orario anche senza nuove risposte dal server
   setInterval(renderAdminUsers, 60000); // keeps "online now" fresh while you're on that tab; no-op if not admin
 });
 })();
