@@ -361,6 +361,7 @@ body.theme-light .hero-bg::after{
   display:flex;align-items:center;justify-content:center;padding:20px;
   padding-top:calc(20px + var(--sat));padding-bottom:calc(20px + var(--sab));
 }
+#authModal{z-index:220;} /* l'accesso può aprirsi sopra un altro modal già aperto (mi piace, PDF, ecc.) — deve sempre restare raggiungibile */
 .modal{
   max-width:420px;width:100%;background:var(--void-2);border:1px solid var(--gold);
   padding:32px 28px;max-height:90vh;overflow:auto;
@@ -377,6 +378,9 @@ body.theme-light .hero-bg::after{
 .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--gold);}
 .modal-actions{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap;}
 .modal-switch{margin-top:16px;text-align:center;font-size:12px;color:var(--parchment-dim);}
+.quiz-question{font-weight:600;margin:14px 0 12px;font-size:15px;line-height:1.4;}
+.quiz-options{display:flex;flex-direction:column;gap:8px;margin-bottom:10px;}
+.quiz-option-btn{text-align:left;width:100%;}
 .modal-switch button{background:none;border:none;color:var(--gold-bright);text-decoration:underline;font-size:12px;padding:0;}
 .modal-close{position:absolute;top:14px;right:16px;background:none;border:none;color:var(--parchment-dim);font-size:20px;line-height:1;}
 .modal{position:relative;}
@@ -1210,6 +1214,7 @@ var STR = {
     "auth.username":"Email","auth.password":"Password","auth.loginBtn":"Accedi","auth.registerBtn":"Registrati","auth.cancel":"Annulla",
     "auth.switchToRegister":"Non hai un account?","auth.switchToRegisterBtn":"Registrati",
     "auth.switchToLogin":"Hai già un account?","auth.switchToLoginBtn":"Accedi",
+    "quiz.intro":"Prima di registrarti, dimostra di conoscere l'Archivio.","quiz.lockedOut":"Troppi tentativi sbagliati. Riprova tra {min} minuti.",
     "auth.note":"Nota: l'account salva solo la tua preferenza di lingua per questo sito, in locale su questo browser.",
     "err.userExists":"Nome utente già in uso.","err.badLogin":"Credenziali non valide.","err.required":"Compila tutti i campi.",
     "admin.deleted":"rimosso","admin.confirmDelete":"Rimuovere questo titolo dallo schedario?",
@@ -1320,6 +1325,7 @@ var STR = {
     "auth.username":"Email","auth.password":"Password","auth.loginBtn":"Sign in","auth.registerBtn":"Register","auth.cancel":"Cancel",
     "auth.switchToRegister":"No account yet?","auth.switchToRegisterBtn":"Register",
     "auth.switchToLogin":"Already have an account?","auth.switchToLoginBtn":"Sign in",
+    "quiz.intro":"Before you register, prove you know the Archive.","quiz.lockedOut":"Too many wrong answers. Try again in {min} minutes.",
     "auth.note":"Note: the account only stores your language preference for this site, locally on this browser.",
     "err.userExists":"Username already taken.","err.badLogin":"Invalid credentials.","err.required":"Fill in every field.",
     "admin.deleted":"removed","admin.confirmDelete":"Remove this title from the index?",
@@ -1430,6 +1436,7 @@ var STR = {
     "auth.username":"Email","auth.password":"Contraseña","auth.loginBtn":"Acceder","auth.registerBtn":"Registrarse","auth.cancel":"Cancelar",
     "auth.switchToRegister":"¿No tienes cuenta?","auth.switchToRegisterBtn":"Registrarse",
     "auth.switchToLogin":"¿Ya tienes cuenta?","auth.switchToLoginBtn":"Acceder",
+    "quiz.intro":"Antes de registrarte, demuestra que conoces el Archivo.","quiz.lockedOut":"Demasiados intentos fallidos. Vuelve a intentarlo en {min} minutos.",
     "auth.note":"Nota: la cuenta solo guarda tu preferencia de idioma para este sitio, localmente en este navegador.",
     "err.userExists":"El nombre de usuario ya existe.","err.badLogin":"Credenciales no válidas.","err.required":"Completa todos los campos.",
     "admin.deleted":"eliminado","admin.confirmDelete":"¿Eliminar este título del índice?",
@@ -1540,6 +1547,7 @@ var STR = {
     "auth.username":"Email","auth.password":"Mot de passe","auth.loginBtn":"Connexion","auth.registerBtn":"S'inscrire","auth.cancel":"Annuler",
     "auth.switchToRegister":"Pas encore de compte ?","auth.switchToRegisterBtn":"S'inscrire",
     "auth.switchToLogin":"Déjà un compte ?","auth.switchToLoginBtn":"Connexion",
+    "quiz.intro":"Avant de vous inscrire, prouvez que vous connaissez l'Archive.","quiz.lockedOut":"Trop de réponses erronées. Réessayez dans {min} minutes.",
     "auth.note":"Note : le compte enregistre uniquement votre préférence de langue pour ce site, localement sur ce navigateur.",
     "err.userExists":"Nom d'utilisateur déjà utilisé.","err.badLogin":"Identifiants invalides.","err.required":"Remplissez tous les champs.",
     "admin.deleted":"supprimé","admin.confirmDelete":"Supprimer ce titre de l'index ?",
@@ -1650,6 +1658,7 @@ var STR = {
     "auth.username":"Email","auth.password":"Passwort","auth.loginBtn":"Anmelden","auth.registerBtn":"Registrieren","auth.cancel":"Abbrechen",
     "auth.switchToRegister":"Noch kein Konto?","auth.switchToRegisterBtn":"Registrieren",
     "auth.switchToLogin":"Schon ein Konto?","auth.switchToLoginBtn":"Anmelden",
+    "quiz.intro":"Bevor du dich registrierst, beweise, dass du das Archiv kennst.","quiz.lockedOut":"Zu viele falsche Antworten. Versuche es in {min} Minuten erneut.",
     "auth.note":"Hinweis: Das Konto speichert nur Ihre Sprachpräferenz für diese Seite, lokal in diesem Browser.",
     "err.userExists":"Benutzername bereits vergeben.","err.badLogin":"Ungültige Anmeldedaten.","err.required":"Bitte alle Felder ausfüllen.",
     "admin.deleted":"entfernt","admin.confirmDelete":"Diesen Titel aus dem Index entfernen?",
@@ -1930,6 +1939,89 @@ function initMatureToggle(){
   });
 }
 
+/* ============ REGISTRATION QUIZ (rallenta le registrazioni casuali — non
+   è sicurezza vera, è un ostacolo: chi vuole aggirarlo cancellando i dati
+   del browser può sempre farlo, ma scoraggia i tentativi automatici/pigri) ============ */
+var QUIZ_QUESTIONS = [
+  { q:"Chi è il fondatore di LUX COMICS & MEDUSA COMICS?", options:["Lucifer Morningstar","Nox Morningstar","Lucio Emerald","Nox Lucifera"], correct:1 },
+  { q:"Quante collane principali compongono l'Archivio?", options:["Due","Tre","Quattro","Cinque"], correct:2 },
+  { q:"Chi è la sorella di Lucifer in questo universo?", options:["Lilith","Medusa","Lucifera","Nox"], correct:2 },
+  { q:"In quale città è ambientata la collana LUX?", options:["Londra","Los Angeles","Edimburgo","New York"], correct:1 },
+  { q:"Come si chiama la dimora di Lucio?", options:["The Black Manor","LUX Noir","Emerald Palace","Silver City"], correct:2 },
+  { q:"In quale città è ambientata The Black Manor?", options:["Edimburgo","Los Angeles","Londra","Parigi"], correct:0 }
+];
+var QUIZ_MAX_FAILS = 4;
+var QUIZ_LOCKOUT_MS = 10 * 60 * 1000;
+var quizPassed = false;
+var currentQuizQuestion = null;
+
+function getQuizState(){
+  try {
+    var raw = localStorage.getItem('lux_quiz_state');
+    return raw ? JSON.parse(raw) : {fails:0, lockoutUntil:0};
+  } catch(e){ return {fails:0, lockoutUntil:0}; }
+}
+function saveQuizState(state){
+  try { localStorage.setItem('lux_quiz_state', JSON.stringify(state)); } catch(e){}
+}
+
+function renderQuizGate(){
+  var gate = document.getElementById('registerQuizGate');
+  var fieldsWrap = document.getElementById('authFieldsWrap');
+  if(quizPassed){
+    gate.classList.add('hidden');
+    fieldsWrap.classList.remove('hidden');
+    return;
+  }
+  fieldsWrap.classList.add('hidden');
+  gate.classList.remove('hidden');
+
+  var qError = document.getElementById('quizError');
+  var qText = document.getElementById('quizQuestionText');
+  var qOptions = document.getElementById('quizOptions');
+  var state = getQuizState();
+  var now = Date.now();
+
+  if(state.lockoutUntil > now){
+    qText.textContent = '';
+    qOptions.innerHTML = '';
+    var minsLeft = Math.ceil((state.lockoutUntil - now) / 60000);
+    qError.textContent = t('quiz.lockedOut').replace('{min}', minsLeft);
+    return;
+  }
+
+  qError.textContent = '';
+  currentQuizQuestion = QUIZ_QUESTIONS[Math.floor(Math.random() * QUIZ_QUESTIONS.length)];
+  qText.textContent = currentQuizQuestion.q;
+  qOptions.innerHTML = '';
+  currentQuizQuestion.options.forEach(function(opt, idx){
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'btn btn-ghost btn-sm quiz-option-btn';
+    btn.textContent = opt;
+    btn.addEventListener('click', function(){ answerQuiz(idx); });
+    qOptions.appendChild(btn);
+  });
+}
+
+function answerQuiz(selectedIdx){
+  var state = getQuizState();
+  if(selectedIdx === currentQuizQuestion.correct){
+    quizPassed = true;
+    state.fails = 0;
+    saveQuizState(state);
+    renderQuizGate();
+  } else {
+    state.fails = (state.fails || 0) + 1;
+    if(state.fails >= QUIZ_MAX_FAILS){
+      state.lockoutUntil = Date.now() + QUIZ_LOCKOUT_MS;
+      state.fails = 0;
+    }
+    saveQuizState(state);
+    renderQuizGate();
+  }
+}
+
 var authMode = 'login';
 function openAuth(mode){
   authMode = mode || 'login';
@@ -1948,17 +2040,26 @@ function openAuth(mode){
     switchText.textContent = t('auth.switchToLogin');
     switchLabel.textContent = t('auth.switchToLoginBtn');
   }
+  if(authMode === 'register'){
+    quizPassed = false;
+    renderQuizGate();
+  } else {
+    document.getElementById('registerQuizGate').classList.add('hidden');
+    document.getElementById('authFieldsWrap').classList.remove('hidden');
+  }
   document.getElementById('authModal').classList.remove('hidden');
 }
 function closeAuth(){ document.getElementById('authModal').classList.add('hidden'); }
 
 function handleAuthSubmit(){
+  if(authMode === 'register' && !quizPassed) return; // difesa in più, i campi restano comunque nascosti finché non superi il quiz
   var email = document.getElementById('authUser').value.trim();
   var pass = document.getElementById('authPass').value;
   var err = document.getElementById('authError');
   err.textContent = '';
   if(!email || !pass){ err.textContent = t('err.required'); return; }
   if(!SUPABASE_URL){ err.textContent = t('sync.notConfigured'); return; }
+
 
   if(authMode === 'register'){
     authSignUp(email, pass).then(function(data){
@@ -1992,6 +2093,8 @@ function afterAuthChange(){
   loadLikes();
   sendHeartbeat();
   renderMaintenanceBanner(); // se chi si è appena autenticato è l'admin, il blocco manutenzione deve sparire subito
+  var reader = document.getElementById('pageReader');
+  if(reader && !reader.classList.contains('hidden')){ showReaderPage(readerIndex); } // aggiorna subito alla versione pulita se stava già leggendo
 }
 
 function refreshAuthUI(){
@@ -2988,13 +3091,26 @@ function uploadComicPage(file, path){
   });
 }
 
+function uploadCleanPage(file, path){
+  var session = getSession();
+  return fetch(SUPABASE_URL + '/storage/v1/object/comic-pages-clean/' + path, {
+    method:'POST',
+    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type': file.type || 'image/jpeg' },
+    body: file
+  }).then(function(r){
+    if(!r.ok) throw new Error('clean page upload failed: ' + r.status);
+    return path; // bucket privato — restituiamo solo il percorso, non un url pubblico
+  });
+}
+
 function uploadAllPendingPages(comicId){
   var status = document.getElementById('pagesUploadStatus');
-  if(pendingPages.length === 0) return Promise.resolve([]);
+  if(pendingPages.length === 0) return Promise.resolve({urls:[], cleanPaths:[]});
   var urls = [];
+  var cleanPaths = [];
   var i = 0;
   function next(){
-    if(i >= pendingPages.length) return Promise.resolve(urls);
+    if(i >= pendingPages.length) return Promise.resolve({urls:urls, cleanPaths:cleanPaths});
     status.textContent = t('pages.uploading').replace('{n}', i + 1).replace('{total}', pendingPages.length);
     var file = pendingPages[i].file;
     var pageNum = String(i + 1);
@@ -3004,6 +3120,9 @@ function uploadAllPendingPages(comicId){
       return uploadComicPage(watermarkedBlob, path);
     }).then(function(url){
       urls.push(url);
+      return uploadCleanPage(file, path); // stesso nome file, bucket diverso (privato)
+    }).then(function(cleanPath){
+      cleanPaths.push(cleanPath);
       i++;
       return next();
     });
@@ -3089,9 +3208,10 @@ function handleAddEntry(){
     return uploadAllPendingPages(newItem.id);
   });
 
-  uploadSteps.then(function(urls){
-    newItem.pages = urls;
-    newItem.pages_watermarked = urls.length > 0; // new uploads always go through the watermark step
+  uploadSteps.then(function(result){
+    newItem.pages = result.urls;
+    newItem.pages_clean = result.cleanPaths;
+    newItem.pages_watermarked = result.urls.length > 0; // new uploads always go through the watermark step
     status.textContent = '';
     var items = getCatalog();
     items.push(newItem);
@@ -3480,7 +3600,7 @@ function openTitleModal(item){
   document.getElementById('titleModalSynopsis').textContent = synopsisForCurrentLang(item);
   refreshTitleModalFav(item.id);
   refreshTitleModalLike(item.id);
-  openPageReader(item.pages || []);
+  openPageReader(item);
 
   // count this as a view, once per open, and reflect it immediately in the local number
   var catItems = getCatalog();
@@ -3581,11 +3701,17 @@ function shareTitle(item){
 }
 
 /* ============ COMIC PAGE READER (viewer inside title detail modal) ============ */
+var readerItem = null;
 var readerPages = [];
 var readerIndex = 0;
+var readerBlobUrlCache = {};
 
-function openPageReader(pages){
-  readerPages = pages || [];
+function openPageReader(item){
+  // pulizia della sessione di lettura precedente, per non accumulare oggetti in memoria
+  Object.keys(readerBlobUrlCache).forEach(function(k){ URL.revokeObjectURL(readerBlobUrlCache[k]); });
+  readerBlobUrlCache = {};
+  readerItem = item;
+  readerPages = item.pages || [];
   readerIndex = 0;
   var reader = document.getElementById('pageReader');
   if(readerPages.length === 0){ reader.classList.add('hidden'); return; }
@@ -3594,23 +3720,55 @@ function openPageReader(pages){
   thumbs.innerHTML = '';
   readerPages.forEach(function(url, idx){
     var img = document.createElement('img');
-    img.src = url;
+    img.src = url; // le miniature restano sempre la versione pubblica filigranata — più leggere, non serve autenticarsi per vederle
     img.alt = 'Pagina ' + (idx + 1);
     img.addEventListener('click', function(){ showReaderPage(idx); });
     thumbs.appendChild(img);
   });
   showReaderPage(0);
 }
+
+function fetchAuthenticatedCleanPage(path){
+  var session = getSession();
+  if(!session) return Promise.reject(new Error('not signed in'));
+  return fetch(SUPABASE_URL + '/storage/v1/object/comic-pages-clean/' + path, {
+    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
+  }).then(function(r){
+    if(!r.ok) throw new Error('clean page fetch failed: ' + r.status);
+    return r.blob();
+  }).then(function(blob){
+    return URL.createObjectURL(blob);
+  });
+}
+
 function showReaderPage(idx){
   if(idx < 0 || idx >= readerPages.length) return;
   readerIndex = idx;
-  document.getElementById('pageReaderImg').src = readerPages[idx];
   document.getElementById('pageReaderCount').textContent = (idx + 1) + ' / ' + readerPages.length;
   document.getElementById('pageReaderPrev').disabled = idx === 0;
   document.getElementById('pageReaderNext').disabled = idx === readerPages.length - 1;
   document.querySelectorAll('#pageReaderThumbs img').forEach(function(img, i){
     img.classList.toggle('active', i === idx);
   });
+
+  var imgEl = document.getElementById('pageReaderImg');
+  var cleanPath = (readerItem && readerItem.pages_clean) ? readerItem.pages_clean[idx] : null;
+
+  if(isSignedIn() && cleanPath){
+    if(readerBlobUrlCache[cleanPath]){
+      imgEl.src = readerBlobUrlCache[cleanPath];
+      return;
+    }
+    imgEl.src = readerPages[idx]; // versione filigranata come anteprima immediata mentre quella pulita si scarica
+    fetchAuthenticatedCleanPage(cleanPath).then(function(blobUrl){
+      readerBlobUrlCache[cleanPath] = blobUrl;
+      if(readerIndex === idx){ imgEl.src = blobUrl; } // solo se siamo ancora su questa pagina quando arriva
+    }).catch(function(err){
+      console.warn('Clean page fetch failed, showing watermarked version instead:', err);
+    });
+  } else {
+    imgEl.src = readerPages[idx];
+  }
 }
 function refreshTitleModalFav(catalogId){
   var btn = document.getElementById('titleModalFav');
