@@ -476,6 +476,17 @@ body.theme-light .hero-bg::after{
 }
 .maintenance-banner.show{display:block;}
 
+.maintenance-lock{
+  position:fixed;inset:0;z-index:150;
+  background:var(--void);
+  display:flex;align-items:center;justify-content:center;
+  padding:20px;text-align:center;
+}
+.maintenance-lock-box{max-width:420px;}
+.maintenance-lock-box .seal{width:64px;height:64px;display:inline-block;margin-bottom:20px;}
+.maintenance-lock-box h2{font-size:24px;margin-bottom:12px;color:var(--gold-bright);}
+.maintenance-lock-box p{color:var(--parchment-dim);line-height:1.7;margin-bottom:22px;}
+
 /* ============ FOOTER ============ */
 .newsletter-section{padding-top:20px;padding-bottom:20px;}
 .newsletter-box{
@@ -559,6 +570,10 @@ footer .fcopy{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
 .watermark-done-tag{color:var(--verdigris);font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.06em;text-transform:uppercase;align-self:center;}
 .user-eligible-tag{color:var(--verdigris);font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.06em;text-transform:uppercase;}
 .user-waiting-tag{color:var(--parchment-dim);font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.06em;text-transform:uppercase;}
+.ann-expired-tag{color:var(--ember);font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.06em;text-transform:uppercase;}
+.ann-active-tag{color:var(--verdigris);font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.06em;text-transform:uppercase;}
+.permanent-tag{color:var(--gold);font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.06em;text-transform:uppercase;}
+.temporary-tag{color:var(--parchment-dim);font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.06em;text-transform:uppercase;}
 .online-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#4ade80;vertical-align:middle;}
 .profile-avatar-wrap{margin-bottom:10px;}
 .profile-avatar{
@@ -606,6 +621,14 @@ footer .fcopy{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
 <div id="app">
 
   <div class="maintenance-banner" id="maintenanceBanner" data-i18n="maintenance.text">Sito in manutenzione — stiamo aggiornando l'archivio, torna a breve.</div>
+  <div class="maintenance-lock hidden" id="maintenanceLock">
+    <div class="maintenance-lock-box">
+      <img class="seal seal-img" data-size="sm" alt="LUX COMICS &amp; MEDUSA COMICS">
+      <h2 data-i18n="maintenance.lockTitle">Sito in manutenzione</h2>
+      <p data-i18n="maintenance.lockText">Stiamo aggiornando l'archivio. Torna tra poco.</p>
+      <button type="button" class="btn btn-ghost btn-sm" id="maintenanceLockLogin" data-i18n="auth.loginBtn">Accedi</button>
+    </div>
+  </div>
 
   <header class="topbar">
     <div class="brand">
@@ -930,6 +953,12 @@ footer .fcopy{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
             <span class="switch"><input type="checkbox" id="maintenanceSwitch"><span class="slider"></span></span>
           </label>
         </div>
+        <div class="notice">
+          <div data-i18n="offline.title" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Copia offline (solo per te)</div>
+          <p class="form-note" data-i18n="offline.hint">Scarica tutti i titoli, le pagine e le copertine in un unico file compresso sul tuo computer — visibile solo qui, mai ai visitatori.</p>
+          <button class="btn btn-ghost btn-sm" id="btnExportOffline" data-i18n="offline.export">Scarica tutto per uso offline</button>
+          <div class="form-note" id="offlineExportStatus" style="margin-top:8px;"></div>
+        </div>
       </div>
     </div>
   </section>
@@ -1136,6 +1165,7 @@ var STR = {
     "users.eligible":"Idoneo","users.waitingDays":"ancora {n} giorni","users.grant":"Assegna spunta","users.revoke":"Rimuovi spunta",
     "users.onlineNow":"{n} utenti online ora","users.onlineTag":"Online ora",
     "announcements.eyebrow":"Dalla Redazione","announcements.title":"Novità","announcements.readMore":"Leggi","announcements.share":"Condividi",
+    "announcements.archived":"Archiviato","announcements.expiresIn":"scade tra {h}h","announcements.extend":"Estendi 24h",
     "announcements.newTitle":"Nuovo annuncio","announcements.f.title":"Titolo","announcements.f.body":"Testo","announcements.f.link":"Link (opzionale)","announcements.f.image":"Immagine (opzionale — qualsiasi proporzione)",
     "announcements.publish":"Pubblica annuncio","announcements.publishError":"Pubblicazione non riuscita. Riprova.",
     "announcements.existingTitle":"Annunci pubblicati","announcements.empty":"Nessun annuncio ancora.",
@@ -1174,6 +1204,8 @@ var STR = {
     "filter.all":"Tutti",
     "maintenance.text":"Sito in manutenzione — stiamo aggiornando l'archivio, torna a breve.",
     "maintenance.toggle":"Modalità manutenzione (visibile a tutti i visitatori)",
+    "offline.title":"Copia offline (solo per te)","offline.hint":"Scarica tutti i titoli, le pagine e le copertine in un unico file compresso sul tuo computer — visibile solo qui, mai ai visitatori.",
+    "offline.export":"Scarica tutto per uso offline","offline.preparing":"Preparazione…","offline.progress":"{done}/{total} — {label}","offline.zipping":"Compressione del file…","offline.done":"Fatto — controlla i download del browser.","offline.error":"Esportazione non riuscita.",
     "gate.title":"Sblocca i Contenuti 18+",
     "toggle.mature":"Contenuti 18+",
     "admin.f.mature":"Contenuto per adulti (18+)",
@@ -1190,6 +1222,7 @@ var STR = {
     "synopsis.translating":"Traduzione sinossi in corso…","synopsis.translateExisting":"Traduci sinossi",
     "synopsis.retranslate":"Ritraduci sinossi","synopsis.translateError":"Traduzione non riuscita. Riprova.",
     "rewatermark.button":"Ri-filigrana pagine","rewatermark.progress":"Filigrana pagina {n} di {total}…","rewatermark.error":"Filigrana non riuscita. Riprova.","rewatermark.done":"Filigranato",
+    "catalog.permanent":"Permanente","catalog.temporary":"A tempo determinato","catalog.makeTemporary":"Rendi a tempo","catalog.makePermanent":"Rendi permanente",
     "collab.name":"Collaboratore (opzionale)","collab.url":"Link al profilo (es. Instagram)",
     "collab.verified":"Collaboratore verificato (mostra la spunta blu)",
     "verified.label":"Verificato","verified.commenter":"Email verificata","verified.founder":"Account ufficiale","verified.collaborator":"Collaboratore verificato",
@@ -1199,7 +1232,8 @@ var STR = {
     "share.copied":"Link copiato — incollalo dove vuoi condividerlo.",
     "share.manual":"Copia questo testo per condividerlo:",
     "pdf.label":"Oppure carica il fumetto come PDF (A4) invece delle pagine singole",
-    "pdf.uploading":"Caricamento PDF…","pdf.download":"Scarica PDF",
+    "pdf.uploading":"Caricamento PDF…","pdf.download":"Scarica PDF","pdf.loginToDownload":"Accedi per scaricare il PDF",
+    "maintenance.lockTitle":"Sito in manutenzione","maintenance.lockText":"Stiamo aggiornando l'archivio. Torna tra poco.",
     "charimg.title":"Immagini profilo personaggi",
     "social.title":"Link social (visibili nel footer)","social.save":"Salva link social",
     "comments.moderationTitle":"Commenti in attesa di approvazione",
@@ -1241,6 +1275,7 @@ var STR = {
     "users.eligible":"Eligible","users.waitingDays":"{n} days to go","users.grant":"Grant checkmark","users.revoke":"Remove checkmark",
     "users.onlineNow":"{n} users online now","users.onlineTag":"Online now",
     "announcements.eyebrow":"From the Editors","announcements.title":"News","announcements.readMore":"Read","announcements.share":"Share",
+    "announcements.archived":"Archived","announcements.expiresIn":"expires in {h}h","announcements.extend":"Extend 24h",
     "announcements.newTitle":"New announcement","announcements.f.title":"Title","announcements.f.body":"Text","announcements.f.link":"Link (optional)","announcements.f.image":"Image (optional — any aspect ratio)",
     "announcements.publish":"Publish announcement","announcements.publishError":"Publishing failed. Try again.",
     "announcements.existingTitle":"Published announcements","announcements.empty":"No announcements yet.",
@@ -1279,6 +1314,8 @@ var STR = {
     "filter.all":"All",
     "maintenance.text":"Site under maintenance — we're updating the archive, check back soon.",
     "maintenance.toggle":"Maintenance mode (visible to every visitor)",
+    "offline.title":"Offline copy (just for you)","offline.hint":"Download every title, page and cover into a single compressed file on your computer — visible only here, never to visitors.",
+    "offline.export":"Download everything for offline use","offline.preparing":"Preparing…","offline.progress":"{done}/{total} — {label}","offline.zipping":"Compressing the file…","offline.done":"Done — check your browser's downloads.","offline.error":"Export failed.",
     "gate.title":"Unlock 18+ Content",
     "toggle.mature":"18+ Content",
     "admin.f.mature":"Adult content (18+)",
@@ -1295,6 +1332,7 @@ var STR = {
     "synopsis.translating":"Translating synopsis…","synopsis.translateExisting":"Translate synopsis",
     "synopsis.retranslate":"Re-translate synopsis","synopsis.translateError":"Translation failed. Try again.",
     "rewatermark.button":"Re-watermark pages","rewatermark.progress":"Watermarking page {n} of {total}…","rewatermark.error":"Watermarking failed. Try again.","rewatermark.done":"Watermarked",
+    "catalog.permanent":"Permanent","catalog.temporary":"Time-limited","catalog.makeTemporary":"Make time-limited","catalog.makePermanent":"Make permanent",
     "collab.name":"Collaborator (optional)","collab.url":"Profile link (e.g. Instagram)",
     "collab.verified":"Verified collaborator (shows the blue checkmark)",
     "verified.label":"Verified","verified.commenter":"Verified email","verified.founder":"Official account","verified.collaborator":"Verified collaborator",
@@ -1304,7 +1342,8 @@ var STR = {
     "share.copied":"Link copied — paste it wherever you'd like to share it.",
     "share.manual":"Copy this text to share it:",
     "pdf.label":"Or upload the comic as a PDF (A4) instead of individual pages",
-    "pdf.uploading":"Uploading PDF…","pdf.download":"Download PDF",
+    "pdf.uploading":"Uploading PDF…","pdf.download":"Download PDF","pdf.loginToDownload":"Sign in to download the PDF",
+    "maintenance.lockTitle":"Site under maintenance","maintenance.lockText":"We're updating the archive. Check back shortly.",
     "charimg.title":"Character profile images",
     "social.title":"Social links (shown in the footer)","social.save":"Save social links",
     "comments.moderationTitle":"Comments pending approval",
@@ -1346,6 +1385,7 @@ var STR = {
     "users.eligible":"Apto","users.waitingDays":"faltan {n} días","users.grant":"Otorgar marca","users.revoke":"Quitar marca",
     "users.onlineNow":"{n} usuarios en línea ahora","users.onlineTag":"En línea ahora",
     "announcements.eyebrow":"De la Redacción","announcements.title":"Novedades","announcements.readMore":"Leer","announcements.share":"Compartir",
+    "announcements.archived":"Archivado","announcements.expiresIn":"caduca en {h}h","announcements.extend":"Extender 24h",
     "announcements.newTitle":"Nuevo anuncio","announcements.f.title":"Título","announcements.f.body":"Texto","announcements.f.link":"Enlace (opcional)","announcements.f.image":"Imagen (opcional — cualquier proporción)",
     "announcements.publish":"Publicar anuncio","announcements.publishError":"Error al publicar. Inténtalo de nuevo.",
     "announcements.existingTitle":"Anuncios publicados","announcements.empty":"Aún no hay anuncios.",
@@ -1384,6 +1424,8 @@ var STR = {
     "filter.all":"Todos",
     "maintenance.text":"Sitio en mantenimiento — estamos actualizando el archivo, vuelve pronto.",
     "maintenance.toggle":"Modo mantenimiento (visible para todos los visitantes)",
+    "offline.title":"Copia sin conexión (solo para ti)","offline.hint":"Descarga todos los títulos, páginas y portadas en un único archivo comprimido en tu ordenador — visible solo aquí, nunca para los visitantes.",
+    "offline.export":"Descargar todo para uso sin conexión","offline.preparing":"Preparando…","offline.progress":"{done}/{total} — {label}","offline.zipping":"Comprimiendo el archivo…","offline.done":"Listo — revisa las descargas de tu navegador.","offline.error":"Error al exportar.",
     "gate.title":"Desbloquear Contenido 18+",
     "toggle.mature":"Contenido 18+",
     "admin.f.mature":"Contenido para adultos (18+)",
@@ -1400,6 +1442,7 @@ var STR = {
     "synopsis.translating":"Traduciendo sinopsis…","synopsis.translateExisting":"Traducir sinopsis",
     "synopsis.retranslate":"Volver a traducir","synopsis.translateError":"Error al traducir. Inténtalo de nuevo.",
     "rewatermark.button":"Volver a marcar páginas","rewatermark.progress":"Marcando página {n} de {total}…","rewatermark.error":"Error al aplicar la marca. Inténtalo de nuevo.","rewatermark.done":"Marcada",
+    "catalog.permanent":"Permanente","catalog.temporary":"A tiempo limitado","catalog.makeTemporary":"Hacer temporal","catalog.makePermanent":"Hacer permanente",
     "collab.name":"Colaborador (opcional)","collab.url":"Enlace al perfil (p. ej. Instagram)",
     "collab.verified":"Colaborador verificado (muestra la marca azul)",
     "verified.label":"Verificado","verified.commenter":"Email verificado","verified.founder":"Cuenta oficial","verified.collaborator":"Colaborador verificado",
@@ -1409,7 +1452,8 @@ var STR = {
     "share.copied":"Enlace copiado — pégalo donde quieras compartirlo.",
     "share.manual":"Copia este texto para compartirlo:",
     "pdf.label":"O sube el cómic como PDF (A4) en lugar de páginas individuales",
-    "pdf.uploading":"Subiendo PDF…","pdf.download":"Descargar PDF",
+    "pdf.uploading":"Subiendo PDF…","pdf.download":"Descargar PDF","pdf.loginToDownload":"Inicia sesión para descargar el PDF",
+    "maintenance.lockTitle":"Sitio en mantenimiento","maintenance.lockText":"Estamos actualizando el archivo. Vuelve en breve.",
     "charimg.title":"Imágenes de perfil de los personajes",
     "social.title":"Enlaces sociales (visibles en el pie de página)","social.save":"Guardar enlaces sociales",
     "comments.moderationTitle":"Comentarios pendientes de aprobación",
@@ -1451,6 +1495,7 @@ var STR = {
     "users.eligible":"Éligible","users.waitingDays":"encore {n} jours","users.grant":"Accorder le badge","users.revoke":"Retirer le badge",
     "users.onlineNow":"{n} utilisateurs en ligne","users.onlineTag":"En ligne",
     "announcements.eyebrow":"De la Rédaction","announcements.title":"Actualités","announcements.readMore":"Lire","announcements.share":"Partager",
+    "announcements.archived":"Archivée","announcements.expiresIn":"expire dans {h}h","announcements.extend":"Prolonger 24h",
     "announcements.newTitle":"Nouvelle annonce","announcements.f.title":"Titre","announcements.f.body":"Texte","announcements.f.link":"Lien (facultatif)","announcements.f.image":"Image (facultative — tout format)",
     "announcements.publish":"Publier l'annonce","announcements.publishError":"Échec de la publication. Réessayez.",
     "announcements.existingTitle":"Annonces publiées","announcements.empty":"Aucune annonce pour le moment.",
@@ -1489,6 +1534,8 @@ var STR = {
     "filter.all":"Tous",
     "maintenance.text":"Site en maintenance — nous mettons à jour l'archive, revenez bientôt.",
     "maintenance.toggle":"Mode maintenance (visible pour tous les visiteurs)",
+    "offline.title":"Copie hors ligne (rien que pour vous)","offline.hint":"Téléchargez tous les titres, pages et couvertures dans un seul fichier compressé sur votre ordinateur — visible ici seulement, jamais pour les visiteurs.",
+    "offline.export":"Tout télécharger pour un usage hors ligne","offline.preparing":"Préparation…","offline.progress":"{done}/{total} — {label}","offline.zipping":"Compression du fichier…","offline.done":"Terminé — vérifiez les téléchargements de votre navigateur.","offline.error":"Échec de l'exportation.",
     "gate.title":"Débloquer le Contenu 18+",
     "toggle.mature":"Contenu 18+",
     "admin.f.mature":"Contenu pour adultes (18+)",
@@ -1505,6 +1552,7 @@ var STR = {
     "synopsis.translating":"Traduction du synopsis…","synopsis.translateExisting":"Traduire le synopsis",
     "synopsis.retranslate":"Retraduire le synopsis","synopsis.translateError":"Échec de la traduction. Réessayez.",
     "rewatermark.button":"Filigraner les pages","rewatermark.progress":"Filigrane page {n} sur {total}…","rewatermark.error":"Échec du filigrane. Réessayez.","rewatermark.done":"Filigrané",
+    "catalog.permanent":"Permanent","catalog.temporary":"Temporaire","catalog.makeTemporary":"Rendre temporaire","catalog.makePermanent":"Rendre permanent",
     "collab.name":"Collaborateur (facultatif)","collab.url":"Lien du profil (ex. Instagram)",
     "collab.verified":"Collaborateur vérifié (affiche le badge bleu)",
     "verified.label":"Vérifié","verified.commenter":"Email vérifié","verified.founder":"Compte officiel","verified.collaborator":"Collaborateur vérifié",
@@ -1514,7 +1562,8 @@ var STR = {
     "share.copied":"Lien copié — collez-le où vous voulez le partager.",
     "share.manual":"Copiez ce texte pour le partager :",
     "pdf.label":"Ou téléversez la BD en PDF (A4) au lieu de pages individuelles",
-    "pdf.uploading":"Envoi du PDF…","pdf.download":"Télécharger le PDF",
+    "pdf.uploading":"Envoi du PDF…","pdf.download":"Télécharger le PDF","pdf.loginToDownload":"Connectez-vous pour télécharger le PDF",
+    "maintenance.lockTitle":"Site en maintenance","maintenance.lockText":"Nous mettons à jour les archives. Revenez bientôt.",
     "charimg.title":"Images de profil des personnages",
     "social.title":"Liens sociaux (affichés en pied de page)","social.save":"Enregistrer les liens sociaux",
     "comments.moderationTitle":"Commentaires en attente d'approbation",
@@ -1556,6 +1605,7 @@ var STR = {
     "users.eligible":"Berechtigt","users.waitingDays":"noch {n} Tage","users.grant":"Häkchen vergeben","users.revoke":"Häkchen entfernen",
     "users.onlineNow":"{n} Nutzer gerade online","users.onlineTag":"Gerade online",
     "announcements.eyebrow":"Von der Redaktion","announcements.title":"Neuigkeiten","announcements.readMore":"Lesen","announcements.share":"Teilen",
+    "announcements.archived":"Archiviert","announcements.expiresIn":"läuft in {h}Std ab","announcements.extend":"24Std verlängern",
     "announcements.newTitle":"Neue Ankündigung","announcements.f.title":"Titel","announcements.f.body":"Text","announcements.f.link":"Link (optional)","announcements.f.image":"Bild (optional — jedes Seitenverhältnis)",
     "announcements.publish":"Ankündigung veröffentlichen","announcements.publishError":"Veröffentlichung fehlgeschlagen. Erneut versuchen.",
     "announcements.existingTitle":"Veröffentlichte Ankündigungen","announcements.empty":"Noch keine Ankündigungen.",
@@ -1594,6 +1644,8 @@ var STR = {
     "filter.all":"Alle",
     "maintenance.text":"Seite in Wartung — wir aktualisieren gerade das Archiv, schau bald wieder vorbei.",
     "maintenance.toggle":"Wartungsmodus (für alle Besucher sichtbar)",
+    "offline.title":"Offline-Kopie (nur für dich)","offline.hint":"Lade alle Titel, Seiten und Cover als eine komprimierte Datei auf deinen Computer herunter — nur hier sichtbar, nie für Besucher.",
+    "offline.export":"Alles für Offline-Nutzung herunterladen","offline.preparing":"Vorbereitung…","offline.progress":"{done}/{total} — {label}","offline.zipping":"Datei wird komprimiert…","offline.done":"Fertig — prüfe die Downloads deines Browsers.","offline.error":"Export fehlgeschlagen.",
     "gate.title":"18+ Inhalte freischalten",
     "toggle.mature":"18+ Inhalte",
     "admin.f.mature":"Inhalt für Erwachsene (18+)",
@@ -1610,6 +1662,7 @@ var STR = {
     "synopsis.translating":"Synopsis wird übersetzt…","synopsis.translateExisting":"Synopsis übersetzen",
     "synopsis.retranslate":"Erneut übersetzen","synopsis.translateError":"Übersetzung fehlgeschlagen. Erneut versuchen.",
     "rewatermark.button":"Seiten neu wasserzeichen","rewatermark.progress":"Wasserzeichen Seite {n} von {total}…","rewatermark.error":"Wasserzeichen fehlgeschlagen. Erneut versuchen.","rewatermark.done":"Wasserzeichen gesetzt",
+    "catalog.permanent":"Permanent","catalog.temporary":"Zeitlich begrenzt","catalog.makeTemporary":"Zeitlich begrenzen","catalog.makePermanent":"Permanent machen",
     "collab.name":"Mitarbeiter*in (optional)","collab.url":"Profillink (z. B. Instagram)",
     "collab.verified":"Verifizierte*r Mitarbeiter*in (zeigt das blaue Häkchen)",
     "verified.label":"Verifiziert","verified.commenter":"E-Mail verifiziert","verified.founder":"Offizieller Account","verified.collaborator":"Verifizierte*r Mitarbeiter*in",
@@ -1619,7 +1672,8 @@ var STR = {
     "share.copied":"Link kopiert — fügen Sie ihn ein, wo Sie ihn teilen möchten.",
     "share.manual":"Diesen Text zum Teilen kopieren:",
     "pdf.label":"Oder Comic als PDF (A4) statt Einzelseiten hochladen",
-    "pdf.uploading":"PDF wird hochgeladen…","pdf.download":"PDF herunterladen",
+    "pdf.uploading":"PDF wird hochgeladen…","pdf.download":"PDF herunterladen","pdf.loginToDownload":"Anmelden, um das PDF herunterzuladen",
+    "maintenance.lockTitle":"Website in Wartung","maintenance.lockText":"Wir aktualisieren das Archiv. Schau bald wieder vorbei.",
     "charimg.title":"Profilbilder der Charaktere",
     "social.title":"Social-Links (im Footer angezeigt)","social.save":"Social-Links speichern",
     "comments.moderationTitle":"Kommentare zur Freigabe",
@@ -1925,6 +1979,7 @@ function afterAuthChange(){
   loadFavorites();
   loadLikes();
   sendHeartbeat();
+  renderMaintenanceBanner(); // se chi si è appena autenticato è l'admin, il blocco manutenzione deve sparire subito
 }
 
 function refreshAuthUI(){
@@ -2133,6 +2188,8 @@ function renderMaintenanceBanner(){
   var el = document.getElementById('maintenanceBanner');
   if(!el) return;
   el.classList.toggle('show', maintenanceOn);
+  var lock = document.getElementById('maintenanceLock');
+  if(lock) lock.classList.toggle('hidden', !(maintenanceOn && !isAdmin()));
 }
 
 function fetchMaintenanceStatus(){
@@ -2177,7 +2234,8 @@ function fetchAnnouncements(){
   var section = document.getElementById('announcementsSection');
   var grid = document.getElementById('announcementsGrid');
   if(!SUPABASE_URL) return Promise.resolve();
-  return fetch(SUPABASE_URL + '/rest/v1/announcements?select=*&published=eq.true&order=created_at.desc&limit=6', {
+  var nowIso = new Date().toISOString();
+  return fetch(SUPABASE_URL + '/rest/v1/announcements?select=*&published=eq.true&expires_at=gt.' + encodeURIComponent(nowIso) + '&order=created_at.desc&limit=6', {
     headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + SUPABASE_ANON_KEY }
   })
     .then(function(r){ if(!r.ok) throw new Error('announcements read failed'); return r.json(); })
@@ -2240,6 +2298,100 @@ function checkAnnouncementDeepLink(){
   card.scrollIntoView({behavior:'smooth', block:'center'});
   card.classList.add('deep-link-highlight');
   setTimeout(function(){ card.classList.remove('deep-link-highlight'); }, 2600);
+}
+
+/* ============ OFFLINE EXPORT (admin-only — never reachable by regular visitors,
+   this button lives inside the already-gated admin panel) ============ */
+function loadJSZip(){
+  if(typeof JSZip !== 'undefined') return Promise.resolve();
+  return new Promise(function(resolve, reject){
+    var script = document.createElement('script');
+    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js';
+    script.onload = function(){ resolve(); };
+    script.onerror = function(){ reject(new Error('Impossibile caricare lo strumento di compressione.')); };
+    document.head.appendChild(script);
+  });
+}
+
+function sanitizeFilename(name){
+  return String(name).replace(/[\/\\:*?"<>|]/g, '_').trim().slice(0, 80) || 'senza-titolo';
+}
+
+function fetchAsBlob(url){
+  return fetch(url).then(function(r){ if(!r.ok) throw new Error('fetch fallito: ' + url); return r.blob(); });
+}
+
+function exportEverythingOffline(){
+  var btn = document.getElementById('btnExportOffline');
+  var status = document.getElementById('offlineExportStatus');
+  btn.disabled = true;
+  status.textContent = t('offline.preparing');
+
+  loadJSZip().then(function(){
+    return fetchCatalogFromSupabase();
+  }).then(function(items){
+    items = items || getCatalog();
+    var zip = new JSZip();
+    var totalSteps = items.reduce(function(sum, it){ return sum + 1 + (it.cover_url ? 1 : 0) + (it.pages ? it.pages.length : 0); }, 0);
+    var done = 0;
+
+    function step(label){
+      done++;
+      status.textContent = t('offline.progress').replace('{done}', done).replace('{total}', totalSteps).replace('{label}', label);
+    }
+
+    var chain = Promise.resolve();
+    items.forEach(function(item){
+      var folderName = sanitizeFilename((item.character || '') + ' - ' + (item.title || item.id));
+      var folder = zip.folder(folderName);
+
+      chain = chain.then(function(){
+        var info = 'Titolo: ' + (item.title || '') + '\n' +
+          'Personaggio: ' + (item.character || '') + '\n' +
+          'Numero/Volume: ' + (item.issue || '') + '\n' +
+          'Data: ' + (item.date || '') + '\n' +
+          'Permanente: ' + (item.permanent !== false ? 'sì' : 'no') + '\n' +
+          '18+: ' + (item.mature ? 'sì' : 'no') + '\n\n' +
+          'Sinossi:\n' + (item.synopsis || '');
+        folder.file('info.txt', info);
+        step(item.title || item.id);
+      });
+
+      if(item.cover_url){
+        chain = chain.then(function(){ return fetchAsBlob(item.cover_url); })
+          .then(function(blob){ folder.file('copertina.jpg', blob); step(item.title || item.id); })
+          .catch(function(){ step(item.title || item.id); }); // una copertina mancante non deve fermare tutto il resto
+      }
+
+      (item.pages || []).forEach(function(pageUrl, idx){
+        chain = chain.then(function(){ return fetchAsBlob(pageUrl); })
+          .then(function(blob){
+            var pageNum = String(idx + 1); while(pageNum.length < 3) pageNum = '0' + pageNum;
+            folder.file('pagina_' + pageNum + '.jpg', blob);
+            step(item.title || item.id);
+          })
+          .catch(function(){ step(item.title || item.id); }); // una pagina mancante non deve fermare tutto il resto
+      });
+    });
+
+    return chain.then(function(){
+      status.textContent = t('offline.zipping');
+      return zip.generateAsync({type:'blob'});
+    });
+  }).then(function(zipBlob){
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(zipBlob);
+    a.download = 'lux-comics-offline-' + new Date().toISOString().slice(0,10) + '.zip';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    status.textContent = t('offline.done');
+    btn.disabled = false;
+  }).catch(function(err){
+    console.warn('Offline export failed:', err);
+    status.textContent = t('offline.error') + (err && err.message ? ' — ' + err.message : '');
+    btn.disabled = false;
+  });
 }
 
 /* ============ LATEST CHAPTERS (homepage, public — auto from catalog) ============ */
@@ -2446,9 +2598,11 @@ function renderAdminList(){
     var hasAllTranslations = item.synopsis_it && item.synopsis_es && item.synopsis_fr && item.synopsis_de;
     var translateLabel = hasAllTranslations ? t('synopsis.retranslate') : t('synopsis.translateExisting');
     var hasPages = item.pages && item.pages.length > 0;
+    var isPermanent = item.permanent !== false; // di default permanente, finché non lo segni esplicitamente "a tempo determinato"
+    var permanentTag = '<span class="' + (isPermanent ? 'permanent-tag' : 'temporary-tag') + '">' + (isPermanent ? t('catalog.permanent') : t('catalog.temporary')) + '</span>';
     row.innerHTML =
       '<div class="info"><div class="t">'+escapeHtml(item.title)+'</div>'+
-      '<div class="m">'+item.character+' · '+(item.issue||'')+' · '+(item.date||'')+' · '+ratingLabel+'</div></div>'+
+      '<div class="m">'+item.character+' · '+(item.issue||'')+' · '+(item.date||'')+' · '+ratingLabel+' · '+permanentTag+'</div></div>'+
       '<div class="admin-actions">'+
         '<label class="btn btn-sm btn-ghost cover-upload-btn">'+coverLabel+
           '<input type="file" accept="image/*" class="hidden" data-cover-for="'+item.id+'">'+
@@ -2456,8 +2610,25 @@ function renderAdminList(){
         '<button class="btn btn-sm btn-ghost" data-translate-for="'+item.id+'">'+translateLabel+'</button>'+
         (hasPages ? '<button class="btn btn-sm btn-ghost" data-rewatermark-for="'+item.id+'">'+t('rewatermark.button')+'</button>' : '') +
         (hasPages && item.pages_watermarked ? '<span class="watermark-done-tag">✓ '+t('rewatermark.done')+'</span>' : '') +
+        '<button class="btn btn-sm btn-ghost" data-toggle-permanent="'+item.id+'">'+(isPermanent ? t('catalog.makeTemporary') : t('catalog.makePermanent'))+'</button>'+
         '<button class="btn btn-sm btn-ghost" data-del="'+item.id+'">×</button>'+
       '</div>';
+    row.querySelector('[data-toggle-permanent]').addEventListener('click', function(){
+      var session = getSession();
+      var newValue = !isPermanent;
+      fetch(SUPABASE_URL + '/rest/v1/catalog?id=eq.' + encodeURIComponent(item.id), {
+        method:'PATCH',
+        headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
+        body: JSON.stringify({permanent: newValue})
+      }).then(function(r){
+        if(!r.ok) return;
+        var all = getCatalog();
+        var target = all.find(function(x){ return x.id === item.id; });
+        if(target) target.permanent = newValue;
+        saveCatalogLocal(all);
+        renderAdminList();
+      });
+    });
     row.querySelector('[data-del]').addEventListener('click', function(){
       if(!confirm(t('admin.confirmDelete'))) return;
       var all = getCatalog().filter(function(x){return x.id !== item.id;});
@@ -3333,8 +3504,15 @@ function openTitleModal(item){
   document.getElementById('titleModalShare').onclick = function(){ shareTitle(item); };
 
   var pdfLink = document.getElementById('titleModalPdf');
-  if(item.pdf_url){
+  if(item.pdf_url && isSignedIn()){
     pdfLink.href = item.pdf_url;
+    pdfLink.textContent = t('pdf.download');
+    pdfLink.onclick = null;
+    pdfLink.classList.remove('hidden');
+  } else if(item.pdf_url && !isSignedIn()){
+    pdfLink.removeAttribute('href'); // l'indirizzo vero non deve mai comparire nel codice sorgente per chi non ha fatto l'accesso
+    pdfLink.textContent = t('pdf.loginToDownload');
+    pdfLink.onclick = function(e){ e.preventDefault(); openAuth('login'); };
     pdfLink.classList.remove('hidden');
   } else {
     pdfLink.classList.add('hidden');
@@ -3606,7 +3784,7 @@ function handleAddAnnouncement(){
     return fetch(SUPABASE_URL + '/rest/v1/announcements', {
       method:'POST',
       headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json', 'Prefer':'return=representation' },
-      body: JSON.stringify({ title: title, body: body, link_url: link || null, image_url: imageUrl, published: true })
+      body: JSON.stringify({ title: title, body: body, link_url: link || null, image_url: imageUrl, published: true, expires_at: new Date(Date.now() + 24*60*60*1000).toISOString() })
     }).then(function(r){
       if(!r.ok){
         return r.text().then(function(bodyText){
@@ -3701,13 +3879,32 @@ function renderAdminAnnouncements(){
         var row = document.createElement('div');
         row.className = 'admin-row';
         var dateStr = a.created_at ? a.created_at.slice(0,10) : '';
+        var isExpired = a.expires_at ? (new Date(a.expires_at) <= new Date()) : false;
+        var expiryLabel;
+        if(isExpired){
+          expiryLabel = '<span class="ann-expired-tag">' + t('announcements.archived') + '</span>';
+        } else {
+          var hoursLeft = Math.max(0, Math.round((new Date(a.expires_at) - new Date()) / 3600000));
+          expiryLabel = '<span class="ann-active-tag">' + t('announcements.expiresIn').replace('{h}', hoursLeft) + '</span>';
+        }
+        var extendBtnHtml = !isExpired ? '<button class="btn btn-sm btn-ghost" data-extend-ann="' + a.id + '">' + t('announcements.extend') + '</button>' : '';
         row.innerHTML =
           '<div class="info"><div class="t">' + escapeHtml(a.title) + '</div>' +
-          '<div class="m">' + dateStr + ' · ' + (a.published ? t('announcements.statusPublished') : t('announcements.statusHidden')) + '</div></div>' +
+          '<div class="m">' + dateStr + ' · ' + (a.published ? t('announcements.statusPublished') : t('announcements.statusHidden')) + ' · ' + expiryLabel + '</div></div>' +
           '<div class="admin-actions">' +
+            extendBtnHtml +
             '<button class="btn btn-sm btn-ghost" data-toggle-ann="' + a.id + '">' + (a.published ? t('announcements.hide') : t('announcements.show')) + '</button>' +
             '<button class="btn btn-sm btn-ghost" data-del-ann="' + a.id + '">×</button>' +
           '</div>';
+        if(extendBtnHtml){
+          row.querySelector('[data-extend-ann]').addEventListener('click', function(){
+            fetch(SUPABASE_URL + '/rest/v1/announcements?id=eq.' + encodeURIComponent(a.id), {
+              method:'PATCH',
+              headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
+              body: JSON.stringify({expires_at: new Date(Date.now() + 24*60*60*1000).toISOString()})
+            }).then(function(r){ if(r.ok){ renderAdminAnnouncements(); fetchAnnouncements(); } });
+          });
+        }
         row.querySelector('[data-toggle-ann]').addEventListener('click', function(){
           fetch(SUPABASE_URL + '/rest/v1/announcements?id=eq.' + encodeURIComponent(a.id), {
             method:'PATCH',
@@ -4056,6 +4253,8 @@ document.addEventListener('DOMContentLoaded', function(){
       if(!ok) e.target.checked = !on; // revert on failure
     });
   });
+  document.getElementById('btnExportOffline').addEventListener('click', exportEverythingOffline);
+  document.getElementById('maintenanceLockLogin').addEventListener('click', function(){ openAuth('login'); });
   document.getElementById('btnSaveSocial').addEventListener('click', saveSocialLinks);
 
   document.getElementById('titleModalClose').addEventListener('click', closeTitleModal);
