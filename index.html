@@ -500,9 +500,18 @@ footer .fcopy{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
 }
 .collab-banner strong{color:var(--gold-bright);}
 .comment-item{border-top:1px solid var(--line);padding:12px 0;font-size:13px;}
+.comment-reply-btn{
+  background:none;border:none;padding:0;margin-top:4px;
+  font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.06em;text-transform:uppercase;
+  color:var(--gold);cursor:pointer;text-decoration:underline;
+}
+.comment-reply-btn:hover{color:var(--gold-bright);}
 .comment-item .author{font-family:'Space Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:0.06em;}
 .comment-item .pending-tag{color:var(--ember);font-family:'Space Mono',monospace;font-size:9px;text-transform:uppercase;margin-left:8px;}
 .watermark-done-tag{color:var(--verdigris);font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.06em;text-transform:uppercase;align-self:center;}
+.user-eligible-tag{color:var(--verdigris);font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.06em;text-transform:uppercase;}
+.user-waiting-tag{color:var(--parchment-dim);font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.06em;text-transform:uppercase;}
+.online-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#4ade80;vertical-align:middle;}
 .profile-avatar-wrap{margin-bottom:10px;}
 .profile-avatar{
   width:76px;height:76px;border-radius:50%;object-fit:cover;
@@ -694,6 +703,7 @@ footer .fcopy{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
         <button class="admin-tab" data-tab="comments" data-i18n="admin.tab.comments">Commenti</button>
         <button class="admin-tab" data-tab="requests" data-i18n="admin.tab.requests">Richieste</button>
         <button class="admin-tab" data-tab="announcements" data-i18n="admin.tab.announcements">Novità</button>
+        <button class="admin-tab" data-tab="users" data-i18n="admin.tab.users">Utenti</button>
         <button class="admin-tab" data-tab="maintenance" data-i18n="admin.tab.maintenance">Manutenzione</button>
       </div>
 
@@ -846,6 +856,14 @@ footer .fcopy{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
         <div class="notice">
           <div data-i18n="announcements.existingTitle" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Annunci pubblicati</div>
           <div id="adminAnnouncementsList"></div>
+        </div>
+      </div>
+
+      <div class="admin-tab-panel hidden" data-tab-panel="users">
+        <div class="notice">
+          <div data-i18n="users.title" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Utenti registrati</div>
+          <p class="form-note" data-i18n="users.hint">La spunta blu si può assegnare solo dopo 90 giorni dall'iscrizione. Decidi tu, titolo per titolo.</p>
+          <div id="adminUsersList"></div>
         </div>
       </div>
 
@@ -1059,7 +1077,11 @@ var STR = {
     "admin.eyebrow":"Area Riservata","admin.title":"Amministrazione Schedario",
     "admin.noticeLabel":"Stato —",
     "admin.tab.catalog":"Catalogo","admin.tab.stats":"Statistiche","admin.tab.social":"Personaggi & Social",
-    "admin.tab.comments":"Commenti","admin.tab.requests":"Richieste","admin.tab.announcements":"Novità","admin.tab.maintenance":"Manutenzione",
+    "admin.tab.comments":"Commenti","admin.tab.requests":"Richieste","admin.tab.announcements":"Novità","admin.tab.users":"Utenti","admin.tab.maintenance":"Manutenzione",
+    "users.title":"Utenti registrati","users.hint":"La spunta blu si può assegnare solo dopo 90 giorni dall'iscrizione. Decidi tu, titolo per titolo.",
+    "users.empty":"Nessun utente registrato ancora.","users.noName":"Utente","users.joined":"Iscritto il","users.daysHere":"{n} giorni sul sito",
+    "users.eligible":"Idoneo","users.waitingDays":"ancora {n} giorni","users.grant":"Assegna spunta","users.revoke":"Rimuovi spunta",
+    "users.onlineNow":"{n} utenti online ora","users.onlineTag":"Online ora",
     "announcements.eyebrow":"Dalla Redazione","announcements.title":"Novità","announcements.readMore":"Leggi",
     "announcements.newTitle":"Nuovo annuncio","announcements.f.title":"Titolo","announcements.f.body":"Testo","announcements.f.link":"Link (opzionale)",
     "announcements.publish":"Pubblica annuncio","announcements.publishError":"Pubblicazione non riuscita. Riprova.",
@@ -1131,7 +1153,7 @@ var STR = {
     "comments.title":"Commenti","comments.submit":"Invia commento",
     "comments.loginToComment":"Accedi per lasciare un commento.",
     "comments.empty":"Nessun commento ancora.","comments.pending":"in attesa","comments.noPending":"Nessun commento in attesa.",
-    "comments.submittedPending":"Inviato — in attesa di approvazione.",
+    "comments.submittedPending":"Inviato — in attesa di approvazione.","comments.submittedPublished":"Pubblicato.","comments.reply":"Rispondi",
     "fav.add":"♡ Salva","fav.remove":"♥ Salvato",
     "card.readMore":"Leggi tutto ↓","card.readLess":"Mostra meno ↑",
     "like.add":"👍 Mi piace","like.remove":"👍 Ti piace",
@@ -1160,7 +1182,11 @@ var STR = {
     "admin.eyebrow":"Private Area","admin.title":"Index Administration",
     "admin.noticeLabel":"Status —",
     "admin.tab.catalog":"Catalog","admin.tab.stats":"Stats","admin.tab.social":"Characters & Social",
-    "admin.tab.comments":"Comments","admin.tab.requests":"Requests","admin.tab.announcements":"News","admin.tab.maintenance":"Maintenance",
+    "admin.tab.comments":"Comments","admin.tab.requests":"Requests","admin.tab.announcements":"News","admin.tab.users":"Users","admin.tab.maintenance":"Maintenance",
+    "users.title":"Registered users","users.hint":"The blue checkmark can only be granted 90 days after sign-up. You decide, one at a time.",
+    "users.empty":"No registered users yet.","users.noName":"User","users.joined":"Joined on","users.daysHere":"{n} days on the site",
+    "users.eligible":"Eligible","users.waitingDays":"{n} days to go","users.grant":"Grant checkmark","users.revoke":"Remove checkmark",
+    "users.onlineNow":"{n} users online now","users.onlineTag":"Online now",
     "announcements.eyebrow":"From the Editors","announcements.title":"News","announcements.readMore":"Read",
     "announcements.newTitle":"New announcement","announcements.f.title":"Title","announcements.f.body":"Text","announcements.f.link":"Link (optional)",
     "announcements.publish":"Publish announcement","announcements.publishError":"Publishing failed. Try again.",
@@ -1232,7 +1258,7 @@ var STR = {
     "comments.title":"Comments","comments.submit":"Submit comment",
     "comments.loginToComment":"Sign in to leave a comment.",
     "comments.empty":"No comments yet.","comments.pending":"pending","comments.noPending":"No pending comments.",
-    "comments.submittedPending":"Submitted — pending approval.",
+    "comments.submittedPending":"Submitted — pending approval.","comments.submittedPublished":"Published.","comments.reply":"Reply",
     "fav.add":"♡ Save","fav.remove":"♥ Saved",
     "card.readMore":"Read more ↓","card.readLess":"Show less ↑",
     "like.add":"👍 Like","like.remove":"👍 Liked",
@@ -1261,7 +1287,11 @@ var STR = {
     "admin.eyebrow":"Área Privada","admin.title":"Administración del Índice",
     "admin.noticeLabel":"Estado —",
     "admin.tab.catalog":"Catálogo","admin.tab.stats":"Estadísticas","admin.tab.social":"Personajes y redes",
-    "admin.tab.comments":"Comentarios","admin.tab.requests":"Solicitudes","admin.tab.announcements":"Novedades","admin.tab.maintenance":"Mantenimiento",
+    "admin.tab.comments":"Comentarios","admin.tab.requests":"Solicitudes","admin.tab.announcements":"Novedades","admin.tab.users":"Usuarios","admin.tab.maintenance":"Mantenimiento",
+    "users.title":"Usuarios registrados","users.hint":"La marca azul solo se puede otorgar 90 días después del registro. Decides tú, uno por uno.",
+    "users.empty":"Aún no hay usuarios registrados.","users.noName":"Usuario","users.joined":"Registrado el","users.daysHere":"{n} días en el sitio",
+    "users.eligible":"Apto","users.waitingDays":"faltan {n} días","users.grant":"Otorgar marca","users.revoke":"Quitar marca",
+    "users.onlineNow":"{n} usuarios en línea ahora","users.onlineTag":"En línea ahora",
     "announcements.eyebrow":"De la Redacción","announcements.title":"Novedades","announcements.readMore":"Leer",
     "announcements.newTitle":"Nuevo anuncio","announcements.f.title":"Título","announcements.f.body":"Texto","announcements.f.link":"Enlace (opcional)",
     "announcements.publish":"Publicar anuncio","announcements.publishError":"Error al publicar. Inténtalo de nuevo.",
@@ -1333,7 +1363,7 @@ var STR = {
     "comments.title":"Comentarios","comments.submit":"Enviar comentario",
     "comments.loginToComment":"Accede para dejar un comentario.",
     "comments.empty":"Aún no hay comentarios.","comments.pending":"pendiente","comments.noPending":"No hay comentarios pendientes.",
-    "comments.submittedPending":"Enviado — pendiente de aprobación.",
+    "comments.submittedPending":"Enviado — pendiente de aprobación.","comments.submittedPublished":"Publicado.","comments.reply":"Responder",
     "fav.add":"♡ Guardar","fav.remove":"♥ Guardado",
     "card.readMore":"Leer más ↓","card.readLess":"Mostrar menos ↑",
     "like.add":"👍 Me gusta","like.remove":"👍 Te gusta",
@@ -1362,7 +1392,11 @@ var STR = {
     "admin.eyebrow":"Espace Privé","admin.title":"Administration de l'Index",
     "admin.noticeLabel":"État —",
     "admin.tab.catalog":"Catalogue","admin.tab.stats":"Statistiques","admin.tab.social":"Personnages & réseaux",
-    "admin.tab.comments":"Commentaires","admin.tab.requests":"Demandes","admin.tab.announcements":"Actualités","admin.tab.maintenance":"Maintenance",
+    "admin.tab.comments":"Commentaires","admin.tab.requests":"Demandes","admin.tab.announcements":"Actualités","admin.tab.users":"Utilisateurs","admin.tab.maintenance":"Maintenance",
+    "users.title":"Utilisateurs inscrits","users.hint":"Le badge bleu ne peut être accordé que 90 jours après l'inscription. C'est vous qui décidez, au cas par cas.",
+    "users.empty":"Aucun utilisateur inscrit pour l'instant.","users.noName":"Utilisateur","users.joined":"Inscrit le","users.daysHere":"{n} jours sur le site",
+    "users.eligible":"Éligible","users.waitingDays":"encore {n} jours","users.grant":"Accorder le badge","users.revoke":"Retirer le badge",
+    "users.onlineNow":"{n} utilisateurs en ligne","users.onlineTag":"En ligne",
     "announcements.eyebrow":"De la Rédaction","announcements.title":"Actualités","announcements.readMore":"Lire",
     "announcements.newTitle":"Nouvelle annonce","announcements.f.title":"Titre","announcements.f.body":"Texte","announcements.f.link":"Lien (facultatif)",
     "announcements.publish":"Publier l'annonce","announcements.publishError":"Échec de la publication. Réessayez.",
@@ -1434,7 +1468,7 @@ var STR = {
     "comments.title":"Commentaires","comments.submit":"Envoyer le commentaire",
     "comments.loginToComment":"Connectez-vous pour laisser un commentaire.",
     "comments.empty":"Pas encore de commentaires.","comments.pending":"en attente","comments.noPending":"Aucun commentaire en attente.",
-    "comments.submittedPending":"Envoyé — en attente d'approbation.",
+    "comments.submittedPending":"Envoyé — en attente d'approbation.","comments.submittedPublished":"Publié.","comments.reply":"Répondre",
     "fav.add":"♡ Enregistrer","fav.remove":"♥ Enregistré",
     "card.readMore":"Lire la suite ↓","card.readLess":"Réduire ↑",
     "like.add":"👍 J'aime","like.remove":"👍 Aimé",
@@ -1463,7 +1497,11 @@ var STR = {
     "admin.eyebrow":"Privater Bereich","admin.title":"Index-Verwaltung",
     "admin.noticeLabel":"Status —",
     "admin.tab.catalog":"Katalog","admin.tab.stats":"Statistiken","admin.tab.social":"Figuren & Social",
-    "admin.tab.comments":"Kommentare","admin.tab.requests":"Anfragen","admin.tab.announcements":"Neuigkeiten","admin.tab.maintenance":"Wartung",
+    "admin.tab.comments":"Kommentare","admin.tab.requests":"Anfragen","admin.tab.announcements":"Neuigkeiten","admin.tab.users":"Nutzer","admin.tab.maintenance":"Wartung",
+    "users.title":"Registrierte Nutzer","users.hint":"Das blaue Häkchen kann erst 90 Tage nach der Anmeldung vergeben werden. Du entscheidest, einzeln.",
+    "users.empty":"Noch keine registrierten Nutzer.","users.noName":"Nutzer","users.joined":"Angemeldet am","users.daysHere":"{n} Tage dabei",
+    "users.eligible":"Berechtigt","users.waitingDays":"noch {n} Tage","users.grant":"Häkchen vergeben","users.revoke":"Häkchen entfernen",
+    "users.onlineNow":"{n} Nutzer gerade online","users.onlineTag":"Gerade online",
     "announcements.eyebrow":"Von der Redaktion","announcements.title":"Neuigkeiten","announcements.readMore":"Lesen",
     "announcements.newTitle":"Neue Ankündigung","announcements.f.title":"Titel","announcements.f.body":"Text","announcements.f.link":"Link (optional)",
     "announcements.publish":"Ankündigung veröffentlichen","announcements.publishError":"Veröffentlichung fehlgeschlagen. Erneut versuchen.",
@@ -1535,7 +1573,7 @@ var STR = {
     "comments.title":"Kommentare","comments.submit":"Kommentar senden",
     "comments.loginToComment":"Melden Sie sich an, um einen Kommentar zu hinterlassen.",
     "comments.empty":"Noch keine Kommentare.","comments.pending":"ausstehend","comments.noPending":"Keine ausstehenden Kommentare.",
-    "comments.submittedPending":"Gesendet — wartet auf Freigabe.",
+    "comments.submittedPending":"Gesendet — wartet auf Freigabe.","comments.submittedPublished":"Veröffentlicht.","comments.reply":"Antworten",
     "fav.add":"♡ Speichern","fav.remove":"♥ Gespeichert",
     "card.readMore":"Mehr lesen ↓","card.readLess":"Weniger anzeigen ↑",
     "like.add":"👍 Gefällt mir","like.remove":"👍 Gefällt dir",
@@ -1632,6 +1670,27 @@ function currentUserEmail(){ var s = getSession(); return s && s.user ? s.user.e
 
 // Access tokens expire after ~1 hour. Refresh a bit before that so the
 // person never silently "falls out" of their session while the tab is open.
+/* ============ PRESENCE (chi è online — solo per chi ha un account collegato) ============ */
+var HEARTBEAT_INTERVAL_MS = 60000; // manda un segnale ogni 60 secondi
+var ONLINE_WINDOW_MS = 120000; // considerato "online ora" se visto negli ultimi 2 minuti
+
+function sendHeartbeat(){
+  if(!isSignedIn()) return;
+  var session = getSession();
+  fetch(SUPABASE_URL + '/rest/v1/profiles?id=eq.' + encodeURIComponent(currentUserId()), {
+    method:'PATCH',
+    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
+    body: JSON.stringify({last_seen: new Date().toISOString()})
+  }).catch(function(){ /* un battito perso non è un problema, il prossimo lo corregge */ });
+}
+
+function startHeartbeat(){
+  sendHeartbeat();
+  setInterval(function(){
+    if(document.visibilityState === 'visible' && isSignedIn()) sendHeartbeat();
+  }, HEARTBEAT_INTERVAL_MS);
+}
+
 function refreshSessionIfNeeded(){
   var s = getSession();
   if(!s || !s.refresh_token) return Promise.resolve(false);
@@ -1812,6 +1871,7 @@ function afterAuthChange(){
   renderCatalog();
   loadFavorites();
   loadLikes();
+  sendHeartbeat();
 }
 
 function refreshAuthUI(){
@@ -1857,6 +1917,7 @@ function refreshAdminUI(){
     renderStatsPanel();
     renderAdminRequests();
     renderAdminAnnouncements();
+    renderAdminUsers();
   } else if(isSignedIn()){
     gateMsg.textContent = t('admin.gate.notAdmin').replace('{email}', currentUserEmail());
     gateSignIn.classList.add('hidden');
@@ -3283,19 +3344,51 @@ function loadComments(catalogId){
   fetch(SUPABASE_URL + '/rest/v1/comments?catalog_id=eq.' + encodeURIComponent(catalogId) + '&select=*&order=created_at.desc', { headers: headers })
     .then(function(r){ if(!r.ok) throw new Error('comments read failed'); return r.json(); })
     .then(function(rows){
+      if(rows.length === 0) return { rows: rows, verifiedIds: {} };
+      // la spunta riflette lo stato ATTUALE del profilo (che tu puoi cambiare in ogni momento),
+      // non uno scatto fissato al momento in cui il commento fu scritto
+      var userIds = Array.from(new Set(rows.map(function(c){ return c.user_id; }).filter(Boolean)));
+      if(userIds.length === 0) return { rows: rows, verifiedIds: {} };
+      var idFilter = userIds.map(encodeURIComponent).join(',');
+      return fetch(SUPABASE_URL + '/rest/v1/profiles?id=in.(' + idFilter + ')&select=id,verified', { headers: headers })
+        .then(function(r2){ return r2.ok ? r2.json() : []; })
+        .then(function(profileRows){
+          var verifiedIds = {};
+          profileRows.forEach(function(p){ if(p.verified) verifiedIds[p.id] = true; });
+          return { rows: rows, verifiedIds: verifiedIds };
+        });
+    })
+    .then(function(data){
+      var rows = data.rows, verifiedIds = data.verifiedIds;
       list.innerHTML = '';
       if(rows.length === 0){ list.innerHTML = '<p class="form-note">' + t('comments.empty') + '</p>'; return; }
       rows.forEach(function(c){
         var div = document.createElement('div');
         div.className = 'comment-item';
         var pendingTag = !c.approved ? '<span class="pending-tag">' + t('comments.pending') + '</span>' : '';
-        var verifiedTag = c.verified ? verifiedBadge('verified.commenter') : '';
+        var verifiedTag = verifiedIds[c.user_id] ? verifiedBadge('verified.commenter') : '';
+        var replyBtnHtml = isSignedIn() ? '<button type="button" class="comment-reply-btn">' + t('comments.reply') + '</button>' : '';
         div.innerHTML = '<span class="author">' + escapeHtml(c.author_name) + '</span>' + verifiedTag + pendingTag +
-          '<div class="body">' + escapeHtml(c.body) + '</div>';
+          '<div class="body">' + escapeHtml(c.body) + '</div>' + replyBtnHtml;
+        var replyBtn = div.querySelector('.comment-reply-btn');
+        if(replyBtn){
+          replyBtn.addEventListener('click', function(){ replyToComment(c.author_name); });
+        }
         list.appendChild(div);
       });
     })
     .catch(function(err){ list.innerHTML = ''; console.warn('Comments load failed:', err); });
+}
+
+function replyToComment(authorName){
+  var box = document.getElementById('fCommentBody');
+  var mention = '@' + authorName + ' ';
+  if(box.value.indexOf(mention) !== 0){
+    box.value = mention + box.value;
+  }
+  box.focus();
+  box.setSelectionRange(box.value.length, box.value.length);
+  box.scrollIntoView({behavior:'smooth', block:'center'});
 }
 
 function submitComment(){
@@ -3305,7 +3398,7 @@ function submitComment(){
   if(!body){ err.textContent = t('err.required'); return; }
   if(!isSignedIn()){ openAuth('login'); return; }
   var session = getSession();
-  var verified = !!(session.user && session.user.email_confirmed_at);
+  var autoApproved = isAdmin(); // i tuoi commenti si pubblicano subito, non passano dalla tua stessa coda di moderazione
 
   var nameStep = currentProfile !== null
     ? Promise.resolve(currentProfile)
@@ -3316,12 +3409,12 @@ function submitComment(){
     return fetch(SUPABASE_URL + '/rest/v1/comments', {
       method:'POST',
       headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json', 'Prefer':'return=representation' },
-      body: JSON.stringify({ catalog_id: currentModalCatalogId, user_id: currentUserId(), author_name: authorName, body: body, approved: false, verified: verified })
+      body: JSON.stringify({ catalog_id: currentModalCatalogId, user_id: currentUserId(), author_name: authorName, body: body, approved: autoApproved })
     });
   }).then(function(r){
     if(!r.ok) throw new Error('comment insert failed');
     document.getElementById('fCommentBody').value = '';
-    err.textContent = t('comments.submittedPending');
+    err.textContent = autoApproved ? t('comments.submittedPublished') : t('comments.submittedPending');
     loadComments(currentModalCatalogId);
   }).catch(function(e){
     err.textContent = t('err.required');
@@ -3388,6 +3481,63 @@ function handleAddAnnouncement(){
     console.warn('Announcement publish failed:', e);
     err.textContent = t('announcements.publishError');
   });
+}
+
+var VERIFICATION_MIN_DAYS = 90; // regola dei 90 giorni: la spunta blu non si può assegnare prima
+
+function renderAdminUsers(){
+  if(!isAdmin()) return;
+  var list = document.getElementById('adminUsersList');
+  var session = getSession();
+  fetch(SUPABASE_URL + '/rest/v1/profiles?select=id,display_name,created_at,verified,last_seen&order=created_at.desc', {
+    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
+  })
+    .then(function(r){ if(!r.ok) throw new Error('admin users read failed'); return r.json(); })
+    .then(function(rows){
+      list.innerHTML = '';
+      if(rows.length === 0){ list.innerHTML = '<p class="form-note">' + t('users.empty') + '</p>'; return; }
+      var onlineCount = rows.filter(function(u){
+        return u.last_seen && (Date.now() - new Date(u.last_seen).getTime()) < ONLINE_WINDOW_MS;
+      }).length;
+      var summary = document.createElement('p');
+      summary.className = 'form-note';
+      summary.id = 'onlineCountSummary';
+      summary.innerHTML = '<span class="online-dot"></span> ' + t('users.onlineNow').replace('{n}', onlineCount);
+      list.appendChild(summary);
+
+      rows.forEach(function(u){
+        var joined = new Date(u.created_at);
+        var daysHere = Math.floor((Date.now() - joined.getTime()) / 86400000);
+        var eligible = daysHere >= VERIFICATION_MIN_DAYS;
+        var displayLabel = u.display_name ? escapeHtml(u.display_name) : (t('users.noName') + ' ' + u.id.slice(0,8));
+        var isOnline = u.last_seen && (Date.now() - new Date(u.last_seen).getTime()) < ONLINE_WINDOW_MS;
+
+        var row = document.createElement('div');
+        row.className = 'admin-row';
+        var statusHtml = eligible
+          ? '<span class="user-eligible-tag">' + t('users.eligible') + '</span>'
+          : '<span class="user-waiting-tag">' + t('users.waitingDays').replace('{n}', VERIFICATION_MIN_DAYS - daysHere) + '</span>';
+        var onlineHtml = isOnline ? '<span class="online-dot" title="' + t('users.onlineTag') + '"></span> ' : '';
+        row.innerHTML =
+          '<div class="info"><div class="t">' + onlineHtml + displayLabel + (u.verified ? ' ' + verifiedBadge('verified.commenter') : '') + '</div>' +
+          '<div class="m">' + t('users.joined') + ' ' + joined.toISOString().slice(0,10) + ' · ' + t('users.daysHere').replace('{n}', daysHere) + ' · ' + statusHtml + '</div></div>' +
+          '<div class="admin-actions">' +
+            '<button class="btn btn-sm btn-ghost" data-toggle-verified="' + u.id + '"' + (eligible ? '' : ' disabled') + '>' +
+              (u.verified ? t('users.revoke') : t('users.grant')) +
+            '</button>' +
+          '</div>';
+        row.querySelector('[data-toggle-verified]').addEventListener('click', function(){
+          if(!eligible) return;
+          fetch(SUPABASE_URL + '/rest/v1/profiles?id=eq.' + encodeURIComponent(u.id), {
+            method:'PATCH',
+            headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
+            body: JSON.stringify({verified: !u.verified})
+          }).then(function(r){ if(r.ok) renderAdminUsers(); });
+        });
+        list.appendChild(row);
+      });
+    })
+    .catch(function(err){ console.warn('Admin users load failed:', err); });
 }
 
 function renderAdminAnnouncements(){
@@ -3637,6 +3787,7 @@ document.addEventListener('DOMContentLoaded', function(){
   fetchSocialLinks();
   fetchCharacterImages();
   fetchAnnouncements();
+  startHeartbeat();
 
   document.getElementById('langSelect').addEventListener('change', function(e){
     setLang(e.target.value);
@@ -3752,6 +3903,7 @@ document.addEventListener('DOMContentLoaded', function(){
   });
   fetchMaintenanceStatus();
   setInterval(fetchMaintenanceStatus, 60000); // light polling so visitors already on the page see it too
+  setInterval(renderAdminUsers, 60000); // keeps "online now" fresh while you're on that tab; no-op if not admin
 });
 })();
 </script>
