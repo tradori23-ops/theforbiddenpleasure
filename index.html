@@ -574,6 +574,10 @@ body.theme-light .hero-bg::after{
 .maintenance-lock.night-lock{
   background-image:linear-gradient(rgba(6,4,5,0.82),rgba(6,4,5,0.92)), url('night-bg.jpg');
 }
+.night-multilang{
+  font-family:'Cinzel',serif;font-size:12px;letter-spacing:0.1em;
+  color:var(--gold-bright);opacity:0.75;margin-top:-8px;margin-bottom:18px;
+}
 .maintenance-lock-box{max-width:420px;}
 .maintenance-lock-box .seal{width:64px;height:64px;display:inline-block;margin-bottom:20px;}
 .maintenance-lock-box h2{font-size:24px;margin-bottom:12px;color:var(--gold-bright);}
@@ -727,6 +731,7 @@ footer .fcopy{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
     <div class="maintenance-lock-box">
       <img class="seal seal-img" data-size="sm" alt="LUX COMICS &amp; MEDUSA COMICS">
       <h2 data-i18n="night.lockTitle">Buonanotte</h2>
+      <p class="night-multilang">Good Night · Buenas Noches · Bonne Nuit · Gute Nacht · Boa Noite · Oyasumi · 晚安</p>
       <p data-i18n="night.lockText">L'archivio chiude di notte e riapre al mattino.</p>
       <p id="nightScheduleText" style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.04em;color:var(--gold);"></p>
       <button type="button" class="btn btn-ghost btn-sm" id="nightLockLogin" data-i18n="auth.loginBtn">Accedi</button>
