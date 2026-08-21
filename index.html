@@ -244,6 +244,19 @@ body.theme-light .hero-bg::after{
 .announcement-card p{color:var(--parchment-dim);font-size:13.5px;line-height:1.7;margin-bottom:8px;}
 .announcement-card .date{font-family:'Space Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:10px;}
 .announcement-card a.link{font-family:'Space Mono',monospace;font-size:11px;color:var(--gold-bright);text-decoration:underline;}
+.announcement-card-actions{display:flex;align-items:center;gap:16px;margin-top:4px;}
+.ann-share-btn{
+  background:none;border:none;padding:0;
+  font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.05em;text-transform:uppercase;
+  color:var(--gold);cursor:pointer;text-decoration:underline;
+}
+.ann-share-btn:hover{color:var(--gold-bright);}
+.announcement-card.deep-link-highlight{animation:annHighlightPulse 2.6s ease-out 1;}
+@keyframes annHighlightPulse{
+  0%{box-shadow:0 0 0 3px var(--gold-bright);}
+  70%{box-shadow:0 0 0 3px var(--gold-bright);}
+  100%{box-shadow:0 0 0 0px transparent;}
+}
 .latest-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;}
 .latest-card{cursor:pointer;border:1px solid var(--line);background:var(--void-2);}
 .latest-card-cover{aspect-ratio:3/4;position:relative;background:linear-gradient(160deg, var(--wine-deep), var(--void));display:flex;align-items:center;justify-content:center;}
@@ -1122,7 +1135,7 @@ var STR = {
     "users.empty":"Nessun utente registrato ancora.","users.noName":"Utente","users.joined":"Iscritto il","users.daysHere":"{n} giorni sul sito",
     "users.eligible":"Idoneo","users.waitingDays":"ancora {n} giorni","users.grant":"Assegna spunta","users.revoke":"Rimuovi spunta",
     "users.onlineNow":"{n} utenti online ora","users.onlineTag":"Online ora",
-    "announcements.eyebrow":"Dalla Redazione","announcements.title":"Novità","announcements.readMore":"Leggi",
+    "announcements.eyebrow":"Dalla Redazione","announcements.title":"Novità","announcements.readMore":"Leggi","announcements.share":"Condividi",
     "announcements.newTitle":"Nuovo annuncio","announcements.f.title":"Titolo","announcements.f.body":"Testo","announcements.f.link":"Link (opzionale)","announcements.f.image":"Immagine (opzionale — qualsiasi proporzione)",
     "announcements.publish":"Pubblica annuncio","announcements.publishError":"Pubblicazione non riuscita. Riprova.",
     "announcements.existingTitle":"Annunci pubblicati","announcements.empty":"Nessun annuncio ancora.",
@@ -1227,7 +1240,7 @@ var STR = {
     "users.empty":"No registered users yet.","users.noName":"User","users.joined":"Joined on","users.daysHere":"{n} days on the site",
     "users.eligible":"Eligible","users.waitingDays":"{n} days to go","users.grant":"Grant checkmark","users.revoke":"Remove checkmark",
     "users.onlineNow":"{n} users online now","users.onlineTag":"Online now",
-    "announcements.eyebrow":"From the Editors","announcements.title":"News","announcements.readMore":"Read",
+    "announcements.eyebrow":"From the Editors","announcements.title":"News","announcements.readMore":"Read","announcements.share":"Share",
     "announcements.newTitle":"New announcement","announcements.f.title":"Title","announcements.f.body":"Text","announcements.f.link":"Link (optional)","announcements.f.image":"Image (optional — any aspect ratio)",
     "announcements.publish":"Publish announcement","announcements.publishError":"Publishing failed. Try again.",
     "announcements.existingTitle":"Published announcements","announcements.empty":"No announcements yet.",
@@ -1332,7 +1345,7 @@ var STR = {
     "users.empty":"Aún no hay usuarios registrados.","users.noName":"Usuario","users.joined":"Registrado el","users.daysHere":"{n} días en el sitio",
     "users.eligible":"Apto","users.waitingDays":"faltan {n} días","users.grant":"Otorgar marca","users.revoke":"Quitar marca",
     "users.onlineNow":"{n} usuarios en línea ahora","users.onlineTag":"En línea ahora",
-    "announcements.eyebrow":"De la Redacción","announcements.title":"Novedades","announcements.readMore":"Leer",
+    "announcements.eyebrow":"De la Redacción","announcements.title":"Novedades","announcements.readMore":"Leer","announcements.share":"Compartir",
     "announcements.newTitle":"Nuevo anuncio","announcements.f.title":"Título","announcements.f.body":"Texto","announcements.f.link":"Enlace (opcional)","announcements.f.image":"Imagen (opcional — cualquier proporción)",
     "announcements.publish":"Publicar anuncio","announcements.publishError":"Error al publicar. Inténtalo de nuevo.",
     "announcements.existingTitle":"Anuncios publicados","announcements.empty":"Aún no hay anuncios.",
@@ -1437,7 +1450,7 @@ var STR = {
     "users.empty":"Aucun utilisateur inscrit pour l'instant.","users.noName":"Utilisateur","users.joined":"Inscrit le","users.daysHere":"{n} jours sur le site",
     "users.eligible":"Éligible","users.waitingDays":"encore {n} jours","users.grant":"Accorder le badge","users.revoke":"Retirer le badge",
     "users.onlineNow":"{n} utilisateurs en ligne","users.onlineTag":"En ligne",
-    "announcements.eyebrow":"De la Rédaction","announcements.title":"Actualités","announcements.readMore":"Lire",
+    "announcements.eyebrow":"De la Rédaction","announcements.title":"Actualités","announcements.readMore":"Lire","announcements.share":"Partager",
     "announcements.newTitle":"Nouvelle annonce","announcements.f.title":"Titre","announcements.f.body":"Texte","announcements.f.link":"Lien (facultatif)","announcements.f.image":"Image (facultative — tout format)",
     "announcements.publish":"Publier l'annonce","announcements.publishError":"Échec de la publication. Réessayez.",
     "announcements.existingTitle":"Annonces publiées","announcements.empty":"Aucune annonce pour le moment.",
@@ -1542,7 +1555,7 @@ var STR = {
     "users.empty":"Noch keine registrierten Nutzer.","users.noName":"Nutzer","users.joined":"Angemeldet am","users.daysHere":"{n} Tage dabei",
     "users.eligible":"Berechtigt","users.waitingDays":"noch {n} Tage","users.grant":"Häkchen vergeben","users.revoke":"Häkchen entfernen",
     "users.onlineNow":"{n} Nutzer gerade online","users.onlineTag":"Gerade online",
-    "announcements.eyebrow":"Von der Redaktion","announcements.title":"Neuigkeiten","announcements.readMore":"Lesen",
+    "announcements.eyebrow":"Von der Redaktion","announcements.title":"Neuigkeiten","announcements.readMore":"Lesen","announcements.share":"Teilen",
     "announcements.newTitle":"Neue Ankündigung","announcements.f.title":"Titel","announcements.f.body":"Text","announcements.f.link":"Link (optional)","announcements.f.image":"Bild (optional — jedes Seitenverhältnis)",
     "announcements.publish":"Ankündigung veröffentlichen","announcements.publishError":"Veröffentlichung fehlgeschlagen. Erneut versuchen.",
     "announcements.existingTitle":"Veröffentlichte Ankündigungen","announcements.empty":"Noch keine Ankündigungen.",
@@ -2175,6 +2188,7 @@ function fetchAnnouncements(){
       rows.forEach(function(a){
         var card = document.createElement('div');
         card.className = 'announcement-card';
+        card.setAttribute('data-ann-id', a.id);
         var dateStr = a.created_at ? a.created_at.slice(0,10) : '';
         var linkHtml = a.link_url ? '<a class="link" href="' + escapeHtml(a.link_url) + '" target="_blank" rel="noopener">' + t('announcements.readMore') + ' →</a>' : '';
         var imageHtml = a.image_url ? '<div class="announcement-card-img"><img src="' + escapeHtml(a.image_url) + '" alt="" loading="lazy"></div>' : '';
@@ -2184,12 +2198,48 @@ function fetchAnnouncements(){
           '<div class="date">' + dateStr + '</div>' +
           '<h4>' + escapeHtml(a.title) + '</h4>' +
           '<p>' + escapeHtml(a.body) + '</p>' +
-          linkHtml +
+          '<div class="announcement-card-actions">' + linkHtml +
+          '<button type="button" class="ann-share-btn" data-share-ann="' + a.id + '">' + t('announcements.share') + '</button></div>' +
           '</div>';
+        card.querySelector('[data-share-ann]').addEventListener('click', function(){
+          shareAnnouncement(a.id, a.title, a.body);
+        });
         grid.appendChild(card);
       });
+      checkAnnouncementDeepLink();
     })
     .catch(function(err){ console.warn('Announcements load failed:', err); section.classList.add('hidden'); });
+}
+
+function shareAnnouncement(id, title, body){
+  var excerpt = body.length > 120 ? body.slice(0, 117) + '…' : body;
+  var shareText = title + ' — ' + excerpt;
+  var shareUrl = previewPagePath('a', id);
+  if(navigator.share){
+    navigator.share({ title: title, text: shareText, url: shareUrl }).catch(function(){ /* utente ha annullato — va bene così */ });
+  } else {
+    var full = shareText + ' ' + shareUrl;
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(full).then(function(){
+        alert(t('share.copied'));
+      }).catch(function(){
+        alert(t('share.manual') + '\n\n' + full);
+      });
+    } else {
+      alert(t('share.manual') + '\n\n' + full);
+    }
+  }
+}
+
+function checkAnnouncementDeepLink(){
+  var params = new URLSearchParams(window.location.search);
+  var annId = params.get('announcement');
+  if(!annId) return;
+  var card = document.querySelector('.announcement-card[data-ann-id="' + CSS.escape(annId) + '"]');
+  if(!card) return; // annuncio non trovato (nascosto, cancellato, o link vecchio) — nessun errore, semplicemente non scorre a nulla
+  card.scrollIntoView({behavior:'smooth', block:'center'});
+  card.classList.add('deep-link-highlight');
+  setTimeout(function(){ card.classList.remove('deep-link-highlight'); }, 2600);
 }
 
 /* ============ LATEST CHAPTERS (homepage, public — auto from catalog) ============ */
@@ -3313,10 +3363,15 @@ function closeTitleModal(){ document.getElementById('titleModal').classList.add(
 /* ============ SHARE (native share sheet on mobile — Instagram appears there
    as one of the OS-level options, same as any app; no website can post to
    Instagram directly, that's Instagram's own restriction, not ours) ============ */
+function previewPagePath(kind, id){
+  var safe = String(id).replace(/[^a-zA-Z0-9_-]/g, '');
+  return window.location.origin + '/' + kind + '/' + safe + '.html';
+}
+
 function shareTitle(item){
   var shareText = item.title + ' — ' + t('share.tagline') +
     (item.collaborator_name ? ' ' + t('collab.credit') + ' ' + item.collaborator_name : '');
-  var shareUrl = window.location.href.split('#')[0].split('?')[0] + '?title=' + encodeURIComponent(item.id);
+  var shareUrl = previewPagePath('t', item.id);
   trackShare(item.id); // counts the share action being taken, not confirmed completion — noted to the user
   bumpLocalCount(item.id, 'share_count', 1);
   if(navigator.share){
@@ -3538,7 +3593,11 @@ function handleAddAnnouncement(){
       headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type': imageFile.type || 'image/jpeg' },
       body: imageFile
     }).then(function(r){
-      if(!r.ok) throw new Error('announcement image upload failed');
+      if(!r.ok){
+        return r.text().then(function(bodyText){
+          throw new Error('Caricamento immagine fallito (HTTP ' + r.status + ') — ' + bodyText.slice(0,200));
+        });
+      }
       return SUPABASE_URL + '/storage/v1/object/public/comic-pages/' + path;
     });
   }
@@ -3548,9 +3607,15 @@ function handleAddAnnouncement(){
       method:'POST',
       headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json', 'Prefer':'return=representation' },
       body: JSON.stringify({ title: title, body: body, link_url: link || null, image_url: imageUrl, published: true })
+    }).then(function(r){
+      if(!r.ok){
+        return r.text().then(function(bodyText){
+          throw new Error('Salvataggio annuncio fallito (HTTP ' + r.status + ') — ' + bodyText.slice(0,200));
+        });
+      }
+      return r;
     });
   }).then(function(r){
-    if(!r.ok) throw new Error('announcement insert failed');
     document.getElementById('fAnnTitle').value = '';
     document.getElementById('fAnnBody').value = '';
     document.getElementById('fAnnLink').value = '';
@@ -3560,7 +3625,7 @@ function handleAddAnnouncement(){
     fetchAnnouncements();
   }).catch(function(e){
     console.warn('Announcement publish failed:', e);
-    err.textContent = t('announcements.publishError');
+    err.textContent = t('announcements.publishError') + (e && e.message ? ' — ' + e.message : '');
   });
 }
 
