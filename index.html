@@ -236,7 +236,10 @@ body.theme-light .hero-bg::after{
 /* ============ CHARACTER DOSSIERS ============ */
 .dossier-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;}
 .announcements-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;}
-.announcement-card{border:1px solid var(--gold);background:var(--void-2);padding:20px 22px;}
+.announcement-card{border:1px solid var(--gold);background:var(--void-2);}
+.announcement-card-img{aspect-ratio:16/9;overflow:hidden;border-bottom:1px solid var(--gold);}
+.announcement-card-img img{width:100%;height:100%;object-fit:cover;display:block;}
+.announcement-card-body{padding:20px 22px;}
 .announcement-card h4{font-size:16px;margin-bottom:8px;}
 .announcement-card p{color:var(--parchment-dim);font-size:13.5px;line-height:1.7;margin-bottom:8px;}
 .announcement-card .date{font-family:'Space Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:10px;}
@@ -879,6 +882,11 @@ footer .fcopy{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
               <label data-i18n="announcements.f.link">Link (opzionale)</label>
               <input type="url" id="fAnnLink" placeholder="https://...">
             </div>
+            <div class="field" style="grid-column:1/-1">
+              <label data-i18n="announcements.f.image">Immagine (opzionale — qualsiasi proporzione)</label>
+              <input type="file" id="fAnnImage" accept="image/*">
+              <img id="fAnnImagePreview" class="hidden" alt="" style="margin-top:10px;max-width:220px;max-height:140px;object-fit:contain;border:1px solid var(--line);">
+            </div>
           </div>
           <div class="form-error" id="announcementError"></div>
           <div class="modal-actions">
@@ -1115,7 +1123,7 @@ var STR = {
     "users.eligible":"Idoneo","users.waitingDays":"ancora {n} giorni","users.grant":"Assegna spunta","users.revoke":"Rimuovi spunta",
     "users.onlineNow":"{n} utenti online ora","users.onlineTag":"Online ora",
     "announcements.eyebrow":"Dalla Redazione","announcements.title":"Novità","announcements.readMore":"Leggi",
-    "announcements.newTitle":"Nuovo annuncio","announcements.f.title":"Titolo","announcements.f.body":"Testo","announcements.f.link":"Link (opzionale)",
+    "announcements.newTitle":"Nuovo annuncio","announcements.f.title":"Titolo","announcements.f.body":"Testo","announcements.f.link":"Link (opzionale)","announcements.f.image":"Immagine (opzionale — qualsiasi proporzione)",
     "announcements.publish":"Pubblica annuncio","announcements.publishError":"Pubblicazione non riuscita. Riprova.",
     "announcements.existingTitle":"Annunci pubblicati","announcements.empty":"Nessun annuncio ancora.",
     "announcements.statusPublished":"Pubblicato","announcements.statusHidden":"Nascosto","announcements.hide":"Nascondi","announcements.show":"Mostra",
@@ -1220,7 +1228,7 @@ var STR = {
     "users.eligible":"Eligible","users.waitingDays":"{n} days to go","users.grant":"Grant checkmark","users.revoke":"Remove checkmark",
     "users.onlineNow":"{n} users online now","users.onlineTag":"Online now",
     "announcements.eyebrow":"From the Editors","announcements.title":"News","announcements.readMore":"Read",
-    "announcements.newTitle":"New announcement","announcements.f.title":"Title","announcements.f.body":"Text","announcements.f.link":"Link (optional)",
+    "announcements.newTitle":"New announcement","announcements.f.title":"Title","announcements.f.body":"Text","announcements.f.link":"Link (optional)","announcements.f.image":"Image (optional — any aspect ratio)",
     "announcements.publish":"Publish announcement","announcements.publishError":"Publishing failed. Try again.",
     "announcements.existingTitle":"Published announcements","announcements.empty":"No announcements yet.",
     "announcements.statusPublished":"Published","announcements.statusHidden":"Hidden","announcements.hide":"Hide","announcements.show":"Show",
@@ -1325,7 +1333,7 @@ var STR = {
     "users.eligible":"Apto","users.waitingDays":"faltan {n} días","users.grant":"Otorgar marca","users.revoke":"Quitar marca",
     "users.onlineNow":"{n} usuarios en línea ahora","users.onlineTag":"En línea ahora",
     "announcements.eyebrow":"De la Redacción","announcements.title":"Novedades","announcements.readMore":"Leer",
-    "announcements.newTitle":"Nuevo anuncio","announcements.f.title":"Título","announcements.f.body":"Texto","announcements.f.link":"Enlace (opcional)",
+    "announcements.newTitle":"Nuevo anuncio","announcements.f.title":"Título","announcements.f.body":"Texto","announcements.f.link":"Enlace (opcional)","announcements.f.image":"Imagen (opcional — cualquier proporción)",
     "announcements.publish":"Publicar anuncio","announcements.publishError":"Error al publicar. Inténtalo de nuevo.",
     "announcements.existingTitle":"Anuncios publicados","announcements.empty":"Aún no hay anuncios.",
     "announcements.statusPublished":"Publicado","announcements.statusHidden":"Oculto","announcements.hide":"Ocultar","announcements.show":"Mostrar",
@@ -1430,7 +1438,7 @@ var STR = {
     "users.eligible":"Éligible","users.waitingDays":"encore {n} jours","users.grant":"Accorder le badge","users.revoke":"Retirer le badge",
     "users.onlineNow":"{n} utilisateurs en ligne","users.onlineTag":"En ligne",
     "announcements.eyebrow":"De la Rédaction","announcements.title":"Actualités","announcements.readMore":"Lire",
-    "announcements.newTitle":"Nouvelle annonce","announcements.f.title":"Titre","announcements.f.body":"Texte","announcements.f.link":"Lien (facultatif)",
+    "announcements.newTitle":"Nouvelle annonce","announcements.f.title":"Titre","announcements.f.body":"Texte","announcements.f.link":"Lien (facultatif)","announcements.f.image":"Image (facultative — tout format)",
     "announcements.publish":"Publier l'annonce","announcements.publishError":"Échec de la publication. Réessayez.",
     "announcements.existingTitle":"Annonces publiées","announcements.empty":"Aucune annonce pour le moment.",
     "announcements.statusPublished":"Publiée","announcements.statusHidden":"Masquée","announcements.hide":"Masquer","announcements.show":"Afficher",
@@ -1535,7 +1543,7 @@ var STR = {
     "users.eligible":"Berechtigt","users.waitingDays":"noch {n} Tage","users.grant":"Häkchen vergeben","users.revoke":"Häkchen entfernen",
     "users.onlineNow":"{n} Nutzer gerade online","users.onlineTag":"Gerade online",
     "announcements.eyebrow":"Von der Redaktion","announcements.title":"Neuigkeiten","announcements.readMore":"Lesen",
-    "announcements.newTitle":"Neue Ankündigung","announcements.f.title":"Titel","announcements.f.body":"Text","announcements.f.link":"Link (optional)",
+    "announcements.newTitle":"Neue Ankündigung","announcements.f.title":"Titel","announcements.f.body":"Text","announcements.f.link":"Link (optional)","announcements.f.image":"Bild (optional — jedes Seitenverhältnis)",
     "announcements.publish":"Ankündigung veröffentlichen","announcements.publishError":"Veröffentlichung fehlgeschlagen. Erneut versuchen.",
     "announcements.existingTitle":"Veröffentlichte Ankündigungen","announcements.empty":"Noch keine Ankündigungen.",
     "announcements.statusPublished":"Veröffentlicht","announcements.statusHidden":"Verborgen","announcements.hide":"Verbergen","announcements.show":"Anzeigen",
@@ -2169,11 +2177,15 @@ function fetchAnnouncements(){
         card.className = 'announcement-card';
         var dateStr = a.created_at ? a.created_at.slice(0,10) : '';
         var linkHtml = a.link_url ? '<a class="link" href="' + escapeHtml(a.link_url) + '" target="_blank" rel="noopener">' + t('announcements.readMore') + ' →</a>' : '';
+        var imageHtml = a.image_url ? '<div class="announcement-card-img"><img src="' + escapeHtml(a.image_url) + '" alt="" loading="lazy"></div>' : '';
         card.innerHTML =
+          imageHtml +
+          '<div class="announcement-card-body">' +
           '<div class="date">' + dateStr + '</div>' +
           '<h4>' + escapeHtml(a.title) + '</h4>' +
           '<p>' + escapeHtml(a.body) + '</p>' +
-          linkHtml;
+          linkHtml +
+          '</div>';
         grid.appendChild(card);
       });
     })
@@ -3510,19 +3522,40 @@ function handleAddAnnouncement(){
   var title = document.getElementById('fAnnTitle').value.trim();
   var body = document.getElementById('fAnnBody').value.trim();
   var link = document.getElementById('fAnnLink').value.trim();
+  var imageFile = document.getElementById('fAnnImage').files[0];
   var err = document.getElementById('announcementError');
   err.textContent = '';
   if(!title || !body){ err.textContent = t('err.required'); return; }
   var session = getSession();
-  fetch(SUPABASE_URL + '/rest/v1/announcements', {
-    method:'POST',
-    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json', 'Prefer':'return=representation' },
-    body: JSON.stringify({ title: title, body: body, link_url: link || null, published: true })
+
+  var imageStep = Promise.resolve(null);
+  if(imageFile){
+    var extMatch = /\.([a-zA-Z0-9]+)$/.exec(imageFile.name || '');
+    var ext = extMatch ? extMatch[1].toLowerCase() : 'jpg';
+    var path = 'announcements/' + Date.now() + '_' + Math.random().toString(36).slice(2, 8) + '.' + ext;
+    imageStep = fetch(SUPABASE_URL + '/storage/v1/object/comic-pages/' + path, {
+      method:'POST',
+      headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type': imageFile.type || 'image/jpeg' },
+      body: imageFile
+    }).then(function(r){
+      if(!r.ok) throw new Error('announcement image upload failed');
+      return SUPABASE_URL + '/storage/v1/object/public/comic-pages/' + path;
+    });
+  }
+
+  imageStep.then(function(imageUrl){
+    return fetch(SUPABASE_URL + '/rest/v1/announcements', {
+      method:'POST',
+      headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json', 'Prefer':'return=representation' },
+      body: JSON.stringify({ title: title, body: body, link_url: link || null, image_url: imageUrl, published: true })
+    });
   }).then(function(r){
     if(!r.ok) throw new Error('announcement insert failed');
     document.getElementById('fAnnTitle').value = '';
     document.getElementById('fAnnBody').value = '';
     document.getElementById('fAnnLink').value = '';
+    document.getElementById('fAnnImage').value = '';
+    document.getElementById('fAnnImagePreview').classList.add('hidden');
     renderAdminAnnouncements();
     fetchAnnouncements();
   }).catch(function(e){
@@ -3941,6 +3974,12 @@ document.addEventListener('DOMContentLoaded', function(){
   document.getElementById('btnSaveProfile').addEventListener('click', saveProfile);
   document.getElementById('btnSubmitRequest').addEventListener('click', submitRequest);
   document.getElementById('btnAddAnnouncement').addEventListener('click', handleAddAnnouncement);
+  document.getElementById('fAnnImage').addEventListener('change', function(e){
+    var file = e.target.files[0];
+    var preview = document.getElementById('fAnnImagePreview');
+    if(file){ preview.src = URL.createObjectURL(file); preview.classList.remove('hidden'); }
+    else { preview.classList.add('hidden'); }
+  });
 
   document.getElementById('btnResync').addEventListener('click', function(){
     fetchCatalogFromSupabase().then(function(){ renderCatalog(); renderAdminList(); });
