@@ -2364,7 +2364,7 @@ function removeCollabBlock(idx){
   document.head.appendChild(style);
 })();
 (function initCollabBlocks(){
-  document.addEventListener('DOMContentLoaded', function(){
+  function attach(){
     var addBtn = document.getElementById('btnAddCollab');
     if(addBtn) addBtn.addEventListener('click', addCollabBlock);
     for(var i = 2; i <= 6; i++){
@@ -2374,7 +2374,12 @@ function removeCollabBlock(idx){
       })(i);
     }
     updateAddCollabBtn();
-  });
+  }
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', attach);
+  } else {
+    attach();
+  }
 })();
 
 function handleAddEntry(){
