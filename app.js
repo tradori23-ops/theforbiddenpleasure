@@ -789,7 +789,7 @@ function initTheme(){
     saved = (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) ? 'light' : 'dark';
   }
   applyTheme(saved);
-  document.getElementById('btnTheme').addEventListener('click', function(){
+  document.getElementById('btnTheme') && document.getElementById('btnTheme').addEventListener('click', function(){
     applyTheme(document.body.classList.contains('theme-light') ? 'dark' : 'light');
   });
 }
@@ -813,7 +813,7 @@ function initMatureToggle(){
     }
   });
 
-  document.getElementById('gateEnter').addEventListener('click', function(){
+  document.getElementById('gateEnter') && document.getElementById('gateEnter').addEventListener('click', function(){
     localStorage.setItem('lux_age_ok','1');
     closeMatureModal();
     setMatureVisible(true);
@@ -823,11 +823,11 @@ function initMatureToggle(){
       openTitleModal(toOpen);
     }
   });
-  document.getElementById('gateLeave').addEventListener('click', function(){
+  document.getElementById('gateLeave') && document.getElementById('gateLeave').addEventListener('click', function(){
     closeMatureModal();
     pendingDeepLinkItem = null;
   });
-  document.getElementById('matureModal').addEventListener('click', function(e){
+  document.getElementById('matureModal') && document.getElementById('matureModal').addEventListener('click', function(e){
     if(e.target.id === 'matureModal') closeMatureModal();
   });
 }
@@ -1683,7 +1683,7 @@ function renderCollabBanner(){
   el.innerHTML =
     '<span>' + t('collab.collectionBanner') + ' <strong>' + escapeHtml(activeCollabFilter.name) + '</strong></span>' +
     '<button class="btn btn-ghost btn-sm" id="btnClearCollabFilter">' + t('collab.showAll') + '</button>';
-  document.getElementById('btnClearCollabFilter').addEventListener('click', clearCollabFilter);
+  document.getElementById('btnClearCollabFilter') && document.getElementById('btnClearCollabFilter').addEventListener('click', clearCollabFilter);
 }
 
 function renderFilters(){
@@ -4323,27 +4323,27 @@ function __appInit(){
   fetchAnnouncements();
   startHeartbeat();
 
-  document.getElementById('langSelect').addEventListener('change', function(e){
+  document.getElementById('langSelect') && document.getElementById('langSelect').addEventListener('change', function(e){
     setLang(e.target.value);
   });
 
-  document.getElementById('btnLoginTop').addEventListener('click', function(){ openAuth('login'); });
-  document.getElementById('btnLogoutTop').addEventListener('click', function(){
+  document.getElementById('btnLoginTop') && document.getElementById('btnLoginTop').addEventListener('click', function(){ openAuth('login'); });
+  document.getElementById('btnLogoutTop') && document.getElementById('btnLogoutTop').addEventListener('click', function(){
     authSignOut();
     favoriteIds = new Set();
     afterAuthChange();
   });
-  document.getElementById('authClose').addEventListener('click', closeAuth);
-  document.getElementById('authCancel').addEventListener('click', closeAuth);
-  document.getElementById('authSubmit').addEventListener('click', handleAuthSubmit);
-  document.getElementById('authSwitch').addEventListener('click', function(){
+  document.getElementById('authClose') && document.getElementById('authClose').addEventListener('click', closeAuth);
+  document.getElementById('authCancel') && document.getElementById('authCancel').addEventListener('click', closeAuth);
+  document.getElementById('authSubmit') && document.getElementById('authSubmit').addEventListener('click', handleAuthSubmit);
+  document.getElementById('authSwitch') && document.getElementById('authSwitch').addEventListener('click', function(){
     openAuth(authMode === 'login' ? 'register' : 'login');
   });
-  document.getElementById('authModal').addEventListener('click', function(e){
+  document.getElementById('authModal') && document.getElementById('authModal').addEventListener('click', function(e){
     if(e.target.id === 'authModal') closeAuth();
   });
 
-  document.getElementById('navAdmin').addEventListener('click', function(e){
+  document.getElementById('navAdmin') && document.getElementById('navAdmin').addEventListener('click', function(e){
     var adminSectionEl = document.getElementById('adminSection');
     if(!adminSectionEl) return; // non siamo su admin.html: lascia navigare al link normale (href="admin.html")
     e.preventDefault();
@@ -4351,28 +4351,28 @@ function __appInit(){
     adminSectionEl.scrollIntoView({behavior:'smooth'});
     refreshAdminUI();
   });
-  document.getElementById('btnGateSignIn').addEventListener('click', function(){ openAuth('login'); });
+  document.getElementById('btnGateSignIn') && document.getElementById('btnGateSignIn').addEventListener('click', function(){ openAuth('login'); });
 
-  document.getElementById('btnAddEntry').addEventListener('click', handleAddEntry);
-  document.getElementById('fPages').addEventListener('change', function(e){
+  document.getElementById('btnAddEntry') && document.getElementById('btnAddEntry').addEventListener('click', handleAddEntry);
+  document.getElementById('fPages') && document.getElementById('fPages').addEventListener('change', function(e){
     Array.from(e.target.files).forEach(function(file){
       pendingPages.push({file: file, previewUrl: URL.createObjectURL(file)});
     });
     renderPagesPreview();
     e.target.value = ''; // lets the same file be re-picked later if it was removed
   });
-  document.getElementById('fCover').addEventListener('change', function(e){
+  document.getElementById('fCover') && document.getElementById('fCover').addEventListener('change', function(e){
     if(e.target.files[0]) handleCoverSelected(e.target.files[0]);
   });
-  document.getElementById('btnRemoveCover').addEventListener('click', clearPendingCover);
-  document.getElementById('fPdf').addEventListener('change', function(e){
+  document.getElementById('btnRemoveCover') && document.getElementById('btnRemoveCover').addEventListener('click', clearPendingCover);
+  document.getElementById('fPdf') && document.getElementById('fPdf').addEventListener('change', function(e){
     if(e.target.files[0]) handlePdfSelected(e.target.files[0]);
   });
-  document.getElementById('btnExport').addEventListener('click', handleExport);
-  document.getElementById('btnImport').addEventListener('click', function(){
+  document.getElementById('btnExport') && document.getElementById('btnExport').addEventListener('click', handleExport);
+  document.getElementById('btnImport') && document.getElementById('btnImport').addEventListener('click', function(){
     document.getElementById('importFile').click();
   });
-  document.getElementById('importFile').addEventListener('change', function(e){
+  document.getElementById('importFile') && document.getElementById('importFile').addEventListener('change', function(e){
     if(e.target.files[0]) handleImport(e.target.files[0]);
   });
 
@@ -4380,15 +4380,15 @@ function __appInit(){
     btn.addEventListener('click', function(){ switchAdminTab(btn.dataset.tab); });
   });
 
-  document.getElementById('newsletterForm').addEventListener('submit', handleNewsletterSubmit);
+  document.getElementById('newsletterForm') && document.getElementById('newsletterForm').addEventListener('submit', handleNewsletterSubmit);
 
-  document.getElementById('acctChip').addEventListener('click', openProfileModal);
+  document.getElementById('acctChip') && document.getElementById('acctChip').addEventListener('click', openProfileModal);
 
-  document.getElementById('btnNotifications').addEventListener('click', function(e){
+  document.getElementById('btnNotifications') && document.getElementById('btnNotifications').addEventListener('click', function(e){
     e.stopPropagation();
     document.getElementById('notifPanel').classList.toggle('hidden');
   });
-  document.getElementById('btnMarkAllRead').addEventListener('click', markAllNotificationsRead);
+  document.getElementById('btnMarkAllRead') && document.getElementById('btnMarkAllRead').addEventListener('click', markAllNotificationsRead);
   document.addEventListener('click', function(e){
     var panel = document.getElementById('notifPanel');
     var bell = document.getElementById('btnNotifications');
@@ -4401,18 +4401,18 @@ function __appInit(){
   document.querySelectorAll('.community-tab').forEach(function(btn){
     btn.addEventListener('click', function(){ switchCommunityTab(btn.dataset.ctab); });
   });
-  document.getElementById('btnCreateChannel').addEventListener('click', createChannel);
-  document.getElementById('btnBackToChannels').addEventListener('click', backToChannels);
-  document.getElementById('btnSendChannelMessage').addEventListener('click', sendChannelMessage);
-  document.getElementById('btnBackToDms').addEventListener('click', backToDms);
-  document.getElementById('btnSendDmMessage').addEventListener('click', sendDmMessage);
-  document.getElementById('fFriendSearch').addEventListener('input', function(e){
+  document.getElementById('btnCreateChannel') && document.getElementById('btnCreateChannel').addEventListener('click', createChannel);
+  document.getElementById('btnBackToChannels') && document.getElementById('btnBackToChannels').addEventListener('click', backToChannels);
+  document.getElementById('btnSendChannelMessage') && document.getElementById('btnSendChannelMessage').addEventListener('click', sendChannelMessage);
+  document.getElementById('btnBackToDms') && document.getElementById('btnBackToDms').addEventListener('click', backToDms);
+  document.getElementById('btnSendDmMessage') && document.getElementById('btnSendDmMessage').addEventListener('click', sendDmMessage);
+  document.getElementById('fFriendSearch') && document.getElementById('fFriendSearch').addEventListener('input', function(e){
     var q = e.target.value;
     if(friendSearchDebounce) clearTimeout(friendSearchDebounce);
     friendSearchDebounce = setTimeout(function(){ searchFriends(q); }, 350);
   });
 
-  document.getElementById('profileModalClose').addEventListener('click', closeProfileModal);
+  document.getElementById('profileModalClose') && document.getElementById('profileModalClose').addEventListener('click', closeProfileModal);
   document.querySelectorAll('.smallnox-clickable').forEach(function(img){
     img.addEventListener('click', function(){
       img.classList.remove('wiggle');
@@ -4421,68 +4421,68 @@ function __appInit(){
       document.getElementById('smallnoxModal').classList.remove('hidden');
     });
   });
-  document.getElementById('smallnoxModalClose').addEventListener('click', function(){
+  document.getElementById('smallnoxModalClose') && document.getElementById('smallnoxModalClose').addEventListener('click', function(){
     document.getElementById('smallnoxModal').classList.add('hidden');
   });
-  document.getElementById('smallnoxModal').addEventListener('click', function(e){
+  document.getElementById('smallnoxModal') && document.getElementById('smallnoxModal').addEventListener('click', function(e){
     if(e.target.id === 'smallnoxModal') e.currentTarget.classList.add('hidden');
   });
-  document.getElementById('profileModal').addEventListener('click', function(e){
+  document.getElementById('profileModal') && document.getElementById('profileModal').addEventListener('click', function(e){
     if(e.target.id === 'profileModal') closeProfileModal();
   });
-  document.getElementById('fProfileAvatar').addEventListener('change', function(e){
+  document.getElementById('fProfileAvatar') && document.getElementById('fProfileAvatar').addEventListener('change', function(e){
     var file = e.target.files[0];
     if(file) document.getElementById('profileAvatarImg').src = URL.createObjectURL(file);
     document.getElementById('profileAvatarImg').style.opacity = '1';
   });
-  document.getElementById('btnSaveProfile').addEventListener('click', saveProfile);
-  document.getElementById('btnSubmitRequest').addEventListener('click', submitRequest);
-  document.getElementById('btnAddAnnouncement').addEventListener('click', handleAddAnnouncement);
-  document.getElementById('fAnnImage').addEventListener('change', function(e){
+  document.getElementById('btnSaveProfile') && document.getElementById('btnSaveProfile').addEventListener('click', saveProfile);
+  document.getElementById('btnSubmitRequest') && document.getElementById('btnSubmitRequest').addEventListener('click', submitRequest);
+  document.getElementById('btnAddAnnouncement') && document.getElementById('btnAddAnnouncement').addEventListener('click', handleAddAnnouncement);
+  document.getElementById('fAnnImage') && document.getElementById('fAnnImage').addEventListener('change', function(e){
     var file = e.target.files[0];
     var preview = document.getElementById('fAnnImagePreview');
     if(file){ preview.src = URL.createObjectURL(file); preview.classList.remove('hidden'); }
     else { preview.classList.add('hidden'); }
   });
 
-  document.getElementById('btnResync').addEventListener('click', function(){
+  document.getElementById('btnResync') && document.getElementById('btnResync').addEventListener('click', function(){
     fetchCatalogFromSupabase().then(function(){ renderCatalog(); renderAdminList(); });
     fetchMaintenanceStatus();
   });
-  document.getElementById('maintenanceSwitch').addEventListener('change', function(e){
+  document.getElementById('maintenanceSwitch') && document.getElementById('maintenanceSwitch').addEventListener('change', function(e){
     var on = e.target.checked;
     setMaintenanceStatus(on).then(function(ok){
       if(!ok) e.target.checked = !on; // revert on failure
     });
   });
-  document.getElementById('btnSaveMaintenanceSchedule').addEventListener('click', saveMaintenanceSchedule);
-  document.getElementById('btnSaveNightSchedule').addEventListener('click', saveNightSchedule);
-  document.getElementById('btnRequestExtension').addEventListener('click', requestSessionExtension);
-  document.getElementById('btnExportOffline').addEventListener('click', exportEverythingOffline);
-  document.getElementById('maintenanceLockLogin').addEventListener('click', function(){ openAuth('login'); });
-  document.getElementById('nightLockLogin').addEventListener('click', function(){ openAuth('login'); });
-  document.getElementById('btnSaveSocial').addEventListener('click', saveSocialLinks);
+  document.getElementById('btnSaveMaintenanceSchedule') && document.getElementById('btnSaveMaintenanceSchedule').addEventListener('click', saveMaintenanceSchedule);
+  document.getElementById('btnSaveNightSchedule') && document.getElementById('btnSaveNightSchedule').addEventListener('click', saveNightSchedule);
+  document.getElementById('btnRequestExtension') && document.getElementById('btnRequestExtension').addEventListener('click', requestSessionExtension);
+  document.getElementById('btnExportOffline') && document.getElementById('btnExportOffline').addEventListener('click', exportEverythingOffline);
+  document.getElementById('maintenanceLockLogin') && document.getElementById('maintenanceLockLogin').addEventListener('click', function(){ openAuth('login'); });
+  document.getElementById('nightLockLogin') && document.getElementById('nightLockLogin').addEventListener('click', function(){ openAuth('login'); });
+  document.getElementById('btnSaveSocial') && document.getElementById('btnSaveSocial').addEventListener('click', saveSocialLinks);
 
-  document.getElementById('titleModalClose').addEventListener('click', closeTitleModal);
-  document.getElementById('titleModal').addEventListener('click', function(e){
+  document.getElementById('titleModalClose') && document.getElementById('titleModalClose').addEventListener('click', closeTitleModal);
+  document.getElementById('titleModal') && document.getElementById('titleModal').addEventListener('click', function(e){
     if(e.target.id === 'titleModal') closeTitleModal();
   });
-  document.getElementById('titleModalFav').addEventListener('click', function(){
+  document.getElementById('titleModalFav') && document.getElementById('titleModalFav').addEventListener('click', function(){
     if(currentModalCatalogId) toggleFavorite(currentModalCatalogId);
   });
-  document.getElementById('titleModalLike').addEventListener('click', function(){
+  document.getElementById('titleModalLike') && document.getElementById('titleModalLike').addEventListener('click', function(){
     if(currentModalCatalogId) toggleLike(currentModalCatalogId);
   });
-  document.getElementById('pageReaderPrev').addEventListener('click', function(){ showReaderPage(readerIndex - 1); });
-  document.getElementById('pageReaderNext').addEventListener('click', function(){ showReaderPage(readerIndex + 1); });
-  document.getElementById('btnSubmitComment').addEventListener('click', submitComment);
+  document.getElementById('pageReaderPrev') && document.getElementById('pageReaderPrev').addEventListener('click', function(){ showReaderPage(readerIndex - 1); });
+  document.getElementById('pageReaderNext') && document.getElementById('pageReaderNext').addEventListener('click', function(){ showReaderPage(readerIndex + 1); });
+  document.getElementById('btnSubmitComment') && document.getElementById('btnSubmitComment').addEventListener('click', submitComment);
 
-  document.getElementById('btnCart').addEventListener('click', openCartModal);
-  document.getElementById('cartModalClose').addEventListener('click', closeCartModal);
-  document.getElementById('cartModal').addEventListener('click', function(e){
+  document.getElementById('btnCart') && document.getElementById('btnCart').addEventListener('click', openCartModal);
+  document.getElementById('cartModalClose') && document.getElementById('cartModalClose').addEventListener('click', closeCartModal);
+  document.getElementById('cartModal') && document.getElementById('cartModal').addEventListener('click', function(e){
     if(e.target.id === 'cartModal') closeCartModal();
   });
-  document.getElementById('btnClearCart').addEventListener('click', function(){
+  document.getElementById('btnClearCart') && document.getElementById('btnClearCart').addEventListener('click', function(){
     cart = []; saveCart(); renderCartModal();
   });
 
