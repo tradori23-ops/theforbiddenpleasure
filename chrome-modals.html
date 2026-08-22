@@ -1,0 +1,164 @@
+<!-- ============ AUTH MODAL ============ -->
+<div class="modal-backdrop hidden" id="smallnoxModal">
+  <div class="modal">
+    <button class="modal-close" id="smallnoxModalClose" aria-label="Chiudi">×</button>
+    <img src="smallnox-calm.png" alt="SmallNox" style="width:88px;height:88px;border-radius:50%;display:block;margin:0 auto 14px;object-fit:cover;">
+    <h3 style="text-align:center;" data-i18n="smallnox.modalTitle">Ciao, sono SmallNox</h3>
+    <p style="text-align:center;color:var(--parchment-dim);line-height:1.7;" data-i18n="smallnox.modalBody">Controllo da solo i nuovi commenti e le nuove iscrizioni: se sono puliti li lascio passare subito, altrimenti li segnalo a Nox Morningstar. Nei canali della community faccio lo stesso lavoro — scrivi con rispetto e non mi vedrai mai arrabbiato.</p>
+  </div>
+</div>
+<div class="modal-backdrop hidden" id="profileModal">
+  <div class="modal">
+    <button class="modal-close" id="profileModalClose" aria-label="Chiudi">×</button>
+    <h3 data-i18n="profile.title">Il mio profilo</h3>
+    <div class="sub" data-i18n="profile.sub">Visibile agli altri quando commenti</div>
+
+    <div class="field" style="text-align:center;">
+      <div class="profile-avatar-wrap">
+        <img id="profileAvatarImg" class="profile-avatar" src="" alt="">
+      </div>
+      <input type="file" id="fProfileAvatar" accept="image/*">
+    </div>
+    <div class="field">
+      <label data-i18n="profile.displayName">Nome visibile</label>
+      <input type="text" id="fDisplayName" maxlength="40" placeholder="Come vuoi essere chiamato/a">
+    </div>
+    <div class="field">
+      <label data-i18n="profile.bio">Bio (opzionale)</label>
+      <textarea id="fBio" maxlength="200" rows="2"></textarea>
+    </div>
+    <div class="field">
+      <label data-i18n="profile.favChars">Personaggi preferiti</label>
+      <div class="fav-char-options" id="favCharOptions">
+        <label class="mature-toggle"><span>Lucifer</span><span class="switch"><input type="checkbox" value="Lucifer" class="fav-char-cb"><span class="slider"></span></span></label>
+        <label class="mature-toggle"><span>Lilith</span><span class="switch"><input type="checkbox" value="Lilith" class="fav-char-cb"><span class="slider"></span></span></label>
+        <label class="mature-toggle"><span>Lucifera</span><span class="switch"><input type="checkbox" value="Lucifera" class="fav-char-cb"><span class="slider"></span></span></label>
+        <label class="mature-toggle"><span>Lucio</span><span class="switch"><input type="checkbox" value="Lucio" class="fav-char-cb"><span class="slider"></span></span></label>
+      </div>
+    </div>
+    <div class="form-error" id="profileError"></div>
+    <div class="modal-actions">
+      <button class="btn btn-primary" id="btnSaveProfile" data-i18n="profile.save">Salva profilo</button>
+    </div>
+
+    <div style="margin-top:28px;border-top:1px solid var(--line);padding-top:20px;">
+      <div class="sub mono" data-i18n="requests.title">Le mie richieste</div>
+      <p class="form-note" data-i18n="requests.hint">Un titolo che vorresti, una traduzione, un'idea — scrivimi qui, la leggo io.</p>
+      <div class="field">
+        <textarea id="fRequestBody" rows="3" data-i18n-placeholder="requests.placeholder"></textarea>
+      </div>
+      <div class="form-error" id="requestError"></div>
+      <button class="btn btn-ghost btn-sm" id="btnSubmitRequest" data-i18n="requests.submit">Invia richiesta</button>
+      <div id="myRequestsList" style="margin-top:16px;"></div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop hidden" id="authModal">
+  <div class="modal">
+    <button class="modal-close" id="authClose" aria-label="Chiudi">×</button>
+    <h3 id="authTitle" data-i18n="auth.loginTitle">Accedi all'Archivio</h3>
+    <div class="sub" data-i18n="auth.sub">Account personale</div>
+
+    <div class="quiz-gate hidden" id="registerQuizGate">
+      <p class="form-note" data-i18n="quiz.intro">Prima di registrarti, dimostra di conoscere l'Archivio.</p>
+      <div id="quizQuestionText" class="quiz-question"></div>
+      <div id="quizOptions" class="quiz-options"></div>
+      <div class="form-error" id="quizError"></div>
+    </div>
+
+    <div id="authFieldsWrap">
+      <div class="field">
+        <label data-i18n="auth.username">Nome utente</label>
+        <input type="email" id="authUser" autocomplete="email">
+      </div>
+      <div class="field">
+        <label data-i18n="auth.password">Password</label>
+        <input type="password" id="authPass" autocomplete="current-password">
+      </div>
+      <div class="form-error" id="authError"></div>
+      <div class="modal-actions">
+        <button class="btn btn-primary" id="authSubmit" data-i18n="auth.loginBtn">Accedi</button>
+        <button class="btn btn-ghost" id="authCancel" data-i18n="auth.cancel">Annulla</button>
+      </div>
+    </div>
+
+    <div class="modal-switch">
+      <span id="authSwitchText" data-i18n="auth.switchToRegister">Non hai un account?</span>
+      <button id="authSwitch" data-i18n="auth.switchToRegisterBtn">Registrati</button>
+    </div>
+    <div class="form-note" data-i18n="auth.note">Nota: l'account salva solo la tua preferenza di lingua per questo sito, in locale su questo browser.</div>
+  </div>
+</div>
+
+<!-- ============ TITLE DETAIL MODAL (synopsis, favorite, comments) ============ -->
+<div class="modal-backdrop hidden" id="titleModal">
+  <div class="modal detail-modal">
+    <button class="modal-close" id="titleModalClose" aria-label="Chiudi">×</button>
+    <div class="sub mono" id="titleModalMeta"></div>
+    <h3 id="titleModalTitle"></h3>
+    <p class="detail-synopsis" id="titleModalSynopsis"></p>
+    <p class="collab-credit hidden" id="titleModalCollab"></p>
+    <div id="pageReader" class="page-reader hidden">
+      <div class="page-reader-main">
+        <button type="button" class="page-reader-nav prev" id="pageReaderPrev" aria-label="Pagina precedente">‹</button>
+        <img id="pageReaderImg" src="" alt="" oncontextmenu="return false" draggable="false">
+        <button type="button" class="page-reader-nav next" id="pageReaderNext" aria-label="Pagina successiva">›</button>
+      </div>
+      <div class="page-reader-count mono" id="pageReaderCount"></div>
+      <div class="page-reader-thumbs" id="pageReaderThumbs"></div>
+    </div>
+    <div class="modal-actions" style="margin-top:6px;">
+      <button class="btn btn-ghost btn-sm" id="titleModalFav" data-i18n="fav.add">♡ Salva</button>
+      <button class="btn btn-ghost btn-sm" id="titleModalLike" data-i18n="like.add">👍 Mi piace</button>
+      <span class="engagement-counts mono" id="titleModalCounts"></span>
+      <button class="btn btn-primary btn-sm hidden" id="titleModalAddCart" data-i18n="cart.add">Aggiungi al carrello</button>
+      <a class="btn btn-ghost btn-sm hidden" id="titleModalPdf" href="#" target="_blank" rel="noopener" data-i18n="pdf.download">Scarica PDF</a>
+      <button class="btn btn-ghost btn-sm" id="titleModalShare" data-i18n="share.button">Condividi</button>
+    </div>
+    <div style="margin-top:26px;">
+      <div class="sub mono" data-i18n="comments.title">Commenti</div>
+      <div id="commentsList"></div>
+      <div id="commentFormBox" class="hidden" style="margin-top:14px;">
+        <div class="field">
+          <textarea id="fCommentBody" placeholder="Scrivi un commento…" rows="3"></textarea>
+        </div>
+        <div class="form-error" id="commentError"></div>
+        <button class="btn btn-ghost btn-sm" id="btnSubmitComment" data-i18n="comments.submit">Invia commento</button>
+      </div>
+      <p class="form-note hidden" id="commentLoginPrompt" data-i18n="comments.loginToComment">Accedi per lasciare un commento.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============ CART MODAL ============ -->
+<div class="modal-backdrop hidden" id="cartModal">
+  <div class="modal">
+    <button class="modal-close" id="cartModalClose" aria-label="Chiudi">×</button>
+    <h3 data-i18n="cart.title">Il tuo carrello</h3>
+    <div class="sub mono" data-i18n="cart.pending">Pagamento in configurazione</div>
+    <div id="cartItems"></div>
+    <div class="notice" style="margin-top:16px;">
+      <span data-i18n="cart.notice">Il carrello è pronto, ma il pagamento non è ancora collegato a nessun processore. Quando l'admin ne sceglierà uno, potrai completare l'acquisto qui.</span>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" id="btnClearCart" data-i18n="cart.clear">Svuota carrello</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ MATURE UNLOCK MODAL ============ -->
+<div class="modal-backdrop hidden" id="matureModal">
+  <div class="gate-card">
+    <img class="seal seal-img" data-size="sm" alt="LUX COMICS &amp; MEDUSA COMICS">
+    <h1 data-i18n="gate.title">Sblocca i Contenuti 18+</h1>
+    <div class="gate-sub" data-i18n="gate.sub">Contenuto per adulti</div>
+    <p data-i18n="gate.body">Questa sezione dell'archivio contiene opere destinate a un pubblico maturo. Continuando dichiari di avere almeno 18 anni e di accettare consapevolmente contenuti espliciti.</p>
+    <div class="gate-actions">
+      <button class="btn btn-primary" id="gateEnter" data-i18n="gate.enter">Ho almeno 18 anni — Sblocca</button>
+      <button class="btn btn-ghost" id="gateLeave" data-i18n="gate.leave">Annulla</button>
+    </div>
+    <div class="gate-legal" data-i18n="gate.legal">Continuando dichiari inoltre di rispettare le leggi vigenti nella tua giurisdizione riguardo l'accesso a contenuti per adulti.</div>
+  </div>
+</div>
+
