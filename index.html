@@ -907,6 +907,11 @@ footer .fcopy{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
     <!-- AMICI -->
     <div class="community-panel hidden" data-cpanel="friends">
       <div class="notice">
+        <div class="mini-heading" data-i18n="community.searchFriends">Cerca una persona</div>
+        <input type="text" id="fFriendSearch" data-i18n-placeholder="community.searchFriendsPh" placeholder="Nome utente…">
+        <div id="friendSearchResults"></div>
+      </div>
+      <div class="notice">
         <div class="mini-heading" data-i18n="community.pendingReceived">Richieste ricevute</div>
         <div id="friendRequestsReceived"></div>
       </div>
@@ -959,6 +964,14 @@ footer .fcopy{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
     <!-- Management box: shown once signed in as admin -->
     <div class="admin-panel hidden" id="adminManageBox">
       <div class="notice"><b data-i18n="admin.noticeLabel">Stato —</b> <span id="syncStatus2"></span></div>
+
+      <div class="notice hidden" id="collabSessionBanner" style="border-color:var(--gold-bright);">
+        <div style="font-family:'Cinzel',serif;font-size:15px;color:var(--gold-bright);margin-bottom:6px;" data-i18n="collabSession.active">Sessione di creazione attiva</div>
+        <p id="collabSessionCountdown" style="font-family:'Space Mono',monospace;font-size:13px;color:var(--gold);"></p>
+        <p class="form-note" data-i18n="collabSession.hintCollab">Puoi aggiungere titoli allo schedario finché la sessione è attiva. Se non riesci a finire in tempo, chiedi una proroga.</p>
+        <button type="button" class="btn btn-ghost btn-sm" id="btnRequestExtension" data-i18n="collabSession.requestExtension">Non ce la faccio, chiedi una proroga</button>
+        <p class="form-note" id="collabSessionExtensionStatus"></p>
+      </div>
 
       <div class="admin-tabs" id="adminTabs">
         <button class="admin-tab active" data-tab="catalog" data-i18n="admin.tab.catalog">Catalogo</button>
@@ -1135,6 +1148,11 @@ footer .fcopy{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
           <div data-i18n="users.title" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Utenti registrati</div>
           <p class="form-note" data-i18n="users.hint">La spunta blu si può assegnare solo dopo 90 giorni dall'iscrizione. Decidi tu, titolo per titolo.</p>
           <div id="adminUsersList"></div>
+        </div>
+        <div class="notice">
+          <div data-i18n="collabSession.title" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Sessioni di creazione attive</div>
+          <p class="form-note" data-i18n="collabSession.hint">Un amico invitato a creare può pubblicare titoli solo finché la sua sessione è attiva.</p>
+          <div id="adminSessionsList"></div>
         </div>
       </div>
 
@@ -1422,7 +1440,8 @@ var STR = {
     "users.empty":"Nessun utente registrato ancora.","users.noName":"Utente","users.joined":"Iscritto il","users.daysHere":"{n} giorni sul sito",
     "users.eligible":"Idoneo","users.waitingDays":"ancora {n} giorni","users.grant":"Assegna spunta","users.revoke":"Rimuovi spunta","users.earlyGrantConfirm":"{name} non ha ancora raggiunto i 90 giorni (ne mancano {n}). Vuoi assegnare comunque la spunta come eccezione?",
     "notif.title":"Notifiche","notif.markAll":"Segna tutte come lette","notif.empty":"Nessuna notifica.","notif.someone":"Qualcuno","notif.justNow":"Adesso","notif.minsAgo":"{n} min fa","notif.hoursAgo":"{n} h fa","notif.daysAgo":"{n} g fa",
-    "nav.community":"Community","community.eyebrow":"Fuori dallo Schedario","community.title":"Community","community.rule":"Niente materiale pornografico: al massimo contenuti sensuali. Chi viola la regola viene bannato ed eliminato dal sito.","community.tabChannels":"Canali","community.tabDms":"Messaggi privati","community.newChannelPh":"Nome nuovo canale (es. Cinema)","community.createChannel":"Crea canale","community.back":"← Torna","community.messagePh":"Scrivi un messaggio…","community.send":"Invia","community.dmHint":"Per scrivere in privato a qualcuno, apri un suo messaggio in un canale e usa \"Messaggio privato\".","community.noChannels":"Nessun canale ancora. Creane uno tu.","community.noMessages":"Nessun messaggio ancora.","community.noDms":"Nessuna conversazione privata ancora.","community.privateMessage":"Messaggio privato","community.report":"Segnala","community.reportPrompt":"Perché segnali questo messaggio? (opzionale)","community.reportSent":"Segnalazione inviata, grazie.","community.you":"Tu","community.tabFriends":"Amici","community.addFriend":"Aggiungi amico","community.requestSent":"Richiesta inviata","community.acceptFriend":"Accetta amicizia","community.declineFriend":"Rifiuta","community.pendingReceived":"Richieste ricevute","community.pendingSent":"Richieste inviate","community.friendsList":"I tuoi amici",
+    "nav.community":"Community","community.eyebrow":"Fuori dallo Schedario","community.title":"Community","community.rule":"Niente materiale pornografico: al massimo contenuti sensuali. Chi viola la regola viene bannato ed eliminato dal sito.","community.tabChannels":"Canali","community.tabDms":"Messaggi privati","community.newChannelPh":"Nome nuovo canale (es. Cinema)","community.createChannel":"Crea canale","community.back":"← Torna","community.messagePh":"Scrivi un messaggio…","community.send":"Invia","community.dmHint":"Per scrivere in privato a qualcuno, apri un suo messaggio in un canale e usa \"Messaggio privato\".","community.noChannels":"Nessun canale ancora. Creane uno tu.","community.noMessages":"Nessun messaggio ancora.","community.noDms":"Nessuna conversazione privata ancora.","community.privateMessage":"Messaggio privato","community.report":"Segnala","community.reportPrompt":"Perché segnali questo messaggio? (opzionale)","community.reportSent":"Segnalazione inviata, grazie.","community.you":"Tu","community.tabFriends":"Amici","community.addFriend":"Aggiungi amico","community.requestSent":"Richiesta inviata","community.acceptFriend":"Accetta amicizia","community.declineFriend":"Rifiuta","community.pendingReceived":"Richieste ricevute","community.pendingSent":"Richieste inviate","community.friendsList":"I tuoi amici","community.searchFriends":"Cerca una persona","community.searchFriendsPh":"Nome utente…","community.noResults":"Nessun risultato.",
+    "collabSession.title":"Sessioni di creazione attive","collabSession.hint":"Un amico invitato a creare può pubblicare titoli solo finché la sua sessione è attiva.","collabSession.active":"Sessione di creazione attiva","collabSession.hintCollab":"Puoi aggiungere titoli allo schedario finché la sessione è attiva. Se non riesci a finire in tempo, chiedi una proroga.","collabSession.requestExtension":"Non ce la faccio, chiedi una proroga","collabSession.countdown":"Scade tra {h}h {m}min","collabSession.expired":"Sessione scaduta.","collabSession.extensionPending":"Proroga richiesta, in attesa dell'admin","collabSession.invite":"Invita a creare","collabSession.inviteConfirm":"Invitare {name} a creare e pubblicare per 24 ore?","collabSession.inviteSent":"Invito inviato.","collabSession.inviteNotif":"Sei stato invitato a creare e pubblicare un titolo — hai 24 ore.","collabSession.extend48":"Proroga 48h",
     "admin.tab.moderation":"Moderazione Community","mod.reportsTitle":"Segnalazioni aperte","mod.flaggedTitle":"Messaggi segnalati automaticamente","mod.bannedTitle":"Utenti bannati (email bloccate)","mod.empty":"Niente al momento.","mod.typeChannel":"Messaggio in canale","mod.typeDm":"Messaggio privato","mod.hide":"Nascondi","mod.ban":"Banna ed elimina","mod.noUser":"Utente non trovato.","mod.banConfirm":"Confermi? L'utente verrà bannato, il suo account eliminato e non potrà registrarsi di nuovo con la stessa email.","mod.banFailed":"Operazione non riuscita.",
     "users.onlineNow":"{n} utenti online ora","users.onlineTag":"Online ora",
     "announcements.eyebrow":"Dalla Redazione","announcements.title":"Novità","announcements.readMore":"Leggi","announcements.share":"Condividi",
@@ -1537,7 +1556,8 @@ var STR = {
     "users.empty":"No registered users yet.","users.noName":"User","users.joined":"Joined on","users.daysHere":"{n} days on the site",
     "users.eligible":"Eligible","users.waitingDays":"{n} days to go","users.grant":"Grant checkmark","users.revoke":"Remove checkmark","users.earlyGrantConfirm":"{name} hasn't reached 90 days yet ({n} to go). Grant the checkmark anyway as an exception?",
     "notif.title":"Notifications","notif.markAll":"Mark all as read","notif.empty":"No notifications.","notif.someone":"Someone","notif.justNow":"Just now","notif.minsAgo":"{n} min ago","notif.hoursAgo":"{n} h ago","notif.daysAgo":"{n} d ago",
-    "nav.community":"Community","community.eyebrow":"Beyond the Archive","community.title":"Community","community.rule":"No pornographic material: sensual at most. Anyone who breaks the rule is banned and removed from the site.","community.tabChannels":"Channels","community.tabDms":"Private messages","community.newChannelPh":"New channel name (e.g. Movies)","community.createChannel":"Create channel","community.back":"← Back","community.messagePh":"Write a message…","community.send":"Send","community.dmHint":"To message someone privately, open one of their messages in a channel and use \"Private message\".","community.noChannels":"No channels yet. Create one.","community.noMessages":"No messages yet.","community.noDms":"No private conversations yet.","community.privateMessage":"Private message","community.report":"Report","community.reportPrompt":"Why are you reporting this message? (optional)","community.reportSent":"Report sent, thank you.","community.you":"You","community.tabFriends":"Friends","community.addFriend":"Add friend","community.requestSent":"Request sent","community.acceptFriend":"Accept friend request","community.declineFriend":"Decline","community.pendingReceived":"Received requests","community.pendingSent":"Sent requests","community.friendsList":"Your friends",
+    "nav.community":"Community","community.eyebrow":"Beyond the Archive","community.title":"Community","community.rule":"No pornographic material: sensual at most. Anyone who breaks the rule is banned and removed from the site.","community.tabChannels":"Channels","community.tabDms":"Private messages","community.newChannelPh":"New channel name (e.g. Movies)","community.createChannel":"Create channel","community.back":"← Back","community.messagePh":"Write a message…","community.send":"Send","community.dmHint":"To message someone privately, open one of their messages in a channel and use \"Private message\".","community.noChannels":"No channels yet. Create one.","community.noMessages":"No messages yet.","community.noDms":"No private conversations yet.","community.privateMessage":"Private message","community.report":"Report","community.reportPrompt":"Why are you reporting this message? (optional)","community.reportSent":"Report sent, thank you.","community.you":"You","community.tabFriends":"Friends","community.addFriend":"Add friend","community.requestSent":"Request sent","community.acceptFriend":"Accept friend request","community.declineFriend":"Decline","community.pendingReceived":"Received requests","community.pendingSent":"Sent requests","community.friendsList":"Your friends","community.searchFriends":"Search for someone","community.searchFriendsPh":"Username…","community.noResults":"No results.",
+    "collabSession.title":"Active creation sessions","collabSession.hint":"A friend invited to create can publish titles only while their session is active.","collabSession.active":"Active creation session","collabSession.hintCollab":"You can add titles to the catalog while the session is active. If you can't finish in time, request an extension.","collabSession.requestExtension":"I can't make it, request an extension","collabSession.countdown":"Expires in {h}h {m}min","collabSession.expired":"Session expired.","collabSession.extensionPending":"Extension requested, waiting on the admin","collabSession.invite":"Invite to create","collabSession.inviteConfirm":"Invite {name} to create and publish for 24 hours?","collabSession.inviteSent":"Invitation sent.","collabSession.inviteNotif":"You've been invited to create and publish a title — you have 24 hours.","collabSession.extend48":"Extend 48h",
     "admin.tab.moderation":"Community Moderation","mod.reportsTitle":"Open reports","mod.flaggedTitle":"Auto-flagged messages","mod.bannedTitle":"Banned users (blocked emails)","mod.empty":"Nothing right now.","mod.typeChannel":"Channel message","mod.typeDm":"Private message","mod.hide":"Hide","mod.ban":"Ban and delete","mod.noUser":"User not found.","mod.banConfirm":"Confirm? The user will be banned, their account deleted, and they won't be able to register again with the same email.","mod.banFailed":"Operation failed.",
     "users.onlineNow":"{n} users online now","users.onlineTag":"Online now",
     "announcements.eyebrow":"From the Editors","announcements.title":"News","announcements.readMore":"Read","announcements.share":"Share",
@@ -1652,7 +1672,8 @@ var STR = {
     "users.empty":"Aún no hay usuarios registrados.","users.noName":"Usuario","users.joined":"Registrado el","users.daysHere":"{n} días en el sitio",
     "users.eligible":"Apto","users.waitingDays":"faltan {n} días","users.grant":"Otorgar marca","users.revoke":"Quitar marca","users.earlyGrantConfirm":"{name} aún no ha alcanzado los 90 días (faltan {n}). ¿Otorgar la marca de todos modos como excepción?",
     "notif.title":"Notificaciones","notif.markAll":"Marcar todas como leídas","notif.empty":"No hay notificaciones.","notif.someone":"Alguien","notif.justNow":"Ahora mismo","notif.minsAgo":"hace {n} min","notif.hoursAgo":"hace {n} h","notif.daysAgo":"hace {n} d",
-    "nav.community":"Comunidad","community.eyebrow":"Fuera del Archivo","community.title":"Comunidad","community.rule":"Nada de material pornográfico: como mucho contenido sensual. Quien incumpla la regla será baneado y eliminado del sitio.","community.tabChannels":"Canales","community.tabDms":"Mensajes privados","community.newChannelPh":"Nombre del nuevo canal (ej. Cine)","community.createChannel":"Crear canal","community.back":"← Volver","community.messagePh":"Escribe un mensaje…","community.send":"Enviar","community.dmHint":"Para escribir en privado a alguien, abre uno de sus mensajes en un canal y usa \"Mensaje privado\".","community.noChannels":"Aún no hay canales. Crea uno.","community.noMessages":"Aún no hay mensajes.","community.noDms":"Aún no hay conversaciones privadas.","community.privateMessage":"Mensaje privado","community.report":"Denunciar","community.reportPrompt":"¿Por qué denuncias este mensaje? (opcional)","community.reportSent":"Denuncia enviada, gracias.","community.you":"Tú","community.tabFriends":"Amigos","community.addFriend":"Añadir amigo","community.requestSent":"Solicitud enviada","community.acceptFriend":"Aceptar amistad","community.declineFriend":"Rechazar","community.pendingReceived":"Solicitudes recibidas","community.pendingSent":"Solicitudes enviadas","community.friendsList":"Tus amigos",
+    "nav.community":"Comunidad","community.eyebrow":"Fuera del Archivo","community.title":"Comunidad","community.rule":"Nada de material pornográfico: como mucho contenido sensual. Quien incumpla la regla será baneado y eliminado del sitio.","community.tabChannels":"Canales","community.tabDms":"Mensajes privados","community.newChannelPh":"Nombre del nuevo canal (ej. Cine)","community.createChannel":"Crear canal","community.back":"← Volver","community.messagePh":"Escribe un mensaje…","community.send":"Enviar","community.dmHint":"Para escribir en privado a alguien, abre uno de sus mensajes en un canal y usa \"Mensaje privado\".","community.noChannels":"Aún no hay canales. Crea uno.","community.noMessages":"Aún no hay mensajes.","community.noDms":"Aún no hay conversaciones privadas.","community.privateMessage":"Mensaje privado","community.report":"Denunciar","community.reportPrompt":"¿Por qué denuncias este mensaje? (opcional)","community.reportSent":"Denuncia enviada, gracias.","community.you":"Tú","community.tabFriends":"Amigos","community.addFriend":"Añadir amigo","community.requestSent":"Solicitud enviada","community.acceptFriend":"Aceptar amistad","community.declineFriend":"Rechazar","community.pendingReceived":"Solicitudes recibidas","community.pendingSent":"Solicitudes enviadas","community.friendsList":"Tus amigos","community.searchFriends":"Buscar a alguien","community.searchFriendsPh":"Nombre de usuario…","community.noResults":"Sin resultados.",
+    "collabSession.title":"Sesiones de creación activas","collabSession.hint":"Un amigo invitado a crear puede publicar títulos solo mientras su sesión esté activa.","collabSession.active":"Sesión de creación activa","collabSession.hintCollab":"Puedes añadir títulos al catálogo mientras la sesión esté activa. Si no llegas a tiempo, pide una prórroga.","collabSession.requestExtension":"No llego, pedir prórroga","collabSession.countdown":"Caduca en {h}h {m}min","collabSession.expired":"Sesión caducada.","collabSession.extensionPending":"Prórroga solicitada, esperando al admin","collabSession.invite":"Invitar a crear","collabSession.inviteConfirm":"¿Invitar a {name} a crear y publicar durante 24 horas?","collabSession.inviteSent":"Invitación enviada.","collabSession.inviteNotif":"Has sido invitado a crear y publicar un título — tienes 24 horas.","collabSession.extend48":"Prórroga 48h",
     "admin.tab.moderation":"Moderación de Comunidad","mod.reportsTitle":"Denuncias abiertas","mod.flaggedTitle":"Mensajes marcados automáticamente","mod.bannedTitle":"Usuarios baneados (emails bloqueados)","mod.empty":"Nada por ahora.","mod.typeChannel":"Mensaje en canal","mod.typeDm":"Mensaje privado","mod.hide":"Ocultar","mod.ban":"Banear y eliminar","mod.noUser":"Usuario no encontrado.","mod.banConfirm":"¿Confirmas? El usuario será baneado, su cuenta eliminada y no podrá registrarse de nuevo con el mismo email.","mod.banFailed":"Operación fallida.",
     "users.onlineNow":"{n} usuarios en línea ahora","users.onlineTag":"En línea ahora",
     "announcements.eyebrow":"De la Redacción","announcements.title":"Novedades","announcements.readMore":"Leer","announcements.share":"Compartir",
@@ -1767,7 +1788,8 @@ var STR = {
     "users.empty":"Aucun utilisateur inscrit pour l'instant.","users.noName":"Utilisateur","users.joined":"Inscrit le","users.daysHere":"{n} jours sur le site",
     "users.eligible":"Éligible","users.waitingDays":"encore {n} jours","users.grant":"Accorder le badge","users.revoke":"Retirer le badge","users.earlyGrantConfirm":"{name} n'a pas encore atteint 90 jours ({n} restants). Accorder le badge quand même, à titre exceptionnel ?",
     "notif.title":"Notifications","notif.markAll":"Tout marquer comme lu","notif.empty":"Aucune notification.","notif.someone":"Quelqu'un","notif.justNow":"À l'instant","notif.minsAgo":"il y a {n} min","notif.hoursAgo":"il y a {n} h","notif.daysAgo":"il y a {n} j",
-    "nav.community":"Communauté","community.eyebrow":"En dehors de l'Archive","community.title":"Communauté","community.rule":"Aucun contenu pornographique : sensuel tout au plus. Toute violation entraîne le bannissement et la suppression du site.","community.tabChannels":"Canaux","community.tabDms":"Messages privés","community.newChannelPh":"Nom du nouveau canal (ex. Cinéma)","community.createChannel":"Créer un canal","community.back":"← Retour","community.messagePh":"Écrivez un message…","community.send":"Envoyer","community.dmHint":"Pour écrire en privé à quelqu'un, ouvrez un de ses messages dans un canal et utilisez \"Message privé\".","community.noChannels":"Aucun canal pour l'instant. Créez-en un.","community.noMessages":"Aucun message pour l'instant.","community.noDms":"Aucune conversation privée pour l'instant.","community.privateMessage":"Message privé","community.report":"Signaler","community.reportPrompt":"Pourquoi signalez-vous ce message ? (facultatif)","community.reportSent":"Signalement envoyé, merci.","community.you":"Vous","community.tabFriends":"Amis","community.addFriend":"Ajouter un ami","community.requestSent":"Demande envoyée","community.acceptFriend":"Accepter l'amitié","community.declineFriend":"Refuser","community.pendingReceived":"Demandes reçues","community.pendingSent":"Demandes envoyées","community.friendsList":"Vos amis",
+    "nav.community":"Communauté","community.eyebrow":"En dehors de l'Archive","community.title":"Communauté","community.rule":"Aucun contenu pornographique : sensuel tout au plus. Toute violation entraîne le bannissement et la suppression du site.","community.tabChannels":"Canaux","community.tabDms":"Messages privés","community.newChannelPh":"Nom du nouveau canal (ex. Cinéma)","community.createChannel":"Créer un canal","community.back":"← Retour","community.messagePh":"Écrivez un message…","community.send":"Envoyer","community.dmHint":"Pour écrire en privé à quelqu'un, ouvrez un de ses messages dans un canal et utilisez \"Message privé\".","community.noChannels":"Aucun canal pour l'instant. Créez-en un.","community.noMessages":"Aucun message pour l'instant.","community.noDms":"Aucune conversation privée pour l'instant.","community.privateMessage":"Message privé","community.report":"Signaler","community.reportPrompt":"Pourquoi signalez-vous ce message ? (facultatif)","community.reportSent":"Signalement envoyé, merci.","community.you":"Vous","community.tabFriends":"Amis","community.addFriend":"Ajouter un ami","community.requestSent":"Demande envoyée","community.acceptFriend":"Accepter l'amitié","community.declineFriend":"Refuser","community.pendingReceived":"Demandes reçues","community.pendingSent":"Demandes envoyées","community.friendsList":"Vos amis","community.searchFriends":"Rechercher une personne","community.searchFriendsPh":"Nom d'utilisateur…","community.noResults":"Aucun résultat.",
+    "collabSession.title":"Sessions de création actives","collabSession.hint":"Un ami invité à créer ne peut publier de titres que tant que sa session est active.","collabSession.active":"Session de création active","collabSession.hintCollab":"Vous pouvez ajouter des titres au catalogue tant que la session est active. Si vous ne pouvez pas terminer à temps, demandez une prolongation.","collabSession.requestExtension":"Je n'y arrive pas, demander une prolongation","collabSession.countdown":"Expire dans {h}h {m}min","collabSession.expired":"Session expirée.","collabSession.extensionPending":"Prolongation demandée, en attente de l'admin","collabSession.invite":"Inviter à créer","collabSession.inviteConfirm":"Inviter {name} à créer et publier pendant 24 heures ?","collabSession.inviteSent":"Invitation envoyée.","collabSession.inviteNotif":"Vous avez été invité à créer et publier un titre — vous avez 24 heures.","collabSession.extend48":"Prolonger de 48h",
     "admin.tab.moderation":"Modération Communauté","mod.reportsTitle":"Signalements ouverts","mod.flaggedTitle":"Messages signalés automatiquement","mod.bannedTitle":"Utilisateurs bannis (emails bloqués)","mod.empty":"Rien pour l'instant.","mod.typeChannel":"Message de canal","mod.typeDm":"Message privé","mod.hide":"Masquer","mod.ban":"Bannir et supprimer","mod.noUser":"Utilisateur introuvable.","mod.banConfirm":"Confirmer ? L'utilisateur sera banni, son compte supprimé, et il ne pourra plus se réinscrire avec le même email.","mod.banFailed":"Échec de l'opération.",
     "users.onlineNow":"{n} utilisateurs en ligne","users.onlineTag":"En ligne",
     "announcements.eyebrow":"De la Rédaction","announcements.title":"Actualités","announcements.readMore":"Lire","announcements.share":"Partager",
@@ -1882,7 +1904,8 @@ var STR = {
     "users.empty":"Noch keine registrierten Nutzer.","users.noName":"Nutzer","users.joined":"Angemeldet am","users.daysHere":"{n} Tage dabei",
     "users.eligible":"Berechtigt","users.waitingDays":"noch {n} Tage","users.grant":"Häkchen vergeben","users.revoke":"Häkchen entfernen","users.earlyGrantConfirm":"{name} hat die 90 Tage noch nicht erreicht (noch {n} Tage). Häkchen trotzdem als Ausnahme vergeben?",
     "notif.title":"Benachrichtigungen","notif.markAll":"Alle als gelesen markieren","notif.empty":"Keine Benachrichtigungen.","notif.someone":"Jemand","notif.justNow":"Gerade eben","notif.minsAgo":"vor {n} Min","notif.hoursAgo":"vor {n} Std","notif.daysAgo":"vor {n} T",
-    "nav.community":"Community","community.eyebrow":"Jenseits des Archivs","community.title":"Community","community.rule":"Keine pornografischen Inhalte: höchstens sinnlich. Wer gegen die Regel verstößt, wird gesperrt und von der Seite entfernt.","community.tabChannels":"Kanäle","community.tabDms":"Private Nachrichten","community.newChannelPh":"Name des neuen Kanals (z. B. Kino)","community.createChannel":"Kanal erstellen","community.back":"← Zurück","community.messagePh":"Nachricht schreiben…","community.send":"Senden","community.dmHint":"Um jemandem privat zu schreiben, öffne eine seiner Nachrichten in einem Kanal und nutze \"Private Nachricht\".","community.noChannels":"Noch keine Kanäle. Erstelle einen.","community.noMessages":"Noch keine Nachrichten.","community.noDms":"Noch keine privaten Gespräche.","community.privateMessage":"Private Nachricht","community.report":"Melden","community.reportPrompt":"Warum meldest du diese Nachricht? (optional)","community.reportSent":"Meldung gesendet, danke.","community.you":"Du","community.tabFriends":"Freunde","community.addFriend":"Freund hinzufügen","community.requestSent":"Anfrage gesendet","community.acceptFriend":"Freundschaft annehmen","community.declineFriend":"Ablehnen","community.pendingReceived":"Erhaltene Anfragen","community.pendingSent":"Gesendete Anfragen","community.friendsList":"Deine Freunde",
+    "nav.community":"Community","community.eyebrow":"Jenseits des Archivs","community.title":"Community","community.rule":"Keine pornografischen Inhalte: höchstens sinnlich. Wer gegen die Regel verstößt, wird gesperrt und von der Seite entfernt.","community.tabChannels":"Kanäle","community.tabDms":"Private Nachrichten","community.newChannelPh":"Name des neuen Kanals (z. B. Kino)","community.createChannel":"Kanal erstellen","community.back":"← Zurück","community.messagePh":"Nachricht schreiben…","community.send":"Senden","community.dmHint":"Um jemandem privat zu schreiben, öffne eine seiner Nachrichten in einem Kanal und nutze \"Private Nachricht\".","community.noChannels":"Noch keine Kanäle. Erstelle einen.","community.noMessages":"Noch keine Nachrichten.","community.noDms":"Noch keine privaten Gespräche.","community.privateMessage":"Private Nachricht","community.report":"Melden","community.reportPrompt":"Warum meldest du diese Nachricht? (optional)","community.reportSent":"Meldung gesendet, danke.","community.you":"Du","community.tabFriends":"Freunde","community.addFriend":"Freund hinzufügen","community.requestSent":"Anfrage gesendet","community.acceptFriend":"Freundschaft annehmen","community.declineFriend":"Ablehnen","community.pendingReceived":"Erhaltene Anfragen","community.pendingSent":"Gesendete Anfragen","community.friendsList":"Deine Freunde","community.searchFriends":"Person suchen","community.searchFriendsPh":"Benutzername…","community.noResults":"Keine Ergebnisse.",
+    "collabSession.title":"Aktive Erstellungssitzungen","collabSession.hint":"Ein zum Erstellen eingeladener Freund kann Titel nur veröffentlichen, solange seine Sitzung aktiv ist.","collabSession.active":"Aktive Erstellungssitzung","collabSession.hintCollab":"Du kannst Titel zum Katalog hinzufügen, solange die Sitzung aktiv ist. Wenn du nicht rechtzeitig fertig wirst, bitte um eine Verlängerung.","collabSession.requestExtension":"Ich schaffe es nicht, Verlängerung anfragen","collabSession.countdown":"Läuft ab in {h}Std {m}Min","collabSession.expired":"Sitzung abgelaufen.","collabSession.extensionPending":"Verlängerung angefragt, wartet auf Admin","collabSession.invite":"Zum Erstellen einladen","collabSession.inviteConfirm":"{name} für 24 Stunden zum Erstellen und Veröffentlichen einladen?","collabSession.inviteSent":"Einladung gesendet.","collabSession.inviteNotif":"Du wurdest eingeladen, einen Titel zu erstellen und zu veröffentlichen — du hast 24 Stunden.","collabSession.extend48":"Um 48Std verlängern",
     "admin.tab.moderation":"Community-Moderation","mod.reportsTitle":"Offene Meldungen","mod.flaggedTitle":"Automatisch markierte Nachrichten","mod.bannedTitle":"Gesperrte Nutzer (blockierte E-Mails)","mod.empty":"Aktuell nichts.","mod.typeChannel":"Kanal-Nachricht","mod.typeDm":"Private Nachricht","mod.hide":"Ausblenden","mod.ban":"Sperren und löschen","mod.noUser":"Nutzer nicht gefunden.","mod.banConfirm":"Bestätigen? Der Nutzer wird gesperrt, sein Konto gelöscht, und er kann sich nicht erneut mit derselben E-Mail registrieren.","mod.banFailed":"Vorgang fehlgeschlagen.",
     "users.onlineNow":"{n} Nutzer gerade online","users.onlineTag":"Gerade online",
     "announcements.eyebrow":"Von der Redaktion","announcements.title":"Neuigkeiten","announcements.readMore":"Lesen","announcements.share":"Teilen",
@@ -2363,6 +2386,7 @@ function afterAuthChange(){
   loadFavorites();
   loadLikes();
   loadNotifications();
+  loadMyCreationSession().then(refreshAdminUI);
   sendHeartbeat();
   renderMaintenanceBanner(); // se chi si è appena autenticato è l'admin, il blocco manutenzione deve sparire subito
   renderNightClosureLock(); // idem per la chiusura notturna
@@ -2407,12 +2431,18 @@ function refreshAdminUI(){
   var gateMsg = document.getElementById('adminGateMessage');
   var gateSignIn = document.getElementById('btnGateSignIn');
   var navAdmin = document.getElementById('navAdmin');
+  var adminSection = document.getElementById('adminSection');
+  var adminTabs = document.getElementById('adminTabs');
+  var collabBanner = document.getElementById('collabSessionBanner');
   if(!gateBox || !manageBox) return;
   var admin = isAdmin();
-  navAdmin.classList.toggle('hidden', !admin); // only the admin ever sees this link exists
-  gateBox.classList.toggle('hidden', admin);
-  manageBox.classList.toggle('hidden', !admin);
+  var collab = !admin && hasActiveCreationSession();
+  navAdmin.classList.toggle('hidden', !(admin || collab)); // solo admin o collaboratore con sessione attiva vedono questo link
   if(admin){
+    gateBox.classList.add('hidden');
+    manageBox.classList.remove('hidden');
+    if(adminTabs) adminTabs.classList.remove('hidden');
+    if(collabBanner) collabBanner.classList.add('hidden');
     renderAdminList();
     renderModerationQueue();
     loadSocialLinksIntoForm();
@@ -2421,14 +2451,28 @@ function refreshAdminUI(){
     renderAdminRequests();
     renderAdminAnnouncements();
     renderAdminUsers();
+    renderAdminSessions();
+  } else if(collab){
+    // Un collaboratore invitato vede SOLO il modulo "Aggiungi allo schedario":
+    // niente altre tab, niente elenco titoli altrui, niente dati riservati.
+    gateBox.classList.add('hidden');
+    manageBox.classList.remove('hidden');
+    if(adminTabs) adminTabs.classList.add('hidden');
+    document.querySelectorAll('.admin-tab-panel').forEach(function(panel){
+      panel.classList.toggle('hidden', panel.dataset.tabPanel !== 'catalog');
+    });
+    if(collabBanner){
+      collabBanner.classList.remove('hidden');
+      renderCollabSessionBanner();
+    }
   } else if(isSignedIn()){
     gateMsg.textContent = t('admin.gate.notAdmin').replace('{email}', currentUserEmail());
     gateSignIn.classList.add('hidden');
-    document.getElementById('adminSection').classList.add('hidden'); // no dangling section for non-admins
+    adminSection.classList.add('hidden'); // no dangling section for non-admins
   } else {
     gateMsg.textContent = t('admin.gate.notSignedIn');
     gateSignIn.classList.remove('hidden');
-    document.getElementById('adminSection').classList.add('hidden');
+    adminSection.classList.add('hidden');
   }
   updateSyncStatus();
 }
@@ -3906,6 +3950,28 @@ function renderNotifPanel(){
 function openNotification(n){
   markNotificationRead(n.id);
   document.getElementById('notifPanel').classList.add('hidden');
+  if(n.type === 'friend_request'){
+    var communitySection = document.getElementById('communitySection');
+    if(communitySection){
+      communitySection.scrollIntoView({behavior:'smooth'});
+      switchCommunityTab('friends');
+    }
+    return;
+  }
+  if(n.type === 'creation_invite'){
+    var adminSection1 = document.getElementById('adminSection');
+    if(adminSection1){ adminSection1.classList.remove('hidden'); adminSection1.scrollIntoView({behavior:'smooth'}); }
+    return;
+  }
+  if(n.type === 'extension_request'){
+    var adminSection2 = document.getElementById('adminSection');
+    if(adminSection2){
+      adminSection2.classList.remove('hidden');
+      switchAdminTab('users');
+      adminSection2.scrollIntoView({behavior:'smooth'});
+    }
+    return;
+  }
   if(n.catalog_id){
     var items = getCatalog();
     var item = items.find(function(i){ return i.id === n.catalog_id; });
@@ -4091,28 +4157,57 @@ function loadFriendshipMap(){
     .catch(function(){ return {}; });
 }
 
-function renderFriendActionSlot(slot, otherUserId, otherName){
+function buildFriendActionButton(otherUserId, otherName){
   var uid = currentUserId();
+  var f = friendshipCache[otherUserId];
+  var btn = document.createElement('button');
+  btn.type = 'button';
+  if(!f){
+    btn.textContent = t('community.addFriend');
+    btn.addEventListener('click', function(){ sendFriendRequest(otherUserId); });
+  } else if(f.status === 'accepted'){
+    btn.textContent = t('community.privateMessage');
+    btn.addEventListener('click', function(){ startDmWith(otherUserId, otherName); });
+  } else if(f.status === 'pending' && f.requester_id === uid){
+    btn.textContent = t('community.requestSent');
+    btn.disabled = true;
+  } else if(f.status === 'pending' && f.addressee_id === uid){
+    btn.textContent = t('community.acceptFriend');
+    btn.addEventListener('click', function(){ respondFriendRequest(f.id, true); });
+  }
+  return btn;
+}
+
+function renderFriendActionSlot(slot, otherUserId, otherName){
   loadFriendshipMap().then(function(){
     slot.innerHTML = '';
-    var f = friendshipCache[otherUserId];
-    var btn = document.createElement('button');
-    btn.type = 'button';
-    if(!f){
-      btn.textContent = t('community.addFriend');
-      btn.addEventListener('click', function(){ sendFriendRequest(otherUserId); });
-    } else if(f.status === 'accepted'){
-      btn.textContent = t('community.privateMessage');
-      btn.addEventListener('click', function(){ startDmWith(otherUserId, otherName); });
-    } else if(f.status === 'pending' && f.requester_id === uid){
-      btn.textContent = t('community.requestSent');
-      btn.disabled = true;
-    } else if(f.status === 'pending' && f.addressee_id === uid){
-      btn.textContent = t('community.acceptFriend');
-      btn.addEventListener('click', function(){ respondFriendRequest(f.id, true); });
-    }
-    slot.appendChild(btn);
+    slot.appendChild(buildFriendActionButton(otherUserId, otherName));
   });
+}
+
+var friendSearchDebounce = null;
+function searchFriends(query){
+  var box = document.getElementById('friendSearchResults');
+  if(!query || query.trim().length < 2){ box.innerHTML = ''; return; }
+  if(!isSignedIn()){ openAuth('login'); return; }
+  box.innerHTML = '<p class="form-note">…</p>';
+  var uid = currentUserId();
+  Promise.all([
+    loadFriendshipMap(),
+    fetch(SUPABASE_URL + '/rest/v1/profiles?display_name=ilike.*' + encodeURIComponent(query.trim()) + '*&id=neq.' + encodeURIComponent(uid) + '&select=id,display_name&limit=10', { headers: communityHeaders() })
+      .then(function(r){ return r.ok ? r.json() : []; })
+  ]).then(function(results){
+    var rows = results[1];
+    box.innerHTML = '';
+    if(rows.length === 0){ box.innerHTML = '<p class="form-note">' + t('community.noResults') + '</p>'; return; }
+    rows.forEach(function(p){
+      var row = document.createElement('div');
+      row.className = 'admin-row';
+      row.innerHTML = '<div class="info"><div class="t">' + escapeHtml(p.display_name) + '</div></div><div class="admin-actions"></div>';
+      row.querySelector('.admin-actions').appendChild(buildFriendActionButton(p.id, p.display_name));
+      box.appendChild(row);
+    });
+  }).catch(function(err){ box.innerHTML = ''; console.warn('Friend search failed:', err); });
 }
 
 function sendFriendRequest(otherUserId){
@@ -4144,6 +4239,146 @@ function respondFriendRequest(friendshipId, accept){
     loadFriendsPanel();
     if(currentChannelId) loadChannelMessages();
   }).catch(function(e){ console.warn('Friend response failed:', e); });
+}
+
+/* ---- Sessioni di creazione a tempo (amico/collaboratore invitato a pubblicare) ---- */
+var myCreationSession = null;
+var collabCountdownTimer = null;
+
+function hasActiveCreationSession(){
+  return !!(myCreationSession && new Date(myCreationSession.expires_at) > new Date());
+}
+
+function loadMyCreationSession(){
+  if(!isSignedIn() || isAdmin()){ myCreationSession = null; return Promise.resolve(null); }
+  var session = getSession();
+  return fetch(SUPABASE_URL + '/rest/v1/creation_sessions?invited_user_id=eq.' + encodeURIComponent(currentUserId()) + '&status=eq.active&select=*&order=expires_at.desc&limit=1', {
+    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
+  })
+    .then(function(r){ return r.ok ? r.json() : []; })
+    .then(function(rows){
+      var row = rows[0];
+      myCreationSession = (row && new Date(row.expires_at) > new Date()) ? row : null;
+      return myCreationSession;
+    })
+    .catch(function(err){ console.warn('Creation session load failed:', err); myCreationSession = null; return null; });
+}
+
+function renderCollabSessionBanner(){
+  var countdownEl = document.getElementById('collabSessionCountdown');
+  var extBtn = document.getElementById('btnRequestExtension');
+  var extStatus = document.getElementById('collabSessionExtensionStatus');
+  if(!countdownEl || !myCreationSession) return;
+
+  function tick(){
+    var msLeft = new Date(myCreationSession.expires_at).getTime() - Date.now();
+    if(msLeft <= 0){
+      countdownEl.textContent = t('collabSession.expired');
+      if(collabCountdownTimer) clearInterval(collabCountdownTimer);
+      loadMyCreationSession().then(refreshAdminUI);
+      return;
+    }
+    var h = Math.floor(msLeft / 3600000);
+    var m = Math.floor((msLeft % 3600000) / 60000);
+    countdownEl.textContent = t('collabSession.countdown').replace('{h}', h).replace('{m}', m);
+  }
+  tick();
+  if(collabCountdownTimer) clearInterval(collabCountdownTimer);
+  collabCountdownTimer = setInterval(tick, 60000);
+
+  if(myCreationSession.extension_requested){
+    extBtn.classList.add('hidden');
+    extStatus.textContent = t('collabSession.extensionPending');
+  } else {
+    extBtn.classList.remove('hidden');
+    extStatus.textContent = '';
+  }
+}
+
+function requestSessionExtension(){
+  if(!myCreationSession) return;
+  var session = getSession();
+  var status = document.getElementById('collabSessionExtensionStatus');
+  status.textContent = '…';
+  fetch(SUPABASE_URL + '/rest/v1/rpc/request_creation_extension', {
+    method:'POST',
+    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
+    body: JSON.stringify({ session_id: myCreationSession.id })
+  }).then(function(r){
+    if(!r.ok) throw new Error('extension request failed');
+    myCreationSession.extension_requested = true;
+    renderCollabSessionBanner();
+  }).catch(function(e){
+    status.textContent = t('mod.banFailed');
+    console.warn('Extension request failed:', e);
+  });
+}
+
+function inviteFriendToCreate(otherUserId, otherName){
+  if(!isAdmin()) return;
+  if(!window.confirm(t('collabSession.inviteConfirm').replace('{name}', otherName))) return;
+  var session = getSession();
+  var expires = new Date(Date.now() + 24*3600000).toISOString();
+  fetch(SUPABASE_URL + '/rest/v1/creation_sessions', {
+    method:'POST',
+    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
+    body: JSON.stringify({ invited_user_id: otherUserId, granted_by: currentUserId(), expires_at: expires })
+  }).then(function(r){
+    if(!r.ok) throw new Error('invite failed');
+    return fetch(SUPABASE_URL + '/rest/v1/notifications', {
+      method:'POST',
+      headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
+      body: JSON.stringify({ user_id: otherUserId, type:'creation_invite', actor_name:'Nox Morningstar', message: t('collabSession.inviteNotif') })
+    });
+  }).then(function(){
+    window.alert(t('collabSession.inviteSent'));
+    renderAdminSessions();
+  }).catch(function(e){
+    window.alert(t('mod.banFailed'));
+    console.warn('Invite failed:', e);
+  });
+}
+
+function renderAdminSessions(){
+  if(!isAdmin()) return;
+  var box = document.getElementById('adminSessionsList');
+  if(!box) return;
+  var session = getSession();
+  box.innerHTML = '<p class="form-note">…</p>';
+  fetch(SUPABASE_URL + '/rest/v1/creation_sessions?status=eq.active&select=*&order=expires_at.asc', {
+    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
+  })
+    .then(function(r){ return r.ok ? r.json() : []; })
+    .then(function(rows){
+      box.innerHTML = '';
+      var active = rows.filter(function(s){ return new Date(s.expires_at) > new Date(); });
+      if(active.length === 0){ box.innerHTML = '<p class="form-note">' + t('mod.empty') + '</p>'; return; }
+      var chain = Promise.resolve();
+      active.forEach(function(s){
+        chain = chain.then(function(){
+          return getDisplayName(s.invited_user_id).then(function(name){
+            var row = document.createElement('div');
+            row.className = 'admin-row';
+            var msLeft = new Date(s.expires_at).getTime() - Date.now();
+            var h = Math.floor(msLeft / 3600000), m = Math.floor((msLeft % 3600000) / 60000);
+            var extFlag = s.extension_requested ? ' — ' + t('collabSession.extensionPending') : '';
+            row.innerHTML = '<div class="info"><div class="t">' + escapeHtml(name) + '</div>' +
+              '<div class="m">' + t('collabSession.countdown').replace('{h}', h).replace('{m}', m) + extFlag + '</div></div>' +
+              '<div class="admin-actions"><button class="btn btn-sm btn-ghost" data-extend>' + t('collabSession.extend48') + '</button></div>';
+            row.querySelector('[data-extend]').addEventListener('click', function(){
+              fetch(SUPABASE_URL + '/rest/v1/rpc/admin_extend_creation_session', {
+                method:'POST',
+                headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
+                body: JSON.stringify({ session_id: s.id, hours: 48 })
+              }).then(function(r){ if(!r.ok) throw new Error('extend failed'); renderAdminSessions(); })
+                .catch(function(e){ window.alert(t('mod.banFailed')); console.warn('Extend failed:', e); });
+            });
+            box.appendChild(row);
+          });
+        });
+      });
+    })
+    .catch(function(err){ console.warn('Admin sessions load failed:', err); });
 }
 
 function loadFriendsPanel(){
@@ -4193,15 +4428,21 @@ function loadFriendsPanel(){
       accepted.forEach(function(f){
         var otherId = f.requester_id === uid ? f.addressee_id : f.requester_id;
         getDisplayName(otherId).then(function(name){
-          var btn = document.createElement('button');
-          btn.type = 'button';
-          btn.className = 'dm-thread-item';
-          btn.textContent = name;
-          btn.addEventListener('click', function(){
+          var row = document.createElement('div');
+          row.className = 'admin-row';
+          var actionsHtml = isAdmin() ? '<button class="btn btn-sm btn-ghost" data-invite>' + t('collabSession.invite') + '</button>' : '';
+          row.innerHTML = '<div class="info"><div class="t">' + escapeHtml(name) + '</div></div><div class="admin-actions">' + actionsHtml + '</div>';
+          row.querySelector('.info').addEventListener('click', function(){
             switchCommunityTab('dms');
             startDmWith(otherId, name);
           });
-          friendsBox.appendChild(btn);
+          row.querySelector('.info').style.cursor = 'pointer';
+          var inviteBtn = row.querySelector('[data-invite]');
+          if(inviteBtn) inviteBtn.addEventListener('click', function(e){
+            e.stopPropagation();
+            inviteFriendToCreate(otherId, name);
+          });
+          friendsBox.appendChild(row);
         });
       });
     })
@@ -5486,6 +5727,11 @@ document.addEventListener('DOMContentLoaded', function(){
   document.getElementById('btnSendChannelMessage').addEventListener('click', sendChannelMessage);
   document.getElementById('btnBackToDms').addEventListener('click', backToDms);
   document.getElementById('btnSendDmMessage').addEventListener('click', sendDmMessage);
+  document.getElementById('fFriendSearch').addEventListener('input', function(e){
+    var q = e.target.value;
+    if(friendSearchDebounce) clearTimeout(friendSearchDebounce);
+    friendSearchDebounce = setTimeout(function(){ searchFriends(q); }, 350);
+  });
 
   document.getElementById('profileModalClose').addEventListener('click', closeProfileModal);
   document.getElementById('profileModal').addEventListener('click', function(e){
@@ -5518,6 +5764,7 @@ document.addEventListener('DOMContentLoaded', function(){
   });
   document.getElementById('btnSaveMaintenanceSchedule').addEventListener('click', saveMaintenanceSchedule);
   document.getElementById('btnSaveNightSchedule').addEventListener('click', saveNightSchedule);
+  document.getElementById('btnRequestExtension').addEventListener('click', requestSessionExtension);
   document.getElementById('btnExportOffline').addEventListener('click', exportEverythingOffline);
   document.getElementById('maintenanceLockLogin').addEventListener('click', function(){ openAuth('login'); });
   document.getElementById('nightLockLogin').addEventListener('click', function(){ openAuth('login'); });
