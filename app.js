@@ -1049,6 +1049,7 @@ function refreshAdminUI(){
   if(navAdmin) navAdmin.classList.toggle('hidden', !(admin || collab));
   if(!gateBox || !manageBox) return;
   if(admin){
+    if(adminSection) adminSection.classList.remove('hidden'); // arrivando direttamente su admin.html (non da un click sul link) va rivelata qui, non solo dal click handler
     gateBox.classList.add('hidden');
     manageBox.classList.remove('hidden');
     if(adminTabs) adminTabs.classList.remove('hidden');
@@ -1071,6 +1072,7 @@ function refreshAdminUI(){
   } else if(collab){
     // Un collaboratore invitato vede SOLO il modulo "Aggiungi allo schedario":
     // niente altre tab, niente elenco titoli altrui, niente dati riservati.
+    if(adminSection) adminSection.classList.remove('hidden');
     gateBox.classList.add('hidden');
     manageBox.classList.remove('hidden');
     if(adminTabs) adminTabs.classList.add('hidden');
