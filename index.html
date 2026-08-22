@@ -176,6 +176,21 @@ button{font-family:inherit;cursor:pointer;}
 .notif-nox-avatar{width:22px;height:22px;border-radius:50%;vertical-align:middle;margin-right:6px;object-fit:cover;}
 .smallnox-clickable{cursor:pointer;transition:transform 0.15s ease;}
 .smallnox-clickable:active{transform:scale(0.88) rotate(-6deg);}
+.smallnox-float{
+  position:fixed;bottom:18px;right:16px;z-index:80;
+  width:52px;height:52px;border-radius:50%;
+  box-shadow:0 4px 16px rgba(0,0,0,0.5);
+  border:2px solid var(--gold);
+  animation:smallnox-float-bob 3s ease-in-out infinite;
+}
+.smallnox-float img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block;}
+@keyframes smallnox-float-bob{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-6px);}
+}
+@media (max-width:520px){
+  .smallnox-float{width:44px;height:44px;bottom:14px;right:12px;}
+}
 @keyframes smallnox-wiggle{
   0%{transform:scale(1) rotate(0deg);}
   30%{transform:scale(1.15) rotate(-8deg);}
@@ -331,6 +346,14 @@ body.theme-light .hero-bg::after{
 
 /* ============ CHARACTER DOSSIERS ============ */
 .dossier-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;}
+.founder-section{
+  position:relative;background:var(--void-2);border-top:1px solid var(--gold);border-bottom:1px solid var(--gold);
+  margin-top:20px;padding-top:56px !important;
+}
+.founder-section::before{
+  content:'✦';display:block;position:absolute;top:-14px;left:50%;transform:translateX(-50%);
+  background:var(--void);color:var(--gold);font-size:18px;padding:0 16px;
+}
 .announcements-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(420px,1fr));gap:18px;}
 .announcement-card{border:1px solid var(--gold);background:var(--void-2);display:flex;align-items:stretch;}
 .announcement-card-img{flex:0 0 180px;width:180px;overflow:hidden;border-bottom:none;border-right:1px solid var(--gold);}
@@ -388,12 +411,18 @@ body.theme-light .hero-bg::after{
 }
 
 /* ============ CATALOG / CARD INDEX ============ */
-.catalog-filters{display:flex;gap:8px;flex-wrap:wrap;}
+.catalog-filters{
+  display:flex;gap:8px;flex-wrap:wrap;
+  position:sticky;top:0;z-index:20;
+  background:var(--void);border:1px solid var(--gold);
+  padding:14px 16px;margin-bottom:10px;
+}
 .filter-chip{
   border:1px solid var(--line);background:transparent;color:var(--parchment-dim);
-  padding:7px 14px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;
+  padding:10px 18px;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;
 }
-.filter-chip.active,.filter-chip:hover{border-color:var(--gold);color:var(--gold-bright);}
+.filter-chip.active{border-color:var(--gold);color:var(--gold-bright);background:rgba(212,98,47,0.12);}
+.filter-chip:hover{border-color:var(--gold);color:var(--gold-bright);}
 .catalog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:18px;margin-top:28px;}
 .card-idx{
   border:1px solid var(--line);background:var(--void-2);
@@ -804,6 +833,10 @@ footer .fcopy{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
     </div>
   </header>
 
+  <div class="smallnox-float hidden" id="smallnoxFloat">
+    <img src="smallnox-calm.png" alt="SmallNox" class="smallnox-clickable" id="smallnoxFloatImg">
+  </div>
+
   <section class="hero">
     <div class="hero-bg" id="heroBg"></div>
     <h1><span data-i18n="hero.title1">L'ARCHIVIO DEL</span> <span class="amp">&amp;</span> <span data-i18n="hero.title2">PIACERE PROIBITO</span></h1>
@@ -864,7 +897,7 @@ footer .fcopy{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
   </section>
 
   <!-- ============ FOUNDER ============ -->
-  <section class="section" id="founder">
+  <section class="section founder-section" id="founder">
     <div class="section-head">
       <div>
         <div class="section-eyebrow" data-i18n="founder.eyebrow">Casa Editrice</div>
@@ -2445,6 +2478,7 @@ function refreshAuthUI(){
   var btnLogout = document.getElementById('btnLogoutTop');
   var navCommunity = document.getElementById('navCommunity');
   var communitySection = document.getElementById('communitySection');
+  var smallnoxFloat = document.getElementById('smallnoxFloat');
   if(isSignedIn()){
     // Never show the raw email in the UI — for the admin account it would
     // expose a real name via the address. Show the public persona instead;
@@ -2460,6 +2494,7 @@ function refreshAuthUI(){
     btnLogout.classList.remove('hidden');
     if(navCommunity) navCommunity.classList.remove('hidden');
     if(communitySection) communitySection.classList.remove('hidden');
+    if(smallnoxFloat) smallnoxFloat.classList.remove('hidden');
     loadChannels();
   } else {
     chip.classList.add('hidden');
@@ -2467,6 +2502,7 @@ function refreshAuthUI(){
     btnLogout.classList.add('hidden');
     if(navCommunity) navCommunity.classList.add('hidden');
     if(communitySection) communitySection.classList.add('hidden');
+    if(smallnoxFloat) smallnoxFloat.classList.add('hidden');
   }
 }
 
