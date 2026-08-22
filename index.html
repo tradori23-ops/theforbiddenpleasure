@@ -4285,6 +4285,8 @@ function sendFriendRequest(otherUserId, btnEl){
       btnEl.disabled = true;
     }
     if(currentChannelId) loadChannelMessages();
+    var sentBox = document.getElementById('friendRequestsSent');
+    if(sentBox) loadFriendsPanel(); // aggiorna subito la lista "Richieste inviate" se il pannello Amici è aperto
   }).catch(function(e){
     if(btnEl) btnEl.disabled = false;
     console.warn('Friend request failed:', e);
