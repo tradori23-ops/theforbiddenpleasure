@@ -1042,10 +1042,12 @@ function refreshAdminUI(){
   var adminTabs = document.getElementById('adminTabs');
   var collabBanner = document.getElementById('collabSessionBanner');
   var smallnoxCard = document.getElementById('smallnoxCard');
-  if(!gateBox || !manageBox) return;
   var admin = isAdmin();
   var collab = !admin && hasActiveCreationSession();
-  navAdmin.classList.toggle('hidden', !(admin || collab)); // solo admin o collaboratore con sessione attiva vedono questo link
+  // La voce "Amministra" nel menu va aggiornata su OGNI pagina (vive nell'header
+  // condiviso) — non solo su admin.html, dove invece vivono gateBox/manageBox.
+  if(navAdmin) navAdmin.classList.toggle('hidden', !(admin || collab));
+  if(!gateBox || !manageBox) return;
   if(admin){
     gateBox.classList.add('hidden');
     manageBox.classList.remove('hidden');
