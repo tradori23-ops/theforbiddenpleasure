@@ -1815,6 +1815,55 @@ function renderBodyHtml(body){
   return escapeHtml(body);
 }
 
+/* ============ PWA: SERVICE WORKER + CONDIVIDI L'APP ============ */
+if('serviceWorker' in navigator){
+  window.addEventListener('load', function(){
+    navigator.serviceWorker.register('/sw.js').catch(function(err){
+      console.warn('Service worker registration failed:', err);
+    });
+  });
+}
+
+function shareApp(){
+  var shareData = {
+    title: 'LUX COMICS & MEDUSA COMICS',
+    text: "Fumetti d'autore — edizione riservata.",
+    url: window.location.origin + '/'
+  };
+  if(navigator.share){
+    navigator.share(shareData).catch(function(){ /* annullato dall'utente, va bene così */ });
+  } else if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(shareData.url).then(function(){
+      alert('Link copiato.');
+    });
+  }
+}
+
+(function injectShareButton(){
+  function addBtn(){
+    if(document.getElementById('btnShareApp')) return;
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.id = 'btnShareApp';
+    btn.className = 'share-app-fab';
+    btn.setAttribute('aria-label', "Condividi l'app");
+    btn.innerHTML = '⇪';
+    btn.addEventListener('click', shareApp);
+    document.body.appendChild(btn);
+  }
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', addBtn);
+  } else {
+    addBtn();
+  }
+  var style = document.createElement('style');
+  style.textContent =
+    '.share-app-fab{position:fixed;left:16px;bottom:16px;z-index:500;width:48px;height:48px;' +
+    'border-radius:50%;background:#6e1423;color:#fdfaf5;border:none;font-size:20px;cursor:pointer;' +
+    'box-shadow:0 4px 12px rgba(0,0,0,.3);}';
+  document.head.appendChild(style);
+})();
+
 /* ============ ADMIN ============ */
 function renderAdminList(){
   if(!isAdmin()) return;
@@ -2303,10 +2352,13 @@ function removeCollabBlock(idx){
 (function injectCollabStyles(){
   var style = document.createElement('style');
   style.textContent =
-    '.collab-block{display:grid;grid-template-columns:1fr 1fr auto;gap:10px;align-items:center;margin-bottom:8px;}' +
+    '.collab-block{display:grid;grid-template-columns:1fr 1fr auto;gap:10px;align-items:center;margin-bottom:18px;}' +
     '.collab-block.hidden{display:none;}' +
+    '.collab-block .mature-toggle{margin:6px 0;}' +
+    '#btnAddCollab{margin-top:6px;}' +
     '@media (max-width:640px){' +
-      '.collab-block{grid-template-columns:1fr;}' +
+      '.collab-block{grid-template-columns:1fr;gap:8px;margin-bottom:24px;}' +
+      '.collab-block .mature-toggle{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:8px 0;}' +
       '.collab-block .rm{justify-self:end;}' +
     '}';
   document.head.appendChild(style);
@@ -2686,7 +2738,7 @@ function renderNotifPanel(){
 function openNotification(n){
   markNotificationRead(n.id);
   document.getElementById('notifPanel').classList.add('hidden');
-  if(n.type === 'friend_request'){
+  if(n.type === 'friend_request' || n.type === 'friend_accepted'){
     var communitySection = document.getElementById('communitySection');
     if(communitySection){
       communitySection.scrollIntoView({behavior:'smooth'});
