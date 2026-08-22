@@ -1462,7 +1462,7 @@ function fetchAnnouncements(){
           '<div class="announcement-card-body">' +
           '<div class="date">' + dateStr + '</div>' +
           '<h4>' + escapeHtml(a.title) + '</h4>' +
-          '<p>' + escapeHtml(a.body) + '</p>' +
+          '<p>' + renderBodyHtml(a.body) + '</p>' +
           '<div class="announcement-card-actions">' + linkHtml +
           '<button type="button" class="ann-share-btn" data-share-ann="' + a.id + '">' + t('announcements.share') + '</button></div>' +
           '</div>';
@@ -1793,6 +1793,21 @@ function escapeHtml(str){
   var d = document.createElement('div');
   d.textContent = str || '';
   return d.innerHTML;
+}
+
+/* A message/comment body that is ONLY a direct .gif link renders as an image
+   instead of plain text. Strict pattern (https, no spaces, .gif ending) to
+   avoid any injection risk — escapeHtml is still applied to the URL itself. */
+function isGifUrl(str){
+  if(!str) return false;
+  var s = str.trim();
+  return /^https:\/\/\S+\.gif(\?\S*)?$/i.test(s) && s.indexOf(' ') === -1;
+}
+function renderBodyHtml(body){
+  if(isGifUrl(body)){
+    return '<img class="chat-gif" src="' + escapeHtml(body.trim()) + '" alt="GIF" loading="lazy">';
+  }
+  return escapeHtml(body);
 }
 
 /* ============ ADMIN ============ */
@@ -2773,7 +2788,7 @@ function renderChannelMessage(m){
   div.className = 'channel-msg' + (m.flagged ? ' flagged' : '');
   var isOwn = m.user_id === currentUserId();
   div.innerHTML = '<span class="author">' + escapeHtml(m.author_name) + '</span>' +
-    '<div class="body">' + escapeHtml(m.body) + '</div>' +
+    '<div class="body">' + renderBodyHtml(m.body) + '</div>' +
     '<div class="msg-actions"><span class="friend-action-slot"></span>' +
       '<button type="button" class="report-btn">' + t('community.report') + '</button>' +
     '</div>';
@@ -3233,7 +3248,7 @@ function loadDmMessages(){
             var div = document.createElement('div');
             div.className = 'channel-msg' + (m.flagged ? ' flagged' : '');
             div.innerHTML = '<span class="author">' + escapeHtml(m.sender_id === uid ? t('community.you') : name) + '</span>' +
-              '<div class="body">' + escapeHtml(m.body) + '</div>' +
+              '<div class="body">' + renderBodyHtml(m.body) + '</div>' +
               '<div class="msg-actions"><button type="button" class="report-btn">' + t('community.report') + '</button></div>';
             div.querySelector('.report-btn').addEventListener('click', function(){ reportContent('dm_message', m.id); });
             wrap.appendChild(div);
@@ -3576,7 +3591,7 @@ function openTitleModal(item){
   currentModalCatalogId = item.id;
   document.getElementById('titleModalTitle').textContent = item.title;
   document.getElementById('titleModalMeta').textContent = item.character + ' · ' + (item.issue || '') + ' · ' + (item.date || '');
-  document.getElementById('titleModalSynopsis').textContent = synopsisForCurrentLang(item);
+  document.getElementById('titleModalSynopsis').innerHTML = renderBodyHtml(synopsisForCurrentLang(item));
   refreshTitleModalFav(item.id);
   refreshTitleModalLike(item.id);
   openPageReader(item);
@@ -3810,7 +3825,7 @@ function loadComments(catalogId){
         var verifiedTag = verifiedIds[c.user_id] ? verifiedBadge('verified.commenter') : '';
         var replyBtnHtml = isSignedIn() ? '<button type="button" class="comment-reply-btn">' + t('comments.reply') + '</button>' : '';
         div.innerHTML = '<span class="author">' + escapeHtml(c.author_name) + '</span>' + verifiedTag + pendingTag +
-          '<div class="body">' + escapeHtml(c.body) + '</div>' + replyBtnHtml;
+          '<div class="body">' + renderBodyHtml(c.body) + '</div>' + replyBtnHtml;
         var replyBtn = div.querySelector('.comment-reply-btn');
         if(replyBtn){
           replyBtn.addEventListener('click', function(){ replyToComment(c.author_name); });
@@ -3866,7 +3881,7 @@ function submitComment(){
 
 /* ============ MENTION AUTOCOMPLETE (@username suggestions while typing in
    comments, channel messages and DMs — closes itself on pick/blur/escape) ============ */
-var MENTION_FIELDS = ['fCommentBody', 'fChannelMessage', 'fDmMessage'];
+var MENTION_FIELDS = ['fCommentBody', 'fChannelMessage', 'fDmMessage', 'fSynopsis', 'fAnnBody'];
 var mentionBox = null;
 var mentionActiveField = null;
 
@@ -3963,6 +3978,150 @@ document.addEventListener('click', function(e){
 document.addEventListener('keydown', function(e){
   if(e.key === 'Escape') hideMentionBox();
 });
+
+/* ============ EMOJI + GIF PICKER (comments, channel messages, DMs) ============ */
+var TENOR_API_KEY = 'LIVDSRZULELA';
+var EMOJI_LIST = ['😀','😁','😂','🤣','😊','🙂','😉','😍','😘','😜','🤔','😎','🥰','😏',
+  '😢','😭','😡','😱','🙄','😴','😅','🤩','👍','👎','👏','🙏','💪','🔥','✨','💯',
+  '❤️','🧡','💛','💚','💙','💜','🖤','💔','⛓️','😈','👑','🌙','⭐','🎉','💋','🌹'];
+
+var pickerBox = null;
+var gifSearchDebounce = null;
+
+function ensurePickerBox(){
+  if(pickerBox) return pickerBox;
+  pickerBox = document.createElement('div');
+  pickerBox.id = 'composerPickerBox';
+  pickerBox.className = 'composer-picker-box hidden';
+  document.body.appendChild(pickerBox);
+  document.addEventListener('click', function(e){
+    if(!pickerBox.classList.contains('hidden') && !pickerBox.contains(e.target) &&
+       !e.target.classList.contains('emoji-btn') && !e.target.classList.contains('gif-btn')){
+      pickerBox.classList.add('hidden');
+    }
+  });
+  return pickerBox;
+}
+function hidePickerBox(){ if(pickerBox) pickerBox.classList.add('hidden'); }
+function positionPickerBox(anchor){
+  var rect = anchor.getBoundingClientRect();
+  var box = ensurePickerBox();
+  box.style.left = (rect.left + window.scrollX) + 'px';
+  box.style.top = (rect.bottom + window.scrollY + 4) + 'px';
+}
+function insertAtCursor(field, text){
+  var pos = field.selectionStart;
+  var before = field.value.slice(0, pos);
+  var after = field.value.slice(pos);
+  field.value = before + text + after;
+  var newPos = pos + text.length;
+  field.focus();
+  field.setSelectionRange(newPos, newPos);
+}
+
+function openEmojiPicker(field, anchor){
+  var box = ensurePickerBox();
+  box.innerHTML = '<div class="picker-grid">' + EMOJI_LIST.map(function(em){
+    return '<span class="picker-emoji" data-emoji="' + em + '">' + em + '</span>';
+  }).join('') + '</div>';
+  Array.prototype.forEach.call(box.querySelectorAll('.picker-emoji'), function(el){
+    el.addEventListener('click', function(){ insertAtCursor(field, el.getAttribute('data-emoji')); });
+  });
+  positionPickerBox(anchor);
+  box.classList.remove('hidden');
+}
+
+/* Selecting a GIF replaces the whole field content with the direct .gif URL:
+   renderBodyHtml() only shows the image when the message body IS the URL
+   (nothing else), same convention most chat apps use for "send a GIF". */
+function openGifPicker(field, anchor){
+  var box = ensurePickerBox();
+  box.innerHTML = '<input type="text" class="picker-gif-search" placeholder="Cerca GIF…">' +
+    '<div class="picker-gif-results"></div>';
+  positionPickerBox(anchor);
+  box.classList.remove('hidden');
+  var input = box.querySelector('.picker-gif-search');
+  var results = box.querySelector('.picker-gif-results');
+  function doSearch(q){
+    if(!q){ results.innerHTML = ''; return; }
+    results.innerHTML = '<div class="picker-gif-empty">…</div>';
+    fetch('https://g.tenor.com/v1/search?q=' + encodeURIComponent(q) + '&key=' + TENOR_API_KEY + '&limit=8&media_filter=minimal')
+      .then(function(r){ return r.ok ? r.json() : { results: [] }; })
+      .then(function(data){
+        var items = data.results || [];
+        if(!items.length){ results.innerHTML = '<div class="picker-gif-empty">Nessun risultato</div>'; return; }
+        results.innerHTML = items.map(function(g){
+          var thumb = g.media && g.media[0] && g.media[0].tinygif ? g.media[0].tinygif.url : '';
+          var full = g.media && g.media[0] && g.media[0].gif ? g.media[0].gif.url : thumb;
+          return '<img class="picker-gif-thumb" src="' + escapeHtml(thumb) + '" data-full="' + escapeHtml(full) + '" alt="">';
+        }).join('');
+        Array.prototype.forEach.call(results.querySelectorAll('.picker-gif-thumb'), function(img){
+          img.addEventListener('click', function(){
+            field.value = img.getAttribute('data-full');
+            field.focus();
+            hidePickerBox();
+          });
+        });
+      })
+      .catch(function(){ results.innerHTML = '<div class="picker-gif-empty">Errore di ricerca</div>'; });
+  }
+  input.addEventListener('input', function(){
+    clearTimeout(gifSearchDebounce);
+    var q = input.value.trim();
+    gifSearchDebounce = setTimeout(function(){ doSearch(q); }, 400);
+  });
+  input.focus();
+}
+
+function ensureComposerToolbar(field){
+  if(field.dataset.toolbarAttached) return;
+  field.dataset.toolbarAttached = '1';
+  var toolbar = document.createElement('div');
+  toolbar.className = 'composer-toolbar';
+  toolbar.innerHTML =
+    '<button type="button" class="composer-btn emoji-btn" title="Emoji">😊</button>' +
+    '<button type="button" class="composer-btn gif-btn" title="GIF">GIF</button>';
+  field.parentNode.insertBefore(toolbar, field.nextSibling);
+  toolbar.querySelector('.emoji-btn').addEventListener('click', function(e){
+    e.preventDefault();
+    openEmojiPicker(field, toolbar.querySelector('.emoji-btn'));
+  });
+  toolbar.querySelector('.gif-btn').addEventListener('click', function(e){
+    e.preventDefault();
+    openGifPicker(field, toolbar.querySelector('.gif-btn'));
+  });
+}
+function scanForComposerFields(){
+  MENTION_FIELDS.forEach(function(id){
+    var el = document.getElementById(id);
+    if(el) ensureComposerToolbar(el);
+  });
+}
+new MutationObserver(scanForComposerFields).observe(document.body, { childList: true, subtree: true });
+scanForComposerFields();
+
+(function injectPickerStyles(){
+  var style = document.createElement('style');
+  style.textContent =
+    '.composer-toolbar{display:flex;gap:6px;margin:4px 0;}' +
+    '.composer-btn{background:#fdfaf5;color:#2a1a1d;border:1px solid #6e1423;border-radius:4px;' +
+    'padding:2px 8px;font-size:14px;cursor:pointer;}' +
+    '.composer-btn:hover{background:rgba(110,20,35,.12);}' +
+    '.composer-picker-box{position:absolute;z-index:9999;background:#fdfaf5;color:#2a1a1d;' +
+    'border:1px solid #6e1423;border-radius:6px;padding:8px;box-shadow:0 6px 18px rgba(0,0,0,.35);' +
+    'max-width:260px;}' +
+    '.composer-picker-box.hidden{display:none;}' +
+    '.picker-grid{display:flex;flex-wrap:wrap;gap:4px;max-width:240px;}' +
+    '.picker-emoji{font-size:20px;cursor:pointer;padding:2px;border-radius:4px;}' +
+    '.picker-emoji:hover{background:rgba(110,20,35,.12);}' +
+    '.picker-gif-search{width:100%;box-sizing:border-box;padding:4px 6px;margin-bottom:6px;' +
+    'border:1px solid #6e1423;border-radius:4px;background:#fff;color:#2a1a1d;}' +
+    '.picker-gif-results{display:grid;grid-template-columns:1fr 1fr;gap:4px;max-height:220px;overflow-y:auto;}' +
+    '.picker-gif-thumb{width:100%;border-radius:4px;cursor:pointer;display:block;}' +
+    '.picker-gif-empty{grid-column:1/-1;text-align:center;opacity:.6;font-size:13px;padding:8px;}' +
+    '.chat-gif{max-width:200px;border-radius:6px;display:block;}';
+  document.head.appendChild(style);
+})();
 
 /* ============ MODERATION QUEUE (admin) ============ */
 function switchAdminTab(tabName){
