@@ -4776,13 +4776,19 @@ function renderAdminRequests(){
             '<div class="who">' + escapeHtml(req.author_email || '') + (req.status === 'new' ? ' · <b>' + t('requests.statusNew') + '</b>' : '') + '</div>' +
             '<div class="txt">' + escapeHtml(req.body) + '</div>' +
           '</div>' +
-          '<button class="btn btn-ghost btn-sm" data-mark-read="' + req.id + '" ' + (req.status !== 'new' ? 'disabled' : '') + '>' + t('requests.markRead') + '</button>';
+          '<div class="admin-actions">' +
+          '<button class="btn btn-primary btn-sm" data-approve-collab="' + req.id + '">Approva collaborazione</button>' +
+          '<button class="btn btn-ghost btn-sm" data-mark-read="' + req.id + '" ' + (req.status !== 'new' ? 'disabled' : '') + '>' + t('requests.markRead') + '</button>' +
+          '</div>';
         row.querySelector('[data-mark-read]').addEventListener('click', function(){
           fetch(SUPABASE_URL + '/rest/v1/requests?id=eq.' + encodeURIComponent(req.id), {
             method:'PATCH',
             headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
             body: JSON.stringify({status:'read'})
           }).then(function(r){ if(r.ok) renderAdminRequests(); });
+        });
+        row.querySelector('[data-approve-collab]').addEventListener('click', function(){
+          inviteFriendToCreate(req.user_id, req.author_email || 'questo utente');
         });
         list.appendChild(row);
       });
