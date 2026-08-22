@@ -2649,13 +2649,20 @@ function saveProfile(){
 (function injectDmChatStyles(){
   var style = document.createElement('style');
   style.textContent =
-    '#dmMessages{display:flex;flex-direction:column;gap:6px;padding:8px 4px;}' +
-    '#dmMessages .dm-bubble{max-width:75%;border-radius:16px;padding:6px 12px;position:relative;box-shadow:0 1px 1px rgba(0,0,0,.08);}' +
+    '#dmMessages{display:flex;flex-direction:column;gap:16px;padding:12px 6px;}' +
+    '#dmMessages .dm-bubble{max-width:75%;padding:10px 16px;position:relative;' +
+    'background:#fdfaf5;color:#2a1a1d;border:2px solid #6e1423;border-radius:18px;' +
+    'font-family:"Crimson Pro",Georgia,serif;box-shadow:2px 3px 0 rgba(110,20,35,.15);}' +
     '#dmMessages .dm-bubble .author{display:none;}' +
-    '#dmMessages .dm-bubble.mine{align-self:flex-end;background:#d9fdd3;color:#111;border-bottom-right-radius:4px;}' +
-    '#dmMessages .dm-bubble.theirs{align-self:flex-start;background:#ffffff;color:#111;border:1px solid #e5e5e5;border-bottom-left-radius:4px;}' +
-    '#dmMessages .dm-bubble .body{white-space:pre-wrap;word-break:break-word;}' +
-    '#dmMessages .dm-bubble .msg-actions{opacity:.55;font-size:11px;margin-top:2px;}' +
+    '#dmMessages .dm-bubble.mine{align-self:flex-end;border-color:#c9a24d;box-shadow:-2px 3px 0 rgba(201,162,77,.25);}' +
+    '#dmMessages .dm-bubble.theirs{align-self:flex-start;}' +
+    /* codetta a triangolo stile fumetto */
+    '#dmMessages .dm-bubble::after{content:"";position:absolute;bottom:-9px;width:16px;height:16px;' +
+    'background:#fdfaf5;border-right:2px solid;border-bottom:2px solid;}' +
+    '#dmMessages .dm-bubble.mine::after{right:18px;border-color:#c9a24d;transform:rotate(45deg);}' +
+    '#dmMessages .dm-bubble.theirs::after{left:18px;border-color:#6e1423;transform:rotate(135deg);}' +
+    '#dmMessages .dm-bubble .body{white-space:pre-wrap;word-break:break-word;line-height:1.4;}' +
+    '#dmMessages .dm-bubble .msg-actions{opacity:.5;font-size:11px;margin-top:6px;font-family:"Space Mono",monospace;}' +
     '#dmMessages .dm-bubble.mine .msg-actions{text-align:right;}';
   document.head.appendChild(style);
 })();
