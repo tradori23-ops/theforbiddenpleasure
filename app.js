@@ -1496,6 +1496,17 @@ function shareAnnouncement(id, title, body){
   }
 }
 
+function checkCharacterDeepLink(){
+  var libSection = document.getElementById('library');
+  if(!libSection) return; // non siamo sulla pagina schedario
+  var params = new URLSearchParams(window.location.search);
+  var character = params.get('character');
+  if(!character) return;
+  activeFilter = character;
+  renderCatalog();
+  libSection.scrollIntoView({behavior:'smooth'});
+}
+
 function checkAnnouncementDeepLink(){
   var params = new URLSearchParams(window.location.search);
   var annId = params.get('announcement');
@@ -1653,9 +1664,16 @@ function renderDossiers(){
       '<p>'+meta.bio[lang]+'</p>'+
       '<span class="tag" data-char="'+name+'">'+t('nav.library')+' →</span>';
     div.querySelector('.tag').addEventListener('click', function(){
-      activeFilter = name;
-      document.getElementById('library').scrollIntoView({behavior:'smooth'});
-      renderCatalog();
+      var libSection = document.getElementById('library');
+      if(libSection){
+        // siamo già sulla pagina schedario (o su una versione a pagina singola)
+        activeFilter = name;
+        libSection.scrollIntoView({behavior:'smooth'});
+        renderCatalog();
+      } else {
+        // pagina separata (es. dossier.html): naviga verso schedario.html col filtro
+        window.location.href = 'schedario.html?character=' + encodeURIComponent(name) + '#library';
+      }
     });
     grid.appendChild(div);
   });
@@ -4724,6 +4742,7 @@ function __appInit(){
   applyI18n();
   renderDossiers();
   renderCatalog();
+  checkCharacterDeepLink();
 
   // Restore a still-valid session (refreshing the token first if it's close
   // to expiring) before deciding what the header/admin area should show —
