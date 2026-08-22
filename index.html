@@ -4463,7 +4463,12 @@ function loadFriendsPanel(){
     headers: communityHeaders(),
     signal: (typeof AbortSignal !== 'undefined' && AbortSignal.timeout) ? AbortSignal.timeout(10000) : undefined
   })
-    .then(function(r){ if(!r.ok) throw new Error('friendships read failed'); return r.json(); })
+    .then(function(r){
+      if(!r.ok){
+        return r.text().then(function(bodyText){ throw new Error('HTTP ' + r.status + ': ' + bodyText); });
+      }
+      return r.json();
+    })
     .then(function(rows){
       var received = rows.filter(function(f){ return f.status === 'pending' && f.addressee_id === uid; });
       var sent = rows.filter(function(f){ return f.status === 'pending' && f.requester_id === uid; });
@@ -4518,7 +4523,9 @@ function loadFriendsPanel(){
       });
     })
     .catch(function(err){
-      var errMsg = '<p class="form-note">' + t('community.loadError') + ' <button type="button" class="retry-link" id="btnRetryFriends">' + t('community.retry') + '</button></p>';
+      var detail = (err && err.message) ? err.message : String(err);
+      var errMsg = '<p class="form-note">' + t('community.loadError') + ' <button type="button" class="retry-link" id="btnRetryFriends">' + t('community.retry') + '</button>' +
+        '<br><span style="font-family:\'Space Mono\',monospace;font-size:10px;opacity:0.6;word-break:break-all;">' + escapeHtml(detail) + '</span></p>';
       receivedBox.innerHTML = errMsg;
       sentBox.innerHTML = '';
       friendsBox.innerHTML = '';
