@@ -4288,7 +4288,7 @@ function saveSocialLinks(){
   Promise.all(updates).then(function(){ fetchSocialLinks(); }).catch(function(err){ console.warn('Social save failed:', err); });
 }
 
-document.addEventListener('DOMContentLoaded', function(){
+function __appInit(){
   document.querySelectorAll('.seal-img[data-size="sm"]').forEach(function(img){ img.src = LOGO_SM; });
   document.querySelectorAll('.seal-img[data-size="lg"]').forEach(function(img){ img.src = LOGO_LG; });
   initMatureToggle();
@@ -4488,5 +4488,15 @@ document.addEventListener('DOMContentLoaded', function(){
   setInterval(fetchMaintenanceStatus, 60000); // light polling so visitors already on the page see it too
   setInterval(renderNightClosureLock, 30000); // ricontrolla l'orario anche senza nuove risposte dal server
   setInterval(renderAdminUsers, 60000); // keeps "online now" fresh while you're on that tab; no-op if not admin
-});
+}
+// Il loader.js inietta questo file DOPO che DOMContentLoaded è già passato
+// (perché aspetta prima il fetch di header/footer/modali condivisi).
+// Per questo non possiamo più aspettare quell'evento: se il documento ha
+// già finito di caricare, avviamo subito; altrimenti ci mettiamo in ascolto
+// come prima (utile se qualcuno include app.js in modo diverso in futuro).
+if(document.readyState === 'loading'){
+  document.addEventListener('DOMContentLoaded', __appInit);
+} else {
+  __appInit();
+}
 })();
