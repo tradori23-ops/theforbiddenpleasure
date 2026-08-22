@@ -30,36 +30,17 @@
 <div id="app">
 <div id="chrome-top-slot"></div>
 
-  <section class="hero">
-    <div class="hero-bg" id="heroBg"></div>
-    <h1><span data-i18n="hero.title1">L'ARCHIVIO DEL</span> <span class="amp">&amp;</span> <span data-i18n="hero.title2">PIACERE PROIBITO</span></h1>
-    <div class="tagline" data-i18n="hero.tagline">Fumetti d'autore — edizione riservata</div>
-    <p class="lede" data-i18n="hero.lede">Quattro sigilli, quattro voci: Lucifer, Lilith, Lucifera e Lucio custodiscono le collane di questa casa. Lo schedario è aperto a tutti — i contenuti 18+ restano dietro un interruttore separato, da sbloccare quando vuoi. Ogni tavola nasce in inglese ed entra nello schedario così com'è — solo la tua lingua d'accesso è cosa nostra.</p>
-    <div class="cta-row">
-      <a href="schedario.html#library" class="btn btn-primary" data-i18n="hero.cta1">Sfoglia lo schedario</a>
-      <a href="dossier.html#characters" class="btn btn-ghost" data-i18n="hero.cta2">Incontra i dossier</a>
-    </div>
-  </section>
-
-  <section class="section announcements-section hidden" id="announcementsSection">
+  <section class="section ornate-divider" id="library">
     <div class="section-head">
       <div>
-        <div class="section-eyebrow" data-i18n="announcements.eyebrow">Dalla Redazione</div>
-        <h2 data-i18n="announcements.title">Novità</h2>
+        <div class="section-eyebrow" data-i18n="library.eyebrow">Schedario</div>
+        <h2 data-i18n="library.title">Catalogo delle Opere</h2>
+        <div class="section-desc" id="matureStateLabel" style="margin-top:6px;"></div>
       </div>
+      <div class="catalog-filters" id="catalogFilters"></div>
     </div>
-    <div class="announcements-grid" id="announcementsGrid"></div>
-  </section>
-
-  <!-- ============ LATEST CHAPTERS (auto-populated from the catalog, newest first) ============ -->
-  <section class="section latest-section hidden" id="latestSection">
-    <div class="section-head">
-      <div>
-        <div class="section-eyebrow" data-i18n="latest.eyebrow">Appena Pubblicato</div>
-        <h2 data-i18n="latest.title">Ultimi Capitoli</h2>
-      </div>
-    </div>
-    <div class="latest-grid" id="latestGrid"></div>
+    <div class="collab-banner hidden" id="collabBanner"></div>
+    <div class="catalog-grid" id="catalogGrid"></div>
   </section>
 
 <div id="chrome-footer-slot"></div>
