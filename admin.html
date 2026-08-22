@@ -106,19 +106,69 @@
             <label data-i18n="admin.f.price">Prezzo (EUR, opzionale)</label>
             <input type="number" id="fPrice" min="0" step="0.01" placeholder="4.99">
           </div>
-          <div class="field">
-            <label data-i18n="collab.name">Collaboratore (opzionale)</label>
-            <input type="text" id="fCollabName" placeholder="Nome o @username">
-          </div>
-          <div class="field">
-            <label data-i18n="collab.url">Link al profilo (es. Instagram)</label>
-            <input type="url" id="fCollabUrl" placeholder="https://instagram.com/...">
-          </div>
           <div class="field" style="grid-column:1/-1">
-            <label class="mature-toggle" style="cursor:pointer;">
-              <span data-i18n="collab.verified">Collaboratore verificato (mostra la spunta blu)</span>
-              <span class="switch"><input type="checkbox" id="fCollabVerified"><span class="slider"></span></span>
-            </label>
+            <label data-i18n="collab.name">Collaboratori (opzionale, fino a 6)</label>
+
+            <div class="collab-block" id="collabBlock1" style="display:grid;grid-template-columns:1fr 1fr auto;gap:10px;align-items:center;margin-bottom:8px;">
+              <input type="text" id="fCollabName1" placeholder="Nome o @username">
+              <input type="url" id="fCollabUrl1" placeholder="https://instagram.com/...">
+              <label class="mature-toggle" style="cursor:pointer;white-space:nowrap;">
+                <span data-i18n="collab.verified">Verificato</span>
+                <span class="switch"><input type="checkbox" id="fCollabVerified1"><span class="slider"></span></span>
+              </label>
+            </div>
+
+            <div class="collab-block" id="collabBlock2" style="display:none;grid-template-columns:1fr 1fr auto auto;gap:10px;align-items:center;margin-bottom:8px;">
+              <input type="text" id="fCollabName2" placeholder="Nome o @username">
+              <input type="url" id="fCollabUrl2" placeholder="https://instagram.com/...">
+              <label class="mature-toggle" style="cursor:pointer;white-space:nowrap;">
+                <span>Verificato</span>
+                <span class="switch"><input type="checkbox" id="fCollabVerified2"><span class="slider"></span></span>
+              </label>
+              <button type="button" class="rm" id="btnRemoveCollab2">×</button>
+            </div>
+
+            <div class="collab-block" id="collabBlock3" style="display:none;grid-template-columns:1fr 1fr auto auto;gap:10px;align-items:center;margin-bottom:8px;">
+              <input type="text" id="fCollabName3" placeholder="Nome o @username">
+              <input type="url" id="fCollabUrl3" placeholder="https://instagram.com/...">
+              <label class="mature-toggle" style="cursor:pointer;white-space:nowrap;">
+                <span>Verificato</span>
+                <span class="switch"><input type="checkbox" id="fCollabVerified3"><span class="slider"></span></span>
+              </label>
+              <button type="button" class="rm" id="btnRemoveCollab3">×</button>
+            </div>
+
+            <div class="collab-block" id="collabBlock4" style="display:none;grid-template-columns:1fr 1fr auto auto;gap:10px;align-items:center;margin-bottom:8px;">
+              <input type="text" id="fCollabName4" placeholder="Nome o @username">
+              <input type="url" id="fCollabUrl4" placeholder="https://instagram.com/...">
+              <label class="mature-toggle" style="cursor:pointer;white-space:nowrap;">
+                <span>Verificato</span>
+                <span class="switch"><input type="checkbox" id="fCollabVerified4"><span class="slider"></span></span>
+              </label>
+              <button type="button" class="rm" id="btnRemoveCollab4">×</button>
+            </div>
+
+            <div class="collab-block" id="collabBlock5" style="display:none;grid-template-columns:1fr 1fr auto auto;gap:10px;align-items:center;margin-bottom:8px;">
+              <input type="text" id="fCollabName5" placeholder="Nome o @username">
+              <input type="url" id="fCollabUrl5" placeholder="https://instagram.com/...">
+              <label class="mature-toggle" style="cursor:pointer;white-space:nowrap;">
+                <span>Verificato</span>
+                <span class="switch"><input type="checkbox" id="fCollabVerified5"><span class="slider"></span></span>
+              </label>
+              <button type="button" class="rm" id="btnRemoveCollab5">×</button>
+            </div>
+
+            <div class="collab-block" id="collabBlock6" style="display:none;grid-template-columns:1fr 1fr auto auto;gap:10px;align-items:center;margin-bottom:8px;">
+              <input type="text" id="fCollabName6" placeholder="Nome o @username">
+              <input type="url" id="fCollabUrl6" placeholder="https://instagram.com/...">
+              <label class="mature-toggle" style="cursor:pointer;white-space:nowrap;">
+                <span>Verificato</span>
+                <span class="switch"><input type="checkbox" id="fCollabVerified6"><span class="slider"></span></span>
+              </label>
+              <button type="button" class="rm" id="btnRemoveCollab6">×</button>
+            </div>
+
+            <button type="button" class="btn btn-ghost btn-sm" id="btnAddCollab">+ Aggiungi collaboratore</button>
           </div>
           <div class="field" style="grid-column:1/-1">
             <label data-i18n="admin.f.synopsis">Sinossi (inglese — testo delle opere)</label>

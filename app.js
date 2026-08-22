@@ -1661,9 +1661,9 @@ function renderDossiers(){
   });
 }
 
-function showCollaboratorCollection(item){
-  if(!item.collaborator_name) return;
-  activeCollabFilter = { name: item.collaborator_name, url: item.collaborator_url || null };
+function showCollaboratorCollection(collab){
+  if(!collab || !collab.name) return;
+  activeCollabFilter = { name: collab.name, url: collab.url || null };
   activeFilter = 'all';
   closeTitleModal();
   document.getElementById('library').scrollIntoView({behavior:'smooth'});
@@ -1719,8 +1719,13 @@ function renderCatalog(){
   }
   if(activeCollabFilter){
     items = items.filter(function(i){
-      if(activeCollabFilter.url) return i.collaborator_url === activeCollabFilter.url;
-      return i.collaborator_name === activeCollabFilter.name;
+      var arr = (i.collaborators && i.collaborators.length)
+        ? i.collaborators
+        : (i.collaborator_name ? [{ name: i.collaborator_name, url: i.collaborator_url }] : []);
+      return arr.some(function(c){
+        if(activeCollabFilter.url) return c.url === activeCollabFilter.url;
+        return c.name === activeCollabFilter.name;
+      });
     });
   } else if(activeFilter !== 'all'){
     items = items.filter(function(i){return i.character === activeFilter;});
@@ -2250,15 +2255,85 @@ function clearPendingPages(){
   document.getElementById('fPages').value = '';
 }
 
+/* ============ COLLABORATORI (fino a 6, blocchi 2-6 nascosti finché non richiesti) ============ */
+function resetCollabBlocks(){
+  for(var i = 1; i <= 6; i++){
+    var nameEl = document.getElementById('fCollabName' + i);
+    var urlEl = document.getElementById('fCollabUrl' + i);
+    var verEl = document.getElementById('fCollabVerified' + i);
+    if(nameEl) nameEl.value = '';
+    if(urlEl) urlEl.value = '';
+    if(verEl) verEl.checked = false;
+    if(i > 1){
+      var block = document.getElementById('collabBlock' + i);
+      if(block) block.style.display = 'none';
+    }
+  }
+  updateAddCollabBtn();
+}
+function nextHiddenCollabBlock(){
+  for(var i = 2; i <= 6; i++){
+    var block = document.getElementById('collabBlock' + i);
+    if(block && block.style.display === 'none') return block;
+  }
+  return null;
+}
+function updateAddCollabBtn(){
+  var btn = document.getElementById('btnAddCollab');
+  if(!btn) return;
+  btn.style.display = nextHiddenCollabBlock() ? '' : 'none';
+}
+function addCollabBlock(){
+  var block = nextHiddenCollabBlock();
+  if(!block) return;
+  block.style.display = 'grid';
+  updateAddCollabBtn();
+}
+function removeCollabBlock(idx){
+  var nameEl = document.getElementById('fCollabName' + idx);
+  var urlEl = document.getElementById('fCollabUrl' + idx);
+  var verEl = document.getElementById('fCollabVerified' + idx);
+  if(nameEl) nameEl.value = '';
+  if(urlEl) urlEl.value = '';
+  if(verEl) verEl.checked = false;
+  var block = document.getElementById('collabBlock' + idx);
+  if(block) block.style.display = 'none';
+  updateAddCollabBtn();
+}
+(function initCollabBlocks(){
+  document.addEventListener('DOMContentLoaded', function(){
+    var addBtn = document.getElementById('btnAddCollab');
+    if(addBtn) addBtn.addEventListener('click', addCollabBlock);
+    for(var i = 2; i <= 6; i++){
+      (function(idx){
+        var rmBtn = document.getElementById('btnRemoveCollab' + idx);
+        if(rmBtn) rmBtn.addEventListener('click', function(){ removeCollabBlock(idx); });
+      })(i);
+    }
+    updateAddCollabBtn();
+  });
+})();
+
 function handleAddEntry(){
   var title = document.getElementById('fTitle').value.trim();
   var character = document.getElementById('fCharacter').value;
   var issue = document.getElementById('fIssue').value.trim();
   var date = document.getElementById('fDate').value;
   var price = document.getElementById('fPrice').value;
-  var collabName = document.getElementById('fCollabName').value.trim();
-  var collabUrl = document.getElementById('fCollabUrl').value.trim();
-  var collabVerified = document.getElementById('fCollabVerified').checked;
+  var collabList = [];
+  for(var ci = 1; ci <= 6; ci++){
+    var cnEl = document.getElementById('fCollabName' + ci);
+    var cuEl = document.getElementById('fCollabUrl' + ci);
+    var cvEl = document.getElementById('fCollabVerified' + ci);
+    if(!cnEl) continue;
+    var cn = cnEl.value.trim();
+    if(!cn) continue;
+    collabList.push({
+      name: cn,
+      url: cuEl ? cuEl.value.trim() || null : null,
+      verified: cvEl ? cvEl.checked : false
+    });
+  }
   var synopsis = document.getElementById('fSynopsis').value.trim();
   var mature = document.getElementById('fMature').checked;
   var err = document.getElementById('adminError');
@@ -2274,9 +2349,10 @@ function handleAddEntry(){
     character: character, title: title, issue: issue,
     date: date || new Date().toISOString().slice(0,10),
     price: price ? Number(price) : null,
-    collaborator_name: collabName || null,
-    collaborator_url: collabUrl || null,
-    collaborator_verified: collabVerified,
+    collaborator_name: collabList[0] ? collabList[0].name : null,
+    collaborator_url: collabList[0] ? collabList[0].url : null,
+    collaborator_verified: collabList[0] ? collabList[0].verified : false,
+    collaborators: collabList,
     synopsis: synopsis, mature: mature, pages: [], cover_url: null, pdf_url: null,
     synopsis_it: null, synopsis_es: null, synopsis_fr: null, synopsis_de: null
   };
@@ -2333,9 +2409,7 @@ function handleAddEntry(){
     document.getElementById('fIssue').value = '';
     document.getElementById('fDate').value = '';
     document.getElementById('fPrice').value = '';
-    document.getElementById('fCollabName').value = '';
-    document.getElementById('fCollabUrl').value = '';
-    document.getElementById('fCollabVerified').checked = false;
+    resetCollabBlocks();
     document.getElementById('fSynopsis').value = '';
     document.getElementById('fMature').checked = false;
     clearPendingPages();
@@ -3608,20 +3682,33 @@ function openTitleModal(item){
   updateEngagementCountsLabel(item.id);
 
   var collabEl = document.getElementById('titleModalCollab');
-  if(item.collaborator_name){
-    var nameLink = item.collaborator_url
-      ? '<a href="' + escapeHtml(item.collaborator_url) + '" target="_blank" rel="noopener">' + escapeHtml(item.collaborator_name) + '</a>'
-      : escapeHtml(item.collaborator_name);
-    var collabVerifiedTag = item.collaborator_verified ? verifiedBadge('verified.collaborator') : '';
-    collabEl.innerHTML = t('collab.credit') + ' ' + nameLink + collabVerifiedTag +
+  var collabArr = (item.collaborators && item.collaborators.length)
+    ? item.collaborators
+    : (item.collaborator_name ? [{ name: item.collaborator_name, url: item.collaborator_url, verified: item.collaborator_verified }] : []);
+  if(collabArr.length){
+    var creditHtml = collabArr.map(function(c, idx){
+      var nameLink = c.url
+        ? '<a href="' + escapeHtml(c.url) + '" target="_blank" rel="noopener">' + escapeHtml(c.name) + '</a>'
+        : escapeHtml(c.name);
+      var verifiedTag = c.verified ? verifiedBadge('verified.collaborator') : '';
+      return '<span class="collab-credit-item" data-collab-idx="' + idx + '">' + nameLink + verifiedTag + '</span>';
+    }).join(', ');
+    collabEl.innerHTML = t('collab.credit') + ' ' + creditHtml +
       ' · <a href="#" id="titleModalCollabAll">' + t('collab.viewAll') + '</a>';
     var viewAllLink = document.getElementById('titleModalCollabAll');
     if(viewAllLink){
       viewAllLink.addEventListener('click', function(e){
         e.preventDefault();
-        showCollaboratorCollection(item);
+        showCollaboratorCollection(collabArr[0]);
       });
     }
+    Array.prototype.forEach.call(collabEl.querySelectorAll('.collab-credit-item'), function(el){
+      var idx = Number(el.getAttribute('data-collab-idx'));
+      el.addEventListener('click', function(e){
+        if(e.target.tagName === 'A') return; // il link va al profilo, non al filtro
+        showCollaboratorCollection(collabArr[idx]);
+      });
+    });
     collabEl.classList.remove('hidden');
   } else {
     collabEl.classList.add('hidden');
@@ -3673,8 +3760,12 @@ function previewPagePath(kind, id){
 }
 
 function shareTitle(item){
+  var collabArr = (item.collaborators && item.collaborators.length)
+    ? item.collaborators
+    : (item.collaborator_name ? [{ name: item.collaborator_name }] : []);
+  var collabNames = collabArr.map(function(c){ return c.name; }).join(', ');
   var shareText = item.title + ' — ' + t('share.tagline') +
-    (item.collaborator_name ? ' ' + t('collab.credit') + ' ' + item.collaborator_name : '');
+    (collabNames ? ' ' + t('collab.credit') + ' ' + collabNames : '');
   var shareUrl = previewPagePath('t', item.id);
   trackShare(item.id); // counts the share action being taken, not confirmed completion — noted to the user
   bumpLocalCount(item.id, 'share_count', 1);
