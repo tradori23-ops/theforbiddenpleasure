@@ -2266,7 +2266,7 @@ function resetCollabBlocks(){
     if(verEl) verEl.checked = false;
     if(i > 1){
       var block = document.getElementById('collabBlock' + i);
-      if(block) block.style.display = 'none';
+      if(block) block.classList.add('hidden');
     }
   }
   updateAddCollabBtn();
@@ -2274,7 +2274,7 @@ function resetCollabBlocks(){
 function nextHiddenCollabBlock(){
   for(var i = 2; i <= 6; i++){
     var block = document.getElementById('collabBlock' + i);
-    if(block && block.style.display === 'none') return block;
+    if(block && block.classList.contains('hidden')) return block;
   }
   return null;
 }
@@ -2286,7 +2286,7 @@ function updateAddCollabBtn(){
 function addCollabBlock(){
   var block = nextHiddenCollabBlock();
   if(!block) return;
-  block.style.display = 'grid';
+  block.classList.remove('hidden');
   updateAddCollabBtn();
 }
 function removeCollabBlock(idx){
@@ -2297,9 +2297,20 @@ function removeCollabBlock(idx){
   if(urlEl) urlEl.value = '';
   if(verEl) verEl.checked = false;
   var block = document.getElementById('collabBlock' + idx);
-  if(block) block.style.display = 'none';
+  if(block) block.classList.add('hidden');
   updateAddCollabBtn();
 }
+(function injectCollabStyles(){
+  var style = document.createElement('style');
+  style.textContent =
+    '.collab-block{display:grid;grid-template-columns:1fr 1fr auto;gap:10px;align-items:center;margin-bottom:8px;}' +
+    '.collab-block.hidden{display:none;}' +
+    '@media (max-width:640px){' +
+      '.collab-block{grid-template-columns:1fr;}' +
+      '.collab-block .rm{justify-self:end;}' +
+    '}';
+  document.head.appendChild(style);
+})();
 (function initCollabBlocks(){
   document.addEventListener('DOMContentLoaded', function(){
     var addBtn = document.getElementById('btnAddCollab');
