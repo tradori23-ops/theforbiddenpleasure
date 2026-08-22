@@ -1007,8 +1007,14 @@ function refreshAuthUI(){
     if(isAdmin()){
       chip.innerHTML = 'Nox Morningstar ' + verifiedBadge('verified.founder');
     } else {
-      var email = currentUserEmail() || '';
-      chip.textContent = '@' + email.split('@')[0];
+      var uid = currentUserId();
+      var fallback = '@' + (currentUserEmail() || '').split('@')[0];
+      chip.textContent = fallback; // placeholder finché arriva il nickname vero
+      if(uid){
+        getDisplayName(uid).then(function(name){
+          chip.textContent = (name && name !== t('notif.someone')) ? name : fallback;
+        });
+      }
     }
     chip.classList.remove('hidden');
     btnLogin.classList.add('hidden');
@@ -1085,7 +1091,14 @@ function refreshAdminUI(){
       renderCollabSessionBanner();
     }
   } else if(isSignedIn()){
-    gateMsg.textContent = t('admin.gate.notAdmin').replace('{email}', currentUserEmail());
+    var gateUid = currentUserId();
+    var gateFallback = '@' + (currentUserEmail() || '').split('@')[0];
+    gateMsg.textContent = t('admin.gate.notAdmin').replace('{email}', gateFallback);
+    if(gateUid){
+      getDisplayName(gateUid).then(function(name){
+        gateMsg.textContent = t('admin.gate.notAdmin').replace('{email}', (name && name !== t('notif.someone')) ? name : gateFallback);
+      });
+    }
     gateSignIn.classList.add('hidden');
     if(adminSection) adminSection.classList.add('hidden'); // no dangling section for non-admins
   } else {
@@ -3174,7 +3187,7 @@ function inviteFriendToCreate(otherUserId, otherName){
   fetch(SUPABASE_URL + '/rest/v1/creation_sessions', {
     method:'POST',
     headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
-    body: JSON.stringify({ invited_user_id: otherUserId, granted_by: currentUserId(), expires_at: expires })
+    body: JSON.stringify({ invited_user_id: otherUserId, granted_by: currentUserId(), expires_at: expires, status: 'active', extension_requested: false })
   }).then(function(r){
     if(!r.ok) throw new Error('invite failed');
     return fetch(SUPABASE_URL + '/rest/v1/notifications', {
@@ -3346,29 +3359,159 @@ function sendChannelMessage(){
 }
 
 /* ---- Messaggi privati ---- */
+var dmActiveTab = 'all'; // all | unread | important | archived
+var dmThreadsCache = [];
+
+function dmThreadState(th, uid){
+  var mine = th.user_a === uid;
+  return {
+    read: mine ? th.read_a : th.read_b,
+    important: mine ? th.important_a : th.important_b,
+    archived: mine ? th.archived_a : th.archived_b,
+    otherId: mine ? th.user_b : th.user_a
+  };
+}
+
+function switchDmTab(tab){
+  dmActiveTab = tab;
+  document.querySelectorAll('.dm-tab').forEach(function(btn){
+    btn.classList.toggle('active', btn.dataset.dmTab === tab);
+  });
+  renderDmThreadsList();
+}
+
+function setDmFlag(threadId, field, value){
+  var session = getSession();
+  if(!session) return Promise.resolve();
+  var body = {}; body[field] = value;
+  return fetch(SUPABASE_URL + '/rest/v1/dm_threads?id=eq.' + encodeURIComponent(threadId), {
+    method:'PATCH',
+    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
+    body: JSON.stringify(body)
+  }).catch(function(e){ console.warn('DM flag update failed:', e); });
+}
+
+function toggleDmImportant(th, uid, btn){
+  var mine = th.user_a === uid;
+  var field = mine ? 'important_a' : 'important_b';
+  var newVal = !(mine ? th.important_a : th.important_b);
+  if(mine) th.important_a = newVal; else th.important_b = newVal;
+  btn.classList.toggle('active', newVal);
+  setDmFlag(th.id, field, newVal);
+}
+
+function archiveDmThread(th, uid){
+  var mine = th.user_a === uid;
+  var field = mine ? 'archived_a' : 'archived_b';
+  if(mine) th.archived_a = true; else th.archived_b = true;
+  setDmFlag(th.id, field, true).then(renderDmThreadsList);
+}
+
+function unarchiveDmThread(th, uid){
+  var mine = th.user_a === uid;
+  var field = mine ? 'archived_a' : 'archived_b';
+  if(mine) th.archived_a = false; else th.archived_b = false;
+  setDmFlag(th.id, field, false).then(renderDmThreadsList);
+}
+
 function loadDmThreads(){
   var list = document.getElementById('dmThreadsList');
   if(!list || !isSignedIn()) return;
   var uid = currentUserId();
-  fetch(SUPABASE_URL + '/rest/v1/dm_threads?select=*&or=(user_a.eq.' + encodeURIComponent(uid) + ',user_b.eq.' + encodeURIComponent(uid) + ')&order=created_at.desc', { headers: communityHeaders() })
+  fetch(SUPABASE_URL + '/rest/v1/dm_threads?select=*&or=(user_a.eq.' + encodeURIComponent(uid) + ',user_b.eq.' + encodeURIComponent(uid) + ')&order=last_message_at.desc', { headers: communityHeaders() })
     .then(function(r){ if(!r.ok) throw new Error('dm threads read failed'); return r.json(); })
     .then(function(rows){
-      list.innerHTML = '';
-      if(rows.length === 0){ list.innerHTML = '<p class="form-note">' + t('community.noDms') + '</p>'; return; }
-      rows.forEach(function(th){
-        var otherId = th.user_a === uid ? th.user_b : th.user_a;
-        getDisplayName(otherId).then(function(name){
-          var btn = document.createElement('button');
-          btn.type = 'button';
-          btn.className = 'dm-thread-item';
-          btn.textContent = name;
-          btn.addEventListener('click', function(){ openDmThread(th.id, name); });
-          list.appendChild(btn);
-        });
-      });
+      dmThreadsCache = rows;
+      renderDmThreadsList();
     })
     .catch(function(err){ console.warn('DM threads load failed:', err); });
 }
+
+function renderDmThreadsList(){
+  var list = document.getElementById('dmThreadsList');
+  if(!list) return;
+  var uid = currentUserId();
+  var rows = dmThreadsCache.filter(function(th){
+    var st = dmThreadState(th, uid);
+    if(dmActiveTab === 'archived') return st.archived;
+    if(st.archived) return false; // le archiviate si vedono solo nella loro scheda
+    if(dmActiveTab === 'unread') return !st.read;
+    if(dmActiveTab === 'important') return st.important;
+    return true; // 'all'
+  });
+  list.innerHTML = '';
+  if(rows.length === 0){ list.innerHTML = '<p class="form-note">' + t('community.noDms') + '</p>'; return; }
+  rows.forEach(function(th){
+    var st = dmThreadState(th, uid);
+    getDisplayName(st.otherId).then(function(name){
+      var row = document.createElement('div');
+      row.className = 'dm-thread-row' + (st.read ? '' : ' unread');
+
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'dm-thread-item';
+      btn.textContent = name + (st.read ? '' : ' •');
+      btn.addEventListener('click', function(){ openDmThread(th.id, name); });
+      row.appendChild(btn);
+
+      var starBtn = document.createElement('button');
+      starBtn.type = 'button';
+      starBtn.className = 'dm-thread-star' + (st.important ? ' active' : '');
+      starBtn.setAttribute('aria-label', t('community.important') || 'Importante');
+      starBtn.textContent = '★';
+      starBtn.addEventListener('click', function(e){ e.stopPropagation(); toggleDmImportant(th, uid, starBtn); });
+      row.appendChild(starBtn);
+
+      var archBtn = document.createElement('button');
+      archBtn.type = 'button';
+      archBtn.className = 'dm-thread-archive';
+      archBtn.setAttribute('aria-label', t('community.archive') || 'Archivia');
+      archBtn.textContent = st.archived ? '↩' : '🗄';
+      archBtn.addEventListener('click', function(e){
+        e.stopPropagation();
+        if(st.archived) unarchiveDmThread(th, uid); else archiveDmThread(th, uid);
+      });
+      row.appendChild(archBtn);
+
+      list.appendChild(row);
+    });
+  });
+}
+
+function ensureDmTabsBar(){
+  var list = document.getElementById('dmThreadsList');
+  if(!list || document.getElementById('dmTabsBar')) return;
+  var bar = document.createElement('div');
+  bar.id = 'dmTabsBar';
+  bar.className = 'dm-tabs';
+  bar.innerHTML =
+    '<button type="button" class="dm-tab active" data-dm-tab="all">' + (t('community.dmAll') || 'Tutti') + '</button>' +
+    '<button type="button" class="dm-tab" data-dm-tab="unread">' + (t('community.dmUnread') || 'Da leggere') + '</button>' +
+    '<button type="button" class="dm-tab" data-dm-tab="important">' + (t('community.dmImportant') || 'Importanti') + '</button>' +
+    '<button type="button" class="dm-tab" data-dm-tab="archived">' + (t('community.dmArchived') || 'Archiviate') + '</button>';
+  list.parentNode.insertBefore(bar, list);
+  Array.prototype.forEach.call(bar.querySelectorAll('.dm-tab'), function(btn){
+    btn.addEventListener('click', function(){ switchDmTab(btn.dataset.dmTab); });
+  });
+}
+new MutationObserver(ensureDmTabsBar).observe(document.body, { childList: true, subtree: true });
+ensureDmTabsBar();
+
+(function injectDmTabsStyles(){
+  var style = document.createElement('style');
+  style.textContent =
+    '.dm-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px;}' +
+    '.dm-tab{background:#fdfaf5;color:#2a1a1d;border:1px solid #6e1423;border-radius:14px;' +
+    'padding:4px 12px;font-size:13px;cursor:pointer;}' +
+    '.dm-tab.active{background:#6e1423;color:#fdfaf5;}' +
+    '.dm-thread-row{display:flex;align-items:center;gap:6px;margin-bottom:4px;}' +
+    '.dm-thread-row.unread .dm-thread-item{font-weight:700;}' +
+    '.dm-thread-item{flex:1;text-align:left;}' +
+    '.dm-thread-star{background:none;border:none;font-size:16px;opacity:.35;cursor:pointer;}' +
+    '.dm-thread-star.active{opacity:1;color:#c9a24d;}' +
+    '.dm-thread-archive{background:none;border:none;font-size:15px;opacity:.55;cursor:pointer;}';
+  document.head.appendChild(style);
+})();
 
 function startDmWith(otherUserId, otherName){
   if(!isSignedIn()){ openAuth('login'); return; }
@@ -3404,6 +3547,16 @@ function openDmThread(id, otherName){
   document.getElementById('dmDetailView').classList.remove('hidden');
   document.getElementById('dmDetailName').textContent = otherName;
   loadDmMessages();
+  var uid = currentUserId();
+  var th = dmThreadsCache.filter(function(t){ return t.id === id; })[0];
+  if(th){
+    var mine = th.user_a === uid;
+    var field = mine ? 'read_a' : 'read_b';
+    if(!(mine ? th.read_a : th.read_b)){
+      if(mine) th.read_a = true; else th.read_b = true;
+      setDmFlag(id, field, true);
+    }
+  }
 }
 
 function backToDms(){
