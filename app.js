@@ -2646,6 +2646,20 @@ function saveProfile(){
   });
 }
 
+(function injectDmChatStyles(){
+  var style = document.createElement('style');
+  style.textContent =
+    '#dmMessages{display:flex;flex-direction:column;gap:6px;padding:8px 4px;}' +
+    '#dmMessages .dm-bubble{max-width:75%;border-radius:16px;padding:6px 12px;position:relative;box-shadow:0 1px 1px rgba(0,0,0,.08);}' +
+    '#dmMessages .dm-bubble .author{display:none;}' +
+    '#dmMessages .dm-bubble.mine{align-self:flex-end;background:#d9fdd3;color:#111;border-bottom-right-radius:4px;}' +
+    '#dmMessages .dm-bubble.theirs{align-self:flex-start;background:#ffffff;color:#111;border:1px solid #e5e5e5;border-bottom-left-radius:4px;}' +
+    '#dmMessages .dm-bubble .body{white-space:pre-wrap;word-break:break-word;}' +
+    '#dmMessages .dm-bubble .msg-actions{opacity:.55;font-size:11px;margin-top:2px;}' +
+    '#dmMessages .dm-bubble.mine .msg-actions{text-align:right;}';
+  document.head.appendChild(style);
+})();
+
 /* ============ USER REQUESTS (private suggestion box to the admin) ============ */
 function submitRequest(){
   var session = getSession();
@@ -3406,7 +3420,7 @@ function loadDmMessages(){
         chain = chain.then(function(){
           return getDisplayName(m.sender_id).then(function(name){
             var div = document.createElement('div');
-            div.className = 'channel-msg' + (m.flagged ? ' flagged' : '');
+            div.className = 'channel-msg dm-bubble ' + (m.sender_id === uid ? 'mine' : 'theirs') + (m.flagged ? ' flagged' : '');
             div.innerHTML = '<span class="author">' + escapeHtml(m.sender_id === uid ? t('community.you') : name) + '</span>' +
               '<div class="body">' + renderBodyHtml(m.body) + '</div>' +
               '<div class="msg-actions"><button type="button" class="report-btn">' + t('community.report') + '</button></div>';
