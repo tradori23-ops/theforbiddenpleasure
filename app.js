@@ -3364,11 +3364,14 @@ var dmThreadsCache = [];
 
 function dmThreadState(th, uid){
   var mine = th.user_a === uid;
+  var myLastRead = mine ? th.last_read_at_a : th.last_read_at_b;
+  var unread = !!th.last_message_at && (!myLastRead || new Date(th.last_message_at) > new Date(myLastRead));
   return {
-    read: mine ? th.read_a : th.read_b,
+    read: !unread,
     important: mine ? th.important_a : th.important_b,
     archived: mine ? th.archived_a : th.archived_b,
-    otherId: mine ? th.user_b : th.user_a
+    otherId: mine ? th.user_b : th.user_a,
+    otherLastRead: mine ? th.last_read_at_b : th.last_read_at_a
   };
 }
 
@@ -3427,6 +3430,30 @@ function loadDmThreads(){
     .catch(function(err){ console.warn('DM threads load failed:', err); });
 }
 
+/* ---- Presenza online (attivo negli ultimi 2 minuti) ---- */
+var ONLINE_THRESHOLD_MS = 120000;
+function isOnlineSince(lastActiveAt){
+  if(!lastActiveAt) return false;
+  return (Date.now() - new Date(lastActiveAt).getTime()) < ONLINE_THRESHOLD_MS;
+}
+function heartbeatPresence(){
+  if(!isSignedIn()) return;
+  var session = getSession();
+  var uid = currentUserId();
+  if(!uid) return;
+  fetch(SUPABASE_URL + '/rest/v1/profiles?id=eq.' + encodeURIComponent(uid), {
+    method:'PATCH',
+    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
+    body: JSON.stringify({ last_active_at: new Date().toISOString() })
+  }).catch(function(){});
+}
+function getPresence(userId){
+  return fetch(SUPABASE_URL + '/rest/v1/profiles?id=eq.' + encodeURIComponent(userId) + '&select=last_active_at', { headers: communityHeaders() })
+    .then(function(r){ return r.ok ? r.json() : []; })
+    .then(function(rows){ return rows[0] ? isOnlineSince(rows[0].last_active_at) : false; })
+    .catch(function(){ return false; });
+}
+
 function renderDmThreadsList(){
   var list = document.getElementById('dmThreadsList');
   if(!list) return;
@@ -3450,7 +3477,13 @@ function renderDmThreadsList(){
       var btn = document.createElement('button');
       btn.type = 'button';
       btn.className = 'dm-thread-item';
-      btn.textContent = name + (st.read ? '' : ' •');
+      var dot = document.createElement('span');
+      dot.className = 'dm-presence-dot';
+      var nameSpan = document.createElement('span');
+      nameSpan.textContent = name + (st.read ? '' : ' •');
+      btn.appendChild(dot);
+      btn.appendChild(nameSpan);
+      getPresence(st.otherId).then(function(online){ dot.classList.toggle('online', online); });
       btn.addEventListener('click', function(){ openDmThread(th.id, name); });
       row.appendChild(btn);
 
@@ -3485,10 +3518,10 @@ function ensureDmTabsBar(){
   bar.id = 'dmTabsBar';
   bar.className = 'dm-tabs';
   bar.innerHTML =
-    '<button type="button" class="dm-tab active" data-dm-tab="all">' + (t('community.dmAll') || 'Tutti') + '</button>' +
-    '<button type="button" class="dm-tab" data-dm-tab="unread">' + (t('community.dmUnread') || 'Da leggere') + '</button>' +
-    '<button type="button" class="dm-tab" data-dm-tab="important">' + (t('community.dmImportant') || 'Importanti') + '</button>' +
-    '<button type="button" class="dm-tab" data-dm-tab="archived">' + (t('community.dmArchived') || 'Archiviate') + '</button>';
+    '<button type="button" class="dm-tab active" data-dm-tab="all">Tutti</button>' +
+    '<button type="button" class="dm-tab" data-dm-tab="unread">Da leggere</button>' +
+    '<button type="button" class="dm-tab" data-dm-tab="important">Importanti</button>' +
+    '<button type="button" class="dm-tab" data-dm-tab="archived">Archiviate</button>';
   list.parentNode.insertBefore(bar, list);
   Array.prototype.forEach.call(bar.querySelectorAll('.dm-tab'), function(btn){
     btn.addEventListener('click', function(){ switchDmTab(btn.dataset.dmTab); });
@@ -3500,16 +3533,27 @@ ensureDmTabsBar();
 (function injectDmTabsStyles(){
   var style = document.createElement('style');
   style.textContent =
-    '.dm-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px;}' +
-    '.dm-tab{background:#fdfaf5;color:#2a1a1d;border:1px solid #6e1423;border-radius:14px;' +
-    'padding:4px 12px;font-size:13px;cursor:pointer;}' +
-    '.dm-tab.active{background:#6e1423;color:#fdfaf5;}' +
-    '.dm-thread-row{display:flex;align-items:center;gap:6px;margin-bottom:4px;}' +
+    '.dm-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;font-family:"Cinzel",serif;}' +
+    '.dm-tab{background:#fdfaf5;color:#6e1423;border:2px solid #6e1423;border-radius:10px;' +
+    'padding:5px 14px;font-size:12px;letter-spacing:.03em;text-transform:uppercase;cursor:pointer;' +
+    'box-shadow:2px 2px 0 rgba(110,20,35,.18);}' +
+    '.dm-tab.active{background:#6e1423;color:#fdfaf5;box-shadow:2px 2px 0 rgba(201,162,77,.4);}' +
+    '.dm-thread-row{display:flex;align-items:center;gap:8px;margin-bottom:8px;padding:8px 12px;' +
+    'background:#fdfaf5;border:2px solid #6e1423;border-radius:12px;box-shadow:2px 3px 0 rgba(110,20,35,.12);}' +
+    '.dm-thread-row.unread{border-color:#c9a24d;box-shadow:2px 3px 0 rgba(201,162,77,.3);}' +
     '.dm-thread-row.unread .dm-thread-item{font-weight:700;}' +
-    '.dm-thread-item{flex:1;text-align:left;}' +
-    '.dm-thread-star{background:none;border:none;font-size:16px;opacity:.35;cursor:pointer;}' +
+    '.dm-thread-item{flex:1;text-align:left;background:none;border:none;font-family:"Crimson Pro",serif;' +
+    'font-size:16px;color:#2a1a1d;display:flex;align-items:center;gap:6px;}' +
+    '.dm-presence-dot{width:8px;height:8px;border-radius:50%;background:#999;flex-shrink:0;}' +
+    '.dm-presence-dot.online{background:#3fae54;box-shadow:0 0 4px rgba(63,174,84,.8);}' +
+    '.dm-thread-star{background:none;border:none;font-size:17px;opacity:.35;cursor:pointer;}' +
     '.dm-thread-star.active{opacity:1;color:#c9a24d;}' +
-    '.dm-thread-archive{background:none;border:none;font-size:15px;opacity:.55;cursor:pointer;}';
+    '.dm-thread-archive{background:none;border:none;font-size:16px;opacity:.55;cursor:pointer;}' +
+    '.dm-detail-header{display:flex;align-items:center;gap:8px;margin-bottom:6px;}' +
+    '.dm-detail-status{font-size:12px;font-family:"Space Mono",monospace;opacity:.65;}' +
+    '.dm-tick{font-size:12px;font-family:"Space Mono",monospace;letter-spacing:-1px;}' +
+    '.dm-tick.sent{color:#999;}' +
+    '.dm-tick.read{color:#3fae54;}';
   document.head.appendChild(style);
 })();
 
@@ -3545,17 +3589,28 @@ function openDmThread(id, otherName){
   currentDmOtherName = otherName;
   document.getElementById('dmListView').classList.add('hidden');
   document.getElementById('dmDetailView').classList.remove('hidden');
-  document.getElementById('dmDetailName').textContent = otherName;
+  var nameEl = document.getElementById('dmDetailName');
+  nameEl.textContent = otherName;
   loadDmMessages();
   var uid = currentUserId();
   var th = dmThreadsCache.filter(function(t){ return t.id === id; })[0];
   if(th){
+    var otherId = th.user_a === uid ? th.user_b : th.user_a;
+    getPresence(otherId).then(function(online){
+      var status = document.getElementById('dmDetailStatus');
+      if(!status){
+        status = document.createElement('span');
+        status.id = 'dmDetailStatus';
+        status.className = 'dm-detail-status';
+        nameEl.parentNode.insertBefore(status, nameEl.nextSibling);
+      }
+      status.textContent = online ? 'online' : '';
+    });
     var mine = th.user_a === uid;
-    var field = mine ? 'read_a' : 'read_b';
-    if(!(mine ? th.read_a : th.read_b)){
-      if(mine) th.read_a = true; else th.read_b = true;
-      setDmFlag(id, field, true);
-    }
+    var field = mine ? 'last_read_at_a' : 'last_read_at_b';
+    var nowIso = new Date().toISOString();
+    if(mine) th.last_read_at_a = nowIso; else th.last_read_at_b = nowIso;
+    setDmFlag(id, field, nowIso);
   }
 }
 
@@ -3575,15 +3630,25 @@ function loadDmMessages(){
       wrap.innerHTML = '';
       if(rows.length === 0){ wrap.innerHTML = '<p class="form-note">' + t('community.noMessages') + '</p>'; return; }
       var uid = currentUserId();
+      var thForTicks = dmThreadsCache.filter(function(t){ return t.id === currentDmThreadId; })[0];
+      var otherLastRead = null;
+      if(thForTicks){
+        var mineSide = thForTicks.user_a === uid;
+        otherLastRead = mineSide ? thForTicks.last_read_at_b : thForTicks.last_read_at_a;
+      }
       var chain = Promise.resolve();
       rows.forEach(function(m){
         chain = chain.then(function(){
           return getDisplayName(m.sender_id).then(function(name){
             var div = document.createElement('div');
             div.className = 'channel-msg dm-bubble ' + (m.sender_id === uid ? 'mine' : 'theirs') + (m.flagged ? ' flagged' : '');
+            var readByOther = otherLastRead && new Date(m.created_at) <= new Date(otherLastRead);
+            var tickHtml = (m.sender_id === uid)
+              ? '<span class="dm-tick ' + (readByOther ? 'read">✓✓' : 'sent">✓') + '</span>'
+              : '';
             div.innerHTML = '<span class="author">' + escapeHtml(m.sender_id === uid ? t('community.you') : name) + '</span>' +
               '<div class="body">' + renderBodyHtml(m.body) + '</div>' +
-              '<div class="msg-actions"><button type="button" class="report-btn">' + t('community.report') + '</button></div>';
+              '<div class="msg-actions"><button type="button" class="report-btn">' + t('community.report') + '</button>' + tickHtml + '</div>';
             div.querySelector('.report-btn').addEventListener('click', function(){ reportContent('dm_message', m.id); });
             wrap.appendChild(div);
           });
@@ -5109,6 +5174,8 @@ function __appInit(){
   setInterval(fetchMaintenanceStatus, 60000); // light polling so visitors already on the page see it too
   setInterval(renderNightClosureLock, 30000); // ricontrolla l'orario anche senza nuove risposte dal server
   setInterval(renderAdminUsers, 60000); // keeps "online now" fresh while you're on that tab; no-op if not admin
+  heartbeatPresence();
+  setInterval(heartbeatPresence, 60000); // aggiorna "ultimo attivo" per lo stato online nei DM
 }
 // Il loader.js inietta questo file DOPO che DOMContentLoaded è già passato
 // (perché aspetta prima il fetch di header/footer/modali condivisi).
