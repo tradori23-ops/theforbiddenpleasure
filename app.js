@@ -1017,6 +1017,11 @@ function refreshAuthUI(){
     if(communitySection) communitySection.classList.remove('hidden');
     if(smallnoxFloat) smallnoxFloat.classList.remove('hidden');
     loadChannels();
+    var pendingCommunityTab = sessionStorage.getItem('lux_pending_community_tab');
+    if(pendingCommunityTab && document.getElementById('communitySection')){
+      sessionStorage.removeItem('lux_pending_community_tab');
+      switchCommunityTab(pendingCommunityTab);
+    }
   } else {
     chip.classList.add('hidden');
     btnLogin.classList.remove('hidden');
@@ -1056,6 +1061,11 @@ function refreshAdminUI(){
     renderAdminAnnouncements();
     renderAdminUsers();
     renderAdminSessions();
+    var pendingAdminTab = sessionStorage.getItem('lux_pending_admin_tab');
+    if(pendingAdminTab){
+      sessionStorage.removeItem('lux_pending_admin_tab');
+      switchAdminTab(pendingAdminTab);
+    }
   } else if(collab){
     // Un collaboratore invitato vede SOLO il modulo "Aggiungi allo schedario":
     // niente altre tab, niente elenco titoli altrui, niente dati riservati.
@@ -1073,11 +1083,11 @@ function refreshAdminUI(){
   } else if(isSignedIn()){
     gateMsg.textContent = t('admin.gate.notAdmin').replace('{email}', currentUserEmail());
     gateSignIn.classList.add('hidden');
-    adminSection.classList.add('hidden'); // no dangling section for non-admins
+    if(adminSection) adminSection.classList.add('hidden'); // no dangling section for non-admins
   } else {
     gateMsg.textContent = t('admin.gate.notSignedIn');
     gateSignIn.classList.remove('hidden');
-    adminSection.classList.add('hidden');
+    if(adminSection) adminSection.classList.add('hidden');
   }
   updateSyncStatus();
 }
@@ -1779,6 +1789,7 @@ function escapeHtml(str){
 function renderAdminList(){
   if(!isAdmin()) return;
   var list = document.getElementById('adminList');
+  if(!list) return;
   var items = getCatalog();
   items.sort(function(a,b){ return (b.date||'').localeCompare(a.date||''); });
   list.innerHTML = '';
@@ -2570,12 +2581,17 @@ function openNotification(n){
     if(communitySection){
       communitySection.scrollIntoView({behavior:'smooth'});
       switchCommunityTab('friends');
+    } else {
+      // Non siamo sulla pagina Community: ci navighiamo, ricordando quale tab aprire all'arrivo.
+      sessionStorage.setItem('lux_pending_community_tab', 'friends');
+      window.location.href = 'community.html#communitySection';
     }
     return;
   }
   if(n.type === 'creation_invite'){
     var adminSection1 = document.getElementById('adminSection');
     if(adminSection1){ adminSection1.classList.remove('hidden'); adminSection1.scrollIntoView({behavior:'smooth'}); }
+    else { window.location.href = 'admin.html'; }
     return;
   }
   if(n.type === 'extension_request'){
@@ -2584,6 +2600,9 @@ function openNotification(n){
       adminSection2.classList.remove('hidden');
       switchAdminTab('users');
       adminSection2.scrollIntoView({behavior:'smooth'});
+    } else {
+      sessionStorage.setItem('lux_pending_admin_tab', 'users');
+      window.location.href = 'admin.html';
     }
     return;
   }
@@ -3849,6 +3868,7 @@ function switchAdminTab(tabName){
 function renderStatsPanel(){
   if(!isAdmin()) return;
   var box = document.getElementById('statsPanel');
+  if(!box) return;
   var items = getCatalog().slice();
   if(items.length === 0){ box.innerHTML = '<p class="form-note">' + t('stats.empty') + '</p>'; return; }
   items.sort(function(a,b){ return (b.view_count||0) - (a.view_count||0); });
@@ -3933,6 +3953,7 @@ var VERIFICATION_MIN_DAYS = 90; // regola dei 90 giorni: la spunta blu non si pu
 function renderAdminUsers(){
   if(!isAdmin()) return;
   var list = document.getElementById('adminUsersList');
+  if(!list) return;
   var session = getSession();
   fetch(SUPABASE_URL + '/rest/v1/profiles?select=id,display_name,created_at,verified,last_seen&order=created_at.desc', {
     headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
@@ -3991,6 +4012,7 @@ function renderAdminUsers(){
 function renderAdminAnnouncements(){
   if(!isAdmin()) return;
   var list = document.getElementById('adminAnnouncementsList');
+  if(!list) return;
   var session = getSession();
   fetch(SUPABASE_URL + '/rest/v1/announcements?select=*&order=created_at.desc', {
     headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
@@ -4052,6 +4074,7 @@ function renderAdminAnnouncements(){
 function renderAdminRequests(){
   if(!isAdmin()) return;
   var list = document.getElementById('adminRequestsList');
+  if(!list) return;
   var session = getSession();
   fetch(SUPABASE_URL + '/rest/v1/requests?select=*&order=created_at.desc', {
     headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
@@ -4084,7 +4107,7 @@ function renderAdminRequests(){
 
 function renderModerationQueue(){
   var box = document.getElementById('modQueue');
-  if(!SUPABASE_URL || !isAdmin()) return;
+  if(!box || !SUPABASE_URL || !isAdmin()) return;
   var session = getSession();
   fetch(SUPABASE_URL + '/rest/v1/comments?approved=eq.false&select=*&order=created_at.asc', {
     headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
@@ -4173,6 +4196,7 @@ function renderHeroBg(){
 function renderCharImageAdmin(){
   if(!isAdmin()) return;
   var row = document.getElementById('charImageRow');
+  if(!row) return;
   row.innerHTML = '';
   CHAR_LIST.forEach(function(name){
     var item = document.createElement('div');
@@ -4312,9 +4336,11 @@ document.addEventListener('DOMContentLoaded', function(){
   });
 
   document.getElementById('navAdmin').addEventListener('click', function(e){
+    var adminSectionEl = document.getElementById('adminSection');
+    if(!adminSectionEl) return; // non siamo su admin.html: lascia navigare al link normale (href="admin.html")
     e.preventDefault();
-    document.getElementById('adminSection').classList.remove('hidden');
-    document.getElementById('adminSection').scrollIntoView({behavior:'smooth'});
+    adminSectionEl.classList.remove('hidden');
+    adminSectionEl.scrollIntoView({behavior:'smooth'});
     refreshAdminUI();
   });
   document.getElementById('btnGateSignIn').addEventListener('click', function(){ openAuth('login'); });

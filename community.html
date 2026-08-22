@@ -30,37 +30,86 @@
 <div id="app">
 <div id="chrome-top-slot"></div>
 
-  <section class="hero">
-    <div class="hero-bg" id="heroBg"></div>
-    <h1><span data-i18n="hero.title1">L'ARCHIVIO DEL</span> <span class="amp">&amp;</span> <span data-i18n="hero.title2">PIACERE PROIBITO</span></h1>
-    <div class="tagline" data-i18n="hero.tagline">Fumetti d'autore — edizione riservata</div>
-    <p class="lede" data-i18n="hero.lede">Quattro sigilli, quattro voci: Lucifer, Lilith, Lucifera e Lucio custodiscono le collane di questa casa. Lo schedario è aperto a tutti — i contenuti 18+ restano dietro un interruttore separato, da sbloccare quando vuoi. Ogni tavola nasce in inglese ed entra nello schedario così com'è — solo la tua lingua d'accesso è cosa nostra.</p>
-    <div class="cta-row">
-      <a href="schedario.html#library" class="btn btn-primary" data-i18n="hero.cta1">Sfoglia lo schedario</a>
-      <a href="dossier.html#characters" class="btn btn-ghost" data-i18n="hero.cta2">Incontra i dossier</a>
+  <section class="section hidden ornate-divider" id="communitySection">
+    <div class="section-head" style="display:flex;gap:16px;align-items:flex-start;">
+      <img src="smallnox-calm.png" alt="SmallNox" class="smallnox-clickable" id="smallnoxCommunityImg" style="width:56px;height:56px;border-radius:50%;flex-shrink:0;object-fit:cover;">
+      <div>
+        <div class="section-eyebrow" data-i18n="community.eyebrow">Fuori dallo Schedario</div>
+        <h2 data-i18n="community.title">Community</h2>
+        <div class="section-desc" data-i18n="community.rule">Niente materiale pornografico: al massimo contenuti sensuali. Chi viola la regola viene bannato ed eliminato dal sito.</div>
+        <p class="form-note" style="margin-top:6px;" data-i18n="smallnox.communityBlurb">SmallNox veglia su questi canali — se scrivi qualcosa fuori regola se ne accorge.</p>
+      </div>
+    </div>
+
+    <div class="community-tabs">
+      <button type="button" class="community-tab active" data-ctab="channels" data-i18n="community.tabChannels">Canali</button>
+      <button type="button" class="community-tab" data-ctab="friends" data-i18n="community.tabFriends">Amici</button>
+      <button type="button" class="community-tab" data-ctab="dms" data-i18n="community.tabDms">Messaggi privati</button>
+    </div>
+
+    <!-- CANALI -->
+    <div class="community-panel" data-cpanel="channels">
+      <div id="channelListView">
+        <div class="channel-create-row">
+          <input type="text" id="fNewChannelName" maxlength="40" data-i18n-placeholder="community.newChannelPh" placeholder="Nome nuovo canale (es. Cinema)">
+          <button type="button" class="btn btn-primary btn-sm" id="btnCreateChannel" data-i18n="community.createChannel">Crea canale</button>
+        </div>
+        <div class="form-error" id="channelCreateError"></div>
+        <div id="channelsList" class="channels-grid"></div>
+      </div>
+      <div id="channelDetailView" class="hidden">
+        <button type="button" class="btn btn-ghost btn-sm" id="btnBackToChannels" data-i18n="community.back">&larr; Torna ai canali</button>
+        <h3 id="channelDetailName"></h3>
+        <div id="channelMessages" class="channel-messages"></div>
+        <div class="channel-compose">
+          <textarea id="fChannelMessage" rows="2" data-i18n-placeholder="community.messagePh" placeholder="Scrivi un messaggio…"></textarea>
+          <button type="button" class="btn btn-primary btn-sm" id="btnSendChannelMessage" data-i18n="community.send">Invia</button>
+        </div>
+        <div class="form-error" id="channelMessageError"></div>
+      </div>
+    </div>
+
+    <!-- AMICI -->
+    <div class="community-panel hidden" data-cpanel="friends">
+      <div class="notice">
+        <div class="mini-heading" data-i18n="community.searchFriends">Cerca una persona</div>
+        <input type="text" id="fFriendSearch" data-i18n-placeholder="community.searchFriendsPh" placeholder="Nome utente…">
+        <div id="friendSearchResults"></div>
+      </div>
+      <div class="notice">
+        <div class="mini-heading" data-i18n="community.pendingReceived">Richieste ricevute</div>
+        <div id="friendRequestsReceived"></div>
+      </div>
+      <div class="notice">
+        <div class="mini-heading" data-i18n="community.pendingSent">Richieste inviate</div>
+        <div id="friendRequestsSent"></div>
+      </div>
+      <div class="notice">
+        <div class="mini-heading" data-i18n="community.friendsList">I tuoi amici</div>
+        <div id="friendsList"></div>
+      </div>
+    </div>
+
+    <!-- MESSAGGI PRIVATI -->
+    <div class="community-panel hidden" data-cpanel="dms">
+      <div id="dmListView">
+        <div id="dmThreadsList" class="dm-threads-list"></div>
+        <p class="form-note" data-i18n="community.dmHint">Per scrivere in privato a qualcuno, prima diventate amici: apri un suo messaggio in un canale e manda una richiesta di amicizia.</p>
+      </div>
+      <div id="dmDetailView" class="hidden">
+        <button type="button" class="btn btn-ghost btn-sm" id="btnBackToDms" data-i18n="community.back">&larr; Torna ai messaggi</button>
+        <h3 id="dmDetailName"></h3>
+        <div id="dmMessages" class="channel-messages"></div>
+        <div class="channel-compose">
+          <textarea id="fDmMessage" rows="2" data-i18n-placeholder="community.messagePh" placeholder="Scrivi un messaggio…"></textarea>
+          <button type="button" class="btn btn-primary btn-sm" id="btnSendDmMessage" data-i18n="community.send">Invia</button>
+        </div>
+        <div class="form-error" id="dmMessageError"></div>
+      </div>
     </div>
   </section>
 
-  <section class="section announcements-section hidden" id="announcementsSection">
-    <div class="section-head">
-      <div>
-        <div class="section-eyebrow" data-i18n="announcements.eyebrow">Dalla Redazione</div>
-        <h2 data-i18n="announcements.title">Novità</h2>
-      </div>
-    </div>
-    <div class="announcements-grid" id="announcementsGrid"></div>
-  </section>
-
-  <!-- ============ LATEST CHAPTERS (auto-populated from the catalog, newest first) ============ -->
-  <section class="section latest-section hidden" id="latestSection">
-    <div class="section-head">
-      <div>
-        <div class="section-eyebrow" data-i18n="latest.eyebrow">Appena Pubblicato</div>
-        <h2 data-i18n="latest.title">Ultimi Capitoli</h2>
-      </div>
-    </div>
-    <div class="latest-grid" id="latestGrid"></div>
-  </section>
+  <!-- ============ ADMIN (click "Amministra" to reveal; content gated by Supabase auth) ============ -->
 
 <div id="chrome-footer-slot"></div>
 </div>
