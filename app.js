@@ -3864,6 +3864,106 @@ function submitComment(){
   });
 }
 
+/* ============ MENTION AUTOCOMPLETE (@username suggestions while typing in
+   comments, channel messages and DMs — closes itself on pick/blur/escape) ============ */
+var MENTION_FIELDS = ['fCommentBody', 'fChannelMessage', 'fDmMessage'];
+var mentionBox = null;
+var mentionActiveField = null;
+
+(function injectMentionStyles(){
+  var style = document.createElement('style');
+  style.textContent =
+    '.mention-suggest-box{position:absolute;z-index:9999;background:var(--panel,#1b1114);' +
+    'border:1px solid var(--border,#6e1423);border-radius:6px;max-width:280px;' +
+    'box-shadow:0 6px 18px rgba(0,0,0,.35);overflow:hidden;font-size:14px;}' +
+    '.mention-suggest-box.hidden{display:none;}' +
+    '.mention-suggest-item{padding:6px 10px;cursor:pointer;white-space:nowrap;' +
+    'overflow:hidden;text-overflow:ellipsis;}' +
+    '.mention-suggest-item:hover{background:rgba(255,255,255,.08);}' +
+    '.mention-suggest-name{opacity:.65;font-size:12px;margin-left:4px;}';
+  document.head.appendChild(style);
+})();
+
+function ensureMentionBox(){
+  if(mentionBox) return mentionBox;
+  mentionBox = document.createElement('div');
+  mentionBox.id = 'mentionSuggestBox';
+  mentionBox.className = 'mention-suggest-box hidden';
+  document.body.appendChild(mentionBox);
+  return mentionBox;
+}
+
+function hideMentionBox(){
+  if(mentionBox) mentionBox.classList.add('hidden');
+  mentionActiveField = null;
+}
+
+function positionMentionBox(field){
+  var rect = field.getBoundingClientRect();
+  var box = ensureMentionBox();
+  box.style.left = (rect.left + window.scrollX) + 'px';
+  box.style.top = (rect.bottom + window.scrollY + 4) + 'px';
+}
+
+function currentMentionQuery(field){
+  var pos = field.selectionStart;
+  var before = field.value.slice(0, pos);
+  var m = before.match(/(^|\s)@([a-zA-Z0-9_]{1,30})$/);
+  return m ? m[2] : null;
+}
+
+function showMentionSuggestions(field, query){
+  fetch(SUPABASE_URL + '/rest/v1/profiles?username=ilike.' + encodeURIComponent(query) + '*&select=username,display_name&limit=5', {
+    headers: communityHeaders()
+  }).then(function(r){ return r.ok ? r.json() : []; }).then(function(rows){
+    if(mentionActiveField !== field) return;
+    if(!rows || !rows.length){ hideMentionBox(); return; }
+    var box = ensureMentionBox();
+    box.innerHTML = rows.map(function(u){
+      return '<div class="mention-suggest-item" data-username="' + u.username + '">@' + u.username +
+        (u.display_name ? ' <span class="mention-suggest-name">' + u.display_name + '</span>' : '') + '</div>';
+    }).join('');
+    positionMentionBox(field);
+    box.classList.remove('hidden');
+  }).catch(function(){ hideMentionBox(); });
+}
+
+function insertMention(field, username){
+  var pos = field.selectionStart;
+  var before = field.value.slice(0, pos);
+  var after = field.value.slice(pos);
+  var replaced = before.replace(/(^|\s)@([a-zA-Z0-9_]{1,30})$/, function(full, lead){
+    return lead + '@' + username + ' ';
+  });
+  field.value = replaced + after;
+  var newPos = replaced.length;
+  field.focus();
+  field.setSelectionRange(newPos, newPos);
+  hideMentionBox();
+}
+
+document.addEventListener('input', function(e){
+  if(MENTION_FIELDS.indexOf(e.target.id) === -1) return;
+  var field = e.target;
+  var query = currentMentionQuery(field);
+  if(query === null){ hideMentionBox(); return; }
+  mentionActiveField = field;
+  showMentionSuggestions(field, query);
+});
+
+document.addEventListener('click', function(e){
+  var item = e.target.closest ? e.target.closest('.mention-suggest-item') : null;
+  if(item && mentionActiveField){
+    insertMention(mentionActiveField, item.getAttribute('data-username'));
+  } else if(mentionBox && !mentionBox.contains(e.target) && MENTION_FIELDS.indexOf(e.target.id) === -1){
+    hideMentionBox();
+  }
+});
+
+document.addEventListener('keydown', function(e){
+  if(e.key === 'Escape') hideMentionBox();
+});
+
 /* ============ MODERATION QUEUE (admin) ============ */
 function switchAdminTab(tabName){
   document.querySelectorAll('.admin-tab').forEach(function(btn){
