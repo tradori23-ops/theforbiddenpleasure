@@ -346,13 +346,16 @@ body.theme-light .hero-bg::after{
 
 /* ============ CHARACTER DOSSIERS ============ */
 .dossier-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;}
-.founder-section{
-  position:relative;background:var(--void-2);border-top:1px solid var(--gold);border-bottom:1px solid var(--gold);
+.ornate-divider{
+  position:relative;border-top:1px solid var(--gold);
   margin-top:20px;padding-top:56px !important;
 }
-.founder-section::before{
+.ornate-divider::before{
   content:'✦';display:block;position:absolute;top:-14px;left:50%;transform:translateX(-50%);
   background:var(--void);color:var(--gold);font-size:18px;padding:0 16px;
+}
+.founder-section{
+  background:var(--void-2);border-bottom:1px solid var(--gold);
 }
 .announcements-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(420px,1fr));gap:18px;}
 .announcement-card{border:1px solid var(--gold);background:var(--void-2);display:flex;align-items:stretch;}
@@ -871,7 +874,7 @@ footer .fcopy{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
   </section>
 
   <!-- ============ CHARACTERS ============ -->
-  <section class="section" id="characters">
+  <section class="section ornate-divider" id="characters">
     <div class="section-head">
       <div>
         <div class="section-eyebrow" data-i18n="characters.eyebrow">Dossier</div>
@@ -883,7 +886,7 @@ footer .fcopy{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
   </section>
 
   <!-- ============ LIBRARY / CATALOG ============ -->
-  <section class="section" id="library">
+  <section class="section ornate-divider" id="library">
     <div class="section-head">
       <div>
         <div class="section-eyebrow" data-i18n="library.eyebrow">Schedario</div>
@@ -897,7 +900,7 @@ footer .fcopy{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
   </section>
 
   <!-- ============ FOUNDER ============ -->
-  <section class="section founder-section" id="founder">
+  <section class="section founder-section ornate-divider" id="founder">
     <div class="section-head">
       <div>
         <div class="section-eyebrow" data-i18n="founder.eyebrow">Casa Editrice</div>
@@ -917,7 +920,7 @@ footer .fcopy{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
   </section>
 
   <!-- ============ COMMUNITY (canali a tema creati dagli utenti + messaggi privati — visibile solo a chi ha fatto accesso) ============ -->
-  <section class="section hidden" id="communitySection">
+  <section class="section hidden ornate-divider" id="communitySection">
     <div class="section-head" style="display:flex;gap:16px;align-items:flex-start;">
       <img src="smallnox-calm.png" alt="SmallNox" class="smallnox-clickable" id="smallnoxCommunityImg" style="width:56px;height:56px;border-radius:50%;flex-shrink:0;object-fit:cover;">
       <div>
@@ -1289,7 +1292,7 @@ footer .fcopy{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
   </section>
 
   <!-- ============ NEWSLETTER ============ -->
-  <section class="section newsletter-section">
+  <section class="section newsletter-section ornate-divider">
     <div class="newsletter-box">
       <div class="section-eyebrow" data-i18n="newsletter.eyebrow">Resta Aggiornato</div>
       <h2 data-i18n="newsletter.title">Iscriviti alla Newsletter</h2>
