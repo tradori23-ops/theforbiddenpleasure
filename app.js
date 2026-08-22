@@ -3873,13 +3873,13 @@ var mentionActiveField = null;
 (function injectMentionStyles(){
   var style = document.createElement('style');
   style.textContent =
-    '.mention-suggest-box{position:absolute;z-index:9999;background:var(--panel,#1b1114);' +
-    'border:1px solid var(--border,#6e1423);border-radius:6px;max-width:280px;' +
+    '.mention-suggest-box{position:absolute;z-index:9999;background:#fdfaf5;color:#2a1a1d;' +
+    'border:1px solid #6e1423;border-radius:6px;max-width:280px;' +
     'box-shadow:0 6px 18px rgba(0,0,0,.35);overflow:hidden;font-size:14px;}' +
     '.mention-suggest-box.hidden{display:none;}' +
     '.mention-suggest-item{padding:6px 10px;cursor:pointer;white-space:nowrap;' +
-    'overflow:hidden;text-overflow:ellipsis;}' +
-    '.mention-suggest-item:hover{background:rgba(255,255,255,.08);}' +
+    'overflow:hidden;text-overflow:ellipsis;color:#2a1a1d;}' +
+    '.mention-suggest-item:hover{background:rgba(110,20,35,.12);}' +
     '.mention-suggest-name{opacity:.65;font-size:12px;margin-left:4px;}';
   document.head.appendChild(style);
 })();
