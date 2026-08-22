@@ -1435,6 +1435,7 @@ var activeCollabFilter = null; // {name, url} | null — takes precedence over a
 function fetchAnnouncements(){
   var section = document.getElementById('announcementsSection');
   var grid = document.getElementById('announcementsGrid');
+  if(!section || !grid) return Promise.resolve();
   if(!SUPABASE_URL) return Promise.resolve();
   var nowIso = new Date().toISOString();
   return fetch(SUPABASE_URL + '/rest/v1/announcements?select=*&published=eq.true&expires_at=gt.' + encodeURIComponent(nowIso) + '&order=created_at.desc&limit=6', {
@@ -1600,6 +1601,7 @@ function exportEverythingOffline(){
 function renderLatestChapters(){
   var section = document.getElementById('latestSection');
   var grid = document.getElementById('latestGrid');
+  if(!section || !grid) return;
   var items = getCatalog();
   if(!matureVisible){
     items = items.filter(function(i){ return !i.mature; });
@@ -1626,6 +1628,7 @@ function renderLatestChapters(){
 
 function renderDossiers(){
   var grid = document.getElementById('dossierGrid');
+  if(!grid) return;
   grid.innerHTML = '';
   ['Lucifer','Lilith','Lucifera','Lucio'].forEach(function(name){
     var meta = CHAR_META[name];
@@ -1668,6 +1671,7 @@ function clearCollabFilter(){
 }
 function renderCollabBanner(){
   var el = document.getElementById('collabBanner');
+  if(!el) return;
   if(!activeCollabFilter){
     el.classList.add('hidden');
     el.innerHTML = '';
@@ -1682,6 +1686,7 @@ function renderCollabBanner(){
 
 function renderFilters(){
   var wrap = document.getElementById('catalogFilters');
+  if(!wrap) return;
   wrap.innerHTML = '';
   var opts = ['all','Lucifer','Lilith','Lucifera','Lucio','Collaboratori'];
   opts.forEach(function(opt){
@@ -1703,6 +1708,7 @@ function renderCatalog(){
   renderCollabBanner();
   renderLatestChapters();
   var grid = document.getElementById('catalogGrid');
+  if(!grid) return;
   var items = getCatalog();
   if(!matureVisible){
     items = items.filter(function(i){return !i.mature;});
