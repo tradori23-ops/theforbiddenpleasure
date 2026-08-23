@@ -778,9 +778,12 @@ function updateMatureStateLabel(){
 /* ============ DAY / NIGHT THEME ============ */
 function applyTheme(theme){
   document.body.classList.toggle('theme-light', theme === 'light');
-  document.getElementById('themeIconMoon').classList.toggle('hidden', theme === 'light');
-  document.getElementById('themeIconSun').classList.toggle('hidden', theme !== 'light');
-  document.querySelector('meta[name="theme-color"]').setAttribute('content', theme === 'light' ? '#f4efe2' : '#6e1423');
+  var moonIcon = document.getElementById('themeIconMoon');
+  var sunIcon = document.getElementById('themeIconSun');
+  if(moonIcon) moonIcon.classList.toggle('hidden', theme === 'light');
+  if(sunIcon) sunIcon.classList.toggle('hidden', theme !== 'light');
+  var themeColorMeta = document.querySelector('meta[name="theme-color"]');
+  if(themeColorMeta) themeColorMeta.setAttribute('content', theme === 'light' ? '#f4efe2' : '#6e1423');
   localStorage.setItem('lux_theme', theme);
 }
 function initTheme(){
@@ -3532,7 +3535,6 @@ function uploadChatAttachment(file){
 function initChatPage(){
   var section = document.getElementById('chatSection');
   if(!section){ return; } // non siamo su chat.html
-  alert('DEBUG chat.html\nsection trovata: ' + !!section + '\nisSignedIn(): ' + isSignedIn() + '\ngetSession(): ' + JSON.stringify(getSession()) + '\nurl param user: ' + new URLSearchParams(window.location.search).get('user'));
   if(!isSignedIn()){ openAuth('login'); return; }
   var params = new URLSearchParams(window.location.search);
   var otherUserId = params.get('user');
