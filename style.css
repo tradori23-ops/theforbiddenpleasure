@@ -837,3 +837,32 @@ footer .fcopy{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
 .profile-sidebar-title-text .ttl{font-size:12.5px;color:var(--parchment);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .profile-sidebar-title-text .sub{font-family:'Space Mono',monospace;font-size:10px;color:var(--parchment-dim);}
 .profile-sidebar-title-row:hover .ttl{color:var(--gold-bright);}
+
+/* ============ ELENCO UTENTI (pannello a scomparsa a destra) ============ */
+.user-directory-toggle{
+  position:fixed;top:50%;right:0;transform:translateY(-50%);z-index:60;
+  background:var(--wine);color:var(--parchment);border:1px solid var(--gold);border-right:none;
+  border-radius:8px 0 0 8px;width:36px;height:56px;display:flex;align-items:center;justify-content:center;
+  cursor:pointer;box-shadow:-2px 0 8px rgba(0,0,0,0.2);
+}
+.user-directory-panel{
+  position:fixed;top:0;right:0;bottom:0;width:280px;max-width:82vw;z-index:70;
+  background:var(--void-2);border-left:1px solid var(--gold);box-shadow:-4px 0 16px rgba(0,0,0,0.5);
+  display:flex;flex-direction:column;
+}
+.user-directory-head{
+  display:flex;align-items:center;justify-content:space-between;padding:16px;
+  border-bottom:1px solid var(--line);font-family:'Cinzel',serif;color:var(--gold-bright);font-size:15px;
+}
+.user-directory-close{background:none;border:none;font-size:20px;color:var(--parchment);cursor:pointer;line-height:1;}
+.user-directory-list{flex:1;overflow-y:auto;padding:8px;}
+.user-directory-row{
+  display:flex;align-items:center;gap:10px;width:100%;background:none;border:none;
+  padding:10px 8px;cursor:pointer;text-align:left;border-radius:4px;
+}
+.user-directory-row:hover{background:rgba(201,162,77,0.1);}
+.user-directory-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
+.user-directory-dot.online{background:#3fae54;}
+.user-directory-dot.offline{background:var(--line);}
+.user-directory-name{flex:1;font-size:13px;color:var(--parchment);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.user-directory-status{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.04em;color:var(--parchment-dim);text-transform:uppercase;}
