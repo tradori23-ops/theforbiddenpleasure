@@ -3531,7 +3531,8 @@ function uploadChatAttachment(file){
 
 function initChatPage(){
   var section = document.getElementById('chatSection');
-  if(!section) return; // non siamo su chat.html
+  if(!section){ return; } // non siamo su chat.html
+  alert('DEBUG chat.html\nsection trovata: ' + !!section + '\nisSignedIn(): ' + isSignedIn() + '\ngetSession(): ' + JSON.stringify(getSession()) + '\nurl param user: ' + new URLSearchParams(window.location.search).get('user'));
   if(!isSignedIn()){ openAuth('login'); return; }
   var params = new URLSearchParams(window.location.search);
   var otherUserId = params.get('user');
@@ -5974,7 +5975,7 @@ function __appInit(){
     loadLikes();
     loadNotifications();
     loadMyCreationSession().then(refreshAdminUI); // altrimenti una sessione di collaborazione attiva non viene mai rilevata al semplice riapertura dell'app (solo subito dopo un login attivo)
-    initChatPage(); // deve aspettare che la sessione sia confermata, non solo che il catalogo sia caricato — altrimenti isSignedIn() risulta falso per errore appena dopo un login
+    initChatPage(); // deve aspettare che la sessione sia confermata, non solo che il catalogo sia caricato
   });
   setInterval(refreshSessionIfNeeded, 4 * 60 * 1000); // keep the token fresh while the tab stays open
 
