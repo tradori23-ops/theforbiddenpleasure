@@ -850,8 +850,8 @@ footer .fcopy{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
 .user-directory-toggle:hover{background:var(--gold-bright);}
 .user-directory-toggle svg{stroke:var(--void);}
 .user-directory-panel{
-  position:fixed;top:50%;right:0;transform:translateY(-50%);width:280px;max-width:82vw;z-index:70;
-  max-height:70vh;
+  position:fixed;top:120px;right:0;width:280px;max-width:82vw;z-index:70;
+  max-height:min(560px, 65vh);
   background:var(--parchment);border:2px solid var(--gold);border-right:none;
   border-radius:10px 0 0 10px;box-shadow:-4px 0 16px rgba(0,0,0,0.4);
   display:flex;flex-direction:column;
@@ -880,3 +880,4 @@ footer .fcopy{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
 .user-directory-name{flex:1;font-size:13px;color:var(--parchment);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .user-directory-status{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.04em;color:var(--parchment-dim);text-transform:uppercase;}
 .user-directory-verified-check{font-style:normal;color:var(--gold-bright);font-size:14px;}
+.user-directory-panel .form-note{color:var(--wine);opacity:1;text-align:center;padding:16px 8px;}
