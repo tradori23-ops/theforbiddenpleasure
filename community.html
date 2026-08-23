@@ -46,6 +46,54 @@
       <button type="button" class="community-tab" data-ctab="friends" data-i18n="community.tabFriends">Amici</button>
       <button type="button" class="community-tab" data-ctab="dms" data-i18n="community.tabDms">Messaggi privati</button>
       <button type="button" class="community-tab" data-ctab="collab" data-i18n="community.tabCollab">Collaboratori</button>
+      <button type="button" class="community-tab" data-ctab="diary" data-i18n="diary.tab">Diario</button>
+    </div>
+
+    <!-- DIARIO: foto / stati d'animo / note pubblicate dagli utenti -->
+    <div class="community-panel hidden" data-cpanel="diary">
+      <p class="form-note" data-i18n="diary.hint">Condividi una foto, uno stato d'animo o una nota della giornata — tutti li vedranno qui.</p>
+
+      <div class="diary-composer">
+        <div class="diary-kind-tabs">
+          <button type="button" class="diary-kind-tab active" data-dkind="photo" data-i18n="diary.kindPhoto">📷 Foto</button>
+          <button type="button" class="diary-kind-tab" data-dkind="mood" data-i18n="diary.kindMood">🙂 Stato d'animo</button>
+          <button type="button" class="diary-kind-tab" data-dkind="note" data-i18n="diary.kindNote">📝 Nota del giorno</button>
+        </div>
+
+        <div class="diary-form" data-dform="photo">
+          <input type="file" id="fDiaryPhoto" accept="image/*">
+          <input type="text" id="fDiaryPhotoCaption" maxlength="200" data-i18n-placeholder="diary.captionPh" placeholder="Didascalia (opzionale)…">
+        </div>
+        <div class="diary-form hidden" data-dform="mood">
+          <div class="diary-mood-picker" id="diaryMoodPicker">
+            <button type="button" class="diary-mood-btn" data-mood="😊">😊</button>
+            <button type="button" class="diary-mood-btn" data-mood="😢">😢</button>
+            <button type="button" class="diary-mood-btn" data-mood="😡">😡</button>
+            <button type="button" class="diary-mood-btn" data-mood="😴">😴</button>
+            <button type="button" class="diary-mood-btn" data-mood="🤩">🤩</button>
+            <button type="button" class="diary-mood-btn" data-mood="😌">😌</button>
+            <button type="button" class="diary-mood-btn" data-mood="😰">😰</button>
+            <button type="button" class="diary-mood-btn" data-mood="🥳">🥳</button>
+          </div>
+          <input type="text" id="fDiaryMoodText" maxlength="140" data-i18n-placeholder="diary.moodPh" placeholder="Vuoi aggiungere due parole? (opzionale)…">
+        </div>
+        <div class="diary-form hidden" data-dform="note">
+          <textarea id="fDiaryNote" rows="3" maxlength="500" data-i18n-placeholder="diary.notePh" placeholder="Com'è andata oggi?"></textarea>
+        </div>
+
+        <div class="form-error" id="diaryComposerError"></div>
+        <button type="button" class="btn btn-primary btn-sm" id="btnDiaryPublish" data-i18n="diary.publish">Pubblica</button>
+      </div>
+
+      <div class="diary-filters" id="diaryFilters">
+        <button type="button" class="diary-filter-btn active" data-dfilter="all" data-i18n="diary.filterAll">Tutti</button>
+        <button type="button" class="diary-filter-btn" data-dfilter="photo" data-i18n="diary.kindPhoto">📷 Foto</button>
+        <button type="button" class="diary-filter-btn" data-dfilter="mood" data-i18n="diary.kindMood">🙂 Stato d'animo</button>
+        <button type="button" class="diary-filter-btn" data-dfilter="note" data-i18n="diary.kindNote">📝 Note</button>
+        <button type="button" class="diary-filter-btn hidden" id="diaryFilterAuthorBtn"></button>
+      </div>
+
+      <div id="diaryFeed"></div>
     </div>
 
     <!-- COLLABORATORI: lavori/novità pubblicati da collaboratori invitati -->
