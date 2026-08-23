@@ -1099,22 +1099,6 @@ function refreshAdminUI(){
         gateMsg.textContent = t('admin.gate.notAdmin').replace('{email}', (name && name !== t('notif.someone')) ? name : gateFallback);
       });
     }
-    /* --- DEBUG TEMPORANEO: da rimuovere dopo la diagnosi --- */
-    var debugSession = getSession();
-    var debugInfo = document.createElement('pre');
-    debugInfo.style.cssText = 'white-space:pre-wrap;font-size:11px;background:#fee;padding:10px;margin-top:12px;border:1px solid red;text-align:left;';
-    debugInfo.textContent = 'DEBUG\nuid: ' + gateUid + '\nhasToken: ' + !!(debugSession && debugSession.access_token) + '\nmyCreationSession (prima del fetch): ' + JSON.stringify(myCreationSession);
-    gateMsg.parentNode.appendChild(debugInfo);
-    fetch(SUPABASE_URL + '/rest/v1/creation_sessions?invited_user_id=eq.' + encodeURIComponent(gateUid) + '&status=eq.active&select=*', {
-      headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + (debugSession ? debugSession.access_token : SUPABASE_ANON_KEY) }
-    }).then(function(r){
-      return r.text().then(function(txt){ return { status: r.status, ok: r.ok, body: txt }; });
-    }).then(function(res){
-      debugInfo.textContent += '\n\nFetch diretto creation_sessions:\nHTTP status: ' + res.status + '\nRisposta: ' + res.body;
-    }).catch(function(e){
-      debugInfo.textContent += '\n\nFetch fallito: ' + e.message;
-    });
-    /* --- FINE DEBUG TEMPORANEO --- */
     gateSignIn.classList.add('hidden');
     if(adminSection) adminSection.classList.add('hidden'); // no dangling section for non-admins
   } else {
@@ -5014,6 +4998,7 @@ function __appInit(){
     loadFavorites();
     loadLikes();
     loadNotifications();
+    loadMyCreationSession().then(refreshAdminUI); // altrimenti una sessione di collaborazione attiva non viene mai rilevata al semplice riapertura dell'app (solo subito dopo un login attivo)
   });
   setInterval(refreshSessionIfNeeded, 4 * 60 * 1000); // keep the token fresh while the tab stays open
 
