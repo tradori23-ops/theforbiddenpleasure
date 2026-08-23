@@ -666,6 +666,8 @@ footer .fcopy{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
 .detail-modal{max-width:640px;}
 .detail-synopsis{color:var(--parchment-dim);line-height:1.8;font-size:15px;margin:14px 0;}
 .collab-credit{font-family:'Space Mono',monospace;font-size:11px;color:var(--gold);letter-spacing:0.05em;margin:-6px 0 14px;}
+.publisher-credit{font-family:'Space Mono',monospace;font-size:11px;color:var(--parchment-dim);letter-spacing:0.05em;margin:-10px 0 14px;}
+.publisher-credit a{color:var(--gold);}
 .collab-credit a{color:var(--gold-bright);text-decoration:underline;}
 .verified-badge{vertical-align:middle;position:relative;top:-1px;margin:0 2px;}
 .engagement-counts{font-size:11px;color:var(--parchment-dim);align-self:center;}

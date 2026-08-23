@@ -100,7 +100,7 @@ var STR = {
     "collab.verified":"Collaboratore verificato (mostra la spunta blu)",
     "verified.label":"Verificato","verified.commenter":"Email verificata","verified.founder":"Account ufficiale","verified.collaborator":"Collaboratore verificato",
     "collab.credit":"In collaborazione con","collab.categoryLabel":"Collaboratori","collab.categoryOption":"Collaboratori (fuori dai 4 personaggi)",
-    "collab.viewAll":"vedi tutte le opere insieme","collab.collectionBanner":"Opere realizzate con","collab.showAll":"Mostra tutto",
+    "collab.viewAll":"vedi tutte le opere insieme","collab.collectionBanner":"Opere realizzate con","collab.showAll":"Mostra tutto","titleModal.publishedBy":"Pubblicato da",
     "share.button":"Condividi","share.tagline":"su LUX COMICS & MEDUSA COMICS",
     "share.copied":"Link copiato — incollalo dove vuoi condividerlo.",
     "share.manual":"Copia questo testo per condividerlo:",
@@ -218,7 +218,7 @@ var STR = {
     "collab.verified":"Verified collaborator (shows the blue checkmark)",
     "verified.label":"Verified","verified.commenter":"Verified email","verified.founder":"Official account","verified.collaborator":"Verified collaborator",
     "collab.credit":"In collaboration with","collab.categoryLabel":"Collaborators","collab.categoryOption":"Collaborators (outside the 4 characters)",
-    "collab.viewAll":"see all titles together","collab.collectionBanner":"Titles made with","collab.showAll":"Show all",
+    "collab.viewAll":"see all titles together","collab.collectionBanner":"Titles made with","collab.showAll":"Show all","titleModal.publishedBy":"Published by",
     "share.button":"Share","share.tagline":"on LUX COMICS & MEDUSA COMICS",
     "share.copied":"Link copied — paste it wherever you'd like to share it.",
     "share.manual":"Copy this text to share it:",
@@ -336,7 +336,7 @@ var STR = {
     "collab.verified":"Colaborador verificado (muestra la marca azul)",
     "verified.label":"Verificado","verified.commenter":"Email verificado","verified.founder":"Cuenta oficial","verified.collaborator":"Colaborador verificado",
     "collab.credit":"En colaboración con","collab.categoryLabel":"Colaboradores","collab.categoryOption":"Colaboradores (fuera de los 4 personajes)",
-    "collab.viewAll":"ver todas las obras juntas","collab.collectionBanner":"Obras realizadas con","collab.showAll":"Mostrar todo",
+    "collab.viewAll":"ver todas las obras juntas","collab.collectionBanner":"Obras realizadas con","collab.showAll":"Mostrar todo","titleModal.publishedBy":"Publicado por",
     "share.button":"Compartir","share.tagline":"en LUX COMICS & MEDUSA COMICS",
     "share.copied":"Enlace copiado — pégalo donde quieras compartirlo.",
     "share.manual":"Copia este texto para compartirlo:",
@@ -454,7 +454,7 @@ var STR = {
     "collab.verified":"Collaborateur vérifié (affiche le badge bleu)",
     "verified.label":"Vérifié","verified.commenter":"Email vérifié","verified.founder":"Compte officiel","verified.collaborator":"Collaborateur vérifié",
     "collab.credit":"En collaboration avec","collab.categoryLabel":"Collaborateurs","collab.categoryOption":"Collaborateurs (hors des 4 personnages)",
-    "collab.viewAll":"voir toutes les œuvres ensemble","collab.collectionBanner":"Œuvres réalisées avec","collab.showAll":"Tout afficher",
+    "collab.viewAll":"voir toutes les œuvres ensemble","collab.collectionBanner":"Œuvres réalisées avec","collab.showAll":"Tout afficher","titleModal.publishedBy":"Publié par",
     "share.button":"Partager","share.tagline":"sur LUX COMICS & MEDUSA COMICS",
     "share.copied":"Lien copié — collez-le où vous voulez le partager.",
     "share.manual":"Copiez ce texte pour le partager :",
@@ -572,7 +572,7 @@ var STR = {
     "collab.verified":"Verifizierte*r Mitarbeiter*in (zeigt das blaue Häkchen)",
     "verified.label":"Verifiziert","verified.commenter":"E-Mail verifiziert","verified.founder":"Offizieller Account","verified.collaborator":"Verifizierte*r Mitarbeiter*in",
     "collab.credit":"In Zusammenarbeit mit","collab.categoryLabel":"Mitwirkende","collab.categoryOption":"Mitwirkende (außerhalb der 4 Charaktere)",
-    "collab.viewAll":"alle gemeinsamen Werke ansehen","collab.collectionBanner":"Werke entstanden mit","collab.showAll":"Alle anzeigen",
+    "collab.viewAll":"alle gemeinsamen Werke ansehen","collab.collectionBanner":"Werke entstanden mit","collab.showAll":"Alle anzeigen","titleModal.publishedBy":"Veröffentlicht von",
     "share.button":"Teilen","share.tagline":"auf LUX COMICS & MEDUSA COMICS",
     "share.copied":"Link kopiert — fügen Sie ihn ein, wo Sie ihn teilen möchten.",
     "share.manual":"Diesen Text zum Teilen kopieren:",
@@ -4796,6 +4796,22 @@ function openTitleModal(item){
     collabEl.classList.remove('hidden');
   } else {
     collabEl.classList.add('hidden');
+  }
+
+  var publisherEl = document.getElementById('titleModalPublisher');
+  if(item.created_by){
+    fetch(SUPABASE_URL + '/rest/v1/profiles?id=eq.' + encodeURIComponent(item.created_by) + '&select=display_name,verified', { headers: communityHeaders() })
+      .then(function(r){ return r.ok ? r.json() : []; })
+      .then(function(rows){
+        var p = rows[0];
+        if(!p){ publisherEl.classList.add('hidden'); return; }
+        var verifiedTag = p.verified ? verifiedBadge('verified.collaborator') : '';
+        publisherEl.innerHTML = t('titleModal.publishedBy') + ' <a href="profile.html?user=' + encodeURIComponent(item.created_by) + '">' + escapeHtml(p.display_name || t('notif.someone')) + '</a>' + verifiedTag;
+        publisherEl.classList.remove('hidden');
+      })
+      .catch(function(){ publisherEl.classList.add('hidden'); });
+  } else {
+    publisherEl.classList.add('hidden');
   }
 
   document.getElementById('titleModalShare').onclick = function(){ shareTitle(item); };
