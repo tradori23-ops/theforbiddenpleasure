@@ -4121,7 +4121,7 @@ function loadUserDirectory(){
   list.innerHTML = '<p class="form-note">…</p>';
   var uid = currentUserId();
 
-  var profilesStep = fetch(SUPABASE_URL + '/rest/v1/profiles?select=id,display_name,avatar_url,last_active_at,verified&order=display_name.asc', { headers: communityHeaders() })
+  var profilesStep = fetch(SUPABASE_URL + '/rest/v1/profiles?select=id,display_name,avatar_url,last_seen,verified&order=display_name.asc', { headers: communityHeaders() })
     .then(function(r){
       if(!r.ok) return r.text().then(function(bodyText){ throw new Error('profiles read failed (HTTP '+r.status+') — '+bodyText.slice(0,200)); });
       return r.json();
@@ -4140,7 +4140,7 @@ function loadUserDirectory(){
 
     rows = rows.filter(function(p){ return p.id !== uid; }); // te stesso non serve elencarlo
     rows.forEach(function(p){
-      p._online = isOnlineSince(p.last_active_at);
+      p._online = isOnlineSince(p.last_seen);
       p._isVerifiedFriend = p.verified && friendIds.has(p.id);
     });
 
@@ -4149,7 +4149,7 @@ function loadUserDirectory(){
     verifiedFriends.sort(function(a,b){ return (a.display_name||'').localeCompare(b.display_name||''); });
     others.sort(function(a,b){
       if(a._online !== b._online) return a._online ? -1 : 1;
-      return (b.last_active_at||'').localeCompare(a.last_active_at||'');
+      return (b.last_seen||'').localeCompare(a.last_seen||'');
     });
 
     list.innerHTML = '';
@@ -4163,7 +4163,7 @@ function loadUserDirectory(){
       var avatarHtml = p.avatar_url
         ? '<img class="user-directory-avatar" src="'+escapeHtml(p.avatar_url)+'" alt="">'
         : '<span class="user-directory-avatar user-directory-avatar-fallback">'+escapeHtml((p.display_name||'?').charAt(0).toUpperCase())+'</span>';
-      var lastSeenHtml = '<span class="user-directory-status">'+(p._online ? t('userDir.online') : (p.last_active_at ? notifTimeAgo(p.last_active_at) : t('userDir.offline')))+'</span>';
+      var lastSeenHtml = '<span class="user-directory-status">'+(p._online ? t('userDir.online') : (p.last_seen ? notifTimeAgo(p.last_seen) : t('userDir.offline')))+'</span>';
       var verifiedHtml = isVerifiedFriend ? '<i class="user-directory-verified-check" aria-hidden="true">✓</i>' : '';
       row.innerHTML =
         '<span class="user-directory-avatar-wrap">'+avatarHtml+'<span class="'+dotClass+'"></span></span>'+
@@ -4190,7 +4190,7 @@ function loadUserDirectory(){
       others.forEach(function(p){ list.appendChild(renderRow(p, false)); });
     }
   }).catch(function(e){
-    list.innerHTML = '<p class="form-note" style="color:var(--wine);">DEBUG: ' + (e && e.message ? e.message : e) + '</p>';
+    list.innerHTML = '<p class="form-note" style="color:var(--wine);">' + t('userDir.loadError') + '</p>';
     console.warn('User directory load failed:', e);
   });
 }
@@ -4203,13 +4203,13 @@ function heartbeatPresence(){
   fetch(SUPABASE_URL + '/rest/v1/profiles?id=eq.' + encodeURIComponent(uid), {
     method:'PATCH',
     headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
-    body: JSON.stringify({ last_active_at: new Date().toISOString() })
+    body: JSON.stringify({ last_seen: new Date().toISOString() })
   }).catch(function(){});
 }
 function getPresence(userId){
-  return fetch(SUPABASE_URL + '/rest/v1/profiles?id=eq.' + encodeURIComponent(userId) + '&select=last_active_at', { headers: communityHeaders() })
+  return fetch(SUPABASE_URL + '/rest/v1/profiles?id=eq.' + encodeURIComponent(userId) + '&select=last_seen', { headers: communityHeaders() })
     .then(function(r){ return r.ok ? r.json() : []; })
-    .then(function(rows){ return rows[0] ? isOnlineSince(rows[0].last_active_at) : false; })
+    .then(function(rows){ return rows[0] ? isOnlineSince(rows[0].last_seen) : false; })
     .catch(function(){ return false; });
 }
 
