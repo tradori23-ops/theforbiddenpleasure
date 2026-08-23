@@ -1480,7 +1480,7 @@ function fetchAnnouncements(){
           '<button type="button" class="ann-share-btn" data-share-ann="' + a.id + '">' + t('announcements.share') + '</button></div>' +
           '</div>';
         card.querySelector('[data-share-ann]').addEventListener('click', function(){
-          shareAnnouncement(a.id, a.title, a.body);
+          shareAnnouncement(a.id, a.title, a.body, a.image_url);
         });
         grid.appendChild(card);
       });
@@ -1489,23 +1489,41 @@ function fetchAnnouncements(){
     .catch(function(err){ console.warn('Announcements load failed:', err); section.classList.add('hidden'); });
 }
 
-function shareAnnouncement(id, title, body){
+function shareAnnouncement(id, title, body, imageUrl){
   var excerpt = body.length > 120 ? body.slice(0, 117) + '…' : body;
-  var shareText = title + ' — ' + excerpt;
+  var shareText = title + ' — ' + excerpt + '\n';
   var shareUrl = previewPagePath('a', id);
-  if(navigator.share){
-    navigator.share({ title: title, text: shareText, url: shareUrl }).catch(function(){ /* utente ha annullato — va bene così */ });
-  } else {
-    var full = shareText + ' ' + shareUrl;
-    if(navigator.clipboard && navigator.clipboard.writeText){
-      navigator.clipboard.writeText(full).then(function(){
-        alert(t('share.copied'));
-      }).catch(function(){
-        alert(t('share.manual') + '\n\n' + full);
-      });
+
+  function shareWithoutImage(){
+    if(navigator.share){
+      navigator.share({ title: title, text: shareText, url: shareUrl }).catch(function(){ /* utente ha annullato — va bene così */ });
     } else {
-      alert(t('share.manual') + '\n\n' + full);
+      var full = shareText + '\n' + shareUrl;
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(full).then(function(){
+          alert(t('share.copied'));
+        }).catch(function(){
+          alert(t('share.manual') + '\n\n' + full);
+        });
+      } else {
+        alert(t('share.manual') + '\n\n' + full);
+      }
     }
+  }
+
+  if(imageUrl && navigator.share && navigator.canShare){
+    fetchAsBlob(imageUrl).then(function(blob){
+      var ext = (blob.type && blob.type.split('/')[1]) || 'jpg';
+      var file = new File([blob], 'annuncio.' + ext, { type: blob.type || 'image/jpeg' });
+      if(navigator.canShare({ files: [file] })){
+        navigator.share({ title: title, text: shareText, url: shareUrl, files: [file] })
+          .catch(function(){ /* utente ha annullato — va bene così */ });
+      } else {
+        shareWithoutImage();
+      }
+    }).catch(function(){ shareWithoutImage(); });
+  } else {
+    shareWithoutImage();
   }
 }
 
@@ -1894,6 +1912,18 @@ function shareApp(){
     'box-shadow:0 4px 12px rgba(0,0,0,.3);}';
   document.head.appendChild(style);
 })();
+
+function makeHeaderLogoClickable(){
+  var target = document.querySelector('header.topbar .brand');
+  if(!target || target.dataset.logoClickable) return;
+  target.dataset.logoClickable = '1';
+  target.style.cursor = 'pointer';
+  target.addEventListener('click', function(){
+    if(!/index\.html$/.test(window.location.pathname) && window.location.pathname !== '/' && !window.location.pathname.endsWith('/')){
+      window.location.href = 'index.html';
+    }
+  });
+}
 
 /* ============ ADMIN ============ */
 function renderAdminList(){
@@ -4090,23 +4120,44 @@ function shareTitle(item){
     : (item.collaborator_name ? [{ name: item.collaborator_name }] : []);
   var collabNames = collabArr.map(function(c){ return c.name; }).join(', ');
   var shareText = item.title + ' — ' + t('share.tagline') +
-    (collabNames ? ' ' + t('collab.credit') + ' ' + collabNames : '');
+    (collabNames ? ' ' + t('collab.credit') + ' ' + collabNames : '') + '\n';
   var shareUrl = previewPagePath('t', item.id);
   trackShare(item.id); // counts the share action being taken, not confirmed completion — noted to the user
   bumpLocalCount(item.id, 'share_count', 1);
-  if(navigator.share){
-    navigator.share({ title: item.title, text: shareText, url: shareUrl }).catch(function(){ /* user cancelled — fine */ });
-  } else {
-    var full = shareText + ' ' + shareUrl;
-    if(navigator.clipboard && navigator.clipboard.writeText){
-      navigator.clipboard.writeText(full).then(function(){
-        alert(t('share.copied'));
-      }).catch(function(){
-        alert(t('share.manual') + '\n\n' + full);
-      });
+
+  function shareWithoutImage(){
+    if(navigator.share){
+      navigator.share({ title: item.title, text: shareText, url: shareUrl }).catch(function(){ /* user cancelled — fine */ });
     } else {
-      alert(t('share.manual') + '\n\n' + full);
+      var full = shareText + '\n' + shareUrl;
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(full).then(function(){
+          alert(t('share.copied'));
+        }).catch(function(){
+          alert(t('share.manual') + '\n\n' + full);
+        });
+      } else {
+        alert(t('share.manual') + '\n\n' + full);
+      }
     }
+  }
+
+  /* Con il file immagine allegato, app come Instagram (Storia) mostrano
+     davvero la copertina invece del solo link — ma serve il supporto
+     "files" della Web Share API, disponibile solo su alcuni browser/OS. */
+  if(item.cover_url && navigator.share && navigator.canShare){
+    fetchAsBlob(item.cover_url).then(function(blob){
+      var ext = (blob.type && blob.type.split('/')[1]) || 'jpg';
+      var file = new File([blob], 'copertina.' + ext, { type: blob.type || 'image/jpeg' });
+      if(navigator.canShare({ files: [file] })){
+        navigator.share({ title: item.title, text: shareText, url: shareUrl, files: [file] })
+          .catch(function(){ /* utente ha annullato — va bene così */ });
+      } else {
+        shareWithoutImage();
+      }
+    }).catch(function(){ shareWithoutImage(); });
+  } else {
+    shareWithoutImage();
   }
 }
 
@@ -4982,6 +5033,7 @@ function saveSocialLinks(){
 function __appInit(){
   document.querySelectorAll('.seal-img[data-size="sm"]').forEach(function(img){ img.src = LOGO_SM; });
   document.querySelectorAll('.seal-img[data-size="lg"]').forEach(function(img){ img.src = LOGO_LG; });
+  makeHeaderLogoClickable();
   initMatureToggle();
   initTheme();
   applyI18n();
