@@ -877,7 +877,20 @@ footer .fcopy{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
 .user-directory-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
 .user-directory-dot.online{background:#3fae54;}
 .user-directory-dot.offline{background:var(--parchment-dim);}
-.user-directory-name{flex:1;font-size:13px;color:var(--parchment);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.user-directory-status{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.04em;color:var(--parchment-dim);text-transform:uppercase;}
-.user-directory-verified-check{font-style:normal;color:var(--gold-bright);font-size:14px;}
+.user-directory-avatar-wrap{position:relative;flex-shrink:0;width:32px;height:32px;}
+.user-directory-avatar{
+  width:32px;height:32px;border-radius:50%;object-fit:cover;
+  border:1px solid var(--gold);display:block;
+}
+.user-directory-avatar-fallback{
+  display:flex;align-items:center;justify-content:center;
+  background:var(--wine);color:var(--parchment);
+  font-family:'Cinzel',serif;font-size:13px;
+}
+.user-directory-avatar-wrap .user-directory-dot{
+  position:absolute;bottom:-1px;right:-1px;border:2px solid var(--void-2);
+}
+.user-directory-name{flex:1;font-size:13px;color:var(--parchment);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:flex;align-items:center;gap:5px;}
+.user-directory-status{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.04em;color:var(--parchment-dim);text-transform:uppercase;flex-shrink:0;}
+.user-directory-verified-check{font-style:normal;color:var(--gold-bright);font-size:12px;flex-shrink:0;}
 .user-directory-panel .form-note{color:var(--wine);opacity:1;text-align:center;padding:16px 8px;}

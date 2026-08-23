@@ -30,6 +30,18 @@
     </div>
   </div>
 </div>
+<div class="modal-backdrop hidden" id="smallnoxUpdatesModal">
+  <div class="modal">
+    <button class="modal-close" id="smallnoxUpdatesClose" aria-label="Chiudi">×</button>
+    <img src="smallnox-calm.png" alt="SmallNox" style="width:72px;height:72px;border-radius:50%;display:block;margin:0 auto 12px;object-fit:cover;">
+    <h3 style="text-align:center;" data-i18n="smallnoxUpdates.title">Novità dall'Archivio</h3>
+    <p style="text-align:center;color:var(--parchment-dim);line-height:1.6;font-size:13px;" data-i18n="smallnoxUpdates.sub">Cosa è cambiato di recente sul sito — te lo riassumo io.</p>
+    <div id="smallnoxUpdatesList" style="margin-top:16px;max-height:50vh;overflow-y:auto;"></div>
+    <div class="modal-actions" style="margin-top:16px;">
+      <button class="btn btn-primary btn-sm" id="btnCloseSmallNoxUpdates" data-i18n="smallnoxUpdates.close">Ho capito</button>
+    </div>
+  </div>
+</div>
 <div class="modal-backdrop hidden" id="profileModal">
   <div class="modal">
     <button class="modal-close" id="profileModalClose" aria-label="Chiudi">×</button>
