@@ -3005,7 +3005,12 @@ function renderNotifPanel(){
     btn.className = 'notif-item' + (n.read ? '' : ' unread');
     var noxState = smallNoxState(n);
     var noxImg = noxState ? '<img src="smallnox-' + noxState + '.png" alt="SmallNox" class="notif-nox-avatar">' : '';
-    btn.innerHTML = noxImg + '<span class="actor">' + escapeHtml(n.actor_name || t('notif.someone')) + '</span> ' + escapeHtml(n.message || '') +
+    var refHtml = '';
+    if(n.catalog_id){
+      var refItem = getCatalog().find(function(i){ return i.id === n.catalog_id; });
+      if(refItem) refHtml = ' <span class="notif-ref" style="color:var(--gold, #c9a24d);font-style:italic;">«' + escapeHtml(refItem.title) + '»</span>';
+    }
+    btn.innerHTML = noxImg + '<span class="actor">' + escapeHtml(n.actor_name || t('notif.someone')) + '</span> ' + escapeHtml(n.message || '') + refHtml +
       '<span class="when">' + notifTimeAgo(n.created_at) + '</span>';
     btn.addEventListener('click', function(){ openNotification(n); });
     list.appendChild(btn);
