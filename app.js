@@ -3442,9 +3442,8 @@ function renderPublicProfilePage(){
   var params = new URLSearchParams(window.location.search);
   var userId = params.get('user');
   var notFoundBox = document.getElementById('profileNotFound');
-  var headerBox = document.getElementById('profileHeaderBox');
+  var layoutBox = document.getElementById('profileLayout');
   var titlesBox = document.getElementById('profileTitlesBox');
-  var diaryBox = document.getElementById('profileDiaryBox');
   if(!userId){ notFoundBox.classList.remove('hidden'); return; }
 
   fetch(SUPABASE_URL + '/rest/v1/profiles?id=eq.' + encodeURIComponent(userId) + '&select=*', { headers: communityHeaders() })
@@ -3452,9 +3451,7 @@ function renderPublicProfilePage(){
     .then(function(rows){
       var p = rows[0];
       if(!p){ notFoundBox.classList.remove('hidden'); return; }
-      headerBox.classList.remove('hidden');
-      titlesBox.classList.remove('hidden');
-      diaryBox.classList.remove('hidden');
+      layoutBox.classList.remove('hidden');
 
       document.getElementById('pubProfileName').textContent = p.display_name || t('notif.someone');
       var avatarImg = document.getElementById('pubProfileAvatar');
@@ -3490,24 +3487,21 @@ function renderProfileTitles(userId){
   var items = getCatalog().filter(function(i){ return i.created_by === userId; });
   if(!matureVisible) items = items.filter(function(i){ return !i.mature; });
   if(items.length === 0){ box.classList.add('hidden'); return; }
+  box.classList.remove('hidden');
   items.sort(function(a,b){ return (b.date||'').localeCompare(a.date||''); });
   grid.innerHTML = '';
   items.forEach(function(item){
-    var card = document.createElement('div');
-    card.className = 'card-idx';
-    var badge = item.mature ? '<span class="mature">18+</span>' : '<span class="allages">'+t('badge.allages')+'</span>';
-    var coverInner = item.cover_url
-      ? '<img class="cover-img" src="'+item.cover_url+'" alt="">'
+    var row = document.createElement('button');
+    row.type = 'button';
+    row.className = 'profile-sidebar-title-row';
+    var thumbInner = item.cover_url
+      ? '<img src="'+item.cover_url+'" alt="">'
       : '<span class="init">'+item.character.charAt(0)+'</span>';
-    card.innerHTML =
-      '<div class="card-idx-cover">'+coverInner+badge+'</div>'+
-      '<div class="card-idx-body" style="cursor:pointer;" data-open="'+item.id+'">'+
-        '<div class="num mono">'+(item.issue||'')+'</div>'+
-        '<h4>'+escapeHtml(item.title)+'</h4>'+
-        '<div class="meta-row"><span>'+(item.date||'')+'</span></div>'+
-      '</div>';
-    card.querySelector('[data-open]').addEventListener('click', function(){ openTitleModal(item); });
-    grid.appendChild(card);
+    row.innerHTML =
+      '<span class="profile-sidebar-title-thumb">'+thumbInner+'</span>'+
+      '<span class="profile-sidebar-title-text"><span class="ttl">'+escapeHtml(item.title)+'</span><span class="sub">'+(item.date||'')+'</span></span>';
+    row.addEventListener('click', function(){ openTitleModal(item); });
+    grid.appendChild(row);
   });
 }
 
