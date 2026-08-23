@@ -203,11 +203,16 @@
         <div class="form-error" id="adminError"></div>
         <div class="modal-actions">
           <button class="btn btn-primary" id="btnAddEntry" data-i18n="admin.add">Aggiungi allo schedario</button>
+          <button class="btn btn-ghost hidden" id="btnCancelEditTitle" data-i18n="myTitles.cancel">Annulla modifica</button>
           <button class="btn btn-ghost" id="btnExport" data-i18n="admin.export">Esporta JSON</button>
           <button class="btn btn-ghost" id="btnImport" data-i18n="admin.import">Importa JSON</button>
           <input type="file" id="importFile" accept="application/json" class="hidden">
         </div>
         <div class="admin-list" id="adminList"></div>
+        <div class="admin-list hidden" id="myTitlesListWrap">
+          <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin:16px 0 10px;" data-i18n="myTitles.heading">I tuoi titoli pubblicati</div>
+          <div id="myTitlesList"></div>
+        </div>
       </div>
 
       <div class="admin-tab-panel hidden" data-tab-panel="stats">
@@ -273,6 +278,10 @@
               <label data-i18n="announcements.f.image">Immagine (opzionale — qualsiasi proporzione)</label>
               <input type="file" id="fAnnImage" accept="image/*">
               <img id="fAnnImagePreview" class="hidden" alt="" style="margin-top:10px;max-width:220px;max-height:140px;object-fit:contain;border:1px solid var(--line);">
+            </div>
+            <div class="field" style="grid-column:1/-1">
+              <label data-i18n="announcements.f.pdf">File PDF (opzionale)</label>
+              <input type="file" id="fAnnPdf" accept="application/pdf">
             </div>
           </div>
           <div class="form-error" id="announcementError"></div>

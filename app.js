@@ -30,14 +30,14 @@ var STR = {
     "users.eligible":"Idoneo","users.waitingDays":"ancora {n} giorni","users.grant":"Assegna spunta","users.revoke":"Rimuovi spunta","users.earlyGrantConfirm":"{name} non ha ancora raggiunto i 90 giorni (ne mancano {n}). Vuoi assegnare comunque la spunta come eccezione?",
     "notif.title":"Notifiche","notif.markAll":"Segna tutte come lette","notif.empty":"Nessuna notifica.","notif.someone":"Qualcuno","notif.justNow":"Adesso","notif.minsAgo":"{n} min fa","notif.hoursAgo":"{n} h fa","notif.daysAgo":"{n} g fa",
     "nav.community":"Community","community.eyebrow":"Fuori dallo Schedario","community.title":"Community","community.rule":"Niente materiale pornografico: al massimo contenuti sensuali. Chi viola la regola viene bannato ed eliminato dal sito.","community.tabChannels":"Canali","community.tabDms":"Messaggi privati","community.newChannelPh":"Nome nuovo canale (es. Cinema)","community.createChannel":"Crea canale","community.back":"← Torna","community.messagePh":"Scrivi un messaggio…","community.send":"Invia","community.dmHint":"Per scrivere in privato a qualcuno, apri un suo messaggio in un canale e usa \"Messaggio privato\".","community.noChannels":"Nessun canale ancora. Creane uno tu.","community.noMessages":"Nessun messaggio ancora.","community.noDms":"Nessuna conversazione privata ancora.","community.privateMessage":"Messaggio privato","community.report":"Segnala","community.reportPrompt":"Perché segnali questo messaggio? (opzionale)","community.reportSent":"Segnalazione inviata, grazie.","community.you":"Tu","community.tabFriends":"Amici","community.addFriend":"Aggiungi amico","community.requestSent":"Richiesta inviata","community.acceptFriend":"Accetta amicizia","community.declineFriend":"Rifiuta","community.pendingReceived":"Richieste ricevute","community.pendingSent":"Richieste inviate","community.friendsList":"I tuoi amici","community.searchFriends":"Cerca una persona","community.searchFriendsPh":"Nome utente…","community.noResults":"Nessun risultato.",
-    "collabSession.title":"Sessioni di creazione attive","collabSession.hint":"Un amico invitato a creare può pubblicare titoli solo finché la sua sessione è attiva.","collabSession.active":"Sessione di creazione attiva","collabSession.hintCollab":"Puoi aggiungere titoli allo schedario finché la sessione è attiva. Se non riesci a finire in tempo, chiedi una proroga.","collabSession.requestExtension":"Non ce la faccio, chiedi una proroga","collabSession.countdown":"Scade tra {h}h {m}min","collabSession.expired":"Sessione scaduta.","collabSession.extensionPending":"Proroga richiesta, in attesa dell'admin","collabSession.invite":"Invita a creare","collabSession.inviteConfirm":"Invitare {name} a creare e pubblicare per 24 ore?","collabSession.inviteSent":"Invito inviato.","collabSession.inviteNotif":"Sei stato invitato a creare e pubblicare un titolo — hai 24 ore.","collabSession.extend48":"Proroga 48h",
+    "collabSession.title":"Sessioni di creazione attive","collabSession.hint":"Un amico invitato a creare può pubblicare titoli solo finché la sua sessione è attiva.","collabSession.active":"Sessione di creazione attiva","collabSession.hintCollab":"Puoi aggiungere titoli allo schedario finché la sessione è attiva. Se non riesci a finire in tempo, chiedi una proroga.","collabSession.requestExtension":"Non ce la faccio, chiedi una proroga","collabSession.countdown":"Scade tra {h}h {m}min","collabSession.expired":"Sessione scaduta.","collabSession.extensionPending":"Proroga richiesta, in attesa dell'admin","collabSession.invite":"Invita a creare","collabSession.inviteConfirm":"Invitare {name} a creare e pubblicare per 24 ore?","collabSession.inviteSent":"Invito inviato.","collabSession.inviteNotif":"Sei stato invitato a creare e pubblicare un titolo — hai 24 ore.","collabSession.extend48":"Proroga 48h","myTitles.heading":"I tuoi titoli pubblicati","myTitles.cancel":"Annulla modifica",
     "smallnox.title":"Il tuo assistente","smallnox.blurb":"SmallNox approva da solo commenti e iscrizioni pulite, e ti avvisa — arrabbiato — solo quando qualcosa sembra sospetto.","smallnox.communityBlurb":"SmallNox veglia su questi canali — se scrivi qualcosa fuori regola se ne accorge.","smallnox.modalTitle":"Ciao, sono SmallNox","smallnox.modalBody":"Controllo da solo i nuovi commenti e le nuove iscrizioni: se sono puliti li lascio passare subito, altrimenti li segnalo a Nox Morningstar. Nei canali della community faccio lo stesso lavoro — scrivi con rispetto e non mi vedrai mai arrabbiato.",
     "community.loadError":"Caricamento non riuscito (controlla la connessione).","community.retry":"Riprova",
     "admin.tab.moderation":"Moderazione Community","mod.reportsTitle":"Segnalazioni aperte","mod.flaggedTitle":"Messaggi segnalati automaticamente","mod.bannedTitle":"Utenti bannati (email bloccate)","mod.empty":"Niente al momento.","mod.typeChannel":"Messaggio in canale","mod.typeDm":"Messaggio privato","mod.hide":"Nascondi","mod.ban":"Banna ed elimina","mod.noUser":"Utente non trovato.","mod.banConfirm":"Confermi? L'utente verrà bannato, il suo account eliminato e non potrà registrarsi di nuovo con la stessa email.","mod.banFailed":"Operazione non riuscita.",
     "users.onlineNow":"{n} utenti online ora","users.onlineTag":"Online ora",
-    "announcements.eyebrow":"Dalla Redazione","announcements.title":"Novità","announcements.readMore":"Leggi","announcements.share":"Condividi",
+    "announcements.eyebrow":"Dalla Redazione","announcements.title":"Novità","announcements.readMore":"Leggi","announcements.share":"Condividi","announcements.downloadPdf":"Scarica il PDF",
     "announcements.archived":"Archiviato","announcements.expiresIn":"scade tra {h}h","announcements.extend":"Estendi 24h",
-    "announcements.newTitle":"Nuovo annuncio","announcements.f.title":"Titolo","announcements.f.body":"Testo","announcements.f.link":"Link (opzionale)","announcements.f.image":"Immagine (opzionale — qualsiasi proporzione)",
+    "announcements.newTitle":"Nuovo annuncio","announcements.f.title":"Titolo","announcements.f.body":"Testo","announcements.f.link":"Link (opzionale)","announcements.f.image":"Immagine (opzionale — qualsiasi proporzione)","announcements.f.pdf":"File PDF (opzionale)",
     "announcements.publish":"Pubblica annuncio","announcements.publishError":"Pubblicazione non riuscita. Riprova.",
     "announcements.existingTitle":"Annunci pubblicati","announcements.empty":"Nessun annuncio ancora.",
     "announcements.statusPublished":"Pubblicato","announcements.statusHidden":"Nascosto","announcements.hide":"Nascondi","announcements.show":"Mostra",
@@ -59,7 +59,7 @@ var STR = {
     "admin.signin.btn":"Accedi come admin","admin.signin.error":"Credenziali non valide o backend non raggiungibile.",
     "admin.signOut":"Esci da admin",
     "admin.f.title":"Titolo","admin.f.character":"Personaggio","admin.f.issue":"Numero / Volume","admin.f.date":"Data pubblicazione","admin.f.synopsis":"Sinossi (inglese — testo delle opere)",
-    "admin.add":"Aggiungi allo schedario","admin.export":"Esporta JSON","admin.import":"Importa JSON",
+    "admin.add":"Aggiungi allo schedario","admin.edit":"Modifica","admin.saveChanges":"Salva modifiche","admin.export":"Esporta JSON","admin.import":"Importa JSON",
     "footer.line":"ARCHIVIO APERTO A TUTTI · SEZIONE 18+ SU RICHIESTA · TRAD.CLAB WORKS",
     "newsletter.eyebrow":"Resta Aggiornato","newsletter.title":"Iscriviti alla Newsletter",
     "newsletter.sub":"Nuovi titoli, collaborazioni e uscite — direttamente nella tua casella, niente spam.",
@@ -148,14 +148,14 @@ var STR = {
     "users.eligible":"Eligible","users.waitingDays":"{n} days to go","users.grant":"Grant checkmark","users.revoke":"Remove checkmark","users.earlyGrantConfirm":"{name} hasn't reached 90 days yet ({n} to go). Grant the checkmark anyway as an exception?",
     "notif.title":"Notifications","notif.markAll":"Mark all as read","notif.empty":"No notifications.","notif.someone":"Someone","notif.justNow":"Just now","notif.minsAgo":"{n} min ago","notif.hoursAgo":"{n} h ago","notif.daysAgo":"{n} d ago",
     "nav.community":"Community","community.eyebrow":"Beyond the Archive","community.title":"Community","community.rule":"No pornographic material: sensual at most. Anyone who breaks the rule is banned and removed from the site.","community.tabChannels":"Channels","community.tabDms":"Private messages","community.newChannelPh":"New channel name (e.g. Movies)","community.createChannel":"Create channel","community.back":"← Back","community.messagePh":"Write a message…","community.send":"Send","community.dmHint":"To message someone privately, open one of their messages in a channel and use \"Private message\".","community.noChannels":"No channels yet. Create one.","community.noMessages":"No messages yet.","community.noDms":"No private conversations yet.","community.privateMessage":"Private message","community.report":"Report","community.reportPrompt":"Why are you reporting this message? (optional)","community.reportSent":"Report sent, thank you.","community.you":"You","community.tabFriends":"Friends","community.addFriend":"Add friend","community.requestSent":"Request sent","community.acceptFriend":"Accept friend request","community.declineFriend":"Decline","community.pendingReceived":"Received requests","community.pendingSent":"Sent requests","community.friendsList":"Your friends","community.searchFriends":"Search for someone","community.searchFriendsPh":"Username…","community.noResults":"No results.",
-    "collabSession.title":"Active creation sessions","collabSession.hint":"A friend invited to create can publish titles only while their session is active.","collabSession.active":"Active creation session","collabSession.hintCollab":"You can add titles to the catalog while the session is active. If you can't finish in time, request an extension.","collabSession.requestExtension":"I can't make it, request an extension","collabSession.countdown":"Expires in {h}h {m}min","collabSession.expired":"Session expired.","collabSession.extensionPending":"Extension requested, waiting on the admin","collabSession.invite":"Invite to create","collabSession.inviteConfirm":"Invite {name} to create and publish for 24 hours?","collabSession.inviteSent":"Invitation sent.","collabSession.inviteNotif":"You've been invited to create and publish a title — you have 24 hours.","collabSession.extend48":"Extend 48h",
+    "collabSession.title":"Active creation sessions","collabSession.hint":"A friend invited to create can publish titles only while their session is active.","collabSession.active":"Active creation session","collabSession.hintCollab":"You can add titles to the catalog while the session is active. If you can't finish in time, request an extension.","collabSession.requestExtension":"I can't make it, request an extension","collabSession.countdown":"Expires in {h}h {m}min","collabSession.expired":"Session expired.","collabSession.extensionPending":"Extension requested, waiting on the admin","collabSession.invite":"Invite to create","collabSession.inviteConfirm":"Invite {name} to create and publish for 24 hours?","collabSession.inviteSent":"Invitation sent.","collabSession.inviteNotif":"You've been invited to create and publish a title — you have 24 hours.","collabSession.extend48":"Extend 48h","myTitles.heading":"Your published titles","myTitles.cancel":"Cancel edit",
     "smallnox.title":"Your assistant","smallnox.blurb":"SmallNox approves clean comments and signups on his own, and warns you — angrily — only when something looks suspicious.","smallnox.communityBlurb":"SmallNox watches over these channels — if you write something out of line, he'll notice.","smallnox.modalTitle":"Hi, I'm SmallNox","smallnox.modalBody":"I check new comments and new signups on my own: if they're clean I let them through right away, otherwise I flag them for Nox Morningstar. I do the same job in the community channels — write with respect and you'll never see me angry.",
     "community.loadError":"Loading failed (check your connection).","community.retry":"Retry",
     "admin.tab.moderation":"Community Moderation","mod.reportsTitle":"Open reports","mod.flaggedTitle":"Auto-flagged messages","mod.bannedTitle":"Banned users (blocked emails)","mod.empty":"Nothing right now.","mod.typeChannel":"Channel message","mod.typeDm":"Private message","mod.hide":"Hide","mod.ban":"Ban and delete","mod.noUser":"User not found.","mod.banConfirm":"Confirm? The user will be banned, their account deleted, and they won't be able to register again with the same email.","mod.banFailed":"Operation failed.",
     "users.onlineNow":"{n} users online now","users.onlineTag":"Online now",
-    "announcements.eyebrow":"From the Editors","announcements.title":"News","announcements.readMore":"Read","announcements.share":"Share",
+    "announcements.eyebrow":"From the Editors","announcements.title":"News","announcements.readMore":"Read","announcements.share":"Share","announcements.downloadPdf":"Download PDF",
     "announcements.archived":"Archived","announcements.expiresIn":"expires in {h}h","announcements.extend":"Extend 24h",
-    "announcements.newTitle":"New announcement","announcements.f.title":"Title","announcements.f.body":"Text","announcements.f.link":"Link (optional)","announcements.f.image":"Image (optional — any aspect ratio)",
+    "announcements.newTitle":"New announcement","announcements.f.title":"Title","announcements.f.body":"Text","announcements.f.link":"Link (optional)","announcements.f.image":"Image (optional — any aspect ratio)","announcements.f.pdf":"PDF file (optional)",
     "announcements.publish":"Publish announcement","announcements.publishError":"Publishing failed. Try again.",
     "announcements.existingTitle":"Published announcements","announcements.empty":"No announcements yet.",
     "announcements.statusPublished":"Published","announcements.statusHidden":"Hidden","announcements.hide":"Hide","announcements.show":"Show",
@@ -177,7 +177,7 @@ var STR = {
     "admin.signin.btn":"Sign in as admin","admin.signin.error":"Invalid credentials or backend unreachable.",
     "admin.signOut":"Sign out of admin",
     "admin.f.title":"Title","admin.f.character":"Character","admin.f.issue":"Issue / Volume","admin.f.date":"Publish date","admin.f.synopsis":"Synopsis (English — text of the works)",
-    "admin.add":"Add to index","admin.export":"Export JSON","admin.import":"Import JSON",
+    "admin.add":"Add to index","admin.edit":"Edit","admin.saveChanges":"Save changes","admin.export":"Export JSON","admin.import":"Import JSON",
     "footer.line":"OPEN ARCHIVE · 18+ SECTION ON REQUEST · TRAD.CLAB WORKS",
     "newsletter.eyebrow":"Stay Updated","newsletter.title":"Subscribe to the Newsletter",
     "newsletter.sub":"New titles, collaborations, and releases — straight to your inbox, no spam.",
@@ -266,14 +266,14 @@ var STR = {
     "users.eligible":"Apto","users.waitingDays":"faltan {n} días","users.grant":"Otorgar marca","users.revoke":"Quitar marca","users.earlyGrantConfirm":"{name} aún no ha alcanzado los 90 días (faltan {n}). ¿Otorgar la marca de todos modos como excepción?",
     "notif.title":"Notificaciones","notif.markAll":"Marcar todas como leídas","notif.empty":"No hay notificaciones.","notif.someone":"Alguien","notif.justNow":"Ahora mismo","notif.minsAgo":"hace {n} min","notif.hoursAgo":"hace {n} h","notif.daysAgo":"hace {n} d",
     "nav.community":"Comunidad","community.eyebrow":"Fuera del Archivo","community.title":"Comunidad","community.rule":"Nada de material pornográfico: como mucho contenido sensual. Quien incumpla la regla será baneado y eliminado del sitio.","community.tabChannels":"Canales","community.tabDms":"Mensajes privados","community.newChannelPh":"Nombre del nuevo canal (ej. Cine)","community.createChannel":"Crear canal","community.back":"← Volver","community.messagePh":"Escribe un mensaje…","community.send":"Enviar","community.dmHint":"Para escribir en privado a alguien, abre uno de sus mensajes en un canal y usa \"Mensaje privado\".","community.noChannels":"Aún no hay canales. Crea uno.","community.noMessages":"Aún no hay mensajes.","community.noDms":"Aún no hay conversaciones privadas.","community.privateMessage":"Mensaje privado","community.report":"Denunciar","community.reportPrompt":"¿Por qué denuncias este mensaje? (opcional)","community.reportSent":"Denuncia enviada, gracias.","community.you":"Tú","community.tabFriends":"Amigos","community.addFriend":"Añadir amigo","community.requestSent":"Solicitud enviada","community.acceptFriend":"Aceptar amistad","community.declineFriend":"Rechazar","community.pendingReceived":"Solicitudes recibidas","community.pendingSent":"Solicitudes enviadas","community.friendsList":"Tus amigos","community.searchFriends":"Buscar a alguien","community.searchFriendsPh":"Nombre de usuario…","community.noResults":"Sin resultados.",
-    "collabSession.title":"Sesiones de creación activas","collabSession.hint":"Un amigo invitado a crear puede publicar títulos solo mientras su sesión esté activa.","collabSession.active":"Sesión de creación activa","collabSession.hintCollab":"Puedes añadir títulos al catálogo mientras la sesión esté activa. Si no llegas a tiempo, pide una prórroga.","collabSession.requestExtension":"No llego, pedir prórroga","collabSession.countdown":"Caduca en {h}h {m}min","collabSession.expired":"Sesión caducada.","collabSession.extensionPending":"Prórroga solicitada, esperando al admin","collabSession.invite":"Invitar a crear","collabSession.inviteConfirm":"¿Invitar a {name} a crear y publicar durante 24 horas?","collabSession.inviteSent":"Invitación enviada.","collabSession.inviteNotif":"Has sido invitado a crear y publicar un título — tienes 24 horas.","collabSession.extend48":"Prórroga 48h",
+    "collabSession.title":"Sesiones de creación activas","collabSession.hint":"Un amigo invitado a crear puede publicar títulos solo mientras su sesión esté activa.","collabSession.active":"Sesión de creación activa","collabSession.hintCollab":"Puedes añadir títulos al catálogo mientras la sesión esté activa. Si no llegas a tiempo, pide una prórroga.","collabSession.requestExtension":"No llego, pedir prórroga","collabSession.countdown":"Caduca en {h}h {m}min","collabSession.expired":"Sesión caducada.","collabSession.extensionPending":"Prórroga solicitada, esperando al admin","collabSession.invite":"Invitar a crear","collabSession.inviteConfirm":"¿Invitar a {name} a crear y publicar durante 24 horas?","collabSession.inviteSent":"Invitación enviada.","collabSession.inviteNotif":"Has sido invitado a crear y publicar un título — tienes 24 horas.","collabSession.extend48":"Prórroga 48h","myTitles.heading":"Tus títulos publicados","myTitles.cancel":"Cancelar edición",
     "smallnox.title":"Tu asistente","smallnox.blurb":"SmallNox aprueba solo comentarios e inscripciones limpias, y te avisa -enfadado- solo cuando algo parece sospechoso.","smallnox.communityBlurb":"SmallNox vigila estos canales -si escribes algo fuera de norma, se dará cuenta.","smallnox.modalTitle":"Hola, soy SmallNox","smallnox.modalBody":"Reviso solo los nuevos comentarios y las nuevas inscripciones: si están limpios los dejo pasar enseguida, si no se los señalo a Nox Morningstar. En los canales de la comunidad hago el mismo trabajo -escribe con respeto y nunca me verás enfadado.",
     "community.loadError":"Error al cargar (revisa tu conexión).","community.retry":"Reintentar",
     "admin.tab.moderation":"Moderación de Comunidad","mod.reportsTitle":"Denuncias abiertas","mod.flaggedTitle":"Mensajes marcados automáticamente","mod.bannedTitle":"Usuarios baneados (emails bloqueados)","mod.empty":"Nada por ahora.","mod.typeChannel":"Mensaje en canal","mod.typeDm":"Mensaje privado","mod.hide":"Ocultar","mod.ban":"Banear y eliminar","mod.noUser":"Usuario no encontrado.","mod.banConfirm":"¿Confirmas? El usuario será baneado, su cuenta eliminada y no podrá registrarse de nuevo con el mismo email.","mod.banFailed":"Operación fallida.",
     "users.onlineNow":"{n} usuarios en línea ahora","users.onlineTag":"En línea ahora",
-    "announcements.eyebrow":"De la Redacción","announcements.title":"Novedades","announcements.readMore":"Leer","announcements.share":"Compartir",
+    "announcements.eyebrow":"De la Redacción","announcements.title":"Novedades","announcements.readMore":"Leer","announcements.share":"Compartir","announcements.downloadPdf":"Descargar PDF",
     "announcements.archived":"Archivado","announcements.expiresIn":"caduca en {h}h","announcements.extend":"Extender 24h",
-    "announcements.newTitle":"Nuevo anuncio","announcements.f.title":"Título","announcements.f.body":"Texto","announcements.f.link":"Enlace (opcional)","announcements.f.image":"Imagen (opcional — cualquier proporción)",
+    "announcements.newTitle":"Nuevo anuncio","announcements.f.title":"Título","announcements.f.body":"Texto","announcements.f.link":"Enlace (opcional)","announcements.f.image":"Imagen (opcional — cualquier proporción)","announcements.f.pdf":"Archivo PDF (opcional)",
     "announcements.publish":"Publicar anuncio","announcements.publishError":"Error al publicar. Inténtalo de nuevo.",
     "announcements.existingTitle":"Anuncios publicados","announcements.empty":"Aún no hay anuncios.",
     "announcements.statusPublished":"Publicado","announcements.statusHidden":"Oculto","announcements.hide":"Ocultar","announcements.show":"Mostrar",
@@ -295,7 +295,7 @@ var STR = {
     "admin.signin.btn":"Acceder como admin","admin.signin.error":"Credenciales no válidas o backend inaccesible.",
     "admin.signOut":"Salir de admin",
     "admin.f.title":"Título","admin.f.character":"Personaje","admin.f.issue":"Número / Volumen","admin.f.date":"Fecha de publicación","admin.f.synopsis":"Sinopsis (inglés — texto de las obras)",
-    "admin.add":"Añadir al índice","admin.export":"Exportar JSON","admin.import":"Importar JSON",
+    "admin.add":"Añadir al índice","admin.edit":"Editar","admin.saveChanges":"Guardar cambios","admin.export":"Exportar JSON","admin.import":"Importar JSON",
     "footer.line":"ARCHIVO ABIERTO A TODOS · SECCIÓN 18+ BAJO PETICIÓN · TRAD.CLAB WORKS",
     "newsletter.eyebrow":"Mantente al Día","newsletter.title":"Suscríbete al Boletín",
     "newsletter.sub":"Nuevos títulos, colaboraciones y estrenos — directo a tu bandeja, sin spam.",
@@ -384,14 +384,14 @@ var STR = {
     "users.eligible":"Éligible","users.waitingDays":"encore {n} jours","users.grant":"Accorder le badge","users.revoke":"Retirer le badge","users.earlyGrantConfirm":"{name} n'a pas encore atteint 90 jours ({n} restants). Accorder le badge quand même, à titre exceptionnel ?",
     "notif.title":"Notifications","notif.markAll":"Tout marquer comme lu","notif.empty":"Aucune notification.","notif.someone":"Quelqu'un","notif.justNow":"À l'instant","notif.minsAgo":"il y a {n} min","notif.hoursAgo":"il y a {n} h","notif.daysAgo":"il y a {n} j",
     "nav.community":"Communauté","community.eyebrow":"En dehors de l'Archive","community.title":"Communauté","community.rule":"Aucun contenu pornographique : sensuel tout au plus. Toute violation entraîne le bannissement et la suppression du site.","community.tabChannels":"Canaux","community.tabDms":"Messages privés","community.newChannelPh":"Nom du nouveau canal (ex. Cinéma)","community.createChannel":"Créer un canal","community.back":"← Retour","community.messagePh":"Écrivez un message…","community.send":"Envoyer","community.dmHint":"Pour écrire en privé à quelqu'un, ouvrez un de ses messages dans un canal et utilisez \"Message privé\".","community.noChannels":"Aucun canal pour l'instant. Créez-en un.","community.noMessages":"Aucun message pour l'instant.","community.noDms":"Aucune conversation privée pour l'instant.","community.privateMessage":"Message privé","community.report":"Signaler","community.reportPrompt":"Pourquoi signalez-vous ce message ? (facultatif)","community.reportSent":"Signalement envoyé, merci.","community.you":"Vous","community.tabFriends":"Amis","community.addFriend":"Ajouter un ami","community.requestSent":"Demande envoyée","community.acceptFriend":"Accepter l'amitié","community.declineFriend":"Refuser","community.pendingReceived":"Demandes reçues","community.pendingSent":"Demandes envoyées","community.friendsList":"Vos amis","community.searchFriends":"Rechercher une personne","community.searchFriendsPh":"Nom d'utilisateur…","community.noResults":"Aucun résultat.",
-    "collabSession.title":"Sessions de création actives","collabSession.hint":"Un ami invité à créer ne peut publier de titres que tant que sa session est active.","collabSession.active":"Session de création active","collabSession.hintCollab":"Vous pouvez ajouter des titres au catalogue tant que la session est active. Si vous ne pouvez pas terminer à temps, demandez une prolongation.","collabSession.requestExtension":"Je n'y arrive pas, demander une prolongation","collabSession.countdown":"Expire dans {h}h {m}min","collabSession.expired":"Session expirée.","collabSession.extensionPending":"Prolongation demandée, en attente de l'admin","collabSession.invite":"Inviter à créer","collabSession.inviteConfirm":"Inviter {name} à créer et publier pendant 24 heures ?","collabSession.inviteSent":"Invitation envoyée.","collabSession.inviteNotif":"Vous avez été invité à créer et publier un titre — vous avez 24 heures.","collabSession.extend48":"Prolonger de 48h",
+    "collabSession.title":"Sessions de création actives","collabSession.hint":"Un ami invité à créer ne peut publier de titres que tant que sa session est active.","collabSession.active":"Session de création active","collabSession.hintCollab":"Vous pouvez ajouter des titres au catalogue tant que la session est active. Si vous ne pouvez pas terminer à temps, demandez une prolongation.","collabSession.requestExtension":"Je n'y arrive pas, demander une prolongation","collabSession.countdown":"Expire dans {h}h {m}min","collabSession.expired":"Session expirée.","collabSession.extensionPending":"Prolongation demandée, en attente de l'admin","collabSession.invite":"Inviter à créer","collabSession.inviteConfirm":"Inviter {name} à créer et publier pendant 24 heures ?","collabSession.inviteSent":"Invitation envoyée.","collabSession.inviteNotif":"Vous avez été invité à créer et publier un titre — vous avez 24 heures.","collabSession.extend48":"Prolonger de 48h","myTitles.heading":"Vos titres publiés","myTitles.cancel":"Annuler la modification",
     "smallnox.title":"Votre assistant","smallnox.blurb":"SmallNox approuve tout seul les commentaires et inscriptions sans souci, et vous prévient -en colère- seulement quand quelque chose semble suspect.","smallnox.communityBlurb":"SmallNox veille sur ces canaux -s'il vous arrive d'écrire quelque chose hors règles, il le remarquera.","smallnox.modalTitle":"Salut, je suis SmallNox","smallnox.modalBody":"Je vérifie tout seul les nouveaux commentaires et les nouvelles inscriptions : s'ils sont clean je les laisse passer tout de suite, sinon je les signale à Nox Morningstar. Je fais le même travail dans les canaux de la communauté -écrivez avec respect et vous ne me verrez jamais en colère.",
     "community.loadError":"Échec du chargement (vérifiez votre connexion).","community.retry":"Réessayer",
     "admin.tab.moderation":"Modération Communauté","mod.reportsTitle":"Signalements ouverts","mod.flaggedTitle":"Messages signalés automatiquement","mod.bannedTitle":"Utilisateurs bannis (emails bloqués)","mod.empty":"Rien pour l'instant.","mod.typeChannel":"Message de canal","mod.typeDm":"Message privé","mod.hide":"Masquer","mod.ban":"Bannir et supprimer","mod.noUser":"Utilisateur introuvable.","mod.banConfirm":"Confirmer ? L'utilisateur sera banni, son compte supprimé, et il ne pourra plus se réinscrire avec le même email.","mod.banFailed":"Échec de l'opération.",
     "users.onlineNow":"{n} utilisateurs en ligne","users.onlineTag":"En ligne",
-    "announcements.eyebrow":"De la Rédaction","announcements.title":"Actualités","announcements.readMore":"Lire","announcements.share":"Partager",
+    "announcements.eyebrow":"De la Rédaction","announcements.title":"Actualités","announcements.readMore":"Lire","announcements.share":"Partager","announcements.downloadPdf":"Télécharger le PDF",
     "announcements.archived":"Archivée","announcements.expiresIn":"expire dans {h}h","announcements.extend":"Prolonger 24h",
-    "announcements.newTitle":"Nouvelle annonce","announcements.f.title":"Titre","announcements.f.body":"Texte","announcements.f.link":"Lien (facultatif)","announcements.f.image":"Image (facultative — tout format)",
+    "announcements.newTitle":"Nouvelle annonce","announcements.f.title":"Titre","announcements.f.body":"Texte","announcements.f.link":"Lien (facultatif)","announcements.f.image":"Image (facultative — tout format)","announcements.f.pdf":"Fichier PDF (facultatif)",
     "announcements.publish":"Publier l'annonce","announcements.publishError":"Échec de la publication. Réessayez.",
     "announcements.existingTitle":"Annonces publiées","announcements.empty":"Aucune annonce pour le moment.",
     "announcements.statusPublished":"Publiée","announcements.statusHidden":"Masquée","announcements.hide":"Masquer","announcements.show":"Afficher",
@@ -413,7 +413,7 @@ var STR = {
     "admin.signin.btn":"Connexion admin","admin.signin.error":"Identifiants invalides ou backend inaccessible.",
     "admin.signOut":"Déconnexion admin",
     "admin.f.title":"Titre","admin.f.character":"Personnage","admin.f.issue":"Numéro / Volume","admin.f.date":"Date de publication","admin.f.synopsis":"Synopsis (anglais — texte des œuvres)",
-    "admin.add":"Ajouter à l'index","admin.export":"Exporter JSON","admin.import":"Importer JSON",
+    "admin.add":"Ajouter à l'index","admin.edit":"Modifier","admin.saveChanges":"Enregistrer les modifications","admin.export":"Exporter JSON","admin.import":"Importer JSON",
     "footer.line":"ARCHIVE OUVERTE À TOUS · SECTION 18+ SUR DEMANDE · TRAD.CLAB WORKS",
     "newsletter.eyebrow":"Restez Informé","newsletter.title":"Abonnez-vous à la Newsletter",
     "newsletter.sub":"Nouveaux titres, collaborations et sorties — directement dans votre boîte, sans spam.",
@@ -502,14 +502,14 @@ var STR = {
     "users.eligible":"Berechtigt","users.waitingDays":"noch {n} Tage","users.grant":"Häkchen vergeben","users.revoke":"Häkchen entfernen","users.earlyGrantConfirm":"{name} hat die 90 Tage noch nicht erreicht (noch {n} Tage). Häkchen trotzdem als Ausnahme vergeben?",
     "notif.title":"Benachrichtigungen","notif.markAll":"Alle als gelesen markieren","notif.empty":"Keine Benachrichtigungen.","notif.someone":"Jemand","notif.justNow":"Gerade eben","notif.minsAgo":"vor {n} Min","notif.hoursAgo":"vor {n} Std","notif.daysAgo":"vor {n} T",
     "nav.community":"Community","community.eyebrow":"Jenseits des Archivs","community.title":"Community","community.rule":"Keine pornografischen Inhalte: höchstens sinnlich. Wer gegen die Regel verstößt, wird gesperrt und von der Seite entfernt.","community.tabChannels":"Kanäle","community.tabDms":"Private Nachrichten","community.newChannelPh":"Name des neuen Kanals (z. B. Kino)","community.createChannel":"Kanal erstellen","community.back":"← Zurück","community.messagePh":"Nachricht schreiben…","community.send":"Senden","community.dmHint":"Um jemandem privat zu schreiben, öffne eine seiner Nachrichten in einem Kanal und nutze \"Private Nachricht\".","community.noChannels":"Noch keine Kanäle. Erstelle einen.","community.noMessages":"Noch keine Nachrichten.","community.noDms":"Noch keine privaten Gespräche.","community.privateMessage":"Private Nachricht","community.report":"Melden","community.reportPrompt":"Warum meldest du diese Nachricht? (optional)","community.reportSent":"Meldung gesendet, danke.","community.you":"Du","community.tabFriends":"Freunde","community.addFriend":"Freund hinzufügen","community.requestSent":"Anfrage gesendet","community.acceptFriend":"Freundschaft annehmen","community.declineFriend":"Ablehnen","community.pendingReceived":"Erhaltene Anfragen","community.pendingSent":"Gesendete Anfragen","community.friendsList":"Deine Freunde","community.searchFriends":"Person suchen","community.searchFriendsPh":"Benutzername…","community.noResults":"Keine Ergebnisse.",
-    "collabSession.title":"Aktive Erstellungssitzungen","collabSession.hint":"Ein zum Erstellen eingeladener Freund kann Titel nur veröffentlichen, solange seine Sitzung aktiv ist.","collabSession.active":"Aktive Erstellungssitzung","collabSession.hintCollab":"Du kannst Titel zum Katalog hinzufügen, solange die Sitzung aktiv ist. Wenn du nicht rechtzeitig fertig wirst, bitte um eine Verlängerung.","collabSession.requestExtension":"Ich schaffe es nicht, Verlängerung anfragen","collabSession.countdown":"Läuft ab in {h}Std {m}Min","collabSession.expired":"Sitzung abgelaufen.","collabSession.extensionPending":"Verlängerung angefragt, wartet auf Admin","collabSession.invite":"Zum Erstellen einladen","collabSession.inviteConfirm":"{name} für 24 Stunden zum Erstellen und Veröffentlichen einladen?","collabSession.inviteSent":"Einladung gesendet.","collabSession.inviteNotif":"Du wurdest eingeladen, einen Titel zu erstellen und zu veröffentlichen — du hast 24 Stunden.","collabSession.extend48":"Um 48Std verlängern",
+    "collabSession.title":"Aktive Erstellungssitzungen","collabSession.hint":"Ein zum Erstellen eingeladener Freund kann Titel nur veröffentlichen, solange seine Sitzung aktiv ist.","collabSession.active":"Aktive Erstellungssitzung","collabSession.hintCollab":"Du kannst Titel zum Katalog hinzufügen, solange die Sitzung aktiv ist. Wenn du nicht rechtzeitig fertig wirst, bitte um eine Verlängerung.","collabSession.requestExtension":"Ich schaffe es nicht, Verlängerung anfragen","collabSession.countdown":"Läuft ab in {h}Std {m}Min","collabSession.expired":"Sitzung abgelaufen.","collabSession.extensionPending":"Verlängerung angefragt, wartet auf Admin","collabSession.invite":"Zum Erstellen einladen","collabSession.inviteConfirm":"{name} für 24 Stunden zum Erstellen und Veröffentlichen einladen?","collabSession.inviteSent":"Einladung gesendet.","collabSession.inviteNotif":"Du wurdest eingeladen, einen Titel zu erstellen und zu veröffentlichen — du hast 24 Stunden.","collabSession.extend48":"Um 48Std verlängern","myTitles.heading":"Deine veröffentlichten Titel","myTitles.cancel":"Bearbeitung abbrechen",
     "smallnox.title":"Dein Assistent","smallnox.blurb":"SmallNox genehmigt unbedenkliche Kommentare und Anmeldungen von selbst und meldet sich -wütend- nur, wenn etwas verdächtig wirkt.","smallnox.communityBlurb":"SmallNox wacht über diese Kanäle -wenn du etwas Regelwidriges schreibst, bemerkt er es.","smallnox.modalTitle":"Hallo, ich bin SmallNox","smallnox.modalBody":"Ich prüfe neue Kommentare und neue Anmeldungen ganz allein: sind sie unbedenklich, lasse ich sie sofort durch, sonst melde ich sie Nox Morningstar. In den Community-Kanälen mache ich dasselbe -schreib respektvoll und du wirst mich nie wütend erleben.",
     "community.loadError":"Laden fehlgeschlagen (Verbindung prüfen).","community.retry":"Erneut versuchen",
     "admin.tab.moderation":"Community-Moderation","mod.reportsTitle":"Offene Meldungen","mod.flaggedTitle":"Automatisch markierte Nachrichten","mod.bannedTitle":"Gesperrte Nutzer (blockierte E-Mails)","mod.empty":"Aktuell nichts.","mod.typeChannel":"Kanal-Nachricht","mod.typeDm":"Private Nachricht","mod.hide":"Ausblenden","mod.ban":"Sperren und löschen","mod.noUser":"Nutzer nicht gefunden.","mod.banConfirm":"Bestätigen? Der Nutzer wird gesperrt, sein Konto gelöscht, und er kann sich nicht erneut mit derselben E-Mail registrieren.","mod.banFailed":"Vorgang fehlgeschlagen.",
     "users.onlineNow":"{n} Nutzer gerade online","users.onlineTag":"Gerade online",
-    "announcements.eyebrow":"Von der Redaktion","announcements.title":"Neuigkeiten","announcements.readMore":"Lesen","announcements.share":"Teilen",
+    "announcements.eyebrow":"Von der Redaktion","announcements.title":"Neuigkeiten","announcements.readMore":"Lesen","announcements.share":"Teilen","announcements.downloadPdf":"PDF herunterladen",
     "announcements.archived":"Archiviert","announcements.expiresIn":"läuft in {h}Std ab","announcements.extend":"24Std verlängern",
-    "announcements.newTitle":"Neue Ankündigung","announcements.f.title":"Titel","announcements.f.body":"Text","announcements.f.link":"Link (optional)","announcements.f.image":"Bild (optional — jedes Seitenverhältnis)",
+    "announcements.newTitle":"Neue Ankündigung","announcements.f.title":"Titel","announcements.f.body":"Text","announcements.f.link":"Link (optional)","announcements.f.image":"Bild (optional — jedes Seitenverhältnis)","announcements.f.pdf":"PDF-Datei (optional)",
     "announcements.publish":"Ankündigung veröffentlichen","announcements.publishError":"Veröffentlichung fehlgeschlagen. Erneut versuchen.",
     "announcements.existingTitle":"Veröffentlichte Ankündigungen","announcements.empty":"Noch keine Ankündigungen.",
     "announcements.statusPublished":"Veröffentlicht","announcements.statusHidden":"Verborgen","announcements.hide":"Verbergen","announcements.show":"Anzeigen",
@@ -531,7 +531,7 @@ var STR = {
     "admin.signin.btn":"Als Admin anmelden","admin.signin.error":"Ungültige Anmeldedaten oder Backend nicht erreichbar.",
     "admin.signOut":"Admin abmelden",
     "admin.f.title":"Titel","admin.f.character":"Figur","admin.f.issue":"Nummer / Band","admin.f.date":"Veröffentlichungsdatum","admin.f.synopsis":"Zusammenfassung (Englisch — Text der Werke)",
-    "admin.add":"Zum Index hinzufügen","admin.export":"JSON exportieren","admin.import":"JSON importieren",
+    "admin.add":"Zum Index hinzufügen","admin.edit":"Bearbeiten","admin.saveChanges":"Änderungen speichern","admin.export":"JSON exportieren","admin.import":"JSON importieren",
     "footer.line":"OFFENES ARCHIV · 18+ BEREICH AUF ANFRAGE · TRAD.CLAB WORKS",
     "newsletter.eyebrow":"Bleib Informiert","newsletter.title":"Newsletter Abonnieren",
     "newsletter.sub":"Neue Titel, Kollaborationen und Veröffentlichungen — direkt ins Postfach, kein Spam.",
@@ -1050,9 +1050,10 @@ function refreshAdminUI(){
   var smallnoxCard = document.getElementById('smallnoxCard');
   var admin = isAdmin();
   var collab = !admin && hasActiveCreationSession();
+  var ownsPastTitles = !admin && isSignedIn() && getCatalog().some(function(x){ return x.created_by && x.created_by === currentUserId(); });
   // La voce "Amministra" nel menu va aggiornata su OGNI pagina (vive nell'header
   // condiviso) — non solo su admin.html, dove invece vivono gateBox/manageBox.
-  if(navAdmin) navAdmin.classList.toggle('hidden', !(admin || collab));
+  if(navAdmin) navAdmin.classList.toggle('hidden', !(admin || collab || ownsPastTitles));
   if(!gateBox || !manageBox) return;
   if(admin){
     if(adminSection) adminSection.classList.remove('hidden'); // arrivando direttamente su admin.html (non da un click sul link) va rivelata qui, non solo dal click handler
@@ -1075,9 +1076,10 @@ function refreshAdminUI(){
       sessionStorage.removeItem('lux_pending_admin_tab');
       switchAdminTab(pendingAdminTab);
     }
-  } else if(collab){
-    // Un collaboratore invitato vede SOLO il modulo "Aggiungi allo schedario":
-    // niente altre tab, niente elenco titoli altrui, niente dati riservati.
+  } else if(collab || ownsPastTitles){
+    // Un collaboratore invitato vede SOLO il modulo "Aggiungi allo schedario"
+    // (se la sessione è attiva) e/o i propri titoli già pubblicati, da poter
+    // modificare in qualsiasi momento — niente altre tab, niente dati altrui.
     if(adminSection) adminSection.classList.remove('hidden');
     gateBox.classList.add('hidden');
     manageBox.classList.remove('hidden');
@@ -1086,10 +1088,16 @@ function refreshAdminUI(){
     document.querySelectorAll('.admin-tab-panel').forEach(function(panel){
       panel.classList.toggle('hidden', panel.dataset.tabPanel !== 'catalog');
     });
+    var addEntryBtn = document.getElementById('btnAddEntry');
     if(collabBanner){
-      collabBanner.classList.remove('hidden');
-      renderCollabSessionBanner();
+      collabBanner.classList.toggle('hidden', !collab);
+      if(collab) renderCollabSessionBanner();
     }
+    // Senza sessione attiva non si può pubblicare un titolo NUOVO — solo
+    // modificare quelli già propri — quindi il pulsante "Aggiungi" si nasconde
+    // finché non si è in modalità modifica (editingItemId valorizzato da openEditTitle).
+    if(addEntryBtn) addEntryBtn.classList.toggle('hidden', !collab && !editingItemId);
+    renderMyTitles();
   } else if(isSignedIn()){
     var gateUid = currentUserId();
     var gateFallback = '@' + (currentUserEmail() || '').split('@')[0];
@@ -1209,6 +1217,32 @@ function supabaseInsert(item){
     .catch(function(err){
       syncState = 'error'; updateSyncStatus();
       console.warn('Supabase sync (insert) failed:', err);
+      return false;
+    });
+}
+
+function supabaseUpdate(id, patch){
+  var session = getSession();
+  if(!SUPABASE_URL || !session) return Promise.resolve(false);
+  syncState = 'syncing'; updateSyncStatus();
+  return fetch(SUPABASE_URL + '/rest/v1/catalog?id=eq.' + encodeURIComponent(id), {
+    method:'PATCH',
+    headers:{
+      'apikey':SUPABASE_ANON_KEY,
+      'Authorization':'Bearer ' + session.access_token,
+      'Content-Type':'application/json',
+      'Prefer':'return=representation'
+    },
+    body: JSON.stringify(patch)
+  })
+    .then(function(r){
+      if(!r.ok) return r.json().then(function(e){ throw new Error(e.message || ('update failed: ' + r.status)); });
+      return r.json();
+    })
+    .then(function(){ syncState = 'idle'; updateSyncStatus(); return true; })
+    .catch(function(err){
+      syncState = 'error'; updateSyncStatus();
+      console.warn('Supabase sync (update) failed:', err);
       return false;
     });
 }
@@ -1469,6 +1503,7 @@ function fetchAnnouncements(){
         card.setAttribute('data-ann-id', a.id);
         var dateStr = a.created_at ? a.created_at.slice(0,10) : '';
         var linkHtml = a.link_url ? '<a class="link" href="' + escapeHtml(a.link_url) + '" target="_blank" rel="noopener">' + t('announcements.readMore') + ' →</a>' : '';
+        var pdfHtml = a.pdf_url ? '<a class="link" href="' + escapeHtml(a.pdf_url) + '" target="_blank" rel="noopener" download>' + t('announcements.downloadPdf') + '</a>' : '';
         var imageHtml = a.image_url ? '<div class="announcement-card-img"><img src="' + escapeHtml(a.image_url) + '" alt="" loading="lazy"></div>' : '';
         card.innerHTML =
           imageHtml +
@@ -1476,7 +1511,7 @@ function fetchAnnouncements(){
           '<div class="date">' + dateStr + '</div>' +
           '<h4>' + escapeHtml(a.title) + '</h4>' +
           '<p>' + renderBodyHtml(a.body) + '</p>' +
-          '<div class="announcement-card-actions">' + linkHtml +
+          '<div class="announcement-card-actions">' + linkHtml + pdfHtml +
           '<button type="button" class="ann-share-btn" data-share-ann="' + a.id + '">' + t('announcements.share') + '</button></div>' +
           '</div>';
         card.querySelector('[data-share-ann]').addEventListener('click', function(){
@@ -1926,6 +1961,31 @@ function makeHeaderLogoClickable(){
 }
 
 /* ============ ADMIN ============ */
+function renderMyTitles(){
+  var wrap = document.getElementById('myTitlesListWrap');
+  var list = document.getElementById('myTitlesList');
+  if(!wrap || !list) return;
+  if(isAdmin() || !isSignedIn()){ wrap.classList.add('hidden'); return; }
+  var uid = currentUserId();
+  var mine = getCatalog().filter(function(x){ return x.created_by === uid; });
+  if(mine.length === 0){ wrap.classList.add('hidden'); return; }
+  wrap.classList.remove('hidden');
+  list.innerHTML = '';
+  mine.sort(function(a,b){ return (b.date||'').localeCompare(a.date||''); });
+  mine.forEach(function(item){
+    var row = document.createElement('div');
+    row.className = 'admin-row';
+    row.innerHTML =
+      '<div class="info"><div class="t">'+escapeHtml(item.title)+'</div>'+
+      '<div class="m">'+item.character+' · '+(item.issue||'')+' · '+(item.date||'')+'</div></div>'+
+      '<div class="admin-actions"><button class="btn btn-sm btn-ghost" data-edit-mine="'+item.id+'">'+t('admin.edit')+'</button></div>';
+    row.querySelector('[data-edit-mine]').addEventListener('click', function(){
+      openEditTitle(item.id);
+    });
+    list.appendChild(row);
+  });
+}
+
 function renderAdminList(){
   if(!isAdmin()) return;
   var list = document.getElementById('adminList');
@@ -1954,8 +2014,12 @@ function renderAdminList(){
         (hasPages ? '<button class="btn btn-sm btn-ghost" data-rewatermark-for="'+item.id+'">'+t('rewatermark.button')+'</button>' : '') +
         (hasPages && item.pages_watermarked ? '<span class="watermark-done-tag">✓ '+t('rewatermark.done')+'</span>' : '') +
         '<button class="btn btn-sm btn-ghost" data-toggle-permanent="'+item.id+'">'+(isPermanent ? t('catalog.makeTemporary') : t('catalog.makePermanent'))+'</button>'+
+        '<button class="btn btn-sm btn-ghost" data-edit="'+item.id+'">'+t('admin.edit')+'</button>'+
         '<button class="btn btn-sm btn-ghost" data-del="'+item.id+'">×</button>'+
       '</div>';
+    row.querySelector('[data-edit]').addEventListener('click', function(){
+      openEditTitle(item.id);
+    });
     row.querySelector('[data-toggle-permanent]').addEventListener('click', function(){
       var session = getSession();
       var newValue = !isPermanent;
@@ -2443,6 +2507,63 @@ function removeCollabBlock(idx){
   }
 })();
 
+var editingItemId = null; // se valorizzato, handleAddEntry() salva una MODIFICA invece di una nuova voce
+
+function openEditTitle(id){
+  var item = getCatalog().find(function(x){ return x.id === id; });
+  if(!item) return;
+  editingItemId = id;
+  document.getElementById('fTitle').value = item.title || '';
+  document.getElementById('fCharacter').value = item.character || '';
+  document.getElementById('fIssue').value = item.issue || '';
+  document.getElementById('fDate').value = item.date || '';
+  document.getElementById('fPrice').value = item.price != null ? item.price : '';
+  document.getElementById('fSynopsis').value = item.synopsis || '';
+  document.getElementById('fMature').checked = !!item.mature;
+  resetCollabBlocks();
+  var collabArr = (item.collaborators && item.collaborators.length)
+    ? item.collaborators
+    : (item.collaborator_name ? [{ name:item.collaborator_name, url:item.collaborator_url, verified:item.collaborator_verified }] : []);
+  collabArr.slice(0,6).forEach(function(c, idx){
+    var i = idx + 1;
+    if(i > 1){ // il blocco 1 è sempre visibile, dal 2 in su vanno rivelati esplicitamente
+      var blockEl = document.getElementById('collabBlock' + i);
+      if(blockEl) blockEl.classList.remove('hidden');
+    }
+    var nEl = document.getElementById('fCollabName' + i);
+    var uEl = document.getElementById('fCollabUrl' + i);
+    var vEl = document.getElementById('fCollabVerified' + i);
+    if(nEl) nEl.value = c.name || '';
+    if(uEl) uEl.value = c.url || '';
+    if(vEl) vEl.checked = !!c.verified;
+  });
+  updateAddCollabBtn();
+  var btn = document.getElementById('btnAddEntry');
+  if(btn){ btn.textContent = t('admin.saveChanges'); btn.classList.remove('hidden'); }
+  var cancelBtn = document.getElementById('btnCancelEditTitle');
+  if(cancelBtn) cancelBtn.classList.remove('hidden');
+  switchAdminTab('catalog');
+  document.getElementById('fTitle').scrollIntoView({behavior:'smooth', block:'center'});
+}
+
+function cancelEditTitle(){
+  editingItemId = null;
+  document.getElementById('fTitle').value = '';
+  document.getElementById('fIssue').value = '';
+  document.getElementById('fDate').value = '';
+  document.getElementById('fPrice').value = '';
+  resetCollabBlocks();
+  document.getElementById('fSynopsis').value = '';
+  document.getElementById('fMature').checked = false;
+  var btn = document.getElementById('btnAddEntry');
+  if(btn){
+    btn.textContent = t('admin.add');
+    if(!isAdmin() && !hasActiveCreationSession()) btn.classList.add('hidden');
+  }
+  var cancelBtn = document.getElementById('btnCancelEditTitle');
+  if(cancelBtn) cancelBtn.classList.add('hidden');
+}
+
 function handleAddEntry(){
   var title = document.getElementById('fTitle').value.trim();
   var character = document.getElementById('fCharacter').value;
@@ -2473,7 +2594,34 @@ function handleAddEntry(){
     err.textContent = t('err.required');
     return;
   }
-  var newItem = {
+  var isEdit = !!editingItemId;
+  // Solo admin, o un collaboratore con sessione attiva, può pubblicare un
+  // titolo NUOVO — modificare i propri titoli già pubblicati resta invece
+  // sempre permesso, sessione attiva o no.
+  if(!isEdit && !isAdmin() && !hasActiveCreationSession()){
+    err.textContent = t('collabSession.expired');
+    return;
+  }
+  var existing = isEdit ? getCatalog().find(function(x){ return x.id === editingItemId; }) : null;
+  if(isEdit && !existing){ isEdit = false; editingItemId = null; } // la voce originale non c'è più — meglio ripartire da zero che salvare nel vuoto
+
+  var newItem = isEdit ? {
+    id: existing.id,
+    character: character, title: title, issue: issue,
+    date: date || existing.date || new Date().toISOString().slice(0,10),
+    price: price ? Number(price) : null,
+    collaborator_name: collabList[0] ? collabList[0].name : null,
+    collaborator_url: collabList[0] ? collabList[0].url : null,
+    collaborator_verified: collabList[0] ? collabList[0].verified : false,
+    collaborators: collabList,
+    synopsis: synopsis, mature: mature,
+    pages: existing.pages || [], pages_clean: existing.pages_clean || [],
+    pages_watermarked: existing.pages_watermarked, cover_url: existing.cover_url || null,
+    pdf_url: existing.pdf_url || null, created_by: existing.created_by || null,
+    permanent: existing.permanent,
+    synopsis_it: existing.synopsis_it || null, synopsis_es: existing.synopsis_es || null,
+    synopsis_fr: existing.synopsis_fr || null, synopsis_de: existing.synopsis_de || null
+  } : {
     id: 'c' + Date.now(),
     character: character, title: title, issue: issue,
     date: date || new Date().toISOString().slice(0,10),
@@ -2483,6 +2631,7 @@ function handleAddEntry(){
     collaborator_verified: collabList[0] ? collabList[0].verified : false,
     collaborators: collabList,
     synopsis: synopsis, mature: mature, pages: [], cover_url: null, pdf_url: null,
+    created_by: !isAdmin() ? currentUserId() : null,
     synopsis_it: null, synopsis_es: null, synopsis_fr: null, synopsis_de: null
   };
 
@@ -2527,12 +2676,19 @@ function handleAddEntry(){
   });
 
   uploadSteps.then(function(result){
-    newItem.pages = result.urls;
-    newItem.pages_clean = result.cleanPaths;
-    newItem.pages_watermarked = result.urls.length > 0; // new uploads always go through the watermark step
+    if(result.urls.length > 0){
+      newItem.pages = result.urls;
+      newItem.pages_clean = result.cleanPaths;
+      newItem.pages_watermarked = true; // new uploads always go through the watermark step
+    }
     status.textContent = '';
     var items = getCatalog();
-    items.push(newItem);
+    if(isEdit){
+      var idx = items.findIndex(function(x){ return x.id === newItem.id; });
+      if(idx >= 0) items[idx] = newItem;
+    } else {
+      items.push(newItem);
+    }
     saveCatalogLocal(items);
     document.getElementById('fTitle').value = '';
     document.getElementById('fIssue').value = '';
@@ -2546,7 +2702,15 @@ function handleAddEntry(){
     clearPendingPdf();
     renderCatalog();
     renderAdminList();
-    supabaseInsert(newItem);
+    renderMyTitles();
+    if(isEdit){
+      var savedId = newItem.id;
+      var patch = {}; for(var k in newItem){ if(k !== 'id') patch[k] = newItem[k]; }
+      supabaseUpdate(savedId, patch);
+      cancelEditTitle();
+    } else {
+      supabaseInsert(newItem);
+    }
   }).catch(function(e){
     status.textContent = '';
     err.textContent = t('pages.uploadError');
@@ -4153,15 +4317,10 @@ function shareTitle(item){
         navigator.share({ title: item.title, text: shareText, url: shareUrl, files: [file] })
           .catch(function(){ /* utente ha annullato — va bene così */ });
       } else {
-        alert('DEBUG: canShare({files}) ha risposto NO — blob type: ' + blob.type + ', size: ' + blob.size);
         shareWithoutImage();
       }
-    }).catch(function(err){
-      alert('DEBUG: fetch/creazione file fallita — ' + (err && err.message ? err.message : err));
-      shareWithoutImage();
-    });
+    }).catch(function(){ shareWithoutImage(); });
   } else {
-    if(item.cover_url) alert('DEBUG: navigator.share o navigator.canShare non disponibili su questo browser.');
     shareWithoutImage();
   }
 }
@@ -4638,6 +4797,7 @@ function handleAddAnnouncement(){
   var body = document.getElementById('fAnnBody').value.trim();
   var link = document.getElementById('fAnnLink').value.trim();
   var imageFile = document.getElementById('fAnnImage').files[0];
+  var pdfFile = document.getElementById('fAnnPdf') ? document.getElementById('fAnnPdf').files[0] : null;
   var err = document.getElementById('announcementError');
   err.textContent = '';
   if(!title || !body){ err.textContent = t('err.required'); return; }
@@ -4662,11 +4822,28 @@ function handleAddAnnouncement(){
     });
   }
 
-  imageStep.then(function(imageUrl){
+  var pdfStep = imageStep.then(function(imageUrl){
+    if(!pdfFile) return { imageUrl: imageUrl, pdfUrl: null };
+    var pdfPath = 'announcements/' + Date.now() + '_' + Math.random().toString(36).slice(2, 8) + '.pdf';
+    return fetch(SUPABASE_URL + '/storage/v1/object/comic-pages/' + pdfPath, {
+      method:'POST',
+      headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type': 'application/pdf' },
+      body: pdfFile
+    }).then(function(r){
+      if(!r.ok){
+        return r.text().then(function(bodyText){
+          throw new Error('Caricamento PDF fallito (HTTP ' + r.status + ') — ' + bodyText.slice(0,200));
+        });
+      }
+      return { imageUrl: imageUrl, pdfUrl: SUPABASE_URL + '/storage/v1/object/public/comic-pages/' + pdfPath };
+    });
+  });
+
+  pdfStep.then(function(urls){
     return fetch(SUPABASE_URL + '/rest/v1/announcements', {
       method:'POST',
       headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json', 'Prefer':'return=representation' },
-      body: JSON.stringify({ title: title, body: body, link_url: link || null, image_url: imageUrl, published: true, expires_at: new Date(Date.now() + 24*60*60*1000).toISOString() })
+      body: JSON.stringify({ title: title, body: body, link_url: link || null, image_url: urls.imageUrl, pdf_url: urls.pdfUrl, published: true, expires_at: new Date(Date.now() + 24*60*60*1000).toISOString() })
     }).then(function(r){
       if(!r.ok){
         return r.text().then(function(bodyText){
@@ -4681,6 +4858,7 @@ function handleAddAnnouncement(){
     document.getElementById('fAnnLink').value = '';
     document.getElementById('fAnnImage').value = '';
     document.getElementById('fAnnImagePreview').classList.add('hidden');
+    if(document.getElementById('fAnnPdf')) document.getElementById('fAnnPdf').value = '';
     renderAdminAnnouncements();
     fetchAnnouncements();
   }).catch(function(e){
@@ -5096,6 +5274,7 @@ function __appInit(){
   document.getElementById('btnGateSignIn') && document.getElementById('btnGateSignIn').addEventListener('click', function(){ openAuth('login'); });
 
   document.getElementById('btnAddEntry') && document.getElementById('btnAddEntry').addEventListener('click', handleAddEntry);
+  document.getElementById('btnCancelEditTitle') && document.getElementById('btnCancelEditTitle').addEventListener('click', cancelEditTitle);
   document.getElementById('fPages') && document.getElementById('fPages').addEventListener('change', function(e){
     Array.from(e.target.files).forEach(function(file){
       pendingPages.push({file: file, previewUrl: URL.createObjectURL(file)});
