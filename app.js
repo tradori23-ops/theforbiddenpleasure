@@ -5974,6 +5974,7 @@ function __appInit(){
     loadLikes();
     loadNotifications();
     loadMyCreationSession().then(refreshAdminUI); // altrimenti una sessione di collaborazione attiva non viene mai rilevata al semplice riapertura dell'app (solo subito dopo un login attivo)
+    initChatPage(); // deve aspettare che la sessione sia confermata, non solo che il catalogo sia caricato — altrimenti isSignedIn() risulta falso per errore appena dopo un login
   });
   setInterval(refreshSessionIfNeeded, 4 * 60 * 1000); // keep the token fresh while the tab stays open
 
@@ -6213,7 +6214,6 @@ function __appInit(){
     if(!deepLinkChecked) checkDeepLinkOnLoad(); // retry once fresh data has arrived
     renderPublicProfilePage(); // no-op sulle pagine diverse da profile.html
     checkForSiteUpdates();
-    initChatPage();
   });
   fetchMaintenanceStatus();
   setInterval(fetchMaintenanceStatus, 60000); // light polling so visitors already on the page see it too
