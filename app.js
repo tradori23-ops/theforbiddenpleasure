@@ -29,7 +29,7 @@ var STR = {
     "users.empty":"Nessun utente registrato ancora.","users.noName":"Utente","users.joined":"Iscritto il","users.daysHere":"{n} giorni sul sito",
     "users.eligible":"Idoneo","users.waitingDays":"ancora {n} giorni","users.grant":"Assegna spunta","users.revoke":"Rimuovi spunta","users.earlyGrantConfirm":"{name} non ha ancora raggiunto i 90 giorni (ne mancano {n}). Vuoi assegnare comunque la spunta come eccezione?",
     "notif.title":"Notifiche","notif.markAll":"Segna tutte come lette","notif.empty":"Nessuna notifica.","notif.someone":"Qualcuno","notif.justNow":"Adesso","notif.minsAgo":"{n} min fa","notif.hoursAgo":"{n} h fa","notif.daysAgo":"{n} g fa",
-    "nav.community":"Community","community.eyebrow":"Fuori dallo Schedario","community.title":"Community","community.rule":"Niente materiale pornografico: al massimo contenuti sensuali. Chi viola la regola viene bannato ed eliminato dal sito.","community.tabChannels":"Canali","community.tabDms":"Messaggi privati","community.tabCollab":"Collaboratori","community.collabHint":"Le opere pubblicate insieme ai collaboratori invitati, tutte in un unico posto.","community.newChannelPh":"Nome nuovo canale (es. Cinema)","community.createChannel":"Crea canale","community.back":"← Torna","community.messagePh":"Scrivi un messaggio…","community.send":"Invia","community.dmHint":"Per scrivere in privato a qualcuno, apri un suo messaggio in un canale e usa \"Messaggio privato\".","community.noChannels":"Nessun canale ancora. Creane uno tu.","community.noMessages":"Nessun messaggio ancora.","community.noDms":"Nessuna conversazione privata ancora.","community.privateMessage":"Messaggio privato","community.report":"Segnala","community.reportPrompt":"Perché segnali questo messaggio? (opzionale)","community.reportSent":"Segnalazione inviata, grazie.","community.you":"Tu","community.tabFriends":"Amici","community.addFriend":"Aggiungi amico","community.requestSent":"Richiesta inviata","community.acceptFriend":"Accetta amicizia","community.declineFriend":"Rifiuta","community.pendingReceived":"Richieste ricevute","community.pendingSent":"Richieste inviate","community.friendsList":"I tuoi amici","community.searchFriends":"Cerca una persona","community.searchFriendsPh":"Nome utente…","community.noResults":"Nessun risultato.",
+    "nav.community":"Community","community.eyebrow":"Fuori dallo Schedario","community.title":"Community","community.rule":"Niente materiale pornografico: al massimo contenuti sensuali. Chi viola la regola viene bannato ed eliminato dal sito.","community.tabChannels":"Canali","community.tabDms":"Messaggi privati","community.tabCollab":"Collaboratori","community.collabHint":"Le opere pubblicate insieme ai collaboratori invitati, tutte in un unico posto.","diary.tab":"Diario","diary.hint":"Condividi una foto, uno stato d'animo o una nota della giornata — tutti li vedranno qui.","diary.kindPhoto":"📷 Foto","diary.kindMood":"🙂 Stato d'animo","diary.kindNote":"📝 Nota del giorno","diary.captionPh":"Didascalia (opzionale)…","diary.moodPh":"Vuoi aggiungere due parole? (opzionale)…","diary.notePh":"Com'è andata oggi?","diary.publish":"Pubblica","diary.filterAll":"Tutti","diary.filterBy":"Di {name} ×","diary.needPhoto":"Scegli prima una foto.","diary.needMood":"Scegli prima uno stato d'animo.","diary.publishError":"Pubblicazione non riuscita. Riprova.","diary.empty":"Ancora nessun post — sii il primo.","pubProfile.notFound":"Profilo non trovato.","pubProfile.titlesHeading":"Titoli pubblicati","pubProfile.diaryHeading":"Diario","pubProfile.memberSince":"Membro da {date}","community.newChannelPh":"Nome nuovo canale (es. Cinema)","community.createChannel":"Crea canale","community.back":"← Torna","community.messagePh":"Scrivi un messaggio…","community.send":"Invia","community.dmHint":"Per scrivere in privato a qualcuno, apri un suo messaggio in un canale e usa \"Messaggio privato\".","community.noChannels":"Nessun canale ancora. Creane uno tu.","community.noMessages":"Nessun messaggio ancora.","community.noDms":"Nessuna conversazione privata ancora.","community.privateMessage":"Messaggio privato","community.report":"Segnala","community.reportPrompt":"Perché segnali questo messaggio? (opzionale)","community.reportSent":"Segnalazione inviata, grazie.","community.you":"Tu","community.tabFriends":"Amici","community.addFriend":"Aggiungi amico","community.requestSent":"Richiesta inviata","community.acceptFriend":"Accetta amicizia","community.declineFriend":"Rifiuta","community.pendingReceived":"Richieste ricevute","community.pendingSent":"Richieste inviate","community.friendsList":"I tuoi amici","community.searchFriends":"Cerca una persona","community.searchFriendsPh":"Nome utente…","community.noResults":"Nessun risultato.",
     "collabSession.title":"Sessioni di creazione attive","collabSession.hint":"Un amico invitato a creare può pubblicare titoli solo finché la sua sessione è attiva.","collabSession.active":"Sessione di creazione attiva","collabSession.hintCollab":"Puoi aggiungere titoli allo schedario finché la sessione è attiva. Se non riesci a finire in tempo, chiedi una proroga.","collabSession.requestExtension":"Non ce la faccio, chiedi una proroga","collabSession.countdown":"Scade tra {h}h {m}min","collabSession.expired":"Sessione scaduta.","collabSession.extensionPending":"Proroga richiesta, in attesa dell'admin","collabSession.invite":"Invita a creare","collabSession.inviteConfirm":"Invitare {name} a creare e pubblicare per 24 ore?","collabSession.inviteSent":"Invito inviato.","collabSession.inviteNotif":"Sei stato invitato a creare e pubblicare un titolo — hai 24 ore.","collabSession.extend48":"Proroga 48h","myTitles.heading":"I tuoi titoli pubblicati","myTitles.cancel":"Annulla modifica",
     "smallnox.title":"Il tuo assistente","smallnox.blurb":"SmallNox approva da solo commenti e iscrizioni pulite, e ti avvisa — arrabbiato — solo quando qualcosa sembra sospetto.","smallnox.communityBlurb":"SmallNox veglia su questi canali — se scrivi qualcosa fuori regola se ne accorge.","smallnox.modalTitle":"Ciao, sono SmallNox","smallnox.modalBody":"Controllo da solo i nuovi commenti e le nuove iscrizioni: se sono puliti li lascio passare subito, altrimenti li segnalo a Nox Morningstar. Nei canali della community faccio lo stesso lavoro — scrivi con rispetto e non mi vedrai mai arrabbiato.","smallnox.tipsTitle":"Un consiglio veloce","smallnox.tip1":"Scrivi @nomeutente in un commento o in un messaggio per taggare qualcuno — riceverà una notifica.","smallnox.tip2":"Nei messaggi privati trovi emoji e GIF sotto il campo di testo.","smallnox.tip3":"Nello Schedario, tocca il filtro \"Collaboratori\" per vedere i lavori di una persona specifica.","smallnox.tip4":"Nella tua Community, i messaggi privati hanno spunte di lettura e pallino verde se l'altra persona è online.","smallnox.tip5":"Hai pubblicato un titolo tu? Puoi modificarlo in qualsiasi momento dall'area Amministra, anche a sessione scaduta.","smallnox.tip6":"Tocca lo stemma in alto a sinistra da qualsiasi pagina per tornare subito alla home.",
     "community.loadError":"Caricamento non riuscito (controlla la connessione).","community.retry":"Riprova",
@@ -147,7 +147,7 @@ var STR = {
     "users.empty":"No registered users yet.","users.noName":"User","users.joined":"Joined on","users.daysHere":"{n} days on the site",
     "users.eligible":"Eligible","users.waitingDays":"{n} days to go","users.grant":"Grant checkmark","users.revoke":"Remove checkmark","users.earlyGrantConfirm":"{name} hasn't reached 90 days yet ({n} to go). Grant the checkmark anyway as an exception?",
     "notif.title":"Notifications","notif.markAll":"Mark all as read","notif.empty":"No notifications.","notif.someone":"Someone","notif.justNow":"Just now","notif.minsAgo":"{n} min ago","notif.hoursAgo":"{n} h ago","notif.daysAgo":"{n} d ago",
-    "nav.community":"Community","community.eyebrow":"Beyond the Archive","community.title":"Community","community.rule":"No pornographic material: sensual at most. Anyone who breaks the rule is banned and removed from the site.","community.tabChannels":"Channels","community.tabDms":"Private messages","community.tabCollab":"Collaborators","community.collabHint":"Works published together with invited collaborators, all in one place.","community.newChannelPh":"New channel name (e.g. Movies)","community.createChannel":"Create channel","community.back":"← Back","community.messagePh":"Write a message…","community.send":"Send","community.dmHint":"To message someone privately, open one of their messages in a channel and use \"Private message\".","community.noChannels":"No channels yet. Create one.","community.noMessages":"No messages yet.","community.noDms":"No private conversations yet.","community.privateMessage":"Private message","community.report":"Report","community.reportPrompt":"Why are you reporting this message? (optional)","community.reportSent":"Report sent, thank you.","community.you":"You","community.tabFriends":"Friends","community.addFriend":"Add friend","community.requestSent":"Request sent","community.acceptFriend":"Accept friend request","community.declineFriend":"Decline","community.pendingReceived":"Received requests","community.pendingSent":"Sent requests","community.friendsList":"Your friends","community.searchFriends":"Search for someone","community.searchFriendsPh":"Username…","community.noResults":"No results.",
+    "nav.community":"Community","community.eyebrow":"Beyond the Archive","community.title":"Community","community.rule":"No pornographic material: sensual at most. Anyone who breaks the rule is banned and removed from the site.","community.tabChannels":"Channels","community.tabDms":"Private messages","community.tabCollab":"Collaborators","community.collabHint":"Works published together with invited collaborators, all in one place.","diary.tab":"Diary","diary.hint":"Share a photo, a mood, or a note about your day — everyone will see it here.","diary.kindPhoto":"📷 Photo","diary.kindMood":"🙂 Mood","diary.kindNote":"📝 Daily note","diary.captionPh":"Caption (optional)…","diary.moodPh":"Want to add a few words? (optional)…","diary.notePh":"How did today go?","diary.publish":"Post","diary.filterAll":"All","diary.filterBy":"By {name} ×","diary.needPhoto":"Choose a photo first.","diary.needMood":"Choose a mood first.","diary.publishError":"Post failed. Try again.","diary.empty":"No posts yet — be the first.","pubProfile.notFound":"Profile not found.","pubProfile.titlesHeading":"Published titles","pubProfile.diaryHeading":"Diary","pubProfile.memberSince":"Member since {date}","community.newChannelPh":"New channel name (e.g. Movies)","community.createChannel":"Create channel","community.back":"← Back","community.messagePh":"Write a message…","community.send":"Send","community.dmHint":"To message someone privately, open one of their messages in a channel and use \"Private message\".","community.noChannels":"No channels yet. Create one.","community.noMessages":"No messages yet.","community.noDms":"No private conversations yet.","community.privateMessage":"Private message","community.report":"Report","community.reportPrompt":"Why are you reporting this message? (optional)","community.reportSent":"Report sent, thank you.","community.you":"You","community.tabFriends":"Friends","community.addFriend":"Add friend","community.requestSent":"Request sent","community.acceptFriend":"Accept friend request","community.declineFriend":"Decline","community.pendingReceived":"Received requests","community.pendingSent":"Sent requests","community.friendsList":"Your friends","community.searchFriends":"Search for someone","community.searchFriendsPh":"Username…","community.noResults":"No results.",
     "collabSession.title":"Active creation sessions","collabSession.hint":"A friend invited to create can publish titles only while their session is active.","collabSession.active":"Active creation session","collabSession.hintCollab":"You can add titles to the catalog while the session is active. If you can't finish in time, request an extension.","collabSession.requestExtension":"I can't make it, request an extension","collabSession.countdown":"Expires in {h}h {m}min","collabSession.expired":"Session expired.","collabSession.extensionPending":"Extension requested, waiting on the admin","collabSession.invite":"Invite to create","collabSession.inviteConfirm":"Invite {name} to create and publish for 24 hours?","collabSession.inviteSent":"Invitation sent.","collabSession.inviteNotif":"You've been invited to create and publish a title — you have 24 hours.","collabSession.extend48":"Extend 48h","myTitles.heading":"Your published titles","myTitles.cancel":"Cancel edit",
     "smallnox.title":"Your assistant","smallnox.blurb":"SmallNox approves clean comments and signups on his own, and warns you — angrily — only when something looks suspicious.","smallnox.communityBlurb":"SmallNox watches over these channels — if you write something out of line, he'll notice.","smallnox.modalTitle":"Hi, I'm SmallNox","smallnox.modalBody":"I check new comments and new signups on my own: if they're clean I let them through right away, otherwise I flag them for Nox Morningstar. I do the same job in the community channels — write with respect and you'll never see me angry.","smallnox.tipsTitle":"A quick tip","smallnox.tip1":"Type @username in a comment or message to tag someone — they get notified.","smallnox.tip2":"In private messages you'll find emoji and GIFs right under the text field.","smallnox.tip3":"In the Index, tap the \"Collaborators\" filter to see one person's work.","smallnox.tip4":"In your Community private messages, you get read receipts and a green dot when the other person is online.","smallnox.tip5":"Published a title yourself? You can edit it anytime from Admin, even after your session expires.","smallnox.tip6":"Tap the crest in the top-left corner from any page to jump back home.",
     "community.loadError":"Loading failed (check your connection).","community.retry":"Retry",
@@ -265,7 +265,7 @@ var STR = {
     "users.empty":"Aún no hay usuarios registrados.","users.noName":"Usuario","users.joined":"Registrado el","users.daysHere":"{n} días en el sitio",
     "users.eligible":"Apto","users.waitingDays":"faltan {n} días","users.grant":"Otorgar marca","users.revoke":"Quitar marca","users.earlyGrantConfirm":"{name} aún no ha alcanzado los 90 días (faltan {n}). ¿Otorgar la marca de todos modos como excepción?",
     "notif.title":"Notificaciones","notif.markAll":"Marcar todas como leídas","notif.empty":"No hay notificaciones.","notif.someone":"Alguien","notif.justNow":"Ahora mismo","notif.minsAgo":"hace {n} min","notif.hoursAgo":"hace {n} h","notif.daysAgo":"hace {n} d",
-    "nav.community":"Comunidad","community.eyebrow":"Fuera del Archivo","community.title":"Comunidad","community.rule":"Nada de material pornográfico: como mucho contenido sensual. Quien incumpla la regla será baneado y eliminado del sitio.","community.tabChannels":"Canales","community.tabDms":"Mensajes privados","community.tabCollab":"Colaboradores","community.collabHint":"Las obras publicadas junto a los colaboradores invitados, todas en un solo lugar.","community.newChannelPh":"Nombre del nuevo canal (ej. Cine)","community.createChannel":"Crear canal","community.back":"← Volver","community.messagePh":"Escribe un mensaje…","community.send":"Enviar","community.dmHint":"Para escribir en privado a alguien, abre uno de sus mensajes en un canal y usa \"Mensaje privado\".","community.noChannels":"Aún no hay canales. Crea uno.","community.noMessages":"Aún no hay mensajes.","community.noDms":"Aún no hay conversaciones privadas.","community.privateMessage":"Mensaje privado","community.report":"Denunciar","community.reportPrompt":"¿Por qué denuncias este mensaje? (opcional)","community.reportSent":"Denuncia enviada, gracias.","community.you":"Tú","community.tabFriends":"Amigos","community.addFriend":"Añadir amigo","community.requestSent":"Solicitud enviada","community.acceptFriend":"Aceptar amistad","community.declineFriend":"Rechazar","community.pendingReceived":"Solicitudes recibidas","community.pendingSent":"Solicitudes enviadas","community.friendsList":"Tus amigos","community.searchFriends":"Buscar a alguien","community.searchFriendsPh":"Nombre de usuario…","community.noResults":"Sin resultados.",
+    "nav.community":"Comunidad","community.eyebrow":"Fuera del Archivo","community.title":"Comunidad","community.rule":"Nada de material pornográfico: como mucho contenido sensual. Quien incumpla la regla será baneado y eliminado del sitio.","community.tabChannels":"Canales","community.tabDms":"Mensajes privados","community.tabCollab":"Colaboradores","community.collabHint":"Las obras publicadas junto a los colaboradores invitados, todas en un solo lugar.","diary.tab":"Diario","diary.hint":"Comparte una foto, un estado de ánimo o una nota del día — todos lo verán aquí.","diary.kindPhoto":"📷 Foto","diary.kindMood":"🙂 Estado de ánimo","diary.kindNote":"📝 Nota del día","diary.captionPh":"Descripción (opcional)…","diary.moodPh":"¿Quieres añadir algunas palabras? (opcional)…","diary.notePh":"¿Cómo fue tu día?","diary.publish":"Publicar","diary.filterAll":"Todos","diary.filterBy":"De {name} ×","diary.needPhoto":"Elige primero una foto.","diary.needMood":"Elige primero un estado de ánimo.","diary.publishError":"Error al publicar. Inténtalo de nuevo.","diary.empty":"Aún no hay publicaciones — sé el primero.","pubProfile.notFound":"Perfil no encontrado.","pubProfile.titlesHeading":"Títulos publicados","pubProfile.diaryHeading":"Diario","pubProfile.memberSince":"Miembro desde {date}","community.newChannelPh":"Nombre del nuevo canal (ej. Cine)","community.createChannel":"Crear canal","community.back":"← Volver","community.messagePh":"Escribe un mensaje…","community.send":"Enviar","community.dmHint":"Para escribir en privado a alguien, abre uno de sus mensajes en un canal y usa \"Mensaje privado\".","community.noChannels":"Aún no hay canales. Crea uno.","community.noMessages":"Aún no hay mensajes.","community.noDms":"Aún no hay conversaciones privadas.","community.privateMessage":"Mensaje privado","community.report":"Denunciar","community.reportPrompt":"¿Por qué denuncias este mensaje? (opcional)","community.reportSent":"Denuncia enviada, gracias.","community.you":"Tú","community.tabFriends":"Amigos","community.addFriend":"Añadir amigo","community.requestSent":"Solicitud enviada","community.acceptFriend":"Aceptar amistad","community.declineFriend":"Rechazar","community.pendingReceived":"Solicitudes recibidas","community.pendingSent":"Solicitudes enviadas","community.friendsList":"Tus amigos","community.searchFriends":"Buscar a alguien","community.searchFriendsPh":"Nombre de usuario…","community.noResults":"Sin resultados.",
     "collabSession.title":"Sesiones de creación activas","collabSession.hint":"Un amigo invitado a crear puede publicar títulos solo mientras su sesión esté activa.","collabSession.active":"Sesión de creación activa","collabSession.hintCollab":"Puedes añadir títulos al catálogo mientras la sesión esté activa. Si no llegas a tiempo, pide una prórroga.","collabSession.requestExtension":"No llego, pedir prórroga","collabSession.countdown":"Caduca en {h}h {m}min","collabSession.expired":"Sesión caducada.","collabSession.extensionPending":"Prórroga solicitada, esperando al admin","collabSession.invite":"Invitar a crear","collabSession.inviteConfirm":"¿Invitar a {name} a crear y publicar durante 24 horas?","collabSession.inviteSent":"Invitación enviada.","collabSession.inviteNotif":"Has sido invitado a crear y publicar un título — tienes 24 horas.","collabSession.extend48":"Prórroga 48h","myTitles.heading":"Tus títulos publicados","myTitles.cancel":"Cancelar edición",
     "smallnox.title":"Tu asistente","smallnox.blurb":"SmallNox aprueba solo comentarios e inscripciones limpias, y te avisa -enfadado- solo cuando algo parece sospechoso.","smallnox.communityBlurb":"SmallNox vigila estos canales -si escribes algo fuera de norma, se dará cuenta.","smallnox.modalTitle":"Hola, soy SmallNox","smallnox.modalBody":"Reviso solo los nuevos comentarios y las nuevas inscripciones: si están limpios los dejo pasar enseguida, si no se los señalo a Nox Morningstar. En los canales de la comunidad hago el mismo trabajo -escribe con respeto y nunca me verás enfadado.","smallnox.tipsTitle":"Un consejo rápido","smallnox.tip1":"Escribe @usuario en un comentario o mensaje para etiquetar a alguien — recibirá una notificación.","smallnox.tip2":"En los mensajes privados encontrarás emojis y GIFs justo debajo del campo de texto.","smallnox.tip3":"En el Catálogo, toca el filtro \"Colaboradores\" para ver el trabajo de una persona.","smallnox.tip4":"En tus mensajes privados de la Comunidad hay confirmaciones de lectura y un punto verde si la otra persona está en línea.","smallnox.tip5":"¿Publicaste un título tú? Puedes editarlo en cualquier momento desde Administración, incluso con la sesión caducada.","smallnox.tip6":"Toca el escudo arriba a la izquierda desde cualquier página para volver al inicio.",
     "community.loadError":"Error al cargar (revisa tu conexión).","community.retry":"Reintentar",
@@ -383,7 +383,7 @@ var STR = {
     "users.empty":"Aucun utilisateur inscrit pour l'instant.","users.noName":"Utilisateur","users.joined":"Inscrit le","users.daysHere":"{n} jours sur le site",
     "users.eligible":"Éligible","users.waitingDays":"encore {n} jours","users.grant":"Accorder le badge","users.revoke":"Retirer le badge","users.earlyGrantConfirm":"{name} n'a pas encore atteint 90 jours ({n} restants). Accorder le badge quand même, à titre exceptionnel ?",
     "notif.title":"Notifications","notif.markAll":"Tout marquer comme lu","notif.empty":"Aucune notification.","notif.someone":"Quelqu'un","notif.justNow":"À l'instant","notif.minsAgo":"il y a {n} min","notif.hoursAgo":"il y a {n} h","notif.daysAgo":"il y a {n} j",
-    "nav.community":"Communauté","community.eyebrow":"En dehors de l'Archive","community.title":"Communauté","community.rule":"Aucun contenu pornographique : sensuel tout au plus. Toute violation entraîne le bannissement et la suppression du site.","community.tabChannels":"Canaux","community.tabDms":"Messages privés","community.tabCollab":"Collaborateurs","community.collabHint":"Les œuvres publiées avec les collaborateurs invités, toutes au même endroit.","community.newChannelPh":"Nom du nouveau canal (ex. Cinéma)","community.createChannel":"Créer un canal","community.back":"← Retour","community.messagePh":"Écrivez un message…","community.send":"Envoyer","community.dmHint":"Pour écrire en privé à quelqu'un, ouvrez un de ses messages dans un canal et utilisez \"Message privé\".","community.noChannels":"Aucun canal pour l'instant. Créez-en un.","community.noMessages":"Aucun message pour l'instant.","community.noDms":"Aucune conversation privée pour l'instant.","community.privateMessage":"Message privé","community.report":"Signaler","community.reportPrompt":"Pourquoi signalez-vous ce message ? (facultatif)","community.reportSent":"Signalement envoyé, merci.","community.you":"Vous","community.tabFriends":"Amis","community.addFriend":"Ajouter un ami","community.requestSent":"Demande envoyée","community.acceptFriend":"Accepter l'amitié","community.declineFriend":"Refuser","community.pendingReceived":"Demandes reçues","community.pendingSent":"Demandes envoyées","community.friendsList":"Vos amis","community.searchFriends":"Rechercher une personne","community.searchFriendsPh":"Nom d'utilisateur…","community.noResults":"Aucun résultat.",
+    "nav.community":"Communauté","community.eyebrow":"En dehors de l'Archive","community.title":"Communauté","community.rule":"Aucun contenu pornographique : sensuel tout au plus. Toute violation entraîne le bannissement et la suppression du site.","community.tabChannels":"Canaux","community.tabDms":"Messages privés","community.tabCollab":"Collaborateurs","community.collabHint":"Les œuvres publiées avec les collaborateurs invités, toutes au même endroit.","diary.tab":"Journal","diary.hint":"Partagez une photo, une humeur ou une note du jour — tout le monde la verra ici.","diary.kindPhoto":"📷 Photo","diary.kindMood":"🙂 Humeur","diary.kindNote":"📝 Note du jour","diary.captionPh":"Légende (facultatif)…","diary.moodPh":"Ajouter quelques mots ? (facultatif)…","diary.notePh":"Comment s'est passée votre journée ?","diary.publish":"Publier","diary.filterAll":"Tous","diary.filterBy":"De {name} ×","diary.needPhoto":"Choisissez d'abord une photo.","diary.needMood":"Choisissez d'abord une humeur.","diary.publishError":"Échec de la publication. Réessayez.","diary.empty":"Aucune publication pour l'instant — soyez le premier.","pubProfile.notFound":"Profil introuvable.","pubProfile.titlesHeading":"Titres publiés","pubProfile.diaryHeading":"Journal","pubProfile.memberSince":"Membre depuis {date}","community.newChannelPh":"Nom du nouveau canal (ex. Cinéma)","community.createChannel":"Créer un canal","community.back":"← Retour","community.messagePh":"Écrivez un message…","community.send":"Envoyer","community.dmHint":"Pour écrire en privé à quelqu'un, ouvrez un de ses messages dans un canal et utilisez \"Message privé\".","community.noChannels":"Aucun canal pour l'instant. Créez-en un.","community.noMessages":"Aucun message pour l'instant.","community.noDms":"Aucune conversation privée pour l'instant.","community.privateMessage":"Message privé","community.report":"Signaler","community.reportPrompt":"Pourquoi signalez-vous ce message ? (facultatif)","community.reportSent":"Signalement envoyé, merci.","community.you":"Vous","community.tabFriends":"Amis","community.addFriend":"Ajouter un ami","community.requestSent":"Demande envoyée","community.acceptFriend":"Accepter l'amitié","community.declineFriend":"Refuser","community.pendingReceived":"Demandes reçues","community.pendingSent":"Demandes envoyées","community.friendsList":"Vos amis","community.searchFriends":"Rechercher une personne","community.searchFriendsPh":"Nom d'utilisateur…","community.noResults":"Aucun résultat.",
     "collabSession.title":"Sessions de création actives","collabSession.hint":"Un ami invité à créer ne peut publier de titres que tant que sa session est active.","collabSession.active":"Session de création active","collabSession.hintCollab":"Vous pouvez ajouter des titres au catalogue tant que la session est active. Si vous ne pouvez pas terminer à temps, demandez une prolongation.","collabSession.requestExtension":"Je n'y arrive pas, demander une prolongation","collabSession.countdown":"Expire dans {h}h {m}min","collabSession.expired":"Session expirée.","collabSession.extensionPending":"Prolongation demandée, en attente de l'admin","collabSession.invite":"Inviter à créer","collabSession.inviteConfirm":"Inviter {name} à créer et publier pendant 24 heures ?","collabSession.inviteSent":"Invitation envoyée.","collabSession.inviteNotif":"Vous avez été invité à créer et publier un titre — vous avez 24 heures.","collabSession.extend48":"Prolonger de 48h","myTitles.heading":"Vos titres publiés","myTitles.cancel":"Annuler la modification",
     "smallnox.title":"Votre assistant","smallnox.blurb":"SmallNox approuve tout seul les commentaires et inscriptions sans souci, et vous prévient -en colère- seulement quand quelque chose semble suspect.","smallnox.communityBlurb":"SmallNox veille sur ces canaux -s'il vous arrive d'écrire quelque chose hors règles, il le remarquera.","smallnox.modalTitle":"Salut, je suis SmallNox","smallnox.modalBody":"Je vérifie tout seul les nouveaux commentaires et les nouvelles inscriptions : s'ils sont clean je les laisse passer tout de suite, sinon je les signale à Nox Morningstar. Je fais le même travail dans les canaux de la communauté -écrivez avec respect et vous ne me verrez jamais en colère.","smallnox.tipsTitle":"Une astuce rapide","smallnox.tip1":"Écrivez @nomutilisateur dans un commentaire ou un message pour identifier quelqu'un — il recevra une notification.","smallnox.tip2":"Dans les messages privés, les emojis et GIFs se trouvent juste sous le champ de texte.","smallnox.tip3":"Dans l'Index, touchez le filtre \"Collaborateurs\" pour voir le travail d'une personne.","smallnox.tip4":"Dans vos messages privés Communauté, vous avez des accusés de lecture et un point vert si l'autre personne est en ligne.","smallnox.tip5":"Vous avez publié un titre ? Vous pouvez le modifier à tout moment depuis Admin, même après l'expiration de votre session.","smallnox.tip6":"Touchez le blason en haut à gauche depuis n'importe quelle page pour revenir à l'accueil.",
     "community.loadError":"Échec du chargement (vérifiez votre connexion).","community.retry":"Réessayer",
@@ -501,7 +501,7 @@ var STR = {
     "users.empty":"Noch keine registrierten Nutzer.","users.noName":"Nutzer","users.joined":"Angemeldet am","users.daysHere":"{n} Tage dabei",
     "users.eligible":"Berechtigt","users.waitingDays":"noch {n} Tage","users.grant":"Häkchen vergeben","users.revoke":"Häkchen entfernen","users.earlyGrantConfirm":"{name} hat die 90 Tage noch nicht erreicht (noch {n} Tage). Häkchen trotzdem als Ausnahme vergeben?",
     "notif.title":"Benachrichtigungen","notif.markAll":"Alle als gelesen markieren","notif.empty":"Keine Benachrichtigungen.","notif.someone":"Jemand","notif.justNow":"Gerade eben","notif.minsAgo":"vor {n} Min","notif.hoursAgo":"vor {n} Std","notif.daysAgo":"vor {n} T",
-    "nav.community":"Community","community.eyebrow":"Jenseits des Archivs","community.title":"Community","community.rule":"Keine pornografischen Inhalte: höchstens sinnlich. Wer gegen die Regel verstößt, wird gesperrt und von der Seite entfernt.","community.tabChannels":"Kanäle","community.tabDms":"Private Nachrichten","community.tabCollab":"Mitwirkende","community.collabHint":"Die zusammen mit eingeladenen Mitwirkenden veröffentlichten Werke, alle an einem Ort.","community.newChannelPh":"Name des neuen Kanals (z. B. Kino)","community.createChannel":"Kanal erstellen","community.back":"← Zurück","community.messagePh":"Nachricht schreiben…","community.send":"Senden","community.dmHint":"Um jemandem privat zu schreiben, öffne eine seiner Nachrichten in einem Kanal und nutze \"Private Nachricht\".","community.noChannels":"Noch keine Kanäle. Erstelle einen.","community.noMessages":"Noch keine Nachrichten.","community.noDms":"Noch keine privaten Gespräche.","community.privateMessage":"Private Nachricht","community.report":"Melden","community.reportPrompt":"Warum meldest du diese Nachricht? (optional)","community.reportSent":"Meldung gesendet, danke.","community.you":"Du","community.tabFriends":"Freunde","community.addFriend":"Freund hinzufügen","community.requestSent":"Anfrage gesendet","community.acceptFriend":"Freundschaft annehmen","community.declineFriend":"Ablehnen","community.pendingReceived":"Erhaltene Anfragen","community.pendingSent":"Gesendete Anfragen","community.friendsList":"Deine Freunde","community.searchFriends":"Person suchen","community.searchFriendsPh":"Benutzername…","community.noResults":"Keine Ergebnisse.",
+    "nav.community":"Community","community.eyebrow":"Jenseits des Archivs","community.title":"Community","community.rule":"Keine pornografischen Inhalte: höchstens sinnlich. Wer gegen die Regel verstößt, wird gesperrt und von der Seite entfernt.","community.tabChannels":"Kanäle","community.tabDms":"Private Nachrichten","community.tabCollab":"Mitwirkende","community.collabHint":"Die zusammen mit eingeladenen Mitwirkenden veröffentlichten Werke, alle an einem Ort.","diary.tab":"Tagebuch","diary.hint":"Teile ein Foto, eine Stimmung oder eine Notiz zu deinem Tag — alle sehen es hier.","diary.kindPhoto":"📷 Foto","diary.kindMood":"🙂 Stimmung","diary.kindNote":"📝 Tagesnotiz","diary.captionPh":"Bildunterschrift (optional)…","diary.moodPh":"Möchtest du ein paar Worte hinzufügen? (optional)…","diary.notePh":"Wie war dein Tag?","diary.publish":"Veröffentlichen","diary.filterAll":"Alle","diary.filterBy":"Von {name} ×","diary.needPhoto":"Wähle zuerst ein Foto.","diary.needMood":"Wähle zuerst eine Stimmung.","diary.publishError":"Veröffentlichung fehlgeschlagen. Erneut versuchen.","diary.empty":"Noch keine Beiträge — sei der Erste.","pubProfile.notFound":"Profil nicht gefunden.","pubProfile.titlesHeading":"Veröffentlichte Titel","pubProfile.diaryHeading":"Tagebuch","pubProfile.memberSince":"Mitglied seit {date}","community.newChannelPh":"Name des neuen Kanals (z. B. Kino)","community.createChannel":"Kanal erstellen","community.back":"← Zurück","community.messagePh":"Nachricht schreiben…","community.send":"Senden","community.dmHint":"Um jemandem privat zu schreiben, öffne eine seiner Nachrichten in einem Kanal und nutze \"Private Nachricht\".","community.noChannels":"Noch keine Kanäle. Erstelle einen.","community.noMessages":"Noch keine Nachrichten.","community.noDms":"Noch keine privaten Gespräche.","community.privateMessage":"Private Nachricht","community.report":"Melden","community.reportPrompt":"Warum meldest du diese Nachricht? (optional)","community.reportSent":"Meldung gesendet, danke.","community.you":"Du","community.tabFriends":"Freunde","community.addFriend":"Freund hinzufügen","community.requestSent":"Anfrage gesendet","community.acceptFriend":"Freundschaft annehmen","community.declineFriend":"Ablehnen","community.pendingReceived":"Erhaltene Anfragen","community.pendingSent":"Gesendete Anfragen","community.friendsList":"Deine Freunde","community.searchFriends":"Person suchen","community.searchFriendsPh":"Benutzername…","community.noResults":"Keine Ergebnisse.",
     "collabSession.title":"Aktive Erstellungssitzungen","collabSession.hint":"Ein zum Erstellen eingeladener Freund kann Titel nur veröffentlichen, solange seine Sitzung aktiv ist.","collabSession.active":"Aktive Erstellungssitzung","collabSession.hintCollab":"Du kannst Titel zum Katalog hinzufügen, solange die Sitzung aktiv ist. Wenn du nicht rechtzeitig fertig wirst, bitte um eine Verlängerung.","collabSession.requestExtension":"Ich schaffe es nicht, Verlängerung anfragen","collabSession.countdown":"Läuft ab in {h}Std {m}Min","collabSession.expired":"Sitzung abgelaufen.","collabSession.extensionPending":"Verlängerung angefragt, wartet auf Admin","collabSession.invite":"Zum Erstellen einladen","collabSession.inviteConfirm":"{name} für 24 Stunden zum Erstellen und Veröffentlichen einladen?","collabSession.inviteSent":"Einladung gesendet.","collabSession.inviteNotif":"Du wurdest eingeladen, einen Titel zu erstellen und zu veröffentlichen — du hast 24 Stunden.","collabSession.extend48":"Um 48Std verlängern","myTitles.heading":"Deine veröffentlichten Titel","myTitles.cancel":"Bearbeitung abbrechen",
     "smallnox.title":"Dein Assistent","smallnox.blurb":"SmallNox genehmigt unbedenkliche Kommentare und Anmeldungen von selbst und meldet sich -wütend- nur, wenn etwas verdächtig wirkt.","smallnox.communityBlurb":"SmallNox wacht über diese Kanäle -wenn du etwas Regelwidriges schreibst, bemerkt er es.","smallnox.modalTitle":"Hallo, ich bin SmallNox","smallnox.modalBody":"Ich prüfe neue Kommentare und neue Anmeldungen ganz allein: sind sie unbedenklich, lasse ich sie sofort durch, sonst melde ich sie Nox Morningstar. In den Community-Kanälen mache ich dasselbe -schreib respektvoll und du wirst mich nie wütend erleben.","smallnox.tipsTitle":"Ein schneller Tipp","smallnox.tip1":"Schreibe @benutzername in einem Kommentar oder einer Nachricht, um jemanden zu markieren — er wird benachrichtigt.","smallnox.tip2":"In privaten Nachrichten findest du Emojis und GIFs direkt unter dem Textfeld.","smallnox.tip3":"Tippe im Katalog auf den Filter \"Mitwirkende\", um die Arbeiten einer Person zu sehen.","smallnox.tip4":"In deinen privaten Community-Nachrichten gibt es Lesebestätigungen und einen grünen Punkt, wenn die andere Person online ist.","smallnox.tip5":"Hast du selbst einen Titel veröffentlicht? Du kannst ihn jederzeit im Admin-Bereich bearbeiten, auch nach Ablauf deiner Sitzung.","smallnox.tip6":"Tippe von jeder Seite aus oben links auf das Wappen, um sofort zur Startseite zurückzukehren.",
     "community.loadError":"Laden fehlgeschlagen (Verbindung prüfen).","community.retry":"Erneut versuchen",
@@ -3115,6 +3115,7 @@ function switchCommunityTab(tab){
   if(tab === 'dms') loadDmThreads();
   if(tab === 'friends') loadFriendsPanel();
   if(tab === 'collab') renderCollabWorksTab();
+  if(tab === 'diary') loadDiaryFeed();
 }
 
 function renderCollabWorksTab(){
@@ -3151,6 +3152,358 @@ function renderCollabWorksTab(){
         '<div class="num mono">'+(item.issue||'')+'</div>'+
         '<h4>'+escapeHtml(item.title)+'</h4>'+
         '<div class="character">'+t('collab.credit')+' '+escapeHtml(collabNames)+'</div>'+
+        '<div class="meta-row"><span>'+(item.date||'')+'</span></div>'+
+      '</div>';
+    card.querySelector('[data-open]').addEventListener('click', function(){ openTitleModal(item); });
+    grid.appendChild(card);
+  });
+}
+
+/* ============ DIARIO (post utente: foto / stato d'animo / nota) ============ */
+var diaryActiveKind = 'photo';
+var diaryActiveFilter = 'all';
+var diaryAuthorFilter = null; // {id, name} — impostato toccando il nome di un autore su un post
+
+function switchDiaryKind(kind){
+  diaryActiveKind = kind;
+  document.querySelectorAll('.diary-kind-tab').forEach(function(btn){
+    btn.classList.toggle('active', btn.dataset.dkind === kind);
+  });
+  document.querySelectorAll('.diary-form').forEach(function(f){
+    f.classList.toggle('hidden', f.dataset.dform !== kind);
+  });
+}
+
+function switchDiaryFilter(kind){
+  diaryActiveFilter = kind;
+  diaryAuthorFilter = null; // cambiare categoria a mano annulla il filtro per persona
+  document.querySelectorAll('.diary-filter-btn').forEach(function(btn){
+    btn.classList.toggle('active', btn.dataset.dfilter === kind);
+  });
+  var authorBtn = document.getElementById('diaryFilterAuthorBtn');
+  if(authorBtn) authorBtn.classList.add('hidden');
+  loadDiaryFeed();
+}
+
+function filterDiaryByAuthor(userId, name){
+  diaryAuthorFilter = { id: userId, name: name };
+  document.querySelectorAll('.diary-filter-btn').forEach(function(btn){ btn.classList.remove('active'); });
+  var authorBtn = document.getElementById('diaryFilterAuthorBtn');
+  if(authorBtn){
+    authorBtn.textContent = t('diary.filterBy').replace('{name}', name);
+    authorBtn.classList.remove('hidden');
+    authorBtn.classList.add('active');
+  }
+  loadDiaryFeed();
+}
+
+function uploadDiaryPhoto(file){
+  var session = getSession();
+  var extMatch = /\.([a-zA-Z0-9]+)$/.exec(file.name || '');
+  var ext = extMatch ? extMatch[1].toLowerCase() : 'jpg';
+  var path = 'posts/' + currentUserId() + '/' + Date.now() + '_' + Math.random().toString(36).slice(2,8) + '.' + ext;
+  return fetch(SUPABASE_URL + '/storage/v1/object/comic-pages/' + path, {
+    method:'POST',
+    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type': file.type || 'image/jpeg' },
+    body: file
+  }).then(function(r){
+    if(!r.ok) throw new Error('diary photo upload failed: ' + r.status);
+    return SUPABASE_URL + '/storage/v1/object/public/comic-pages/' + path;
+  });
+}
+
+function submitDiaryPost(){
+  if(!isSignedIn()){ openAuth('login'); return; }
+  var err = document.getElementById('diaryComposerError');
+  err.textContent = '';
+  var session = getSession();
+  var kind = diaryActiveKind;
+  var btn = document.getElementById('btnDiaryPublish');
+
+  var payloadStep;
+  if(kind === 'photo'){
+    var file = document.getElementById('fDiaryPhoto').files[0];
+    var caption = document.getElementById('fDiaryPhotoCaption').value.trim();
+    if(!file){ err.textContent = t('diary.needPhoto'); return; }
+    btn.disabled = true;
+    payloadStep = uploadDiaryPhoto(file).then(function(url){
+      return { kind:'photo', body: caption || null, image_url: url };
+    });
+  } else if(kind === 'mood'){
+    var moodBtn = document.querySelector('.diary-mood-btn.active');
+    var moodText = document.getElementById('fDiaryMoodText').value.trim();
+    if(!moodBtn){ err.textContent = t('diary.needMood'); return; }
+    btn.disabled = true;
+    var body = moodBtn.dataset.mood + (moodText ? ' ' + moodText : '');
+    payloadStep = Promise.resolve({ kind:'mood', body: body, image_url: null });
+  } else {
+    var noteText = document.getElementById('fDiaryNote').value.trim();
+    if(!noteText){ err.textContent = t('err.required'); return; }
+    btn.disabled = true;
+    payloadStep = Promise.resolve({ kind:'note', body: noteText, image_url: null });
+  }
+
+  payloadStep.then(function(payload){
+    payload.user_id = currentUserId();
+    return fetch(SUPABASE_URL + '/rest/v1/user_posts', {
+      method:'POST',
+      headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json', 'Prefer':'return=representation' },
+      body: JSON.stringify(payload)
+    });
+  }).then(function(r){
+    if(!r.ok) throw new Error('post insert failed: ' + r.status);
+    document.getElementById('fDiaryPhoto').value = '';
+    document.getElementById('fDiaryPhotoCaption').value = '';
+    document.getElementById('fDiaryMoodText').value = '';
+    document.getElementById('fDiaryNote').value = '';
+    document.querySelectorAll('.diary-mood-btn').forEach(function(b){ b.classList.remove('active'); });
+    loadDiaryFeed();
+  }).catch(function(e){
+    console.warn('Diary post failed:', e);
+    err.textContent = t('diary.publishError');
+  }).then(function(){ btn.disabled = false; });
+}
+
+function loadDiaryFeed(containerId, forcedUserId){
+  containerId = containerId || 'diaryFeed';
+  var feed = document.getElementById(containerId);
+  if(!feed) return;
+  feed.innerHTML = '<p class="form-note">…</p>';
+  var url = SUPABASE_URL + '/rest/v1/user_posts?select=*&order=created_at.desc&limit=60';
+  if(forcedUserId){
+    url += '&user_id=eq.' + encodeURIComponent(forcedUserId);
+  } else {
+    if(diaryActiveFilter !== 'all') url += '&kind=eq.' + encodeURIComponent(diaryActiveFilter);
+    if(diaryAuthorFilter) url += '&user_id=eq.' + encodeURIComponent(diaryAuthorFilter.id);
+  }
+  fetch(url, { headers: communityHeaders() })
+    .then(function(r){ if(!r.ok) throw new Error('diary feed read failed'); return r.json(); })
+    .then(function(rows){ renderDiaryFeed(rows, containerId); })
+    .catch(function(e){ feed.innerHTML = ''; console.warn('Diary feed load failed:', e); });
+}
+
+function renderDiaryFeed(posts, containerId){
+  containerId = containerId || 'diaryFeed';
+  var feed = document.getElementById(containerId);
+  if(!feed) return;
+  feed.innerHTML = '';
+  if(posts.length === 0){
+    feed.innerHTML = '<p class="form-note">' + t('diary.empty') + '</p>';
+    return;
+  }
+  posts.forEach(function(p){
+    var card = document.createElement('div');
+    card.className = 'diary-post';
+    card.dataset.postId = p.id;
+    var kindIcon = p.kind === 'photo' ? '📷' : (p.kind === 'mood' ? '🙂' : '📝');
+    var mediaHtml = p.image_url ? '<img class="diary-post-img" src="'+escapeHtml(p.image_url)+'" alt="">' : '';
+    var bodyHtml = p.body ? '<div class="diary-post-body">'+renderBodyHtml(p.body)+'</div>' : '';
+    card.innerHTML =
+      '<div class="diary-post-head">'+
+        '<button type="button" class="diary-post-author" data-author="'+p.user_id+'">'+t('notif.someone')+'</button>'+
+        '<span class="diary-post-kind">'+kindIcon+'</span>'+
+        '<span class="diary-post-when">'+notifTimeAgo(p.created_at)+'</span>'+
+      '</div>'+
+      mediaHtml + bodyHtml +
+      '<div class="diary-post-actions">'+
+        '<button type="button" class="diary-like-btn" data-like="'+p.id+'">♡ <span class="cnt">'+(p.like_count||0)+'</span></button>'+
+        '<button type="button" class="diary-comment-toggle" data-comments="'+p.id+'">💬 <span class="cnt">'+(p.comment_count||0)+'</span></button>'+
+      '</div>'+
+      '<div class="diary-comments hidden" id="diaryComments_'+p.id+'"></div>';
+
+    getDisplayName(p.user_id).then(function(name){
+      var authorBtn = card.querySelector('[data-author]');
+      if(authorBtn){
+        authorBtn.textContent = name;
+        authorBtn.addEventListener('click', function(){
+          window.location.href = 'profile.html?user=' + encodeURIComponent(p.user_id);
+        });
+      }
+    });
+
+    card.querySelector('[data-like]').addEventListener('click', function(){ toggleDiaryLike(p.id, this); });
+    card.querySelector('[data-comments]').addEventListener('click', function(){ toggleDiaryComments(p.id); });
+
+    feed.appendChild(card);
+  });
+
+  if(isSignedIn() && posts.length){
+    var ids = posts.map(function(p){ return p.id; }).join(',');
+    fetch(SUPABASE_URL + '/rest/v1/post_likes?select=post_id&user_id=eq.'+encodeURIComponent(currentUserId())+'&post_id=in.('+ids+')', { headers: communityHeaders() })
+      .then(function(r){ return r.ok ? r.json() : []; })
+      .then(function(rows){
+        rows.forEach(function(row){
+          var btn = feed.querySelector('[data-like="'+row.post_id+'"]');
+          if(btn){
+            var cnt = btn.querySelector('.cnt').textContent;
+            btn.classList.add('active');
+            btn.innerHTML = '♥ <span class="cnt">'+cnt+'</span>';
+          }
+        });
+      }).catch(function(){});
+  }
+}
+
+function toggleDiaryLike(postId, btnEl){
+  if(!isSignedIn()){ openAuth('login'); return; }
+  var session = getSession();
+  var isLiked = btnEl.classList.contains('active');
+  var req = isLiked
+    ? fetch(SUPABASE_URL + '/rest/v1/post_likes?user_id=eq.'+encodeURIComponent(currentUserId())+'&post_id=eq.'+encodeURIComponent(postId), {
+        method:'DELETE', headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
+      })
+    : fetch(SUPABASE_URL + '/rest/v1/post_likes', {
+        method:'POST',
+        headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
+        body: JSON.stringify({ user_id: currentUserId(), post_id: postId })
+      });
+  req.then(function(r){
+    if(!r.ok) throw new Error('post like toggle failed');
+    var cntEl = btnEl.querySelector('.cnt');
+    var cnt = parseInt(cntEl.textContent, 10) || 0;
+    cnt = isLiked ? Math.max(cnt - 1, 0) : cnt + 1;
+    btnEl.classList.toggle('active', !isLiked);
+    btnEl.innerHTML = (isLiked ? '♡ ' : '♥ ') + '<span class="cnt">'+cnt+'</span>';
+  }).catch(function(e){ console.warn('Post like toggle failed:', e); });
+}
+
+function toggleDiaryComments(postId){
+  var box = document.getElementById('diaryComments_' + postId);
+  if(!box) return;
+  var willShow = box.classList.contains('hidden');
+  box.classList.toggle('hidden');
+  if(willShow && !box.dataset.loaded){
+    box.dataset.loaded = '1';
+    loadDiaryComments(postId, box);
+  }
+}
+
+function loadDiaryComments(postId, box){
+  box.innerHTML = '<p class="form-note">…</p>';
+  fetch(SUPABASE_URL + '/rest/v1/post_comments?post_id=eq.'+encodeURIComponent(postId)+'&select=*&order=created_at.asc', { headers: communityHeaders() })
+    .then(function(r){ if(!r.ok) throw new Error('post comments read failed'); return r.json(); })
+    .then(function(rows){
+      var list = document.createElement('div');
+      list.className = 'diary-comments-list';
+      if(rows.length === 0){
+        list.innerHTML = '<p class="form-note">' + t('comments.empty') + '</p>';
+      } else {
+        rows.forEach(function(c){
+          var div = document.createElement('div');
+          div.className = 'comment-item';
+          div.innerHTML = '<span class="author">'+escapeHtml(c.author_name || t('notif.someone'))+'</span><div class="body">'+renderBodyHtml(c.body)+'</div>';
+          list.appendChild(div);
+        });
+      }
+      box.innerHTML = '';
+      box.appendChild(list);
+      if(isSignedIn()){
+        box.insertAdjacentHTML('beforeend',
+          '<div class="diary-comment-form"><input type="text" class="diary-comment-input" maxlength="300" placeholder="'+t('requests.placeholder')+'"><button type="button" class="btn btn-sm btn-ghost diary-comment-send">'+t('community.send')+'</button></div>');
+        var input = box.querySelector('.diary-comment-input');
+        var sendBtn = box.querySelector('.diary-comment-send');
+        sendBtn.addEventListener('click', function(){ submitDiaryComment(postId, input, box); });
+        input.addEventListener('keydown', function(e){ if(e.key === 'Enter') submitDiaryComment(postId, input, box); });
+      }
+    })
+    .catch(function(e){ box.innerHTML = ''; console.warn('Post comments load failed:', e); });
+}
+
+function submitDiaryComment(postId, input, box){
+  var body = input.value.trim();
+  if(!body) return;
+  if(!isSignedIn()){ openAuth('login'); return; }
+  var session = getSession();
+  var nameStep = currentProfile !== null ? Promise.resolve(currentProfile) : loadOwnProfile().then(function(){ return currentProfile; });
+  nameStep.then(function(profile){
+    var authorName = publicDisplayName(profile);
+    return fetch(SUPABASE_URL + '/rest/v1/post_comments', {
+      method:'POST',
+      headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
+      body: JSON.stringify({ post_id: postId, user_id: currentUserId(), author_name: authorName, body: body })
+    });
+  }).then(function(r){
+    if(!r.ok) throw new Error('post comment insert failed');
+    input.value = '';
+    box.dataset.loaded = '';
+    loadDiaryComments(postId, box);
+    var card = document.querySelector('.diary-post[data-post-id="'+postId+'"]');
+    if(card){
+      var cntEl = card.querySelector('[data-comments] .cnt');
+      if(cntEl) cntEl.textContent = (parseInt(cntEl.textContent,10)||0) + 1;
+    }
+  }).catch(function(e){ console.warn('Post comment submit failed:', e); });
+}
+
+/* ============ PROFILO PUBBLICO (profile.html?user=<id>) ============ */
+function renderPublicProfilePage(){
+  var section = document.getElementById('profileSection');
+  if(!section) return; // non siamo su profile.html
+  var params = new URLSearchParams(window.location.search);
+  var userId = params.get('user');
+  var notFoundBox = document.getElementById('profileNotFound');
+  var headerBox = document.getElementById('profileHeaderBox');
+  var titlesBox = document.getElementById('profileTitlesBox');
+  var diaryBox = document.getElementById('profileDiaryBox');
+  if(!userId){ notFoundBox.classList.remove('hidden'); return; }
+
+  fetch(SUPABASE_URL + '/rest/v1/profiles?id=eq.' + encodeURIComponent(userId) + '&select=*', { headers: communityHeaders() })
+    .then(function(r){ if(!r.ok) throw new Error('profile read failed'); return r.json(); })
+    .then(function(rows){
+      var p = rows[0];
+      if(!p){ notFoundBox.classList.remove('hidden'); return; }
+      headerBox.classList.remove('hidden');
+      titlesBox.classList.remove('hidden');
+      diaryBox.classList.remove('hidden');
+
+      document.getElementById('pubProfileName').textContent = p.display_name || t('notif.someone');
+      var avatarImg = document.getElementById('pubProfileAvatar');
+      avatarImg.src = p.avatar_url || '';
+      avatarImg.style.opacity = p.avatar_url ? '1' : '0.15';
+      if(p.bio) document.getElementById('pubProfileBio').textContent = p.bio;
+
+      var metaParts = [];
+      if(p.verified) metaParts.push(verifiedBadge('verified.commenter'));
+      if(p.created_at){
+        var joined = new Date(p.created_at);
+        if(!isNaN(joined)) metaParts.push('<span class="pub-profile-joined">' + t('pubProfile.memberSince').replace('{date}', joined.toLocaleDateString()) + '</span>');
+      }
+      document.getElementById('pubProfileMeta').innerHTML = metaParts.join(' ');
+
+      var favs = p.favorite_characters || [];
+      var favsBox = document.getElementById('pubProfileFavs');
+      favsBox.innerHTML = favs.map(function(f){ return '<span class="pub-profile-fav-tag">' + escapeHtml(f) + '</span>'; }).join('');
+
+      renderProfileTitles(userId);
+      loadDiaryFeed('profileDiaryFeed', userId);
+    })
+    .catch(function(e){
+      console.warn('Public profile load failed:', e);
+      notFoundBox.classList.remove('hidden');
+    });
+}
+
+function renderProfileTitles(userId){
+  var grid = document.getElementById('profileTitlesGrid');
+  var box = document.getElementById('profileTitlesBox');
+  if(!grid) return;
+  var items = getCatalog().filter(function(i){ return i.created_by === userId; });
+  if(!matureVisible) items = items.filter(function(i){ return !i.mature; });
+  if(items.length === 0){ box.classList.add('hidden'); return; }
+  items.sort(function(a,b){ return (b.date||'').localeCompare(a.date||''); });
+  grid.innerHTML = '';
+  items.forEach(function(item){
+    var card = document.createElement('div');
+    card.className = 'card-idx';
+    var badge = item.mature ? '<span class="mature">18+</span>' : '<span class="allages">'+t('badge.allages')+'</span>';
+    var coverInner = item.cover_url
+      ? '<img class="cover-img" src="'+item.cover_url+'" alt="">'
+      : '<span class="init">'+item.character.charAt(0)+'</span>';
+    card.innerHTML =
+      '<div class="card-idx-cover">'+coverInner+badge+'</div>'+
+      '<div class="card-idx-body" style="cursor:pointer;" data-open="'+item.id+'">'+
+        '<div class="num mono">'+(item.issue||'')+'</div>'+
+        '<h4>'+escapeHtml(item.title)+'</h4>'+
         '<div class="meta-row"><span>'+(item.date||'')+'</span></div>'+
       '</div>';
     card.querySelector('[data-open]').addEventListener('click', function(){ openTitleModal(item); });
@@ -5395,6 +5748,22 @@ function __appInit(){
   document.querySelectorAll('.community-tab').forEach(function(btn){
     btn.addEventListener('click', function(){ switchCommunityTab(btn.dataset.ctab); });
   });
+  document.querySelectorAll('.diary-kind-tab').forEach(function(btn){
+    btn.addEventListener('click', function(){ switchDiaryKind(btn.dataset.dkind); });
+  });
+  document.querySelectorAll('.diary-filter-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){ switchDiaryFilter(btn.dataset.dfilter); });
+  });
+  document.querySelectorAll('.diary-mood-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      document.querySelectorAll('.diary-mood-btn').forEach(function(b){ b.classList.remove('active'); });
+      btn.classList.add('active');
+    });
+  });
+  document.getElementById('diaryFilterAuthorBtn') && document.getElementById('diaryFilterAuthorBtn').addEventListener('click', function(){
+    switchDiaryFilter('all');
+  });
+  document.getElementById('btnDiaryPublish') && document.getElementById('btnDiaryPublish').addEventListener('click', submitDiaryPost);
   document.getElementById('btnCreateChannel') && document.getElementById('btnCreateChannel').addEventListener('click', createChannel);
   document.getElementById('btnBackToChannels') && document.getElementById('btnBackToChannels').addEventListener('click', backToChannels);
   document.getElementById('btnSendChannelMessage') && document.getElementById('btnSendChannelMessage').addEventListener('click', sendChannelMessage);
@@ -5486,6 +5855,7 @@ function __appInit(){
   fetchCatalogFromSupabase().then(function(items){
     if(items){ renderCatalog(); renderAdminList(); }
     if(!deepLinkChecked) checkDeepLinkOnLoad(); // retry once fresh data has arrived
+    renderPublicProfilePage(); // no-op sulle pagine diverse da profile.html
   });
   fetchMaintenanceStatus();
   setInterval(fetchMaintenanceStatus, 60000); // light polling so visitors already on the page see it too

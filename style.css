@@ -734,3 +734,70 @@ footer .fcopy{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
   .btn-sm{padding:7px 12px;font-size:10px;}
   header.topbar{gap:10px;}
 }
+
+/* ============ DIARIO ============ */
+.diary-composer{
+  border:1px solid var(--line);border-radius:4px;padding:16px;margin-bottom:20px;
+}
+.diary-kind-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;}
+.diary-kind-tab{
+  background:none;border:1px solid var(--line);border-radius:20px;padding:6px 14px;
+  font-family:'Space Mono',monospace;font-size:12px;color:var(--parchment-dim);cursor:pointer;
+}
+.diary-kind-tab.active{border-color:var(--gold);color:var(--gold-bright);background:rgba(201,162,77,0.08);}
+.diary-form input[type="text"],.diary-form textarea{width:100%;margin-top:8px;}
+.diary-mood-picker{display:flex;gap:8px;flex-wrap:wrap;}
+.diary-mood-btn{
+  background:none;border:1px solid var(--line);border-radius:8px;font-size:22px;padding:6px 10px;cursor:pointer;
+}
+.diary-mood-btn.active{border-color:var(--gold);background:rgba(201,162,77,0.12);}
+.diary-filters{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0;}
+.diary-filter-btn{
+  background:none;border:1px solid var(--line);border-radius:20px;padding:5px 12px;
+  font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.04em;color:var(--parchment-dim);cursor:pointer;
+}
+.diary-filter-btn.active{border-color:var(--gold);color:var(--gold-bright);}
+.diary-post{
+  border:1px solid var(--line);border-radius:4px;padding:14px;margin-bottom:14px;
+}
+.diary-post-head{display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap;}
+.diary-post-author{
+  background:none;border:none;padding:0;cursor:pointer;
+  font-family:'Space Mono',monospace;font-size:12px;color:var(--gold);letter-spacing:0.04em;
+}
+.diary-post-author:hover{color:var(--gold-bright);text-decoration:underline;}
+.diary-post-kind{font-size:14px;}
+.diary-post-when{margin-left:auto;font-family:'Space Mono',monospace;font-size:10px;color:var(--parchment-dim);}
+.diary-post-img{width:100%;max-height:420px;object-fit:cover;border-radius:4px;margin-bottom:8px;display:block;}
+.diary-post-body{font-size:14px;line-height:1.6;margin-bottom:8px;}
+.diary-post-actions{display:flex;gap:16px;}
+.diary-like-btn,.diary-comment-toggle{
+  background:none;border:none;padding:0;cursor:pointer;
+  font-family:'Space Mono',monospace;font-size:12px;color:var(--parchment-dim);
+}
+.diary-like-btn.active{color:var(--ember);}
+.diary-like-btn:hover,.diary-comment-toggle:hover{color:var(--gold-bright);}
+.diary-comments{border-top:1px solid var(--line);margin-top:10px;padding-top:10px;}
+.diary-comments-list{margin-bottom:8px;}
+.diary-comment-form{display:flex;gap:8px;}
+.diary-comment-input{flex:1;}
+
+/* ============ PROFILO PUBBLICO ============ */
+.pub-profile-header{display:flex;gap:20px;align-items:flex-start;flex-wrap:wrap;margin-bottom:24px;}
+.pub-profile-avatar{
+  width:96px;height:96px;border-radius:50%;object-fit:cover;
+  border:2px solid var(--gold);background:var(--line);flex-shrink:0;
+}
+.pub-profile-info h2{margin:0 0 6px;}
+.pub-profile-meta{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:8px;}
+.pub-profile-joined{font-family:'Space Mono',monospace;font-size:11px;color:var(--parchment-dim);}
+.pub-profile-bio{font-size:14px;line-height:1.6;color:var(--parchment-dim);max-width:520px;}
+.pub-profile-favs{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;}
+.pub-profile-fav-tag{
+  border:1px solid var(--line);border-radius:14px;padding:3px 10px;
+  font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.04em;color:var(--gold);
+}
+#profileTitlesBox,#profileDiaryBox{margin-top:28px;}
+#profileTitlesBox h3,#profileDiaryBox h3{
+  font-family:'Cinzel',serif;font-size:16px;color:var(--gold-bright);margin-bottom:12px;
+}
