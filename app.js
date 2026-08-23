@@ -4190,7 +4190,7 @@ function loadUserDirectory(){
       others.forEach(function(p){ list.appendChild(renderRow(p, false)); });
     }
   }).catch(function(e){
-    list.innerHTML = '<p class="form-note" style="color:var(--wine);">' + t('userDir.loadError') + '</p>';
+    list.innerHTML = '<p class="form-note" style="color:var(--wine);">DEBUG: ' + (e && e.message ? e.message : e) + '</p>';
     console.warn('User directory load failed:', e);
   });
 }
