@@ -4153,10 +4153,15 @@ function shareTitle(item){
         navigator.share({ title: item.title, text: shareText, url: shareUrl, files: [file] })
           .catch(function(){ /* utente ha annullato — va bene così */ });
       } else {
+        alert('DEBUG: canShare({files}) ha risposto NO — blob type: ' + blob.type + ', size: ' + blob.size);
         shareWithoutImage();
       }
-    }).catch(function(){ shareWithoutImage(); });
+    }).catch(function(err){
+      alert('DEBUG: fetch/creazione file fallita — ' + (err && err.message ? err.message : err));
+      shareWithoutImage();
+    });
   } else {
+    if(item.cover_url) alert('DEBUG: navigator.share o navigator.canShare non disponibili su questo browser.');
     shareWithoutImage();
   }
 }
