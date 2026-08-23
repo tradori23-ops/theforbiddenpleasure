@@ -3516,6 +3516,33 @@ function renderProfileTitles(userId){
 /* ============ CHAT DEDICATA (chat.html?user=<id>) — fuori da Community ============ */
 var currentChatThreadId = null;
 var currentChatOtherId = null;
+var currentChatLastMessageAt = null;
+var chatPollTimer = null;
+
+/* Suoni generati al volo (nessun file audio da caricare/ospitare) — due toni brevi e distinti */
+function playChatSound(kind){
+  try{
+    var Ctx = window.AudioContext || window.webkitAudioContext;
+    if(!Ctx) return;
+    var ctx = new Ctx();
+    var o = ctx.createOscillator();
+    var g = ctx.createGain();
+    o.connect(g); g.connect(ctx.destination);
+    o.type = 'sine';
+    if(kind === 'sent'){
+      o.frequency.setValueAtTime(660, ctx.currentTime);
+      o.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.09);
+    } else {
+      o.frequency.setValueAtTime(520, ctx.currentTime);
+      o.frequency.exponentialRampToValueAtTime(400, ctx.currentTime + 0.12);
+    }
+    g.gain.setValueAtTime(0.001, ctx.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.12, ctx.currentTime + 0.02);
+    g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.18);
+    o.start();
+    o.stop(ctx.currentTime + 0.2);
+  }catch(e){ /* audio non disponibile: nessun problema, la chat funziona lo stesso */ }
+}
 
 function uploadChatAttachment(file){
   var session = getSession();
@@ -3576,6 +3603,7 @@ function initChatPage(){
         });
 
       loadChatMessages();
+      startChatPolling();
 
       var mine = userA === uid;
       var field = mine ? 'last_read_at_a' : 'last_read_at_b';
@@ -3597,6 +3625,7 @@ function loadChatMessages(){
     .then(function(r){ if(!r.ok) throw new Error('chat messages read failed'); return r.json(); })
     .then(function(rows){
       wrap.innerHTML = '';
+      if(rows.length > 0) currentChatLastMessageAt = rows[rows.length - 1].created_at;
       if(rows.length === 0){ wrap.innerHTML = '<p class="form-note">' + t('community.noMessages') + '</p>'; return; }
       var uid = currentUserId();
       fetch(SUPABASE_URL + '/rest/v1/dm_threads?id=eq.' + encodeURIComponent(currentChatThreadId) + '&select=user_a,last_read_at_a,last_read_at_b', { headers: communityHeaders() })
@@ -3633,6 +3662,39 @@ function loadChatMessages(){
     .catch(function(e){ wrap.innerHTML = ''; console.warn('Chat messages load failed:', e); });
 }
 
+function startChatPolling(){
+  if(chatPollTimer) clearInterval(chatPollTimer);
+  chatPollTimer = setInterval(function(){
+    if(!currentChatThreadId) return;
+    var query = SUPABASE_URL + '/rest/v1/dm_messages?thread_id=eq.' + encodeURIComponent(currentChatThreadId) + '&select=sender_id,created_at&order=created_at.asc';
+    if(currentChatLastMessageAt) query += '&created_at=gt.' + encodeURIComponent(currentChatLastMessageAt);
+    fetch(query, { headers: communityHeaders() })
+      .then(function(r){ return r.ok ? r.json() : []; })
+      .then(function(rows){
+        if(rows.length === 0) return;
+        var uid = currentUserId();
+        var hasIncoming = rows.some(function(m){ return m.sender_id !== uid; });
+        if(hasIncoming) playChatSound('received');
+        loadChatMessages();
+        // segna come letti anche i messaggi arrivati mentre la chat è aperta
+        var session = getSession();
+        var params = new URLSearchParams(window.location.search);
+        var otherUserId = params.get('user');
+        if(session && otherUserId){
+          var userA = uid < otherUserId ? uid : otherUserId;
+          var field = (userA === uid) ? 'last_read_at_a' : 'last_read_at_b';
+          var patch = {}; patch[field] = new Date().toISOString();
+          fetch(SUPABASE_URL + '/rest/v1/dm_threads?id=eq.' + encodeURIComponent(currentChatThreadId), {
+            method:'PATCH',
+            headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
+            body: JSON.stringify(patch)
+          }).catch(function(){});
+        }
+      })
+      .catch(function(){});
+  }, 6000);
+}
+
 function sendChatMessage(){
   var box = document.getElementById('fChatMessage');
   var fileInput = document.getElementById('fChatAttachment');
@@ -3665,6 +3727,7 @@ function sendChatMessage(){
     box.value = '';
     fileInput.value = '';
     document.getElementById('chatAttachPreview').classList.add('hidden');
+    playChatSound('sent');
     loadChatMessages();
   }).catch(function(e){
     err.textContent = t('chat.sendError');
