@@ -5828,12 +5828,11 @@ function __appInit(){
     }
   });
 
-  document.getElementById('btnUserDirectory') && document.getElementById('btnUserDirectory').addEventListener('click', function(e){
-    e.stopPropagation();
-    toggleUserDirectory();
-  });
-  document.getElementById('btnCloseUserDirectory') && document.getElementById('btnCloseUserDirectory').addEventListener('click', function(){
-    document.getElementById('userDirectoryPanel').classList.add('hidden');
+  document.addEventListener('click', function(e){
+    var openBtn = e.target.closest('#btnUserDirectory');
+    var closeBtn = e.target.closest('#btnCloseUserDirectory');
+    if(openBtn){ e.stopPropagation(); toggleUserDirectory(); return; }
+    if(closeBtn){ document.getElementById('userDirectoryPanel').classList.add('hidden'); return; }
   });
   document.addEventListener('click', function(e){
     var panel = document.getElementById('userDirectoryPanel');
