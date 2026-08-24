@@ -48,6 +48,11 @@
     <h3 data-i18n="profile.title">Il mio profilo</h3>
     <div class="sub" data-i18n="profile.sub">Visibile agli altri quando commenti</div>
 
+    <div class="field">
+      <label data-i18n="profile.banner">Banner del profilo (opzionale)</label>
+      <div class="banner-preview-wrap"><img id="profileBannerImg" src="" alt=""></div>
+      <input type="file" id="fProfileBanner" accept="image/*">
+    </div>
     <div class="field" style="text-align:center;">
       <div class="profile-avatar-wrap">
         <img id="profileAvatarImg" class="profile-avatar" src="" alt="">
@@ -79,6 +84,13 @@
         <option value="F" data-i18n="profile.genderF">Femmina</option>
         <option value="X" data-i18n="profile.genderX">Altro</option>
       </select>
+    </div>
+    <div class="field">
+      <label data-i18n="profile.socials">I tuoi social (opzionali)</label>
+      <input type="text" id="fSocialInstagram" placeholder="Instagram — link o @nome" style="margin-bottom:8px;">
+      <input type="text" id="fSocialTwitter" placeholder="Twitter/X — link o @nome" style="margin-bottom:8px;">
+      <input type="text" id="fSocialTiktok" placeholder="TikTok — link o @nome" style="margin-bottom:8px;">
+      <input type="text" id="fSocialWebsite" placeholder="Sito web — link">
     </div>
     <div class="field">
       <label data-i18n="profile.favChars">Personaggi preferiti</label>
@@ -209,6 +221,12 @@
     <div class="avatar-info-name" id="avatarInfoName">—</div>
     <div id="avatarInfoRows" class="avatar-info-rows"></div>
   </div>
+</div>
+
+<!-- ============ LIGHTBOX IMMAGINE (ingrandimento a piena risoluzione) ============ -->
+<div class="modal-backdrop hidden image-lightbox-modal" id="imageLightboxModal">
+  <button class="modal-close" id="imageLightboxClose" aria-label="Chiudi">×</button>
+  <img id="imageLightboxImg" class="image-lightbox-img" src="" alt="">
 </div>
 
 <!-- ============ MATURE UNLOCK MODAL ============ -->

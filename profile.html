@@ -34,25 +34,38 @@
     <div id="profileLayout" class="profile-layout hidden">
       <aside id="profileSidebar" class="profile-sidebar">
         <div id="profileHeaderBox">
-          <div class="pub-profile-header">
-            <img id="pubProfileAvatar" class="pub-profile-avatar" alt="" src="">
-            <div class="pub-profile-info">
-              <h2 id="pubProfileName">—</h2>
-              <div id="pubProfileMeta" class="pub-profile-meta"></div>
-              <p id="pubProfileBio" class="pub-profile-bio"></p>
-              <div id="pubProfileFavs" class="pub-profile-favs"></div>
+          <div class="parchment-card">
+            <span class="corner tl">❦</span><span class="corner tr">❦</span>
+            <span class="corner bl">❦</span><span class="corner br">❦</span>
+            <div class="pub-profile-banner-wrap">
+              <img id="pubProfileBanner" class="pub-profile-banner" alt="" src="">
+            </div>
+            <div class="pub-profile-header">
+              <img id="pubProfileAvatar" class="pub-profile-avatar" alt="" src="">
+              <div class="pub-profile-info">
+                <h2 id="pubProfileName">—</h2>
+                <div id="pubProfileMeta" class="pub-profile-meta"></div>
+                <p id="pubProfileBio" class="pub-profile-bio"></p>
+                <div id="pubProfileSocials" class="pub-profile-socials"></div>
+                <div id="pubProfileFavs" class="pub-profile-favs"></div>
+              </div>
             </div>
           </div>
         </div>
 
-        <div id="profileTitlesBox" class="hidden">
+        <div id="profileFavoritesBox" class="parchment-card hidden">
+          <h3 data-i18n="pubProfile.favoritesHeading">Preferiti</h3>
+          <div id="profileFavoritesGrid" class="profile-sidebar-titles"></div>
+        </div>
+
+        <div id="profileTitlesBox" class="parchment-card hidden">
           <h3 data-i18n="pubProfile.titlesHeading">Titoli pubblicati</h3>
           <div id="profileTitlesGrid" class="profile-sidebar-titles"></div>
         </div>
       </aside>
 
       <div id="profileMain" class="profile-main">
-        <div id="profileDiaryBox">
+        <div id="profileDiaryBox" class="parchment-card">
           <h3 data-i18n="pubProfile.diaryHeading">Diario</h3>
           <div id="profileDiaryFeed"></div>
         </div>

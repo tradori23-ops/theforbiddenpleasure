@@ -724,6 +724,16 @@ footer .fcopy{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
 .avatar-info-row .k{color:var(--parchment-dim);font-family:'Space Mono',monospace;font-size:10px;text-transform:uppercase;flex-shrink:0;}
 .avatar-info-row .v{color:var(--parchment);text-align:right;}
 .avatar-info-empty{font-size:12.5px;color:var(--parchment-dim);font-style:italic;text-align:center;}
+.avatar-info-img{cursor:zoom-in;}
+
+/* ============ LIGHTBOX IMMAGINE (click per vedere a piena risoluzione) ============ */
+.image-lightbox-modal{background:rgba(0,0,0,0.9);}
+.image-lightbox-img{max-width:92vw;max-height:88vh;border-radius:8px;object-fit:contain;display:block;}
+.image-lightbox-modal .modal-close{position:fixed;top:20px;right:20px;color:#fff;font-size:26px;z-index:210;}
+
+/* ============ BANNER PROFILO (nel modulo di modifica) ============ */
+.banner-preview-wrap{height:90px;border-radius:8px;overflow:hidden;border:1px solid var(--gold);margin-bottom:8px;background:linear-gradient(135deg,var(--wine),var(--wine-deep));}
+.banner-preview-wrap img{width:100%;height:100%;object-fit:cover;display:block;}
 .comment-item .body{color:var(--parchment-dim);margin-top:4px;line-height:1.6;}
 .mod-row{
   display:flex;justify-content:space-between;align-items:flex-start;gap:12px;
@@ -802,7 +812,9 @@ footer .fcopy{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
 
 
 
-/* ============ PROFILO PUBBLICO — layout a due colonne stile Facebook ============ */
+/* ============ PROFILO PUBBLICO — layout a due colonne, stile pergamena da fumetto ============
+   Colori fissi apposta (stesso motivo del pannello Utenti): la pergamena deve restare
+   identica in entrambe le modalità giorno/notte, non seguire le variabili di tema. */
 .profile-layout{
   display:flex;flex-direction:column;gap:24px;
 }
@@ -820,26 +832,47 @@ footer .fcopy{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
   }
 }
 
-.pub-profile-header{display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;
-  border:1px solid var(--line);border-radius:4px;padding:20px;margin-bottom:16px;
+.parchment-card{
+  background:#fdfaf5;border:2px solid #c9a24d;border-radius:10px;
+  box-shadow:0 0 0 4px #f2ead8, 0 0 0 5px #c9a24d;
+  position:relative;overflow:hidden;margin-bottom:18px;
+}
+.parchment-card .corner{position:absolute;font-size:15px;color:#c9a24d;opacity:0.85;z-index:2;}
+.parchment-card .corner.tl{top:6px;left:8px;}
+.parchment-card .corner.tr{top:6px;right:8px;}
+.parchment-card .corner.bl{bottom:6px;left:8px;}
+.parchment-card .corner.br{bottom:6px;right:8px;}
+
+.pub-profile-banner-wrap{height:130px;background:linear-gradient(135deg,#6e1423,#4a0d18);overflow:hidden;border-bottom:2px solid #c9a24d;}
+.pub-profile-banner{width:100%;height:100%;object-fit:cover;display:block;}
+
+.pub-profile-header{display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px;
+  padding:0 20px 20px;margin-top:-46px;
 }
 .pub-profile-avatar{
-  width:96px;height:96px;border-radius:50%;object-fit:cover;
-  border:2px solid var(--gold);background:var(--line);flex-shrink:0;
+  width:92px;height:92px;border-radius:50%;object-fit:cover;
+  border:3px solid #fdfaf5;outline:2px solid #c9a24d;background:#6e1423;flex-shrink:0;
 }
-.pub-profile-info h2{margin:0 0 6px;}
+.pub-profile-info h2{margin:10px 0 2px;font-family:'Cinzel',serif;color:#6e1423;}
 .pub-profile-meta{display:flex;gap:10px;align-items:center;justify-content:center;flex-wrap:wrap;margin-bottom:8px;}
-.pub-profile-joined{font-family:'Space Mono',monospace;font-size:11px;color:var(--parchment-dim);}
-.pub-profile-bio{font-size:13px;line-height:1.6;color:var(--parchment-dim);}
+.pub-profile-joined{font-family:'Space Mono',monospace;font-size:11px;color:#6b5d4f;}
+.pub-profile-bio{font-size:13px;line-height:1.6;color:#4a3a2c;}
 .pub-profile-favs{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-top:4px;}
 .pub-profile-fav-tag{
-  border:1px solid var(--line);border-radius:14px;padding:3px 10px;
-  font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.04em;color:var(--gold);
+  border:1px solid rgba(110,20,35,0.3);border-radius:14px;padding:3px 10px;
+  font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.04em;color:#8a6a1f;
 }
+.pub-profile-socials{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:6px 0 4px;}
+.pub-profile-social-pill{
+  display:flex;align-items:center;gap:5px;border:1px solid #6e1423;border-radius:14px;
+  padding:5px 11px;font-family:'Space Mono',monospace;font-size:10px;color:#6e1423;text-decoration:none;
+}
+.pub-profile-social-pill:hover{background:#f2ead8;}
 
-#profileTitlesBox{border:1px solid var(--line);border-radius:4px;padding:16px;}
-#profileTitlesBox h3,#profileDiaryBox h3{
-  font-family:'Cinzel',serif;font-size:15px;color:var(--gold-bright);margin:0 0 12px;
+#profileTitlesBox,#profileFavoritesBox,#profileDiaryBox{padding:16px;}
+#profileTitlesBox h3,#profileFavoritesBox h3,#profileDiaryBox h3{
+  font-family:'Cinzel',serif;font-size:15px;color:#6e1423;margin:0 0 12px;
+  border-bottom:1px solid rgba(110,20,35,0.25);padding-bottom:8px;
 }
 .profile-sidebar-titles{display:flex;flex-direction:column;gap:10px;}
 .profile-sidebar-title-row{
@@ -847,14 +880,15 @@ footer .fcopy{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
 }
 .profile-sidebar-title-thumb{
   width:40px;height:40px;border-radius:4px;overflow:hidden;flex-shrink:0;
-  background:var(--line);display:flex;align-items:center;justify-content:center;
-  font-family:'Cinzel',serif;color:var(--gold);
+  background:#f2ead8;display:flex;align-items:center;justify-content:center;
+  font-family:'Cinzel',serif;color:#8a6a1f;
 }
 .profile-sidebar-title-thumb img{width:100%;height:100%;object-fit:cover;}
 .profile-sidebar-title-text{display:flex;flex-direction:column;min-width:0;}
-.profile-sidebar-title-text .ttl{font-size:12.5px;color:var(--parchment);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.profile-sidebar-title-text .sub{font-family:'Space Mono',monospace;font-size:10px;color:var(--parchment-dim);}
-.profile-sidebar-title-row:hover .ttl{color:var(--gold-bright);}
+.profile-sidebar-title-text .ttl{font-size:12.5px;color:#2a1a1d;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.profile-sidebar-title-text .sub{font-family:'Space Mono',monospace;font-size:10px;color:#6b5d4f;}
+.profile-sidebar-title-text .collab{font-family:'Space Mono',monospace;font-size:9px;color:#8a6a1f;margin-top:2px;}
+.profile-sidebar-title-row:hover .ttl{color:#6e1423;}
 
 /* ============ ELENCO UTENTI (pannello a scomparsa a destra, stile fumetto) ============
    Colori fissi apposta (non le variabili --parchment/--void-2 del tema): quelle si

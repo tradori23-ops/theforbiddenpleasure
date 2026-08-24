@@ -45,6 +45,7 @@ var STR = {
     "profile.title":"Il mio profilo","profile.sub":"Visibile agli altri quando commenti",
     "profile.displayName":"Nome visibile","profile.bio":"Bio (opzionale)","profile.favChars":"Personaggi preferiti",
     "profile.avatarHd":"Foto profilo HD (opzionale)","profile.avatarHdHint":"Mostrata a piena risoluzione a chi tocca il tuo avatar. Se non la carichi, si vede la foto normale.",
+    "profile.banner":"Banner del profilo (opzionale)","profile.socials":"I tuoi social (opzionali)","profile.website":"Sito web","pubProfile.favoritesHeading":"Preferiti",
     "profile.birthDate":"Data di nascita","profile.gender":"Sesso","profile.genderUnset":"— Preferisco non dirlo —","profile.genderM":"Maschio","profile.genderF":"Femmina","profile.genderX":"Altro","profile.avatarInfoEmpty":"Nessuna informazione aggiuntiva condivisa",
     "profile.save":"Salva profilo","profile.saveError":"Salvataggio non riuscito. Riprova.",
     "requests.title":"Le mie richieste","requests.hint":"Un titolo che vorresti, una traduzione, un'idea — scrivimi qui, la leggo io.",
@@ -165,6 +166,7 @@ var STR = {
     "profile.title":"My profile","profile.sub":"Visible to others when you comment",
     "profile.displayName":"Display name","profile.bio":"Bio (optional)","profile.favChars":"Favorite characters",
     "profile.avatarHd":"HD profile photo (optional)","profile.avatarHdHint":"Shown at full resolution to whoever taps your avatar. If you don't upload one, your regular photo is shown.",
+    "profile.banner":"Profile banner (optional)","profile.socials":"Your socials (optional)","profile.website":"Website","pubProfile.favoritesHeading":"Favorites",
     "profile.birthDate":"Birth date","profile.gender":"Gender","profile.genderUnset":"— Prefer not to say —","profile.genderM":"Male","profile.genderF":"Female","profile.genderX":"Other","profile.avatarInfoEmpty":"No additional information shared",
     "profile.save":"Save profile","profile.saveError":"Save failed. Try again.",
     "requests.title":"My requests","requests.hint":"A title you'd like, a translation, an idea — write it here, I read every one.",
@@ -285,6 +287,7 @@ var STR = {
     "profile.title":"Mi perfil","profile.sub":"Visible para otros cuando comentas",
     "profile.displayName":"Nombre visible","profile.bio":"Bio (opcional)","profile.favChars":"Personajes favoritos",
     "profile.avatarHd":"Foto de perfil HD (opcional)","profile.avatarHdHint":"Se muestra a resolución completa a quien toque tu avatar. Si no la subes, se ve la foto normal.",
+    "profile.banner":"Banner del perfil (opcional)","profile.socials":"Tus redes sociales (opcional)","profile.website":"Sitio web","pubProfile.favoritesHeading":"Favoritos",
     "profile.birthDate":"Fecha de nacimiento","profile.gender":"Sexo","profile.genderUnset":"— Prefiero no decirlo —","profile.genderM":"Masculino","profile.genderF":"Femenino","profile.genderX":"Otro","profile.avatarInfoEmpty":"No se ha compartido información adicional",
     "profile.save":"Guardar perfil","profile.saveError":"Error al guardar. Inténtalo de nuevo.",
     "requests.title":"Mis solicitudes","requests.hint":"Un título que quieras, una traducción, una idea — escríbeme aquí, lo leo yo.",
@@ -405,6 +408,7 @@ var STR = {
     "profile.title":"Mon profil","profile.sub":"Visible par les autres quand vous commentez",
     "profile.displayName":"Nom affiché","profile.bio":"Bio (facultatif)","profile.favChars":"Personnages préférés",
     "profile.avatarHd":"Photo de profil HD (facultatif)","profile.avatarHdHint":"Affichée en pleine résolution à quiconque touche votre avatar. Si vous n'en téléchargez pas, la photo normale s'affiche.",
+    "profile.banner":"Bannière du profil (facultatif)","profile.socials":"Vos réseaux sociaux (facultatif)","profile.website":"Site web","pubProfile.favoritesHeading":"Favoris",
     "profile.birthDate":"Date de naissance","profile.gender":"Sexe","profile.genderUnset":"— Je préfère ne pas le dire —","profile.genderM":"Homme","profile.genderF":"Femme","profile.genderX":"Autre","profile.avatarInfoEmpty":"Aucune information supplémentaire partagée",
     "profile.save":"Enregistrer le profil","profile.saveError":"Échec de l'enregistrement. Réessayez.",
     "requests.title":"Mes demandes","requests.hint":"Un titre que vous aimeriez, une traduction, une idée — écrivez-moi ici, je lis tout.",
@@ -525,6 +529,7 @@ var STR = {
     "profile.title":"Mein Profil","profile.sub":"Für andere sichtbar, wenn du kommentierst",
     "profile.displayName":"Anzeigename","profile.bio":"Bio (optional)","profile.favChars":"Lieblingscharaktere",
     "profile.avatarHd":"HD-Profilbild (optional)","profile.avatarHdHint":"Wird in voller Auflösung angezeigt, wenn jemand auf dein Avatar tippt. Wenn du keins hochlädst, wird das normale Foto angezeigt.",
+    "profile.banner":"Profil-Banner (optional)","profile.socials":"Deine Social-Media-Profile (optional)","profile.website":"Webseite","pubProfile.favoritesHeading":"Favoriten",
     "profile.birthDate":"Geburtsdatum","profile.gender":"Geschlecht","profile.genderUnset":"— Möchte ich nicht angeben —","profile.genderM":"Männlich","profile.genderF":"Weiblich","profile.genderX":"Andere","profile.avatarInfoEmpty":"Keine zusätzlichen Informationen geteilt",
     "profile.save":"Profil speichern","profile.saveError":"Speichern fehlgeschlagen. Erneut versuchen.",
     "requests.title":"Meine Anfragen","requests.hint":"Ein Titel, den du dir wünschst, eine Übersetzung, eine Idee — schreib es hier, ich lese alles.",
@@ -2806,6 +2811,11 @@ function populateProfileForm(){
   document.getElementById('profileAvatarImg').style.opacity = p.avatar_url ? '1' : '0.2';
   document.getElementById('fBirthDate').value = p.birth_date || '';
   document.getElementById('fGender').value = p.gender || '';
+  document.getElementById('profileBannerImg').src = p.banner_url || '';
+  document.getElementById('fSocialInstagram').value = p.social_instagram || '';
+  document.getElementById('fSocialTwitter').value = p.social_twitter || '';
+  document.getElementById('fSocialTiktok').value = p.social_tiktok || '';
+  document.getElementById('fSocialWebsite').value = p.social_website || '';
   var favs = p.favorite_characters || [];
   document.querySelectorAll('.fav-char-cb').forEach(function(cb){
     cb.checked = favs.indexOf(cb.value) !== -1;
@@ -2817,6 +2827,9 @@ function pickAvatarPublicUrl(userId, ext){
 function pickAvatarHdPublicUrl(userId, ext){
   return SUPABASE_URL + '/storage/v1/object/public/avatars/' + userId + '/avatar-hd.' + ext + '?t=' + Date.now();
 }
+function pickBannerPublicUrl(userId, ext){
+  return SUPABASE_URL + '/storage/v1/object/public/avatars/' + userId + '/banner.' + ext + '?t=' + Date.now();
+}
 function saveProfile(){
   var session = getSession();
   if(!session) return;
@@ -2826,6 +2839,10 @@ function saveProfile(){
   var bio = document.getElementById('fBio').value.trim();
   var birthDate = document.getElementById('fBirthDate').value;
   var gender = document.getElementById('fGender').value;
+  var socialInstagram = document.getElementById('fSocialInstagram').value.trim();
+  var socialTwitter = document.getElementById('fSocialTwitter').value.trim();
+  var socialTiktok = document.getElementById('fSocialTiktok').value.trim();
+  var socialWebsite = document.getElementById('fSocialWebsite').value.trim();
   var favs = Array.from(document.querySelectorAll('.fav-char-cb:checked')).map(function(cb){ return cb.value; });
   var btn = document.getElementById('btnSaveProfile');
   btn.disabled = true;
@@ -2862,9 +2879,26 @@ function saveProfile(){
     });
   }
 
-  Promise.all([avatarStep, avatarHdStep]).then(function(results){
+  var bannerStep = Promise.resolve(currentProfile ? currentProfile.banner_url : null);
+  var bannerFile = document.getElementById('fProfileBanner').files[0];
+  if(bannerFile){
+    var extMatchBn = /\.([a-zA-Z0-9]+)$/.exec(bannerFile.name || '');
+    var extBn = extMatchBn ? extMatchBn[1].toLowerCase() : 'jpg';
+    var pathBn = currentUserId() + '/banner.' + extBn;
+    bannerStep = fetch(SUPABASE_URL + '/storage/v1/object/avatars/' + pathBn, {
+      method:'POST',
+      headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'x-upsert':'true', 'Content-Type': bannerFile.type || 'image/jpeg' },
+      body: bannerFile
+    }).then(function(r){
+      if(!r.ok) throw new Error('banner upload failed');
+      return pickBannerPublicUrl(currentUserId(), extBn);
+    });
+  }
+
+  Promise.all([avatarStep, avatarHdStep, bannerStep]).then(function(results){
     var avatarUrl = results[0];
     var avatarHdUrl = results[1];
+    var bannerUrl = results[2];
     return fetch(SUPABASE_URL + '/rest/v1/profiles', {
       method:'POST',
       headers:{
@@ -2873,8 +2907,11 @@ function saveProfile(){
       },
       body: JSON.stringify({
         id: currentUserId(), display_name: displayName || null, bio: bio || null,
-        avatar_url: avatarUrl || null, avatar_hd_url: avatarHdUrl || null,
-        birth_date: birthDate || null, gender: gender || null, favorite_characters: favs
+        avatar_url: avatarUrl || null, avatar_hd_url: avatarHdUrl || null, banner_url: bannerUrl || null,
+        birth_date: birthDate || null, gender: gender || null,
+        social_instagram: socialInstagram || null, social_twitter: socialTwitter || null,
+        social_tiktok: socialTiktok || null, social_website: socialWebsite || null,
+        favorite_characters: favs
       })
     });
   }).then(function(r){
@@ -2885,6 +2922,7 @@ function saveProfile(){
     populateProfileForm();
     document.getElementById('fProfileAvatar').value = '';
     document.getElementById('fProfileAvatarHd').value = '';
+    document.getElementById('fProfileBanner').value = '';
   }).catch(function(e){
     console.warn('Profile save failed:', e);
     err.textContent = t('profile.saveError');
@@ -2907,8 +2945,10 @@ function openAvatarInfo(userId){
     .then(function(rows){
       var p = rows[0];
       if(!p) return;
-      document.getElementById('avatarInfoImg').src = p.avatar_hd_url || p.avatar_url || '';
-      document.getElementById('avatarInfoImg').style.opacity = (p.avatar_hd_url || p.avatar_url) ? '1' : '0.15';
+      var bigUrl = p.avatar_hd_url || p.avatar_url || '';
+      document.getElementById('avatarInfoImg').src = bigUrl;
+      document.getElementById('avatarInfoImg').style.opacity = bigUrl ? '1' : '0.15';
+      document.getElementById('avatarInfoImg').onclick = function(){ openImageLightbox(bigUrl); };
       var verifiedTag = p.verified ? ' ' + verifiedBadge('verified.commenter') : '';
       document.getElementById('avatarInfoName').innerHTML = escapeHtml(p.display_name || t('notif.someone')) + verifiedTag;
       var rows2 = '';
@@ -2924,6 +2964,14 @@ function openAvatarInfo(userId){
     .catch(function(e){ console.warn('Avatar info load failed:', e); });
 }
 function closeAvatarInfo(){ document.getElementById('avatarInfoModal').classList.add('hidden'); }
+
+/* ============ LIGHTBOX IMMAGINE (ingrandimento a piena risoluzione) ============ */
+function openImageLightbox(url){
+  if(!url) return;
+  document.getElementById('imageLightboxImg').src = url;
+  document.getElementById('imageLightboxModal').classList.remove('hidden');
+}
+function closeImageLightbox(){ document.getElementById('imageLightboxModal').classList.add('hidden'); }
 
 (function injectDmChatStyles(){
   var style = document.createElement('style');
@@ -3531,12 +3579,28 @@ function renderPublicProfilePage(){
       layoutBox.classList.remove('hidden');
 
       document.getElementById('pubProfileName').textContent = p.display_name || t('notif.someone');
+      var bannerImg = document.getElementById('pubProfileBanner');
+      bannerImg.src = p.banner_url || '';
+      bannerImg.style.opacity = p.banner_url ? '1' : '0';
       var avatarImg = document.getElementById('pubProfileAvatar');
       avatarImg.src = p.avatar_url || '';
       avatarImg.style.opacity = p.avatar_url ? '1' : '0.15';
       avatarImg.classList.add('avatar-clickable');
       avatarImg.addEventListener('click', function(){ openAvatarInfo(userId); });
       if(p.bio) document.getElementById('pubProfileBio').textContent = p.bio;
+
+      var socialDefs = [
+        { key:'social_instagram', label:'Instagram' },
+        { key:'social_twitter', label:'Twitter/X' },
+        { key:'social_tiktok', label:'TikTok' },
+        { key:'social_website', label: t('profile.website') }
+      ];
+      var socialsHtml = socialDefs.filter(function(s){ return p[s.key]; }).map(function(s){
+        var raw = p[s.key];
+        var href = /^https?:\/\//i.test(raw) ? raw : ('https://' + raw.replace(/^@/, ''));
+        return '<a class="pub-profile-social-pill" href="' + escapeHtml(href) + '" target="_blank" rel="noopener">' + escapeHtml(s.label) + '</a>';
+      }).join('');
+      document.getElementById('pubProfileSocials').innerHTML = socialsHtml;
 
       var metaParts = [];
       if(p.verified) metaParts.push(verifiedBadge('verified.commenter'));
@@ -3551,6 +3615,7 @@ function renderPublicProfilePage(){
       favsBox.innerHTML = favs.map(function(f){ return '<span class="pub-profile-fav-tag">' + escapeHtml(f) + '</span>'; }).join('');
 
       renderProfileTitles(userId);
+      renderProfileFavorites(userId);
       loadDiaryFeed('profileDiaryFeed', userId);
     })
     .catch(function(e){
@@ -3576,12 +3641,48 @@ function renderProfileTitles(userId){
     var thumbInner = item.cover_url
       ? '<img src="'+item.cover_url+'" alt="">'
       : '<span class="init">'+item.character.charAt(0)+'</span>';
+    var collabArr = (item.collaborators && item.collaborators.length)
+      ? item.collaborators
+      : (item.collaborator_name ? [{name:item.collaborator_name}] : []);
+    var collabHtml = collabArr.length
+      ? '<span class="collab">' + t('collab.credit') + ' ' + collabArr.map(function(c){ return escapeHtml(c.name || ''); }).join(', ') + '</span>'
+      : '';
     row.innerHTML =
       '<span class="profile-sidebar-title-thumb">'+thumbInner+'</span>'+
-      '<span class="profile-sidebar-title-text"><span class="ttl">'+escapeHtml(item.title)+'</span><span class="sub">'+(item.date||'')+'</span></span>';
+      '<span class="profile-sidebar-title-text"><span class="ttl">'+escapeHtml(item.title)+'</span><span class="sub">'+(item.date||'')+'</span>'+collabHtml+'</span>';
     row.addEventListener('click', function(){ openTitleModal(item); });
     grid.appendChild(row);
   });
+}
+
+function renderProfileFavorites(userId){
+  var grid = document.getElementById('profileFavoritesGrid');
+  var box = document.getElementById('profileFavoritesBox');
+  if(!grid) return;
+  fetch(SUPABASE_URL + '/rest/v1/favorites?user_id=eq.' + encodeURIComponent(userId) + '&select=catalog_id', { headers: communityHeaders() })
+    .then(function(r){ return r.ok ? r.json() : []; })
+    .then(function(rows){
+      var ids = rows.map(function(r){ return r.catalog_id; });
+      var items = getCatalog().filter(function(i){ return ids.indexOf(i.id) !== -1; });
+      if(!matureVisible) items = items.filter(function(i){ return !i.mature; });
+      if(items.length === 0){ box.classList.add('hidden'); return; }
+      box.classList.remove('hidden');
+      grid.innerHTML = '';
+      items.forEach(function(item){
+        var row = document.createElement('button');
+        row.type = 'button';
+        row.className = 'profile-sidebar-title-row';
+        var thumbInner = item.cover_url
+          ? '<img src="'+item.cover_url+'" alt="">'
+          : '<span class="init">'+item.character.charAt(0)+'</span>';
+        row.innerHTML =
+          '<span class="profile-sidebar-title-thumb">'+thumbInner+'</span>'+
+          '<span class="profile-sidebar-title-text"><span class="ttl">'+escapeHtml(item.title)+'</span></span>';
+        row.addEventListener('click', function(){ openTitleModal(item); });
+        grid.appendChild(row);
+      });
+    })
+    .catch(function(e){ console.warn('Profile favorites load failed:', e); box.classList.add('hidden'); });
 }
 
 /* ============ CHAT DEDICATA (chat.html?user=<id>) — fuori da Community ============ */
@@ -6352,6 +6453,10 @@ function __appInit(){
   document.getElementById('avatarInfoModalClose') && document.getElementById('avatarInfoModalClose').addEventListener('click', closeAvatarInfo);
   document.getElementById('avatarInfoModal') && document.getElementById('avatarInfoModal').addEventListener('click', function(e){
     if(e.target.id === 'avatarInfoModal') closeAvatarInfo();
+  });
+  document.getElementById('imageLightboxClose') && document.getElementById('imageLightboxClose').addEventListener('click', closeImageLightbox);
+  document.getElementById('imageLightboxModal') && document.getElementById('imageLightboxModal').addEventListener('click', function(e){
+    if(e.target.id === 'imageLightboxModal') closeImageLightbox();
   });
   document.getElementById('btnClearCart') && document.getElementById('btnClearCart').addEventListener('click', function(){
     cart = []; saveCart(); renderCartModal();
