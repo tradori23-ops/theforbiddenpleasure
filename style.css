@@ -964,6 +964,7 @@ body.chat-fullscreen header.topbar,
 body.chat-fullscreen #btnUserDirectory,
 body.chat-fullscreen #userDirectoryPanel,
 body.chat-fullscreen #smallnoxFloat,
+body.chat-fullscreen #btnShareApp,
 body.chat-fullscreen footer,
 body.chat-fullscreen .newsletter-section{
   display:none;
