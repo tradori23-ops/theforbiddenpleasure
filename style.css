@@ -992,7 +992,7 @@ body.chat-fullscreen .chat-page::after{ display:none; }
   max-width:none;padding-top:32px;padding-bottom:32px;
 }
 .chat-page{
-  display:flex;flex-direction:column;height:calc(100vh - 200px);min-height:480px;
+  display:flex;flex-direction:row;height:calc(100vh - 200px);min-height:480px;
   border:2px solid var(--gold);border-radius:4px;overflow:hidden;
   outline:1px solid var(--wine-deep);outline-offset:-8px;
   box-shadow:0 12px 40px rgba(0,0,0,0.5);
@@ -1004,19 +1004,56 @@ body.chat-fullscreen .chat-page::after{ display:none; }
 }
 .chat-page::before{top:6px;left:6px;}
 .chat-page::after{top:6px;right:6px;}
-.chat-page-composer{position:relative;}
-.chat-page-composer::before, .chat-page-composer::after{
+
+/* ---- lista conversazioni fissa (stile WhatsApp) ---- */
+.chat-sidebar{
+  width:320px;flex-shrink:0;display:flex;flex-direction:column;
+  border-right:2px double var(--gold);background:var(--void-2);
+  overflow:hidden;
+}
+.chat-sidebar-header{
+  padding:16px 18px;font-family:'Cinzel',serif;font-size:15px;color:var(--parchment);
+  letter-spacing:0.03em;border-bottom:1px solid rgba(201,162,77,0.3);flex-shrink:0;
+}
+.chat-sidebar-list{flex:1;overflow-y:auto;padding:8px;}
+.chat-sidebar-row{
+  width:100%;display:flex;align-items:center;gap:10px;padding:10px;margin-bottom:4px;
+  background:none;border:1px solid transparent;border-radius:4px;cursor:pointer;text-align:left;
+}
+.chat-sidebar-row:hover{background:rgba(201,162,77,0.08);}
+.chat-sidebar-row.active{background:rgba(201,162,77,0.15);border-color:var(--gold);}
+.chat-sidebar-row.unread .chat-sidebar-name{color:var(--gold-bright);}
+.chat-sidebar-avatar-wrap{position:relative;flex-shrink:0;width:42px;height:42px;}
+.chat-sidebar-avatar{width:42px;height:42px;border-radius:50%;object-fit:cover;border:1px solid var(--gold);display:block;background:var(--wine);}
+.chat-sidebar-dot{position:absolute;bottom:0;right:0;width:9px;height:9px;border-radius:50%;border:2px solid var(--void-2);}
+.chat-sidebar-dot.online{background:#3fae54;}
+.chat-sidebar-dot.offline{background:#8a7d6a;}
+.chat-sidebar-info{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px;}
+.chat-sidebar-name{font-family:'Cinzel',serif;font-size:13.5px;color:var(--parchment);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.chat-sidebar-preview{font-family:'Crimson Pro',serif;font-size:12.5px;color:var(--parchment-dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.chat-sidebar-meta{flex-shrink:0;display:flex;flex-direction:column;align-items:flex-end;gap:5px;}
+.chat-sidebar-time{font-family:'Space Mono',monospace;font-size:9px;color:var(--parchment-dim);}
+.chat-sidebar-unread-dot{width:8px;height:8px;border-radius:50%;background:var(--gold-bright);display:block;margin-left:auto;}
+
+/* ---- pannello della conversazione aperta ---- */
+.chat-conversation{display:flex;flex-direction:column;flex:1;min-width:0;}
+.chat-conversation .chat-page-composer{position:relative;}
+.chat-conversation .chat-page-composer::before, .chat-conversation .chat-page-composer::after{
   content:'❦';position:absolute;color:var(--gold-bright);font-size:13px;z-index:5;
   pointer-events:none;opacity:0.7;
 }
-.chat-page-composer::before{bottom:6px;left:6px;}
-.chat-page-composer::after{bottom:6px;right:6px;}
+.chat-conversation .chat-page-composer::before{bottom:6px;left:6px;}
+.chat-conversation .chat-page-composer::after{bottom:6px;right:6px;}
 .chat-page-header{
   display:flex;align-items:center;gap:12px;padding:16px 20px;
   border-bottom:2px double var(--gold);background:var(--void-2);
   position:relative;
 }
-.chat-back{color:var(--gold-bright);font-size:20px;text-decoration:none;flex-shrink:0;font-family:'Cinzel',serif;}
+.chat-back{
+  color:var(--gold-bright);font-size:20px;font-family:'Cinzel',serif;
+  background:none;border:none;cursor:pointer;flex-shrink:0;padding:0 4px 0 0;
+  display:none; /* visibile solo su schermi stretti, vedi media query sotto */
+}
 .chat-header-avatar-wrap{position:relative;flex-shrink:0;width:44px;height:44px;}
 .chat-header-avatar{width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid var(--gold);display:block;background:var(--wine);}
 .chat-header-dot{position:absolute;bottom:0;right:0;width:10px;height:10px;border-radius:50%;border:2px solid var(--void-2);}
@@ -1075,6 +1112,17 @@ body.chat-fullscreen .chat-page::after{ display:none; }
   padding:6px 10px;margin-bottom:8px;font-size:12px;color:var(--gold);
 }
 .chat-attach-preview button{background:none;border:none;color:var(--gold-bright);font-size:16px;cursor:pointer;}
+
+/* Sotto questa soglia non c'è spazio per lista e conversazione affiancate:
+   si mostra una vista alla volta (gestito da setChatMobileView() in app.js),
+   con la freccia "indietro" per tornare dalla conversazione alla lista. */
+@media (max-width: 860px){
+  .chat-sidebar{width:100%;border-right:none;}
+  .chat-back{display:flex;align-items:center;justify-content:center;width:28px;height:28px;}
+  #chatBox.showing-list .chat-conversation{display:none;}
+  #chatBox.showing-conversation .chat-sidebar{display:none;}
+  #chatBox:not(.showing-list):not(.showing-conversation) .chat-conversation{display:none;} /* prima che JS scelga, di sicurezza mostriamo la lista */
+}
 
 @media (max-width: 640px){
   #chatSection.section{padding-left:0;padding-right:0;padding-top:0;}

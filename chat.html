@@ -22,31 +22,40 @@
     </div>
 
     <div id="chatBox" class="chat-page hidden">
-      <div class="chat-page-header">
-        <a href="javascript:history.back()" class="chat-back" aria-label="Indietro">←</a>
-        <span class="chat-header-avatar-wrap">
-          <img id="chatOtherAvatar" class="chat-header-avatar" src="" alt="">
-          <span id="chatOtherDot" class="chat-header-dot offline"></span>
-        </span>
-        <div class="chat-header-info">
-          <div id="chatOtherName" class="chat-header-name">—</div>
-          <div id="chatOtherStatus" class="chat-header-status"></div>
+      <div class="chat-sidebar" id="chatSidebar">
+        <div class="chat-sidebar-header">
+          <span data-i18n="community.tabDms">Messaggi privati</span>
         </div>
+        <div class="chat-sidebar-list" id="chatSidebarList"></div>
       </div>
 
-      <div id="chatMessages" class="chat-page-messages"></div>
-
-      <div class="chat-page-composer">
-        <div id="chatAttachPreview" class="chat-attach-preview hidden">
-          <span id="chatAttachName"></span>
-          <button type="button" id="btnChatAttachRemove" aria-label="Rimuovi allegato">×</button>
+      <div class="chat-conversation">
+        <div class="chat-page-header">
+          <button type="button" class="chat-back" id="btnChatBack" aria-label="Indietro">←</button>
+          <span class="chat-header-avatar-wrap">
+            <img id="chatOtherAvatar" class="chat-header-avatar" src="" alt="">
+            <span id="chatOtherDot" class="chat-header-dot offline"></span>
+          </span>
+          <div class="chat-header-info">
+            <div id="chatOtherName" class="chat-header-name">—</div>
+            <div id="chatOtherStatus" class="chat-header-status"></div>
+          </div>
         </div>
-        <div class="form-error" id="chatMessageError"></div>
-        <div class="chat-composer-row">
-          <label class="chat-icon-btn" for="fChatAttachment" aria-label="Allega file o immagine">📎</label>
-          <input type="file" id="fChatAttachment" accept="image/*,.pdf,.doc,.docx" class="hidden">
-          <input type="text" id="fChatMessage" class="chat-text-input" data-i18n-placeholder="chat.messagePlaceholder" placeholder="Scrivi un messaggio…">
-          <button type="button" class="btn btn-primary btn-sm" id="btnSendChat" data-i18n="community.send">Invia</button>
+
+        <div id="chatMessages" class="chat-page-messages"></div>
+
+        <div class="chat-page-composer">
+          <div id="chatAttachPreview" class="chat-attach-preview hidden">
+            <span id="chatAttachName"></span>
+            <button type="button" id="btnChatAttachRemove" aria-label="Rimuovi allegato">×</button>
+          </div>
+          <div class="form-error" id="chatMessageError"></div>
+          <div class="chat-composer-row">
+            <label class="chat-icon-btn" for="fChatAttachment" aria-label="Allega file o immagine">📎</label>
+            <input type="file" id="fChatAttachment" accept="image/*,.pdf,.doc,.docx" class="hidden">
+            <input type="text" id="fChatMessage" class="chat-text-input" data-i18n-placeholder="chat.messagePlaceholder" placeholder="Scrivi un messaggio…">
+            <button type="button" class="btn btn-primary btn-sm" id="btnSendChat" data-i18n="community.send">Invia</button>
+          </div>
         </div>
       </div>
     </div>
