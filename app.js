@@ -44,6 +44,8 @@ var STR = {
     "latest.eyebrow":"Appena Pubblicato","latest.title":"Ultimi Capitoli","latest.newTag":"Nuovo",
     "profile.title":"Il mio profilo","profile.sub":"Visibile agli altri quando commenti",
     "profile.displayName":"Nome visibile","profile.bio":"Bio (opzionale)","profile.favChars":"Personaggi preferiti",
+    "profile.avatarHd":"Foto profilo HD (opzionale)","profile.avatarHdHint":"Mostrata a piena risoluzione a chi tocca il tuo avatar. Se non la carichi, si vede la foto normale.",
+    "profile.birthDate":"Data di nascita","profile.gender":"Sesso","profile.genderUnset":"— Preferisco non dirlo —","profile.genderM":"Maschio","profile.genderF":"Femmina","profile.genderX":"Altro","profile.avatarInfoEmpty":"Nessuna informazione aggiuntiva condivisa",
     "profile.save":"Salva profilo","profile.saveError":"Salvataggio non riuscito. Riprova.",
     "requests.title":"Le mie richieste","requests.hint":"Un titolo che vorresti, una traduzione, un'idea — scrivimi qui, la leggo io.",
     "requests.placeholder":"Scrivi la tua richiesta…","requests.submit":"Invia richiesta","requests.submitError":"Invio non riuscito. Riprova.",
@@ -162,6 +164,8 @@ var STR = {
     "latest.eyebrow":"Just Released","latest.title":"Latest Chapters","latest.newTag":"New",
     "profile.title":"My profile","profile.sub":"Visible to others when you comment",
     "profile.displayName":"Display name","profile.bio":"Bio (optional)","profile.favChars":"Favorite characters",
+    "profile.avatarHd":"HD profile photo (optional)","profile.avatarHdHint":"Shown at full resolution to whoever taps your avatar. If you don't upload one, your regular photo is shown.",
+    "profile.birthDate":"Birth date","profile.gender":"Gender","profile.genderUnset":"— Prefer not to say —","profile.genderM":"Male","profile.genderF":"Female","profile.genderX":"Other","profile.avatarInfoEmpty":"No additional information shared",
     "profile.save":"Save profile","profile.saveError":"Save failed. Try again.",
     "requests.title":"My requests","requests.hint":"A title you'd like, a translation, an idea — write it here, I read every one.",
     "requests.placeholder":"Write your request…","requests.submit":"Send request","requests.submitError":"Send failed. Try again.",
@@ -280,6 +284,8 @@ var STR = {
     "latest.eyebrow":"Recién Publicado","latest.title":"Últimos Capítulos","latest.newTag":"Nuevo",
     "profile.title":"Mi perfil","profile.sub":"Visible para otros cuando comentas",
     "profile.displayName":"Nombre visible","profile.bio":"Bio (opcional)","profile.favChars":"Personajes favoritos",
+    "profile.avatarHd":"Foto de perfil HD (opcional)","profile.avatarHdHint":"Se muestra a resolución completa a quien toque tu avatar. Si no la subes, se ve la foto normal.",
+    "profile.birthDate":"Fecha de nacimiento","profile.gender":"Sexo","profile.genderUnset":"— Prefiero no decirlo —","profile.genderM":"Masculino","profile.genderF":"Femenino","profile.genderX":"Otro","profile.avatarInfoEmpty":"No se ha compartido información adicional",
     "profile.save":"Guardar perfil","profile.saveError":"Error al guardar. Inténtalo de nuevo.",
     "requests.title":"Mis solicitudes","requests.hint":"Un título que quieras, una traducción, una idea — escríbeme aquí, lo leo yo.",
     "requests.placeholder":"Escribe tu solicitud…","requests.submit":"Enviar solicitud","requests.submitError":"Error al enviar. Inténtalo de nuevo.",
@@ -398,6 +404,8 @@ var STR = {
     "latest.eyebrow":"Vient de Paraître","latest.title":"Derniers Chapitres","latest.newTag":"Nouveau",
     "profile.title":"Mon profil","profile.sub":"Visible par les autres quand vous commentez",
     "profile.displayName":"Nom affiché","profile.bio":"Bio (facultatif)","profile.favChars":"Personnages préférés",
+    "profile.avatarHd":"Photo de profil HD (facultatif)","profile.avatarHdHint":"Affichée en pleine résolution à quiconque touche votre avatar. Si vous n'en téléchargez pas, la photo normale s'affiche.",
+    "profile.birthDate":"Date de naissance","profile.gender":"Sexe","profile.genderUnset":"— Je préfère ne pas le dire —","profile.genderM":"Homme","profile.genderF":"Femme","profile.genderX":"Autre","profile.avatarInfoEmpty":"Aucune information supplémentaire partagée",
     "profile.save":"Enregistrer le profil","profile.saveError":"Échec de l'enregistrement. Réessayez.",
     "requests.title":"Mes demandes","requests.hint":"Un titre que vous aimeriez, une traduction, une idée — écrivez-moi ici, je lis tout.",
     "requests.placeholder":"Écrivez votre demande…","requests.submit":"Envoyer la demande","requests.submitError":"Échec de l'envoi. Réessayez.",
@@ -516,6 +524,8 @@ var STR = {
     "latest.eyebrow":"Gerade Erschienen","latest.title":"Neueste Kapitel","latest.newTag":"Neu",
     "profile.title":"Mein Profil","profile.sub":"Für andere sichtbar, wenn du kommentierst",
     "profile.displayName":"Anzeigename","profile.bio":"Bio (optional)","profile.favChars":"Lieblingscharaktere",
+    "profile.avatarHd":"HD-Profilbild (optional)","profile.avatarHdHint":"Wird in voller Auflösung angezeigt, wenn jemand auf dein Avatar tippt. Wenn du keins hochlädst, wird das normale Foto angezeigt.",
+    "profile.birthDate":"Geburtsdatum","profile.gender":"Geschlecht","profile.genderUnset":"— Möchte ich nicht angeben —","profile.genderM":"Männlich","profile.genderF":"Weiblich","profile.genderX":"Andere","profile.avatarInfoEmpty":"Keine zusätzlichen Informationen geteilt",
     "profile.save":"Profil speichern","profile.saveError":"Speichern fehlgeschlagen. Erneut versuchen.",
     "requests.title":"Meine Anfragen","requests.hint":"Ein Titel, den du dir wünschst, eine Übersetzung, eine Idee — schreib es hier, ich lese alles.",
     "requests.placeholder":"Deine Anfrage schreiben…","requests.submit":"Anfrage senden","requests.submitError":"Senden fehlgeschlagen. Erneut versuchen.",
@@ -2794,6 +2804,8 @@ function populateProfileForm(){
   document.getElementById('fBio').value = p.bio || '';
   document.getElementById('profileAvatarImg').src = p.avatar_url || '';
   document.getElementById('profileAvatarImg').style.opacity = p.avatar_url ? '1' : '0.2';
+  document.getElementById('fBirthDate').value = p.birth_date || '';
+  document.getElementById('fGender').value = p.gender || '';
   var favs = p.favorite_characters || [];
   document.querySelectorAll('.fav-char-cb').forEach(function(cb){
     cb.checked = favs.indexOf(cb.value) !== -1;
@@ -2802,6 +2814,9 @@ function populateProfileForm(){
 function pickAvatarPublicUrl(userId, ext){
   return SUPABASE_URL + '/storage/v1/object/public/avatars/' + userId + '/avatar.' + ext + '?t=' + Date.now();
 }
+function pickAvatarHdPublicUrl(userId, ext){
+  return SUPABASE_URL + '/storage/v1/object/public/avatars/' + userId + '/avatar-hd.' + ext + '?t=' + Date.now();
+}
 function saveProfile(){
   var session = getSession();
   if(!session) return;
@@ -2809,6 +2824,8 @@ function saveProfile(){
   err.textContent = '';
   var displayName = document.getElementById('fDisplayName').value.trim();
   var bio = document.getElementById('fBio').value.trim();
+  var birthDate = document.getElementById('fBirthDate').value;
+  var gender = document.getElementById('fGender').value;
   var favs = Array.from(document.querySelectorAll('.fav-char-cb:checked')).map(function(cb){ return cb.value; });
   var btn = document.getElementById('btnSaveProfile');
   btn.disabled = true;
@@ -2829,7 +2846,25 @@ function saveProfile(){
     });
   }
 
-  avatarStep.then(function(avatarUrl){
+  var avatarHdStep = Promise.resolve(currentProfile ? currentProfile.avatar_hd_url : null);
+  var avatarHdFile = document.getElementById('fProfileAvatarHd').files[0];
+  if(avatarHdFile){
+    var extMatchHd = /\.([a-zA-Z0-9]+)$/.exec(avatarHdFile.name || '');
+    var extHd = extMatchHd ? extMatchHd[1].toLowerCase() : 'jpg';
+    var pathHd = currentUserId() + '/avatar-hd.' + extHd;
+    avatarHdStep = fetch(SUPABASE_URL + '/storage/v1/object/avatars/' + pathHd, {
+      method:'POST',
+      headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'x-upsert':'true', 'Content-Type': avatarHdFile.type || 'image/jpeg' },
+      body: avatarHdFile
+    }).then(function(r){
+      if(!r.ok) throw new Error('avatar hd upload failed');
+      return pickAvatarHdPublicUrl(currentUserId(), extHd);
+    });
+  }
+
+  Promise.all([avatarStep, avatarHdStep]).then(function(results){
+    var avatarUrl = results[0];
+    var avatarHdUrl = results[1];
     return fetch(SUPABASE_URL + '/rest/v1/profiles', {
       method:'POST',
       headers:{
@@ -2838,7 +2873,8 @@ function saveProfile(){
       },
       body: JSON.stringify({
         id: currentUserId(), display_name: displayName || null, bio: bio || null,
-        avatar_url: avatarUrl || null, favorite_characters: favs
+        avatar_url: avatarUrl || null, avatar_hd_url: avatarHdUrl || null,
+        birth_date: birthDate || null, gender: gender || null, favorite_characters: favs
       })
     });
   }).then(function(r){
@@ -2848,6 +2884,7 @@ function saveProfile(){
     currentProfile = rows[0];
     populateProfileForm();
     document.getElementById('fProfileAvatar').value = '';
+    document.getElementById('fProfileAvatarHd').value = '';
   }).catch(function(e){
     console.warn('Profile save failed:', e);
     err.textContent = t('profile.saveError');
@@ -2855,6 +2892,38 @@ function saveProfile(){
     btn.disabled = false;
   });
 }
+
+/* ============ POPUP INFO AVATAR (click su un avatar ovunque nel sito) ============ */
+function genderLabel(g){
+  if(g === 'M') return t('profile.genderM');
+  if(g === 'F') return t('profile.genderF');
+  if(g === 'X') return t('profile.genderX');
+  return null;
+}
+function openAvatarInfo(userId){
+  if(!userId) return;
+  fetch(SUPABASE_URL + '/rest/v1/profiles?id=eq.' + encodeURIComponent(userId) + '&select=display_name,avatar_url,avatar_hd_url,birth_date,gender,verified', { headers: communityHeaders() })
+    .then(function(r){ if(!r.ok) throw new Error('avatar info read failed'); return r.json(); })
+    .then(function(rows){
+      var p = rows[0];
+      if(!p) return;
+      document.getElementById('avatarInfoImg').src = p.avatar_hd_url || p.avatar_url || '';
+      document.getElementById('avatarInfoImg').style.opacity = (p.avatar_hd_url || p.avatar_url) ? '1' : '0.15';
+      var verifiedTag = p.verified ? ' ' + verifiedBadge('verified.commenter') : '';
+      document.getElementById('avatarInfoName').innerHTML = escapeHtml(p.display_name || t('notif.someone')) + verifiedTag;
+      var rows2 = '';
+      if(p.birth_date){
+        var d = new Date(p.birth_date);
+        if(!isNaN(d)) rows2 += '<div class="avatar-info-row"><span class="k">' + t('profile.birthDate') + '</span><span class="v">' + d.toLocaleDateString() + '</span></div>';
+      }
+      var gLabel = genderLabel(p.gender);
+      if(gLabel) rows2 += '<div class="avatar-info-row"><span class="k">' + t('profile.gender') + '</span><span class="v">' + escapeHtml(gLabel) + '</span></div>';
+      document.getElementById('avatarInfoRows').innerHTML = rows2 || '<p class="avatar-info-empty">' + t('profile.avatarInfoEmpty') + '</p>';
+      document.getElementById('avatarInfoModal').classList.remove('hidden');
+    })
+    .catch(function(e){ console.warn('Avatar info load failed:', e); });
+}
+function closeAvatarInfo(){ document.getElementById('avatarInfoModal').classList.add('hidden'); }
 
 (function injectDmChatStyles(){
   var style = document.createElement('style');
@@ -3465,6 +3534,8 @@ function renderPublicProfilePage(){
       var avatarImg = document.getElementById('pubProfileAvatar');
       avatarImg.src = p.avatar_url || '';
       avatarImg.style.opacity = p.avatar_url ? '1' : '0.15';
+      avatarImg.classList.add('avatar-clickable');
+      avatarImg.addEventListener('click', function(){ openAvatarInfo(userId); });
       if(p.bio) document.getElementById('pubProfileBio').textContent = p.bio;
 
       var metaParts = [];
@@ -3590,6 +3661,10 @@ function initChatPage(){
 
       getDisplayName(otherUserId).then(function(name){
         document.getElementById('chatOtherName').textContent = name;
+      });
+      document.getElementById('chatOtherAvatar').classList.add('avatar-clickable');
+      document.getElementById('chatOtherAvatar').addEventListener('click', function(){
+        openAvatarInfo(otherUserId);
       });
       fetch(SUPABASE_URL + '/rest/v1/profiles?id=eq.' + encodeURIComponent(otherUserId) + '&select=avatar_url,last_seen', { headers: communityHeaders() })
         .then(function(r){ return r.ok ? r.json() : []; })
@@ -4391,9 +4466,13 @@ function loadUserDirectory(){
       var lastSeenHtml = '<span class="user-directory-status">'+(p._online ? t('userDir.online') : (p.last_seen ? notifTimeAgo(p.last_seen) : t('userDir.offline')))+'</span>';
       var verifiedHtml = isVerifiedFriend ? '<i class="user-directory-verified-check" aria-hidden="true">✓</i>' : '';
       row.innerHTML =
-        '<span class="user-directory-avatar-wrap">'+avatarHtml+'<span class="'+dotClass+'"></span></span>'+
+        '<span class="user-directory-avatar-wrap avatar-clickable">'+avatarHtml+'<span class="'+dotClass+'"></span></span>'+
         '<span class="user-directory-name">'+escapeHtml(p.display_name || t('notif.someone'))+verifiedHtml+'</span>'+
         lastSeenHtml;
+      row.querySelector('.avatar-clickable').addEventListener('click', function(e){
+        e.stopPropagation();
+        openAvatarInfo(p.id);
+      });
       row.addEventListener('click', function(){
         window.location.href = 'chat.html?user=' + encodeURIComponent(p.id);
       });
@@ -6268,6 +6347,11 @@ function __appInit(){
   document.getElementById('cartModalClose') && document.getElementById('cartModalClose').addEventListener('click', closeCartModal);
   document.getElementById('cartModal') && document.getElementById('cartModal').addEventListener('click', function(e){
     if(e.target.id === 'cartModal') closeCartModal();
+  });
+
+  document.getElementById('avatarInfoModalClose') && document.getElementById('avatarInfoModalClose').addEventListener('click', closeAvatarInfo);
+  document.getElementById('avatarInfoModal') && document.getElementById('avatarInfoModal').addEventListener('click', function(e){
+    if(e.target.id === 'avatarInfoModal') closeAvatarInfo();
   });
   document.getElementById('btnClearCart') && document.getElementById('btnClearCart').addEventListener('click', function(){
     cart = []; saveCart(); renderCartModal();
