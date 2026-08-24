@@ -46,6 +46,7 @@ var STR = {
     "profile.displayName":"Nome visibile","profile.bio":"Bio (opzionale)","profile.favChars":"Personaggi preferiti",
     "profile.avatarHd":"Foto profilo HD (opzionale)","profile.avatarHdHint":"Mostrata a piena risoluzione a chi tocca il tuo avatar. Se non la carichi, si vede la foto normale.",
     "profile.banner":"Banner del profilo (opzionale)","profile.socials":"I tuoi social (opzionali)","profile.website":"Sito web","pubProfile.favoritesHeading":"Preferiti",
+    "push.enable":"Attiva notifiche","push.enabled":"Notifiche attive","push.unsupported":"Il tuo browser non supporta le notifiche push.","push.denied":"Permesso negato — puoi attivarle di nuovo dalle impostazioni del browser.","push.error":"Non è stato possibile attivare le notifiche, riprova.",
     "profile.birthDate":"Data di nascita","profile.gender":"Sesso","profile.genderUnset":"— Preferisco non dirlo —","profile.genderM":"Maschio","profile.genderF":"Femmina","profile.genderX":"Altro","profile.avatarInfoEmpty":"Nessuna informazione aggiuntiva condivisa",
     "profile.save":"Salva profilo","profile.saveError":"Salvataggio non riuscito. Riprova.",
     "requests.title":"Le mie richieste","requests.hint":"Un titolo che vorresti, una traduzione, un'idea — scrivimi qui, la leggo io.",
@@ -167,6 +168,7 @@ var STR = {
     "profile.displayName":"Display name","profile.bio":"Bio (optional)","profile.favChars":"Favorite characters",
     "profile.avatarHd":"HD profile photo (optional)","profile.avatarHdHint":"Shown at full resolution to whoever taps your avatar. If you don't upload one, your regular photo is shown.",
     "profile.banner":"Profile banner (optional)","profile.socials":"Your socials (optional)","profile.website":"Website","pubProfile.favoritesHeading":"Favorites",
+    "push.enable":"Enable notifications","push.enabled":"Notifications on","push.unsupported":"Your browser doesn't support push notifications.","push.denied":"Permission denied — you can re-enable it from your browser settings.","push.error":"Couldn't enable notifications, try again.",
     "profile.birthDate":"Birth date","profile.gender":"Gender","profile.genderUnset":"— Prefer not to say —","profile.genderM":"Male","profile.genderF":"Female","profile.genderX":"Other","profile.avatarInfoEmpty":"No additional information shared",
     "profile.save":"Save profile","profile.saveError":"Save failed. Try again.",
     "requests.title":"My requests","requests.hint":"A title you'd like, a translation, an idea — write it here, I read every one.",
@@ -288,6 +290,7 @@ var STR = {
     "profile.displayName":"Nombre visible","profile.bio":"Bio (opcional)","profile.favChars":"Personajes favoritos",
     "profile.avatarHd":"Foto de perfil HD (opcional)","profile.avatarHdHint":"Se muestra a resolución completa a quien toque tu avatar. Si no la subes, se ve la foto normal.",
     "profile.banner":"Banner del perfil (opcional)","profile.socials":"Tus redes sociales (opcional)","profile.website":"Sitio web","pubProfile.favoritesHeading":"Favoritos",
+    "push.enable":"Activar notificaciones","push.enabled":"Notificaciones activas","push.unsupported":"Tu navegador no admite notificaciones push.","push.denied":"Permiso denegado — puedes activarlas de nuevo desde los ajustes del navegador.","push.error":"No se pudieron activar las notificaciones, inténtalo de nuevo.",
     "profile.birthDate":"Fecha de nacimiento","profile.gender":"Sexo","profile.genderUnset":"— Prefiero no decirlo —","profile.genderM":"Masculino","profile.genderF":"Femenino","profile.genderX":"Otro","profile.avatarInfoEmpty":"No se ha compartido información adicional",
     "profile.save":"Guardar perfil","profile.saveError":"Error al guardar. Inténtalo de nuevo.",
     "requests.title":"Mis solicitudes","requests.hint":"Un título que quieras, una traducción, una idea — escríbeme aquí, lo leo yo.",
@@ -409,6 +412,7 @@ var STR = {
     "profile.displayName":"Nom affiché","profile.bio":"Bio (facultatif)","profile.favChars":"Personnages préférés",
     "profile.avatarHd":"Photo de profil HD (facultatif)","profile.avatarHdHint":"Affichée en pleine résolution à quiconque touche votre avatar. Si vous n'en téléchargez pas, la photo normale s'affiche.",
     "profile.banner":"Bannière du profil (facultatif)","profile.socials":"Vos réseaux sociaux (facultatif)","profile.website":"Site web","pubProfile.favoritesHeading":"Favoris",
+    "push.enable":"Activer les notifications","push.enabled":"Notifications activées","push.unsupported":"Votre navigateur ne prend pas en charge les notifications push.","push.denied":"Permission refusée — vous pouvez la réactiver dans les paramètres du navigateur.","push.error":"Impossible d'activer les notifications, réessayez.",
     "profile.birthDate":"Date de naissance","profile.gender":"Sexe","profile.genderUnset":"— Je préfère ne pas le dire —","profile.genderM":"Homme","profile.genderF":"Femme","profile.genderX":"Autre","profile.avatarInfoEmpty":"Aucune information supplémentaire partagée",
     "profile.save":"Enregistrer le profil","profile.saveError":"Échec de l'enregistrement. Réessayez.",
     "requests.title":"Mes demandes","requests.hint":"Un titre que vous aimeriez, une traduction, une idée — écrivez-moi ici, je lis tout.",
@@ -530,6 +534,7 @@ var STR = {
     "profile.displayName":"Anzeigename","profile.bio":"Bio (optional)","profile.favChars":"Lieblingscharaktere",
     "profile.avatarHd":"HD-Profilbild (optional)","profile.avatarHdHint":"Wird in voller Auflösung angezeigt, wenn jemand auf dein Avatar tippt. Wenn du keins hochlädst, wird das normale Foto angezeigt.",
     "profile.banner":"Profil-Banner (optional)","profile.socials":"Deine Social-Media-Profile (optional)","profile.website":"Webseite","pubProfile.favoritesHeading":"Favoriten",
+    "push.enable":"Benachrichtigungen aktivieren","push.enabled":"Benachrichtigungen an","push.unsupported":"Dein Browser unterstützt keine Push-Benachrichtigungen.","push.denied":"Erlaubnis verweigert — du kannst sie in den Browsereinstellungen wieder aktivieren.","push.error":"Benachrichtigungen konnten nicht aktiviert werden, versuch es erneut.",
     "profile.birthDate":"Geburtsdatum","profile.gender":"Geschlecht","profile.genderUnset":"— Möchte ich nicht angeben —","profile.genderM":"Männlich","profile.genderF":"Weiblich","profile.genderX":"Andere","profile.avatarInfoEmpty":"Keine zusätzlichen Informationen geteilt",
     "profile.save":"Profil speichern","profile.saveError":"Speichern fehlgeschlagen. Erneut versuchen.",
     "requests.title":"Meine Anfragen","requests.hint":"Ein Titel, den du dir wünschst, eine Übersetzung, eine Idee — schreib es hier, ich lese alles.",
@@ -1040,6 +1045,8 @@ function refreshAuthUI(){
     if(navCommunity) navCommunity.classList.remove('hidden');
     if(communitySection) communitySection.classList.remove('hidden');
     if(smallnoxFloat) smallnoxFloat.classList.remove('hidden');
+    refreshSmallNoxBadge();
+    refreshPushButtonUI();
     loadChannels();
     var pendingCommunityTab = sessionStorage.getItem('lux_pending_community_tab');
     if(pendingCommunityTab && document.getElementById('communitySection')){
@@ -1923,6 +1930,68 @@ if('serviceWorker' in navigator){
     navigator.serviceWorker.register('/sw.js').catch(function(err){
       console.warn('Service worker registration failed:', err);
     });
+  });
+}
+
+/* ============ NOTIFICHE PUSH ============ */
+var VAPID_PUBLIC_KEY = 'BMGy8PVyauBnEGAuH2j2XdWtDKKy9YlU6WyyxE-YxJA4nGTtfZzwMeJZy4006wlH3nN7FfaeGb8Nv9cDMiY3PJA';
+
+function urlBase64ToUint8Array(base64String){
+  var padding = '='.repeat((4 - base64String.length % 4) % 4);
+  var base64 = (base64String + padding).replace(/-/g, '+').replace(/_/g, '/');
+  var rawData = window.atob(base64);
+  var outputArray = new Uint8Array(rawData.length);
+  for(var i = 0; i < rawData.length; ++i){ outputArray[i] = rawData.charCodeAt(i); }
+  return outputArray;
+}
+
+function pushSupported(){
+  return 'serviceWorker' in navigator && 'PushManager' in window && 'Notification' in window;
+}
+
+function refreshPushButtonUI(){
+  var btn = document.getElementById('btnEnablePush');
+  if(!btn || !pushSupported() || !isSignedIn()){
+    if(btn) btn.classList.add('hidden');
+    return;
+  }
+  navigator.serviceWorker.ready.then(function(reg){
+    return reg.pushManager.getSubscription();
+  }).then(function(sub){
+    btn.classList.remove('hidden');
+    btn.textContent = sub ? t('push.enabled') : t('push.enable');
+    btn.disabled = !!sub;
+  }).catch(function(){ btn.classList.add('hidden'); });
+}
+
+function enablePushNotifications(){
+  if(!pushSupported()){ window.alert(t('push.unsupported')); return; }
+  var session = getSession();
+  if(!session) return;
+  Notification.requestPermission().then(function(perm){
+    if(perm !== 'granted'){ window.alert(t('push.denied')); return; }
+    return navigator.serviceWorker.ready.then(function(reg){
+      return reg.pushManager.subscribe({
+        userVisibleOnly: true,
+        applicationServerKey: urlBase64ToUint8Array(VAPID_PUBLIC_KEY)
+      });
+    }).then(function(sub){
+      var json = sub.toJSON();
+      return fetch(SUPABASE_URL + '/rest/v1/push_subscriptions', {
+        method: 'POST',
+        headers: {
+          'apikey': SUPABASE_ANON_KEY, 'Authorization': 'Bearer ' + session.access_token,
+          'Content-Type': 'application/json', 'Prefer': 'resolution=merge-duplicates'
+        },
+        body: JSON.stringify({ user_id: currentUserId(), endpoint: json.endpoint, p256dh: json.keys.p256dh, auth: json.keys.auth })
+      });
+    }).then(function(r){
+      if(!r.ok) throw new Error('push subscription save failed');
+      refreshPushButtonUI();
+    });
+  }).catch(function(e){
+    console.warn('Push subscribe failed:', e);
+    window.alert(t('push.error'));
   });
 }
 
@@ -4466,6 +4535,13 @@ function toggleUserDirectory(){
 }
 
 /* ============ NOVITÀ DEL SITO (popup automatico di SmallNox) ============ */
+function formatVersion(dateStr){
+  var d = new Date(dateStr);
+  var mm = String(d.getMonth()+1).padStart(2,'0');
+  var dd = String(d.getDate()).padStart(2,'0');
+  return d.getFullYear() + '.' + mm + '.' + dd;
+}
+
 function checkForSiteUpdates(){
   if(!isSignedIn()) return;
   var lastShown = localStorage.getItem('lux_updates_last_shown');
@@ -4482,9 +4558,49 @@ function checkForSiteUpdates(){
     .catch(function(e){ console.warn('Site updates check failed:', e); });
 }
 
+/* Badge sul pallino di SmallNox: acceso solo se esiste un aggiornamento più recente
+   dell'ultima volta che l'utente ha visto il popup (automatico o manuale) — decade
+   da solo perché smette di avere senso non appena non ci sono aggiornamenti nuovi. */
+function refreshSmallNoxBadge(){
+  var badge = document.getElementById('smallnoxBadge');
+  if(!badge) return;
+  fetch(SUPABASE_URL + '/rest/v1/site_updates?select=created_at&order=created_at.desc&limit=1', { headers: communityHeaders() })
+    .then(function(r){ return r.ok ? r.json() : []; })
+    .then(function(rows){
+      if(rows.length === 0){ badge.classList.add('hidden'); return; }
+      var latest = new Date(rows[0].created_at).getTime();
+      var lastShown = localStorage.getItem('lux_updates_last_shown');
+      var unseen = !lastShown || latest > new Date(lastShown).getTime();
+      badge.classList.toggle('hidden', !unseen);
+    })
+    .catch(function(){ badge.classList.add('hidden'); });
+}
+
+/* Cliccando l'icona di SmallNox: apre sempre l'assistente, e se ci sono
+   aggiornamenti mai visti apre anche il popup delle novità, col numero di versione. */
+function openSmallNoxAssistant(){
+  document.getElementById('smallnoxModal').classList.remove('hidden');
+  fetch(SUPABASE_URL + '/rest/v1/site_updates?select=title,created_at&order=created_at.desc&limit=50', { headers: communityHeaders() })
+    .then(function(r){ return r.ok ? r.json() : []; })
+    .then(function(rows){
+      if(rows.length === 0) return;
+      var latest = new Date(rows[0].created_at).getTime();
+      var lastShown = localStorage.getItem('lux_updates_last_shown');
+      var unseen = !lastShown || latest > new Date(lastShown).getTime();
+      if(!unseen) return;
+      renderSiteUpdatesModal(rows);
+      var vt = document.getElementById('smallnoxVersionTag');
+      if(vt) vt.textContent = 'v' + formatVersion(rows[0].created_at);
+      document.getElementById('smallnoxUpdatesModal').classList.remove('hidden');
+    })
+    .catch(function(e){ console.warn('SmallNox updates check failed:', e); });
+}
+
 function renderSiteUpdatesModal(rows){
   var list = document.getElementById('smallnoxUpdatesList');
   if(!list) return;
+  var vt = document.getElementById('smallnoxVersionTag');
+  if(vt && rows.length) vt.textContent = 'v' + formatVersion(rows[0].created_at);
   var groups = {}; // raggruppo per ora (arrotondata) così più modifiche vicine nel tempo finiscono nella stessa sotto-sezione
   var order = [];
   rows.forEach(function(row){
@@ -4514,6 +4630,8 @@ function renderSiteUpdatesModal(rows){
 function dismissSiteUpdates(){
   localStorage.setItem('lux_updates_last_shown', new Date().toISOString());
   document.getElementById('smallnoxUpdatesModal').classList.add('hidden');
+  var badge = document.getElementById('smallnoxBadge');
+  if(badge) badge.classList.add('hidden');
 }
 
 function loadUserDirectory(){
@@ -6374,12 +6492,13 @@ function __appInit(){
   });
 
   document.getElementById('profileModalClose') && document.getElementById('profileModalClose').addEventListener('click', closeProfileModal);
+  document.getElementById('btnEnablePush') && document.getElementById('btnEnablePush').addEventListener('click', enablePushNotifications);
   document.querySelectorAll('.smallnox-clickable').forEach(function(img){
     img.addEventListener('click', function(){
       img.classList.remove('wiggle');
       void img.offsetWidth; // forza il replay dell'animazione anche a click ravvicinati
       img.classList.add('wiggle');
-      document.getElementById('smallnoxModal').classList.remove('hidden');
+      openSmallNoxAssistant();
     });
   });
   document.getElementById('smallnoxModalClose') && document.getElementById('smallnoxModalClose').addEventListener('click', function(){
