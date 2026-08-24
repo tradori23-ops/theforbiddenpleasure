@@ -4526,13 +4526,28 @@ function isOnlineSince(lastActiveAt){
   return (Date.now() - new Date(lastActiveAt).getTime()) < ONLINE_THRESHOLD_MS;
 }
 /* ============ ELENCO UTENTI (pannello a scomparsa, online/offline) ============ */
+function positionUserDirectoryPanel(){
+  var panel = document.getElementById('userDirectoryPanel');
+  var header = document.querySelector('header.topbar');
+  if(!panel || !header) return;
+  var bottom = header.getBoundingClientRect().bottom;
+  panel.style.top = Math.max(bottom, 0) + 'px';
+  panel.style.maxHeight = 'min(560px, calc(100vh - ' + Math.max(bottom, 0) + 'px - 16px))';
+}
+
 function toggleUserDirectory(){
   var panel = document.getElementById('userDirectoryPanel');
   if(!panel) return;
   var willOpen = panel.classList.contains('hidden');
+  if(willOpen) positionUserDirectoryPanel();
   panel.classList.toggle('hidden');
   if(willOpen) loadUserDirectory();
 }
+
+window.addEventListener('resize', function(){
+  var panel = document.getElementById('userDirectoryPanel');
+  if(panel && !panel.classList.contains('hidden')) positionUserDirectoryPanel();
+});
 
 /* ============ NOVITÀ DEL SITO (popup automatico di SmallNox) ============ */
 function formatVersion(dateStr){

@@ -903,7 +903,7 @@ footer .fcopy{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
 .user-directory-toggle:hover{background:#e3c273;}
 .user-directory-toggle svg{stroke:#241a12;}
 .user-directory-panel{
-  position:fixed;top:120px;right:0;width:280px;max-width:82vw;z-index:70;
+  position:fixed;top:200px;right:0;width:280px;max-width:82vw;z-index:70;
   max-height:min(560px, 65vh);
   background:#fdfaf5;border:2px solid #c9a24d;border-right:none;
   border-radius:10px 0 0 10px;box-shadow:-4px 0 16px rgba(0,0,0,0.4);
