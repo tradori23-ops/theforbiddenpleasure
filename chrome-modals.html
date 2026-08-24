@@ -55,12 +55,30 @@
       <input type="file" id="fProfileAvatar" accept="image/*">
     </div>
     <div class="field">
+      <label data-i18n="profile.avatarHd">Foto profilo HD (opzionale)</label>
+      <input type="file" id="fProfileAvatarHd" accept="image/*">
+      <p class="form-note" style="margin-top:6px;" data-i18n="profile.avatarHdHint">Mostrata a piena risoluzione a chi tocca il tuo avatar. Se non la carichi, si vede la foto normale.</p>
+    </div>
+    <div class="field">
       <label data-i18n="profile.displayName">Nome visibile</label>
       <input type="text" id="fDisplayName" maxlength="40" placeholder="Come vuoi essere chiamato/a">
     </div>
     <div class="field">
       <label data-i18n="profile.bio">Bio (opzionale)</label>
       <textarea id="fBio" maxlength="200" rows="2"></textarea>
+    </div>
+    <div class="field">
+      <label data-i18n="profile.birthDate">Data di nascita (opzionale)</label>
+      <input type="date" id="fBirthDate">
+    </div>
+    <div class="field">
+      <label data-i18n="profile.gender">Sesso (opzionale)</label>
+      <select id="fGender">
+        <option value="" data-i18n="profile.genderUnset">— Preferisco non dirlo —</option>
+        <option value="M" data-i18n="profile.genderM">Maschio</option>
+        <option value="F" data-i18n="profile.genderF">Femmina</option>
+        <option value="X" data-i18n="profile.genderX">Altro</option>
+      </select>
     </div>
     <div class="field">
       <label data-i18n="profile.favChars">Personaggi preferiti</label>
@@ -180,6 +198,16 @@
     <div class="modal-actions">
       <button class="btn btn-ghost" id="btnClearCart" data-i18n="cart.clear">Svuota carrello</button>
     </div>
+  </div>
+</div>
+
+<!-- ============ AVATAR INFO POPUP (cliccando un avatar ovunque nel sito) ============ -->
+<div class="modal-backdrop hidden avatar-info-modal" id="avatarInfoModal">
+  <div class="modal">
+    <button class="modal-close" id="avatarInfoModalClose" aria-label="Chiudi">×</button>
+    <img id="avatarInfoImg" class="avatar-info-img" src="" alt="">
+    <div class="avatar-info-name" id="avatarInfoName">—</div>
+    <div id="avatarInfoRows" class="avatar-info-rows"></div>
   </div>
 </div>
 
