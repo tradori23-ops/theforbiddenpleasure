@@ -1,0 +1,21 @@
+{
+  "name": "LUX COMICS & MEDUSA COMICS",
+  "short_name": "LUX COMICS",
+  "description": "Archivio di fumetti d'autore — Nox Morningstar",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0b0607",
+  "theme_color": "#6e1423",
+  "icons": [
+    {
+      "src": "manifest-icon-192x192.webp",
+      "sizes": "192x192",
+      "type": "image/webp"
+    },
+    {
+      "src": "manifest-icon-512x512.webp",
+      "sizes": "512x512",
+      "type": "image/webp"
+    }
+  ]
+}

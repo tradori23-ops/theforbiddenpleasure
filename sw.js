@@ -4,7 +4,7 @@
    ricarica — evita la pagina bianca/bloccata quando si ricarica la PWA
    da schermata Home con una connessione instabile. */
 
-var CACHE_NAME = 'lux-comics-v1';
+var CACHE_NAME = 'lux-comics-v2';
 var CORE_ASSETS = [
   './',
   './index.html'
