@@ -1014,7 +1014,14 @@ body.chat-fullscreen .chat-page::after{ display:none; }
 .chat-sidebar-header{
   padding:16px 18px;font-family:'Cinzel',serif;font-size:15px;color:var(--parchment);
   letter-spacing:0.03em;border-bottom:1px solid rgba(201,162,77,0.3);flex-shrink:0;
+  display:flex;align-items:center;gap:12px;
 }
+.chat-sidebar-home{
+  color:var(--gold-bright);font-size:18px;text-decoration:none;flex-shrink:0;
+  width:28px;height:28px;display:flex;align-items:center;justify-content:center;
+  border:1px solid transparent;border-radius:4px;
+}
+.chat-sidebar-home:hover{border-color:var(--gold);background:rgba(201,162,77,0.1);}
 .chat-sidebar-list{flex:1;overflow-y:auto;padding:8px;}
 .chat-sidebar-row{
   width:100%;display:flex;align-items:center;gap:10px;padding:10px;margin-bottom:4px;

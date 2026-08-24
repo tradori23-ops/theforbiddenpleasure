@@ -5932,8 +5932,28 @@ function positionPickerBox(anchor){
   // position:fixed è relativo alla finestra (non al documento): resta
   // ancorato al pulsante così com'è sullo schermo, invece di scorrere via
   // insieme alla pagina e finire sovrapposto a sezioni che non c'entrano
-  box.style.left = rect.left + 'px';
-  box.style.top = (rect.bottom + 4) + 'px';
+
+  // per misurare l'altezza vera del popup (dipende dal contenuto: griglia
+  // emoji o ricerca GIF) lo rendiamo visibile fuori dallo schermo un istante,
+  // poi lo spostiamo nella posizione giusta — altrimenti, da nascosto,
+  // risulterebbe alto 0px e penseremmo sempre che ci sia spazio a sufficienza
+  box.style.left = '-9999px';
+  box.style.top = '0px';
+  box.classList.remove('hidden');
+  var boxHeight = box.offsetHeight;
+  var boxWidth = box.offsetWidth;
+
+  var spaceBelow = window.innerHeight - rect.bottom;
+  var top = (spaceBelow < boxHeight + 12 && rect.top > boxHeight + 12)
+    ? rect.top - boxHeight - 4   // non c'è spazio sotto (es. composer in fondo allo schermo): apriamo sopra
+    : rect.bottom + 4;
+  top = Math.max(8, Math.min(top, window.innerHeight - boxHeight - 8));
+
+  var left = Math.min(rect.left, window.innerWidth - boxWidth - 8);
+  left = Math.max(8, left);
+
+  box.style.top = top + 'px';
+  box.style.left = left + 'px';
 }
 function insertAtCursor(field, text){
   var pos = field.selectionStart;
