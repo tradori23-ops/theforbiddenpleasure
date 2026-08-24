@@ -3901,6 +3901,7 @@ function initChatPage(){
     .then(function(threadId){
       currentChatThreadId = threadId;
       document.getElementById('chatBox').classList.remove('hidden');
+      document.body.classList.add('chat-fullscreen'); // nasconde l'intestazione del sito: la chat occupa tutto lo schermo, come un'app di messaggistica
 
       getDisplayName(otherUserId).then(function(name){
         document.getElementById('chatOtherName').textContent = name;
@@ -5829,8 +5830,11 @@ function hidePickerBox(){ if(pickerBox) pickerBox.classList.add('hidden'); }
 function positionPickerBox(anchor){
   var rect = anchor.getBoundingClientRect();
   var box = ensurePickerBox();
-  box.style.left = (rect.left + window.scrollX) + 'px';
-  box.style.top = (rect.bottom + window.scrollY + 4) + 'px';
+  // position:fixed è relativo alla finestra (non al documento): resta
+  // ancorato al pulsante così com'è sullo schermo, invece di scorrere via
+  // insieme alla pagina e finire sovrapposto a sezioni che non c'entrano
+  box.style.left = rect.left + 'px';
+  box.style.top = (rect.bottom + 4) + 'px';
 }
 function insertAtCursor(field, text){
   var pos = field.selectionStart;
@@ -5930,9 +5934,9 @@ scanForComposerFields();
     '.composer-btn{background:#fdfaf5;color:#2a1a1d;border:1px solid #6e1423;border-radius:4px;' +
     'padding:2px 8px;font-size:14px;cursor:pointer;}' +
     '.composer-btn:hover{background:rgba(110,20,35,.12);}' +
-    '.composer-picker-box{position:absolute;z-index:9999;background:#fdfaf5;color:#2a1a1d;' +
+    '.composer-picker-box{position:fixed;z-index:9999;background:#fdfaf5;color:#2a1a1d;' +
     'border:1px solid #6e1423;border-radius:6px;padding:8px;box-shadow:0 6px 18px rgba(0,0,0,.35);' +
-    'max-width:260px;}' +
+    'max-width:260px;max-height:70vh;overflow-y:auto;}' +
     '.composer-picker-box.hidden{display:none;}' +
     '.picker-grid{display:flex;flex-wrap:wrap;gap:4px;max-width:240px;}' +
     '.picker-emoji{font-size:20px;cursor:pointer;padding:2px;border-radius:4px;}' +

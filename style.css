@@ -951,8 +951,28 @@ footer .fcopy{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
 .user-directory-panel .form-note{color:#6e1423;opacity:1;text-align:center;padding:16px 8px;}
 
 
+/* ============ CHAT A SCHERMO INTERO (come un'app di messaggistica) ============
+   Quando si è dentro una conversazione, l'intestazione normale del sito
+   (logo, menu, notifiche) sparisce: la chat prende tutto lo schermo, con
+   solo la sua barra interna (freccia indietro + contatto) in alto. Il
+   pulsante "indietro" della chat resta l'unico modo per uscire — voluto,
+   è lo stesso comportamento di qualunque app di messaggistica dedicata. */
+body.chat-fullscreen #chrome-top-slot,
+body.chat-fullscreen #chrome-footer-slot{
+  display:none;
+}
+body.chat-fullscreen{ overflow:hidden; }
+body.chat-fullscreen #chatSection.section{
+  padding:0;max-width:none;height:100vh;height:100dvh;
+}
+body.chat-fullscreen .chat-page{
+  height:100vh;height:100dvh;min-height:0;
+  border:none;outline:none;border-radius:0;box-shadow:none;
+}
+body.chat-fullscreen .chat-page::before,
+body.chat-fullscreen .chat-page::after{ display:none; }
+
 /* ============ CHAT DEDICATA (chat.html) ============
-/* ============ CHAT PRIVATA — chat.html ============
    La struttura segue il tema chiaro/scuro tramite le variabili
    --void-2/--parchment/--gold, come il resto del sito. Le bolle dei
    messaggi restano invece a colori fissi (crema/testo scuro) apposta,
