@@ -5704,7 +5704,7 @@ function submitComment(){
 
 /* ============ MENTION AUTOCOMPLETE (@username suggestions while typing in
    comments, channel messages and DMs — closes itself on pick/blur/escape) ============ */
-var MENTION_FIELDS = ['fCommentBody', 'fChannelMessage', 'fDmMessage', 'fSynopsis', 'fAnnBody'];
+var MENTION_FIELDS = ['fCommentBody', 'fChannelMessage', 'fDmMessage', 'fChatMessage', 'fSynopsis', 'fAnnBody'];
 var mentionBox = null;
 var mentionActiveField = null;
 
@@ -6555,9 +6555,6 @@ function __appInit(){
   document.getElementById('btnSendChat') && document.getElementById('btnSendChat').addEventListener('click', sendChatMessage);
   document.getElementById('fChatMessage') && document.getElementById('fChatMessage').addEventListener('keydown', function(e){
     if(e.key === 'Enter') sendChatMessage();
-  });
-  document.getElementById('btnChatEmoji') && document.getElementById('btnChatEmoji').addEventListener('click', function(){
-    openEmojiPicker('fChatMessage', document.getElementById('btnChatEmoji'));
   });
   document.getElementById('fChatAttachment') && document.getElementById('fChatAttachment').addEventListener('change', function(e){
     var file = e.target.files[0];
