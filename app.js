@@ -1927,7 +1927,11 @@ function renderBodyHtml(body){
 /* ============ PWA: SERVICE WORKER + CONDIVIDI L'APP ============ */
 if('serviceWorker' in navigator){
   window.addEventListener('load', function(){
-    navigator.serviceWorker.register('/sw.js').catch(function(err){
+    navigator.serviceWorker.register('/sw.js').then(function(){
+      // il primo tentativo di mostrare il pulsante può capitare prima che
+      // il service worker sia pronto — ora che lo è davvero, riproviamo
+      if(typeof refreshPushButtonUI === 'function') refreshPushButtonUI();
+    }).catch(function(err){
       console.warn('Service worker registration failed:', err);
     });
   });
@@ -1955,13 +1959,33 @@ function refreshPushButtonUI(){
     if(btn) btn.classList.add('hidden');
     return;
   }
+  var settled = false;
+  var safetyTimer = setTimeout(function(){
+    // il service worker a volte non risponde in tempo utile (capita su iOS
+    // subito dopo l'installazione dell'app): meglio mostrare comunque il
+    // pulsante, in stato "da attivare", piuttosto che lasciarlo nascosto
+    // per sempre in attesa di una promise che potrebbe non arrivare mai
+    if(settled) return;
+    settled = true;
+    btn.classList.remove('hidden');
+    btn.textContent = t('push.enable');
+    btn.disabled = false;
+  }, 3000);
   navigator.serviceWorker.ready.then(function(reg){
     return reg.pushManager.getSubscription();
   }).then(function(sub){
+    if(settled) return;
+    settled = true;
+    clearTimeout(safetyTimer);
     btn.classList.remove('hidden');
     btn.textContent = sub ? t('push.enabled') : t('push.enable');
     btn.disabled = !!sub;
-  }).catch(function(){ btn.classList.add('hidden'); });
+  }).catch(function(){
+    if(settled) return;
+    settled = true;
+    clearTimeout(safetyTimer);
+    btn.classList.add('hidden');
+  });
 }
 
 function enablePushNotifications(){
