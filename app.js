@@ -4009,32 +4009,37 @@ function renderChatSidebar(threads){
     main.addEventListener('click', function(){ openChatWithUser(st.otherId, true); });
     row.appendChild(main);
 
+    var actions = document.createElement('div');
+    actions.className = 'chat-sidebar-actions';
+
     var archBtn = document.createElement('button');
     archBtn.type = 'button';
     archBtn.className = 'chat-sidebar-action';
-    archBtn.setAttribute('aria-label', t('community.archive') || 'Archivia');
-    archBtn.title = t('community.archive') || 'Archivia';
-    archBtn.textContent = '🗄';
+    var archLabel = t('community.archive') || 'Archivia';
+    archBtn.textContent = archLabel;
+    archBtn.setAttribute('aria-label', archLabel);
     archBtn.addEventListener('click', function(e){
       e.stopPropagation();
       var mine = th.user_a === uid;
       var field = mine ? 'archived_a' : 'archived_b';
       setDmFlag(th.id, field, true).then(function(){ loadChatSidebar(); });
     });
-    row.appendChild(archBtn);
+    actions.appendChild(archBtn);
 
     var delBtn = document.createElement('button');
     delBtn.type = 'button';
     delBtn.className = 'chat-sidebar-action danger';
-    delBtn.setAttribute('aria-label', t('chat.delete') || 'Elimina');
-    delBtn.title = t('chat.delete') || 'Elimina';
-    delBtn.textContent = '🗑';
+    var delLabel = t('chat.delete') || 'Elimina';
+    delBtn.textContent = delLabel;
+    delBtn.setAttribute('aria-label', delLabel);
     delBtn.addEventListener('click', function(e){
       e.stopPropagation();
       if(!window.confirm(t('chat.deleteConfirm'))) return;
       deleteDmThread(th.id);
     });
-    row.appendChild(delBtn);
+    actions.appendChild(delBtn);
+
+    row.appendChild(actions);
 
     list.appendChild(row);
 
