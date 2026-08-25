@@ -1729,6 +1729,7 @@ function renderLatestChapters(){
       '<div class="latest-card-body"><h5>' + escapeHtml(item.title) + '</h5><div class="character">' + item.character + '</div></div>';
     card.addEventListener('click', function(){ openTitleModal(item); });
     grid.appendChild(card);
+    attachCoverSignature(card.querySelector('.latest-card-cover'), item);
   });
 }
 
@@ -1888,6 +1889,7 @@ function renderCatalog(){
       toggleBtn.textContent = expanded ? t('card.readLess') : t('card.readMore');
     });
     grid.appendChild(card);
+    attachCoverSignature(card.querySelector('.card-idx-cover'), item);
     // only show the toggle when the text actually overflows the 3-line clamp
     if(synEl.scrollHeight > synEl.clientHeight + 1){
       toggleBtn.classList.remove('hidden');
@@ -1901,6 +1903,48 @@ function verifiedBadge(titleKey){
     '<polygon points="12.00,1.00 13.92,5.48 17.95,2.75 17.14,7.55 22.01,7.43 18.73,11.03 22.89,13.57 18.19,14.82 20.31,19.20 15.68,17.72 15.10,22.55 12.00,18.80 8.90,22.55 8.32,17.72 3.69,19.20 5.81,14.82 1.11,13.57 5.27,11.03 1.99,7.43 6.86,7.55 6.05,2.75 10.08,5.48" fill="#1d9bf0"/>' +
     '<path d="M8 12.3l2.6 2.6 5.4-5.6" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>' +
     '</svg>';
+}
+
+/* ============ FIRMA + QR SULLE COPERTINE ============
+   Su ogni copertina d'opera, sovrimpressa in basso a destra: firma
+   "NoxMorningstar" in stile fumetto + un QR che porta dritti a quella
+   pagina — utile se qualcuno fa uno screenshot o salva l'immagine per
+   condividerla altrove, il link al sito resta comunque leggibile.
+   Il QR viene generato interamente nel telefono (libreria qrcode-lib.js),
+   nessuna chiamata a servizi esterni per ogni copertina mostrata.
+
+   Per non bloccare il disegno della pagina — generare tanti QR tutti
+   insieme, in un colpo solo, si sente come un piccolo scatto proprio
+   all'avvio — la firma non viene scritta subito dentro alla copertina:
+   la copertina appare subito senza, e la firma viene aggiunta un istante
+   dopo, quando il browser è libero. Ogni QR viene calcolato una sola
+   volta per opera e poi riusato (cache), anche cambiando filtro. */
+var _coverSignatureCache = {};
+function buildCoverSignatureNode(item){
+  if(typeof qrcode === 'undefined' || !item || !item.id) return null;
+  if(_coverSignatureCache[item.id]) return _coverSignatureCache[item.id].cloneNode(true);
+  try{
+    var url = previewPagePath('t', item.id);
+    var qr = qrcode(0, 'L'); // correzione errori bassa: QR più semplice, resta leggibile anche piccolo
+    qr.addData(url);
+    qr.make();
+    var wrap = document.createElement('div');
+    wrap.className = 'cover-signature';
+    wrap.innerHTML = '<span class="cover-signature-text">NoxMorningstar</span>' +
+      '<span class="cover-signature-qr">' + qr.createImgTag(2, 0) + '</span>';
+    _coverSignatureCache[item.id] = wrap;
+    return wrap.cloneNode(true);
+  } catch(e){
+    return null; // un errore nella generazione del QR non deve mai rompere la copertina
+  }
+}
+function attachCoverSignature(coverEl, item){
+  if(!coverEl || !item) return;
+  var runLater = window.requestIdleCallback || function(fn){ return setTimeout(fn, 0); };
+  runLater(function(){
+    var node = buildCoverSignatureNode(item);
+    if(node) coverEl.appendChild(node);
+  });
 }
 
 function escapeHtml(str){
@@ -3421,6 +3465,7 @@ function renderCollabWorksTab(){
       '</div>';
     card.querySelector('[data-open]').addEventListener('click', function(){ openTitleModal(item); });
     grid.appendChild(card);
+    attachCoverSignature(card.querySelector('.card-idx-cover'), item);
   });
 }
 
@@ -3985,6 +4030,12 @@ function renderChatSidebar(threads){
     list.innerHTML = '<p class="form-note">' + t('community.noDms') + '</p>';
     return;
   }
+
+  var otherIds = threads.map(function(th){ return dmThreadState(th, uid).otherId; });
+  var threadIds = threads.map(function(th){ return th.id; });
+  var rowsByOtherId = {}; // per aggiornare avatar/pallino online una volta arrivati i profili
+  var rowsByThreadId = {}; // per aggiornare l'anteprima dell'ultimo messaggio
+
   threads.forEach(function(th){
     var st = dmThreadState(th, uid);
     var row = document.createElement('div');
@@ -4040,35 +4091,54 @@ function renderChatSidebar(threads){
     actions.appendChild(delBtn);
 
     row.appendChild(actions);
-
     list.appendChild(row);
 
     getDisplayName(st.otherId).then(function(name){
       row.querySelector('.chat-sidebar-name').textContent = name;
     });
-    fetch(SUPABASE_URL + '/rest/v1/profiles?id=eq.' + encodeURIComponent(st.otherId) + '&select=avatar_url,last_seen', { headers: communityHeaders() })
+    rowsByOtherId[st.otherId] = row;
+    rowsByThreadId[th.id] = row;
+  });
+
+  // un'unica richiesta per tutti gli avatar/stati online, invece di una per contatto
+  if(otherIds.length > 0){
+    fetch(SUPABASE_URL + '/rest/v1/profiles?id=in.(' + otherIds.map(encodeURIComponent).join(',') + ')&select=id,avatar_url,last_seen', { headers: communityHeaders() })
+      .then(function(r){ return r.ok ? r.json() : []; })
+      .then(function(profiles){
+        profiles.forEach(function(p){
+          var row = rowsByOtherId[p.id];
+          if(!row) return;
+          if(p.avatar_url) row.querySelector('.chat-sidebar-avatar').src = p.avatar_url;
+          var online = isOnlineSince(p.last_seen);
+          row.querySelector('.chat-sidebar-dot').classList.toggle('online', online);
+        });
+      })
+      .catch(function(){});
+  }
+
+  // un'unica richiesta per tutte le anteprime, invece di una per contatto:
+  // prendiamo più messaggi recenti del necessario (ordinati dal più nuovo)
+  // e teniamo solo il primo che troviamo per ciascuna conversazione
+  if(threadIds.length > 0){
+    fetch(SUPABASE_URL + '/rest/v1/dm_messages?thread_id=in.(' + threadIds.map(encodeURIComponent).join(',') + ')&select=thread_id,body,attachment_type&order=created_at.desc&limit=' + (threadIds.length * 6), { headers: communityHeaders() })
       .then(function(r){ return r.ok ? r.json() : []; })
       .then(function(rows){
-        var p = rows[0];
-        if(!p) return;
-        if(p.avatar_url) row.querySelector('.chat-sidebar-avatar').src = p.avatar_url;
-        var online = isOnlineSince(p.last_seen);
-        row.querySelector('.chat-sidebar-dot').classList.toggle('online', online);
-      });
-    fetch(SUPABASE_URL + '/rest/v1/dm_messages?thread_id=eq.' + encodeURIComponent(th.id) + '&select=body,attachment_type&order=created_at.desc&limit=1', { headers: communityHeaders() })
-      .then(function(r){ return r.ok ? r.json() : []; })
-      .then(function(rows){
-        var last = rows[0];
-        var preview = '…';
-        if(last){
+        var seen = {};
+        rows.forEach(function(last){
+          if(seen[last.thread_id]) return;
+          seen[last.thread_id] = true;
+          var row = rowsByThreadId[last.thread_id];
+          if(!row) return;
+          var preview = '…';
           if(last.attachment_type === 'image') preview = '📷 ' + t('chat.photo');
           else if(last.attachment_type) preview = '📎 ' + t('chat.file');
           else if(last.body && isGifUrl(last.body)) preview = 'GIF';
           else preview = last.body || '';
-        }
-        row.querySelector('.chat-sidebar-preview').textContent = preview;
-      });
-  });
+          row.querySelector('.chat-sidebar-preview').textContent = preview;
+        });
+      })
+      .catch(function(){});
+  }
 }
 
 /* Elimina definitivamente una conversazione: prima tutti i suoi messaggi,
