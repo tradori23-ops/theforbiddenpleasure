@@ -19,7 +19,8 @@
 <link rel="icon" type="image/png" sizes="16x16" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAACF0lEQVR42k2SuW4cVxAA+3jHHEuKh9cUBFsUFJAAMwbO/CH+X3+E4dSyIRPQasmZ2Zl3dbcDwoIqqaTCQviOsY/jEHfRE9llx6Zw2MphStMpf2vwVUR01nvPPPZhKxKYkAmkMbMgltIOL6cmCgAMAIR4ues6R/OaZStdys77F/SHBKuRpuxAuxhzaWbGAPBmjJ2j+ZT2BrcEq1iOoRhUA73eJ3A2nsW6sXcpV4qOGWFLpTN4b/pVDBkHT6GLgmTTFH75NTw8LvMKSDF4HhyC6Fb13cXu7vbHv47zu7fn4pyEbrjeL8/TlTN9+md5mdCUiCh4N459NNDDfK/p7ubCo0Ep0ymN++vdGHbn3RJ3FofgvfOOf2bYe+rNHjv8c87jEHvPU1P1wZX1fPDz4Tld3bA2ckNeF2oIL6kMpj8NlJF+//sZcj2mqrVsx+O/nz5v08x9L8RtmYiZK+JR4YGgKXxC/pJlqtUFtyqAwteTnJ33SUBzDsfPZsoBgRFmw9xsUTOFhrgBGeJsJL5zNUPJtp5IRUQpqzHS5PiPZg9sv13xYECIm2DaBJmnmw9VNJYVzESUqkEVNQMK/glJ0HZNJBcrGWOEj/ecVrctqioiooqvP42O2HEjjqKXaAtjceF09gOq+OMTItYmuTaz/+dDgJ4RCYEZidAUyAGitWqIqpZKNfvu1lcYMTAyISAAIgA2g1pFVL81/wG+aUcv+AOKqgAAAABJRU5ErkJggg==">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cinzel+Decorative:wght@700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cinzel+Decorative:wght@700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Space+Mono:wght@400;700&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cinzel+Decorative:wght@700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Space+Mono:wght@400;700&display=swap"></noscript>
 <link rel="stylesheet" href="style.css">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 <link rel="manifest" href="manifest.json">
@@ -78,6 +79,8 @@
 <div id="chrome-footer-slot"></div>
 </div>
 <div id="chrome-modals-slot"></div>
-<script src="loader.js"></script>
+<link rel="preload" href="app.js" as="script">
+<script src="qrcode-lib.js" defer></script>
+<script src="loader.js" defer></script>
 </body>
 </html>
