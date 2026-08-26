@@ -701,6 +701,18 @@ function coverThumbUrl(url, width){
   return url.slice(0, idx) + '/storage/v1/render/image/public/' + url.slice(idx + marker.length) + '?width=' + width + '&quality=70';
 }
 
+/* Se la trasformazione immagini non è disponibile sul progetto Supabase,
+   la versione ridotta risponde con errore invece che con l'immagine.
+   Questo intercetta l'errore e mette al suo posto l'originale, in
+   automatico e per sempre — nessun controllo manuale da fare: o funziona
+   la miniatura leggera, o il sito torna da solo all'immagine intera. */
+document.addEventListener('error', function(e){
+  var img = e.target;
+  if(img && img.tagName === 'IMG' && img.dataset && img.dataset.fallback && img.src !== img.dataset.fallback){
+    img.src = img.dataset.fallback;
+  }
+}, true);
+
 function getSession(){
   try{ return JSON.parse(localStorage.getItem('lux_session') || 'null'); }catch(e){ return null; }
 }
@@ -1736,7 +1748,7 @@ function renderLatestChapters(){
     var card = document.createElement('div');
     card.className = 'latest-card';
     var coverInner = item.cover_url
-      ? '<img src="' + coverThumbUrl(item.cover_url, 400) + '" alt="" loading="lazy" decoding="async">'
+      ? '<img src="' + coverThumbUrl(item.cover_url, 400) + '" data-fallback="' + escapeHtml(item.cover_url) + '" alt="" loading="lazy" decoding="async">'
       : '<span class="init">' + item.character.charAt(0) + '</span>';
     var newTag = item.date === newestDate ? '<span class="new-tag">' + t('latest.newTag') + '</span>' : '';
     card.innerHTML =
@@ -1872,7 +1884,7 @@ function renderCatalog(){
     var isFav = favoriteIds.has(item.id);
     var priceTxt = item.price ? '<span class="card-idx-price">€'+Number(item.price).toFixed(2)+'</span>' : '';
     var coverInner = item.cover_url
-      ? '<img class="cover-img" src="'+coverThumbUrl(item.cover_url, 500)+'" alt="" loading="lazy" decoding="async">'
+      ? '<img class="cover-img" src="'+coverThumbUrl(item.cover_url, 500)+'" data-fallback="'+escapeHtml(item.cover_url)+'" alt="" loading="lazy" decoding="async">'
       : '<span class="init">'+item.character.charAt(0)+'</span>';
         '<span class="card-idx-fav'+(isFav?' active':'')+'" data-fav="'+item.id+'">'+(isFav?'♥':'♡')+'</span>'+
       '</div>'+
@@ -3608,7 +3620,7 @@ function renderCollabWorksTab(){
     card.className = 'card-idx';
     var badge = item.mature ? '<span class="mature">18+</span>' : '<span class="allages">'+t('badge.allages')+'</span>';
     var coverInner = item.cover_url
-      ? '<img class="cover-img" src="'+coverThumbUrl(item.cover_url, 500)+'" alt="" loading="lazy" decoding="async">'
+      ? '<img class="cover-img" src="'+coverThumbUrl(item.cover_url, 500)+'" data-fallback="'+escapeHtml(item.cover_url)+'" alt="" loading="lazy" decoding="async">'
       : '<span class="init">'+item.character.charAt(0)+'</span>';
     var collabArr = (item.collaborators && item.collaborators.length)
       ? item.collaborators
@@ -3985,7 +3997,7 @@ function renderProfileTitles(userId){
     row.type = 'button';
     row.className = 'profile-sidebar-title-row';
     var thumbInner = item.cover_url
-      ? '<img src="'+coverThumbUrl(item.cover_url, 120)+'" alt="" loading="lazy" decoding="async">'
+      ? '<img src="'+coverThumbUrl(item.cover_url, 120)+'" data-fallback="'+escapeHtml(item.cover_url)+'" alt="" loading="lazy" decoding="async">'
       : '<span class="init">'+item.character.charAt(0)+'</span>';
     var collabArr = (item.collaborators && item.collaborators.length)
       ? item.collaborators
@@ -4019,7 +4031,7 @@ function renderProfileFavorites(userId){
         row.type = 'button';
         row.className = 'profile-sidebar-title-row';
         var thumbInner = item.cover_url
-          ? '<img src="'+coverThumbUrl(item.cover_url, 120)+'" alt="" loading="lazy" decoding="async">'
+          ? '<img src="'+coverThumbUrl(item.cover_url, 120)+'" data-fallback="'+escapeHtml(item.cover_url)+'" alt="" loading="lazy" decoding="async">'
           : '<span class="init">'+item.character.charAt(0)+'</span>';
         row.innerHTML =
           '<span class="profile-sidebar-title-thumb">'+thumbInner+'</span>'+
