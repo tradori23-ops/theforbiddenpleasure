@@ -4107,8 +4107,8 @@ function applyChatBackground(){
   if(!wrap) return;
   var choice = getChatBgChoice();
   if(!choice){ wrap.style.background = ''; wrap.style.backgroundSize = ''; return; }
-  if(choice.type === 'custom' && choice.dataUrl){
-    wrap.style.background = 'center / cover no-repeat url(' + JSON.stringify(choice.dataUrl) + '), var(--void)';
+  if(choice.type === 'custom' && (choice.url || choice.dataUrl)){
+    wrap.style.background = 'center / cover no-repeat url(' + JSON.stringify(choice.url || choice.dataUrl) + '), var(--void)';
   } else {
     var preset = CHAT_BG_PRESETS.find(function(p){ return p.id === choice.id; }) || CHAT_BG_PRESETS[0];
     wrap.style.background = preset.css;
@@ -4144,19 +4144,40 @@ function toggleChatBgPanel(){
   if(opening) renderChatBgSwatches();
 }
 
+function uploadChatBgImage(file){
+  var session = getSession();
+  var uid = currentUserId();
+  var extMatch = /\.([a-zA-Z0-9]+)$/.exec(file.name || '');
+  var ext = extMatch ? extMatch[1].toLowerCase() : 'jpg';
+  var path = 'chat-backgrounds/' + uid + '/' + Date.now() + '_' + Math.random().toString(36).slice(2,8) + '.' + ext;
+  return fetch(SUPABASE_URL + '/storage/v1/object/comic-pages/' + path, {
+    method:'POST',
+    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type': file.type || 'application/octet-stream' },
+    body: file
+  }).then(function(r){
+    if(!r.ok) throw new Error('chat background upload failed: ' + r.status);
+    return SUPABASE_URL + '/storage/v1/object/public/comic-pages/' + path;
+  });
+}
+
 function handleChatBgUpload(file){
   if(!file) return;
-  if(file.size > 1500000){
-    window.alert('Immagine troppo grande (max ~1.5MB). Scegline una più leggera.');
+  if(!file.type || file.type.indexOf('image/') !== 0){
+    window.alert('Scegli un file immagine.');
     return;
   }
-  var reader = new FileReader();
-  reader.onload = function(){
-    saveChatBgChoice({ type:'custom', dataUrl: reader.result });
+  var bgBtn = document.getElementById('btnChatBg');
+  if(bgBtn) bgBtn.textContent = '…';
+  uploadChatBgImage(file).then(function(url){
+    saveChatBgChoice({ type:'custom', url: url });
     applyChatBackground();
     renderChatBgSwatches();
-  };
-  reader.readAsDataURL(file);
+  }).catch(function(err){
+    console.warn('Chat background upload failed:', err);
+    window.alert('Caricamento non riuscito. Riprova.');
+  }).then(function(){
+    if(bgBtn) bgBtn.textContent = '🖼️';
+  });
 }
 
 function initChatPage(){
