@@ -45,7 +45,6 @@
     <div class="community-tabs">
       <button type="button" class="community-tab active" data-ctab="channels" data-i18n="community.tabChannels">Canali</button>
       <button type="button" class="community-tab" data-ctab="friends" data-i18n="community.tabFriends">Amici</button>
-      <button type="button" class="community-tab" data-ctab="dms" data-i18n="community.tabDms">Messaggi privati</button>
       <button type="button" class="community-tab" data-ctab="collab" data-i18n="community.tabCollab">Collaboratori</button>
       <button type="button" class="community-tab" data-ctab="diary" data-i18n="diary.tab">Diario</button>
     </div>
@@ -143,24 +142,6 @@
       <div class="notice">
         <div class="mini-heading" data-i18n="community.friendsList">I tuoi amici</div>
         <div id="friendsList"></div>
-      </div>
-    </div>
-
-    <!-- MESSAGGI PRIVATI -->
-    <div class="community-panel hidden" data-cpanel="dms">
-      <div id="dmListView">
-        <div id="dmThreadsList" class="dm-threads-list"></div>
-        <p class="form-note" data-i18n="community.dmHint">Per scrivere in privato a qualcuno, prima diventate amici: apri un suo messaggio in un canale e manda una richiesta di amicizia.</p>
-      </div>
-      <div id="dmDetailView" class="hidden">
-        <button type="button" class="btn btn-ghost btn-sm" id="btnBackToDms" data-i18n="community.back">&larr; Torna ai messaggi</button>
-        <h3 id="dmDetailName"></h3>
-        <div id="dmMessages" class="channel-messages"></div>
-        <div class="channel-compose">
-          <textarea id="fDmMessage" rows="2" data-i18n-placeholder="community.messagePh" placeholder="Scrivi un messaggio…"></textarea>
-          <button type="button" class="btn btn-primary btn-sm" id="btnSendDmMessage" data-i18n="community.send">Invia</button>
-        </div>
-        <div class="form-error" id="dmMessageError"></div>
       </div>
     </div>
   </section>
