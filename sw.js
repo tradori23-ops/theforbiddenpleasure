@@ -1,10 +1,16 @@
 /* LUX COMICS & MEDUSA COMICS — Service Worker
-   Strategia: rete prima di tutto (contenuti sempre aggiornati), con la
-   cache come rete di sicurezza solo se la connessione cade a metà
-   ricarica — evita la pagina bianca/bloccata quando si ricarica la PWA
-   da schermata Home con una connessione instabile. */
+   Strategia "stale-while-revalidate" per la corazza dell'app (HTML, CSS,
+   JS, font, immagini, icone): se il file è già in cache, lo si serve
+   SUBITO — zero attesa di rete — e nel frattempo lo si riscarica in
+   background per la prossima volta. Il contenuto vero (catalogo,
+   messaggi, notifiche) non passa mai da qui: arriva sempre live da
+   Supabase, quindi resta sempre aggiornato indipendentemente da questa
+   cache. Prima la strategia era "rete sempre prima di tutto", il che
+   significava riscaricare l'intero sito ad ogni apertura dell'app anche
+   quando nulla era cambiato — questa versione è pensata per rendere le
+   riaperture quasi istantanee. */
 
-var CACHE_NAME = 'lux-comics-v2';
+var CACHE_NAME = 'lux-comics-v3';
 var CORE_ASSETS = [
   './',
   './index.html'
@@ -30,15 +36,30 @@ self.addEventListener('activate', function(event){
 });
 
 self.addEventListener('fetch', function(event){
-  if(event.request.method !== 'GET') return;
+  var req = event.request;
+  if(req.method !== 'GET') return;
+
+  var url = new URL(req.url);
+  // le chiamate a Supabase (dati, autenticazione, storage) non passano
+  // MAI dalla cache: devono essere sempre live, non è "la corazza" del sito
+  if(url.origin !== self.location.origin) return;
+
   event.respondWith(
-    fetch(event.request).then(function(response){
-      var copy = response.clone();
-      caches.open(CACHE_NAME).then(function(cache){ cache.put(event.request, copy); });
-      return response;
-    }).catch(function(){
-      return caches.match(event.request).then(function(cached){
-        return cached || caches.match('./index.html');
+    caches.open(CACHE_NAME).then(function(cache){
+      return cache.match(req).then(function(cached){
+        var network = fetch(req).then(function(response){
+          if(response && response.ok) cache.put(req, response.clone());
+          return response;
+        }).catch(function(){
+          // offline e nulla in cache per questa richiesta: se è una
+          // navigazione (apertura di una pagina) mostriamo almeno la home
+          // salvata, invece di una schermata bianca
+          if(req.mode === 'navigate') return caches.match('./index.html');
+          return cached;
+        });
+        // se l'abbiamo già in cache la serviamo subito; il fetch sopra
+        // aggiorna comunque la cache in background per la prossima volta
+        return cached || network;
       });
     })
   );

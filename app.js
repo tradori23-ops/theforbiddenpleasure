@@ -1721,7 +1721,7 @@ function renderLatestChapters(){
     var card = document.createElement('div');
     card.className = 'latest-card';
     var coverInner = item.cover_url
-      ? '<img src="' + item.cover_url + '" alt="">'
+      ? '<img src="' + item.cover_url + '" alt="" loading="lazy" decoding="async">'
       : '<span class="init">' + item.character.charAt(0) + '</span>';
     var newTag = item.date === newestDate ? '<span class="new-tag">' + t('latest.newTag') + '</span>' : '';
     card.innerHTML =
@@ -3281,6 +3281,27 @@ function openImageLightbox(url){
 }
 function closeImageLightbox(){ document.getElementById('imageLightboxModal').classList.add('hidden'); }
 
+(function injectDmChatStyles(){
+  var style = document.createElement('style');
+  style.textContent =
+    '#dmMessages{display:flex;flex-direction:column;gap:16px;padding:12px 6px;}' +
+    '#dmMessages .dm-bubble{max-width:75%;padding:10px 16px;position:relative;' +
+    'background:#fdfaf5;color:#2a1a1d;border:2px solid #6e1423;border-radius:18px;' +
+    'font-family:"Crimson Pro",Georgia,serif;box-shadow:2px 3px 0 rgba(110,20,35,.15);}' +
+    '#dmMessages .dm-bubble .author{display:none;}' +
+    '#dmMessages .dm-bubble.mine{align-self:flex-end;border-color:#c9a24d;box-shadow:-2px 3px 0 rgba(201,162,77,.25);}' +
+    '#dmMessages .dm-bubble.theirs{align-self:flex-start;}' +
+    /* codetta a triangolo stile fumetto */
+    '#dmMessages .dm-bubble::after{content:"";position:absolute;bottom:-9px;width:16px;height:16px;' +
+    'background:#fdfaf5;border-right:2px solid;border-bottom:2px solid;}' +
+    '#dmMessages .dm-bubble.mine::after{right:18px;border-color:#c9a24d;transform:rotate(45deg);}' +
+    '#dmMessages .dm-bubble.theirs::after{left:18px;border-color:#6e1423;transform:rotate(135deg);}' +
+    '#dmMessages .dm-bubble .body{white-space:pre-wrap;word-break:break-word;line-height:1.4;}' +
+    '#dmMessages .dm-bubble .msg-actions{opacity:.5;font-size:11px;margin-top:6px;font-family:"Space Mono",monospace;}' +
+    '#dmMessages .dm-bubble.mine .msg-actions{text-align:right;}';
+  document.head.appendChild(style);
+})();
+
 /* ============ USER REQUESTS (private suggestion box to the admin) ============ */
 function submitRequest(){
   var session = getSession();
@@ -3503,9 +3524,11 @@ function updateNotifBadgeFromCache(){
   else { badge.classList.add('hidden'); }
 }
 
-/* ============ COMMUNITY (canali a tema creati dagli utenti) ============ */
+/* ============ COMMUNITY (canali a tema creati dagli utenti + messaggi privati) ============ */
 var currentChannelId = null;
 var currentChannelName = null;
+var currentDmThreadId = null;
+var currentDmOtherName = null;
 var displayNameCache = {}; // id -> display_name, per non richiederlo ad ogni messaggio
 
 function communityHeaders(){
@@ -3520,6 +3543,7 @@ function switchCommunityTab(tab){
   document.querySelectorAll('.community-panel').forEach(function(panel){
     panel.classList.toggle('hidden', panel.dataset.cpanel !== tab);
   });
+  if(tab === 'dms') loadDmThreads();
   if(tab === 'friends') loadFriendsPanel();
   if(tab === 'collab') renderCollabWorksTab();
   if(tab === 'diary') loadDiaryFeed();
@@ -3924,7 +3948,7 @@ function renderProfileTitles(userId){
     row.type = 'button';
     row.className = 'profile-sidebar-title-row';
     var thumbInner = item.cover_url
-      ? '<img src="'+item.cover_url+'" alt="">'
+      ? '<img src="'+item.cover_url+'" alt="" loading="lazy" decoding="async">'
       : '<span class="init">'+item.character.charAt(0)+'</span>';
     var collabArr = (item.collaborators && item.collaborators.length)
       ? item.collaborators
@@ -3958,7 +3982,7 @@ function renderProfileFavorites(userId){
         row.type = 'button';
         row.className = 'profile-sidebar-title-row';
         var thumbInner = item.cover_url
-          ? '<img src="'+item.cover_url+'" alt="">'
+          ? '<img src="'+item.cover_url+'" alt="" loading="lazy" decoding="async">'
           : '<span class="init">'+item.character.charAt(0)+'</span>';
         row.innerHTML =
           '<span class="profile-sidebar-title-thumb">'+thumbInner+'</span>'+
@@ -4517,7 +4541,7 @@ function buildFriendActionButton(otherUserId, otherName){
     btn.addEventListener('click', function(){ sendFriendRequest(otherUserId, btn); });
   } else if(f.status === 'accepted'){
     btn.textContent = t('community.privateMessage');
-    btn.addEventListener('click', function(){ window.location.href = 'chat.html?user=' + encodeURIComponent(otherUserId); });
+    btn.addEventListener('click', function(){ startDmWith(otherUserId, otherName); });
   } else if(f.status === 'pending' && f.requester_id === uid){
     btn.textContent = t('community.requestSent');
     btn.disabled = true;
@@ -4803,7 +4827,8 @@ function loadFriendsPanel(){
           var actionsHtml = isAdmin() ? '<button class="btn btn-sm btn-ghost" data-invite>' + t('collabSession.invite') + '</button>' : '';
           row.innerHTML = '<div class="info"><div class="t">' + escapeHtml(name) + '</div></div><div class="admin-actions">' + actionsHtml + '</div>';
           row.querySelector('.info').addEventListener('click', function(){
-            window.location.href = 'chat.html?user=' + encodeURIComponent(otherId);
+            switchCommunityTab('dms');
+            startDmWith(otherId, name);
           });
           row.querySelector('.info').style.cursor = 'pointer';
           var inviteBtn = row.querySelector('[data-invite]');
@@ -4854,9 +4879,9 @@ function sendChannelMessage(){
   });
 }
 
-/* ---- dmThreadState() e setDmFlag() sono condivise con la chat dedicata
-   (chat.html) — il resto del vecchio pannello "Messaggi privati" dentro
-   Community è stato rimosso, ora c'è solo la chat a schermo intero. ---- */
+/* ---- Messaggi privati ---- */
+var dmActiveTab = 'all'; // all | unread | important | archived
+var dmThreadsCache = [];
 
 function dmThreadState(th, uid){
   var mine = th.user_a === uid;
@@ -4871,6 +4896,14 @@ function dmThreadState(th, uid){
   };
 }
 
+function switchDmTab(tab){
+  dmActiveTab = tab;
+  document.querySelectorAll('.dm-tab').forEach(function(btn){
+    btn.classList.toggle('active', btn.dataset.dmTab === tab);
+  });
+  renderDmThreadsList();
+}
+
 function setDmFlag(threadId, field, value){
   var session = getSession();
   if(!session) return Promise.resolve();
@@ -4880,6 +4913,501 @@ function setDmFlag(threadId, field, value){
     headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
     body: JSON.stringify(body)
   }).catch(function(e){ console.warn('DM flag update failed:', e); });
+}
+
+function toggleDmImportant(th, uid, btn){
+  var mine = th.user_a === uid;
+  var field = mine ? 'important_a' : 'important_b';
+  var newVal = !(mine ? th.important_a : th.important_b);
+  if(mine) th.important_a = newVal; else th.important_b = newVal;
+  btn.classList.toggle('active', newVal);
+  setDmFlag(th.id, field, newVal);
+}
+
+function archiveDmThread(th, uid){
+  var mine = th.user_a === uid;
+  var field = mine ? 'archived_a' : 'archived_b';
+  if(mine) th.archived_a = true; else th.archived_b = true;
+  setDmFlag(th.id, field, true).then(renderDmThreadsList);
+}
+
+function unarchiveDmThread(th, uid){
+  var mine = th.user_a === uid;
+  var field = mine ? 'archived_a' : 'archived_b';
+  if(mine) th.archived_a = false; else th.archived_b = false;
+  setDmFlag(th.id, field, false).then(renderDmThreadsList);
+}
+
+function loadDmThreads(){
+  var list = document.getElementById('dmThreadsList');
+  if(!list || !isSignedIn()) return;
+  var uid = currentUserId();
+  fetch(SUPABASE_URL + '/rest/v1/dm_threads?select=*&or=(user_a.eq.' + encodeURIComponent(uid) + ',user_b.eq.' + encodeURIComponent(uid) + ')&order=last_message_at.desc', { headers: communityHeaders() })
+    .then(function(r){ if(!r.ok) throw new Error('dm threads read failed'); return r.json(); })
+    .then(function(rows){
+      dmThreadsCache = rows;
+      renderDmThreadsList();
+    })
+    .catch(function(err){ console.warn('DM threads load failed:', err); });
+}
+
+/* ---- Presenza online (attivo negli ultimi 2 minuti) ---- */
+var ONLINE_THRESHOLD_MS = 120000;
+function isOnlineSince(lastActiveAt){
+  if(!lastActiveAt) return false;
+  return (Date.now() - new Date(lastActiveAt).getTime()) < ONLINE_THRESHOLD_MS;
+}
+/* ============ ELENCO UTENTI (pannello a scomparsa, online/offline) ============ */
+function positionUserDirectoryPanel(){
+  var panel = document.getElementById('userDirectoryPanel');
+  var header = document.querySelector('header.topbar');
+  if(!panel || !header) return;
+  var bottom = header.getBoundingClientRect().bottom;
+  panel.style.top = Math.max(bottom, 0) + 'px';
+  panel.style.maxHeight = 'min(560px, calc(100vh - ' + Math.max(bottom, 0) + 'px - 16px))';
+}
+
+function toggleUserDirectory(){
+  var panel = document.getElementById('userDirectoryPanel');
+  if(!panel) return;
+  var willOpen = panel.classList.contains('hidden');
+  if(willOpen) positionUserDirectoryPanel();
+  panel.classList.toggle('hidden');
+  if(willOpen) loadUserDirectory();
+}
+
+window.addEventListener('resize', function(){
+  var panel = document.getElementById('userDirectoryPanel');
+  if(panel && !panel.classList.contains('hidden')) positionUserDirectoryPanel();
+});
+
+/* ============ NOVITÀ DEL SITO (popup automatico di SmallNox) ============ */
+function formatVersion(dateStr){
+  var d = new Date(dateStr);
+  var mm = String(d.getMonth()+1).padStart(2,'0');
+  var dd = String(d.getDate()).padStart(2,'0');
+  return d.getFullYear() + '.' + mm + '.' + dd;
+}
+
+function checkForSiteUpdates(){
+  if(!isSignedIn()) return;
+  var lastShown = localStorage.getItem('lux_updates_last_shown');
+  var dayMs = 24 * 60 * 60 * 1000;
+  if(lastShown && (Date.now() - new Date(lastShown).getTime()) < dayMs) return; // già visto meno di 24h fa
+
+  fetch(SUPABASE_URL + '/rest/v1/site_updates?select=title,created_at&order=created_at.desc&limit=50', { headers: communityHeaders() })
+    .then(function(r){ if(!r.ok) throw new Error('site updates read failed'); return r.json(); })
+    .then(function(rows){
+      if(rows.length === 0) return;
+      renderSiteUpdatesModal(rows);
+      document.getElementById('smallnoxUpdatesModal').classList.remove('hidden');
+    })
+    .catch(function(e){ console.warn('Site updates check failed:', e); });
+}
+
+/* Badge sul pallino di SmallNox: acceso solo se esiste un aggiornamento più recente
+   dell'ultima volta che l'utente ha visto il popup (automatico o manuale) — decade
+   da solo perché smette di avere senso non appena non ci sono aggiornamenti nuovi. */
+function refreshSmallNoxBadge(){
+  var badge = document.getElementById('smallnoxBadge');
+  if(!badge) return;
+  fetch(SUPABASE_URL + '/rest/v1/site_updates?select=created_at&order=created_at.desc&limit=1', { headers: communityHeaders() })
+    .then(function(r){ return r.ok ? r.json() : []; })
+    .then(function(rows){
+      if(rows.length === 0){ badge.classList.add('hidden'); return; }
+      var latest = new Date(rows[0].created_at).getTime();
+      var lastShown = localStorage.getItem('lux_updates_last_shown');
+      var unseen = !lastShown || latest > new Date(lastShown).getTime();
+      badge.classList.toggle('hidden', !unseen);
+    })
+    .catch(function(){ badge.classList.add('hidden'); });
+}
+
+/* Cliccando l'icona di SmallNox: apre sempre l'assistente, e se ci sono
+   aggiornamenti mai visti apre anche il popup delle novità, col numero di versione. */
+function openSmallNoxAssistant(){
+  document.getElementById('smallnoxModal').classList.remove('hidden');
+  fetch(SUPABASE_URL + '/rest/v1/site_updates?select=title,created_at&order=created_at.desc&limit=50', { headers: communityHeaders() })
+    .then(function(r){ return r.ok ? r.json() : []; })
+    .then(function(rows){
+      if(rows.length === 0) return;
+      var latest = new Date(rows[0].created_at).getTime();
+      var lastShown = localStorage.getItem('lux_updates_last_shown');
+      var unseen = !lastShown || latest > new Date(lastShown).getTime();
+      if(!unseen) return;
+      renderSiteUpdatesModal(rows);
+      var vt = document.getElementById('smallnoxVersionTag');
+      if(vt) vt.textContent = 'v' + formatVersion(rows[0].created_at);
+      document.getElementById('smallnoxUpdatesModal').classList.remove('hidden');
+    })
+    .catch(function(e){ console.warn('SmallNox updates check failed:', e); });
+}
+
+function renderSiteUpdatesModal(rows){
+  var list = document.getElementById('smallnoxUpdatesList');
+  if(!list) return;
+  var vt = document.getElementById('smallnoxVersionTag');
+  if(vt && rows.length) vt.textContent = 'v' + formatVersion(rows[0].created_at);
+  var groups = {}; // raggruppo per ora (arrotondata) così più modifiche vicine nel tempo finiscono nella stessa sotto-sezione
+  var order = [];
+  rows.forEach(function(row){
+    var d = new Date(row.created_at);
+    var key = d.toISOString().slice(0,13); // YYYY-MM-DDTHH
+    if(!groups[key]){ groups[key] = { date: d, items: [] }; order.push(key); }
+    groups[key].items.push(row.title);
+  });
+  list.innerHTML = '';
+  order.forEach(function(key){
+    var g = groups[key];
+    var head = document.createElement('div');
+    head.style.cssText = 'font-family:"Space Mono",monospace;font-size:10px;letter-spacing:0.06em;color:var(--gold);margin:14px 0 6px;';
+    head.textContent = g.date.toLocaleDateString() + ' — ' + g.date.toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
+    list.appendChild(head);
+    var ul = document.createElement('ul');
+    ul.style.cssText = 'margin:0;padding-left:18px;color:var(--parchment-dim);line-height:1.7;font-size:13px;';
+    g.items.forEach(function(title){
+      var li = document.createElement('li');
+      li.textContent = title;
+      ul.appendChild(li);
+    });
+    list.appendChild(ul);
+  });
+}
+
+function dismissSiteUpdates(){
+  localStorage.setItem('lux_updates_last_shown', new Date().toISOString());
+  document.getElementById('smallnoxUpdatesModal').classList.add('hidden');
+  var badge = document.getElementById('smallnoxBadge');
+  if(badge) badge.classList.add('hidden');
+}
+
+function loadUserDirectory(){
+  var list = document.getElementById('userDirectoryList');
+  if(!list) return;
+  list.innerHTML = '<p class="form-note">…</p>';
+  var uid = currentUserId();
+
+  var profilesStep = fetch(SUPABASE_URL + '/rest/v1/profiles?select=id,display_name,avatar_url,last_seen,verified&order=display_name.asc', { headers: communityHeaders() })
+    .then(function(r){
+      if(!r.ok) return r.text().then(function(bodyText){ throw new Error('profiles read failed (HTTP '+r.status+') — '+bodyText.slice(0,200)); });
+      return r.json();
+    });
+
+  var friendsStep = fetch(SUPABASE_URL + '/rest/v1/friendships?select=requester_id,addressee_id,status&status=eq.accepted&or=(requester_id.eq.' + encodeURIComponent(uid) + ',addressee_id.eq.' + encodeURIComponent(uid) + ')', { headers: communityHeaders() })
+    .then(function(r){ return r.ok ? r.json() : []; })
+    .catch(function(){ return []; });
+
+  Promise.all([profilesStep, friendsStep]).then(function(results){
+    var rows = results[0], friendships = results[1];
+    var friendIds = new Set();
+    friendships.forEach(function(f){
+      friendIds.add(f.requester_id === uid ? f.addressee_id : f.requester_id);
+    });
+
+    rows = rows.filter(function(p){ return p.id !== uid; }); // te stesso non serve elencarlo
+    rows.forEach(function(p){
+      p._online = isOnlineSince(p.last_seen);
+      p._isVerifiedFriend = p.verified && friendIds.has(p.id);
+    });
+
+    var verifiedFriends = rows.filter(function(p){ return p._isVerifiedFriend; });
+    var others = rows.filter(function(p){ return !p._isVerifiedFriend; });
+    verifiedFriends.sort(function(a,b){ return (a.display_name||'').localeCompare(b.display_name||''); });
+    others.sort(function(a,b){
+      if(a._online !== b._online) return a._online ? -1 : 1;
+      return (b.last_seen||'').localeCompare(a.last_seen||'');
+    });
+
+    list.innerHTML = '';
+    if(rows.length === 0){ list.innerHTML = '<p class="form-note">' + t('userDir.empty') + '</p>'; return; }
+
+    function renderRow(p, isVerifiedFriend){
+      var row = document.createElement('button');
+      row.type = 'button';
+      row.className = 'user-directory-row';
+      var dotClass = p._online ? 'user-directory-dot online' : 'user-directory-dot offline';
+      var avatarHtml = p.avatar_url
+        ? '<img class="user-directory-avatar" src="'+escapeHtml(p.avatar_url)+'" alt="">'
+        : '<span class="user-directory-avatar user-directory-avatar-fallback">'+escapeHtml((p.display_name||'?').charAt(0).toUpperCase())+'</span>';
+      var lastSeenHtml = '<span class="user-directory-status">'+(p._online ? t('userDir.online') : (p.last_seen ? notifTimeAgo(p.last_seen) : t('userDir.offline')))+'</span>';
+      var verifiedHtml = isVerifiedFriend ? '<i class="user-directory-verified-check" aria-hidden="true">✓</i>' : '';
+      row.innerHTML =
+        '<span class="user-directory-avatar-wrap avatar-clickable">'+avatarHtml+'<span class="'+dotClass+'"></span></span>'+
+        '<span class="user-directory-name">'+escapeHtml(p.display_name || t('notif.someone'))+verifiedHtml+'</span>'+
+        lastSeenHtml;
+      row.querySelector('.avatar-clickable').addEventListener('click', function(e){
+        e.stopPropagation();
+        openAvatarInfo(p.id);
+      });
+      row.addEventListener('click', function(){
+        window.location.href = 'chat.html?user=' + encodeURIComponent(p.id);
+      });
+      return row;
+    }
+
+    if(verifiedFriends.length > 0){
+      var head1 = document.createElement('div');
+      head1.className = 'user-directory-section-head';
+      head1.textContent = t('userDir.verifiedFriends');
+      list.appendChild(head1);
+      verifiedFriends.forEach(function(p){ list.appendChild(renderRow(p, true)); });
+    }
+    if(others.length > 0){
+      var head2 = document.createElement('div');
+      head2.className = 'user-directory-section-head';
+      head2.textContent = t('userDir.others');
+      list.appendChild(head2);
+      others.forEach(function(p){ list.appendChild(renderRow(p, false)); });
+    }
+  }).catch(function(e){
+    list.innerHTML = '<p class="form-note" style="color:var(--wine);">' + t('userDir.loadError') + '</p>';
+    console.warn('User directory load failed:', e);
+  });
+}
+
+function heartbeatPresence(){
+  if(!isSignedIn()) return;
+  var session = getSession();
+  var uid = currentUserId();
+  if(!uid) return;
+  fetch(SUPABASE_URL + '/rest/v1/profiles?id=eq.' + encodeURIComponent(uid), {
+    method:'PATCH',
+    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
+    body: JSON.stringify({ last_seen: new Date().toISOString() })
+  }).catch(function(){});
+}
+function getPresence(userId){
+  return fetch(SUPABASE_URL + '/rest/v1/profiles?id=eq.' + encodeURIComponent(userId) + '&select=last_seen', { headers: communityHeaders() })
+    .then(function(r){ return r.ok ? r.json() : []; })
+    .then(function(rows){ return rows[0] ? isOnlineSince(rows[0].last_seen) : false; })
+    .catch(function(){ return false; });
+}
+
+function renderDmThreadsList(){
+  var list = document.getElementById('dmThreadsList');
+  if(!list) return;
+  var uid = currentUserId();
+  var rows = dmThreadsCache.filter(function(th){
+    var st = dmThreadState(th, uid);
+    if(dmActiveTab === 'archived') return st.archived;
+    if(st.archived) return false; // le archiviate si vedono solo nella loro scheda
+    if(dmActiveTab === 'unread') return !st.read;
+    if(dmActiveTab === 'important') return st.important;
+    return true; // 'all'
+  });
+  list.innerHTML = '';
+  if(rows.length === 0){ list.innerHTML = '<p class="form-note">' + t('community.noDms') + '</p>'; return; }
+  rows.forEach(function(th){
+    var st = dmThreadState(th, uid);
+    getDisplayName(st.otherId).then(function(name){
+      var row = document.createElement('div');
+      row.className = 'dm-thread-row' + (st.read ? '' : ' unread');
+
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'dm-thread-item';
+      var dot = document.createElement('span');
+      dot.className = 'dm-presence-dot';
+      var nameSpan = document.createElement('span');
+      nameSpan.textContent = name + (st.read ? '' : ' •');
+      btn.appendChild(dot);
+      btn.appendChild(nameSpan);
+      getPresence(st.otherId).then(function(online){ dot.classList.toggle('online', online); });
+      btn.addEventListener('click', function(){ openDmThread(th.id, name); });
+      row.appendChild(btn);
+
+      var starBtn = document.createElement('button');
+      starBtn.type = 'button';
+      starBtn.className = 'dm-thread-star' + (st.important ? ' active' : '');
+      starBtn.setAttribute('aria-label', t('community.important') || 'Importante');
+      starBtn.textContent = '★';
+      starBtn.addEventListener('click', function(e){ e.stopPropagation(); toggleDmImportant(th, uid, starBtn); });
+      row.appendChild(starBtn);
+
+      var archBtn = document.createElement('button');
+      archBtn.type = 'button';
+      archBtn.className = 'dm-thread-archive';
+      archBtn.setAttribute('aria-label', t('community.archive') || 'Archivia');
+      archBtn.textContent = st.archived ? '↩' : '🗄';
+      archBtn.addEventListener('click', function(e){
+        e.stopPropagation();
+        if(st.archived) unarchiveDmThread(th, uid); else archiveDmThread(th, uid);
+      });
+      row.appendChild(archBtn);
+
+      list.appendChild(row);
+    });
+  });
+}
+
+function ensureDmTabsBar(){
+  var list = document.getElementById('dmThreadsList');
+  if(!list || document.getElementById('dmTabsBar')) return;
+  var bar = document.createElement('div');
+  bar.id = 'dmTabsBar';
+  bar.className = 'dm-tabs';
+  bar.innerHTML =
+    '<button type="button" class="dm-tab active" data-dm-tab="all">Tutti</button>' +
+    '<button type="button" class="dm-tab" data-dm-tab="unread">Da leggere</button>' +
+    '<button type="button" class="dm-tab" data-dm-tab="important">Importanti</button>' +
+    '<button type="button" class="dm-tab" data-dm-tab="archived">Archiviate</button>';
+  list.parentNode.insertBefore(bar, list);
+  Array.prototype.forEach.call(bar.querySelectorAll('.dm-tab'), function(btn){
+    btn.addEventListener('click', function(){ switchDmTab(btn.dataset.dmTab); });
+  });
+}
+new MutationObserver(ensureDmTabsBar).observe(document.body, { childList: true, subtree: true });
+ensureDmTabsBar();
+
+(function injectDmTabsStyles(){
+  var style = document.createElement('style');
+  style.textContent =
+    '.dm-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;font-family:"Cinzel",serif;}' +
+    '.dm-tab{background:#fdfaf5;color:#6e1423;border:2px solid #6e1423;border-radius:10px;' +
+    'padding:5px 14px;font-size:12px;letter-spacing:.03em;text-transform:uppercase;cursor:pointer;' +
+    'box-shadow:2px 2px 0 rgba(110,20,35,.18);}' +
+    '.dm-tab.active{background:#6e1423;color:#fdfaf5;box-shadow:2px 2px 0 rgba(201,162,77,.4);}' +
+    '.dm-thread-row{display:flex;align-items:center;gap:8px;margin-bottom:8px;padding:8px 12px;' +
+    'background:#fdfaf5;border:2px solid #6e1423;border-radius:12px;box-shadow:2px 3px 0 rgba(110,20,35,.12);}' +
+    '.dm-thread-row.unread{border-color:#c9a24d;box-shadow:2px 3px 0 rgba(201,162,77,.3);}' +
+    '.dm-thread-row.unread .dm-thread-item{font-weight:700;}' +
+    '.dm-thread-item{flex:1;text-align:left;background:none;border:none;font-family:"Crimson Pro",serif;' +
+    'font-size:16px;color:#2a1a1d;display:flex;align-items:center;gap:6px;}' +
+    '.dm-presence-dot{width:8px;height:8px;border-radius:50%;background:#999;flex-shrink:0;}' +
+    '.dm-presence-dot.online{background:#3fae54;box-shadow:0 0 4px rgba(63,174,84,.8);}' +
+    '.dm-thread-star{background:none;border:none;font-size:17px;opacity:.35;cursor:pointer;}' +
+    '.dm-thread-star.active{opacity:1;color:#c9a24d;}' +
+    '.dm-thread-archive{background:none;border:none;font-size:16px;opacity:.55;cursor:pointer;}' +
+    '.dm-detail-header{display:flex;align-items:center;gap:8px;margin-bottom:6px;}' +
+    '.dm-detail-status{font-size:12px;font-family:"Space Mono",monospace;opacity:.65;}' +
+    '.dm-tick{font-size:12px;font-family:"Space Mono",monospace;letter-spacing:-1px;}' +
+    '.dm-tick.sent{color:#999;}' +
+    '.dm-tick.read{color:#3fae54;}';
+  document.head.appendChild(style);
+})();
+
+function startDmWith(otherUserId, otherName){
+  if(!isSignedIn()){ openAuth('login'); return; }
+  var uid = currentUserId();
+  if(otherUserId === uid) return;
+  var userA = uid < otherUserId ? uid : otherUserId;
+  var userB = uid < otherUserId ? otherUserId : uid;
+  var session = getSession();
+  // cerca una thread già esistente tra i due, altrimenti la crea
+  fetch(SUPABASE_URL + '/rest/v1/dm_threads?user_a=eq.' + encodeURIComponent(userA) + '&user_b=eq.' + encodeURIComponent(userB) + '&select=id', { headers: communityHeaders() })
+    .then(function(r){ return r.ok ? r.json() : []; })
+    .then(function(rows){
+      if(rows.length > 0) return rows[0].id;
+      return fetch(SUPABASE_URL + '/rest/v1/dm_threads', {
+        method:'POST',
+        headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json', 'Prefer':'return=representation' },
+        body: JSON.stringify({ user_a: userA, user_b: userB })
+      }).then(function(r2){ if(!r2.ok) throw new Error('dm thread create failed'); return r2.json(); })
+        .then(function(rows2){ return rows2[0].id; });
+    })
+    .then(function(threadId){
+      switchCommunityTab('dms');
+      openDmThread(threadId, otherName);
+      document.getElementById('communitySection').scrollIntoView({behavior:'smooth'});
+    })
+    .catch(function(err){ console.warn('Start DM failed:', err); });
+}
+
+function openDmThread(id, otherName){
+  currentDmThreadId = id;
+  currentDmOtherName = otherName;
+  document.getElementById('dmListView').classList.add('hidden');
+  document.getElementById('dmDetailView').classList.remove('hidden');
+  var nameEl = document.getElementById('dmDetailName');
+  nameEl.textContent = otherName;
+  loadDmMessages();
+  var uid = currentUserId();
+  var th = dmThreadsCache.filter(function(t){ return t.id === id; })[0];
+  if(th){
+    var otherId = th.user_a === uid ? th.user_b : th.user_a;
+    getPresence(otherId).then(function(online){
+      var status = document.getElementById('dmDetailStatus');
+      if(!status){
+        status = document.createElement('span');
+        status.id = 'dmDetailStatus';
+        status.className = 'dm-detail-status';
+        nameEl.parentNode.insertBefore(status, nameEl.nextSibling);
+      }
+      status.textContent = online ? 'online' : '';
+    });
+    var mine = th.user_a === uid;
+    var field = mine ? 'last_read_at_a' : 'last_read_at_b';
+    var nowIso = new Date().toISOString();
+    if(mine) th.last_read_at_a = nowIso; else th.last_read_at_b = nowIso;
+    setDmFlag(id, field, nowIso);
+  }
+}
+
+function backToDms(){
+  currentDmThreadId = null;
+  document.getElementById('dmDetailView').classList.add('hidden');
+  document.getElementById('dmListView').classList.remove('hidden');
+  loadDmThreads();
+}
+
+function loadDmMessages(){
+  var wrap = document.getElementById('dmMessages');
+  wrap.innerHTML = '<p class="form-note">…</p>';
+  fetch(SUPABASE_URL + '/rest/v1/dm_messages?thread_id=eq.' + encodeURIComponent(currentDmThreadId) + '&select=*&order=created_at.asc', { headers: communityHeaders() })
+    .then(function(r){ if(!r.ok) throw new Error('dm messages read failed'); return r.json(); })
+    .then(function(rows){
+      wrap.innerHTML = '';
+      if(rows.length === 0){ wrap.innerHTML = '<p class="form-note">' + t('community.noMessages') + '</p>'; return; }
+      var uid = currentUserId();
+      var thForTicks = dmThreadsCache.filter(function(t){ return t.id === currentDmThreadId; })[0];
+      var otherLastRead = null;
+      if(thForTicks){
+        var mineSide = thForTicks.user_a === uid;
+        otherLastRead = mineSide ? thForTicks.last_read_at_b : thForTicks.last_read_at_a;
+      }
+      var chain = Promise.resolve();
+      rows.forEach(function(m){
+        chain = chain.then(function(){
+          return getDisplayName(m.sender_id).then(function(name){
+            var div = document.createElement('div');
+            div.className = 'channel-msg dm-bubble ' + (m.sender_id === uid ? 'mine' : 'theirs') + (m.flagged ? ' flagged' : '');
+            var readByOther = otherLastRead && new Date(m.created_at) <= new Date(otherLastRead);
+            var tickHtml = (m.sender_id === uid)
+              ? '<span class="dm-tick ' + (readByOther ? 'read">✓✓' : 'sent">✓') + '</span>'
+              : '';
+            div.innerHTML = '<span class="author">' + escapeHtml(m.sender_id === uid ? t('community.you') : name) + '</span>' +
+              '<div class="body">' + renderBodyHtml(m.body) + '</div>' +
+              '<div class="msg-actions"><button type="button" class="report-btn">' + t('community.report') + '</button>' + tickHtml + '</div>';
+            div.querySelector('.report-btn').addEventListener('click', function(){ reportContent('dm_message', m.id); });
+            wrap.appendChild(div);
+          });
+        });
+      });
+      chain.then(function(){ wrap.scrollTop = wrap.scrollHeight; });
+    })
+    .catch(function(err){ wrap.innerHTML = ''; console.warn('DM messages load failed:', err); });
+}
+
+function sendDmMessage(){
+  var box = document.getElementById('fDmMessage');
+  var err = document.getElementById('dmMessageError');
+  var body = box.value.trim();
+  err.textContent = '';
+  if(!body){ err.textContent = t('err.required'); return; }
+  if(!isSignedIn()){ openAuth('login'); return; }
+  var session = getSession();
+  fetch(SUPABASE_URL + '/rest/v1/dm_messages', {
+    method:'POST',
+    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
+    body: JSON.stringify({ thread_id: currentDmThreadId, sender_id: currentUserId(), body: body })
+  }).then(function(r){
+    if(!r.ok) throw new Error('dm message insert failed');
+    box.value = '';
+    loadDmMessages();
+  }).catch(function(e){
+    err.textContent = t('err.required');
+    console.warn('DM message send failed:', e);
+  });
 }
 
 /* ---- Segnalazioni ---- */
@@ -5540,7 +6068,7 @@ function submitComment(){
 
 /* ============ MENTION AUTOCOMPLETE (@username suggestions while typing in
    comments, channel messages and DMs — closes itself on pick/blur/escape) ============ */
-var MENTION_FIELDS = ['fCommentBody', 'fChannelMessage', 'fChatMessage', 'fSynopsis', 'fAnnBody'];
+var MENTION_FIELDS = ['fCommentBody', 'fChannelMessage', 'fDmMessage', 'fChatMessage', 'fSynopsis', 'fAnnBody'];
 var mentionBox = null;
 var mentionActiveField = null;
 
@@ -6409,6 +6937,8 @@ function __appInit(){
   document.getElementById('btnCreateChannel') && document.getElementById('btnCreateChannel').addEventListener('click', createChannel);
   document.getElementById('btnBackToChannels') && document.getElementById('btnBackToChannels').addEventListener('click', backToChannels);
   document.getElementById('btnSendChannelMessage') && document.getElementById('btnSendChannelMessage').addEventListener('click', sendChannelMessage);
+  document.getElementById('btnBackToDms') && document.getElementById('btnBackToDms').addEventListener('click', backToDms);
+  document.getElementById('btnSendDmMessage') && document.getElementById('btnSendDmMessage').addEventListener('click', sendDmMessage);
   document.getElementById('btnSendChat') && document.getElementById('btnSendChat').addEventListener('click', sendChatMessage);
   document.getElementById('btnChatBack') && document.getElementById('btnChatBack').addEventListener('click', function(){
     var box = document.getElementById('chatBox');
