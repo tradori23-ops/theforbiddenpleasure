@@ -4266,7 +4266,16 @@ function openChatWithUser(otherUserId, updateHistory){
         method:'PATCH',
         headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
         body: JSON.stringify(patch)
-      }).then(function(){ loadChatSidebar(); }).catch(function(){});
+      }).then(function(){
+        // niente reload completo della sidebar: basta togliere il puntino
+        // "non letto" dalla riga già a schermo, senza rifare 3 chiamate di rete
+        var row = document.querySelector('.chat-sidebar-row[data-other-id="' + CSS.escape(otherUserId) + '"]');
+        if(row){
+          row.classList.remove('unread');
+          var dot = row.querySelector('.chat-sidebar-unread-dot');
+          if(dot) dot.remove();
+        }
+      }).catch(function(){});
     })
     .catch(function(e){ console.warn('Chat init failed:', e); document.getElementById('chatNotFound').classList.remove('hidden'); });
 }
@@ -4279,33 +4288,35 @@ function loadChatSidebar(){
   if(!list || !isSignedIn()) return;
   var uid = currentUserId();
 
-  var friendsStep = fetch(SUPABASE_URL + '/rest/v1/friendships?select=requester_id,addressee_id&status=eq.accepted&or=(requester_id.eq.' + encodeURIComponent(uid) + ',addressee_id.eq.' + encodeURIComponent(uid) + ')', { headers: communityHeaders() })
-    .then(function(r){ return r.ok ? r.json() : []; });
   var threadsStep = fetch(SUPABASE_URL + '/rest/v1/dm_threads?select=*&or=(user_a.eq.' + encodeURIComponent(uid) + ',user_b.eq.' + encodeURIComponent(uid) + ')', { headers: communityHeaders() })
     .then(function(r){ return r.ok ? r.json() : []; });
 
-  Promise.all([friendsStep, threadsStep]).then(function(results){
-    var friendships = results[0], threads = results[1];
-    var otherIds = friendships.map(function(f){ return f.requester_id === uid ? f.addressee_id : f.requester_id; });
-    var threadByOtherId = {};
-    threads.forEach(function(th){
-      var st = dmThreadState(th, uid);
-      if(!st.archived) threadByOtherId[st.otherId] = th;
-    });
-    if(otherIds.length === 0){
-      renderChatSidebar([], threadByOtherId);
-      return;
-    }
-    fetch(SUPABASE_URL + '/rest/v1/profiles?id=in.(' + otherIds.map(encodeURIComponent).join(',') + ')&select=id,display_name,avatar_url,last_seen', { headers: communityHeaders() })
-      .then(function(r){ return r.ok ? r.json() : []; })
-      .then(function(profiles){
+  fetch(SUPABASE_URL + '/rest/v1/friendships?select=requester_id,addressee_id&status=eq.accepted&or=(requester_id.eq.' + encodeURIComponent(uid) + ',addressee_id.eq.' + encodeURIComponent(uid) + ')', { headers: communityHeaders() })
+    .then(function(r){ return r.ok ? r.json() : []; })
+    .then(function(friendships){
+      var otherIds = friendships.map(function(f){ return f.requester_id === uid ? f.addressee_id : f.requester_id; });
+      // la richiesta profili parte SUBITO, appena sappiamo chi sono gli amici —
+      // non aspetta che arrivino anche le conversazioni: le due chiamate corrono
+      // in parallelo invece che una dopo l'altra, dimezzando l'attesa percepita
+      var profilesStep = otherIds.length === 0
+        ? Promise.resolve([])
+        : fetch(SUPABASE_URL + '/rest/v1/profiles?id=in.(' + otherIds.map(encodeURIComponent).join(',') + ')&select=id,display_name,avatar_url,last_seen', { headers: communityHeaders() })
+            .then(function(r){ return r.ok ? r.json() : []; });
+
+      return Promise.all([profilesStep, threadsStep]).then(function(results){
+        var profiles = results[0], threads = results[1];
+        var threadByOtherId = {};
+        threads.forEach(function(th){
+          var st = dmThreadState(th, uid);
+          if(!st.archived) threadByOtherId[st.otherId] = th;
+        });
         profiles.sort(function(a,b){
           return (a.display_name || '').localeCompare(b.display_name || '', 'it', { sensitivity:'base' });
         });
         renderChatSidebar(profiles, threadByOtherId);
-      })
-      .catch(function(err){ console.warn('Chat sidebar profiles load failed:', err); });
-  }).catch(function(err){ console.warn('Chat sidebar load failed:', err); });
+      });
+    })
+    .catch(function(err){ console.warn('Chat sidebar load failed:', err); });
 }
 
 /* Rubrica amici in stile WhatsApp: TUTTI gli amici accettati, in ordine
@@ -4452,23 +4463,28 @@ function loadChatMessages(){
   var wrap = document.getElementById('chatMessages');
   if(!wrap || !currentChatThreadId) return;
   wrap.innerHTML = '<p class="form-note">…</p>';
-  fetch(SUPABASE_URL + '/rest/v1/dm_messages?thread_id=eq.' + encodeURIComponent(currentChatThreadId) + '&select=*&order=created_at.asc', { headers: communityHeaders() })
-    .then(function(r){ if(!r.ok) throw new Error('chat messages read failed'); return r.json(); })
-    .then(function(rows){
+  var threadId = currentChatThreadId;
+  var messagesStep = fetch(SUPABASE_URL + '/rest/v1/dm_messages?thread_id=eq.' + encodeURIComponent(threadId) + '&select=*&order=created_at.asc', { headers: communityHeaders() })
+    .then(function(r){ if(!r.ok) throw new Error('chat messages read failed'); return r.json(); });
+  // parte subito insieme ai messaggi, invece di aspettare che i messaggi
+  // siano arrivati prima di chiedere anche lo stato di lettura
+  var threadStep = fetch(SUPABASE_URL + '/rest/v1/dm_threads?id=eq.' + encodeURIComponent(threadId) + '&select=user_a,last_read_at_a,last_read_at_b', { headers: communityHeaders() })
+    .then(function(r){ return r.ok ? r.json() : []; });
+
+  Promise.all([messagesStep, threadStep])
+    .then(function(results){
+      var rows = results[0], thRows = results[1];
       wrap.innerHTML = '';
       if(rows.length > 0) currentChatLastMessageAt = rows[rows.length - 1].created_at;
       if(rows.length === 0){ wrap.innerHTML = '<p class="form-note">' + t('community.noMessages') + '</p>'; return; }
       var uid = currentUserId();
-      fetch(SUPABASE_URL + '/rest/v1/dm_threads?id=eq.' + encodeURIComponent(currentChatThreadId) + '&select=user_a,last_read_at_a,last_read_at_b', { headers: communityHeaders() })
-        .then(function(r){ return r.ok ? r.json() : []; })
-        .then(function(thRows){
-          var th = thRows[0];
-          var otherLastRead = null;
-          if(th){
-            var mineSide = th.user_a === uid;
-            otherLastRead = mineSide ? th.last_read_at_b : th.last_read_at_a;
-          }
-          rows.forEach(function(m){
+      var th = thRows[0];
+      var otherLastRead = null;
+      if(th){
+        var mineSide = th.user_a === uid;
+        otherLastRead = mineSide ? th.last_read_at_b : th.last_read_at_a;
+      }
+      rows.forEach(function(m){
             var div = document.createElement('div');
             div.className = 'chat-bubble ' + (m.sender_id === uid ? 'mine' : 'theirs');
             var readByOther = otherLastRead && new Date(m.created_at) <= new Date(otherLastRead);
@@ -4518,7 +4534,6 @@ function loadChatMessages(){
             wrap.appendChild(div);
           });
           wrap.scrollTop = wrap.scrollHeight;
-        });
     })
     .catch(function(e){ wrap.innerHTML = ''; console.warn('Chat messages load failed:', e); });
 }
