@@ -2450,7 +2450,9 @@ function uploadCoverForExistingItem(itemId, file){
   var ext = extMatch ? extMatch[1].toLowerCase() : 'jpg';
   var status = document.getElementById('pagesUploadStatus');
   if(status) status.textContent = t('cover.uploading');
-  uploadCatalogAsset(file, itemId + '/cover.' + ext).then(function(url){
+  compressImageFile(file, 1600, 0.82).then(function(compressed){
+    return uploadCatalogAsset(compressed, itemId + '/cover.' + ext);
+  }).then(function(url){
     var session = getSession();
     return fetch(SUPABASE_URL + '/rest/v1/catalog?id=eq.' + encodeURIComponent(itemId), {
       method:'PATCH',
@@ -2580,6 +2582,39 @@ function uploadCatalogAsset(file, path){
   }).then(function(r){
     if(!r.ok) throw new Error('asset upload failed: ' + r.status);
     return SUPABASE_URL + '/storage/v1/object/public/comic-pages/' + path;
+  });
+}
+
+/* Comprime un'immagine PRIMA di caricarla, ridimensionandola a un massimo
+   di maxDim px sul lato lungo — così il file pesante non esiste mai sui
+   nostri server, invece di sperare che una trasformazione lato Supabase
+   lo alleggerisca dopo. Funziona identica su sito web e app PWA (è solo
+   JavaScript nel browser, nessuna dipendenza da servizi esterni). Usata
+   SOLO per copertine e avatar: le pagine dei fumetti restano intatte,
+   perché lì la qualità di lettura conta più della velocità. */
+function compressImageFile(file, maxDim, quality){
+  return new Promise(function(resolve){
+    if(!file.type || file.type.indexOf('image/') !== 0){ resolve(file); return; }
+    var img = new Image();
+    var objectUrl = URL.createObjectURL(file);
+    img.onload = function(){
+      URL.revokeObjectURL(objectUrl);
+      var w = img.naturalWidth, h = img.naturalHeight;
+      if(w <= maxDim && h <= maxDim){ resolve(file); return; } // già leggera, non tocchiamo nulla
+      var scale = maxDim / Math.max(w, h);
+      var canvas = document.createElement('canvas');
+      canvas.width = Math.round(w * scale);
+      canvas.height = Math.round(h * scale);
+      var ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+      canvas.toBlob(function(blob){
+        if(!blob){ resolve(file); return; } // se la compressione fallisce, meglio l'originale che niente
+        var compressed = new File([blob], file.name, { type:'image/jpeg' });
+        resolve(compressed);
+      }, 'image/jpeg', quality);
+    };
+    img.onerror = function(){ URL.revokeObjectURL(objectUrl); resolve(file); };
+    img.src = objectUrl;
   });
 }
 
@@ -3027,7 +3062,9 @@ function handleAddEntry(){
     var coverExt = coverExtMatch ? coverExtMatch[1].toLowerCase() : 'jpg';
     uploadSteps = uploadSteps.then(function(){
       status.textContent = t('cover.uploading');
-      return uploadCatalogAsset(pendingCover.file, newItem.id + '/cover.' + coverExt);
+      return compressImageFile(pendingCover.file, 1600, 0.82).then(function(compressed){
+        return uploadCatalogAsset(compressed, newItem.id + '/cover.' + coverExt);
+      });
     }).then(function(url){ newItem.cover_url = url; });
   }
 
@@ -6973,12 +7010,14 @@ function renderCharImageAdmin(){
 function uploadCharacterImage(name, file){
   var extMatch = /\.([a-zA-Z0-9]+)$/.exec(file.name || '');
   var ext = extMatch ? extMatch[1].toLowerCase() : 'jpg';
-  uploadCatalogAsset(file, 'characters/' + name.toLowerCase() + '.' + ext).then(function(url){
+  compressImageFile(file, 800, 0.85).then(function(compressed){
+    return uploadCatalogAsset(compressed, 'characters/' + name.toLowerCase() + '.' + ext);
+  }).then(function(url){
     var session = getSession();
-    return fetch(SUPABASE_URL + '/rest/v1/character_images?character=eq.' + encodeURIComponent(name), {
-      method:'PATCH',
-      headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
-      body: JSON.stringify({image_url: url})
+    return fetch(SUPABASE_URL + '/rest/v1/character_images?on_conflict=character', {
+      method:'POST',
+      headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json', 'Prefer':'resolution=merge-duplicates' },
+      body: JSON.stringify({character: name, image_url: url})
     }).then(function(r){
       if(!r.ok) throw new Error('character image save failed');
       characterImages[name] = url;
