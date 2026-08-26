@@ -686,6 +686,21 @@ var SUPABASE_URL = 'https://ukafvwyxdjsfzzoewujq.supabase.co';
 var SUPABASE_ANON_KEY = 'sb_publishable_-jO_WGzMVo-3Xp5J75RwiA__u49YnPr';
 var ADMIN_EMAIL = 'sergio.tradori@outlook.it'; // UI-gating only; real enforcement is server-side RLS
 
+/* Le copertine caricate sono spesso file a piena risoluzione (pensati per
+   la lettura), ma nelle griglie servono solo come miniatura — scaricare
+   l'originale intero lì è lo spreco più grande di banda del sito. Supabase
+   (piano Pro) sa ridimensionare/comprimere l'immagine al volo: basta
+   chiedere l'endpoint "render/image" invece di "object" con una larghezza
+   target. Se l'URL non è uno Storage Supabase riconoscibile (es. servizio
+   esterno), lo lasciamo intatto invece di romperlo. */
+function coverThumbUrl(url, width){
+  if(!url) return url;
+  var marker = '/storage/v1/object/public/';
+  var idx = url.indexOf(marker);
+  if(idx === -1) return url;
+  return url.slice(0, idx) + '/storage/v1/render/image/public/' + url.slice(idx + marker.length) + '?width=' + width + '&quality=70';
+}
+
 function getSession(){
   try{ return JSON.parse(localStorage.getItem('lux_session') || 'null'); }catch(e){ return null; }
 }
@@ -1721,7 +1736,7 @@ function renderLatestChapters(){
     var card = document.createElement('div');
     card.className = 'latest-card';
     var coverInner = item.cover_url
-      ? '<img src="' + item.cover_url + '" alt="" loading="lazy" decoding="async">'
+      ? '<img src="' + coverThumbUrl(item.cover_url, 400) + '" alt="" loading="lazy" decoding="async">'
       : '<span class="init">' + item.character.charAt(0) + '</span>';
     var newTag = item.date === newestDate ? '<span class="new-tag">' + t('latest.newTag') + '</span>' : '';
     card.innerHTML =
@@ -1857,12 +1872,8 @@ function renderCatalog(){
     var isFav = favoriteIds.has(item.id);
     var priceTxt = item.price ? '<span class="card-idx-price">€'+Number(item.price).toFixed(2)+'</span>' : '';
     var coverInner = item.cover_url
-      ? '<img class="cover-img" src="'+item.cover_url+'" alt="">'
+      ? '<img class="cover-img" src="'+coverThumbUrl(item.cover_url, 500)+'" alt="" loading="lazy" decoding="async">'
       : '<span class="init">'+item.character.charAt(0)+'</span>';
-    card.innerHTML =
-      '<div class="card-idx-cover">'+
-        coverInner+
-        badge+
         '<span class="card-idx-fav'+(isFav?' active':'')+'" data-fav="'+item.id+'">'+(isFav?'♥':'♡')+'</span>'+
       '</div>'+
       '<div class="card-idx-body" style="cursor:pointer;" data-open="'+item.id+'">'+
@@ -3597,7 +3608,7 @@ function renderCollabWorksTab(){
     card.className = 'card-idx';
     var badge = item.mature ? '<span class="mature">18+</span>' : '<span class="allages">'+t('badge.allages')+'</span>';
     var coverInner = item.cover_url
-      ? '<img class="cover-img" src="'+item.cover_url+'" alt="">'
+      ? '<img class="cover-img" src="'+coverThumbUrl(item.cover_url, 500)+'" alt="" loading="lazy" decoding="async">'
       : '<span class="init">'+item.character.charAt(0)+'</span>';
     var collabArr = (item.collaborators && item.collaborators.length)
       ? item.collaborators
@@ -3974,7 +3985,7 @@ function renderProfileTitles(userId){
     row.type = 'button';
     row.className = 'profile-sidebar-title-row';
     var thumbInner = item.cover_url
-      ? '<img src="'+item.cover_url+'" alt="" loading="lazy" decoding="async">'
+      ? '<img src="'+coverThumbUrl(item.cover_url, 120)+'" alt="" loading="lazy" decoding="async">'
       : '<span class="init">'+item.character.charAt(0)+'</span>';
     var collabArr = (item.collaborators && item.collaborators.length)
       ? item.collaborators
@@ -4008,7 +4019,7 @@ function renderProfileFavorites(userId){
         row.type = 'button';
         row.className = 'profile-sidebar-title-row';
         var thumbInner = item.cover_url
-          ? '<img src="'+item.cover_url+'" alt="" loading="lazy" decoding="async">'
+          ? '<img src="'+coverThumbUrl(item.cover_url, 120)+'" alt="" loading="lazy" decoding="async">'
           : '<span class="init">'+item.character.charAt(0)+'</span>';
         row.innerHTML =
           '<span class="profile-sidebar-title-thumb">'+thumbInner+'</span>'+
