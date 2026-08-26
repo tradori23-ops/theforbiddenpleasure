@@ -109,7 +109,7 @@ var STR = {
     "share.copied":"Link copiato — incollalo dove vuoi condividerlo.",
     "share.manual":"Copia questo testo per condividerlo:",
     "pdf.label":"Oppure carica il fumetto come PDF (A4) invece delle pagine singole",
-    "pdf.uploading":"Caricamento PDF…","pdf.download":"Scarica PDF","pdf.loginToDownload":"Accedi per scaricare il PDF",
+    "pdf.uploading":"Caricamento PDF…","pdf.download":"Scarica PDF","pdf.preparing":"Preparazione…","pdf.loginToDownload":"Accedi per scaricare il PDF",
     "maintenance.lockTitle":"Sito in manutenzione","maintenance.lockText":"Stiamo aggiornando l'archivio. Torna tra poco.",
     "charimg.title":"Immagini profilo personaggi",
     "social.title":"Link social (visibili nel footer)","social.save":"Salva link social",
@@ -231,7 +231,7 @@ var STR = {
     "share.copied":"Link copied — paste it wherever you'd like to share it.",
     "share.manual":"Copy this text to share it:",
     "pdf.label":"Or upload the comic as a PDF (A4) instead of individual pages",
-    "pdf.uploading":"Uploading PDF…","pdf.download":"Download PDF","pdf.loginToDownload":"Sign in to download the PDF",
+    "pdf.uploading":"Uploading PDF…","pdf.download":"Download PDF","pdf.preparing":"Preparing…","pdf.loginToDownload":"Sign in to download the PDF",
     "maintenance.lockTitle":"Site under maintenance","maintenance.lockText":"We're updating the archive. Check back shortly.",
     "charimg.title":"Character profile images",
     "social.title":"Social links (shown in the footer)","social.save":"Save social links",
@@ -353,7 +353,7 @@ var STR = {
     "share.copied":"Enlace copiado — pégalo donde quieras compartirlo.",
     "share.manual":"Copia este texto para compartirlo:",
     "pdf.label":"O sube el cómic como PDF (A4) en lugar de páginas individuales",
-    "pdf.uploading":"Subiendo PDF…","pdf.download":"Descargar PDF","pdf.loginToDownload":"Inicia sesión para descargar el PDF",
+    "pdf.uploading":"Subiendo PDF…","pdf.download":"Descargar PDF","pdf.preparing":"Preparando…","pdf.loginToDownload":"Inicia sesión para descargar el PDF",
     "maintenance.lockTitle":"Sitio en mantenimiento","maintenance.lockText":"Estamos actualizando el archivo. Vuelve en breve.",
     "charimg.title":"Imágenes de perfil de los personajes",
     "social.title":"Enlaces sociales (visibles en el pie de página)","social.save":"Guardar enlaces sociales",
@@ -475,7 +475,7 @@ var STR = {
     "share.copied":"Lien copié — collez-le où vous voulez le partager.",
     "share.manual":"Copiez ce texte pour le partager :",
     "pdf.label":"Ou téléversez la BD en PDF (A4) au lieu de pages individuelles",
-    "pdf.uploading":"Envoi du PDF…","pdf.download":"Télécharger le PDF","pdf.loginToDownload":"Connectez-vous pour télécharger le PDF",
+    "pdf.uploading":"Envoi du PDF…","pdf.download":"Télécharger le PDF","pdf.preparing":"Préparation…","pdf.loginToDownload":"Connectez-vous pour télécharger le PDF",
     "maintenance.lockTitle":"Site en maintenance","maintenance.lockText":"Nous mettons à jour les archives. Revenez bientôt.",
     "charimg.title":"Images de profil des personnages",
     "social.title":"Liens sociaux (affichés en pied de page)","social.save":"Enregistrer les liens sociaux",
@@ -597,7 +597,7 @@ var STR = {
     "share.copied":"Link kopiert — fügen Sie ihn ein, wo Sie ihn teilen möchten.",
     "share.manual":"Diesen Text zum Teilen kopieren:",
     "pdf.label":"Oder Comic als PDF (A4) statt Einzelseiten hochladen",
-    "pdf.uploading":"PDF wird hochgeladen…","pdf.download":"PDF herunterladen","pdf.loginToDownload":"Anmelden, um das PDF herunterzuladen",
+    "pdf.uploading":"PDF wird hochgeladen…","pdf.download":"PDF herunterladen","pdf.preparing":"Wird vorbereitet…","pdf.loginToDownload":"Anmelden, um das PDF herunterzuladen",
     "maintenance.lockTitle":"Website in Wartung","maintenance.lockText":"Wir aktualisieren das Archiv. Schau bald wieder vorbei.",
     "charimg.title":"Profilbilder der Charaktere",
     "social.title":"Social-Links (im Footer angezeigt)","social.save":"Social-Links speichern",
@@ -1945,6 +1945,128 @@ function attachCoverSignature(coverEl, item){
     var node = buildCoverSignatureNode(item);
     if(node) coverEl.appendChild(node);
   });
+}
+
+/* ============ FIRMA + QR ANCHE SULLA COPERTINA DEL PDF ============
+   Quando un'opera ha un PDF caricato al posto delle pagine singole, il
+   pulsante "Scarica PDF" non scarica più il file così com'è: lo apre,
+   disegna firma+QR sulla prima pagina (la copertina) e scarica quella
+   versione — il file originale salvato resta intatto, la firma si
+   aggiunge solo alla copia che viene scaricata.
+   pdf-lib (la libreria che sa aprire/modificare un PDF esistente) pesa
+   parecchio (500KB+): per questo non viene mai caricata all'apertura
+   del sito, solo nel momento in cui qualcuno preme davvero "Scarica PDF". */
+var _pdfLibLoadPromise = null;
+function ensurePdfLibLoaded(){
+  if(window.PDFLib) return Promise.resolve();
+  if(_pdfLibLoadPromise) return _pdfLibLoadPromise;
+  _pdfLibLoadPromise = new Promise(function(resolve, reject){
+    var s = document.createElement('script');
+    s.src = 'pdf-lib.min.js';
+    s.onload = function(){ resolve(); };
+    s.onerror = function(){ _pdfLibLoadPromise = null; reject(new Error('pdf-lib load failed')); };
+    document.head.appendChild(s);
+  });
+  return _pdfLibLoadPromise;
+}
+
+// Il QR generato da qrcode-lib.js è in formato GIF (createDataURL), ma
+// pdf-lib sa incorporare solo PNG o JPEG — lo facciamo passare per un
+// <canvas> per convertirlo, un passaggio che i browser sanno già fare da soli.
+function qrPngBase64(url, sizePx){
+  return new Promise(function(resolve, reject){
+    try{
+      var qr = qrcode(0, 'L');
+      qr.addData(url);
+      qr.make();
+      var img = new Image();
+      img.onload = function(){
+        var canvas = document.createElement('canvas');
+        canvas.width = sizePx; canvas.height = sizePx;
+        var ctx = canvas.getContext('2d');
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, sizePx, sizePx);
+        ctx.drawImage(img, 0, 0, sizePx, sizePx);
+        resolve(canvas.toDataURL('image/png').split(',')[1]);
+      };
+      img.onerror = function(){ reject(new Error('QR image load failed')); };
+      img.src = qr.createDataURL(6, 8);
+    } catch(e){ reject(e); }
+  });
+}
+
+function base64ToBytes(base64){
+  var raw = atob(base64);
+  var bytes = new Uint8Array(raw.length);
+  for(var i = 0; i < raw.length; i++){ bytes[i] = raw.charCodeAt(i); }
+  return bytes;
+}
+
+function downloadSignedPdf(item){
+  return ensurePdfLibLoaded()
+    .then(function(){
+      return Promise.all([
+        fetch(item.pdf_url).then(function(r){
+          if(!r.ok) throw new Error('pdf fetch failed');
+          return r.arrayBuffer();
+        }),
+        qrPngBase64(previewPagePath('t', item.id), 300)
+      ]);
+    })
+    .then(function(results){
+      var pdfBytes = results[0];
+      var qrBase64 = results[1];
+      return PDFLib.PDFDocument.load(pdfBytes).then(function(pdfDoc){
+        return Promise.all([
+          pdfDoc.embedPng(base64ToBytes(qrBase64)),
+          pdfDoc.embedFont(PDFLib.StandardFonts.HelveticaBold)
+        ]).then(function(embeds){
+          var qrImage = embeds[0], font = embeds[1];
+          var page = pdfDoc.getPages()[0]; // la copertina è sempre la prima pagina
+          var pw = page.getWidth(), ph = page.getHeight();
+          var shortSide = Math.min(pw, ph);
+          var qrSize = shortSide * 0.11;
+          var margin = shortSide * 0.035;
+          var textSize = Math.max(9, qrSize * 0.3);
+          var text = 'NoxMorningstar';
+          var textWidth = font.widthOfTextAtSize(text, textSize);
+          var plateWidth = qrSize + margin * 1.5 + textWidth + 10;
+          var plateHeight = qrSize + margin;
+
+          page.drawRectangle({
+            x: pw - plateWidth - margin/2, y: margin/2,
+            width: plateWidth, height: plateHeight,
+            color: PDFLib.rgb(1, 1, 1), opacity: 0.8,
+          });
+          page.drawText(text, {
+            x: pw - plateWidth - margin/2 + margin/2, y: margin/2 + plateHeight/2 - textSize/2.6,
+            size: textSize, font: font, color: PDFLib.rgb(0.08, 0.05, 0.06),
+          });
+          page.drawImage(qrImage, {
+            x: pw - qrSize - margin, y: margin/2 + (plateHeight - qrSize)/2,
+            width: qrSize, height: qrSize,
+          });
+          return pdfDoc.save();
+        });
+      });
+    })
+    .then(function(newPdfBytes){
+      var blob = new Blob([newPdfBytes], { type:'application/pdf' });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url;
+      a.download = (item.title || 'fumetto').replace(/[^a-zA-Z0-9_\-]+/g, '_') + '.pdf';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(function(){ URL.revokeObjectURL(url); }, 4000);
+    })
+    .catch(function(e){
+      // se qualcosa va storto (rete, CORS, PDF non valido...) scarichiamo
+      // comunque il file originale invece di lasciare l'utente a mani vuote
+      console.warn('PDF signature failed, falling back to raw file:', e);
+      window.open(item.pdf_url, '_blank');
+    });
 }
 
 function escapeHtml(str){
@@ -5666,9 +5788,14 @@ function openTitleModal(item){
 
   var pdfLink = document.getElementById('titleModalPdf');
   if(item.pdf_url && isSignedIn()){
-    pdfLink.href = item.pdf_url;
+    pdfLink.href = item.pdf_url; // riserva, nel caso il JS sotto non parta per qualche motivo
     pdfLink.textContent = t('pdf.download');
-    pdfLink.onclick = null;
+    pdfLink.onclick = function(e){
+      e.preventDefault();
+      var original = pdfLink.textContent;
+      pdfLink.textContent = t('pdf.preparing');
+      downloadSignedPdf(item).then(function(){ pdfLink.textContent = original; });
+    };
     pdfLink.classList.remove('hidden');
   } else if(item.pdf_url && !isSignedIn()){
     pdfLink.removeAttribute('href'); // l'indirizzo vero non deve mai comparire nel codice sorgente per chi non ha fatto l'accesso
