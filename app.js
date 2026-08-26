@@ -4137,110 +4137,123 @@ function loadChatSidebar(){
   var list = document.getElementById('chatSidebarList');
   if(!list || !isSignedIn()) return;
   var uid = currentUserId();
-  fetch(SUPABASE_URL + '/rest/v1/dm_threads?select=*&or=(user_a.eq.' + encodeURIComponent(uid) + ',user_b.eq.' + encodeURIComponent(uid) + ')&order=last_message_at.desc', { headers: communityHeaders() })
-    .then(function(r){ if(!r.ok) throw new Error('dm threads read failed'); return r.json(); })
-    .then(function(rows){ renderChatSidebar(rows.filter(function(th){ return !dmThreadState(th, uid).archived; })); })
-    .catch(function(err){ console.warn('Chat sidebar load failed:', err); });
+
+  var friendsStep = fetch(SUPABASE_URL + '/rest/v1/friendships?select=requester_id,addressee_id&status=eq.accepted&or=(requester_id.eq.' + encodeURIComponent(uid) + ',addressee_id.eq.' + encodeURIComponent(uid) + ')', { headers: communityHeaders() })
+    .then(function(r){ return r.ok ? r.json() : []; });
+  var threadsStep = fetch(SUPABASE_URL + '/rest/v1/dm_threads?select=*&or=(user_a.eq.' + encodeURIComponent(uid) + ',user_b.eq.' + encodeURIComponent(uid) + ')', { headers: communityHeaders() })
+    .then(function(r){ return r.ok ? r.json() : []; });
+
+  Promise.all([friendsStep, threadsStep]).then(function(results){
+    var friendships = results[0], threads = results[1];
+    var otherIds = friendships.map(function(f){ return f.requester_id === uid ? f.addressee_id : f.requester_id; });
+    var threadByOtherId = {};
+    threads.forEach(function(th){
+      var st = dmThreadState(th, uid);
+      if(!st.archived) threadByOtherId[st.otherId] = th;
+    });
+    if(otherIds.length === 0){
+      renderChatSidebar([], threadByOtherId);
+      return;
+    }
+    fetch(SUPABASE_URL + '/rest/v1/profiles?id=in.(' + otherIds.map(encodeURIComponent).join(',') + ')&select=id,display_name,avatar_url,last_seen', { headers: communityHeaders() })
+      .then(function(r){ return r.ok ? r.json() : []; })
+      .then(function(profiles){
+        profiles.sort(function(a,b){
+          return (a.display_name || '').localeCompare(b.display_name || '', 'it', { sensitivity:'base' });
+        });
+        renderChatSidebar(profiles, threadByOtherId);
+      })
+      .catch(function(err){ console.warn('Chat sidebar profiles load failed:', err); });
+  }).catch(function(err){ console.warn('Chat sidebar load failed:', err); });
 }
 
-function renderChatSidebar(threads){
+/* Rubrica amici in stile WhatsApp: TUTTI gli amici accettati, in ordine
+   alfabetico, con pallino online/offline — non più solo le conversazioni
+   già iniziate. Se un amico ha già una conversazione, mostriamo comunque
+   l'anteprima dell'ultimo messaggio e i pulsanti Archivia/Elimina. */
+function renderChatSidebar(profiles, threadByOtherId){
   var list = document.getElementById('chatSidebarList');
   if(!list) return;
   var uid = currentUserId();
   list.innerHTML = '';
-  if(threads.length === 0){
+  if(profiles.length === 0){
     list.innerHTML = '<p class="form-note">' + t('community.noDms') + '</p>';
     return;
   }
 
-  var otherIds = threads.map(function(th){ return dmThreadState(th, uid).otherId; });
-  var threadIds = threads.map(function(th){ return th.id; });
-  var rowsByOtherId = {}; // per aggiornare avatar/pallino online una volta arrivati i profili
   var rowsByThreadId = {}; // per aggiornare l'anteprima dell'ultimo messaggio
 
-  threads.forEach(function(th){
-    var st = dmThreadState(th, uid);
+  profiles.forEach(function(p){
+    var th = threadByOtherId[p.id];
+    var st = th ? dmThreadState(th, uid) : null;
+    var unread = st ? !st.read : false;
+    var online = isOnlineSince(p.last_seen);
+    var name = p.display_name || t('userDir.title');
+
     var row = document.createElement('div');
-    row.className = 'chat-sidebar-row' + (st.read ? '' : ' unread') + (th.id === currentChatThreadId ? ' active' : '');
-    row.dataset.otherId = st.otherId;
+    row.className = 'chat-sidebar-row' + (unread ? ' unread' : '') + (th && th.id === currentChatThreadId ? ' active' : '');
+    row.dataset.otherId = p.id;
 
     var main = document.createElement('div');
     main.className = 'chat-sidebar-row-main';
     main.innerHTML =
       '<span class="chat-sidebar-avatar-wrap">' +
-        '<img class="chat-sidebar-avatar" src="" alt="">' +
-        '<span class="chat-sidebar-dot offline"></span>' +
+        '<img class="chat-sidebar-avatar" src="' + (p.avatar_url ? escapeHtml(p.avatar_url) : '') + '" alt="">' +
+        '<span class="chat-sidebar-dot ' + (online ? 'online' : 'offline') + '"></span>' +
       '</span>' +
       '<span class="chat-sidebar-info">' +
-        '<span class="chat-sidebar-name">…</span>' +
-        '<span class="chat-sidebar-preview">…</span>' +
+        '<span class="chat-sidebar-name">' + escapeHtml(name) + '</span>' +
+        '<span class="chat-sidebar-preview">' + (th ? '…' : '') + '</span>' +
       '</span>' +
       '<span class="chat-sidebar-meta">' +
-        (th.last_message_at ? '<span class="chat-sidebar-time">' + notifTimeAgo(th.last_message_at) + '</span>' : '') +
-        (st.read ? '' : '<span class="chat-sidebar-unread-dot"></span>') +
+        (th && th.last_message_at ? '<span class="chat-sidebar-time">' + notifTimeAgo(th.last_message_at) + '</span>' : '') +
+        (unread ? '<span class="chat-sidebar-unread-dot"></span>' : '') +
       '</span>';
-    main.addEventListener('click', function(){ openChatWithUser(st.otherId, true); });
+    main.addEventListener('click', function(){ openChatWithUser(p.id, true); });
     row.appendChild(main);
 
-    var actions = document.createElement('div');
-    actions.className = 'chat-sidebar-actions';
+    if(th){
+      var actions = document.createElement('div');
+      actions.className = 'chat-sidebar-actions';
 
-    var archBtn = document.createElement('button');
-    archBtn.type = 'button';
-    archBtn.className = 'chat-sidebar-action';
-    var archLabel = t('community.archive') || 'Archivia';
-    archBtn.textContent = archLabel;
-    archBtn.setAttribute('aria-label', archLabel);
-    archBtn.addEventListener('click', function(e){
-      e.stopPropagation();
-      var mine = th.user_a === uid;
-      var field = mine ? 'archived_a' : 'archived_b';
-      setDmFlag(th.id, field, true).then(function(){ loadChatSidebar(); });
-    });
-    actions.appendChild(archBtn);
+      var archBtn = document.createElement('button');
+      archBtn.type = 'button';
+      archBtn.className = 'chat-sidebar-action';
+      var archLabel = t('community.archive') || 'Archivia';
+      archBtn.textContent = archLabel;
+      archBtn.setAttribute('aria-label', archLabel);
+      archBtn.addEventListener('click', function(e){
+        e.stopPropagation();
+        var mine = th.user_a === uid;
+        var field = mine ? 'archived_a' : 'archived_b';
+        setDmFlag(th.id, field, true).then(function(){ loadChatSidebar(); });
+      });
+      actions.appendChild(archBtn);
 
-    var delBtn = document.createElement('button');
-    delBtn.type = 'button';
-    delBtn.className = 'chat-sidebar-action danger';
-    var delLabel = t('chat.delete') || 'Elimina';
-    delBtn.textContent = delLabel;
-    delBtn.setAttribute('aria-label', delLabel);
-    delBtn.addEventListener('click', function(e){
-      e.stopPropagation();
-      if(!window.confirm(t('chat.deleteConfirm'))) return;
-      deleteDmThread(th.id);
-    });
-    actions.appendChild(delBtn);
+      var delBtn = document.createElement('button');
+      delBtn.type = 'button';
+      delBtn.className = 'chat-sidebar-action danger';
+      var delLabel = t('chat.delete') || 'Elimina';
+      delBtn.textContent = delLabel;
+      delBtn.setAttribute('aria-label', delLabel);
+      delBtn.addEventListener('click', function(e){
+        e.stopPropagation();
+        if(!window.confirm(t('chat.deleteConfirm'))) return;
+        deleteDmThread(th.id);
+      });
+      actions.appendChild(delBtn);
 
-    row.appendChild(actions);
+      row.appendChild(actions);
+      rowsByThreadId[th.id] = row;
+    }
+
     list.appendChild(row);
-
-    getDisplayName(st.otherId).then(function(name){
-      row.querySelector('.chat-sidebar-name').textContent = name;
-    });
-    rowsByOtherId[st.otherId] = row;
-    rowsByThreadId[th.id] = row;
   });
-
-  // un'unica richiesta per tutti gli avatar/stati online, invece di una per contatto
-  if(otherIds.length > 0){
-    fetch(SUPABASE_URL + '/rest/v1/profiles?id=in.(' + otherIds.map(encodeURIComponent).join(',') + ')&select=id,avatar_url,last_seen', { headers: communityHeaders() })
-      .then(function(r){ return r.ok ? r.json() : []; })
-      .then(function(profiles){
-        profiles.forEach(function(p){
-          var row = rowsByOtherId[p.id];
-          if(!row) return;
-          if(p.avatar_url) row.querySelector('.chat-sidebar-avatar').src = p.avatar_url;
-          var online = isOnlineSince(p.last_seen);
-          row.querySelector('.chat-sidebar-dot').classList.toggle('online', online);
-        });
-      })
-      .catch(function(){});
-  }
 
   // un'unica richiesta per tutte le anteprime, invece di una per contatto:
   // prendiamo più messaggi recenti del necessario (ordinati dal più nuovo)
   // e teniamo solo il primo che troviamo per ciascuna conversazione
+  var threadIds = Object.keys(rowsByThreadId);
   if(threadIds.length > 0){
     fetch(SUPABASE_URL + '/rest/v1/dm_messages?thread_id=in.(' + threadIds.map(encodeURIComponent).join(',') + ')&select=thread_id,body,attachment_type&order=created_at.desc&limit=' + (threadIds.length * 6), { headers: communityHeaders() })
       .then(function(r){ return r.ok ? r.json() : []; })
@@ -4818,27 +4831,7 @@ function loadFriendsPanel(){
         });
       });
 
-      friendsBox.innerHTML = accepted.length === 0 ? '<p class="form-note">' + t('mod.empty') + '</p>' : '';
-      accepted.forEach(function(f){
-        var otherId = f.requester_id === uid ? f.addressee_id : f.requester_id;
-        getDisplayName(otherId).then(function(name){
-          var row = document.createElement('div');
-          row.className = 'admin-row';
-          var actionsHtml = isAdmin() ? '<button class="btn btn-sm btn-ghost" data-invite>' + t('collabSession.invite') + '</button>' : '';
-          row.innerHTML = '<div class="info"><div class="t">' + escapeHtml(name) + '</div></div><div class="admin-actions">' + actionsHtml + '</div>';
-          row.querySelector('.info').addEventListener('click', function(){
-            switchCommunityTab('dms');
-            startDmWith(otherId, name);
-          });
-          row.querySelector('.info').style.cursor = 'pointer';
-          var inviteBtn = row.querySelector('[data-invite]');
-          if(inviteBtn) inviteBtn.addEventListener('click', function(e){
-            e.stopPropagation();
-            inviteFriendToCreate(otherId, name);
-          });
-          friendsBox.appendChild(row);
-        });
-      });
+      renderFriendContactList(friendsBox, accepted, uid);
     })
     .catch(function(err){
       var detail = (err && err.message) ? err.message : String(err);
@@ -4850,6 +4843,57 @@ function loadFriendsPanel(){
       var retryBtn = document.getElementById('btnRetryFriends');
       if(retryBtn) retryBtn.addEventListener('click', loadFriendsPanel);
       console.warn('Friends panel load failed:', err);
+    });
+}
+
+/* Lista "I tuoi amici" in stile WhatsApp: avatar, pallino online/offline,
+   ordine alfabetico. Click su un contatto porta dritto a chat.html (prima
+   puntava a una tab "Messaggi privati" ormai rimossa da Community). */
+function renderFriendContactList(friendsBox, accepted, uid){
+  if(accepted.length === 0){
+    friendsBox.innerHTML = '<p class="form-note">' + t('mod.empty') + '</p>';
+    return;
+  }
+  var otherIds = accepted.map(function(f){ return f.requester_id === uid ? f.addressee_id : f.requester_id; });
+  friendsBox.innerHTML = '<p class="form-note">…</p>';
+  fetch(SUPABASE_URL + '/rest/v1/profiles?id=in.(' + otherIds.map(encodeURIComponent).join(',') + ')&select=id,display_name,avatar_url,last_seen', { headers: communityHeaders() })
+    .then(function(r){ return r.ok ? r.json() : []; })
+    .then(function(profiles){
+      profiles.sort(function(a,b){
+        return (a.display_name || '').localeCompare(b.display_name || '', 'it', { sensitivity:'base' });
+      });
+      friendsBox.innerHTML = '';
+      if(profiles.length === 0){ friendsBox.innerHTML = '<p class="form-note">' + t('mod.empty') + '</p>'; return; }
+      profiles.forEach(function(p){
+        var online = isOnlineSince(p.last_seen);
+        var name = p.display_name || t('userDir.title');
+        var row = document.createElement('div');
+        row.className = 'friend-contact-row';
+        row.innerHTML =
+          '<span class="friend-contact-avatar-wrap">' +
+            '<img class="friend-contact-avatar" src="' + (p.avatar_url ? escapeHtml(p.avatar_url) : '') + '" alt="">' +
+            '<span class="friend-contact-dot ' + (online ? 'online' : 'offline') + '"></span>' +
+          '</span>' +
+          '<span class="friend-contact-info">' +
+            '<span class="friend-contact-name">' + escapeHtml(name) + '</span>' +
+            '<span class="friend-contact-status">' + (online ? t('userDir.online') : t('userDir.offline')) + '</span>' +
+          '</span>' +
+          (isAdmin() ? '<button type="button" class="btn btn-sm btn-ghost friend-contact-invite" data-invite>' + t('collabSession.invite') + '</button>' : '');
+        row.addEventListener('click', function(e){
+          if(e.target.closest('[data-invite]')) return;
+          window.location.href = 'chat.html?user=' + encodeURIComponent(p.id);
+        });
+        var inviteBtn = row.querySelector('[data-invite]');
+        if(inviteBtn) inviteBtn.addEventListener('click', function(e){
+          e.stopPropagation();
+          inviteFriendToCreate(p.id, name);
+        });
+        friendsBox.appendChild(row);
+      });
+    })
+    .catch(function(err){
+      friendsBox.innerHTML = '<p class="form-note">' + t('community.loadError') + '</p>';
+      console.warn('Friend contact list load failed:', err);
     });
 }
 
