@@ -2386,6 +2386,13 @@ function renderAdminList(){
         '<label class="btn btn-sm btn-ghost cover-upload-btn">'+coverLabel+
           '<input type="file" accept="image/*" class="hidden" data-cover-for="'+item.id+'">'+
         '</label>'+
+        '<select class="cover-format-select mono" data-cover-format-for="'+item.id+'">'+
+          '<option value="210:297" selected>A4 Verticale</option>'+
+          '<option value="1:1">Quadrato 1:1</option>'+
+          '<option value="297:210">A4 Orizzontale</option>'+
+          '<option value="16:9">16:9</option>'+
+        '</select>'+
+        '<span class="cover-upload-status mono" data-cover-status-for="'+item.id+'"></span>'+
         '<button class="btn btn-sm btn-ghost" data-translate-for="'+item.id+'">'+translateLabel+'</button>'+
         (hasPages ? '<button class="btn btn-sm btn-ghost" data-rewatermark-for="'+item.id+'">'+t('rewatermark.button')+'</button>' : '') +
         (hasPages && item.pages_watermarked ? '<span class="watermark-done-tag">✓ '+t('rewatermark.done')+'</span>' : '') +
@@ -2421,7 +2428,11 @@ function renderAdminList(){
       supabaseDelete(item.id);
     });
     row.querySelector('[data-cover-for]').addEventListener('change', function(e){
-      if(e.target.files[0]) uploadCoverForExistingItem(item.id, e.target.files[0]);
+      if(!e.target.files[0]) return;
+      var fmtSelect = row.querySelector('[data-cover-format-for="'+item.id+'"]');
+      var fmtVal = fmtSelect ? fmtSelect.value : '210:297';
+      var parts = fmtVal.split(':');
+      uploadCoverForExistingItem(item.id, e.target.files[0], Number(parts[0]), Number(parts[1]));
     });
     row.querySelector('[data-translate-for]').addEventListener('click', function(){
       translateSynopsisForExistingItem(item.id, item.synopsis);
@@ -2472,13 +2483,50 @@ function translateSynopsisForExistingItem(itemId, englishSynopsis){
   });
 }
 
-function uploadCoverForExistingItem(itemId, file){
-  var extMatch = /\.([a-zA-Z0-9]+)$/.exec(file.name || '');
-  var ext = extMatch ? extMatch[1].toLowerCase() : 'jpg';
-  var status = document.getElementById('pagesUploadStatus');
+/* Ritaglia un'immagine al rapporto scelto (centrato) prima di caricarla —
+   così la copertina esce già nel formato giusto, qualunque sia la forma
+   dell'originale, senza bisogno di un tool esterno. */
+function cropFileToRatio(file, ratioW, ratioH){
+  return new Promise(function(resolve, reject){
+    var url = URL.createObjectURL(file);
+    var img = new Image();
+    img.onload = function(){
+      URL.revokeObjectURL(url);
+      var iw = img.naturalWidth, ih = img.naturalHeight;
+      var targetRatio = ratioW / ratioH;
+      var srcRatio = iw / ih;
+      var sx, sy, sw, sh;
+      if(srcRatio > targetRatio){
+        sh = ih; sw = ih * targetRatio; sx = (iw - sw) / 2; sy = 0;
+      } else {
+        sw = iw; sh = iw / targetRatio; sx = 0; sy = (ih - sh) / 2;
+      }
+      var maxOut = 2200;
+      var outW, outH;
+      if(sw >= sh){ outW = Math.min(maxOut, sw); outH = outW / targetRatio; }
+      else { outH = Math.min(maxOut, sh); outW = outH * targetRatio; }
+      var canvas = document.createElement('canvas');
+      canvas.width = Math.round(outW);
+      canvas.height = Math.round(outH);
+      var ctx = canvas.getContext('2d');
+      ctx.drawImage(img, sx, sy, sw, sh, 0, 0, canvas.width, canvas.height);
+      canvas.toBlob(function(blob){
+        if(!blob){ reject(new Error('ritaglio fallito')); return; }
+        resolve(blob);
+      }, 'image/jpeg', 0.92);
+    };
+    img.onerror = function(){ URL.revokeObjectURL(url); reject(new Error('immagine non valida')); };
+    img.src = url;
+  });
+}
+function uploadCoverForExistingItem(itemId, file, ratioW, ratioH){
+  ratioW = ratioW || 210; ratioH = ratioH || 297;
+  var status = document.querySelector('[data-cover-status-for="'+itemId+'"]');
   if(status) status.textContent = t('cover.uploading');
-  compressImageFile(file, 2200, 0.9).then(function(compressed){
-    return uploadCatalogAsset(compressed, itemId + '/cover.' + ext);
+  cropFileToRatio(file, ratioW, ratioH).then(function(cropped){
+    return compressImageFile(cropped, 2200, 0.9);
+  }).then(function(compressed){
+    return uploadCatalogAsset(compressed, itemId + '/cover.jpg');
   }).then(function(url){
     var session = getSession();
     return fetch(SUPABASE_URL + '/rest/v1/catalog?id=eq.' + encodeURIComponent(itemId), {
@@ -2491,13 +2539,16 @@ function uploadCoverForExistingItem(itemId, file){
       var item = items.find(function(i){ return i.id === itemId; });
       if(item) item.cover_url = url;
       saveCatalogLocal(items);
-      if(status) status.textContent = '';
+      if(status){
+        status.textContent = '✓';
+        setTimeout(function(){ if(status) status.textContent = ''; }, 4000);
+      }
       renderCatalog();
       renderAdminList();
     });
   }).catch(function(err){
     console.warn('Cover update for existing item failed:', err);
-    if(status) status.textContent = '';
+    if(status) status.textContent = '✕ ' + (err && err.message ? err.message : 'errore');
   });
 }
 
