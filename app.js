@@ -2387,8 +2387,8 @@ function renderAdminList(){
           '<input type="file" accept="image/*" class="hidden" data-cover-for="'+item.id+'">'+
         '</label>'+
         '<select class="cover-format-select mono" data-cover-format-for="'+item.id+'">'+
-          '<option value="210:297" selected>A4 Verticale</option>'+
-          '<option value="1:1">Quadrato 1:1</option>'+
+          '<option value="1:1" selected>Quadrato 1:1</option>'+
+          '<option value="210:297">A4 Verticale</option>'+
           '<option value="297:210">A4 Orizzontale</option>'+
           '<option value="16:9">16:9</option>'+
         '</select>'+
@@ -2501,7 +2501,7 @@ function cropFileToRatio(file, ratioW, ratioH){
       } else {
         sw = iw; sh = iw / targetRatio; sx = 0; sy = (ih - sh) / 2;
       }
-      var maxOut = 2200;
+      var maxOut = 2600;
       var outW, outH;
       if(sw >= sh){ outW = Math.min(maxOut, sw); outH = outW / targetRatio; }
       else { outH = Math.min(maxOut, sh); outW = outH * targetRatio; }
@@ -2520,11 +2520,11 @@ function cropFileToRatio(file, ratioW, ratioH){
   });
 }
 function uploadCoverForExistingItem(itemId, file, ratioW, ratioH){
-  ratioW = ratioW || 210; ratioH = ratioH || 297;
+  ratioW = ratioW || 1; ratioH = ratioH || 1;
   var status = document.querySelector('[data-cover-status-for="'+itemId+'"]');
   if(status) status.textContent = t('cover.uploading');
   cropFileToRatio(file, ratioW, ratioH).then(function(cropped){
-    return compressImageFile(cropped, 2200, 0.9);
+    return compressImageFile(cropped, 2600, 0.92);
   }).then(function(compressed){
     return uploadCatalogAsset(compressed, itemId + '/cover.jpg');
   }).then(function(url){
@@ -3141,7 +3141,7 @@ function handleAddEntry(){
     var coverExt = coverExtMatch ? coverExtMatch[1].toLowerCase() : 'jpg';
     uploadSteps = uploadSteps.then(function(){
       status.textContent = t('cover.uploading');
-      return compressImageFile(pendingCover.file, 2200, 0.9).then(function(compressed){
+      return compressImageFile(pendingCover.file, 2600, 0.92).then(function(compressed){
         return uploadCatalogAsset(compressed, newItem.id + '/cover.' + coverExt);
       });
     }).then(function(url){ newItem.cover_url = url; });

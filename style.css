@@ -439,8 +439,8 @@ body.theme-light .hero-bg::after{
 }
 .latest-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;}
 .latest-card{cursor:pointer;border:1px solid var(--line);background:var(--void-2);}
-.latest-card-cover{position:relative;min-height:160px;background:linear-gradient(160deg, var(--wine-deep), var(--void));display:flex;align-items:center;justify-content:center;}
-.latest-card-cover > img{position:static;display:block;width:100%;height:auto;}
+.latest-card-cover{aspect-ratio:1/1;position:relative;background:linear-gradient(160deg, var(--wine-deep), var(--void));display:flex;align-items:center;justify-content:center;}
+.latest-card-cover > img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;}
 .latest-card-cover .init{font-family:'Cinzel Decorative',serif;font-size:32px;color:rgba(201,162,77,0.35);}
 .latest-card-cover .new-tag{
   position:absolute;top:8px;left:8px;background:var(--wine);color:#ece2c6;
@@ -500,12 +500,13 @@ body.theme-light .hero-bg::after{
   background:var(--void);border:1px solid var(--line);z-index:2;
 }
 .card-idx-cover{
+  aspect-ratio:1/1;
   display:flex;align-items:center;justify-content:center;
-  position:relative;min-height:160px;
+  position:relative;
   background:linear-gradient(160deg, var(--wine-deep), var(--void));
 }
 .card-idx-cover .init{font-family:'Cinzel Decorative',serif;font-size:44px;color:rgba(201,162,77,0.35);}
-.card-idx-cover .cover-img{position:static;display:block;width:100%;height:auto;}
+.card-idx-cover .cover-img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;}
 
 /* Firma + QR sovrimpressi sulle copertine — vedi buildCoverSignatureNode()
    in app.js. Una vera fascia in fondo alla copertina, non un piccolo
@@ -649,7 +650,7 @@ body.theme-light .hero-bg::after{
   position:absolute;top:0;right:0;background:rgba(11,6,7,0.8);color:var(--parchment);
   border:none;width:20px;height:20px;font-size:12px;line-height:1;cursor:pointer;
 }
-.cover-preview{position:relative;width:130px;aspect-ratio:210/297;margin-top:12px;border:1px solid var(--line);}
+.cover-preview{position:relative;width:130px;aspect-ratio:1/1;margin-top:12px;border:1px solid var(--line);}
 .cover-preview img{width:100%;height:100%;object-fit:cover;display:block;}
 .cover-preview .rm{
   position:absolute;top:0;right:0;background:rgba(11,6,7,0.8);color:var(--parchment);
