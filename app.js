@@ -1761,41 +1761,64 @@ function renderLatestChapters(){
 }
 
 function renderDossiers(){
-  var grid = document.getElementById('dossierGrid');
-  if(!grid) return;
-  grid.innerHTML = '';
-  ['Lucifer','Lilith','Lucifera','Lucio'].forEach(function(name){
+  var wrap = document.getElementById('dossierGrid');
+  if(!wrap) return;
+  var names = ['Lucifer','Lilith','Lucifera','Lucio'];
+  var lang = STR[currentLang] ? currentLang : 'it';
+
+  function goToLibrary(name){
+    var libSection = document.getElementById('library');
+    if(libSection){
+      // siamo già sulla pagina schedario (o su una versione a pagina singola)
+      activeFilter = name;
+      libSection.scrollIntoView({behavior:'smooth'});
+      renderCatalog();
+    } else {
+      // pagina separata (es. dossier.html): naviga verso schedario.html col filtro
+      window.location.href = 'schedario.html?character=' + encodeURIComponent(name) + '#library';
+    }
+  }
+
+  function renderManuscript(idx){
+    var name = names[idx];
     var meta = CHAR_META[name];
-    var lang = STR[currentLang] ? currentLang : 'it';
-    var div = document.createElement('div');
-    div.className = 'dossier';
-    var imgUrl = characterImages[name];
-    var sigMarkup = imgUrl
-      ? '<img class="sig sig-photo" src="'+imgUrl+'" alt="'+name+'">'
-      : '<svg class="sig" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">'+
-        '<circle cx="50" cy="50" r="44" fill="none" stroke="#6e1423" stroke-width="2"/>'+
-        '<path d="M50 22 C37 31, 32 45, 41 54 C32 57, 30 68, 41 75 C46 70, 50 70, 50 75 C50 70, 54 70, 59 75 C70 68, 68 57, 59 54 C68 45, 63 31, 50 22 Z" fill="none" stroke="#c9a24d" stroke-width="1.4"/>'+
-        '</svg>';
-    div.innerHTML =
-      sigMarkup+
-      '<h3>'+name+'</h3>'+
-      '<div class="role">'+meta.role[lang]+'</div>'+
+    var ms = wrap.querySelector('.dossier-manuscript');
+    if(!ms) return;
+    ms.innerHTML =
+      '<h2>'+name+'</h2>'+
+      '<div class="dossier-role">'+meta.role[lang]+'</div>'+
       '<p>'+meta.bio[lang]+'</p>'+
-      '<span class="tag" data-char="'+name+'">'+t('nav.library')+' →</span>';
-    div.querySelector('.tag').addEventListener('click', function(){
-      var libSection = document.getElementById('library');
-      if(libSection){
-        // siamo già sulla pagina schedario (o su una versione a pagina singola)
-        activeFilter = name;
-        libSection.scrollIntoView({behavior:'smooth'});
-        renderCatalog();
-      } else {
-        // pagina separata (es. dossier.html): naviga verso schedario.html col filtro
-        window.location.href = 'schedario.html?character=' + encodeURIComponent(name) + '#library';
-      }
+      '<span class="dossier-goto" data-char="'+name+'">'+t('nav.library')+' →</span>';
+    ms.querySelector('.dossier-goto').addEventListener('click', function(){ goToLibrary(name); });
+  }
+
+  function renderSeals(activeIdx){
+    var seals = wrap.querySelector('.dossier-seals');
+    if(!seals) return;
+    seals.innerHTML = '';
+    names.forEach(function(name, i){
+      var imgUrl = characterImages[name];
+      var sealInner = imgUrl
+        ? '<img class="dossier-seal-photo" src="'+imgUrl+'" alt="'+name+'">'
+        : '<span class="dossier-seal-init">'+name.charAt(0)+'</span>';
+      var sealWrap = document.createElement('div');
+      sealWrap.className = 'dossier-seal-wrap';
+      sealWrap.innerHTML =
+        '<div class="dossier-seal'+(i===activeIdx?' active':'')+'">'+sealInner+'</div>'+
+        '<div class="dossier-seal-label">'+name+'</div>';
+      sealWrap.querySelector('.dossier-seal').addEventListener('click', function(){
+        renderSeals(i);
+        renderManuscript(i);
+      });
+      seals.appendChild(sealWrap);
     });
-    grid.appendChild(div);
-  });
+  }
+
+  wrap.innerHTML =
+    '<div class="dossier-seals"></div>'+
+    '<div class="dossier-manuscript"></div>';
+  renderSeals(0);
+  renderManuscript(0);
 }
 
 function showCollaboratorCollection(collab){
@@ -1880,16 +1903,13 @@ function renderCatalog(){
   items.forEach(function(item){
     var card = document.createElement('div');
     card.className = 'card-idx';
+    card.setAttribute('data-character', item.character || '');
     var badge = item.mature ? '<span class="mature">18+</span>' : '<span class="allages">'+t('badge.allages')+'</span>';
     var isFav = favoriteIds.has(item.id);
     var priceTxt = item.price ? '<span class="card-idx-price">€'+Number(item.price).toFixed(2)+'</span>' : '';
     var coverInner = item.cover_url
       ? '<img class="cover-img" src="'+coverThumbUrl(item.cover_url, 500)+'" data-fallback="'+escapeHtml(item.cover_url)+'" alt="" loading="lazy" decoding="async">'
       : '<span class="init">'+item.character.charAt(0)+'</span>';
-    card.innerHTML =
-      '<div class="card-idx-cover">'+
-        coverInner+
-        badge+
         '<span class="card-idx-fav'+(isFav?' active':'')+'" data-fav="'+item.id+'">'+(isFav?'♥':'♡')+'</span>'+
       '</div>'+
       '<div class="card-idx-body" style="cursor:pointer;" data-open="'+item.id+'">'+
@@ -2455,7 +2475,7 @@ function uploadCoverForExistingItem(itemId, file){
   var ext = extMatch ? extMatch[1].toLowerCase() : 'jpg';
   var status = document.getElementById('pagesUploadStatus');
   if(status) status.textContent = t('cover.uploading');
-  compressImageFile(file, 1600, 0.82).then(function(compressed){
+  compressImageFile(file, 2200, 0.9).then(function(compressed){
     return uploadCatalogAsset(compressed, itemId + '/cover.' + ext);
   }).then(function(url){
     var session = getSession();
@@ -3067,7 +3087,7 @@ function handleAddEntry(){
     var coverExt = coverExtMatch ? coverExtMatch[1].toLowerCase() : 'jpg';
     uploadSteps = uploadSteps.then(function(){
       status.textContent = t('cover.uploading');
-      return compressImageFile(pendingCover.file, 1600, 0.82).then(function(compressed){
+      return compressImageFile(pendingCover.file, 2200, 0.9).then(function(compressed){
         return uploadCatalogAsset(compressed, newItem.id + '/cover.' + coverExt);
       });
     }).then(function(url){ newItem.cover_url = url; });
@@ -3660,6 +3680,7 @@ function renderCollabWorksTab(){
   items.forEach(function(item){
     var card = document.createElement('div');
     card.className = 'card-idx';
+    card.setAttribute('data-character', item.character || '');
     var badge = item.mature ? '<span class="mature">18+</span>' : '<span class="allages">'+t('badge.allages')+'</span>';
     var coverInner = item.cover_url
       ? '<img class="cover-img" src="'+coverThumbUrl(item.cover_url, 500)+'" data-fallback="'+escapeHtml(item.cover_url)+'" alt="" loading="lazy" decoding="async">'
@@ -7089,22 +7110,10 @@ function saveSocialLinks(){
   Promise.all(updates).then(function(){ fetchSocialLinks(); }).catch(function(err){ console.warn('Social save failed:', err); });
 }
 
-/* Evidenzia nel menu la voce corrispondente alla pagina che si sta
-   guardando, confrontando l'indirizzo del link con quello della pagina
-   corrente (ignorando eventuale #ancora finale). */
-function highlightActiveNavLink(){
-  var currentPage = window.location.pathname.split('/').pop() || 'index.html';
-  document.querySelectorAll('nav.mainnav a').forEach(function(a){
-    var linkPage = (a.getAttribute('href') || '').split('#')[0];
-    a.classList.toggle('active', linkPage === currentPage || (currentPage === '' && linkPage === 'index.html'));
-  });
-}
-
 function __appInit(){
   document.querySelectorAll('.seal-img[data-size="sm"]').forEach(function(img){ img.src = LOGO_SM; });
   document.querySelectorAll('.seal-img[data-size="lg"]').forEach(function(img){ img.src = LOGO_LG; });
   makeHeaderLogoClickable();
-  highlightActiveNavLink();
   initMatureToggle();
   initTheme();
   applyI18n();
