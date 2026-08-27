@@ -1910,6 +1910,8 @@ function renderCatalog(){
     var coverInner = item.cover_url
       ? '<img class="cover-img" src="'+coverThumbUrl(item.cover_url, 500)+'" data-fallback="'+escapeHtml(item.cover_url)+'" alt="" loading="lazy" decoding="async">'
       : '<span class="init">'+item.character.charAt(0)+'</span>';
+    card.innerHTML =
+      '<div class="card-idx-cover">'+coverInner+badge+
         '<span class="card-idx-fav'+(isFav?' active':'')+'" data-fav="'+item.id+'">'+(isFav?'♥':'♡')+'</span>'+
       '</div>'+
       '<div class="card-idx-body" style="cursor:pointer;" data-open="'+item.id+'">'+
