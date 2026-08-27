@@ -26,7 +26,7 @@
   // nuovo app.js/style.css e vuoi essere SICURO che tutti lo scarichino
   // subito, ignorando qualunque cache (browser, service worker, o CDN
   // davanti al dominio) — invece di aspettare che si aggiorni da sola.
-  var V = "6";
+  var V = "7";
 
   function replaceSlot(id, html) {
     var slot = document.getElementById(id);

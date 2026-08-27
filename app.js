@@ -7089,10 +7089,22 @@ function saveSocialLinks(){
   Promise.all(updates).then(function(){ fetchSocialLinks(); }).catch(function(err){ console.warn('Social save failed:', err); });
 }
 
+/* Evidenzia nel menu la voce corrispondente alla pagina che si sta
+   guardando, confrontando l'indirizzo del link con quello della pagina
+   corrente (ignorando eventuale #ancora finale). */
+function highlightActiveNavLink(){
+  var currentPage = window.location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('nav.mainnav a').forEach(function(a){
+    var linkPage = (a.getAttribute('href') || '').split('#')[0];
+    a.classList.toggle('active', linkPage === currentPage || (currentPage === '' && linkPage === 'index.html'));
+  });
+}
+
 function __appInit(){
   document.querySelectorAll('.seal-img[data-size="sm"]').forEach(function(img){ img.src = LOGO_SM; });
   document.querySelectorAll('.seal-img[data-size="lg"]').forEach(function(img){ img.src = LOGO_LG; });
   makeHeaderLogoClickable();
+  highlightActiveNavLink();
   initMatureToggle();
   initTheme();
   applyI18n();
