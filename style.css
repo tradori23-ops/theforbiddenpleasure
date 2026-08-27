@@ -269,6 +269,46 @@ select.langsel{
 .acct-chip:hover{text-decoration:underline;}
 .theme-toggle-btn{padding:9px 12px;line-height:1;display:flex;align-items:center;}
 
+/* ============ INTRO HEADER (splash sopra la hero, con freccia di scroll) ============ */
+.site-intro-header{
+  min-height:100svh;position:relative;overflow:hidden;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:40px calc(24px + var(--sal));
+  background:
+    radial-gradient(ellipse at 50% 20%, rgba(201,162,77,0.10), transparent 60%),
+    linear-gradient(180deg, var(--void) 0%, var(--void-2) 100%);
+  border-bottom:1px solid var(--line);
+}
+#testo-header h1{
+  font-family:'Cinzel Decorative',serif;font-weight:900;
+  font-size:clamp(26px,5vw,46px);line-height:1.15;color:var(--gold-bright);
+  margin:0 0 12px;text-shadow:0 2px 14px rgba(0,0,0,0.6);
+}
+#testo-header h2{
+  font-family:'Cinzel',serif;font-weight:600;
+  font-size:clamp(14px,2.4vw,20px);letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--gold);margin:0 0 18px;
+}
+#testo-header p{
+  font-size:16px;line-height:1.7;color:var(--parchment-dim);
+  max-width:520px;margin:0 auto;
+}
+#freccia-header{margin-top:48px;}
+#freccia-header .ir{
+  display:inline-flex;flex-direction:column;align-items:center;gap:8px;
+  font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--parchment-dim);text-decoration:none;transition:color 0.2s ease;
+}
+#freccia-header .ir:hover{color:var(--gold-bright);}
+#freccia-header .ir::after{
+  content:'↓';font-size:20px;line-height:1;color:var(--gold);
+  animation:introArrowBounce 1.8s ease-in-out infinite;
+}
+@keyframes introArrowBounce{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(8px);}
+}
+
 /* ============ HERO ============ */
 .hero{
   padding:80px calc(24px + var(--sal)) 60px calc(24px + var(--sal));
@@ -400,7 +440,7 @@ body.theme-light .hero-bg::after{
 .latest-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;}
 .latest-card{cursor:pointer;border:1px solid var(--line);background:var(--void-2);}
 .latest-card-cover{aspect-ratio:210/297;position:relative;background:linear-gradient(160deg, var(--wine-deep), var(--void));display:flex;align-items:center;justify-content:center;}
-.latest-card-cover > img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;}
+.latest-card-cover > img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
 .latest-card-cover .init{font-family:'Cinzel Decorative',serif;font-size:32px;color:rgba(201,162,77,0.35);}
 .latest-card-cover .new-tag{
   position:absolute;top:8px;left:8px;background:var(--wine);color:#ece2c6;
@@ -466,7 +506,7 @@ body.theme-light .hero-bg::after{
   background:linear-gradient(160deg, var(--wine-deep), var(--void));
 }
 .card-idx-cover .init{font-family:'Cinzel Decorative',serif;font-size:44px;color:rgba(201,162,77,0.35);}
-.card-idx-cover .cover-img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;}
+.card-idx-cover .cover-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
 
 /* Firma + QR sovrimpressi sulle copertine — vedi buildCoverSignatureNode()
    in app.js. Una vera fascia in fondo alla copertina, non un piccolo
