@@ -1953,8 +1953,9 @@ function buildCoverSignatureNode(item){
     qr.make();
     var wrap = document.createElement('div');
     wrap.className = 'cover-signature';
-    wrap.innerHTML = '<span class="cover-signature-text">NoxMorningstar</span>' +
-      '<span class="cover-signature-qr">' + qr.createImgTag(2, 0) + '</span>';
+    wrap.setAttribute('style', 'position:absolute;left:0;right:0;bottom:0;z-index:6;display:flex;align-items:center;justify-content:space-between;padding:8px 10px;gap:8px;background:linear-gradient(0deg, rgba(11,6,7,0.92) 0%, rgba(11,6,7,0.62) 60%, transparent 100%);pointer-events:none;');
+    wrap.innerHTML = '<span class="cover-signature-text" style="font-family:\'Cinzel Decorative\',\'Cinzel\',serif;font-weight:900;font-size:13px;line-height:1;color:#f3c96a;letter-spacing:0.02em;white-space:nowrap;overflow:hidden;text-shadow:0 1px 4px rgba(0,0,0,0.9);transform:rotate(-2deg);">NoxMorningstar</span>' +
+      '<span class="cover-signature-qr" style="display:block;width:34px;height:34px;min-width:34px;min-height:34px;max-width:34px;max-height:34px;flex-shrink:0;background:#fff;border:2px solid #c9a24d;border-radius:4px;padding:3px;box-shadow:0 2px 8px rgba(0,0,0,0.55);overflow:hidden;box-sizing:border-box;">' + qr.createImgTag(2, 0).replace('<img', '<img style="width:100%;height:100%;display:block;image-rendering:pixelated;"') + '</span>';
     _coverSignatureCache[item.id] = wrap;
     return wrap.cloneNode(true);
   } catch(e){
