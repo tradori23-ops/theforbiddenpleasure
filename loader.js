@@ -5,6 +5,13 @@
 // se li modifichi, li modifichi in un punto solo e tutte le pagine si aggiornano.
 (async function () {
   "use strict";
+
+  // Numero di versione manuale: aumentalo di 1 ogni volta che carichi un
+  // nuovo app.js/style.css e vuoi essere SICURO che tutti lo scarichino
+  // subito, ignorando qualunque cache (browser, service worker, o CDN
+  // davanti al dominio) — invece di aspettare che si aggiorni da sola.
+  var V = "4";
+
   function replaceSlot(id, html) {
     var slot = document.getElementById(id);
     if (!slot) {
@@ -13,14 +20,12 @@
     }
     slot.outerHTML = html;
   }
-
   try {
     var [topHtml, footerHtml, modalsHtml] = await Promise.all([
-      fetch("chrome-top.html").then(function (r) { return r.text(); }),
-      fetch("chrome-footer.html").then(function (r) { return r.text(); }),
-      fetch("chrome-modals.html").then(function (r) { return r.text(); })
+      fetch("chrome-top.html?v=" + V).then(function (r) { return r.text(); }),
+      fetch("chrome-footer.html?v=" + V).then(function (r) { return r.text(); }),
+      fetch("chrome-modals.html?v=" + V).then(function (r) { return r.text(); })
     ]);
-
     replaceSlot("chrome-top-slot", topHtml);
     replaceSlot("chrome-footer-slot", footerHtml);
     replaceSlot("chrome-modals-slot", modalsHtml);
@@ -29,10 +34,9 @@
     // Non blocchiamo comunque il caricamento di app.js: meglio una pagina
     // con qualche pezzo mancante che una pagina completamente morta.
   }
-
   // app.js si aspetta che TUTTO il DOM (header, sezione, footer, modali)
   // sia già presente quando parte: lo carichiamo solo ora, a iniezione completata.
   var s = document.createElement("script");
-  s.src = "app.js";
+  s.src = "app.js?v=" + V;
   document.body.appendChild(s);
 })();
