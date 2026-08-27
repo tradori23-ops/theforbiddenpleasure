@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adatta copertina a formato</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Space+Mono&display=swap');
+  :root{
+    --void:#0b0607; --void-2:#150d0e; --gold:#c9a24d; --gold-bright:#e3c273;
+    --parchment:#f2e8d0; --parchment-dim:#b8a98f; --line:#3a2a24; --wine-deep:#3a0f14;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; padding:30px 20px 60px; background:var(--void); color:var(--parchment);
+    font-family:'Space Mono',monospace; min-height:100vh;
+  }
+  h1{font-family:'Cinzel',serif; font-size:22px; color:var(--gold-bright); margin:0 0 4px;}
+  p.sub{color:var(--parchment-dim); font-size:13px; margin:0 0 26px; max-width:600px; line-height:1.6;}
+
+  .layout{display:flex; gap:28px; flex-wrap:wrap; align-items:flex-start;}
+  .panel{
+    background:var(--void-2); border:1px solid var(--line); padding:20px;
+    min-width:260px; flex:0 0 280px;
+  }
+  .panel h3{font-family:'Cinzel',serif; font-size:14px; color:var(--gold); margin:0 0 14px; text-transform:uppercase; letter-spacing:0.05em;}
+
+  .upload-zone{
+    border:2px dashed var(--line); padding:26px 14px; text-align:center; cursor:pointer;
+    font-size:12px; color:var(--parchment-dim); margin-bottom:20px; transition:border-color 0.2s;
+  }
+  .upload-zone:hover{border-color:var(--gold);}
+  .upload-zone.has-image{border-style:solid; border-color:var(--gold);}
+  #fileInput{display:none;}
+
+  .format-list{display:flex; flex-direction:column; gap:8px; margin-bottom:20px;}
+  .format-btn{
+    font-family:'Space Mono',monospace; font-size:12px; text-align:left;
+    padding:10px 12px; border:1px solid var(--line); background:var(--void);
+    color:var(--parchment); cursor:pointer; display:flex; justify-content:space-between;
+  }
+  .format-btn:hover{border-color:var(--gold);}
+  .format-btn.active{border-color:var(--gold-bright); background:rgba(201,162,77,0.12); color:var(--gold-bright);}
+  .format-btn span.dim{color:var(--parchment-dim); font-size:10px;}
+
+  .custom-row{display:flex; gap:8px; margin-bottom:8px;}
+  .custom-row input{
+    width:100%; background:var(--void); border:1px solid var(--line); color:var(--parchment);
+    font-family:'Space Mono',monospace; font-size:12px; padding:8px;
+  }
+  .custom-row label{font-size:10px; color:var(--parchment-dim); display:block; margin-bottom:4px;}
+  .apply-custom{
+    width:100%; margin-top:6px; padding:9px; font-family:'Space Mono',monospace; font-size:11px;
+    background:var(--void); border:1px solid var(--gold); color:var(--gold-bright); cursor:pointer;
+    text-transform:uppercase; letter-spacing:0.05em;
+  }
+
+  .zoom-row{margin-bottom:16px;}
+  .zoom-row label{font-size:10px; color:var(--parchment-dim); display:block; margin-bottom:6px;}
+  .zoom-row input[type=range]{width:100%;}
+
+  .export-btn{
+    width:100%; padding:14px; font-family:'Cinzel',serif; font-size:14px; font-weight:600;
+    background:var(--gold); color:var(--void); border:none; cursor:pointer; letter-spacing:0.03em;
+  }
+  .export-btn:disabled{background:#4a3f30; color:#8a7a5f; cursor:not-allowed;}
+  .export-btn:hover:not(:disabled){background:var(--gold-bright);}
+
+  .stage-wrap{flex:1; min-width:280px; display:flex; flex-direction:column; align-items:center;}
+  .stage{
+    position:relative; overflow:hidden; background:repeating-conic-gradient(#1a1214 0% 25%, #0e0809 0% 50%) 50% / 20px 20px;
+    border:1px solid var(--line); touch-action:none; cursor:grab; max-width:100%;
+  }
+  .stage:active{cursor:grabbing;}
+  .stage img{position:absolute; left:0; top:0; user-select:none; pointer-events:none; max-width:none;}
+  .stage .empty-msg{
+    position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    color:var(--parchment-dim); font-size:12px; text-align:center; padding:20px;
+  }
+  .hint{font-size:11px; color:var(--parchment-dim); margin-top:12px; text-align:center; max-width:400px;}
+</style>
+</head>
+<body>
+
+<h1>Adatta copertina a formato</h1>
+<p class="sub">Carica un'immagine (es. il poster 1:1 generato) e ritagliala/esportala nel formato che ti serve — copertina sito, PDF A4, o dimensioni personalizzate. Il file esce in PNG alla risoluzione giusta per la stampa/web, senza toccare l'originale.</p>
+
+<div class="layout">
+  <div class="panel">
+    <h3>1. Immagine</h3>
+    <div class="upload-zone" id="uploadZone">
+      Clicca o trascina qui un'immagine<br>(PNG / JPG)
+    </div>
+    <input type="file" id="fileInput" accept="image/*">
+
+    <h3>2. Formato di uscita</h3>
+    <div class="format-list" id="formatList"></div>
+
+    <div class="custom-row">
+      <div>
+        <label>Largh. mm</label>
+        <input type="number" id="customW" value="100" min="1">
+      </div>
+      <div>
+        <label>Alt. mm</label>
+        <input type="number" id="customH" value="100" min="1">
+      </div>
+    </div>
+    <button class="apply-custom" id="applyCustom">Usa formato personalizzato</button>
+
+    <h3 style="margin-top:22px;">3. Regola inquadratura</h3>
+    <div class="zoom-row">
+      <label>Zoom</label>
+      <input type="range" id="zoomSlider" min="100" max="400" value="100">
+    </div>
+    <div class="hint" style="text-align:left; margin-top:0; margin-bottom:16px;">Trascina l'immagine per riposizionarla dentro il riquadro.</div>
+
+    <button class="export-btn" id="exportBtn" disabled>Scarica PNG</button>
+  </div>
+
+  <div class="stage-wrap">
+    <div class="stage" id="stage" style="width:400px; height:400px;">
+      <div class="empty-msg" id="emptyMsg">Carica un'immagine per iniziare</div>
+    </div>
+    <div class="hint" id="dimHint"></div>
+  </div>
+</div>
+
+<script>
+// ===== Formati predefiniti =====
+// exportPx: risoluzione di export consigliata (300dpi per stampa dove serve, 2000px lato lungo per web)
+const FORMATS = [
+  { id:'square',    label:'Quadrato — Sito (1:1)',        ratio:1,        exportPx:[2000,2000] },
+  { id:'a4-p',       label:'A4 Verticale — Stampa/PDF',     ratio:210/297,  exportPx:[2480,3508] },
+  { id:'a4-l',       label:'A4 Orizzontale — Stampa/PDF',   ratio:297/210,  exportPx:[3508,2480] },
+  { id:'a5-p',       label:'A5 Verticale',                  ratio:148/210,  exportPx:[1748,2480] },
+  { id:'3-4',        label:'3:4 Verticale (vecchio formato)', ratio:3/4,    exportPx:[1500,2000] },
+  { id:'16-9',       label:'16:9 Orizzontale (social/banner)', ratio:16/9,  exportPx:[1920,1080] },
+];
+
+let currentFormat = FORMATS[0];
+let img = null;
+let imgNatural = {w:0, h:0};
+let scale = 1;       // fattore di zoom oltre al minimo "cover"
+let baseScale = 1;   // scala minima per coprire lo stage
+let pos = {x:0, y:0}; // posizione top-left dell'immagine dentro lo stage
+let dragging = false;
+let dragStart = {x:0,y:0}, posStart = {x:0,y:0};
+
+const stage = document.getElementById('stage');
+const emptyMsg = document.getElementById('emptyMsg');
+const uploadZone = document.getElementById('uploadZone');
+const fileInput = document.getElementById('fileInput');
+const formatList = document.getElementById('formatList');
+const exportBtn = document.getElementById('exportBtn');
+const zoomSlider = document.getElementById('zoomSlider');
+const dimHint = document.getElementById('dimHint');
+
+const STAGE_MAX = 440; // px massimi visibili nel browser
+
+function renderFormatList(){
+  formatList.innerHTML = '';
+  FORMATS.forEach(f => {
+    const btn = document.createElement('button');
+    btn.className = 'format-btn' + (f.id === currentFormat.id ? ' active' : '');
+    btn.innerHTML = `${f.label} <span class="dim">${f.exportPx[0]}×${f.exportPx[1]}px</span>`;
+    btn.onclick = () => selectFormat(f);
+    formatList.appendChild(btn);
+  });
+}
+
+function selectFormat(f){
+  currentFormat = f;
+  renderFormatList();
+  layoutStage();
+}
+
+function layoutStage(){
+  let w, h;
+  if(currentFormat.ratio >= 1){
+    w = STAGE_MAX; h = STAGE_MAX / currentFormat.ratio;
+  } else {
+    h = STAGE_MAX; w = STAGE_MAX * currentFormat.ratio;
+  }
+  stage.style.width = w + 'px';
+  stage.style.height = h + 'px';
+  dimHint.textContent = img ? `Uscita: ${currentFormat.exportPx[0]}×${currentFormat.exportPx[1]}px` : '';
+  if(img){ fitImageToStage(); }
+}
+
+function fitImageToStage(){
+  const stageW = stage.clientWidth, stageH = stage.clientHeight;
+  const coverScale = Math.max(stageW / imgNatural.w, stageH / imgNatural.h);
+  baseScale = coverScale;
+  scale = 1;
+  zoomSlider.value = 100;
+  applyImageTransform(true);
+}
+
+function applyImageTransform(center){
+  const totalScale = baseScale * scale;
+  const dispW = imgNatural.w * totalScale;
+  const dispH = imgNatural.h * totalScale;
+  if(center){
+    pos.x = (stage.clientWidth - dispW) / 2;
+    pos.y = (stage.clientHeight - dispH) / 2;
+  } else {
+    // clamp so image always covers the stage
+    const minX = stage.clientWidth - dispW;
+    const minY = stage.clientHeight - dispH;
+    pos.x = Math.min(0, Math.max(minX, pos.x));
+    pos.y = Math.min(0, Math.max(minY, pos.y));
+  }
+  img.style.width = dispW + 'px';
+  img.style.height = dispH + 'px';
+  img.style.left = pos.x + 'px';
+  img.style.top = pos.y + 'px';
+}
+
+function loadImageFile(file){
+  const reader = new FileReader();
+  reader.onload = e => {
+    const tempImg = new Image();
+    tempImg.onload = () => {
+      imgNatural.w = tempImg.naturalWidth;
+      imgNatural.h = tempImg.naturalHeight;
+      if(img) img.remove();
+      img = tempImg;
+      img.draggable = false;
+      emptyMsg.style.display = 'none';
+      stage.appendChild(img);
+      uploadZone.classList.add('has-image');
+      uploadZone.textContent = file.name;
+      exportBtn.disabled = false;
+      layoutStage();
+    };
+    tempImg.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+uploadZone.onclick = () => fileInput.click();
+fileInput.onchange = e => { if(e.target.files[0]) loadImageFile(e.target.files[0]); };
+uploadZone.ondragover = e => { e.preventDefault(); uploadZone.style.borderColor = 'var(--gold)'; };
+uploadZone.ondrop = e => {
+  e.preventDefault();
+  if(e.dataTransfer.files[0]) loadImageFile(e.dataTransfer.files[0]);
+};
+
+zoomSlider.oninput = () => {
+  scale = zoomSlider.value / 100;
+  applyImageTransform(false);
+};
+
+// drag to reposition
+stage.addEventListener('pointerdown', e => {
+  if(!img) return;
+  dragging = true;
+  dragStart = {x:e.clientX, y:e.clientY};
+  posStart = {x:pos.x, y:pos.y};
+  stage.setPointerCapture(e.pointerId);
+});
+stage.addEventListener('pointermove', e => {
+  if(!dragging) return;
+  pos.x = posStart.x + (e.clientX - dragStart.x);
+  pos.y = posStart.y + (e.clientY - dragStart.y);
+  applyImageTransform(false);
+});
+stage.addEventListener('pointerup', () => dragging = false);
+stage.addEventListener('pointerleave', () => dragging = false);
+
+document.getElementById('applyCustom').onclick = () => {
+  const wmm = parseFloat(document.getElementById('customW').value) || 100;
+  const hmm = parseFloat(document.getElementById('customH').value) || 100;
+  const dpi = 300;
+  const pxW = Math.round((wmm / 25.4) * dpi);
+  const pxH = Math.round((hmm / 25.4) * dpi);
+  const custom = { id:'custom', label:`Personalizzato ${wmm}×${hmm}mm`, ratio: wmm/hmm, exportPx:[pxW, pxH] };
+  currentFormat = custom;
+  renderFormatList_withCustom(custom);
+  layoutStage();
+};
+
+function renderFormatList_withCustom(custom){
+  formatList.innerHTML = '';
+  FORMATS.concat([custom]).forEach(f => {
+    const btn = document.createElement('button');
+    btn.className = 'format-btn' + (f.id === currentFormat.id ? ' active' : '');
+    btn.innerHTML = `${f.label} <span class="dim">${f.exportPx[0]}×${f.exportPx[1]}px</span>`;
+    btn.onclick = () => selectFormat(f);
+    formatList.appendChild(btn);
+  });
+}
+
+exportBtn.onclick = () => {
+  if(!img) return;
+  const [outW, outH] = currentFormat.exportPx;
+  const canvas = document.createElement('canvas');
+  canvas.width = outW;
+  canvas.height = outH;
+  const ctx = canvas.getContext('2d');
+
+  // rapporto tra risoluzione reale export e dimensione visualizzata nello stage
+  const exportRatio = outW / stage.clientWidth;
+  const totalScale = baseScale * scale;
+
+  const srcDrawW = imgNatural.w * totalScale * exportRatio;
+  const srcDrawH = imgNatural.h * totalScale * exportRatio;
+  const srcX = pos.x * exportRatio;
+  const srcY = pos.y * exportRatio;
+
+  ctx.drawImage(img, srcX, srcY, srcDrawW, srcDrawH);
+
+  canvas.toBlob(blob => {
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `copertina-${currentFormat.id}-${outW}x${outH}.png`;
+    a.click();
+    URL.revokeObjectURL(url);
+  }, 'image/png');
+};
+
+window.addEventListener('resize', () => { if(img) layoutStage(); });
+
+renderFormatList();
+layoutStage();
+</script>
+
+</body>
+</html>
