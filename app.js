@@ -2654,7 +2654,8 @@ function uploadCatalogAsset(file, path){
     headers:{
       'apikey':SUPABASE_ANON_KEY,
       'Authorization':'Bearer ' + session.access_token,
-      'Content-Type': file.type || 'application/octet-stream'
+      'Content-Type': file.type || 'application/octet-stream',
+      'x-upsert': 'true'
     },
     body: file
   }).then(function(r){
