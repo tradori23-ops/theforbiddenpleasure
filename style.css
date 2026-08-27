@@ -365,8 +365,8 @@ body.theme-light .hero-bg::after{
 }
 .latest-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;}
 .latest-card{cursor:pointer;border:1px solid var(--line);background:var(--void-2);}
-.latest-card-cover{min-height:140px;position:relative;background:linear-gradient(160deg, var(--wine-deep), var(--void));display:flex;align-items:center;justify-content:center;}
-.latest-card-cover img{position:static;display:block;width:100%;height:auto;object-fit:contain;}
+.latest-card-cover{aspect-ratio:3/4;position:relative;background:linear-gradient(160deg, var(--wine-deep), var(--void));display:flex;align-items:center;justify-content:center;}
+.latest-card-cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;}
 .latest-card-cover .init{font-family:'Cinzel Decorative',serif;font-size:32px;color:rgba(201,162,77,0.35);}
 .latest-card-cover .new-tag{
   position:absolute;top:8px;left:8px;background:var(--wine);color:#ece2c6;
@@ -413,13 +413,13 @@ body.theme-light .hero-bg::after{
   position:relative;overflow:hidden;
 }
 .card-idx-cover{
-  min-height:160px;
+  aspect-ratio:3/4;
   display:flex;align-items:center;justify-content:center;
   position:relative;
   background:linear-gradient(160deg, var(--wine-deep), var(--void));
 }
 .card-idx-cover .init{font-family:'Cinzel Decorative',serif;font-size:44px;color:rgba(201,162,77,0.35);}
-.card-idx-cover .cover-img{position:static;display:block;width:100%;height:auto;object-fit:contain;}
+.card-idx-cover .cover-img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;}
 
 /* Firma + QR sovrimpressi sulle copertine — vedi buildCoverSignatureNode()
    in app.js. Una vera fascia in fondo alla copertina, non un piccolo
@@ -784,7 +784,7 @@ footer .fcopy{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
   .admin-panel .mature-toggle .switch{flex:none;margin-top:2px;}
   .modal{padding:26px 20px;}
   .founder-wordmark{padding:14px;}
-  .card-idx-cover{min-height:120px;}
+  .card-idx-cover{aspect-ratio:1/1;}
   .hero{padding-top:56px;padding-bottom:44px;}
   .page-reader-nav{width:32px;height:32px;font-size:17px;}
 }
