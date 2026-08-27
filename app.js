@@ -2386,12 +2386,6 @@ function renderAdminList(){
         '<label class="btn btn-sm btn-ghost cover-upload-btn">'+coverLabel+
           '<input type="file" accept="image/*" class="hidden" data-cover-for="'+item.id+'">'+
         '</label>'+
-        '<select class="cover-format-select mono" data-cover-format-for="'+item.id+'">'+
-          '<option value="1:1" selected>Quadrato 1:1</option>'+
-          '<option value="210:297">A4 Verticale</option>'+
-          '<option value="297:210">A4 Orizzontale</option>'+
-          '<option value="16:9">16:9</option>'+
-        '</select>'+
         '<span class="cover-upload-status mono" data-cover-status-for="'+item.id+'"></span>'+
         '<button class="btn btn-sm btn-ghost" data-translate-for="'+item.id+'">'+translateLabel+'</button>'+
         (hasPages ? '<button class="btn btn-sm btn-ghost" data-rewatermark-for="'+item.id+'">'+t('rewatermark.button')+'</button>' : '') +
@@ -2429,10 +2423,7 @@ function renderAdminList(){
     });
     row.querySelector('[data-cover-for]').addEventListener('change', function(e){
       if(!e.target.files[0]) return;
-      var fmtSelect = row.querySelector('[data-cover-format-for="'+item.id+'"]');
-      var fmtVal = fmtSelect ? fmtSelect.value : '210:297';
-      var parts = fmtVal.split(':');
-      uploadCoverForExistingItem(item.id, e.target.files[0], Number(parts[0]), Number(parts[1]));
+      uploadCoverForExistingItem(item.id, e.target.files[0]);
     });
     row.querySelector('[data-translate-for]').addEventListener('click', function(){
       translateSynopsisForExistingItem(item.id, item.synopsis);
@@ -2520,12 +2511,14 @@ function cropFileToRatio(file, ratioW, ratioH){
   });
 }
 function uploadCoverForExistingItem(itemId, file, ratioW, ratioH){
-  ratioW = ratioW || 1; ratioH = ratioH || 1;
+  // Niente più ritaglio forzato all'upload: il file salvato è sempre
+  // l'originale intero, invariato. A mostrarlo per intero (senza tagli
+  // né margini superflui) ci pensa solo il CSS a video (object-fit:contain
+  // sulla card quadrata) — così l'immagine reale non perde mai pezzi per
+  // sempre, qualunque formato scelga chi carica.
   var status = document.querySelector('[data-cover-status-for="'+itemId+'"]');
   if(status) status.textContent = t('cover.uploading');
-  cropFileToRatio(file, ratioW, ratioH).then(function(cropped){
-    return compressImageFile(cropped, 2600, 0.92);
-  }).then(function(compressed){
+  compressImageFile(file, 2600, 0.92).then(function(compressed){
     return uploadCatalogAsset(compressed, itemId + '/cover.jpg');
   }).then(function(url){
     var session = getSession();
