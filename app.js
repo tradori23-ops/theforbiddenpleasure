@@ -2519,7 +2519,7 @@ function uploadCoverForExistingItem(itemId, file, ratioW, ratioH){
   var status = document.querySelector('[data-cover-status-for="'+itemId+'"]');
   if(status) status.textContent = t('cover.uploading');
   compressImageFile(file, 2600, 0.92).then(function(compressed){
-    return uploadCatalogAsset(compressed, itemId + '/cover.jpg');
+    return uploadCatalogAsset(compressed, itemId + '/cover-' + Date.now() + '.jpg');
   }).then(function(url){
     var session = getSession();
     return fetch(SUPABASE_URL + '/rest/v1/catalog?id=eq.' + encodeURIComponent(itemId), {
@@ -3135,7 +3135,7 @@ function handleAddEntry(){
     uploadSteps = uploadSteps.then(function(){
       status.textContent = t('cover.uploading');
       return compressImageFile(pendingCover.file, 2600, 0.92).then(function(compressed){
-        return uploadCatalogAsset(compressed, newItem.id + '/cover.' + coverExt);
+        return uploadCatalogAsset(compressed, newItem.id + '/cover-' + Date.now() + '.' + coverExt);
       });
     }).then(function(url){ newItem.cover_url = url; });
   }
