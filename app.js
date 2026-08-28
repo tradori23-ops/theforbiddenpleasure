@@ -2363,6 +2363,34 @@ function renderMyTitles(){
   });
 }
 
+/* Costruisce la card di anteprima usando le STESSE classi CSS della card
+   pubblica vera (renderCatalog) — così quello che vedi in bozza è
+   pixel-identico a quello che vedranno i visitatori una volta pubblicato,
+   non un'approssimazione. Niente cuoricino/toggle sinossi/statistiche:
+   quelli sono interattivi e non hanno senso su un titolo non ancora online. */
+function buildSitePreviewCardHtml(d){
+  var badge = d.mature ? '<span class="mature">18+</span>' : '<span class="allages">'+t('badge.allages')+'</span>';
+  var priceTxt = d.price ? '<span class="card-idx-price">€'+Number(d.price).toFixed(2)+'</span>' : '';
+  var coverInner = d.coverSrc
+    ? '<img class="cover-img" src="'+d.coverSrc+'" alt="">'
+    : '<span class="init">'+escapeHtml((d.character||'?').charAt(0))+'</span>';
+  return (
+    '<div class="admin-sitepreview-wrap">'+
+      '<div class="admin-sitepreview-label">Anteprima sito — bozza, non ancora online</div>'+
+      '<div class="card-idx" data-character="'+escapeHtml(d.character||'')+'">'+
+        '<div class="card-idx-cover">'+coverInner+badge+'</div>'+
+        '<div class="card-idx-body">'+
+          '<div class="num mono">'+escapeHtml(d.issue||'')+'</div>'+
+          '<h4>'+escapeHtml(d.title||'')+'</h4>'+
+          '<div class="character">'+escapeHtml(d.character||'')+'</div>'+
+          '<div class="synopsis">'+escapeHtml(d.synopsis||'')+'</div>'+
+          '<div class="meta-row"><span>'+escapeHtml(d.date||'')+'</span>'+priceTxt+'</div>'+
+        '</div>'+
+      '</div>'+
+    '</div>'
+  );
+}
+
 function renderAdminList(){
   if(!isAdmin()) return;
   var list = document.getElementById('adminList');
@@ -2375,11 +2403,12 @@ function renderAdminList(){
     getDraft().newItems.forEach(function(draftItem, idx){
       var draftRow = document.createElement('div');
       draftRow.className = 'admin-row admin-row-draft';
-      var coverImg = draftItem.coverDataUrl ? '<img src="'+draftItem.coverDataUrl+'" alt="">' : '';
       draftRow.innerHTML =
-        '<div class="admin-draft-preview">'+coverImg+'<span class="admin-draft-tag">BOZZA — titolo nuovo, non ancora online</span></div>'+
-        '<div class="info"><div class="t">'+escapeHtml(draftItem.title)+'</div>'+
-        '<div class="m">'+draftItem.character+' · '+(draftItem.issue||'')+' · '+(draftItem.date||'')+'</div></div>'+
+        buildSitePreviewCardHtml({
+          title: draftItem.title, character: draftItem.character, issue: draftItem.issue,
+          date: draftItem.date, price: draftItem.price, mature: draftItem.mature,
+          synopsis: draftItem.synopsis, coverSrc: draftItem.coverDataUrl
+        }) +
         '<div class="admin-actions"><button type="button" class="btn btn-sm btn-ghost" data-remove-draft-newitem="'+idx+'">Rimuovi bozza</button></div>';
       draftRow.querySelector('[data-remove-draft-newitem]').addEventListener('click', function(){
         var d = getDraft();
@@ -2403,7 +2432,11 @@ function renderAdminList(){
     var permanentTag = '<span class="' + (isPermanent ? 'permanent-tag' : 'temporary-tag') + '">' + (isPermanent ? t('catalog.permanent') : t('catalog.temporary')) + '</span>';
     var draftCoverUrl = isDraftModeOn() ? getDraft().coverEdits[item.id] : null;
     var draftPreview = draftCoverUrl
-      ? '<div class="admin-draft-preview"><img src="'+draftCoverUrl+'" alt=""><span class="admin-draft-tag">BOZZA — non ancora online</span></div>'
+      ? buildSitePreviewCardHtml({
+          title: item.title, character: item.character, issue: item.issue, date: item.date,
+          price: item.price, mature: item.mature, synopsis: synopsisForCurrentLang(item),
+          coverSrc: draftCoverUrl
+        })
       : '';
     row.innerHTML =
       draftPreview +
@@ -2462,6 +2495,9 @@ function renderAdminList(){
       });
     }
     list.appendChild(row);
+    if(draftCoverUrl){
+      attachCoverSignature(row.querySelector('.admin-sitepreview-wrap .card-idx-cover'), item);
+    }
   });
 }
 

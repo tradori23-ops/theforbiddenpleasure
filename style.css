@@ -702,6 +702,12 @@ body.theme-light .hero-bg::after{
 }
 .draft-bar.hidden{display:none;}
 .admin-row-draft{background:rgba(201,162,77,0.05);}
+.admin-sitepreview-wrap{flex:1 1 100%;margin-bottom:10px;}
+.admin-sitepreview-label{
+  font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;
+  color:var(--gold-bright);margin-bottom:6px;
+}
+.admin-sitepreview-wrap .card-idx{max-width:320px;}
 .admin-draft-preview{
   position:relative!important;width:70px!important;height:70px!important;
   min-width:70px!important;max-width:70px!important;flex-shrink:0!important;
