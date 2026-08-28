@@ -572,7 +572,13 @@ body.theme-light .hero-bg::after{
 
 /* ============ FOUNDER ============ */
 .founder-wrap{display:block;}
-.support-banner-img{width:100%;height:auto;display:block;margin-bottom:20px;border:1px solid rgba(201,162,77,0.22);}
+.support-banner-wrap{position:relative;width:100%;margin-bottom:20px;}
+.support-banner-img{width:100%;height:auto;display:block;border:1px solid rgba(201,162,77,0.22);}
+.support-hotspot{position:absolute;top:65%;bottom:8%;display:block;border-radius:4px;}
+.support-hotspot:active{background:rgba(255,255,255,0.15);}
+.support-hotspot-paypal{left:6%;width:30%;}
+.support-hotspot-satispay{left:37%;width:29%;}
+.support-hotspot-revolut{left:67%;width:29%;}
 .support-links{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px;}
 .support-note{margin-top:14px;font-size:12px;opacity:0.8;max-width:560px;}
 .founder-wordmark{
