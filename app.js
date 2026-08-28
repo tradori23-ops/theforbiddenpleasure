@@ -7165,7 +7165,12 @@ function __appInit(){
   initTheme();
   applyI18n();
   renderDossiers();
-  renderCatalog();
+  // NIENTE renderCatalog() qui: prima si aspettano sempre i dati veri da
+  // Supabase (vedi fetchCatalogFromSupabase più sotto) — così non si vede
+  // mai per sbaglio una copia locale vecchia del catalogo/copertine prima
+  // che arrivi quella fresca.
+  var grid = document.getElementById('catalogGrid');
+  if(grid) grid.innerHTML = '<div class="mono" style="padding:20px;color:var(--parchment-dim);">…</div>';
   checkCharacterDeepLink();
 
   // Restore a still-valid session (refreshing the token first if it's close
