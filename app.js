@@ -2544,14 +2544,23 @@ function uploadCoverForExistingItem(itemId, file, ratioW, ratioH, forceReal){
   // questa stessa funzione con forceReal=true per il caricamento vero.
   if(isDraftModeOn() && !forceReal){
     var statusD = document.querySelector('[data-cover-status-for="'+itemId+'"]');
-    fileToDataUrl(file).then(function(dataUrl){
+    if(statusD) statusD.textContent = t('cover.uploading');
+    // La miniatura bozza è 70x70: 500px di lato bastano e avanzano.
+    // Un dataURL a piena risoluzione (spesso diversi MB) può sforare la
+    // quota di localStorage — il salvataggio falliva allora in silenzio,
+    // senza errore e senza anteprima.
+    return compressImageFile(file, 500, 0.8).then(function(compressed){
+      return fileToDataUrl(compressed);
+    }).then(function(dataUrl){
       var d = getDraft();
       d.coverEdits[itemId] = dataUrl;
       saveDraft(d);
       if(statusD) statusD.textContent = 'salvato in bozza';
       renderAdminList(); renderDraftBar();
+    }).catch(function(err){
+      console.warn('Draft cover preview failed:', err);
+      if(statusD) statusD.textContent = '✕ ' + (err && err.message ? err.message : 'errore anteprima');
     });
-    return;
   }
   // Niente più ritaglio forzato all'upload: il file salvato è sempre
   // l'originale intero, invariato. A mostrarlo per intero (senza tagli
@@ -3279,9 +3288,14 @@ function handleAddEntry(){
       renderDraftBar();
     };
     if(pendingCover){
-      fileToDataUrl(pendingCover.file).then(function(dataUrl){
+      compressImageFile(pendingCover.file, 500, 0.8).then(function(compressed){
+        return fileToDataUrl(compressed);
+      }).then(function(dataUrl){
         draftItem.coverDataUrl = dataUrl;
         afterSave();
+      }).catch(function(err){
+        console.warn('Draft new-item cover preview failed:', err);
+        status.textContent = '✕ ' + (err && err.message ? err.message : 'errore anteprima copertina');
       });
     } else {
       afterSave();
