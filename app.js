@@ -2566,20 +2566,30 @@ function uploadCoverForExistingItem(itemId, file, ratioW, ratioH, forceReal){
     var session = getSession();
     return fetch(SUPABASE_URL + '/rest/v1/catalog?id=eq.' + encodeURIComponent(itemId), {
       method:'PATCH',
-      headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
+      headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json', 'Prefer':'return=representation' },
       body: JSON.stringify({cover_url: url})
     }).then(function(r){
-      if(!r.ok) throw new Error('cover update failed');
-      var items = getCatalog();
-      var item = items.find(function(i){ return i.id === itemId; });
-      if(item) item.cover_url = url;
-      saveCatalogLocal(items);
-      if(status){
-        status.textContent = '✓';
-        setTimeout(function(){ if(status) status.textContent = ''; }, 4000);
-      }
-      renderCatalog();
-      renderAdminList();
+      if(!r.ok) throw new Error('cover update failed: ' + r.status);
+      return r.json().then(function(rows){
+        // Supabase/PostgREST risponde "ok" anche quando lo WHERE non trova
+        // nessuna riga (0 righe toccate) — senza "Prefer: return=representation"
+        // questo passa inosservato e l'app crede erroneamente di aver salvato.
+        // Qui controlliamo davvero: se non torna indietro la riga aggiornata,
+        // il salvataggio non è avvenuto per davvero.
+        if(!rows || rows.length === 0){
+          throw new Error('nessuna riga aggiornata nel database (id non trovato: ' + itemId + ')');
+        }
+        var items = getCatalog();
+        var item = items.find(function(i){ return i.id === itemId; });
+        if(item) item.cover_url = url;
+        saveCatalogLocal(items);
+        if(status){
+          status.textContent = '✓';
+          setTimeout(function(){ if(status) status.textContent = ''; }, 4000);
+        }
+        renderCatalog();
+        renderAdminList();
+      });
     });
   }).catch(function(err){
     console.warn('Cover update for existing item failed:', err);
