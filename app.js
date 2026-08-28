@@ -1115,6 +1115,7 @@ function refreshAdminUI(){
     if(collabBanner) collabBanner.classList.add('hidden');
     if(smallnoxCard) smallnoxCard.classList.remove('hidden');
     injectDraftModeToggle();
+    injectNsfwRescanButton();
     renderAdminList();
     renderModerationQueue();
     loadSocialLinksIntoForm();
@@ -2154,6 +2155,79 @@ if('serviceWorker' in navigator){
   });
 }
 
+/* ============ RILEVAMENTO AUTOMATICO CONTENUTI ESPLICITI ============
+   Analizza una copertina/pagina appena caricata e, se rileva nudità o
+   contenuto sessuale (anche parziale — seni scoperti, cosce, ecc.), marca
+   da sola il titolo come 18+. Non blocca mai il caricamento: se sbaglia
+   in eccesso, l'admin può sempre togliere il flag 18+ a mano come oggi.
+   Libreria nsfwjs (modello che gira interamente nel browser, tramite
+   TensorFlow.js) — nessuna immagine lascia mai il telefono/PC per questo
+   controllo, a differenza di un servizio esterno.
+   Caricata solo al primo utilizzo (carica~6MB, non deve pesare su chi
+   apre il sito e basta): la stessa logica già usata per pdf-lib.min.js. */
+var _nsfwModelPromise = null;
+function ensureNsfwLibsLoaded(){
+  if(window.nsfwjs) return Promise.resolve();
+  if(_nsfwModelPromise) return _nsfwModelPromise;
+  _nsfwModelPromise = new Promise(function(resolve, reject){
+    var tf = document.createElement('script');
+    tf.src = 'https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.20.0/dist/tf.min.js';
+    tf.onload = function(){
+      var nsfw = document.createElement('script');
+      nsfw.src = 'https://cdn.jsdelivr.net/npm/nsfwjs@4.2.1/dist/nsfwjs.min.js';
+      nsfw.onload = function(){ resolve(); };
+      nsfw.onerror = function(){ _nsfwModelPromise = null; reject(new Error('nsfwjs load failed')); };
+      document.head.appendChild(nsfw);
+    };
+    tf.onerror = function(){ _nsfwModelPromise = null; reject(new Error('tfjs load failed')); };
+    document.head.appendChild(tf);
+  });
+  return _nsfwModelPromise;
+}
+var _nsfwModel = null;
+function loadNsfwModel(){
+  return ensureNsfwLibsLoaded().then(function(){
+    if(_nsfwModel) return _nsfwModel;
+    return window.nsfwjs.load().then(function(m){ _nsfwModel = m; return m; });
+  });
+}
+// Soglia scelta per intercettare anche nudità parziale (seni/cosce scoperti,
+// non solo espliciti in senso stretto) senza scattare su normali copertine
+// artistiche/costumi succinti — Sexy+Hentai+Porn insieme sopra il 55%.
+var NSFW_MATURE_THRESHOLD = 0.55;
+function classifyImageMaturity(imgOrBlobUrl){
+  return loadNsfwModel().then(function(model){
+    return new Promise(function(resolve, reject){
+      var img = new Image();
+      img.crossOrigin = 'anonymous';
+      img.onload = function(){
+        model.classify(img).then(function(predictions){
+          var score = predictions.reduce(function(sum, p){
+            return (p.className === 'Sexy' || p.className === 'Hentai' || p.className === 'Porn')
+              ? sum + p.probability : sum;
+          }, 0);
+          resolve(score >= NSFW_MATURE_THRESHOLD);
+        }).catch(reject);
+      };
+      img.onerror = function(){ reject(new Error('image load failed for classification')); };
+      img.src = imgOrBlobUrl;
+    });
+  });
+}
+// Da un File/Blob (usato negli upload: l'immagine è già in memoria, niente
+// bisogno di riscaricarla da una URL remota).
+function classifyFileMaturity(file){
+  var objectUrl = URL.createObjectURL(file);
+  return classifyImageMaturity(objectUrl).then(function(isMature){
+    URL.revokeObjectURL(objectUrl);
+    return isMature;
+  }).catch(function(err){
+    URL.revokeObjectURL(objectUrl);
+    console.warn('Classificazione contenuto fallita, procedo senza marcare 18+ automaticamente:', err);
+    return false; // in dubbio, non tocchiamo il flag — meglio un falso negativo (l'admin può sempre marcarlo a mano) che bloccare il caricamento
+  });
+}
+
 /* ============ NOTIFICHE PUSH ============ */
 var VAPID_PUBLIC_KEY = 'BMGy8PVyauBnEGAuH2j2XdWtDKKy9YlU6WyyxE-YxJA4nGTtfZzwMeJZy4006wlH3nN7FfaeGb8Nv9cDMiY3PJA';
 
@@ -2391,6 +2465,67 @@ function buildSitePreviewCardHtml(d){
   );
 }
 
+/* ============ RI-SCANSIONE CATALOGO ESISTENTE (rilevamento contenuti espliciti) ============
+   Passa in rassegna le copertine già pubblicate e marca 18+ quelle che il
+   rilevamento automatico classifica come esplicite — le nuove copertine lo
+   fanno già da sole al caricamento, questo serve solo per il catalogo di
+   prima. Salta i titoli già 18+ (niente da controllare) e quelli senza
+   copertina. Non blocca né rimuove nulla: aggiunge solo il flag quando manca. */
+function rescanCatalogForMaturity(){
+  var btn = document.getElementById('btnRescanMaturity');
+  var status = document.getElementById('rescanMaturityStatus');
+  if(btn) btn.disabled = true;
+  var items = getCatalog().filter(function(i){ return !i.mature && i.cover_url; });
+  var total = items.length;
+  var checked = 0, flagged = 0;
+  if(total === 0){
+    if(status) status.textContent = 'Niente da controllare — tutte le copertine senza 18+ sono già state riviste.';
+    if(btn) btn.disabled = false;
+    return;
+  }
+  var session = getSession();
+  var chain = Promise.resolve();
+  items.forEach(function(item){
+    chain = chain.then(function(){
+      if(status) status.textContent = 'Controllo ' + (checked + 1) + ' di ' + total + '… (' + flagged + ' marcate finora)';
+      return classifyImageMaturity(coverThumbUrl(item.cover_url, 500)).then(function(isMature){
+        checked++;
+        if(!isMature) return;
+        flagged++;
+        return fetch(SUPABASE_URL + '/rest/v1/catalog?id=eq.' + encodeURIComponent(item.id), {
+          method:'PATCH',
+          headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json', 'Prefer':'return=representation' },
+          body: JSON.stringify({mature: true})
+        }).then(function(r){
+          if(r.ok) item.mature = true; // se il PATCH fallisce lo rivediamo al prossimo giro, niente di grave
+        }).catch(function(err){ console.warn('Rescan PATCH failed for', item.id, err); });
+      }).catch(function(err){
+        checked++;
+        console.warn('Rescan classify failed for', item.id, err);
+      });
+    });
+  });
+  chain.then(function(){
+    saveCatalogLocal(getCatalog());
+    renderCatalog(); renderAdminList();
+    if(status) status.textContent = 'Fatto — ' + checked + ' copertine controllate, ' + flagged + ' marcate 18+.';
+    if(btn) btn.disabled = false;
+  });
+}
+function injectNsfwRescanButton(){
+  if(document.getElementById('nsfwRescanWrap')) return;
+  var list = document.getElementById('adminList');
+  if(!list || !list.parentNode) return;
+  var wrap = document.createElement('div');
+  wrap.id = 'nsfwRescanWrap';
+  wrap.style.cssText = 'margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--line);';
+  wrap.innerHTML =
+    '<button type="button" class="btn btn-ghost btn-sm" id="btnRescanMaturity">Ricontrolla copertine esistenti (rilevamento 18+)</button>'+
+    '<div id="rescanMaturityStatus" class="mono" style="font-size:11px;color:var(--parchment-dim);margin-top:8px;"></div>';
+  list.parentNode.insertBefore(wrap, list);
+  document.getElementById('btnRescanMaturity').addEventListener('click', rescanCatalogForMaturity);
+}
+
 function renderAdminList(){
   if(!isAdmin()) return;
   var list = document.getElementById('adminList');
@@ -2606,13 +2741,19 @@ function uploadCoverForExistingItem(itemId, file, ratioW, ratioH, forceReal){
   var status = document.querySelector('[data-cover-status-for="'+itemId+'"]');
   if(status) status.textContent = t('cover.uploading');
   return compressImageFile(file, 2600, 0.92).then(function(compressed){
-    return uploadCatalogAsset(compressed, itemId + '/cover-' + Date.now() + '.jpg');
-  }).then(function(url){
+    return classifyFileMaturity(compressed).then(function(isMature){
+      return uploadCatalogAsset(compressed, itemId + '/cover-' + Date.now() + '.jpg').then(function(url){
+        return {url: url, isMature: isMature};
+      });
+    });
+  }).then(function(result){
     var session = getSession();
+    var patchBody = {cover_url: result.url};
+    if(result.isMature) patchBody.mature = true;
     return fetch(SUPABASE_URL + '/rest/v1/catalog?id=eq.' + encodeURIComponent(itemId), {
       method:'PATCH',
       headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json', 'Prefer':'return=representation' },
-      body: JSON.stringify({cover_url: url})
+      body: JSON.stringify(patchBody)
     }).then(function(r){
       if(!r.ok) throw new Error('cover update failed: ' + r.status);
       return r.json().then(function(rows){
@@ -2626,7 +2767,7 @@ function uploadCoverForExistingItem(itemId, file, ratioW, ratioH, forceReal){
         }
         var items = getCatalog();
         var item = items.find(function(i){ return i.id === itemId; });
-        if(item) item.cover_url = url;
+        if(item){ item.cover_url = result.url; if(result.isMature) item.mature = true; }
         saveCatalogLocal(items);
         if(status){
           status.textContent = '✓';
@@ -3398,7 +3539,10 @@ function handleAddEntry(){
     uploadSteps = uploadSteps.then(function(){
       status.textContent = t('cover.uploading');
       return compressImageFile(pendingCover.file, 2600, 0.92).then(function(compressed){
-        return uploadCatalogAsset(compressed, newItem.id + '/cover-' + Date.now() + '.' + coverExt);
+        return classifyFileMaturity(compressed).then(function(isMature){
+          if(isMature) newItem.mature = true;
+          return uploadCatalogAsset(compressed, newItem.id + '/cover-' + Date.now() + '.' + coverExt);
+        });
       });
     }).then(function(url){ newItem.cover_url = url; });
   }
