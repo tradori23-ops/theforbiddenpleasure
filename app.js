@@ -1114,6 +1114,7 @@ function refreshAdminUI(){
     if(adminTabs) adminTabs.classList.remove('hidden');
     if(collabBanner) collabBanner.classList.add('hidden');
     if(smallnoxCard) smallnoxCard.classList.remove('hidden');
+    injectDraftModeToggle();
     renderAdminList();
     renderModerationQueue();
     loadSocialLinksIntoForm();
@@ -2369,6 +2370,27 @@ function renderAdminList(){
   var items = getCatalog();
   items.sort(function(a,b){ return (b.date||'').localeCompare(a.date||''); });
   list.innerHTML = '';
+
+  if(isDraftModeOn()){
+    getDraft().newItems.forEach(function(draftItem, idx){
+      var draftRow = document.createElement('div');
+      draftRow.className = 'admin-row admin-row-draft';
+      var coverImg = draftItem.coverDataUrl ? '<img src="'+draftItem.coverDataUrl+'" alt="">' : '';
+      draftRow.innerHTML =
+        '<div class="admin-draft-preview">'+coverImg+'<span class="admin-draft-tag">BOZZA — titolo nuovo, non ancora online</span></div>'+
+        '<div class="info"><div class="t">'+escapeHtml(draftItem.title)+'</div>'+
+        '<div class="m">'+draftItem.character+' · '+(draftItem.issue||'')+' · '+(draftItem.date||'')+'</div></div>'+
+        '<div class="admin-actions"><button type="button" class="btn btn-sm btn-ghost" data-remove-draft-newitem="'+idx+'">Rimuovi bozza</button></div>';
+      draftRow.querySelector('[data-remove-draft-newitem]').addEventListener('click', function(){
+        var d = getDraft();
+        d.newItems.splice(idx, 1);
+        saveDraft(d);
+        renderAdminList(); renderDraftBar();
+      });
+      list.appendChild(draftRow);
+    });
+  }
+
   items.forEach(function(item){
     var row = document.createElement('div');
     row.className = 'admin-row';
@@ -2379,7 +2401,12 @@ function renderAdminList(){
     var hasPages = item.pages && item.pages.length > 0;
     var isPermanent = item.permanent !== false; // di default permanente, finché non lo segni esplicitamente "a tempo determinato"
     var permanentTag = '<span class="' + (isPermanent ? 'permanent-tag' : 'temporary-tag') + '">' + (isPermanent ? t('catalog.permanent') : t('catalog.temporary')) + '</span>';
+    var draftCoverUrl = isDraftModeOn() ? getDraft().coverEdits[item.id] : null;
+    var draftPreview = draftCoverUrl
+      ? '<div class="admin-draft-preview"><img src="'+draftCoverUrl+'" alt=""><span class="admin-draft-tag">BOZZA — non ancora online</span></div>'
+      : '';
     row.innerHTML =
+      draftPreview +
       '<div class="info"><div class="t">'+escapeHtml(item.title)+'</div>'+
       '<div class="m">'+item.character+' · '+(item.issue||'')+' · '+(item.date||'')+' · '+ratingLabel+' · '+permanentTag+'</div></div>'+
       '<div class="admin-actions">'+
@@ -2510,7 +2537,22 @@ function cropFileToRatio(file, ratioW, ratioH){
     img.src = url;
   });
 }
-function uploadCoverForExistingItem(itemId, file, ratioW, ratioH){
+function uploadCoverForExistingItem(itemId, file, ratioW, ratioH, forceReal){
+  // Modalità bozza: se attiva (e non stiamo pubblicando per davvero),
+  // il file resta solo in questo browser — anteprima istantanea, niente
+  // Supabase, niente cache, niente sorprese. "Pubblica bozze" richiama
+  // questa stessa funzione con forceReal=true per il caricamento vero.
+  if(isDraftModeOn() && !forceReal){
+    var statusD = document.querySelector('[data-cover-status-for="'+itemId+'"]');
+    fileToDataUrl(file).then(function(dataUrl){
+      var d = getDraft();
+      d.coverEdits[itemId] = dataUrl;
+      saveDraft(d);
+      if(statusD) statusD.textContent = 'salvato in bozza';
+      renderAdminList(); renderDraftBar();
+    });
+    return;
+  }
   // Niente più ritaglio forzato all'upload: il file salvato è sempre
   // l'originale intero, invariato. A mostrarlo per intero (senza tagli
   // né margini superflui) ci pensa solo il CSS a video (object-fit:contain
@@ -2518,7 +2560,7 @@ function uploadCoverForExistingItem(itemId, file, ratioW, ratioH){
   // sempre, qualunque formato scelga chi carica.
   var status = document.querySelector('[data-cover-status-for="'+itemId+'"]');
   if(status) status.textContent = t('cover.uploading');
-  compressImageFile(file, 2600, 0.92).then(function(compressed){
+  return compressImageFile(file, 2600, 0.92).then(function(compressed){
     return uploadCatalogAsset(compressed, itemId + '/cover-' + Date.now() + '.jpg');
   }).then(function(url){
     var session = getSession();
@@ -3038,6 +3080,134 @@ function cancelEditTitle(){
   if(cancelBtn) cancelBtn.classList.add('hidden');
 }
 
+/* ============ MODALITÀ BOZZA (anteprima locale prima di pubblicare) ============
+   Quando attiva: aggiungere un titolo o cambiare una copertina NON scrive
+   su Supabase — resta salvato solo in questo browser (localStorage), con
+   un'anteprima che usa lo stesso identico HTML/CSS delle card vere, ma
+   con l'immagine mostrata direttamente dal file locale (nessuna rete,
+   nessuna cache CDN di mezzo — quello che vedi è sempre esatto).
+   "Pubblica bozze" manda tutto online, una voce alla volta. */
+function isDraftModeOn(){ return localStorage.getItem('lux_draft_mode') === '1'; }
+function injectDraftModeToggle(){
+  if(document.getElementById('draftModeToggleWrap')) return; // già inserito, non duplicare
+  var list = document.getElementById('adminList');
+  if(!list || !list.parentNode) return;
+  var wrap = document.createElement('div');
+  wrap.id = 'draftModeToggleWrap';
+  wrap.className = 'draft-mode-toggle-wrap';
+  wrap.innerHTML =
+    '<label class="draft-mode-toggle">'+
+      '<input type="checkbox" id="chkDraftMode"'+(isDraftModeOn()?' checked':'')+'>'+
+      '<span>Modalità bozza — nuovi titoli e copertine restano solo qui finché non pubblichi</span>'+
+    '</label>'+
+    '<div id="draftBar" class="draft-bar hidden"></div>';
+  list.parentNode.insertBefore(wrap, list);
+  document.getElementById('chkDraftMode').addEventListener('change', function(e){
+    setDraftMode(e.target.checked);
+  });
+  renderDraftBar();
+}
+function setDraftMode(on){ localStorage.setItem('lux_draft_mode', on ? '1' : '0'); renderAdminList(); renderDraftBar(); }
+function getDraft(){
+  try{ return JSON.parse(localStorage.getItem('lux_admin_draft') || '{"newItems":[],"coverEdits":{}}'); }
+  catch(e){ return {newItems:[], coverEdits:{}}; }
+}
+function saveDraft(d){ localStorage.setItem('lux_admin_draft', JSON.stringify(d)); }
+function draftPendingCount(){
+  var d = getDraft();
+  return d.newItems.length + Object.keys(d.coverEdits).length;
+}
+function fileToDataUrl(file){
+  return new Promise(function(resolve, reject){
+    var reader = new FileReader();
+    reader.onload = function(){ resolve(reader.result); };
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+function renderDraftBar(){
+  var bar = document.getElementById('draftBar');
+  if(!bar) return;
+  var n = draftPendingCount();
+  if(!isDraftModeOn() || n === 0){ bar.classList.add('hidden'); bar.innerHTML=''; return; }
+  bar.classList.remove('hidden');
+  bar.innerHTML =
+    '<span>' + n + ' modifiche in bozza, non ancora online</span>' +
+    '<button type="button" class="btn btn-primary btn-sm" id="btnPublishDraft">Pubblica bozze</button>' +
+    '<button type="button" class="btn btn-ghost btn-sm" id="btnDiscardDraft">Scarta bozze</button>';
+  document.getElementById('btnPublishDraft').addEventListener('click', publishDraft);
+  document.getElementById('btnDiscardDraft').addEventListener('click', function(){
+    if(!confirm('Scartare tutte le modifiche in bozza non ancora pubblicate?')) return;
+    saveDraft({newItems:[], coverEdits:{}});
+    renderAdminList(); renderDraftBar();
+  });
+}
+function publishDraft(){
+  var d = getDraft();
+  var bar = document.getElementById('draftBar');
+  if(bar) bar.innerHTML = '<span>Pubblicazione in corso…</span>';
+
+  var chain = Promise.resolve();
+
+  // 1) copertine cambiate su titoli esistenti
+  Object.keys(d.coverEdits).forEach(function(itemId){
+    chain = chain.then(function(){
+      return dataUrlToBlob(d.coverEdits[itemId]).then(function(blob){
+        return uploadCoverForExistingItem(itemId, blob, undefined, undefined, true);
+      });
+    });
+  });
+
+  // 2) titoli nuovi (stessa logica di handleAddEntry, ma senza passare da qui di nuovo)
+  d.newItems.forEach(function(draftItem){
+    chain = chain.then(function(){
+      return publishSingleDraftNewItem(draftItem);
+    });
+  });
+
+  chain.then(function(){
+    saveDraft({newItems:[], coverEdits:{}});
+    return fetchCatalogFromSupabase();
+  }).then(function(){
+    renderCatalog(); renderAdminList(); renderDraftBar();
+  }).catch(function(err){
+    console.warn('Publish draft failed:', err);
+    if(bar) bar.innerHTML = '<span style="color:#d9756b;">Pubblicazione fallita: ' + (err && err.message ? err.message : 'errore') + '</span>';
+  });
+}
+function dataUrlToBlob(dataUrl){
+  return fetch(dataUrl).then(function(r){ return r.blob(); });
+}
+function publishSingleDraftNewItem(draftItem){
+  var newItem = {
+    id: 'c' + Date.now() + Math.floor(Math.random()*1000),
+    character: draftItem.character, title: draftItem.title, issue: draftItem.issue,
+    date: draftItem.date || new Date().toISOString().slice(0,10),
+    price: draftItem.price ? Number(draftItem.price) : null,
+    collaborator_name: null, collaborator_url: null, collaborator_verified: false, collaborators: [],
+    synopsis: draftItem.synopsis, mature: draftItem.mature, pages: [], cover_url: null, pdf_url: null,
+    created_by: !isAdmin() ? currentUserId() : null,
+    synopsis_it: null, synopsis_es: null, synopsis_fr: null, synopsis_de: null
+  };
+  var steps = Promise.resolve();
+  steps = steps.then(function(){
+    return translateSynopsis(draftItem.synopsis).then(function(result){
+      newItem.synopsis_it = result.it || null; newItem.synopsis_es = result.es || null;
+      newItem.synopsis_fr = result.fr || null; newItem.synopsis_de = result.de || null;
+    }).catch(function(){});
+  });
+  if(draftItem.coverDataUrl){
+    steps = steps.then(function(){
+      return dataUrlToBlob(draftItem.coverDataUrl).then(function(blob){
+        return compressImageFile(blob, 2600, 0.92);
+      }).then(function(compressed){
+        return uploadCatalogAsset(compressed, newItem.id + '/cover-' + Date.now() + '.jpg');
+      });
+    }).then(function(url){ newItem.cover_url = url; });
+  }
+  return steps.then(function(){ return supabaseInsert(newItem); });
+}
+
 function handleAddEntry(){
   var title = document.getElementById('fTitle').value.trim();
   var character = document.getElementById('fCharacter').value;
@@ -3076,6 +3246,39 @@ function handleAddEntry(){
     err.textContent = t('collabSession.expired');
     return;
   }
+
+  // Modalità bozza (solo per titoli NUOVI, non per modifiche a uno già
+  // esistente): salva tutto in locale, non tocca Supabase, mostra
+  // un'anteprima con la copertina vera. "Pubblica bozze" fa il resto dopo.
+  if(!isEdit && isDraftModeOn()){
+    var draftItem = {
+      character: character, title: title, issue: issue, date: date,
+      price: price, synopsis: synopsis, mature: mature, coverDataUrl: null
+    };
+    var afterSave = function(){
+      var d = getDraft();
+      d.newItems.push(draftItem);
+      saveDraft(d);
+      document.getElementById('fTitle').value = '';
+      document.getElementById('fIssue').value = '';
+      document.getElementById('fDate').value = '';
+      document.getElementById('fPrice').value = '';
+      document.getElementById('fSynopsis').value = '';
+      document.getElementById('fMature').checked = false;
+      status.textContent = 'Titolo salvato in bozza — non ancora online.';
+      renderDraftBar();
+    };
+    if(pendingCover){
+      fileToDataUrl(pendingCover.file).then(function(dataUrl){
+        draftItem.coverDataUrl = dataUrl;
+        afterSave();
+      });
+    } else {
+      afterSave();
+    }
+    return;
+  }
+
   var existing = isEdit ? getCatalog().find(function(x){ return x.id === editingItemId; }) : null;
   if(isEdit && !existing){ isEdit = false; editingItemId = null; } // la voce originale non c'è più — meglio ripartire da zero che salvare nel vuoto
 

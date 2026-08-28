@@ -691,6 +691,26 @@ body.theme-light .hero-bg::after{
 .admin-row .info .t{font-family:'Cinzel',serif;font-size:14px;}
 .admin-row .info .m{font-family:'Space Mono',monospace;font-size:10px;color:var(--parchment-dim);}
 .admin-actions{display:flex;gap:8px;flex-wrap:wrap;}
+
+/* ============ MODALITÀ BOZZA (admin) ============ */
+.draft-mode-toggle-wrap{margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid var(--line);}
+.draft-mode-toggle{display:flex;align-items:center;gap:10px;font-family:'Space Mono',monospace;font-size:12px;color:var(--parchment-dim);cursor:pointer;}
+.draft-mode-toggle input{width:16px;height:16px;accent-color:var(--gold);}
+.draft-bar{
+  display:flex;align-items:center;gap:12px;margin-top:12px;padding:10px 14px;
+  background:rgba(201,162,77,0.08);border:1px solid var(--gold);font-family:'Space Mono',monospace;font-size:12px;
+}
+.draft-bar.hidden{display:none;}
+.admin-row-draft{background:rgba(201,162,77,0.05);}
+.admin-draft-preview{
+  position:relative;width:70px;height:70px;flex-shrink:0;overflow:hidden;
+  border:1px solid var(--gold);background:var(--wine-deep);
+}
+.admin-draft-preview img{width:100%;height:100%;object-fit:cover;display:block;}
+.admin-draft-tag{
+  position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,0.75);color:var(--gold-bright);
+  font-family:'Space Mono',monospace;font-size:7px;text-align:center;padding:2px 3px;line-height:1.3;
+}
 .cover-upload-btn{cursor:pointer;white-space:nowrap;}
 .cover-format-select{
   font-family:'Space Mono',monospace;font-size:11px;padding:5px 6px;
