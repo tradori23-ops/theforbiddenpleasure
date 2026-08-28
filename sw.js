@@ -1,16 +1,21 @@
 /* LUX COMICS & MEDUSA COMICS — Service Worker
-   Strategia "stale-while-revalidate" per la corazza dell'app (HTML, CSS,
-   JS, font, immagini, icone): se il file è già in cache, lo si serve
-   SUBITO — zero attesa di rete — e nel frattempo lo si riscarica in
-   background per la prossima volta. Il contenuto vero (catalogo,
-   messaggi, notifiche) non passa mai da qui: arriva sempre live da
-   Supabase, quindi resta sempre aggiornato indipendentemente da questa
-   cache. Prima la strategia era "rete sempre prima di tutto", il che
-   significava riscaricare l'intero sito ad ogni apertura dell'app anche
-   quando nulla era cambiato — questa versione è pensata per rendere le
-   riaperture quasi istantanee. */
+   Strategia mista:
+   - loader.js e le pagine (navigazioni, es. apertura di index.html,
+     admin.html...) vanno SEMPRE prima in rete. Sono i file che decidono
+     quale versione di tutto il resto caricare (tramite il numero V dentro
+     loader.js): se restassero in cache vecchia, un dispositivo potrebbe
+     restare bloccato su una versione superata per sempre, anche dopo
+     mille aggiornamenti di app.js/style.css — è successo davvero, da qui
+     questa correzione. La cache qui serve solo come riserva se sei offline.
+   - Tutto il resto (style.css, app.js — già versionati con ?v=N — font,
+     immagini, icone) resta "stale-while-revalidate": si serve subito
+     dalla cache se c'è, e si aggiorna in background per la prossima
+     volta — questo è ciò che rende le riaperture quasi istantanee.
+   Il contenuto vero (catalogo, messaggi, notifiche) non passa mai da qui:
+   arriva sempre live da Supabase, quindi resta sempre aggiornato
+   indipendentemente da questa cache. */
 
-var CACHE_NAME = 'lux-comics-v3';
+var CACHE_NAME = 'lux-comics-v4';
 var CORE_ASSETS = [
   './',
   './index.html'
@@ -35,6 +40,14 @@ self.addEventListener('activate', function(event){
   );
 });
 
+function isAlwaysFreshRequest(req, url){
+  // Navigazioni = apertura di una pagina (index.html, admin.html, ecc.)
+  if(req.mode === 'navigate') return true;
+  // loader.js per nome file, indipendentemente dal path esatto
+  if(/\/loader\.js$/.test(url.pathname)) return true;
+  return false;
+}
+
 self.addEventListener('fetch', function(event){
   var req = event.request;
   if(req.method !== 'GET') return;
@@ -43,6 +56,26 @@ self.addEventListener('fetch', function(event){
   // le chiamate a Supabase (dati, autenticazione, storage) non passano
   // MAI dalla cache: devono essere sempre live, non è "la corazza" del sito
   if(url.origin !== self.location.origin) return;
+
+  // Rete-prima per pagine e loader.js: se c'è connessione, sono SEMPRE
+  // aggiornati; la cache è solo il paracadute se sei offline.
+  if(isAlwaysFreshRequest(req, url)){
+    event.respondWith(
+      fetch(req).then(function(response){
+        if(response && response.ok){
+          caches.open(CACHE_NAME).then(function(cache){ cache.put(req, response.clone()); });
+        }
+        return response;
+      }).catch(function(){
+        return caches.open(CACHE_NAME).then(function(cache){
+          return cache.match(req).then(function(cached){
+            return cached || (req.mode === 'navigate' ? cache.match('./index.html') : undefined);
+          });
+        });
+      })
+    );
+    return;
+  }
 
   event.respondWith(
     caches.open(CACHE_NAME).then(function(cache){
