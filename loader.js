@@ -26,7 +26,18 @@
   // nuovo app.js/style.css e vuoi essere SICURO che tutti lo scarichino
   // subito, ignorando qualunque cache (browser, service worker, o CDN
   // davanti al dominio) — invece di aspettare che si aggiorni da sola.
+  // Questo è l'UNICO punto da modificare: style.css e app.js prendono
+  // entrambi la versione da qui, su ogni pagina, senza bisogno di
+  // toccare anche l'HTML di ciascuna pagina.
   var V = "11";
+
+  // style.css iniettato qui (non più con un <link> scritto a mano in ogni
+  // pagina) così la sua versione segue sempre la stessa V di app.js,
+  // ovunque, senza doverla tenere sincronizzata a mano in più file.
+  var cssLink = document.createElement("link");
+  cssLink.rel = "stylesheet";
+  cssLink.href = "style.css?v=" + V;
+  document.head.appendChild(cssLink);
 
   function replaceSlot(id, html) {
     var slot = document.getElementById(id);
