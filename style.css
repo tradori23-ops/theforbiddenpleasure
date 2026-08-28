@@ -572,6 +572,8 @@ body.theme-light .hero-bg::after{
 
 /* ============ FOUNDER ============ */
 .founder-wrap{display:block;}
+.support-links{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px;}
+.support-note{margin-top:14px;font-size:12px;opacity:0.8;max-width:560px;}
 .founder-wordmark{
   width:100%;max-width:420px;margin:0 auto 32px;
   border:1px solid var(--gold);padding:20px;

@@ -20,6 +20,7 @@ var STR = {
     "characters.eyebrow":"Dossier","characters.title":"I Quattro Sigilli","characters.desc":"Ogni personaggio guida una collana propria, con tono e mitologia distinti.",
     "library.eyebrow":"Schedario","library.title":"Catalogo delle Opere",
     "founder.eyebrow":"Casa Editrice","founder.title":"Il Fondatore","founder.role":"Fondatore & Direttore Editoriale",
+    "support.eyebrow":"Sostieni il Progetto","support.title":"Offrici un caffè (o una torta)","support.desc":"LUX COMICS & MEDUSA COMICS è un progetto indipendente, senza abbonamenti né acquisti obbligatori. Se una storia ti è piaciuta, puoi sostenerla a tua discrezione — quanto vuoi, quando vuoi. Nella causale puoi indicare quale titolo vuoi premiare.","support.paypal":"Dona con PayPal","support.satispay":"Dona con Satispay","support.revolut":"Dona con Revolut","support.note":"Donazione libera e informale a sostegno di un progetto personale — non è un acquisto, non dà diritto a contenuti riservati che già non avresti. Ai collaboratori non è mai richiesto nulla.",
     "founder.body":"Nox Morningstar ha fondato LUX COMICS & MEDUSA COMICS come rifugio per storie che altrove non troverebbero casa: opere disegnate per un pubblico adulto e consapevole, dove il proibito è materia narrativa, non provocazione fine a sé stessa. Ogni collana — Lucifer, Lilith, Lucifera, Lucio — porta la sua firma sotto forma di sigillo, garanzia di un'unica visione editoriale dietro voci diverse.",
     "admin.eyebrow":"Area Riservata","admin.title":"Amministrazione Schedario",
     "admin.noticeLabel":"Stato —",
@@ -142,6 +143,7 @@ var STR = {
     "characters.eyebrow":"Dossiers","characters.title":"The Four Seals","characters.desc":"Each character leads their own line, with a distinct tone and mythology.",
     "library.eyebrow":"Index","library.title":"Catalog of Works",
     "founder.eyebrow":"Publishing House","founder.title":"The Founder","founder.role":"Founder & Editorial Director",
+    "support.eyebrow":"Support the Project","support.title":"Buy us a coffee (or a cake)","support.desc":"LUX COMICS & MEDUSA COMICS is an independent project, with no subscriptions or mandatory purchases. If you enjoyed a story, you can support it at your discretion — whatever amount, whenever you like. You can mention which title you'd like to reward in the payment note.","support.paypal":"Donate via PayPal","support.satispay":"Donate via Satispay","support.revolut":"Donate via Revolut","support.note":"A free, informal donation to support a personal project — not a purchase, and it doesn't unlock content you wouldn't already have. Collaborators are never asked for anything.",
     "founder.body":"Nox Morningstar founded LUX COMICS & MEDUSA COMICS as a home for stories that would find no shelf elsewhere: works drawn for a mature, consenting audience, where the forbidden is narrative material, not provocation for its own sake. Each line — Lucifer, Lilith, Lucifera, Lucio — carries the founder's signature in the form of a seal, a guarantee of one editorial vision behind different voices.",
     "admin.eyebrow":"Private Area","admin.title":"Index Administration",
     "admin.noticeLabel":"Status —",
@@ -264,6 +266,7 @@ var STR = {
     "characters.eyebrow":"Expedientes","characters.title":"Los Cuatro Sellos","characters.desc":"Cada personaje lidera su propia colección, con tono y mitología distintos.",
     "library.eyebrow":"Índice","library.title":"Catálogo de Obras",
     "founder.eyebrow":"Casa Editorial","founder.title":"El Fundador","founder.role":"Fundador y Director Editorial",
+    "support.eyebrow":"Apoya el Proyecto","support.title":"Invítanos a un café (o una tarta)","support.desc":"LUX COMICS & MEDUSA COMICS es un proyecto independiente, sin suscripciones ni compras obligatorias. Si te ha gustado una historia, puedes apoyarla a tu criterio — la cantidad que quieras, cuando quieras. En el concepto del pago puedes indicar qué título quieres premiar.","support.paypal":"Donar con PayPal","support.satispay":"Donar con Satispay","support.revolut":"Donar con Revolut","support.note":"Donación libre e informal para apoyar un proyecto personal — no es una compra, ni da derecho a contenido reservado que no tendrías ya. A los colaboradores nunca se les pide nada.",
     "founder.body":"Nox Morningstar fundó LUX COMICS & MEDUSA COMICS como refugio para historias que no tendrían lugar en otro sitio: obras pensadas para un público adulto y consciente, donde lo prohibido es materia narrativa, no provocación gratuita. Cada colección — Lucifer, Lilith, Lucifera, Lucio — lleva su firma en forma de sello, garantía de una única visión editorial detrás de voces distintas.",
     "admin.eyebrow":"Área Privada","admin.title":"Administración del Índice",
     "admin.noticeLabel":"Estado —",
@@ -386,6 +389,7 @@ var STR = {
     "characters.eyebrow":"Dossiers","characters.title":"Les Quatre Sceaux","characters.desc":"Chaque personnage mène sa propre collection, avec un ton et une mythologie distincts.",
     "library.eyebrow":"Index","library.title":"Catalogue des Œuvres",
     "founder.eyebrow":"Maison d'Édition","founder.title":"Le Fondateur","founder.role":"Fondateur & Directeur Éditorial",
+    "support.eyebrow":"Soutenez le Projet","support.title":"Offrez-nous un café (ou un gâteau)","support.desc":"LUX COMICS & MEDUSA COMICS est un projet indépendant, sans abonnement ni achat obligatoire. Si une histoire vous a plu, vous pouvez la soutenir à votre discrétion — le montant que vous voulez, quand vous voulez. Vous pouvez indiquer dans le motif du paiement quel titre vous souhaitez récompenser.","support.paypal":"Faire un don via PayPal","support.satispay":"Faire un don via Satispay","support.revolut":"Faire un don via Revolut","support.note":"Don libre et informel pour soutenir un projet personnel — ce n'est pas un achat, et cela ne donne pas accès à du contenu réservé que vous n'auriez pas déjà. Rien n'est jamais demandé aux collaborateurs.",
     "founder.body":"Nox Morningstar a fondé LUX COMICS & MEDUSA COMICS comme refuge pour des histoires qui ne trouveraient leur place nulle part ailleurs : des œuvres pensées pour un public adulte et consentant, où l'interdit est matière narrative, non provocation gratuite. Chaque collection — Lucifer, Lilith, Lucifera, Lucio — porte sa signature sous forme de sceau, garantie d'une seule vision éditoriale derrière des voix différentes.",
     "admin.eyebrow":"Espace Privé","admin.title":"Administration de l'Index",
     "admin.noticeLabel":"État —",
@@ -508,6 +512,7 @@ var STR = {
     "characters.eyebrow":"Dossiers","characters.title":"Die Vier Siegel","characters.desc":"Jede Figur leitet eine eigene Reihe mit eigenem Ton und eigener Mythologie.",
     "library.eyebrow":"Index","library.title":"Werkkatalog",
     "founder.eyebrow":"Verlagshaus","founder.title":"Der Gründer","founder.role":"Gründer & Verlagsleiter",
+    "support.eyebrow":"Unterstütze das Projekt","support.title":"Spendier uns einen Kaffee (oder einen Kuchen)","support.desc":"LUX COMICS & MEDUSA COMICS ist ein unabhängiges Projekt, ohne Abonnements oder Pflichtkäufe. Wenn dir eine Geschichte gefallen hat, kannst du sie nach eigenem Ermessen unterstützen — mit dem Betrag deiner Wahl, wann immer du möchtest. Im Verwendungszweck kannst du angeben, welchen Titel du belohnen möchtest.","support.paypal":"Mit PayPal spenden","support.satispay":"Mit Satispay spenden","support.revolut":"Mit Revolut spenden","support.note":"Freie, informelle Spende zur Unterstützung eines persönlichen Projekts — kein Kauf, und sie schaltet keine exklusiven Inhalte frei, die du nicht ohnehin schon hättest. Von Mitarbeitenden wird nie etwas verlangt.",
     "founder.body":"Nox Morningstar gründete LUX COMICS & MEDUSA COMICS als Zuflucht für Geschichten, die anderswo keinen Platz fänden: Werke für ein erwachsenes, einwilligendes Publikum, in denen das Verbotene erzählerisches Material ist, keine Provokation um ihrer selbst willen. Jede Reihe — Lucifer, Lilith, Lucifera, Lucio — trägt seine Signatur in Form eines Siegels, Garant einer einzigen redaktionellen Vision hinter unterschiedlichen Stimmen.",
     "admin.eyebrow":"Privater Bereich","admin.title":"Index-Verwaltung",
     "admin.noticeLabel":"Status —",
@@ -7564,6 +7569,14 @@ function saveSocialLinks(){
   Promise.all(updates).then(function(){ fetchSocialLinks(); }).catch(function(err){ console.warn('Social save failed:', err); });
 }
 
+function refreshSupportSectionVisibility(){
+  var section = document.getElementById('supportSection');
+  if(!section) return; // pagina diversa da founder.html, non c'è nulla da fare
+  var isCollab = isSignedIn() && !isAdmin() &&
+    (hasActiveCreationSession() || getCatalog().some(function(x){ return x.created_by && x.created_by === currentUserId(); }));
+  section.classList.toggle('hidden', isCollab);
+}
+
 function __appInit(){
   document.querySelectorAll('.seal-img[data-size="sm"]').forEach(function(img){ img.src = LOGO_SM; });
   document.querySelectorAll('.seal-img[data-size="lg"]').forEach(function(img){ img.src = LOGO_LG; });
@@ -7572,6 +7585,7 @@ function __appInit(){
   initTheme();
   applyI18n();
   renderDossiers();
+  refreshSupportSectionVisibility(); // mostra subito ai visitatori anonimi; ricontrollato sotto per chi ha fatto login
   // NIENTE renderCatalog() qui: prima si aspettano sempre i dati veri da
   // Supabase (vedi fetchCatalogFromSupabase più sotto) — così non si vede
   // mai per sbaglio una copia locale vecchia del catalogo/copertine prima
@@ -7589,7 +7603,7 @@ function __appInit(){
     loadFavorites();
     loadLikes();
     loadNotifications();
-    loadMyCreationSession().then(refreshAdminUI); // altrimenti una sessione di collaborazione attiva non viene mai rilevata al semplice riapertura dell'app (solo subito dopo un login attivo)
+    loadMyCreationSession().then(function(){ refreshAdminUI(); refreshSupportSectionVisibility(); });
     initChatPage(); // deve aspettare che la sessione sia confermata, non solo che il catalogo sia caricato
   });
   setInterval(refreshSessionIfNeeded, 4 * 60 * 1000); // keep the token fresh while the tab stays open
