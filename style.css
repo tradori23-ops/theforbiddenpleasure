@@ -500,11 +500,18 @@ body.theme-light .hero-bg::after{
   .shelf-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));overflow-x:visible;}
   .shelf-row .tome-card{flex:none;}
 }
+.tome-strap{
+  position:absolute;left:0;right:0;top:42%;height:20%;
+  background:var(--wine-deep);
+  border-top:1px solid rgba(0,0,0,0.45);border-bottom:1px solid rgba(0,0,0,0.45);
+  z-index:1;
+}
 .tome-seal{
-  position:absolute;left:8px;bottom:8px;width:26px;height:26px;border-radius:50%;
-  background:var(--wine-deep);border:1.5px solid var(--gold);
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:36px;height:36px;border-radius:50%;
+  background:var(--void);border:2px solid var(--gold);
   display:flex;align-items:center;justify-content:center;
-  font-family:'Cinzel',serif;font-size:9px;color:var(--gold-bright);
+  font-family:'Cinzel',serif;font-size:11px;color:var(--gold-bright);
   z-index:2;
 }
 .tome-plaque{
