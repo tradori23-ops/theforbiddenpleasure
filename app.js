@@ -1989,19 +1989,28 @@ function renderFilters(){
   var genreWrap = document.getElementById('catalogGenreFilters');
   if(genreWrap){
     genreWrap.innerHTML = '';
-    var gOpts = ['all','new'].concat(GENRE_LIST);
+    var gOpts = [
+      {key:'all', label:t('filter.allGenres'), mono:'✦'},
+      {key:'new', label:t('filter.new'), mono:'N'}
+    ].concat(GENRE_LIST.map(function(g){ return {key:g, label:g, mono: genreMonogram(g)}; }));
     gOpts.forEach(function(g){
       var btn = document.createElement('button');
-      btn.className = 'filter-chip filter-chip-genre' + (activeGenreFilter === g ? ' active' : '');
-      btn.textContent = g === 'all' ? t('filter.allGenres') : (g === 'new' ? t('filter.new') : g);
+      btn.className = 'genre-seal-wrap' + (activeGenreFilter === g.key ? ' active' : '');
+      btn.title = g.label;
+      btn.innerHTML = '<span class="genre-seal">'+g.mono+'</span><span class="genre-seal-label">'+escapeHtml(g.label)+'</span>';
       btn.addEventListener('click', function(){
-        activeGenreFilter = g;
+        activeGenreFilter = g.key;
         renderFilters();
         renderCatalog();
       });
       genreWrap.appendChild(btn);
     });
   }
+}
+
+function genreMonogram(g){
+  var m = { 'Crossover':'X', "Assassin's Creed Infernale":'AC', 'The Morningstar Royal House':'M', 'Thriller':'T', 'Fanny Comics':'F', 'Horror':'H' };
+  return m[g] || g.charAt(0);
 }
 
 var GENRE_LIST = ['Crossover',"Assassin's Creed Infernale",'The Morningstar Royal House','Thriller','Fanny Comics','Horror'];

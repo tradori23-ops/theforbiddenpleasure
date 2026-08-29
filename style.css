@@ -451,8 +451,23 @@ body.theme-light .hero-bg::after{
   font-family:'Space Mono',monospace;font-size:8.5px;letter-spacing:0.03em;text-transform:uppercase;
   color:var(--verdigris);border:1px solid var(--verdigris);padding:2px 6px;
 }
-.catalog-genre-filters{margin-top:10px;}
-.filter-chip-genre{font-size:11px;}
+.catalog-genre-filters{margin-top:10px;display:flex;gap:14px;overflow-x:auto;padding:4px 2px 10px;}
+.genre-seal-wrap{
+  flex:0 0 auto;background:none;border:none;cursor:pointer;
+  display:flex;flex-direction:column;align-items:center;gap:5px;padding:2px;
+}
+.genre-seal{
+  width:34px;height:34px;border-radius:50%;border:1.5px solid rgba(201,162,77,0.5);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Cinzel',serif;font-size:11px;color:var(--gold);
+  transition:border-color 0.2s ease, color 0.2s ease;
+}
+.genre-seal-wrap.active .genre-seal{border-color:var(--gold-bright);color:var(--gold-bright);box-shadow:0 0 0 3px rgba(201,162,77,0.15);}
+.genre-seal-label{
+  font-family:'Space Mono',monospace;font-size:7.5px;letter-spacing:0.03em;text-transform:uppercase;
+  color:var(--parchment-dim);max-width:64px;text-align:center;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.genre-seal-wrap.active .genre-seal-label{color:var(--gold-bright);}
 .mycomics-tabs{display:flex;gap:8px;border-bottom:1px solid var(--line);margin:16px 0 24px;padding-bottom:0;}
 .mycomics-tab{
   background:none;border:none;border-bottom:2px solid transparent;
