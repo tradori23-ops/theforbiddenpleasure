@@ -369,13 +369,20 @@ body.theme-light .hero-bg::after{
 .dossier-seals{display:flex;justify-content:center;gap:28px;flex-wrap:wrap;margin-bottom:44px;}
 .dossier-seal-wrap{display:flex;flex-direction:column;align-items:center;cursor:pointer;}
 .dossier-seal{
-  width:92px;height:92px;border-radius:50%;position:relative;
-  background:radial-gradient(circle at 35% 30%, var(--wine-deep), var(--void) 70%);
-  border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;overflow:hidden;
-  transition:transform 0.25s ease, box-shadow 0.25s ease;
+  width:100px;height:128px;position:relative;
+  color:var(--gold);
+  transition:transform 0.25s ease;
 }
+.dossier-seal-photowrap{
+  position:absolute;left:4px;top:6px;width:92px;height:118px;overflow:hidden;
+  clip-path:path("M0,120 L0,50 A46,46 0 0 1 92,50 L92,120 Z");
+  background:radial-gradient(circle at 35% 30%, var(--wine-deep), var(--void) 70%);
+  display:flex;align-items:center;justify-content:center;
+}
+.dossier-seal-frame{position:absolute;left:0;top:0;pointer-events:none;}
 .dossier-seal-wrap:hover .dossier-seal{transform:translateY(-4px);}
-.dossier-seal.active{box-shadow:0 0 0 4px rgba(201,162,77,0.22);transform:translateY(-4px);border-color:var(--gold-bright);}
+.dossier-seal.active{color:var(--gold-bright);transform:translateY(-4px);}
+.dossier-seal.active .dossier-seal-photowrap{box-shadow:0 0 0 3px rgba(201,162,77,0.22) inset;}
 .dossier-seal-init{font-family:'Cinzel Decorative',serif;font-size:32px;color:var(--gold-bright);}
 .dossier-seal-photo{width:100%;height:100%;object-fit:cover;}
 .dossier-seal-label{
@@ -480,7 +487,34 @@ body.theme-light .hero-bg::after{
 }
 .filter-chip.active{border-color:var(--gold);color:var(--gold-bright);background:rgba(212,98,47,0.12);}
 .filter-chip:hover{border-color:var(--gold);color:var(--gold-bright);}
-.catalog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:18px;margin-top:28px;}
+.catalog-grid{margin-top:28px;}
+.shelves-wrap{display:flex;flex-direction:column;gap:36px;}
+.catalog-shelf{display:flex;flex-direction:column;gap:14px;}
+.shelf-head{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line);padding-bottom:10px;}
+.shelf-eyebrow{font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.15em;text-transform:uppercase;color:var(--verdigris);margin-bottom:2px;}
+.shelf-title{font-family:'Cinzel',serif;font-size:22px;color:var(--gold-bright);}
+.shelf-count{font-size:11px;color:var(--parchment-dim);}
+.shelf-row{display:flex;gap:16px;overflow-x:auto;padding-bottom:6px;scroll-snap-type:x proximity;}
+.shelf-row .tome-card{flex:0 0 168px;scroll-snap-align:start;}
+@media (min-width:640px){
+  .shelf-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));overflow-x:visible;}
+  .shelf-row .tome-card{flex:none;}
+}
+.tome-seal{
+  position:absolute;left:8px;bottom:8px;width:26px;height:26px;border-radius:50%;
+  background:var(--wine-deep);border:1.5px solid var(--gold);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Cinzel',serif;font-size:9px;color:var(--gold-bright);
+  z-index:2;
+}
+.tome-plaque{
+  margin:8px 12px 0;border:1px solid var(--gold);background:var(--void);
+  padding:5px 6px 6px;text-align:center;
+  font-family:'Cinzel',serif;font-size:10px;letter-spacing:0.03em;text-transform:uppercase;
+  color:var(--gold-bright);line-height:1.35;
+}
+.tome-plaque-dot{display:block;width:3px;height:3px;border-radius:50%;background:var(--gold);margin:0 auto 4px;}
+.card-idx.tome-card{padding-bottom:6px;}
 .card-idx{
   border:1px solid var(--line);background:var(--void-2);
   display:flex;flex-direction:column;
