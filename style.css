@@ -462,6 +462,8 @@ body.theme-light .hero-bg::after{
   font-family:'Cinzel',serif;font-size:11px;color:var(--gold);
   transition:border-color 0.2s ease, color 0.2s ease;
 }
+.genre-seal-wrap:hover .genre-seal{border-color:var(--gold-bright);color:var(--gold-bright);}
+.genre-seal-wrap:hover .genre-seal-label{color:var(--gold-bright);}
 .genre-seal-wrap.active .genre-seal{border-color:var(--gold-bright);color:var(--gold-bright);box-shadow:0 0 0 3px rgba(201,162,77,0.15);}
 .genre-seal-label{
   font-family:'Space Mono',monospace;font-size:7.5px;letter-spacing:0.03em;text-transform:uppercase;
