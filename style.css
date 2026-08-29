@@ -453,6 +453,21 @@ body.theme-light .hero-bg::after{
 }
 .catalog-genre-filters{margin-top:10px;}
 .filter-chip-genre{font-size:11px;}
+.mycomics-tabs{display:flex;gap:8px;border-bottom:1px solid var(--line);margin:16px 0 24px;padding-bottom:0;}
+.mycomics-tab{
+  background:none;border:none;border-bottom:2px solid transparent;
+  font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.05em;text-transform:uppercase;
+  color:var(--parchment-dim);padding:10px 4px;cursor:pointer;
+}
+.mycomics-tab.active{color:var(--gold-bright);border-bottom-color:var(--gold);}
+.mycomics-empty{padding:40px 0;text-align:center;color:var(--parchment-dim);font-style:italic;}
+.mycomics-purchase-list{display:flex;flex-direction:column;gap:1px;}
+.mycomics-purchase-row{
+  display:flex;justify-content:space-between;align-items:center;gap:16px;
+  padding:12px 0;border-bottom:1px solid var(--line);
+}
+.mycomics-purchase-row .txt{font-size:13px;}
+.mycomics-purchase-row .status{font-size:10px;color:var(--gold-bright);white-space:nowrap;}
 .top-ranked-row{display:flex;gap:8px;overflow-x:auto;padding:6px 6px 12px 2px;}
 .rank-card{flex:0 0 128px;position:relative;display:flex;align-items:flex-end;cursor:pointer;padding-left:34px;}
 .rank-num{
