@@ -78,7 +78,7 @@ var STR = {
     "auth.note":"Nota: l'account salva solo la tua preferenza di lingua per questo sito, in locale su questo browser.",
     "err.userExists":"Nome utente già in uso.","err.badLogin":"Credenziali non valide.","err.required":"Compila tutti i campi.",
     "admin.deleted":"rimosso","admin.confirmDelete":"Rimuovere questo titolo dallo schedario?",
-    "filter.all":"Tutti",
+    "filter.all":"Tutti","filter.allGenres":"Tutti i generi","filter.new":"Novità",
     "maintenance.text":"Sito in manutenzione — stiamo aggiornando l'archivio, torna a breve.",
     "maintenance.toggle":"Modalità manutenzione (visibile a tutti i visitatori)","maintenance.scheduleTitle":"Cosa vedono i visitatori","maintenance.scheduleHint":"Spiega perché il sito è in pausa e per quanto — resta salvato anche a interruttore spento, così puoi prepararlo prima.","maintenance.reasonLabel":"Motivazione (cosa stai facendo)","maintenance.reasonPh":"Es. Sto caricando nuovi capitoli e sistemando il lettore pagine.","maintenance.startLabel":"Inizio previsto","maintenance.endLabel":"Fine prevista","maintenance.saveSchedule":"Salva dettagli","maintenance.scheduleSaved":"Salvato.","maintenance.fromLabel":"Dalle","maintenance.toLabel":"alle",
     "night.toggle":"Chiusura notturna automatica","night.hint":"Il sito si blocca da solo ogni notte in questa fascia oraria, per non restare aperto inutilmente, e si riapre da solo al mattino.","night.startLabel":"Chiude alle","night.endLabel":"Riapre alle","night.lockTitle":"Buonanotte","night.lockText":"L'archivio chiude di notte e riapre al mattino.","night.reopensAt":"Riapre alle {time}",
@@ -86,7 +86,7 @@ var STR = {
     "offline.export":"Scarica tutto per uso offline","offline.preparing":"Preparazione…","offline.progress":"{done}/{total} — {label}","offline.zipping":"Compressione del file…","offline.done":"Fatto — controlla i download del browser.","offline.error":"Esportazione non riuscita.",
     "gate.title":"Sblocca i Contenuti 18+",
     "toggle.mature":"Contenuti 18+",
-    "admin.f.mature":"Contenuto per adulti (18+)",
+    "admin.f.genres":"Generi (facoltativo, anche più di uno)","admin.f.mature":"Contenuto per adulti (18+)",
     "badge.allages":"Tutti",
     "state.allages":"Stai vedendo: contenuti per tutti i pubblici.",
     "state.mature":"Stai vedendo: contenuti per tutti i pubblici + 18+ sbloccati.",
@@ -201,7 +201,7 @@ var STR = {
     "auth.note":"Note: the account only stores your language preference for this site, locally on this browser.",
     "err.userExists":"Username already taken.","err.badLogin":"Invalid credentials.","err.required":"Fill in every field.",
     "admin.deleted":"removed","admin.confirmDelete":"Remove this title from the index?",
-    "filter.all":"All",
+    "filter.all":"All","filter.allGenres":"All Genres","filter.new":"New",
     "maintenance.text":"Site under maintenance — we're updating the archive, check back soon.",
     "maintenance.toggle":"Maintenance mode (visible to every visitor)","maintenance.scheduleTitle":"What visitors see","maintenance.scheduleHint":"Explain why the site is paused and for how long — saved even while the switch is off, so you can prepare it in advance.","maintenance.reasonLabel":"Reason (what you're working on)","maintenance.reasonPh":"E.g. Uploading new chapters and fixing the page reader.","maintenance.startLabel":"Expected start","maintenance.endLabel":"Expected end","maintenance.saveSchedule":"Save details","maintenance.scheduleSaved":"Saved.","maintenance.fromLabel":"From","maintenance.toLabel":"to",
     "night.toggle":"Automatic night closure","night.hint":"The site locks itself every night during this time window, so it doesn't stay open needlessly, and reopens on its own in the morning.","night.startLabel":"Closes at","night.endLabel":"Reopens at","night.lockTitle":"Good night","night.lockText":"The archive closes at night and reopens in the morning.","night.reopensAt":"Reopens at {time}",
@@ -209,7 +209,7 @@ var STR = {
     "offline.export":"Download everything for offline use","offline.preparing":"Preparing…","offline.progress":"{done}/{total} — {label}","offline.zipping":"Compressing the file…","offline.done":"Done — check your browser's downloads.","offline.error":"Export failed.",
     "gate.title":"Unlock 18+ Content",
     "toggle.mature":"18+ Content",
-    "admin.f.mature":"Adult content (18+)",
+    "admin.f.genres":"Genres (optional, more than one allowed)","admin.f.mature":"Adult content (18+)",
     "badge.allages":"All Ages",
     "state.allages":"You're viewing: all-ages content.",
     "state.mature":"You're viewing: all-ages content + 18+ unlocked.",
@@ -324,7 +324,7 @@ var STR = {
     "auth.note":"Nota: la cuenta solo guarda tu preferencia de idioma para este sitio, localmente en este navegador.",
     "err.userExists":"El nombre de usuario ya existe.","err.badLogin":"Credenciales no válidas.","err.required":"Completa todos los campos.",
     "admin.deleted":"eliminado","admin.confirmDelete":"¿Eliminar este título del índice?",
-    "filter.all":"Todos",
+    "filter.all":"Todos","filter.allGenres":"Todos los géneros","filter.new":"Novedades",
     "maintenance.text":"Sitio en mantenimiento — estamos actualizando el archivo, vuelve pronto.",
     "maintenance.toggle":"Modo mantenimiento (visible para todos los visitantes)","maintenance.scheduleTitle":"Lo que ven los visitantes","maintenance.scheduleHint":"Explica por qué el sitio está en pausa y por cuánto tiempo — se guarda aunque el interruptor esté apagado, así puedes prepararlo antes.","maintenance.reasonLabel":"Motivo (en qué estás trabajando)","maintenance.reasonPh":"Ej. Subiendo nuevos capítulos y arreglando el lector de páginas.","maintenance.startLabel":"Inicio previsto","maintenance.endLabel":"Fin previsto","maintenance.saveSchedule":"Guardar detalles","maintenance.scheduleSaved":"Guardado.","maintenance.fromLabel":"Desde las","maintenance.toLabel":"hasta las",
     "night.toggle":"Cierre nocturno automático","night.hint":"El sitio se bloquea solo cada noche en esta franja horaria, para no permanecer abierto innecesariamente, y se reabre solo por la mañana.","night.startLabel":"Cierra a las","night.endLabel":"Reabre a las","night.lockTitle":"Buenas noches","night.lockText":"El archivo cierra de noche y reabre por la mañana.","night.reopensAt":"Reabre a las {time}",
@@ -332,7 +332,7 @@ var STR = {
     "offline.export":"Descargar todo para uso sin conexión","offline.preparing":"Preparando…","offline.progress":"{done}/{total} — {label}","offline.zipping":"Comprimiendo el archivo…","offline.done":"Listo — revisa las descargas de tu navegador.","offline.error":"Error al exportar.",
     "gate.title":"Desbloquear Contenido 18+",
     "toggle.mature":"Contenido 18+",
-    "admin.f.mature":"Contenido para adultos (18+)",
+    "admin.f.genres":"Géneros (opcional, se permite más de uno)","admin.f.mature":"Contenido para adultos (18+)",
     "badge.allages":"Todos",
     "state.allages":"Estás viendo: contenido para todos los públicos.",
     "state.mature":"Estás viendo: contenido para todos + 18+ desbloqueado.",
@@ -447,7 +447,7 @@ var STR = {
     "auth.note":"Note : le compte enregistre uniquement votre préférence de langue pour ce site, localement sur ce navigateur.",
     "err.userExists":"Nom d'utilisateur déjà utilisé.","err.badLogin":"Identifiants invalides.","err.required":"Remplissez tous les champs.",
     "admin.deleted":"supprimé","admin.confirmDelete":"Supprimer ce titre de l'index ?",
-    "filter.all":"Tous",
+    "filter.all":"Tous","filter.allGenres":"Tous les genres","filter.new":"Nouveautés",
     "maintenance.text":"Site en maintenance — nous mettons à jour l'archive, revenez bientôt.",
     "maintenance.toggle":"Mode maintenance (visible pour tous les visiteurs)","maintenance.scheduleTitle":"Ce que voient les visiteurs","maintenance.scheduleHint":"Expliquez pourquoi le site est en pause et pour combien de temps — enregistré même si l'interrupteur est éteint, pour tout préparer à l'avance.","maintenance.reasonLabel":"Motif (sur quoi vous travaillez)","maintenance.reasonPh":"Ex. Ajout de nouveaux chapitres et correction du lecteur de pages.","maintenance.startLabel":"Début prévu","maintenance.endLabel":"Fin prévue","maintenance.saveSchedule":"Enregistrer les détails","maintenance.scheduleSaved":"Enregistré.","maintenance.fromLabel":"De","maintenance.toLabel":"à",
     "night.toggle":"Fermeture nocturne automatique","night.hint":"Le site se verrouille automatiquement chaque nuit pendant cette plage horaire, pour ne pas rester ouvert inutilement, et se rouvre seul le matin.","night.startLabel":"Ferme à","night.endLabel":"Rouvre à","night.lockTitle":"Bonne nuit","night.lockText":"L'archive ferme la nuit et rouvre le matin.","night.reopensAt":"Rouvre à {time}",
@@ -455,7 +455,7 @@ var STR = {
     "offline.export":"Tout télécharger pour un usage hors ligne","offline.preparing":"Préparation…","offline.progress":"{done}/{total} — {label}","offline.zipping":"Compression du fichier…","offline.done":"Terminé — vérifiez les téléchargements de votre navigateur.","offline.error":"Échec de l'exportation.",
     "gate.title":"Débloquer le Contenu 18+",
     "toggle.mature":"Contenu 18+",
-    "admin.f.mature":"Contenu pour adultes (18+)",
+    "admin.f.genres":"Genres (facultatif, plusieurs possibles)","admin.f.mature":"Contenu pour adultes (18+)",
     "badge.allages":"Tout public",
     "state.allages":"Vous voyez : contenu tout public.",
     "state.mature":"Vous voyez : contenu tout public + 18+ débloqué.",
@@ -570,7 +570,7 @@ var STR = {
     "auth.note":"Hinweis: Das Konto speichert nur Ihre Sprachpräferenz für diese Seite, lokal in diesem Browser.",
     "err.userExists":"Benutzername bereits vergeben.","err.badLogin":"Ungültige Anmeldedaten.","err.required":"Bitte alle Felder ausfüllen.",
     "admin.deleted":"entfernt","admin.confirmDelete":"Diesen Titel aus dem Index entfernen?",
-    "filter.all":"Alle",
+    "filter.all":"Alle","filter.allGenres":"Alle Genres","filter.new":"Neu",
     "maintenance.text":"Seite in Wartung — wir aktualisieren gerade das Archiv, schau bald wieder vorbei.",
     "maintenance.toggle":"Wartungsmodus (für alle Besucher sichtbar)","maintenance.scheduleTitle":"Was Besucher sehen","maintenance.scheduleHint":"Erkläre, warum die Seite pausiert und für wie lange — bleibt gespeichert, auch wenn der Schalter aus ist, damit du im Voraus vorbereiten kannst.","maintenance.reasonLabel":"Grund (woran du arbeitest)","maintenance.reasonPh":"Z. B. Neue Kapitel hochladen und den Seitenleser reparieren.","maintenance.startLabel":"Voraussichtlicher Start","maintenance.endLabel":"Voraussichtliches Ende","maintenance.saveSchedule":"Details speichern","maintenance.scheduleSaved":"Gespeichert.","maintenance.fromLabel":"Von","maintenance.toLabel":"bis",
     "night.toggle":"Automatische Nachtschließung","night.hint":"Die Seite sperrt sich jede Nacht in diesem Zeitfenster automatisch, damit sie nicht unnötig offen bleibt, und öffnet sich morgens von selbst wieder.","night.startLabel":"Schließt um","night.endLabel":"Öffnet wieder um","night.lockTitle":"Gute Nacht","night.lockText":"Das Archiv schließt nachts und öffnet morgens wieder.","night.reopensAt":"Öffnet wieder um {time}",
@@ -578,7 +578,7 @@ var STR = {
     "offline.export":"Alles für Offline-Nutzung herunterladen","offline.preparing":"Vorbereitung…","offline.progress":"{done}/{total} — {label}","offline.zipping":"Datei wird komprimiert…","offline.done":"Fertig — prüfe die Downloads deines Browsers.","offline.error":"Export fehlgeschlagen.",
     "gate.title":"18+ Inhalte freischalten",
     "toggle.mature":"18+ Inhalte",
-    "admin.f.mature":"Inhalt für Erwachsene (18+)",
+    "admin.f.genres":"Genres (optional, mehrere möglich)","admin.f.mature":"Inhalt für Erwachsene (18+)",
     "badge.allages":"Alle",
     "state.allages":"Sie sehen: Inhalte für alle Altersgruppen.",
     "state.mature":"Sie sehen: Inhalte für alle + 18+ freigeschaltet.",
@@ -1906,7 +1906,27 @@ function renderFilters(){
     });
     wrap.appendChild(btn);
   });
+
+  var genreWrap = document.getElementById('catalogGenreFilters');
+  if(genreWrap){
+    genreWrap.innerHTML = '';
+    var gOpts = ['all','new'].concat(GENRE_LIST);
+    gOpts.forEach(function(g){
+      var btn = document.createElement('button');
+      btn.className = 'filter-chip filter-chip-genre' + (activeGenreFilter === g ? ' active' : '');
+      btn.textContent = g === 'all' ? t('filter.allGenres') : (g === 'new' ? t('filter.new') : g);
+      btn.addEventListener('click', function(){
+        activeGenreFilter = g;
+        renderFilters();
+        renderCatalog();
+      });
+      genreWrap.appendChild(btn);
+    });
+  }
 }
+
+var GENRE_LIST = ['Crossover',"Assassin's Creed Infernale",'The Morningstar Royal House','Thriller','Fanny Comics','Horror'];
+var activeGenreFilter = 'all';
 
 var COLLANA_ORDER = ['Lucifer','Lilith','Lucifera','Lucio'];
 
@@ -1921,6 +1941,9 @@ function buildTomeCardHtml(item){
   var coverInner = item.cover_url
     ? '<img class="cover-img" src="'+coverThumbUrl(item.cover_url, 500)+'" data-fallback="'+escapeHtml(item.cover_url)+'" alt="" loading="lazy" decoding="async">'
     : '<span class="init">'+item.character.charAt(0)+'</span>';
+  var genreTags = (item.genres && item.genres.length)
+    ? '<div class="card-idx-genres">'+item.genres.map(function(g){return '<span class="genre-tag">'+escapeHtml(g)+'</span>';}).join('')+'</div>'
+    : '';
   return (
     '<div class="card-idx tome-card" data-character="'+escapeHtml(item.character||'')+'">'+
       '<div class="card-idx-cover'+(soldOut?' sold-out':'')+'">'+coverInner+badge+soldOutBadge+
@@ -1929,6 +1952,7 @@ function buildTomeCardHtml(item){
         '<span class="card-idx-fav'+(isFav?' active':'')+'" data-fav="'+item.id+'">'+(isFav?'♥':'♡')+'</span>'+
       '</div>'+
       '<div class="tome-plaque"><span class="tome-plaque-dot"></span>'+escapeHtml(item.title)+'</div>'+
+      genreTags+
       '<div class="card-idx-body" style="cursor:pointer;" data-open="'+item.id+'">'+
         '<div class="num mono">'+(item.issue||'')+'</div>'+
         '<div class="character">'+item.character+'</div>'+
@@ -1989,6 +2013,12 @@ function renderCatalog(){
   } else if(activeFilter !== 'all'){
     singleShelfMode = true;
     items = items.filter(function(i){return i.character === activeFilter;});
+  }
+  if(activeGenreFilter === 'new'){
+    var cutoff = new Date(Date.now() - 14*24*60*60*1000).toISOString().slice(0,10);
+    items = items.filter(function(i){ return (i.date||'') >= cutoff; });
+  } else if(activeGenreFilter !== 'all'){
+    items = items.filter(function(i){ return (i.genres||[]).indexOf(activeGenreFilter) !== -1; });
   }
   grid.innerHTML = '';
   grid.classList.add('shelves-wrap');
@@ -3359,6 +3389,30 @@ function removeCollabBlock(idx){
 
 var editingItemId = null; // se valorizzato, handleAddEntry() salva una MODIFICA invece di una nuova voce
 
+function renderGenreChecks(){
+  var block = document.getElementById('fGenresBlock');
+  if(!block || block.childElementCount) return;
+  GENRE_LIST.forEach(function(g){
+    var label = document.createElement('label');
+    label.className = 'genre-check';
+    label.innerHTML = '<input type="checkbox" value="'+escapeHtml(g)+'"> '+escapeHtml(g);
+    block.appendChild(label);
+  });
+}
+function getSelectedGenres(){
+  var block = document.getElementById('fGenresBlock');
+  if(!block) return [];
+  return Array.prototype.slice.call(block.querySelectorAll('input:checked')).map(function(el){return el.value;});
+}
+function setSelectedGenres(arr){
+  var block = document.getElementById('fGenresBlock');
+  if(!block) return;
+  arr = arr || [];
+  Array.prototype.forEach.call(block.querySelectorAll('input'), function(el){
+    el.checked = arr.indexOf(el.value) !== -1;
+  });
+}
+
 function openEditTitle(id){
   var item = getCatalog().find(function(x){ return x.id === id; });
   if(!item) return;
@@ -3371,6 +3425,8 @@ function openEditTitle(id){
   document.getElementById('fStock').value = item.stock != null ? item.stock : '';
   document.getElementById('fSynopsis').value = item.synopsis || '';
   document.getElementById('fMature').checked = !!item.mature;
+  renderGenreChecks();
+  setSelectedGenres(item.genres);
   resetCollabBlocks();
   var collabArr = (item.collaborators && item.collaborators.length)
     ? item.collaborators
@@ -3407,6 +3463,8 @@ function cancelEditTitle(){
   resetCollabBlocks();
   document.getElementById('fSynopsis').value = '';
   document.getElementById('fMature').checked = false;
+  renderGenreChecks();
+  setSelectedGenres([]);
   var btn = document.getElementById('btnAddEntry');
   if(btn){
     btn.textContent = t('admin.add');
@@ -3522,7 +3580,7 @@ function publishSingleDraftNewItem(draftItem){
     price: draftItem.price ? Number(draftItem.price) : null,
     stock: (draftItem.stock !== undefined && draftItem.stock !== '') ? Number(draftItem.stock) : null,
     collaborator_name: null, collaborator_url: null, collaborator_verified: false, collaborators: [],
-    synopsis: draftItem.synopsis, mature: draftItem.mature, pages: [], cover_url: null, pdf_url: null,
+    synopsis: draftItem.synopsis, mature: draftItem.mature, genres: draftItem.genres || [], pages: [], cover_url: null, pdf_url: null,
     created_by: !isAdmin() ? currentUserId() : null,
     synopsis_it: null, synopsis_es: null, synopsis_fr: null, synopsis_de: null
   };
@@ -3568,6 +3626,7 @@ function handleAddEntry(){
   }
   var synopsis = document.getElementById('fSynopsis').value.trim();
   var mature = document.getElementById('fMature').checked;
+  var genres = getSelectedGenres();
   var err = document.getElementById('adminError');
   var status = document.getElementById('pagesUploadStatus');
   err.textContent = '';
@@ -3591,7 +3650,7 @@ function handleAddEntry(){
   if(!isEdit && isDraftModeOn()){
     var draftItem = {
       character: character, title: title, issue: issue, date: date,
-      price: price, stock: stock, synopsis: synopsis, mature: mature, coverDataUrl: null
+      price: price, stock: stock, synopsis: synopsis, mature: mature, genres: genres, coverDataUrl: null
     };
     var afterSave = function(){
       var d = getDraft();
@@ -3604,6 +3663,7 @@ function handleAddEntry(){
       document.getElementById('fStock').value = '';
       document.getElementById('fSynopsis').value = '';
       document.getElementById('fMature').checked = false;
+      setSelectedGenres([]);
       status.textContent = 'Titolo salvato in bozza — non ancora online.';
       renderDraftBar();
     };
@@ -3636,7 +3696,7 @@ function handleAddEntry(){
     collaborator_url: collabList[0] ? collabList[0].url : null,
     collaborator_verified: collabList[0] ? collabList[0].verified : false,
     collaborators: collabList,
-    synopsis: synopsis, mature: mature,
+    synopsis: synopsis, mature: mature, genres: genres,
     pages: existing.pages || [], pages_clean: existing.pages_clean || [],
     pages_watermarked: existing.pages_watermarked, cover_url: existing.cover_url || null,
     pdf_url: existing.pdf_url || null, created_by: existing.created_by || null,
@@ -3653,7 +3713,7 @@ function handleAddEntry(){
     collaborator_url: collabList[0] ? collabList[0].url : null,
     collaborator_verified: collabList[0] ? collabList[0].verified : false,
     collaborators: collabList,
-    synopsis: synopsis, mature: mature, pages: [], cover_url: null, pdf_url: null,
+    synopsis: synopsis, mature: mature, genres: genres, pages: [], cover_url: null, pdf_url: null,
     created_by: !isAdmin() ? currentUserId() : null,
     synopsis_it: null, synopsis_es: null, synopsis_fr: null, synopsis_de: null
   };
@@ -3726,6 +3786,7 @@ function handleAddEntry(){
     resetCollabBlocks();
     document.getElementById('fSynopsis').value = '';
     document.getElementById('fMature').checked = false;
+    setSelectedGenres([]);
     clearPendingPages();
     clearPendingCover();
     clearPendingPdf();

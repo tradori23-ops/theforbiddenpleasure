@@ -444,6 +444,15 @@ body.theme-light .hero-bg::after{
   70%{box-shadow:0 0 0 3px var(--gold-bright);}
   100%{box-shadow:0 0 0 0px transparent;}
 }
+.genre-checks{display:flex;flex-wrap:wrap;gap:8px 14px;}
+.genre-check{display:flex;align-items:center;gap:5px;font-size:13px;cursor:pointer;font-weight:normal;}
+.card-idx-genres{display:flex;flex-wrap:wrap;gap:4px;margin:6px 12px 0;}
+.genre-tag{
+  font-family:'Space Mono',monospace;font-size:8.5px;letter-spacing:0.03em;text-transform:uppercase;
+  color:var(--verdigris);border:1px solid var(--verdigris);padding:2px 6px;
+}
+.catalog-genre-filters{margin-top:10px;}
+.filter-chip-genre{font-size:11px;}
 .top-ranked-row{display:flex;gap:8px;overflow-x:auto;padding:6px 6px 12px 2px;}
 .rank-card{flex:0 0 128px;position:relative;display:flex;align-items:flex-end;cursor:pointer;padding-left:34px;}
 .rank-num{
