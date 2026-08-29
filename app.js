@@ -92,7 +92,7 @@ var STR = {
     "state.mature":"Stai vedendo: contenuti per tutti i pubblici + 18+ sbloccati.",
     "admin.gate.notSignedIn":"Accedi dal pulsante \"Accedi\" in alto per amministrare lo schedario.",
     "admin.gate.notAdmin":"L'account {email} non ha permessi di amministrazione.",
-    "admin.f.price":"Prezzo (EUR, opzionale)",
+    "admin.f.price":"Prezzo (EUR, opzionale)","admin.f.stock":"Copie disponibili (vuoto = illimitate/non in vendita)","stock.soldOut":"TUTTO ESAURITO","stock.left":"copie rimaste","admin.stock.sell":"-1 copia (venduta)","admin.stock.restore":"Ripristina vetrina",
     "pages.label":"Pagine del fumetto (immagini 1:1, tipo carosello) — trascina per riordinare",
     "pages.uploading":"Caricamento pagina {n} di {total}…","pages.uploadError":"Caricamento pagine non riuscito. Riprova.",
     "cover.label":"Copertina (immagine di anteprima nello schedario)","cover.uploading":"Caricamento copertina…",
@@ -215,7 +215,7 @@ var STR = {
     "state.mature":"You're viewing: all-ages content + 18+ unlocked.",
     "admin.gate.notSignedIn":"Sign in from the \"Sign in\" button above to administer the index.",
     "admin.gate.notAdmin":"The account {email} doesn't have admin permissions.",
-    "admin.f.price":"Price (EUR, optional)",
+    "admin.f.price":"Price (EUR, optional)","admin.f.stock":"Copies available (empty = unlimited/not for sale)","stock.soldOut":"SOLD OUT","stock.left":"copies left","admin.stock.sell":"-1 copy (sold)","admin.stock.restore":"Restock",
     "pages.label":"Comic pages (1:1 images, carousel-style) — drag to reorder",
     "pages.uploading":"Uploading page {n} of {total}…","pages.uploadError":"Page upload failed. Try again.",
     "cover.label":"Cover (preview image in the catalog)","cover.uploading":"Uploading cover…",
@@ -338,7 +338,7 @@ var STR = {
     "state.mature":"Estás viendo: contenido para todos + 18+ desbloqueado.",
     "admin.gate.notSignedIn":"Accede desde el botón \"Acceder\" arriba para administrar el índice.",
     "admin.gate.notAdmin":"La cuenta {email} no tiene permisos de administrador.",
-    "admin.f.price":"Precio (EUR, opcional)",
+    "admin.f.price":"Precio (EUR, opcional)","admin.f.stock":"Copias disponibles (vacío = ilimitadas/no en venta)","stock.soldOut":"AGOTADO","stock.left":"copias restantes","admin.stock.sell":"-1 copia (vendida)","admin.stock.restore":"Reponer",
     "pages.label":"Páginas del cómic (imágenes 1:1, tipo carrusel) — arrastra para reordenar",
     "pages.uploading":"Subiendo página {n} de {total}…","pages.uploadError":"Error al subir las páginas. Inténtalo de nuevo.",
     "cover.label":"Portada (imagen de vista previa en el catálogo)","cover.uploading":"Subiendo portada…",
@@ -461,7 +461,7 @@ var STR = {
     "state.mature":"Vous voyez : contenu tout public + 18+ débloqué.",
     "admin.gate.notSignedIn":"Connectez-vous via le bouton \"Connexion\" en haut pour administrer l'index.",
     "admin.gate.notAdmin":"Le compte {email} n'a pas les droits d'administration.",
-    "admin.f.price":"Prix (EUR, facultatif)",
+    "admin.f.price":"Prix (EUR, facultatif)","admin.f.stock":"Exemplaires disponibles (vide = illimité/pas en vente)","stock.soldOut":"ÉPUISÉ","stock.left":"exemplaires restants","admin.stock.sell":"-1 exemplaire (vendu)","admin.stock.restore":"Réapprovisionner",
     "pages.label":"Pages de la BD (images 1:1, type carrousel) — glissez pour réorganiser",
     "pages.uploading":"Envoi de la page {n} sur {total}…","pages.uploadError":"Échec de l'envoi des pages. Réessayez.",
     "cover.label":"Couverture (image d'aperçu dans le catalogue)","cover.uploading":"Envoi de la couverture…",
@@ -584,7 +584,7 @@ var STR = {
     "state.mature":"Sie sehen: Inhalte für alle + 18+ freigeschaltet.",
     "admin.gate.notSignedIn":"Melden Sie sich oben über \"Anmelden\" an, um den Index zu verwalten.",
     "admin.gate.notAdmin":"Das Konto {email} hat keine Admin-Rechte.",
-    "admin.f.price":"Preis (EUR, optional)",
+    "admin.f.price":"Preis (EUR, optional)","admin.f.stock":"Verfügbare Exemplare (leer = unbegrenzt/nicht verkäuflich)","stock.soldOut":"AUSVERKAUFT","stock.left":"Exemplare übrig","admin.stock.sell":"-1 Exemplar (verkauft)","admin.stock.restore":"Wieder auffüllen",
     "pages.label":"Comicseiten (1:1-Bilder, Karussell-Stil) — zum Sortieren ziehen",
     "pages.uploading":"Lade Seite {n} von {total} hoch…","pages.uploadError":"Hochladen der Seiten fehlgeschlagen. Erneut versuchen.",
     "cover.label":"Cover (Vorschaubild im Katalog)","cover.uploading":"Cover wird hochgeladen…",
@@ -1913,12 +1913,16 @@ function renderCatalog(){
     card.setAttribute('data-character', item.character || '');
     var badge = item.mature ? '<span class="mature">18+</span>' : '<span class="allages">'+t('badge.allages')+'</span>';
     var isFav = favoriteIds.has(item.id);
+    var hasStock = item.stock != null;
+    var soldOut = hasStock && item.stock <= 0;
+    var soldOutBadge = soldOut ? '<span class="sold-out-badge">'+t('stock.soldOut')+'</span>' : '';
+    var stockTxt = hasStock && !soldOut ? '<span class="card-idx-stock">'+item.stock+' '+t('stock.left')+'</span>' : '';
     var priceTxt = item.price ? '<span class="card-idx-price">€'+Number(item.price).toFixed(2)+'</span>' : '';
     var coverInner = item.cover_url
       ? '<img class="cover-img" src="'+coverThumbUrl(item.cover_url, 500)+'" data-fallback="'+escapeHtml(item.cover_url)+'" alt="" loading="lazy" decoding="async">'
       : '<span class="init">'+item.character.charAt(0)+'</span>';
     card.innerHTML =
-      '<div class="card-idx-cover">'+coverInner+badge+
+      '<div class="card-idx-cover'+(soldOut?' sold-out':'')+'">'+coverInner+badge+soldOutBadge+
         '<span class="card-idx-fav'+(isFav?' active':'')+'" data-fav="'+item.id+'">'+(isFav?'♥':'♡')+'</span>'+
       '</div>'+
       '<div class="card-idx-body" style="cursor:pointer;" data-open="'+item.id+'">'+
@@ -1927,7 +1931,7 @@ function renderCatalog(){
         '<div class="character">'+item.character+'</div>'+
         '<div class="synopsis">'+escapeHtml(synopsisForCurrentLang(item))+'</div>'+
         '<button type="button" class="synopsis-toggle hidden" data-toggle-synopsis>'+t('card.readMore')+'</button>'+
-        '<div class="meta-row"><span>'+(item.date||'')+'</span>'+priceTxt+'</div>'+
+        '<div class="meta-row"><span>'+(item.date||'')+'</span>'+priceTxt+stockTxt+'</div>'+
         '<div class="card-idx-engagement">'+(item.view_count||0)+' '+t('stats.views')+' · '+(item.comment_count||0)+' '+t('stats.comments')+'</div>'+
       '</div>';
     card.querySelector('[data-fav]').addEventListener('click', function(e){
@@ -2578,6 +2582,12 @@ function renderAdminList(){
           coverSrc: draftCoverUrl
         })
       : '';
+    var hasStock = item.stock != null;
+    var stockControls = hasStock
+      ? '<span class="mono stock-admin-tag">'+item.stock+' '+t('stock.left')+'</span>'+
+        '<button class="btn btn-sm btn-ghost" data-sell-one="'+item.id+'" '+(item.stock<=0?'disabled':'')+'>'+t('admin.stock.sell')+'</button>'+
+        '<button class="btn btn-sm btn-ghost" data-restock="'+item.id+'">'+t('admin.stock.restore')+'</button>'
+      : '';
     row.innerHTML =
       draftPreview +
       '<div class="info"><div class="t">'+escapeHtml(item.title)+'</div>'+
@@ -2591,9 +2601,43 @@ function renderAdminList(){
         (hasPages ? '<button class="btn btn-sm btn-ghost" data-rewatermark-for="'+item.id+'">'+t('rewatermark.button')+'</button>' : '') +
         (hasPages && item.pages_watermarked ? '<span class="watermark-done-tag">✓ '+t('rewatermark.done')+'</span>' : '') +
         '<button class="btn btn-sm btn-ghost" data-toggle-permanent="'+item.id+'">'+(isPermanent ? t('catalog.makeTemporary') : t('catalog.makePermanent'))+'</button>'+
+        stockControls +
         '<button class="btn btn-sm btn-ghost" data-edit="'+item.id+'">'+t('admin.edit')+'</button>'+
         '<button class="btn btn-sm btn-ghost" data-del="'+item.id+'">×</button>'+
       '</div>';
+    if(hasStock){
+      row.querySelector('[data-sell-one]').addEventListener('click', function(){
+        var session = getSession();
+        var newStock = Math.max(0, item.stock - 1);
+        fetch(SUPABASE_URL + '/rest/v1/catalog?id=eq.' + encodeURIComponent(item.id), {
+          method:'PATCH',
+          headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json', 'Prefer':'return=representation' },
+          body: JSON.stringify({stock: newStock})
+        }).then(function(r){
+          if(!r.ok) throw new Error('stock update failed: ' + r.status);
+          item.stock = newStock;
+          saveCatalogLocal(getCatalog());
+          renderCatalog(); renderAdminList();
+        }).catch(function(err){ console.warn('Sell-one failed:', err); });
+      });
+      row.querySelector('[data-restock]').addEventListener('click', function(){
+        var input = window.prompt(t('admin.f.stock'), String(item.stock));
+        if(input === null) return;
+        var n = parseInt(input, 10);
+        if(isNaN(n) || n < 0) return;
+        var session = getSession();
+        fetch(SUPABASE_URL + '/rest/v1/catalog?id=eq.' + encodeURIComponent(item.id), {
+          method:'PATCH',
+          headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json', 'Prefer':'return=representation' },
+          body: JSON.stringify({stock: n})
+        }).then(function(r){
+          if(!r.ok) throw new Error('stock update failed: ' + r.status);
+          item.stock = n;
+          saveCatalogLocal(getCatalog());
+          renderCatalog(); renderAdminList();
+        }).catch(function(err){ console.warn('Restock failed:', err); });
+      });
+    }
     row.querySelector('[data-edit]').addEventListener('click', function(){
       openEditTitle(item.id);
     });
@@ -3235,6 +3279,7 @@ function openEditTitle(id){
   document.getElementById('fIssue').value = item.issue || '';
   document.getElementById('fDate').value = item.date || '';
   document.getElementById('fPrice').value = item.price != null ? item.price : '';
+  document.getElementById('fStock').value = item.stock != null ? item.stock : '';
   document.getElementById('fSynopsis').value = item.synopsis || '';
   document.getElementById('fMature').checked = !!item.mature;
   resetCollabBlocks();
@@ -3269,6 +3314,7 @@ function cancelEditTitle(){
   document.getElementById('fIssue').value = '';
   document.getElementById('fDate').value = '';
   document.getElementById('fPrice').value = '';
+  document.getElementById('fStock').value = '';
   resetCollabBlocks();
   document.getElementById('fSynopsis').value = '';
   document.getElementById('fMature').checked = false;
@@ -3385,6 +3431,7 @@ function publishSingleDraftNewItem(draftItem){
     character: draftItem.character, title: draftItem.title, issue: draftItem.issue,
     date: draftItem.date || new Date().toISOString().slice(0,10),
     price: draftItem.price ? Number(draftItem.price) : null,
+    stock: (draftItem.stock !== undefined && draftItem.stock !== '') ? Number(draftItem.stock) : null,
     collaborator_name: null, collaborator_url: null, collaborator_verified: false, collaborators: [],
     synopsis: draftItem.synopsis, mature: draftItem.mature, pages: [], cover_url: null, pdf_url: null,
     created_by: !isAdmin() ? currentUserId() : null,
@@ -3415,6 +3462,7 @@ function handleAddEntry(){
   var issue = document.getElementById('fIssue').value.trim();
   var date = document.getElementById('fDate').value;
   var price = document.getElementById('fPrice').value;
+  var stock = document.getElementById('fStock').value;
   var collabList = [];
   for(var ci = 1; ci <= 6; ci++){
     var cnEl = document.getElementById('fCollabName' + ci);
@@ -3454,7 +3502,7 @@ function handleAddEntry(){
   if(!isEdit && isDraftModeOn()){
     var draftItem = {
       character: character, title: title, issue: issue, date: date,
-      price: price, synopsis: synopsis, mature: mature, coverDataUrl: null
+      price: price, stock: stock, synopsis: synopsis, mature: mature, coverDataUrl: null
     };
     var afterSave = function(){
       var d = getDraft();
@@ -3464,6 +3512,7 @@ function handleAddEntry(){
       document.getElementById('fIssue').value = '';
       document.getElementById('fDate').value = '';
       document.getElementById('fPrice').value = '';
+      document.getElementById('fStock').value = '';
       document.getElementById('fSynopsis').value = '';
       document.getElementById('fMature').checked = false;
       status.textContent = 'Titolo salvato in bozza — non ancora online.';
@@ -3493,6 +3542,7 @@ function handleAddEntry(){
     character: character, title: title, issue: issue,
     date: date || existing.date || new Date().toISOString().slice(0,10),
     price: price ? Number(price) : null,
+    stock: stock !== '' ? Number(stock) : null,
     collaborator_name: collabList[0] ? collabList[0].name : null,
     collaborator_url: collabList[0] ? collabList[0].url : null,
     collaborator_verified: collabList[0] ? collabList[0].verified : false,
@@ -3509,6 +3559,7 @@ function handleAddEntry(){
     character: character, title: title, issue: issue,
     date: date || new Date().toISOString().slice(0,10),
     price: price ? Number(price) : null,
+    stock: stock !== '' ? Number(stock) : null,
     collaborator_name: collabList[0] ? collabList[0].name : null,
     collaborator_url: collabList[0] ? collabList[0].url : null,
     collaborator_verified: collabList[0] ? collabList[0].verified : false,
@@ -3582,6 +3633,7 @@ function handleAddEntry(){
     document.getElementById('fIssue').value = '';
     document.getElementById('fDate').value = '';
     document.getElementById('fPrice').value = '';
+    document.getElementById('fStock').value = '';
     resetCollabBlocks();
     document.getElementById('fSynopsis').value = '';
     document.getElementById('fMature').checked = false;
