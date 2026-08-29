@@ -2009,11 +2009,28 @@ function renderFilters(){
 }
 
 function genreMonogram(g){
-  var m = { 'Crossover':'X', "Assassin's Creed Infernale":'AC', 'The Morningstar Royal House':'M', 'Thriller':'T', 'Fanny Comics':'F', 'Horror':'H' };
+  var m = { 'Crossover':'X', "Assassin's Creed Infernale":'AC', 'The Morningstar Royal House':'M', 'Thriller':'T', 'Funny Comics':'F', 'Horror':'H' };
   return m[g] || g.charAt(0);
 }
+var GENRE_BANNERS = {
+  'Crossover':'genre-banner-crossover.webp',
+  "Assassin's Creed Infernale":'genre-banner-assassins-creed-infernale.webp',
+  'The Morningstar Royal House':'genre-banner-morningstar-royal-house.webp',
+  'Thriller':'genre-banner-thriller.webp',
+  'Funny Comics':'genre-banner-funny-comics.webp',
+  'Horror':'genre-banner-horror.webp'
+};
+function renderGenreBanner(){
+  var el = document.getElementById('genreBanner');
+  if(!el) return;
+  var file = GENRE_BANNERS[activeGenreFilter];
+  if(!file){ el.classList.add('hidden'); return; }
+  el.style.backgroundImage = 'url(' + file + ')';
+  el.querySelector('.genre-banner-label').textContent = activeGenreFilter;
+  el.classList.remove('hidden');
+}
 
-var GENRE_LIST = ['Crossover',"Assassin's Creed Infernale",'The Morningstar Royal House','Thriller','Fanny Comics','Horror'];
+var GENRE_LIST = ['Crossover',"Assassin's Creed Infernale",'The Morningstar Royal House','Thriller','Funny Comics','Horror'];
 var activeGenreFilter = 'all';
 
 var COLLANA_ORDER = ['Lucifer','Lilith','Lucifera','Lucio'];
@@ -2076,6 +2093,7 @@ function wireTomeCard(card, item){
 
 function renderCatalog(){
   renderFilters();
+  renderGenreBanner();
   updateMatureStateLabel();
   renderCollabBanner();
   renderTopRanked();
