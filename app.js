@@ -42,7 +42,7 @@ var STR = {
     "announcements.publish":"Pubblica annuncio","announcements.publishError":"Pubblicazione non riuscita. Riprova.",
     "announcements.existingTitle":"Annunci pubblicati","announcements.empty":"Nessun annuncio ancora.",
     "announcements.statusPublished":"Pubblicato","announcements.statusHidden":"Nascosto","announcements.hide":"Nascondi","announcements.show":"Mostra",
-    "latest.eyebrow":"Appena Pubblicato","latest.title":"Ultimi Capitoli","latest.newTag":"Nuovo",
+    "topRanked.eyebrow":"Il favore dei lettori","topRanked.title":"I Più Letti","latest.eyebrow":"Appena Pubblicato","latest.title":"Ultimi Capitoli","latest.newTag":"Nuovo",
     "profile.title":"Il mio profilo","profile.sub":"Visibile agli altri quando commenti",
     "profile.displayName":"Nome visibile","profile.bio":"Bio (opzionale)","profile.favChars":"Personaggi preferiti",
     "profile.avatarHd":"Foto profilo HD (opzionale)","profile.avatarHdHint":"Mostrata a piena risoluzione a chi tocca il tuo avatar. Se non la carichi, si vede la foto normale.",
@@ -165,7 +165,7 @@ var STR = {
     "announcements.publish":"Publish announcement","announcements.publishError":"Publishing failed. Try again.",
     "announcements.existingTitle":"Published announcements","announcements.empty":"No announcements yet.",
     "announcements.statusPublished":"Published","announcements.statusHidden":"Hidden","announcements.hide":"Hide","announcements.show":"Show",
-    "latest.eyebrow":"Just Released","latest.title":"Latest Chapters","latest.newTag":"New",
+    "topRanked.eyebrow":"Reader Favorites","topRanked.title":"Most Read","latest.eyebrow":"Just Released","latest.title":"Latest Chapters","latest.newTag":"New",
     "profile.title":"My profile","profile.sub":"Visible to others when you comment",
     "profile.displayName":"Display name","profile.bio":"Bio (optional)","profile.favChars":"Favorite characters",
     "profile.avatarHd":"HD profile photo (optional)","profile.avatarHdHint":"Shown at full resolution to whoever taps your avatar. If you don't upload one, your regular photo is shown.",
@@ -288,7 +288,7 @@ var STR = {
     "announcements.publish":"Publicar anuncio","announcements.publishError":"Error al publicar. Inténtalo de nuevo.",
     "announcements.existingTitle":"Anuncios publicados","announcements.empty":"Aún no hay anuncios.",
     "announcements.statusPublished":"Publicado","announcements.statusHidden":"Oculto","announcements.hide":"Ocultar","announcements.show":"Mostrar",
-    "latest.eyebrow":"Recién Publicado","latest.title":"Últimos Capítulos","latest.newTag":"Nuevo",
+    "topRanked.eyebrow":"El favor de los lectores","topRanked.title":"Los Más Leídos","latest.eyebrow":"Recién Publicado","latest.title":"Últimos Capítulos","latest.newTag":"Nuevo",
     "profile.title":"Mi perfil","profile.sub":"Visible para otros cuando comentas",
     "profile.displayName":"Nombre visible","profile.bio":"Bio (opcional)","profile.favChars":"Personajes favoritos",
     "profile.avatarHd":"Foto de perfil HD (opcional)","profile.avatarHdHint":"Se muestra a resolución completa a quien toque tu avatar. Si no la subes, se ve la foto normal.",
@@ -411,7 +411,7 @@ var STR = {
     "announcements.publish":"Publier l'annonce","announcements.publishError":"Échec de la publication. Réessayez.",
     "announcements.existingTitle":"Annonces publiées","announcements.empty":"Aucune annonce pour le moment.",
     "announcements.statusPublished":"Publiée","announcements.statusHidden":"Masquée","announcements.hide":"Masquer","announcements.show":"Afficher",
-    "latest.eyebrow":"Vient de Paraître","latest.title":"Derniers Chapitres","latest.newTag":"Nouveau",
+    "topRanked.eyebrow":"La faveur des lecteurs","topRanked.title":"Les Plus Lus","latest.eyebrow":"Vient de Paraître","latest.title":"Derniers Chapitres","latest.newTag":"Nouveau",
     "profile.title":"Mon profil","profile.sub":"Visible par les autres quand vous commentez",
     "profile.displayName":"Nom affiché","profile.bio":"Bio (facultatif)","profile.favChars":"Personnages préférés",
     "profile.avatarHd":"Photo de profil HD (facultatif)","profile.avatarHdHint":"Affichée en pleine résolution à quiconque touche votre avatar. Si vous n'en téléchargez pas, la photo normale s'affiche.",
@@ -534,7 +534,7 @@ var STR = {
     "announcements.publish":"Ankündigung veröffentlichen","announcements.publishError":"Veröffentlichung fehlgeschlagen. Erneut versuchen.",
     "announcements.existingTitle":"Veröffentlichte Ankündigungen","announcements.empty":"Noch keine Ankündigungen.",
     "announcements.statusPublished":"Veröffentlicht","announcements.statusHidden":"Verborgen","announcements.hide":"Verbergen","announcements.show":"Anzeigen",
-    "latest.eyebrow":"Gerade Erschienen","latest.title":"Neueste Kapitel","latest.newTag":"Neu",
+    "topRanked.eyebrow":"Die Gunst der Leser","topRanked.title":"Meistgelesen","latest.eyebrow":"Gerade Erschienen","latest.title":"Neueste Kapitel","latest.newTag":"Neu",
     "profile.title":"Mein Profil","profile.sub":"Für andere sichtbar, wenn du kommentierst",
     "profile.displayName":"Anzeigename","profile.bio":"Bio (optional)","profile.favChars":"Lieblingscharaktere",
     "profile.avatarHd":"HD-Profilbild (optional)","profile.avatarHdHint":"Wird in voller Auflösung angezeigt, wenn jemand auf dein Avatar tippt. Wenn du keins hochlädst, wird das normale Foto angezeigt.",
@@ -1737,6 +1737,35 @@ function exportEverythingOffline(){
   });
 }
 
+/* ============ TOP RANKED (homepage, public — auto from catalog, by total views) ============ */
+function renderTopRanked(){
+  var section = document.getElementById('topRankedSection');
+  var grid = document.getElementById('topRankedGrid');
+  if(!section || !grid) return;
+  var items = getCatalog();
+  if(!matureVisible){
+    items = items.filter(function(i){ return !i.mature; });
+  }
+  items = items.slice().sort(function(a,b){ return (b.view_count||0) - (a.view_count||0); }).slice(0, 10);
+  grid.innerHTML = '';
+  if(items.length === 0){ section.classList.add('hidden'); return; }
+  section.classList.remove('hidden');
+  items.forEach(function(item, idx){
+    var rank = document.createElement('div');
+    rank.className = 'rank-card';
+    var coverInner = item.cover_url
+      ? '<img src="' + coverThumbUrl(item.cover_url, 400) + '" data-fallback="' + escapeHtml(item.cover_url) + '" alt="" loading="lazy" decoding="async">'
+      : '<span class="init">' + item.character.charAt(0) + '</span>';
+    rank.innerHTML =
+      '<div class="rank-num mono">' + (idx+1) + '</div>' +
+      '<div class="rank-card-cover">' + coverInner + '</div>' +
+      '<div class="rank-card-body"><h5>' + escapeHtml(item.title) + '</h5><div class="character">' + item.character + '</div></div>';
+    rank.addEventListener('click', function(){ openTitleModal(item); });
+    grid.appendChild(rank);
+    attachCoverSignature(rank.querySelector('.rank-card-cover'), item);
+  });
+}
+
 /* ============ LATEST CHAPTERS (homepage, public — auto from catalog) ============ */
 function renderLatestChapters(){
   var section = document.getElementById('latestSection');
@@ -1937,6 +1966,7 @@ function renderCatalog(){
   renderFilters();
   updateMatureStateLabel();
   renderCollabBanner();
+  renderTopRanked();
   renderLatestChapters();
   var grid = document.getElementById('catalogGrid');
   if(!grid) return;
