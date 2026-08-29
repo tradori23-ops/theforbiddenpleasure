@@ -27,6 +27,11 @@
         <div class="chat-sidebar-header">
           <a href="index.html" class="chat-sidebar-home" aria-label="Torna al sito" title="Torna al sito">←</a>
           <span data-i18n="community.tabDms">Messaggi privati</span>
+          <button type="button" class="chat-new-message-btn" id="btnNewMessage" data-i18n="chat.newMessage">+ Nuovo</button>
+        </div>
+        <div class="chat-new-message-panel hidden" id="newMessagePanel">
+          <input type="text" id="newMessageSearch" data-i18n-placeholder="community.searchFriendsPh" placeholder="Nome utente…">
+          <div class="chat-new-message-list" id="newMessageList"></div>
         </div>
         <div class="chat-sidebar-list" id="chatSidebarList"></div>
       </div>

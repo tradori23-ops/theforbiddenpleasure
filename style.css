@@ -1294,6 +1294,25 @@ body.chat-fullscreen .chat-page::after{ display:none; }
   letter-spacing:0.03em;border-bottom:1px solid rgba(201,162,77,0.3);flex-shrink:0;
   display:flex;align-items:center;gap:12px;
 }
+.chat-new-message-btn{
+  margin-left:auto;background:none;border:1px solid var(--gold);color:var(--gold-bright);
+  font-family:'Space Mono',monospace;font-size:11px;padding:6px 10px;cursor:pointer;flex-shrink:0;
+}
+.chat-new-message-btn:hover{background:rgba(201,162,77,0.12);}
+.chat-new-message-panel{
+  border-bottom:1px solid rgba(201,162,77,0.3);padding:12px 18px;flex-shrink:0;
+  max-height:260px;display:flex;flex-direction:column;gap:8px;
+}
+.chat-new-message-panel input{
+  width:100%;box-sizing:border-box;padding:8px 10px;background:var(--void);
+  border:1px solid var(--line);color:var(--parchment);font-family:'Crimson Pro',serif;font-size:14px;
+}
+.chat-new-message-list{overflow-y:auto;max-height:190px;display:flex;flex-direction:column;}
+.chat-new-message-row{
+  background:none;border:none;text-align:left;padding:9px 6px;cursor:pointer;
+  color:var(--parchment);font-family:'Crimson Pro',serif;font-size:14px;border-bottom:1px solid rgba(201,162,77,0.12);
+}
+.chat-new-message-row:hover{color:var(--gold-bright);}
 .chat-sidebar-home{
   color:var(--gold-bright);font-size:18px;text-decoration:none;flex-shrink:0;
   width:28px;height:28px;display:flex;align-items:center;justify-content:center;
