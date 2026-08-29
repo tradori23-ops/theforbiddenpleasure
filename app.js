@@ -7616,15 +7616,24 @@ function renderAdminRequests(){
         var verifyBtn = row.querySelector('[data-verify-supporter]');
         if(verifyBtn){
           verifyBtn.addEventListener('click', function(){
+            verifyBtn.disabled = true;
+            var originalText = verifyBtn.textContent;
+            verifyBtn.textContent = '…';
             fetch(SUPABASE_URL + '/rest/v1/verified_supporters', {
               method:'POST',
               headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json', 'Prefer':'resolution=merge-duplicates' },
               body: JSON.stringify({ user_id: req.user_id, note: req.body })
             }).then(function(r){
-              if(!r.ok) throw new Error('verify failed: ' + r.status);
+              if(!r.ok){
+                return r.text().then(function(errText){ throw new Error(r.status + ': ' + errText); });
+              }
               verifyBtn.textContent = '✓ Verificato';
-              verifyBtn.disabled = true;
-            }).catch(function(e){ console.warn('Verify supporter failed:', e); });
+            }).catch(function(e){
+              console.warn('Verify supporter failed:', e);
+              verifyBtn.textContent = originalText;
+              verifyBtn.disabled = false;
+              window.alert('Verifica non riuscita: ' + e.message);
+            });
           });
         }
         list.appendChild(row);
