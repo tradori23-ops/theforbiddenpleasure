@@ -1896,7 +1896,7 @@ function buildTomeCardHtml(item){
     '<div class="card-idx tome-card" data-character="'+escapeHtml(item.character||'')+'">'+
       '<div class="card-idx-cover'+(soldOut?' sold-out':'')+'">'+coverInner+badge+soldOutBadge+
         '<div class="tome-strap" aria-hidden="true"></div>'+
-        '<span class="tome-seal" aria-hidden="true">LM</span>'+
+        '<span class="tome-seal" aria-hidden="true"><img src="logo-sm.webp" alt=""></span>'+
         '<span class="card-idx-fav'+(isFav?' active':'')+'" data-fav="'+item.id+'">'+(isFav?'♥':'♡')+'</span>'+
       '</div>'+
       '<div class="tome-plaque"><span class="tome-plaque-dot"></span>'+escapeHtml(item.title)+'</div>'+
