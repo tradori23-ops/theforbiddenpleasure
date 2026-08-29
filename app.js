@@ -20,7 +20,7 @@ var STR = {
     "characters.eyebrow":"Dossier","characters.title":"I Quattro Sigilli","characters.desc":"Ogni personaggio guida una collana propria, con tono e mitologia distinti.",
     "library.eyebrow":"Schedario","library.title":"Catalogo delle Opere",
     "founder.eyebrow":"Casa Editrice","founder.title":"Il Fondatore","founder.role":"Fondatore & Direttore Editoriale",
-    "support.eyebrow":"Sostieni il Progetto","support.title":"Offrici un caffè (o una torta)","support.desc":"LUX COMICS & MEDUSA COMICS è un progetto indipendente, senza abbonamenti né acquisti obbligatori. Se una storia ti è piaciuta, puoi sostenerla a tua discrezione — quanto vuoi, quando vuoi. Nella causale puoi indicare quale titolo vuoi premiare.","support.paypal":"Dona con PayPal","support.satispay":"Dona con Satispay","support.revolut":"Dona con Revolut","support.note":"Donazione libera e informale a sostegno di un progetto personale — non è un acquisto, non dà diritto a contenuti riservati che già non avresti. Ai collaboratori non è mai richiesto nulla.","support.titleButton":"Sostieni","support.titlePanelHeading":"Sostieni questo titolo","support.priceNote":"Prezzo indicativo: €{price} — oppure quanto vuoi.","support.freeNote":"Compra o dona quello che vuoi, a tua discrezione.","support.payNote":"Scrivi \"{title}\" nella causale/nota del pagamento.",
+    "support.eyebrow":"Sostieni il Progetto","support.title":"Offrici un caffè (o una torta)","support.desc":"LUX COMICS & MEDUSA COMICS è un progetto indipendente, senza abbonamenti né acquisti obbligatori. Se una storia ti è piaciuta, puoi sostenerla a tua discrezione — quanto vuoi, quando vuoi. Nella causale puoi indicare quale titolo vuoi premiare.","support.paypal":"Dona con PayPal","support.satispay":"Dona con Satispay","support.revolut":"Dona con Revolut","support.note":"Donazione libera e informale a sostegno di un progetto personale — non è un acquisto, non dà diritto a contenuti riservati che già non avresti. Ai collaboratori non è mai richiesto nulla.","support.titleButton":"Sostieni","support.titlePanelHeading":"Sostieni questo titolo","support.priceNote":"Prezzo indicativo: €{price} — oppure quanto vuoi.","support.freeNote":"Compra o dona quello che vuoi, a tua discrezione.","support.payNote":"Scrivi \"{title}\" nella causale/nota del pagamento.","support.emailLabel":"Email per ricevere il fumetto","support.emailPlaceholder":"tuo@email.com","support.emailSubmit":"Invia richiesta","support.emailSent":"Ricevuto — te lo spediamo appena confermato il pagamento.","support.emailRequired":"Inserisci un'email valida.",
     "founder.body":"Nox Morningstar ha fondato LUX COMICS & MEDUSA COMICS come rifugio per storie che altrove non troverebbero casa: opere disegnate per un pubblico adulto e consapevole, dove il proibito è materia narrativa, non provocazione fine a sé stessa. Ogni collana — Lucifer, Lilith, Lucifera, Lucio — porta la sua firma sotto forma di sigillo, garanzia di un'unica visione editoriale dietro voci diverse.",
     "admin.eyebrow":"Area Riservata","admin.title":"Amministrazione Schedario",
     "admin.noticeLabel":"Stato —",
@@ -143,7 +143,7 @@ var STR = {
     "characters.eyebrow":"Dossiers","characters.title":"The Four Seals","characters.desc":"Each character leads their own line, with a distinct tone and mythology.",
     "library.eyebrow":"Index","library.title":"Catalog of Works",
     "founder.eyebrow":"Publishing House","founder.title":"The Founder","founder.role":"Founder & Editorial Director",
-    "support.eyebrow":"Support the Project","support.title":"Buy us a coffee (or a cake)","support.desc":"LUX COMICS & MEDUSA COMICS is an independent project, with no subscriptions or mandatory purchases. If you enjoyed a story, you can support it at your discretion — whatever amount, whenever you like. You can mention which title you'd like to reward in the payment note.","support.paypal":"Donate via PayPal","support.satispay":"Donate via Satispay","support.revolut":"Donate via Revolut","support.note":"A free, informal donation to support a personal project — not a purchase, and it doesn't unlock content you wouldn't already have. Collaborators are never asked for anything.","support.titleButton":"Support","support.titlePanelHeading":"Support this title","support.priceNote":"Suggested price: €{price} — or whatever you like.","support.freeNote":"Buy or donate whatever you like, at your discretion.","support.payNote":"Write \"{title}\" in the payment note.",
+    "support.eyebrow":"Support the Project","support.title":"Buy us a coffee (or a cake)","support.desc":"LUX COMICS & MEDUSA COMICS is an independent project, with no subscriptions or mandatory purchases. If you enjoyed a story, you can support it at your discretion — whatever amount, whenever you like. You can mention which title you'd like to reward in the payment note.","support.paypal":"Donate via PayPal","support.satispay":"Donate via Satispay","support.revolut":"Donate via Revolut","support.note":"A free, informal donation to support a personal project — not a purchase, and it doesn't unlock content you wouldn't already have. Collaborators are never asked for anything.","support.titleButton":"Support","support.titlePanelHeading":"Support this title","support.priceNote":"Suggested price: €{price} — or whatever you like.","support.freeNote":"Buy or donate whatever you like, at your discretion.","support.payNote":"Write \"{title}\" in the payment note.","support.emailLabel":"Email to receive the comic","support.emailPlaceholder":"you@email.com","support.emailSubmit":"Send request","support.emailSent":"Got it — we'll send it once payment is confirmed.","support.emailRequired":"Enter a valid email.",
     "founder.body":"Nox Morningstar founded LUX COMICS & MEDUSA COMICS as a home for stories that would find no shelf elsewhere: works drawn for a mature, consenting audience, where the forbidden is narrative material, not provocation for its own sake. Each line — Lucifer, Lilith, Lucifera, Lucio — carries the founder's signature in the form of a seal, a guarantee of one editorial vision behind different voices.",
     "admin.eyebrow":"Private Area","admin.title":"Index Administration",
     "admin.noticeLabel":"Status —",
@@ -266,7 +266,7 @@ var STR = {
     "characters.eyebrow":"Expedientes","characters.title":"Los Cuatro Sellos","characters.desc":"Cada personaje lidera su propia colección, con tono y mitología distintos.",
     "library.eyebrow":"Índice","library.title":"Catálogo de Obras",
     "founder.eyebrow":"Casa Editorial","founder.title":"El Fundador","founder.role":"Fundador y Director Editorial",
-    "support.eyebrow":"Apoya el Proyecto","support.title":"Invítanos a un café (o una tarta)","support.desc":"LUX COMICS & MEDUSA COMICS es un proyecto independiente, sin suscripciones ni compras obligatorias. Si te ha gustado una historia, puedes apoyarla a tu criterio — la cantidad que quieras, cuando quieras. En el concepto del pago puedes indicar qué título quieres premiar.","support.paypal":"Donar con PayPal","support.satispay":"Donar con Satispay","support.revolut":"Donar con Revolut","support.note":"Donación libre e informal para apoyar un proyecto personal — no es una compra, ni da derecho a contenido reservado que no tendrías ya. A los colaboradores nunca se les pide nada.","support.titleButton":"Apoyar","support.titlePanelHeading":"Apoya este título","support.priceNote":"Precio orientativo: €{price} — o lo que quieras.","support.freeNote":"Compra o dona lo que quieras, a tu criterio.","support.payNote":"Escribe \"{title}\" en el concepto del pago.",
+    "support.eyebrow":"Apoya el Proyecto","support.title":"Invítanos a un café (o una tarta)","support.desc":"LUX COMICS & MEDUSA COMICS es un proyecto independiente, sin suscripciones ni compras obligatorias. Si te ha gustado una historia, puedes apoyarla a tu criterio — la cantidad que quieras, cuando quieras. En el concepto del pago puedes indicar qué título quieres premiar.","support.paypal":"Donar con PayPal","support.satispay":"Donar con Satispay","support.revolut":"Donar con Revolut","support.note":"Donación libre e informal para apoyar un proyecto personal — no es una compra, ni da derecho a contenido reservado que no tendrías ya. A los colaboradores nunca se les pide nada.","support.titleButton":"Apoyar","support.titlePanelHeading":"Apoya este título","support.priceNote":"Precio orientativo: €{price} — o lo que quieras.","support.freeNote":"Compra o dona lo que quieras, a tu criterio.","support.payNote":"Escribe \"{title}\" en el concepto del pago.","support.emailLabel":"Email para recibir el cómic","support.emailPlaceholder":"tu@email.com","support.emailSubmit":"Enviar solicitud","support.emailSent":"Recibido — te lo enviaremos en cuanto se confirme el pago.","support.emailRequired":"Introduce un email válido.",
     "founder.body":"Nox Morningstar fundó LUX COMICS & MEDUSA COMICS como refugio para historias que no tendrían lugar en otro sitio: obras pensadas para un público adulto y consciente, donde lo prohibido es materia narrativa, no provocación gratuita. Cada colección — Lucifer, Lilith, Lucifera, Lucio — lleva su firma en forma de sello, garantía de una única visión editorial detrás de voces distintas.",
     "admin.eyebrow":"Área Privada","admin.title":"Administración del Índice",
     "admin.noticeLabel":"Estado —",
@@ -389,7 +389,7 @@ var STR = {
     "characters.eyebrow":"Dossiers","characters.title":"Les Quatre Sceaux","characters.desc":"Chaque personnage mène sa propre collection, avec un ton et une mythologie distincts.",
     "library.eyebrow":"Index","library.title":"Catalogue des Œuvres",
     "founder.eyebrow":"Maison d'Édition","founder.title":"Le Fondateur","founder.role":"Fondateur & Directeur Éditorial",
-    "support.eyebrow":"Soutenez le Projet","support.title":"Offrez-nous un café (ou un gâteau)","support.desc":"LUX COMICS & MEDUSA COMICS est un projet indépendant, sans abonnement ni achat obligatoire. Si une histoire vous a plu, vous pouvez la soutenir à votre discrétion — le montant que vous voulez, quand vous voulez. Vous pouvez indiquer dans le motif du paiement quel titre vous souhaitez récompenser.","support.paypal":"Faire un don via PayPal","support.satispay":"Faire un don via Satispay","support.revolut":"Faire un don via Revolut","support.note":"Don libre et informel pour soutenir un projet personnel — ce n'est pas un achat, et cela ne donne pas accès à du contenu réservé que vous n'auriez pas déjà. Rien n'est jamais demandé aux collaborateurs.","support.titleButton":"Soutenir","support.titlePanelHeading":"Soutenir ce titre","support.priceNote":"Prix indicatif : €{price} — ou ce que vous voulez.","support.freeNote":"Achetez ou faites un don à votre discrétion.","support.payNote":"Écrivez « {title} » dans le motif du paiement.",
+    "support.eyebrow":"Soutenez le Projet","support.title":"Offrez-nous un café (ou un gâteau)","support.desc":"LUX COMICS & MEDUSA COMICS est un projet indépendant, sans abonnement ni achat obligatoire. Si une histoire vous a plu, vous pouvez la soutenir à votre discrétion — le montant que vous voulez, quand vous voulez. Vous pouvez indiquer dans le motif du paiement quel titre vous souhaitez récompenser.","support.paypal":"Faire un don via PayPal","support.satispay":"Faire un don via Satispay","support.revolut":"Faire un don via Revolut","support.note":"Don libre et informel pour soutenir un projet personnel — ce n'est pas un achat, et cela ne donne pas accès à du contenu réservé que vous n'auriez pas déjà. Rien n'est jamais demandé aux collaborateurs.","support.titleButton":"Soutenir","support.titlePanelHeading":"Soutenir ce titre","support.priceNote":"Prix indicatif : €{price} — ou ce que vous voulez.","support.freeNote":"Achetez ou faites un don à votre discrétion.","support.payNote":"Écrivez « {title} » dans le motif du paiement.","support.emailLabel":"Email pour recevoir la bande dessinée","support.emailPlaceholder":"vous@email.com","support.emailSubmit":"Envoyer la demande","support.emailSent":"Reçu — nous vous l'enverrons dès le paiement confirmé.","support.emailRequired":"Entrez un email valide.",
     "founder.body":"Nox Morningstar a fondé LUX COMICS & MEDUSA COMICS comme refuge pour des histoires qui ne trouveraient leur place nulle part ailleurs : des œuvres pensées pour un public adulte et consentant, où l'interdit est matière narrative, non provocation gratuite. Chaque collection — Lucifer, Lilith, Lucifera, Lucio — porte sa signature sous forme de sceau, garantie d'une seule vision éditoriale derrière des voix différentes.",
     "admin.eyebrow":"Espace Privé","admin.title":"Administration de l'Index",
     "admin.noticeLabel":"État —",
@@ -512,7 +512,7 @@ var STR = {
     "characters.eyebrow":"Dossiers","characters.title":"Die Vier Siegel","characters.desc":"Jede Figur leitet eine eigene Reihe mit eigenem Ton und eigener Mythologie.",
     "library.eyebrow":"Index","library.title":"Werkkatalog",
     "founder.eyebrow":"Verlagshaus","founder.title":"Der Gründer","founder.role":"Gründer & Verlagsleiter",
-    "support.eyebrow":"Unterstütze das Projekt","support.title":"Spendier uns einen Kaffee (oder einen Kuchen)","support.desc":"LUX COMICS & MEDUSA COMICS ist ein unabhängiges Projekt, ohne Abonnements oder Pflichtkäufe. Wenn dir eine Geschichte gefallen hat, kannst du sie nach eigenem Ermessen unterstützen — mit dem Betrag deiner Wahl, wann immer du möchtest. Im Verwendungszweck kannst du angeben, welchen Titel du belohnen möchtest.","support.paypal":"Mit PayPal spenden","support.satispay":"Mit Satispay spenden","support.revolut":"Mit Revolut spenden","support.note":"Freie, informelle Spende zur Unterstützung eines persönlichen Projekts — kein Kauf, und sie schaltet keine exklusiven Inhalte frei, die du nicht ohnehin schon hättest. Von Mitarbeitenden wird nie etwas verlangt.","support.titleButton":"Unterstützen","support.titlePanelHeading":"Diesen Titel unterstützen","support.priceNote":"Richtpreis: €{price} — oder so viel du möchtest.","support.freeNote":"Kaufe oder spende nach eigenem Ermessen.","support.payNote":"Schreibe „{title}“ in den Verwendungszweck.",
+    "support.eyebrow":"Unterstütze das Projekt","support.title":"Spendier uns einen Kaffee (oder einen Kuchen)","support.desc":"LUX COMICS & MEDUSA COMICS ist ein unabhängiges Projekt, ohne Abonnements oder Pflichtkäufe. Wenn dir eine Geschichte gefallen hat, kannst du sie nach eigenem Ermessen unterstützen — mit dem Betrag deiner Wahl, wann immer du möchtest. Im Verwendungszweck kannst du angeben, welchen Titel du belohnen möchtest.","support.paypal":"Mit PayPal spenden","support.satispay":"Mit Satispay spenden","support.revolut":"Mit Revolut spenden","support.note":"Freie, informelle Spende zur Unterstützung eines persönlichen Projekts — kein Kauf, und sie schaltet keine exklusiven Inhalte frei, die du nicht ohnehin schon hättest. Von Mitarbeitenden wird nie etwas verlangt.","support.titleButton":"Unterstützen","support.titlePanelHeading":"Diesen Titel unterstützen","support.priceNote":"Richtpreis: €{price} — oder so viel du möchtest.","support.freeNote":"Kaufe oder spende nach eigenem Ermessen.","support.payNote":"Schreibe \"{title}\" in den Verwendungszweck.","support.emailLabel":"E-Mail für den Comic-Versand","support.emailPlaceholder":"du@email.com","support.emailSubmit":"Anfrage senden","support.emailSent":"Erhalten — wir senden ihn nach Zahlungseingang.","support.emailRequired":"Gib eine gültige E-Mail ein.",
     "founder.body":"Nox Morningstar gründete LUX COMICS & MEDUSA COMICS als Zuflucht für Geschichten, die anderswo keinen Platz fänden: Werke für ein erwachsenes, einwilligendes Publikum, in denen das Verbotene erzählerisches Material ist, keine Provokation um ihrer selbst willen. Jede Reihe — Lucifer, Lilith, Lucifera, Lucio — trägt seine Signatur in Form eines Siegels, Garant einer einzigen redaktionellen Vision hinter unterschiedlichen Stimmen.",
     "admin.eyebrow":"Privater Bereich","admin.title":"Index-Verwaltung",
     "admin.noticeLabel":"Status —",
@@ -6688,6 +6688,7 @@ function openSupportTitlePanel(item){
   if(existing) existing.remove();
 
   var price = item.price ? Number(item.price) : null;
+  var isForSale = item.stock != null; // solo i titoli con scorta impostata sono "in vendita" per davvero
   var paypalUrl = 'https://www.paypal.me/SergioTradori335' + (price ? '/' + price : '');
   var revolutUrl = 'https://revolut.me/sergiov5cx' + (price ? '/' + price + 'EUR' : '');
   var satispayUrl = 'https://web.satispay.com/download/qrcode/S6Y-CON--511524A6-1080-460A-AD28-7FFE827A6AAB';
@@ -6701,6 +6702,20 @@ function openSupportTitlePanel(item){
       '<div style="font-family:\'Space Mono\',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold-bright);margin-bottom:6px;">'+t('support.titlePanelHeading')+'</div>'+
       '<div style="font-size:16px;margin-bottom:4px;">'+escapeHtml(item.title)+'</div>'+
       (price ? '<div style="font-size:13px;color:var(--parchment-dim);margin-bottom:14px;">'+t('support.priceNote').replace('{price}', price.toFixed(2))+'</div>' : '<div style="font-size:13px;color:var(--parchment-dim);margin-bottom:14px;">'+t('support.freeNote')+'</div>')+
+      (isForSale ?
+        '<div style="margin-bottom:16px;">'+
+          '<label style="display:block;font-family:\'Space Mono\',monospace;font-size:10px;color:var(--gold-bright);margin-bottom:6px;">'+t('support.emailLabel')+'</label>'+
+          '<input type="email" id="supportBuyerEmail" placeholder="'+t('support.emailPlaceholder')+'" style="width:100%;box-sizing:border-box;padding:9px 10px;background:var(--void);border:1px solid var(--line);color:var(--parchment);font-family:\'Crimson Pro\',serif;font-size:14px;margin-bottom:6px;">'+
+          '<div id="supportEmailError" style="font-size:11px;color:#d9756b;margin-bottom:6px;"></div>'+
+          '<button type="button" id="supportEmailSubmit" class="btn btn-ghost" style="width:100%;">'+t('support.emailSubmit')+'</button>'+
+          '<div id="supportEmailSent" style="font-size:12px;color:var(--gold-bright);margin-top:8px;"></div>'+
+        '</div>'
+        : (isSignedIn() ?
+          '<div style="margin-bottom:16px;">'+
+            '<button type="button" id="supportDonationRegister" class="btn btn-ghost" style="width:100%;">Registra questo supporto (per lo sblocco pagine pulite)</button>'+
+            '<div id="supportDonationSent" style="font-size:12px;color:var(--gold-bright);margin-top:8px;"></div>'+
+          '</div>'
+          : ''))+
       '<div style="display:flex;flex-direction:column;gap:8px;">'+
         '<a href="'+paypalUrl+'" target="_blank" rel="noopener" class="btn btn-primary">'+t('support.paypal')+'</a>'+
         '<a href="'+satispayUrl+'" target="_blank" rel="noopener" class="btn btn-ghost">'+t('support.satispay')+'</a>'+
@@ -6711,6 +6726,55 @@ function openSupportTitlePanel(item){
   document.body.appendChild(overlay);
   document.getElementById('supportTitleClose').onclick = function(){ overlay.remove(); };
   overlay.addEventListener('click', function(e){ if(e.target === overlay) overlay.remove(); });
+
+  if(isForSale){
+    document.getElementById('supportEmailSubmit').addEventListener('click', function(){
+      var emailField = document.getElementById('supportBuyerEmail');
+      var err = document.getElementById('supportEmailError');
+      var sent = document.getElementById('supportEmailSent');
+      var email = emailField.value.trim();
+      err.textContent = ''; sent.textContent = '';
+      if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+        err.textContent = t('support.emailRequired');
+        return;
+      }
+      var session = getSession();
+      var payload = {
+        author_email: email,
+        body: '[ACQUISTO] "' + item.title + '" (id ' + item.id + ') — spedire a: ' + email
+      };
+      if(session) payload.user_id = currentUserId();
+      var headers = { 'apikey':SUPABASE_ANON_KEY, 'Content-Type':'application/json' };
+      if(session) headers.Authorization = 'Bearer ' + session.access_token;
+      fetch(SUPABASE_URL + '/rest/v1/requests', {
+        method:'POST', headers: headers, body: JSON.stringify(payload)
+      }).then(function(r){
+        if(!r.ok) throw new Error('purchase request failed: ' + r.status);
+        sent.textContent = t('support.emailSent');
+        emailField.value = '';
+      }).catch(function(e){
+        console.warn('Purchase email request failed:', e);
+        err.textContent = t('support.emailRequired');
+      });
+    });
+  } else {
+    var donationBtn = document.getElementById('supportDonationRegister');
+    if(donationBtn){
+      donationBtn.addEventListener('click', function(){
+        var sent = document.getElementById('supportDonationSent');
+        var session = getSession();
+        fetch(SUPABASE_URL + '/rest/v1/requests', {
+          method:'POST',
+          headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
+          body: JSON.stringify({ user_id: currentUserId(), author_email: currentUserEmail(), body: '[DONAZIONE] "' + item.title + '" — supporto libero registrato' })
+        }).then(function(r){
+          if(!r.ok) throw new Error('donation register failed: ' + r.status);
+          sent.textContent = t('support.emailSent');
+          donationBtn.disabled = true;
+        }).catch(function(e){ console.warn('Donation register failed:', e); });
+      });
+    }
+  }
 }
 
 function shareTitle(item){
@@ -7461,6 +7525,9 @@ function renderAdminRequests(){
       list.innerHTML = '';
       if(rows.length === 0){ list.innerHTML = '<p class="form-note">' + t('requests.empty') + '</p>'; return; }
       rows.forEach(function(req){
+        var isPurchase = (req.body || '').indexOf('[ACQUISTO]') === 0;
+        var isDonation = (req.body || '').indexOf('[DONAZIONE]') === 0;
+        var isSupport = isPurchase || isDonation;
         var row = document.createElement('div');
         row.className = 'mod-row';
         row.innerHTML =
@@ -7469,7 +7536,9 @@ function renderAdminRequests(){
             '<div class="txt">' + escapeHtml(req.body) + '</div>' +
           '</div>' +
           '<div class="admin-actions">' +
-          '<button class="btn btn-primary btn-sm" data-approve-collab="' + req.id + '">Approva collaborazione</button>' +
+          (isSupport && req.user_id ? '<button class="btn btn-primary btn-sm" data-verify-supporter="' + req.id + '">Verifica pagamento (sblocca pagine pulite)</button>' : '') +
+          (isSupport && !req.user_id ? '<span class="mono" style="font-size:11px;color:var(--parchment-dim);">non collegato a un account — non verificabile</span>' : '') +
+          (isSupport ? '' : '<button class="btn btn-primary btn-sm" data-approve-collab="' + req.id + '">Approva collaborazione</button>') +
           '<button class="btn btn-ghost btn-sm" data-mark-read="' + req.id + '" ' + (req.status !== 'new' ? 'disabled' : '') + '>' + t('requests.markRead') + '</button>' +
           '</div>';
         row.querySelector('[data-mark-read]').addEventListener('click', function(){
@@ -7479,9 +7548,26 @@ function renderAdminRequests(){
             body: JSON.stringify({status:'read'})
           }).then(function(r){ if(r.ok) renderAdminRequests(); });
         });
-        row.querySelector('[data-approve-collab]').addEventListener('click', function(){
-          inviteFriendToCreate(req.user_id, req.author_email || 'questo utente');
-        });
+        var approveBtn = row.querySelector('[data-approve-collab]');
+        if(approveBtn){
+          approveBtn.addEventListener('click', function(){
+            inviteFriendToCreate(req.user_id, req.author_email || 'questo utente');
+          });
+        }
+        var verifyBtn = row.querySelector('[data-verify-supporter]');
+        if(verifyBtn){
+          verifyBtn.addEventListener('click', function(){
+            fetch(SUPABASE_URL + '/rest/v1/verified_supporters', {
+              method:'POST',
+              headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json', 'Prefer':'resolution=merge-duplicates' },
+              body: JSON.stringify({ user_id: req.user_id, note: req.body })
+            }).then(function(r){
+              if(!r.ok) throw new Error('verify failed: ' + r.status);
+              verifyBtn.textContent = '✓ Verificato';
+              verifyBtn.disabled = true;
+            }).catch(function(e){ console.warn('Verify supporter failed:', e); });
+          });
+        }
         list.appendChild(row);
       });
     })
