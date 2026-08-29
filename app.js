@@ -8352,7 +8352,7 @@ function __appInit(){
   updateSyncStatus();
   checkDeepLinkOnLoad(); // try immediately in case the title is already in local cache
   fetchCatalogFromSupabase().then(function(items){
-    if(items){ renderCatalog(); renderAdminList(); }
+    renderCatalog(); renderAdminList(); // disegna sempre — con i dati freschi se la sincronizzazione è riuscita, altrimenti con l'ultima copia salvata, mai col vuoto
     if(!deepLinkChecked) checkDeepLinkOnLoad(); // retry once fresh data has arrived
     renderPublicProfilePage(); // no-op sulle pagine diverse da profile.html
     checkForSiteUpdates();
