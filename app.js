@@ -3638,24 +3638,31 @@ var editingItemId = null; // se valorizzato, handleAddEntry() salva una MODIFICA
 function renderGenreChecks(){
   var block = document.getElementById('fGenresBlock');
   if(!block || block.childElementCount) return;
+  block.classList.add('catalog-genre-filters');
   GENRE_LIST.forEach(function(g){
-    var label = document.createElement('label');
-    label.className = 'genre-check';
-    label.innerHTML = '<input type="checkbox" value="'+escapeHtml(g)+'"> '+escapeHtml(g);
-    block.appendChild(label);
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'genre-seal-wrap';
+    btn.title = g;
+    btn.dataset.genreValue = g;
+    btn.innerHTML = '<span class="genre-seal">'+genreMonogram(g)+'</span><span class="genre-seal-label">'+escapeHtml(g)+'</span>';
+    btn.addEventListener('click', function(){
+      btn.classList.toggle('active');
+    });
+    block.appendChild(btn);
   });
 }
 function getSelectedGenres(){
   var block = document.getElementById('fGenresBlock');
   if(!block) return [];
-  return Array.prototype.slice.call(block.querySelectorAll('input:checked')).map(function(el){return el.value;});
+  return Array.prototype.slice.call(block.querySelectorAll('.genre-seal-wrap.active')).map(function(el){return el.dataset.genreValue;});
 }
 function setSelectedGenres(arr){
   var block = document.getElementById('fGenresBlock');
   if(!block) return;
   arr = arr || [];
-  Array.prototype.forEach.call(block.querySelectorAll('input'), function(el){
-    el.checked = arr.indexOf(el.value) !== -1;
+  Array.prototype.forEach.call(block.querySelectorAll('.genre-seal-wrap'), function(el){
+    el.classList.toggle('active', arr.indexOf(el.dataset.genreValue) !== -1);
   });
 }
 
