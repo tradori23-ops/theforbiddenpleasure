@@ -1133,6 +1133,7 @@ function refreshAdminUI(){
     if(smallnoxCard) smallnoxCard.classList.remove('hidden');
     injectDraftModeToggle();
     injectNsfwRescanButton();
+    renderGenreChecks();
     renderAdminList();
     renderModerationQueue();
     loadSocialLinksIntoForm();
@@ -1162,6 +1163,7 @@ function refreshAdminUI(){
     var addEntryBtn = document.getElementById('btnAddEntry');
     if(collabBanner) collabBanner.classList.add('hidden'); // sistema a sessione ritirato
     if(addEntryBtn) addEntryBtn.classList.remove('hidden');
+    renderGenreChecks();
     renderMyTitles();
   } else {
     gateMsg.textContent = t('admin.gate.notSignedIn');
