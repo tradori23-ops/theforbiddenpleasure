@@ -29,11 +29,14 @@
         <h2 data-i18n="mycomics.title">I Miei Comic</h2>
       </div>
     </div>
+    <div id="offlineSyncRow" class="offline-sync-row hidden">
+      <span id="offlineSyncStatus" class="hidden"></span>
+      <button type="button" id="btnOfflineSyncManual" class="btn btn-ghost btn-sm hidden" data-i18n="offline.downloadAll">Scarica tutto per offline</button>
+    </div>
     <div class="mycomics-tabs" id="mycomicsTabs">
       <button type="button" class="mycomics-tab active" data-tab="continue" data-i18n="mycomics.tab.continue">Continua a Leggere</button>
       <button type="button" class="mycomics-tab" data-tab="favorites" data-i18n="mycomics.tab.favorites">Preferiti</button>
       <button type="button" class="mycomics-tab" data-tab="purchases" data-i18n="mycomics.tab.purchases">I Miei Acquisti</button>
-      <button type="button" class="mycomics-tab" data-tab="published" data-i18n="mycomics.tab.published">Pubblicati</button>
     </div>
     <div id="mycomicsSignedOut" class="mycomics-empty hidden">
       <p data-i18n="mycomics.signedOut">Accedi per vedere la tua cronologia, i preferiti e gli acquisti.</p>

@@ -32,10 +32,12 @@ self.addEventListener('install', function(event){
   );
 });
 
+var OFFLINE_CATALOG_CACHE = 'lux-offline-catalog-v1'; // mai da cancellare agli aggiornamenti — è la cache dei verificati, deve sopravvivere
+
 self.addEventListener('activate', function(event){
   event.waitUntil(
     caches.keys().then(function(keys){
-      return Promise.all(keys.filter(function(k){ return k !== CACHE_NAME; }).map(function(k){ return caches.delete(k); }));
+      return Promise.all(keys.filter(function(k){ return k !== CACHE_NAME && k !== OFFLINE_CATALOG_CACHE; }).map(function(k){ return caches.delete(k); }));
     }).then(function(){ return self.clients.claim(); })
   );
 });

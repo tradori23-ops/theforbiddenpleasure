@@ -480,6 +480,8 @@ body.theme-light .hero-bg::after{
   color:var(--parchment-dim);max-width:64px;text-align:center;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
 }
 .genre-seal-wrap.active .genre-seal-label{color:var(--gold-bright);}
+.offline-sync-row{margin:14px 0;display:flex;align-items:center;gap:12px;}
+.offline-sync-row #offlineSyncStatus{font-family:'Space Mono',monospace;font-size:11px;color:var(--gold-bright);}
 .mycomics-tabs{display:flex;gap:8px;border-bottom:1px solid var(--line);margin:16px 0 24px;padding-bottom:0;}
 .mycomics-tab{
   background:none;border:none;border-bottom:2px solid transparent;

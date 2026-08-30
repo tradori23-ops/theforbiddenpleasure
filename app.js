@@ -110,7 +110,7 @@ var STR = {
     "share.copied":"Link copiato — incollalo dove vuoi condividerlo.",
     "share.manual":"Copia questo testo per condividerlo:",
     "pdf.label":"Oppure carica il fumetto come PDF (A4) invece delle pagine singole",
-    "pdf.uploading":"Caricamento PDF…","pdf.download":"Scarica PDF","pdf.preparing":"Preparazione…","pdf.loginToDownload":"Accedi per scaricare il PDF","pdf.checking":"Verifica…","pdf.needVerified":"Sostieni per sbloccare il PDF","pdf.downloadError":"Scaricamento non riuscito. Riprova.",
+    "pdf.uploading":"Caricamento PDF…","pdf.download":"Scarica PDF","pdf.preparing":"Preparazione…","pdf.loginToDownload":"Accedi per scaricare il PDF","pdf.checking":"Verifica…","pdf.needVerified":"Sostieni per sbloccare il PDF","pdf.downloadError":"Scaricamento non riuscito. Riprova.","offline.syncing":"Salvataggio offline: {done}/{total} titoli…","offline.downloadAll":"Scarica tutto per offline",
     "maintenance.lockTitle":"Sito in manutenzione","maintenance.lockText":"Stiamo aggiornando l'archivio. Torna tra poco.",
     "charimg.title":"Immagini profilo personaggi",
     "social.title":"Link social (visibili nel footer)","social.save":"Salva link social",
@@ -233,7 +233,7 @@ var STR = {
     "share.copied":"Link copied — paste it wherever you'd like to share it.",
     "share.manual":"Copy this text to share it:",
     "pdf.label":"Or upload the comic as a PDF (A4) instead of individual pages",
-    "pdf.uploading":"Uploading PDF…","pdf.download":"Download PDF","pdf.preparing":"Preparing…","pdf.loginToDownload":"Sign in to download the PDF","pdf.checking":"Checking…","pdf.needVerified":"Support to unlock the PDF","pdf.downloadError":"Download failed. Try again.",
+    "pdf.uploading":"Uploading PDF…","pdf.download":"Download PDF","pdf.preparing":"Preparing…","pdf.loginToDownload":"Sign in to download the PDF","pdf.checking":"Checking…","pdf.needVerified":"Support to unlock the PDF","pdf.downloadError":"Download failed. Try again.","offline.syncing":"Saving offline: {done}/{total} titles…","offline.downloadAll":"Download all for offline",
     "maintenance.lockTitle":"Site under maintenance","maintenance.lockText":"We're updating the archive. Check back shortly.",
     "charimg.title":"Character profile images",
     "social.title":"Social links (shown in the footer)","social.save":"Save social links",
@@ -356,7 +356,7 @@ var STR = {
     "share.copied":"Enlace copiado — pégalo donde quieras compartirlo.",
     "share.manual":"Copia este texto para compartirlo:",
     "pdf.label":"O sube el cómic como PDF (A4) en lugar de páginas individuales",
-    "pdf.uploading":"Subiendo PDF…","pdf.download":"Descargar PDF","pdf.preparing":"Preparando…","pdf.loginToDownload":"Inicia sesión para descargar el PDF","pdf.checking":"Comprobando…","pdf.needVerified":"Apoya para desbloquear el PDF","pdf.downloadError":"Error al descargar. Inténtalo de nuevo.",
+    "pdf.uploading":"Subiendo PDF…","pdf.download":"Descargar PDF","pdf.preparing":"Preparando…","pdf.loginToDownload":"Inicia sesión para descargar el PDF","pdf.checking":"Comprobando…","pdf.needVerified":"Apoya para desbloquear el PDF","pdf.downloadError":"Error al descargar. Inténtalo de nuevo.","offline.syncing":"Guardando sin conexión: {done}/{total} títulos…","offline.downloadAll":"Descargar todo para sin conexión",
     "maintenance.lockTitle":"Sitio en mantenimiento","maintenance.lockText":"Estamos actualizando el archivo. Vuelve en breve.",
     "charimg.title":"Imágenes de perfil de los personajes",
     "social.title":"Enlaces sociales (visibles en el pie de página)","social.save":"Guardar enlaces sociales",
@@ -479,7 +479,7 @@ var STR = {
     "share.copied":"Lien copié — collez-le où vous voulez le partager.",
     "share.manual":"Copiez ce texte pour le partager :",
     "pdf.label":"Ou téléversez la BD en PDF (A4) au lieu de pages individuelles",
-    "pdf.uploading":"Envoi du PDF…","pdf.download":"Télécharger le PDF","pdf.preparing":"Préparation…","pdf.loginToDownload":"Connectez-vous pour télécharger le PDF","pdf.checking":"Vérification…","pdf.needVerified":"Soutenez pour débloquer le PDF","pdf.downloadError":"Échec du téléchargement. Réessayez.",
+    "pdf.uploading":"Envoi du PDF…","pdf.download":"Télécharger le PDF","pdf.preparing":"Préparation…","pdf.loginToDownload":"Connectez-vous pour télécharger le PDF","pdf.checking":"Vérification…","pdf.needVerified":"Soutenez pour débloquer le PDF","pdf.downloadError":"Échec du téléchargement. Réessayez.","offline.syncing":"Enregistrement hors ligne : {done}/{total} titres…","offline.downloadAll":"Tout télécharger pour hors ligne",
     "maintenance.lockTitle":"Site en maintenance","maintenance.lockText":"Nous mettons à jour les archives. Revenez bientôt.",
     "charimg.title":"Images de profil des personnages",
     "social.title":"Liens sociaux (affichés en pied de page)","social.save":"Enregistrer les liens sociaux",
@@ -602,7 +602,7 @@ var STR = {
     "share.copied":"Link kopiert — fügen Sie ihn ein, wo Sie ihn teilen möchten.",
     "share.manual":"Diesen Text zum Teilen kopieren:",
     "pdf.label":"Oder Comic als PDF (A4) statt Einzelseiten hochladen",
-    "pdf.uploading":"PDF wird hochgeladen…","pdf.download":"PDF herunterladen","pdf.preparing":"Wird vorbereitet…","pdf.loginToDownload":"Anmelden, um das PDF herunterzuladen","pdf.checking":"Wird geprüft…","pdf.needVerified":"Unterstützen, um das PDF freizuschalten","pdf.downloadError":"Download fehlgeschlagen. Erneut versuchen.",
+    "pdf.uploading":"PDF wird hochgeladen…","pdf.download":"PDF herunterladen","pdf.preparing":"Wird vorbereitet…","pdf.loginToDownload":"Anmelden, um das PDF herunterzuladen","pdf.checking":"Wird geprüft…","pdf.needVerified":"Unterstützen, um das PDF freizuschalten","pdf.downloadError":"Download fehlgeschlagen. Erneut versuchen.","offline.syncing":"Offline-Speicherung: {done}/{total} Titel…","offline.downloadAll":"Alles für offline herunterladen",
     "maintenance.lockTitle":"Website in Wartung","maintenance.lockText":"Wir aktualisieren das Archiv. Schau bald wieder vorbei.",
     "charimg.title":"Profilbilder der Charaktere",
     "social.title":"Social-Links (im Footer angezeigt)","social.save":"Social-Links speichern",
@@ -3518,6 +3518,19 @@ function removeCollabBlock(idx){
       })(i);
     }
     updateAddCollabBtn();
+  }
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', attach);
+  } else {
+    attach();
+  }
+})();
+
+(function(){
+  var btn = document.getElementById('btnOfflineSyncManual');
+  if(!btn) return;
+  function attach(){
+    btn.addEventListener('click', function(){ syncCatalogForOffline(true); });
   }
   if(document.readyState === 'loading'){
     document.addEventListener('DOMContentLoaded', attach);
@@ -7249,13 +7262,97 @@ function openPageReader(item){
 function fetchAuthenticatedCleanPage(path){
   var session = getSession();
   if(!session) return Promise.reject(new Error('not signed in'));
-  return fetch(SUPABASE_URL + '/storage/v1/object/comic-pages-clean/' + path, {
-    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
-  }).then(function(r){
-    if(!r.ok) throw new Error('clean page fetch failed: ' + r.status);
-    return r.blob();
+  var cacheKey = 'https://offline-cache.local/clean/' + path; // chiave finta, mai una richiesta vera — serve solo a indicizzare la cache
+  return ('caches' in window ? caches.open(OFFLINE_CATALOG_CACHE) : Promise.resolve(null)).then(function(cache){
+    return cache ? cache.match(cacheKey) : null;
+  }).then(function(cached){
+    if(cached) return cached.blob();
+    return fetch(SUPABASE_URL + '/storage/v1/object/comic-pages-clean/' + path, {
+      headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
+    }).then(function(r){
+      if(!r.ok) throw new Error('clean page fetch failed: ' + r.status);
+      return r.blob();
+    }).then(function(blob){
+      if('caches' in window){
+        caches.open(OFFLINE_CATALOG_CACHE).then(function(cache){
+          cache.put(cacheKey, new Response(blob));
+        }).catch(function(){});
+      }
+      return blob;
+    });
   }).then(function(blob){
     return URL.createObjectURL(blob);
+  });
+}
+
+/* ============ Catalogo offline per i verificati ============ */
+var OFFLINE_CATALOG_CACHE = 'lux-offline-catalog-v1';
+
+function isOnWifi(){
+  var conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+  if(!conn || !conn.type) return null; // non rilevabile su questo browser (es. Safari/iOS) — non sappiamo, quindi non decidiamo
+  return conn.type === 'wifi';
+}
+
+var offlineSyncRunning = false;
+function syncCatalogForOffline(showStatus){
+  if(offlineSyncRunning || !('caches' in window)) return;
+  offlineSyncRunning = true;
+  var statusEl = document.getElementById('offlineSyncStatus');
+  var items = getCatalog();
+  var cache;
+  caches.open(OFFLINE_CATALOG_CACHE).then(function(c){
+    cache = c;
+    var done = 0;
+    function next(i){
+      if(i >= items.length){
+        offlineSyncRunning = false;
+        if(statusEl) statusEl.classList.add('hidden');
+        return;
+      }
+      if(statusEl && showStatus){
+        statusEl.classList.remove('hidden');
+        statusEl.textContent = t('offline.syncing').replace('{done}', done).replace('{total}', items.length);
+      }
+      var item = items[i];
+      var pages = item.pages_clean || [];
+      var toFetch = pages.slice();
+      if(item.pdf_url) toFetch.push(item.pdf_url);
+      Promise.all(toFetch.map(function(path){
+        var cacheKey = 'https://offline-cache.local/clean/' + path;
+        return cache.match(cacheKey).then(function(existing){
+          if(existing) return;
+          var session = getSession();
+          return fetch(SUPABASE_URL + '/storage/v1/object/comic-pages-clean/' + path, {
+            headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
+          }).then(function(r){
+            if(!r.ok) return;
+            return r.blob().then(function(blob){ return cache.put(cacheKey, new Response(blob)); });
+          }).catch(function(){}); // un titolo che fallisce non deve fermare gli altri
+        });
+      })).then(function(){
+        done++;
+        next(i + 1);
+      });
+    }
+    next(0);
+  });
+}
+
+function maybeStartOfflineSync(){
+  if(!isSignedIn()) return;
+  checkVerifiedSupporter().then(function(isVerified){
+    var row = document.getElementById('offlineSyncRow');
+    if(!isVerified){ if(row) row.classList.add('hidden'); return; }
+    if(row) row.classList.remove('hidden');
+    var wifi = isOnWifi();
+    if(wifi === true){
+      syncCatalogForOffline(true); // rilevabile e siamo su WiFi: parte da sola
+    }
+    // wifi === false: su dati mobili, non partiamo, rispettiamo la scelta di sicurezza
+    // wifi === null: non rilevabile (Safari/iOS) — mostriamo il bottone manuale, non partiamo da soli
+    var manualBtn = document.getElementById('btnOfflineSyncManual');
+    if(manualBtn) manualBtn.classList.toggle('hidden', wifi !== null);
   });
 }
 
@@ -8469,6 +8566,7 @@ function __appInit(){
     if(!deepLinkChecked) checkDeepLinkOnLoad(); // retry once fresh data has arrived
     renderPublicProfilePage(); // no-op sulle pagine diverse da profile.html
     checkForSiteUpdates();
+    maybeStartOfflineSync();
   });
   fetchMaintenanceStatus();
   setInterval(fetchMaintenanceStatus, 60000); // light polling so visitors already on the page see it too
