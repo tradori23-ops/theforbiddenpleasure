@@ -2076,6 +2076,7 @@ function renderFilters(){
       btn.className = 'genre-seal-wrap' + (activeGenreFilter === g.key ? ' active' : '');
       btn.title = g.label;
       btn.innerHTML = '<span class="genre-seal">'+g.mono+'</span><span class="genre-seal-label">'+escapeHtml(g.label)+'</span>';
+      attachGenreHoverCard(btn, g.key, g.label);
       btn.addEventListener('click', function(){
         activeGenreFilter = g.key;
         renderFilters();
@@ -2098,6 +2099,37 @@ var GENRE_BANNERS = {
   'Funny Comics':'genre-banner-funny-comics.webp',
   'Horror':'genre-banner-horror.webp'
 };
+
+function injectGenreHoverStylesOnce(){
+  if(document.getElementById('genreHoverStyles')) return;
+  var style = document.createElement('style');
+  style.id = 'genreHoverStyles';
+  style.textContent =
+    '.genre-seal-wrap{position:relative;}'+
+    '.genre-hover-card{position:absolute;left:100%;top:50%;transform:translateY(-50%) translateX(-12px);'+
+      'width:210px;height:56px;border-radius:6px;overflow:hidden;pointer-events:none;opacity:0;'+
+      'transition:opacity .18s ease, transform .18s ease;z-index:50;border:1px solid #c9a24a;'+
+      'box-shadow:0 4px 16px rgba(0,0,0,0.5);}'+
+    '.genre-seal-wrap:hover .genre-hover-card{opacity:1;transform:translateY(-50%) translateX(8px);}'+
+    '.genre-hover-bg{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0.38;'+
+      'background-color:#0f0d0b;}'+
+    '.genre-hover-label{position:relative;z-index:1;height:100%;display:flex;align-items:center;justify-content:center;'+
+      'font-family:"Cinzel",serif;font-size:12px;letter-spacing:0.06em;color:#f3e4d0;text-align:center;padding:0 10px;'+
+      'text-shadow:0 1px 4px rgba(0,0,0,0.9);}';
+  document.head.appendChild(style);
+}
+
+function attachGenreHoverCard(btn, genreKey, label){
+  var file = GENRE_BANNERS[genreKey];
+  if(!file) return; // "Tutti" e "Novità" non hanno banner dedicato
+  injectGenreHoverStylesOnce();
+  var card = document.createElement('div');
+  card.className = 'genre-hover-card';
+  card.innerHTML = '<div class="genre-hover-bg" style="background-image:url(\''+file+'\')"></div>'+
+    '<div class="genre-hover-label">'+escapeHtml(label)+'</div>';
+  btn.appendChild(card);
+}
+
 function renderGenreBanner(){
   var el = document.getElementById('genreBanner');
   if(!el) return;
@@ -3646,6 +3678,7 @@ function renderGenreChecks(){
     btn.title = g;
     btn.dataset.genreValue = g;
     btn.innerHTML = '<span class="genre-seal">'+genreMonogram(g)+'</span><span class="genre-seal-label">'+escapeHtml(g)+'</span>';
+    attachGenreHoverCard(btn, g, g);
     btn.addEventListener('click', function(){
       btn.classList.toggle('active');
     });
