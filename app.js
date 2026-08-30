@@ -1990,12 +1990,43 @@ function renderCollabBanner(){
   document.getElementById('btnClearCollabFilter') && document.getElementById('btnClearCollabFilter').addEventListener('click', clearCollabFilter);
 }
 
+var COLLANA_SPINE_IMAGES = {
+  Lucifer:'shelf-lucifer.webp', Lilith:'shelf-lilith.webp',
+  Lucifera:'shelf-lucifera.webp', Lucio:'shelf-lucio.webp'
+};
+
+function injectSpineStylesOnce(){
+  if(document.getElementById('collanaSpineStyles')) return;
+  var style = document.createElement('style');
+  style.id = 'collanaSpineStyles';
+  style.textContent =
+    '.collana-spines{display:flex;gap:8px;align-items:flex-end;margin-bottom:0;}'+
+    '.collana-spine{flex:1;min-width:70px;height:104px;border:none;border-radius:4px 4px 0 0;'+
+      'background-size:cover;background-position:center;cursor:pointer;position:relative;'+
+      'padding:0;opacity:0.62;transform:translateY(6px);transition:opacity .2s ease, transform .2s ease;'+
+      'box-shadow:0 -2px 0 rgba(201,162,74,0);}'+
+    '.collana-spine:hover{opacity:0.85;}'+
+    '.collana-spine.active{opacity:1;transform:translateY(0);box-shadow:0 -3px 0 #c9a24a;}'+
+    '.collana-spine-label{position:absolute;left:0;right:0;bottom:8px;text-align:center;'+
+      'font-family:"Cinzel",serif;font-size:11px;letter-spacing:0.1em;color:#f3e4d0;'+
+      'text-shadow:0 1px 3px rgba(0,0,0,0.8);}'+
+    '.collana-spine-count{position:absolute;top:8px;right:8px;font-family:"Space Mono",monospace;'+
+      'font-size:9px;color:#e8c976;opacity:0.85;}'+
+    '.collana-spines-shelf{height:6px;background:linear-gradient(180deg,#3a2f22,#1c1712);'+
+      'border-radius:0 0 4px 4px;margin-bottom:22px;}';
+  document.head.appendChild(style);
+}
+
 function renderFilters(){
   var wrap = document.getElementById('catalogFilters');
   if(!wrap) return;
   wrap.innerHTML = '';
   var opts = ['all','Lucifer','Lilith','Lucifera','Lucio','Collaboratori'];
-  opts.forEach(function(opt){
+  var spineChars = ['Lucifer','Lilith','Lucifera','Lucio'];
+  var spineOpts = opts.filter(function(o){ return spineChars.indexOf(o) !== -1; });
+  var chipOpts = opts.filter(function(o){ return spineChars.indexOf(o) === -1; });
+
+  chipOpts.forEach(function(opt){
     var btn = document.createElement('button');
     btn.className = 'filter-chip' + (activeFilter === opt ? ' active' : '');
     btn.textContent = opt === 'all' ? t('filter.all') : (opt === 'Collaboratori' ? t('collab.categoryLabel') : opt);
@@ -2006,6 +2037,30 @@ function renderFilters(){
     });
     wrap.appendChild(btn);
   });
+
+  injectSpineStylesOnce();
+  var catalogItems = getCatalog();
+  var spinesWrap = document.createElement('div');
+  spinesWrap.className = 'collana-spines';
+  spineOpts.forEach(function(opt){
+    var count = catalogItems.filter(function(i){ return i.character === opt; }).length;
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'collana-spine' + (activeFilter === opt ? ' active' : '');
+    btn.style.backgroundImage = "url('" + COLLANA_SPINE_IMAGES[opt] + "')";
+    btn.innerHTML = '<span class="collana-spine-count mono">'+count+'</span>'+
+      '<span class="collana-spine-label">'+escapeHtml(opt)+'</span>';
+    btn.addEventListener('click', function(){
+      activeFilter = opt;
+      renderFilters();
+      renderCatalog();
+    });
+    spinesWrap.appendChild(btn);
+  });
+  wrap.appendChild(spinesWrap);
+  var shelfLedge = document.createElement('div');
+  shelfLedge.className = 'collana-spines-shelf';
+  wrap.appendChild(shelfLedge);
 
   var genreWrap = document.getElementById('catalogGenreFilters');
   if(genreWrap){
