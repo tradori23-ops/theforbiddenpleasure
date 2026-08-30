@@ -42,82 +42,8 @@
     </div>
   </div>
 </div>
-<div class="modal-backdrop hidden" id="profileModal">
-  <div class="modal">
-    <button class="modal-close" id="profileModalClose" aria-label="Chiudi">×</button>
-    <h3 data-i18n="profile.title">Il mio profilo</h3>
-    <div class="sub" data-i18n="profile.sub">Visibile agli altri quando commenti</div>
-
-    <div class="field">
-      <label data-i18n="profile.banner">Banner del profilo (opzionale)</label>
-      <div class="banner-preview-wrap"><img id="profileBannerImg" src="" alt=""></div>
-      <input type="file" id="fProfileBanner" accept="image/*">
-    </div>
-    <div class="field" style="text-align:center;">
-      <div class="profile-avatar-wrap">
-        <img id="profileAvatarImg" class="profile-avatar" src="" alt="">
-      </div>
-      <input type="file" id="fProfileAvatar" accept="image/*">
-    </div>
-    <div class="field">
-      <label data-i18n="profile.avatarHd">Foto profilo HD (opzionale)</label>
-      <input type="file" id="fProfileAvatarHd" accept="image/*">
-      <p class="form-note" style="margin-top:6px;" data-i18n="profile.avatarHdHint">Mostrata a piena risoluzione a chi tocca il tuo avatar. Se non la carichi, si vede la foto normale.</p>
-    </div>
-    <div class="field">
-      <label data-i18n="profile.displayName">Nome visibile</label>
-      <input type="text" id="fDisplayName" maxlength="40" placeholder="Come vuoi essere chiamato/a">
-    </div>
-    <div class="field">
-      <label data-i18n="profile.bio">Bio (opzionale)</label>
-      <textarea id="fBio" maxlength="200" rows="2"></textarea>
-    </div>
-    <div class="field">
-      <label data-i18n="profile.birthDate">Data di nascita (opzionale)</label>
-      <input type="date" id="fBirthDate">
-    </div>
-    <div class="field">
-      <label data-i18n="profile.gender">Sesso (opzionale)</label>
-      <select id="fGender">
-        <option value="" data-i18n="profile.genderUnset">— Preferisco non dirlo —</option>
-        <option value="M" data-i18n="profile.genderM">Maschio</option>
-        <option value="F" data-i18n="profile.genderF">Femmina</option>
-        <option value="X" data-i18n="profile.genderX">Altro</option>
-      </select>
-    </div>
-    <div class="field">
-      <label data-i18n="profile.socials">I tuoi social (opzionali)</label>
-      <input type="text" id="fSocialInstagram" placeholder="Instagram — link o @nome" style="margin-bottom:8px;">
-      <input type="text" id="fSocialTwitter" placeholder="Twitter/X — link o @nome" style="margin-bottom:8px;">
-      <input type="text" id="fSocialTiktok" placeholder="TikTok — link o @nome" style="margin-bottom:8px;">
-      <input type="text" id="fSocialWebsite" placeholder="Sito web — link">
-    </div>
-    <div class="field">
-      <label data-i18n="profile.favChars">Personaggi preferiti</label>
-      <div class="fav-char-options" id="favCharOptions">
-        <label class="mature-toggle"><span>Lucifer</span><span class="switch"><input type="checkbox" value="Lucifer" class="fav-char-cb"><span class="slider"></span></span></label>
-        <label class="mature-toggle"><span>Lilith</span><span class="switch"><input type="checkbox" value="Lilith" class="fav-char-cb"><span class="slider"></span></span></label>
-        <label class="mature-toggle"><span>Lucifera</span><span class="switch"><input type="checkbox" value="Lucifera" class="fav-char-cb"><span class="slider"></span></span></label>
-        <label class="mature-toggle"><span>Lucio</span><span class="switch"><input type="checkbox" value="Lucio" class="fav-char-cb"><span class="slider"></span></span></label>
-      </div>
-    </div>
-    <div class="form-error" id="profileError"></div>
-    <div class="modal-actions">
-      <button class="btn btn-primary" id="btnSaveProfile" data-i18n="profile.save">Salva profilo</button>
-    </div>
-
-    <div style="margin-top:28px;border-top:1px solid var(--line);padding-top:20px;">
-      <div class="sub mono" data-i18n="requests.title">Le mie richieste</div>
-      <p class="form-note" data-i18n="requests.hint">Un titolo che vorresti, una traduzione, un'idea — scrivimi qui, la leggo io.</p>
-      <div class="field">
-        <textarea id="fRequestBody" rows="3" data-i18n-placeholder="requests.placeholder"></textarea>
-      </div>
-      <div class="form-error" id="requestError"></div>
-      <button class="btn btn-ghost btn-sm" id="btnSubmitRequest" data-i18n="requests.submit">Invia richiesta</button>
-      <div id="myRequestsList" style="margin-top:16px;"></div>
-    </div>
-  </div>
-</div>
+<!-- Il popup "Il mio profilo" è stato sostituito dalla pagina profile.html a pagina intera —
+     vedi renderPublicProfilePage()/toggleProfileEdit() in app.js. -->
 
 <div class="modal-backdrop hidden" id="authModal">
   <div class="modal">

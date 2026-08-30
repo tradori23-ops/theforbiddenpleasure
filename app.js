@@ -46,7 +46,7 @@ var STR = {
     "profile.title":"Il mio profilo","profile.sub":"Visibile agli altri quando commenti",
     "profile.displayName":"Nome visibile","profile.bio":"Bio (opzionale)","profile.favChars":"Personaggi preferiti",
     "profile.avatarHd":"Foto profilo HD (opzionale)","profile.avatarHdHint":"Mostrata a piena risoluzione a chi tocca il tuo avatar. Se non la carichi, si vede la foto normale.",
-    "profile.banner":"Banner del profilo (opzionale)","profile.socials":"I tuoi social (opzionali)","profile.website":"Sito web","pubProfile.favoritesHeading":"Preferiti",
+    "profile.banner":"Banner del profilo (opzionale)","profile.socials":"I tuoi social (opzionali)","profile.website":"Sito web","profile.edit":"Modifica profilo","profile.instagramHeading":"Instagram","profile.instagramEmbed":"Link a un tuo post/reel Instagram (opzionale)","profile.instagramEmbedHint":"Verrà mostrato direttamente nel tuo profilo, come lo vedi su Instagram.","pubProfile.favoritesHeading":"Preferiti",
     "push.enable":"Attiva notifiche","push.enabled":"Notifiche attive","push.unsupported":"Il tuo browser non supporta le notifiche push.","push.denied":"Permesso negato — puoi attivarle di nuovo dalle impostazioni del browser.","push.error":"Non è stato possibile attivare le notifiche, riprova.","push.installFirst":"Installa per notifiche","push.installFirstLong":"Su iPhone/iPad le notifiche funzionano solo dopo aver installato il sito: tocca Condividi → Aggiungi a Home, poi apri l'app da lì e riprova.",
     "profile.birthDate":"Data di nascita","profile.gender":"Sesso","profile.genderUnset":"— Preferisco non dirlo —","profile.genderM":"Maschio","profile.genderF":"Femmina","profile.genderX":"Altro","profile.avatarInfoEmpty":"Nessuna informazione aggiuntiva condivisa",
     "profile.save":"Salva profilo","profile.saveError":"Salvataggio non riuscito. Riprova.",
@@ -169,7 +169,7 @@ var STR = {
     "profile.title":"My profile","profile.sub":"Visible to others when you comment",
     "profile.displayName":"Display name","profile.bio":"Bio (optional)","profile.favChars":"Favorite characters",
     "profile.avatarHd":"HD profile photo (optional)","profile.avatarHdHint":"Shown at full resolution to whoever taps your avatar. If you don't upload one, your regular photo is shown.",
-    "profile.banner":"Profile banner (optional)","profile.socials":"Your socials (optional)","profile.website":"Website","pubProfile.favoritesHeading":"Favorites",
+    "profile.banner":"Profile banner (optional)","profile.socials":"Your socials (optional)","profile.website":"Website","profile.edit":"Edit profile","profile.instagramHeading":"Instagram","profile.instagramEmbed":"Link to one of your Instagram posts/reels (optional)","profile.instagramEmbedHint":"Shown directly on your profile, just like on Instagram.","pubProfile.favoritesHeading":"Favorites",
     "push.enable":"Enable notifications","push.enabled":"Notifications on","push.unsupported":"Your browser doesn't support push notifications.","push.denied":"Permission denied — you can re-enable it from your browser settings.","push.error":"Couldn't enable notifications, try again.","push.installFirst":"Install for notifications","push.installFirstLong":"On iPhone/iPad, notifications only work after installing the site: tap Share → Add to Home Screen, then open the app from there and try again.",
     "profile.birthDate":"Birth date","profile.gender":"Gender","profile.genderUnset":"— Prefer not to say —","profile.genderM":"Male","profile.genderF":"Female","profile.genderX":"Other","profile.avatarInfoEmpty":"No additional information shared",
     "profile.save":"Save profile","profile.saveError":"Save failed. Try again.",
@@ -292,7 +292,7 @@ var STR = {
     "profile.title":"Mi perfil","profile.sub":"Visible para otros cuando comentas",
     "profile.displayName":"Nombre visible","profile.bio":"Bio (opcional)","profile.favChars":"Personajes favoritos",
     "profile.avatarHd":"Foto de perfil HD (opcional)","profile.avatarHdHint":"Se muestra a resolución completa a quien toque tu avatar. Si no la subes, se ve la foto normal.",
-    "profile.banner":"Banner del perfil (opcional)","profile.socials":"Tus redes sociales (opcional)","profile.website":"Sitio web","pubProfile.favoritesHeading":"Favoritos",
+    "profile.banner":"Banner del perfil (opcional)","profile.socials":"Tus redes sociales (opcional)","profile.website":"Sitio web","profile.edit":"Editar perfil","profile.instagramHeading":"Instagram","profile.instagramEmbed":"Enlace a una publicación/reel de Instagram (opcional)","profile.instagramEmbedHint":"Se mostrará directamente en tu perfil, igual que en Instagram.","pubProfile.favoritesHeading":"Favoritos",
     "push.enable":"Activar notificaciones","push.enabled":"Notificaciones activas","push.unsupported":"Tu navegador no admite notificaciones push.","push.denied":"Permiso denegado — puedes activarlas de nuevo desde los ajustes del navegador.","push.error":"No se pudieron activar las notificaciones, inténtalo de nuevo.","push.installFirst":"Instala para notificaciones","push.installFirstLong":"En iPhone/iPad, las notificaciones solo funcionan tras instalar el sitio: toca Compartir → Añadir a inicio, luego abre la app desde ahí e inténtalo de nuevo.",
     "profile.birthDate":"Fecha de nacimiento","profile.gender":"Sexo","profile.genderUnset":"— Prefiero no decirlo —","profile.genderM":"Masculino","profile.genderF":"Femenino","profile.genderX":"Otro","profile.avatarInfoEmpty":"No se ha compartido información adicional",
     "profile.save":"Guardar perfil","profile.saveError":"Error al guardar. Inténtalo de nuevo.",
@@ -415,7 +415,7 @@ var STR = {
     "profile.title":"Mon profil","profile.sub":"Visible par les autres quand vous commentez",
     "profile.displayName":"Nom affiché","profile.bio":"Bio (facultatif)","profile.favChars":"Personnages préférés",
     "profile.avatarHd":"Photo de profil HD (facultatif)","profile.avatarHdHint":"Affichée en pleine résolution à quiconque touche votre avatar. Si vous n'en téléchargez pas, la photo normale s'affiche.",
-    "profile.banner":"Bannière du profil (facultatif)","profile.socials":"Vos réseaux sociaux (facultatif)","profile.website":"Site web","pubProfile.favoritesHeading":"Favoris",
+    "profile.banner":"Bannière du profil (facultatif)","profile.socials":"Vos réseaux sociaux (facultatif)","profile.website":"Site web","profile.edit":"Modifier le profil","profile.instagramHeading":"Instagram","profile.instagramEmbed":"Lien vers un de vos posts/reels Instagram (facultatif)","profile.instagramEmbedHint":"Affiché directement sur votre profil, comme sur Instagram.","pubProfile.favoritesHeading":"Favoris",
     "push.enable":"Activer les notifications","push.enabled":"Notifications activées","push.unsupported":"Votre navigateur ne prend pas en charge les notifications push.","push.denied":"Permission refusée — vous pouvez la réactiver dans les paramètres du navigateur.","push.error":"Impossible d'activer les notifications, réessayez.","push.installFirst":"Installer pour les notifications","push.installFirstLong":"Sur iPhone/iPad, les notifications ne fonctionnent qu'après avoir installé le site : appuyez sur Partager → Sur l'écran d'accueil, puis ouvrez l'app depuis là et réessayez.",
     "profile.birthDate":"Date de naissance","profile.gender":"Sexe","profile.genderUnset":"— Je préfère ne pas le dire —","profile.genderM":"Homme","profile.genderF":"Femme","profile.genderX":"Autre","profile.avatarInfoEmpty":"Aucune information supplémentaire partagée",
     "profile.save":"Enregistrer le profil","profile.saveError":"Échec de l'enregistrement. Réessayez.",
@@ -538,7 +538,7 @@ var STR = {
     "profile.title":"Mein Profil","profile.sub":"Für andere sichtbar, wenn du kommentierst",
     "profile.displayName":"Anzeigename","profile.bio":"Bio (optional)","profile.favChars":"Lieblingscharaktere",
     "profile.avatarHd":"HD-Profilbild (optional)","profile.avatarHdHint":"Wird in voller Auflösung angezeigt, wenn jemand auf dein Avatar tippt. Wenn du keins hochlädst, wird das normale Foto angezeigt.",
-    "profile.banner":"Profil-Banner (optional)","profile.socials":"Deine Social-Media-Profile (optional)","profile.website":"Webseite","pubProfile.favoritesHeading":"Favoriten",
+    "profile.banner":"Profil-Banner (optional)","profile.socials":"Deine Social-Media-Profile (optional)","profile.website":"Webseite","profile.edit":"Profil bearbeiten","profile.instagramHeading":"Instagram","profile.instagramEmbed":"Link zu einem deiner Instagram-Beiträge/Reels (optional)","profile.instagramEmbedHint":"Wird direkt auf deinem Profil angezeigt, genau wie auf Instagram.","pubProfile.favoritesHeading":"Favoriten",
     "push.enable":"Benachrichtigungen aktivieren","push.enabled":"Benachrichtigungen an","push.unsupported":"Dein Browser unterstützt keine Push-Benachrichtigungen.","push.denied":"Erlaubnis verweigert — du kannst sie in den Browsereinstellungen wieder aktivieren.","push.error":"Benachrichtigungen konnten nicht aktiviert werden, versuch es erneut.","push.installFirst":"Installieren für Benachrichtigungen","push.installFirstLong":"Auf iPhone/iPad funktionieren Benachrichtigungen erst nach der Installation der Seite: Tippe auf Teilen → Zum Home-Bildschirm, öffne die App von dort und versuch es erneut.",
     "profile.birthDate":"Geburtsdatum","profile.gender":"Geschlecht","profile.genderUnset":"— Möchte ich nicht angeben —","profile.genderM":"Männlich","profile.genderF":"Weiblich","profile.genderX":"Andere","profile.avatarInfoEmpty":"Keine zusätzlichen Informationen geteilt",
     "profile.save":"Profil speichern","profile.saveError":"Speichern fehlgeschlagen. Erneut versuchen.",
@@ -4151,16 +4151,26 @@ var currentProfile = null;
 
 function openProfileModal(){
   if(!isSignedIn()){ openAuth('login'); return; }
-  document.getElementById('profileError').textContent = '';
-  document.getElementById('requestError').textContent = '';
-  document.getElementById('fRequestBody').value = '';
-  loadOwnProfile().then(function(){
-    populateProfileForm();
-    document.getElementById('profileModal').classList.remove('hidden');
-    loadMyRequests();
-  });
+  window.location.href = 'profile.html?user=' + encodeURIComponent(currentUserId());
 }
-function closeProfileModal(){ document.getElementById('profileModal').classList.add('hidden'); }
+function toggleProfileEdit(){
+  var panel = document.getElementById('profileEditPanel');
+  if(!panel) return;
+  var opening = panel.classList.contains('hidden');
+  if(opening){
+    document.getElementById('profileError').textContent = '';
+    document.getElementById('requestError').textContent = '';
+    document.getElementById('fRequestBody').value = '';
+    loadOwnProfile().then(function(){
+      populateProfileForm();
+      panel.classList.remove('hidden');
+      loadMyRequests();
+      panel.scrollIntoView({behavior:'smooth', block:'start'});
+    });
+  } else {
+    panel.classList.add('hidden');
+  }
+}
 
 function loadOwnProfile(){
   var session = getSession();
@@ -4185,6 +4195,7 @@ function populateProfileForm(){
   document.getElementById('fSocialTwitter').value = p.social_twitter || '';
   document.getElementById('fSocialTiktok').value = p.social_tiktok || '';
   document.getElementById('fSocialWebsite').value = p.social_website || '';
+  document.getElementById('fInstagramEmbedUrl').value = p.instagram_embed_url || '';
   var favs = p.favorite_characters || [];
   document.querySelectorAll('.fav-char-cb').forEach(function(cb){
     cb.checked = favs.indexOf(cb.value) !== -1;
@@ -4212,6 +4223,7 @@ function saveProfile(){
   var socialTwitter = document.getElementById('fSocialTwitter').value.trim();
   var socialTiktok = document.getElementById('fSocialTiktok').value.trim();
   var socialWebsite = document.getElementById('fSocialWebsite').value.trim();
+  var instagramEmbedUrl = document.getElementById('fInstagramEmbedUrl').value.trim();
   var favs = Array.from(document.querySelectorAll('.fav-char-cb:checked')).map(function(cb){ return cb.value; });
   var btn = document.getElementById('btnSaveProfile');
   btn.disabled = true;
@@ -4280,6 +4292,7 @@ function saveProfile(){
         birth_date: birthDate || null, gender: gender || null,
         social_instagram: socialInstagram || null, social_twitter: socialTwitter || null,
         social_tiktok: socialTiktok || null, social_website: socialWebsite || null,
+        instagram_embed_url: instagramEmbedUrl || null,
         favorite_characters: favs
       })
     });
@@ -5005,6 +5018,16 @@ function renderPublicProfilePage(){
       var favsBox = document.getElementById('pubProfileFavs');
       favsBox.innerHTML = favs.map(function(f){ return '<span class="pub-profile-fav-tag">' + escapeHtml(f) + '</span>'; }).join('');
 
+      var isOwnProfile = isSignedIn() && userId === currentUserId();
+      var editBtn = document.getElementById('btnToggleProfileEdit');
+      if(editBtn) editBtn.classList.toggle('hidden', !isOwnProfile);
+      if(!isOwnProfile){
+        var panel = document.getElementById('profileEditPanel');
+        if(panel) panel.classList.add('hidden');
+      }
+
+      renderProfileInstagramEmbed(p.instagram_embed_url);
+
       renderProfileTitles(userId);
       renderProfileFavorites(userId);
       loadDiaryFeed('profileDiaryFeed', userId);
@@ -5013,6 +5036,33 @@ function renderPublicProfilePage(){
       console.warn('Public profile load failed:', e);
       notFoundBox.classList.remove('hidden');
     });
+}
+
+function renderProfileInstagramEmbed(url){
+  var box = document.getElementById('profileInstagramBox');
+  var slot = document.getElementById('pubProfileInstagramEmbed');
+  if(!box || !slot) return;
+  if(!url){ box.classList.add('hidden'); slot.innerHTML = ''; return; }
+  box.classList.remove('hidden');
+  slot.innerHTML = '<blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="' +
+    escapeHtml(url) + '" data-instgrm-version="14" style="margin:0 auto;"></blockquote>';
+  loadInstagramEmbedScript().then(function(){
+    if(window.instgrm && window.instgrm.Embeds) window.instgrm.Embeds.process();
+  });
+}
+var _instagramScriptPromise = null;
+function loadInstagramEmbedScript(){
+  if(window.instgrm) return Promise.resolve();
+  if(_instagramScriptPromise) return _instagramScriptPromise;
+  _instagramScriptPromise = new Promise(function(resolve){
+    var s = document.createElement('script');
+    s.src = 'https://www.instagram.com/embed.js';
+    s.async = true;
+    s.onload = resolve;
+    s.onerror = resolve; // se blocca l'estensione/rete, non blocchiamo il resto della pagina
+    document.body.appendChild(s);
+  });
+  return _instagramScriptPromise;
 }
 
 function renderProfileTitles(userId){
@@ -8648,9 +8698,7 @@ function __appInit(){
   document.getElementById('smallnoxUpdatesModal') && document.getElementById('smallnoxUpdatesModal').addEventListener('click', function(e){
     if(e.target.id === 'smallnoxUpdatesModal') dismissSiteUpdates();
   });
-  document.getElementById('profileModal') && document.getElementById('profileModal').addEventListener('click', function(e){
-    if(e.target.id === 'profileModal') closeProfileModal();
-  });
+  document.getElementById('btnToggleProfileEdit') && document.getElementById('btnToggleProfileEdit').addEventListener('click', toggleProfileEdit);
   document.getElementById('fProfileAvatar') && document.getElementById('fProfileAvatar').addEventListener('change', function(e){
     var file = e.target.files[0];
     if(file) document.getElementById('profileAvatarImg').src = URL.createObjectURL(file);
