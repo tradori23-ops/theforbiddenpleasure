@@ -5292,20 +5292,27 @@ function playChatSound(kind){
     var Ctx = window.AudioContext || window.webkitAudioContext;
     if(!Ctx) return;
     var ctx = new Ctx();
-    var o = ctx.createOscillator();
-    var g = ctx.createGain();
-    o.connect(g); g.connect(ctx.destination);
-    o.type = 'sine';
-    var preset = getSoundPreset();
-    var conf = kind === 'sent' ? preset.sent : preset.received;
-    o.frequency.setValueAtTime(conf.start, ctx.currentTime);
-    o.frequency.exponentialRampToValueAtTime(conf.end, ctx.currentTime + conf.dur * 0.5);
-    g.gain.setValueAtTime(0.001, ctx.currentTime);
-    g.gain.exponentialRampToValueAtTime(0.12, ctx.currentTime + 0.02);
-    g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + conf.dur);
-    o.start();
-    o.stop(ctx.currentTime + conf.dur + 0.02);
-  }catch(e){ /* audio non disponibile: nessun problema, la chat funziona lo stesso */ }
+    function fire(){
+      var o = ctx.createOscillator();
+      var g = ctx.createGain();
+      o.connect(g); g.connect(ctx.destination);
+      o.type = 'sine';
+      var preset = getSoundPreset();
+      var conf = kind === 'sent' ? preset.sent : preset.received;
+      o.frequency.setValueAtTime(conf.start, ctx.currentTime);
+      o.frequency.exponentialRampToValueAtTime(conf.end, ctx.currentTime + conf.dur * 0.5);
+      g.gain.setValueAtTime(0.001, ctx.currentTime);
+      g.gain.exponentialRampToValueAtTime(0.12, ctx.currentTime + 0.02);
+      g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + conf.dur);
+      o.start();
+      o.stop(ctx.currentTime + conf.dur + 0.02);
+    }
+    if(ctx.state === 'suspended'){
+      ctx.resume().then(fire).catch(function(){ /* browser ha comunque bloccato l'audio */ });
+    } else {
+      fire();
+    }
+  }catch(e){ console.warn('Suono notifica non disponibile:', e); }
 }
 
 function uploadChatAttachment(file){
