@@ -3667,10 +3667,22 @@ function removeCollabBlock(idx){
 
 var editingItemId = null; // se valorizzato, handleAddEntry() salva una MODIFICA invece di una nuova voce
 
+function injectAdminGenreLayoutStylesOnce(){
+  if(document.getElementById('adminGenreLayoutStyles')) return;
+  var style = document.createElement('style');
+  style.id = 'adminGenreLayoutStyles';
+  style.textContent =
+    '.admin-genre-seals{display:flex;flex-direction:column;align-items:flex-start;gap:12px;}'+
+    '.admin-genre-seals .genre-seal-wrap{display:flex;flex-direction:row;align-items:center;gap:10px;}'+
+    '.admin-genre-seals .genre-seal-label{white-space:nowrap;}';
+  document.head.appendChild(style);
+}
+
 function renderGenreChecks(){
   var block = document.getElementById('fGenresBlock');
   if(!block || block.childElementCount) return;
-  block.classList.add('catalog-genre-filters');
+  block.classList.add('admin-genre-seals');
+  injectAdminGenreLayoutStylesOnce();
   GENRE_LIST.forEach(function(g){
     var btn = document.createElement('button');
     btn.type = 'button';
