@@ -5146,13 +5146,23 @@ function renderProfileInstagramEmbed(urls){
   }
   box.classList.remove('hidden');
   if(tabBtn) tabBtn.classList.remove('hidden');
-  slot.innerHTML = urls.map(function(url){
-    return '<blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="' +
-      escapeHtml(url) + '" data-instgrm-version="14" style="margin:0 auto 24px;"></blockquote>';
-  }).join('');
+  slot.innerHTML = '<div class="instagram-embed-grid">' + urls.map(function(url){
+    return '<div class="instagram-embed-cell"><blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="' +
+      escapeHtml(url) + '" data-instgrm-version="14" style="margin:0;"></blockquote></div>';
+  }).join('') + '</div>';
+  injectInstagramGridStylesOnce();
   loadInstagramEmbedScript().then(function(){
     if(window.instgrm && window.instgrm.Embeds) window.instgrm.Embeds.process();
   });
+}
+function injectInstagramGridStylesOnce(){
+  if(document.getElementById('instagramGridStyles')) return;
+  var style = document.createElement('style');
+  style.id = 'instagramGridStyles';
+  style.textContent =
+    '.instagram-embed-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px;align-items:start;}'+
+    '.instagram-embed-cell iframe{width:100% !important;}';
+  document.head.appendChild(style);
 }
 var _instagramScriptPromise = null;
 function loadInstagramEmbedScript(){
