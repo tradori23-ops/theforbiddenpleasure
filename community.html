@@ -96,9 +96,22 @@
       <div id="diaryFeed"></div>
     </div>
 
-    <!-- COLLABORATORI: lavori/novità pubblicati da collaboratori invitati -->
+    <!-- COLLABORATORI: richieste di collaborazione + lavori/novità pubblicati insieme -->
     <div class="community-panel hidden" data-cpanel="collab">
       <p class="form-note" data-i18n="community.collabHint">Le opere pubblicate insieme ai collaboratori invitati, tutte in un unico posto.</p>
+      <div class="notice">
+        <div class="mini-heading" data-i18n="community.searchFriends">Cerca una persona</div>
+        <input type="text" id="fCollabSearch" data-i18n-placeholder="community.searchFriendsPh" placeholder="Nome utente…">
+        <div id="collabSearchResults"></div>
+      </div>
+      <div class="notice">
+        <div class="mini-heading" data-i18n="community.pendingReceived">Richieste ricevute</div>
+        <div id="collabRequestsReceived"></div>
+      </div>
+      <div class="notice">
+        <div class="mini-heading" data-i18n="community.pendingSent">Richieste inviate</div>
+        <div id="collabRequestsSent"></div>
+      </div>
       <div id="collabWorksGrid" class="catalog-grid"></div>
     </div>
 
