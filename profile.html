@@ -172,6 +172,15 @@
           <p class="form-note" style="margin-top:6px;" data-i18n="profile.instagramEmbedHint">Verranno mostrati direttamente nel tuo profilo, come li vedi su Instagram.</p>
         </div>
         <div class="field">
+          <label data-i18n="sound.settingsLabel">Suoni notifiche</label>
+          <label class="mature-toggle" style="margin-bottom:8px;">
+            <span data-i18n="sound.enabled">Suoni attivi</span>
+            <span class="switch"><input type="checkbox" id="fSoundEnabled"><span class="slider"></span></span>
+          </label>
+          <select id="fSoundPreset" style="margin-bottom:8px;"></select>
+          <button type="button" class="btn btn-ghost btn-sm" id="btnTestSound" data-i18n="sound.test">Prova suono</button>
+        </div>
+        <div class="field">
           <label data-i18n="profile.favChars">Personaggi preferiti</label>
           <div class="fav-char-options" id="favCharOptions">
             <label class="mature-toggle"><span>Lucifer</span><span class="switch"><input type="checkbox" value="Lucifer" class="fav-char-cb"><span class="slider"></span></span></label>
