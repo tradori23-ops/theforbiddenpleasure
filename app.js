@@ -12,7 +12,7 @@ var STR = {
     "gate.enter":"Ho almeno 18 anni — Sblocca",
     "gate.leave":"Annulla",
     "gate.legal":"Continuando dichiari inoltre di rispettare le leggi vigenti nella tua giurisdizione riguardo l'accesso a contenuti per adulti.",
-    "nav.library":"Schedario","nav.characters":"Dossier","nav.founder":"Fondatore","nav.admin":"Amministra","nav.createContent":"Crea contenuto","nav.login":"Accedi","nav.logout":"Esci",
+    "nav.library":"Schedario","nav.characters":"Dossier","nav.founder":"Fondatore","nav.admin":"Amministra","nav.login":"Accedi","nav.logout":"Esci",
     "hero.title1":"L'ARCHIVIO DEL","hero.title2":"PIACERE PROIBITO",
     "hero.tagline":"Fumetti d'autore — edizione riservata",
     "hero.lede":"Quattro sigilli, quattro voci: Lucifer, Lilith, Lucifera e Lucio custodiscono le collane di questa casa. Lo schedario è aperto a tutti — i contenuti 18+ restano dietro un interruttore separato, da sbloccare quando vuoi. Ogni tavola nasce in inglese ed entra nello schedario così com'è — solo la tua lingua d'accesso è cosa nostra.",
@@ -30,8 +30,8 @@ var STR = {
     "users.empty":"Nessun utente registrato ancora.","users.noName":"Utente","users.joined":"Iscritto il","users.daysHere":"{n} giorni sul sito",
     "users.eligible":"Idoneo","users.waitingDays":"ancora {n} giorni","users.grant":"Assegna spunta","users.revoke":"Rimuovi spunta","users.earlyGrantConfirm":"{name} non ha ancora raggiunto i 90 giorni (ne mancano {n}). Vuoi assegnare comunque la spunta come eccezione?",
     "notif.title":"Notifiche","notif.markAll":"Segna tutte come lette","notif.empty":"Nessuna notifica.","notif.someone":"Qualcuno","notif.justNow":"Adesso","notif.minsAgo":"{n} min fa","notif.hoursAgo":"{n} h fa","notif.daysAgo":"{n} g fa",
-    "nav.community":"Community","nav.myComics":"I Miei Comic","mycomics.eyebrow":"La tua libreria","mycomics.title":"I Miei Comic","mycomics.tab.continue":"Continua a Leggere","mycomics.tab.favorites":"Preferiti","mycomics.tab.purchases":"I Miei Acquisti","mycomics.tab.published":"Pubblicati","mycomics.emptyPublished":"Non hai ancora pubblicato nessun titolo.","mycomics.signedOut":"Accedi per vedere la tua cronologia, i preferiti e gli acquisti.","mycomics.emptyContinue":"Non hai ancora letto nessun titolo.","mycomics.emptyFavorites":"Nessun preferito ancora — tocca il cuoricino su un titolo.","mycomics.emptyPurchases":"Nessun acquisto registrato ancora.","mycomics.statusSeen":"Vista da Nox","mycomics.statusPending":"In attesa","community.eyebrow":"Fuori dallo Schedario","community.title":"Community","community.rule":"Niente materiale pornografico: al massimo contenuti sensuali. Chi viola la regola viene bannato ed eliminato dal sito.","community.tabChannels":"Canali","community.tabDms":"Messaggi privati","community.tabCollab":"Collaboratori","community.collabHint":"Le opere pubblicate insieme ai collaboratori invitati, tutte in un unico posto.","diary.tab":"Diario","diary.hint":"Condividi una foto, uno stato d'animo o una nota della giornata — tutti li vedranno qui.","diary.kindPhoto":"📷 Foto","diary.kindMood":"🙂 Stato d'animo","diary.kindNote":"📝 Nota del giorno","diary.captionPh":"Didascalia (opzionale)…","diary.moodPh":"Vuoi aggiungere due parole? (opzionale)…","diary.notePh":"Com'è andata oggi?","diary.publish":"Pubblica","diary.filterAll":"Tutti","diary.filterBy":"Di {name} ×","diary.needPhoto":"Scegli prima una foto.","diary.needMood":"Scegli prima uno stato d'animo.","diary.publishError":"Pubblicazione non riuscita. Riprova.","diary.empty":"Ancora nessun post — sii il primo.","pubProfile.notFound":"Profilo non trovato.","pubProfile.titlesHeading":"Titoli pubblicati","pubProfile.diaryHeading":"Diario","pubProfile.memberSince":"Membro da {date}","userDir.title":"Utenti","userDir.online":"Online","userDir.offline":"Offline","userDir.empty":"Nessun utente ancora.","userDir.verifiedFriends":"Amici verificati","userDir.others":"Altri utenti","userDir.loadError":"Non riesco a caricare gli utenti al momento. Riprova più tardi.","userDir.searchPh":"Cerca una persona…","userDir.noResults":"Nessun risultato.","chat.notFound":"Apri questa pagina da un profilo o dal pannello Utenti.","chat.messagePlaceholder":"Scrivi un messaggio…","chat.file":"File","chat.photo":"Foto","chat.sendError":"Messaggio non inviato. Riprova.","chat.delete":"Elimina","chat.deleteConfirm":"Eliminare questa conversazione? Non si può annullare.","chat.deleteError":"Non è stato possibile eliminare la conversazione. Riprova più tardi.","chat.newMessage":"+ Nuovo","chat.translate":"Traduci","chat.translateUndo":"Mostra originale","community.archive":"Archivia","community.unarchive":"Ripristina","community.newChannelPh":"Nome nuovo canale (es. Cinema)","community.createChannel":"Crea canale","community.back":"← Torna","community.messagePh":"Scrivi un messaggio…","community.send":"Invia","community.dmHint":"Per scrivere in privato a qualcuno, apri un suo messaggio in un canale e usa \"Messaggio privato\".","community.noChannels":"Nessun canale ancora. Creane uno tu.","community.noMessages":"Nessun messaggio ancora.","community.noDms":"Nessuna conversazione privata ancora.","community.privateMessage":"Messaggio privato","community.report":"Segnala","community.reportPrompt":"Perché segnali questo messaggio? (opzionale)","community.reportSent":"Segnalazione inviata, grazie.","community.you":"Tu","community.tabFriends":"Amici","community.addFriend":"Aggiungi amico","community.requestSent":"Richiesta inviata","community.acceptFriend":"Accetta amicizia","community.declineFriend":"Rifiuta","community.pendingReceived":"Richieste ricevute","community.pendingSent":"Richieste inviate","community.friendsList":"I tuoi amici","community.searchFriends":"Cerca una persona","community.searchFriendsPh":"Nome utente…","community.noResults":"Nessun risultato.",
-    "collabSession.title":"Sessioni di creazione attive","collabSession.hint":"Un amico invitato a creare può pubblicare titoli solo finché la sua sessione è attiva.","collabSession.active":"Sessione di creazione attiva","collabSession.hintCollab":"Puoi aggiungere titoli allo schedario finché la sessione è attiva. Se non riesci a finire in tempo, chiedi una proroga.","collabSession.requestExtension":"Non ce la faccio, chiedi una proroga","collabSession.countdown":"Scade tra {h}h {m}min","collabSession.expired":"Sessione scaduta.","collabSession.extensionPending":"Proroga richiesta, in attesa dell'admin","collabSession.invite":"Invita a creare","collabSession.inviteConfirm":"Invitare {name} a creare e pubblicare per 24 ore?","collabSession.inviteSent":"Invito inviato.","collabSession.inviteNotif":"Sei stato invitato a creare e pubblicare un titolo — hai 24 ore.","collabSession.extend48":"Proroga 48h","myTitles.heading":"I tuoi titoli pubblicati","myTitles.cancel":"Annulla modifica","card.publishedOn":"Pubblicato il {date} alle {time}","collab.propose":"Proponi collaborazione","collab.accept":"Accetta","collab.pending":"Richieste di collaborazione",
+    "nav.community":"Community","nav.myComics":"I Miei Comic","mycomics.eyebrow":"La tua libreria","mycomics.title":"I Miei Comic","mycomics.tab.continue":"Continua a Leggere","mycomics.tab.favorites":"Preferiti","mycomics.tab.purchases":"I Miei Acquisti","mycomics.signedOut":"Accedi per vedere la tua cronologia, i preferiti e gli acquisti.","mycomics.emptyContinue":"Non hai ancora letto nessun titolo.","mycomics.emptyFavorites":"Nessun preferito ancora — tocca il cuoricino su un titolo.","mycomics.emptyPurchases":"Nessun acquisto registrato ancora.","mycomics.statusSeen":"Vista da Nox","mycomics.statusPending":"In attesa","community.eyebrow":"Fuori dallo Schedario","community.title":"Community","community.rule":"Niente materiale pornografico: al massimo contenuti sensuali. Chi viola la regola viene bannato ed eliminato dal sito.","community.tabChannels":"Canali","community.tabDms":"Messaggi privati","community.tabCollab":"Collaboratori","community.collabHint":"Le opere pubblicate insieme ai collaboratori invitati, tutte in un unico posto.","diary.tab":"Diario","diary.hint":"Condividi una foto, uno stato d'animo o una nota della giornata — tutti li vedranno qui.","diary.kindPhoto":"📷 Foto","diary.kindMood":"🙂 Stato d'animo","diary.kindNote":"📝 Nota del giorno","diary.captionPh":"Didascalia (opzionale)…","diary.moodPh":"Vuoi aggiungere due parole? (opzionale)…","diary.notePh":"Com'è andata oggi?","diary.publish":"Pubblica","diary.filterAll":"Tutti","diary.filterBy":"Di {name} ×","diary.needPhoto":"Scegli prima una foto.","diary.needMood":"Scegli prima uno stato d'animo.","diary.publishError":"Pubblicazione non riuscita. Riprova.","diary.empty":"Ancora nessun post — sii il primo.","pubProfile.notFound":"Profilo non trovato.","pubProfile.titlesHeading":"Titoli pubblicati","pubProfile.diaryHeading":"Diario","pubProfile.memberSince":"Membro da {date}","userDir.title":"Utenti","userDir.online":"Online","userDir.offline":"Offline","userDir.empty":"Nessun utente ancora.","userDir.verifiedFriends":"Amici verificati","userDir.others":"Altri utenti","userDir.loadError":"Non riesco a caricare gli utenti al momento. Riprova più tardi.","chat.notFound":"Apri questa pagina da un profilo o dal pannello Utenti.","chat.messagePlaceholder":"Scrivi un messaggio…","chat.file":"File","chat.photo":"Foto","chat.sendError":"Messaggio non inviato. Riprova.","chat.delete":"Elimina","chat.deleteConfirm":"Eliminare questa conversazione? Non si può annullare.","chat.deleteError":"Non è stato possibile eliminare la conversazione. Riprova più tardi.","chat.newMessage":"+ Nuovo","chat.translate":"Traduci","chat.translateUndo":"Mostra originale","community.archive":"Archivia","community.unarchive":"Ripristina","community.newChannelPh":"Nome nuovo canale (es. Cinema)","community.createChannel":"Crea canale","community.back":"← Torna","community.messagePh":"Scrivi un messaggio…","community.send":"Invia","community.dmHint":"Per scrivere in privato a qualcuno, apri un suo messaggio in un canale e usa \"Messaggio privato\".","community.noChannels":"Nessun canale ancora. Creane uno tu.","community.noMessages":"Nessun messaggio ancora.","community.noDms":"Nessuna conversazione privata ancora.","community.privateMessage":"Messaggio privato","community.report":"Segnala","community.reportPrompt":"Perché segnali questo messaggio? (opzionale)","community.reportSent":"Segnalazione inviata, grazie.","community.you":"Tu","community.tabFriends":"Amici","community.addFriend":"Aggiungi amico","community.requestSent":"Richiesta inviata","community.acceptFriend":"Accetta amicizia","community.declineFriend":"Rifiuta","community.pendingReceived":"Richieste ricevute","community.pendingSent":"Richieste inviate","community.friendsList":"I tuoi amici","community.searchFriends":"Cerca una persona","community.searchFriendsPh":"Nome utente…","community.noResults":"Nessun risultato.",
+    "collabSession.title":"Sessioni di creazione attive","collabSession.hint":"Un amico invitato a creare può pubblicare titoli solo finché la sua sessione è attiva.","collabSession.active":"Sessione di creazione attiva","collabSession.hintCollab":"Puoi aggiungere titoli allo schedario finché la sessione è attiva. Se non riesci a finire in tempo, chiedi una proroga.","collabSession.requestExtension":"Non ce la faccio, chiedi una proroga","collabSession.countdown":"Scade tra {h}h {m}min","collabSession.expired":"Sessione scaduta.","collabSession.extensionPending":"Proroga richiesta, in attesa dell'admin","collabSession.invite":"Invita a creare","collabSession.inviteConfirm":"Invitare {name} a creare e pubblicare per 24 ore?","collabSession.inviteSent":"Invito inviato.","collabSession.inviteNotif":"Sei stato invitato a creare e pubblicare un titolo — hai 24 ore.","collabSession.extend48":"Proroga 48h","myTitles.heading":"I tuoi titoli pubblicati","myTitles.cancel":"Annulla modifica",
     "smallnox.title":"Il tuo assistente","smallnox.blurb":"SmallNox approva da solo commenti e iscrizioni pulite, e ti avvisa — arrabbiato — solo quando qualcosa sembra sospetto.","smallnox.communityBlurb":"SmallNox veglia su questi canali — se scrivi qualcosa fuori regola se ne accorge.","smallnox.modalTitle":"Ciao, sono SmallNox","smallnox.modalBody":"Controllo da solo i nuovi commenti e le nuove iscrizioni: se sono puliti li lascio passare subito, altrimenti li segnalo a Nox Morningstar. Nei canali della community faccio lo stesso lavoro — scrivi con rispetto e non mi vedrai mai arrabbiato.","smallnox.tipsTitle":"Un consiglio veloce","smallnox.tip1":"Scrivi @nomeutente in un commento o in un messaggio per taggare qualcuno — riceverà una notifica.","smallnox.tip2":"Nei messaggi privati trovi emoji e GIF sotto il campo di testo.","smallnox.tip3":"Nello Schedario, tocca il filtro \"Collaboratori\" per vedere i lavori di una persona specifica.","smallnox.tip4":"Nella tua Community, i messaggi privati hanno spunte di lettura e pallino verde se l'altra persona è online.","smallnox.tip5":"Hai pubblicato un titolo tu? Puoi modificarlo in qualsiasi momento dall'area Amministra, anche a sessione scaduta.","smallnox.tip6":"Tocca lo stemma in alto a sinistra da qualsiasi pagina per tornare subito alla home.","smallnoxUpdates.title":"Novità dall'Archivio","smallnoxUpdates.sub":"Cosa è cambiato di recente sul sito — te lo riassumo io.","smallnoxUpdates.close":"Ho capito",
     "community.loadError":"Caricamento non riuscito (controlla la connessione).","community.retry":"Riprova",
     "admin.tab.moderation":"Moderazione Community","mod.reportsTitle":"Segnalazioni aperte","mod.flaggedTitle":"Messaggi segnalati automaticamente","mod.bannedTitle":"Utenti bannati (email bloccate)","mod.empty":"Niente al momento.","mod.typeChannel":"Messaggio in canale","mod.typeDm":"Messaggio privato","mod.hide":"Nascondi","mod.ban":"Banna ed elimina","mod.noUser":"Utente non trovato.","mod.banConfirm":"Confermi? L'utente verrà bannato, il suo account eliminato e non potrà registrarsi di nuovo con la stessa email.","mod.banFailed":"Operazione non riuscita.",
@@ -46,7 +46,7 @@ var STR = {
     "profile.title":"Il mio profilo","profile.sub":"Visibile agli altri quando commenti",
     "profile.displayName":"Nome visibile","profile.bio":"Bio (opzionale)","profile.favChars":"Personaggi preferiti",
     "profile.avatarHd":"Foto profilo HD (opzionale)","profile.avatarHdHint":"Mostrata a piena risoluzione a chi tocca il tuo avatar. Se non la carichi, si vede la foto normale.",
-    "profile.banner":"Banner del profilo (opzionale)","profile.socials":"I tuoi social (opzionali)","profile.website":"Sito web","profile.edit":"Modifica profilo","profile.instagramHeading":"Instagram","profile.instagramEmbed":"I tuoi post/reel Instagram (opzionali, quanti vuoi)","profile.addInstagramLink":"+ Aggiungi link","sound.settingsLabel":"Suoni notifiche","sound.enabled":"Suoni attivi","sound.test":"Prova suono","profile.instagramEmbedHint":"Verranno mostrati direttamente nel tuo profilo, come li vedi su Instagram.","pubProfile.favoritesHeading":"Preferiti","pubProfile.statTitles":"titoli pubblicati","pubProfile.statFriends":"amici","pubProfile.statFavs":"preferiti",
+    "profile.banner":"Banner del profilo (opzionale)","profile.socials":"I tuoi social (opzionali)","profile.website":"Sito web","pubProfile.favoritesHeading":"Preferiti",
     "push.enable":"Attiva notifiche","push.enabled":"Notifiche attive","push.unsupported":"Il tuo browser non supporta le notifiche push.","push.denied":"Permesso negato — puoi attivarle di nuovo dalle impostazioni del browser.","push.error":"Non è stato possibile attivare le notifiche, riprova.","push.installFirst":"Installa per notifiche","push.installFirstLong":"Su iPhone/iPad le notifiche funzionano solo dopo aver installato il sito: tocca Condividi → Aggiungi a Home, poi apri l'app da lì e riprova.",
     "profile.birthDate":"Data di nascita","profile.gender":"Sesso","profile.genderUnset":"— Preferisco non dirlo —","profile.genderM":"Maschio","profile.genderF":"Femmina","profile.genderX":"Altro","profile.avatarInfoEmpty":"Nessuna informazione aggiuntiva condivisa",
     "profile.save":"Salva profilo","profile.saveError":"Salvataggio non riuscito. Riprova.",
@@ -64,7 +64,7 @@ var STR = {
     "admin.signin.btn":"Accedi come admin","admin.signin.error":"Credenziali non valide o backend non raggiungibile.",
     "admin.signOut":"Esci da admin",
     "admin.f.title":"Titolo","admin.f.character":"Personaggio","admin.f.issue":"Numero / Volume","admin.f.date":"Data pubblicazione","admin.f.synopsis":"Sinossi (inglese — testo delle opere)",
-    "admin.add":"Aggiungi allo schedario","admin.edit":"Modifica","admin.delete":"Elimina","admin.saveChanges":"Salva modifiche","admin.export":"Esporta JSON","admin.import":"Importa JSON",
+    "admin.add":"Aggiungi allo schedario","admin.edit":"Modifica","admin.saveChanges":"Salva modifiche","admin.export":"Esporta JSON","admin.import":"Importa JSON",
     "footer.line":"ARCHIVIO APERTO A TUTTI · SEZIONE 18+ SU RICHIESTA · TRAD.CLAB WORKS",
     "newsletter.eyebrow":"Resta Aggiornato","newsletter.title":"Iscriviti alla Newsletter",
     "newsletter.sub":"Nuovi titoli, collaborazioni e uscite — direttamente nella tua casella, niente spam.",
@@ -110,7 +110,7 @@ var STR = {
     "share.copied":"Link copiato — incollalo dove vuoi condividerlo.",
     "share.manual":"Copia questo testo per condividerlo:",
     "pdf.label":"Oppure carica il fumetto come PDF (A4) invece delle pagine singole",
-    "pdf.uploading":"Caricamento PDF…","pdf.download":"Scarica PDF","pdf.preparing":"Preparazione…","pdf.loginToDownload":"Accedi per scaricare il PDF",
+    "pdf.uploading":"Caricamento PDF…","pdf.download":"Scarica PDF","pdf.preparing":"Preparazione…","pdf.loginToDownload":"Accedi per scaricare il PDF","pdf.checking":"Verifica…","pdf.needVerified":"Sostieni per sbloccare il PDF","pdf.downloadError":"Scaricamento non riuscito. Riprova.",
     "maintenance.lockTitle":"Sito in manutenzione","maintenance.lockText":"Stiamo aggiornando l'archivio. Torna tra poco.",
     "charimg.title":"Immagini profilo personaggi",
     "social.title":"Link social (visibili nel footer)","social.save":"Salva link social",
@@ -135,7 +135,7 @@ var STR = {
     "gate.body":"This archive contains works intended for a mature audience. By continuing you confirm you are at least 18 years old and knowingly consent to explicit content.",
     "gate.enter":"I am 18 or older — Unlock","gate.leave":"Cancel",
     "gate.legal":"By continuing you also confirm compliance with the laws of your jurisdiction regarding access to adult content.",
-    "nav.library":"Index","nav.characters":"Dossiers","nav.founder":"Founder","nav.admin":"Admin","nav.createContent":"Create content","nav.login":"Sign in","nav.logout":"Sign out",
+    "nav.library":"Index","nav.characters":"Dossiers","nav.founder":"Founder","nav.admin":"Admin","nav.login":"Sign in","nav.logout":"Sign out",
     "hero.title1":"THE ARCHIVE OF","hero.title2":"FORBIDDEN PLEASURE",
     "hero.tagline":"Author comics — restricted edition",
     "hero.lede":"Four seals, four voices: Lucifer, Lilith, Lucifera and Lucio each guard a line of this house. The index is open to everyone — 18+ titles sit behind a separate switch, unlockable whenever you like. Every page is drawn in English and enters the index as-is — only your access language is yours to choose.",
@@ -153,8 +153,8 @@ var STR = {
     "users.empty":"No registered users yet.","users.noName":"User","users.joined":"Joined on","users.daysHere":"{n} days on the site",
     "users.eligible":"Eligible","users.waitingDays":"{n} days to go","users.grant":"Grant checkmark","users.revoke":"Remove checkmark","users.earlyGrantConfirm":"{name} hasn't reached 90 days yet ({n} to go). Grant the checkmark anyway as an exception?",
     "notif.title":"Notifications","notif.markAll":"Mark all as read","notif.empty":"No notifications.","notif.someone":"Someone","notif.justNow":"Just now","notif.minsAgo":"{n} min ago","notif.hoursAgo":"{n} h ago","notif.daysAgo":"{n} d ago",
-    "nav.community":"Community","nav.myComics":"My Comics","mycomics.eyebrow":"Your library","mycomics.title":"My Comics","mycomics.tab.continue":"Continue Reading","mycomics.tab.favorites":"Favorites","mycomics.tab.purchases":"My Purchases","mycomics.tab.published":"Published","mycomics.emptyPublished":"You haven't published any title yet.","mycomics.signedOut":"Sign in to see your history, favorites and purchases.","mycomics.emptyContinue":"You haven't read any title yet.","mycomics.emptyFavorites":"No favorites yet — tap the heart on a title.","mycomics.emptyPurchases":"No purchases registered yet.","mycomics.statusSeen":"Seen by Nox","mycomics.statusPending":"Pending","community.eyebrow":"Beyond the Archive","community.title":"Community","community.rule":"No pornographic material: sensual at most. Anyone who breaks the rule is banned and removed from the site.","community.tabChannels":"Channels","community.tabDms":"Private messages","community.tabCollab":"Collaborators","community.collabHint":"Works published together with invited collaborators, all in one place.","diary.tab":"Diary","diary.hint":"Share a photo, a mood, or a note about your day — everyone will see it here.","diary.kindPhoto":"📷 Photo","diary.kindMood":"🙂 Mood","diary.kindNote":"📝 Daily note","diary.captionPh":"Caption (optional)…","diary.moodPh":"Want to add a few words? (optional)…","diary.notePh":"How did today go?","diary.publish":"Post","diary.filterAll":"All","diary.filterBy":"By {name} ×","diary.needPhoto":"Choose a photo first.","diary.needMood":"Choose a mood first.","diary.publishError":"Post failed. Try again.","diary.empty":"No posts yet — be the first.","pubProfile.notFound":"Profile not found.","pubProfile.titlesHeading":"Published titles","pubProfile.diaryHeading":"Diary","pubProfile.memberSince":"Member since {date}","userDir.title":"Users","userDir.online":"Online","userDir.offline":"Offline","userDir.empty":"No users yet.","userDir.verifiedFriends":"Verified friends","userDir.others":"Other users","userDir.loadError":"Can't load users right now. Try again later.","userDir.searchPh":"Search for someone…","userDir.noResults":"No results.","chat.notFound":"Open this page from a profile or the Users panel.","chat.messagePlaceholder":"Write a message…","chat.file":"File","chat.photo":"Photo","chat.sendError":"Message not sent. Try again.","chat.delete":"Delete","chat.deleteConfirm":"Delete this conversation? This can't be undone.","chat.deleteError":"Couldn't delete the conversation. Try again later.","chat.newMessage":"+ New","chat.translate":"Translate","chat.translateUndo":"Show original","community.archive":"Archive","community.unarchive":"Unarchive","community.newChannelPh":"New channel name (e.g. Movies)","community.createChannel":"Create channel","community.back":"← Back","community.messagePh":"Write a message…","community.send":"Send","community.dmHint":"To message someone privately, open one of their messages in a channel and use \"Private message\".","community.noChannels":"No channels yet. Create one.","community.noMessages":"No messages yet.","community.noDms":"No private conversations yet.","community.privateMessage":"Private message","community.report":"Report","community.reportPrompt":"Why are you reporting this message? (optional)","community.reportSent":"Report sent, thank you.","community.you":"You","community.tabFriends":"Friends","community.addFriend":"Add friend","community.requestSent":"Request sent","community.acceptFriend":"Accept friend request","community.declineFriend":"Decline","community.pendingReceived":"Received requests","community.pendingSent":"Sent requests","community.friendsList":"Your friends","community.searchFriends":"Search for someone","community.searchFriendsPh":"Username…","community.noResults":"No results.",
-    "collabSession.title":"Active creation sessions","collabSession.hint":"A friend invited to create can publish titles only while their session is active.","collabSession.active":"Active creation session","collabSession.hintCollab":"You can add titles to the catalog while the session is active. If you can't finish in time, request an extension.","collabSession.requestExtension":"I can't make it, request an extension","collabSession.countdown":"Expires in {h}h {m}min","collabSession.expired":"Session expired.","collabSession.extensionPending":"Extension requested, waiting on the admin","collabSession.invite":"Invite to create","collabSession.inviteConfirm":"Invite {name} to create and publish for 24 hours?","collabSession.inviteSent":"Invitation sent.","collabSession.inviteNotif":"You've been invited to create and publish a title — you have 24 hours.","collabSession.extend48":"Extend 48h","myTitles.heading":"Your published titles","myTitles.cancel":"Cancel edit","card.publishedOn":"Published on {date} at {time}","collab.propose":"Propose collaboration","collab.accept":"Accept","collab.pending":"Collaboration requests",
+    "nav.community":"Community","nav.myComics":"My Comics","mycomics.eyebrow":"Your library","mycomics.title":"My Comics","mycomics.tab.continue":"Continue Reading","mycomics.tab.favorites":"Favorites","mycomics.tab.purchases":"My Purchases","mycomics.signedOut":"Sign in to see your history, favorites and purchases.","mycomics.emptyContinue":"You haven't read any title yet.","mycomics.emptyFavorites":"No favorites yet — tap the heart on a title.","mycomics.emptyPurchases":"No purchases registered yet.","mycomics.statusSeen":"Seen by Nox","mycomics.statusPending":"Pending","community.eyebrow":"Beyond the Archive","community.title":"Community","community.rule":"No pornographic material: sensual at most. Anyone who breaks the rule is banned and removed from the site.","community.tabChannels":"Channels","community.tabDms":"Private messages","community.tabCollab":"Collaborators","community.collabHint":"Works published together with invited collaborators, all in one place.","diary.tab":"Diary","diary.hint":"Share a photo, a mood, or a note about your day — everyone will see it here.","diary.kindPhoto":"📷 Photo","diary.kindMood":"🙂 Mood","diary.kindNote":"📝 Daily note","diary.captionPh":"Caption (optional)…","diary.moodPh":"Want to add a few words? (optional)…","diary.notePh":"How did today go?","diary.publish":"Post","diary.filterAll":"All","diary.filterBy":"By {name} ×","diary.needPhoto":"Choose a photo first.","diary.needMood":"Choose a mood first.","diary.publishError":"Post failed. Try again.","diary.empty":"No posts yet — be the first.","pubProfile.notFound":"Profile not found.","pubProfile.titlesHeading":"Published titles","pubProfile.diaryHeading":"Diary","pubProfile.memberSince":"Member since {date}","userDir.title":"Users","userDir.online":"Online","userDir.offline":"Offline","userDir.empty":"No users yet.","userDir.verifiedFriends":"Verified friends","userDir.others":"Other users","userDir.loadError":"Can't load users right now. Try again later.","chat.notFound":"Open this page from a profile or the Users panel.","chat.messagePlaceholder":"Write a message…","chat.file":"File","chat.photo":"Photo","chat.sendError":"Message not sent. Try again.","chat.delete":"Delete","chat.deleteConfirm":"Delete this conversation? This can't be undone.","chat.deleteError":"Couldn't delete the conversation. Try again later.","chat.newMessage":"+ New","chat.translate":"Translate","chat.translateUndo":"Show original","community.archive":"Archive","community.unarchive":"Unarchive","community.newChannelPh":"New channel name (e.g. Movies)","community.createChannel":"Create channel","community.back":"← Back","community.messagePh":"Write a message…","community.send":"Send","community.dmHint":"To message someone privately, open one of their messages in a channel and use \"Private message\".","community.noChannels":"No channels yet. Create one.","community.noMessages":"No messages yet.","community.noDms":"No private conversations yet.","community.privateMessage":"Private message","community.report":"Report","community.reportPrompt":"Why are you reporting this message? (optional)","community.reportSent":"Report sent, thank you.","community.you":"You","community.tabFriends":"Friends","community.addFriend":"Add friend","community.requestSent":"Request sent","community.acceptFriend":"Accept friend request","community.declineFriend":"Decline","community.pendingReceived":"Received requests","community.pendingSent":"Sent requests","community.friendsList":"Your friends","community.searchFriends":"Search for someone","community.searchFriendsPh":"Username…","community.noResults":"No results.",
+    "collabSession.title":"Active creation sessions","collabSession.hint":"A friend invited to create can publish titles only while their session is active.","collabSession.active":"Active creation session","collabSession.hintCollab":"You can add titles to the catalog while the session is active. If you can't finish in time, request an extension.","collabSession.requestExtension":"I can't make it, request an extension","collabSession.countdown":"Expires in {h}h {m}min","collabSession.expired":"Session expired.","collabSession.extensionPending":"Extension requested, waiting on the admin","collabSession.invite":"Invite to create","collabSession.inviteConfirm":"Invite {name} to create and publish for 24 hours?","collabSession.inviteSent":"Invitation sent.","collabSession.inviteNotif":"You've been invited to create and publish a title — you have 24 hours.","collabSession.extend48":"Extend 48h","myTitles.heading":"Your published titles","myTitles.cancel":"Cancel edit",
     "smallnox.title":"Your assistant","smallnox.blurb":"SmallNox approves clean comments and signups on his own, and warns you — angrily — only when something looks suspicious.","smallnox.communityBlurb":"SmallNox watches over these channels — if you write something out of line, he'll notice.","smallnox.modalTitle":"Hi, I'm SmallNox","smallnox.modalBody":"I check new comments and new signups on my own: if they're clean I let them through right away, otherwise I flag them for Nox Morningstar. I do the same job in the community channels — write with respect and you'll never see me angry.","smallnox.tipsTitle":"A quick tip","smallnox.tip1":"Type @username in a comment or message to tag someone — they get notified.","smallnox.tip2":"In private messages you'll find emoji and GIFs right under the text field.","smallnox.tip3":"In the Index, tap the \"Collaborators\" filter to see one person's work.","smallnox.tip4":"In your Community private messages, you get read receipts and a green dot when the other person is online.","smallnox.tip5":"Published a title yourself? You can edit it anytime from Admin, even after your session expires.","smallnox.tip6":"Tap the crest in the top-left corner from any page to jump back home.","smallnoxUpdates.title":"News from the Archive","smallnoxUpdates.sub":"What's changed on the site lately — let me sum it up.","smallnoxUpdates.close":"Got it",
     "community.loadError":"Loading failed (check your connection).","community.retry":"Retry",
     "admin.tab.moderation":"Community Moderation","mod.reportsTitle":"Open reports","mod.flaggedTitle":"Auto-flagged messages","mod.bannedTitle":"Banned users (blocked emails)","mod.empty":"Nothing right now.","mod.typeChannel":"Channel message","mod.typeDm":"Private message","mod.hide":"Hide","mod.ban":"Ban and delete","mod.noUser":"User not found.","mod.banConfirm":"Confirm? The user will be banned, their account deleted, and they won't be able to register again with the same email.","mod.banFailed":"Operation failed.",
@@ -169,7 +169,7 @@ var STR = {
     "profile.title":"My profile","profile.sub":"Visible to others when you comment",
     "profile.displayName":"Display name","profile.bio":"Bio (optional)","profile.favChars":"Favorite characters",
     "profile.avatarHd":"HD profile photo (optional)","profile.avatarHdHint":"Shown at full resolution to whoever taps your avatar. If you don't upload one, your regular photo is shown.",
-    "profile.banner":"Profile banner (optional)","profile.socials":"Your socials (optional)","profile.website":"Website","profile.edit":"Edit profile","profile.instagramHeading":"Instagram","profile.instagramEmbed":"Your Instagram posts/reels (optional, as many as you like)","profile.addInstagramLink":"+ Add link","sound.settingsLabel":"Notification sounds","sound.enabled":"Sounds on","sound.test":"Test sound","profile.instagramEmbedHint":"Shown directly on your profile, just like on Instagram.","pubProfile.favoritesHeading":"Favorites","pubProfile.statTitles":"published titles","pubProfile.statFriends":"friends","pubProfile.statFavs":"favorites",
+    "profile.banner":"Profile banner (optional)","profile.socials":"Your socials (optional)","profile.website":"Website","pubProfile.favoritesHeading":"Favorites",
     "push.enable":"Enable notifications","push.enabled":"Notifications on","push.unsupported":"Your browser doesn't support push notifications.","push.denied":"Permission denied — you can re-enable it from your browser settings.","push.error":"Couldn't enable notifications, try again.","push.installFirst":"Install for notifications","push.installFirstLong":"On iPhone/iPad, notifications only work after installing the site: tap Share → Add to Home Screen, then open the app from there and try again.",
     "profile.birthDate":"Birth date","profile.gender":"Gender","profile.genderUnset":"— Prefer not to say —","profile.genderM":"Male","profile.genderF":"Female","profile.genderX":"Other","profile.avatarInfoEmpty":"No additional information shared",
     "profile.save":"Save profile","profile.saveError":"Save failed. Try again.",
@@ -187,7 +187,7 @@ var STR = {
     "admin.signin.btn":"Sign in as admin","admin.signin.error":"Invalid credentials or backend unreachable.",
     "admin.signOut":"Sign out of admin",
     "admin.f.title":"Title","admin.f.character":"Character","admin.f.issue":"Issue / Volume","admin.f.date":"Publish date","admin.f.synopsis":"Synopsis (English — text of the works)",
-    "admin.add":"Add to index","admin.edit":"Edit","admin.delete":"Delete","admin.saveChanges":"Save changes","admin.export":"Export JSON","admin.import":"Import JSON",
+    "admin.add":"Add to index","admin.edit":"Edit","admin.saveChanges":"Save changes","admin.export":"Export JSON","admin.import":"Import JSON",
     "footer.line":"OPEN ARCHIVE · 18+ SECTION ON REQUEST · TRAD.CLAB WORKS",
     "newsletter.eyebrow":"Stay Updated","newsletter.title":"Subscribe to the Newsletter",
     "newsletter.sub":"New titles, collaborations, and releases — straight to your inbox, no spam.",
@@ -233,7 +233,7 @@ var STR = {
     "share.copied":"Link copied — paste it wherever you'd like to share it.",
     "share.manual":"Copy this text to share it:",
     "pdf.label":"Or upload the comic as a PDF (A4) instead of individual pages",
-    "pdf.uploading":"Uploading PDF…","pdf.download":"Download PDF","pdf.preparing":"Preparing…","pdf.loginToDownload":"Sign in to download the PDF",
+    "pdf.uploading":"Uploading PDF…","pdf.download":"Download PDF","pdf.preparing":"Preparing…","pdf.loginToDownload":"Sign in to download the PDF","pdf.checking":"Checking…","pdf.needVerified":"Support to unlock the PDF","pdf.downloadError":"Download failed. Try again.",
     "maintenance.lockTitle":"Site under maintenance","maintenance.lockText":"We're updating the archive. Check back shortly.",
     "charimg.title":"Character profile images",
     "social.title":"Social links (shown in the footer)","social.save":"Save social links",
@@ -258,7 +258,7 @@ var STR = {
     "gate.body":"Este archivo contiene obras destinadas a un público adulto. Al continuar confirmas tener al menos 18 años y aceptar conscientemente contenido explícito.",
     "gate.enter":"Tengo 18 años o más — Desbloquear","gate.leave":"Cancelar",
     "gate.legal":"Al continuar también confirmas cumplir con las leyes de tu jurisdicción respecto al acceso a contenido para adultos.",
-    "nav.library":"Índice","nav.characters":"Expedientes","nav.founder":"Fundador","nav.admin":"Admin","nav.createContent":"Crear contenido","nav.login":"Acceder","nav.logout":"Salir",
+    "nav.library":"Índice","nav.characters":"Expedientes","nav.founder":"Fundador","nav.admin":"Admin","nav.login":"Acceder","nav.logout":"Salir",
     "hero.title1":"EL ARCHIVO DEL","hero.title2":"PLACER PROHIBIDO",
     "hero.tagline":"Cómics de autor — edición restringida",
     "hero.lede":"Cuatro sellos, cuatro voces: Lucifer, Lilith, Lucifera y Lucio custodian las colecciones de esta casa. El índice está abierto a todos — los títulos 18+ quedan tras un interruptor aparte, que puedes desbloquear cuando quieras. Cada página se dibuja en inglés y entra al índice tal cual — solo tu idioma de acceso es asunto tuyo.",
@@ -276,8 +276,8 @@ var STR = {
     "users.empty":"Aún no hay usuarios registrados.","users.noName":"Usuario","users.joined":"Registrado el","users.daysHere":"{n} días en el sitio",
     "users.eligible":"Apto","users.waitingDays":"faltan {n} días","users.grant":"Otorgar marca","users.revoke":"Quitar marca","users.earlyGrantConfirm":"{name} aún no ha alcanzado los 90 días (faltan {n}). ¿Otorgar la marca de todos modos como excepción?",
     "notif.title":"Notificaciones","notif.markAll":"Marcar todas como leídas","notif.empty":"No hay notificaciones.","notif.someone":"Alguien","notif.justNow":"Ahora mismo","notif.minsAgo":"hace {n} min","notif.hoursAgo":"hace {n} h","notif.daysAgo":"hace {n} d",
-    "nav.community":"Comunidad","nav.myComics":"Mis Comics","mycomics.eyebrow":"Tu biblioteca","mycomics.title":"Mis Comics","mycomics.tab.continue":"Continuar Leyendo","mycomics.tab.favorites":"Favoritos","mycomics.tab.purchases":"Mis Compras","mycomics.tab.published":"Publicados","mycomics.emptyPublished":"Aún no has publicado ningún título.","mycomics.signedOut":"Inicia sesión para ver tu historial, favoritos y compras.","mycomics.emptyContinue":"Aún no has leído ningún título.","mycomics.emptyFavorites":"Aún no hay favoritos — toca el corazón en un título.","mycomics.emptyPurchases":"Aún no hay compras registradas.","mycomics.statusSeen":"Vista por Nox","mycomics.statusPending":"Pendiente","community.eyebrow":"Fuera del Archivo","community.title":"Comunidad","community.rule":"Nada de material pornográfico: como mucho contenido sensual. Quien incumpla la regla será baneado y eliminado del sitio.","community.tabChannels":"Canales","community.tabDms":"Mensajes privados","community.tabCollab":"Colaboradores","community.collabHint":"Las obras publicadas junto a los colaboradores invitados, todas en un solo lugar.","diary.tab":"Diario","diary.hint":"Comparte una foto, un estado de ánimo o una nota del día — todos lo verán aquí.","diary.kindPhoto":"📷 Foto","diary.kindMood":"🙂 Estado de ánimo","diary.kindNote":"📝 Nota del día","diary.captionPh":"Descripción (opcional)…","diary.moodPh":"¿Quieres añadir algunas palabras? (opcional)…","diary.notePh":"¿Cómo fue tu día?","diary.publish":"Publicar","diary.filterAll":"Todos","diary.filterBy":"De {name} ×","diary.needPhoto":"Elige primero una foto.","diary.needMood":"Elige primero un estado de ánimo.","diary.publishError":"Error al publicar. Inténtalo de nuevo.","diary.empty":"Aún no hay publicaciones — sé el primero.","pubProfile.notFound":"Perfil no encontrado.","pubProfile.titlesHeading":"Títulos publicados","pubProfile.diaryHeading":"Diario","pubProfile.memberSince":"Miembro desde {date}","userDir.title":"Usuarios","userDir.online":"En línea","userDir.offline":"Desconectado","userDir.empty":"Aún no hay usuarios.","userDir.verifiedFriends":"Amigos verificados","userDir.others":"Otros usuarios","userDir.loadError":"No se pueden cargar los usuarios ahora. Inténtalo más tarde.","userDir.searchPh":"Buscar a alguien…","userDir.noResults":"Sin resultados.","chat.notFound":"Abre esta página desde un perfil o el panel de Usuarios.","chat.messagePlaceholder":"Escribe un mensaje…","chat.file":"Archivo","chat.photo":"Foto","chat.sendError":"Mensaje no enviado. Inténtalo de nuevo.","chat.delete":"Eliminar","chat.deleteConfirm":"¿Eliminar esta conversación? No se puede deshacer.","chat.deleteError":"No se pudo eliminar la conversación. Inténtalo más tarde.","chat.newMessage":"+ Nuevo","chat.translate":"Traducir","chat.translateUndo":"Mostrar original","community.archive":"Archivar","community.unarchive":"Restaurar","community.newChannelPh":"Nombre del nuevo canal (ej. Cine)","community.createChannel":"Crear canal","community.back":"← Volver","community.messagePh":"Escribe un mensaje…","community.send":"Enviar","community.dmHint":"Para escribir en privado a alguien, abre uno de sus mensajes en un canal y usa \"Mensaje privado\".","community.noChannels":"Aún no hay canales. Crea uno.","community.noMessages":"Aún no hay mensajes.","community.noDms":"Aún no hay conversaciones privadas.","community.privateMessage":"Mensaje privado","community.report":"Denunciar","community.reportPrompt":"¿Por qué denuncias este mensaje? (opcional)","community.reportSent":"Denuncia enviada, gracias.","community.you":"Tú","community.tabFriends":"Amigos","community.addFriend":"Añadir amigo","community.requestSent":"Solicitud enviada","community.acceptFriend":"Aceptar amistad","community.declineFriend":"Rechazar","community.pendingReceived":"Solicitudes recibidas","community.pendingSent":"Solicitudes enviadas","community.friendsList":"Tus amigos","community.searchFriends":"Buscar a alguien","community.searchFriendsPh":"Nombre de usuario…","community.noResults":"Sin resultados.",
-    "collabSession.title":"Sesiones de creación activas","collabSession.hint":"Un amigo invitado a crear puede publicar títulos solo mientras su sesión esté activa.","collabSession.active":"Sesión de creación activa","collabSession.hintCollab":"Puedes añadir títulos al catálogo mientras la sesión esté activa. Si no llegas a tiempo, pide una prórroga.","collabSession.requestExtension":"No llego, pedir prórroga","collabSession.countdown":"Caduca en {h}h {m}min","collabSession.expired":"Sesión caducada.","collabSession.extensionPending":"Prórroga solicitada, esperando al admin","collabSession.invite":"Invitar a crear","collabSession.inviteConfirm":"¿Invitar a {name} a crear y publicar durante 24 horas?","collabSession.inviteSent":"Invitación enviada.","collabSession.inviteNotif":"Has sido invitado a crear y publicar un título — tienes 24 horas.","collabSession.extend48":"Prórroga 48h","myTitles.heading":"Tus títulos publicados","myTitles.cancel":"Cancelar edición","card.publishedOn":"Publicado el {date} a las {time}","collab.propose":"Proponer colaboración","collab.accept":"Aceptar","collab.pending":"Solicitudes de colaboración",
+    "nav.community":"Comunidad","nav.myComics":"Mis Comics","mycomics.eyebrow":"Tu biblioteca","mycomics.title":"Mis Comics","mycomics.tab.continue":"Continuar Leyendo","mycomics.tab.favorites":"Favoritos","mycomics.tab.purchases":"Mis Compras","mycomics.signedOut":"Inicia sesión para ver tu historial, favoritos y compras.","mycomics.emptyContinue":"Aún no has leído ningún título.","mycomics.emptyFavorites":"Aún no hay favoritos — toca el corazón en un título.","mycomics.emptyPurchases":"Aún no hay compras registradas.","mycomics.statusSeen":"Vista por Nox","mycomics.statusPending":"Pendiente","community.eyebrow":"Fuera del Archivo","community.title":"Comunidad","community.rule":"Nada de material pornográfico: como mucho contenido sensual. Quien incumpla la regla será baneado y eliminado del sitio.","community.tabChannels":"Canales","community.tabDms":"Mensajes privados","community.tabCollab":"Colaboradores","community.collabHint":"Las obras publicadas junto a los colaboradores invitados, todas en un solo lugar.","diary.tab":"Diario","diary.hint":"Comparte una foto, un estado de ánimo o una nota del día — todos lo verán aquí.","diary.kindPhoto":"📷 Foto","diary.kindMood":"🙂 Estado de ánimo","diary.kindNote":"📝 Nota del día","diary.captionPh":"Descripción (opcional)…","diary.moodPh":"¿Quieres añadir algunas palabras? (opcional)…","diary.notePh":"¿Cómo fue tu día?","diary.publish":"Publicar","diary.filterAll":"Todos","diary.filterBy":"De {name} ×","diary.needPhoto":"Elige primero una foto.","diary.needMood":"Elige primero un estado de ánimo.","diary.publishError":"Error al publicar. Inténtalo de nuevo.","diary.empty":"Aún no hay publicaciones — sé el primero.","pubProfile.notFound":"Perfil no encontrado.","pubProfile.titlesHeading":"Títulos publicados","pubProfile.diaryHeading":"Diario","pubProfile.memberSince":"Miembro desde {date}","userDir.title":"Usuarios","userDir.online":"En línea","userDir.offline":"Desconectado","userDir.empty":"Aún no hay usuarios.","userDir.verifiedFriends":"Amigos verificados","userDir.others":"Otros usuarios","userDir.loadError":"No se pueden cargar los usuarios ahora. Inténtalo más tarde.","chat.notFound":"Abre esta página desde un perfil o el panel de Usuarios.","chat.messagePlaceholder":"Escribe un mensaje…","chat.file":"Archivo","chat.photo":"Foto","chat.sendError":"Mensaje no enviado. Inténtalo de nuevo.","chat.delete":"Eliminar","chat.deleteConfirm":"¿Eliminar esta conversación? No se puede deshacer.","chat.deleteError":"No se pudo eliminar la conversación. Inténtalo más tarde.","chat.newMessage":"+ Nuevo","chat.translate":"Traducir","chat.translateUndo":"Mostrar original","community.archive":"Archivar","community.unarchive":"Restaurar","community.newChannelPh":"Nombre del nuevo canal (ej. Cine)","community.createChannel":"Crear canal","community.back":"← Volver","community.messagePh":"Escribe un mensaje…","community.send":"Enviar","community.dmHint":"Para escribir en privado a alguien, abre uno de sus mensajes en un canal y usa \"Mensaje privado\".","community.noChannels":"Aún no hay canales. Crea uno.","community.noMessages":"Aún no hay mensajes.","community.noDms":"Aún no hay conversaciones privadas.","community.privateMessage":"Mensaje privado","community.report":"Denunciar","community.reportPrompt":"¿Por qué denuncias este mensaje? (opcional)","community.reportSent":"Denuncia enviada, gracias.","community.you":"Tú","community.tabFriends":"Amigos","community.addFriend":"Añadir amigo","community.requestSent":"Solicitud enviada","community.acceptFriend":"Aceptar amistad","community.declineFriend":"Rechazar","community.pendingReceived":"Solicitudes recibidas","community.pendingSent":"Solicitudes enviadas","community.friendsList":"Tus amigos","community.searchFriends":"Buscar a alguien","community.searchFriendsPh":"Nombre de usuario…","community.noResults":"Sin resultados.",
+    "collabSession.title":"Sesiones de creación activas","collabSession.hint":"Un amigo invitado a crear puede publicar títulos solo mientras su sesión esté activa.","collabSession.active":"Sesión de creación activa","collabSession.hintCollab":"Puedes añadir títulos al catálogo mientras la sesión esté activa. Si no llegas a tiempo, pide una prórroga.","collabSession.requestExtension":"No llego, pedir prórroga","collabSession.countdown":"Caduca en {h}h {m}min","collabSession.expired":"Sesión caducada.","collabSession.extensionPending":"Prórroga solicitada, esperando al admin","collabSession.invite":"Invitar a crear","collabSession.inviteConfirm":"¿Invitar a {name} a crear y publicar durante 24 horas?","collabSession.inviteSent":"Invitación enviada.","collabSession.inviteNotif":"Has sido invitado a crear y publicar un título — tienes 24 horas.","collabSession.extend48":"Prórroga 48h","myTitles.heading":"Tus títulos publicados","myTitles.cancel":"Cancelar edición",
     "smallnox.title":"Tu asistente","smallnox.blurb":"SmallNox aprueba solo comentarios e inscripciones limpias, y te avisa -enfadado- solo cuando algo parece sospechoso.","smallnox.communityBlurb":"SmallNox vigila estos canales -si escribes algo fuera de norma, se dará cuenta.","smallnox.modalTitle":"Hola, soy SmallNox","smallnox.modalBody":"Reviso solo los nuevos comentarios y las nuevas inscripciones: si están limpios los dejo pasar enseguida, si no se los señalo a Nox Morningstar. En los canales de la comunidad hago el mismo trabajo -escribe con respeto y nunca me verás enfadado.","smallnox.tipsTitle":"Un consejo rápido","smallnox.tip1":"Escribe @usuario en un comentario o mensaje para etiquetar a alguien — recibirá una notificación.","smallnox.tip2":"En los mensajes privados encontrarás emojis y GIFs justo debajo del campo de texto.","smallnox.tip3":"En el Catálogo, toca el filtro \"Colaboradores\" para ver el trabajo de una persona.","smallnox.tip4":"En tus mensajes privados de la Comunidad hay confirmaciones de lectura y un punto verde si la otra persona está en línea.","smallnox.tip5":"¿Publicaste un título tú? Puedes editarlo en cualquier momento desde Administración, incluso con la sesión caducada.","smallnox.tip6":"Toca el escudo arriba a la izquierda desde cualquier página para volver al inicio.","smallnoxUpdates.title":"Novedades del Archivo","smallnoxUpdates.sub":"Qué ha cambiado últimamente en el sitio — te lo resumo yo.","smallnoxUpdates.close":"Entendido",
     "community.loadError":"Error al cargar (revisa tu conexión).","community.retry":"Reintentar",
     "admin.tab.moderation":"Moderación de Comunidad","mod.reportsTitle":"Denuncias abiertas","mod.flaggedTitle":"Mensajes marcados automáticamente","mod.bannedTitle":"Usuarios baneados (emails bloqueados)","mod.empty":"Nada por ahora.","mod.typeChannel":"Mensaje en canal","mod.typeDm":"Mensaje privado","mod.hide":"Ocultar","mod.ban":"Banear y eliminar","mod.noUser":"Usuario no encontrado.","mod.banConfirm":"¿Confirmas? El usuario será baneado, su cuenta eliminada y no podrá registrarse de nuevo con el mismo email.","mod.banFailed":"Operación fallida.",
@@ -292,7 +292,7 @@ var STR = {
     "profile.title":"Mi perfil","profile.sub":"Visible para otros cuando comentas",
     "profile.displayName":"Nombre visible","profile.bio":"Bio (opcional)","profile.favChars":"Personajes favoritos",
     "profile.avatarHd":"Foto de perfil HD (opcional)","profile.avatarHdHint":"Se muestra a resolución completa a quien toque tu avatar. Si no la subes, se ve la foto normal.",
-    "profile.banner":"Banner del perfil (opcional)","profile.socials":"Tus redes sociales (opcional)","profile.website":"Sitio web","profile.edit":"Editar perfil","profile.instagramHeading":"Instagram","profile.instagramEmbed":"Tus publicaciones/reels de Instagram (opcional, las que quieras)","profile.addInstagramLink":"+ Añadir enlace","sound.settingsLabel":"Sonidos de notificación","sound.enabled":"Sonidos activos","sound.test":"Probar sonido","profile.instagramEmbedHint":"Se mostrarán directamente en tu perfil, igual que en Instagram.","pubProfile.favoritesHeading":"Favoritos","pubProfile.statTitles":"títulos publicados","pubProfile.statFriends":"amigos","pubProfile.statFavs":"favoritos",
+    "profile.banner":"Banner del perfil (opcional)","profile.socials":"Tus redes sociales (opcional)","profile.website":"Sitio web","pubProfile.favoritesHeading":"Favoritos",
     "push.enable":"Activar notificaciones","push.enabled":"Notificaciones activas","push.unsupported":"Tu navegador no admite notificaciones push.","push.denied":"Permiso denegado — puedes activarlas de nuevo desde los ajustes del navegador.","push.error":"No se pudieron activar las notificaciones, inténtalo de nuevo.","push.installFirst":"Instala para notificaciones","push.installFirstLong":"En iPhone/iPad, las notificaciones solo funcionan tras instalar el sitio: toca Compartir → Añadir a inicio, luego abre la app desde ahí e inténtalo de nuevo.",
     "profile.birthDate":"Fecha de nacimiento","profile.gender":"Sexo","profile.genderUnset":"— Prefiero no decirlo —","profile.genderM":"Masculino","profile.genderF":"Femenino","profile.genderX":"Otro","profile.avatarInfoEmpty":"No se ha compartido información adicional",
     "profile.save":"Guardar perfil","profile.saveError":"Error al guardar. Inténtalo de nuevo.",
@@ -310,7 +310,7 @@ var STR = {
     "admin.signin.btn":"Acceder como admin","admin.signin.error":"Credenciales no válidas o backend inaccesible.",
     "admin.signOut":"Salir de admin",
     "admin.f.title":"Título","admin.f.character":"Personaje","admin.f.issue":"Número / Volumen","admin.f.date":"Fecha de publicación","admin.f.synopsis":"Sinopsis (inglés — texto de las obras)",
-    "admin.add":"Añadir al índice","admin.edit":"Editar","admin.delete":"Eliminar","admin.saveChanges":"Guardar cambios","admin.export":"Exportar JSON","admin.import":"Importar JSON",
+    "admin.add":"Añadir al índice","admin.edit":"Editar","admin.saveChanges":"Guardar cambios","admin.export":"Exportar JSON","admin.import":"Importar JSON",
     "footer.line":"ARCHIVO ABIERTO A TODOS · SECCIÓN 18+ BAJO PETICIÓN · TRAD.CLAB WORKS",
     "newsletter.eyebrow":"Mantente al Día","newsletter.title":"Suscríbete al Boletín",
     "newsletter.sub":"Nuevos títulos, colaboraciones y estrenos — directo a tu bandeja, sin spam.",
@@ -356,7 +356,7 @@ var STR = {
     "share.copied":"Enlace copiado — pégalo donde quieras compartirlo.",
     "share.manual":"Copia este texto para compartirlo:",
     "pdf.label":"O sube el cómic como PDF (A4) en lugar de páginas individuales",
-    "pdf.uploading":"Subiendo PDF…","pdf.download":"Descargar PDF","pdf.preparing":"Preparando…","pdf.loginToDownload":"Inicia sesión para descargar el PDF",
+    "pdf.uploading":"Subiendo PDF…","pdf.download":"Descargar PDF","pdf.preparing":"Preparando…","pdf.loginToDownload":"Inicia sesión para descargar el PDF","pdf.checking":"Comprobando…","pdf.needVerified":"Apoya para desbloquear el PDF","pdf.downloadError":"Error al descargar. Inténtalo de nuevo.",
     "maintenance.lockTitle":"Sitio en mantenimiento","maintenance.lockText":"Estamos actualizando el archivo. Vuelve en breve.",
     "charimg.title":"Imágenes de perfil de los personajes",
     "social.title":"Enlaces sociales (visibles en el pie de página)","social.save":"Guardar enlaces sociales",
@@ -381,7 +381,7 @@ var STR = {
     "gate.body":"Cette archive contient des œuvres destinées à un public averti. En continuant, vous confirmez avoir au moins 18 ans et consentir sciemment à un contenu explicite.",
     "gate.enter":"J'ai 18 ans ou plus — Débloquer","gate.leave":"Annuler",
     "gate.legal":"En continuant, vous confirmez également respecter les lois de votre juridiction concernant l'accès aux contenus pour adultes.",
-    "nav.library":"Index","nav.characters":"Dossiers","nav.founder":"Fondateur","nav.admin":"Admin","nav.createContent":"Créer du contenu","nav.login":"Connexion","nav.logout":"Déconnexion",
+    "nav.library":"Index","nav.characters":"Dossiers","nav.founder":"Fondateur","nav.admin":"Admin","nav.login":"Connexion","nav.logout":"Déconnexion",
     "hero.title1":"L'ARCHIVE DU","hero.title2":"PLAISIR INTERDIT",
     "hero.tagline":"Bandes dessinées d'auteur — édition réservée",
     "hero.lede":"Quatre sceaux, quatre voix : Lucifer, Lilith, Lucifera et Lucio veillent chacun sur une collection de cette maison. L'index est ouvert à tous — les titres 18+ restent derrière un interrupteur séparé, à débloquer quand vous voulez. Chaque planche est dessinée en anglais et entre dans l'index telle quelle — seule votre langue d'accès vous appartient.",
@@ -399,8 +399,8 @@ var STR = {
     "users.empty":"Aucun utilisateur inscrit pour l'instant.","users.noName":"Utilisateur","users.joined":"Inscrit le","users.daysHere":"{n} jours sur le site",
     "users.eligible":"Éligible","users.waitingDays":"encore {n} jours","users.grant":"Accorder le badge","users.revoke":"Retirer le badge","users.earlyGrantConfirm":"{name} n'a pas encore atteint 90 jours ({n} restants). Accorder le badge quand même, à titre exceptionnel ?",
     "notif.title":"Notifications","notif.markAll":"Tout marquer comme lu","notif.empty":"Aucune notification.","notif.someone":"Quelqu'un","notif.justNow":"À l'instant","notif.minsAgo":"il y a {n} min","notif.hoursAgo":"il y a {n} h","notif.daysAgo":"il y a {n} j",
-    "nav.community":"Communauté","nav.myComics":"Mes Comics","mycomics.eyebrow":"Votre bibliothèque","mycomics.title":"Mes Comics","mycomics.tab.continue":"Continuer la Lecture","mycomics.tab.favorites":"Favoris","mycomics.tab.purchases":"Mes Achats","mycomics.tab.published":"Publiés","mycomics.emptyPublished":"Vous n'avez encore publié aucun titre.","mycomics.signedOut":"Connectez-vous pour voir votre historique, vos favoris et vos achats.","mycomics.emptyContinue":"Vous n'avez encore lu aucun titre.","mycomics.emptyFavorites":"Aucun favori pour l'instant — touchez le cœur sur un titre.","mycomics.emptyPurchases":"Aucun achat enregistré pour l'instant.","mycomics.statusSeen":"Vu par Nox","mycomics.statusPending":"En attente","community.eyebrow":"En dehors de l'Archive","community.title":"Communauté","community.rule":"Aucun contenu pornographique : sensuel tout au plus. Toute violation entraîne le bannissement et la suppression du site.","community.tabChannels":"Canaux","community.tabDms":"Messages privés","community.tabCollab":"Collaborateurs","community.collabHint":"Les œuvres publiées avec les collaborateurs invités, toutes au même endroit.","diary.tab":"Journal","diary.hint":"Partagez une photo, une humeur ou une note du jour — tout le monde la verra ici.","diary.kindPhoto":"📷 Photo","diary.kindMood":"🙂 Humeur","diary.kindNote":"📝 Note du jour","diary.captionPh":"Légende (facultatif)…","diary.moodPh":"Ajouter quelques mots ? (facultatif)…","diary.notePh":"Comment s'est passée votre journée ?","diary.publish":"Publier","diary.filterAll":"Tous","diary.filterBy":"De {name} ×","diary.needPhoto":"Choisissez d'abord une photo.","diary.needMood":"Choisissez d'abord une humeur.","diary.publishError":"Échec de la publication. Réessayez.","diary.empty":"Aucune publication pour l'instant — soyez le premier.","pubProfile.notFound":"Profil introuvable.","pubProfile.titlesHeading":"Titres publiés","pubProfile.diaryHeading":"Journal","pubProfile.memberSince":"Membre depuis {date}","userDir.title":"Utilisateurs","userDir.online":"En ligne","userDir.offline":"Hors ligne","userDir.empty":"Aucun utilisateur pour l'instant.","userDir.verifiedFriends":"Amis vérifiés","userDir.others":"Autres utilisateurs","userDir.loadError":"Impossible de charger les utilisateurs pour le moment. Réessayez plus tard.","userDir.searchPh":"Rechercher une personne…","userDir.noResults":"Aucun résultat.","chat.notFound":"Ouvrez cette page depuis un profil ou le panneau Utilisateurs.","chat.messagePlaceholder":"Écrivez un message…","chat.file":"Fichier","chat.photo":"Photo","chat.sendError":"Message non envoyé. Réessayez.","chat.delete":"Supprimer","chat.deleteConfirm":"Supprimer cette conversation ? Action irréversible.","chat.deleteError":"Impossible de supprimer la conversation. Réessayez plus tard.","chat.newMessage":"+ Nouveau","chat.translate":"Traduire","chat.translateUndo":"Afficher l'original","community.archive":"Archiver","community.unarchive":"Restaurer","community.newChannelPh":"Nom du nouveau canal (ex. Cinéma)","community.createChannel":"Créer un canal","community.back":"← Retour","community.messagePh":"Écrivez un message…","community.send":"Envoyer","community.dmHint":"Pour écrire en privé à quelqu'un, ouvrez un de ses messages dans un canal et utilisez \"Message privé\".","community.noChannels":"Aucun canal pour l'instant. Créez-en un.","community.noMessages":"Aucun message pour l'instant.","community.noDms":"Aucune conversation privée pour l'instant.","community.privateMessage":"Message privé","community.report":"Signaler","community.reportPrompt":"Pourquoi signalez-vous ce message ? (facultatif)","community.reportSent":"Signalement envoyé, merci.","community.you":"Vous","community.tabFriends":"Amis","community.addFriend":"Ajouter un ami","community.requestSent":"Demande envoyée","community.acceptFriend":"Accepter l'amitié","community.declineFriend":"Refuser","community.pendingReceived":"Demandes reçues","community.pendingSent":"Demandes envoyées","community.friendsList":"Vos amis","community.searchFriends":"Rechercher une personne","community.searchFriendsPh":"Nom d'utilisateur…","community.noResults":"Aucun résultat.",
-    "collabSession.title":"Sessions de création actives","collabSession.hint":"Un ami invité à créer ne peut publier de titres que tant que sa session est active.","collabSession.active":"Session de création active","collabSession.hintCollab":"Vous pouvez ajouter des titres au catalogue tant que la session est active. Si vous ne pouvez pas terminer à temps, demandez une prolongation.","collabSession.requestExtension":"Je n'y arrive pas, demander une prolongation","collabSession.countdown":"Expire dans {h}h {m}min","collabSession.expired":"Session expirée.","collabSession.extensionPending":"Prolongation demandée, en attente de l'admin","collabSession.invite":"Inviter à créer","collabSession.inviteConfirm":"Inviter {name} à créer et publier pendant 24 heures ?","collabSession.inviteSent":"Invitation envoyée.","collabSession.inviteNotif":"Vous avez été invité à créer et publier un titre — vous avez 24 heures.","collabSession.extend48":"Prolonger de 48h","myTitles.heading":"Vos titres publiés","myTitles.cancel":"Annuler la modification","card.publishedOn":"Publié le {date} à {time}","collab.propose":"Proposer une collaboration","collab.accept":"Accepter","collab.pending":"Demandes de collaboration",
+    "nav.community":"Communauté","nav.myComics":"Mes Comics","mycomics.eyebrow":"Votre bibliothèque","mycomics.title":"Mes Comics","mycomics.tab.continue":"Continuer la Lecture","mycomics.tab.favorites":"Favoris","mycomics.tab.purchases":"Mes Achats","mycomics.signedOut":"Connectez-vous pour voir votre historique, vos favoris et vos achats.","mycomics.emptyContinue":"Vous n'avez encore lu aucun titre.","mycomics.emptyFavorites":"Aucun favori pour l'instant — touchez le cœur sur un titre.","mycomics.emptyPurchases":"Aucun achat enregistré pour l'instant.","mycomics.statusSeen":"Vu par Nox","mycomics.statusPending":"En attente","community.eyebrow":"En dehors de l'Archive","community.title":"Communauté","community.rule":"Aucun contenu pornographique : sensuel tout au plus. Toute violation entraîne le bannissement et la suppression du site.","community.tabChannels":"Canaux","community.tabDms":"Messages privés","community.tabCollab":"Collaborateurs","community.collabHint":"Les œuvres publiées avec les collaborateurs invités, toutes au même endroit.","diary.tab":"Journal","diary.hint":"Partagez une photo, une humeur ou une note du jour — tout le monde la verra ici.","diary.kindPhoto":"📷 Photo","diary.kindMood":"🙂 Humeur","diary.kindNote":"📝 Note du jour","diary.captionPh":"Légende (facultatif)…","diary.moodPh":"Ajouter quelques mots ? (facultatif)…","diary.notePh":"Comment s'est passée votre journée ?","diary.publish":"Publier","diary.filterAll":"Tous","diary.filterBy":"De {name} ×","diary.needPhoto":"Choisissez d'abord une photo.","diary.needMood":"Choisissez d'abord une humeur.","diary.publishError":"Échec de la publication. Réessayez.","diary.empty":"Aucune publication pour l'instant — soyez le premier.","pubProfile.notFound":"Profil introuvable.","pubProfile.titlesHeading":"Titres publiés","pubProfile.diaryHeading":"Journal","pubProfile.memberSince":"Membre depuis {date}","userDir.title":"Utilisateurs","userDir.online":"En ligne","userDir.offline":"Hors ligne","userDir.empty":"Aucun utilisateur pour l'instant.","userDir.verifiedFriends":"Amis vérifiés","userDir.others":"Autres utilisateurs","userDir.loadError":"Impossible de charger les utilisateurs pour le moment. Réessayez plus tard.","chat.notFound":"Ouvrez cette page depuis un profil ou le panneau Utilisateurs.","chat.messagePlaceholder":"Écrivez un message…","chat.file":"Fichier","chat.photo":"Photo","chat.sendError":"Message non envoyé. Réessayez.","chat.delete":"Supprimer","chat.deleteConfirm":"Supprimer cette conversation ? Action irréversible.","chat.deleteError":"Impossible de supprimer la conversation. Réessayez plus tard.","chat.newMessage":"+ Nouveau","chat.translate":"Traduire","chat.translateUndo":"Afficher l'original","community.archive":"Archiver","community.unarchive":"Restaurer","community.newChannelPh":"Nom du nouveau canal (ex. Cinéma)","community.createChannel":"Créer un canal","community.back":"← Retour","community.messagePh":"Écrivez un message…","community.send":"Envoyer","community.dmHint":"Pour écrire en privé à quelqu'un, ouvrez un de ses messages dans un canal et utilisez \"Message privé\".","community.noChannels":"Aucun canal pour l'instant. Créez-en un.","community.noMessages":"Aucun message pour l'instant.","community.noDms":"Aucune conversation privée pour l'instant.","community.privateMessage":"Message privé","community.report":"Signaler","community.reportPrompt":"Pourquoi signalez-vous ce message ? (facultatif)","community.reportSent":"Signalement envoyé, merci.","community.you":"Vous","community.tabFriends":"Amis","community.addFriend":"Ajouter un ami","community.requestSent":"Demande envoyée","community.acceptFriend":"Accepter l'amitié","community.declineFriend":"Refuser","community.pendingReceived":"Demandes reçues","community.pendingSent":"Demandes envoyées","community.friendsList":"Vos amis","community.searchFriends":"Rechercher une personne","community.searchFriendsPh":"Nom d'utilisateur…","community.noResults":"Aucun résultat.",
+    "collabSession.title":"Sessions de création actives","collabSession.hint":"Un ami invité à créer ne peut publier de titres que tant que sa session est active.","collabSession.active":"Session de création active","collabSession.hintCollab":"Vous pouvez ajouter des titres au catalogue tant que la session est active. Si vous ne pouvez pas terminer à temps, demandez une prolongation.","collabSession.requestExtension":"Je n'y arrive pas, demander une prolongation","collabSession.countdown":"Expire dans {h}h {m}min","collabSession.expired":"Session expirée.","collabSession.extensionPending":"Prolongation demandée, en attente de l'admin","collabSession.invite":"Inviter à créer","collabSession.inviteConfirm":"Inviter {name} à créer et publier pendant 24 heures ?","collabSession.inviteSent":"Invitation envoyée.","collabSession.inviteNotif":"Vous avez été invité à créer et publier un titre — vous avez 24 heures.","collabSession.extend48":"Prolonger de 48h","myTitles.heading":"Vos titres publiés","myTitles.cancel":"Annuler la modification",
     "smallnox.title":"Votre assistant","smallnox.blurb":"SmallNox approuve tout seul les commentaires et inscriptions sans souci, et vous prévient -en colère- seulement quand quelque chose semble suspect.","smallnox.communityBlurb":"SmallNox veille sur ces canaux -s'il vous arrive d'écrire quelque chose hors règles, il le remarquera.","smallnox.modalTitle":"Salut, je suis SmallNox","smallnox.modalBody":"Je vérifie tout seul les nouveaux commentaires et les nouvelles inscriptions : s'ils sont clean je les laisse passer tout de suite, sinon je les signale à Nox Morningstar. Je fais le même travail dans les canaux de la communauté -écrivez avec respect et vous ne me verrez jamais en colère.","smallnox.tipsTitle":"Une astuce rapide","smallnox.tip1":"Écrivez @nomutilisateur dans un commentaire ou un message pour identifier quelqu'un — il recevra une notification.","smallnox.tip2":"Dans les messages privés, les emojis et GIFs se trouvent juste sous le champ de texte.","smallnox.tip3":"Dans l'Index, touchez le filtre \"Collaborateurs\" pour voir le travail d'une personne.","smallnox.tip4":"Dans vos messages privés Communauté, vous avez des accusés de lecture et un point vert si l'autre personne est en ligne.","smallnox.tip5":"Vous avez publié un titre ? Vous pouvez le modifier à tout moment depuis Admin, même après l'expiration de votre session.","smallnox.tip6":"Touchez le blason en haut à gauche depuis n'importe quelle page pour revenir à l'accueil.","smallnoxUpdates.title":"Nouveautés de l'Archive","smallnoxUpdates.sub":"Ce qui a changé récemment sur le site — je vous fais le résumé.","smallnoxUpdates.close":"Compris",
     "community.loadError":"Échec du chargement (vérifiez votre connexion).","community.retry":"Réessayer",
     "admin.tab.moderation":"Modération Communauté","mod.reportsTitle":"Signalements ouverts","mod.flaggedTitle":"Messages signalés automatiquement","mod.bannedTitle":"Utilisateurs bannis (emails bloqués)","mod.empty":"Rien pour l'instant.","mod.typeChannel":"Message de canal","mod.typeDm":"Message privé","mod.hide":"Masquer","mod.ban":"Bannir et supprimer","mod.noUser":"Utilisateur introuvable.","mod.banConfirm":"Confirmer ? L'utilisateur sera banni, son compte supprimé, et il ne pourra plus se réinscrire avec le même email.","mod.banFailed":"Échec de l'opération.",
@@ -415,7 +415,7 @@ var STR = {
     "profile.title":"Mon profil","profile.sub":"Visible par les autres quand vous commentez",
     "profile.displayName":"Nom affiché","profile.bio":"Bio (facultatif)","profile.favChars":"Personnages préférés",
     "profile.avatarHd":"Photo de profil HD (facultatif)","profile.avatarHdHint":"Affichée en pleine résolution à quiconque touche votre avatar. Si vous n'en téléchargez pas, la photo normale s'affiche.",
-    "profile.banner":"Bannière du profil (facultatif)","profile.socials":"Vos réseaux sociaux (facultatif)","profile.website":"Site web","profile.edit":"Modifier le profil","profile.instagramHeading":"Instagram","profile.instagramEmbed":"Vos posts/reels Instagram (facultatif, autant que vous voulez)","profile.addInstagramLink":"+ Ajouter un lien","sound.settingsLabel":"Sons de notification","sound.enabled":"Sons activés","sound.test":"Tester le son","profile.instagramEmbedHint":"Affichés directement sur votre profil, comme sur Instagram.","pubProfile.favoritesHeading":"Favoris","pubProfile.statTitles":"titres publiés","pubProfile.statFriends":"amis","pubProfile.statFavs":"favoris",
+    "profile.banner":"Bannière du profil (facultatif)","profile.socials":"Vos réseaux sociaux (facultatif)","profile.website":"Site web","pubProfile.favoritesHeading":"Favoris",
     "push.enable":"Activer les notifications","push.enabled":"Notifications activées","push.unsupported":"Votre navigateur ne prend pas en charge les notifications push.","push.denied":"Permission refusée — vous pouvez la réactiver dans les paramètres du navigateur.","push.error":"Impossible d'activer les notifications, réessayez.","push.installFirst":"Installer pour les notifications","push.installFirstLong":"Sur iPhone/iPad, les notifications ne fonctionnent qu'après avoir installé le site : appuyez sur Partager → Sur l'écran d'accueil, puis ouvrez l'app depuis là et réessayez.",
     "profile.birthDate":"Date de naissance","profile.gender":"Sexe","profile.genderUnset":"— Je préfère ne pas le dire —","profile.genderM":"Homme","profile.genderF":"Femme","profile.genderX":"Autre","profile.avatarInfoEmpty":"Aucune information supplémentaire partagée",
     "profile.save":"Enregistrer le profil","profile.saveError":"Échec de l'enregistrement. Réessayez.",
@@ -433,7 +433,7 @@ var STR = {
     "admin.signin.btn":"Connexion admin","admin.signin.error":"Identifiants invalides ou backend inaccessible.",
     "admin.signOut":"Déconnexion admin",
     "admin.f.title":"Titre","admin.f.character":"Personnage","admin.f.issue":"Numéro / Volume","admin.f.date":"Date de publication","admin.f.synopsis":"Synopsis (anglais — texte des œuvres)",
-    "admin.add":"Ajouter à l'index","admin.edit":"Modifier","admin.delete":"Supprimer","admin.saveChanges":"Enregistrer les modifications","admin.export":"Exporter JSON","admin.import":"Importer JSON",
+    "admin.add":"Ajouter à l'index","admin.edit":"Modifier","admin.saveChanges":"Enregistrer les modifications","admin.export":"Exporter JSON","admin.import":"Importer JSON",
     "footer.line":"ARCHIVE OUVERTE À TOUS · SECTION 18+ SUR DEMANDE · TRAD.CLAB WORKS",
     "newsletter.eyebrow":"Restez Informé","newsletter.title":"Abonnez-vous à la Newsletter",
     "newsletter.sub":"Nouveaux titres, collaborations et sorties — directement dans votre boîte, sans spam.",
@@ -479,7 +479,7 @@ var STR = {
     "share.copied":"Lien copié — collez-le où vous voulez le partager.",
     "share.manual":"Copiez ce texte pour le partager :",
     "pdf.label":"Ou téléversez la BD en PDF (A4) au lieu de pages individuelles",
-    "pdf.uploading":"Envoi du PDF…","pdf.download":"Télécharger le PDF","pdf.preparing":"Préparation…","pdf.loginToDownload":"Connectez-vous pour télécharger le PDF",
+    "pdf.uploading":"Envoi du PDF…","pdf.download":"Télécharger le PDF","pdf.preparing":"Préparation…","pdf.loginToDownload":"Connectez-vous pour télécharger le PDF","pdf.checking":"Vérification…","pdf.needVerified":"Soutenez pour débloquer le PDF","pdf.downloadError":"Échec du téléchargement. Réessayez.",
     "maintenance.lockTitle":"Site en maintenance","maintenance.lockText":"Nous mettons à jour les archives. Revenez bientôt.",
     "charimg.title":"Images de profil des personnages",
     "social.title":"Liens sociaux (affichés en pied de page)","social.save":"Enregistrer les liens sociaux",
@@ -504,7 +504,7 @@ var STR = {
     "gate.body":"Dieses Archiv enthält Werke für ein erwachsenes Publikum. Mit dem Fortfahren bestätigen Sie, mindestens 18 Jahre alt zu sein und bewusst expliziten Inhalten zuzustimmen.",
     "gate.enter":"Ich bin 18 Jahre oder älter — Freischalten","gate.leave":"Abbrechen",
     "gate.legal":"Mit dem Fortfahren bestätigen Sie außerdem, die Gesetze Ihrer Rechtsordnung zum Zugang zu Erwachseneninhalten einzuhalten.",
-    "nav.library":"Index","nav.characters":"Dossiers","nav.founder":"Gründer","nav.admin":"Admin","nav.createContent":"Inhalt erstellen","nav.login":"Anmelden","nav.logout":"Abmelden",
+    "nav.library":"Index","nav.characters":"Dossiers","nav.founder":"Gründer","nav.admin":"Admin","nav.login":"Anmelden","nav.logout":"Abmelden",
     "hero.title1":"DAS ARCHIV DER","hero.title2":"VERBOTENEN LUST",
     "hero.tagline":"Autoren-Comics — exklusive Ausgabe",
     "hero.lede":"Vier Siegel, vier Stimmen: Lucifer, Lilith, Lucifera und Lucio hüten je eine Reihe dieses Hauses. Der Index steht allen offen — 18+-Titel liegen hinter einem eigenen Schalter, den Sie jederzeit freischalten können. Jede Seite entsteht auf Englisch und kommt so in den Index — nur Ihre Zugangssprache liegt bei Ihnen.",
@@ -522,8 +522,8 @@ var STR = {
     "users.empty":"Noch keine registrierten Nutzer.","users.noName":"Nutzer","users.joined":"Angemeldet am","users.daysHere":"{n} Tage dabei",
     "users.eligible":"Berechtigt","users.waitingDays":"noch {n} Tage","users.grant":"Häkchen vergeben","users.revoke":"Häkchen entfernen","users.earlyGrantConfirm":"{name} hat die 90 Tage noch nicht erreicht (noch {n} Tage). Häkchen trotzdem als Ausnahme vergeben?",
     "notif.title":"Benachrichtigungen","notif.markAll":"Alle als gelesen markieren","notif.empty":"Keine Benachrichtigungen.","notif.someone":"Jemand","notif.justNow":"Gerade eben","notif.minsAgo":"vor {n} Min","notif.hoursAgo":"vor {n} Std","notif.daysAgo":"vor {n} T",
-    "nav.community":"Community","nav.myComics":"Meine Comics","mycomics.eyebrow":"Deine Bibliothek","mycomics.title":"Meine Comics","mycomics.tab.continue":"Weiterlesen","mycomics.tab.favorites":"Favoriten","mycomics.tab.purchases":"Meine Käufe","mycomics.tab.published":"Veröffentlicht","mycomics.emptyPublished":"Du hast noch keinen Titel veröffentlicht.","mycomics.signedOut":"Melde dich an, um deinen Verlauf, Favoriten und Käufe zu sehen.","mycomics.emptyContinue":"Du hast noch keinen Titel gelesen.","mycomics.emptyFavorites":"Noch keine Favoriten — tippe auf das Herz bei einem Titel.","mycomics.emptyPurchases":"Noch keine Käufe registriert.","mycomics.statusSeen":"Von Nox gesehen","mycomics.statusPending":"Ausstehend","community.eyebrow":"Jenseits des Archivs","community.title":"Community","community.rule":"Keine pornografischen Inhalte: höchstens sinnlich. Wer gegen die Regel verstößt, wird gesperrt und von der Seite entfernt.","community.tabChannels":"Kanäle","community.tabDms":"Private Nachrichten","community.tabCollab":"Mitwirkende","community.collabHint":"Die zusammen mit eingeladenen Mitwirkenden veröffentlichten Werke, alle an einem Ort.","diary.tab":"Tagebuch","diary.hint":"Teile ein Foto, eine Stimmung oder eine Notiz zu deinem Tag — alle sehen es hier.","diary.kindPhoto":"📷 Foto","diary.kindMood":"🙂 Stimmung","diary.kindNote":"📝 Tagesnotiz","diary.captionPh":"Bildunterschrift (optional)…","diary.moodPh":"Möchtest du ein paar Worte hinzufügen? (optional)…","diary.notePh":"Wie war dein Tag?","diary.publish":"Veröffentlichen","diary.filterAll":"Alle","diary.filterBy":"Von {name} ×","diary.needPhoto":"Wähle zuerst ein Foto.","diary.needMood":"Wähle zuerst eine Stimmung.","diary.publishError":"Veröffentlichung fehlgeschlagen. Erneut versuchen.","diary.empty":"Noch keine Beiträge — sei der Erste.","pubProfile.notFound":"Profil nicht gefunden.","pubProfile.titlesHeading":"Veröffentlichte Titel","pubProfile.diaryHeading":"Tagebuch","pubProfile.memberSince":"Mitglied seit {date}","userDir.title":"Nutzer","userDir.online":"Online","userDir.offline":"Offline","userDir.empty":"Noch keine Nutzer.","userDir.verifiedFriends":"Verifizierte Freunde","userDir.others":"Weitere Nutzer","userDir.loadError":"Nutzer können gerade nicht geladen werden. Später erneut versuchen.","userDir.searchPh":"Person suchen…","userDir.noResults":"Keine Ergebnisse.","chat.notFound":"Öffne diese Seite über ein Profil oder das Nutzer-Panel.","chat.messagePlaceholder":"Nachricht schreiben…","chat.file":"Datei","chat.photo":"Foto","chat.sendError":"Nachricht nicht gesendet. Erneut versuchen.","chat.delete":"Löschen","chat.deleteConfirm":"Diese Unterhaltung löschen? Kann nicht rückgängig gemacht werden.","chat.deleteError":"Unterhaltung konnte nicht gelöscht werden. Später erneut versuchen.","chat.newMessage":"+ Neu","chat.translate":"Übersetzen","chat.translateUndo":"Original anzeigen","community.archive":"Archivieren","community.unarchive":"Wiederherstellen","community.newChannelPh":"Name des neuen Kanals (z. B. Kino)","community.createChannel":"Kanal erstellen","community.back":"← Zurück","community.messagePh":"Nachricht schreiben…","community.send":"Senden","community.dmHint":"Um jemandem privat zu schreiben, öffne eine seiner Nachrichten in einem Kanal und nutze \"Private Nachricht\".","community.noChannels":"Noch keine Kanäle. Erstelle einen.","community.noMessages":"Noch keine Nachrichten.","community.noDms":"Noch keine privaten Gespräche.","community.privateMessage":"Private Nachricht","community.report":"Melden","community.reportPrompt":"Warum meldest du diese Nachricht? (optional)","community.reportSent":"Meldung gesendet, danke.","community.you":"Du","community.tabFriends":"Freunde","community.addFriend":"Freund hinzufügen","community.requestSent":"Anfrage gesendet","community.acceptFriend":"Freundschaft annehmen","community.declineFriend":"Ablehnen","community.pendingReceived":"Erhaltene Anfragen","community.pendingSent":"Gesendete Anfragen","community.friendsList":"Deine Freunde","community.searchFriends":"Person suchen","community.searchFriendsPh":"Benutzername…","community.noResults":"Keine Ergebnisse.",
-    "collabSession.title":"Aktive Erstellungssitzungen","collabSession.hint":"Ein zum Erstellen eingeladener Freund kann Titel nur veröffentlichen, solange seine Sitzung aktiv ist.","collabSession.active":"Aktive Erstellungssitzung","collabSession.hintCollab":"Du kannst Titel zum Katalog hinzufügen, solange die Sitzung aktiv ist. Wenn du nicht rechtzeitig fertig wirst, bitte um eine Verlängerung.","collabSession.requestExtension":"Ich schaffe es nicht, Verlängerung anfragen","collabSession.countdown":"Läuft ab in {h}Std {m}Min","collabSession.expired":"Sitzung abgelaufen.","collabSession.extensionPending":"Verlängerung angefragt, wartet auf Admin","collabSession.invite":"Zum Erstellen einladen","collabSession.inviteConfirm":"{name} für 24 Stunden zum Erstellen und Veröffentlichen einladen?","collabSession.inviteSent":"Einladung gesendet.","collabSession.inviteNotif":"Du wurdest eingeladen, einen Titel zu erstellen und zu veröffentlichen — du hast 24 Stunden.","collabSession.extend48":"Um 48Std verlängern","myTitles.heading":"Deine veröffentlichten Titel","myTitles.cancel":"Bearbeitung abbrechen","card.publishedOn":"Veröffentlicht am {date} um {time}","collab.propose":"Zusammenarbeit vorschlagen","collab.accept":"Annehmen","collab.pending":"Kooperationsanfragen",
+    "nav.community":"Community","nav.myComics":"Meine Comics","mycomics.eyebrow":"Deine Bibliothek","mycomics.title":"Meine Comics","mycomics.tab.continue":"Weiterlesen","mycomics.tab.favorites":"Favoriten","mycomics.tab.purchases":"Meine Käufe","mycomics.signedOut":"Melde dich an, um deinen Verlauf, Favoriten und Käufe zu sehen.","mycomics.emptyContinue":"Du hast noch keinen Titel gelesen.","mycomics.emptyFavorites":"Noch keine Favoriten — tippe auf das Herz bei einem Titel.","mycomics.emptyPurchases":"Noch keine Käufe registriert.","mycomics.statusSeen":"Von Nox gesehen","mycomics.statusPending":"Ausstehend","community.eyebrow":"Jenseits des Archivs","community.title":"Community","community.rule":"Keine pornografischen Inhalte: höchstens sinnlich. Wer gegen die Regel verstößt, wird gesperrt und von der Seite entfernt.","community.tabChannels":"Kanäle","community.tabDms":"Private Nachrichten","community.tabCollab":"Mitwirkende","community.collabHint":"Die zusammen mit eingeladenen Mitwirkenden veröffentlichten Werke, alle an einem Ort.","diary.tab":"Tagebuch","diary.hint":"Teile ein Foto, eine Stimmung oder eine Notiz zu deinem Tag — alle sehen es hier.","diary.kindPhoto":"📷 Foto","diary.kindMood":"🙂 Stimmung","diary.kindNote":"📝 Tagesnotiz","diary.captionPh":"Bildunterschrift (optional)…","diary.moodPh":"Möchtest du ein paar Worte hinzufügen? (optional)…","diary.notePh":"Wie war dein Tag?","diary.publish":"Veröffentlichen","diary.filterAll":"Alle","diary.filterBy":"Von {name} ×","diary.needPhoto":"Wähle zuerst ein Foto.","diary.needMood":"Wähle zuerst eine Stimmung.","diary.publishError":"Veröffentlichung fehlgeschlagen. Erneut versuchen.","diary.empty":"Noch keine Beiträge — sei der Erste.","pubProfile.notFound":"Profil nicht gefunden.","pubProfile.titlesHeading":"Veröffentlichte Titel","pubProfile.diaryHeading":"Tagebuch","pubProfile.memberSince":"Mitglied seit {date}","userDir.title":"Nutzer","userDir.online":"Online","userDir.offline":"Offline","userDir.empty":"Noch keine Nutzer.","userDir.verifiedFriends":"Verifizierte Freunde","userDir.others":"Weitere Nutzer","userDir.loadError":"Nutzer können gerade nicht geladen werden. Später erneut versuchen.","chat.notFound":"Öffne diese Seite über ein Profil oder das Nutzer-Panel.","chat.messagePlaceholder":"Nachricht schreiben…","chat.file":"Datei","chat.photo":"Foto","chat.sendError":"Nachricht nicht gesendet. Erneut versuchen.","chat.delete":"Löschen","chat.deleteConfirm":"Diese Unterhaltung löschen? Kann nicht rückgängig gemacht werden.","chat.deleteError":"Unterhaltung konnte nicht gelöscht werden. Später erneut versuchen.","chat.newMessage":"+ Neu","chat.translate":"Übersetzen","chat.translateUndo":"Original anzeigen","community.archive":"Archivieren","community.unarchive":"Wiederherstellen","community.newChannelPh":"Name des neuen Kanals (z. B. Kino)","community.createChannel":"Kanal erstellen","community.back":"← Zurück","community.messagePh":"Nachricht schreiben…","community.send":"Senden","community.dmHint":"Um jemandem privat zu schreiben, öffne eine seiner Nachrichten in einem Kanal und nutze \"Private Nachricht\".","community.noChannels":"Noch keine Kanäle. Erstelle einen.","community.noMessages":"Noch keine Nachrichten.","community.noDms":"Noch keine privaten Gespräche.","community.privateMessage":"Private Nachricht","community.report":"Melden","community.reportPrompt":"Warum meldest du diese Nachricht? (optional)","community.reportSent":"Meldung gesendet, danke.","community.you":"Du","community.tabFriends":"Freunde","community.addFriend":"Freund hinzufügen","community.requestSent":"Anfrage gesendet","community.acceptFriend":"Freundschaft annehmen","community.declineFriend":"Ablehnen","community.pendingReceived":"Erhaltene Anfragen","community.pendingSent":"Gesendete Anfragen","community.friendsList":"Deine Freunde","community.searchFriends":"Person suchen","community.searchFriendsPh":"Benutzername…","community.noResults":"Keine Ergebnisse.",
+    "collabSession.title":"Aktive Erstellungssitzungen","collabSession.hint":"Ein zum Erstellen eingeladener Freund kann Titel nur veröffentlichen, solange seine Sitzung aktiv ist.","collabSession.active":"Aktive Erstellungssitzung","collabSession.hintCollab":"Du kannst Titel zum Katalog hinzufügen, solange die Sitzung aktiv ist. Wenn du nicht rechtzeitig fertig wirst, bitte um eine Verlängerung.","collabSession.requestExtension":"Ich schaffe es nicht, Verlängerung anfragen","collabSession.countdown":"Läuft ab in {h}Std {m}Min","collabSession.expired":"Sitzung abgelaufen.","collabSession.extensionPending":"Verlängerung angefragt, wartet auf Admin","collabSession.invite":"Zum Erstellen einladen","collabSession.inviteConfirm":"{name} für 24 Stunden zum Erstellen und Veröffentlichen einladen?","collabSession.inviteSent":"Einladung gesendet.","collabSession.inviteNotif":"Du wurdest eingeladen, einen Titel zu erstellen und zu veröffentlichen — du hast 24 Stunden.","collabSession.extend48":"Um 48Std verlängern","myTitles.heading":"Deine veröffentlichten Titel","myTitles.cancel":"Bearbeitung abbrechen",
     "smallnox.title":"Dein Assistent","smallnox.blurb":"SmallNox genehmigt unbedenkliche Kommentare und Anmeldungen von selbst und meldet sich -wütend- nur, wenn etwas verdächtig wirkt.","smallnox.communityBlurb":"SmallNox wacht über diese Kanäle -wenn du etwas Regelwidriges schreibst, bemerkt er es.","smallnox.modalTitle":"Hallo, ich bin SmallNox","smallnox.modalBody":"Ich prüfe neue Kommentare und neue Anmeldungen ganz allein: sind sie unbedenklich, lasse ich sie sofort durch, sonst melde ich sie Nox Morningstar. In den Community-Kanälen mache ich dasselbe -schreib respektvoll und du wirst mich nie wütend erleben.","smallnox.tipsTitle":"Ein schneller Tipp","smallnox.tip1":"Schreibe @benutzername in einem Kommentar oder einer Nachricht, um jemanden zu markieren — er wird benachrichtigt.","smallnox.tip2":"In privaten Nachrichten findest du Emojis und GIFs direkt unter dem Textfeld.","smallnox.tip3":"Tippe im Katalog auf den Filter \"Mitwirkende\", um die Arbeiten einer Person zu sehen.","smallnox.tip4":"In deinen privaten Community-Nachrichten gibt es Lesebestätigungen und einen grünen Punkt, wenn die andere Person online ist.","smallnox.tip5":"Hast du selbst einen Titel veröffentlicht? Du kannst ihn jederzeit im Admin-Bereich bearbeiten, auch nach Ablauf deiner Sitzung.","smallnox.tip6":"Tippe von jeder Seite aus oben links auf das Wappen, um sofort zur Startseite zurückzukehren.","smallnoxUpdates.title":"Neuigkeiten aus dem Archiv","smallnoxUpdates.sub":"Was sich zuletzt auf der Seite geändert hat — ich fasse es zusammen.","smallnoxUpdates.close":"Verstanden",
     "community.loadError":"Laden fehlgeschlagen (Verbindung prüfen).","community.retry":"Erneut versuchen",
     "admin.tab.moderation":"Community-Moderation","mod.reportsTitle":"Offene Meldungen","mod.flaggedTitle":"Automatisch markierte Nachrichten","mod.bannedTitle":"Gesperrte Nutzer (blockierte E-Mails)","mod.empty":"Aktuell nichts.","mod.typeChannel":"Kanal-Nachricht","mod.typeDm":"Private Nachricht","mod.hide":"Ausblenden","mod.ban":"Sperren und löschen","mod.noUser":"Nutzer nicht gefunden.","mod.banConfirm":"Bestätigen? Der Nutzer wird gesperrt, sein Konto gelöscht, und er kann sich nicht erneut mit derselben E-Mail registrieren.","mod.banFailed":"Vorgang fehlgeschlagen.",
@@ -538,7 +538,7 @@ var STR = {
     "profile.title":"Mein Profil","profile.sub":"Für andere sichtbar, wenn du kommentierst",
     "profile.displayName":"Anzeigename","profile.bio":"Bio (optional)","profile.favChars":"Lieblingscharaktere",
     "profile.avatarHd":"HD-Profilbild (optional)","profile.avatarHdHint":"Wird in voller Auflösung angezeigt, wenn jemand auf dein Avatar tippt. Wenn du keins hochlädst, wird das normale Foto angezeigt.",
-    "profile.banner":"Profil-Banner (optional)","profile.socials":"Deine Social-Media-Profile (optional)","profile.website":"Webseite","profile.edit":"Profil bearbeiten","profile.instagramHeading":"Instagram","profile.instagramEmbed":"Deine Instagram-Beiträge/Reels (optional, so viele du willst)","profile.addInstagramLink":"+ Link hinzufügen","sound.settingsLabel":"Benachrichtigungstöne","sound.enabled":"Töne aktiv","sound.test":"Ton testen","profile.instagramEmbedHint":"Werden direkt auf deinem Profil angezeigt, genau wie auf Instagram.","pubProfile.favoritesHeading":"Favoriten","pubProfile.statTitles":"veröffentlichte Titel","pubProfile.statFriends":"Freunde","pubProfile.statFavs":"Favoriten",
+    "profile.banner":"Profil-Banner (optional)","profile.socials":"Deine Social-Media-Profile (optional)","profile.website":"Webseite","pubProfile.favoritesHeading":"Favoriten",
     "push.enable":"Benachrichtigungen aktivieren","push.enabled":"Benachrichtigungen an","push.unsupported":"Dein Browser unterstützt keine Push-Benachrichtigungen.","push.denied":"Erlaubnis verweigert — du kannst sie in den Browsereinstellungen wieder aktivieren.","push.error":"Benachrichtigungen konnten nicht aktiviert werden, versuch es erneut.","push.installFirst":"Installieren für Benachrichtigungen","push.installFirstLong":"Auf iPhone/iPad funktionieren Benachrichtigungen erst nach der Installation der Seite: Tippe auf Teilen → Zum Home-Bildschirm, öffne die App von dort und versuch es erneut.",
     "profile.birthDate":"Geburtsdatum","profile.gender":"Geschlecht","profile.genderUnset":"— Möchte ich nicht angeben —","profile.genderM":"Männlich","profile.genderF":"Weiblich","profile.genderX":"Andere","profile.avatarInfoEmpty":"Keine zusätzlichen Informationen geteilt",
     "profile.save":"Profil speichern","profile.saveError":"Speichern fehlgeschlagen. Erneut versuchen.",
@@ -556,7 +556,7 @@ var STR = {
     "admin.signin.btn":"Als Admin anmelden","admin.signin.error":"Ungültige Anmeldedaten oder Backend nicht erreichbar.",
     "admin.signOut":"Admin abmelden",
     "admin.f.title":"Titel","admin.f.character":"Figur","admin.f.issue":"Nummer / Band","admin.f.date":"Veröffentlichungsdatum","admin.f.synopsis":"Zusammenfassung (Englisch — Text der Werke)",
-    "admin.add":"Zum Index hinzufügen","admin.edit":"Bearbeiten","admin.delete":"Löschen","admin.saveChanges":"Änderungen speichern","admin.export":"JSON exportieren","admin.import":"JSON importieren",
+    "admin.add":"Zum Index hinzufügen","admin.edit":"Bearbeiten","admin.saveChanges":"Änderungen speichern","admin.export":"JSON exportieren","admin.import":"JSON importieren",
     "footer.line":"OFFENES ARCHIV · 18+ BEREICH AUF ANFRAGE · TRAD.CLAB WORKS",
     "newsletter.eyebrow":"Bleib Informiert","newsletter.title":"Newsletter Abonnieren",
     "newsletter.sub":"Neue Titel, Kollaborationen und Veröffentlichungen — direkt ins Postfach, kein Spam.",
@@ -602,7 +602,7 @@ var STR = {
     "share.copied":"Link kopiert — fügen Sie ihn ein, wo Sie ihn teilen möchten.",
     "share.manual":"Diesen Text zum Teilen kopieren:",
     "pdf.label":"Oder Comic als PDF (A4) statt Einzelseiten hochladen",
-    "pdf.uploading":"PDF wird hochgeladen…","pdf.download":"PDF herunterladen","pdf.preparing":"Wird vorbereitet…","pdf.loginToDownload":"Anmelden, um das PDF herunterzuladen",
+    "pdf.uploading":"PDF wird hochgeladen…","pdf.download":"PDF herunterladen","pdf.preparing":"Wird vorbereitet…","pdf.loginToDownload":"Anmelden, um das PDF herunterzuladen","pdf.checking":"Wird geprüft…","pdf.needVerified":"Unterstützen, um das PDF freizuschalten","pdf.downloadError":"Download fehlgeschlagen. Erneut versuchen.",
     "maintenance.lockTitle":"Website in Wartung","maintenance.lockText":"Wir aktualisieren das Archiv. Schau bald wieder vorbei.",
     "charimg.title":"Profilbilder der Charaktere",
     "social.title":"Social-Links (im Footer angezeigt)","social.save":"Social-Links speichern",
@@ -657,13 +657,6 @@ function t(key){
   var lang = STR[currentLang] ? currentLang : 'it';
   return (STR[lang] && STR[lang][key]) || (STR.it[key]) || key;
 }
-function updateNavAdminLabel(admin){
-  var el = document.getElementById('navAdmin');
-  if(!el) return;
-  el.removeAttribute('data-i18n'); // l'etichetta dipende dal ruolo, non va risovrascritta da applyI18n()
-  el.textContent = admin ? t('nav.admin') : t('nav.createContent');
-}
-
 function applyI18n(){
   document.querySelectorAll('[data-i18n]').forEach(function(el){
     var key = el.getAttribute('data-i18n');
@@ -679,7 +672,6 @@ function applyI18n(){
   });
   document.documentElement.lang = currentLang;
   document.getElementById('langSelect').value = currentLang;
-  updateNavAdminLabel(isAdmin());
 }
 function setLang(lang){
   currentLang = lang;
@@ -1117,12 +1109,11 @@ function refreshAdminUI(){
   var collabBanner = document.getElementById('collabSessionBanner');
   var smallnoxCard = document.getElementById('smallnoxCard');
   var admin = isAdmin();
-  var canPublish = admin || isSignedIn(); // nuovo modello aperto: chiunque loggato può pubblicare, non serve più una sessione a tempo
+  var collab = !admin && hasActiveCreationSession();
   var ownsPastTitles = !admin && isSignedIn() && getCatalog().some(function(x){ return x.created_by && x.created_by === currentUserId(); });
   // La voce "Amministra" nel menu va aggiornata su OGNI pagina (vive nell'header
   // condiviso) — non solo su admin.html, dove invece vivono gateBox/manageBox.
-  if(navAdmin) navAdmin.classList.toggle('hidden', !canPublish);
-  updateNavAdminLabel(admin);
+  if(navAdmin) navAdmin.classList.toggle('hidden', !(admin || collab || ownsPastTitles));
   if(!gateBox || !manageBox) return;
   if(admin){
     if(adminSection) adminSection.classList.remove('hidden'); // arrivando direttamente su admin.html (non da un click sul link) va rivelata qui, non solo dal click handler
@@ -1133,7 +1124,6 @@ function refreshAdminUI(){
     if(smallnoxCard) smallnoxCard.classList.remove('hidden');
     injectDraftModeToggle();
     injectNsfwRescanButton();
-    renderGenreChecks();
     renderAdminList();
     renderModerationQueue();
     loadSocialLinksIntoForm();
@@ -1148,10 +1138,10 @@ function refreshAdminUI(){
       sessionStorage.removeItem('lux_pending_admin_tab');
       switchAdminTab(pendingAdminTab);
     }
-  } else if(isSignedIn()){
-    // Modello aperto: chiunque abbia un account vede il modulo "Aggiungi allo
-    // schedario" (pubblica come sé stesso) e i propri titoli già pubblicati —
-    // niente altre tab, niente dati altrui.
+  } else if(collab || ownsPastTitles){
+    // Un collaboratore invitato vede SOLO il modulo "Aggiungi allo schedario"
+    // (se la sessione è attiva) e/o i propri titoli già pubblicati, da poter
+    // modificare in qualsiasi momento — niente altre tab, niente dati altrui.
     if(adminSection) adminSection.classList.remove('hidden');
     gateBox.classList.add('hidden');
     manageBox.classList.remove('hidden');
@@ -1161,10 +1151,26 @@ function refreshAdminUI(){
       panel.classList.toggle('hidden', panel.dataset.tabPanel !== 'catalog');
     });
     var addEntryBtn = document.getElementById('btnAddEntry');
-    if(collabBanner) collabBanner.classList.add('hidden'); // sistema a sessione ritirato
-    if(addEntryBtn) addEntryBtn.classList.remove('hidden');
-    renderGenreChecks();
+    if(collabBanner){
+      collabBanner.classList.toggle('hidden', !collab);
+      if(collab) renderCollabSessionBanner();
+    }
+    // Senza sessione attiva non si può pubblicare un titolo NUOVO — solo
+    // modificare quelli già propri — quindi il pulsante "Aggiungi" si nasconde
+    // finché non si è in modalità modifica (editingItemId valorizzato da openEditTitle).
+    if(addEntryBtn) addEntryBtn.classList.toggle('hidden', !collab && !editingItemId);
     renderMyTitles();
+  } else if(isSignedIn()){
+    var gateUid = currentUserId();
+    var gateFallback = '@' + (currentUserEmail() || '').split('@')[0];
+    gateMsg.textContent = t('admin.gate.notAdmin').replace('{email}', gateFallback);
+    if(gateUid){
+      getDisplayName(gateUid).then(function(name){
+        gateMsg.textContent = t('admin.gate.notAdmin').replace('{email}', (name && name !== t('notif.someone')) ? name : gateFallback);
+      });
+    }
+    gateSignIn.classList.add('hidden');
+    if(adminSection) adminSection.classList.add('hidden'); // no dangling section for non-admins
   } else {
     gateMsg.textContent = t('admin.gate.notSignedIn');
     gateSignIn.classList.remove('hidden');
@@ -1814,35 +1820,6 @@ function renderMyComics(){
   }
 
   var catItems = getCatalog();
-  if(myComicsTab === 'published'){
-    var uid = currentUserId();
-    var publishedItems = catItems.filter(function(i){ return i.created_by === uid; });
-    if(publishedItems.length === 0){ empty.textContent = t('mycomics.emptyPublished'); empty.classList.remove('hidden'); grid.classList.add('hidden'); return; }
-    publishedItems.forEach(function(item){
-      grid.insertAdjacentHTML('beforeend', buildTomeCardHtml(item));
-    });
-    Array.prototype.forEach.call(grid.querySelectorAll('.tome-card'), function(card, idx){
-      var item = publishedItems[idx];
-      wireTomeCard(card, item);
-      var delBtn = document.createElement('button');
-      delBtn.type = 'button';
-      delBtn.className = 'btn btn-sm btn-ghost mycomics-published-delete';
-      delBtn.textContent = t('admin.delete');
-      delBtn.style.marginTop = '8px';
-      delBtn.addEventListener('click', function(e){
-        e.stopPropagation();
-        if(!confirm(t('admin.confirmDelete'))) return;
-        var all = getCatalog().filter(function(x){ return x.id !== item.id; });
-        saveCatalogLocal(all);
-        renderCatalog();
-        renderMyComics();
-        supabaseDelete(item.id);
-      });
-      var body = card.querySelector('.card-idx-body');
-      if(body) body.appendChild(delBtn);
-    });
-    return;
-  }
   if(myComicsTab === 'favorites'){
     var favItems = catItems.filter(function(i){ return favoriteIds.has(i.id); });
     if(favItems.length === 0){ empty.textContent = t('mycomics.emptyFavorites'); empty.classList.remove('hidden'); grid.classList.add('hidden'); return; }
@@ -1992,43 +1969,12 @@ function renderCollabBanner(){
   document.getElementById('btnClearCollabFilter') && document.getElementById('btnClearCollabFilter').addEventListener('click', clearCollabFilter);
 }
 
-var COLLANA_SPINE_IMAGES = {
-  Lucifer:'shelf-lucifer.webp', Lilith:'shelf-lilith.webp',
-  Lucifera:'shelf-lucifera.webp', Lucio:'shelf-lucio.webp'
-};
-
-function injectSpineStylesOnce(){
-  if(document.getElementById('collanaSpineStyles')) return;
-  var style = document.createElement('style');
-  style.id = 'collanaSpineStyles';
-  style.textContent =
-    '.collana-spines{display:flex;gap:8px;align-items:flex-end;margin-bottom:0;}'+
-    '.collana-spine{flex:1;min-width:70px;height:104px;border:none;border-radius:4px 4px 0 0;'+
-      'background-size:cover;background-position:center;cursor:pointer;position:relative;'+
-      'padding:0;opacity:0.62;transform:translateY(6px);transition:opacity .2s ease, transform .2s ease;'+
-      'box-shadow:0 -2px 0 rgba(201,162,74,0);}'+
-    '.collana-spine:hover{opacity:0.85;}'+
-    '.collana-spine.active{opacity:1;transform:translateY(0);box-shadow:0 -3px 0 #c9a24a;}'+
-    '.collana-spine-label{position:absolute;left:0;right:0;bottom:8px;text-align:center;'+
-      'font-family:"Cinzel",serif;font-size:11px;letter-spacing:0.1em;color:#f3e4d0;'+
-      'text-shadow:0 1px 3px rgba(0,0,0,0.8);}'+
-    '.collana-spine-count{position:absolute;top:8px;right:8px;font-family:"Space Mono",monospace;'+
-      'font-size:9px;color:#e8c976;opacity:0.85;}'+
-    '.collana-spines-shelf{height:6px;background:linear-gradient(180deg,#3a2f22,#1c1712);'+
-      'border-radius:0 0 4px 4px;margin-bottom:22px;}';
-  document.head.appendChild(style);
-}
-
 function renderFilters(){
   var wrap = document.getElementById('catalogFilters');
   if(!wrap) return;
   wrap.innerHTML = '';
   var opts = ['all','Lucifer','Lilith','Lucifera','Lucio','Collaboratori'];
-  var spineChars = ['Lucifer','Lilith','Lucifera','Lucio'];
-  var spineOpts = opts.filter(function(o){ return spineChars.indexOf(o) !== -1; });
-  var chipOpts = opts.filter(function(o){ return spineChars.indexOf(o) === -1; });
-
-  chipOpts.forEach(function(opt){
+  opts.forEach(function(opt){
     var btn = document.createElement('button');
     btn.className = 'filter-chip' + (activeFilter === opt ? ' active' : '');
     btn.textContent = opt === 'all' ? t('filter.all') : (opt === 'Collaboratori' ? t('collab.categoryLabel') : opt);
@@ -2039,30 +1985,6 @@ function renderFilters(){
     });
     wrap.appendChild(btn);
   });
-
-  injectSpineStylesOnce();
-  var catalogItems = getCatalog();
-  var spinesWrap = document.createElement('div');
-  spinesWrap.className = 'collana-spines';
-  spineOpts.forEach(function(opt){
-    var count = catalogItems.filter(function(i){ return i.character === opt; }).length;
-    var btn = document.createElement('button');
-    btn.type = 'button';
-    btn.className = 'collana-spine' + (activeFilter === opt ? ' active' : '');
-    btn.style.backgroundImage = "url('" + COLLANA_SPINE_IMAGES[opt] + "')";
-    btn.innerHTML = '<span class="collana-spine-count mono">'+count+'</span>'+
-      '<span class="collana-spine-label">'+escapeHtml(opt)+'</span>';
-    btn.addEventListener('click', function(){
-      activeFilter = opt;
-      renderFilters();
-      renderCatalog();
-    });
-    spinesWrap.appendChild(btn);
-  });
-  wrap.appendChild(spinesWrap);
-  var shelfLedge = document.createElement('div');
-  shelfLedge.className = 'collana-spines-shelf';
-  wrap.appendChild(shelfLedge);
 
   var genreWrap = document.getElementById('catalogGenreFilters');
   if(genreWrap){
@@ -2076,7 +1998,6 @@ function renderFilters(){
       btn.className = 'genre-seal-wrap' + (activeGenreFilter === g.key ? ' active' : '');
       btn.title = g.label;
       btn.innerHTML = '<span class="genre-seal">'+g.mono+'</span><span class="genre-seal-label">'+escapeHtml(g.label)+'</span>';
-      attachGenreHoverCard(btn, g.key, g.label);
       btn.addEventListener('click', function(){
         activeGenreFilter = g.key;
         renderFilters();
@@ -2099,37 +2020,6 @@ var GENRE_BANNERS = {
   'Funny Comics':'genre-banner-funny-comics.webp',
   'Horror':'genre-banner-horror.webp'
 };
-
-function injectGenreHoverStylesOnce(){
-  if(document.getElementById('genreHoverStyles')) return;
-  var style = document.createElement('style');
-  style.id = 'genreHoverStyles';
-  style.textContent =
-    '.genre-seal-wrap{position:relative;}'+
-    '.genre-hover-card{position:absolute;left:100%;top:50%;transform:translateY(-50%) translateX(-12px);'+
-      'width:210px;height:56px;border-radius:6px;overflow:hidden;pointer-events:none;opacity:0;'+
-      'transition:opacity .18s ease, transform .18s ease;z-index:50;border:1px solid #c9a24a;'+
-      'box-shadow:0 4px 16px rgba(0,0,0,0.5);}'+
-    '.genre-seal-wrap:hover .genre-hover-card{opacity:1;transform:translateY(-50%) translateX(8px);}'+
-    '.genre-hover-bg{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0.38;'+
-      'background-color:#0f0d0b;}'+
-    '.genre-hover-label{position:relative;z-index:1;height:100%;display:flex;align-items:center;justify-content:center;'+
-      'font-family:"Cinzel",serif;font-size:12px;letter-spacing:0.06em;color:#f3e4d0;text-align:center;padding:0 10px;'+
-      'text-shadow:0 1px 4px rgba(0,0,0,0.9);}';
-  document.head.appendChild(style);
-}
-
-function attachGenreHoverCard(btn, genreKey, label){
-  var file = GENRE_BANNERS[genreKey];
-  if(!file) return; // "Tutti" e "Novità" non hanno banner dedicato
-  injectGenreHoverStylesOnce();
-  var card = document.createElement('div');
-  card.className = 'genre-hover-card';
-  card.innerHTML = '<div class="genre-hover-bg" style="background-image:url(\''+file+'\')"></div>'+
-    '<div class="genre-hover-label">'+escapeHtml(label)+'</div>';
-  btn.appendChild(card);
-}
-
 function renderGenreBanner(){
   var el = document.getElementById('genreBanner');
   if(!el) return;
@@ -2151,21 +2041,14 @@ function buildTomeCardHtml(item){
   var hasStock = item.stock != null;
   var soldOut = hasStock && item.stock <= 0;
   var soldOutBadge = soldOut ? '<span class="sold-out-badge">'+t('stock.soldOut')+'</span>' : '';
-  var stockTxt = hasStock && !soldOut ? '<span class="card-idx-stock" style="position:static;display:inline;">'+item.stock+' '+t('stock.left')+'</span>' : '';
-  var priceTxt = item.price ? '<span class="card-idx-price" style="position:static;display:inline;">€'+Number(item.price).toFixed(2)+'</span>' : '';
+  var stockTxt = hasStock && !soldOut ? '<span class="card-idx-stock">'+item.stock+' '+t('stock.left')+'</span>' : '';
+  var priceTxt = item.price ? '<span class="card-idx-price">€'+Number(item.price).toFixed(2)+'</span>' : '';
   var coverInner = item.cover_url
     ? '<img class="cover-img" src="'+coverThumbUrl(item.cover_url, 500)+'" data-fallback="'+escapeHtml(item.cover_url)+'" alt="" loading="lazy" decoding="async">'
     : '<span class="init">'+item.character.charAt(0)+'</span>';
   var genreTags = (item.genres && item.genres.length)
     ? '<div class="card-idx-genres">'+item.genres.map(function(g){return '<span class="genre-tag">'+escapeHtml(g)+'</span>';}).join('')+'</div>'
     : '';
-  var publishedTxt = '';
-  if(item.published_at){
-    var pd = new Date(item.published_at);
-    if(!isNaN(pd)){
-      publishedTxt = '<div class="card-idx-published">'+t('card.publishedOn').replace('{date}', pd.toLocaleDateString()).replace('{time}', pd.toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'}))+'</div>';
-    }
-  }
   return (
     '<div class="card-idx tome-card" data-character="'+escapeHtml(item.character||'')+'">'+
       '<div class="card-idx-cover'+(soldOut?' sold-out':'')+'">'+coverInner+badge+soldOutBadge+
@@ -2180,10 +2063,7 @@ function buildTomeCardHtml(item){
         '<div class="character">'+item.character+'</div>'+
         '<div class="synopsis">'+escapeHtml(synopsisForCurrentLang(item))+'</div>'+
         '<button type="button" class="synopsis-toggle hidden" data-toggle-synopsis>'+t('card.readMore')+'</button>'+
-        '<div class="meta-row" style="display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px;">'+
-          '<span>'+(item.date||'')+'</span>'+priceTxt+stockTxt+
-        '</div>'+
-        publishedTxt+
+        '<div class="meta-row"><span>'+(item.date||'')+'</span>'+priceTxt+stockTxt+'</div>'+
         '<div class="card-idx-engagement">'+(item.view_count||0)+' '+t('stats.views')+' · '+(item.comment_count||0)+' '+t('stats.comments')+'</div>'+
       '</div>'+
     '</div>'
@@ -2409,11 +2289,25 @@ function base64ToBytes(base64){
   return bytes;
 }
 
+var verifiedSupporterCache = null; // null = non ancora controllato; true/false una volta saputo
+function checkVerifiedSupporter(){
+  if(verifiedSupporterCache !== null) return Promise.resolve(verifiedSupporterCache);
+  var session = getSession();
+  if(!session){ verifiedSupporterCache = false; return Promise.resolve(false); }
+  return fetch(SUPABASE_URL + '/rest/v1/verified_supporters?user_id=eq.' + encodeURIComponent(currentUserId()) + '&select=user_id', { headers: communityHeaders() })
+    .then(function(r){ return r.ok ? r.json() : []; })
+    .then(function(rows){ verifiedSupporterCache = rows.length > 0; return verifiedSupporterCache; })
+    .catch(function(){ return false; });
+}
+
 function downloadSignedPdf(item){
+  var session = getSession();
   return ensurePdfLibLoaded()
     .then(function(){
       return Promise.all([
-        fetch(item.pdf_url).then(function(r){
+        fetch(SUPABASE_URL + '/storage/v1/object/comic-pages-clean/' + item.pdf_url, {
+          headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
+        }).then(function(r){
           if(!r.ok) throw new Error('pdf fetch failed');
           return r.arrayBuffer();
         }),
@@ -2469,10 +2363,8 @@ function downloadSignedPdf(item){
       setTimeout(function(){ URL.revokeObjectURL(url); }, 4000);
     })
     .catch(function(e){
-      // se qualcosa va storto (rete, CORS, PDF non valido...) scarichiamo
-      // comunque il file originale invece di lasciare l'utente a mani vuote
-      console.warn('PDF signature failed, falling back to raw file:', e);
-      window.open(item.pdf_url, '_blank');
+      console.warn('PDF download failed:', e);
+      window.alert(t('pdf.downloadError'));
     });
 }
 
@@ -2784,20 +2676,9 @@ function renderMyTitles(){
     row.innerHTML =
       '<div class="info"><div class="t">'+escapeHtml(item.title)+'</div>'+
       '<div class="m">'+item.character+' · '+(item.issue||'')+' · '+(item.date||'')+'</div></div>'+
-      '<div class="admin-actions">'+
-        '<button class="btn btn-sm btn-ghost" data-edit-mine="'+item.id+'">'+t('admin.edit')+'</button>'+
-        '<button class="btn btn-sm btn-ghost" data-delete-mine="'+item.id+'">'+t('admin.delete')+'</button>'+
-      '</div>';
+      '<div class="admin-actions"><button class="btn btn-sm btn-ghost" data-edit-mine="'+item.id+'">'+t('admin.edit')+'</button></div>';
     row.querySelector('[data-edit-mine]').addEventListener('click', function(){
       openEditTitle(item.id);
-    });
-    row.querySelector('[data-delete-mine]').addEventListener('click', function(){
-      if(!confirm(t('admin.confirmDelete'))) return;
-      var all = getCatalog().filter(function(x){ return x.id !== item.id; });
-      saveCatalogLocal(all);
-      renderCatalog();
-      renderMyTitles();
-      supabaseDelete(item.id);
     });
     list.appendChild(row);
   });
@@ -2810,7 +2691,7 @@ function renderMyTitles(){
    quelli sono interattivi e non hanno senso su un titolo non ancora online. */
 function buildSitePreviewCardHtml(d){
   var badge = d.mature ? '<span class="mature">18+</span>' : '<span class="allages">'+t('badge.allages')+'</span>';
-  var priceTxt = d.price ? '<span class="card-idx-price" style="position:static;display:inline;">€'+Number(d.price).toFixed(2)+'</span>' : '';
+  var priceTxt = d.price ? '<span class="card-idx-price">€'+Number(d.price).toFixed(2)+'</span>' : '';
   var coverInner = d.coverSrc
     ? '<img class="cover-img" src="'+d.coverSrc+'" alt="">'
     : '<span class="init">'+escapeHtml((d.character||'?').charAt(0))+'</span>';
@@ -2824,7 +2705,7 @@ function buildSitePreviewCardHtml(d){
           '<h4>'+escapeHtml(d.title||'')+'</h4>'+
           '<div class="character">'+escapeHtml(d.character||'')+'</div>'+
           '<div class="synopsis">'+escapeHtml(d.synopsis||'')+'</div>'+
-          '<div class="meta-row" style="display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px;"><span>'+escapeHtml(d.date||'')+'</span>'+priceTxt+'</div>'+
+          '<div class="meta-row"><span>'+escapeHtml(d.date||'')+'</span>'+priceTxt+'</div>'+
         '</div>'+
       '</div>'+
     '</div>'
@@ -3301,6 +3182,26 @@ function uploadCatalogAsset(file, path){
   });
 }
 
+// Il PDF va nel bucket protetto (stesso di comic-pages-clean): niente indirizzo
+// pubblico, solo chi ha il permesso (admin o verificato) riesce a scaricarlo
+// davvero, non solo a non vedere il bottone.
+function uploadCatalogPdf(file, path){
+  var session = getSession();
+  return fetch(SUPABASE_URL + '/storage/v1/object/comic-pages-clean/' + path, {
+    method:'POST',
+    headers:{
+      'apikey':SUPABASE_ANON_KEY,
+      'Authorization':'Bearer ' + session.access_token,
+      'Content-Type': file.type || 'application/octet-stream',
+      'x-upsert': 'true'
+    },
+    body: file
+  }).then(function(r){
+    if(!r.ok) throw new Error('pdf upload failed: ' + r.status);
+    return path; // salviamo solo il percorso, non un indirizzo pubblico — non esiste
+  });
+}
+
 /* Comprime un'immagine PRIMA di caricarla, ridimensionandola a un massimo
    di maxDim px sul lato lungo — così il file pesante non esiste mai sui
    nostri server, invece di sperare che una trasformazione lato Supabase
@@ -3669,47 +3570,27 @@ function removeCollabBlock(idx){
 
 var editingItemId = null; // se valorizzato, handleAddEntry() salva una MODIFICA invece di una nuova voce
 
-function injectAdminGenreLayoutStylesOnce(){
-  if(document.getElementById('adminGenreLayoutStyles')) return;
-  var style = document.createElement('style');
-  style.id = 'adminGenreLayoutStyles';
-  style.textContent =
-    '.admin-genre-seals{display:flex;flex-direction:column;align-items:flex-start;gap:12px;}'+
-    '.admin-genre-seals .genre-seal-wrap{display:flex;flex-direction:row;align-items:center;gap:10px;}'+
-    '.admin-genre-seals .genre-seal-label{white-space:nowrap;}';
-  document.head.appendChild(style);
-}
-
 function renderGenreChecks(){
   var block = document.getElementById('fGenresBlock');
   if(!block || block.childElementCount) return;
-  block.classList.add('admin-genre-seals');
-  injectAdminGenreLayoutStylesOnce();
   GENRE_LIST.forEach(function(g){
-    var btn = document.createElement('button');
-    btn.type = 'button';
-    btn.className = 'genre-seal-wrap';
-    btn.title = g;
-    btn.dataset.genreValue = g;
-    btn.innerHTML = '<span class="genre-seal">'+genreMonogram(g)+'</span><span class="genre-seal-label">'+escapeHtml(g)+'</span>';
-    attachGenreHoverCard(btn, g, g);
-    btn.addEventListener('click', function(){
-      btn.classList.toggle('active');
-    });
-    block.appendChild(btn);
+    var label = document.createElement('label');
+    label.className = 'genre-check';
+    label.innerHTML = '<input type="checkbox" value="'+escapeHtml(g)+'"> '+escapeHtml(g);
+    block.appendChild(label);
   });
 }
 function getSelectedGenres(){
   var block = document.getElementById('fGenresBlock');
   if(!block) return [];
-  return Array.prototype.slice.call(block.querySelectorAll('.genre-seal-wrap.active')).map(function(el){return el.dataset.genreValue;});
+  return Array.prototype.slice.call(block.querySelectorAll('input:checked')).map(function(el){return el.value;});
 }
 function setSelectedGenres(arr){
   var block = document.getElementById('fGenresBlock');
   if(!block) return;
   arr = arr || [];
-  Array.prototype.forEach.call(block.querySelectorAll('.genre-seal-wrap'), function(el){
-    el.classList.toggle('active', arr.indexOf(el.dataset.genreValue) !== -1);
+  Array.prototype.forEach.call(block.querySelectorAll('input'), function(el){
+    el.checked = arr.indexOf(el.value) !== -1;
   });
 }
 
@@ -3768,7 +3649,7 @@ function cancelEditTitle(){
   var btn = document.getElementById('btnAddEntry');
   if(btn){
     btn.textContent = t('admin.add');
-    if(!isSignedIn()) btn.classList.add('hidden');
+    if(!isAdmin() && !hasActiveCreationSession()) btn.classList.add('hidden');
   }
   var cancelBtn = document.getElementById('btnCancelEditTitle');
   if(cancelBtn) cancelBtn.classList.add('hidden');
@@ -3936,10 +3817,11 @@ function handleAddEntry(){
     return;
   }
   var isEdit = !!editingItemId;
-  // Modello aperto: chiunque abbia un account può pubblicare un titolo NUOVO,
-  // non solo admin o chi aveva una sessione a tempo (sistema ritirato).
-  if(!isEdit && !isSignedIn()){
-    err.textContent = t('admin.gate.notSignedIn');
+  // Solo admin, o un collaboratore con sessione attiva, può pubblicare un
+  // titolo NUOVO — modificare i propri titoli già pubblicati resta invece
+  // sempre permesso, sessione attiva o no.
+  if(!isEdit && !isAdmin() && !hasActiveCreationSession()){
+    err.textContent = t('collabSession.expired');
     return;
   }
 
@@ -4054,8 +3936,8 @@ function handleAddEntry(){
   if(pendingPdf){
     uploadSteps = uploadSteps.then(function(){
       status.textContent = t('pdf.uploading');
-      return uploadCatalogAsset(pendingPdf, newItem.id + '/comic.pdf');
-    }).then(function(url){ newItem.pdf_url = url; });
+      return uploadCatalogPdf(pendingPdf, newItem.id + '/comic.pdf');
+    }).then(function(path){ newItem.pdf_url = path; });
   }
 
   uploadSteps = uploadSteps.then(function(){
@@ -4153,27 +4035,16 @@ var currentProfile = null;
 
 function openProfileModal(){
   if(!isSignedIn()){ openAuth('login'); return; }
-  window.location.href = 'profile.html?user=' + encodeURIComponent(currentUserId());
+  document.getElementById('profileError').textContent = '';
+  document.getElementById('requestError').textContent = '';
+  document.getElementById('fRequestBody').value = '';
+  loadOwnProfile().then(function(){
+    populateProfileForm();
+    document.getElementById('profileModal').classList.remove('hidden');
+    loadMyRequests();
+  });
 }
-function toggleProfileEdit(){
-  var panel = document.getElementById('profileEditPanel');
-  if(!panel) return;
-  var opening = panel.classList.contains('hidden');
-  if(opening){
-    document.getElementById('profileError').textContent = '';
-    document.getElementById('requestError').textContent = '';
-    document.getElementById('fRequestBody').value = '';
-    loadOwnProfile().then(function(){
-      populateProfileForm();
-      panel.classList.remove('hidden');
-      loadMyRequests();
-      initSoundSettingsUI();
-      panel.scrollIntoView({behavior:'smooth', block:'start'});
-    });
-  } else {
-    panel.classList.add('hidden');
-  }
-}
+function closeProfileModal(){ document.getElementById('profileModal').classList.add('hidden'); }
 
 function loadOwnProfile(){
   var session = getSession();
@@ -4198,8 +4069,6 @@ function populateProfileForm(){
   document.getElementById('fSocialTwitter').value = p.social_twitter || '';
   document.getElementById('fSocialTiktok').value = p.social_tiktok || '';
   document.getElementById('fSocialWebsite').value = p.social_website || '';
-  var existingLinks = (p.instagram_embed_urls && p.instagram_embed_urls.length) ? p.instagram_embed_urls : (p.instagram_embed_url ? [p.instagram_embed_url] : []);
-  resetInstagramLinksList(existingLinks);
   var favs = p.favorite_characters || [];
   document.querySelectorAll('.fav-char-cb').forEach(function(cb){
     cb.checked = favs.indexOf(cb.value) !== -1;
@@ -4227,7 +4096,6 @@ function saveProfile(){
   var socialTwitter = document.getElementById('fSocialTwitter').value.trim();
   var socialTiktok = document.getElementById('fSocialTiktok').value.trim();
   var socialWebsite = document.getElementById('fSocialWebsite').value.trim();
-  var instagramEmbedUrls = getInstagramLinksList();
   var favs = Array.from(document.querySelectorAll('.fav-char-cb:checked')).map(function(cb){ return cb.value; });
   var btn = document.getElementById('btnSaveProfile');
   btn.disabled = true;
@@ -4296,7 +4164,6 @@ function saveProfile(){
         birth_date: birthDate || null, gender: gender || null,
         social_instagram: socialInstagram || null, social_twitter: socialTwitter || null,
         social_tiktok: socialTiktok || null, social_website: socialWebsite || null,
-        instagram_embed_urls: instagramEmbedUrls,
         favorite_characters: favs
       })
     });
@@ -4309,11 +4176,6 @@ function saveProfile(){
     document.getElementById('fProfileAvatar').value = '';
     document.getElementById('fProfileAvatarHd').value = '';
     document.getElementById('fProfileBanner').value = '';
-    var panel = document.getElementById('profileEditPanel');
-    if(panel){
-      panel.classList.add('hidden');
-      renderPublicProfilePage(); // ricarica la vista pubblica per mostrare subito i cambi
-    }
   }).catch(function(e){
     console.warn('Profile save failed:', e);
     err.textContent = t('profile.saveError');
@@ -4636,7 +4498,7 @@ function switchCommunityTab(tab){
   });
   if(tab === 'dms') loadDmThreads();
   if(tab === 'friends') loadFriendsPanel();
-  if(tab === 'collab'){ renderCollabWorksTab(); loadCollabRequestsPanel(); }
+  if(tab === 'collab') renderCollabWorksTab();
   if(tab === 'diary') loadDiaryFeed();
 }
 
@@ -4781,8 +4643,7 @@ function submitDiaryPost(){
     document.getElementById('fDiaryMoodText').value = '';
     document.getElementById('fDiaryNote').value = '';
     document.querySelectorAll('.diary-mood-btn').forEach(function(b){ b.classList.remove('active'); });
-    if(document.getElementById('profileDiaryFeed')) loadDiaryFeed('profileDiaryFeed', currentUserId());
-    if(document.getElementById('diaryFeed')) loadDiaryFeed('diaryFeed');
+    loadDiaryFeed();
   }).catch(function(e){
     console.warn('Diary post failed:', e);
     err.textContent = t('diary.publishError');
@@ -4966,14 +4827,6 @@ function submitDiaryComment(postId, input, box){
 function renderPublicProfilePage(){
   var section = document.getElementById('profileSection');
   if(!section) return; // non siamo su profile.html
-  injectProfileFbStylesOnce();
-  if(!section.dataset.tabsWired){
-    section.dataset.tabsWired = '1';
-    document.querySelectorAll('.profile-fb-tab').forEach(function(btn){
-      btn.addEventListener('click', function(){ switchProfileTab(btn.dataset.ptab); });
-    });
-  }
-  switchProfileTab('diary');
   var params = new URLSearchParams(window.location.search);
   var userId = params.get('user');
   var notFoundBox = document.getElementById('profileNotFound');
@@ -5020,169 +4873,18 @@ function renderPublicProfilePage(){
       }
       document.getElementById('pubProfileMeta').innerHTML = metaParts.join(' ');
 
-      var collabSlot = document.getElementById('pubProfileCollabAction');
-      if(!collabSlot){
-        collabSlot = document.createElement('div');
-        collabSlot.id = 'pubProfileCollabAction';
-        collabSlot.style.marginTop = '10px';
-        document.getElementById('pubProfileMeta').insertAdjacentElement('afterend', collabSlot);
-      }
-      collabSlot.innerHTML = '';
-      if(isSignedIn() && userId !== currentUserId()){
-        collabSlot.appendChild(buildCollabActionButton(userId, p.display_name));
-      }
-
       var favs = p.favorite_characters || [];
       var favsBox = document.getElementById('pubProfileFavs');
       favsBox.innerHTML = favs.map(function(f){ return '<span class="pub-profile-fav-tag">' + escapeHtml(f) + '</span>'; }).join('');
 
-      var isOwnProfile = isSignedIn() && userId === currentUserId();
-      var editBtn = document.getElementById('btnToggleProfileEdit');
-      if(editBtn) editBtn.classList.toggle('hidden', !isOwnProfile);
-      var diaryComposer = document.getElementById('profileDiaryComposer');
-      if(diaryComposer) diaryComposer.classList.toggle('hidden', !isOwnProfile);
-      if(!isOwnProfile){
-        var panel = document.getElementById('profileEditPanel');
-        if(panel) panel.classList.add('hidden');
-      }
-
-      var igLinks = (p.instagram_embed_urls && p.instagram_embed_urls.length) ? p.instagram_embed_urls : (p.instagram_embed_url ? [p.instagram_embed_url] : []);
-      renderProfileInstagramEmbed(igLinks);
-
       renderProfileTitles(userId);
       renderProfileFavorites(userId);
       loadDiaryFeed('profileDiaryFeed', userId);
-      loadProfileStats(userId);
     })
     .catch(function(e){
       console.warn('Public profile load failed:', e);
       notFoundBox.classList.remove('hidden');
     });
-}
-
-function injectProfileFbStylesOnce(){
-  if(document.getElementById('profileFbStyles')) return;
-  var style = document.createElement('style');
-  style.id = 'profileFbStyles';
-  style.textContent =
-    '.profile-fb-banner-wrap{position:relative;height:220px;border-radius:8px 8px 0 0;overflow:visible;background:linear-gradient(135deg,#3a1620,#1c0d10);}'+
-    '.profile-fb-banner{width:100%;height:100%;object-fit:cover;border-radius:8px 8px 0 0;display:block;}'+
-    '.profile-fb-avatar{position:absolute;left:28px;bottom:-46px;width:112px;height:112px;border-radius:50%;'+
-      'border:4px solid var(--parchment, #f4efe4);object-fit:cover;background:#1c1712;cursor:pointer;}'+
-    '.profile-fb-headrow{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;'+
-      'padding:56px 8px 0;}'+
-    '.profile-fb-headrow h2{margin:0;}'+
-    '.profile-fb-stats{display:flex;gap:22px;margin:14px 0 4px;padding:0 8px;font-size:13px;color:var(--parchment-dim);flex-wrap:wrap;}'+
-    '.profile-fb-stats b{color:var(--gold-bright);}'+
-    '.profile-fb-tabs{display:flex;gap:4px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);'+
-      'margin-top:18px;padding:0 8px;flex-wrap:wrap;}'+
-    '.profile-fb-tab{background:transparent;border:none;border-bottom:2px solid transparent;color:var(--parchment-dim);'+
-      'font-family:"Cinzel",serif;font-size:12px;letter-spacing:0.06em;padding:14px 16px;cursor:pointer;}'+
-    '.profile-fb-tab.active{color:var(--gold-bright);border-bottom-color:var(--gold-bright);}'+
-    '.profile-fb-panel{padding:20px 8px 0;}';
-  document.head.appendChild(style);
-}
-
-function switchProfileTab(tab){
-  document.querySelectorAll('.profile-fb-tab').forEach(function(btn){
-    btn.classList.toggle('active', btn.dataset.ptab === tab);
-  });
-  document.querySelectorAll('.profile-fb-panel').forEach(function(panel){
-    panel.classList.toggle('hidden', panel.dataset.ppanel !== tab);
-  });
-}
-
-function loadProfileStats(userId){
-  var titlesCount = getCatalog().filter(function(i){ return i.created_by === userId; }).length;
-  var elT = document.getElementById('profileStatTitles');
-  if(elT) elT.textContent = titlesCount;
-
-  fetch(SUPABASE_URL + '/rest/v1/friendships?status=eq.accepted&or=(requester_id.eq.' + encodeURIComponent(userId) + ',addressee_id.eq.' + encodeURIComponent(userId) + ')&select=id', { headers: communityHeaders() })
-    .then(function(r){ return r.ok ? r.json() : []; })
-    .then(function(rows){
-      var elF = document.getElementById('profileStatFriends');
-      if(elF) elF.textContent = rows.length;
-    }).catch(function(){});
-
-  fetch(SUPABASE_URL + '/rest/v1/favorites?user_id=eq.' + encodeURIComponent(userId) + '&select=catalog_id', { headers: communityHeaders() })
-    .then(function(r){ return r.ok ? r.json() : []; })
-    .then(function(rows){
-      var elFav = document.getElementById('profileStatFavs');
-      if(elFav) elFav.textContent = rows.length;
-    }).catch(function(){});
-}
-
-function addInstagramLinkRow(value){
-  var list = document.getElementById('fInstagramLinksList');
-  if(!list) return;
-  var row = document.createElement('div');
-  row.className = 'instagram-link-row';
-  row.style.display = 'flex';
-  row.style.gap = '8px';
-  row.style.marginBottom = '8px';
-  row.innerHTML =
-    '<input type="text" class="instagram-link-input" placeholder="https://www.instagram.com/p/... oppure /reel/..." style="flex:1;" value="'+escapeHtml(value||'')+'">'+
-    '<button type="button" class="btn btn-ghost btn-sm" data-remove-link>&times;</button>';
-  row.querySelector('[data-remove-link]').addEventListener('click', function(){ row.remove(); });
-  list.appendChild(row);
-}
-function getInstagramLinksList(){
-  return Array.prototype.slice.call(document.querySelectorAll('.instagram-link-input'))
-    .map(function(inp){ return inp.value.trim(); })
-    .filter(function(v){ return v; });
-}
-function resetInstagramLinksList(values){
-  var list = document.getElementById('fInstagramLinksList');
-  if(!list) return;
-  list.innerHTML = '';
-  var arr = (values && values.length) ? values : [''];
-  arr.forEach(function(v){ addInstagramLinkRow(v); });
-}
-
-function renderProfileInstagramEmbed(urls){
-  var box = document.getElementById('profileInstagramBox');
-  var slot = document.getElementById('pubProfileInstagramEmbed');
-  var tabBtn = document.getElementById('profileInstagramTabBtn');
-  if(!box || !slot) return;
-  urls = (urls || []).filter(function(u){ return u; });
-  if(urls.length === 0){
-    box.classList.add('hidden'); slot.innerHTML = '';
-    if(tabBtn) tabBtn.classList.add('hidden');
-    return;
-  }
-  box.classList.remove('hidden');
-  if(tabBtn) tabBtn.classList.remove('hidden');
-  slot.innerHTML = '<div class="instagram-embed-grid">' + urls.map(function(url){
-    return '<div class="instagram-embed-cell"><blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="' +
-      escapeHtml(url) + '" data-instgrm-version="14" style="margin:0;"></blockquote></div>';
-  }).join('') + '</div>';
-  injectInstagramGridStylesOnce();
-  loadInstagramEmbedScript().then(function(){
-    if(window.instgrm && window.instgrm.Embeds) window.instgrm.Embeds.process();
-  });
-}
-function injectInstagramGridStylesOnce(){
-  if(document.getElementById('instagramGridStyles')) return;
-  var style = document.createElement('style');
-  style.id = 'instagramGridStyles';
-  style.textContent =
-    '.instagram-embed-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px;align-items:start;}'+
-    '.instagram-embed-cell iframe{width:100% !important;}';
-  document.head.appendChild(style);
-}
-var _instagramScriptPromise = null;
-function loadInstagramEmbedScript(){
-  if(window.instgrm) return Promise.resolve();
-  if(_instagramScriptPromise) return _instagramScriptPromise;
-  _instagramScriptPromise = new Promise(function(resolve){
-    var s = document.createElement('script');
-    s.src = 'https://www.instagram.com/embed.js';
-    s.async = true;
-    s.onload = resolve;
-    s.onerror = resolve; // se blocca l'estensione/rete, non blocchiamo il resto della pagina
-    document.body.appendChild(s);
-  });
-  return _instagramScriptPromise;
 }
 
 function renderProfileTitles(userId){
@@ -5191,8 +4893,8 @@ function renderProfileTitles(userId){
   if(!grid) return;
   var items = getCatalog().filter(function(i){ return i.created_by === userId; });
   if(!matureVisible) items = items.filter(function(i){ return !i.mature; });
+  if(items.length === 0){ box.classList.add('hidden'); return; }
   box.classList.remove('hidden');
-  if(items.length === 0){ grid.innerHTML = '<p class="form-note">' + t('mod.empty') + '</p>'; return; }
   items.sort(function(a,b){ return (b.date||'').localeCompare(a.date||''); });
   grid.innerHTML = '';
   items.forEach(function(item){
@@ -5226,8 +4928,8 @@ function renderProfileFavorites(userId){
       var ids = rows.map(function(r){ return r.catalog_id; });
       var items = getCatalog().filter(function(i){ return ids.indexOf(i.id) !== -1; });
       if(!matureVisible) items = items.filter(function(i){ return !i.mature; });
+      if(items.length === 0){ box.classList.add('hidden'); return; }
       box.classList.remove('hidden');
-      if(items.length === 0){ grid.innerHTML = '<p class="form-note">' + t('mod.empty') + '</p>'; return; }
       grid.innerHTML = '';
       items.forEach(function(item){
         var row = document.createElement('button');
@@ -5253,66 +4955,28 @@ var currentChatLastMessageAt = null;
 var chatPollTimer = null;
 
 /* Suoni generati al volo (nessun file audio da caricare/ospitare) — due toni brevi e distinti */
-/* ============ SUONO NOTIFICHE CHAT — on/off + scelta tono ============
-   Preferenza salvata localmente sul dispositivo, stesso pattern dello sfondo
-   chat qui sotto: niente colonna database, cambia subito, per dispositivo. */
-var SOUND_TONE_PRESETS = [
-  { id:'classic', label:'Classico',  received:{start:520, end:400, dur:0.18}, sent:{start:660, end:880, dur:0.09} },
-  { id:'soft',    label:'Delicato',  received:{start:440, end:380, dur:0.28}, sent:{start:520, end:600, dur:0.14} },
-  { id:'chime',   label:'Campanella',received:{start:880, end:1200,dur:0.22}, sent:{start:1000,end:1400,dur:0.12} }
-];
-function getSoundEnabled(){ return localStorage.getItem('lux_sound_enabled') !== 'off'; }
-function setSoundEnabled(on){ localStorage.setItem('lux_sound_enabled', on ? 'on' : 'off'); }
-function getSoundPreset(){
-  var id = localStorage.getItem('lux_sound_preset');
-  return SOUND_TONE_PRESETS.find(function(p){ return p.id === id; }) || SOUND_TONE_PRESETS[0];
-}
-function setSoundPreset(id){ localStorage.setItem('lux_sound_preset', id); }
-
-function initSoundSettingsUI(){
-  var enabledCb = document.getElementById('fSoundEnabled');
-  var presetSelect = document.getElementById('fSoundPreset');
-  var testBtn = document.getElementById('btnTestSound');
-  if(!enabledCb || !presetSelect) return;
-  enabledCb.checked = getSoundEnabled();
-  presetSelect.innerHTML = SOUND_TONE_PRESETS.map(function(p){
-    return '<option value="'+p.id+'"'+(p.id === getSoundPreset().id ? ' selected' : '')+'>'+escapeHtml(p.label)+'</option>';
-  }).join('');
-  enabledCb.addEventListener('change', function(){ setSoundEnabled(enabledCb.checked); });
-  presetSelect.addEventListener('change', function(){
-    setSoundPreset(presetSelect.value);
-    playChatSound('received');
-  });
-  if(testBtn) testBtn.addEventListener('click', function(){ playChatSound('received'); });
-}
-
 function playChatSound(kind){
-  if(!getSoundEnabled()) return;
   try{
     var Ctx = window.AudioContext || window.webkitAudioContext;
     if(!Ctx) return;
     var ctx = new Ctx();
-    function fire(){
-      var o = ctx.createOscillator();
-      var g = ctx.createGain();
-      o.connect(g); g.connect(ctx.destination);
-      o.type = 'sine';
-      var preset = getSoundPreset();
-      var conf = kind === 'sent' ? preset.sent : preset.received;
-      o.frequency.setValueAtTime(conf.start, ctx.currentTime);
-      o.frequency.exponentialRampToValueAtTime(conf.end, ctx.currentTime + conf.dur * 0.5);
-      g.gain.setValueAtTime(0.001, ctx.currentTime);
-      g.gain.exponentialRampToValueAtTime(0.12, ctx.currentTime + 0.02);
-      g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + conf.dur);
-      o.start();
-      o.stop(ctx.currentTime + conf.dur + 0.02);
-    }
-    if(ctx.state === 'suspended'){
-      ctx.resume().then(fire).catch(function(){ /* browser ha comunque bloccato l'audio */ });
+    var o = ctx.createOscillator();
+    var g = ctx.createGain();
+    o.connect(g); g.connect(ctx.destination);
+    o.type = 'sine';
+    if(kind === 'sent'){
+      o.frequency.setValueAtTime(660, ctx.currentTime);
+      o.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.09);
     } else {
-      fire();
+      o.frequency.setValueAtTime(520, ctx.currentTime);
+      o.frequency.exponentialRampToValueAtTime(400, ctx.currentTime + 0.12);
     }
-  }catch(e){ console.warn('Suono notifica non disponibile:', e); }
+    g.gain.setValueAtTime(0.001, ctx.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.12, ctx.currentTime + 0.02);
+    g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.18);
+    o.start();
+    o.stop(ctx.currentTime + 0.2);
+  }catch(e){ /* audio non disponibile: nessun problema, la chat funziona lo stesso */ }
 }
 
 function uploadChatAttachment(file){
@@ -6342,137 +6006,6 @@ function loadFriendsPanel(){
     });
 }
 
-/* ---- Richieste di collaborazione (chiunque può proporre, il destinatario accetta/rifiuta) ---- */
-function sendCollabRequest(otherUserId, btnEl){
-  if(!isSignedIn()){ openAuth('login'); return; }
-  var session = getSession();
-  if(btnEl) btnEl.disabled = true;
-  fetch(SUPABASE_URL + '/rest/v1/collab_requests', {
-    method:'POST',
-    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
-    body: JSON.stringify({ requester_id: currentUserId(), addressee_id: otherUserId })
-  }).then(function(r){
-    if(!r.ok) throw new Error('collab request failed');
-    if(btnEl){
-      btnEl.textContent = '✓ ' + t('community.requestSent');
-      btnEl.style.color = '#4ade80';
-      btnEl.style.borderColor = '#4ade80';
-      btnEl.disabled = true;
-    }
-    var sentBox = document.getElementById('collabRequestsSent');
-    if(sentBox) loadCollabRequestsPanel();
-  }).catch(function(e){
-    if(btnEl) btnEl.disabled = false;
-    console.warn('Collab request failed:', e);
-  });
-}
-
-function respondCollabRequest(requestId, accept){
-  var session = getSession();
-  var action = accept
-    ? fetch(SUPABASE_URL + '/rest/v1/collab_requests?id=eq.' + encodeURIComponent(requestId), {
-        method:'PATCH',
-        headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
-        body: JSON.stringify({status:'accepted'})
-      })
-    : fetch(SUPABASE_URL + '/rest/v1/collab_requests?id=eq.' + encodeURIComponent(requestId), {
-        method:'DELETE',
-        headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
-      });
-  action.then(function(){ loadCollabRequestsPanel(); })
-    .catch(function(e){ console.warn('Collab response failed:', e); });
-}
-
-function buildCollabActionButton(otherUserId, otherName){
-  var btn = document.createElement('button');
-  btn.type = 'button';
-  btn.className = 'btn btn-sm btn-ghost';
-  btn.textContent = t('collab.propose');
-  btn.addEventListener('click', function(){ sendCollabRequest(otherUserId, btn); });
-  return btn;
-}
-
-function searchForCollab(query){
-  var box = document.getElementById('collabSearchResults');
-  if(!box) return;
-  if(!query || query.length < 2){ box.innerHTML = ''; return; }
-  var session = getSession();
-  fetch(SUPABASE_URL + '/rest/v1/profiles?display_name=ilike.*' + encodeURIComponent(query) + '*&select=id,display_name&limit=10', {
-    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + (session ? session.access_token : SUPABASE_ANON_KEY) }
-  }).then(function(r){ return r.ok ? r.json() : []; })
-    .then(function(rows){
-      var uid = currentUserId();
-      box.innerHTML = '';
-      rows.filter(function(p){ return p.id !== uid; }).forEach(function(p){
-        var row = document.createElement('div');
-        row.className = 'admin-row';
-        row.innerHTML = '<div class="info"><div class="t">' + escapeHtml(p.display_name || '') + '</div></div><div class="admin-actions"></div>';
-        row.querySelector('.admin-actions').appendChild(buildCollabActionButton(p.id, p.display_name));
-        box.appendChild(row);
-      });
-      if(rows.length === 0) box.innerHTML = '<p class="form-note">' + t('community.noResults') + '</p>';
-    }).catch(function(err){ box.innerHTML = ''; console.warn('Collab search failed:', err); });
-}
-
-function loadCollabRequestsPanel(){
-  if(!isSignedIn()) return;
-  var uid = currentUserId();
-  var receivedBox = document.getElementById('collabRequestsReceived');
-  var sentBox = document.getElementById('collabRequestsSent');
-  if(!receivedBox || !sentBox) return;
-  receivedBox.innerHTML = '<p class="form-note">…</p>';
-  sentBox.innerHTML = '<p class="form-note">…</p>';
-
-  fetch(SUPABASE_URL + '/rest/v1/collab_requests?select=*&or=(requester_id.eq.' + encodeURIComponent(uid) + ',addressee_id.eq.' + encodeURIComponent(uid) + ')', {
-    headers: communityHeaders(),
-    signal: (typeof AbortSignal !== 'undefined' && AbortSignal.timeout) ? AbortSignal.timeout(10000) : undefined
-  })
-    .then(function(r){
-      if(!r.ok){ return r.text().then(function(bodyText){ throw new Error('HTTP ' + r.status + ': ' + bodyText); }); }
-      return r.json();
-    })
-    .then(function(rows){
-      var received = rows.filter(function(f){ return f.status === 'pending' && f.addressee_id === uid; });
-      var sent = rows.filter(function(f){ return f.status === 'pending' && f.requester_id === uid; });
-
-      receivedBox.innerHTML = received.length === 0 ? '<p class="form-note">' + t('mod.empty') + '</p>' : '';
-      received.forEach(function(f){
-        getDisplayName(f.requester_id).then(function(name){
-          var row = document.createElement('div');
-          row.className = 'admin-row';
-          row.innerHTML = '<div class="info"><div class="t">' + escapeHtml(name) + '</div></div>' +
-            '<div class="admin-actions">' +
-              '<button class="btn btn-sm btn-ghost" data-accept>' + t('collab.accept') + '</button>' +
-              '<button class="btn btn-sm btn-ghost" data-decline>' + t('community.declineFriend') + '</button>' +
-            '</div>';
-          row.querySelector('[data-accept]').addEventListener('click', function(){ respondCollabRequest(f.id, true); });
-          row.querySelector('[data-decline]').addEventListener('click', function(){ respondCollabRequest(f.id, false); });
-          receivedBox.appendChild(row);
-        });
-      });
-
-      sentBox.innerHTML = sent.length === 0 ? '<p class="form-note">' + t('mod.empty') + '</p>' : '';
-      sent.forEach(function(f){
-        getDisplayName(f.addressee_id).then(function(name){
-          var row = document.createElement('div');
-          row.className = 'admin-row';
-          row.innerHTML = '<div class="info"><div class="t">' + escapeHtml(name) + '</div><div class="m">' + t('community.requestSent') + '</div></div>';
-          sentBox.appendChild(row);
-        });
-      });
-    })
-    .catch(function(err){
-      var detail = (err && err.message) ? err.message : String(err);
-      var errMsg = '<p class="form-note">' + t('community.loadError') + ' <button type="button" class="retry-link" id="btnRetryCollab">' + t('community.retry') + '</button>' +
-        '<br><span style="font-family:\'Space Mono\',monospace;font-size:10px;opacity:0.6;word-break:break-all;">' + escapeHtml(detail) + '</span></p>';
-      receivedBox.innerHTML = errMsg;
-      sentBox.innerHTML = '';
-      var retryBtn = document.getElementById('btnRetryCollab');
-      if(retryBtn) retryBtn.addEventListener('click', loadCollabRequestsPanel);
-      console.warn('Collab requests panel load failed:', err);
-    });
-}
-
 /* Lista "I tuoi amici" in stile WhatsApp: avatar, pallino online/offline,
    ordine alfabetico. Click su un contatto porta dritto a chat.html (prima
    puntava a una tab "Messaggi privati" ormai rimossa da Community). */
@@ -6644,23 +6177,7 @@ function toggleUserDirectory(){
   var willOpen = panel.classList.contains('hidden');
   if(willOpen) positionUserDirectoryPanel();
   panel.classList.toggle('hidden');
-  if(willOpen){
-    injectUserDirectorySearchOnce();
-    loadUserDirectory();
-  }
-}
-
-function injectUserDirectorySearchOnce(){
-  var panel = document.getElementById('userDirectoryPanel');
-  var list = document.getElementById('userDirectoryList');
-  if(!panel || !list || document.getElementById('userDirectorySearch')) return;
-  var wrap = document.createElement('div');
-  wrap.style.padding = '10px 14px';
-  wrap.innerHTML = '<input type="text" id="userDirectorySearch" placeholder="'+t('userDir.searchPh')+'" style="width:100%;background:var(--void, #1c1712);border:1px solid var(--line, #2a251f);border-radius:6px;padding:8px 10px;color:inherit;font-size:12px;box-sizing:border-box;">';
-  list.parentNode.insertBefore(wrap, list);
-  document.getElementById('userDirectorySearch').addEventListener('input', function(e){
-    renderUserDirectoryFiltered(e.target.value);
-  });
+  if(willOpen) loadUserDirectory();
 }
 
 window.addEventListener('resize', function(){
@@ -6784,134 +6301,72 @@ function loadUserDirectory(){
     .then(function(r){ return r.ok ? r.json() : []; })
     .catch(function(){ return []; });
 
-  var threadsStep = fetch(SUPABASE_URL + '/rest/v1/dm_threads?select=*&or=(user_a.eq.' + encodeURIComponent(uid) + ',user_b.eq.' + encodeURIComponent(uid) + ')', { headers: communityHeaders() })
-    .then(function(r){ return r.ok ? r.json() : []; })
-    .catch(function(){ return []; });
-
-  Promise.all([profilesStep, friendsStep, threadsStep]).then(function(results){
-    var rows = results[0], friendships = results[1], threads = results[2];
+  Promise.all([profilesStep, friendsStep]).then(function(results){
+    var rows = results[0], friendships = results[1];
     var friendIds = new Set();
     friendships.forEach(function(f){
       friendIds.add(f.requester_id === uid ? f.addressee_id : f.requester_id);
-    });
-    var threadByOtherId = {};
-    threads.forEach(function(th){
-      var st = dmThreadState(th, uid);
-      threadByOtherId[st.otherId] = th;
     });
 
     rows = rows.filter(function(p){ return p.id !== uid; }); // te stesso non serve elencarlo
     rows.forEach(function(p){
       p._online = isOnlineSince(p.last_seen);
       p._isVerifiedFriend = p.verified && friendIds.has(p.id);
-      p._thread = threadByOtherId[p.id] || null;
     });
 
-    userDirectoryAllRows = rows;
-    userDirectoryFriendIds = friendIds;
-    renderUserDirectoryFiltered('');
+    var verifiedFriends = rows.filter(function(p){ return p._isVerifiedFriend; });
+    var others = rows.filter(function(p){ return !p._isVerifiedFriend; });
+    verifiedFriends.sort(function(a,b){ return (a.display_name||'').localeCompare(b.display_name||''); });
+    others.sort(function(a,b){
+      if(a._online !== b._online) return a._online ? -1 : 1;
+      return (b.last_seen||'').localeCompare(a.last_seen||'');
+    });
+
+    list.innerHTML = '';
+    if(rows.length === 0){ list.innerHTML = '<p class="form-note">' + t('userDir.empty') + '</p>'; return; }
+
+    function renderRow(p, isVerifiedFriend){
+      var row = document.createElement('button');
+      row.type = 'button';
+      row.className = 'user-directory-row';
+      var dotClass = p._online ? 'user-directory-dot online' : 'user-directory-dot offline';
+      var avatarHtml = p.avatar_url
+        ? '<img class="user-directory-avatar" src="'+escapeHtml(p.avatar_url)+'" alt="">'
+        : '<span class="user-directory-avatar user-directory-avatar-fallback">'+escapeHtml((p.display_name||'?').charAt(0).toUpperCase())+'</span>';
+      var lastSeenHtml = '<span class="user-directory-status">'+(p._online ? t('userDir.online') : (p.last_seen ? notifTimeAgo(p.last_seen) : t('userDir.offline')))+'</span>';
+      var verifiedHtml = isVerifiedFriend ? '<i class="user-directory-verified-check" aria-hidden="true">✓</i>' : '';
+      row.innerHTML =
+        '<span class="user-directory-avatar-wrap avatar-clickable">'+avatarHtml+'<span class="'+dotClass+'"></span></span>'+
+        '<span class="user-directory-name">'+escapeHtml(p.display_name || t('notif.someone'))+verifiedHtml+'</span>'+
+        lastSeenHtml;
+      row.querySelector('.avatar-clickable').addEventListener('click', function(e){
+        e.stopPropagation();
+        openAvatarInfo(p.id);
+      });
+      row.addEventListener('click', function(){
+        window.location.href = 'chat.html?user=' + encodeURIComponent(p.id);
+      });
+      return row;
+    }
+
+    if(verifiedFriends.length > 0){
+      var head1 = document.createElement('div');
+      head1.className = 'user-directory-section-head';
+      head1.textContent = t('userDir.verifiedFriends');
+      list.appendChild(head1);
+      verifiedFriends.forEach(function(p){ list.appendChild(renderRow(p, true)); });
+    }
+    if(others.length > 0){
+      var head2 = document.createElement('div');
+      head2.className = 'user-directory-section-head';
+      head2.textContent = t('userDir.others');
+      list.appendChild(head2);
+      others.forEach(function(p){ list.appendChild(renderRow(p, false)); });
+    }
   }).catch(function(e){
     list.innerHTML = '<p class="form-note" style="color:var(--wine);">' + t('userDir.loadError') + '</p>';
     console.warn('User directory load failed:', e);
   });
-}
-
-var userDirectoryAllRows = [];
-var userDirectoryFriendIds = new Set();
-
-function renderUserDirectoryFiltered(query){
-  var list = document.getElementById('userDirectoryList');
-  if(!list) return;
-  var q = (query || '').trim().toLowerCase();
-  var rows = userDirectoryAllRows.filter(function(p){
-    return !q || (p.display_name || '').toLowerCase().indexOf(q) !== -1;
-  });
-
-  var verifiedFriends = rows.filter(function(p){ return p._isVerifiedFriend; });
-  var others = rows.filter(function(p){ return !p._isVerifiedFriend; });
-  verifiedFriends.sort(function(a,b){ return (a.display_name||'').localeCompare(b.display_name||''); });
-  others.sort(function(a,b){
-    if(a._online !== b._online) return a._online ? -1 : 1;
-    return (b.last_seen||'').localeCompare(a.last_seen||'');
-  });
-
-  list.innerHTML = '';
-  if(rows.length === 0){
-    list.innerHTML = '<p class="form-note">' + (q ? t('userDir.noResults') : t('userDir.empty')) + '</p>';
-    return;
-  }
-
-  var rowsByThreadId = {};
-
-  function renderRow(p, isVerifiedFriend){
-    var th = p._thread;
-    var unread = th ? !dmThreadState(th, currentUserId()).read : false;
-    var row = document.createElement('div');
-    row.className = 'chat-sidebar-row' + (unread ? ' unread' : '');
-    var avatarHtml = p.avatar_url
-      ? '<img class="chat-sidebar-avatar" src="'+escapeHtml(p.avatar_url)+'" alt="">'
-      : '<span class="chat-sidebar-avatar user-directory-avatar-fallback">'+escapeHtml((p.display_name||'?').charAt(0).toUpperCase())+'</span>';
-    var verifiedHtml = isVerifiedFriend ? '<i class="user-directory-verified-check" aria-hidden="true">✓</i>' : '';
-    row.innerHTML =
-      '<span class="chat-sidebar-avatar-wrap avatar-clickable">'+avatarHtml+
-        '<span class="chat-sidebar-dot '+(p._online ? 'online' : 'offline')+'"></span></span>'+
-      '<span class="chat-sidebar-info">'+
-        '<span class="chat-sidebar-name">'+escapeHtml(p.display_name || t('notif.someone'))+verifiedHtml+'</span>'+
-        '<span class="chat-sidebar-preview">'+(th ? '…' : (p._online ? t('userDir.online') : (p.last_seen ? notifTimeAgo(p.last_seen) : t('userDir.offline'))))+'</span>'+
-      '</span>'+
-      '<span class="chat-sidebar-meta">'+
-        (th && th.last_message_at ? '<span class="chat-sidebar-time">'+notifTimeAgo(th.last_message_at)+'</span>' : '')+
-        (unread ? '<span class="chat-sidebar-unread-dot"></span>' : '')+
-      '</span>';
-    row.querySelector('.avatar-clickable').addEventListener('click', function(e){
-      e.stopPropagation();
-      openAvatarInfo(p.id);
-    });
-    row.addEventListener('click', function(){
-      window.location.href = 'chat.html?user=' + encodeURIComponent(p.id);
-    });
-    if(th) rowsByThreadId[th.id] = row;
-    return row;
-  }
-
-  if(verifiedFriends.length > 0){
-    var head1 = document.createElement('div');
-    head1.className = 'user-directory-section-head';
-    head1.textContent = t('userDir.verifiedFriends');
-    list.appendChild(head1);
-    verifiedFriends.forEach(function(p){ list.appendChild(renderRow(p, true)); });
-  }
-  if(others.length > 0){
-    var head2 = document.createElement('div');
-    head2.className = 'user-directory-section-head';
-    head2.textContent = t('userDir.others');
-    list.appendChild(head2);
-    others.forEach(function(p){ list.appendChild(renderRow(p, false)); });
-  }
-
-  // stessa strategia della sidebar chat: un'unica richiesta per tutte le
-  // anteprime invece di una per contatto
-  var threadIds = Object.keys(rowsByThreadId);
-  if(threadIds.length > 0){
-    fetch(SUPABASE_URL + '/rest/v1/dm_messages?thread_id=in.(' + threadIds.map(encodeURIComponent).join(',') + ')&select=thread_id,body,attachment_type&order=created_at.desc&limit=' + (threadIds.length * 6), { headers: communityHeaders() })
-      .then(function(r){ return r.ok ? r.json() : []; })
-      .then(function(msgRows){
-        var seen = {};
-        msgRows.forEach(function(last){
-          if(seen[last.thread_id]) return;
-          seen[last.thread_id] = true;
-          var row = rowsByThreadId[last.thread_id];
-          if(!row) return;
-          var preview = '…';
-          if(last.attachment_type === 'image') preview = '📷 ' + t('chat.photo');
-          else if(last.attachment_type) preview = '📎 ' + t('chat.file');
-          else if(last.body && isGifUrl(last.body)) preview = 'GIF';
-          else preview = last.body || '';
-          row.querySelector('.chat-sidebar-preview').textContent = preview;
-        });
-      })
-      .catch(function(){});
-  }
 }
 
 function heartbeatPresence(){
@@ -7545,15 +7000,25 @@ function openTitleModal(item){
 
   var pdfLink = document.getElementById('titleModalPdf');
   if(item.pdf_url && isSignedIn()){
-    pdfLink.href = item.pdf_url; // riserva, nel caso il JS sotto non parta per qualche motivo
-    pdfLink.textContent = t('pdf.download');
-    pdfLink.onclick = function(e){
-      e.preventDefault();
-      var original = pdfLink.textContent;
-      pdfLink.textContent = t('pdf.preparing');
-      downloadSignedPdf(item).then(function(){ pdfLink.textContent = original; });
-    };
     pdfLink.classList.remove('hidden');
+    pdfLink.removeAttribute('href');
+    pdfLink.textContent = t('pdf.checking');
+    pdfLink.onclick = function(e){ e.preventDefault(); };
+    checkVerifiedSupporter().then(function(isVerified){
+      if(isVerified){
+        pdfLink.href = item.pdf_url; // riserva, nel caso il JS sotto non parta per qualche motivo
+        pdfLink.textContent = t('pdf.download');
+        pdfLink.onclick = function(e){
+          e.preventDefault();
+          var original = pdfLink.textContent;
+          pdfLink.textContent = t('pdf.preparing');
+          downloadSignedPdf(item).then(function(){ pdfLink.textContent = original; });
+        };
+      } else {
+        pdfLink.textContent = t('pdf.needVerified');
+        pdfLink.onclick = function(e){ e.preventDefault(); openSupportTitlePanel(item); };
+      }
+    });
   } else if(item.pdf_url && !isSignedIn()){
     pdfLink.removeAttribute('href'); // l'indirizzo vero non deve mai comparire nel codice sorgente per chi non ha fatto l'accesso
     pdfLink.textContent = t('pdf.loginToDownload');
@@ -8701,7 +8166,7 @@ function refreshSupportSectionVisibility(){
   var section = document.getElementById('supportSection');
   if(!section) return; // pagina diversa da founder.html, non c'è nulla da fare
   var isCollab = isSignedIn() && !isAdmin() &&
-    getCatalog().some(function(x){ return x.created_by && x.created_by === currentUserId(); });
+    (hasActiveCreationSession() || getCatalog().some(function(x){ return x.created_by && x.created_by === currentUserId(); }));
   section.classList.toggle('hidden', isCollab);
 }
 
@@ -8750,6 +8215,7 @@ function __appInit(){
   document.getElementById('btnLogoutTop') && document.getElementById('btnLogoutTop').addEventListener('click', function(){
     authSignOut();
     favoriteIds = new Set();
+    verifiedSupporterCache = null;
     afterAuthChange();
   });
   document.getElementById('authClose') && document.getElementById('authClose').addEventListener('click', closeAuth);
@@ -8905,12 +8371,6 @@ function __appInit(){
     if(friendSearchDebounce) clearTimeout(friendSearchDebounce);
     friendSearchDebounce = setTimeout(function(){ searchFriends(q); }, 350);
   });
-  var collabSearchDebounce = null;
-  document.getElementById('fCollabSearch') && document.getElementById('fCollabSearch').addEventListener('input', function(e){
-    var q = e.target.value;
-    if(collabSearchDebounce) clearTimeout(collabSearchDebounce);
-    collabSearchDebounce = setTimeout(function(){ searchForCollab(q); }, 350);
-  });
 
   document.getElementById('profileModalClose') && document.getElementById('profileModalClose').addEventListener('click', closeProfileModal);
   document.getElementById('btnEnablePush') && document.getElementById('btnEnablePush').addEventListener('click', enablePushNotifications);
@@ -8934,8 +8394,9 @@ function __appInit(){
   document.getElementById('smallnoxUpdatesModal') && document.getElementById('smallnoxUpdatesModal').addEventListener('click', function(e){
     if(e.target.id === 'smallnoxUpdatesModal') dismissSiteUpdates();
   });
-  document.getElementById('btnToggleProfileEdit') && document.getElementById('btnToggleProfileEdit').addEventListener('click', toggleProfileEdit);
-  document.getElementById('btnAddInstagramLink') && document.getElementById('btnAddInstagramLink').addEventListener('click', function(){ addInstagramLinkRow(''); });
+  document.getElementById('profileModal') && document.getElementById('profileModal').addEventListener('click', function(e){
+    if(e.target.id === 'profileModal') closeProfileModal();
+  });
   document.getElementById('fProfileAvatar') && document.getElementById('fProfileAvatar').addEventListener('change', function(e){
     var file = e.target.files[0];
     if(file) document.getElementById('profileAvatarImg').src = URL.createObjectURL(file);
