@@ -4778,7 +4778,8 @@ function submitDiaryPost(){
     document.getElementById('fDiaryMoodText').value = '';
     document.getElementById('fDiaryNote').value = '';
     document.querySelectorAll('.diary-mood-btn').forEach(function(b){ b.classList.remove('active'); });
-    loadDiaryFeed();
+    if(document.getElementById('profileDiaryFeed')) loadDiaryFeed('profileDiaryFeed', currentUserId());
+    if(document.getElementById('diaryFeed')) loadDiaryFeed('diaryFeed');
   }).catch(function(e){
     console.warn('Diary post failed:', e);
     err.textContent = t('diary.publishError');
@@ -5035,6 +5036,8 @@ function renderPublicProfilePage(){
       var isOwnProfile = isSignedIn() && userId === currentUserId();
       var editBtn = document.getElementById('btnToggleProfileEdit');
       if(editBtn) editBtn.classList.toggle('hidden', !isOwnProfile);
+      var diaryComposer = document.getElementById('profileDiaryComposer');
+      if(diaryComposer) diaryComposer.classList.toggle('hidden', !isOwnProfile);
       if(!isOwnProfile){
         var panel = document.getElementById('profileEditPanel');
         if(panel) panel.classList.add('hidden');
