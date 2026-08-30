@@ -12,7 +12,7 @@ var STR = {
     "gate.enter":"Ho almeno 18 anni — Sblocca",
     "gate.leave":"Annulla",
     "gate.legal":"Continuando dichiari inoltre di rispettare le leggi vigenti nella tua giurisdizione riguardo l'accesso a contenuti per adulti.",
-    "nav.library":"Schedario","nav.characters":"Dossier","nav.founder":"Fondatore","nav.admin":"Amministra","nav.login":"Accedi","nav.logout":"Esci",
+    "nav.library":"Schedario","nav.characters":"Dossier","nav.founder":"Fondatore","nav.admin":"Amministra","nav.createContent":"Crea contenuto","nav.login":"Accedi","nav.logout":"Esci",
     "hero.title1":"L'ARCHIVIO DEL","hero.title2":"PIACERE PROIBITO",
     "hero.tagline":"Fumetti d'autore — edizione riservata",
     "hero.lede":"Quattro sigilli, quattro voci: Lucifer, Lilith, Lucifera e Lucio custodiscono le collane di questa casa. Lo schedario è aperto a tutti — i contenuti 18+ restano dietro un interruttore separato, da sbloccare quando vuoi. Ogni tavola nasce in inglese ed entra nello schedario così com'è — solo la tua lingua d'accesso è cosa nostra.",
@@ -135,7 +135,7 @@ var STR = {
     "gate.body":"This archive contains works intended for a mature audience. By continuing you confirm you are at least 18 years old and knowingly consent to explicit content.",
     "gate.enter":"I am 18 or older — Unlock","gate.leave":"Cancel",
     "gate.legal":"By continuing you also confirm compliance with the laws of your jurisdiction regarding access to adult content.",
-    "nav.library":"Index","nav.characters":"Dossiers","nav.founder":"Founder","nav.admin":"Admin","nav.login":"Sign in","nav.logout":"Sign out",
+    "nav.library":"Index","nav.characters":"Dossiers","nav.founder":"Founder","nav.admin":"Admin","nav.createContent":"Create content","nav.login":"Sign in","nav.logout":"Sign out",
     "hero.title1":"THE ARCHIVE OF","hero.title2":"FORBIDDEN PLEASURE",
     "hero.tagline":"Author comics — restricted edition",
     "hero.lede":"Four seals, four voices: Lucifer, Lilith, Lucifera and Lucio each guard a line of this house. The index is open to everyone — 18+ titles sit behind a separate switch, unlockable whenever you like. Every page is drawn in English and enters the index as-is — only your access language is yours to choose.",
@@ -258,7 +258,7 @@ var STR = {
     "gate.body":"Este archivo contiene obras destinadas a un público adulto. Al continuar confirmas tener al menos 18 años y aceptar conscientemente contenido explícito.",
     "gate.enter":"Tengo 18 años o más — Desbloquear","gate.leave":"Cancelar",
     "gate.legal":"Al continuar también confirmas cumplir con las leyes de tu jurisdicción respecto al acceso a contenido para adultos.",
-    "nav.library":"Índice","nav.characters":"Expedientes","nav.founder":"Fundador","nav.admin":"Admin","nav.login":"Acceder","nav.logout":"Salir",
+    "nav.library":"Índice","nav.characters":"Expedientes","nav.founder":"Fundador","nav.admin":"Admin","nav.createContent":"Crear contenido","nav.login":"Acceder","nav.logout":"Salir",
     "hero.title1":"EL ARCHIVO DEL","hero.title2":"PLACER PROHIBIDO",
     "hero.tagline":"Cómics de autor — edición restringida",
     "hero.lede":"Cuatro sellos, cuatro voces: Lucifer, Lilith, Lucifera y Lucio custodian las colecciones de esta casa. El índice está abierto a todos — los títulos 18+ quedan tras un interruptor aparte, que puedes desbloquear cuando quieras. Cada página se dibuja en inglés y entra al índice tal cual — solo tu idioma de acceso es asunto tuyo.",
@@ -381,7 +381,7 @@ var STR = {
     "gate.body":"Cette archive contient des œuvres destinées à un public averti. En continuant, vous confirmez avoir au moins 18 ans et consentir sciemment à un contenu explicite.",
     "gate.enter":"J'ai 18 ans ou plus — Débloquer","gate.leave":"Annuler",
     "gate.legal":"En continuant, vous confirmez également respecter les lois de votre juridiction concernant l'accès aux contenus pour adultes.",
-    "nav.library":"Index","nav.characters":"Dossiers","nav.founder":"Fondateur","nav.admin":"Admin","nav.login":"Connexion","nav.logout":"Déconnexion",
+    "nav.library":"Index","nav.characters":"Dossiers","nav.founder":"Fondateur","nav.admin":"Admin","nav.createContent":"Créer du contenu","nav.login":"Connexion","nav.logout":"Déconnexion",
     "hero.title1":"L'ARCHIVE DU","hero.title2":"PLAISIR INTERDIT",
     "hero.tagline":"Bandes dessinées d'auteur — édition réservée",
     "hero.lede":"Quatre sceaux, quatre voix : Lucifer, Lilith, Lucifera et Lucio veillent chacun sur une collection de cette maison. L'index est ouvert à tous — les titres 18+ restent derrière un interrupteur séparé, à débloquer quand vous voulez. Chaque planche est dessinée en anglais et entre dans l'index telle quelle — seule votre langue d'accès vous appartient.",
@@ -504,7 +504,7 @@ var STR = {
     "gate.body":"Dieses Archiv enthält Werke für ein erwachsenes Publikum. Mit dem Fortfahren bestätigen Sie, mindestens 18 Jahre alt zu sein und bewusst expliziten Inhalten zuzustimmen.",
     "gate.enter":"Ich bin 18 Jahre oder älter — Freischalten","gate.leave":"Abbrechen",
     "gate.legal":"Mit dem Fortfahren bestätigen Sie außerdem, die Gesetze Ihrer Rechtsordnung zum Zugang zu Erwachseneninhalten einzuhalten.",
-    "nav.library":"Index","nav.characters":"Dossiers","nav.founder":"Gründer","nav.admin":"Admin","nav.login":"Anmelden","nav.logout":"Abmelden",
+    "nav.library":"Index","nav.characters":"Dossiers","nav.founder":"Gründer","nav.admin":"Admin","nav.createContent":"Inhalt erstellen","nav.login":"Anmelden","nav.logout":"Abmelden",
     "hero.title1":"DAS ARCHIV DER","hero.title2":"VERBOTENEN LUST",
     "hero.tagline":"Autoren-Comics — exklusive Ausgabe",
     "hero.lede":"Vier Siegel, vier Stimmen: Lucifer, Lilith, Lucifera und Lucio hüten je eine Reihe dieses Hauses. Der Index steht allen offen — 18+-Titel liegen hinter einem eigenen Schalter, den Sie jederzeit freischalten können. Jede Seite entsteht auf Englisch und kommt so in den Index — nur Ihre Zugangssprache liegt bei Ihnen.",
@@ -657,6 +657,13 @@ function t(key){
   var lang = STR[currentLang] ? currentLang : 'it';
   return (STR[lang] && STR[lang][key]) || (STR.it[key]) || key;
 }
+function updateNavAdminLabel(admin){
+  var el = document.getElementById('navAdmin');
+  if(!el) return;
+  el.removeAttribute('data-i18n'); // l'etichetta dipende dal ruolo, non va risovrascritta da applyI18n()
+  el.textContent = admin ? t('nav.admin') : t('nav.createContent');
+}
+
 function applyI18n(){
   document.querySelectorAll('[data-i18n]').forEach(function(el){
     var key = el.getAttribute('data-i18n');
@@ -672,6 +679,7 @@ function applyI18n(){
   });
   document.documentElement.lang = currentLang;
   document.getElementById('langSelect').value = currentLang;
+  updateNavAdminLabel(isAdmin());
 }
 function setLang(lang){
   currentLang = lang;
@@ -1114,6 +1122,7 @@ function refreshAdminUI(){
   // La voce "Amministra" nel menu va aggiornata su OGNI pagina (vive nell'header
   // condiviso) — non solo su admin.html, dove invece vivono gateBox/manageBox.
   if(navAdmin) navAdmin.classList.toggle('hidden', !canPublish);
+  updateNavAdminLabel(admin);
   if(!gateBox || !manageBox) return;
   if(admin){
     if(adminSection) adminSection.classList.remove('hidden'); // arrivando direttamente su admin.html (non da un click sul link) va rivelata qui, non solo dal click handler
