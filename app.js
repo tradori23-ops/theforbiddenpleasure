@@ -2151,8 +2151,8 @@ function buildTomeCardHtml(item){
   var hasStock = item.stock != null;
   var soldOut = hasStock && item.stock <= 0;
   var soldOutBadge = soldOut ? '<span class="sold-out-badge">'+t('stock.soldOut')+'</span>' : '';
-  var stockTxt = hasStock && !soldOut ? '<span class="card-idx-stock">'+item.stock+' '+t('stock.left')+'</span>' : '';
-  var priceTxt = item.price ? '<span class="card-idx-price">€'+Number(item.price).toFixed(2)+'</span>' : '';
+  var stockTxt = hasStock && !soldOut ? '<span class="card-idx-stock" style="position:static;display:inline;">'+item.stock+' '+t('stock.left')+'</span>' : '';
+  var priceTxt = item.price ? '<span class="card-idx-price" style="position:static;display:inline;">€'+Number(item.price).toFixed(2)+'</span>' : '';
   var coverInner = item.cover_url
     ? '<img class="cover-img" src="'+coverThumbUrl(item.cover_url, 500)+'" data-fallback="'+escapeHtml(item.cover_url)+'" alt="" loading="lazy" decoding="async">'
     : '<span class="init">'+item.character.charAt(0)+'</span>';
@@ -2180,7 +2180,9 @@ function buildTomeCardHtml(item){
         '<div class="character">'+item.character+'</div>'+
         '<div class="synopsis">'+escapeHtml(synopsisForCurrentLang(item))+'</div>'+
         '<button type="button" class="synopsis-toggle hidden" data-toggle-synopsis>'+t('card.readMore')+'</button>'+
-        '<div class="meta-row"><span>'+(item.date||'')+'</span>'+priceTxt+stockTxt+'</div>'+
+        '<div class="meta-row" style="display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px;">'+
+          '<span>'+(item.date||'')+'</span>'+priceTxt+stockTxt+
+        '</div>'+
         publishedTxt+
         '<div class="card-idx-engagement">'+(item.view_count||0)+' '+t('stats.views')+' · '+(item.comment_count||0)+' '+t('stats.comments')+'</div>'+
       '</div>'+
@@ -2808,7 +2810,7 @@ function renderMyTitles(){
    quelli sono interattivi e non hanno senso su un titolo non ancora online. */
 function buildSitePreviewCardHtml(d){
   var badge = d.mature ? '<span class="mature">18+</span>' : '<span class="allages">'+t('badge.allages')+'</span>';
-  var priceTxt = d.price ? '<span class="card-idx-price">€'+Number(d.price).toFixed(2)+'</span>' : '';
+  var priceTxt = d.price ? '<span class="card-idx-price" style="position:static;display:inline;">€'+Number(d.price).toFixed(2)+'</span>' : '';
   var coverInner = d.coverSrc
     ? '<img class="cover-img" src="'+d.coverSrc+'" alt="">'
     : '<span class="init">'+escapeHtml((d.character||'?').charAt(0))+'</span>';
@@ -2822,7 +2824,7 @@ function buildSitePreviewCardHtml(d){
           '<h4>'+escapeHtml(d.title||'')+'</h4>'+
           '<div class="character">'+escapeHtml(d.character||'')+'</div>'+
           '<div class="synopsis">'+escapeHtml(d.synopsis||'')+'</div>'+
-          '<div class="meta-row"><span>'+escapeHtml(d.date||'')+'</span>'+priceTxt+'</div>'+
+          '<div class="meta-row" style="display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px;"><span>'+escapeHtml(d.date||'')+'</span>'+priceTxt+'</div>'+
         '</div>'+
       '</div>'+
     '</div>'
