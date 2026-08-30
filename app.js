@@ -1109,11 +1109,11 @@ function refreshAdminUI(){
   var collabBanner = document.getElementById('collabSessionBanner');
   var smallnoxCard = document.getElementById('smallnoxCard');
   var admin = isAdmin();
-  var collab = !admin && hasActiveCreationSession();
+  var canPublish = admin || isSignedIn(); // nuovo modello aperto: chiunque loggato può pubblicare, non serve più una sessione a tempo
   var ownsPastTitles = !admin && isSignedIn() && getCatalog().some(function(x){ return x.created_by && x.created_by === currentUserId(); });
   // La voce "Amministra" nel menu va aggiornata su OGNI pagina (vive nell'header
   // condiviso) — non solo su admin.html, dove invece vivono gateBox/manageBox.
-  if(navAdmin) navAdmin.classList.toggle('hidden', !(admin || collab || ownsPastTitles));
+  if(navAdmin) navAdmin.classList.toggle('hidden', !canPublish);
   if(!gateBox || !manageBox) return;
   if(admin){
     if(adminSection) adminSection.classList.remove('hidden'); // arrivando direttamente su admin.html (non da un click sul link) va rivelata qui, non solo dal click handler
@@ -1138,10 +1138,10 @@ function refreshAdminUI(){
       sessionStorage.removeItem('lux_pending_admin_tab');
       switchAdminTab(pendingAdminTab);
     }
-  } else if(collab || ownsPastTitles){
-    // Un collaboratore invitato vede SOLO il modulo "Aggiungi allo schedario"
-    // (se la sessione è attiva) e/o i propri titoli già pubblicati, da poter
-    // modificare in qualsiasi momento — niente altre tab, niente dati altrui.
+  } else if(isSignedIn()){
+    // Modello aperto: chiunque abbia un account vede il modulo "Aggiungi allo
+    // schedario" (pubblica come sé stesso) e i propri titoli già pubblicati —
+    // niente altre tab, niente dati altrui.
     if(adminSection) adminSection.classList.remove('hidden');
     gateBox.classList.add('hidden');
     manageBox.classList.remove('hidden');
@@ -1151,26 +1151,9 @@ function refreshAdminUI(){
       panel.classList.toggle('hidden', panel.dataset.tabPanel !== 'catalog');
     });
     var addEntryBtn = document.getElementById('btnAddEntry');
-    if(collabBanner){
-      collabBanner.classList.toggle('hidden', !collab);
-      if(collab) renderCollabSessionBanner();
-    }
-    // Senza sessione attiva non si può pubblicare un titolo NUOVO — solo
-    // modificare quelli già propri — quindi il pulsante "Aggiungi" si nasconde
-    // finché non si è in modalità modifica (editingItemId valorizzato da openEditTitle).
-    if(addEntryBtn) addEntryBtn.classList.toggle('hidden', !collab && !editingItemId);
+    if(collabBanner) collabBanner.classList.add('hidden'); // sistema a sessione ritirato
+    if(addEntryBtn) addEntryBtn.classList.remove('hidden');
     renderMyTitles();
-  } else if(isSignedIn()){
-    var gateUid = currentUserId();
-    var gateFallback = '@' + (currentUserEmail() || '').split('@')[0];
-    gateMsg.textContent = t('admin.gate.notAdmin').replace('{email}', gateFallback);
-    if(gateUid){
-      getDisplayName(gateUid).then(function(name){
-        gateMsg.textContent = t('admin.gate.notAdmin').replace('{email}', (name && name !== t('notif.someone')) ? name : gateFallback);
-      });
-    }
-    gateSignIn.classList.add('hidden');
-    if(adminSection) adminSection.classList.add('hidden'); // no dangling section for non-admins
   } else {
     gateMsg.textContent = t('admin.gate.notSignedIn');
     gateSignIn.classList.remove('hidden');
@@ -3625,7 +3608,7 @@ function cancelEditTitle(){
   var btn = document.getElementById('btnAddEntry');
   if(btn){
     btn.textContent = t('admin.add');
-    if(!isAdmin() && !hasActiveCreationSession()) btn.classList.add('hidden');
+    if(!isSignedIn()) btn.classList.add('hidden');
   }
   var cancelBtn = document.getElementById('btnCancelEditTitle');
   if(cancelBtn) cancelBtn.classList.add('hidden');
@@ -3793,11 +3776,10 @@ function handleAddEntry(){
     return;
   }
   var isEdit = !!editingItemId;
-  // Solo admin, o un collaboratore con sessione attiva, può pubblicare un
-  // titolo NUOVO — modificare i propri titoli già pubblicati resta invece
-  // sempre permesso, sessione attiva o no.
-  if(!isEdit && !isAdmin() && !hasActiveCreationSession()){
-    err.textContent = t('collabSession.expired');
+  // Modello aperto: chiunque abbia un account può pubblicare un titolo NUOVO,
+  // non solo admin o chi aveva una sessione a tempo (sistema ritirato).
+  if(!isEdit && !isSignedIn()){
+    err.textContent = t('admin.gate.notSignedIn');
     return;
   }
 
@@ -8275,7 +8257,7 @@ function refreshSupportSectionVisibility(){
   var section = document.getElementById('supportSection');
   if(!section) return; // pagina diversa da founder.html, non c'è nulla da fare
   var isCollab = isSignedIn() && !isAdmin() &&
-    (hasActiveCreationSession() || getCatalog().some(function(x){ return x.created_by && x.created_by === currentUserId(); }));
+    getCatalog().some(function(x){ return x.created_by && x.created_by === currentUserId(); });
   section.classList.toggle('hidden', isCollab);
 }
 
