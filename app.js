@@ -2301,10 +2301,18 @@ function downloadSignedPdf(item){
   var session = getSession();
   return ensurePdfLibLoaded()
     .then(function(){
+      // I titoli esistenti hanno pdf_url salvato come URL pubblico completo
+      // (bucket comic-pages, mai migrati al bucket protetto comic-pages-clean).
+      // Se è già un URL assoluto lo fetchiamo com'è; solo un path nudo passa
+      // dal bucket protetto con header di autenticazione.
+      var isFullUrl = /^https?:\/\//i.test(item.pdf_url);
+      var pdfFetch = isFullUrl
+        ? fetch(item.pdf_url)
+        : fetch(SUPABASE_URL + '/storage/v1/object/comic-pages-clean/' + item.pdf_url, {
+            headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
+          });
       return Promise.all([
-        fetch(SUPABASE_URL + '/storage/v1/object/comic-pages-clean/' + item.pdf_url, {
-          headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
-        }).then(function(r){
+        pdfFetch.then(function(r){
           if(!r.ok) throw new Error('pdf fetch failed');
           return r.arrayBuffer();
         }),
@@ -7320,9 +7328,16 @@ function syncCatalogForOffline(showStatus){
         return cache.match(cacheKey).then(function(existing){
           if(existing) return;
           var session = getSession();
-          return fetch(SUPABASE_URL + '/storage/v1/object/comic-pages-clean/' + path, {
-            headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
-          }).then(function(r){
+          // pages_clean sono sempre path nudi; pdf_url sui titoli vecchi è
+          // invece un URL pubblico completo (vedi downloadSignedPdf) — stessa
+          // distinzione va rispettata anche qui o il fetch va a un path inesistente.
+          var isFullUrl = /^https?:\/\//i.test(path);
+          var pageFetch = isFullUrl
+            ? fetch(path)
+            : fetch(SUPABASE_URL + '/storage/v1/object/comic-pages-clean/' + path, {
+                headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
+              });
+          return pageFetch.then(function(r){
             if(!r.ok) return;
             return r.blob().then(function(blob){ return cache.put(cacheKey, new Response(blob)); });
           }).catch(function(){}); // un titolo che fallisce non deve fermare gli altri
