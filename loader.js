@@ -29,7 +29,7 @@
   // Questo è l'UNICO punto da modificare: style.css e app.js prendono
   // entrambi la versione da qui, su ogni pagina, senza bisogno di
   // toccare anche l'HTML di ciascuna pagina.
-  var V = "41";
+  var V = "42";
 
   // style.css iniettato qui (non più con un <link> scritto a mano in ogni
   // pagina) così la sua versione segue sempre la stessa V di app.js,
