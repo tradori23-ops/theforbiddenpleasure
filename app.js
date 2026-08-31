@@ -6358,34 +6358,175 @@ function openSmallNoxAssistant(){
     .catch(function(e){ console.warn('SmallNox updates check failed:', e); });
 }
 
+/* Le voci di site_updates sono scritte in italiano nel database — le
+   traduciamo al volo verso la lingua dell'interfaccia (stesso motore di
+   translateChatMessage, DeepL rileva la lingua di partenza da solo), con
+   una cache locale così non richiamiamo il traduttore ogni volta che si
+   riapre lo stesso popup con le stesse voci. */
+function getUpdatesTranslationCache(){
+  try{ return JSON.parse(localStorage.getItem('lux_updates_i18n') || '{}'); }catch(e){ return {}; }
+}
+function saveUpdatesTranslationCache(cache){
+  try{ localStorage.setItem('lux_updates_i18n', JSON.stringify(cache)); }catch(e){}
+}
+function translateUpdateTitles(titles){
+  if(currentLang === 'it' || !getSession()) return Promise.resolve({});
+  var cache = getUpdatesTranslationCache();
+  var langCache = cache[currentLang] || (cache[currentLang] = {});
+  var toFetch = titles.filter(function(title){ return !langCache[title]; });
+  if(toFetch.length === 0) return Promise.resolve(langCache);
+  return Promise.all(toFetch.map(function(title){
+    return translateChatMessage(title).then(function(res){
+      langCache[title] = res.translated || title;
+    }).catch(function(){ langCache[title] = title; });
+  })).then(function(){
+    saveUpdatesTranslationCache(cache);
+    return langCache;
+  });
+}
+
+/* Disegna il bordo del pannello come farebbe una matita: un rettangolo SVG
+   tracciato con un'animazione dello stroke (da invisibile a completo), con
+   una piccola matita che compare all'inizio del tratto e sparisce appena
+   il bordo è finito. Ogni pannello parte con un piccolo ritardo in più
+   rispetto al precedente, così si "disegnano" uno dietro l'altro scendendo
+   lungo la lista invece che tutti insieme. */
+function animateComicPanelFrame(panel, color, delayMs){
+  requestAnimationFrame(function(){
+    var w = panel.offsetWidth, h = panel.offsetHeight;
+    if(!w || !h) return;
+    var svgNS = 'http://www.w3.org/2000/svg';
+    var svg = document.createElementNS(svgNS, 'svg');
+    svg.setAttribute('width', w);
+    svg.setAttribute('height', h);
+    svg.style.cssText = 'position:absolute;top:0;left:0;overflow:visible;pointer-events:none;';
+    var rEl = document.createElementNS(svgNS, 'rect');
+    rEl.setAttribute('x', 1.5);
+    rEl.setAttribute('y', 1.5);
+    rEl.setAttribute('width', Math.max(0, w - 3));
+    rEl.setAttribute('height', Math.max(0, h - 3));
+    rEl.setAttribute('rx', 10);
+    rEl.setAttribute('fill', 'none');
+    rEl.setAttribute('stroke', color);
+    rEl.setAttribute('stroke-width', 2.5);
+    rEl.setAttribute('stroke-linecap', 'round');
+    svg.appendChild(rEl);
+    panel.insertBefore(svg, panel.firstChild);
+
+    var len = rEl.getTotalLength();
+    var drawMs = 850;
+    rEl.style.strokeDasharray = len;
+    rEl.style.strokeDashoffset = len;
+    rEl.style.transition = 'stroke-dashoffset ' + drawMs + 'ms ease-out ' + delayMs + 'ms';
+
+    var pencil = document.createElement('span');
+    pencil.textContent = '✎';
+    pencil.setAttribute('aria-hidden', 'true');
+    pencil.style.cssText = 'position:absolute;left:6px;top:-15px;font-size:17px;color:' + color +
+      ';opacity:0;transition:opacity 160ms ease ' + delayMs + 'ms;';
+    panel.appendChild(pencil);
+
+    // Il timbro "A.I." prende il posto della matita non appena il tratto è
+    // finito — il pubblico vede prima il gesto ("disegnato a mano"), poi
+    // la firma che dice chi l'ha disegnato davvero.
+    var aiTag = document.createElement('span');
+    aiTag.textContent = 'A.I.';
+    aiTag.setAttribute('aria-hidden', 'true');
+    aiTag.style.cssText = 'position:absolute;right:10px;top:-11px;font-family:"Space Mono",monospace;' +
+      'font-size:10px;letter-spacing:0.08em;color:' + color + ';background:#150d0e;border:1.5px solid ' + color +
+      ';border-radius:20px;padding:2px 8px;opacity:0;transition:opacity 320ms ease ' + (delayMs + drawMs + 150) + 'ms;';
+    panel.appendChild(aiTag);
+
+    requestAnimationFrame(function(){
+      rEl.style.strokeDashoffset = 0;
+      pencil.style.opacity = 1;
+      aiTag.style.opacity = 1;
+      setTimeout(function(){
+        pencil.style.transition = 'opacity 280ms ease';
+        pencil.style.opacity = 0;
+      }, delayMs + drawMs);
+    });
+  });
+}
+
+/* Iniettato una sola volta: il retino a puntini in stile fumetto che si
+   muove piano dietro ai pannelli delle novità, e il font per la firma. */
+function ensureSmallNoxComicStyle(){
+  if(document.getElementById('smallnoxComicStyle')) return;
+  var styleEl = document.createElement('style');
+  styleEl.id = 'smallnoxComicStyle';
+  styleEl.textContent =
+    '@keyframes smallnoxDotsMove{from{background-position:0 0;}to{background-position:36px 36px;}}' +
+    '.smallnox-comic-bg{background-image:radial-gradient(circle,rgba(201,162,77,0.22) 1.6px,transparent 1.7px);' +
+    'background-size:18px 18px;animation:smallnoxDotsMove 7s linear infinite;border-radius:14px;}';
+  document.head.appendChild(styleEl);
+}
+
 function renderSiteUpdatesModal(rows){
   var list = document.getElementById('smallnoxUpdatesList');
   if(!list) return;
   var vt = document.getElementById('smallnoxVersionTag');
   if(vt && rows.length) vt.textContent = 'v' + formatVersion(rows[0].created_at);
-  var groups = {}; // raggruppo per ora (arrotondata) così più modifiche vicine nel tempo finiscono nella stessa sotto-sezione
+  ensureSmallNoxComicStyle();
+
+  // Stile "tavola a fumetti": pannelli con un numero cerchiato che sporge
+  // dall'angolo, come un numero di uscita — font del sito (Cinzel per il
+  // numero, Crimson Pro per il testo). Il bordo di ogni pannello si disegna
+  // da solo come tracciato a matita (vedi animateComicPanelFrame), e sotto
+  // c'è un retino a puntini animato in stile fumetto.
+  list.innerHTML = '';
+  list.className = (list.className ? list.className + ' ' : '') + 'smallnox-comic-bg';
+  list.style.cssText = 'padding:14px;';
+
+  var accentColors = ['#c9a24d', '#5dcaa5', '#e2916b'];
+  var groups = {};
   var order = [];
   rows.forEach(function(row){
     var d = new Date(row.created_at);
-    var key = d.toISOString().slice(0,13); // YYYY-MM-DDTHH
+    var key = d.toISOString().slice(0,13);
     if(!groups[key]){ groups[key] = { date: d, items: [] }; order.push(key); }
-    groups[key].items.push(row.title);
+    groups[key].items.push(row);
   });
-  list.innerHTML = '';
-  order.forEach(function(key){
+
+  var rowEls = [];
+  var counter = 0;
+  order.forEach(function(key, gi){
     var g = groups[key];
     var head = document.createElement('div');
-    head.style.cssText = 'font-family:"Space Mono",monospace;font-size:10px;letter-spacing:0.06em;color:var(--gold);margin:14px 0 6px;';
+    head.style.cssText = 'font-family:"Space Mono",monospace;font-size:11px;letter-spacing:0.06em;color:var(--gold);margin:' + (gi===0?'0':'26px') + ' 0 14px;';
     head.textContent = g.date.toLocaleDateString() + ' — ' + g.date.toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
     list.appendChild(head);
-    var ul = document.createElement('ul');
-    ul.style.cssText = 'margin:0;padding-left:18px;color:var(--parchment-dim);line-height:1.7;font-size:13px;';
-    g.items.forEach(function(title){
-      var li = document.createElement('li');
-      li.textContent = title;
-      ul.appendChild(li);
+
+    g.items.forEach(function(row){
+      counter++;
+      var color = accentColors[(counter-1) % accentColors.length];
+      var panel = document.createElement('div');
+      panel.style.cssText = 'position:relative;border-radius:10px;background:rgba(21,13,14,0.82);padding:16px 18px 16px 40px;margin:0 0 22px;';
+      var badge = document.createElement('div');
+      badge.style.cssText = 'position:absolute;top:-16px;left:14px;width:34px;height:34px;border-radius:50%;background:' + color +
+        ';border:3px solid #150d0e;display:flex;align-items:center;justify-content:center;font-family:"Cinzel Decorative",serif;font-weight:700;font-size:15px;color:#150d0e;';
+      badge.textContent = String(counter);
+      var titleEl = document.createElement('div');
+      titleEl.style.cssText = 'font-family:"Crimson Pro",serif;font-size:17px;line-height:1.5;color:#f0e4cd;';
+      titleEl.textContent = row.title;
+      panel.appendChild(badge);
+      panel.appendChild(titleEl);
+      list.appendChild(panel);
+      rowEls.push({ el: titleEl, original: row.title });
+      animateComicPanelFrame(panel, color, (counter - 1) * 260);
     });
-    list.appendChild(ul);
+  });
+
+  var signature = document.createElement('div');
+  signature.style.cssText = 'font-family:"Crimson Pro",serif;font-style:italic;font-size:18px;color:var(--gold);text-align:right;margin:4px 6px 0;';
+  signature.textContent = '— Nox Morningstar';
+  list.appendChild(signature);
+
+  var uniqueTitles = rows.map(function(r){ return r.title; }).filter(function(v,i,a){ return a.indexOf(v)===i; });
+  translateUpdateTitles(uniqueTitles).then(function(map){
+    rowEls.forEach(function(r){
+      if(map[r.original] && map[r.original] !== r.original) r.el.textContent = map[r.original];
+    });
   });
 }
 
