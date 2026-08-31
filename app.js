@@ -2291,13 +2291,10 @@ function base64ToBytes(base64){
 
 var verifiedSupporterCache = null; // null = non ancora controllato; true/false una volta saputo
 function checkVerifiedSupporter(){
-  if(verifiedSupporterCache !== null) return Promise.resolve(verifiedSupporterCache);
-  var session = getSession();
-  if(!session){ verifiedSupporterCache = false; return Promise.resolve(false); }
-  return fetch(SUPABASE_URL + '/rest/v1/verified_supporters?user_id=eq.' + encodeURIComponent(currentUserId()) + '&select=user_id', { headers: communityHeaders() })
-    .then(function(r){ return r.ok ? r.json() : []; })
-    .then(function(rows){ verifiedSupporterCache = rows.length > 0; return verifiedSupporterCache; })
-    .catch(function(){ return false; });
+  // Gate pagamento/verifica disattivato su richiesta: PDF liberi per chiunque sia autenticato,
+  // nessuna verifica su verified_supporters. Per riattivarlo, ripristinare la fetch precedente.
+  verifiedSupporterCache = true;
+  return Promise.resolve(true);
 }
 
 function downloadSignedPdf(item){
