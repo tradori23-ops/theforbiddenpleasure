@@ -111,6 +111,7 @@ var STR = {
     "share.manual":"Copia questo testo per condividerlo:",
     "pdf.label":"Oppure carica il fumetto come PDF (A4) invece delle pagine singole",
     "pdf.uploading":"Caricamento PDF…","pdf.download":"Scarica PDF","pdf.preparing":"Preparazione…","pdf.loginToDownload":"Accedi per scaricare il PDF","pdf.checking":"Verifica…","pdf.needVerified":"Sostieni per sbloccare il PDF","pdf.downloadError":"Scaricamento non riuscito. Riprova.","offline.syncing":"Salvataggio offline: {done}/{total} titoli…","offline.downloadAll":"Scarica tutto per offline",
+    "entry.question":"Vuoi entrare online o usufruire della versione offline?","entry.online":"Entra online","entry.offline":"Usa la versione offline","entry.wifiHint":"Consiglio: collegati al Wi-Fi invece che ai dati cellulari prima di scaricare i contenuti.","offline.staleWarning":"I contenuti potrebbero non essere aggiornati — risalgono a più di 3 giorni fa.","offline.expiryNote":"I contenuti scaricati restano disponibili offline per 3 giorni dal download, poi vengono rimossi automaticamente per lasciare spazio.",
     "maintenance.lockTitle":"Sito in manutenzione","maintenance.lockText":"Stiamo aggiornando l'archivio. Torna tra poco.",
     "charimg.title":"Immagini profilo personaggi",
     "social.title":"Link social (visibili nel footer)","social.save":"Salva link social",
@@ -234,6 +235,7 @@ var STR = {
     "share.manual":"Copy this text to share it:",
     "pdf.label":"Or upload the comic as a PDF (A4) instead of individual pages",
     "pdf.uploading":"Uploading PDF…","pdf.download":"Download PDF","pdf.preparing":"Preparing…","pdf.loginToDownload":"Sign in to download the PDF","pdf.checking":"Checking…","pdf.needVerified":"Support to unlock the PDF","pdf.downloadError":"Download failed. Try again.","offline.syncing":"Saving offline: {done}/{total} titles…","offline.downloadAll":"Download all for offline",
+    "entry.question":"Do you want to go online or use the offline version?","entry.online":"Go online","entry.offline":"Use offline version","entry.wifiHint":"Tip: connect to Wi-Fi instead of mobile data before downloading content.","offline.staleWarning":"Content may be out of date — last synced more than 3 days ago.","offline.expiryNote":"Downloaded content stays available offline for 3 days after download, then it's automatically removed to save space.",
     "maintenance.lockTitle":"Site under maintenance","maintenance.lockText":"We're updating the archive. Check back shortly.",
     "charimg.title":"Character profile images",
     "social.title":"Social links (shown in the footer)","social.save":"Save social links",
@@ -357,6 +359,7 @@ var STR = {
     "share.manual":"Copia este texto para compartirlo:",
     "pdf.label":"O sube el cómic como PDF (A4) en lugar de páginas individuales",
     "pdf.uploading":"Subiendo PDF…","pdf.download":"Descargar PDF","pdf.preparing":"Preparando…","pdf.loginToDownload":"Inicia sesión para descargar el PDF","pdf.checking":"Comprobando…","pdf.needVerified":"Apoya para desbloquear el PDF","pdf.downloadError":"Error al descargar. Inténtalo de nuevo.","offline.syncing":"Guardando sin conexión: {done}/{total} títulos…","offline.downloadAll":"Descargar todo para sin conexión",
+    "entry.question":"¿Quieres entrar en línea o usar la versión sin conexión?","entry.online":"Entrar en línea","entry.offline":"Usar versión sin conexión","entry.wifiHint":"Consejo: conéctate al Wi-Fi en lugar de datos móviles antes de descargar contenido.","offline.staleWarning":"El contenido podría no estar actualizado — la última sincronización fue hace más de 3 días.","offline.expiryNote":"El contenido descargado permanece disponible sin conexión durante 3 días desde la descarga, luego se elimina automáticamente para liberar espacio.",
     "maintenance.lockTitle":"Sitio en mantenimiento","maintenance.lockText":"Estamos actualizando el archivo. Vuelve en breve.",
     "charimg.title":"Imágenes de perfil de los personajes",
     "social.title":"Enlaces sociales (visibles en el pie de página)","social.save":"Guardar enlaces sociales",
@@ -480,6 +483,7 @@ var STR = {
     "share.manual":"Copiez ce texte pour le partager :",
     "pdf.label":"Ou téléversez la BD en PDF (A4) au lieu de pages individuelles",
     "pdf.uploading":"Envoi du PDF…","pdf.download":"Télécharger le PDF","pdf.preparing":"Préparation…","pdf.loginToDownload":"Connectez-vous pour télécharger le PDF","pdf.checking":"Vérification…","pdf.needVerified":"Soutenez pour débloquer le PDF","pdf.downloadError":"Échec du téléchargement. Réessayez.","offline.syncing":"Enregistrement hors ligne : {done}/{total} titres…","offline.downloadAll":"Tout télécharger pour hors ligne",
+    "entry.question":"Voulez-vous vous connecter en ligne ou utiliser la version hors ligne ?","entry.online":"Se connecter en ligne","entry.offline":"Utiliser la version hors ligne","entry.wifiHint":"Conseil : connectez-vous au Wi-Fi plutôt qu'aux données mobiles avant de télécharger du contenu.","offline.staleWarning":"Le contenu pourrait ne pas être à jour — dernière synchronisation il y a plus de 3 jours.","offline.expiryNote":"Le contenu téléchargé reste disponible hors ligne pendant 3 jours après le téléchargement, puis il est automatiquement supprimé pour libérer de l'espace.",
     "maintenance.lockTitle":"Site en maintenance","maintenance.lockText":"Nous mettons à jour les archives. Revenez bientôt.",
     "charimg.title":"Images de profil des personnages",
     "social.title":"Liens sociaux (affichés en pied de page)","social.save":"Enregistrer les liens sociaux",
@@ -603,6 +607,7 @@ var STR = {
     "share.manual":"Diesen Text zum Teilen kopieren:",
     "pdf.label":"Oder Comic als PDF (A4) statt Einzelseiten hochladen",
     "pdf.uploading":"PDF wird hochgeladen…","pdf.download":"PDF herunterladen","pdf.preparing":"Wird vorbereitet…","pdf.loginToDownload":"Anmelden, um das PDF herunterzuladen","pdf.checking":"Wird geprüft…","pdf.needVerified":"Unterstützen, um das PDF freizuschalten","pdf.downloadError":"Download fehlgeschlagen. Erneut versuchen.","offline.syncing":"Offline-Speicherung: {done}/{total} Titel…","offline.downloadAll":"Alles für offline herunterladen",
+    "entry.question":"Möchten Sie online gehen oder die Offline-Version nutzen?","entry.online":"Online gehen","entry.offline":"Offline-Version nutzen","entry.wifiHint":"Tipp: Verbinde dich vor dem Herunterladen von Inhalten mit WLAN statt mit mobilen Daten.","offline.staleWarning":"Die Inhalte sind möglicherweise veraltet — letzte Synchronisierung vor mehr als 3 Tagen.","offline.expiryNote":"Heruntergeladene Inhalte bleiben 3 Tage nach dem Download offline verfügbar und werden danach automatisch entfernt, um Platz zu sparen.",
     "maintenance.lockTitle":"Website in Wartung","maintenance.lockText":"Wir aktualisieren das Archiv. Schau bald wieder vorbei.",
     "charimg.title":"Profilbilder der Charaktere",
     "social.title":"Social-Links (im Footer angezeigt)","social.save":"Social-Links speichern",
@@ -681,6 +686,48 @@ function setLang(lang){
   renderCatalog();
   renderAdminList();
   updateSyncStatus();
+}
+
+/* ============ SCHERMATA DI INGRESSO — Online / Offline ============
+   Mostrata una volta per apertura dell'app (sessionStorage, si resetta
+   quando la PWA viene chiusa e riaperta), sempre prima di ogni altra
+   interazione. Se il dispositivo risulta senza connessione, il pulsante
+   "Usa la versione offline" viene evidenziato — ma resta comunque un tap
+   esplicito dell'utente, mai una scelta automatica. */
+function showEntryModeGate(){
+  if(sessionStorage.getItem('lux_entry_mode')) return; // già scelto in questa apertura
+  var overlay = document.createElement('div');
+  overlay.id = 'entryModeGate';
+  overlay.style.cssText = 'position:fixed;inset:0;z-index:100000;display:flex;align-items:center;justify-content:center;padding:20px;background-color:#0b0607;background-image:linear-gradient(rgba(11,6,7,0.72),rgba(11,6,7,0.72)),' +
+    'url(' + (window.innerWidth <= 640 ? 'entry-bg-mobile.webp' : 'entry-bg-desktop.webp') + ');background-size:cover;background-position:center;';
+  var offlineHint = !navigator.onLine ? ' entry-gate-suggested' : '';
+  overlay.innerHTML =
+    '<div style="max-width:400px;width:100%;background:rgba(26,17,19,0.92);border:1px solid rgba(201,162,77,0.35);border-radius:10px;padding:28px 24px;text-align:center;">' +
+      '<p style="font-family:\'Cinzel Decorative\',serif;font-weight:700;text-transform:uppercase;letter-spacing:0.02em;color:#f0e4cd;font-size:16px;line-height:1.5;margin:0 0 20px;">' + escapeHtml(t('entry.question')) + '</p>' +
+      '<button type="button" id="entryGateOnline" class="btn btn-primary" style="width:100%;margin-bottom:10px;font-family:\'Cinzel\',serif;text-transform:uppercase;letter-spacing:0.06em;font-size:14px;">' + escapeHtml(t('entry.online')) + '</button>' +
+      '<button type="button" id="entryGateOffline" class="btn btn-ghost' + offlineHint + '" style="width:100%;font-family:\'Cinzel\',serif;text-transform:uppercase;letter-spacing:0.06em;font-size:14px;">' + escapeHtml(t('entry.offline')) + '</button>' +
+      '<p style="color:#b09c80;font-size:13px;font-style:italic;margin:16px 0 0;">' + escapeHtml(t('entry.wifiHint')) + '</p>' +
+      '<div id="entryGateStale" class="hidden" style="margin-top:14px;padding:10px;border:1px solid rgba(216,90,48,0.5);border-radius:6px;color:#e2a98a;font-size:12px;"></div>' +
+    '</div>';
+  document.body.appendChild(overlay);
+  function closeGate(mode){
+    sessionStorage.setItem('lux_entry_mode', mode);
+    overlay.remove();
+  }
+  document.getElementById('entryGateOnline').addEventListener('click', function(){ closeGate('online'); });
+  document.getElementById('entryGateOffline').addEventListener('click', function(){
+    var syncedAt = Number(localStorage.getItem('lux_offline_synced_at') || 0);
+    var stale = !syncedAt || (Date.now() - syncedAt) > OFFLINE_TTL_MS;
+    if(stale){
+      var staleBox = document.getElementById('entryGateStale');
+      staleBox.textContent = t('offline.staleWarning');
+      staleBox.classList.remove('hidden');
+      document.getElementById('entryGateOffline').textContent = t('entry.offline'); // resta cliccabile una seconda volta per proseguire comunque
+      document.getElementById('entryGateOffline').onclick = function(){ closeGate('offline'); };
+      return;
+    }
+    closeGate('offline');
+  });
 }
 
 /* ============ UNIFIED SUPABASE AUTH (regular visitors + admin, same accounts) ============ */
@@ -3535,7 +3582,10 @@ function removeCollabBlock(idx){
   var btn = document.getElementById('btnOfflineSyncManual');
   if(!btn) return;
   function attach(){
-    btn.addEventListener('click', function(){ syncCatalogForOffline(true); });
+    btn.addEventListener('click', function(){
+      if(isOnWifi() === false && !window.confirm(t('entry.wifiHint'))) return; // su dati mobili confermati, non blocchiamo: è solo un consiglio
+      syncCatalogForOffline(true);
+    });
   }
   if(document.readyState === 'loading'){
     document.addEventListener('DOMContentLoaded', attach);
@@ -7290,8 +7340,45 @@ function fetchAuthenticatedCleanPage(path){
   });
 }
 
-/* ============ Catalogo offline per i verificati ============ */
+/* ============ Catalogo offline per i verificati ============
+   I contenuti scaricati per la lettura offline restano disponibili per
+   3 giorni (72 ore) dal momento del download di ciascun titolo — passato
+   quel termine vengono rimossi automaticamente dalla cache per non
+   appesantire il dispositivo. La stessa finestra di 3 giorni vale anche
+   per l'avviso "contenuti potrebbero non essere aggiornati" mostrato
+   quando l'utente sceglie di entrare in modalità offline. */
 var OFFLINE_CATALOG_CACHE = 'lux-offline-catalog-v1';
+var OFFLINE_TTL_MS = 3 * 24 * 60 * 60 * 1000; // 3 giorni
+var OFFLINE_META_KEY = 'lux_offline_meta'; // { [itemId]: { t: timestamp, keys: [cacheKey,...] } }
+
+function getOfflineMeta(){
+  try{ return JSON.parse(localStorage.getItem(OFFLINE_META_KEY) || '{}'); }catch(e){ return {}; }
+}
+function saveOfflineMeta(meta){
+  try{ localStorage.setItem(OFFLINE_META_KEY, JSON.stringify(meta)); }catch(e){}
+}
+
+/* Rimuove dalla cache i titoli scaricati da più di 3 giorni. Va chiamata
+   prima di ogni nuova sincronizzazione e all'avvio dell'app, così lo
+   spazio si libera da solo senza bisogno di un intervento manuale. */
+function purgeExpiredOfflineContent(){
+  if(!('caches' in window)) return Promise.resolve();
+  var meta = getOfflineMeta();
+  var expiredKeys = [];
+  var changed = false;
+  Object.keys(meta).forEach(function(itemId){
+    var entry = meta[itemId];
+    if(!entry || (Date.now() - entry.t) > OFFLINE_TTL_MS){
+      changed = true;
+      if(entry && entry.keys) expiredKeys = expiredKeys.concat(entry.keys);
+      delete meta[itemId];
+    }
+  });
+  if(!changed) return Promise.resolve();
+  return caches.open(OFFLINE_CATALOG_CACHE).then(function(cache){
+    return Promise.all(expiredKeys.map(function(k){ return cache.delete(k).catch(function(){}); }));
+  }).then(function(){ saveOfflineMeta(meta); });
+}
 
 function isOnWifi(){
   var conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
@@ -7306,13 +7393,18 @@ function syncCatalogForOffline(showStatus){
   var statusEl = document.getElementById('offlineSyncStatus');
   var items = getCatalog();
   var cache;
-  caches.open(OFFLINE_CATALOG_CACHE).then(function(c){
+  purgeExpiredOfflineContent().then(function(){
+    return caches.open(OFFLINE_CATALOG_CACHE);
+  }).then(function(c){
     cache = c;
+    var meta = getOfflineMeta();
     var done = 0;
     function next(i){
       if(i >= items.length){
         offlineSyncRunning = false;
         if(statusEl) statusEl.classList.add('hidden');
+        localStorage.setItem('lux_offline_synced_at', String(Date.now()));
+        saveOfflineMeta(meta);
         return;
       }
       if(statusEl && showStatus){
@@ -7323,6 +7415,7 @@ function syncCatalogForOffline(showStatus){
       var pages = item.pages_clean || [];
       var toFetch = pages.slice();
       if(item.pdf_url) toFetch.push(item.pdf_url);
+      var itemKeys = toFetch.map(function(path){ return 'https://offline-cache.local/clean/' + path; });
       Promise.all(toFetch.map(function(path){
         var cacheKey = 'https://offline-cache.local/clean/' + path;
         return cache.match(cacheKey).then(function(existing){
@@ -7343,6 +7436,8 @@ function syncCatalogForOffline(showStatus){
           }).catch(function(){}); // un titolo che fallisce non deve fermare gli altri
         });
       })).then(function(){
+        // il download (anche parziale) resetta la finestra di 3 giorni per questo titolo
+        if(toFetch.length) meta[item.id] = { t: Date.now(), keys: itemKeys };
         done++;
         next(i + 1);
       });
@@ -7352,6 +7447,7 @@ function syncCatalogForOffline(showStatus){
 }
 
 function maybeStartOfflineSync(){
+  purgeExpiredOfflineContent();
   if(!isSignedIn()) return;
   checkVerifiedSupporter().then(function(isVerified){
     var row = document.getElementById('offlineSyncRow');
@@ -7364,7 +7460,30 @@ function maybeStartOfflineSync(){
     // wifi === false: su dati mobili, non partiamo, rispettiamo la scelta di sicurezza
     // wifi === null: non rilevabile (Safari/iOS) — mostriamo il bottone manuale, non partiamo da soli
     var manualBtn = document.getElementById('btnOfflineSyncManual');
-    if(manualBtn) manualBtn.classList.toggle('hidden', wifi !== null);
+    if(manualBtn){
+      manualBtn.classList.toggle('hidden', wifi !== null);
+      var hintEl = document.getElementById('offlineSyncWifiHint');
+      if(wifi !== true){
+        if(!hintEl){
+          hintEl = document.createElement('span');
+          hintEl.id = 'offlineSyncWifiHint';
+          hintEl.style.cssText = 'display:block;font-size:12px;color:var(--text-muted,#a89479);margin-top:6px;';
+          manualBtn.insertAdjacentElement('afterend', hintEl);
+        }
+        hintEl.textContent = t('entry.wifiHint');
+        hintEl.classList.remove('hidden');
+      } else if(hintEl){
+        hintEl.classList.add('hidden');
+      }
+      var expiryEl = document.getElementById('offlineSyncExpiryNote');
+      if(!expiryEl){
+        expiryEl = document.createElement('span');
+        expiryEl.id = 'offlineSyncExpiryNote';
+        expiryEl.style.cssText = 'display:block;font-size:12px;color:var(--text-muted,#a89479);margin-top:4px;';
+        manualBtn.insertAdjacentElement('afterend', expiryEl);
+      }
+      expiryEl.textContent = t('offline.expiryNote');
+    }
   });
 }
 
@@ -8286,6 +8405,7 @@ function __appInit(){
   initMatureToggle();
   initTheme();
   applyI18n();
+  showEntryModeGate();
   renderDossiers();
   refreshSupportSectionVisibility(); // mostra subito ai visitatori anonimi; ricontrollato sotto per chi ha fatto login
   // NIENTE renderCatalog() qui: prima si aspettano sempre i dati veri da
