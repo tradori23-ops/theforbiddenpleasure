@@ -6460,14 +6460,27 @@ function ensureSmallNoxComicStyle(){
     '@keyframes smallnoxDotsMove{from{background-position:0 0;}to{background-position:36px 36px;}}' +
     '.smallnox-comic-bg{position:relative;background-image:radial-gradient(circle,rgba(201,162,77,0.22) 1.6px,transparent 1.7px);' +
     'background-size:18px 18px;animation:smallnoxDotsMove 7s linear infinite;border-radius:14px;' +
-    'display:grid;grid-template-columns:repeat(2,1fr);gap:26px 14px;align-items:start;}' +
+    'display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:26px 14px;align-items:start;width:100%;box-sizing:border-box;}' +
     '.smallnox-comic-bg::before{content:"";position:absolute;inset:0;border-radius:14px;' +
     'background-image:url("smallnox-updates-bg.webp");background-size:cover;background-position:center;' +
     'opacity:0.22;z-index:0;pointer-events:none;}' +
     '.smallnox-comic-bg > *{position:relative;z-index:1;}' +
-    '.smallnox-comic-span{grid-column:1 / -1;}' +
-    '@media (max-width:520px){.smallnox-comic-bg{grid-template-columns:1fr;}}';
+    '.smallnox-comic-span{grid-column:1 / -1;}';
   document.head.appendChild(styleEl);
+}
+
+/* Il popup che contiene #smallnoxUpdatesList ha una larghezza fissa e
+   stretta pensata per la vecchia lista puntata — troppo poco per una
+   griglia di pannelli su schermi larghi. Allarghiamo qui, via JS, solo il
+   contenitore diretto della lista, senza toccare il resto della finestra
+   di dialogo (avatar, titolo, pulsante) che restano come sono. */
+function widenSmallNoxUpdatesBox(list){
+  var box = list.parentElement;
+  if(box){
+    box.style.maxWidth = 'min(92vw, 760px)';
+    box.style.width = '100%';
+    box.style.boxSizing = 'border-box';
+  }
 }
 
 function renderSiteUpdatesModal(rows){
@@ -6476,13 +6489,14 @@ function renderSiteUpdatesModal(rows){
   var vt = document.getElementById('smallnoxVersionTag');
   if(vt && rows.length) vt.textContent = 'v' + formatVersion(rows[0].created_at);
   ensureSmallNoxComicStyle();
+  widenSmallNoxUpdatesBox(list);
 
   // Stile "tavola a fumetti": pannelli con un numero cerchiato che sporge
   // dall'angolo, come un numero di uscita — font del sito (Cinzel per il
   // numero, Crimson Pro per il testo). Il bordo di ogni pannello si disegna
   // da solo come tracciato a matita (vedi animateComicPanelFrame). Sfondo a
   // due livelli: il dipinto delle due sorelle in trasparenza, con sopra il
-  // retino a puntini animato. Griglia a 2 colonne così la lista resta
+  // retino a puntini animato. Griglia a colonne flessibili (auto-fit) così la lista resta
   // compatta invece di allungarsi in verticale.
   list.innerHTML = '';
   list.className = (list.className ? list.className + ' ' : '') + 'smallnox-comic-bg';
