@@ -2115,7 +2115,25 @@ var activeGenreFilter = 'all';
 
 var COLLANA_ORDER = ['Lucifer','Lilith','Lucifera','Lucio'];
 
+function ensureMetaRowStyle(){
+  if(document.getElementById('metaRowStyle')) return;
+  var styleEl = document.createElement('style');
+  styleEl.id = 'metaRowStyle';
+  // La riga data/prezzo/scorte deve andare a capo tra un pezzo e l'altro,
+  // mai in mezzo a un pezzo (es. "copie" e "rimaste" separati) — succedeva
+  // su schermi stretti perché il testo era un unico blocco senza wrap
+  // controllato. flex-wrap sul contenitore + nowrap su ogni pezzo tiene
+  // ogni "data"/"prezzo"/"scorte" unito, spezzando solo tra un pezzo e
+  // l'altro quando serve.
+  styleEl.textContent =
+    '.meta-row{display:flex;flex-wrap:wrap;column-gap:8px;row-gap:2px;align-items:baseline;}' +
+    '.meta-row-piece,.meta-row .card-idx-price,.meta-row .card-idx-stock{white-space:nowrap;}' +
+    '.meta-row > *:not(:first-child)::before{content:"· ";opacity:0.6;margin-right:4px;}';
+  document.head.appendChild(styleEl);
+}
+
 function buildTomeCardHtml(item){
+  ensureMetaRowStyle();
   var badge = item.mature ? '<span class="mature">18+</span>' : '<span class="allages">'+t('badge.allages')+'</span>';
   var isFav = favoriteIds.has(item.id);
   var hasStock = item.stock != null;
@@ -2123,6 +2141,7 @@ function buildTomeCardHtml(item){
   var soldOutBadge = soldOut ? '<span class="sold-out-badge">'+t('stock.soldOut')+'</span>' : '';
   var stockTxt = hasStock && !soldOut ? '<span class="card-idx-stock">'+item.stock+' '+t('stock.left')+'</span>' : '';
   var priceTxt = item.price ? '<span class="card-idx-price">€'+Number(item.price).toFixed(2)+'</span>' : '';
+  var dateTxt = item.date ? '<span class="meta-row-piece">'+item.date+'</span>' : '';
   var coverInner = item.cover_url
     ? '<img class="cover-img" src="'+coverThumbUrl(item.cover_url, 500)+'" data-fallback="'+escapeHtml(item.cover_url)+'" alt="" loading="lazy" decoding="async">'
     : '<span class="init">'+item.character.charAt(0)+'</span>';
@@ -2143,7 +2162,7 @@ function buildTomeCardHtml(item){
         '<div class="character">'+item.character+'</div>'+
         '<div class="synopsis">'+escapeHtml(synopsisForCurrentLang(item))+'</div>'+
         '<button type="button" class="synopsis-toggle hidden" data-toggle-synopsis>'+t('card.readMore')+'</button>'+
-        '<div class="meta-row"><span>'+(item.date||'')+'</span>'+(priceTxt?' · '+priceTxt:'')+(stockTxt?' · '+stockTxt:'')+'</div>'+
+        '<div class="meta-row">'+dateTxt+priceTxt+stockTxt+'</div>'+
         '<div class="card-idx-engagement">'+(item.view_count||0)+' '+t('stats.views')+' · '+(item.comment_count||0)+' '+t('stats.comments')+'</div>'+
       '</div>'+
     '</div>'
@@ -2784,6 +2803,7 @@ function renderMyTitles(){
    non un'approssimazione. Niente cuoricino/toggle sinossi/statistiche:
    quelli sono interattivi e non hanno senso su un titolo non ancora online. */
 function buildSitePreviewCardHtml(d){
+  ensureMetaRowStyle();
   var badge = d.mature ? '<span class="mature">18+</span>' : '<span class="allages">'+t('badge.allages')+'</span>';
   var priceTxt = d.price ? '<span class="card-idx-price">€'+Number(d.price).toFixed(2)+'</span>' : '';
   var coverInner = d.coverSrc
@@ -2799,7 +2819,7 @@ function buildSitePreviewCardHtml(d){
           '<h4>'+escapeHtml(d.title||'')+'</h4>'+
           '<div class="character">'+escapeHtml(d.character||'')+'</div>'+
           '<div class="synopsis">'+escapeHtml(d.synopsis||'')+'</div>'+
-          '<div class="meta-row"><span>'+escapeHtml(d.date||'')+'</span>'+(priceTxt?' · '+priceTxt:'')+'</div>'+
+          '<div class="meta-row"><span class="meta-row-piece">'+escapeHtml(d.date||'')+'</span>'+priceTxt+'</div>'+
         '</div>'+
       '</div>'+
     '</div>'
