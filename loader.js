@@ -34,7 +34,7 @@
   // hai visto live sul sito prima di caricare — questo file parte da una
   // copia salvata in sessione e potrebbe non riflettere bump fatti nel
   // frattempo direttamente su GitHub.
-  var V = "42";
+  var V = "43";
 
   // style.css iniettato qui (non più con un <link> scritto a mano in ogni
   // pagina) così la sua versione segue sempre la stessa V di app.js,
@@ -70,7 +70,7 @@
   ninjaScript.defer = true;
   document.head.appendChild(ninjaScript);
   var ninjaDiv = document.createElement('div');
-  ninjaDiv.className = 'commonninja_component pid-6d2bd802-eb74-4cba-ae9b-922c261c921d';
+  ninjaDiv.className = 'commonninja_component pid-9e95d41c-4e88-4295-9e10-33ca7dbb7d0b';
   document.body.appendChild(ninjaDiv);
 
   try {
