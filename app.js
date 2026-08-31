@@ -3454,7 +3454,8 @@ function uploadComicPage(file, path){
     headers:{
       'apikey':SUPABASE_ANON_KEY,
       'Authorization':'Bearer ' + session.access_token,
-      'Content-Type': file.type || 'image/jpeg'
+      'Content-Type': file.type || 'image/jpeg',
+      'x-upsert': 'true'
     },
     body: file
   }).then(function(r){
