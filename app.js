@@ -7412,32 +7412,52 @@ function syncCatalogForOffline(showStatus){
         statusEl.textContent = t('offline.syncing').replace('{done}', done).replace('{total}', items.length);
       }
       var item = items[i];
-      var pages = item.pages_clean || [];
-      var toFetch = pages.slice();
-      if(item.pdf_url) toFetch.push(item.pdf_url);
-      var itemKeys = toFetch.map(function(path){ return 'https://offline-cache.local/clean/' + path; });
-      Promise.all(toFetch.map(function(path){
+      var cleanPages = item.pages_clean || [];
+      var publicPages = item.pages || [];
+      var itemKeys = cleanPages.map(function(path){ return 'https://offline-cache.local/clean/' + path; });
+      var pdfKey = item.pdf_url ? 'https://offline-cache.local/clean/' + item.pdf_url : null;
+      var toFetchCount = cleanPages.length + (item.pdf_url ? 1 : 0);
+      Promise.all(cleanPages.map(function(path, idx){
         var cacheKey = 'https://offline-cache.local/clean/' + path;
         return cache.match(cacheKey).then(function(existing){
           if(existing) return;
           var session = getSession();
-          // pages_clean sono sempre path nudi; pdf_url sui titoli vecchi è
-          // invece un URL pubblico completo (vedi downloadSignedPdf) — stessa
-          // distinzione va rispettata anche qui o il fetch va a un path inesistente.
-          var isFullUrl = /^https?:\/\//i.test(path);
-          var pageFetch = isFullUrl
-            ? fetch(path)
-            : fetch(SUPABASE_URL + '/storage/v1/object/comic-pages-clean/' + path, {
-                headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
-              });
-          return pageFetch.then(function(r){
-            if(!r.ok) return;
-            return r.blob().then(function(blob){ return cache.put(cacheKey, new Response(blob)); });
+          // pages_clean sono path nudi nel bucket protetto comic-pages-clean —
+          // ma molti titoli non hanno mai ricevuto lì la versione senza
+          // filigrana: se non c'è, usiamo come riserva la pagina pubblica
+          // con filigrana (item.pages, stesso indice), che invece esiste
+          // sempre — meglio poterla leggere offline che niente.
+          return fetch(SUPABASE_URL + '/storage/v1/object/comic-pages-clean/' + path, {
+            headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
+          }).then(function(r){
+            if(r.ok) return r.blob();
+            if(publicPages[idx]) return fetch(publicPages[idx]).then(function(r2){ return r2.ok ? r2.blob() : null; });
+            return null;
+          }).then(function(blob){
+            if(blob) return cache.put(cacheKey, new Response(blob));
           }).catch(function(){}); // un titolo che fallisce non deve fermare gli altri
         });
-      })).then(function(){
+      }).concat(item.pdf_url ? [(function(){
+        var cacheKey = pdfKey;
+        return cache.match(cacheKey).then(function(existing){
+          if(existing) return;
+          var session = getSession();
+          // I titoli esistenti hanno pdf_url salvato come URL pubblico completo
+          // (mai migrati al bucket protetto) — stessa logica di downloadSignedPdf.
+          var isFullUrl = /^https?:\/\//i.test(item.pdf_url);
+          var pdfFetch = isFullUrl
+            ? fetch(item.pdf_url)
+            : fetch(SUPABASE_URL + '/storage/v1/object/comic-pages-clean/' + item.pdf_url, {
+                headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
+              });
+          return pdfFetch.then(function(r){
+            if(!r.ok) return;
+            return r.blob().then(function(blob){ return cache.put(cacheKey, new Response(blob)); });
+          }).catch(function(){});
+        });
+      })()] : [])).then(function(){
         // il download (anche parziale) resetta la finestra di 3 giorni per questo titolo
-        if(toFetch.length) meta[item.id] = { t: Date.now(), keys: itemKeys };
+        if(toFetchCount) meta[item.id] = { t: Date.now(), keys: pdfKey ? itemKeys.concat([pdfKey]) : itemKeys };
         done++;
         next(i + 1);
       });
