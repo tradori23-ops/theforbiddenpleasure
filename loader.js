@@ -29,7 +29,12 @@
   // Questo è l'UNICO punto da modificare: style.css e app.js prendono
   // entrambi la versione da qui, su ogni pagina, senza bisogno di
   // toccare anche l'HTML di ciascuna pagina.
-  var V = "41";
+  //
+  // ATTENZIONE: controlla che questo numero sia più alto dell'ultimo che
+  // hai visto live sul sito prima di caricare — questo file parte da una
+  // copia salvata in sessione e potrebbe non riflettere bump fatti nel
+  // frattempo direttamente su GitHub.
+  var V = "42";
 
   // style.css iniettato qui (non più con un <link> scritto a mano in ogni
   // pagina) così la sua versione segue sempre la stessa V di app.js,
@@ -54,6 +59,19 @@
   vTag.textContent = 'v' + V;
   vTag.style.cssText = 'position:fixed;bottom:4px;left:6px;z-index:99999;font-family:monospace;font-size:10px;color:rgba(201,162,77,0.55);pointer-events:none;';
   document.documentElement.appendChild(vTag);
+
+  // Verifica dell'età (soluzione temporanea) — widget esterno Common Ninja,
+  // iniettato qui così parte su ogni pagina senza doverlo copiare a mano
+  // in ciascun file HTML. Le impostazioni del widget (una volta sola per
+  // sessione, aspetto, testo) si gestiscono dalla dashboard Common Ninja,
+  // non da qui.
+  var ninjaScript = document.createElement('script');
+  ninjaScript.src = 'https://cdn.commoninja.com/sdk/latest/commonninja.js';
+  ninjaScript.defer = true;
+  document.head.appendChild(ninjaScript);
+  var ninjaDiv = document.createElement('div');
+  ninjaDiv.className = 'commonninja_component pid-6d2bd802-eb74-4cba-ae9b-922c261c921d';
+  document.body.appendChild(ninjaDiv);
 
   try {
     var [topHtml, footerHtml, modalsHtml] = await Promise.all([

@@ -2143,7 +2143,7 @@ function buildTomeCardHtml(item){
         '<div class="character">'+item.character+'</div>'+
         '<div class="synopsis">'+escapeHtml(synopsisForCurrentLang(item))+'</div>'+
         '<button type="button" class="synopsis-toggle hidden" data-toggle-synopsis>'+t('card.readMore')+'</button>'+
-        '<div class="meta-row"><span>'+(item.date||'')+'</span>'+priceTxt+stockTxt+'</div>'+
+        '<div class="meta-row"><span>'+(item.date||'')+'</span>'+(priceTxt?' · '+priceTxt:'')+(stockTxt?' · '+stockTxt:'')+'</div>'+
         '<div class="card-idx-engagement">'+(item.view_count||0)+' '+t('stats.views')+' · '+(item.comment_count||0)+' '+t('stats.comments')+'</div>'+
       '</div>'+
     '</div>'
@@ -2799,7 +2799,7 @@ function buildSitePreviewCardHtml(d){
           '<h4>'+escapeHtml(d.title||'')+'</h4>'+
           '<div class="character">'+escapeHtml(d.character||'')+'</div>'+
           '<div class="synopsis">'+escapeHtml(d.synopsis||'')+'</div>'+
-          '<div class="meta-row"><span>'+escapeHtml(d.date||'')+'</span>'+priceTxt+'</div>'+
+          '<div class="meta-row"><span>'+escapeHtml(d.date||'')+'</span>'+(priceTxt?' · '+priceTxt:'')+'</div>'+
         '</div>'+
       '</div>'+
     '</div>'
@@ -6386,7 +6386,13 @@ function ensureSmallNoxHistoryButton(){
     'border-radius:10px;border:1px solid var(--gold);background:transparent;color:var(--gold);' +
     'font-family:"Cinzel",serif;font-size:14px;cursor:pointer;';
   btn.addEventListener('click', showSiteUpdatesHistory);
-  modal.appendChild(btn);
+  // #smallnoxModal è quasi sicuramente il contenitore esterno (a schermo
+  // intero), non la card visibile — se ha un figlio diretto che fa da
+  // "scatola" del contenuto, il bottone va dentro quello, non attaccato
+  // al contenitore esterno (altrimenti finisce fuori dalla card, come
+  // successo la prima volta).
+  var innerBox = modal.querySelector(':scope > div') || modal;
+  innerBox.appendChild(btn);
 }
 
 /* Le voci di site_updates sono scritte in italiano nel database — le
