@@ -6452,13 +6452,21 @@ function animateComicPanelFrame(panel, color, delayMs){
 /* Iniettato una sola volta: il retino a puntini in stile fumetto che si
    muove piano dietro ai pannelli delle novità, e il font per la firma. */
 function ensureSmallNoxComicStyle(){
-  if(document.getElementById('smallnoxComicStyle')) return;
+  var existing = document.getElementById('smallnoxComicStyle');
+  if(existing) return;
   var styleEl = document.createElement('style');
   styleEl.id = 'smallnoxComicStyle';
   styleEl.textContent =
     '@keyframes smallnoxDotsMove{from{background-position:0 0;}to{background-position:36px 36px;}}' +
-    '.smallnox-comic-bg{background-image:radial-gradient(circle,rgba(201,162,77,0.22) 1.6px,transparent 1.7px);' +
-    'background-size:18px 18px;animation:smallnoxDotsMove 7s linear infinite;border-radius:14px;}';
+    '.smallnox-comic-bg{position:relative;background-image:radial-gradient(circle,rgba(201,162,77,0.22) 1.6px,transparent 1.7px);' +
+    'background-size:18px 18px;animation:smallnoxDotsMove 7s linear infinite;border-radius:14px;' +
+    'display:grid;grid-template-columns:repeat(2,1fr);gap:26px 14px;align-items:start;}' +
+    '.smallnox-comic-bg::before{content:"";position:absolute;inset:0;border-radius:14px;' +
+    'background-image:url("smallnox-updates-bg.webp");background-size:cover;background-position:center;' +
+    'opacity:0.22;z-index:0;pointer-events:none;}' +
+    '.smallnox-comic-bg > *{position:relative;z-index:1;}' +
+    '.smallnox-comic-span{grid-column:1 / -1;}' +
+    '@media (max-width:520px){.smallnox-comic-bg{grid-template-columns:1fr;}}';
   document.head.appendChild(styleEl);
 }
 
@@ -6472,8 +6480,10 @@ function renderSiteUpdatesModal(rows){
   // Stile "tavola a fumetti": pannelli con un numero cerchiato che sporge
   // dall'angolo, come un numero di uscita — font del sito (Cinzel per il
   // numero, Crimson Pro per il testo). Il bordo di ogni pannello si disegna
-  // da solo come tracciato a matita (vedi animateComicPanelFrame), e sotto
-  // c'è un retino a puntini animato in stile fumetto.
+  // da solo come tracciato a matita (vedi animateComicPanelFrame). Sfondo a
+  // due livelli: il dipinto delle due sorelle in trasparenza, con sopra il
+  // retino a puntini animato. Griglia a 2 colonne così la lista resta
+  // compatta invece di allungarsi in verticale.
   list.innerHTML = '';
   list.className = (list.className ? list.className + ' ' : '') + 'smallnox-comic-bg';
   list.style.cssText = 'padding:14px;';
@@ -6493,7 +6503,8 @@ function renderSiteUpdatesModal(rows){
   order.forEach(function(key, gi){
     var g = groups[key];
     var head = document.createElement('div');
-    head.style.cssText = 'font-family:"Space Mono",monospace;font-size:11px;letter-spacing:0.06em;color:var(--gold);margin:' + (gi===0?'0':'26px') + ' 0 14px;';
+    head.className = 'smallnox-comic-span';
+    head.style.cssText = 'font-family:"Space Mono",monospace;font-size:11px;letter-spacing:0.06em;color:var(--gold);margin:' + (gi===0?'0':'12px') + ' 0 4px;';
     head.textContent = g.date.toLocaleDateString() + ' — ' + g.date.toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
     list.appendChild(head);
 
@@ -6501,13 +6512,13 @@ function renderSiteUpdatesModal(rows){
       counter++;
       var color = accentColors[(counter-1) % accentColors.length];
       var panel = document.createElement('div');
-      panel.style.cssText = 'position:relative;border-radius:10px;background:rgba(21,13,14,0.82);padding:16px 18px 16px 40px;margin:0 0 22px;';
+      panel.style.cssText = 'position:relative;border-radius:10px;background:rgba(21,13,14,0.82);padding:16px 16px 16px 36px;';
       var badge = document.createElement('div');
-      badge.style.cssText = 'position:absolute;top:-16px;left:14px;width:34px;height:34px;border-radius:50%;background:' + color +
-        ';border:3px solid #150d0e;display:flex;align-items:center;justify-content:center;font-family:"Cinzel Decorative",serif;font-weight:700;font-size:15px;color:#150d0e;';
+      badge.style.cssText = 'position:absolute;top:-16px;left:12px;width:32px;height:32px;border-radius:50%;background:' + color +
+        ';border:3px solid #150d0e;display:flex;align-items:center;justify-content:center;font-family:"Cinzel Decorative",serif;font-weight:700;font-size:14px;color:#150d0e;';
       badge.textContent = String(counter);
       var titleEl = document.createElement('div');
-      titleEl.style.cssText = 'font-family:"Crimson Pro",serif;font-size:17px;line-height:1.5;color:#f0e4cd;';
+      titleEl.style.cssText = 'font-family:"Crimson Pro",serif;font-size:15px;line-height:1.45;color:#f0e4cd;';
       titleEl.textContent = row.title;
       panel.appendChild(badge);
       panel.appendChild(titleEl);
@@ -6518,7 +6529,8 @@ function renderSiteUpdatesModal(rows){
   });
 
   var signature = document.createElement('div');
-  signature.style.cssText = 'font-family:"Crimson Pro",serif;font-style:italic;font-size:18px;color:var(--gold);text-align:right;margin:4px 6px 0;';
+  signature.className = 'smallnox-comic-span';
+  signature.style.cssText = 'font-family:"Crimson Pro",serif;font-style:italic;font-size:18px;color:var(--gold);text-align:right;margin:8px 6px 0;';
   signature.textContent = '— Nox Morningstar';
   list.appendChild(signature);
 
