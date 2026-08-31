@@ -2348,23 +2348,32 @@ function downloadSignedPdf(item){
   var session = getSession();
   return ensurePdfLibLoaded()
     .then(function(){
-      // I titoli esistenti hanno pdf_url salvato come URL pubblico completo
-      // (bucket comic-pages, mai migrati al bucket protetto comic-pages-clean).
-      // Se è già un URL assoluto lo fetchiamo com'è; solo un path nudo passa
-      // dal bucket protetto con header di autenticazione.
-      var isFullUrl = /^https?:\/\//i.test(item.pdf_url);
-      var pdfFetch = isFullUrl
-        ? fetch(item.pdf_url)
-        : fetch(SUPABASE_URL + '/storage/v1/object/comic-pages-clean/' + item.pdf_url, {
-            headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
-          });
-      return Promise.all([
-        pdfFetch.then(function(r){
+      // Se il PDF è già stato scaricato per la lettura offline, lo prendiamo
+      // da lì — evita un fetch dal vivo che fallirebbe comunque se non c'è
+      // connessione, ed è più veloce quando c'è.
+      var cacheKey = item.pdf_url ? 'https://offline-cache.local/clean/' + item.pdf_url : null;
+      var cachedLookup = (cacheKey && 'caches' in window)
+        ? caches.open(OFFLINE_CATALOG_CACHE).then(function(c){ return c.match(cacheKey); })
+        : Promise.resolve(null);
+      return cachedLookup.then(function(cached){
+        if(cached) return cached.arrayBuffer();
+        // I titoli esistenti hanno pdf_url salvato come URL pubblico completo
+        // (bucket comic-pages, mai migrati al bucket protetto comic-pages-clean).
+        // Se è già un URL assoluto lo fetchiamo com'è; solo un path nudo passa
+        // dal bucket protetto con header di autenticazione.
+        var isFullUrl = /^https?:\/\//i.test(item.pdf_url);
+        var pdfFetch = isFullUrl
+          ? fetch(item.pdf_url)
+          : fetch(SUPABASE_URL + '/storage/v1/object/comic-pages-clean/' + item.pdf_url, {
+              headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
+            });
+        return pdfFetch.then(function(r){
           if(!r.ok) throw new Error('pdf fetch failed');
           return r.arrayBuffer();
-        }),
-        qrPngBase64(previewPagePath('t', item.id), 300)
-      ]);
+        });
+      }).then(function(pdfBytes){
+        return Promise.all([pdfBytes, qrPngBase64(previewPagePath('t', item.id), 300)]);
+      });
     })
     .then(function(results){
       var pdfBytes = results[0];
@@ -7306,10 +7315,24 @@ function openPageReader(item){
   thumbs.innerHTML = '';
   readerPages.forEach(function(url, idx){
     var img = document.createElement('img');
-    img.src = url; // le miniature restano sempre la versione pubblica filigranata — più leggere, non serve autenticarsi per vederle
+    img.src = url; // versione filigranata come anteprima immediata, sostituita sotto se c'è di meglio
     img.alt = 'Pagina ' + (idx + 1);
     img.addEventListener('click', function(){ showReaderPage(idx); });
     thumbs.appendChild(img);
+    // Stessa logica del visualizzatore grande: se la pagina è già in cache
+    // (offline o già aperta in questa sessione), la usiamo — altrimenti la
+    // miniatura resta quella pubblica live, niente di rotto se offline.
+    var cleanPath = (item.pages_clean || [])[idx];
+    if(isSignedIn() && cleanPath){
+      if(readerBlobUrlCache[cleanPath]){
+        img.src = readerBlobUrlCache[cleanPath];
+      } else {
+        fetchAuthenticatedCleanPage(cleanPath).then(function(blobUrl){
+          readerBlobUrlCache[cleanPath] = blobUrl;
+          img.src = blobUrl;
+        }).catch(function(){}); // resta la versione filigranata live, va bene così
+      }
+    }
   });
   showReaderPage(0);
 }
