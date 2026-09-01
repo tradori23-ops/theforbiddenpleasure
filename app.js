@@ -8989,10 +8989,32 @@ function renderAdminAnnouncements(){
     .catch(function(err){ console.warn('Admin announcements load failed:', err); });
 }
 
+function ensureClearReadRequestsButton(){
+  if(document.getElementById('btnClearReadRequests')) return;
+  var list = document.getElementById('adminRequestsList');
+  if(!list || !list.parentNode) return;
+  var btn = document.createElement('button');
+  btn.type = 'button';
+  btn.id = 'btnClearReadRequests';
+  btn.className = 'btn btn-ghost btn-sm';
+  btn.style.marginBottom = '14px';
+  btn.textContent = 'Elimina tutte le richieste già lette';
+  btn.addEventListener('click', function(){
+    if(!confirm('Eliminare tutte le richieste già segnate come lette?')) return;
+    var session = getSession();
+    fetch(SUPABASE_URL + '/rest/v1/requests?status=eq.read', {
+      method:'DELETE',
+      headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
+    }).then(function(r){ if(r.ok) renderAdminRequests(); else console.warn('Pulizia richieste fallita:', r.status); });
+  });
+  list.parentNode.insertBefore(btn, list);
+}
+
 function renderAdminRequests(){
   if(!isAdmin()) return;
   var list = document.getElementById('adminRequestsList');
   if(!list) return;
+  ensureClearReadRequestsButton();
   var session = getSession();
   fetch(SUPABASE_URL + '/rest/v1/requests?select=*&order=created_at.desc', {
     headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
@@ -9017,6 +9039,7 @@ function renderAdminRequests(){
           (isSupport && !req.user_id ? '<span class="mono" style="font-size:11px;color:var(--parchment-dim);">non collegato a un account — non verificabile</span>' : '') +
           (isSupport ? '' : '<button class="btn btn-primary btn-sm" data-approve-collab="' + req.id + '">Approva collaborazione</button>') +
           '<button class="btn btn-ghost btn-sm" data-mark-read="' + req.id + '" ' + (req.status !== 'new' ? 'disabled' : '') + '>' + t('requests.markRead') + '</button>' +
+          '<button class="btn btn-ghost btn-sm" data-del-req="' + req.id + '" style="border-color:#e24b4a;color:#e24b4a;">Elimina</button>' +
           '</div>';
         row.querySelector('[data-mark-read]').addEventListener('click', function(){
           fetch(SUPABASE_URL + '/rest/v1/requests?id=eq.' + encodeURIComponent(req.id), {
@@ -9024,6 +9047,13 @@ function renderAdminRequests(){
             headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
             body: JSON.stringify({status:'read'})
           }).then(function(r){ if(r.ok) renderAdminRequests(); });
+        });
+        row.querySelector('[data-del-req]').addEventListener('click', function(){
+          if(!confirm('Eliminare questa richiesta?')) return;
+          fetch(SUPABASE_URL + '/rest/v1/requests?id=eq.' + encodeURIComponent(req.id), {
+            method:'DELETE',
+            headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
+          }).then(function(r){ if(r.ok) renderAdminRequests(); else console.warn('Eliminazione richiesta fallita:', r.status); });
         });
         var approveBtn = row.querySelector('[data-approve-collab]');
         if(approveBtn){
