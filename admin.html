@@ -67,6 +67,7 @@
         <p class="form-note" id="collabSessionExtensionStatus"></p>
       </div>
 
+      <div class="admin-shell">
       <div class="admin-tabs" id="adminTabs">
         <button class="admin-tab active" data-tab="catalog" data-i18n="admin.tab.catalog">Catalogo</button>
         <button class="admin-tab" data-tab="stats" data-i18n="admin.tab.stats">Statistiche</button>
@@ -79,7 +80,11 @@
         <button class="admin-tab" data-tab="moderation" data-i18n="admin.tab.moderation">Moderazione Community</button>
       </div>
 
+      <div class="admin-shell-content">
       <div class="admin-tab-panel" data-tab-panel="catalog">
+        <div class="title-form-drawer hidden" id="titleFormDrawer">
+        <div class="title-form-drawer-inner">
+        <button type="button" class="title-form-drawer-close" id="btnCloseTitleDrawer">✕</button>
         <div class="admin-grid">
           <div class="field">
             <label data-i18n="admin.f.title">Titolo</label>
@@ -216,6 +221,8 @@
           <button class="btn btn-ghost" id="btnExport" data-i18n="admin.export">Esporta JSON</button>
           <button class="btn btn-ghost" id="btnImport" data-i18n="admin.import">Importa JSON</button>
           <input type="file" id="importFile" accept="application/json" class="hidden">
+        </div>
+        </div>
         </div>
         <div class="admin-list" id="adminList"></div>
         <div class="admin-list hidden" id="myTitlesListWrap">
@@ -404,6 +411,8 @@
           <div data-i18n="mod.bannedTitle" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Utenti bannati (email bloccate)</div>
           <div id="modBannedList"></div>
         </div>
+      </div>
+      </div>
       </div>
     </div>
   </section>

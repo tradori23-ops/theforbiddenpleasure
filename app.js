@@ -2949,8 +2949,35 @@ function ensureAdminListStyle(){
     '.admin-dropdown > *{display:block;width:100%;text-align:left;margin-bottom:6px;box-sizing:border-box;}' +
     '.admin-pager{display:flex;justify-content:center;gap:14px;margin-top:14px;font-size:12px;color:var(--parchment-dim,#8a7a63);align-items:center;}' +
     '.admin-pager button{background:transparent;border:1px solid rgba(201,162,77,0.4);color:var(--gold,#c9a24d);border-radius:6px;padding:4px 10px;cursor:pointer;font-family:"Cinzel",serif;font-size:11px;}' +
-    '.admin-pager button:disabled{opacity:0.35;cursor:default;}';
+    '.admin-pager button:disabled{opacity:0.35;cursor:default;}' +
+    /* Barra laterale al posto delle tab orizzontali, e form di aggiunta
+       come pannello a comparsa invece di stare sempre aperto sopra la
+       lista — il catalogo è quello che vedi appena entri, non il form. */
+    '.admin-shell{display:flex;gap:20px;align-items:flex-start;}' +
+    '.admin-tabs{display:flex;flex-direction:column;gap:4px;flex:0 0 170px;position:sticky;top:16px;}' +
+    '.admin-tabs .admin-tab{text-align:left;width:100%;box-sizing:border-box;}' +
+    '.admin-shell-content{flex:1;min-width:0;}' +
+    '@media (max-width:760px){.admin-shell{flex-direction:column;}.admin-tabs{flex-direction:row;flex-wrap:wrap;position:static;flex:none;width:100%;}}' +
+    '.title-form-drawer{position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:200;display:flex;justify-content:flex-end;}' +
+    '.title-form-drawer.hidden{display:none;}' +
+    '.title-form-drawer-inner{position:relative;width:min(640px,92vw);height:100%;background:var(--bg-1,#150d0e);overflow-y:auto;padding:24px;box-sizing:border-box;box-shadow:-8px 0 24px rgba(0,0,0,0.4);}' +
+    '.title-form-drawer-close{position:sticky;top:0;float:right;background:transparent;border:1px solid rgba(201,162,77,0.4);color:var(--gold,#c9a24d);border-radius:50%;width:32px;height:32px;cursor:pointer;font-size:14px;}';
   document.head.appendChild(styleEl);
+}
+
+function openTitleFormDrawer(){
+  var drawer = document.getElementById('titleFormDrawer');
+  if(drawer) drawer.classList.remove('hidden');
+}
+function closeTitleFormDrawer(){
+  var drawer = document.getElementById('titleFormDrawer');
+  if(drawer) drawer.classList.add('hidden');
+}
+function startNewTitleFlow(){
+  cancelEditTitle(); // pulisce i campi ed eventuale modifica in corso — resta chiuso un istante, poi lo riapro
+  openTitleFormDrawer();
+  var titleInput = document.getElementById('fTitle');
+  if(titleInput) titleInput.focus();
 }
 
 function ensureAdminToolbar(){
@@ -2961,6 +2988,7 @@ function ensureAdminToolbar(){
   toolbar.id = 'adminToolbar';
   toolbar.className = 'admin-toolbar';
   toolbar.innerHTML =
+    '<button type="button" class="btn btn-primary btn-sm" id="btnNewTitle">+ Nuovo titolo</button>' +
     '<input type="text" id="adminSearchInput" placeholder="Cerca per titolo o personaggio...">' +
     '<button type="button" class="admin-chip active" data-admin-filter="all">Tutti</button>' +
     '<button type="button" class="admin-chip" data-admin-filter="mine">Miei</button>' +
@@ -2992,6 +3020,16 @@ function ensureAdminToolbar(){
   });
   document.getElementById('btnBulkPermanent').addEventListener('click', bulkMakePermanent);
   document.getElementById('btnBulkDelete').addEventListener('click', bulkDeleteSelected);
+  document.getElementById('btnNewTitle').addEventListener('click', startNewTitleFlow);
+
+  var drawer = document.getElementById('titleFormDrawer');
+  var closeBtn = document.getElementById('btnCloseTitleDrawer');
+  if(closeBtn) closeBtn.addEventListener('click', closeTitleFormDrawer);
+  if(drawer){
+    drawer.addEventListener('click', function(e){
+      if(e.target === drawer) closeTitleFormDrawer(); // clic sullo sfondo scuro, non sul pannello
+    });
+  }
 }
 
 function bulkMakePermanent(){
@@ -4156,6 +4194,7 @@ function openEditTitle(id){
   if(cancelBtn) cancelBtn.classList.remove('hidden');
   switchAdminTab('catalog');
   document.getElementById('fTitle').scrollIntoView({behavior:'smooth', block:'center'});
+  openTitleFormDrawer();
 }
 
 function cancelEditTitle(){
@@ -4177,6 +4216,7 @@ function cancelEditTitle(){
   }
   var cancelBtn = document.getElementById('btnCancelEditTitle');
   if(cancelBtn) cancelBtn.classList.add('hidden');
+  closeTitleFormDrawer();
 }
 
 /* ============ MODALITÀ BOZZA (anteprima locale prima di pubblicare) ============
