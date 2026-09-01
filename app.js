@@ -2916,12 +2916,145 @@ function injectNsfwRescanButton(){
   document.getElementById('btnRescanMaturity').addEventListener('click', rescanCatalogForMaturity);
 }
 
+/* ============ GESTIONALE CATALOGO — ricerca, filtri, righe compatte,
+   azioni di massa, paginazione. Le azioni per singolo titolo (cambia
+   copertina, ritraduci, ri-filigrana, rendi a tempo, scorte, modifica,
+   elimina) sono le stesse di sempre — solo raccolte in un menu invece di
+   stare sempre visibili, perché con più pubblico che pubblica la lista
+   piatta con 7 bottoni a riga diventava ingestibile. ============ */
+var adminListFilter = 'all'; // all | mine | mature | permanent
+var adminListSearch = '';
+var adminListPage = 1;
+var adminSelectedIds = new Set();
+var ADMIN_LIST_PAGE_SIZE = 20;
+
+function ensureAdminListStyle(){
+  if(document.getElementById('adminListStyle')) return;
+  var styleEl = document.createElement('style');
+  styleEl.id = 'adminListStyle';
+  styleEl.textContent =
+    '.admin-toolbar{display:flex;gap:10px;margin:14px 0;flex-wrap:wrap;align-items:center;}' +
+    '.admin-toolbar input[type=text]{flex:1;min-width:180px;background:rgba(0,0,0,0.2);border:1px solid var(--line,rgba(201,162,77,0.4));border-radius:8px;padding:8px 12px;color:inherit;font-family:inherit;font-size:13px;}' +
+    '.admin-chip{padding:6px 12px;border-radius:16px;border:1px solid rgba(201,162,77,0.4);background:transparent;color:var(--gold,#c9a24d);font-family:"Cinzel",serif;font-size:11px;cursor:pointer;}' +
+    '.admin-chip.active{background:var(--wine,#6e1423);color:#f0e4cd;border-color:var(--wine,#6e1423);}' +
+    '.admin-bulkbar{display:none;background:rgba(201,162,77,0.1);border:1px solid rgba(201,162,77,0.3);border-radius:8px;padding:8px 12px;margin-bottom:10px;align-items:center;gap:12px;font-size:12px;flex-wrap:wrap;}' +
+    '.admin-bulkbar.show{display:flex;}' +
+    '.admin-row-compact{display:flex;align-items:center;gap:12px;padding:10px 6px;border-bottom:1px solid var(--line,rgba(201,162,77,0.15));position:relative;}' +
+    '.admin-row-compact .info{flex:1;min-width:0;}' +
+    '.admin-row-compact .info .t{font-weight:600;}' +
+    '.admin-row-compact .info .m{font-size:11px;color:var(--parchment-dim,#8a7a63);}' +
+    '.admin-menu-btn{background:transparent;border:1px solid rgba(201,162,77,0.4);color:var(--gold,#c9a24d);border-radius:6px;padding:6px 12px;font-family:"Cinzel",serif;font-size:11px;cursor:pointer;flex-shrink:0;}' +
+    '.admin-dropdown{display:none;position:absolute;right:6px;top:100%;background:var(--bg-2,#150d0e);border:1px solid rgba(201,162,77,0.4);border-radius:8px;padding:10px;z-index:20;min-width:240px;}' +
+    '.admin-dropdown.show{display:block;}' +
+    '.admin-dropdown > *{display:block;width:100%;text-align:left;margin-bottom:6px;box-sizing:border-box;}' +
+    '.admin-pager{display:flex;justify-content:center;gap:14px;margin-top:14px;font-size:12px;color:var(--parchment-dim,#8a7a63);align-items:center;}' +
+    '.admin-pager button{background:transparent;border:1px solid rgba(201,162,77,0.4);color:var(--gold,#c9a24d);border-radius:6px;padding:4px 10px;cursor:pointer;font-family:"Cinzel",serif;font-size:11px;}' +
+    '.admin-pager button:disabled{opacity:0.35;cursor:default;}';
+  document.head.appendChild(styleEl);
+}
+
+function ensureAdminToolbar(){
+  if(document.getElementById('adminToolbar')) return;
+  var list = document.getElementById('adminList');
+  if(!list || !list.parentNode) return;
+  var toolbar = document.createElement('div');
+  toolbar.id = 'adminToolbar';
+  toolbar.className = 'admin-toolbar';
+  toolbar.innerHTML =
+    '<input type="text" id="adminSearchInput" placeholder="Cerca per titolo o personaggio...">' +
+    '<button type="button" class="admin-chip active" data-admin-filter="all">Tutti</button>' +
+    '<button type="button" class="admin-chip" data-admin-filter="mine">Miei</button>' +
+    '<button type="button" class="admin-chip" data-admin-filter="mature">18+</button>' +
+    '<button type="button" class="admin-chip" data-admin-filter="permanent">Permanenti</button>';
+  var bulkbar = document.createElement('div');
+  bulkbar.id = 'adminBulkbar';
+  bulkbar.className = 'admin-bulkbar';
+  bulkbar.innerHTML =
+    '<span id="adminBulkCount"></span>' +
+    '<button type="button" class="btn btn-sm btn-ghost" id="btnBulkPermanent">Rendi permanenti</button>' +
+    '<button type="button" class="btn btn-sm btn-ghost" id="btnBulkDelete" style="border-color:#e24b4a;color:#e24b4a;">Elimina selezionati</button>';
+  list.parentNode.insertBefore(toolbar, list);
+  list.parentNode.insertBefore(bulkbar, list);
+
+  document.getElementById('adminSearchInput').addEventListener('input', function(e){
+    adminListSearch = e.target.value.trim().toLowerCase();
+    adminListPage = 1;
+    renderAdminList();
+  });
+  toolbar.querySelectorAll('[data-admin-filter]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      adminListFilter = btn.dataset.adminFilter;
+      adminListPage = 1;
+      toolbar.querySelectorAll('[data-admin-filter]').forEach(function(b){ b.classList.remove('active'); });
+      btn.classList.add('active');
+      renderAdminList();
+    });
+  });
+  document.getElementById('btnBulkPermanent').addEventListener('click', bulkMakePermanent);
+  document.getElementById('btnBulkDelete').addEventListener('click', bulkDeleteSelected);
+}
+
+function bulkMakePermanent(){
+  var session = getSession();
+  var ids = Array.prototype.slice.call(adminSelectedIds);
+  Promise.all(ids.map(function(id){
+    return fetch(SUPABASE_URL + '/rest/v1/catalog?id=eq.' + encodeURIComponent(id), {
+      method:'PATCH',
+      headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
+      body: JSON.stringify({permanent: true})
+    });
+  })).then(function(){
+    var all = getCatalog();
+    ids.forEach(function(id){
+      var target = all.find(function(x){ return x.id === id; });
+      if(target) target.permanent = true;
+    });
+    saveCatalogLocal(all);
+    adminSelectedIds.clear();
+    renderAdminList();
+  });
+}
+
+function bulkDeleteSelected(){
+  var ids = Array.prototype.slice.call(adminSelectedIds);
+  if(ids.length === 0) return;
+  if(!confirm(ids.length + ' titoli selezionati — eliminarli tutti?')) return;
+  var all = getCatalog().filter(function(x){ return !adminSelectedIds.has(x.id); });
+  saveCatalogLocal(all);
+  renderCatalog();
+  ids.forEach(function(id){ supabaseDelete(id); });
+  adminSelectedIds.clear();
+  renderAdminList();
+}
+
 function renderAdminList(){
   if(!isAdmin()) return;
   var list = document.getElementById('adminList');
   if(!list) return;
-  var items = getCatalog();
+  ensureAdminListStyle();
+  ensureAdminToolbar();
+
+  var items = getCatalog().slice();
   items.sort(function(a,b){ return (b.date||'').localeCompare(a.date||''); });
+
+  // Filtri + ricerca
+  if(adminListFilter === 'mine') items = items.filter(function(i){ return i.created_by === currentUserId(); });
+  else if(adminListFilter === 'mature') items = items.filter(function(i){ return !!i.mature; });
+  else if(adminListFilter === 'permanent') items = items.filter(function(i){ return i.permanent !== false; });
+  if(adminListSearch){
+    items = items.filter(function(i){
+      return (i.title||'').toLowerCase().indexOf(adminListSearch) !== -1 ||
+        (i.character||'').toLowerCase().indexOf(adminListSearch) !== -1;
+    });
+  }
+
+  var bulkbar = document.getElementById('adminBulkbar');
+  if(bulkbar){
+    bulkbar.classList.toggle('show', adminSelectedIds.size > 0);
+    var countEl = document.getElementById('adminBulkCount');
+    if(countEl) countEl.textContent = adminSelectedIds.size + ' selezionati';
+  }
+
   list.innerHTML = '';
 
   if(isDraftModeOn()){
@@ -2945,35 +3078,46 @@ function renderAdminList(){
     });
   }
 
-  items.forEach(function(item){
+  // Paginazione lato client — il catalogo è già tutto caricato in memoria
+  var totalPages = Math.max(1, Math.ceil(items.length / ADMIN_LIST_PAGE_SIZE));
+  if(adminListPage > totalPages) adminListPage = totalPages;
+  var pageStart = (adminListPage - 1) * ADMIN_LIST_PAGE_SIZE;
+  var pageItems = items.slice(pageStart, pageStart + ADMIN_LIST_PAGE_SIZE);
+
+  pageItems.forEach(function(item){
+    var draftCoverUrl = isDraftModeOn() ? getDraft().coverEdits[item.id] : null;
+    if(draftCoverUrl){
+      var previewWrap = document.createElement('div');
+      previewWrap.innerHTML = buildSitePreviewCardHtml({
+        title: item.title, character: item.character, issue: item.issue, date: item.date,
+        price: item.price, mature: item.mature, synopsis: synopsisForCurrentLang(item),
+        coverSrc: draftCoverUrl
+      });
+      list.appendChild(previewWrap.firstChild);
+      attachCoverSignature(list.lastChild.querySelector('.card-idx-cover'), item);
+    }
     var row = document.createElement('div');
-    row.className = 'admin-row';
+    row.className = 'admin-row-compact';
     var ratingLabel = item.mature ? '18+' : t('badge.allages');
     var coverLabel = item.cover_url ? t('cover.change') : t('cover.addExisting');
     var hasAllTranslations = item.synopsis_it && item.synopsis_es && item.synopsis_fr && item.synopsis_de;
     var translateLabel = hasAllTranslations ? t('synopsis.retranslate') : t('synopsis.translateExisting');
     var hasPages = item.pages && item.pages.length > 0;
-    var isPermanent = item.permanent !== false; // di default permanente, finché non lo segni esplicitamente "a tempo determinato"
+    var isPermanent = item.permanent !== false;
     var permanentTag = '<span class="' + (isPermanent ? 'permanent-tag' : 'temporary-tag') + '">' + (isPermanent ? t('catalog.permanent') : t('catalog.temporary')) + '</span>';
-    var draftCoverUrl = isDraftModeOn() ? getDraft().coverEdits[item.id] : null;
-    var draftPreview = draftCoverUrl
-      ? buildSitePreviewCardHtml({
-          title: item.title, character: item.character, issue: item.issue, date: item.date,
-          price: item.price, mature: item.mature, synopsis: synopsisForCurrentLang(item),
-          coverSrc: draftCoverUrl
-        })
-      : '';
     var hasStock = item.stock != null;
     var stockControls = hasStock
       ? '<span class="mono stock-admin-tag">'+item.stock+' '+t('stock.left')+'</span>'+
         '<button class="btn btn-sm btn-ghost" data-sell-one="'+item.id+'" '+(item.stock<=0?'disabled':'')+'>'+t('admin.stock.sell')+'</button>'+
         '<button class="btn btn-sm btn-ghost" data-restock="'+item.id+'">'+t('admin.stock.restore')+'</button>'
       : '';
+
     row.innerHTML =
-      draftPreview +
+      '<input type="checkbox" data-select-row="'+item.id+'" '+(adminSelectedIds.has(item.id)?'checked':'')+'>' +
       '<div class="info"><div class="t">'+escapeHtml(item.title)+'</div>'+
       '<div class="m">'+item.character+' · '+(item.issue||'')+' · '+(item.date||'')+' · '+ratingLabel+' · '+permanentTag+'</div></div>'+
-      '<div class="admin-actions">'+
+      '<button type="button" class="admin-menu-btn" data-toggle-menu>Azioni ▾</button>'+
+      '<div class="admin-dropdown" data-menu>'+
         '<label class="btn btn-sm btn-ghost cover-upload-btn">'+coverLabel+
           '<input type="file" accept="image/*" class="hidden" data-cover-for="'+item.id+'">'+
         '</label>'+
@@ -2984,8 +3128,27 @@ function renderAdminList(){
         '<button class="btn btn-sm btn-ghost" data-toggle-permanent="'+item.id+'">'+(isPermanent ? t('catalog.makeTemporary') : t('catalog.makePermanent'))+'</button>'+
         stockControls +
         '<button class="btn btn-sm btn-ghost" data-edit="'+item.id+'">'+t('admin.edit')+'</button>'+
-        '<button class="btn btn-sm btn-ghost" data-del="'+item.id+'">×</button>'+
+        '<button class="btn btn-sm btn-ghost" data-del="'+item.id+'" style="border-color:#e24b4a;color:#e24b4a;">×</button>'+
       '</div>';
+
+    row.querySelector('[data-select-row]').addEventListener('change', function(e){
+      if(e.target.checked) adminSelectedIds.add(item.id); else adminSelectedIds.delete(item.id);
+      var bb = document.getElementById('adminBulkbar');
+      if(bb){
+        bb.classList.toggle('show', adminSelectedIds.size > 0);
+        var c = document.getElementById('adminBulkCount');
+        if(c) c.textContent = adminSelectedIds.size + ' selezionati';
+      }
+    });
+    var menuBtn = row.querySelector('[data-toggle-menu]');
+    var menu = row.querySelector('[data-menu]');
+    menuBtn.addEventListener('click', function(ev){
+      ev.stopPropagation();
+      var alreadyOpen = menu.classList.contains('show');
+      document.querySelectorAll('.admin-dropdown.show').forEach(function(m){ m.classList.remove('show'); });
+      if(!alreadyOpen) menu.classList.add('show');
+    });
+
     if(hasStock){
       row.querySelector('[data-sell-one]').addEventListener('click', function(){
         var session = getSession();
@@ -3060,10 +3223,27 @@ function renderAdminList(){
       });
     }
     list.appendChild(row);
-    if(draftCoverUrl){
-      attachCoverSignature(row.querySelector('.admin-sitepreview-wrap .card-idx-cover'), item);
-    }
   });
+
+  // Chiude i menu aperti se clicchi fuori — una sola volta per pagina, non per riga
+  if(!document.body.dataset.adminMenuOutsideBound){
+    document.body.dataset.adminMenuOutsideBound = '1';
+    document.addEventListener('click', function(){
+      document.querySelectorAll('.admin-dropdown.show').forEach(function(m){ m.classList.remove('show'); });
+    });
+  }
+
+  var pager = document.createElement('div');
+  pager.className = 'admin-pager';
+  pager.innerHTML =
+    '<button type="button" id="adminPagerPrev" '+(adminListPage<=1?'disabled':'')+'>← Precedente</button>' +
+    '<span>Pagina '+adminListPage+' di '+totalPages+' ('+items.length+' titoli)</span>' +
+    '<button type="button" id="adminPagerNext" '+(adminListPage>=totalPages?'disabled':'')+'>Successiva →</button>';
+  list.appendChild(pager);
+  var prevBtn = document.getElementById('adminPagerPrev');
+  var nextBtn = document.getElementById('adminPagerNext');
+  if(prevBtn) prevBtn.addEventListener('click', function(){ adminListPage--; renderAdminList(); });
+  if(nextBtn) nextBtn.addEventListener('click', function(){ adminListPage++; renderAdminList(); });
 }
 
 function translateSynopsisForExistingItem(itemId, englishSynopsis){
