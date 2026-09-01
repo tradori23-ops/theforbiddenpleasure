@@ -4219,9 +4219,12 @@ var currentProfile = null;
 
 function openProfileModal(){
   if(!isSignedIn()){ openAuth('login'); return; }
-  document.getElementById('profileError').textContent = '';
-  document.getElementById('requestError').textContent = '';
-  document.getElementById('fRequestBody').value = '';
+  var profileErrEl = document.getElementById('profileError');
+  if(profileErrEl) profileErrEl.textContent = '';
+  var requestErrEl = document.getElementById('requestError');
+  if(requestErrEl) requestErrEl.textContent = '';
+  var reqBodyEl = document.getElementById('fRequestBody');
+  if(reqBodyEl) reqBodyEl.value = '';
   loadOwnProfile().then(function(){
     populateProfileForm();
     document.getElementById('profileModal').classList.remove('hidden');
@@ -4271,7 +4274,7 @@ function saveProfile(){
   var session = getSession();
   if(!session) return;
   var err = document.getElementById('profileError');
-  err.textContent = '';
+  if(err) err.textContent = '';
   var displayName = document.getElementById('fDisplayName').value.trim();
   var bio = document.getElementById('fBio').value.trim();
   var birthDate = document.getElementById('fBirthDate').value;
