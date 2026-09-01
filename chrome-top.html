@@ -1,3 +1,135 @@
+<style>
+/* Header stile H — rosso/teal a specchio, stessi colori del sigillo LM.
+   Esteso a tutta la barra: menu, icone, switch, badge — non solo logo e
+   bottone Accedi. */
+.topbar{
+  position: relative;
+  z-index: 2; /* sopra lo strato cosmico fisso (stelle/nebbia/fulmini), che sta dietro a tutto con z-index:-1 */
+  background:
+    linear-gradient(90deg, rgba(110,20,35,0.28) 0%, transparent 45%, transparent 55%, rgba(31,74,74,0.28) 100%),
+    var(--bg-panel, #0b0607);
+  border-bottom: 1px solid rgba(201,162,77,0.25);
+}
+@keyframes brandHueShift{0%{background-position:0% 50%;}100%{background-position:200% 50%;}}
+.topbar .brand .l1{
+  background: linear-gradient(90deg, #e07a5f, #f0e4cd 33%, #5dcaa5 66%, #e07a5f);
+  background-size: 200% 100%;
+  animation: brandHueShift 6s linear infinite;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: #f0e4cd;
+  -webkit-text-fill-color: transparent;
+}
+.topbar .brand .l2{
+  background: linear-gradient(90deg, rgba(224,122,95,0.75), rgba(240,228,205,0.75) 55%, rgba(93,202,165,0.75));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: rgba(240,228,205,0.75);
+  -webkit-text-fill-color: transparent;
+}
+
+/* Menu: sottolineatura sfumata su hover e sulla pagina attiva */
+.topbar .mainnav a{
+  position: relative;
+  transition: color 160ms ease;
+}
+.topbar .mainnav a::after{
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: -4px;
+  height: 2px;
+  background: linear-gradient(90deg, #e07a5f, #5dcaa5);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 200ms ease;
+}
+.topbar .mainnav a:hover::after,
+.topbar .mainnav a.active::after{
+  transform: scaleX(1);
+}
+
+/* Bottoni icona (tema, notifiche, carrello): alone sfumato su hover */
+.topbar .topbar-tools .btn:hover,
+.topbar .topbar-tools .bell-btn:hover,
+.topbar .topbar-tools .cart-btn:hover{
+  background: linear-gradient(90deg, rgba(224,122,95,0.15), rgba(93,202,165,0.15));
+  border-color: transparent;
+}
+
+.topbar #btnLoginTop{
+  background: linear-gradient(90deg, #e07a5f, #5dcaa5);
+  color: #150d0e;
+  border: none;
+  font-weight: 600;
+}
+.topbar #btnLoginTop:hover{
+  filter: brightness(1.08);
+}
+
+/* Switch Contenuti 18+ e badge (notifiche/carrello): stessa coppia di colori
+   invece del rosso/oro isolato usato prima, per restare in tema con tutto
+   il resto della barra. */
+.topbar .mature-toggle .switch input:checked + .slider{
+  background: linear-gradient(90deg, #e07a5f, #5dcaa5) !important;
+}
+.topbar .notif-badge,
+.topbar .cart-count{
+  background: #e07a5f !important;
+}
+
+.topbar .langsel:focus,
+.topbar .langsel:hover{
+  border-color: #5dcaa5;
+}
+</style>
+<style>
+/* Strato cosmico persistente — stelle, fulmini rari e nebbia sottile,
+   fissi rispetto allo schermo così restano visibili su ogni pagina
+   mentre scorri, non solo nell'header/hero. Sfondo trasparente: non
+   copre né sostituisce le immagini reali di ciascuna pagina, ci sta
+   solo sopra come un velo leggero. */
+@keyframes cosmicTwinkle{0%,100%{opacity:0.15;}50%{opacity:0.8;}}
+@keyframes cosmicFog{0%{transform:translateX(-8%);}100%{transform:translateX(8%);}}
+@keyframes cosmicDrift1{0%,100%{transform:translate(0,0);}50%{transform:translate(30px,-20px);}}
+@keyframes cosmicDrift2{0%,100%{transform:translate(0,0);}50%{transform:translate(-25px,25px);}}
+@keyframes cosmicFlashA{0%,90%,100%{opacity:0;}91%{opacity:0.7;}92%{opacity:0.05;}93%{opacity:0.5;}94%{opacity:0;}}
+@keyframes cosmicFlashB{0%,93%,100%{opacity:0;}94%{opacity:0.65;}95%{opacity:0.05;}96%{opacity:0.45;}97%{opacity:0;}}
+@keyframes cosmicFlashC{0%,95%,100%{opacity:0;}96%{opacity:0.6;}97%{opacity:0.05;}98%{opacity:0.4;}99%{opacity:0;}}
+#cosmicLayer{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden;}
+#cosmicLayer .c-nebula{position:absolute;width:420px;height:420px;border-radius:50%;filter:blur(70px);opacity:0.4;}
+#cosmicLayer .c-neb-a{background:#d85a30;top:-140px;left:-120px;animation:cosmicDrift1 14s ease-in-out infinite;}
+#cosmicLayer .c-neb-b{background:#1d9e75;bottom:-150px;right:-120px;animation:cosmicDrift2 16s ease-in-out infinite;}
+#cosmicLayer .c-star{position:absolute;width:2px;height:2px;background:#f0e4cd;border-radius:50%;animation:cosmicTwinkle 4s ease-in-out infinite;}
+#cosmicLayer .c-fog{position:absolute;left:-10%;width:120%;height:200px;background:linear-gradient(180deg,transparent,rgba(240,228,205,0.09),transparent);filter:blur(14px);animation:cosmicFog 26s ease-in-out infinite alternate;}
+#cosmicLayer .c-fog2{animation-duration:32s;animation-direction:alternate-reverse;}
+#cosmicLayer .c-bolt{position:absolute;opacity:0;}
+#cosmicLayer .c-bolt-a{top:8%;left:10%;animation:cosmicFlashA 10s ease-in-out infinite;}
+#cosmicLayer .c-bolt-b{top:14%;right:8%;animation:cosmicFlashB 13s ease-in-out infinite 3s;}
+#cosmicLayer .c-bolt-c{bottom:10%;left:20%;animation:cosmicFlashC 15s ease-in-out infinite 6s;}
+</style>
+<div id="cosmicLayer">
+  <div class="c-nebula c-neb-a"></div>
+  <div class="c-nebula c-neb-b"></div>
+  <div class="c-fog" style="top:22%;"></div>
+  <div class="c-fog c-fog2" style="top:55%;"></div>
+  <svg class="c-bolt c-bolt-a" width="90" height="160" viewBox="0 0 90 160"><polyline points="40,0 55,50 30,55 60,110 20,160" fill="none" stroke="#e07a5f" stroke-width="3" stroke-linejoin="round"/></svg>
+  <svg class="c-bolt c-bolt-b" width="90" height="160" viewBox="0 0 90 160"><polyline points="50,0 30,45 55,50 25,105 65,160" fill="none" stroke="#5dcaa5" stroke-width="3" stroke-linejoin="round"/></svg>
+  <svg class="c-bolt c-bolt-c" width="90" height="160" viewBox="0 0 90 160"><polyline points="45,0 25,50 50,55 20,110 55,160" fill="none" stroke="#e07a5f" stroke-width="3" stroke-linejoin="round"/></svg>
+</div>
+<script>
+(function(){
+  var layer = document.getElementById('cosmicLayer');
+  for(var i=0;i<65;i++){
+    var s = document.createElement('div');
+    s.className = 'c-star';
+    s.style.left = Math.random()*100 + '%';
+    s.style.top = Math.random()*100 + '%';
+    s.style.animationDelay = (Math.random()*4) + 's';
+    s.style.opacity = (0.2 + Math.random()*0.6);
+    layer.appendChild(s);
+  }
+})();
+</script>
   <div class="maintenance-banner" id="maintenanceBanner" data-i18n="maintenance.text">Sito in manutenzione — stiamo aggiornando l'archivio, torna a breve.</div>
   <div class="maintenance-lock hidden" id="maintenanceLock">
     <div class="maintenance-lock-box">
@@ -60,7 +192,7 @@
       <div class="notif-panel hidden" id="notifPanel">
         <div class="notif-panel-head">
           <span data-i18n="notif.title">Notifiche</span>
-          <button type="button" class="notif-mark-all" id="btnMarkAllRead" data-i18n="notif.clearAll">Cancella tutte</button>
+          <button type="button" class="notif-mark-all" id="btnMarkAllRead" data-i18n="notif.markAll">Segna tutte come lette</button>
         </div>
         <div class="notif-list" id="notifList"></div>
       </div>
