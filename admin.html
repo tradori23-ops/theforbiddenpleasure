@@ -251,6 +251,25 @@
           <div data-i18n="charimg.title" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Immagini profilo personaggi</div>
           <div class="char-image-row" id="charImageRow"></div>
         </div>
+
+        <div class="notice">
+          <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Collaboratori salvati</div>
+          <p class="form-note" style="margin-top:0;">Salva qui nickname e link Instagram una volta sola — dopo, digitando lo stesso nickname nel campo "Collaboratori" di un titolo, link e verifica si compilano da soli.</p>
+          <div class="admin-grid" style="margin-top:10px;">
+            <div class="field"><label>Nickname</label><input type="text" id="fNewCollabNickname" placeholder="@nomeutente"></div>
+            <div class="field"><label>Link Instagram</label><input type="url" id="fNewCollabUrl" placeholder="https://instagram.com/..."></div>
+            <div class="field" style="align-self:end;">
+              <label class="mature-toggle" style="cursor:pointer;">
+                <span>Verificato</span>
+                <span class="switch"><input type="checkbox" id="fNewCollabVerified"><span class="slider"></span></span>
+              </label>
+            </div>
+          </div>
+          <div class="modal-actions" style="margin-top:10px;">
+            <button class="btn btn-ghost btn-sm" id="btnAddSavedCollab">+ Salva collaboratore</button>
+          </div>
+          <div id="savedCollabList" style="margin-top:14px;"></div>
+        </div>
       </div>
 
       <div class="admin-tab-panel hidden" data-tab-panel="comments">

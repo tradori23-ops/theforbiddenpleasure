@@ -3800,6 +3800,120 @@ function updateAddCollabBtn(){
   if(!btn) return;
   btn.style.display = nextHiddenCollabBlock() ? '' : 'none';
 }
+
+/* ============ RUBRICA COLLABORATORI SALVATI ============
+   Salva nickname + link Instagram una volta sola. Da quel momento,
+   scrivere lo stesso nickname in uno dei 6 campi "Collaboratori" del form
+   titolo compila da sola link e spunta verificato — niente più ricerca
+   del link ogni volta. */
+var savedCollabMap = {}; // nickname normalizzato -> {url, verified}
+
+function normalizeCollabNickname(s){
+  return (s || '').trim().replace(/^@/, '').toLowerCase();
+}
+
+function loadSavedCollaborators(){
+  var list = document.getElementById('savedCollabList');
+  if(!list) return; // non siamo nella pagina Admin
+  var session = getSession();
+  if(!session) return;
+  fetch(SUPABASE_URL + '/rest/v1/saved_collaborators?select=*&order=nickname.asc', {
+    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
+  })
+    .then(function(r){ return r.ok ? r.json() : []; })
+    .then(function(rows){
+      savedCollabMap = {};
+      rows.forEach(function(row){
+        savedCollabMap[normalizeCollabNickname(row.nickname)] = { url: row.instagram_url, verified: !!row.verified };
+      });
+      renderSavedCollabList(rows);
+      renderSavedCollabDatalist(rows);
+    })
+    .catch(function(err){ console.warn('Rubrica collaboratori: caricamento fallito', err); });
+}
+
+function renderSavedCollabList(rows){
+  var list = document.getElementById('savedCollabList');
+  if(!list) return;
+  if(rows.length === 0){
+    list.innerHTML = '<p class="form-note">Nessun collaboratore salvato ancora.</p>';
+    return;
+  }
+  list.innerHTML = rows.map(function(row){
+    return '<div style="display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:1px solid var(--line);font-size:13px;">' +
+      '<span style="flex:1;">' + escapeHtml(row.nickname) + (row.verified ? ' ✓' : '') + '</span>' +
+      '<a href="' + escapeHtml(row.instagram_url) + '" target="_blank" rel="noopener" style="color:var(--gold);font-size:11px;">apri link</a>' +
+      '<button type="button" class="btn btn-sm btn-ghost" data-del-saved-collab="' + row.id + '">×</button>' +
+      '</div>';
+  }).join('');
+  list.querySelectorAll('[data-del-saved-collab]').forEach(function(btn){
+    btn.addEventListener('click', function(){ deleteSavedCollaborator(btn.dataset.delSavedCollab); });
+  });
+}
+
+function renderSavedCollabDatalist(rows){
+  var dl = document.getElementById('savedCollabDatalist');
+  if(!dl){
+    dl = document.createElement('datalist');
+    dl.id = 'savedCollabDatalist';
+    document.body.appendChild(dl);
+  }
+  dl.innerHTML = rows.map(function(row){ return '<option value="' + escapeHtml(row.nickname) + '">'; }).join('');
+  for(var i = 1; i <= 6; i++){
+    var input = document.getElementById('fCollabName' + i);
+    if(input) input.setAttribute('list', 'savedCollabDatalist');
+  }
+}
+
+function saveSavedCollaborator(){
+  var nicknameEl = document.getElementById('fNewCollabNickname');
+  var urlEl = document.getElementById('fNewCollabUrl');
+  var verEl = document.getElementById('fNewCollabVerified');
+  var nickname = nicknameEl ? nicknameEl.value.trim() : '';
+  var url = urlEl ? urlEl.value.trim() : '';
+  if(!nickname || !url) return;
+  var session = getSession();
+  if(!session) return;
+  fetch(SUPABASE_URL + '/rest/v1/saved_collaborators', {
+    method:'POST',
+    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json', 'Prefer':'resolution=merge-duplicates,return=minimal' },
+    body: JSON.stringify({ user_id: currentUserId(), nickname: nickname, instagram_url: url, verified: !!(verEl && verEl.checked) })
+  }).then(function(r){
+    if(!r.ok) throw new Error('save collaborator failed: ' + r.status);
+    nicknameEl.value = ''; urlEl.value = ''; if(verEl) verEl.checked = false;
+    loadSavedCollaborators();
+  }).catch(function(err){ console.warn('Salvataggio collaboratore fallito:', err); });
+}
+
+function deleteSavedCollaborator(id){
+  var session = getSession();
+  if(!session) return;
+  fetch(SUPABASE_URL + '/rest/v1/saved_collaborators?id=eq.' + encodeURIComponent(id), {
+    method:'DELETE',
+    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
+  }).then(function(){ loadSavedCollaborators(); });
+}
+
+/* Collegato a ognuno dei 6 campi nome collaboratore: appena il testo
+   coincide con un nickname salvato, riempie da sola link e verifica —
+   niente più copia-incolla del link ogni volta. */
+function wireCollabAutofill(){
+  for(var i = 1; i <= 6; i++){
+    (function(idx){
+      var nameEl = document.getElementById('fCollabName' + idx);
+      if(!nameEl || nameEl.dataset.autofillWired) return;
+      nameEl.dataset.autofillWired = '1';
+      nameEl.addEventListener('input', function(){
+        var match = savedCollabMap[normalizeCollabNickname(nameEl.value)];
+        if(!match) return;
+        var urlEl = document.getElementById('fCollabUrl' + idx);
+        var verEl = document.getElementById('fCollabVerified' + idx);
+        if(urlEl) urlEl.value = match.url;
+        if(verEl) verEl.checked = match.verified;
+      });
+    })(i);
+  }
+}
 function addCollabBlock(){
   var block = nextHiddenCollabBlock();
   if(!block) return;
@@ -9375,6 +9489,9 @@ function __appInit(){
   document.getElementById('btnSaveMaintenanceSchedule') && document.getElementById('btnSaveMaintenanceSchedule').addEventListener('click', saveMaintenanceSchedule);
   document.getElementById('btnSaveNightSchedule') && document.getElementById('btnSaveNightSchedule').addEventListener('click', saveNightSchedule);
   document.getElementById('btnRequestExtension') && document.getElementById('btnRequestExtension').addEventListener('click', requestSessionExtension);
+  document.getElementById('btnAddSavedCollab') && document.getElementById('btnAddSavedCollab').addEventListener('click', saveSavedCollaborator);
+  loadSavedCollaborators();
+  wireCollabAutofill();
   document.getElementById('btnExportOffline') && document.getElementById('btnExportOffline').addEventListener('click', exportEverythingOffline);
   document.getElementById('maintenanceLockLogin') && document.getElementById('maintenanceLockLogin').addEventListener('click', function(){ openAuth('login'); });
   document.getElementById('nightLockLogin') && document.getElementById('nightLockLogin').addEventListener('click', function(){ openAuth('login'); });
