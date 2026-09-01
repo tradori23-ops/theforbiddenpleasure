@@ -3701,14 +3701,66 @@ function removeCollabBlock(idx){
 
 var editingItemId = null; // se valorizzato, handleAddEntry() salva una MODIFICA invece di una nuova voce
 
+/* Iniettato una sola volta: colonna dei sigilli nel form Admin (stesso
+   stile oro dei filtri dello Schedario, .genre-seal già esistente) più la
+   card laterale che mostra il banner del genere in trasparenza quando ci
+   passi sopra — non sovrappone la card hover al form, sta di fianco. */
+function ensureGenreCheckStyle(){
+  if(document.getElementById('genreCheckStyle')) return;
+  var styleEl = document.createElement('style');
+  styleEl.id = 'genreCheckStyle';
+  styleEl.textContent =
+    '.genre-check-column{display:flex;flex-direction:column;gap:10px;position:relative;}' +
+    '.genre-check-seal{display:flex;align-items:center;gap:10px;cursor:pointer;padding:6px 8px;border-radius:8px;border:1px solid transparent;}' +
+    '.genre-check-seal:hover{border-color:rgba(201,162,77,0.35);}' +
+    '.genre-check-seal.active{border-color:var(--gold,#c9a24d);background:rgba(201,162,77,0.08);}' +
+    '.genre-check-seal input{position:absolute;opacity:0;width:0;height:0;}' +
+    '.genre-check-preview{position:absolute;left:100%;top:0;margin-left:16px;width:220px;height:140px;border-radius:10px;overflow:hidden;' +
+    'border:1px solid rgba(201,162,77,0.4);background-size:cover;background-position:center;pointer-events:none;}' +
+    '.genre-check-preview::before{content:"";position:absolute;inset:0;background:rgba(11,6,7,0.45);}' +
+    '.genre-check-preview-label{position:relative;z-index:1;color:#f0e4cd;font-family:"Cinzel",serif;font-size:14px;' +
+    'display:flex;align-items:center;justify-content:center;height:100%;text-align:center;padding:0 12px;}' +
+    '@media (max-width:640px){.genre-check-preview{position:static;margin:10px 0 0;width:100%;height:120px;}}'; // niente spazio per la card di fianco su schermi stretti: scende sotto ai sigilli invece di sparire
+  document.head.appendChild(styleEl);
+}
+
+function showGenreCheckPreview(g){
+  var preview = document.getElementById('genreCheckPreview');
+  if(!preview) return;
+  var file = GENRE_BANNERS[g];
+  preview.style.backgroundImage = file ? 'url(' + file + ')' : '';
+  preview.querySelector('.genre-check-preview-label').textContent = g;
+  preview.classList.remove('hidden');
+}
+function hideGenreCheckPreview(){
+  var preview = document.getElementById('genreCheckPreview');
+  if(preview) preview.classList.add('hidden');
+}
+
 function renderGenreChecks(){
   var block = document.getElementById('fGenresBlock');
   if(!block || block.childElementCount) return;
+  ensureGenreCheckStyle();
+  block.classList.add('genre-check-column');
+
+  var preview = document.createElement('div');
+  preview.id = 'genreCheckPreview';
+  preview.className = 'genre-check-preview hidden';
+  preview.innerHTML = '<div class="genre-check-preview-label"></div>';
+  block.appendChild(preview);
+
   GENRE_LIST.forEach(function(g){
-    var label = document.createElement('label');
-    label.className = 'genre-check';
-    label.innerHTML = '<input type="checkbox" value="'+escapeHtml(g)+'"> '+escapeHtml(g);
-    block.appendChild(label);
+    var wrap = document.createElement('label');
+    wrap.className = 'genre-check-seal';
+    wrap.innerHTML = '<input type="checkbox" value="'+escapeHtml(g)+'">' +
+      '<span class="genre-seal">'+escapeHtml(genreMonogram(g))+'</span>' +
+      '<span class="genre-seal-label">'+escapeHtml(g)+'</span>';
+    var input = wrap.querySelector('input');
+    input.addEventListener('change', function(){ wrap.classList.toggle('active', input.checked); });
+    wrap.addEventListener('mouseenter', function(){ showGenreCheckPreview(g); }); // desktop
+    wrap.addEventListener('mouseleave', hideGenreCheckPreview);
+    wrap.addEventListener('click', function(){ showGenreCheckPreview(g); }); // touch: niente hover reale, il tap che seleziona mostra anche l'anteprima
+    block.appendChild(wrap);
   });
 }
 function getSelectedGenres(){
@@ -3722,6 +3774,7 @@ function setSelectedGenres(arr){
   arr = arr || [];
   Array.prototype.forEach.call(block.querySelectorAll('input'), function(el){
     el.checked = arr.indexOf(el.value) !== -1;
+    if(el.parentElement) el.parentElement.classList.toggle('active', el.checked); // il cambio programmato non scatena 'change': sincronizziamo qui il sigillo
   });
 }
 
@@ -8826,6 +8879,7 @@ function __appInit(){
   applyI18n();
   showEntryModeGate();
   renderDossiers();
+  renderGenreChecks(); // se il form del catalogo è in questa pagina (Admin), popola i sigilli genere subito — non solo aprendo un titolo esistente in modifica
   refreshSupportSectionVisibility(); // mostra subito ai visitatori anonimi; ricontrollato sotto per chi ha fatto login
   // NIENTE renderCatalog() qui: prima si aspettano sempre i dati veri da
   // Supabase (vedi fetchCatalogFromSupabase più sotto) — così non si vede

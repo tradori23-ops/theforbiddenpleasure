@@ -34,7 +34,7 @@
   // hai visto live sul sito prima di caricare — questo file parte da una
   // copia salvata in sessione e potrebbe non riflettere bump fatti nel
   // frattempo direttamente su GitHub.
-  var V = "45";
+  var V = "46";
 
   // style.css iniettato qui (non più con un <link> scritto a mano in ogni
   // pagina) così la sua versione segue sempre la stessa V di app.js,
@@ -65,13 +65,23 @@
   // in ciascun file HTML. Le impostazioni del widget (una volta sola per
   // sessione, aspetto, testo) si gestiscono dalla dashboard Common Ninja,
   // non da qui.
-  var ninjaScript = document.createElement('script');
-  ninjaScript.src = 'https://cdn.commoninja.com/sdk/latest/commonninja.js';
-  ninjaScript.defer = true;
-  document.head.appendChild(ninjaScript);
-  var ninjaDiv = document.createElement('div');
-  ninjaDiv.className = 'commonninja_component pid-9e95d41c-4e88-4295-9e10-33ca7dbb7d0b';
-  document.body.appendChild(ninjaDiv);
+  //
+  // Il sito è multi-pagina: loader.js gira di nuovo a ogni cambio pagina,
+  // quindi senza questo controllo il widget si reiniettava — e si
+  // ripresentava — a ogni singola pagina aperta. sessionStorage sopravvive
+  // ai cambi pagina ma si azzera da solo alla chiusura della scheda/del
+  // browser, quindi lo mostriamo una sola volta per sessione, non ad ogni
+  // click su un titolo o un menu.
+  if(!sessionStorage.getItem('lux_age_verify_shown')){
+    sessionStorage.setItem('lux_age_verify_shown', '1');
+    var ninjaScript = document.createElement('script');
+    ninjaScript.src = 'https://cdn.commoninja.com/sdk/latest/commonninja.js';
+    ninjaScript.defer = true;
+    document.head.appendChild(ninjaScript);
+    var ninjaDiv = document.createElement('div');
+    ninjaDiv.className = 'commonninja_component pid-9e95d41c-4e88-4295-9e10-33ca7dbb7d0b';
+    document.body.appendChild(ninjaDiv);
+  }
 
   try {
     var [topHtml, footerHtml, modalsHtml] = await Promise.all([
