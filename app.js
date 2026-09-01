@@ -2427,6 +2427,14 @@ function checkVerifiedSupporter(){
 
 function downloadSignedPdf(item){
   var session = getSession();
+  if(!item.pdf_url){
+    // Titolo senza PDF caricato (solo pagine singole) — il pulsante non
+    // dovrebbe nemmeno comparire in questo caso, ma se capita non
+    // costruiamo un URL con "undefined" dentro: fermiamoci con un
+    // messaggio chiaro invece di un 404 silenzioso.
+    window.alert('Questo titolo non ha un PDF caricato.');
+    return Promise.resolve();
+  }
   return ensurePdfLibLoaded()
     .then(function(){
       // Se il PDF è già stato scaricato per la lettura offline, lo prendiamo
@@ -2443,13 +2451,16 @@ function downloadSignedPdf(item){
         // Se è già un URL assoluto lo fetchiamo com'è; solo un path nudo passa
         // dal bucket protetto con header di autenticazione.
         var isFullUrl = /^https?:\/\//i.test(item.pdf_url);
+        if(!isFullUrl && !session){
+          throw new Error('Sessione scaduta — ricarica la pagina e accedi di nuovo prima di scaricare.');
+        }
         var pdfFetch = isFullUrl
           ? fetch(item.pdf_url)
           : fetch(SUPABASE_URL + '/storage/v1/object/comic-pages-clean/' + item.pdf_url, {
               headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
             });
         return pdfFetch.then(function(r){
-          if(!r.ok) throw new Error('pdf fetch failed');
+          if(!r.ok) throw new Error('Scaricamento del PDF originale fallito (codice ' + r.status + ', ' + (isFullUrl ? 'URL diretto' : 'bucket protetto') + ')');
           return r.arrayBuffer();
         });
       }).then(function(pdfBytes){
@@ -2459,7 +2470,9 @@ function downloadSignedPdf(item){
     .then(function(results){
       var pdfBytes = results[0];
       var qrBase64 = results[1];
-      return PDFLib.PDFDocument.load(pdfBytes).then(function(pdfDoc){
+      return PDFLib.PDFDocument.load(pdfBytes).catch(function(e){
+        throw new Error('Il file scaricato non è un PDF valido (' + (e && e.message ? e.message : 'errore di lettura') + ') — controlla che il file caricato in Admin sia davvero un PDF integro.');
+      }).then(function(pdfDoc){
         return Promise.all([
           pdfDoc.embedPng(base64ToBytes(qrBase64)),
           pdfDoc.embedFont(PDFLib.StandardFonts.HelveticaBold)
@@ -2506,7 +2519,10 @@ function downloadSignedPdf(item){
     })
     .catch(function(e){
       console.warn('PDF download failed:', e);
-      window.alert(t('pdf.downloadError'));
+      // Messaggio vero invece che generico: la prossima volta che fallisce,
+      // il testo stesso dice cosa non va (rete, autenticazione, file
+      // corrotto...) — non serve più indovinare da qui senza vederlo dal vivo.
+      window.alert((e && e.message) ? e.message : t('pdf.downloadError'));
     });
 }
 
