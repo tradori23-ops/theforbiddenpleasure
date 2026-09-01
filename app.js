@@ -1787,11 +1787,38 @@ function exportEverythingOffline(){
   });
 }
 
+/* Scaffale invece della vecchia fila con numero gigante a fianco — stessa
+   idea dei dorsi testurizzati già usati per i filtri personaggio dello
+   Schedario, applicata qui alla classifica dei più letti. L'altezza varia
+   leggermente da un titolo all'altro (idx%3) per sembrare un vero scaffale
+   disordinato, non una griglia perfetta. */
+function ensureShelfRankStyle(){
+  if(document.getElementById('shelfRankStyle')) return;
+  var styleEl = document.createElement('style');
+  styleEl.id = 'shelfRankStyle';
+  styleEl.textContent =
+    '#topRankedGrid{display:flex;align-items:flex-end;gap:3px;overflow-x:auto;padding:10px 4px 12px;border-bottom:8px solid #2a1c14;}' +
+    '.rank-card{flex:0 0 auto;width:78px;border-radius:4px 4px 0 0;position:relative;cursor:pointer;overflow:hidden;' +
+    'box-shadow:inset -3px 0 6px rgba(0,0,0,0.45);background:#150d0e;}' +
+    '.rank-card .rank-card-cover{position:absolute;inset:0;}' +
+    '.rank-card .rank-card-cover img{width:100%;height:100%;object-fit:cover;}' +
+    '.rank-card .rank-card-cover .init{display:flex;align-items:center;justify-content:center;height:100%;color:#c9a24d;font-family:"Cinzel Decorative",serif;font-size:22px;}' +
+    '.rank-card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,6,7,0.15) 0%,rgba(11,6,7,0.35) 60%,rgba(11,6,7,0.85) 100%);}' +
+    '.rank-num{position:absolute;top:6px;left:6px;z-index:2;width:20px;height:20px;border-radius:50%;background:#c9a24d;color:#150d0e;' +
+    'font-family:"Cinzel",serif;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;}' +
+    '.rank-card-body{position:relative;z-index:2;padding:6px;text-align:center;}' +
+    '.rank-card-body h5{margin:0;font-family:"Cinzel",serif;font-size:9px;color:#f0e4cd;line-height:1.25;' +
+    'writing-mode:vertical-rl;text-orientation:mixed;max-height:60px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;display:inline-block;}' +
+    '.rank-card-body .character{display:none;}'; // niente sottotitolo sul dorso: troppo stretto, il nome del personaggio resta solo nella scheda del titolo
+  document.head.appendChild(styleEl);
+}
+
 /* ============ TOP RANKED (homepage, public — auto from catalog, by total views) ============ */
 function renderTopRanked(){
   var section = document.getElementById('topRankedSection');
   var grid = document.getElementById('topRankedGrid');
   if(!section || !grid) return;
+  ensureShelfRankStyle();
   var items = getCatalog();
   if(!matureVisible){
     items = items.filter(function(i){ return !i.mature; });
@@ -1800,16 +1827,18 @@ function renderTopRanked(){
   grid.innerHTML = '';
   if(items.length === 0){ section.classList.add('hidden'); return; }
   section.classList.remove('hidden');
+  var heights = [128, 112, 120]; // altezze cicliche per un profilo da scaffale, non tutte uguali
   items.forEach(function(item, idx){
     var rank = document.createElement('div');
     rank.className = 'rank-card';
+    rank.style.height = heights[idx % heights.length] + 'px';
     var coverInner = item.cover_url
       ? '<img src="' + coverThumbUrl(item.cover_url, 400) + '" data-fallback="' + escapeHtml(item.cover_url) + '" alt="" loading="lazy" decoding="async">'
       : '<span class="init">' + item.character.charAt(0) + '</span>';
     rank.innerHTML =
-      '<div class="rank-num mono">' + (idx+1) + '</div>' +
       '<div class="rank-card-cover">' + coverInner + '</div>' +
-      '<div class="rank-card-body"><h5>' + escapeHtml(item.title) + '</h5><div class="character">' + item.character + '</div></div>';
+      '<div class="rank-num mono">' + (idx+1) + '</div>' +
+      '<div class="rank-card-body"><h5>' + escapeHtml(item.title) + '</h5></div>';
     rank.addEventListener('click', function(){ openTitleModal(item); });
     grid.appendChild(rank);
     attachCoverSignature(rank.querySelector('.rank-card-cover'), item);
@@ -3702,35 +3731,52 @@ function removeCollabBlock(idx){
 var editingItemId = null; // se valorizzato, handleAddEntry() salva una MODIFICA invece di una nuova voce
 
 /* Iniettato una sola volta: colonna dei sigilli nel form Admin (stesso
-   stile oro dei filtri dello Schedario, .genre-seal già esistente) più la
-   card laterale che mostra il banner del genere in trasparenza quando ci
-   passi sopra — non sovrappone la card hover al form, sta di fianco. */
+   stile oro dei filtri dello Schedario) più la card che compare accanto
+   alla riga su cui passi sopra, posizionata via JS (non con un semplice
+   "a destra della colonna": su una pagina larga finiva lontanissima dal
+   sigillo, in mezzo al vuoto — così segue sempre la riga giusta). Uso
+   classi mie invece di riusare .genre-seal/.genre-seal-label dello
+   Schedario: quelle hanno uno stile pensato per mini-schede verticali e
+   mandavano l'etichetta a capo sotto al cerchio anche qui. */
 function ensureGenreCheckStyle(){
   if(document.getElementById('genreCheckStyle')) return;
   var styleEl = document.createElement('style');
   styleEl.id = 'genreCheckStyle';
   styleEl.textContent =
-    '.genre-check-column{display:flex;flex-direction:column;gap:10px;position:relative;}' +
-    '.genre-check-seal{display:flex;align-items:center;gap:10px;cursor:pointer;padding:6px 8px;border-radius:8px;border:1px solid transparent;}' +
+    '.genre-check-column{display:flex;flex-direction:column;gap:8px;}' +
+    '.genre-check-seal{display:flex;align-items:center;gap:10px;cursor:pointer;padding:6px 10px;border-radius:8px;border:1px solid transparent;}' +
     '.genre-check-seal:hover{border-color:rgba(201,162,77,0.35);}' +
-    '.genre-check-seal.active{border-color:var(--gold,#c9a24d);background:rgba(201,162,77,0.08);}' +
+    '.genre-check-seal.active{border-color:#c9a24d;background:rgba(201,162,77,0.08);}' +
     '.genre-check-seal input{position:absolute;opacity:0;width:0;height:0;}' +
-    '.genre-check-preview{position:absolute;left:100%;top:0;margin-left:16px;width:220px;height:140px;border-radius:10px;overflow:hidden;' +
-    'border:1px solid rgba(201,162,77,0.4);background-size:cover;background-position:center;pointer-events:none;}' +
-    '.genre-check-preview::before{content:"";position:absolute;inset:0;background:rgba(11,6,7,0.45);}' +
-    '.genre-check-preview-label{position:relative;z-index:1;color:#f0e4cd;font-family:"Cinzel",serif;font-size:14px;' +
+    '.gcs-circle{flex:0 0 auto;width:30px;height:30px;border-radius:50%;border:1.5px solid #c9a24d;color:#c9a24d;' +
+    'display:flex;align-items:center;justify-content:center;font-family:"Cinzel",serif;font-size:12px;font-weight:600;}' +
+    '.gcs-label{flex:1 1 auto;color:#f0e4cd;font-family:"Crimson Pro",serif;font-size:14px;white-space:nowrap;}' +
+    '#genreCheckPreview{position:fixed;width:220px;height:140px;border-radius:10px;overflow:hidden;' +
+    'border:1px solid rgba(201,162,77,0.4);background-size:cover;background-position:center;background-color:#180f10;' +
+    'pointer-events:none;z-index:500;}' +
+    '#genreCheckPreview::before{content:"";position:absolute;inset:0;background:rgba(11,6,7,0.45);}' +
+    '#genreCheckPreview .genre-check-preview-label{position:relative;z-index:1;color:#f0e4cd;font-family:"Cinzel",serif;font-size:14px;' +
     'display:flex;align-items:center;justify-content:center;height:100%;text-align:center;padding:0 12px;}' +
-    '@media (max-width:640px){.genre-check-preview{position:static;margin:10px 0 0;width:100%;height:120px;}}'; // niente spazio per la card di fianco su schermi stretti: scende sotto ai sigilli invece di sparire
+    '@media (max-width:640px){#genreCheckPreview{position:static;width:100%;height:120px;margin-top:8px;}}'; // niente hover reale su touch, sotto invece che di fianco quando compare
   document.head.appendChild(styleEl);
 }
 
-function showGenreCheckPreview(g){
+function showGenreCheckPreview(g, anchorEl){
   var preview = document.getElementById('genreCheckPreview');
   if(!preview) return;
   var file = GENRE_BANNERS[g];
   preview.style.backgroundImage = file ? 'url(' + file + ')' : '';
   preview.querySelector('.genre-check-preview-label').textContent = g;
   preview.classList.remove('hidden');
+  // Sotto i 640px la preview è statica (sotto ai sigilli, via CSS) — non
+  // ha senso calcolarle una posizione: si sposterebbe fuori schermo.
+  if(anchorEl && window.innerWidth > 640){
+    var rect = anchorEl.getBoundingClientRect();
+    var left = rect.right + 16;
+    if(left + 220 > window.innerWidth) left = rect.left - 220 - 16; // non c'è spazio a destra: passa a sinistra della riga
+    preview.style.left = Math.max(8, left) + 'px';
+    preview.style.top = Math.max(8, rect.top) + 'px';
+  }
 }
 function hideGenreCheckPreview(){
   var preview = document.getElementById('genreCheckPreview');
@@ -3745,7 +3791,7 @@ function renderGenreChecks(){
 
   var preview = document.createElement('div');
   preview.id = 'genreCheckPreview';
-  preview.className = 'genre-check-preview hidden';
+  preview.className = 'hidden';
   preview.innerHTML = '<div class="genre-check-preview-label"></div>';
   block.appendChild(preview);
 
@@ -3753,13 +3799,13 @@ function renderGenreChecks(){
     var wrap = document.createElement('label');
     wrap.className = 'genre-check-seal';
     wrap.innerHTML = '<input type="checkbox" value="'+escapeHtml(g)+'">' +
-      '<span class="genre-seal">'+escapeHtml(genreMonogram(g))+'</span>' +
-      '<span class="genre-seal-label">'+escapeHtml(g)+'</span>';
+      '<span class="gcs-circle">'+escapeHtml(genreMonogram(g))+'</span>' +
+      '<span class="gcs-label">'+escapeHtml(g)+'</span>';
     var input = wrap.querySelector('input');
     input.addEventListener('change', function(){ wrap.classList.toggle('active', input.checked); });
-    wrap.addEventListener('mouseenter', function(){ showGenreCheckPreview(g); }); // desktop
+    wrap.addEventListener('mouseenter', function(){ showGenreCheckPreview(g, wrap); }); // desktop
     wrap.addEventListener('mouseleave', hideGenreCheckPreview);
-    wrap.addEventListener('click', function(){ showGenreCheckPreview(g); }); // touch: niente hover reale, il tap che seleziona mostra anche l'anteprima
+    wrap.addEventListener('click', function(){ showGenreCheckPreview(g, wrap); }); // touch: niente hover reale, il tap che seleziona mostra anche l'anteprima
     block.appendChild(wrap);
   });
 }
@@ -8873,6 +8919,24 @@ function refreshSupportSectionVisibility(){
   section.classList.toggle('hidden', isCollab);
 }
 
+function ensureSectionHeadingStyle(){
+  if(document.getElementById('sectionHeadingStyle')) return;
+  var styleEl = document.createElement('style');
+  styleEl.id = 'sectionHeadingStyle';
+  // Stesso gradiente animato del logo nell'header, applicato a tutti gli
+  // "eyebrow" di sezione (Il favore dei lettori, Appena pubblicato, ecc.)
+  // così i titoli non stonano più col resto ora che l'header si muove.
+  styleEl.textContent =
+    '@keyframes sectionHueShift{0%{background-position:0% 50%;}100%{background-position:200% 50%;}}' +
+    '.section-eyebrow{' +
+    'background:linear-gradient(90deg,#e07a5f,#c9a24d 33%,#5dcaa5 66%,#e07a5f);' +
+    'background-size:200% 100%;' +
+    '-webkit-background-clip:text;background-clip:text;' +
+    'color:#c9a24d;-webkit-text-fill-color:transparent;' +
+    'animation:sectionHueShift 7s linear infinite;}';
+  document.head.appendChild(styleEl);
+}
+
 function __appInit(){
   document.querySelectorAll('.seal-img[data-size="sm"]').forEach(function(img){ img.src = LOGO_SM; });
   document.querySelectorAll('.seal-img[data-size="lg"]').forEach(function(img){ img.src = LOGO_LG; });
@@ -8880,6 +8944,7 @@ function __appInit(){
   initMatureToggle();
   initTheme();
   applyI18n();
+  ensureSectionHeadingStyle();
   showEntryModeGate();
   renderDossiers();
   renderGenreChecks(); // se il form del catalogo è in questa pagina (Admin), popola i sigilli genere subito — non solo aprendo un titolo esistente in modifica
