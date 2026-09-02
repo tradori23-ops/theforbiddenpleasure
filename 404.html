@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LUX COMICS &amp; MEDUSA COMICS</title>
+<style>body{background:#0b0607;color:#c9a24d;font-family:'Crimson Pro',serif;display:flex;align-items:center;justify-content:center;height:100vh;margin:0;}</style>
+<script>
+  (function(){
+    // Link del tipo /t/{id}.html (condivisione titoli, letti dal QR e dal
+    // pulsante Condividi) — GitHub Pages non ha instradamento reale, quindi
+    // li smistiamo qui verso lo Schedario con il parametro che apre già il
+    // titolo giusto (checkDeepLinkOnLoad in app.js si occupa del resto).
+    var mTitle = location.pathname.match(/^\/t\/([a-zA-Z0-9_-]+)\.html$/);
+    if(mTitle){
+      location.replace('/schedario.html?title=' + encodeURIComponent(mTitle[1]) + '#library');
+      return;
+    }
+    // Percorso non riconosciuto: torna alla home dopo un istante, invece
+    // di lasciare le persone bloccate su una pagina di errore bianca.
+    setTimeout(function(){ location.replace('/'); }, 1200);
+  })();
+</script>
+</head>
+<body>
+  <p>Un istante, ti sto portando alla pagina giusta...</p>
+</body>
+</html>
