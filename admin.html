@@ -218,13 +218,14 @@
         <div class="modal-actions">
           <button class="btn btn-primary" id="btnAddEntry" data-i18n="admin.add">Aggiungi allo schedario</button>
           <button class="btn btn-ghost hidden" id="btnCancelEditTitle" data-i18n="myTitles.cancel">Annulla modifica</button>
-          <button class="btn btn-ghost" id="btnExport" data-i18n="admin.export">Esporta JSON</button>
-          <button class="btn btn-ghost" id="btnImport" data-i18n="admin.import">Importa JSON</button>
-          <input type="file" id="importFile" accept="application/json" class="hidden">
         </div>
         </div>
         </div>
+        <button class="btn btn-ghost" id="btnExport" data-i18n="admin.export">Esporta JSON</button>
+        <button class="btn btn-ghost" id="btnImport" data-i18n="admin.import">Importa JSON</button>
+        <input type="file" id="importFile" accept="application/json" class="hidden">
         <div class="admin-list" id="adminList"></div>
+
         <div class="admin-list hidden" id="myTitlesListWrap">
           <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin:16px 0 10px;" data-i18n="myTitles.heading">I tuoi titoli pubblicati</div>
           <div id="myTitlesList"></div>
