@@ -2460,7 +2460,12 @@ function downloadSignedPdf(item){
               headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
             });
         return pdfFetch.then(function(r){
-          if(!r.ok) throw new Error('Scaricamento del PDF originale fallito (codice ' + r.status + ', ' + (isFullUrl ? 'URL diretto' : 'bucket protetto') + ')');
+          if(!r.ok){
+            if(!isFullUrl && r.status === 400){
+              throw new Error('Il PDF pulito è riservato ai lettori verificati (badge blu). Continua pure a leggere online — se vuoi il download, chiedi la verifica.');
+            }
+            throw new Error('Scaricamento del PDF originale fallito (codice ' + r.status + ', ' + (isFullUrl ? 'URL diretto' : 'bucket protetto') + ')');
+          }
           return r.arrayBuffer();
         });
       }).then(function(pdfBytes){
