@@ -5050,13 +5050,24 @@ function deleteNotification(id){
   if(!session) return;
   var idx = notifCache.findIndex(function(x){ return x.id === id; });
   if(idx === -1) return;
+  var removed = notifCache[idx];
   notifCache.splice(idx, 1); // aggiorna subito la UI, non aspettare la risposta del server
   updateNotifBadgeFromCache();
   renderNotifPanel();
   fetch(SUPABASE_URL + '/rest/v1/notifications?id=eq.' + encodeURIComponent(id), {
     method:'DELETE',
     headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
-  }).catch(function(err){ console.warn('Eliminazione notifica fallita:', err); });
+  }).then(function(r){
+    if(!r.ok) throw new Error('delete failed: ' + r.status);
+  }).catch(function(err){
+    console.warn('Eliminazione notifica fallita, la rimetto in lista:', err);
+    // il server non ha confermato la cancellazione — se la lasciassimo
+    // sparita solo qui, tornerebbe al prossimo caricamento senza che se ne
+    // capisca il motivo. Meglio rimetterla subito, visibile.
+    notifCache.splice(idx, 0, removed);
+    updateNotifBadgeFromCache();
+    renderNotifPanel();
+  });
 }
 
 function deleteAllNotifications(){
