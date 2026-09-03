@@ -5110,6 +5110,14 @@ function openNotification(n){
     }
     return;
   }
+  if(n.type === 'announcement'){
+    if(document.getElementById('catalogGrid')){
+      document.getElementById('library').scrollIntoView({behavior:'smooth'});
+    } else {
+      window.location.href = 'schedario.html#library';
+    }
+    return;
+  }
   if(n.catalog_id){
     var items = getCatalog();
     var item = items.find(function(i){ return i.id === n.catalog_id; });
