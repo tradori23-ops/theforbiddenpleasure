@@ -35,6 +35,16 @@ Deno.serve(async (req: Request) => {
       ogDescription = (record.body || '').slice(0, 200);
       ogImage = record.image_url || `${SITE_URL}/og-image.jpg`;
       redirectUrl = `${SITE_URL}/?announcement=${encodeURIComponent(record.id)}`;
+    } else if (table === 'songs') {
+      filePath = `s/${safeId}.html`;
+      ogTitle = record.title || 'LUX COMICS & MEDUSA COMICS';
+      ogDescription = record.artist ? `Musica — ${record.artist}` : 'Musica da LUX COMICS & MEDUSA COMICS';
+      ogImage = record.cover_url || `${SITE_URL}/og-image.jpg`;
+      // riporta alla scheda del titolo a cui la canzone appartiene, dove il
+      // lettore musica è raggiungibile dal bottone "Ascolta musica"
+      redirectUrl = record.catalog_id
+        ? `${SITE_URL}/schedario.html?title=${encodeURIComponent(record.catalog_id)}#library`
+        : `${SITE_URL}/schedario.html#library`;
     } else {
       return new Response('Tabella ignorata', { status: 200 });
     }

@@ -116,7 +116,7 @@ var STR = {
     "charimg.title":"Immagini profilo personaggi",
     "social.title":"Link social (visibili nel footer)","social.save":"Salva link social",
     "comments.moderationTitle":"Commenti in attesa di approvazione",
-    "comments.title":"Commenti","comments.submit":"Invia commento",
+    "comments.title":"Commenti","comments.submit":"Invia commento","comments.placeholder":"Scrivi un commento...",
     "comments.loginToComment":"Accedi per lasciare un commento.",
     "comments.empty":"Nessun commento ancora.","comments.pending":"in attesa","comments.noPending":"Nessun commento in attesa.",
     "comments.submittedPending":"Inviato — in attesa di approvazione.","comments.submittedPublished":"Pubblicato.","comments.reply":"Rispondi",
@@ -240,7 +240,7 @@ var STR = {
     "charimg.title":"Character profile images",
     "social.title":"Social links (shown in the footer)","social.save":"Save social links",
     "comments.moderationTitle":"Comments pending approval",
-    "comments.title":"Comments","comments.submit":"Submit comment",
+    "comments.title":"Comments","comments.submit":"Submit comment","comments.placeholder":"Write a comment...",
     "comments.loginToComment":"Sign in to leave a comment.",
     "comments.empty":"No comments yet.","comments.pending":"pending","comments.noPending":"No pending comments.",
     "comments.submittedPending":"Submitted — pending approval.","comments.submittedPublished":"Published.","comments.reply":"Reply",
@@ -364,7 +364,7 @@ var STR = {
     "charimg.title":"Imágenes de perfil de los personajes",
     "social.title":"Enlaces sociales (visibles en el pie de página)","social.save":"Guardar enlaces sociales",
     "comments.moderationTitle":"Comentarios pendientes de aprobación",
-    "comments.title":"Comentarios","comments.submit":"Enviar comentario",
+    "comments.title":"Comentarios","comments.submit":"Enviar comentario","comments.placeholder":"Escribe un comentario...",
     "comments.loginToComment":"Accede para dejar un comentario.",
     "comments.empty":"Aún no hay comentarios.","comments.pending":"pendiente","comments.noPending":"No hay comentarios pendientes.",
     "comments.submittedPending":"Enviado — pendiente de aprobación.","comments.submittedPublished":"Publicado.","comments.reply":"Responder",
@@ -488,7 +488,7 @@ var STR = {
     "charimg.title":"Images de profil des personnages",
     "social.title":"Liens sociaux (affichés en pied de page)","social.save":"Enregistrer les liens sociaux",
     "comments.moderationTitle":"Commentaires en attente d'approbation",
-    "comments.title":"Commentaires","comments.submit":"Envoyer le commentaire",
+    "comments.title":"Commentaires","comments.submit":"Envoyer le commentaire","comments.placeholder":"Écrivez un commentaire...",
     "comments.loginToComment":"Connectez-vous pour laisser un commentaire.",
     "comments.empty":"Pas encore de commentaires.","comments.pending":"en attente","comments.noPending":"Aucun commentaire en attente.",
     "comments.submittedPending":"Envoyé — en attente d'approbation.","comments.submittedPublished":"Publié.","comments.reply":"Répondre",
@@ -612,7 +612,7 @@ var STR = {
     "charimg.title":"Profilbilder der Charaktere",
     "social.title":"Social-Links (im Footer angezeigt)","social.save":"Social-Links speichern",
     "comments.moderationTitle":"Kommentare zur Freigabe",
-    "comments.title":"Kommentare","comments.submit":"Kommentar senden",
+    "comments.title":"Kommentare","comments.submit":"Kommentar senden","comments.placeholder":"Kommentar schreiben...",
     "comments.loginToComment":"Melden Sie sich an, um einen Kommentar zu hinterlassen.",
     "comments.empty":"Noch keine Kommentare.","comments.pending":"ausstehend","comments.noPending":"Keine ausstehenden Kommentare.",
     "comments.submittedPending":"Gesendet — wartet auf Freigabe.","comments.submittedPublished":"Veröffentlicht.","comments.reply":"Antworten",
@@ -8072,7 +8072,11 @@ function ensureMusicPlayerStyle(){
     '.music-player-track{display:flex;align-items:center;gap:10px;padding:8px 6px;border-radius:8px;cursor:pointer;font-size:13px;color:#e0d4b8;}' +
     '.music-player-track:hover{background:rgba(201,162,77,0.08);}' +
     '.music-player-track.active{color:#c9a24d;font-weight:600;}' +
-    '.music-player-track img{width:34px;height:34px;border-radius:4px;object-fit:cover;flex-shrink:0;background:#150d0e;}';
+    '.music-player-track img{width:34px;height:34px;border-radius:4px;object-fit:cover;flex-shrink:0;background:#150d0e;}' +
+    '.music-player-video{max-height:280px;border-radius:8px;background:#000;}' +
+    '.music-player-actions{display:flex;gap:8px;margin-bottom:16px;}' +
+    '.music-player-comments{border-top:1px solid rgba(201,162,77,0.2);padding-top:14px;margin-top:4px;}' +
+    '.music-player-comments textarea{width:100%;min-height:56px;background:#0b0607;border:1px solid rgba(201,162,77,0.3);border-radius:8px;color:#e0d4b8;padding:8px;font-family:inherit;font-size:13px;}';
   document.head.appendChild(styleEl);
 }
 
@@ -8088,28 +8092,62 @@ function openMusicPlayer(songs, contextLabel){
       '<img class="music-player-cover" id="musicPlayerCover" src="" alt="">' +
       '<h3 class="music-player-title" id="musicPlayerTitle"></h3>' +
       '<div class="music-player-artist" id="musicPlayerArtist"></div>' +
-      '<audio class="music-player-audio" id="musicPlayerAudio" controls></audio>' +
+      '<div id="musicPlayerMediaWrap"></div>' +
+      '<div class="music-player-actions" id="musicPlayerActions">' +
+        '<button type="button" class="btn btn-sm btn-ghost" id="musicPlayerLikeBtn">🤍 …</button>' +
+        '<button type="button" class="btn btn-sm btn-ghost" id="musicPlayerShareBtn">' + t('share.button') + '</button>' +
+      '</div>' +
       '<div class="music-player-lyrics hidden" id="musicPlayerLyrics"></div>' +
       '<div class="music-player-tracklist hidden" id="musicPlayerTracklist"></div>' +
+      '<div class="music-player-comments" id="musicPlayerComments">' +
+        '<div id="songCommentsList"></div>' +
+        (isSignedIn() ?
+          '<textarea id="fSongCommentBody" placeholder="' + t('comments.placeholder') + '" style="margin-top:8px;"></textarea>' +
+          '<button type="button" class="btn btn-sm btn-ghost" id="btnSubmitSongComment" style="margin-top:6px;">' + t('comments.submit') + '</button>' +
+          '<div class="form-note" id="songCommentError"></div>'
+          : '') +
+      '</div>' +
     '</div>';
   document.body.appendChild(overlay);
   document.getElementById('musicPlayerClose').addEventListener('click', closeMusicPlayer);
   overlay.addEventListener('click', function(e){ if(e.target === overlay) closeMusicPlayer(); });
 
+  var currentSong = null;
+
   function playTrack(idx){
     var song = songs[idx];
+    currentSong = song;
     document.getElementById('musicPlayerCover').src = song.cover_url || '';
     document.getElementById('musicPlayerTitle').textContent = song.title;
     document.getElementById('musicPlayerArtist').textContent = (song.artist ? song.artist + ' · ' : '') + contextLabel;
-    var audioEl = document.getElementById('musicPlayerAudio');
-    audioEl.src = song.audio_url;
-    audioEl.play().catch(function(){}); // l'autoplay può essere bloccato dal browser, non è un errore da segnalare
+
+    var mediaWrap = document.getElementById('musicPlayerMediaWrap');
+    var isVideo = song.media_type === 'video';
+    mediaWrap.innerHTML = isVideo
+      ? '<video class="music-player-audio music-player-video" id="musicPlayerMedia" controls playsinline></video>'
+      : '<audio class="music-player-audio" id="musicPlayerMedia" controls></audio>';
+    var mediaEl = document.getElementById('musicPlayerMedia');
+    mediaEl.src = song.audio_url;
+    mediaEl.play().catch(function(){}); // l'autoplay può essere bloccato dal browser, non è un errore da segnalare
+
     var lyricsEl = document.getElementById('musicPlayerLyrics');
     if(song.lyrics){ lyricsEl.textContent = song.lyrics; lyricsEl.classList.remove('hidden'); }
     else { lyricsEl.classList.add('hidden'); }
     Array.prototype.forEach.call(overlay.querySelectorAll('.music-player-track'), function(el, i){
       el.classList.toggle('active', i === idx);
     });
+
+    if(song.id){
+      renderSongLikeButton(song, document.getElementById('musicPlayerLikeBtn'));
+      loadSongComments(song.id, document.getElementById('songCommentsList'));
+      var submitBtn = document.getElementById('btnSubmitSongComment');
+      if(submitBtn){
+        submitBtn.onclick = function(){
+          submitSongComment(song.id, document.getElementById('fSongCommentBody'), document.getElementById('songCommentsList'), document.getElementById('songCommentError'));
+        };
+      }
+    }
+    document.getElementById('musicPlayerShareBtn').onclick = function(){ shareSong(song, contextLabel); };
   }
 
   if(songs.length > 1){
@@ -8127,6 +8165,138 @@ function openMusicPlayer(songs, contextLabel){
   playTrack(0);
 }
 
+/* ---- Like su una canzone (stesso pattern like/unlike, ma su song_likes) ---- */
+function renderSongLikeButton(song, btn){
+  if(!btn) return;
+  btn.textContent = '🤍 …';
+  fetch(SUPABASE_URL + '/rest/v1/song_likes?song_id=eq.' + encodeURIComponent(song.id) + '&select=user_id', {
+    headers:{ 'apikey':SUPABASE_ANON_KEY }
+  }).then(function(r){ return r.ok ? r.json() : []; }).catch(function(){ return []; }).then(function(rows){
+    var uid = currentUserId();
+    var likedByMe = !!(uid && rows.some(function(r){ return r.user_id === uid; }));
+    function paint(){ btn.textContent = (likedByMe ? '❤️ ' : '🤍 ') + rows.length; }
+    paint();
+    btn.onclick = function(){
+      if(!isSignedIn()){ openAuth('login'); return; }
+      var session = getSession();
+      var myUid = currentUserId();
+      if(likedByMe){
+        fetch(SUPABASE_URL + '/rest/v1/song_likes?song_id=eq.' + encodeURIComponent(song.id) + '&user_id=eq.' + encodeURIComponent(myUid), {
+          method:'DELETE', headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
+        }).then(function(r){
+          if(!r.ok) return;
+          likedByMe = false;
+          rows = rows.filter(function(r2){ return r2.user_id !== myUid; });
+          paint();
+        });
+      } else {
+        fetch(SUPABASE_URL + '/rest/v1/song_likes', {
+          method:'POST',
+          headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
+          body: JSON.stringify({ song_id: song.id, user_id: myUid })
+        }).then(function(r){
+          if(!r.ok) return;
+          likedByMe = true;
+          rows.push({ user_id: myUid });
+          paint();
+        });
+      }
+    };
+  });
+}
+
+/* ---- Commenti su una canzone (stesso schema/tabella dei commenti sui titoli, con song_id) ---- */
+function loadSongComments(songId, listEl){
+  if(!listEl) return;
+  listEl.innerHTML = '<p class="form-note">…</p>';
+  var headers = { 'apikey':SUPABASE_ANON_KEY };
+  var session = getSession();
+  headers['Authorization'] = 'Bearer ' + (session ? session.access_token : SUPABASE_ANON_KEY);
+  fetch(SUPABASE_URL + '/rest/v1/comments?song_id=eq.' + encodeURIComponent(songId) + '&select=*&order=created_at.desc', { headers: headers })
+    .then(function(r){ if(!r.ok) throw new Error('song comments read failed'); return r.json(); })
+    .then(function(rows){
+      listEl.innerHTML = '';
+      if(rows.length === 0){ listEl.innerHTML = '<p class="form-note">' + t('comments.empty') + '</p>'; return; }
+      rows.forEach(function(c){
+        var div = document.createElement('div');
+        div.className = 'comment-item';
+        var pendingTag = !c.approved ? '<span class="pending-tag">' + t('comments.pending') + '</span>' : '';
+        div.innerHTML = '<span class="author">' + escapeHtml(c.author_name) + '</span>' + pendingTag +
+          '<div class="body">' + renderBodyHtml(c.body) + '</div>';
+        listEl.appendChild(div);
+      });
+    })
+    .catch(function(err){ listEl.innerHTML = ''; console.warn('Song comments load failed:', err); });
+}
+
+function submitSongComment(songId, inputEl, listEl, errEl){
+  var body = inputEl.value.trim();
+  errEl.textContent = '';
+  if(!body){ errEl.textContent = t('err.required'); return; }
+  if(!isSignedIn()){ openAuth('login'); return; }
+  var session = getSession();
+  var autoApproved = isAdmin();
+
+  var nameStep = currentProfile !== null
+    ? Promise.resolve(currentProfile)
+    : loadOwnProfile().then(function(){ return currentProfile; });
+
+  nameStep.then(function(profile){
+    var authorName = publicDisplayName(profile);
+    return fetch(SUPABASE_URL + '/rest/v1/comments', {
+      method:'POST',
+      headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json', 'Prefer':'return=representation' },
+      body: JSON.stringify({ song_id: songId, user_id: currentUserId(), author_name: authorName, body: body, approved: autoApproved })
+    });
+  }).then(function(r){
+    if(!r.ok) throw new Error('song comment insert failed');
+    inputEl.value = '';
+    errEl.textContent = autoApproved ? t('comments.submittedPublished') : t('comments.submittedPending');
+    loadSongComments(songId, listEl);
+  }).catch(function(e){
+    errEl.textContent = t('err.required');
+    console.warn('Song comment submit failed:', e);
+  });
+}
+
+/* ---- Condivisione di una canzone (stesso pattern di shareTitle, punta a /s/{id}.html) ---- */
+function shareSong(song, contextLabel){
+  if(!song.id) return; // canzone senza id salvato non ha una pagina di anteprima da condividere
+  var shareText = song.title + (contextLabel ? ' — ' + contextLabel : '') + '\n';
+  var shareUrl = previewPagePath('s', song.id);
+
+  function shareWithoutImage(){
+    if(navigator.share){
+      navigator.share({ title: song.title, text: shareText, url: shareUrl }).catch(function(){});
+    } else {
+      var full = shareText + '\n' + shareUrl;
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(full).then(function(){
+          alert(t('share.copied'));
+        }).catch(function(){
+          alert(t('share.manual') + '\n\n' + full);
+        });
+      } else {
+        alert(t('share.manual') + '\n\n' + full);
+      }
+    }
+  }
+
+  if(song.cover_url && navigator.share && navigator.canShare){
+    fetchAsBlob(song.cover_url).then(function(blob){
+      var ext = (blob.type && blob.type.split('/')[1]) || 'jpg';
+      var file = new File([blob], 'copertina.' + ext, { type: blob.type || 'image/jpeg' });
+      if(navigator.canShare({ files: [file] })){
+        navigator.share({ title: song.title, text: shareText, url: shareUrl, files: [file] }).catch(function(){});
+      } else {
+        shareWithoutImage();
+      }
+    }).catch(function(){ shareWithoutImage(); });
+  } else {
+    shareWithoutImage();
+  }
+}
+
 function closeMusicPlayer(){
   var overlay = document.getElementById('musicPlayerOverlay');
   if(overlay) overlay.remove();
@@ -8141,7 +8311,7 @@ function openAllMusicBrowser(){
       return;
     }
     var songs = rows.map(function(row){
-      return { title: row.title, artist: (row.catalog && row.catalog.title) || row.artist, cover_url: row.cover_url, audio_url: row.audio_url, lyrics: row.lyrics };
+      return { id: row.id, title: row.title, artist: (row.catalog && row.catalog.title) || row.artist, cover_url: row.cover_url, audio_url: row.audio_url, lyrics: row.lyrics, media_type: row.media_type };
     });
     openMusicPlayer(songs, t('songs.allMusic'));
   });
@@ -8244,7 +8414,8 @@ function addSong(){
       headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
       body: JSON.stringify({
         catalog_id: catalogId, title: titleEl.value.trim(), artist: artistEl.value.trim() || null,
-        audio_url: urls[0], cover_url: urls[1], lyrics: lyricsEl.value.trim() || null
+        audio_url: urls[0], cover_url: urls[1], lyrics: lyricsEl.value.trim() || null,
+        media_type: (audioFile.type && audioFile.type.indexOf('video') === 0) ? 'video' : 'audio'
       })
     });
   }).then(function(r){
