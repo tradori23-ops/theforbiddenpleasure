@@ -8323,6 +8323,7 @@ function openMusicPlayer(songs, contextLabel, options){
         '<h3 class="music-player-title" id="musicPlayerTitle"></h3>' +
         '<div class="music-player-artist" id="musicPlayerArtist"></div>' +
         '<div class="music-player-collab hidden" id="musicPlayerCollab"></div>' +
+        '<button type="button" class="btn btn-sm btn-ghost hidden" id="musicPlayerLyricsToggle" style="margin-bottom:14px;">📝 Testo</button>' +
         '<div class="music-player-lyrics hidden" id="musicPlayerLyrics"></div>' +
       '</div>' +
       '<div class="music-player-side">' +
@@ -8401,8 +8402,15 @@ function openMusicPlayer(songs, contextLabel, options){
     }
 
     var lyricsEl = document.getElementById('musicPlayerLyrics');
-    if(song.lyrics){ lyricsEl.textContent = song.lyrics; lyricsEl.classList.remove('hidden'); }
-    else { lyricsEl.classList.add('hidden'); }
+    var lyricsToggle = document.getElementById('musicPlayerLyricsToggle');
+    lyricsEl.classList.add('hidden'); // resta nascosto di default a ogni cambio traccia: la copertina occupa tutto lo spazio
+    if(song.lyrics){
+      lyricsEl.textContent = song.lyrics;
+      lyricsToggle.classList.remove('hidden');
+      lyricsToggle.onclick = function(){ lyricsEl.classList.toggle('hidden'); };
+    } else {
+      lyricsToggle.classList.add('hidden');
+    }
     Array.prototype.forEach.call(overlay.querySelectorAll('.music-player-track'), function(el, i){
       el.classList.toggle('active', i === idx);
     });
