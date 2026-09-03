@@ -8055,29 +8055,44 @@ function insertMusicButton(item){
 }
 
 function ensureMusicPlayerStyle(){
-  if(document.getElementById('musicPlayerStyle')) return;
+  var existing = document.getElementById('musicPlayerStyle');
+  if(existing) existing.remove(); // rimosso ad ogni apertura: permette di aggiornare lo stile senza dover ricaricare la pagina durante lo sviluppo
   var styleEl = document.createElement('style');
   styleEl.id = 'musicPlayerStyle';
   styleEl.textContent =
-    '.music-player-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:300;display:flex;align-items:center;justify-content:center;padding:20px;}' +
+    /* overlay a SCHERMO INTERO, non più un popup centrato */
+    '.music-player-overlay{position:fixed;inset:0;background:#0b0607;z-index:300;display:flex;flex-direction:column;overflow:hidden;}' +
     '.music-player-overlay.hidden{display:none;}' +
-    '.music-player-box{background:linear-gradient(180deg,#1a1113,#0b0607);border:1px solid rgba(201,162,77,0.3);border-radius:16px;max-width:420px;width:100%;max-height:88vh;overflow-y:auto;padding:24px;position:relative;box-shadow:0 20px 60px rgba(0,0,0,0.6);}' +
-    '.music-player-close{position:absolute;top:14px;right:14px;background:transparent;border:1px solid rgba(201,162,77,0.4);color:#c9a24d;border-radius:50%;width:30px;height:30px;cursor:pointer;}' +
-    '.music-player-cover{width:100%;aspect-ratio:1/1;border-radius:12px;object-fit:cover;box-shadow:0 8px 24px rgba(0,0,0,0.5);margin-bottom:18px;background:#150d0e;}' +
-    '.music-player-title{font-family:"Cinzel Decorative",serif;color:#f0e4cd;font-size:19px;margin:0 0 4px;text-align:center;}' +
-    '.music-player-artist{color:#c9a24d;font-size:13px;text-align:center;margin:0 0 18px;font-family:"Space Mono",monospace;letter-spacing:0.04em;}' +
-    '.music-player-audio{width:100%;margin-bottom:18px;}' +
-    '.music-player-lyrics{color:#c8bda3;font-family:"Crimson Pro",serif;font-size:14px;line-height:1.7;white-space:pre-wrap;max-height:220px;overflow-y:auto;border-top:1px solid rgba(201,162,77,0.2);padding-top:14px;margin-bottom:16px;}' +
-    '.music-player-tracklist{border-top:1px solid rgba(201,162,77,0.2);padding-top:12px;}' +
+    '.music-player-topbar{display:flex;align-items:center;gap:14px;padding:14px 20px;border-bottom:1px solid rgba(201,162,77,0.2);flex-shrink:0;}' +
+    '.music-player-close{background:transparent;border:1px solid rgba(201,162,77,0.4);color:#c9a24d;border-radius:50%;width:34px;height:34px;cursor:pointer;flex-shrink:0;font-size:16px;}' +
+    '.music-player-context{color:#c9a24d;font-family:"Space Mono",monospace;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;}' +
+    '.music-player-body{flex:1;display:flex;flex-direction:column;overflow-y:auto;min-height:0;}' +
+    '.music-player-main{flex:1;display:flex;flex-direction:column;align-items:center;text-align:center;padding:28px 20px;overflow-y:auto;}' +
+    '.music-player-cover{width:100%;max-width:320px;aspect-ratio:1/1;border-radius:12px;object-fit:cover;box-shadow:0 12px 40px rgba(0,0,0,0.6);margin-bottom:20px;background:#150d0e;}' +
+    '.music-player-title{font-family:"Cinzel Decorative",serif;color:#f0e4cd;font-size:24px;margin:0 0 6px;}' +
+    '.music-player-artist{color:#c9a24d;font-size:13px;margin:0 0 20px;font-family:"Space Mono",monospace;letter-spacing:0.04em;}' +
+    '.music-player-lyrics{color:#c8bda3;font-family:"Crimson Pro",serif;font-size:15px;line-height:1.8;white-space:pre-wrap;max-width:520px;border-top:1px solid rgba(201,162,77,0.2);padding-top:16px;margin-top:6px;}' +
+    '.music-player-side{flex-shrink:0;border-top:1px solid rgba(201,162,77,0.2);padding:20px;overflow-y:auto;}' +
+    '.music-player-tracklist{margin-bottom:22px;}' +
     '.music-player-track{display:flex;align-items:center;gap:10px;padding:8px 6px;border-radius:8px;cursor:pointer;font-size:13px;color:#e0d4b8;}' +
     '.music-player-track:hover{background:rgba(201,162,77,0.08);}' +
     '.music-player-track.active{color:#c9a24d;font-weight:600;}' +
-    '.music-player-track img{width:34px;height:34px;border-radius:4px;object-fit:cover;flex-shrink:0;background:#150d0e;}' +
-    '.music-player-video{max-height:280px;border-radius:8px;background:#000;}' +
-    '.music-player-actions{display:flex;gap:8px;margin-bottom:16px;}' +
-    '.music-player-comments{border-top:1px solid rgba(201,162,77,0.2);padding-top:14px;margin-top:4px;}' +
-    '.music-player-comments textarea{width:100%;min-height:56px;background:#0b0607;border:1px solid rgba(201,162,77,0.3);border-radius:8px;color:#e0d4b8;padding:8px;font-family:inherit;font-size:13px;}';
+    '.music-player-track img{width:40px;height:40px;border-radius:4px;object-fit:cover;flex-shrink:0;background:#150d0e;}' +
+    '.music-player-comments{border-top:1px solid rgba(201,162,77,0.2);padding-top:16px;}' +
+    '.music-player-comments textarea{width:100%;min-height:56px;background:#0b0607;border:1px solid rgba(201,162,77,0.3);border-radius:8px;color:#e0d4b8;padding:8px;font-family:inherit;font-size:13px;}' +
+    '.music-player-bottombar{flex-shrink:0;border-top:1px solid rgba(201,162,77,0.25);background:linear-gradient(180deg,#150d0e,#0b0607);padding:14px 20px;}' +
+    '.music-player-audio{width:100%;margin-bottom:12px;}' +
+    '.music-player-video{max-height:220px;border-radius:8px;background:#000;display:block;margin:0 auto 12px;}' +
+    '.music-player-actions{display:flex;gap:8px;justify-content:center;}' +
+    /* desktop: cover a sinistra, tracklist+commenti in colonna fissa a destra, come Spotify */
+    '@media (min-width:860px){' +
+      '.music-player-body{flex-direction:row;}' +
+      '.music-player-main{padding:40px;}' +
+      '.music-player-cover{max-width:380px;}' +
+      '.music-player-side{border-top:none;border-left:1px solid rgba(201,162,77,0.2);width:380px;padding:24px;}' +
+    '}';
   document.head.appendChild(styleEl);
+
 }
 
 function openMusicPlayer(songs, contextLabel){
@@ -8087,25 +8102,34 @@ function openMusicPlayer(songs, contextLabel){
   overlay.className = 'music-player-overlay';
   overlay.id = 'musicPlayerOverlay';
   overlay.innerHTML =
-    '<div class="music-player-box">' +
+    '<div class="music-player-topbar">' +
       '<button type="button" class="music-player-close" id="musicPlayerClose">✕</button>' +
-      '<img class="music-player-cover" id="musicPlayerCover" src="" alt="">' +
-      '<h3 class="music-player-title" id="musicPlayerTitle"></h3>' +
-      '<div class="music-player-artist" id="musicPlayerArtist"></div>' +
+      '<span class="music-player-context">' + escapeHtml(contextLabel || '') + '</span>' +
+    '</div>' +
+    '<div class="music-player-body">' +
+      '<div class="music-player-main">' +
+        '<img class="music-player-cover" id="musicPlayerCover" src="" alt="">' +
+        '<h3 class="music-player-title" id="musicPlayerTitle"></h3>' +
+        '<div class="music-player-artist" id="musicPlayerArtist"></div>' +
+        '<div class="music-player-lyrics hidden" id="musicPlayerLyrics"></div>' +
+      '</div>' +
+      '<div class="music-player-side">' +
+        '<div class="music-player-tracklist hidden" id="musicPlayerTracklist"></div>' +
+        '<div class="music-player-comments" id="musicPlayerComments">' +
+          '<div id="songCommentsList"></div>' +
+          (isSignedIn() ?
+            '<textarea id="fSongCommentBody" placeholder="' + t('comments.placeholder') + '" style="margin-top:8px;"></textarea>' +
+            '<button type="button" class="btn btn-sm btn-ghost" id="btnSubmitSongComment" style="margin-top:6px;">' + t('comments.submit') + '</button>' +
+            '<div class="form-note" id="songCommentError"></div>'
+            : '') +
+        '</div>' +
+      '</div>' +
+    '</div>' +
+    '<div class="music-player-bottombar">' +
       '<div id="musicPlayerMediaWrap"></div>' +
       '<div class="music-player-actions" id="musicPlayerActions">' +
         '<button type="button" class="btn btn-sm btn-ghost" id="musicPlayerLikeBtn">🤍 …</button>' +
         '<button type="button" class="btn btn-sm btn-ghost" id="musicPlayerShareBtn">' + t('share.button') + '</button>' +
-      '</div>' +
-      '<div class="music-player-lyrics hidden" id="musicPlayerLyrics"></div>' +
-      '<div class="music-player-tracklist hidden" id="musicPlayerTracklist"></div>' +
-      '<div class="music-player-comments" id="musicPlayerComments">' +
-        '<div id="songCommentsList"></div>' +
-        (isSignedIn() ?
-          '<textarea id="fSongCommentBody" placeholder="' + t('comments.placeholder') + '" style="margin-top:8px;"></textarea>' +
-          '<button type="button" class="btn btn-sm btn-ghost" id="btnSubmitSongComment" style="margin-top:6px;">' + t('comments.submit') + '</button>' +
-          '<div class="form-note" id="songCommentError"></div>'
-          : '') +
       '</div>' +
     '</div>';
   document.body.appendChild(overlay);
