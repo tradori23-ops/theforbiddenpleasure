@@ -8054,6 +8054,202 @@ function insertMusicButton(item){
   });
 }
 
+function fetchPlaylists(){
+  return fetch(SUPABASE_URL + '/rest/v1/playlists?select=*&order=created_at.desc', {
+    headers:{ 'apikey':SUPABASE_ANON_KEY }
+  }).then(function(r){ return r.ok ? r.json() : []; }).catch(function(){ return []; });
+}
+function fetchPlaylistSongs(playlistId){
+  return fetch(SUPABASE_URL + '/rest/v1/playlist_songs?playlist_id=eq.' + encodeURIComponent(playlistId) + '&select=position,songs(*)&order=position.asc', {
+    headers:{ 'apikey':SUPABASE_ANON_KEY }
+  }).then(function(r){ return r.ok ? r.json() : []; }).catch(function(){ return []; })
+    .then(function(rows){ return rows.map(function(r){ return r.songs; }).filter(Boolean); });
+}
+function fetchPodcasts(){
+  return fetch(SUPABASE_URL + '/rest/v1/podcasts?select=*&order=created_at.desc', {
+    headers:{ 'apikey':SUPABASE_ANON_KEY }
+  }).then(function(r){ return r.ok ? r.json() : []; }).catch(function(){ return []; });
+}
+function fetchPodcastEpisodes(podcastId){
+  return fetch(SUPABASE_URL + '/rest/v1/podcast_episodes?podcast_id=eq.' + encodeURIComponent(podcastId) + '&select=*&order=position.asc,created_at.asc', {
+    headers:{ 'apikey':SUPABASE_ANON_KEY }
+  }).then(function(r){ return r.ok ? r.json() : []; }).catch(function(){ return []; });
+}
+function fetchAllSongsWithAlbum(){
+  return fetch(SUPABASE_URL + '/rest/v1/songs?select=*,catalog(title,cover_url)&order=created_at.desc', {
+    headers:{ 'apikey':SUPABASE_ANON_KEY }
+  }).then(function(r){ return r.ok ? r.json() : []; }).catch(function(){ return []; });
+}
+
+/* ============ LIBRERIA MUSICALE (pagina "Musica" del menu, stile Spotify:
+   sidebar Album/Playlist/Podcast/Artisti + griglia) ============ */
+function ensureMusicLibraryStyle(){
+  if(document.getElementById('musicLibraryStyle')) return;
+  var styleEl = document.createElement('style');
+  styleEl.id = 'musicLibraryStyle';
+  styleEl.textContent =
+    '.music-library-overlay{position:fixed;inset:0;background:#0b0607;z-index:299;display:flex;flex-direction:column;overflow:hidden;}' +
+    '.music-library-body{flex:1;display:flex;flex-direction:column;overflow:hidden;min-height:0;}' +
+    '.music-library-sidebar{flex-shrink:0;display:flex;gap:6px;padding:12px 20px;border-bottom:1px solid rgba(201,162,77,0.2);overflow-x:auto;}' +
+    '.music-library-navbtn{background:transparent;border:1px solid rgba(201,162,77,0.3);color:#c9a24d;border-radius:20px;padding:7px 16px;font-size:13px;white-space:nowrap;cursor:pointer;}' +
+    '.music-library-navbtn.active{background:#6e1423;color:#f0e4cd;border-color:#6e1423;}' +
+    '.music-library-grid{flex:1;overflow-y:auto;padding:20px;display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:16px;align-content:start;}' +
+    '.music-library-card{cursor:pointer;background:rgba(201,162,77,0.05);border-radius:10px;padding:10px;transition:background 0.15s;}' +
+    '.music-library-card:hover{background:rgba(201,162,77,0.14);}' +
+    '.music-library-card img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:8px;background:#150d0e;margin-bottom:8px;}' +
+    '.music-library-card-title{color:#f0e4cd;font-size:13px;font-weight:600;margin-bottom:2px;}' +
+    '.music-library-card-sub{color:#8a7a5e;font-size:11px;}' +
+    '@media (min-width:860px){.music-library-grid{grid-template-columns:repeat(auto-fill,minmax(200px,1fr));}}';
+  document.head.appendChild(styleEl);
+}
+
+function closeMusicLibrary(){
+  var overlay = document.getElementById('musicLibraryOverlay');
+  if(overlay) overlay.remove();
+}
+
+function openMusicLibrary(){
+  ensureMusicLibraryStyle();
+  closeMusicLibrary();
+  closeMusicPlayer();
+  var overlay = document.createElement('div');
+  overlay.className = 'music-library-overlay';
+  overlay.id = 'musicLibraryOverlay';
+  overlay.innerHTML =
+    '<div class="music-player-topbar">' +
+      '<button type="button" class="music-player-close" id="musicLibraryClose">✕</button>' +
+      '<span class="music-player-context">' + t('songs.allMusic') + '</span>' +
+    '</div>' +
+    '<div class="music-library-body">' +
+      '<div class="music-library-sidebar">' +
+        '<button type="button" class="music-library-navbtn active" data-lib-tab="albums">💿 Album</button>' +
+        '<button type="button" class="music-library-navbtn" data-lib-tab="playlists">📁 Playlist</button>' +
+        '<button type="button" class="music-library-navbtn" data-lib-tab="podcasts">🎙 Podcast</button>' +
+        '<button type="button" class="music-library-navbtn" data-lib-tab="artists">🎤 Artisti</button>' +
+      '</div>' +
+      '<div class="music-library-grid" id="musicLibraryGrid"><p class="form-note">…</p></div>' +
+    '</div>';
+  document.body.appendChild(overlay);
+  document.getElementById('musicLibraryClose').addEventListener('click', closeMusicLibrary);
+  Array.prototype.forEach.call(overlay.querySelectorAll('.music-library-navbtn'), function(btn){
+    btn.addEventListener('click', function(){
+      Array.prototype.forEach.call(overlay.querySelectorAll('.music-library-navbtn'), function(b){ b.classList.toggle('active', b === btn); });
+      renderMusicLibraryTab(btn.dataset.libTab);
+    });
+  });
+  renderMusicLibraryTab('albums');
+}
+
+function renderMusicLibraryTab(tab){
+  var grid = document.getElementById('musicLibraryGrid');
+  if(!grid) return;
+  grid.innerHTML = '<p class="form-note">…</p>';
+
+  if(tab === 'albums'){
+    fetchAllSongsWithAlbum().then(function(rows){
+      var albums = {}, order = [];
+      rows.forEach(function(row){
+        var key = row.catalog_id || ('_' + row.id);
+        if(!albums[key]){
+          albums[key] = { catalog_id: row.catalog_id, title: (row.catalog && row.catalog.title) || row.title, cover_url: (row.catalog && row.catalog.cover_url) || row.cover_url, count: 0 };
+          order.push(key);
+        }
+        albums[key].count++;
+      });
+      var list = order.map(function(k){ return albums[k]; });
+      if(list.length === 0){ grid.innerHTML = '<p class="form-note">' + t('songs.noneYet') + '</p>'; return; }
+      grid.innerHTML = list.map(function(a, i){
+        return '<div class="music-library-card" data-album-idx="' + i + '">' +
+          '<img src="' + escapeHtml(a.cover_url || '') + '" alt="">' +
+          '<div class="music-library-card-title">' + escapeHtml(a.title) + '</div>' +
+          '<div class="music-library-card-sub">' + a.count + (a.count === 1 ? ' brano' : ' brani') + '</div>' +
+        '</div>';
+      }).join('');
+      Array.prototype.forEach.call(grid.querySelectorAll('[data-album-idx]'), function(el){
+        el.addEventListener('click', function(){
+          var a = list[Number(el.dataset.albumIdx)];
+          if(!a.catalog_id) return;
+          fetchSongsForTitle(a.catalog_id).then(function(songs){
+            closeMusicLibrary();
+            openMusicPlayer(songs, a.title);
+          });
+        });
+      });
+    });
+
+  } else if(tab === 'playlists'){
+    fetchPlaylists().then(function(playlists){
+      if(playlists.length === 0){ grid.innerHTML = '<p class="form-note">Nessuna playlist ancora.</p>'; return; }
+      grid.innerHTML = playlists.map(function(p, i){
+        return '<div class="music-library-card" data-pl-idx="' + i + '">' +
+          '<img src="' + escapeHtml(p.cover_url || '') + '" alt="">' +
+          '<div class="music-library-card-title">' + escapeHtml(p.title) + '</div>' +
+          (p.description ? '<div class="music-library-card-sub">' + escapeHtml(p.description) + '</div>' : '') +
+        '</div>';
+      }).join('');
+      Array.prototype.forEach.call(grid.querySelectorAll('[data-pl-idx]'), function(el){
+        el.addEventListener('click', function(){
+          var p = playlists[Number(el.dataset.plIdx)];
+          fetchPlaylistSongs(p.id).then(function(songs){
+            if(songs.length === 0) return;
+            closeMusicLibrary();
+            openMusicPlayer(songs, p.title);
+          });
+        });
+      });
+    });
+
+  } else if(tab === 'podcasts'){
+    fetchPodcasts().then(function(podcasts){
+      if(podcasts.length === 0){ grid.innerHTML = '<p class="form-note">Nessun podcast ancora.</p>'; return; }
+      grid.innerHTML = podcasts.map(function(p, i){
+        return '<div class="music-library-card" data-pod-idx="' + i + '">' +
+          '<img src="' + escapeHtml(p.cover_url || '') + '" alt="">' +
+          '<div class="music-library-card-title">' + escapeHtml(p.title) + '</div>' +
+          (p.description ? '<div class="music-library-card-sub">' + escapeHtml(p.description) + '</div>' : '') +
+        '</div>';
+      }).join('');
+      Array.prototype.forEach.call(grid.querySelectorAll('[data-pod-idx]'), function(el){
+        el.addEventListener('click', function(){
+          var p = podcasts[Number(el.dataset.podIdx)];
+          fetchPodcastEpisodes(p.id).then(function(episodes){
+            if(episodes.length === 0) return;
+            var tracks = episodes.map(function(e){
+              return { id: null, title: e.title, artist: p.title, cover_url: e.cover_url || p.cover_url, audio_url: e.audio_url, lyrics: e.description, media_type: 'audio' };
+            });
+            closeMusicLibrary();
+            openMusicPlayer(tracks, p.title, { hideSocial: true });
+          });
+        });
+      });
+    });
+
+  } else if(tab === 'artists'){
+    fetchAllSongsWithAlbum().then(function(rows){
+      var artists = {}, order = [];
+      rows.forEach(function(row){
+        var name = row.artist || '—';
+        if(!artists[name]){ artists[name] = []; order.push(name); }
+        artists[name].push(row);
+      });
+      if(order.length === 0){ grid.innerHTML = '<p class="form-note">' + t('songs.noneYet') + '</p>'; return; }
+      grid.innerHTML = order.map(function(name, i){
+        return '<div class="music-library-card" data-artist-idx="' + i + '">' +
+          '<div class="music-library-card-title">' + escapeHtml(name) + '</div>' +
+          '<div class="music-library-card-sub">' + artists[name].length + (artists[name].length === 1 ? ' brano' : ' brani') + '</div>' +
+        '</div>';
+      }).join('');
+      Array.prototype.forEach.call(grid.querySelectorAll('[data-artist-idx]'), function(el){
+        el.addEventListener('click', function(){
+          var name = order[Number(el.dataset.artistIdx)];
+          closeMusicLibrary();
+          openMusicPlayer(artists[name], name);
+        });
+      });
+    });
+  }
+}
+
 function ensureMusicPlayerStyle(){
   var existing = document.getElementById('musicPlayerStyle');
   if(existing) existing.remove(); // rimosso ad ogni apertura: permette di aggiornare lo stile senza dover ricaricare la pagina durante lo sviluppo
@@ -8071,6 +8267,8 @@ function ensureMusicPlayerStyle(){
     '.music-player-cover{width:100%;max-width:320px;aspect-ratio:1/1;border-radius:12px;object-fit:cover;box-shadow:0 12px 40px rgba(0,0,0,0.6);margin-bottom:20px;background:#150d0e;}' +
     '.music-player-title{font-family:"Cinzel Decorative",serif;color:#f0e4cd;font-size:24px;margin:0 0 6px;}' +
     '.music-player-artist{color:#c9a24d;font-size:13px;margin:0 0 20px;font-family:"Space Mono",monospace;letter-spacing:0.04em;}' +
+    '.music-player-collab{color:#8a7a5e;font-size:12px;margin:-14px 0 18px;}' +
+    '.music-player-collab a{color:#c9a24d;}' +
     '.music-player-lyrics{color:#c8bda3;font-family:"Crimson Pro",serif;font-size:15px;line-height:1.8;white-space:pre-wrap;max-width:520px;border-top:1px solid rgba(201,162,77,0.2);padding-top:16px;margin-top:6px;}' +
     '.music-player-side{flex-shrink:0;border-top:1px solid rgba(201,162,77,0.2);padding:20px;overflow-y:auto;}' +
     '.music-player-tracklist{margin-bottom:22px;}' +
@@ -8095,9 +8293,11 @@ function ensureMusicPlayerStyle(){
 
 }
 
-function openMusicPlayer(songs, contextLabel){
+function openMusicPlayer(songs, contextLabel, options){
+  options = options || {};
   ensureMusicPlayerStyle();
   closeMusicPlayer();
+  closeMusicLibrary();
   var overlay = document.createElement('div');
   overlay.className = 'music-player-overlay';
   overlay.id = 'musicPlayerOverlay';
@@ -8111,39 +8311,56 @@ function openMusicPlayer(songs, contextLabel){
         '<img class="music-player-cover" id="musicPlayerCover" src="" alt="">' +
         '<h3 class="music-player-title" id="musicPlayerTitle"></h3>' +
         '<div class="music-player-artist" id="musicPlayerArtist"></div>' +
+        '<div class="music-player-collab hidden" id="musicPlayerCollab"></div>' +
         '<div class="music-player-lyrics hidden" id="musicPlayerLyrics"></div>' +
       '</div>' +
       '<div class="music-player-side">' +
         '<div class="music-player-tracklist hidden" id="musicPlayerTracklist"></div>' +
-        '<div class="music-player-comments" id="musicPlayerComments">' +
-          '<div id="songCommentsList"></div>' +
-          (isSignedIn() ?
-            '<textarea id="fSongCommentBody" placeholder="' + t('comments.placeholder') + '" style="margin-top:8px;"></textarea>' +
-            '<button type="button" class="btn btn-sm btn-ghost" id="btnSubmitSongComment" style="margin-top:6px;">' + t('comments.submit') + '</button>' +
-            '<div class="form-note" id="songCommentError"></div>'
-            : '') +
-        '</div>' +
+        (options.hideSocial ? '' :
+          '<div class="music-player-comments" id="musicPlayerComments">' +
+            '<div id="songCommentsList"></div>' +
+            (isSignedIn() ?
+              '<textarea id="fSongCommentBody" placeholder="' + t('comments.placeholder') + '" style="margin-top:8px;"></textarea>' +
+              '<button type="button" class="btn btn-sm btn-ghost" id="btnSubmitSongComment" style="margin-top:6px;">' + t('comments.submit') + '</button>' +
+              '<div class="form-note" id="songCommentError"></div>'
+              : '') +
+          '</div>') +
       '</div>' +
     '</div>' +
     '<div class="music-player-bottombar">' +
       '<div id="musicPlayerMediaWrap"></div>' +
       '<div class="music-player-actions" id="musicPlayerActions">' +
-        '<button type="button" class="btn btn-sm btn-ghost" id="musicPlayerLikeBtn">🤍 …</button>' +
-        '<button type="button" class="btn btn-sm btn-ghost" id="musicPlayerShareBtn">' + t('share.button') + '</button>' +
+        (songs.length > 1 ? '<button type="button" class="btn btn-sm btn-ghost" id="musicPlayerPrevBtn">⏮</button>' : '') +
+        (options.hideSocial ? '' : '<button type="button" class="btn btn-sm btn-ghost" id="musicPlayerLikeBtn">🤍 …</button>') +
+        (options.hideSocial ? '' : '<button type="button" class="btn btn-sm btn-ghost" id="musicPlayerShareBtn">' + t('share.button') + '</button>') +
+        (songs.length > 1 ? '<button type="button" class="btn btn-sm btn-ghost" id="musicPlayerNextBtn">⏭</button>' : '') +
       '</div>' +
     '</div>';
   document.body.appendChild(overlay);
   document.getElementById('musicPlayerClose').addEventListener('click', closeMusicPlayer);
   overlay.addEventListener('click', function(e){ if(e.target === overlay) closeMusicPlayer(); });
 
-  var currentSong = null;
+  var currentIdx = 0;
 
   function playTrack(idx){
+    currentIdx = idx;
     var song = songs[idx];
-    currentSong = song;
     document.getElementById('musicPlayerCover').src = song.cover_url || '';
     document.getElementById('musicPlayerTitle').textContent = song.title;
     document.getElementById('musicPlayerArtist').textContent = (song.artist ? song.artist + ' · ' : '') + contextLabel;
+
+    var collabEl = document.getElementById('musicPlayerCollab');
+    if(song.collaborators && song.collaborators.length){
+      collabEl.innerHTML = t('collab.credit') + ' ' + song.collaborators.map(function(c){
+        var nameLink = c.url
+          ? '<a href="' + escapeHtml(c.url) + '" target="_blank" rel="noopener">' + escapeHtml(c.name) + '</a>'
+          : escapeHtml(c.name);
+        return nameLink + (c.verified ? verifiedBadge('verified.collaborator') : '');
+      }).join(', ');
+      collabEl.classList.remove('hidden');
+    } else {
+      collabEl.classList.add('hidden');
+    }
 
     var mediaWrap = document.getElementById('musicPlayerMediaWrap');
     var isVideo = song.media_type === 'video';
@@ -8153,6 +8370,9 @@ function openMusicPlayer(songs, contextLabel){
     var mediaEl = document.getElementById('musicPlayerMedia');
     mediaEl.src = song.audio_url;
     mediaEl.play().catch(function(){}); // l'autoplay può essere bloccato dal browser, non è un errore da segnalare
+    mediaEl.addEventListener('ended', function(){
+      if(currentIdx < songs.length - 1) playTrack(currentIdx + 1);
+    });
 
     var lyricsEl = document.getElementById('musicPlayerLyrics');
     if(song.lyrics){ lyricsEl.textContent = song.lyrics; lyricsEl.classList.remove('hidden'); }
@@ -8161,7 +8381,7 @@ function openMusicPlayer(songs, contextLabel){
       el.classList.toggle('active', i === idx);
     });
 
-    if(song.id){
+    if(!options.hideSocial && song.id){
       renderSongLikeButton(song, document.getElementById('musicPlayerLikeBtn'));
       loadSongComments(song.id, document.getElementById('songCommentsList'));
       var submitBtn = document.getElementById('btnSubmitSongComment');
@@ -8171,8 +8391,16 @@ function openMusicPlayer(songs, contextLabel){
         };
       }
     }
-    document.getElementById('musicPlayerShareBtn').onclick = function(){ shareSong(song, contextLabel); };
+    if(!options.hideSocial){
+      var shareBtn = document.getElementById('musicPlayerShareBtn');
+      if(shareBtn) shareBtn.onclick = function(){ shareSong(song, contextLabel); };
+    }
   }
+
+  var prevBtn = document.getElementById('musicPlayerPrevBtn');
+  if(prevBtn) prevBtn.addEventListener('click', function(){ playTrack((currentIdx - 1 + songs.length) % songs.length); });
+  var nextBtn = document.getElementById('musicPlayerNextBtn');
+  if(nextBtn) nextBtn.addEventListener('click', function(){ playTrack((currentIdx + 1) % songs.length); });
 
   if(songs.length > 1){
     var trackListEl = document.getElementById('musicPlayerTracklist');
@@ -8439,7 +8667,8 @@ function addSong(){
       body: JSON.stringify({
         catalog_id: catalogId, title: titleEl.value.trim(), artist: artistEl.value.trim() || null,
         audio_url: urls[0], cover_url: urls[1], lyrics: lyricsEl.value.trim() || null,
-        media_type: (audioFile.type && audioFile.type.indexOf('video') === 0) ? 'video' : 'audio'
+        media_type: (audioFile.type && audioFile.type.indexOf('video') === 0) ? 'video' : 'audio',
+        collaborators: collectSongCollabRows()
       })
     });
   }).then(function(r){
@@ -8447,6 +8676,7 @@ function addSong(){
     titleEl.value = ''; artistEl.value = ''; lyricsEl.value = '';
     document.getElementById('fSongCover').value = '';
     document.getElementById('fSongAudio').value = '';
+    resetSongCollabRows();
     statusEl.textContent = '';
     loadSongsAdminList(catalogId);
   }).catch(function(err){
@@ -8455,6 +8685,331 @@ function addSong(){
   }).finally(function(){
     addBtn.disabled = false;
   });
+}
+
+/* ---- Collaboratori sulla canzone (fino a 3, stesso concetto dei collaboratori sul titolo) ---- */
+function collectSongCollabRows(){
+  var rows = document.querySelectorAll('#songCollabRows .song-collab-row');
+  var out = [];
+  Array.prototype.forEach.call(rows, function(row){
+    var name = row.querySelector('.fSongCollabName').value.trim();
+    if(!name) return;
+    out.push({
+      name: name,
+      url: row.querySelector('.fSongCollabUrl').value.trim() || null,
+      verified: row.querySelector('.fSongCollabVerified').checked
+    });
+  });
+  return out.slice(0, 3);
+}
+function resetSongCollabRows(){
+  var wrap = document.getElementById('songCollabRows');
+  if(!wrap) return;
+  wrap.innerHTML = '<div class="song-collab-row" style="display:flex;gap:6px;margin-bottom:4px;align-items:center;">' +
+    '<input type="text" class="fSongCollabName" placeholder="Nome" style="flex:1;">' +
+    '<input type="url" class="fSongCollabUrl" placeholder="Link Instagram (opz.)" style="flex:1;">' +
+    '<label style="font-size:11px;white-space:nowrap;"><input type="checkbox" class="fSongCollabVerified"> ✓</label>' +
+  '</div>';
+}
+function addSongCollabRow(){
+  var wrap = document.getElementById('songCollabRows');
+  if(!wrap) return;
+  if(wrap.querySelectorAll('.song-collab-row').length >= 3) return; // massimo 3 per canzone
+  var row = document.createElement('div');
+  row.className = 'song-collab-row';
+  row.style.cssText = 'display:flex;gap:6px;margin-bottom:4px;align-items:center;';
+  row.innerHTML =
+    '<input type="text" class="fSongCollabName" placeholder="Nome" style="flex:1;">' +
+    '<input type="url" class="fSongCollabUrl" placeholder="Link Instagram (opz.)" style="flex:1;">' +
+    '<label style="font-size:11px;white-space:nowrap;"><input type="checkbox" class="fSongCollabVerified"> ✓</label>';
+  wrap.appendChild(row);
+}
+
+/* ---- Admin: Playlist ---- */
+function ensureAllSongTitlesDatalist(){
+  if(!document.getElementById('allSongTitlesDatalist')){
+    var dl = document.createElement('datalist');
+    dl.id = 'allSongTitlesDatalist';
+    document.body.appendChild(dl);
+  }
+  fetch(SUPABASE_URL + '/rest/v1/songs?select=title&order=title.asc', { headers:{ 'apikey':SUPABASE_ANON_KEY } })
+    .then(function(r){ return r.ok ? r.json() : []; })
+    .then(function(rows){
+      var dl = document.getElementById('allSongTitlesDatalist');
+      if(!dl) return;
+      var seen = {};
+      dl.innerHTML = rows.filter(function(r){ if(seen[r.title]) return false; seen[r.title] = true; return true; })
+        .map(function(r){ return '<option value="' + escapeHtml(r.title) + '">'; }).join('');
+    }).catch(function(){});
+}
+
+function loadPlaylistsAdminList(){
+  var list = document.getElementById('adminPlaylistsList');
+  if(!list) return;
+  ensureAllSongTitlesDatalist();
+  fetchPlaylists().then(function(playlists){
+    if(playlists.length === 0){ list.innerHTML = '<p class="form-note">Nessuna playlist ancora.</p>'; return; }
+    list.innerHTML = playlists.map(function(p){
+      return '<div class="admin-list-row" data-playlist-id="' + p.id + '" style="border-bottom:1px solid var(--line);padding:10px 0;">' +
+        '<div style="display:flex;align-items:center;gap:10px;">' +
+          '<span style="flex:1;font-weight:600;">' + escapeHtml(p.title) + '</span>' +
+          '<button type="button" class="btn btn-sm btn-ghost" data-del-playlist="' + p.id + '" style="border-color:#e24b4a;color:#e24b4a;">Elimina</button>' +
+        '</div>' +
+        '<div style="display:flex;gap:6px;margin-top:6px;">' +
+          '<input type="text" class="fPlaylistAddSongTitle" list="allSongTitlesDatalist" placeholder="Titolo esatto della canzone da aggiungere" style="flex:1;font-size:12px;">' +
+          '<button type="button" class="btn btn-sm btn-ghost" data-add-song-to-playlist="' + p.id + '">+ Aggiungi</button>' +
+        '</div>' +
+        '<div class="playlist-songs-list" data-playlist-songs="' + p.id + '" style="margin-top:6px;font-size:12px;color:var(--parchment-dim);">…</div>' +
+      '</div>';
+    }).join('');
+    Array.prototype.forEach.call(list.querySelectorAll('[data-del-playlist]'), function(btn){
+      btn.addEventListener('click', function(){ deletePlaylist(btn.dataset.delPlaylist); });
+    });
+    Array.prototype.forEach.call(list.querySelectorAll('[data-add-song-to-playlist]'), function(btn){
+      btn.addEventListener('click', function(){
+        var pid = btn.dataset.addSongToPlaylist;
+        var input = btn.closest('[data-playlist-id]').querySelector('.fPlaylistAddSongTitle');
+        addSongToPlaylistByTitle(pid, input.value.trim(), input);
+      });
+    });
+    playlists.forEach(function(p){ renderPlaylistSongsAdmin(p.id); });
+  });
+}
+
+function renderPlaylistSongsAdmin(playlistId){
+  var box = document.querySelector('[data-playlist-songs="' + playlistId + '"]');
+  if(!box) return;
+  fetchPlaylistSongs(playlistId).then(function(songs){
+    if(songs.length === 0){ box.textContent = 'Nessuna canzone in questa playlist.'; return; }
+    box.innerHTML = songs.map(function(s){
+      return '<span style="display:inline-flex;align-items:center;gap:4px;margin-right:8px;">' + escapeHtml(s.title) +
+        '<button type="button" data-remove-from-playlist="' + playlistId + '" data-song-id="' + s.id + '" style="background:none;border:none;color:#e24b4a;cursor:pointer;">×</button></span>';
+    }).join('');
+    Array.prototype.forEach.call(box.querySelectorAll('[data-remove-from-playlist]'), function(btn){
+      btn.addEventListener('click', function(){ removeSongFromPlaylist(btn.dataset.removeFromPlaylist, btn.dataset.songId); });
+    });
+  });
+}
+
+function addSongToPlaylistByTitle(playlistId, title, inputEl){
+  if(!title) return;
+  var session = getSession();
+  if(!session) return;
+  fetch(SUPABASE_URL + '/rest/v1/songs?title=eq.' + encodeURIComponent(title) + '&select=id&limit=1', {
+    headers:{ 'apikey':SUPABASE_ANON_KEY }
+  }).then(function(r){ return r.ok ? r.json() : []; }).then(function(rows){
+    if(!rows[0]){ window.alert('Nessuna canzone trovata con questo titolo esatto — scegli dal suggerimento automatico.'); return null; }
+    return fetch(SUPABASE_URL + '/rest/v1/playlist_songs', {
+      method:'POST',
+      headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json', 'Prefer':'resolution=ignore-duplicates' },
+      body: JSON.stringify({ playlist_id: playlistId, song_id: rows[0].id })
+    });
+  }).then(function(r){
+    if(!r) return;
+    if(!r.ok) throw new Error('aggiunta alla playlist fallita: ' + r.status);
+    if(inputEl) inputEl.value = '';
+    renderPlaylistSongsAdmin(playlistId);
+  }).catch(function(err){
+    console.warn('Aggiunta a playlist fallita:', err);
+    window.alert('Errore: non è stato possibile aggiungere la canzone.');
+  });
+}
+
+function removeSongFromPlaylist(playlistId, songId){
+  var session = getSession();
+  if(!session) return;
+  fetch(SUPABASE_URL + '/rest/v1/playlist_songs?playlist_id=eq.' + encodeURIComponent(playlistId) + '&song_id=eq.' + encodeURIComponent(songId), {
+    method:'DELETE',
+    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
+  }).then(function(){ renderPlaylistSongsAdmin(playlistId); });
+}
+
+function addPlaylist(){
+  var session = getSession();
+  if(!session) return;
+  var titleEl = document.getElementById('fPlaylistTitle');
+  var descEl = document.getElementById('fPlaylistDesc');
+  var coverFile = document.getElementById('fPlaylistCover').files[0];
+  var errEl = document.getElementById('playlistError');
+  errEl.textContent = '';
+  if(!titleEl.value.trim()){ errEl.textContent = 'Scrivi un titolo.'; return; }
+
+  var coverPromise = Promise.resolve(null);
+  if(coverFile){
+    var coverPath = Date.now() + '-' + coverFile.name.replace(/[^a-zA-Z0-9.\-]/g, '_');
+    coverPromise = fetch(SUPABASE_URL + '/storage/v1/object/playlists/' + coverPath, {
+      method:'POST',
+      headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type': coverFile.type || 'image/jpeg' },
+      body: coverFile
+    }).then(function(r){
+      if(!r.ok) throw new Error('upload copertina playlist fallito: ' + r.status);
+      return SUPABASE_URL + '/storage/v1/object/public/playlists/' + coverPath;
+    });
+  }
+
+  coverPromise.then(function(coverUrl){
+    return fetch(SUPABASE_URL + '/rest/v1/playlists', {
+      method:'POST',
+      headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
+      body: JSON.stringify({ title: titleEl.value.trim(), description: descEl.value.trim() || null, cover_url: coverUrl, created_by: currentUserId() })
+    });
+  }).then(function(r){
+    if(!r.ok) throw new Error('creazione playlist fallita: ' + r.status);
+    titleEl.value = ''; descEl.value = ''; document.getElementById('fPlaylistCover').value = '';
+    loadPlaylistsAdminList();
+  }).catch(function(err){
+    console.warn('Creazione playlist fallita:', err);
+    errEl.textContent = 'Errore: ' + err.message;
+  });
+}
+
+function deletePlaylist(id){
+  var session = getSession();
+  if(!session) return;
+  if(!confirm('Eliminare questa playlist?')) return;
+  fetch(SUPABASE_URL + '/rest/v1/playlists?id=eq.' + encodeURIComponent(id), {
+    method:'DELETE',
+    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
+  }).then(function(){ loadPlaylistsAdminList(); });
+}
+
+/* ---- Admin: Podcast ---- */
+function loadPodcastsAdminList(){
+  var list = document.getElementById('adminPodcastsList');
+  if(!list) return;
+  fetchPodcasts().then(function(podcasts){
+    if(podcasts.length === 0){ list.innerHTML = '<p class="form-note">Nessun podcast ancora.</p>'; return; }
+    list.innerHTML = podcasts.map(function(p){
+      return '<div class="admin-list-row" data-podcast-id="' + p.id + '" style="border-bottom:1px solid var(--line);padding:10px 0;">' +
+        '<div style="display:flex;align-items:center;gap:10px;">' +
+          '<span style="flex:1;font-weight:600;">' + escapeHtml(p.title) + '</span>' +
+          '<button type="button" class="btn btn-sm btn-ghost" data-del-podcast="' + p.id + '" style="border-color:#e24b4a;color:#e24b4a;">Elimina</button>' +
+        '</div>' +
+        '<div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:6px;">' +
+          '<input type="text" class="fEpisodeTitle" placeholder="Titolo episodio" style="flex:1;min-width:120px;font-size:12px;">' +
+          '<input type="file" class="fEpisodeAudio" accept="audio/*" style="font-size:12px;">' +
+          '<button type="button" class="btn btn-sm btn-ghost" data-add-episode="' + p.id + '">+ Episodio</button>' +
+        '</div>' +
+        '<div class="podcast-episodes-list" data-podcast-episodes="' + p.id + '" style="margin-top:6px;font-size:12px;color:var(--parchment-dim);">…</div>' +
+      '</div>';
+    }).join('');
+    Array.prototype.forEach.call(list.querySelectorAll('[data-del-podcast]'), function(btn){
+      btn.addEventListener('click', function(){ deletePodcast(btn.dataset.delPodcast); });
+    });
+    Array.prototype.forEach.call(list.querySelectorAll('[data-add-episode]'), function(btn){
+      btn.addEventListener('click', function(){
+        var pid = btn.dataset.addEpisode;
+        var row = btn.closest('[data-podcast-id]');
+        addPodcastEpisode(pid, row.querySelector('.fEpisodeTitle'), row.querySelector('.fEpisodeAudio'));
+      });
+    });
+    podcasts.forEach(function(p){ renderPodcastEpisodesAdmin(p.id); });
+  });
+}
+
+function renderPodcastEpisodesAdmin(podcastId){
+  var box = document.querySelector('[data-podcast-episodes="' + podcastId + '"]');
+  if(!box) return;
+  fetchPodcastEpisodes(podcastId).then(function(episodes){
+    if(episodes.length === 0){ box.textContent = 'Nessun episodio ancora.'; return; }
+    box.innerHTML = episodes.map(function(e){
+      return '<span style="display:inline-flex;align-items:center;gap:4px;margin-right:8px;">' + escapeHtml(e.title) +
+        '<button type="button" data-del-episode="' + e.id + '" data-podcast="' + podcastId + '" style="background:none;border:none;color:#e24b4a;cursor:pointer;">×</button></span>';
+    }).join('');
+    Array.prototype.forEach.call(box.querySelectorAll('[data-del-episode]'), function(btn){
+      btn.addEventListener('click', function(){ deletePodcastEpisode(btn.dataset.delEpisode, btn.dataset.podcast); });
+    });
+  });
+}
+
+function addPodcastEpisode(podcastId, titleInput, audioInput){
+  var session = getSession();
+  if(!session) return;
+  var title = titleInput.value.trim();
+  var audioFile = audioInput.files[0];
+  if(!title){ window.alert("Scrivi il titolo dell'episodio."); return; }
+  if(!audioFile){ window.alert('Carica il file audio.'); return; }
+  var audioPath = podcastId + '/' + Date.now() + '-' + audioFile.name.replace(/[^a-zA-Z0-9.\-]/g, '_');
+  fetch(SUPABASE_URL + '/storage/v1/object/podcasts/' + audioPath, {
+    method:'POST',
+    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type': audioFile.type || 'audio/mpeg' },
+    body: audioFile
+  }).then(function(r){
+    if(!r.ok) throw new Error('upload audio episodio fallito: ' + r.status);
+    return SUPABASE_URL + '/storage/v1/object/public/podcasts/' + audioPath;
+  }).then(function(audioUrl){
+    return fetch(SUPABASE_URL + '/rest/v1/podcast_episodes', {
+      method:'POST',
+      headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
+      body: JSON.stringify({ podcast_id: podcastId, title: title, audio_url: audioUrl })
+    });
+  }).then(function(r){
+    if(!r.ok) throw new Error('salvataggio episodio fallito: ' + r.status);
+    titleInput.value = ''; audioInput.value = '';
+    renderPodcastEpisodesAdmin(podcastId);
+  }).catch(function(err){
+    console.warn('Aggiunta episodio fallita:', err);
+    window.alert('Errore: ' + err.message);
+  });
+}
+
+function deletePodcastEpisode(id, podcastId){
+  var session = getSession();
+  if(!session) return;
+  if(!confirm('Eliminare questo episodio?')) return;
+  fetch(SUPABASE_URL + '/rest/v1/podcast_episodes?id=eq.' + encodeURIComponent(id), {
+    method:'DELETE',
+    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
+  }).then(function(){ renderPodcastEpisodesAdmin(podcastId); });
+}
+
+function addPodcast(){
+  var session = getSession();
+  if(!session) return;
+  var titleEl = document.getElementById('fPodcastTitle');
+  var descEl = document.getElementById('fPodcastDesc');
+  var coverFile = document.getElementById('fPodcastCover').files[0];
+  var errEl = document.getElementById('podcastError');
+  errEl.textContent = '';
+  if(!titleEl.value.trim()){ errEl.textContent = 'Scrivi un titolo.'; return; }
+
+  var coverPromise = Promise.resolve(null);
+  if(coverFile){
+    var coverPath = Date.now() + '-' + coverFile.name.replace(/[^a-zA-Z0-9.\-]/g, '_');
+    coverPromise = fetch(SUPABASE_URL + '/storage/v1/object/podcasts/' + coverPath, {
+      method:'POST',
+      headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type': coverFile.type || 'image/jpeg' },
+      body: coverFile
+    }).then(function(r){
+      if(!r.ok) throw new Error('upload copertina podcast fallito: ' + r.status);
+      return SUPABASE_URL + '/storage/v1/object/public/podcasts/' + coverPath;
+    });
+  }
+
+  coverPromise.then(function(coverUrl){
+    return fetch(SUPABASE_URL + '/rest/v1/podcasts', {
+      method:'POST',
+      headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
+      body: JSON.stringify({ title: titleEl.value.trim(), description: descEl.value.trim() || null, cover_url: coverUrl })
+    });
+  }).then(function(r){
+    if(!r.ok) throw new Error('creazione podcast fallita: ' + r.status);
+    titleEl.value = ''; descEl.value = ''; document.getElementById('fPodcastCover').value = '';
+    loadPodcastsAdminList();
+  }).catch(function(err){
+    console.warn('Creazione podcast fallita:', err);
+    errEl.textContent = 'Errore: ' + err.message;
+  });
+}
+
+function deletePodcast(id){
+  var session = getSession();
+  if(!session) return;
+  if(!confirm('Eliminare questo podcast e tutti i suoi episodi?')) return;
+  fetch(SUPABASE_URL + '/rest/v1/podcasts?id=eq.' + encodeURIComponent(id), {
+    method:'DELETE',
+    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
+  }).then(function(){ loadPodcastsAdminList(); });
 }
 
 function insertSupportTitleButton(item){
@@ -10111,7 +10666,12 @@ function __appInit(){
   document.getElementById('btnRequestExtension') && document.getElementById('btnRequestExtension').addEventListener('click', requestSessionExtension);
   document.getElementById('btnAddSavedCollab') && document.getElementById('btnAddSavedCollab').addEventListener('click', saveSavedCollaborator);
   document.getElementById('btnAddSong') && document.getElementById('btnAddSong').addEventListener('click', addSong);
-  document.getElementById('navMusic') && document.getElementById('navMusic').addEventListener('click', function(e){ e.preventDefault(); openAllMusicBrowser(); });
+  document.getElementById('btnAddSongCollabRow') && document.getElementById('btnAddSongCollabRow').addEventListener('click', addSongCollabRow);
+  document.getElementById('btnAddPlaylist') && document.getElementById('btnAddPlaylist').addEventListener('click', addPlaylist);
+  document.getElementById('btnAddPodcast') && document.getElementById('btnAddPodcast').addEventListener('click', addPodcast);
+  loadPlaylistsAdminList();
+  loadPodcastsAdminList();
+  document.getElementById('navMusic') && document.getElementById('navMusic').addEventListener('click', function(e){ e.preventDefault(); openMusicLibrary(); });
   loadSavedCollaborators();
   wireCollabAutofill();
   document.getElementById('btnExportOffline') && document.getElementById('btnExportOffline').addEventListener('click', exportEverythingOffline);

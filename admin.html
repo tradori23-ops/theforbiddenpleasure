@@ -75,6 +75,8 @@
         <button class="admin-tab" data-tab="comments" data-i18n="admin.tab.comments">Commenti</button>
         <button class="admin-tab" data-tab="requests" data-i18n="admin.tab.requests">Richieste</button>
         <button class="admin-tab" data-tab="announcements" data-i18n="admin.tab.announcements">Novità</button>
+        <button class="admin-tab" data-tab="playlists">Playlist</button>
+        <button class="admin-tab" data-tab="podcasts">Podcast</button>
         <button class="admin-tab" data-tab="users" data-i18n="admin.tab.users">Utenti</button>
         <button class="admin-tab" data-tab="maintenance" data-i18n="admin.tab.maintenance">Manutenzione</button>
         <button class="admin-tab" data-tab="moderation" data-i18n="admin.tab.moderation">Moderazione Community</button>
@@ -225,6 +227,15 @@
               <label style="font-size:11px;color:var(--parchment-dim);display:block;margin-bottom:2px;">File audio (mp3) o video (mp4)</label>
               <input type="file" id="fSongAudio" accept="audio/*,video/mp4" style="margin-bottom:6px;">
               <textarea id="fSongLyrics" placeholder="Testo della canzone (opzionale)" style="margin-bottom:6px;"></textarea>
+              <label style="font-size:11px;color:var(--parchment-dim);display:block;margin-bottom:2px;">Collaboratori (fino a 3 — spunta blu se già verificati)</label>
+              <div id="songCollabRows">
+                <div class="song-collab-row" style="display:flex;gap:6px;margin-bottom:4px;align-items:center;">
+                  <input type="text" class="fSongCollabName" placeholder="Nome" style="flex:1;">
+                  <input type="url" class="fSongCollabUrl" placeholder="Link Instagram (opz.)" style="flex:1;">
+                  <label style="font-size:11px;white-space:nowrap;"><input type="checkbox" class="fSongCollabVerified"> ✓</label>
+                </div>
+              </div>
+              <button type="button" class="btn btn-ghost btn-sm" id="btnAddSongCollabRow" style="margin-bottom:6px;">+ Aggiungi collaboratore</button>
               <button type="button" class="btn btn-ghost btn-sm" id="btnAddSong">+ Aggiungi canzone</button>
               <div class="form-note" id="songUploadStatus"></div>
             </div>
@@ -344,6 +355,62 @@
         <div class="notice">
           <div data-i18n="announcements.existingTitle" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Annunci pubblicati</div>
           <div id="adminAnnouncementsList"></div>
+        </div>
+      </div>
+
+      <div class="admin-tab-panel hidden" data-tab-panel="playlists">
+        <div class="notice">
+          <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Nuova playlist</div>
+          <div class="admin-grid">
+            <div class="field" style="grid-column:1/-1">
+              <label>Titolo playlist</label>
+              <input type="text" id="fPlaylistTitle" placeholder="Es. Notturni gotici">
+            </div>
+            <div class="field" style="grid-column:1/-1">
+              <label>Descrizione (opzionale)</label>
+              <textarea id="fPlaylistDesc" rows="2"></textarea>
+            </div>
+            <div class="field" style="grid-column:1/-1">
+              <label>Copertina (opzionale)</label>
+              <input type="file" id="fPlaylistCover" accept="image/*">
+            </div>
+          </div>
+          <div class="form-error" id="playlistError"></div>
+          <div class="modal-actions">
+            <button class="btn btn-primary btn-sm" id="btnAddPlaylist">Crea playlist</button>
+          </div>
+        </div>
+        <div class="notice">
+          <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Playlist esistenti</div>
+          <div id="adminPlaylistsList"></div>
+        </div>
+      </div>
+
+      <div class="admin-tab-panel hidden" data-tab-panel="podcasts">
+        <div class="notice">
+          <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Nuovo podcast</div>
+          <div class="admin-grid">
+            <div class="field" style="grid-column:1/-1">
+              <label>Titolo del podcast</label>
+              <input type="text" id="fPodcastTitle" placeholder="Es. Dietro le quinte di LUX COMICS">
+            </div>
+            <div class="field" style="grid-column:1/-1">
+              <label>Descrizione (opzionale)</label>
+              <textarea id="fPodcastDesc" rows="2"></textarea>
+            </div>
+            <div class="field" style="grid-column:1/-1">
+              <label>Copertina (opzionale)</label>
+              <input type="file" id="fPodcastCover" accept="image/*">
+            </div>
+          </div>
+          <div class="form-error" id="podcastError"></div>
+          <div class="modal-actions">
+            <button class="btn btn-primary btn-sm" id="btnAddPodcast">Crea podcast</button>
+          </div>
+        </div>
+        <div class="notice">
+          <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Podcast esistenti</div>
+          <div id="adminPodcastsList"></div>
         </div>
       </div>
 
