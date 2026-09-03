@@ -213,6 +213,22 @@
             <input type="file" id="fPdf" accept="application/pdf">
             <div class="form-note hidden" id="pdfSelectedNote"></div>
           </div>
+          <div class="field" style="grid-column:1/-1" id="musicFieldWrap">
+            <label>🎵 Musica del capitolo (canzoni Suno, disponibile dopo il primo salvataggio)</label>
+            <div class="form-note" id="musicNoTitleNote">Salva prima il titolo — le canzoni si aggiungono modificandolo di nuovo.</div>
+            <div id="songsAdminList" class="hidden"></div>
+            <div id="songsAdminForm" class="hidden" style="margin-top:10px;border-top:1px solid var(--line);padding-top:10px;">
+              <input type="text" id="fSongTitle" placeholder="Titolo canzone" style="margin-bottom:6px;">
+              <input type="text" id="fSongArtist" placeholder="Artista/etichetta (opzionale)" style="margin-bottom:6px;">
+              <label style="font-size:11px;color:var(--parchment-dim);display:block;margin-bottom:2px;">Copertina canzone</label>
+              <input type="file" id="fSongCover" accept="image/*" style="margin-bottom:6px;">
+              <label style="font-size:11px;color:var(--parchment-dim);display:block;margin-bottom:2px;">File audio (mp3)</label>
+              <input type="file" id="fSongAudio" accept="audio/*" style="margin-bottom:6px;">
+              <textarea id="fSongLyrics" placeholder="Testo della canzone (opzionale)" style="margin-bottom:6px;"></textarea>
+              <button type="button" class="btn btn-ghost btn-sm" id="btnAddSong">+ Aggiungi canzone</button>
+              <div class="form-note" id="songUploadStatus"></div>
+            </div>
+          </div>
         </div>
         <div class="form-error" id="adminError"></div>
         <div class="modal-actions">

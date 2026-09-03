@@ -12,7 +12,7 @@ var STR = {
     "gate.enter":"Ho almeno 18 anni — Sblocca",
     "gate.leave":"Annulla",
     "gate.legal":"Continuando dichiari inoltre di rispettare le leggi vigenti nella tua giurisdizione riguardo l'accesso a contenuti per adulti.",
-    "nav.library":"Schedario","nav.characters":"Dossier","nav.founder":"Fondatore","nav.admin":"Amministra","nav.login":"Accedi","nav.logout":"Esci",
+    "nav.library":"Schedario","nav.characters":"Dossier","nav.music":"Musica","nav.founder":"Fondatore","nav.admin":"Amministra","nav.login":"Accedi","nav.logout":"Esci","songs.listen":"🎵 Ascolta musica","songs.allMusic":"Musica",
     "hero.title1":"L'ARCHIVIO DEL","hero.title2":"PIACERE PROIBITO",
     "hero.tagline":"Fumetti d'autore — edizione riservata",
     "hero.lede":"Quattro sigilli, quattro voci: Lucifer, Lilith, Lucifera e Lucio custodiscono le collane di questa casa. Lo schedario è aperto a tutti — i contenuti 18+ restano dietro un interruttore separato, da sbloccare quando vuoi. Ogni tavola nasce in inglese ed entra nello schedario così com'è — solo la tua lingua d'accesso è cosa nostra.",
@@ -136,7 +136,7 @@ var STR = {
     "gate.body":"This archive contains works intended for a mature audience. By continuing you confirm you are at least 18 years old and knowingly consent to explicit content.",
     "gate.enter":"I am 18 or older — Unlock","gate.leave":"Cancel",
     "gate.legal":"By continuing you also confirm compliance with the laws of your jurisdiction regarding access to adult content.",
-    "nav.library":"Index","nav.characters":"Dossiers","nav.founder":"Founder","nav.admin":"Admin","nav.login":"Sign in","nav.logout":"Sign out",
+    "nav.library":"Index","nav.characters":"Dossiers","nav.music":"Music","nav.founder":"Founder","nav.admin":"Admin","nav.login":"Sign in","nav.logout":"Sign out","songs.listen":"🎵 Listen to music","songs.allMusic":"Music",
     "hero.title1":"THE ARCHIVE OF","hero.title2":"FORBIDDEN PLEASURE",
     "hero.tagline":"Author comics — restricted edition",
     "hero.lede":"Four seals, four voices: Lucifer, Lilith, Lucifera and Lucio each guard a line of this house. The index is open to everyone — 18+ titles sit behind a separate switch, unlockable whenever you like. Every page is drawn in English and enters the index as-is — only your access language is yours to choose.",
@@ -260,7 +260,7 @@ var STR = {
     "gate.body":"Este archivo contiene obras destinadas a un público adulto. Al continuar confirmas tener al menos 18 años y aceptar conscientemente contenido explícito.",
     "gate.enter":"Tengo 18 años o más — Desbloquear","gate.leave":"Cancelar",
     "gate.legal":"Al continuar también confirmas cumplir con las leyes de tu jurisdicción respecto al acceso a contenido para adultos.",
-    "nav.library":"Índice","nav.characters":"Expedientes","nav.founder":"Fundador","nav.admin":"Admin","nav.login":"Acceder","nav.logout":"Salir",
+    "nav.library":"Índice","nav.characters":"Expedientes","nav.music":"Música","nav.founder":"Fundador","nav.admin":"Admin","nav.login":"Acceder","nav.logout":"Salir","songs.listen":"🎵 Escuchar música","songs.allMusic":"Música",
     "hero.title1":"EL ARCHIVO DEL","hero.title2":"PLACER PROHIBIDO",
     "hero.tagline":"Cómics de autor — edición restringida",
     "hero.lede":"Cuatro sellos, cuatro voces: Lucifer, Lilith, Lucifera y Lucio custodian las colecciones de esta casa. El índice está abierto a todos — los títulos 18+ quedan tras un interruptor aparte, que puedes desbloquear cuando quieras. Cada página se dibuja en inglés y entra al índice tal cual — solo tu idioma de acceso es asunto tuyo.",
@@ -384,7 +384,7 @@ var STR = {
     "gate.body":"Cette archive contient des œuvres destinées à un public averti. En continuant, vous confirmez avoir au moins 18 ans et consentir sciemment à un contenu explicite.",
     "gate.enter":"J'ai 18 ans ou plus — Débloquer","gate.leave":"Annuler",
     "gate.legal":"En continuant, vous confirmez également respecter les lois de votre juridiction concernant l'accès aux contenus pour adultes.",
-    "nav.library":"Index","nav.characters":"Dossiers","nav.founder":"Fondateur","nav.admin":"Admin","nav.login":"Connexion","nav.logout":"Déconnexion",
+    "nav.library":"Index","nav.characters":"Dossiers","nav.music":"Musique","nav.founder":"Fondateur","nav.admin":"Admin","nav.login":"Connexion","nav.logout":"Déconnexion","songs.listen":"🎵 Écouter la musique","songs.allMusic":"Musique",
     "hero.title1":"L'ARCHIVE DU","hero.title2":"PLAISIR INTERDIT",
     "hero.tagline":"Bandes dessinées d'auteur — édition réservée",
     "hero.lede":"Quatre sceaux, quatre voix : Lucifer, Lilith, Lucifera et Lucio veillent chacun sur une collection de cette maison. L'index est ouvert à tous — les titres 18+ restent derrière un interrupteur séparé, à débloquer quand vous voulez. Chaque planche est dessinée en anglais et entre dans l'index telle quelle — seule votre langue d'accès vous appartient.",
@@ -508,7 +508,7 @@ var STR = {
     "gate.body":"Dieses Archiv enthält Werke für ein erwachsenes Publikum. Mit dem Fortfahren bestätigen Sie, mindestens 18 Jahre alt zu sein und bewusst expliziten Inhalten zuzustimmen.",
     "gate.enter":"Ich bin 18 Jahre oder älter — Freischalten","gate.leave":"Abbrechen",
     "gate.legal":"Mit dem Fortfahren bestätigen Sie außerdem, die Gesetze Ihrer Rechtsordnung zum Zugang zu Erwachseneninhalten einzuhalten.",
-    "nav.library":"Index","nav.characters":"Dossiers","nav.founder":"Gründer","nav.admin":"Admin","nav.login":"Anmelden","nav.logout":"Abmelden",
+    "nav.library":"Index","nav.characters":"Dossiers","nav.music":"Musik","nav.founder":"Gründer","nav.admin":"Admin","nav.login":"Anmelden","nav.logout":"Abmelden","songs.listen":"🎵 Musik hören","songs.allMusic":"Musik",
     "hero.title1":"DAS ARCHIV DER","hero.title2":"VERBOTENEN LUST",
     "hero.tagline":"Autoren-Comics — exklusive Ausgabe",
     "hero.lede":"Vier Siegel, vier Stimmen: Lucifer, Lilith, Lucifera und Lucio hüten je eine Reihe dieses Hauses. Der Index steht allen offen — 18+-Titel liegen hinter einem eigenen Schalter, den Sie jederzeit freischalten können. Jede Seite entsteht auf Englisch und kommt so in den Index — nur Ihre Zugangssprache liegt bei Ihnen.",
@@ -4292,6 +4292,7 @@ function openEditTitle(id){
   switchAdminTab('catalog');
   document.getElementById('fTitle').scrollIntoView({behavior:'smooth', block:'center'});
   openTitleFormDrawer();
+  showMusicSectionForEdit(id);
 }
 
 function cancelEditTitle(){
@@ -4314,6 +4315,7 @@ function cancelEditTitle(){
   var cancelBtn = document.getElementById('btnCancelEditTitle');
   if(cancelBtn) cancelBtn.classList.add('hidden');
   closeTitleFormDrawer();
+  hideMusicSectionForNew();
 }
 
 /* ============ MODALITÀ BOZZA (anteprima locale prima di pubblicare) ============
@@ -7913,6 +7915,7 @@ function openTitleModal(item){
 
   document.getElementById('titleModalShare').onclick = function(){ shareTitle(item); };
   insertSupportTitleButton(item);
+  insertMusicButton(item);
 
   var pdfLink = document.getElementById('titleModalPdf');
   if(item.pdf_url && isSignedIn()){
@@ -8023,6 +8026,242 @@ function previewPagePath(kind, id){
    l'importo pronto (entrambi supportano l'importo nell'indirizzo stesso).
    Satispay non ha questo meccanismo — resta il link semplice, con la nota
    di scrivere il titolo nella causale, come nella sezione principale. */
+/* ============ MUSICA (canzoni Suno per capitolo) ============ */
+function fetchSongsForTitle(catalogId){
+  return fetch(SUPABASE_URL + '/rest/v1/songs?catalog_id=eq.' + encodeURIComponent(catalogId) + '&select=*&order=position.asc,created_at.asc', {
+    headers:{ 'apikey':SUPABASE_ANON_KEY }
+  }).then(function(r){ return r.ok ? r.json() : []; }).catch(function(){ return []; });
+}
+
+function insertMusicButton(item){
+  var shareBtn = document.getElementById('titleModalShare');
+  if(!shareBtn) return;
+  fetchSongsForTitle(item.id).then(function(songs){
+    var btn = document.getElementById('titleModalMusic');
+    if(!songs || songs.length === 0){
+      if(btn) btn.remove();
+      return;
+    }
+    if(!btn){
+      btn = document.createElement('button');
+      btn.type = 'button';
+      btn.id = 'titleModalMusic';
+      btn.className = shareBtn.className;
+      shareBtn.insertAdjacentElement('afterend', btn);
+    }
+    btn.textContent = t('songs.listen');
+    btn.onclick = function(){ openMusicPlayer(songs, item.title); };
+  });
+}
+
+function ensureMusicPlayerStyle(){
+  if(document.getElementById('musicPlayerStyle')) return;
+  var styleEl = document.createElement('style');
+  styleEl.id = 'musicPlayerStyle';
+  styleEl.textContent =
+    '.music-player-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:300;display:flex;align-items:center;justify-content:center;padding:20px;}' +
+    '.music-player-overlay.hidden{display:none;}' +
+    '.music-player-box{background:linear-gradient(180deg,#1a1113,#0b0607);border:1px solid rgba(201,162,77,0.3);border-radius:16px;max-width:420px;width:100%;max-height:88vh;overflow-y:auto;padding:24px;position:relative;box-shadow:0 20px 60px rgba(0,0,0,0.6);}' +
+    '.music-player-close{position:absolute;top:14px;right:14px;background:transparent;border:1px solid rgba(201,162,77,0.4);color:#c9a24d;border-radius:50%;width:30px;height:30px;cursor:pointer;}' +
+    '.music-player-cover{width:100%;aspect-ratio:1/1;border-radius:12px;object-fit:cover;box-shadow:0 8px 24px rgba(0,0,0,0.5);margin-bottom:18px;background:#150d0e;}' +
+    '.music-player-title{font-family:"Cinzel Decorative",serif;color:#f0e4cd;font-size:19px;margin:0 0 4px;text-align:center;}' +
+    '.music-player-artist{color:#c9a24d;font-size:13px;text-align:center;margin:0 0 18px;font-family:"Space Mono",monospace;letter-spacing:0.04em;}' +
+    '.music-player-audio{width:100%;margin-bottom:18px;}' +
+    '.music-player-lyrics{color:#c8bda3;font-family:"Crimson Pro",serif;font-size:14px;line-height:1.7;white-space:pre-wrap;max-height:220px;overflow-y:auto;border-top:1px solid rgba(201,162,77,0.2);padding-top:14px;margin-bottom:16px;}' +
+    '.music-player-tracklist{border-top:1px solid rgba(201,162,77,0.2);padding-top:12px;}' +
+    '.music-player-track{display:flex;align-items:center;gap:10px;padding:8px 6px;border-radius:8px;cursor:pointer;font-size:13px;color:#e0d4b8;}' +
+    '.music-player-track:hover{background:rgba(201,162,77,0.08);}' +
+    '.music-player-track.active{color:#c9a24d;font-weight:600;}' +
+    '.music-player-track img{width:34px;height:34px;border-radius:4px;object-fit:cover;flex-shrink:0;background:#150d0e;}';
+  document.head.appendChild(styleEl);
+}
+
+function openMusicPlayer(songs, contextLabel){
+  ensureMusicPlayerStyle();
+  closeMusicPlayer();
+  var overlay = document.createElement('div');
+  overlay.className = 'music-player-overlay';
+  overlay.id = 'musicPlayerOverlay';
+  overlay.innerHTML =
+    '<div class="music-player-box">' +
+      '<button type="button" class="music-player-close" id="musicPlayerClose">✕</button>' +
+      '<img class="music-player-cover" id="musicPlayerCover" src="" alt="">' +
+      '<h3 class="music-player-title" id="musicPlayerTitle"></h3>' +
+      '<div class="music-player-artist" id="musicPlayerArtist"></div>' +
+      '<audio class="music-player-audio" id="musicPlayerAudio" controls></audio>' +
+      '<div class="music-player-lyrics hidden" id="musicPlayerLyrics"></div>' +
+      '<div class="music-player-tracklist hidden" id="musicPlayerTracklist"></div>' +
+    '</div>';
+  document.body.appendChild(overlay);
+  document.getElementById('musicPlayerClose').addEventListener('click', closeMusicPlayer);
+  overlay.addEventListener('click', function(e){ if(e.target === overlay) closeMusicPlayer(); });
+
+  function playTrack(idx){
+    var song = songs[idx];
+    document.getElementById('musicPlayerCover').src = song.cover_url || '';
+    document.getElementById('musicPlayerTitle').textContent = song.title;
+    document.getElementById('musicPlayerArtist').textContent = (song.artist ? song.artist + ' · ' : '') + contextLabel;
+    var audioEl = document.getElementById('musicPlayerAudio');
+    audioEl.src = song.audio_url;
+    audioEl.play().catch(function(){}); // l'autoplay può essere bloccato dal browser, non è un errore da segnalare
+    var lyricsEl = document.getElementById('musicPlayerLyrics');
+    if(song.lyrics){ lyricsEl.textContent = song.lyrics; lyricsEl.classList.remove('hidden'); }
+    else { lyricsEl.classList.add('hidden'); }
+    Array.prototype.forEach.call(overlay.querySelectorAll('.music-player-track'), function(el, i){
+      el.classList.toggle('active', i === idx);
+    });
+  }
+
+  if(songs.length > 1){
+    var trackListEl = document.getElementById('musicPlayerTracklist');
+    trackListEl.innerHTML = songs.map(function(s, i){
+      return '<div class="music-player-track" data-idx="' + i + '">' +
+        '<img src="' + escapeHtml(s.cover_url || '') + '" alt="">' +
+        '<span>' + escapeHtml(s.title) + '</span></div>';
+    }).join('');
+    trackListEl.classList.remove('hidden');
+    Array.prototype.forEach.call(trackListEl.querySelectorAll('.music-player-track'), function(el){
+      el.addEventListener('click', function(){ playTrack(Number(el.dataset.idx)); });
+    });
+  }
+  playTrack(0);
+}
+
+function closeMusicPlayer(){
+  var overlay = document.getElementById('musicPlayerOverlay');
+  if(overlay) overlay.remove();
+}
+
+function openAllMusicBrowser(){
+  fetch(SUPABASE_URL + '/rest/v1/songs?select=*,catalog(title)&order=created_at.desc', {
+    headers:{ 'apikey':SUPABASE_ANON_KEY }
+  }).then(function(r){ return r.ok ? r.json() : []; }).then(function(rows){
+    if(!rows || rows.length === 0){
+      window.alert(t('songs.allMusic') + ' — ' + t('card.readLess')); // messaggio minimo se non c'è ancora nulla
+      return;
+    }
+    var songs = rows.map(function(row){
+      return { title: row.title, artist: (row.catalog && row.catalog.title) || row.artist, cover_url: row.cover_url, audio_url: row.audio_url, lyrics: row.lyrics };
+    });
+    openMusicPlayer(songs, t('songs.allMusic'));
+  });
+}
+
+/* ---- Gestione canzoni in Admin (dentro il form del titolo) ---- */
+function showMusicSectionForEdit(catalogId){
+  var noTitleNote = document.getElementById('musicNoTitleNote');
+  var list = document.getElementById('songsAdminList');
+  var form = document.getElementById('songsAdminForm');
+  if(!noTitleNote || !list || !form) return;
+  noTitleNote.classList.add('hidden');
+  list.classList.remove('hidden');
+  form.classList.remove('hidden');
+  loadSongsAdminList(catalogId);
+}
+function hideMusicSectionForNew(){
+  var noTitleNote = document.getElementById('musicNoTitleNote');
+  var list = document.getElementById('songsAdminList');
+  var form = document.getElementById('songsAdminForm');
+  if(!noTitleNote || !list || !form) return;
+  noTitleNote.classList.remove('hidden');
+  list.classList.add('hidden');
+  form.classList.add('hidden');
+}
+function loadSongsAdminList(catalogId){
+  var list = document.getElementById('songsAdminList');
+  if(!list) return;
+  fetchSongsForTitle(catalogId).then(function(songs){
+    if(songs.length === 0){ list.innerHTML = '<p class="form-note">Nessuna canzone ancora per questo titolo.</p>'; return; }
+    list.innerHTML = songs.map(function(s){
+      return '<div style="display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:1px solid var(--line);font-size:13px;">' +
+        '<span style="flex:1;">' + escapeHtml(s.title) + (s.artist ? ' — ' + escapeHtml(s.artist) : '') + '</span>' +
+        '<button type="button" class="btn btn-sm btn-ghost" data-del-song="' + s.id + '" style="border-color:#e24b4a;color:#e24b4a;">×</button>' +
+        '</div>';
+    }).join('');
+    list.querySelectorAll('[data-del-song]').forEach(function(btn){
+      btn.addEventListener('click', function(){ deleteSong(btn.dataset.delSong, catalogId); });
+    });
+  });
+}
+function deleteSong(id, catalogId){
+  var session = getSession();
+  if(!session) return;
+  if(!confirm('Eliminare questa canzone?')) return;
+  fetch(SUPABASE_URL + '/rest/v1/songs?id=eq.' + encodeURIComponent(id), {
+    method:'DELETE',
+    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
+  }).then(function(){ loadSongsAdminList(catalogId); });
+}
+function addSong(){
+  var catalogId = editingItemId;
+  if(!catalogId){ window.alert('Salva prima il titolo.'); return; }
+  var session = getSession();
+  if(!session) return;
+  var titleEl = document.getElementById('fSongTitle');
+  var artistEl = document.getElementById('fSongArtist');
+  var coverFile = document.getElementById('fSongCover').files[0];
+  var audioFile = document.getElementById('fSongAudio').files[0];
+  var lyricsEl = document.getElementById('fSongLyrics');
+  var statusEl = document.getElementById('songUploadStatus');
+  if(!titleEl.value.trim()){ window.alert('Scrivi il titolo della canzone.'); return; }
+  if(!audioFile){ window.alert('Carica il file audio.'); return; }
+
+  statusEl.textContent = 'Caricamento in corso...';
+  var addBtn = document.getElementById('btnAddSong');
+  addBtn.disabled = true;
+
+  var uploads = [];
+  var audioPath = catalogId + '/' + Date.now() + '-' + audioFile.name.replace(/[^a-zA-Z0-9.\-]/g, '_');
+  uploads.push(
+    fetch(SUPABASE_URL + '/storage/v1/object/songs/' + audioPath, {
+      method:'POST',
+      headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type': audioFile.type || 'audio/mpeg' },
+      body: audioFile
+    }).then(function(r){
+      if(!r.ok) throw new Error('upload audio fallito: ' + r.status);
+      return SUPABASE_URL + '/storage/v1/object/public/songs/' + audioPath;
+    })
+  );
+  if(coverFile){
+    var coverPath = catalogId + '/' + Date.now() + '-cover-' + coverFile.name.replace(/[^a-zA-Z0-9.\-]/g, '_');
+    uploads.push(
+      fetch(SUPABASE_URL + '/storage/v1/object/songs/' + coverPath, {
+        method:'POST',
+        headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type': coverFile.type || 'image/jpeg' },
+        body: coverFile
+      }).then(function(r){
+        if(!r.ok) throw new Error('upload copertina fallito: ' + r.status);
+        return SUPABASE_URL + '/storage/v1/object/public/songs/' + coverPath;
+      })
+    );
+  } else {
+    uploads.push(Promise.resolve(null));
+  }
+
+  Promise.all(uploads).then(function(urls){
+    return fetch(SUPABASE_URL + '/rest/v1/songs', {
+      method:'POST',
+      headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
+      body: JSON.stringify({
+        catalog_id: catalogId, title: titleEl.value.trim(), artist: artistEl.value.trim() || null,
+        audio_url: urls[0], cover_url: urls[1], lyrics: lyricsEl.value.trim() || null
+      })
+    });
+  }).then(function(r){
+    if(!r.ok) throw new Error('salvataggio canzone fallito: ' + r.status);
+    titleEl.value = ''; artistEl.value = ''; lyricsEl.value = '';
+    document.getElementById('fSongCover').value = '';
+    document.getElementById('fSongAudio').value = '';
+    statusEl.textContent = '';
+    loadSongsAdminList(catalogId);
+  }).catch(function(err){
+    console.warn('Aggiunta canzone fallita:', err);
+    statusEl.textContent = 'Errore: ' + err.message;
+  }).finally(function(){
+    addBtn.disabled = false;
+  });
+}
+
 function insertSupportTitleButton(item){
   var shareBtn = document.getElementById('titleModalShare');
   if(!shareBtn) return;
@@ -9676,6 +9915,8 @@ function __appInit(){
   document.getElementById('btnSaveNightSchedule') && document.getElementById('btnSaveNightSchedule').addEventListener('click', saveNightSchedule);
   document.getElementById('btnRequestExtension') && document.getElementById('btnRequestExtension').addEventListener('click', requestSessionExtension);
   document.getElementById('btnAddSavedCollab') && document.getElementById('btnAddSavedCollab').addEventListener('click', saveSavedCollaborator);
+  document.getElementById('btnAddSong') && document.getElementById('btnAddSong').addEventListener('click', addSong);
+  document.getElementById('navMusic') && document.getElementById('navMusic').addEventListener('click', function(e){ e.preventDefault(); openAllMusicBrowser(); });
   loadSavedCollaborators();
   wireCollabAutofill();
   document.getElementById('btnExportOffline') && document.getElementById('btnExportOffline').addEventListener('click', exportEverythingOffline);
