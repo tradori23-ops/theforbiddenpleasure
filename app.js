@@ -8127,13 +8127,24 @@ function openMusicLibrary(){
         '<button type="button" class="music-library-navbtn" data-lib-tab="podcasts">🎙 Podcast</button>' +
         '<button type="button" class="music-library-navbtn" data-lib-tab="artists">🎤 Artisti</button>' +
       '</div>' +
+      '<div style="padding:0 20px;flex-shrink:0;">' +
+        '<input type="text" id="musicLibrarySearch" placeholder="Cosa vuoi ascoltare?" style="width:100%;max-width:340px;margin:12px 0 0;background:rgba(201,162,77,0.08);border:1px solid rgba(201,162,77,0.3);border-radius:20px;padding:8px 16px;color:#f0e4cd;font-size:13px;">' +
+      '</div>' +
       '<div class="music-library-grid" id="musicLibraryGrid"><p class="form-note">…</p></div>' +
     '</div>';
   document.body.appendChild(overlay);
   document.getElementById('musicLibraryClose').addEventListener('click', closeMusicLibrary);
+  document.getElementById('musicLibrarySearch').addEventListener('input', function(e){
+    var q = e.target.value.trim().toLowerCase();
+    Array.prototype.forEach.call(document.querySelectorAll('#musicLibraryGrid .music-library-card'), function(card){
+      var text = card.textContent.toLowerCase();
+      card.style.display = (!q || text.indexOf(q) !== -1) ? '' : 'none';
+    });
+  });
   Array.prototype.forEach.call(overlay.querySelectorAll('.music-library-navbtn'), function(btn){
     btn.addEventListener('click', function(){
       Array.prototype.forEach.call(overlay.querySelectorAll('.music-library-navbtn'), function(b){ b.classList.toggle('active', b === btn); });
+      document.getElementById('musicLibrarySearch').value = '';
       renderMusicLibraryTab(btn.dataset.libTab);
     });
   });
@@ -8374,6 +8385,21 @@ function openMusicPlayer(songs, contextLabel, options){
       if(currentIdx < songs.length - 1) playTrack(currentIdx + 1);
     });
 
+    // Controlli nativi del telefono (schermata di blocco / notifica): mostra
+    // titolo/artista/copertina VERI della canzone in corso, non il nome
+    // generico del sito, e collega avanti/indietro/play alle tracce reali.
+    if('mediaSession' in navigator){
+      navigator.mediaSession.metadata = new MediaMetadata({
+        title: song.title || '',
+        artist: (song.artist || '') + (contextLabel ? ' · ' + contextLabel : ''),
+        artwork: song.cover_url ? [{ src: song.cover_url, sizes: '512x512', type: 'image/jpeg' }] : []
+      });
+      navigator.mediaSession.setActionHandler('play', function(){ mediaEl.play().catch(function(){}); });
+      navigator.mediaSession.setActionHandler('pause', function(){ mediaEl.pause(); });
+      navigator.mediaSession.setActionHandler('previoustrack', songs.length > 1 ? function(){ playTrack((currentIdx - 1 + songs.length) % songs.length); } : null);
+      navigator.mediaSession.setActionHandler('nexttrack', songs.length > 1 ? function(){ playTrack((currentIdx + 1) % songs.length); } : null);
+    }
+
     var lyricsEl = document.getElementById('musicPlayerLyrics');
     if(song.lyrics){ lyricsEl.textContent = song.lyrics; lyricsEl.classList.remove('hidden'); }
     else { lyricsEl.classList.add('hidden'); }
@@ -8552,6 +8578,13 @@ function shareSong(song, contextLabel){
 function closeMusicPlayer(){
   var overlay = document.getElementById('musicPlayerOverlay');
   if(overlay) overlay.remove();
+  if('mediaSession' in navigator){
+    navigator.mediaSession.metadata = null;
+    navigator.mediaSession.setActionHandler('play', null);
+    navigator.mediaSession.setActionHandler('pause', null);
+    navigator.mediaSession.setActionHandler('previoustrack', null);
+    navigator.mediaSession.setActionHandler('nexttrack', null);
+  }
 }
 
 function openAllMusicBrowser(){
