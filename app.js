@@ -2715,12 +2715,62 @@ function refreshPushButtonUI(){
   navigator.serviceWorker.ready.then(function(reg){
     return reg.pushManager.getSubscription();
   }).then(function(sub){
-    if(settled) return;
-    settled = true;
-    clearTimeout(safetyTimer);
-    btn.classList.remove('hidden');
-    btn.textContent = sub ? t('push.enabled') : t('push.enable');
-    btn.disabled = !!sub;
+    if(!sub){
+      if(settled) return;
+      settled = true;
+      clearTimeout(safetyTimer);
+      btn.classList.remove('hidden');
+      btn.textContent = t('push.enable');
+      btn.disabled = false;
+      return;
+    }
+    // Il browser ha già un'iscrizione attiva, ma questo da solo non
+    // garantisce che sia mai arrivata al database — se il salvataggio
+    // fallì la prima volta (rete, sessione scaduta...), il pulsante
+    // restava bloccato su "attivo" per sempre, nascondendo il problema
+    // e senza che l'utente potesse più riprovare. Verifichiamo, e se manca
+    // la risalviamo da sola invece di fidarci solo del browser.
+    var session = getSession();
+    if(!session){
+      if(settled) return;
+      settled = true;
+      clearTimeout(safetyTimer);
+      btn.classList.remove('hidden');
+      btn.textContent = t('push.enable');
+      btn.disabled = false;
+      return;
+    }
+    return fetch(SUPABASE_URL + '/rest/v1/push_subscriptions?select=id&endpoint=eq.' + encodeURIComponent(sub.endpoint), {
+      headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': 'Bearer ' + session.access_token }
+    }).then(function(r){ return r.ok ? r.json() : []; }).then(function(rows){
+      if(rows && rows.length > 0){
+        if(settled) return;
+        settled = true;
+        clearTimeout(safetyTimer);
+        btn.classList.remove('hidden');
+        btn.textContent = t('push.enabled');
+        btn.disabled = true;
+        return;
+      }
+      // In database non c'è — la risalviamo silenziosamente con gli stessi
+      // dati che il browser ha già, senza richiedere di nuovo il permesso.
+      var json = sub.toJSON();
+      return fetch(SUPABASE_URL + '/rest/v1/push_subscriptions', {
+        method: 'POST',
+        headers: {
+          'apikey': SUPABASE_ANON_KEY, 'Authorization': 'Bearer ' + session.access_token,
+          'Content-Type': 'application/json', 'Prefer': 'resolution=merge-duplicates'
+        },
+        body: JSON.stringify({ user_id: currentUserId(), endpoint: json.endpoint, p256dh: json.keys.p256dh, auth: json.keys.auth })
+      }).then(function(r2){
+        if(settled) return;
+        settled = true;
+        clearTimeout(safetyTimer);
+        btn.classList.remove('hidden');
+        btn.textContent = r2.ok ? t('push.enabled') : t('push.enable');
+        btn.disabled = r2.ok;
+      });
+    });
   }).catch(function(){
     if(settled) return;
     settled = true;
