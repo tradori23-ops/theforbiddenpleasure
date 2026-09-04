@@ -8399,6 +8399,35 @@ function openMusicPlayer(songs, contextLabel, options){
       navigator.mediaSession.setActionHandler('pause', function(){ mediaEl.pause(); });
       navigator.mediaSession.setActionHandler('previoustrack', songs.length > 1 ? function(){ playTrack((currentIdx - 1 + songs.length) % songs.length); } : null);
       navigator.mediaSession.setActionHandler('nexttrack', songs.length > 1 ? function(){ playTrack((currentIdx + 1) % songs.length); } : null);
+      // permette di trascinare il cursore nella schermata di blocco e usare
+      // i tasti "salta indietro/avanti di 10s" — senza questi handler il
+      // cursore resta bloccato e non risponde al trascinamento
+      navigator.mediaSession.setActionHandler('seekto', function(details){
+        if(details.fastSeek && 'fastSeek' in mediaEl){ mediaEl.fastSeek(details.seekTime); return; }
+        mediaEl.currentTime = details.seekTime;
+      });
+      navigator.mediaSession.setActionHandler('seekbackward', function(details){
+        mediaEl.currentTime = Math.max(0, mediaEl.currentTime - (details.seekOffset || 10));
+      });
+      navigator.mediaSession.setActionHandler('seekforward', function(details){
+        mediaEl.currentTime = Math.min(mediaEl.duration || Infinity, mediaEl.currentTime + (details.seekOffset || 10));
+      });
+      // tiene aggiornata la posizione mostrata nella schermata di blocco,
+      // altrimenti resta ferma a 0 e il trascinamento non ha effetto visibile
+      var updatePositionState = function(){
+        if(!mediaEl.duration || isNaN(mediaEl.duration)) return;
+        try {
+          navigator.mediaSession.setPositionState({
+            duration: mediaEl.duration,
+            playbackRate: mediaEl.playbackRate,
+            position: mediaEl.currentTime
+          });
+        } catch(e){} // alcuni browser vecchi non supportano setPositionState, si ignora
+      };
+      mediaEl.addEventListener('loadedmetadata', updatePositionState);
+      mediaEl.addEventListener('timeupdate', updatePositionState);
+      mediaEl.addEventListener('play', function(){ navigator.mediaSession.playbackState = 'playing'; });
+      mediaEl.addEventListener('pause', function(){ navigator.mediaSession.playbackState = 'paused'; });
     }
 
     var lyricsEl = document.getElementById('musicPlayerLyrics');
@@ -8598,6 +8627,9 @@ function closeMusicPlayer(){
     navigator.mediaSession.setActionHandler('pause', null);
     navigator.mediaSession.setActionHandler('previoustrack', null);
     navigator.mediaSession.setActionHandler('nexttrack', null);
+    navigator.mediaSession.setActionHandler('seekto', null);
+    navigator.mediaSession.setActionHandler('seekbackward', null);
+    navigator.mediaSession.setActionHandler('seekforward', null);
   }
 }
 
