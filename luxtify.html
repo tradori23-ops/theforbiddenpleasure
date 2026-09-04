@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>LUXTIFY — Musica &amp; Podcast di LUX COMICS &amp; MEDUSA COMICS</title>
+<meta property="og:type" content="website">
+<meta property="og:title" content="LUXTIFY — Musica &amp; Podcast">
+<meta property="og:description" content="Le colonne sonore e i podcast di LUX COMICS &amp; MEDUSA COMICS, in un unico posto.">
+<meta property="og:image" content="https://noxmorningstar.com/luxtify-logo.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="1200">
+<meta property="og:url" content="https://noxmorningstar.com/luxtify.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="LUXTIFY — Musica &amp; Podcast">
+<meta name="twitter:description" content="Le colonne sonore e i podcast di LUX COMICS &amp; MEDUSA COMICS.">
+<meta name="twitter:image" content="https://noxmorningstar.com/luxtify-logo.jpg">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0b0607">
+<meta name="description" content="LUXTIFY — musica, playlist e podcast di LUX COMICS &amp; MEDUSA COMICS.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cinzel+Decorative:wght@700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Space+Mono:wght@400;700&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cinzel+Decorative:wght@700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Space+Mono:wght@400;700&display=swap"></noscript>
+<!-- style.css è iniettato da loader.js con la versione sempre aggiornata -->
+<style>
+  /* Stile specifico di questa pagina: identità Luxtify (oro su nero, logo dedicato) */
+  body{background:#0b0607;margin:0;}
+  #luxtifySection{max-width:520px;margin:0 auto;font-family:'Crimson Pro',serif;padding-bottom:70px;}
+  .luxtify-header{padding:28px 20px 16px;text-align:center;}
+  .luxtify-logo{width:88px;height:88px;border-radius:50%;object-fit:cover;margin:0 auto 10px;display:block;border:2px solid rgba(201,162,77,0.5);}
+  .luxtify-wordmark{font-family:'Cinzel Decorative',serif;color:#f0e4cd;font-size:24px;letter-spacing:0.06em;margin:0;}
+  .luxtify-stats{color:#8a7a5e;font-size:11px;margin-top:4px;}
+  .luxtify-search{margin:14px 20px;display:flex;align-items:center;gap:8px;background:rgba(201,162,77,0.08);border:1px solid rgba(201,162,77,0.3);border-radius:20px;padding:9px 16px;cursor:pointer;}
+  .luxtify-search span{color:#8a7a5e;font-size:13px;}
+  .luxtify-chips{display:flex;gap:8px;padding:0 20px 6px;overflow-x:auto;}
+  .luxtify-chip{flex-shrink:0;border:1px solid rgba(201,162,77,0.3);color:#8a7a5e;border-radius:16px;padding:6px 14px;font-size:12px;cursor:pointer;white-space:nowrap;}
+  .luxtify-chip.active{border-color:#c9a24d;color:#c9a24d;}
+  .luxtify-section{padding:0 20px 18px;}
+  .luxtify-section-title{color:#8a7a5e;font-size:10px;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;}
+  .luxtify-row{display:flex;gap:10px;overflow-x:auto;padding-bottom:2px;}
+  .luxtify-inline-card{display:flex;align-items:center;gap:10px;background:rgba(201,162,77,0.06);border-radius:10px;padding:10px;cursor:pointer;}
+  .luxtify-bottomnav{position:sticky;bottom:0;display:flex;justify-content:space-around;padding:10px 0;border-top:0.5px solid rgba(201,162,77,0.25);background:#150d0e;max-width:520px;margin:0 auto;}
+  .luxtify-navitem{display:flex;flex-direction:column;align-items:center;gap:3px;color:#5a4f3e;font-size:10px;cursor:pointer;background:none;border:none;}
+  .luxtify-navitem.active{color:#c9a24d;}
+  .hidden{display:none !important;}
+</style>
+</head>
+<body>
+<div id="app">
+<div id="chrome-top-slot"></div>
+
+<section id="luxtifySection">
+
+  <div class="luxtify-header">
+    <img class="luxtify-logo" src="luxtify-logo.jpg" alt="Luxtify">
+    <h1 class="luxtify-wordmark">LUXTIFY</h1>
+    <div class="luxtify-stats" id="luxtifyStats">…</div>
+  </div>
+
+  <div class="luxtify-search" id="luxtifySearchBar">
+    <span>🔍 Cerca in Luxtify</span>
+  </div>
+
+  <div class="luxtify-chips hidden" id="luxtifyGenreChips"></div>
+
+  <div class="luxtify-section hidden">
+    <div class="luxtify-section-title">Riprendi l'ascolto</div>
+    <div class="luxtify-inline-card" id="luxtifyContinue"></div>
+  </div>
+
+  <div class="luxtify-section hidden">
+    <div class="luxtify-section-title">Consigliata per oggi</div>
+    <div class="luxtify-inline-card" id="luxtifyDailyPick"></div>
+  </div>
+
+  <div class="luxtify-section" id="luxtifyMixesSection">
+    <div class="luxtify-section-title">I tuoi mix</div>
+    <div class="luxtify-row" id="luxtifyMixesRow"></div>
+  </div>
+
+  <div class="luxtify-section">
+    <div class="luxtify-section-title">Album</div>
+    <div class="luxtify-row" id="luxtifyAlbumsRow"></div>
+  </div>
+
+  <div class="luxtify-section" id="luxtifyArtistsSection">
+    <div class="luxtify-section-title">I tuoi artisti preferiti</div>
+    <div class="luxtify-row" id="luxtifyArtistsRow"></div>
+  </div>
+
+  <div class="luxtify-section">
+    <div class="luxtify-section-title">Il creatore</div>
+    <a href="index.html" style="text-decoration:none;" class="luxtify-inline-card">
+      <div style="width:44px;height:44px;border-radius:50%;background:linear-gradient(150deg,#6e1423,#1a1420);flex-shrink:0;"></div>
+      <div style="flex:1;min-width:0;">
+        <div style="color:#f0e4cd;font-size:12px;font-weight:600;">Nox Morningstar</div>
+        <div style="color:#8a7a5e;font-size:10px;">Fondatore · tutti i brani e le storie</div>
+      </div>
+    </a>
+  </div>
+
+</section>
+
+<div class="luxtify-bottomnav">
+  <button type="button" class="luxtify-navitem active" id="luxtifyNavHome">🏠<span>Home</span></button>
+  <button type="button" class="luxtify-navitem" id="luxtifyNavSearch">🔍<span>Cerca</span></button>
+  <button type="button" class="luxtify-navitem" id="luxtifyNavLibrary">📁<span>Libreria</span></button>
+</div>
+
+<div id="chrome-footer-slot"></div>
+</div>
+<div id="chrome-modals-slot"></div>
+<script>
+  document.getElementById('luxtifySearchBar').addEventListener('click', function(){
+    if(typeof openMusicLibrary === 'function') openMusicLibrary();
+  });
+</script>
+<link rel="preload" href="app.js" as="script">
+<script src="qrcode-lib.js" defer></script>
+<script src="loader.js" defer></script>
+</body>
+</html>
