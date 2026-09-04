@@ -8226,10 +8226,10 @@ function renderMusicLibraryTab(tab){
           fetchPodcastEpisodes(p.id).then(function(episodes){
             if(episodes.length === 0) return;
             var tracks = episodes.map(function(e){
-              return { id: null, title: e.title, artist: p.title, cover_url: e.cover_url || p.cover_url, audio_url: e.audio_url, lyrics: e.description, media_type: 'audio' };
+              return { id: e.id, title: e.title, artist: p.title, cover_url: e.cover_url || p.cover_url, audio_url: e.audio_url, lyrics: e.description, media_type: 'audio' };
             });
             closeMusicLibrary();
-            openMusicPlayer(tracks, p.title, { hideSocial: true });
+            openMusicPlayer(tracks, p.title, { hideSocial: true, shareKind: 'p' });
           });
         });
       });
@@ -8344,7 +8344,7 @@ function openMusicPlayer(songs, contextLabel, options){
       '<div class="music-player-actions" id="musicPlayerActions">' +
         (songs.length > 1 ? '<button type="button" class="btn btn-sm btn-ghost" id="musicPlayerPrevBtn">⏮</button>' : '') +
         (options.hideSocial ? '' : '<button type="button" class="btn btn-sm btn-ghost" id="musicPlayerLikeBtn">🤍 …</button>') +
-        (options.hideSocial ? '' : '<button type="button" class="btn btn-sm btn-ghost" id="musicPlayerShareBtn">' + t('share.button') + '</button>') +
+        '<button type="button" class="btn btn-sm btn-ghost hidden" id="musicPlayerShareBtn">' + t('share.button') + '</button>' +
         (songs.length > 1 ? '<button type="button" class="btn btn-sm btn-ghost" id="musicPlayerNextBtn">⏭</button>' : '') +
       '</div>' +
     '</div>';
@@ -8425,9 +8425,14 @@ function openMusicPlayer(songs, contextLabel, options){
         };
       }
     }
-    if(!options.hideSocial){
-      var shareBtn = document.getElementById('musicPlayerShareBtn');
-      if(shareBtn) shareBtn.onclick = function(){ shareSong(song, contextLabel); };
+    var shareBtn = document.getElementById('musicPlayerShareBtn');
+    if(shareBtn){
+      if(song.id){
+        shareBtn.classList.remove('hidden');
+        shareBtn.onclick = function(){ shareSong(song, contextLabel, options.shareKind || 's'); };
+      } else {
+        shareBtn.classList.add('hidden');
+      }
     }
   }
 
@@ -8546,10 +8551,11 @@ function submitSongComment(songId, inputEl, listEl, errEl){
 }
 
 /* ---- Condivisione di una canzone (stesso pattern di shareTitle, punta a /s/{id}.html) ---- */
-function shareSong(song, contextLabel){
-  if(!song.id) return; // canzone senza id salvato non ha una pagina di anteprima da condividere
+function shareSong(song, contextLabel, kind){
+  if(!song.id) return; // senza id salvato non c'è una pagina di anteprima da condividere
+  kind = kind || 's';
   var shareText = song.title + (contextLabel ? ' — ' + contextLabel : '') + '\n';
-  var shareUrl = previewPagePath('s', song.id);
+  var shareUrl = previewPagePath(kind, song.id);
 
   function shareWithoutImage(){
     if(navigator.share){
