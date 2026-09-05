@@ -80,6 +80,7 @@
         <button class="admin-tab" data-tab="users" data-i18n="admin.tab.users">Utenti</button>
         <button class="admin-tab" data-tab="maintenance" data-i18n="admin.tab.maintenance">Manutenzione</button>
         <button class="admin-tab" data-tab="moderation" data-i18n="admin.tab.moderation">Moderazione Community</button>
+        <button class="admin-tab" data-tab="diagnostics">Diagnostica</button>
       </div>
 
       <div class="admin-shell-content">
@@ -495,6 +496,20 @@
         <div class="notice">
           <div data-i18n="mod.bannedTitle" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Utenti bannati (email bloccate)</div>
           <div id="modBannedList"></div>
+        </div>
+      </div>
+
+      <div class="admin-tab-panel hidden" data-tab-panel="diagnostics">
+        <div class="notice">
+          <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Analisi del sito</div>
+          <p style="color:var(--parchment-dim);font-size:13px;line-height:1.6;margin-bottom:14px;">
+            Controlla pagine, database e file multimediali del sito. Ogni problema trovato ha un codice —
+            copialo e mandamelo, così so subito dove guardare senza dover indovinare.
+          </p>
+          <button class="btn btn-primary btn-sm" id="btnRunDiagnostics">🔍 Analizza il sito</button>
+          <button class="btn btn-ghost btn-sm hidden" id="btnCopyDiagnostics" style="margin-left:8px;">📋 Copia report</button>
+          <div id="diagnosticsProgress" style="color:var(--gold);font-size:12px;margin-top:10px;"></div>
+          <div id="diagnosticsResults" style="margin-top:16px;"></div>
         </div>
       </div>
       </div>

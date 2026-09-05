@@ -10499,6 +10499,140 @@ scanForComposerFields();
 })();
 
 /* ============ MODERATION QUEUE (admin) ============ */
+/* ============ DIAGNOSTICA DEL SITO (solo Admin) ============
+   Controlla pagine chiave, tabelle del database e un campione di
+   file multimediali; ogni controllo ha un codice fisso (LX-1xx
+   pagine, LX-2xx database, LX-3xx media, LX-4xx errori JavaScript
+   rilevati) così un problema segnalato è sempre lo stesso identico
+   controllo, riproducibile da conversazione a conversazione. */
+
+var __diagnosticsJsErrors = [];
+window.addEventListener('error', function(e){
+  __diagnosticsJsErrors.push((e.message || 'Errore sconosciuto') + ' — ' + (e.filename || '') + ':' + (e.lineno || '?'));
+});
+window.addEventListener('unhandledrejection', function(e){
+  __diagnosticsJsErrors.push('Promise non gestita: ' + (e.reason && e.reason.message ? e.reason.message : String(e.reason)));
+});
+
+function fetchWithTimeout(url, options, ms){
+  var controller = new AbortController();
+  var timer = setTimeout(function(){ controller.abort(); }, ms || 8000);
+  return fetch(url, Object.assign({}, options, { signal: controller.signal }))
+    .finally(function(){ clearTimeout(timer); });
+}
+
+function runSiteDiagnostics(){
+  var progressEl = document.getElementById('diagnosticsProgress');
+  var resultsEl = document.getElementById('diagnosticsResults');
+  var copyBtn = document.getElementById('btnCopyDiagnostics');
+  var runBtn = document.getElementById('btnRunDiagnostics');
+  runBtn.disabled = true;
+  copyBtn.classList.add('hidden');
+  resultsEl.innerHTML = '';
+  progressEl.textContent = 'Controllo pagine e file...';
+
+  var results = [];
+
+  // ---------- LX-1xx: pagine e file chiave del sito ----------
+  var files = [
+    'app.js','style.css','loader.js','chrome-top.html','chrome-footer.html','chrome-modals.html',
+    'manifest.json','sw.js','index.html','schedario.html','dossier.html','founder.html',
+    'community.html','mycomics.html','luxtify.html','luxtify-logo.jpg'
+  ];
+  var fileChecks = files.map(function(f, i){
+    var code = 'LX-1' + String(i + 1).padStart(2, '0');
+    return fetchWithTimeout(f, { method: 'HEAD', cache: 'no-store' }, 8000)
+      .then(function(r){ return { code: code, label: 'Pagina/file: ' + f, ok: r.ok, detail: r.ok ? '' : 'HTTP ' + r.status }; })
+      .catch(function(err){ return { code: code, label: 'Pagina/file: ' + f, ok: false, detail: 'Non raggiungibile (' + (err.name === 'AbortError' ? 'timeout' : err.message) + ')' }; });
+  });
+
+  // ---------- LX-2xx: tabelle del database ----------
+  var tables = ['catalog','songs','playlists','playlist_songs','podcasts','podcast_episodes','comments','song_likes','notifications','profiles','saved_collaborators'];
+  var tableChecks = tables.map(function(tbl, i){
+    var code = 'LX-2' + String(i + 1).padStart(2, '0');
+    return fetchWithTimeout(SUPABASE_URL + '/rest/v1/' + tbl + '?select=id&limit=1', { headers:{ 'apikey':SUPABASE_ANON_KEY } }, 8000)
+      .then(function(r){ return { code: code, label: 'Tabella database: ' + tbl, ok: r.ok, detail: r.ok ? '' : 'HTTP ' + r.status }; })
+      .catch(function(err){ return { code: code, label: 'Tabella database: ' + tbl, ok: false, detail: 'Non raggiungibile (' + (err.name === 'AbortError' ? 'timeout' : err.message) + ')' }; });
+  });
+
+  Promise.all(fileChecks.concat(tableChecks)).then(function(fileAndTableResults){
+    results = results.concat(fileAndTableResults);
+    progressEl.textContent = 'Controllo di un campione di copertine e file audio...';
+
+    // ---------- LX-3xx: campione di media (copertine/audio) ----------
+    return fetch(SUPABASE_URL + '/rest/v1/songs?select=id,title,cover_url,audio_url&order=created_at.desc&limit=5', { headers:{ 'apikey':SUPABASE_ANON_KEY } })
+      .then(function(r){ return r.ok ? r.json() : []; })
+      .catch(function(){ return []; });
+  }).then(function(sampleSongs){
+    var mediaChecks = [];
+    var counter = 1;
+    sampleSongs.forEach(function(s){
+      ['cover_url','audio_url'].forEach(function(field){
+        if(!s[field]) return;
+        var code = 'LX-3' + String(counter++).padStart(2, '0');
+        mediaChecks.push(
+          fetchWithTimeout(s[field], { method:'HEAD' }, 10000)
+            .then(function(r){ return { code: code, label: 'Media "' + (s.title || s.id) + '" (' + field + ')', ok: r.ok, detail: r.ok ? '' : 'HTTP ' + r.status }; })
+            .catch(function(err){ return { code: code, label: 'Media "' + (s.title || s.id) + '" (' + field + ')', ok: false, detail: 'Non raggiungibile (' + (err.name === 'AbortError' ? 'timeout' : err.message) + ')' }; })
+        );
+      });
+    });
+    return Promise.all(mediaChecks);
+  }).then(function(mediaResults){
+    results = results.concat(mediaResults);
+
+    // ---------- LX-4xx: errori JavaScript rilevati in questa sessione ----------
+    if(__diagnosticsJsErrors.length === 0){
+      results.push({ code: 'LX-401', label: 'Errori JavaScript rilevati in questa sessione', ok: true, detail: '' });
+    } else {
+      __diagnosticsJsErrors.forEach(function(msg, i){
+        results.push({ code: 'LX-4' + String(i + 1).padStart(2, '0'), label: 'Errore JavaScript rilevato', ok: false, detail: msg });
+      });
+    }
+
+    renderDiagnosticsResults(results);
+    progressEl.textContent = 'Analisi completata.';
+    runBtn.disabled = false;
+  }).catch(function(err){
+    progressEl.textContent = "Errore durante l'analisi: " + err.message;
+    runBtn.disabled = false;
+  });
+}
+
+function renderDiagnosticsResults(results){
+  var resultsEl = document.getElementById('diagnosticsResults');
+  var copyBtn = document.getElementById('btnCopyDiagnostics');
+  var failed = results.filter(function(r){ return !r.ok; });
+  var passed = results.filter(function(r){ return r.ok; });
+
+  var summary = failed.length === 0
+    ? '<p style="color:#4ade80;font-weight:600;">✅ Nessun problema trovato (' + passed.length + ' controlli superati).</p>'
+    : '<p style="color:#e24b4a;font-weight:600;">⚠️ ' + failed.length + ' problemi trovati su ' + results.length + ' controlli.</p>';
+
+  var rows = failed.map(function(r){
+    return '<div style="display:flex;gap:10px;padding:8px 0;border-bottom:1px solid var(--line);">' +
+      '<span style="font-family:monospace;color:#e24b4a;font-weight:600;flex-shrink:0;">' + r.code + '</span>' +
+      '<div><div style="color:var(--parchment);font-size:13px;">' + escapeHtml(r.label) + '</div>' +
+      (r.detail ? '<div style="color:var(--parchment-dim);font-size:12px;">' + escapeHtml(r.detail) + '</div>' : '') + '</div>' +
+    '</div>';
+  }).join('');
+
+  resultsEl.innerHTML = summary + rows;
+
+  if(failed.length > 0){
+    copyBtn.classList.remove('hidden');
+    copyBtn.onclick = function(){
+      var report = failed.map(function(r){ return r.code + ' — ' + r.label + (r.detail ? ' (' + r.detail + ')' : ''); }).join('\n');
+      navigator.clipboard.writeText(report).then(function(){
+        copyBtn.textContent = '✅ Copiato!';
+        setTimeout(function(){ copyBtn.textContent = '📋 Copia report'; }, 2000);
+      }).catch(function(){ window.alert(report); });
+    };
+  } else {
+    copyBtn.classList.add('hidden');
+  }
+}
+
 function switchAdminTab(tabName){
   document.querySelectorAll('.admin-tab').forEach(function(btn){
     btn.classList.toggle('active', btn.dataset.tab === tabName);
@@ -11309,6 +11443,7 @@ function __appInit(){
   document.getElementById('btnAddSongCollabRow') && document.getElementById('btnAddSongCollabRow').addEventListener('click', addSongCollabRow);
   document.getElementById('btnAddPlaylist') && document.getElementById('btnAddPlaylist').addEventListener('click', addPlaylist);
   document.getElementById('btnAddPodcast') && document.getElementById('btnAddPodcast').addEventListener('click', addPodcast);
+  document.getElementById('btnRunDiagnostics') && document.getElementById('btnRunDiagnostics').addEventListener('click', runSiteDiagnostics);
   loadPlaylistsAdminList();
   loadPodcastsAdminList();
   // "Musica" nel menu principale è stata sostituita da "LUXTIFY" — link
