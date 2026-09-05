@@ -30,7 +30,18 @@
   #luxtifySection{max-width:520px;margin:0 auto;font-family:'Crimson Pro',serif;padding-bottom:70px;}
   .luxtify-header{padding:28px 20px 16px;text-align:center;}
   .luxtify-logo{width:88px;height:88px;border-radius:50%;object-fit:cover;margin:0 auto 10px;display:block;border:2px solid rgba(201,162,77,0.5);}
-  .luxtify-wordmark{font-family:'Cinzel Decorative',serif;color:#f0e4cd;font-size:24px;letter-spacing:0.06em;margin:0;}
+  .luxtify-wordmark{
+    font-family:'Cinzel Decorative',serif;font-size:24px;letter-spacing:0.06em;margin:0;
+    background:linear-gradient(90deg,#c9a24d,#e85d4a,#4a9eff,#c9a24d);
+    background-size:300% 100%;
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    animation:luxtifyShift 6s ease-in-out infinite;
+  }
+  @keyframes luxtifyShift{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+  }
   .luxtify-stats{color:#8a7a5e;font-size:11px;margin-top:4px;}
   .luxtify-search{margin:14px 20px;display:flex;align-items:center;gap:8px;background:rgba(201,162,77,0.08);border:1px solid rgba(201,162,77,0.3);border-radius:20px;padding:9px 16px;cursor:pointer;}
   .luxtify-search span{color:#8a7a5e;font-size:13px;}
@@ -45,11 +56,21 @@
   .luxtify-navitem{display:flex;flex-direction:column;align-items:center;gap:3px;color:#5a4f3e;font-size:10px;cursor:pointer;background:none;border:none;}
   .luxtify-navitem.active{color:#c9a24d;}
   .hidden{display:none !important;}
+  .luxtify-minibar{position:fixed;left:0;right:0;bottom:52px;max-width:520px;margin:0 auto;display:flex;align-items:center;gap:10px;background:#1a1113;border-top:1px solid rgba(201,162,77,0.3);padding:8px 14px;cursor:pointer;z-index:50;}
+  .luxtify-minibar img{width:34px;height:34px;border-radius:5px;object-fit:cover;flex-shrink:0;background:#150d0e;}
+  .luxtify-minibar-info{flex:1;min-width:0;}
+  .luxtify-minibar-title{color:#f0e4cd;font-size:12px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .luxtify-minibar-artist{color:#8a7a5e;font-size:10px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .luxtify-minibar button{background:none;border:none;color:#c9a24d;font-size:16px;flex-shrink:0;cursor:pointer;}
+  .luxtify-fab{width:34px;height:34px;border-radius:50%;background:#6e1423;color:#f0e4cd;border:none;font-size:18px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;}
+  .luxtify-popup-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:400;display:flex;align-items:flex-end;justify-content:center;}
+  .luxtify-popup-box{background:#150d0e;border:1px solid rgba(201,162,77,0.35);border-radius:14px 14px 0 0;padding:20px;width:100%;max-width:520px;box-sizing:border-box;}
+  .luxtify-popup-box input[type="text"]{width:100%;box-sizing:border-box;margin-bottom:8px;background:#0b0607;border:1px solid rgba(201,162,77,0.3);border-radius:6px;color:#e0d4b8;padding:9px;font-size:13px;}
+  .luxtify-popup-box input[type="file"]{width:100%;margin-bottom:8px;font-size:12px;color:#8a7a5e;}
 </style>
 </head>
 <body>
 <div id="app">
-<div id="chrome-top-slot"></div>
 
 <section id="luxtifySection">
 
@@ -75,6 +96,11 @@
     <div class="luxtify-inline-card" id="luxtifyDailyPick"></div>
   </div>
 
+  <div class="luxtify-section hidden" id="luxtifyMyPlaylistsSection">
+    <div class="luxtify-section-title">Le mie playlist</div>
+    <div class="luxtify-row" id="luxtifyMyPlaylistsRow"></div>
+  </div>
+
   <div class="luxtify-section" id="luxtifyMixesSection">
     <div class="luxtify-section-title">I tuoi mix</div>
     <div class="luxtify-row" id="luxtifyMixesRow"></div>
@@ -90,6 +116,30 @@
     <div class="luxtify-row" id="luxtifyArtistsRow"></div>
   </div>
 
+  <div class="luxtify-section hidden" id="luxtifyCollabSection">
+    <button type="button" id="btnOpenLuxSongPopup" style="display:flex;align-items:center;gap:8px;background:transparent;border:1px solid rgba(201,162,77,0.35);color:#c9a24d;border-radius:20px;padding:8px 16px;font-size:12px;cursor:pointer;">
+      🎵 Aggiungi una canzone
+    </button>
+  </div>
+
+  <div class="luxtify-popup-overlay hidden" id="luxSongPopup">
+    <div class="luxtify-popup-box">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+        <span style="color:#c9a24d;font-size:13px;font-family:'Cinzel Decorative',serif;letter-spacing:0.04em;">NUOVA CANZONE</span>
+        <button type="button" id="btnCloseLuxSongPopup" style="background:none;border:1px solid rgba(201,162,77,0.4);color:#c9a24d;border-radius:50%;width:26px;height:26px;cursor:pointer;">✕</button>
+      </div>
+      <input type="text" id="fLuxTitle" placeholder="Titolo canzone">
+      <input type="text" id="fLuxArtist" placeholder="Artista (opzionale)">
+      <input type="text" id="fLuxGenre" placeholder="Genere (opzionale)">
+      <label style="font-size:11px;color:#8a7a5e;display:block;margin-bottom:2px;">Copertina (opzionale)</label>
+      <input type="file" id="fLuxCover" accept="image/*">
+      <label style="font-size:11px;color:#8a7a5e;display:block;margin-bottom:2px;">File audio (mp3) o video (mp4)</label>
+      <input type="file" id="fLuxAudio" accept="audio/*,video/mp4">
+      <button type="button" id="btnAddLuxtifySong" style="width:100%;background:#6e1423;color:#f0e4cd;border:none;border-radius:6px;padding:10px;font-size:13px;cursor:pointer;margin-top:4px;">Pubblica canzone</button>
+      <div id="luxUploadStatus" style="color:#c9a24d;font-size:11px;margin-top:6px;"></div>
+    </div>
+  </div>
+
   <div class="luxtify-section">
     <div class="luxtify-section-title">Il creatore</div>
     <a href="index.html" style="text-decoration:none;" class="luxtify-inline-card">
@@ -103,18 +153,33 @@
 
 </section>
 
+<div class="luxtify-minibar hidden" id="luxtifyMiniBar">
+  <img id="luxtifyMiniCover" src="" alt="">
+  <div class="luxtify-minibar-info">
+    <div class="luxtify-minibar-title" id="luxtifyMiniTitle"></div>
+    <div class="luxtify-minibar-artist" id="luxtifyMiniArtist"></div>
+  </div>
+  <button type="button" id="luxtifyMiniPlayPause">⏸</button>
+</div>
+
 <div class="luxtify-bottomnav">
   <button type="button" class="luxtify-navitem active" id="luxtifyNavHome">🏠<span>Home</span></button>
   <button type="button" class="luxtify-navitem" id="luxtifyNavSearch">🔍<span>Cerca</span></button>
   <button type="button" class="luxtify-navitem" id="luxtifyNavLibrary">📁<span>Libreria</span></button>
 </div>
 
-<div id="chrome-footer-slot"></div>
 </div>
+
 <div id="chrome-modals-slot"></div>
 <script>
   document.getElementById('luxtifySearchBar').addEventListener('click', function(){
     if(typeof openMusicLibrary === 'function') openMusicLibrary();
+  });
+  document.getElementById('btnOpenLuxSongPopup').addEventListener('click', function(){
+    document.getElementById('luxSongPopup').classList.remove('hidden');
+  });
+  document.getElementById('btnCloseLuxSongPopup').addEventListener('click', function(){
+    document.getElementById('luxSongPopup').classList.add('hidden');
   });
 </script>
 <link rel="preload" href="app.js" as="script">
