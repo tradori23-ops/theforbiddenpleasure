@@ -8657,7 +8657,7 @@ function addLuxtifySong(){
       body: JSON.stringify({
         catalog_id: null, // canzone caricata da un collaboratore, non legata a un titolo fumetto
         title: titleEl.value.trim(), artist: artistEl.value.trim() || null, genre: genreEl.value.trim() || null,
-        audio_url: urls[0], cover_url: urls[1],
+        audio_url: urls[0], cover_url: urls[1], created_by: currentUserId(),
         media_type: (audioFile.type && audioFile.type.indexOf('video') === 0) ? 'video' : 'audio'
       })
     });
@@ -9304,6 +9304,7 @@ function addSong(){
       headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
       body: JSON.stringify({
         catalog_id: catalogId, title: titleEl.value.trim(), artist: artistEl.value.trim() || null,
+        created_by: currentUserId(),
         genre: genreEl.value.trim() || null,
         audio_url: urls[0], cover_url: urls[1], lyrics: lyricsEl.value.trim() || null,
         media_type: (audioFile.type && audioFile.type.indexOf('video') === 0) ? 'video' : 'audio',
