@@ -65,7 +65,9 @@ self.addEventListener('fetch', function(event){
     event.respondWith(
       fetch(req).then(function(response){
         if(response && response.ok){
-          caches.open(CACHE_NAME).then(function(cache){ cache.put(req, response.clone()); });
+          caches.open(CACHE_NAME).then(function(cache){
+            try { cache.put(req, response.clone()); } catch(e){} // risposta già letta altrove nel frattempo: niente da salvare, non blocca la pagina
+          });
         }
         return response;
       }).catch(function(){
@@ -83,7 +85,9 @@ self.addEventListener('fetch', function(event){
     caches.open(CACHE_NAME).then(function(cache){
       return cache.match(req).then(function(cached){
         var network = fetch(req).then(function(response){
-          if(response && response.ok) cache.put(req, response.clone());
+          if(response && response.ok){
+            try { cache.put(req, response.clone()); } catch(e){} // vedi nota sopra
+          }
           return response;
         }).catch(function(){
           // offline e nulla in cache per questa richiesta: se è una
