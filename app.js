@@ -11311,7 +11311,8 @@ function __appInit(){
   document.getElementById('btnAddPodcast') && document.getElementById('btnAddPodcast').addEventListener('click', addPodcast);
   loadPlaylistsAdminList();
   loadPodcastsAdminList();
-  document.getElementById('navMusic') && document.getElementById('navMusic').addEventListener('click', function(e){ e.preventDefault(); openMusicLibrary(); });
+  // "Musica" nel menu principale è stata sostituita da "LUXTIFY" — link
+  // diretto a luxtify.html, non più un overlay in pagina (vedi chrome-top.html)
   loadSavedCollaborators();
   wireCollabAutofill();
   document.getElementById('btnExportOffline') && document.getElementById('btnExportOffline').addEventListener('click', exportEverythingOffline);
