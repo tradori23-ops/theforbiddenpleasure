@@ -26,7 +26,7 @@
 <!-- style.css è iniettato da loader.js con la versione sempre aggiornata -->
 <style>
   /* Stile specifico di questa pagina: identità Luxtify (oro su nero, logo dedicato) */
-  body{background:#0b0607;margin:0;}
+  body{background:radial-gradient(ellipse 900px 500px at 50% 0%,rgba(110,20,35,0.22),transparent 70%),#0b0607;margin:0;min-height:100vh;}
   #luxtifySection{max-width:520px;margin:0 auto;font-family:'Crimson Pro',serif;padding-bottom:90px;}
   .luxtify-header{padding:28px 20px 16px;text-align:center;}
   .luxtify-logo{width:88px;height:88px;border-radius:50%;object-fit:cover;margin:0 auto 10px;display:block;border:2px solid rgba(201,162,77,0.5);}
@@ -43,7 +43,7 @@
     100%{background-position:0% 50%;}
   }
   .luxtify-stats{color:#8a7a5e;font-size:11px;margin-top:4px;}
-  .luxtify-notif-toggle{display:flex;}
+  .luxtify-notif-toggle{display:inline-flex;}
   .luxtify-search{margin:14px 20px;display:flex;align-items:center;gap:8px;background:rgba(201,162,77,0.08);border:1px solid rgba(201,162,77,0.3);border-radius:20px;padding:9px 16px;cursor:pointer;}
   .luxtify-search span{color:#8a7a5e;font-size:13px;}
   .luxtify-chips{display:flex;gap:8px;padding:0 20px 6px;overflow-x:auto;}
@@ -81,12 +81,13 @@
       flex-direction:column;justify-content:flex-start;align-items:stretch;
       width:230px;height:100vh;max-width:none;margin:0;gap:6px;
       padding:24px 12px 90px;border-top:none;border-right:1px solid rgba(201,162,77,0.2);
+      background:linear-gradient(180deg,#1a0f11,#150d0e);
       box-sizing:border-box;overflow-y:auto;
     }
     .luxtify-navitem{flex-direction:row;justify-content:flex-start;gap:14px;font-size:20px;padding:11px 14px;border-radius:8px;min-width:0;width:100%;box-sizing:border-box;}
     .luxtify-navitem span{font-size:14px;}
     .luxtify-navitem.active{background:rgba(201,162,77,0.12);}
-    #luxtifySection{margin:0 0 0 230px;max-width:1400px;padding:0 0 110px;}
+    #luxtifySection{margin:0 0 0 230px;max-width:1100px;padding:0 0 110px;}
     .luxtify-header{text-align:left;padding:28px 36px 16px;}
     .luxtify-logo{margin:0 0 12px;}
     .luxtify-search{margin:0 36px 18px;max-width:420px;}
