@@ -904,7 +904,9 @@ function initTheme(){
 }
 
 function initMatureToggle(){
-  var sw = document.getElementById('matureSwitch');  matureVisible = false; // always starts off on load/refresh, regardless of prior age verification
+  var sw = document.getElementById('matureSwitch');
+  if(!sw){ matureVisible = false; return; } // pagina senza il menu principale (es. luxtify.html) — niente da inizializzare qui
+  matureVisible = false; // always starts off on load/refresh, regardless of prior age verification
   sw.checked = false;
   updateMatureStateLabel();
 
