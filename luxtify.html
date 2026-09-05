@@ -68,6 +68,36 @@
   .luxtify-popup-box{background:#150d0e;border:1px solid rgba(201,162,77,0.35);border-radius:14px 14px 0 0;padding:20px;width:100%;max-width:520px;box-sizing:border-box;}
   .luxtify-popup-box input[type="text"]{width:100%;box-sizing:border-box;margin-bottom:8px;background:#0b0607;border:1px solid rgba(201,162,77,0.3);border-radius:6px;color:#e0d4b8;padding:9px;font-size:13px;}
   .luxtify-popup-box input[type="file"]{width:100%;margin-bottom:8px;font-size:12px;color:#8a7a5e;}
+
+  /* ============ DESKTOP / SCHERMI LARGI — layout stile Spotify ============
+     Sotto i 900px resta il layout mobile (nav in basso, colonna centrale
+     stretta). Da 900px in su: sidebar a sinistra fissa, contenuto che
+     riempie tutto lo spazio orizzontale disponibile, righe che vanno a
+     capo invece di scorrere, barra di riproduzione a tutta larghezza. */
+  @media (min-width: 900px) {
+    .luxtify-bottomnav{
+      position:fixed;top:0;left:0;bottom:auto;right:auto;
+      flex-direction:column;justify-content:flex-start;align-items:stretch;
+      width:230px;height:100vh;max-width:none;margin:0;gap:6px;
+      padding:24px 12px 90px;border-top:none;border-right:1px solid rgba(201,162,77,0.2);
+      box-sizing:border-box;overflow-y:auto;
+    }
+    .luxtify-navitem{flex-direction:row;justify-content:flex-start;gap:14px;font-size:20px;padding:11px 14px;border-radius:8px;min-width:0;width:100%;box-sizing:border-box;}
+    .luxtify-navitem span{font-size:14px;}
+    .luxtify-navitem.active{background:rgba(201,162,77,0.12);}
+    #luxtifySection{margin:0 0 0 230px;max-width:1400px;padding:0 0 110px;}
+    .luxtify-header{text-align:left;padding:28px 36px 16px;}
+    .luxtify-logo{margin:0 0 12px;}
+    .luxtify-search{margin:0 36px 18px;max-width:420px;}
+    .luxtify-chips{padding:0 36px 10px;}
+    .luxtify-section{padding:0 36px 30px;}
+    .luxtify-inline-card{max-width:460px;}
+    .luxtify-row{flex-wrap:wrap;overflow-x:visible;gap:18px;}
+    .luxtify-row > *{width:170px !important;}
+    .luxtify-minibar{left:230px;right:0;bottom:0;max-width:none;margin:0;padding:12px 36px;}
+    .luxtify-popup-overlay{align-items:center;}
+    .luxtify-popup-box{border-radius:14px;max-width:420px;}
+  }
 </style>
 </head>
 <body>
