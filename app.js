@@ -2873,8 +2873,14 @@ function shareApp(){
 }
 
 (function injectShareButton(){
+  if(localStorage.getItem('lux_share_fab_dismissed') === '1') return; // l'utente l'ha già chiuso una volta: non ricompare più
+
   function addBtn(){
     if(document.getElementById('btnShareApp')) return;
+    var wrap = document.createElement('div');
+    wrap.id = 'shareAppFabWrap';
+    wrap.className = 'share-app-fab-wrap' + (document.getElementById('luxtifySection') ? ' share-app-fab-luxtify' : '');
+
     var btn = document.createElement('button');
     btn.type = 'button';
     btn.id = 'btnShareApp';
@@ -2882,7 +2888,21 @@ function shareApp(){
     btn.setAttribute('aria-label', "Condividi l'app");
     btn.innerHTML = '⇪';
     btn.addEventListener('click', shareApp);
-    document.body.appendChild(btn);
+
+    var closeBtn = document.createElement('button');
+    closeBtn.type = 'button';
+    closeBtn.className = 'share-app-fab-close';
+    closeBtn.setAttribute('aria-label', 'Chiudi questo pulsante per sempre');
+    closeBtn.innerHTML = '✕';
+    closeBtn.addEventListener('click', function(e){
+      e.stopPropagation();
+      localStorage.setItem('lux_share_fab_dismissed', '1');
+      wrap.remove();
+    });
+
+    wrap.appendChild(btn);
+    wrap.appendChild(closeBtn);
+    document.body.appendChild(wrap);
   }
   if(document.readyState === 'loading'){
     document.addEventListener('DOMContentLoaded', addBtn);
@@ -2891,9 +2911,12 @@ function shareApp(){
   }
   var style = document.createElement('style');
   style.textContent =
-    '.share-app-fab{position:fixed;left:16px;bottom:16px;z-index:500;width:48px;height:48px;' +
-    'border-radius:50%;background:#6e1423;color:#fdfaf5;border:none;font-size:20px;cursor:pointer;' +
-    'box-shadow:0 4px 12px rgba(0,0,0,.3);}';
+    '.share-app-fab-wrap{position:fixed;left:16px;bottom:16px;z-index:500;}' +
+    '.share-app-fab-wrap.share-app-fab-luxtify{bottom:90px;}' + // su Luxtify sta sopra la barra di navigazione, non sovrapposta
+    '.share-app-fab{width:48px;height:48px;border-radius:50%;background:#6e1423;color:#fdfaf5;border:none;font-size:20px;cursor:pointer;' +
+    'box-shadow:0 4px 12px rgba(0,0,0,.3);}' +
+    '.share-app-fab-close{position:absolute;top:-6px;right:-6px;width:20px;height:20px;border-radius:50%;background:#150d0e;color:#c9a24d;' +
+    'border:1px solid rgba(201,162,77,0.5);font-size:11px;line-height:1;cursor:pointer;padding:0;}';
   document.head.appendChild(style);
 })();
 
