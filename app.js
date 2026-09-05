@@ -1108,6 +1108,7 @@ function afterAuthChange(){
 
 function refreshAuthUI(){
   var chip = document.getElementById('acctChip');
+  if(!chip) return; // pagina senza il menu principale (es. luxtify.html) — niente da aggiornare qui
   var btnLogin = document.getElementById('btnLoginTop');
   var btnLogout = document.getElementById('btnLogoutTop');
   var navCommunity = document.getElementById('navCommunity');
@@ -7793,6 +7794,7 @@ function openCartModal(){ renderCartModal(); document.getElementById('cartModal'
 function closeCartModal(){ document.getElementById('cartModal').classList.add('hidden'); }
 function renderCartCount(){
   var el = document.getElementById('cartCount');
+  if(!el) return; // pagina senza carrello (es. luxtify.html)
   if(cart.length > 0){ el.textContent = cart.length; el.classList.remove('hidden'); }
   else { el.classList.add('hidden'); }
 }
