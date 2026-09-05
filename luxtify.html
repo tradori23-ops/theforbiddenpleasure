@@ -43,6 +43,7 @@
     100%{background-position:0% 50%;}
   }
   .luxtify-stats{color:#8a7a5e;font-size:11px;margin-top:4px;}
+  .luxtify-notif-toggle{display:flex;}
   .luxtify-search{margin:14px 20px;display:flex;align-items:center;gap:8px;background:rgba(201,162,77,0.08);border:1px solid rgba(201,162,77,0.3);border-radius:20px;padding:9px 16px;cursor:pointer;}
   .luxtify-search span{color:#8a7a5e;font-size:13px;}
   .luxtify-chips{display:flex;gap:8px;padding:0 20px 6px;overflow-x:auto;}
@@ -109,11 +110,19 @@
     <img class="luxtify-logo" src="luxtify-logo.jpg" alt="Luxtify">
     <h1 class="luxtify-wordmark">LUXTIFY</h1>
     <div class="luxtify-stats" id="luxtifyStats">…</div>
+    <label class="luxtify-notif-toggle hidden" id="luxtifyNotifToggleWrap" style="align-items:center;justify-content:center;gap:8px;margin-top:8px;cursor:pointer;color:#8a7a5e;font-size:11px;">
+      <input type="checkbox" id="luxtifyNotifToggle"> 🔔 Notifiche nuova musica
+    </label>
   </div>
 
-  <div class="luxtify-search" id="luxtifySearchBar">
-    <span>🔍 Cerca in Luxtify</span>
+  <div class="luxtify-search">
+    <span>🔍</span>
+    <input type="text" id="luxtifySearchInput" placeholder="Cerca in Luxtify" style="flex:1;background:none;border:none;color:#e0d4b8;font-size:13px;outline:none;font-family:'Crimson Pro',serif;">
   </div>
+
+  <div id="luxtifySearchResults" class="hidden"></div>
+
+  <div id="luxtifyMainContent">
 
   <div class="luxtify-chips hidden" id="luxtifyGenreChips"></div>
 
@@ -182,6 +191,8 @@
     </a>
   </div>
 
+  </div>
+
 </section>
 
 <div class="luxtify-minibar hidden" id="luxtifyMiniBar">
@@ -204,9 +215,6 @@
 
 <div id="chrome-modals-slot"></div>
 <script>
-  document.getElementById('luxtifySearchBar').addEventListener('click', function(){
-    if(typeof openMusicLibrary === 'function') openMusicLibrary();
-  });
   document.getElementById('btnOpenLuxSongPopup').addEventListener('click', function(){
     document.getElementById('luxSongPopup').classList.remove('hidden');
   });
