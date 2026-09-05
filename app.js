@@ -676,7 +676,8 @@ function applyI18n(){
     el.setAttribute('aria-label', t(key));
   });
   document.documentElement.lang = currentLang;
-  document.getElementById('langSelect').value = currentLang;
+  var langSelectEl = document.getElementById('langSelect');
+  if(langSelectEl) langSelectEl.value = currentLang;
 }
 function setLang(lang){
   currentLang = lang;
@@ -871,7 +872,8 @@ function closeMatureModal(){ document.getElementById('matureModal').classList.ad
 function setMatureVisible(on){
   matureVisible = on;
   localStorage.setItem('lux_mature_visible', on ? '1' : '0');
-  document.getElementById('matureSwitch').checked = on;
+  var sw = document.getElementById('matureSwitch');
+  if(sw) sw.checked = on;
   updateMatureStateLabel();
   renderCatalog();
 }
