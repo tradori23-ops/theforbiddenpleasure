@@ -1,0 +1,17 @@
+{
+  "name": "LUXTIFY — Musica & Podcast",
+  "short_name": "Luxtify",
+  "description": "Musica, playlist e podcast di LUX COMICS & MEDUSA COMICS.",
+  "start_url": "/luxtify.html",
+  "scope": "/luxtify.html",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0b0607",
+  "theme_color": "#0b0607",
+  "icons": [
+    { "src": "luxtify-icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "luxtify-icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "luxtify-icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "luxtify-icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
