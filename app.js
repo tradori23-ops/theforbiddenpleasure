@@ -2217,7 +2217,7 @@ function buildTomeCardHtml(item){
         '<button type="button" class="tome-details-toggle" data-toggle-details>'+t('card.details')+'</button>'+
       '</div>'+
       '<div class="tome-details hidden">'+
-        '<div class="tome-plaque"><span class="tome-plaque-dot"></span>'+escapeHtml(item.title)+'</div>'+
+        '<div class="tome-plaque"><span class="tome-plaque-dot"></span><div class="tome-plaque-text">'+escapeHtml(item.title)+'</div></div>'+
         genreTags+
         '<div class="card-idx-body" style="cursor:pointer;" data-open="'+item.id+'">'+
           '<div class="num mono">'+(item.issue||'')+'</div>'+

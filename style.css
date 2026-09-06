@@ -587,6 +587,8 @@ body.theme-light .hero-bg::after{
   padding:5px 6px 6px;text-align:center;
   font-family:'Cinzel',serif;font-size:10px;letter-spacing:0.03em;text-transform:uppercase;
   color:var(--gold-bright);line-height:1.35;
+}
+.tome-plaque-text{
   display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
   min-height:2.7em;
 }
