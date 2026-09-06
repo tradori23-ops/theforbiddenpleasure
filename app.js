@@ -8640,6 +8640,78 @@ function renderLuxtifyTopArtists(songs){
   }).catch(function(){ section.classList.add('hidden'); });
 }
 
+function openAddToPlaylistPopup(song){
+  if(!isSignedIn()){ openAuth('login'); return; }
+  ensureMusicLibraryStyle();
+  var existing = document.getElementById('addToPlaylistPopup');
+  if(existing) existing.remove();
+
+  var overlay = document.createElement('div');
+  overlay.className = 'luxtify-add-song-overlay';
+  overlay.id = 'addToPlaylistPopup';
+  overlay.innerHTML =
+    '<div class="luxtify-add-song-box">' +
+      '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">' +
+        '<span style="color:#c9a24d;font-size:13px;font-family:\'Cinzel Decorative\',serif;letter-spacing:0.04em;">AGGIUNGI A PLAYLIST</span>' +
+        '<button type="button" id="btnCloseAddToPlaylist" style="background:none;border:1px solid rgba(201,162,77,0.4);color:#c9a24d;border-radius:50%;width:26px;height:26px;cursor:pointer;">✕</button>' +
+      '</div>' +
+      '<div class="luxtify-add-song-results" id="addToPlaylistResults"><p class="form-note">…</p></div>' +
+      '<button type="button" id="btnCreatePlaylistInline" style="width:100%;background:transparent;border:1px dashed rgba(201,162,77,0.4);color:#c9a24d;border-radius:8px;padding:10px;margin-top:10px;cursor:pointer;">+ Nuova playlist</button>' +
+    '</div>';
+  document.body.appendChild(overlay);
+  overlay.addEventListener('click', function(e){ if(e.target === overlay) overlay.remove(); });
+  document.getElementById('btnCloseAddToPlaylist').addEventListener('click', function(){ overlay.remove(); });
+
+  function loadList(){
+    var resultsEl = document.getElementById('addToPlaylistResults');
+    fetchMyPlaylists().then(function(playlists){
+      if(playlists.length === 0){ resultsEl.innerHTML = '<p class="form-note">Non hai ancora nessuna playlist.</p>'; return; }
+      resultsEl.innerHTML = playlists.map(function(p, i){
+        return '<div class="luxtify-add-song-row" data-playlist-target="' + i + '">' +
+          '<img src="' + escapeHtml(p.cover_url || MUSIC_COVER_FALLBACK) + '"' + coverImgAttrs() + '>' +
+          '<div style="flex:1;min-width:0;color:#e0d4b8;font-size:12px;font-weight:600;">' + escapeHtml(p.title) + '</div>' +
+        '</div>';
+      }).join('');
+      Array.prototype.forEach.call(resultsEl.querySelectorAll('[data-playlist-target]'), function(rowEl){
+        rowEl.addEventListener('click', function(){
+          var p = playlists[Number(rowEl.dataset.playlistTarget)];
+          var session = getSession();
+          fetch(SUPABASE_URL + '/rest/v1/playlist_songs', {
+            method:'POST',
+            headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json', 'Prefer':'resolution=ignore-duplicates' },
+            body: JSON.stringify({ playlist_id: p.id, song_id: song.id })
+          }).then(function(r){
+            if(!r.ok) throw new Error('aggiunta alla playlist fallita: ' + r.status);
+            rowEl.style.opacity = '0.4';
+            rowEl.innerHTML += '<span style="color:#4ade80;font-size:12px;">✓ Aggiunta</span>';
+          }).catch(function(){ window.alert('Non è stato possibile aggiungere la canzone.'); });
+        });
+      });
+    });
+  }
+  loadList();
+
+  document.getElementById('btnCreatePlaylistInline').addEventListener('click', function(){
+    var name = window.prompt('Nome della nuova playlist:');
+    if(!name || !name.trim()) return;
+    var session = getSession();
+    fetch(SUPABASE_URL + '/rest/v1/playlists', {
+      method:'POST',
+      headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json', 'Prefer':'return=representation' },
+      body: JSON.stringify({ title: name.trim(), created_by: currentUserId(), is_public: false })
+    }).then(function(r){ if(!r.ok) throw new Error('creazione playlist fallita'); return r.json(); })
+      .then(function(rows){
+        var newPlaylist = rows[0];
+        return fetch(SUPABASE_URL + '/rest/v1/playlist_songs', {
+          method:'POST',
+          headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
+          body: JSON.stringify({ playlist_id: newPlaylist.id, song_id: song.id })
+        });
+      }).then(function(){ loadList(); })
+      .catch(function(){ window.alert('Non è stato possibile creare la playlist.'); });
+  });
+}
+
 function openArtistPage(name, songs){
   ensureMusicLibraryStyle();
 
@@ -9071,6 +9143,7 @@ function openMusicPlayer(songs, contextLabel, options, startIdx){
             '<div class="music-player-social-item" id="musicPlayerCommentsCount">💬 <span>…</span></div>' +
             '<div class="music-player-social-sep"></div>' +
             '<div class="music-player-social-item" id="musicPlayerShareBtn">↗ ' + t('share.button') + '</div>' +
+            (isSignedIn() ? '<div class="music-player-social-sep"></div><div class="music-player-social-item" id="musicPlayerAddToPlaylistBtn">➕ Playlist</div>' : '') +
           '</div>' +
           '<div class="music-player-comments" id="musicPlayerComments">' +
             (isSignedIn() ?
@@ -9281,6 +9354,15 @@ function openMusicPlayer(songs, contextLabel, options, startIdx){
         shareBtn.onclick = function(){ shareSong(song, contextLabel, options.shareKind || 's'); };
       } else {
         shareBtn.classList.add('hidden');
+      }
+    }
+    var addToPlaylistBtn = document.getElementById('musicPlayerAddToPlaylistBtn');
+    if(addToPlaylistBtn){
+      if(song.id){
+        addToPlaylistBtn.classList.remove('hidden');
+        addToPlaylistBtn.onclick = function(){ openAddToPlaylistPopup(song); };
+      } else {
+        addToPlaylistBtn.classList.add('hidden');
       }
     }
   }
