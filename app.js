@@ -8738,7 +8738,7 @@ function openAddToPlaylistPopup(song){
         rowEl.addEventListener('click', function(){
           var p = playlists[Number(rowEl.dataset.playlistTarget)];
           var session = getSession();
-          fetch(SUPABASE_URL + '/rest/v1/playlist_songs', {
+          fetch(SUPABASE_URL + '/rest/v1/playlist_songs?on_conflict=playlist_id,song_id', {
             method:'POST',
             headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json', 'Prefer':'resolution=ignore-duplicates' },
             body: JSON.stringify({ playlist_id: p.id, song_id: song.id })
@@ -8964,7 +8964,7 @@ function openLuxtifyAddSongPopup(playlistId){
           rowEl.addEventListener('click', function(){
             var song = matches[Number(rowEl.dataset.match)];
             var session = getSession();
-            fetch(SUPABASE_URL + '/rest/v1/playlist_songs', {
+            fetch(SUPABASE_URL + '/rest/v1/playlist_songs?on_conflict=playlist_id,song_id', {
               method:'POST',
               headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json', 'Prefer':'resolution=ignore-duplicates' },
               body: JSON.stringify({ playlist_id: playlistId, song_id: song.id })
@@ -9983,7 +9983,7 @@ function addSongToPlaylistByTitle(playlistId, title, inputEl){
     headers:{ 'apikey':SUPABASE_ANON_KEY }
   }).then(function(r){ return r.ok ? r.json() : []; }).then(function(rows){
     if(!rows[0]){ window.alert('Nessuna canzone trovata con questo titolo esatto — scegli dal suggerimento automatico.'); return null; }
-    return fetch(SUPABASE_URL + '/rest/v1/playlist_songs', {
+    return fetch(SUPABASE_URL + '/rest/v1/playlist_songs?on_conflict=playlist_id,song_id', {
       method:'POST',
       headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json', 'Prefer':'resolution=ignore-duplicates' },
       body: JSON.stringify({ playlist_id: playlistId, song_id: rows[0].id })
