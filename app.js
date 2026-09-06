@@ -8174,8 +8174,11 @@ function fetchMyPlaylists(){
   }).then(function(r){ return r.ok ? r.json() : []; }).catch(function(){ return []; });
 }
 function fetchPlaylistSongs(playlistId){
+  var session = getSession();
+  var headers = { 'apikey':SUPABASE_ANON_KEY };
+  if(session) headers['Authorization'] = 'Bearer ' + session.access_token; // serve per leggere le PROPRIE playlist private
   return fetch(SUPABASE_URL + '/rest/v1/playlist_songs?playlist_id=eq.' + encodeURIComponent(playlistId) + '&select=position,songs(*)&order=position.asc', {
-    headers:{ 'apikey':SUPABASE_ANON_KEY }
+    headers: headers
   }).then(function(r){ return r.ok ? r.json() : []; }).catch(function(){ return []; })
     .then(function(rows){ return rows.map(function(r){ return r.songs; }).filter(Boolean); });
 }
