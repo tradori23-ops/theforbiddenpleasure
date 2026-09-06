@@ -80,6 +80,7 @@
         <button class="admin-tab" data-tab="users" data-i18n="admin.tab.users">Utenti</button>
         <button class="admin-tab" data-tab="maintenance" data-i18n="admin.tab.maintenance">Manutenzione</button>
         <button class="admin-tab" data-tab="moderation" data-i18n="admin.tab.moderation">Moderazione Community</button>
+        <button class="admin-tab" data-tab="artists">Artisti</button>
         <button class="admin-tab" data-tab="diagnostics">Diagnostica</button>
       </div>
 
@@ -500,6 +501,14 @@
         <div class="notice">
           <div data-i18n="mod.bannedTitle" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Utenti bannati (email bloccate)</div>
           <div id="modBannedList"></div>
+        </div>
+      </div>
+
+      <div class="admin-tab-panel hidden" data-tab-panel="artists">
+        <div class="notice">
+          <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Biografie artisti</div>
+          <p style="color:var(--parchment-dim);font-size:13px;margin-bottom:14px;">Scrivi una biografia per ogni artista che compare nelle canzoni — comparirà nella sua scheda su Luxtify insieme alla data della prima pubblicazione (calcolata da sola).</p>
+          <div id="adminArtistsList"></div>
         </div>
       </div>
 

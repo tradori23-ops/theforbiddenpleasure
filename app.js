@@ -8642,6 +8642,26 @@ function renderLuxtifyTopArtists(songs){
 
 function openArtistPage(name, songs){
   ensureMusicLibraryStyle();
+
+  var earliestDate = songs.reduce(function(min, s){
+    if(!s.created_at) return min;
+    var d = new Date(s.created_at);
+    return (!min || d < min) ? d : min;
+  }, null);
+  var sinceLabel = earliestDate
+    ? 'Su Luxtify dal ' + earliestDate.toLocaleDateString('it-IT', { month: 'long', year: 'numeric' })
+    : '';
+
+  fetch(SUPABASE_URL + '/rest/v1/artists?name=eq.' + encodeURIComponent(name) + '&select=bio', { headers:{ 'apikey':SUPABASE_ANON_KEY } })
+    .then(function(r){ return r.ok ? r.json() : []; })
+    .catch(function(){ return []; })
+    .then(function(rows){
+      var bio = rows[0] && rows[0].bio;
+      renderArtistPageOverlay(name, songs, sinceLabel, bio);
+    });
+}
+
+function renderArtistPageOverlay(name, songs, sinceLabel, bio){
   var overlay = document.createElement('div');
   overlay.className = 'music-library-overlay';
   overlay.id = 'artistPageOverlay';
@@ -8653,7 +8673,8 @@ function openArtistPage(name, songs){
     '<div style="padding:28px 20px;text-align:center;">' +
       '<div style="width:80px;height:80px;margin:0 auto 10px;border-radius:50%;background:linear-gradient(150deg,#6e1423,#1a1420);"></div>' +
       '<div style="font-family:\'Cinzel Decorative\',serif;color:#f0e4cd;font-size:18px;">' + escapeHtml(name) + '</div>' +
-      '<div style="color:#c9a24d;font-size:11px;margin-top:2px;">' + songs.length + (songs.length === 1 ? ' brano' : ' brani') + '</div>' +
+      '<div style="color:#c9a24d;font-size:11px;margin-top:2px;">' + songs.length + (songs.length === 1 ? ' brano' : ' brani') + (sinceLabel ? ' · ' + escapeHtml(sinceLabel) : '') + '</div>' +
+      (bio ? '<p style="color:#c8bda3;font-size:13px;line-height:1.7;max-width:480px;margin:14px auto 0;">' + escapeHtml(bio) + '</p>' : '') +
     '</div>' +
     '<div style="padding:0 20px 20px;">' +
       songs.map(function(s, i){
@@ -11014,6 +11035,52 @@ function switchAdminTab(tabName){
   });
   if(tabName === 'moderation') renderCommunityModeration();
   if(tabName === 'stats') renderSongStatsLeaderboard();
+  if(tabName === 'artists') renderAdminArtistsList();
+}
+
+function renderAdminArtistsList(){
+  var box = document.getElementById('adminArtistsList');
+  if(!box) return;
+  box.innerHTML = '<p class="form-note">…</p>';
+  Promise.all([
+    fetch(SUPABASE_URL + '/rest/v1/songs?select=artist&order=artist.asc', { headers:{ 'apikey':SUPABASE_ANON_KEY } }).then(function(r){ return r.ok ? r.json() : []; }),
+    fetch(SUPABASE_URL + '/rest/v1/artists?select=*', { headers:{ 'apikey':SUPABASE_ANON_KEY } }).then(function(r){ return r.ok ? r.json() : []; })
+  ]).then(function(results){
+    var names = [];
+    results[0].forEach(function(s){ if(s.artist && names.indexOf(s.artist) === -1) names.push(s.artist); });
+    var bios = {};
+    results[1].forEach(function(a){ bios[a.name] = a.bio || ''; });
+
+    if(names.length === 0){ box.innerHTML = '<p class="form-note">Nessun artista ancora (aggiungi canzoni con un nome artista).</p>'; return; }
+
+    box.innerHTML = names.map(function(name, i){
+      return '<div style="border-bottom:1px solid var(--line);padding:10px 0;">' +
+        '<div style="color:var(--parchment);font-size:13px;font-weight:600;margin-bottom:6px;">' + escapeHtml(name) + '</div>' +
+        '<textarea data-artist-bio="' + i + '" rows="2" placeholder="Biografia..." style="width:100%;box-sizing:border-box;margin-bottom:6px;">' + escapeHtml(bios[name] || '') + '</textarea>' +
+        '<button type="button" class="btn btn-sm btn-ghost" data-save-artist="' + i + '">Salva</button>' +
+        '<span class="form-note" data-artist-status="' + i + '" style="margin-left:8px;"></span>' +
+      '</div>';
+    }).join('');
+
+    Array.prototype.forEach.call(box.querySelectorAll('[data-save-artist]'), function(btn){
+      btn.addEventListener('click', function(){
+        var i = btn.dataset.saveArtist;
+        var name = names[Number(i)];
+        var bio = box.querySelector('[data-artist-bio="' + i + '"]').value.trim();
+        var statusEl = box.querySelector('[data-artist-status="' + i + '"]');
+        var session = getSession();
+        fetch(SUPABASE_URL + '/rest/v1/artists?on_conflict=name', {
+          method:'POST',
+          headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json', 'Prefer':'resolution=merge-duplicates' },
+          body: JSON.stringify({ name: name, bio: bio || null })
+        }).then(function(r){
+          if(!r.ok) throw new Error('salvataggio bio fallito: ' + r.status);
+          statusEl.textContent = 'Salvata ✓';
+          setTimeout(function(){ statusEl.textContent = ''; }, 2000);
+        }).catch(function(){ statusEl.textContent = 'Errore.'; });
+      });
+    });
+  });
 }
 
 function renderSongStatsLeaderboard(){
