@@ -41,7 +41,7 @@ body.theme-light .card-idx-cover .mature,
 body.theme-light .card-idx-cover .allages{color:#fff;}
 body.theme-light::selection, body.theme-light ::selection{background:var(--wine);color:#fff;}
 *{box-sizing:border-box;}
-html,body{margin:0;padding:0;}
+html,body{margin:0;padding:0;touch-action:manipulation;}
 body{
   transition:background-color 0.25s ease, color 0.25s ease;
   background:
