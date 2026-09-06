@@ -7775,6 +7775,68 @@ function trackCartAdd(catalogId){ callCounterRpc('increment_cart_add_count', {ci
 function trackLikeDelta(catalogId, delta){ callCounterRpc('adjust_like_count', {cid: catalogId, delta: delta}); }
 function trackSaveDelta(catalogId, delta){ callCounterRpc('adjust_save_count', {cid: catalogId, delta: delta}); }
 function trackSongView(songId){ callCounterRpc('increment_song_view_count', {sid: songId}); }
+
+/* ---- Link temporanei per l'audio protetto (bucket privato) ----
+   Se audio_url è un indirizzo completo (inizia con http), è una canzone
+   caricata PRIMA della protezione: resta pubblica come sempre, si usa
+   direttamente. Se invece è solo un percorso (canzoni nuove), è nel
+   bucket privato e serve chiedere un link firmato che scade da solo. */
+function resolveSongAudioUrl(audioUrl){
+  if(!audioUrl) return Promise.resolve('');
+  if(audioUrl.indexOf('http') === 0) return Promise.resolve(audioUrl); // canzone vecchia, bucket pubblico
+  return fetch(SUPABASE_URL + '/storage/v1/object/sign/songs-private/' + audioUrl, {
+    method:'POST',
+    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Content-Type':'application/json' },
+    body: JSON.stringify({ expiresIn: 600 }) // 10 minuti, dopo va richiesto un link nuovo
+  }).then(function(r){ return r.ok ? r.json() : null; })
+    .then(function(data){ return data && data.signedURL ? SUPABASE_URL + '/storage/v1' + data.signedURL : ''; })
+    .catch(function(){ return ''; });
+}
+
+/* ---- Marchio invisibile nei file mp3 caricati ----
+   Aggiunge un tag ID3 nascosto (non un suono, un'etichetta di testo che
+   non si sente) con l'avviso di proprietà — non impedisce il furto, ma
+   rende il file riconoscibile come tuo se gira in giro. Solo per mp3
+   veri: i video mp4 non vengono toccati (formato diverso). */
+function addInvisibleWatermark(file){
+  if(!file || file.type !== 'audio/mpeg') return Promise.resolve(file);
+  return file.arrayBuffer().then(function(buffer){
+    var text = '© LUX COMICS & MEDUSA COMICS — Luxtify — proprietà riservata, ridistribuzione non autorizzata';
+    var textBytes = new TextEncoder().encode(text);
+    // Frame ID3v2.3 "COMM" (commento): lingua "xxx" + descrizione vuota + testo
+    var commPayload = new Uint8Array(1 + 3 + 1 + textBytes.length);
+    commPayload[0] = 0; // codifica testo: ISO-8859-1/UTF-8 semplice
+    commPayload.set([0x78, 0x78, 0x78], 1); // lingua placeholder "xxx"
+    commPayload[4] = 0; // descrizione vuota, terminatore
+    commPayload.set(textBytes, 5);
+
+    var frameSize = commPayload.length;
+    var frameHeader = new Uint8Array(10);
+    frameHeader.set([0x43, 0x4F, 0x4D, 0x4D], 0); // "COMM"
+    frameHeader[4] = (frameSize >> 24) & 0xff;
+    frameHeader[5] = (frameSize >> 16) & 0xff;
+    frameHeader[6] = (frameSize >> 8) & 0xff;
+    frameHeader[7] = frameSize & 0xff;
+    // frameHeader[8..9] = flag, lasciati a 0
+
+    var tagBodySize = frameHeader.length + commPayload.length;
+    var id3Header = new Uint8Array(10);
+    id3Header.set([0x49, 0x44, 0x33, 0x03, 0x00, 0x00], 0); // "ID3", versione 2.3.0, flag 0
+    // dimensione codificata "synchsafe" (7 bit per byte), come richiede lo standard ID3v2
+    id3Header[6] = (tagBodySize >> 21) & 0x7f;
+    id3Header[7] = (tagBodySize >> 14) & 0x7f;
+    id3Header[8] = (tagBodySize >> 7) & 0x7f;
+    id3Header[9] = tagBodySize & 0x7f;
+
+    var combined = new Uint8Array(id3Header.length + frameHeader.length + commPayload.length + buffer.byteLength);
+    combined.set(id3Header, 0);
+    combined.set(frameHeader, id3Header.length);
+    combined.set(commPayload, id3Header.length + frameHeader.length);
+    combined.set(new Uint8Array(buffer), id3Header.length + frameHeader.length + commPayload.length);
+
+    return new File([combined], file.name, { type: file.type });
+  }).catch(function(){ return file; }); // se qualcosa va storto, si carica il file originale invece di bloccare tutto
+}
 function trackSongPlay(songId){ callCounterRpc('increment_song_play_count', {sid: songId}); }
 
 // Keeps the visible engagement numbers in sync with actions taken during this
@@ -8949,13 +9011,15 @@ function addLuxtifySong(){
 
   var audioPath = Date.now() + '-' + audioFile.name.replace(/[^a-zA-Z0-9.\-]/g, '_');
   uploads.push(
-    fetch(SUPABASE_URL + '/storage/v1/object/songs/' + audioPath, {
-      method:'POST',
-      headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type': audioFile.type || 'audio/mpeg' },
-      body: audioFile
+    addInvisibleWatermark(audioFile).then(function(watermarkedFile){
+      return fetch(SUPABASE_URL + '/storage/v1/object/songs-private/' + audioPath, {
+        method:'POST',
+        headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type': audioFile.type || 'audio/mpeg' },
+        body: watermarkedFile
+      });
     }).then(function(r){
       if(!r.ok) throw new Error('upload audio fallito: ' + r.status);
-      return SUPABASE_URL + '/storage/v1/object/public/songs/' + audioPath;
+      return audioPath;
     })
   );
 
@@ -9242,12 +9306,15 @@ function openMusicPlayer(songs, contextLabel, options, startIdx){
     var mediaWrap = document.getElementById('musicPlayerMediaWrap');
     var isVideo = song.media_type === 'video';
     mediaWrap.innerHTML = isVideo
-      ? '<video class="music-player-audio music-player-video" id="musicPlayerMedia" controls playsinline></video>'
-      : '<audio class="music-player-audio" id="musicPlayerMedia" controls></audio>';
+      ? '<video class="music-player-audio music-player-video" id="musicPlayerMedia" controls controlsList="nodownload noremoteplayback" disablePictureInPicture oncontextmenu="return false;" playsinline></video>'
+      : '<audio class="music-player-audio" id="musicPlayerMedia" controls controlsList="nodownload noremoteplayback" oncontextmenu="return false;"></audio>';
     var mediaEl = document.getElementById('musicPlayerMedia');
-    mediaEl.src = song.audio_url;
-    mediaEl.playbackRate = speeds[speedIdx];
-    mediaEl.play().catch(function(){}); // l'autoplay può essere bloccato dal browser, non è un errore da segnalare
+    resolveSongAudioUrl(song.audio_url).then(function(realUrl){
+      if(!realUrl) return; // link scaduto/introvabile: niente riproduzione invece di un errore confuso
+      mediaEl.src = realUrl;
+      mediaEl.playbackRate = speeds[speedIdx];
+      mediaEl.play().catch(function(){}); // l'autoplay può essere bloccato dal browser, non è un errore da segnalare
+    });
     mediaEl.addEventListener('ended', function(){
       if(repeatMode === 'one'){ mediaEl.currentTime = 0; mediaEl.play().catch(function(){}); return; }
       goNext();
@@ -9748,13 +9815,15 @@ function addSong(){
   var uploads = [];
   var audioPath = catalogId + '/' + Date.now() + '-' + audioFile.name.replace(/[^a-zA-Z0-9.\-]/g, '_');
   uploads.push(
-    fetch(SUPABASE_URL + '/storage/v1/object/songs/' + audioPath, {
-      method:'POST',
-      headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type': audioFile.type || 'audio/mpeg' },
-      body: audioFile
+    addInvisibleWatermark(audioFile).then(function(watermarkedFile){
+      return fetch(SUPABASE_URL + '/storage/v1/object/songs-private/' + audioPath, {
+        method:'POST',
+        headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type': audioFile.type || 'audio/mpeg' },
+        body: watermarkedFile
+      });
     }).then(function(r){
       if(!r.ok) throw new Error('upload audio fallito: ' + r.status);
-      return SUPABASE_URL + '/storage/v1/object/public/songs/' + audioPath;
+      return audioPath; // si salva solo il percorso: il bucket è privato, serve un link firmato per ascoltare
     })
   );
   if(coverFile){
