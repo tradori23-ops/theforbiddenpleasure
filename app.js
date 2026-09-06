@@ -121,7 +121,7 @@ var STR = {
     "comments.empty":"Nessun commento ancora.","comments.pending":"in attesa","comments.noPending":"Nessun commento in attesa.",
     "comments.submittedPending":"Inviato — in attesa di approvazione.","comments.submittedPublished":"Pubblicato.","comments.reply":"Rispondi",
     "fav.add":"♡ Salva","fav.remove":"♥ Salvato",
-    "card.readMore":"Leggi tutto ↓","card.readLess":"Mostra meno ↑",
+    "card.readMore":"Leggi tutto ↓","card.readLess":"Mostra meno ↑","card.details":"Dettagli ↓","card.detailsLess":"Nascondi dettagli ↑",
     "like.add":"👍 Mi piace","like.remove":"👍 Ti piace",
     "stats.title":"Statistiche per titolo","stats.empty":"Nessun titolo ancora pubblicato.",
     "stats.purchaseNote":"Gli \"acquisti\" non sono ancora reali — nessun processore di pagamento è collegato. \"Carrello\" conta l'interesse (quante volte è stato aggiunto), non vendite confermate.",
@@ -245,7 +245,7 @@ var STR = {
     "comments.empty":"No comments yet.","comments.pending":"pending","comments.noPending":"No pending comments.",
     "comments.submittedPending":"Submitted — pending approval.","comments.submittedPublished":"Published.","comments.reply":"Reply",
     "fav.add":"♡ Save","fav.remove":"♥ Saved",
-    "card.readMore":"Read more ↓","card.readLess":"Show less ↑",
+    "card.readMore":"Read more ↓","card.readLess":"Show less ↑","card.details":"Details ↓","card.detailsLess":"Hide details ↑",
     "like.add":"👍 Like","like.remove":"👍 Liked",
     "stats.title":"Stats per title","stats.empty":"No titles published yet.",
     "stats.purchaseNote":"\"Purchases\" aren't real yet — no payment processor is connected. \"Cart\" counts interest (how many times it was added), not confirmed sales.",
@@ -369,7 +369,7 @@ var STR = {
     "comments.empty":"Aún no hay comentarios.","comments.pending":"pendiente","comments.noPending":"No hay comentarios pendientes.",
     "comments.submittedPending":"Enviado — pendiente de aprobación.","comments.submittedPublished":"Publicado.","comments.reply":"Responder",
     "fav.add":"♡ Guardar","fav.remove":"♥ Guardado",
-    "card.readMore":"Leer más ↓","card.readLess":"Mostrar menos ↑",
+    "card.readMore":"Leer más ↓","card.readLess":"Mostrar menos ↑","card.details":"Detalles ↓","card.detailsLess":"Ocultar detalles ↑",
     "like.add":"👍 Me gusta","like.remove":"👍 Te gusta",
     "stats.title":"Estadísticas por título","stats.empty":"Aún no hay títulos publicados.",
     "stats.purchaseNote":"Las \"compras\" aún no son reales — no hay ningún procesador de pago conectado. \"Carrito\" cuenta el interés (cuántas veces se añadió), no ventas confirmadas.",
@@ -493,7 +493,7 @@ var STR = {
     "comments.empty":"Pas encore de commentaires.","comments.pending":"en attente","comments.noPending":"Aucun commentaire en attente.",
     "comments.submittedPending":"Envoyé — en attente d'approbation.","comments.submittedPublished":"Publié.","comments.reply":"Répondre",
     "fav.add":"♡ Enregistrer","fav.remove":"♥ Enregistré",
-    "card.readMore":"Lire la suite ↓","card.readLess":"Réduire ↑",
+    "card.readMore":"Lire la suite ↓","card.readLess":"Réduire ↑","card.details":"Détails ↓","card.detailsLess":"Masquer les détails ↑",
     "like.add":"👍 J'aime","like.remove":"👍 Aimé",
     "stats.title":"Statistiques par titre","stats.empty":"Aucun titre publié pour l'instant.",
     "stats.purchaseNote":"Les « achats » ne sont pas encore réels — aucun processeur de paiement n'est connecté. « Panier » compte l'intérêt (le nombre d'ajouts), pas les ventes confirmées.",
@@ -617,7 +617,7 @@ var STR = {
     "comments.empty":"Noch keine Kommentare.","comments.pending":"ausstehend","comments.noPending":"Keine ausstehenden Kommentare.",
     "comments.submittedPending":"Gesendet — wartet auf Freigabe.","comments.submittedPublished":"Veröffentlicht.","comments.reply":"Antworten",
     "fav.add":"♡ Speichern","fav.remove":"♥ Gespeichert",
-    "card.readMore":"Mehr lesen ↓","card.readLess":"Weniger anzeigen ↑",
+    "card.readMore":"Mehr lesen ↓","card.readLess":"Weniger anzeigen ↑","card.details":"Details ↓","card.detailsLess":"Details ausblenden ↑",
     "like.add":"👍 Gefällt mir","like.remove":"👍 Gefällt dir",
     "stats.title":"Statistiken pro Titel","stats.empty":"Noch keine Titel veröffentlicht.",
     "stats.purchaseNote":"\u201eKäufe\u201c sind noch nicht real — es ist kein Zahlungsanbieter verbunden. \u201eWarenkorb\u201c zählt Interesse (wie oft hinzugefügt), keine bestätigten Verkäufe.",
@@ -2028,8 +2028,20 @@ function renderDossiers(){
       '<h2>'+name+'</h2>'+
       '<div class="dossier-role">'+meta.role[lang]+'</div>'+
       '<p>'+meta.bio[lang]+'</p>'+
-      '<span class="dossier-goto" data-char="'+name+'">'+t('nav.library')+' →</span>';
+      '<span class="dossier-goto" data-char="'+name+'">'+t('nav.library')+' →</span>'+
+      '<div class="shelf-row" id="dossierCharShelf" style="margin-top:20px;"></div>';
     ms.querySelector('.dossier-goto').addEventListener('click', function(){ goToLibrary(name); });
+
+    var shelfRow = ms.querySelector('#dossierCharShelf');
+    var charItems = getCatalog().filter(function(i){
+      return i.character === name && (matureVisible || !i.mature);
+    });
+    if(charItems.length === 0){ shelfRow.remove(); return; }
+    charItems.forEach(function(item){
+      shelfRow.insertAdjacentHTML('beforeend', buildTomeCardHtml(item));
+    });
+    var cardEls = shelfRow.querySelectorAll('.tome-card');
+    charItems.forEach(function(item, i){ wireTomeCard(cardEls[i], item); });
   }
 
   function renderSeals(activeIdx){
@@ -2185,7 +2197,7 @@ function buildTomeCardHtml(item){
   var soldOut = hasStock && item.stock <= 0;
   var soldOutBadge = soldOut ? '<span class="sold-out-badge">'+t('stock.soldOut')+'</span>' : '';
   var stockTxt = hasStock && !soldOut ? '<span class="card-idx-stock">'+item.stock+' '+t('stock.left')+'</span>' : '';
-  var priceTxt = item.price ? '<span class="card-idx-price">€'+Number(item.price).toFixed(2)+'</span>' : '';
+  var priceTxt = item.price ? '€'+Number(item.price).toFixed(2) : '';
   var dateTxt = item.date ? '<span class="meta-row-piece">'+item.date+'</span>' : '';
   var coverInner = item.cover_url
     ? '<img class="cover-img" src="'+coverThumbUrl(item.cover_url, 500)+'" data-fallback="'+escapeHtml(item.cover_url)+'" alt="" loading="lazy" decoding="async">'
@@ -2200,15 +2212,21 @@ function buildTomeCardHtml(item){
         '<span class="tome-seal" aria-hidden="true"><img src="logo-sm.webp" alt=""></span>'+
         '<span class="card-idx-fav'+(isFav?' active':'')+'" data-fav="'+item.id+'">'+(isFav?'♥':'♡')+'</span>'+
       '</div>'+
-      '<div class="tome-plaque"><span class="tome-plaque-dot"></span>'+escapeHtml(item.title)+'</div>'+
-      genreTags+
-      '<div class="card-idx-body" style="cursor:pointer;" data-open="'+item.id+'">'+
-        '<div class="num mono">'+(item.issue||'')+'</div>'+
-        '<div class="character">'+item.character+'</div>'+
-        '<div class="synopsis">'+escapeHtml(synopsisForCurrentLang(item))+'</div>'+
-        '<button type="button" class="synopsis-toggle hidden" data-toggle-synopsis>'+t('card.readMore')+'</button>'+
-        '<div class="meta-row">'+dateTxt+priceTxt+stockTxt+'</div>'+
-        '<div class="card-idx-engagement">'+(item.view_count||0)+' '+t('stats.views')+' · '+(item.comment_count||0)+' '+t('stats.comments')+'</div>'+
+      '<div class="tome-price-row">'+
+        (priceTxt ? '<span class="tome-price-always">'+priceTxt+'</span>' : '<span></span>')+
+        '<button type="button" class="tome-details-toggle" data-toggle-details>'+t('card.details')+'</button>'+
+      '</div>'+
+      '<div class="tome-details hidden">'+
+        '<div class="tome-plaque"><span class="tome-plaque-dot"></span>'+escapeHtml(item.title)+'</div>'+
+        genreTags+
+        '<div class="card-idx-body" style="cursor:pointer;" data-open="'+item.id+'">'+
+          '<div class="num mono">'+(item.issue||'')+'</div>'+
+          '<div class="character">'+item.character+'</div>'+
+          '<div class="synopsis">'+escapeHtml(synopsisForCurrentLang(item))+'</div>'+
+          '<button type="button" class="synopsis-toggle hidden" data-toggle-synopsis>'+t('card.readMore')+'</button>'+
+          '<div class="meta-row">'+dateTxt+stockTxt+'</div>'+
+          '<div class="card-idx-engagement">'+(item.view_count||0)+' '+t('stats.views')+' · '+(item.comment_count||0)+' '+t('stats.comments')+'</div>'+
+        '</div>'+
       '</div>'+
     '</div>'
   );
@@ -2222,17 +2240,25 @@ function wireTomeCard(card, item){
   card.querySelector('[data-open]').addEventListener('click', function(){
     openTitleModal(item);
   });
+  var detailsToggle = card.querySelector('[data-toggle-details]');
+  var detailsBox = card.querySelector('.tome-details');
   var synEl = card.querySelector('.synopsis');
   var toggleBtn = card.querySelector('[data-toggle-synopsis]');
+  detailsToggle.addEventListener('click', function(e){
+    e.stopPropagation();
+    var expanded = detailsBox.classList.toggle('hidden') === false;
+    detailsToggle.textContent = expanded ? t('card.detailsLess') : t('card.details');
+    // il testo diventa misurabile solo ora che la sezione non è più nascosta
+    if(expanded && synEl.scrollHeight > synEl.clientHeight + 1){
+      toggleBtn.classList.remove('hidden');
+    }
+  });
   toggleBtn.addEventListener('click', function(e){
     e.stopPropagation();
     var expanded = synEl.classList.toggle('expanded');
     toggleBtn.textContent = expanded ? t('card.readLess') : t('card.readMore');
   });
   attachCoverSignature(card.querySelector('.card-idx-cover'), item);
-  if(synEl.scrollHeight > synEl.clientHeight + 1){
-    toggleBtn.classList.remove('hidden');
-  }
 }
 
 function renderCatalog(){
