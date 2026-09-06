@@ -1233,3 +1233,4 @@ body.chat-fullscreen .chat-page::after{ display:none; }
 .shelf-title{font-family:'Cinzel Decorative',serif;color:var(--gold-bright);font-size:18px;}
 .shelf-count{color:var(--parchment-dim);font-size:12px;flex-shrink:0;}
 .shelf-row{display:flex;gap:14px;overflow-x:auto;padding-bottom:6px;}
+.shelf-row .card-idx{flex-shrink:0;width:190px;}
