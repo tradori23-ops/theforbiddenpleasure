@@ -675,11 +675,12 @@ body.theme-light .hero-bg::after{
 .card-idx-body .meta-row{display:flex;justify-content:space-between;align-items:center;margin-top:8px;font-family:'Space Mono',monospace;font-size:10px;color:var(--parchment-dim);border-top:1px solid var(--line);padding-top:10px;}
 .card-idx-engagement{margin-top:6px;font-family:'Space Mono',monospace;font-size:10px;color:var(--parchment-dim);opacity:0.85;}
 .card-idx-actions{display:flex;gap:6px;padding:0 16px 14px;}
-.tome-price-row{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;}
-.tome-price-always{font-family:'Space Mono',monospace;font-size:14px;font-weight:700;color:var(--gold-bright);}
+.tome-price-row{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 14px;}
+.tome-price-always{font-family:'Space Mono',monospace;font-size:14px;font-weight:700;color:var(--gold-bright);flex-shrink:0;}
 .tome-details-toggle{
   font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.06em;text-transform:uppercase;
   color:var(--gold-bright);background:none;border:1px solid var(--gold);border-radius:4px;padding:6px 10px;cursor:pointer;
+  white-space:nowrap;flex-shrink:0;
 }
 .tome-details-toggle:hover{background:rgba(201,162,77,0.1);}
 .tome-details.hidden{display:none;}
