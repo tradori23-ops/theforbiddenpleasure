@@ -696,6 +696,7 @@ function setLang(lang){
    "Usa la versione offline" viene evidenziato — ma resta comunque un tap
    esplicito dell'utente, mai una scelta automatica. */
 function showEntryModeGate(){
+  if(document.getElementById('luxtifySection')) return; // siamo già su Luxtify: nessuna scelta da fare, è già la destinazione
   if(sessionStorage.getItem('lux_entry_mode')) return; // già scelto in questa apertura
   var overlay = document.createElement('div');
   overlay.id = 'entryModeGate';
