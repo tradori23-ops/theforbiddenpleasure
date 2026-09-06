@@ -8150,7 +8150,14 @@ function ensureMusicLibraryStyle(){
     '.music-library-card img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:8px;background:#150d0e;margin-bottom:8px;}' +
     '.music-library-card-title{color:#f0e4cd;font-size:13px;font-weight:600;margin-bottom:2px;}' +
     '.music-library-card-sub{color:#8a7a5e;font-size:11px;}' +
-    '@media (min-width:860px){.music-library-grid{grid-template-columns:repeat(auto-fill,minmax(200px,1fr));}}';
+    '@media (min-width:860px){.music-library-grid{grid-template-columns:repeat(auto-fill,minmax(200px,1fr));}}' +
+    '.luxtify-add-song-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:400;display:flex;align-items:flex-end;justify-content:center;}' +
+    '.luxtify-add-song-box{background:#150d0e;border:1px solid rgba(201,162,77,0.35);border-radius:14px 14px 0 0;padding:20px;width:100%;max-width:480px;box-sizing:border-box;max-height:80vh;display:flex;flex-direction:column;}' +
+    '.luxtify-add-song-box input{width:100%;box-sizing:border-box;margin-bottom:10px;background:#0b0607;border:1px solid rgba(201,162,77,0.3);border-radius:20px;color:#e0d4b8;padding:9px 14px;font-size:13px;font-family:inherit;}' +
+    '.luxtify-add-song-results{overflow-y:auto;flex:1;}' +
+    '.luxtify-add-song-row{display:flex;align-items:center;gap:10px;padding:8px 4px;cursor:pointer;border-radius:8px;}' +
+    '.luxtify-add-song-row:hover{background:rgba(201,162,77,0.08);}' +
+    '.luxtify-add-song-row img{width:36px;height:36px;border-radius:5px;object-fit:cover;background:#0b0607;flex-shrink:0;}';
   document.head.appendChild(styleEl);
 }
 
@@ -8707,9 +8714,13 @@ function loadLuxtifyMyPlaylists(){
       '<div style="color:#8a7a5e;font-size:9px;">Nuova playlist</div>' +
     '</div>';
     var cards = playlists.map(function(p, i){
-      return '<div class="luxtify-mix-card" data-my-playlist="' + i + '" style="width:84px;flex-shrink:0;cursor:pointer;">' +
-        '<img src="' + escapeHtml(p.cover_url || '') + '" alt=""' + coverImgAttrs() + ' style="width:100%;aspect-ratio:1/1;border-radius:8px;object-fit:cover;margin-bottom:5px;background:#150d0e;">' +
-        '<div style="color:#e0d4b8;font-size:9px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">' + escapeHtml(p.title) + '</div>' +
+      return '<div class="luxtify-mix-card" style="width:84px;flex-shrink:0;position:relative;">' +
+        '<div data-my-playlist="' + i + '" style="cursor:pointer;">' +
+          '<img src="' + escapeHtml(p.cover_url || '') + '" alt=""' + coverImgAttrs() + ' style="width:100%;aspect-ratio:1/1;border-radius:8px;object-fit:cover;margin-bottom:5px;background:#150d0e;">' +
+          '<div style="color:#e0d4b8;font-size:9px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">' + escapeHtml(p.title) + '</div>' +
+        '</div>' +
+        '<button type="button" data-add-to-playlist="' + i + '" title="Aggiungi una canzone" ' +
+          'style="position:absolute;top:2px;right:2px;width:22px;height:22px;border-radius:50%;background:#6e1423;color:#f0e4cd;border:none;font-size:14px;line-height:1;cursor:pointer;">+</button>' +
       '</div>';
     }).join('');
     row.innerHTML = createCard + cards;
@@ -8727,26 +8738,91 @@ function loadLuxtifyMyPlaylists(){
         loadLuxtifyMyPlaylists();
       }).catch(function(){ window.alert('Non è stato possibile creare la playlist.'); });
     };
-    Array.prototype.forEach.call(row.querySelectorAll('[data-my-playlist]'), function(card){
-      card.addEventListener('click', function(){
-        var p = playlists[Number(card.dataset.myPlaylist)];
+    Array.prototype.forEach.call(row.querySelectorAll('[data-my-playlist]'), function(el){
+      el.addEventListener('click', function(){
+        var p = playlists[Number(el.dataset.myPlaylist)];
         fetchPlaylistSongs(p.id).then(function(songs){
           if(songs.length === 0){
-            var addNow = window.confirm('Questa playlist è ancora vuota. Vuoi aggiungere una canzone adesso?');
-            if(addNow) promptAddSongToMyPlaylist(p.id);
+            openLuxtifyAddSongPopup(p.id);
             return;
           }
           openMusicPlayer(songs, p.title);
         });
       });
     });
+    Array.prototype.forEach.call(row.querySelectorAll('[data-add-to-playlist]'), function(btn){
+      btn.addEventListener('click', function(e){
+        e.stopPropagation();
+        var p = playlists[Number(btn.dataset.addToPlaylist)];
+        openLuxtifyAddSongPopup(p.id);
+      });
+    });
   });
 }
 
-function promptAddSongToMyPlaylist(playlistId){
-  var title = window.prompt('Titolo esatto della canzone da aggiungere:');
-  if(!title || !title.trim()) return;
-  addSongToPlaylistByTitle(playlistId, title.trim(), null);
+function openLuxtifyAddSongPopup(playlistId){
+  ensureMusicLibraryStyle();
+  var existing = document.getElementById('luxtifyAddSongPopup');
+  if(existing) existing.remove();
+
+  var overlay = document.createElement('div');
+  overlay.className = 'luxtify-add-song-overlay';
+  overlay.id = 'luxtifyAddSongPopup';
+  overlay.innerHTML =
+    '<div class="luxtify-add-song-box">' +
+      '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">' +
+        '<span style="color:#c9a24d;font-size:13px;font-family:\'Cinzel Decorative\',serif;letter-spacing:0.04em;">AGGIUNGI ALLA PLAYLIST</span>' +
+        '<button type="button" id="btnCloseLuxAddSong" style="background:none;border:1px solid rgba(201,162,77,0.4);color:#c9a24d;border-radius:50%;width:26px;height:26px;cursor:pointer;">✕</button>' +
+      '</div>' +
+      '<input type="text" id="luxAddSongSearch" placeholder="Cerca una canzone per titolo o artista..." autocomplete="off">' +
+      '<div class="luxtify-add-song-results" id="luxAddSongResults"><p class="form-note">Digita per cercare...</p></div>' +
+    '</div>';
+  document.body.appendChild(overlay);
+  overlay.addEventListener('click', function(e){ if(e.target === overlay) overlay.remove(); });
+  document.getElementById('btnCloseLuxAddSong').addEventListener('click', function(){ overlay.remove(); });
+
+  var searchInput = document.getElementById('luxAddSongSearch');
+  var resultsEl = document.getElementById('luxAddSongResults');
+  var allSongsCache = null;
+  var debounce = null;
+
+  searchInput.addEventListener('input', function(){
+    clearTimeout(debounce);
+    debounce = setTimeout(function(){
+      var q = searchInput.value.trim().toLowerCase();
+      if(!q){ resultsEl.innerHTML = '<p class="form-note">Digita per cercare...</p>'; return; }
+      var ready = allSongsCache ? Promise.resolve(allSongsCache) : fetchAllSongsWithAlbum().then(function(s){ allSongsCache = s; return s; });
+      ready.then(function(all){
+        var matches = all.filter(function(s){
+          return (s.title || '').toLowerCase().indexOf(q) !== -1 || (s.artist || '').toLowerCase().indexOf(q) !== -1;
+        }).slice(0, 20);
+        if(matches.length === 0){ resultsEl.innerHTML = '<p class="form-note">Nessun risultato.</p>'; return; }
+        resultsEl.innerHTML = matches.map(function(s, i){
+          return '<div class="luxtify-add-song-row" data-match="' + i + '">' +
+            '<img src="' + escapeHtml(s.cover_url || MUSIC_COVER_FALLBACK) + '"' + coverImgAttrs() + '>' +
+            '<div style="flex:1;min-width:0;"><div style="color:#e0d4b8;font-size:12px;font-weight:600;">' + escapeHtml(s.title) + '</div>' +
+            '<div style="color:#8a7a5e;font-size:10px;">' + escapeHtml(s.artist || '') + '</div></div>' +
+          '</div>';
+        }).join('');
+        Array.prototype.forEach.call(resultsEl.querySelectorAll('[data-match]'), function(rowEl){
+          rowEl.addEventListener('click', function(){
+            var song = matches[Number(rowEl.dataset.match)];
+            var session = getSession();
+            fetch(SUPABASE_URL + '/rest/v1/playlist_songs', {
+              method:'POST',
+              headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json', 'Prefer':'resolution=ignore-duplicates' },
+              body: JSON.stringify({ playlist_id: playlistId, song_id: song.id })
+            }).then(function(r){
+              if(!r.ok) throw new Error('aggiunta alla playlist fallita: ' + r.status);
+              rowEl.style.opacity = '0.4';
+              rowEl.style.pointerEvents = 'none';
+              loadLuxtifyMyPlaylists();
+            }).catch(function(){ window.alert('Non è stato possibile aggiungere la canzone.'); });
+          });
+        });
+      });
+    }, 200);
+  });
 }
 
 /* ---- Aggiungi canzone (solo collaboratori verificati) ---- */
