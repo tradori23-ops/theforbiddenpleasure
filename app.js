@@ -2200,7 +2200,7 @@ function buildTomeCardHtml(item){
   var priceTxt = item.price ? '€'+Number(item.price).toFixed(2) : '';
   var dateTxt = item.date ? '<span class="meta-row-piece">'+item.date+'</span>' : '';
   var coverInner = item.cover_url
-    ? '<img class="cover-img" src="'+coverThumbUrl(item.cover_url, 500)+'" data-fallback="'+escapeHtml(item.cover_url)+'" alt="" loading="lazy" decoding="async">'
+    ? '<img class="cover-img" src="'+coverThumbUrl(item.cover_url, 500)+'" data-fallback="'+escapeHtml(item.cover_url)+'" alt="" loading="lazy" decoding="async" onload="this.style.opacity=1">'
     : '<span class="init">'+item.character.charAt(0)+'</span>';
   var genreTags = (item.genres && item.genres.length)
     ? '<div class="card-idx-genres">'+item.genres.map(function(g){return '<span class="genre-tag">'+escapeHtml(g)+'</span>';}).join('')+'</div>'
@@ -2259,6 +2259,146 @@ function wireTomeCard(card, item){
     toggleBtn.textContent = expanded ? t('card.readLess') : t('card.readMore');
   });
   attachCoverSignature(card.querySelector('.card-idx-cover'), item);
+  wireLongPressPeek(card.querySelector('.card-idx-cover'), item);
+}
+
+function wireLongPressPeek(coverEl, item){
+  if(!coverEl) return;
+  var pressTimer = null;
+  function getPeekEl(){
+    var el = document.getElementById('tomePeekPopup');
+    if(!el){
+      el = document.createElement('div');
+      el.id = 'tomePeekPopup';
+      el.className = 'tome-peek-popup hidden';
+      document.body.appendChild(el);
+    }
+    return el;
+  }
+  function showPeek(x, y){
+    var peek = getPeekEl();
+    var syn = item.synopsis || '';
+    peek.innerHTML = '<b>' + escapeHtml(item.title) + '</b>' +
+      '<div class="tome-peek-syn">' + escapeHtml(syn.slice(0, 140)) + (syn.length > 140 ? '…' : '') + '</div>' +
+      (item.price ? '<div class="tome-peek-price">€' + Number(item.price).toFixed(2) + '</div>' : '');
+    peek.style.left = Math.min(Math.max(10, x - 100), window.innerWidth - 220) + 'px';
+    peek.style.top = Math.max(10, y - 110) + 'px';
+    peek.classList.remove('hidden');
+  }
+  function hidePeek(){ var peek = document.getElementById('tomePeekPopup'); if(peek) peek.classList.add('hidden'); }
+  coverEl.addEventListener('touchstart', function(e){
+    var touch = e.touches[0];
+    pressTimer = setTimeout(function(){ showPeek(touch.clientX, touch.clientY); }, 450);
+  }, { passive: true });
+  coverEl.addEventListener('touchend', function(){ clearTimeout(pressTimer); hidePeek(); });
+  coverEl.addEventListener('touchmove', function(){ clearTimeout(pressTimer); hidePeek(); });
+  coverEl.addEventListener('mousedown', function(e){
+    pressTimer = setTimeout(function(){ showPeek(e.clientX, e.clientY); }, 450);
+  });
+  coverEl.addEventListener('mouseup', function(){ clearTimeout(pressTimer); hidePeek(); });
+  coverEl.addEventListener('mouseleave', function(){ clearTimeout(pressTimer); hidePeek(); });
+}
+
+function renderCatalogHeroBento(){
+  var box = document.getElementById('catalogHeroBento');
+  if(!box) return;
+  var items = getCatalog().filter(function(i){ return matureVisible || !i.mature; });
+  if(items.length === 0){ box.classList.add('hidden'); return; }
+  var sorted = items.slice().sort(function(a, b){ return new Date(b.date || 0) - new Date(a.date || 0); });
+  var picks = sorted.slice(0, 3);
+  box.classList.remove('hidden');
+  box.innerHTML = picks.map(function(item, i){
+    return '<div class="bento-tile' + (i === 0 ? ' bento-big' : '') + '" data-bento-open="' + item.id + '">' +
+      (item.cover_url ? '<img src="' + coverThumbUrl(item.cover_url, 700) + '" alt="" loading="lazy">' : '') +
+      '<div class="bento-tile-label">' + (i === 0 ? '<span class="bento-eyebrow">Ultima uscita</span>' : '') + escapeHtml(item.title) + '</div>' +
+    '</div>';
+  }).join('');
+  Array.prototype.forEach.call(box.querySelectorAll('[data-bento-open]'), function(tile){
+    tile.addEventListener('click', function(){
+      var item = items.find(function(i){ return i.id === tile.dataset.bentoOpen; });
+      if(item) openTitleModal(item);
+    });
+  });
+}
+
+function renderCatalogStories(){
+  var row = document.getElementById('catalogStoriesRow');
+  if(!row) return;
+  var items = getCatalog().filter(function(i){ return matureVisible || !i.mature; });
+  var chars = [];
+  items.forEach(function(i){ if(i.character && chars.indexOf(i.character) === -1) chars.push(i.character); });
+  if(chars.length === 0){ row.classList.add('hidden'); return; }
+  row.classList.remove('hidden');
+  row.innerHTML = chars.map(function(name){
+    var latest = items.filter(function(i){ return i.character === name; })
+      .sort(function(a, b){ return new Date(b.date || 0) - new Date(a.date || 0); })[0];
+    return '<div class="story-item" data-story-jump="' + escapeHtml(name) + '">' +
+      '<div class="story-ring"><div class="story-inner">' +
+        (latest && latest.cover_url ? '<img src="' + coverThumbUrl(latest.cover_url, 200) + '" alt="" loading="lazy">' : '') +
+      '</div></div>' +
+      '<div class="story-label">' + escapeHtml(name) + '</div>' +
+    '</div>';
+  }).join('');
+  Array.prototype.forEach.call(row.querySelectorAll('[data-story-jump]'), function(el){
+    el.addEventListener('click', function(){
+      var target = document.querySelector('.catalog-shelf [data-shelf-anchor="' + CSS.escape(el.dataset.storyJump) + '"]');
+      if(target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+}
+
+function initCmdSearch(){
+  var trigger = document.getElementById('btnCmdSearch');
+  var overlay = document.getElementById('cmdkOverlay');
+  var input = document.getElementById('cmdkInput');
+  var results = document.getElementById('cmdkResults');
+  if(!trigger || !overlay || trigger.dataset.wired) return;
+  trigger.dataset.wired = '1';
+
+  // su desktop mostra la scorciatoia da tastiera, su mobile "Cerca" e basta (nessuna tastiera fisica)
+  var isMobile = 'ontouchstart' in window;
+  var hintEl = document.getElementById('cmdkHint');
+  if(isMobile && hintEl) hintEl.remove();
+
+  function open(){
+    overlay.classList.remove('hidden');
+    input.value = '';
+    results.innerHTML = '';
+    setTimeout(function(){ input.focus(); }, 50);
+  }
+  function close(){ overlay.classList.add('hidden'); }
+
+  trigger.addEventListener('click', open);
+  overlay.addEventListener('click', function(e){ if(e.target === overlay) close(); });
+  document.addEventListener('keydown', function(e){
+    if((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k'){ e.preventDefault(); open(); }
+    if(e.key === 'Escape' && !overlay.classList.contains('hidden')) close();
+  });
+
+  input.addEventListener('input', function(){
+    var q = input.value.trim().toLowerCase();
+    if(!q){ results.innerHTML = ''; return; }
+    var items = getCatalog().filter(function(i){ return matureVisible || !i.mature; });
+    var matches = items.filter(function(i){
+      return (i.title || '').toLowerCase().indexOf(q) !== -1 ||
+             (i.character || '').toLowerCase().indexOf(q) !== -1 ||
+             (i.genres || []).join(' ').toLowerCase().indexOf(q) !== -1;
+    }).slice(0, 20);
+    if(matches.length === 0){ results.innerHTML = '<p class="form-note">Nessun risultato.</p>'; return; }
+    results.innerHTML = matches.map(function(item, i){
+      return '<div class="cmdk-result-row" data-cmdk-result="' + i + '">' +
+        (item.cover_url ? '<img src="' + coverThumbUrl(item.cover_url, 100) + '" alt="">' : '<span class="cmdk-noimg"></span>') +
+        '<div><div class="cmdk-result-title">' + escapeHtml(item.title) + '</div><div class="cmdk-result-sub">' + escapeHtml(item.character || '') + '</div></div>' +
+      '</div>';
+    }).join('');
+    Array.prototype.forEach.call(results.querySelectorAll('[data-cmdk-result]'), function(rowEl){
+      rowEl.addEventListener('click', function(){
+        var item = matches[Number(rowEl.dataset.cmdkResult)];
+        close();
+        openTitleModal(item);
+      });
+    });
+  });
 }
 
 function renderCatalog(){
@@ -2266,6 +2406,9 @@ function renderCatalog(){
   renderGenreBanner();
   updateMatureStateLabel();
   renderCollabBanner();
+  renderCatalogHeroBento();
+  renderCatalogStories();
+  initCmdSearch();
   renderTopRanked();
   renderLatestChapters();
   renderMyComics();
@@ -2331,7 +2474,7 @@ function renderCatalog(){
     shelf.className = 'catalog-shelf';
     if(group.character){
       shelf.innerHTML =
-        '<div class="shelf-head">'+
+        '<div class="shelf-head" data-shelf-anchor="'+escapeHtml(group.character)+'">'+
           '<div class="shelf-head-text">'+
             '<div class="shelf-eyebrow">'+t('shelf.eyebrow')+'</div>'+
             '<div class="shelf-title">'+escapeHtml(group.character)+'</div>'+
@@ -5298,7 +5441,7 @@ function renderCollabWorksTab(){
     card.setAttribute('data-character', item.character || '');
     var badge = item.mature ? '<span class="mature">18+</span>' : '<span class="allages">'+t('badge.allages')+'</span>';
     var coverInner = item.cover_url
-      ? '<img class="cover-img" src="'+coverThumbUrl(item.cover_url, 500)+'" data-fallback="'+escapeHtml(item.cover_url)+'" alt="" loading="lazy" decoding="async">'
+      ? '<img class="cover-img" src="'+coverThumbUrl(item.cover_url, 500)+'" data-fallback="'+escapeHtml(item.cover_url)+'" alt="" loading="lazy" decoding="async" onload="this.style.opacity=1">'
       : '<span class="init">'+item.character.charAt(0)+'</span>';
     var collabArr = (item.collaborators && item.collaborators.length)
       ? item.collaborators
