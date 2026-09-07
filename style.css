@@ -467,7 +467,7 @@ body.theme-light .hero-bg::after{
 .card-idx-cover{
   aspect-ratio:3/4;
   display:flex;align-items:center;justify-content:center;
-  position:relative;
+  position:relative;cursor:pointer;
   background:linear-gradient(160deg, var(--wine-deep), var(--void));
 }
 .card-idx-cover .init{font-family:'Cinzel Decorative',serif;font-size:44px;color:rgba(201,162,77,0.35);}
@@ -493,14 +493,23 @@ body.theme-light .hero-bg::after{
     linear-gradient(180deg, #8a1a2c 0%, #5c0f18 50%, #7a1420 100%);
   box-shadow:0 2px 6px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.08), inset 0 -1px 0 rgba(0,0,0,0.35);
   border-top:1px solid rgba(0,0,0,0.4);border-bottom:1px solid rgba(0,0,0,0.4);
+  transition:transform .6s cubic-bezier(.6,-0.1,.7,1), opacity .5s ease .1s;
 }
 .tome-seal{
   width:26%;max-width:54px;min-width:36px;aspect-ratio:1/1;border-radius:50%;
   display:flex;align-items:center;justify-content:center;background:var(--void);
   box-shadow:0 3px 10px rgba(0,0,0,0.65), 0 0 0 3px rgba(201,162,77,0.85), 0 0 14px rgba(227,194,115,0.35);
   overflow:hidden;flex-shrink:0;
+  transition:transform .55s cubic-bezier(.4,0,.2,1), opacity .45s ease .15s, box-shadow .55s ease;
 }
-.tome-seal img{width:100%;height:100%;object-fit:cover;display:block;}
+.tome-seal img{position:static;inset:auto;width:100%;height:100%;object-fit:cover;display:block;}
+
+/* animazione apertura fumetto — sigillo che gira, nastro che si toglie */
+.opening .tome-strap{transform:translateY(-160%);opacity:0;}
+.opening .tome-seal{
+  transform:rotate(620deg) scale(0.25);opacity:0;
+  box-shadow:0 0 26px 8px rgba(227,194,115,0.6);
+}
 
 .tome-plaque{
   background:linear-gradient(180deg, var(--void-2), var(--void));

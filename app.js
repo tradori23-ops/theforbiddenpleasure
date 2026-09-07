@@ -2003,7 +2003,12 @@ function renderLatestChapters(){
         '<div class="tome-strap"><div class="tome-seal"><img src="logo-lm-seal.webp" alt=""></div></div>' +
       '</div>' +
       '<div class="latest-card-body"><h5>' + escapeHtml(item.title) + '</h5><div class="character">' + item.character + '</div></div>';
-    card.addEventListener('click', function(){ openTitleModal(item); });
+    card.addEventListener('click', function(){
+      var coverEl = card.querySelector('.latest-card-cover');
+      if(coverEl.classList.contains('opening')) return;
+      coverEl.classList.add('opening');
+      setTimeout(function(){ openTitleModal(item); }, 620);
+    });
     grid.appendChild(card);
     attachCoverSignature(card.querySelector('.latest-card-cover'), item);
   });
@@ -2250,6 +2255,12 @@ function buildTomeCardHtml(item){
 }
 
 function wireTomeCard(card, item){
+  var coverEl = card.querySelector('.card-idx-cover');
+  coverEl.addEventListener('click', function(){
+    if(coverEl.classList.contains('opening')) return;
+    coverEl.classList.add('opening');
+    setTimeout(function(){ openTitleModal(item); }, 620);
+  });
   card.querySelector('[data-fav]').addEventListener('click', function(e){
     e.stopPropagation();
     toggleFavorite(item.id);
