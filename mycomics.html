@@ -17,6 +17,10 @@
 <meta name="twitter:image" content="https://noxmorningstar.com/og-image.jpg">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 <link rel="manifest" href="manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cinzel+Decorative:wght@700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Space+Mono:wght@400;700&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cinzel+Decorative:wght@700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Space+Mono:wght@400;700&display=swap"></noscript>
 </head>
 <body>
 <div class="page-wrap">
@@ -31,8 +35,9 @@
     </div>
     <div id="offlineSyncRow" class="offline-sync-row hidden">
       <span id="offlineSyncStatus" class="hidden"></span>
-      <button type="button" id="btnOfflineSyncManual" class="btn btn-ghost btn-sm hidden" data-i18n="offline.downloadAll">Scarica tutto per offline</button>
+      <button type="button" id="btnOfflineSyncManual" class="btn btn-sm hidden" data-i18n="offline.downloadAll">Scarica tutto per offline</button>
     </div>
+    <div class="mycomics-codex hidden" id="mycomicsCodex"></div>
     <div class="mycomics-tabs" id="mycomicsTabs">
       <button type="button" class="mycomics-tab active" data-tab="continue" data-i18n="mycomics.tab.continue">Continua a Leggere</button>
       <button type="button" class="mycomics-tab" data-tab="favorites" data-i18n="mycomics.tab.favorites">Preferiti</button>
