@@ -324,6 +324,60 @@ body.theme-light .hero-bg::after{
 
 /* ============ CHARACTER DOSSIERS ============ */
 .dossier-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;}
+
+/* ============ DOSSIER — i sigilli e il manoscritto ============ */
+.dossier-seals{display:flex;justify-content:center;gap:22px;flex-wrap:wrap;align-content:flex-start;}
+.dossier-seal-wrap{display:flex;flex-direction:column;align-items:center;gap:10px;cursor:pointer;}
+.dossier-seal{
+  position:relative;width:94px;height:120px;color:var(--gold);
+  transition:color .3s, transform .3s, filter .3s;
+  filter:drop-shadow(0 6px 14px rgba(0,0,0,0.55));
+}
+.dossier-seal-wrap:hover .dossier-seal{transform:translateY(-3px);color:var(--gold-bright);}
+.dossier-seal.active{color:var(--gold-bright);filter:drop-shadow(0 8px 20px rgba(227,194,115,0.4));}
+.dossier-seal-photowrap{
+  position:absolute;inset:0;
+  clip-path:path('M4,118 L4,52 A43,43 0 0 1 90,52 L90,118 Z');
+  background:linear-gradient(160deg, var(--wine-deep), var(--void));
+  display:flex;align-items:center;justify-content:center;overflow:hidden;
+}
+.dossier-seal-photo{width:100%;height:100%;object-fit:cover;}
+.dossier-seal-init{font-family:'Cinzel Decorative',serif;font-size:32px;color:rgba(227,194,115,0.55);}
+.dossier-seal-frame{position:absolute;top:0;left:0;pointer-events:none;}
+.dossier-seal.active .dossier-seal-frame circle{fill:var(--gold-bright);}
+.dossier-seal-label{
+  font-family:'Cinzel Decorative',serif;font-size:12px;letter-spacing:0.02em;
+  color:var(--parchment-dim);transition:color .3s;
+}
+.dossier-seal-wrap:hover .dossier-seal-label,
+.dossier-seal.active + .dossier-seal-label{color:var(--gold-bright);}
+
+.dossier-manuscript{
+  background:linear-gradient(180deg, var(--void-2), var(--void));
+  border:1px solid var(--gold);border-radius:4px;
+  padding:26px 28px;box-shadow:0 20px 50px rgba(0,0,0,0.5);
+  align-self:start;
+}
+.dossier-manuscript h2{font-family:'Cinzel Decorative',serif;font-size:22px;color:var(--gold-bright);margin:0 0 6px;}
+.dossier-role{
+  font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--verdigris);margin-bottom:14px;
+}
+.dossier-manuscript p{font-family:'Crimson Pro',serif;font-size:15px;line-height:1.7;color:var(--parchment);margin:0 0 16px;}
+.dossier-goto{
+  display:inline-flex;align-items:center;gap:5px;
+  font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;
+  color:var(--gold);border-bottom:1px solid var(--gold);padding-bottom:2px;cursor:pointer;transition:color .2s;
+}
+.dossier-goto:hover{color:var(--gold-bright);}
+.dossier-shelf-empty{
+  font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.05em;color:var(--parchment-dim);
+  border:1px dashed var(--line);padding:14px 16px;text-align:center;
+}
+@media(max-width:640px){
+  .dossier-seal{width:78px;height:100px;}
+  .dossier-manuscript{padding:20px 18px;}
+}
 .ornate-divider{
   position:relative;border-top:1px solid var(--gold);
   margin-top:20px;padding-top:56px !important;
@@ -417,7 +471,7 @@ body.theme-light .hero-bg::after{
   background:linear-gradient(160deg, var(--wine-deep), var(--void));
 }
 .card-idx-cover .init{font-family:'Cinzel Decorative',serif;font-size:44px;color:rgba(201,162,77,0.35);}
-.card-idx-cover .cover-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.card-idx-cover .cover-img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;}
 .card-idx-cover .mature{
   position:absolute;top:8px;right:8px;
   font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.1em;
@@ -428,6 +482,83 @@ body.theme-light .hero-bg::after{
   font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.1em;
   background:var(--verdigris);color:var(--parchment);padding:2px 6px;border:1px solid var(--gold);
 }
+
+/* ============ CARD GOTICA — nastro, sigillo, targhetta, portone ============ */
+.tome-strap{
+  position:absolute;left:0;right:0;top:44%;height:15%;min-height:26px;max-height:40px;
+  display:flex;align-items:center;justify-content:center;z-index:4;
+  background:
+    repeating-linear-gradient(45deg, rgba(255,255,255,0.06) 0 2px, transparent 2px 4px),
+    repeating-linear-gradient(-45deg, rgba(0,0,0,0.12) 0 2px, transparent 2px 4px),
+    linear-gradient(180deg, #8a1a2c 0%, #5c0f18 50%, #7a1420 100%);
+  box-shadow:0 2px 6px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.08), inset 0 -1px 0 rgba(0,0,0,0.35);
+  border-top:1px solid rgba(0,0,0,0.4);border-bottom:1px solid rgba(0,0,0,0.4);
+}
+.tome-seal{
+  width:26%;max-width:54px;min-width:36px;aspect-ratio:1/1;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;background:var(--void);
+  box-shadow:0 3px 10px rgba(0,0,0,0.65), 0 0 0 3px rgba(201,162,77,0.85), 0 0 14px rgba(227,194,115,0.35);
+  overflow:hidden;flex-shrink:0;
+}
+.tome-seal img{width:100%;height:100%;object-fit:cover;display:block;}
+
+.tome-plaque{
+  background:linear-gradient(180deg, var(--void-2), var(--void));
+  border-top:1px solid var(--gold);padding:9px 12px;
+  display:flex;align-items:center;justify-content:center;gap:6px;text-align:center;
+}
+.tome-plaque-dot{width:5px;height:5px;background:var(--gold-bright);transform:rotate(45deg);flex-shrink:0;box-shadow:0 0 4px rgba(227,194,115,0.7);}
+.tome-plaque-text{font-family:'Cinzel Decorative',serif;font-size:12px;letter-spacing:0.02em;color:var(--gold-bright);line-height:1.25;}
+
+.tome-price-row{display:flex;align-items:center;justify-content:space-between;padding:9px 12px;border-top:1px solid var(--line);}
+.tome-price-always{font-family:'Space Mono',monospace;font-size:12px;color:var(--gold-bright);font-weight:bold;}
+
+.tome-details-toggle{
+  width:42px;height:42px;padding:0;border:none;background:none;cursor:pointer;
+  position:relative;perspective:130px;flex-shrink:0;
+}
+.tome-details-toggle .gate-frame{
+  position:absolute;inset:0;border-radius:8px 8px 3px 3px;overflow:hidden;
+  background:linear-gradient(180deg, var(--wine-deep), var(--void));
+  box-shadow:0 0 0 1px var(--gold), inset 0 0 8px rgba(0,0,0,0.7), 0 3px 8px rgba(0,0,0,0.5);
+}
+.tome-details-toggle .gate-arch{
+  position:absolute;top:2px;left:5px;right:5px;height:12px;
+  border:1px solid rgba(201,162,77,0.5);border-bottom:none;border-radius:10px 10px 0 0;
+  pointer-events:none;
+}
+.tome-details-toggle .gate-door{
+  position:absolute;top:0;bottom:0;width:50%;
+  background:linear-gradient(180deg, #3a2418, #1c110b);
+  border:1px solid rgba(201,162,77,0.55);
+  transition:transform .5s cubic-bezier(.65,0,.35,1);
+}
+.tome-details-toggle .gate-door::after{content:'';position:absolute;top:7px;bottom:7px;width:1px;background:rgba(201,162,77,0.35);}
+.tome-details-toggle .gate-door-l{left:0;border-radius:9px 0 0 0;transform-origin:left center;}
+.tome-details-toggle .gate-door-l::after{right:5px;}
+.tome-details-toggle .gate-door-r{right:0;border-radius:0 9px 0 0;transform-origin:right center;}
+.tome-details-toggle .gate-door-r::after{left:5px;}
+.tome-details-toggle.open .gate-door-l{transform:rotateY(-112deg);}
+.tome-details-toggle.open .gate-door-r{transform:rotateY(112deg);}
+.tome-details-toggle .gate-seal{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:14px;height:14px;border-radius:50%;z-index:3;
+  background:radial-gradient(circle at 35% 30%, var(--gold-bright), var(--gold) 70%);
+  box-shadow:0 0 5px rgba(0,0,0,0.7), 0 0 6px rgba(227,194,115,0.5);
+  transition:opacity .3s;
+}
+.tome-details-toggle.open .gate-seal{opacity:0;}
+.tome-details-toggle .gate-arrow{
+  position:absolute;bottom:1px;left:50%;transform:translateX(-50%);
+  font-size:9px;color:var(--gold-bright);z-index:3;transition:transform .35s;
+  text-shadow:0 1px 2px rgba(0,0,0,0.8);
+}
+.tome-details-toggle.open .gate-arrow{transform:translateX(-50%) rotate(180deg);}
+
+.tome-details{overflow:hidden;max-height:0;transition:max-height .45s ease;}
+.tome-details.open{max-height:420px;}
+.tome-details .card-idx-genres{padding:0 12px;margin-top:10px;}
+
 .card-idx-body{padding:16px;flex:1;display:flex;flex-direction:column;gap:6px;}
 .card-idx-body .num{font-family:'Space Mono',monospace;font-size:10px;color:var(--verdigris);letter-spacing:0.1em;}
 .card-idx-body h4{font-family:'Cinzel',serif;font-size:15px;margin:0;line-height:1.3;}
@@ -676,6 +807,18 @@ footer .fcopy{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
 .stats-row .stats-numbers{font-family:'Space Mono',monospace;font-size:11px;color:var(--parchment-dim);margin-bottom:8px;}
 .stats-bar-track{height:8px;background:var(--void);border:1px solid var(--line);overflow:hidden;}
 .stats-bar-fill{height:100%;background:linear-gradient(90deg, var(--wine), var(--gold));}
+.genre-banner{
+  position:relative;height:150px;border-radius:4px;overflow:hidden;
+  margin-bottom:20px;background-size:cover;background-position:center;
+  border:1px solid var(--gold);display:flex;align-items:flex-end;
+}
+.genre-banner.hidden{display:none;}
+.genre-banner-label{
+  font-family:'Cinzel Decorative',serif;font-size:20px;color:var(--gold-bright);
+  text-shadow:0 2px 6px rgba(0,0,0,0.85);padding:14px 18px;width:100%;
+  background:linear-gradient(0deg, rgba(11,6,7,0.85) 0%, transparent 100%);
+}
+@media(max-width:600px){.genre-banner{height:110px;}.genre-banner-label{font-size:16px;padding:10px 14px;}}
 .collab-banner{
   border:1px solid var(--gold);background:rgba(201,162,77,0.08);
   padding:14px 18px;margin-bottom:20px;

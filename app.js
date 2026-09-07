@@ -17,7 +17,7 @@ var STR = {
     "hero.tagline":"Fumetti d'autore — edizione riservata",
     "hero.lede":"Quattro sigilli, quattro voci: Lucifer, Lilith, Lucifera e Lucio custodiscono le collane di questa casa. Lo schedario è aperto a tutti — i contenuti 18+ restano dietro un interruttore separato, da sbloccare quando vuoi. Ogni tavola nasce in inglese ed entra nello schedario così com'è — solo la tua lingua d'accesso è cosa nostra.",
     "hero.cta1":"Sfoglia lo schedario","hero.cta2":"Incontra i dossier",
-    "characters.eyebrow":"Dossier","characters.title":"I Quattro Sigilli","characters.desc":"Ogni personaggio guida una collana propria, con tono e mitologia distinti.",
+    "characters.eyebrow":"Dossier","characters.title":"I Cinque Sigilli","characters.desc":"Ogni personaggio guida una collana propria, con tono e mitologia distinti.","dossier.comingSoon":"I primi capitoli sono in arrivo.",
     "library.eyebrow":"Schedario","library.title":"Catalogo delle Opere","shelf.eyebrow":"Collana",
     "founder.eyebrow":"Casa Editrice","founder.title":"Il Fondatore","founder.role":"Fondatore & Direttore Editoriale",
     "support.eyebrow":"Sostieni il Progetto","support.title":"Offrici un caffè (o una torta)","support.desc":"LUX COMICS & MEDUSA COMICS è un progetto indipendente, senza abbonamenti né acquisti obbligatori. Se una storia ti è piaciuta, puoi sostenerla a tua discrezione — quanto vuoi, quando vuoi. Nella causale puoi indicare quale titolo vuoi premiare.","support.paypal":"Dona con PayPal","support.satispay":"Dona con Satispay","support.revolut":"Dona con Revolut","support.note":"Donazione libera e informale a sostegno di un progetto personale — non è un acquisto, non dà diritto a contenuti riservati che già non avresti. Ai collaboratori non è mai richiesto nulla.","support.titleButton":"Sostieni","support.titlePanelHeading":"Sostieni questo titolo","support.priceNote":"Prezzo indicativo: €{price} — oppure quanto vuoi.","support.freeNote":"Compra o dona quello che vuoi, a tua discrezione.","support.payNote":"Scrivi \"{title}\" nella causale/nota del pagamento.","support.emailLabel":"Email per ricevere il fumetto","support.emailPlaceholder":"tuo@email.com","support.emailSubmit":"Invia richiesta","support.emailSent":"Ricevuto — te lo spediamo appena confermato il pagamento.","support.emailRequired":"Inserisci un'email valida.",
@@ -141,7 +141,7 @@ var STR = {
     "hero.tagline":"Author comics — restricted edition",
     "hero.lede":"Four seals, four voices: Lucifer, Lilith, Lucifera and Lucio each guard a line of this house. The index is open to everyone — 18+ titles sit behind a separate switch, unlockable whenever you like. Every page is drawn in English and enters the index as-is — only your access language is yours to choose.",
     "hero.cta1":"Browse the index","hero.cta2":"Meet the dossiers",
-    "characters.eyebrow":"Dossiers","characters.title":"The Four Seals","characters.desc":"Each character leads their own line, with a distinct tone and mythology.",
+    "characters.eyebrow":"Dossiers","characters.title":"The Five Seals","characters.desc":"Each character leads their own line, with a distinct tone and mythology.","dossier.comingSoon":"The first chapters are on their way.",
     "library.eyebrow":"Index","library.title":"Catalog of Works","shelf.eyebrow":"Imprint",
     "founder.eyebrow":"Publishing House","founder.title":"The Founder","founder.role":"Founder & Editorial Director",
     "support.eyebrow":"Support the Project","support.title":"Buy us a coffee (or a cake)","support.desc":"LUX COMICS & MEDUSA COMICS is an independent project, with no subscriptions or mandatory purchases. If you enjoyed a story, you can support it at your discretion — whatever amount, whenever you like. You can mention which title you'd like to reward in the payment note.","support.paypal":"Donate via PayPal","support.satispay":"Donate via Satispay","support.revolut":"Donate via Revolut","support.note":"A free, informal donation to support a personal project — not a purchase, and it doesn't unlock content you wouldn't already have. Collaborators are never asked for anything.","support.titleButton":"Support","support.titlePanelHeading":"Support this title","support.priceNote":"Suggested price: €{price} — or whatever you like.","support.freeNote":"Buy or donate whatever you like, at your discretion.","support.payNote":"Write \"{title}\" in the payment note.","support.emailLabel":"Email to receive the comic","support.emailPlaceholder":"you@email.com","support.emailSubmit":"Send request","support.emailSent":"Got it — we'll send it once payment is confirmed.","support.emailRequired":"Enter a valid email.",
@@ -265,7 +265,7 @@ var STR = {
     "hero.tagline":"Cómics de autor — edición restringida",
     "hero.lede":"Cuatro sellos, cuatro voces: Lucifer, Lilith, Lucifera y Lucio custodian las colecciones de esta casa. El índice está abierto a todos — los títulos 18+ quedan tras un interruptor aparte, que puedes desbloquear cuando quieras. Cada página se dibuja en inglés y entra al índice tal cual — solo tu idioma de acceso es asunto tuyo.",
     "hero.cta1":"Explorar el índice","hero.cta2":"Conocer los expedientes",
-    "characters.eyebrow":"Expedientes","characters.title":"Los Cuatro Sellos","characters.desc":"Cada personaje lidera su propia colección, con tono y mitología distintos.",
+    "characters.eyebrow":"Expedientes","characters.title":"Los Cinco Sellos","characters.desc":"Cada personaje lidera su propia colección, con tono y mitología distintos.","dossier.comingSoon":"Los primeros capítulos están en camino.",
     "library.eyebrow":"Índice","library.title":"Catálogo de Obras","shelf.eyebrow":"Colección",
     "founder.eyebrow":"Casa Editorial","founder.title":"El Fundador","founder.role":"Fundador y Director Editorial",
     "support.eyebrow":"Apoya el Proyecto","support.title":"Invítanos a un café (o una tarta)","support.desc":"LUX COMICS & MEDUSA COMICS es un proyecto independiente, sin suscripciones ni compras obligatorias. Si te ha gustado una historia, puedes apoyarla a tu criterio — la cantidad que quieras, cuando quieras. En el concepto del pago puedes indicar qué título quieres premiar.","support.paypal":"Donar con PayPal","support.satispay":"Donar con Satispay","support.revolut":"Donar con Revolut","support.note":"Donación libre e informal para apoyar un proyecto personal — no es una compra, ni da derecho a contenido reservado que no tendrías ya. A los colaboradores nunca se les pide nada.","support.titleButton":"Apoyar","support.titlePanelHeading":"Apoya este título","support.priceNote":"Precio orientativo: €{price} — o lo que quieras.","support.freeNote":"Compra o dona lo que quieras, a tu criterio.","support.payNote":"Escribe \"{title}\" en el concepto del pago.","support.emailLabel":"Email para recibir el cómic","support.emailPlaceholder":"tu@email.com","support.emailSubmit":"Enviar solicitud","support.emailSent":"Recibido — te lo enviaremos en cuanto se confirme el pago.","support.emailRequired":"Introduce un email válido.",
@@ -389,7 +389,7 @@ var STR = {
     "hero.tagline":"Bandes dessinées d'auteur — édition réservée",
     "hero.lede":"Quatre sceaux, quatre voix : Lucifer, Lilith, Lucifera et Lucio veillent chacun sur une collection de cette maison. L'index est ouvert à tous — les titres 18+ restent derrière un interrupteur séparé, à débloquer quand vous voulez. Chaque planche est dessinée en anglais et entre dans l'index telle quelle — seule votre langue d'accès vous appartient.",
     "hero.cta1":"Parcourir l'index","hero.cta2":"Découvrir les dossiers",
-    "characters.eyebrow":"Dossiers","characters.title":"Les Quatre Sceaux","characters.desc":"Chaque personnage mène sa propre collection, avec un ton et une mythologie distincts.",
+    "characters.eyebrow":"Dossiers","characters.title":"Les Cinq Sceaux","characters.desc":"Chaque personnage mène sa propre collection, avec un ton et une mythologie distincts.","dossier.comingSoon":"Les premiers chapitres arrivent bientôt.",
     "library.eyebrow":"Index","library.title":"Catalogue des Œuvres","shelf.eyebrow":"Collection",
     "founder.eyebrow":"Maison d'Édition","founder.title":"Le Fondateur","founder.role":"Fondateur & Directeur Éditorial",
     "support.eyebrow":"Soutenez le Projet","support.title":"Offrez-nous un café (ou un gâteau)","support.desc":"LUX COMICS & MEDUSA COMICS est un projet indépendant, sans abonnement ni achat obligatoire. Si une histoire vous a plu, vous pouvez la soutenir à votre discrétion — le montant que vous voulez, quand vous voulez. Vous pouvez indiquer dans le motif du paiement quel titre vous souhaitez récompenser.","support.paypal":"Faire un don via PayPal","support.satispay":"Faire un don via Satispay","support.revolut":"Faire un don via Revolut","support.note":"Don libre et informel pour soutenir un projet personnel — ce n'est pas un achat, et cela ne donne pas accès à du contenu réservé que vous n'auriez pas déjà. Rien n'est jamais demandé aux collaborateurs.","support.titleButton":"Soutenir","support.titlePanelHeading":"Soutenir ce titre","support.priceNote":"Prix indicatif : €{price} — ou ce que vous voulez.","support.freeNote":"Achetez ou faites un don à votre discrétion.","support.payNote":"Écrivez « {title} » dans le motif du paiement.","support.emailLabel":"Email pour recevoir la bande dessinée","support.emailPlaceholder":"vous@email.com","support.emailSubmit":"Envoyer la demande","support.emailSent":"Reçu — nous vous l'enverrons dès le paiement confirmé.","support.emailRequired":"Entrez un email valide.",
@@ -513,7 +513,7 @@ var STR = {
     "hero.tagline":"Autoren-Comics — exklusive Ausgabe",
     "hero.lede":"Vier Siegel, vier Stimmen: Lucifer, Lilith, Lucifera und Lucio hüten je eine Reihe dieses Hauses. Der Index steht allen offen — 18+-Titel liegen hinter einem eigenen Schalter, den Sie jederzeit freischalten können. Jede Seite entsteht auf Englisch und kommt so in den Index — nur Ihre Zugangssprache liegt bei Ihnen.",
     "hero.cta1":"Index durchsuchen","hero.cta2":"Dossiers entdecken",
-    "characters.eyebrow":"Dossiers","characters.title":"Die Vier Siegel","characters.desc":"Jede Figur leitet eine eigene Reihe mit eigenem Ton und eigener Mythologie.",
+    "characters.eyebrow":"Dossiers","characters.title":"Die Fünf Siegel","characters.desc":"Jede Figur leitet eine eigene Reihe mit eigenem Ton und eigener Mythologie.","dossier.comingSoon":"Die ersten Kapitel erscheinen in Kürze.",
     "library.eyebrow":"Index","library.title":"Werkkatalog","shelf.eyebrow":"Reihe",
     "founder.eyebrow":"Verlagshaus","founder.title":"Der Gründer","founder.role":"Gründer & Verlagsleiter",
     "support.eyebrow":"Unterstütze das Projekt","support.title":"Spendier uns einen Kaffee (oder einen Kuchen)","support.desc":"LUX COMICS & MEDUSA COMICS ist ein unabhängiges Projekt, ohne Abonnements oder Pflichtkäufe. Wenn dir eine Geschichte gefallen hat, kannst du sie nach eigenem Ermessen unterstützen — mit dem Betrag deiner Wahl, wann immer du möchtest. Im Verwendungszweck kannst du angeben, welchen Titel du belohnen möchtest.","support.paypal":"Mit PayPal spenden","support.satispay":"Mit Satispay spenden","support.revolut":"Mit Revolut spenden","support.note":"Freie, informelle Spende zur Unterstützung eines persönlichen Projekts — kein Kauf, und sie schaltet keine exklusiven Inhalte frei, die du nicht ohnehin schon hättest. Von Mitarbeitenden wird nie etwas verlangt.","support.titleButton":"Unterstützen","support.titlePanelHeading":"Diesen Titel unterstützen","support.priceNote":"Richtpreis: €{price} — oder so viel du möchtest.","support.freeNote":"Kaufe oder spende nach eigenem Ermessen.","support.payNote":"Schreibe \"{title}\" in den Verwendungszweck.","support.emailLabel":"E-Mail für den Comic-Versand","support.emailPlaceholder":"du@email.com","support.emailSubmit":"Anfrage senden","support.emailSent":"Erhalten — wir senden ihn nach Zahlungseingang.","support.emailRequired":"Gib eine gültige E-Mail ein.",
@@ -653,7 +653,14 @@ var CHAR_META = {
          en:"The fourth seal, closest to the reader: small, everyday, recognizable temptations.",
          es:"El cuarto sello, el más cercano al lector: tentaciones pequeñas y cotidianas, reconocibles.",
          fr:"Le quatrième sceau, le plus proche du lecteur : de petites tentations quotidiennes et reconnaissables.",
-         de:"Das vierte Siegel, dem Leser am nächsten: kleine, alltägliche, wiedererkennbare Versuchungen."}}
+         de:"Das vierte Siegel, dem Leser am nächsten: kleine, alltägliche, wiedererkennbare Versuchungen."}},
+  Nox:{role:{it:"Il Fondatore",en:"The Founder",es:"El Fundador",fr:"Le Fondateur",de:"Der Gründer"},
+    /* TESTO PLACEHOLDER — sostituisci con la bio reale di Nox appena pronta */
+    bio:{it:"La firma dietro ogni collana della casa: la sua voce esce ora anche in prima persona.",
+         en:"The signature behind every line in the house: his own voice now steps onto the page.",
+         es:"La firma detrás de cada colección de la casa: ahora su propia voz sale a la página.",
+         fr:"La signature derrière chaque collection de la maison : sa propre voix prend enfin la parole.",
+         de:"Die Unterschrift hinter jeder Reihe des Hauses: jetzt tritt seine eigene Stimme auf die Seite."}}
 };
 
 var currentLang = localStorage.getItem('lux_lang') || 'it';
@@ -2003,7 +2010,7 @@ function renderLatestChapters(){
 function renderDossiers(){
   var wrap = document.getElementById('dossierGrid');
   if(!wrap) return;
-  var names = ['Lucifer','Lilith','Lucifera','Lucio'];
+  var names = ['Lucifer','Lilith','Lucifera','Lucio','Nox'];
   var lang = STR[currentLang] ? currentLang : 'it';
 
   function goToLibrary(name){
@@ -2036,7 +2043,10 @@ function renderDossiers(){
     var charItems = getCatalog().filter(function(i){
       return i.character === name && (matureVisible || !i.mature);
     });
-    if(charItems.length === 0){ shelfRow.remove(); return; }
+    if(charItems.length === 0){
+      shelfRow.innerHTML = '<div class="dossier-shelf-empty">'+t('dossier.comingSoon')+'</div>';
+      return;
+    }
     charItems.forEach(function(item){
       shelfRow.insertAdjacentHTML('beforeend', buildTomeCardHtml(item));
     });
@@ -2058,9 +2068,9 @@ function renderDossiers(){
       sealWrap.innerHTML =
         '<div class="dossier-seal'+(i===activeIdx?' active':'')+'">'+
           '<div class="dossier-seal-photowrap">'+sealInner+'</div>'+
-          '<svg class="dossier-seal-frame" viewBox="0 0 100 128" width="100" height="128" aria-hidden="true">'+
-            '<path d="M4,126 L4,56 A46,46 0 0 1 96,56 L96,126 Z" fill="none" stroke="currentColor" stroke-width="4"/>'+
-            '<circle cx="50" cy="10" r="3.4" fill="currentColor"/>'+
+          '<svg class="dossier-seal-frame" viewBox="0 0 94 120" width="94" height="120" aria-hidden="true">'+
+            '<path d="M4,118 L4,52 A43,43 0 0 1 90,52 L90,118 Z" fill="none" stroke="currentColor" stroke-width="4"/>'+
+            '<circle cx="47" cy="9" r="3.2" fill="currentColor"/>'+
           '</svg>'+
         '</div>'+
         '<div class="dossier-seal-label">'+name+'</div>';
@@ -2110,7 +2120,7 @@ function renderFilters(){
   var wrap = document.getElementById('catalogFilters');
   if(!wrap) return;
   wrap.innerHTML = '';
-  var opts = ['all','Lucifer','Lilith','Lucifera','Lucio','Collaboratori'];
+  var opts = ['all','Lucifer','Lilith','Lucifera','Lucio','Nox','Collaboratori'];
   opts.forEach(function(opt){
     var btn = document.createElement('button');
     btn.className = 'filter-chip' + (activeFilter === opt ? ' active' : '');
@@ -2170,7 +2180,7 @@ function renderGenreBanner(){
 var GENRE_LIST = ['Crossover',"Assassin's Creed Infernale",'The Morningstar Royal House','Thriller','Funny Comics','Horror'];
 var activeGenreFilter = 'all';
 
-var COLLANA_ORDER = ['Lucifer','Lilith','Lucifera','Lucio'];
+var COLLANA_ORDER = ['Lucifer','Lilith','Lucifera','Lucio','Nox'];
 
 function ensureMetaRowStyle(){
   if(document.getElementById('metaRowStyle')) return;
@@ -2208,16 +2218,21 @@ function buildTomeCardHtml(item){
   return (
     '<div class="card-idx tome-card" data-character="'+escapeHtml(item.character||'')+'">'+
       '<div class="card-idx-cover'+(soldOut?' sold-out':'')+'">'+coverInner+badge+soldOutBadge+
-        '<div class="tome-strap" aria-hidden="true"></div>'+
-        '<span class="tome-seal" aria-hidden="true"><img src="logo-sm.webp" alt=""></span>'+
+        '<div class="tome-strap" aria-hidden="true">'+
+          '<span class="tome-seal"><img src="logo-lm-seal.webp" alt=""></span>'+
+        '</div>'+
         '<span class="card-idx-fav'+(isFav?' active':'')+'" data-fav="'+item.id+'">'+(isFav?'♥':'♡')+'</span>'+
       '</div>'+
+      '<div class="tome-plaque"><span class="tome-plaque-dot"></span><div class="tome-plaque-text">'+escapeHtml(item.title)+'</div></div>'+
       '<div class="tome-price-row">'+
         (priceTxt ? '<span class="tome-price-always">'+priceTxt+'</span>' : '<span></span>')+
-        '<button type="button" class="tome-details-toggle" data-toggle-details>'+t('card.details')+'</button>'+
+        '<button type="button" class="tome-details-toggle" data-toggle-details aria-label="'+t('card.details')+'" aria-expanded="false">'+
+          '<span class="gate-frame"><span class="gate-arch"></span><span class="gate-door gate-door-l"></span><span class="gate-door gate-door-r"></span></span>'+
+          '<span class="gate-seal" aria-hidden="true"></span>'+
+          '<span class="gate-arrow" aria-hidden="true">▾</span>'+
+        '</button>'+
       '</div>'+
-      '<div class="tome-details hidden">'+
-        '<div class="tome-plaque"><span class="tome-plaque-dot"></span><div class="tome-plaque-text">'+escapeHtml(item.title)+'</div></div>'+
+      '<div class="tome-details">'+
         genreTags+
         '<div class="card-idx-body" style="cursor:pointer;" data-open="'+item.id+'">'+
           '<div class="num mono">'+(item.issue||'')+'</div>'+
@@ -2246,9 +2261,11 @@ function wireTomeCard(card, item){
   var toggleBtn = card.querySelector('[data-toggle-synopsis]');
   detailsToggle.addEventListener('click', function(e){
     e.stopPropagation();
-    var expanded = detailsBox.classList.toggle('hidden') === false;
-    detailsToggle.textContent = expanded ? t('card.detailsLess') : t('card.details');
-    // il testo diventa misurabile solo ora che la sezione non è più nascosta
+    var expanded = detailsBox.classList.toggle('open');
+    detailsToggle.classList.toggle('open', expanded);
+    detailsToggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+    detailsToggle.setAttribute('aria-label', expanded ? t('card.detailsLess') : t('card.details'));
+    // il testo diventa misurabile solo ora che la sezione non è più a max-height:0
     if(expanded && synEl.scrollHeight > synEl.clientHeight + 1){
       toggleBtn.classList.remove('hidden');
     }
@@ -11809,7 +11826,7 @@ function bumpLocalCommentCount(catalogId, delta){
 /* ============ SOCIAL LINKS (admin-managed, public footer) ============ */
 /* ============ CHARACTER PROFILE IMAGES (Dossier photos, admin-managed) ============ */
 var characterImages = {};
-var CHAR_LIST = ['Lucifer','Lilith','Lucifera','Lucio'];
+var CHAR_LIST = ['Lucifer','Lilith','Lucifera','Lucio','Nox'];
 
 function fetchCharacterImages(){
   if(!SUPABASE_URL) return Promise.resolve();
