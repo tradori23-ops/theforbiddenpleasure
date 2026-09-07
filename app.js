@@ -121,7 +121,7 @@ var STR = {
     "comments.empty":"Nessun commento ancora.","comments.pending":"in attesa","comments.noPending":"Nessun commento in attesa.",
     "comments.submittedPending":"Inviato — in attesa di approvazione.","comments.submittedPublished":"Pubblicato.","comments.reply":"Rispondi",
     "fav.add":"♡ Salva","fav.remove":"♥ Salvato",
-    "card.readMore":"Leggi tutto ↓","card.readLess":"Mostra meno ↑","card.details":"Dettagli ↓","card.detailsLess":"Chiudi ↑",
+    "card.readMore":"Leggi tutto ↓","card.readLess":"Mostra meno ↑","card.details":"Dettagli ↓","card.detailsLess":"Chiudi ↑","card.progress":"Interrotto a pagina {page} di {total}",
     "like.add":"👍 Mi piace","like.remove":"👍 Ti piace",
     "stats.title":"Statistiche per titolo","stats.empty":"Nessun titolo ancora pubblicato.",
     "stats.purchaseNote":"Gli \"acquisti\" non sono ancora reali — nessun processore di pagamento è collegato. \"Carrello\" conta l'interesse (quante volte è stato aggiunto), non vendite confermate.",
@@ -245,7 +245,7 @@ var STR = {
     "comments.empty":"No comments yet.","comments.pending":"pending","comments.noPending":"No pending comments.",
     "comments.submittedPending":"Submitted — pending approval.","comments.submittedPublished":"Published.","comments.reply":"Reply",
     "fav.add":"♡ Save","fav.remove":"♥ Saved",
-    "card.readMore":"Read more ↓","card.readLess":"Show less ↑","card.details":"Details ↓","card.detailsLess":"Close ↑",
+    "card.readMore":"Read more ↓","card.readLess":"Show less ↑","card.details":"Details ↓","card.detailsLess":"Close ↑","card.progress":"Stopped at page {page} of {total}",
     "like.add":"👍 Like","like.remove":"👍 Liked",
     "stats.title":"Stats per title","stats.empty":"No titles published yet.",
     "stats.purchaseNote":"\"Purchases\" aren't real yet — no payment processor is connected. \"Cart\" counts interest (how many times it was added), not confirmed sales.",
@@ -369,7 +369,7 @@ var STR = {
     "comments.empty":"Aún no hay comentarios.","comments.pending":"pendiente","comments.noPending":"No hay comentarios pendientes.",
     "comments.submittedPending":"Enviado — pendiente de aprobación.","comments.submittedPublished":"Publicado.","comments.reply":"Responder",
     "fav.add":"♡ Guardar","fav.remove":"♥ Guardado",
-    "card.readMore":"Leer más ↓","card.readLess":"Mostrar menos ↑","card.details":"Detalles ↓","card.detailsLess":"Cerrar ↑",
+    "card.readMore":"Leer más ↓","card.readLess":"Mostrar menos ↑","card.details":"Detalles ↓","card.detailsLess":"Cerrar ↑","card.progress":"Interrumpido en la página {page} de {total}",
     "like.add":"👍 Me gusta","like.remove":"👍 Te gusta",
     "stats.title":"Estadísticas por título","stats.empty":"Aún no hay títulos publicados.",
     "stats.purchaseNote":"Las \"compras\" aún no son reales — no hay ningún procesador de pago conectado. \"Carrito\" cuenta el interés (cuántas veces se añadió), no ventas confirmadas.",
@@ -493,7 +493,7 @@ var STR = {
     "comments.empty":"Pas encore de commentaires.","comments.pending":"en attente","comments.noPending":"Aucun commentaire en attente.",
     "comments.submittedPending":"Envoyé — en attente d'approbation.","comments.submittedPublished":"Publié.","comments.reply":"Répondre",
     "fav.add":"♡ Enregistrer","fav.remove":"♥ Enregistré",
-    "card.readMore":"Lire la suite ↓","card.readLess":"Réduire ↑","card.details":"Détails ↓","card.detailsLess":"Fermer ↑",
+    "card.readMore":"Lire la suite ↓","card.readLess":"Réduire ↑","card.details":"Détails ↓","card.detailsLess":"Fermer ↑","card.progress":"Interrompu à la page {page} sur {total}",
     "like.add":"👍 J'aime","like.remove":"👍 Aimé",
     "stats.title":"Statistiques par titre","stats.empty":"Aucun titre publié pour l'instant.",
     "stats.purchaseNote":"Les « achats » ne sont pas encore réels — aucun processeur de paiement n'est connecté. « Panier » compte l'intérêt (le nombre d'ajouts), pas les ventes confirmées.",
@@ -617,7 +617,7 @@ var STR = {
     "comments.empty":"Noch keine Kommentare.","comments.pending":"ausstehend","comments.noPending":"Keine ausstehenden Kommentare.",
     "comments.submittedPending":"Gesendet — wartet auf Freigabe.","comments.submittedPublished":"Veröffentlicht.","comments.reply":"Antworten",
     "fav.add":"♡ Speichern","fav.remove":"♥ Gespeichert",
-    "card.readMore":"Mehr lesen ↓","card.readLess":"Weniger anzeigen ↑","card.details":"Details ↓","card.detailsLess":"Schließen ↑",
+    "card.readMore":"Mehr lesen ↓","card.readLess":"Weniger anzeigen ↑","card.details":"Details ↓","card.detailsLess":"Schließen ↑","card.progress":"Unterbrochen auf Seite {page} von {total}",
     "like.add":"👍 Gefällt mir","like.remove":"👍 Gefällt dir",
     "stats.title":"Statistiken pro Titel","stats.empty":"Noch keine Titel veröffentlicht.",
     "stats.purchaseNote":"\u201eKäufe\u201c sind noch nicht real — es ist kein Zahlungsanbieter verbunden. \u201eWarenkorb\u201c zählt Interesse (wie oft hinzugefügt), keine bestätigten Verkäufe.",
@@ -1107,6 +1107,7 @@ function afterAuthChange(){
   refreshAdminUI();
   renderCatalog();
   loadFavorites();
+  loadReadingProgress();
   loadLikes();
   loadNotifications();
   loadMyCreationSession().then(refreshAdminUI);
@@ -2222,12 +2223,29 @@ function buildTomeCardHtml(item){
   var genreTags = (item.genres && item.genres.length)
     ? '<div class="card-idx-genres">'+item.genres.map(function(g){return '<span class="genre-tag">'+escapeHtml(g)+'</span>';}).join('')+'</div>'
     : '';
+
+  // nastro sigillato di default — sostituito dalla fascia di progresso se il
+  // titolo è stato iniziato (last_page valorizzato) e non è ancora finito
+  var totalPages = (item.pages && item.pages.length) || 0;
+  var lastPage = readingProgressMap[item.id];
+  var inProgress = (typeof lastPage === 'number' && totalPages > 1 && lastPage > 0 && lastPage < totalPages - 1);
+  var stripHtml;
+  if(inProgress){
+    var pageLabel = t('card.progress').replace('{page}', lastPage + 1).replace('{total}', totalPages);
+    var pct = Math.round(((lastPage + 1) / totalPages) * 100);
+    stripHtml =
+      '<div class="tome-strap in-progress">'+
+        '<div class="progress-label">🔖 '+pageLabel+'</div>'+
+        '<div class="progress-bar"><div class="progress-bar-fill" style="width:'+pct+'%;"></div></div>'+
+      '</div>';
+  } else {
+    stripHtml = '<div class="tome-strap" aria-hidden="true"><span class="tome-seal"><img src="logo-lm-seal.webp" alt=""></span></div>';
+  }
+
   return (
     '<div class="card-idx tome-card" data-character="'+escapeHtml(item.character||'')+'">'+
       '<div class="card-idx-cover'+(soldOut?' sold-out':'')+'">'+coverInner+badge+soldOutBadge+
-        '<div class="tome-strap" aria-hidden="true">'+
-          '<span class="tome-seal"><img src="logo-lm-seal.webp" alt=""></span>'+
-        '</div>'+
+        stripHtml+
         '<span class="card-idx-fav'+(isFav?' active':'')+'" data-fav="'+item.id+'">'+(isFav?'♥':'♡')+'</span>'+
       '</div>'+
       '<div class="tome-plaque"><span class="tome-plaque-dot"></span><div class="tome-plaque-text">'+escapeHtml(item.title)+'</div></div>'+
@@ -4930,6 +4948,7 @@ function handleImport(file){
 
 /* ============ FAVORITES ============ */
 var favoriteIds = new Set();
+var readingProgressMap = {}; // catalog_id -> last_page (0-based), solo titoli iniziati e non finiti
 
 /* ============ USER PROFILE (display name, bio, avatar, favorite characters) ============ */
 var currentProfile = null;
@@ -7912,6 +7931,47 @@ function loadFavorites(){
     .catch(function(err){ console.warn('Favorites load failed:', err); });
 }
 
+/* ============ PROGRESSO DI LETTURA (pagina raggiunta per titolo) ============
+   Stesso pattern di loadFavorites: una mappa globale caricata una volta
+   per utente, letta in modo sincrono da buildTomeCardHtml quando
+   costruisce ogni card. Solo i titoli con last_page valorizzato (cioè
+   aperti almeno una volta nel lettore a pagine) finiscono nella mappa. */
+function loadReadingProgress(){
+  readingProgressMap = {};
+  if(!isSignedIn() || !SUPABASE_URL) { renderCatalog(); return Promise.resolve(); }
+  var session = getSession();
+  return fetch(SUPABASE_URL + '/rest/v1/reading_progress?select=catalog_id,last_page&user_id=eq.' + encodeURIComponent(currentUserId()), {
+    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
+  })
+    .then(function(r){ if(!r.ok) throw new Error('reading_progress read failed'); return r.json(); })
+    .then(function(rows){
+      readingProgressMap = {};
+      rows.forEach(function(row){
+        if(row.last_page !== null && row.last_page !== undefined) readingProgressMap[row.catalog_id] = row.last_page;
+      });
+      renderCatalog();
+    })
+    .catch(function(err){ console.warn('Reading progress load failed:', err); });
+}
+
+/* Salvataggio della pagina raggiunta, con un piccolo ritardo (non ad ogni
+   singola pagina girata) per non intasare il database durante una
+   lettura veloce. Chiamata da showReaderPage ad ogni cambio pagina. */
+var _readingProgressSaveTimer = null;
+function saveReadingProgress(item, pageIdx){
+  if(!isSignedIn() || !item) return;
+  clearTimeout(_readingProgressSaveTimer);
+  _readingProgressSaveTimer = setTimeout(function(){
+    fetch(SUPABASE_URL + '/rest/v1/reading_progress', {
+      method:'POST',
+      headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + getSession().access_token, 'Content-Type':'application/json', 'Prefer':'resolution=merge-duplicates' },
+      body: JSON.stringify({ user_id: currentUserId(), catalog_id: item.id, last_read_at: new Date().toISOString(), last_page: pageIdx })
+    }).then(function(){
+      readingProgressMap[item.id] = pageIdx; // riflesso subito in locale, senza aspettare un giro di loadReadingProgress
+    }).catch(function(e){ console.warn('reading_progress page save failed:', e); });
+  }, 1200);
+}
+
 /* ============ ENGAGEMENT COUNTERS (views / likes / shares / saves / cart-adds) ============ */
 var likedIds = new Set();
 
@@ -10836,6 +10896,7 @@ function maybeStartOfflineSync(){
 function showReaderPage(idx){
   if(idx < 0 || idx >= readerPages.length) return;
   readerIndex = idx;
+  saveReadingProgress(readerItem, idx);
   document.getElementById('pageReaderCount').textContent = (idx + 1) + ' / ' + readerPages.length;
   document.getElementById('pageReaderPrev').disabled = idx === 0;
   document.getElementById('pageReaderNext').disabled = idx === readerPages.length - 1;
@@ -12019,6 +12080,7 @@ function __appInit(){
     refreshAuthUI();
     refreshAdminUI();
     loadFavorites();
+    loadReadingProgress();
     loadLikes();
     loadNotifications();
     loadMyCreationSession().then(function(){ refreshAdminUI(); refreshSupportSectionVisibility(); });
