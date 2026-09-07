@@ -1472,3 +1472,36 @@ body.chat-fullscreen .chat-page::after{ display:none; }
 .tome-peek-popup b{display:block;font-family:'Cinzel',serif;color:var(--gold-bright);font-size:13px;margin-bottom:6px;}
 .tome-peek-syn{color:var(--parchment-dim);font-size:11.5px;line-height:1.5;}
 .tome-peek-price{font-family:'Space Mono',monospace;color:var(--gold-bright);font-size:13px;margin-top:8px;}
+
+/* ============ I MIEI COMIC — codice personale + tab a segnalibro ============ */
+.mycomics-codex{
+  display:flex;gap:18px;flex-wrap:wrap;padding:10px 2px 18px;
+  border-bottom:1px solid var(--line);margin-bottom:4px;
+  font-family:'Space Mono',monospace;font-size:11px;color:var(--parchment-dim);letter-spacing:0.03em;
+}
+.mycomics-codex b{color:var(--gold-bright);font-family:'Cinzel',serif;font-style:normal;}
+
+.mycomics-hint-note{
+  display:block;font-family:'Crimson Pro',serif;font-style:italic;font-size:13px;
+  color:var(--parchment-dim);line-height:1.6;margin-top:8px;padding-left:14px;
+  border-left:2px solid var(--line);max-width:420px;
+}
+
+.mycomics-tabs{display:flex;gap:6px;margin-top:16px;}
+.mycomics-tab{
+  -webkit-appearance:none;appearance:none;
+  position:relative;flex:1;min-width:0;padding:12px 6px 16px;text-align:center;cursor:pointer;
+  background:var(--void-2);border:1px solid var(--line);border-top:3px solid var(--wine);
+  font-family:'Space Mono',monospace;font-size:10.5px;line-height:1.35;letter-spacing:0.03em;text-transform:uppercase;
+  color:var(--parchment-dim);transition:transform .2s ease, border-color .2s ease, color .2s ease;
+  clip-path:polygon(0 0,100% 0,100% 100%,50% 82%,0 100%);
+}
+.mycomics-tab:hover{color:var(--gold-bright);}
+.mycomics-tab.active{
+  transform:translateY(10px);
+  border-top-color:var(--gold);color:var(--gold-bright);
+  box-shadow:0 10px 16px -8px rgba(0,0,0,0.25);
+}
+@media(max-width:480px){
+  .mycomics-tab{font-size:9.5px;padding:10px 4px 14px;}
+}
