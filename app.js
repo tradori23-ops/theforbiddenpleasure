@@ -1999,7 +1999,9 @@ function renderLatestChapters(){
       : '<span class="init">' + item.character.charAt(0) + '</span>';
     var newTag = item.date === newestDate ? '<span class="new-tag">' + t('latest.newTag') + '</span>' : '';
     card.innerHTML =
-      '<div class="latest-card-cover">' + coverInner + newTag + '</div>' +
+      '<div class="latest-card-cover">' + coverInner + newTag +
+        '<div class="tome-strap"><div class="tome-seal"><img src="logo-lm-seal.webp" alt=""></div></div>' +
+      '</div>' +
       '<div class="latest-card-body"><h5>' + escapeHtml(item.title) + '</h5><div class="character">' + item.character + '</div></div>';
     card.addEventListener('click', function(){ openTitleModal(item); });
     grid.appendChild(card);
