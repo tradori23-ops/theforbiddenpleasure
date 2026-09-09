@@ -1130,6 +1130,30 @@ footer .fcopy{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
 .user-directory-name{flex:1;font-size:13px;color:#2a1a1d !important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:flex;align-items:center;gap:5px;}
 .user-directory-status{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.04em;color:#6b5d4f !important;text-transform:uppercase;flex-shrink:0;}
 .user-directory-verified-check{font-style:normal;color:#8a6a1f;font-size:12px;flex-shrink:0;}
+
+/* Lista "I tuoi amici" — stessa identica ricetta visiva delle righe di
+   Contatti/Utenti (nomi di classe diversi perché scritta in un momento
+   diverso), mai avuta un CSS: l'avatar usciva a piena risoluzione. */
+.friend-contact-row{
+  display:flex;align-items:center;gap:10px;width:100%;background:#f2ead8;border:1px solid rgba(110,20,35,0.18);
+  padding:10px 10px;cursor:pointer;text-align:left;border-radius:6px;margin-bottom:6px;
+}
+.friend-contact-row:hover, .friend-contact-row:focus{border-color:#c9a24d;background:#e9dcc0;outline:none;}
+.friend-contact-avatar-wrap{position:relative;flex-shrink:0;width:32px;height:32px;}
+.friend-contact-avatar{
+  width:32px;height:32px;border-radius:50%;object-fit:cover;
+  border:1px solid #c9a24d;display:block;background:#6e1423;
+}
+.friend-contact-dot{
+  position:absolute;bottom:-1px;right:-1px;width:9px;height:9px;border-radius:50%;
+  border:2px solid #f2ead8;flex-shrink:0;
+}
+.friend-contact-dot.online{background:#3fae54;}
+.friend-contact-dot.offline{background:#a89a82;}
+.friend-contact-info{flex:1;min-width:0;display:flex;flex-direction:column;gap:1px;}
+.friend-contact-name{font-size:13px;color:#2a1a1d;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.friend-contact-status{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.04em;color:#6b5d4f;text-transform:uppercase;}
+.friend-contact-invite{flex-shrink:0;}
 .user-directory-panel .form-note{color:#6e1423;opacity:1;text-align:center;padding:16px 8px;}
 
 
