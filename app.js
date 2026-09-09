@@ -44,7 +44,7 @@ var STR = {
     "announcements.statusPublished":"Pubblicato","announcements.statusHidden":"Nascosto","announcements.hide":"Nascondi","announcements.show":"Mostra",
     "topRanked.eyebrow":"Il favore dei lettori","topRanked.title":"I Più Letti","latest.eyebrow":"Appena Pubblicato","latest.title":"Ultimi Capitoli","latest.newTag":"Nuovo",
     "profile.title":"Il mio profilo","profile.sub":"Visibile agli altri quando commenti",
-    "profile.displayName":"Nome visibile","profile.bio":"Bio (opzionale)","profile.favChars":"Personaggi preferiti",
+    "profile.displayName":"Nome visibile","profile.bio":"Bio (opzionale)","profile.favChars":"Personaggi preferiti","profile.createLabel":"Crea contenuti","profile.createHint":"Scegli il sigillo per cui vuoi pubblicare — ti porta al modulo giusto già pronto.",
     "profile.avatarHd":"Foto profilo HD (opzionale)","profile.avatarHdHint":"Mostrata a piena risoluzione a chi tocca il tuo avatar. Se non la carichi, si vede la foto normale.",
     "profile.banner":"Banner del profilo (opzionale)","profile.socials":"I tuoi social (opzionali)","profile.website":"Sito web","pubProfile.favoritesHeading":"Preferiti",
     "push.enable":"Attiva notifiche","push.enabled":"Notifiche attive","push.unsupported":"Il tuo browser non supporta le notifiche push.","push.denied":"Permesso negato — puoi attivarle di nuovo dalle impostazioni del browser.","push.error":"Non è stato possibile attivare le notifiche, riprova.","push.errorShort":"Errore, riprova","push.installFirst":"Installa per notifiche","push.installFirstLong":"Su iPhone/iPad le notifiche funzionano solo dopo aver installato il sito: tocca Condividi → Aggiungi a Home, poi apri l'app da lì e riprova.",
@@ -168,7 +168,7 @@ var STR = {
     "announcements.statusPublished":"Published","announcements.statusHidden":"Hidden","announcements.hide":"Hide","announcements.show":"Show",
     "topRanked.eyebrow":"Reader Favorites","topRanked.title":"Most Read","latest.eyebrow":"Just Released","latest.title":"Latest Chapters","latest.newTag":"New",
     "profile.title":"My profile","profile.sub":"Visible to others when you comment",
-    "profile.displayName":"Display name","profile.bio":"Bio (optional)","profile.favChars":"Favorite characters",
+    "profile.displayName":"Display name","profile.bio":"Bio (optional)","profile.favChars":"Favorite characters","profile.createLabel":"Create content","profile.createHint":"Pick the seal you want to publish for — it takes you straight to the right form.",
     "profile.avatarHd":"HD profile photo (optional)","profile.avatarHdHint":"Shown at full resolution to whoever taps your avatar. If you don't upload one, your regular photo is shown.",
     "profile.banner":"Profile banner (optional)","profile.socials":"Your socials (optional)","profile.website":"Website","pubProfile.favoritesHeading":"Favorites",
     "push.enable":"Enable notifications","push.enabled":"Notifications on","push.unsupported":"Your browser doesn't support push notifications.","push.denied":"Permission denied — you can re-enable it from your browser settings.","push.error":"Couldn't enable notifications, try again.","push.errorShort":"Error, retry","push.installFirst":"Install for notifications","push.installFirstLong":"On iPhone/iPad, notifications only work after installing the site: tap Share → Add to Home Screen, then open the app from there and try again.",
@@ -292,7 +292,7 @@ var STR = {
     "announcements.statusPublished":"Publicado","announcements.statusHidden":"Oculto","announcements.hide":"Ocultar","announcements.show":"Mostrar",
     "topRanked.eyebrow":"El favor de los lectores","topRanked.title":"Los Más Leídos","latest.eyebrow":"Recién Publicado","latest.title":"Últimos Capítulos","latest.newTag":"Nuevo",
     "profile.title":"Mi perfil","profile.sub":"Visible para otros cuando comentas",
-    "profile.displayName":"Nombre visible","profile.bio":"Bio (opcional)","profile.favChars":"Personajes favoritos",
+    "profile.displayName":"Nombre visible","profile.bio":"Bio (opcional)","profile.favChars":"Personajes favoritos","profile.createLabel":"Crear contenido","profile.createHint":"Elige el sello para el que quieres publicar — te lleva directo al formulario correcto.",
     "profile.avatarHd":"Foto de perfil HD (opcional)","profile.avatarHdHint":"Se muestra a resolución completa a quien toque tu avatar. Si no la subes, se ve la foto normal.",
     "profile.banner":"Banner del perfil (opcional)","profile.socials":"Tus redes sociales (opcional)","profile.website":"Sitio web","pubProfile.favoritesHeading":"Favoritos",
     "push.enable":"Activar notificaciones","push.enabled":"Notificaciones activas","push.unsupported":"Tu navegador no admite notificaciones push.","push.denied":"Permiso denegado — puedes activarlas de nuevo desde los ajustes del navegador.","push.error":"No se pudieron activar las notificaciones, inténtalo de nuevo.","push.errorShort":"Error, reinténtalo","push.installFirst":"Instala para notificaciones","push.installFirstLong":"En iPhone/iPad, las notificaciones solo funcionan tras instalar el sitio: toca Compartir → Añadir a inicio, luego abre la app desde ahí e inténtalo de nuevo.",
@@ -416,7 +416,7 @@ var STR = {
     "announcements.statusPublished":"Publiée","announcements.statusHidden":"Masquée","announcements.hide":"Masquer","announcements.show":"Afficher",
     "topRanked.eyebrow":"La faveur des lecteurs","topRanked.title":"Les Plus Lus","latest.eyebrow":"Vient de Paraître","latest.title":"Derniers Chapitres","latest.newTag":"Nouveau",
     "profile.title":"Mon profil","profile.sub":"Visible par les autres quand vous commentez",
-    "profile.displayName":"Nom affiché","profile.bio":"Bio (facultatif)","profile.favChars":"Personnages préférés",
+    "profile.displayName":"Nom affiché","profile.bio":"Bio (facultatif)","profile.favChars":"Personnages préférés","profile.createLabel":"Créer du contenu","profile.createHint":"Choisis le sceau pour lequel publier — direction le bon formulaire.",
     "profile.avatarHd":"Photo de profil HD (facultatif)","profile.avatarHdHint":"Affichée en pleine résolution à quiconque touche votre avatar. Si vous n'en téléchargez pas, la photo normale s'affiche.",
     "profile.banner":"Bannière du profil (facultatif)","profile.socials":"Vos réseaux sociaux (facultatif)","profile.website":"Site web","pubProfile.favoritesHeading":"Favoris",
     "push.enable":"Activer les notifications","push.enabled":"Notifications activées","push.unsupported":"Votre navigateur ne prend pas en charge les notifications push.","push.denied":"Permission refusée — vous pouvez la réactiver dans les paramètres du navigateur.","push.error":"Impossible d'activer les notifications, réessayez.","push.errorShort":"Erreur, réessayez","push.installFirst":"Installer pour les notifications","push.installFirstLong":"Sur iPhone/iPad, les notifications ne fonctionnent qu'après avoir installé le site : appuyez sur Partager → Sur l'écran d'accueil, puis ouvrez l'app depuis là et réessayez.",
@@ -540,7 +540,7 @@ var STR = {
     "announcements.statusPublished":"Veröffentlicht","announcements.statusHidden":"Verborgen","announcements.hide":"Verbergen","announcements.show":"Anzeigen",
     "topRanked.eyebrow":"Die Gunst der Leser","topRanked.title":"Meistgelesen","latest.eyebrow":"Gerade Erschienen","latest.title":"Neueste Kapitel","latest.newTag":"Neu",
     "profile.title":"Mein Profil","profile.sub":"Für andere sichtbar, wenn du kommentierst",
-    "profile.displayName":"Anzeigename","profile.bio":"Bio (optional)","profile.favChars":"Lieblingscharaktere",
+    "profile.displayName":"Anzeigename","profile.bio":"Bio (optional)","profile.favChars":"Lieblingscharaktere","profile.createLabel":"Inhalte erstellen","profile.createHint":"Wähle das Siegel, für das du veröffentlichen willst — es geht direkt zum richtigen Formular.",
     "profile.avatarHd":"HD-Profilbild (optional)","profile.avatarHdHint":"Wird in voller Auflösung angezeigt, wenn jemand auf dein Avatar tippt. Wenn du keins hochlädst, wird das normale Foto angezeigt.",
     "profile.banner":"Profil-Banner (optional)","profile.socials":"Deine Social-Media-Profile (optional)","profile.website":"Webseite","pubProfile.favoritesHeading":"Favoriten",
     "push.enable":"Benachrichtigungen aktivieren","push.enabled":"Benachrichtigungen an","push.unsupported":"Dein Browser unterstützt keine Push-Benachrichtigungen.","push.denied":"Erlaubnis verweigert — du kannst sie in den Browsereinstellungen wieder aktivieren.","push.error":"Benachrichtigungen konnten nicht aktiviert werden, versuch es erneut.","push.errorShort":"Fehler, erneut versuchen","push.installFirst":"Installieren für Benachrichtigungen","push.installFirstLong":"Auf iPhone/iPad funktionieren Benachrichtigungen erst nach der Installation der Seite: Tippe auf Teilen → Zum Home-Bildschirm, öffne die App von dort und versuch es erneut.",
@@ -1181,10 +1181,16 @@ function refreshAdminUI(){
   var smallnoxCard = document.getElementById('smallnoxCard');
   var admin = isAdmin();
   var collab = !admin && hasActiveCreationSession();
-  var ownsPastTitles = !admin && isSignedIn() && getCatalog().some(function(x){ return x.created_by && x.created_by === currentUserId(); });
+  // Arrivo da uno dei 5 collegamenti rapidi nel modal profilo ("crea per
+  // Lucifer" ecc.): pre-seleziona il personaggio nel modulo, una tantum.
+  var pendingCharacter = sessionStorage.getItem('lux_pending_new_title_character');
+  if(pendingCharacter && document.getElementById('fCharacter')){
+    sessionStorage.removeItem('lux_pending_new_title_character');
+    document.getElementById('fCharacter').value = pendingCharacter;
+  }
   // La voce "Amministra" nel menu va aggiornata su OGNI pagina (vive nell'header
   // condiviso) — non solo su admin.html, dove invece vivono gateBox/manageBox.
-  if(navAdmin) navAdmin.classList.toggle('hidden', !(admin || collab || ownsPastTitles));
+  if(navAdmin) navAdmin.classList.toggle('hidden', !isSignedIn());
   if(!gateBox || !manageBox) return;
   if(admin){
     if(adminSection) adminSection.classList.remove('hidden'); // arrivando direttamente su admin.html (non da un click sul link) va rivelata qui, non solo dal click handler
@@ -1209,10 +1215,12 @@ function refreshAdminUI(){
       sessionStorage.removeItem('lux_pending_admin_tab');
       switchAdminTab(pendingAdminTab);
     }
-  } else if(collab || ownsPastTitles){
-    // Un collaboratore invitato vede SOLO il modulo "Aggiungi allo schedario"
-    // (se la sessione è attiva) e/o i propri titoli già pubblicati, da poter
-    // modificare in qualsiasi momento — niente altre tab, niente dati altrui.
+  } else if(isSignedIn()){
+    // Chiunque sia registrato vede il modulo "Aggiungi allo schedario" +
+    // i propri titoli già pubblicati — niente altre tab, niente dati altrui.
+    // (collab distingue solo chi opera dentro una sessione di
+    // collaborazione attiva, per il banner sotto — non serve più per
+    // decidere CHI può pubblicare: ora può chiunque sia loggato.)
     if(adminSection) adminSection.classList.remove('hidden');
     gateBox.classList.add('hidden');
     manageBox.classList.remove('hidden');
@@ -1226,22 +1234,8 @@ function refreshAdminUI(){
       collabBanner.classList.toggle('hidden', !collab);
       if(collab) renderCollabSessionBanner();
     }
-    // Senza sessione attiva non si può pubblicare un titolo NUOVO — solo
-    // modificare quelli già propri — quindi il pulsante "Aggiungi" si nasconde
-    // finché non si è in modalità modifica (editingItemId valorizzato da openEditTitle).
-    if(addEntryBtn) addEntryBtn.classList.toggle('hidden', !collab && !editingItemId);
+    if(addEntryBtn) addEntryBtn.classList.remove('hidden');
     renderMyTitles();
-  } else if(isSignedIn()){
-    var gateUid = currentUserId();
-    var gateFallback = '@' + (currentUserEmail() || '').split('@')[0];
-    gateMsg.textContent = t('admin.gate.notAdmin').replace('{email}', gateFallback);
-    if(gateUid){
-      getDisplayName(gateUid).then(function(name){
-        gateMsg.textContent = t('admin.gate.notAdmin').replace('{email}', (name && name !== t('notif.someone')) ? name : gateFallback);
-      });
-    }
-    gateSignIn.classList.add('hidden');
-    if(adminSection) adminSection.classList.add('hidden'); // no dangling section for non-admins
   } else {
     gateMsg.textContent = t('admin.gate.notSignedIn');
     gateSignIn.classList.remove('hidden');
@@ -4996,7 +4990,6 @@ function openProfileModal(){
   loadOwnProfile().then(function(){
     populateProfileForm();
     document.getElementById('profileModal').classList.remove('hidden');
-    loadMyRequests();
   });
 }
 function closeProfileModal(){ document.getElementById('profileModal').classList.add('hidden'); }
@@ -5027,6 +5020,33 @@ function populateProfileForm(){
   var favs = p.favorite_characters || [];
   document.querySelectorAll('.fav-char-cb').forEach(function(cb){
     cb.checked = favs.indexOf(cb.value) !== -1;
+  });
+  renderProfileCreateBox();
+}
+
+/* Sezione "Crea contenuti" del modal profilo: slegata da "I Miei Comic"
+   (quella è lettura/possesso, questa è pubblicazione), visibile solo a chi
+   ha già un motivo per pubblicare — stessa condizione che sblocca la vista
+   ristretta di Admin. Ogni sigillo porta al modulo "Aggiungi allo
+   schedario" con il personaggio già scelto. */
+function renderProfileCreateBox(){
+  var box = document.getElementById('profileCreateBox');
+  var grid = document.getElementById('profileCreateGrid');
+  if(!box || !grid) return;
+  var canCreate = isSignedIn();
+  box.classList.toggle('hidden', !canCreate);
+  if(!canCreate) return;
+  var chars = ['Lucifer','Lilith','Lucifera','Lucio','Nox'];
+  grid.innerHTML = chars.map(function(name){
+    var img = characterImages[name];
+    var inner = img ? '<img src="'+img+'" alt="">' : '<span class="profile-create-init">'+name.charAt(0)+'</span>';
+    return '<button type="button" class="profile-create-seal" data-character="'+name+'">'+inner+'<span>'+name+'</span></button>';
+  }).join('');
+  grid.querySelectorAll('.profile-create-seal').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      sessionStorage.setItem('lux_pending_new_title_character', btn.getAttribute('data-character'));
+      window.location.href = 'admin.html';
+    });
   });
 }
 function pickAvatarPublicUrl(userId, ext){
@@ -12292,6 +12312,16 @@ function __appInit(){
   });
 
   document.getElementById('profileModalClose') && document.getElementById('profileModalClose').addEventListener('click', closeProfileModal);
+  document.getElementById('profileAvatarPick') && document.getElementById('profileAvatarPick').addEventListener('click', function(){
+    document.getElementById('fProfileAvatar').click();
+  });
+  document.getElementById('fProfileAvatar') && document.getElementById('fProfileAvatar').addEventListener('change', function(e){
+    var file = e.target.files[0];
+    if(!file) return;
+    var img = document.getElementById('profileAvatarImg');
+    img.src = URL.createObjectURL(file);
+    img.style.opacity = '1';
+  });
   document.getElementById('btnEnablePush') && document.getElementById('btnEnablePush').addEventListener('click', enablePushNotifications);
   document.querySelectorAll('.smallnox-clickable').forEach(function(img){
     img.addEventListener('click', function(){

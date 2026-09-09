@@ -123,6 +123,89 @@
   </div>
 </div>
 
+<!-- ============ PROFILE MODAL (i tuoi dati, avatar, banner, preferiti) ============ -->
+<div class="modal-backdrop hidden" id="profileModal">
+  <div class="modal">
+    <button class="modal-close" id="profileModalClose" aria-label="Chiudi">×</button>
+    <h3 data-i18n="profile.title">Il mio profilo</h3>
+    <div class="sub" data-i18n="profile.sub">Visibile agli altri quando commenti</div>
+
+    <div class="profile-avatar-row">
+      <button type="button" class="profile-avatar-pick" id="profileAvatarPick" aria-label="Cambia foto profilo">
+        <img id="profileAvatarImg" src="" alt="">
+        <span class="profile-avatar-pick-hint">✎</span>
+      </button>
+      <input type="file" id="fProfileAvatar" accept="image/*" class="hidden">
+    </div>
+
+    <div class="field">
+      <label data-i18n="profile.displayName">Nome visibile</label>
+      <input type="text" id="fDisplayName" maxlength="40">
+    </div>
+    <div class="field">
+      <label data-i18n="profile.bio">Bio (opzionale)</label>
+      <textarea id="fBio" rows="3" maxlength="280"></textarea>
+    </div>
+    <div class="field">
+      <label data-i18n="profile.birthDate">Data di nascita</label>
+      <input type="date" id="fBirthDate">
+    </div>
+    <div class="field">
+      <label data-i18n="profile.gender">Sesso</label>
+      <select id="fGender">
+        <option value="" data-i18n="profile.genderUnset">— Preferisco non dirlo —</option>
+        <option value="M" data-i18n="profile.genderM">Maschio</option>
+        <option value="F" data-i18n="profile.genderF">Femmina</option>
+        <option value="X" data-i18n="profile.genderX">Altro</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label data-i18n="profile.favChars">Personaggi preferiti</label>
+      <div class="fav-char-grid">
+        <label class="fav-char-opt"><input type="checkbox" class="fav-char-cb" value="Lucifer"><span>Lucifer</span></label>
+        <label class="fav-char-opt"><input type="checkbox" class="fav-char-cb" value="Lilith"><span>Lilith</span></label>
+        <label class="fav-char-opt"><input type="checkbox" class="fav-char-cb" value="Lucifera"><span>Lucifera</span></label>
+        <label class="fav-char-opt"><input type="checkbox" class="fav-char-cb" value="Lucio"><span>Lucio</span></label>
+        <label class="fav-char-opt"><input type="checkbox" class="fav-char-cb" value="Nox"><span>Nox</span></label>
+      </div>
+    </div>
+
+    <div class="field">
+      <label data-i18n="profile.avatarHd">Foto profilo HD (opzionale)</label>
+      <div class="form-note" data-i18n="profile.avatarHdHint">Mostrata a piena risoluzione a chi tocca il tuo avatar. Se non la carichi, si vede la foto normale.</div>
+      <input type="file" id="fProfileAvatarHd" accept="image/*">
+    </div>
+
+    <div class="field">
+      <label data-i18n="profile.banner">Banner del profilo (opzionale)</label>
+      <div class="profile-banner-preview"><img id="profileBannerImg" src="" alt=""></div>
+      <input type="file" id="fProfileBanner" accept="image/*">
+    </div>
+
+    <div class="field">
+      <label data-i18n="profile.socials">I tuoi social (opzionali)</label>
+      <div class="profile-social-grid">
+        <input type="text" id="fSocialInstagram" placeholder="Instagram">
+        <input type="text" id="fSocialTwitter" placeholder="Twitter / X">
+        <input type="text" id="fSocialTiktok" placeholder="TikTok">
+        <input type="text" id="fSocialWebsite" data-i18n-placeholder="profile.website" placeholder="Sito web">
+      </div>
+    </div>
+
+    <div class="field hidden" id="profileCreateBox">
+      <label data-i18n="profile.createLabel">Crea contenuti</label>
+      <div class="form-note" data-i18n="profile.createHint">Scegli il sigillo per cui vuoi pubblicare — ti porta al modulo giusto già pronto.</div>
+      <div class="profile-create-grid" id="profileCreateGrid"></div>
+    </div>
+
+    <div class="form-error" id="profileError"></div>
+    <div class="modal-actions">
+      <button class="btn btn-primary" id="btnSaveProfile" data-i18n="profile.save">Salva profilo</button>
+    </div>
+  </div>
+</div>
+
 <!-- ============ CART MODAL ============ -->
 <div class="modal-backdrop hidden" id="cartModal">
   <div class="modal">
