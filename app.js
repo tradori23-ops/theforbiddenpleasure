@@ -55,7 +55,7 @@ var STR = {
     "requests.statusNew":"In attesa","requests.statusRead":"Letta","requests.adminTitle":"Richieste ricevute",
     "requests.empty":"Nessuna richiesta ricevuta.","requests.markRead":"Segna come letta","requests.sent":"Richiesta inviata! Ti risponderò appena possibile.",
     "sync.notConfigured":"Backend Supabase non ancora collegato — il sito funziona in locale, in attesa della configurazione.",
-    "sync.configuredNoToken":"Connesso a Supabase in lettura. Accedi con le credenziali admin per poter pubblicare le modifiche.",
+    "sync.configuredNoToken":"Connesso a Supabase — puoi pubblicare i tuoi titoli, qui vedi solo quelli tuoi.",
     "sync.ready":"Connesso a Supabase — sei autenticato come amministratore, le modifiche sono pubbliche per tutti.",
     "sync.syncing":"Sincronizzazione in corso…",
     "sync.error":"Errore di sincronizzazione — le modifiche restano salvate solo qui, riprova più tardi.",
@@ -179,7 +179,7 @@ var STR = {
     "requests.statusNew":"Pending","requests.statusRead":"Read","requests.adminTitle":"Requests received",
     "requests.empty":"No requests received yet.","requests.markRead":"Mark as read","requests.sent":"Request sent! I'll get back to you soon.",
     "sync.notConfigured":"Supabase backend not yet connected — the site runs locally while it's being set up.",
-    "sync.configuredNoToken":"Connected to Supabase for reading. Sign in with the admin credentials to publish changes.",
+    "sync.configuredNoToken":"Connected to Supabase — you can publish your own titles, only yours are shown here.",
     "sync.ready":"Connected to Supabase — you're authenticated as admin, changes are public for everyone.",
     "sync.syncing":"Syncing…",
     "sync.error":"Sync error — changes are saved only here for now, try again later.",
@@ -303,7 +303,7 @@ var STR = {
     "requests.statusNew":"Pendiente","requests.statusRead":"Leída","requests.adminTitle":"Solicitudes recibidas",
     "requests.empty":"Aún no hay solicitudes.","requests.markRead":"Marcar como leída","requests.sent":"¡Solicitud enviada! Te responderé pronto.",
     "sync.notConfigured":"Backend de Supabase aún no conectado — el sitio funciona en local mientras se configura.",
-    "sync.configuredNoToken":"Conectado a Supabase en lectura. Accede con las credenciales de administrador para publicar cambios.",
+    "sync.configuredNoToken":"Conectado a Supabase — puedes publicar tus propios títulos, aquí solo ves los tuyos.",
     "sync.ready":"Conectado a Supabase — has iniciado sesión como administrador, los cambios son públicos para todos.",
     "sync.syncing":"Sincronizando…",
     "sync.error":"Error de sincronización — los cambios solo se guardan aquí por ahora, inténtalo más tarde.",
@@ -427,7 +427,7 @@ var STR = {
     "requests.statusNew":"En attente","requests.statusRead":"Lue","requests.adminTitle":"Demandes reçues",
     "requests.empty":"Aucune demande reçue.","requests.markRead":"Marquer comme lue","requests.sent":"Demande envoyée ! Je vous répondrai bientôt.",
     "sync.notConfigured":"Backend Supabase pas encore connecté — le site fonctionne en local en attendant la configuration.",
-    "sync.configuredNoToken":"Connecté à Supabase en lecture. Connectez-vous avec les identifiants admin pour publier des modifications.",
+    "sync.configuredNoToken":"Connecté à Supabase — tu peux publier tes propres titres, seuls les tiens sont affichés ici.",
     "sync.ready":"Connecté à Supabase — vous êtes authentifié comme administrateur, les modifications sont publiques pour tous.",
     "sync.syncing":"Synchronisation en cours…",
     "sync.error":"Erreur de synchronisation — les modifications restent enregistrées ici pour l'instant, réessayez plus tard.",
@@ -551,7 +551,7 @@ var STR = {
     "requests.statusNew":"Ausstehend","requests.statusRead":"Gelesen","requests.adminTitle":"Erhaltene Anfragen",
     "requests.empty":"Noch keine Anfragen erhalten.","requests.markRead":"Als gelesen markieren","requests.sent":"Anfrage gesendet! Ich melde mich bald bei dir.",
     "sync.notConfigured":"Supabase-Backend noch nicht verbunden — die Seite läuft lokal, bis die Einrichtung erfolgt.",
-    "sync.configuredNoToken":"Mit Supabase zum Lesen verbunden. Melden Sie sich mit den Admin-Zugangsdaten an, um Änderungen zu veröffentlichen.",
+    "sync.configuredNoToken":"Mit Supabase verbunden — du kannst deine eigenen Titel veröffentlichen, hier siehst du nur deine.",
     "sync.ready":"Mit Supabase verbunden — Sie sind als Administrator angemeldet, Änderungen sind für alle öffentlich.",
     "sync.syncing":"Synchronisierung läuft…",
     "sync.error":"Sync-Fehler — Änderungen sind vorerst nur hier gespeichert, später erneut versuchen.",
@@ -1229,12 +1229,26 @@ function refreshAdminUI(){
     document.querySelectorAll('.admin-tab-panel').forEach(function(panel){
       panel.classList.toggle('hidden', panel.dataset.tabPanel !== 'catalog');
     });
+    // Strumenti di massa (export/import dell'intero catalogo, elenco
+    // completo) restano solo per l'admin pieno — non hanno senso per chi
+    // pubblica solo i propri titoli.
+    var btnExport = document.getElementById('btnExport');
+    var btnImport = document.getElementById('btnImport');
+    var adminListEl = document.getElementById('adminList');
+    if(btnExport) btnExport.classList.add('hidden');
+    if(btnImport) btnImport.classList.add('hidden');
+    if(adminListEl) adminListEl.classList.add('hidden');
     var addEntryBtn = document.getElementById('btnAddEntry');
     if(collabBanner){
       collabBanner.classList.toggle('hidden', !collab);
       if(collab) renderCollabSessionBanner();
     }
     if(addEntryBtn) addEntryBtn.classList.remove('hidden');
+    // Senza una toolbar admin non c'è nessun "+ Nuovo titolo" da cliccare:
+    // il modulo va aperto direttamente, altrimenti resta un pannello a
+    // scomparsa chiuso che nessuno saprebbe come raggiungere. Non tocca
+    // un'eventuale modifica già in corso.
+    if(!editingItemId) startNewTitleFlow();
     renderMyTitles();
   } else {
     gateMsg.textContent = t('admin.gate.notSignedIn');
@@ -4592,7 +4606,7 @@ function cancelEditTitle(){
   var btn = document.getElementById('btnAddEntry');
   if(btn){
     btn.textContent = t('admin.add');
-    if(!isAdmin() && !hasActiveCreationSession()) btn.classList.add('hidden');
+    if(!isSignedIn()) btn.classList.add('hidden');
   }
   var cancelBtn = document.getElementById('btnCancelEditTitle');
   if(cancelBtn) cancelBtn.classList.add('hidden');
