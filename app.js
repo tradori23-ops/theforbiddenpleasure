@@ -103,7 +103,7 @@ var STR = {
     "catalog.permanent":"Permanente","catalog.temporary":"A tempo determinato","catalog.makeTemporary":"Rendi a tempo","catalog.makePermanent":"Rendi permanente",
     "collab.name":"Collaboratore (opzionale)","collab.url":"Link al profilo (es. Instagram)",
     "collab.verified":"Collaboratore verificato (mostra la spunta blu)",
-    "verified.label":"Verificato","verified.commenter":"Email verificata","verified.founder":"Account ufficiale","verified.collaborator":"Collaboratore verificato",
+    "verified.label":"Verificato","verified.commenter":"Email verificata","verified.founder":"Account ufficiale","verified.collaborator":"Collaboratore verificato","verified.notVerified":"Non verificato",
     "collab.credit":"In collaborazione con","collab.categoryLabel":"Collaboratori","collab.categoryOption":"Collaboratori (fuori dai 4 personaggi)",
     "collab.viewAll":"vedi tutte le opere insieme","collab.collectionBanner":"Opere realizzate con","collab.showAll":"Mostra tutto","titleModal.publishedBy":"Pubblicato da",
     "share.button":"Condividi","share.tagline":"su LUX COMICS & MEDUSA COMICS",
@@ -227,7 +227,7 @@ var STR = {
     "catalog.permanent":"Permanent","catalog.temporary":"Time-limited","catalog.makeTemporary":"Make time-limited","catalog.makePermanent":"Make permanent",
     "collab.name":"Collaborator (optional)","collab.url":"Profile link (e.g. Instagram)",
     "collab.verified":"Verified collaborator (shows the blue checkmark)",
-    "verified.label":"Verified","verified.commenter":"Verified email","verified.founder":"Official account","verified.collaborator":"Verified collaborator",
+    "verified.label":"Verified","verified.commenter":"Verified email","verified.founder":"Official account","verified.collaborator":"Verified collaborator","verified.notVerified":"Not verified",
     "collab.credit":"In collaboration with","collab.categoryLabel":"Collaborators","collab.categoryOption":"Collaborators (outside the 4 characters)",
     "collab.viewAll":"see all titles together","collab.collectionBanner":"Titles made with","collab.showAll":"Show all","titleModal.publishedBy":"Published by",
     "share.button":"Share","share.tagline":"on LUX COMICS & MEDUSA COMICS",
@@ -351,7 +351,7 @@ var STR = {
     "catalog.permanent":"Permanente","catalog.temporary":"A tiempo limitado","catalog.makeTemporary":"Hacer temporal","catalog.makePermanent":"Hacer permanente",
     "collab.name":"Colaborador (opcional)","collab.url":"Enlace al perfil (p. ej. Instagram)",
     "collab.verified":"Colaborador verificado (muestra la marca azul)",
-    "verified.label":"Verificado","verified.commenter":"Email verificado","verified.founder":"Cuenta oficial","verified.collaborator":"Colaborador verificado",
+    "verified.label":"Verificado","verified.commenter":"Email verificado","verified.founder":"Cuenta oficial","verified.collaborator":"Colaborador verificado","verified.notVerified":"No verificado",
     "collab.credit":"En colaboración con","collab.categoryLabel":"Colaboradores","collab.categoryOption":"Colaboradores (fuera de los 4 personajes)",
     "collab.viewAll":"ver todas las obras juntas","collab.collectionBanner":"Obras realizadas con","collab.showAll":"Mostrar todo","titleModal.publishedBy":"Publicado por",
     "share.button":"Compartir","share.tagline":"en LUX COMICS & MEDUSA COMICS",
@@ -475,7 +475,7 @@ var STR = {
     "catalog.permanent":"Permanent","catalog.temporary":"Temporaire","catalog.makeTemporary":"Rendre temporaire","catalog.makePermanent":"Rendre permanent",
     "collab.name":"Collaborateur (facultatif)","collab.url":"Lien du profil (ex. Instagram)",
     "collab.verified":"Collaborateur vérifié (affiche le badge bleu)",
-    "verified.label":"Vérifié","verified.commenter":"Email vérifié","verified.founder":"Compte officiel","verified.collaborator":"Collaborateur vérifié",
+    "verified.label":"Vérifié","verified.commenter":"Email vérifié","verified.founder":"Compte officiel","verified.collaborator":"Collaborateur vérifié","verified.notVerified":"Non vérifié",
     "collab.credit":"En collaboration avec","collab.categoryLabel":"Collaborateurs","collab.categoryOption":"Collaborateurs (hors des 4 personnages)",
     "collab.viewAll":"voir toutes les œuvres ensemble","collab.collectionBanner":"Œuvres réalisées avec","collab.showAll":"Tout afficher","titleModal.publishedBy":"Publié par",
     "share.button":"Partager","share.tagline":"sur LUX COMICS & MEDUSA COMICS",
@@ -599,7 +599,7 @@ var STR = {
     "catalog.permanent":"Permanent","catalog.temporary":"Zeitlich begrenzt","catalog.makeTemporary":"Zeitlich begrenzen","catalog.makePermanent":"Permanent machen",
     "collab.name":"Mitarbeiter*in (optional)","collab.url":"Profillink (z. B. Instagram)",
     "collab.verified":"Verifizierte*r Mitarbeiter*in (zeigt das blaue Häkchen)",
-    "verified.label":"Verifiziert","verified.commenter":"E-Mail verifiziert","verified.founder":"Offizieller Account","verified.collaborator":"Verifizierte*r Mitarbeiter*in",
+    "verified.label":"Verifiziert","verified.commenter":"E-Mail verifiziert","verified.founder":"Offizieller Account","verified.collaborator":"Verifizierte*r Mitarbeiter*in","verified.notVerified":"Nicht verifiziert",
     "collab.credit":"In Zusammenarbeit mit","collab.categoryLabel":"Mitwirkende","collab.categoryOption":"Mitwirkende (außerhalb der 4 Charaktere)",
     "collab.viewAll":"alle gemeinsamen Werke ansehen","collab.collectionBanner":"Werke entstanden mit","collab.showAll":"Alle anzeigen","titleModal.publishedBy":"Veröffentlicht von",
     "share.button":"Teilen","share.tagline":"auf LUX COMICS & MEDUSA COMICS",
@@ -2585,7 +2585,15 @@ function renderCatalog(){
 }
 
 /* ============ VERIFIED BADGE (shared blue checkmark — comments, founder, collaborators) ============ */
-function verifiedBadge(titleKey){
+function verifiedBadge(titleKey, isVerified){
+  if(isVerified === false){
+    // sagoma vuota, stessa forma ma senza riempimento — per chi non è
+    // verificato, così lo stato è sempre confrontabile a colpo d'occhio
+    // invece di sparire del tutto quando manca la spunta.
+    return '<svg class="verified-badge verified-badge-empty" viewBox="0 0 24 24" width="15" height="15" role="img" aria-label="' + t('verified.notVerified') + '">' +
+      '<polygon points="12.00,1.00 13.92,5.48 17.95,2.75 17.14,7.55 22.01,7.43 18.73,11.03 22.89,13.57 18.19,14.82 20.31,19.20 15.68,17.72 15.10,22.55 12.00,18.80 8.90,22.55 8.32,17.72 3.69,19.20 5.81,14.82 1.11,13.57 5.27,11.03 1.99,7.43 6.86,7.55 6.05,2.75 10.08,5.48" fill="none" stroke="currentColor" stroke-width="1"/>' +
+    '</svg>';
+  }
   return '<svg class="verified-badge" viewBox="0 0 24 24" width="15" height="15" role="img" aria-label="' + t(titleKey || 'verified.label') + '">' +
     '<polygon points="12.00,1.00 13.92,5.48 17.95,2.75 17.14,7.55 22.01,7.43 18.73,11.03 22.89,13.57 18.19,14.82 20.31,19.20 15.68,17.72 15.10,22.55 12.00,18.80 8.90,22.55 8.32,17.72 3.69,19.20 5.81,14.82 1.11,13.57 5.27,11.03 1.99,7.43 6.86,7.55 6.05,2.75 10.08,5.48" fill="#1d9bf0"/>' +
     '<path d="M8 12.3l2.6 2.6 5.4-5.6" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>' +
@@ -3046,7 +3054,7 @@ function refreshPushButtonUI(){
       // In database non c'è — la risalviamo silenziosamente con gli stessi
       // dati che il browser ha già, senza richiedere di nuovo il permesso.
       var json = sub.toJSON();
-      return fetch(SUPABASE_URL + '/rest/v1/push_subscriptions', {
+      return fetch(SUPABASE_URL + '/rest/v1/push_subscriptions?on_conflict=endpoint', {
         method: 'POST',
         headers: {
           'apikey': SUPABASE_ANON_KEY, 'Authorization': 'Bearer ' + session.access_token,
@@ -3100,7 +3108,7 @@ function enablePushNotifications(){
       });
     }).then(function(sub){
       var json = sub.toJSON();
-      return fetch(SUPABASE_URL + '/rest/v1/push_subscriptions', {
+      return fetch(SUPABASE_URL + '/rest/v1/push_subscriptions?on_conflict=endpoint', {
         method: 'POST',
         headers: {
           'apikey': SUPABASE_ANON_KEY, 'Authorization': 'Bearer ' + session.access_token,
@@ -5191,7 +5199,7 @@ function openAvatarInfo(userId){
       document.getElementById('avatarInfoImg').src = bigUrl;
       document.getElementById('avatarInfoImg').style.opacity = bigUrl ? '1' : '0.15';
       document.getElementById('avatarInfoImg').onclick = function(){ openImageLightbox(bigUrl); };
-      var verifiedTag = p.verified ? ' ' + verifiedBadge('verified.commenter') : '';
+      var verifiedTag = ' ' + verifiedBadge('verified.commenter', !!p.verified);
       document.getElementById('avatarInfoName').innerHTML = escapeHtml(p.display_name || t('notif.someone')) + verifiedTag;
       var rows2 = '';
       if(p.birth_date){
@@ -5897,7 +5905,7 @@ function renderPublicProfilePage(){
       document.getElementById('pubProfileSocials').innerHTML = socialsHtml;
 
       var metaParts = [];
-      if(p.verified) metaParts.push(verifiedBadge('verified.commenter'));
+      metaParts.push(verifiedBadge('verified.commenter', !!p.verified));
       if(p.created_at){
         var joined = new Date(p.created_at);
         if(!isNaN(joined)) metaParts.push('<span class="pub-profile-joined">' + t('pubProfile.memberSince').replace('{date}', joined.toLocaleDateString()) + '</span>');
@@ -8302,7 +8310,7 @@ function openTitleModal(item){
       var nameLink = c.url
         ? '<a href="' + escapeHtml(c.url) + '" target="_blank" rel="noopener">' + escapeHtml(c.name) + '</a>'
         : escapeHtml(c.name);
-      var verifiedTag = c.verified ? verifiedBadge('verified.collaborator') : '';
+      var verifiedTag = verifiedBadge('verified.collaborator', !!c.verified);
       return '<span class="collab-credit-item" data-collab-idx="' + idx + '">' + nameLink + verifiedTag + '</span>';
     }).join(', ');
     collabEl.innerHTML = t('collab.credit') + ' ' + creditHtml +
@@ -8333,7 +8341,7 @@ function openTitleModal(item){
       .then(function(rows){
         var p = rows[0];
         if(!p){ publisherEl.classList.add('hidden'); return; }
-        var verifiedTag = p.verified ? verifiedBadge('verified.collaborator') : '';
+        var verifiedTag = verifiedBadge('verified.collaborator', !!p.verified);
         publisherEl.innerHTML = t('titleModal.publishedBy') + ' <a href="profile.html?user=' + encodeURIComponent(item.created_by) + '">' + escapeHtml(p.display_name || t('notif.someone')) + '</a>' + verifiedTag;
         publisherEl.classList.remove('hidden');
       })
@@ -9624,7 +9632,7 @@ function openMusicPlayer(songs, contextLabel, options, startIdx){
         var nameLink = c.url
           ? '<a href="' + escapeHtml(c.url) + '" target="_blank" rel="noopener">' + escapeHtml(c.name) + '</a>'
           : escapeHtml(c.name);
-        return nameLink + (c.verified ? verifiedBadge('verified.collaborator') : '');
+        return nameLink + verifiedBadge('verified.collaborator', !!c.verified);
       }).join(', ');
       collabEl.classList.remove('hidden');
     } else {
@@ -9941,7 +9949,7 @@ function loadSongComments(songId, listEl, countEl){
           var div = document.createElement('div');
           div.className = 'comment-item music-player-comment-row';
           var pendingTag = !c.approved ? '<span class="pending-tag">' + t('comments.pending') + '</span>' : '';
-          var badge = map[c.user_id] ? verifiedBadge('verified.collaborator') : '';
+          var badge = verifiedBadge('verified.collaborator', !!map[c.user_id]);
           div.innerHTML =
             '<div class="music-player-avatar"></div>' +
             '<div style="flex:1;min-width:0;">' +
@@ -11047,7 +11055,7 @@ function loadComments(catalogId){
         var div = document.createElement('div');
         div.className = 'comment-item';
         var pendingTag = !c.approved ? '<span class="pending-tag">' + t('comments.pending') + '</span>' : '';
-        var verifiedTag = verifiedIds[c.user_id] ? verifiedBadge('verified.commenter') : '';
+        var verifiedTag = verifiedBadge('verified.commenter', !!verifiedIds[c.user_id]);
         var replyBtnHtml = isSignedIn() ? '<button type="button" class="comment-reply-btn">' + t('comments.reply') + '</button>' : '';
         div.innerHTML = '<span class="author">' + escapeHtml(c.author_name) + '</span>' + verifiedTag + pendingTag +
           '<div class="body">' + renderBodyHtml(c.body) + '</div>' + replyBtnHtml;
@@ -11721,7 +11729,7 @@ function renderAdminUsers(){
           : '<span class="user-waiting-tag">' + t('users.waitingDays').replace('{n}', VERIFICATION_MIN_DAYS - daysHere) + '</span>';
         var onlineHtml = isOnline ? '<span class="online-dot" title="' + t('users.onlineTag') + '"></span> ' : '';
         row.innerHTML =
-          '<div class="info"><div class="t">' + onlineHtml + displayLabel + (u.verified ? ' ' + verifiedBadge('verified.commenter') : '') + '</div>' +
+          '<div class="info"><div class="t">' + onlineHtml + displayLabel + ' ' + verifiedBadge('verified.commenter', !!u.verified) + '</div>' +
           '<div class="m">' + t('users.joined') + ' ' + joined.toISOString().slice(0,10) + ' · ' + t('users.daysHere').replace('{n}', daysHere) + ' · ' + statusHtml + '</div></div>' +
           '<div class="admin-actions">' +
             '<button class="btn btn-sm btn-ghost" data-toggle-verified="' + u.id + '">' +

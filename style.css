@@ -848,6 +848,7 @@ footer .fcopy{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
 .publisher-credit a{color:var(--gold);}
 .collab-credit a{color:var(--gold-bright);text-decoration:underline;}
 .verified-badge{vertical-align:middle;position:relative;top:-1px;margin:0 2px;}
+.verified-badge-empty{color:var(--parchment-dim);opacity:0.5;}
 .engagement-counts{font-size:11px;color:var(--parchment-dim);align-self:center;}
 .stats-row{border-bottom:1px solid var(--line);padding:12px 0;}
 .stats-row .stats-title{font-family:'Cinzel',serif;font-size:14px;margin-bottom:6px;}
