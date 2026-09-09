@@ -7289,13 +7289,9 @@ function loadContattiPage(){
         : '<span class="user-directory-status">'+(p._online ? t('userDir.online') : (p.last_seen ? notifTimeAgo(p.last_seen) : t('userDir.offline')))+'</span>';
       var verifiedHtml = ' ' + verifiedBadge('verified.commenter', !!p.verified);
       row.innerHTML =
-        '<span class="user-directory-avatar-wrap avatar-clickable">'+avatarHtml+'<span class="'+dotClass+'"></span></span>'+
+        '<span class="user-directory-avatar-wrap">'+avatarHtml+'<span class="'+dotClass+'"></span></span>'+
         '<span class="user-directory-name">'+escapeHtml(p.display_name || t('notif.someone'))+verifiedHtml+'</span>'+
         metaHtml;
-      row.querySelector('.avatar-clickable').addEventListener('click', function(e){
-        e.stopPropagation();
-        openAvatarInfo(p.id);
-      });
       row.addEventListener('click', function(){
         window.location.href = 'chat.html?user=' + encodeURIComponent(p.id);
       });
