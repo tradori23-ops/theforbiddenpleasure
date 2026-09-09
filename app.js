@@ -1138,9 +1138,14 @@ function refreshAuthUI(){
       var fallback = '@' + (currentUserEmail() || '').split('@')[0];
       chip.textContent = fallback; // placeholder finché arriva il nickname vero
       if(uid){
-        getDisplayName(uid).then(function(name){
-          chip.textContent = (name && name !== t('notif.someone')) ? name : fallback;
-        });
+        fetch(SUPABASE_URL + '/rest/v1/profiles?id=eq.' + encodeURIComponent(uid) + '&select=display_name,verified', { headers: communityHeaders() })
+          .then(function(r){ return r.ok ? r.json() : []; })
+          .then(function(rows){
+            var p = rows[0] || {};
+            var name = (p.display_name && p.display_name !== t('notif.someone')) ? p.display_name : fallback;
+            chip.innerHTML = escapeHtml(name) + ' ' + verifiedBadge('verified.commenter', !!p.verified);
+          })
+          .catch(function(){ chip.textContent = fallback; });
       }
     }
     chip.classList.remove('hidden');
