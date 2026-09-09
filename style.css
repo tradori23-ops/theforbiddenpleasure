@@ -263,8 +263,20 @@ select.langsel{
   border:1px solid var(--line);
   padding:8px 10px;font-family:'Space Mono',monospace;font-size:12px;
 }
-.acct-chip{font-family:'Space Mono',monospace;font-size:11px;color:var(--gold-bright);padding:8px 4px;background:none;border:none;cursor:pointer;}
-.acct-chip:hover{text-decoration:underline;}
+.acct-chip{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:'Cinzel',serif;font-size:12px;letter-spacing:0.05em;color:var(--parchment);
+  padding:5px 14px 5px 5px;border-radius:30px;border:1px solid var(--gold);
+  background:none;cursor:pointer;
+}
+.acct-chip-avatar{width:26px;height:26px;border-radius:50%;object-fit:cover;display:block;flex-shrink:0;background:var(--wine-deep);}
+.acct-chip-avatar-init{
+  width:26px;height:26px;border-radius:50%;flex-shrink:0;background:var(--wine-deep);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Cinzel Decorative',serif;font-size:12px;color:var(--gold-bright);
+}
+.acct-chip:hover{background:var(--gold);color:var(--void);}
+.acct-chip:hover .acct-chip-avatar-init{color:var(--void);}
 .theme-toggle-btn{padding:9px 12px;line-height:1;display:flex;align-items:center;}
 
 /* ============ HERO ============ */
@@ -1085,29 +1097,8 @@ footer .fcopy{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
    Colori fissi apposta (non le variabili --parchment/--void-2 del tema): quelle si
    invertono tra modalità giorno/notte, e questo pannello deve restare leggibile
    allo stesso identico modo in entrambe, senza dipendere da quale tema è attivo. */
-.user-directory-toggle{
-  position:fixed;top:50%;right:0;transform:translateY(-50%);z-index:60;
-  background:#c9a24d;color:#241a12;border:2px solid #e3c273;border-right:none;
-  border-radius:10px 0 0 10px;width:38px;height:60px;display:flex;align-items:center;justify-content:center;
-  cursor:pointer;box-shadow:-3px 0 10px rgba(0,0,0,0.35);
-}
-.user-directory-toggle:hover{background:#e3c273;}
-.user-directory-toggle svg{stroke:#241a12;}
-.user-directory-panel{
-  position:fixed;top:200px;right:0;width:280px;max-width:82vw;z-index:70;
-  max-height:min(560px, 65vh);
-  background:#fdfaf5;border:2px solid #c9a24d;border-right:none;
-  border-radius:10px 0 0 10px;box-shadow:-4px 0 16px rgba(0,0,0,0.4);
-  display:flex;flex-direction:column;
-  overflow:hidden;
-}
-.user-directory-head{
-  display:flex;align-items:center;justify-content:space-between;padding:16px;
-  border-bottom:2px solid #6e1423;font-family:'Cinzel',serif;color:#6e1423;font-size:15px;
-  background:linear-gradient(180deg, rgba(201,162,77,0.15), transparent);
-}
-.user-directory-close{background:none;border:none;font-size:20px;color:#6e1423;cursor:pointer;line-height:1;}
 .user-directory-list{flex:1;overflow-y:auto;padding:8px;}
+.contatti-list{margin-top:20px;}
 .user-directory-section-head{
   font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;
   color:#6e1423;padding:14px 10px 6px;
@@ -1152,8 +1143,6 @@ footer .fcopy{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
    contenuto vero e proprio (perdendo quell'id), quindi qui puntiamo
    direttamente agli elementi reali che restano dopo l'iniezione. */
 body.chat-fullscreen header.topbar,
-body.chat-fullscreen #btnUserDirectory,
-body.chat-fullscreen #userDirectoryPanel,
 body.chat-fullscreen #smallnoxFloat,
 body.chat-fullscreen #btnShareApp,
 body.chat-fullscreen footer,
