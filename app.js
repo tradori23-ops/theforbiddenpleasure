@@ -4811,10 +4811,10 @@ function handleAddEntry(){
     return;
   }
   var isEdit = !!editingItemId;
-  // Solo admin, o un collaboratore con sessione attiva, può pubblicare un
-  // titolo NUOVO — modificare i propri titoli già pubblicati resta invece
-  // sempre permesso, sessione attiva o no.
-  if(!isEdit && !isAdmin() && !hasActiveCreationSession()){
+  // Chiunque sia loggato può pubblicare un titolo nuovo — non più riservato
+  // ad admin o a chi ha una sessione di collaborazione attiva (coerente con
+  // l'apertura della pubblicazione a tutti gli utenti registrati).
+  if(!isEdit && !isSignedIn()){
     err.textContent = t('collabSession.expired');
     return;
   }
