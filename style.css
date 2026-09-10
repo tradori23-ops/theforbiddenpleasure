@@ -359,7 +359,7 @@ body.theme-light .hero-bg::after{
 .section-desc{color:var(--parchment-dim);font-size:14px;max-width:420px;}
 
 /* ============ CHARACTER DOSSIERS ============ */
-.dossier-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;}
+.dossier-grid{display:flex;flex-direction:column;gap:28px;}
 
 /* ============ DOSSIER — i sigilli e il manoscritto ============ */
 .dossier-seals{display:grid;grid-template-columns:repeat(auto-fit, 94px);justify-content:center;gap:22px;}
@@ -392,7 +392,6 @@ body.theme-light .hero-bg::after{
   background:linear-gradient(180deg, var(--void-2), var(--void));
   border:1px solid var(--gold);border-radius:4px;
   padding:26px 28px;box-shadow:0 20px 50px rgba(0,0,0,0.5);
-  align-self:start;
 }
 .dossier-manuscript h2{font-family:'Cinzel Decorative',serif;font-size:22px;color:var(--gold-bright);margin:0 0 6px;}
 .dossier-role{
