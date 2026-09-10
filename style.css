@@ -410,8 +410,10 @@ body.theme-light .hero-bg::after{
   border:1px dashed var(--line);padding:14px 16px;text-align:center;
 }
 @media(max-width:640px){
-  .dossier-seal{width:78px;height:100px;}
-  .dossier-seals{grid-template-columns:repeat(auto-fit, 78px);}
+  .dossier-seal{width:58px;height:74px;}
+  .dossier-seals{grid-template-columns:repeat(auto-fit, 58px);gap:12px;}
+  .dossier-seal-photowrap{clip-path:path('M2,73 L2,32 A27,27 0 0 1 56,32 L56,73 Z');}
+  .dossier-seal-label{font-size:10px;}
   .dossier-manuscript{padding:20px 18px;}
 }
 .ornate-divider{
