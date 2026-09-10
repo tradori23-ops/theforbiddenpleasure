@@ -2135,25 +2135,20 @@ function renderDossiers(){
     seals.innerHTML = '';
     names.forEach(function(name, i){
       var imgUrl = characterImages[name];
-      var sealInner = imgUrl
-        ? '<img class="dossier-seal-photo" src="'+imgUrl+'" alt="'+name+'">'
-        : '<span class="dossier-seal-init">'+name.charAt(0)+'</span>';
-      var sealWrap = document.createElement('div');
-      sealWrap.className = 'dossier-seal-wrap';
-      sealWrap.innerHTML =
-        '<div class="dossier-seal'+(i===activeIdx?' active':'')+'">'+
-          '<div class="dossier-seal-photowrap">'+sealInner+'</div>'+
-          '<svg class="dossier-seal-frame" viewBox="0 0 94 120" width="94" height="120" aria-hidden="true">'+
-            '<path d="M4,118 L4,52 A43,43 0 0 1 90,52 L90,118 Z" fill="none" stroke="currentColor" stroke-width="4"/>'+
-            '<circle cx="47" cy="9" r="3.2" fill="currentColor"/>'+
-          '</svg>'+
-        '</div>'+
-        '<div class="dossier-seal-label">'+name+'</div>';
-      sealWrap.querySelector('.dossier-seal').addEventListener('click', function(){
+      var cardInner = imgUrl
+        ? '<img class="dossier-card-photo" src="'+imgUrl+'" alt="'+name+'">'
+        : '<span class="dossier-card-init">'+name.charAt(0)+'</span>';
+      var card = document.createElement('div');
+      card.className = 'dossier-card'+(i===activeIdx?' active':'');
+      card.innerHTML =
+        cardInner+
+        '<div class="dossier-card-scrim"></div>'+
+        '<div class="dossier-card-name">'+name+'</div>';
+      card.addEventListener('click', function(){
         renderSeals(i);
         renderManuscript(i);
       });
-      seals.appendChild(sealWrap);
+      seals.appendChild(card);
     });
   }
 
