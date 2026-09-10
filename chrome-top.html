@@ -160,17 +160,27 @@
         <div class="l2">&amp; MEDUSA COMICS</div>
       </div>
     </div>
-    <nav class="mainnav">
-      <a href="schedario.html#library" data-i18n="nav.library">Schedario</a>
-      <a href="dossier.html#characters" data-i18n="nav.characters">Dossier</a>
-      <a href="luxtify.html" id="navLuxtify">LUXTIFY</a>
-      <a href="founder.html#founder" data-i18n="nav.founder">Fondatore</a>
-      <a href="community.html#communitySection" id="navCommunity" class="hidden" data-i18n="nav.community">Community</a>
-      <a href="contatti.html#contattiSection" id="navContatti" class="hidden" data-i18n="nav.contatti">Contatti</a>
-      <a href="mycomics.html#mycomics" id="navMyComics" class="hidden" data-i18n="nav.myComics">I Miei Comic</a>
-      <a href="admin.html" id="navAdmin" class="hidden" data-i18n="nav.admin">Amministra</a>
+    <nav class="mainnav" id="mainNavDropdown">
+      <div class="mainnav-group">
+        <a href="schedario.html#library" data-i18n="nav.library">Schedario</a>
+        <a href="dossier.html#characters" data-i18n="nav.characters">Dossier</a>
+        <a href="luxtify.html" id="navLuxtify">LUXTIFY</a>
+        <a href="founder.html#founder" data-i18n="nav.founder">Fondatore</a>
+      </div>
+      <div class="mainnav-group">
+        <a href="community.html#communitySection" id="navCommunity" class="hidden" data-i18n="nav.community">Community</a>
+        <a href="contatti.html#contattiSection" id="navContatti" class="hidden" data-i18n="nav.contatti">Contatti</a>
+        <a href="mycomics.html#mycomics" id="navMyComics" class="hidden" data-i18n="nav.myComics">I Miei Comic</a>
+      </div>
+      <div class="mainnav-group">
+        <a href="admin.html" id="navAdmin" class="hidden mainnav-admin" data-i18n="nav.admin">Amministra</a>
+      </div>
     </nav>
     <div class="topbar-tools">
+      <button type="button" class="menu-trigger" id="btnMainMenu" aria-label="Menu" aria-expanded="false" aria-controls="mainNavDropdown">
+        <span class="menu-trigger-bars"><span></span><span></span><span></span></span>
+        <span data-i18n="nav.menu">Menu</span>
+      </button>
       <button class="btn btn-sm btn-ghost theme-toggle-btn" id="btnTheme" aria-label="Cambia tema" title="Giorno / Notte">
         <svg id="themeIconMoon" viewBox="0 0 24 24" width="15" height="15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
         <svg id="themeIconSun" class="hidden" viewBox="0 0 24 24" width="15" height="15" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"/><path d="M12 2.5v2.4M12 19.1v2.4M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
