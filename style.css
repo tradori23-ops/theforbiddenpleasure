@@ -901,7 +901,7 @@ footer .fcopy{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
 .pixai-carousel-row .card-idx{flex-shrink:0;width:190px;}
 .stats-bar-fill{height:100%;background:linear-gradient(90deg, var(--wine), var(--gold));}
 .genre-banner{
-  position:relative;height:150px;border-radius:4px;overflow:hidden;
+  position:relative;width:100%;aspect-ratio:1400/560;border-radius:4px;overflow:hidden;
   margin-bottom:20px;background-size:cover;background-position:center;
   border:1px solid var(--gold);display:flex;align-items:flex-end;
 }
@@ -911,7 +911,7 @@ footer .fcopy{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
   text-shadow:0 2px 6px rgba(0,0,0,0.85);padding:14px 18px;width:100%;
   background:linear-gradient(0deg, rgba(11,6,7,0.85) 0%, transparent 100%);
 }
-@media(max-width:600px){.genre-banner{height:110px;}.genre-banner-label{font-size:16px;padding:10px 14px;}}
+@media(max-width:600px){.genre-banner-label{font-size:16px;padding:10px 14px;}}
 .collab-banner{
   border:1px solid var(--gold);background:rgba(201,162,77,0.08);
   padding:14px 18px;margin-bottom:20px;
