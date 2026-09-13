@@ -2281,7 +2281,10 @@ function renderGenreBanner(){
   // banner generale "Forbidden Archive" lascia il posto a quello del
   // genere — non hanno senso impilati uno sopra l'altro.
   var promo = document.getElementById('maturePromoBanner');
-  var file = GENRE_BANNERS[activeGenreFilter];
+  // PixAI ha già il suo banner in cima al carosello (pixai-carousel-banner):
+  // mostrarlo di nuovo qui sarebbe un doppione identico, quindi per questo
+  // genere il banner dedicato resta nascosto, come se non esistesse un file.
+  var file = activeGenreFilter === 'PixAI' ? null : GENRE_BANNERS[activeGenreFilter];
   if(!file){
     el.classList.add('hidden');
     if(promo) promo.classList.toggle('hidden', !maturePromoStillValid());
