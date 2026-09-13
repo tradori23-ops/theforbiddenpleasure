@@ -896,8 +896,7 @@ footer .fcopy{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
 .mature-promo-banner:hover{transform:translateY(-2px);}
 .mature-promo-banner img{width:100%;height:auto;display:block;aspect-ratio:1400/733;object-fit:cover;}
 .pixai-carousel{margin-bottom:24px;}
-.pixai-carousel-head{margin-bottom:12px;}
-.pixai-carousel-head h3{font-family:'Cinzel Decorative',serif;font-size:19px;margin:2px 0 0;color:var(--parchment);}
+.pixai-carousel-banner{width:100%;height:auto;display:block;aspect-ratio:1400/788;object-fit:cover;border-radius:6px;border:1px solid var(--gold);margin-bottom:14px;box-shadow:0 14px 34px rgba(0,0,0,0.3);}
 .pixai-carousel-row{display:flex;gap:14px;overflow-x:auto;padding-bottom:6px;}
 .pixai-carousel-row .card-idx{flex-shrink:0;width:190px;}
 .stats-bar-fill{height:100%;background:linear-gradient(90deg, var(--wine), var(--gold));}
