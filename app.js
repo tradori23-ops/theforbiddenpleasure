@@ -2264,7 +2264,8 @@ var GENRE_BANNERS = {
   'The Morningstar Royal House':'genre-banner-morningstar-royal-house.webp',
   'Thriller':'genre-banner-thriller.webp',
   'Funny Comics':'genre-banner-funny-comics.webp',
-  'Horror':'genre-banner-horror.webp'
+  'Horror':'genre-banner-horror.webp',
+  'PixAI':'pixai-banner.webp'
 };
 function renderGenreBanner(){
   var el = document.getElementById('genreBanner');
