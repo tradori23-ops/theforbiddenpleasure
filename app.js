@@ -937,6 +937,14 @@ function initMatureToggle(){
     }
   });
 
+  var promoBanner = document.getElementById('maturePromoBanner');
+  if(promoBanner){
+    promoBanner.addEventListener('click', function(e){
+      e.preventDefault();
+      if(!sw.checked) sw.click();
+    });
+  }
+
   document.getElementById('gateEnter') && document.getElementById('gateEnter').addEventListener('click', function(){
     localStorage.setItem('lux_age_ok','1');
     closeMatureModal();

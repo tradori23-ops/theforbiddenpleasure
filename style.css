@@ -887,6 +887,14 @@ footer .fcopy{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
 .stats-row .stats-title{font-family:'Cinzel',serif;font-size:14px;margin-bottom:6px;}
 .stats-row .stats-numbers{font-family:'Space Mono',monospace;font-size:11px;color:var(--parchment-dim);margin-bottom:8px;}
 .stats-bar-track{height:8px;background:var(--void);border:1px solid var(--line);overflow:hidden;}
+.mature-promo-banner{
+  display:block;position:relative;width:100%;border-radius:6px;overflow:hidden;
+  margin-bottom:20px;border:1px solid var(--gold);
+  box-shadow:0 14px 34px rgba(0,0,0,0.4);
+  transition:transform .2s ease;
+}
+.mature-promo-banner:hover{transform:translateY(-2px);}
+.mature-promo-banner img{width:100%;height:auto;display:block;aspect-ratio:1400/733;object-fit:cover;}
 .stats-bar-fill{height:100%;background:linear-gradient(90deg, var(--wine), var(--gold));}
 .genre-banner{
   position:relative;height:150px;border-radius:4px;overflow:hidden;
