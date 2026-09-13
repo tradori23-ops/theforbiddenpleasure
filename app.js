@@ -873,9 +873,15 @@ function authSignUp(email, password){
 function authSignOut(){ setSession(null); currentProfile = null; }
 
 /* ============ MATURE CONTENT TOGGLE ============ */
-// Site defaults to all-ages. The 18+ switch reveals mature titles too, and
-// only asks for age confirmation the first time it's turned on (per browser).
+// Site defaults to all-ages. The 18+ switch is additive, not exclusive: OFF
+// shows only Tutti; ON shows Tutti PLUS 18+ together — Tutti content must
+// never disappear because of this toggle. Only asks for age confirmation
+// the first time it's turned on (per browser).
 var matureVisible = false;
+
+// Singola fonte di verità per il filtro 18+/Tutti, usata ovunque nel sito
+// invece di ripetere il confronto in ogni funzione di rendering.
+function matureOk(item){ return matureVisible || !item.mature; }
 
 function openMatureModal(){ document.getElementById('matureModal').classList.remove('hidden'); }
 function closeMatureModal(){ document.getElementById('matureModal').classList.add('hidden'); }
@@ -1907,10 +1913,7 @@ function renderTopRanked(){
   var grid = document.getElementById('topRankedGrid');
   if(!section || !grid) return;
   ensureShelfRankStyle();
-  var items = getCatalog();
-  if(!matureVisible){
-    items = items.filter(function(i){ return !i.mature; });
-  }
+  var items = getCatalog().filter(matureOk);
   items = items.slice().sort(function(a,b){ return (b.view_count||0) - (a.view_count||0); }).slice(0, 10);
   grid.innerHTML = '';
   if(items.length === 0){ section.classList.add('hidden'); return; }
@@ -2079,10 +2082,7 @@ function renderLatestChapters(){
   var section = document.getElementById('latestSection');
   var grid = document.getElementById('latestGrid');
   if(!section || !grid) return;
-  var items = getCatalog();
-  if(!matureVisible){
-    items = items.filter(function(i){ return !i.mature; });
-  }
+  var items = getCatalog().filter(matureOk);
   items = items.slice().sort(function(a,b){ return (b.date||'').localeCompare(a.date||''); }).slice(0, 6);
   grid.innerHTML = '';
   if(items.length === 0){ section.classList.add('hidden'); return; }
@@ -2145,7 +2145,7 @@ function renderDossiers(){
 
     var shelfRow = ms.querySelector('#dossierCharShelf');
     var charItems = getCatalog().filter(function(i){
-      return i.character === name && (matureVisible || !i.mature);
+      return i.character === name && matureOk(i);
     });
     if(charItems.length === 0){
       shelfRow.innerHTML = '<div class="dossier-shelf-empty">'+t('dossier.comingSoon')+'</div>';
@@ -2277,14 +2277,19 @@ function maturePromoStillValid(){
 function renderGenreBanner(){
   var el = document.getElementById('genreBanner');
   if(!el) return;
+  var promo = document.getElementById('maturePromoBanner');
+  // PixAI ha già il suo banner in cima al carosello (pixai-carousel-banner):
+  // né il banner dedicato al genere né quello generale "Forbidden Archive"
+  // hanno senso impilati sotto, quindi qui restano entrambi nascosti.
+  if(activeGenreFilter === 'PixAI'){
+    el.classList.add('hidden');
+    if(promo) promo.classList.add('hidden');
+    return;
+  }
   // Quando è attivo un genere specifico (con un suo banner dedicato), il
   // banner generale "Forbidden Archive" lascia il posto a quello del
   // genere — non hanno senso impilati uno sopra l'altro.
-  var promo = document.getElementById('maturePromoBanner');
-  // PixAI ha già il suo banner in cima al carosello (pixai-carousel-banner):
-  // mostrarlo di nuovo qui sarebbe un doppione identico, quindi per questo
-  // genere il banner dedicato resta nascosto, come se non esistesse un file.
-  var file = activeGenreFilter === 'PixAI' ? null : GENRE_BANNERS[activeGenreFilter];
+  var file = GENRE_BANNERS[activeGenreFilter];
   if(!file){
     el.classList.add('hidden');
     if(promo) promo.classList.toggle('hidden', !maturePromoStillValid());
@@ -2461,7 +2466,7 @@ function wireLongPressPeek(coverEl, item){
 function renderCatalogHeroBento(){
   var box = document.getElementById('catalogHeroBento');
   if(!box) return;
-  var items = getCatalog().filter(function(i){ return matureVisible || !i.mature; });
+  var items = getCatalog().filter(matureOk);
   if(items.length === 0){ box.classList.add('hidden'); return; }
   var sorted = items.slice().sort(function(a, b){ return new Date(b.date || 0) - new Date(a.date || 0); });
   var picks = sorted.slice(0, 3);
@@ -2483,7 +2488,7 @@ function renderCatalogHeroBento(){
 function renderCatalogStories(){
   var row = document.getElementById('catalogStoriesRow');
   if(!row) return;
-  var items = getCatalog().filter(function(i){ return matureVisible || !i.mature; });
+  var items = getCatalog().filter(matureOk);
   var chars = [];
   items.forEach(function(i){ if(i.character && chars.indexOf(i.character) === -1) chars.push(i.character); });
   if(chars.length === 0){ row.classList.add('hidden'); return; }
@@ -2537,7 +2542,7 @@ function initCmdSearch(){
   input.addEventListener('input', function(){
     var q = input.value.trim().toLowerCase();
     if(!q){ results.innerHTML = ''; return; }
-    var items = getCatalog().filter(function(i){ return matureVisible || !i.mature; });
+    var items = getCatalog().filter(matureOk);
     var matches = items.filter(function(i){
       return (i.title || '').toLowerCase().indexOf(q) !== -1 ||
              (i.character || '').toLowerCase().indexOf(q) !== -1 ||
@@ -2590,10 +2595,14 @@ function renderCatalog(){
   renderMyComics();
   var grid = document.getElementById('catalogGrid');
   if(!grid) return;
-  var items = getCatalog();
-  if(!matureVisible){
-    items = items.filter(function(i){return !i.mature;});
+  if(activeGenreFilter === 'PixAI'){
+    // PixAI è contenuto esclusivo a parte, non una collana: vive solo nel
+    // carosello dedicato (renderPixaiCarousel), mai nelle mensole qui sotto.
+    grid.innerHTML = '';
+    grid.classList.remove('shelves-wrap');
+    return;
   }
+  var items = getCatalog().filter(function(i){ return (i.genres||[]).indexOf('PixAI') === -1 && matureOk(i); });
   var singleShelfMode = false;
   if(activeCollabFilter){
     singleShelfMode = true;
@@ -5637,9 +5646,8 @@ function renderCollabWorksTab(){
   var grid = document.getElementById('collabWorksGrid');
   if(!grid) return;
   var items = getCatalog().filter(function(i){
-    return (i.collaborators && i.collaborators.length > 0) || i.collaborator_name;
+    return ((i.collaborators && i.collaborators.length > 0) || i.collaborator_name) && matureOk(i);
   });
-  if(!matureVisible) items = items.filter(function(i){ return !i.mature; });
   items.sort(function(a,b){ return (b.date||'').localeCompare(a.date||''); });
   grid.innerHTML = '';
   if(items.length === 0){
@@ -6022,8 +6030,7 @@ function renderProfileTitles(userId){
   var grid = document.getElementById('profileTitlesGrid');
   var box = document.getElementById('profileTitlesBox');
   if(!grid) return;
-  var items = getCatalog().filter(function(i){ return i.created_by === userId; });
-  if(!matureVisible) items = items.filter(function(i){ return !i.mature; });
+  var items = getCatalog().filter(function(i){ return i.created_by === userId && matureOk(i); });
   if(items.length === 0){ box.classList.add('hidden'); return; }
   box.classList.remove('hidden');
   items.sort(function(a,b){ return (b.date||'').localeCompare(a.date||''); });
@@ -6057,8 +6064,7 @@ function renderProfileFavorites(userId){
     .then(function(r){ return r.ok ? r.json() : []; })
     .then(function(rows){
       var ids = rows.map(function(r){ return r.catalog_id; });
-      var items = getCatalog().filter(function(i){ return ids.indexOf(i.id) !== -1; });
-      if(!matureVisible) items = items.filter(function(i){ return !i.mature; });
+      var items = getCatalog().filter(function(i){ return ids.indexOf(i.id) !== -1 && matureOk(i); });
       if(items.length === 0){ box.classList.add('hidden'); return; }
       box.classList.remove('hidden');
       grid.innerHTML = '';
