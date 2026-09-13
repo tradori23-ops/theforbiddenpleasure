@@ -2267,14 +2267,30 @@ var GENRE_BANNERS = {
   'Horror':'genre-banner-horror.webp',
   'PixAI':'pixai-banner.webp'
 };
+// Il banner generale "Forbidden Archive" è un annuncio, non un elemento
+// fisso — decade da solo 48 ore dopo la pubblicazione, come una notizia.
+var MATURE_PROMO_PUBLISHED_AT = '2026-09-13T17:22:32Z';
+function maturePromoStillValid(){
+  return (Date.now() - new Date(MATURE_PROMO_PUBLISHED_AT).getTime()) < (48 * 60 * 60 * 1000);
+}
+
 function renderGenreBanner(){
   var el = document.getElementById('genreBanner');
   if(!el) return;
+  // Quando è attivo un genere specifico (con un suo banner dedicato), il
+  // banner generale "Forbidden Archive" lascia il posto a quello del
+  // genere — non hanno senso impilati uno sopra l'altro.
+  var promo = document.getElementById('maturePromoBanner');
   var file = GENRE_BANNERS[activeGenreFilter];
-  if(!file){ el.classList.add('hidden'); return; }
+  if(!file){
+    el.classList.add('hidden');
+    if(promo) promo.classList.toggle('hidden', !maturePromoStillValid());
+    return;
+  }
   el.style.backgroundImage = 'url(' + file + ')';
   el.querySelector('.genre-banner-label').textContent = activeGenreFilter;
   el.classList.remove('hidden');
+  if(promo) promo.classList.add('hidden');
 }
 
 var GENRE_LIST = ['Crossover',"Assassin's Creed Infernale",'The Morningstar Royal House','Thriller','Funny Comics','Horror','PixAI'];
