@@ -887,6 +887,24 @@ function setMatureVisible(on){
   if(sw) sw.checked = on;
   updateMatureStateLabel();
   renderCatalog();
+  if(on) scrollToMatureContent();
+}
+
+// Attivando il 18+, porta subito l'utente ai contenuti appena sbloccati
+// (PixAI se presente, altrimenti lo schedario) invece di lasciarlo dov'era
+// a dover scorrere a cercarli — da qualunque pagina lo attivi.
+function scrollToMatureContent(){
+  if(pendingDeepLinkItem) return; // sta per aprirsi un titolo specifico da link diretto — non redirigere altrove
+  var onSchedario = !!document.getElementById('library');
+  if(!onSchedario){
+    window.location.href = 'schedario.html#library';
+    return;
+  }
+  setTimeout(function(){
+    var pixai = document.getElementById('pixaiCarousel');
+    var target = (pixai && !pixai.classList.contains('hidden')) ? pixai : document.getElementById('library');
+    if(target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 60); // dopo renderCatalog(), così il carosello PixAI è già visibile/nascosto correttamente
 }
 
 function updateMatureStateLabel(){
