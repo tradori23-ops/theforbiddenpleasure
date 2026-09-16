@@ -263,8 +263,9 @@ select.langsel{
   border:1px solid var(--line);
   padding:8px 10px;font-family:'Space Mono',monospace;font-size:12px;
 }
-.acct-chip{font-family:'Space Mono',monospace;font-size:11px;color:var(--gold-bright);padding:8px 4px;background:none;border:none;cursor:pointer;}
+.acct-chip{font-family:'Space Mono',monospace;font-size:11px;color:var(--gold-bright);padding:8px 4px;background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:6px;}
 .acct-chip:hover{text-decoration:underline;}
+.acct-chip-avatar{width:22px;height:22px;border-radius:50%;object-fit:cover;flex-shrink:0;}
 .theme-toggle-btn{padding:9px 12px;line-height:1;display:flex;align-items:center;}
 
 /* ============ HERO ============ */
