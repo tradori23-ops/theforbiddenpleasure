@@ -36,7 +36,33 @@
     <div id="contattiSignedOut" class="mycomics-empty hidden">
       <p data-i18n="contatti.signedOut">Accedi per vedere i tuoi contatti.</p>
     </div>
-    <div class="contatti-list" id="contattiList"></div>
+
+    <div id="contattiSignedIn">
+      <div class="field">
+        <input type="text" id="contattiSearchInput" maxlength="40" data-i18n-placeholder="contatti.searchPh" placeholder="Cerca per nome profilo...">
+      </div>
+
+      <div class="profile-fb-tabs" id="contattiTabs">
+        <button type="button" class="profile-fb-tab active" data-ctab="scopri" data-i18n="contatti.tabScopri">Scopri</button>
+        <button type="button" class="profile-fb-tab" data-ctab="amici" data-i18n="contatti.tabAmici">Amici</button>
+        <button type="button" class="profile-fb-tab" data-ctab="richieste">
+          <span data-i18n="contatti.tabRichieste">Richieste</span>
+          <span class="contatti-badge hidden" id="contattiRequestBadge">0</span>
+        </button>
+      </div>
+
+      <div class="contatti-panel active" data-cpanel="scopri">
+        <div class="contatti-list" id="contattiScopriList"></div>
+      </div>
+
+      <div class="contatti-panel hidden" data-cpanel="amici">
+        <div class="contatti-list" id="contattiAmiciList"></div>
+      </div>
+
+      <div class="contatti-panel hidden" data-cpanel="richieste">
+        <div class="contatti-list" id="contattiRichiesteList"></div>
+      </div>
+    </div>
   </section>
 
 <div id="chrome-footer-slot"></div>
