@@ -418,6 +418,89 @@ body.theme-light .hero-bg::after{
 }
 .card-idx-cover .init{font-family:'Cinzel Decorative',serif;font-size:44px;color:rgba(201,162,77,0.35);}
 .card-idx-cover .cover-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+
+/* ============ NASTRO + SIGILLO (specifiche approvate: dritto, effetto lino, sigillo grande centrato) ============ */
+.tome-strap{
+  position:absolute;top:46%;left:0;width:100%;height:17%;z-index:2;
+  background:
+    repeating-linear-gradient(45deg, rgba(255,255,255,0.05) 0px, rgba(255,255,255,0.05) 1px, transparent 1px, transparent 3px),
+    repeating-linear-gradient(-45deg, rgba(0,0,0,0.12) 0px, rgba(0,0,0,0.12) 1px, transparent 1px, transparent 3px),
+    linear-gradient(180deg, #8a1a2c, #5c0f1c);
+  box-shadow:0 2px 6px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.08);
+  display:flex;align-items:center;justify-content:center;
+}
+.tome-seal{
+  width:44px;height:44px;border-radius:50%;flex-shrink:0;
+  background:radial-gradient(circle,#fdf3d8,#e3c273 55%,#a8863f);
+  border:2px solid #3a2a10;
+  box-shadow:0 0 10px rgba(227,194,115,0.6), 0 2px 6px rgba(0,0,0,0.5);
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
+}
+.tome-seal img{width:100%;height:100%;object-fit:cover;}
+
+/* Fascia di progresso lettura — sostituisce il nastro quando il titolo è iniziato */
+.tome-strap.in-progress{
+  top:auto;bottom:0;height:auto;left:0;right:0;width:auto;
+  flex-direction:column;align-items:stretch;padding:8px;
+  background:linear-gradient(to top, rgba(11,6,7,0.92), rgba(11,6,7,0));
+  box-shadow:none;
+}
+.progress-label{font-family:'Space Mono',monospace;font-size:10px;color:var(--gold-bright);margin-bottom:4px;text-shadow:0 1px 4px rgba(0,0,0,0.8);}
+.progress-bar{height:4px;background:rgba(255,255,255,0.18);border-radius:2px;overflow:hidden;}
+.progress-bar-fill{height:100%;background:var(--gold);}
+
+/* Animazione: il sigillo si rompe e il nastro si toglie all'apertura del titolo */
+@keyframes sealBreak{
+  0%{transform:scale(1) rotate(0deg);opacity:1;}
+  35%{transform:scale(1.3) rotate(-6deg);opacity:1;}
+  100%{transform:scale(0) rotate(35deg);opacity:0;}
+}
+@keyframes strapPart{
+  0%{opacity:1;transform:scaleX(1);}
+  60%{opacity:1;transform:scaleX(1.03);}
+  100%{opacity:0;transform:scaleX(0.25);}
+}
+.card-idx-cover.opening .cover-img{transform:scale(1.08);transition:transform 0.62s ease;}
+.card-idx-cover.opening .tome-strap:not(.in-progress){animation:strapPart 0.62s ease-in forwards;}
+.card-idx-cover.opening .tome-seal{animation:sealBreak 0.62s ease-in forwards;}
+
+/* ============ PORTONE GOTICO (bottone "Dettagli") ============ */
+.tome-details-toggle{
+  position:relative;background:none;border:none;cursor:pointer;padding:0;
+  display:flex;flex-direction:column;align-items:center;gap:4px;
+  color:var(--gold-bright);
+  font-family:'Cinzel',serif;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;
+}
+.gate-frame{
+  position:relative;width:56px;height:34px;
+  background:linear-gradient(180deg,#1a1013,#0e0708);
+  border:1px solid var(--gold);
+  border-radius:20px 20px 3px 3px;
+  box-shadow:inset 0 0 10px rgba(0,0,0,0.6);
+  overflow:hidden;
+}
+.gate-arch{position:absolute;inset:0;}
+.gate-door{position:absolute;top:0;bottom:0;width:50%;background:linear-gradient(180deg,#241418,#150c0e);transition:transform 0.35s ease;}
+.gate-door-l{left:0;border-right:1px solid rgba(201,162,77,0.4);transform-origin:left;}
+.gate-door-r{right:0;border-left:1px solid rgba(201,162,77,0.4);transform-origin:right;}
+.tome-details-toggle:hover .gate-door-l{transform:rotateY(20deg);}
+.tome-details-toggle:hover .gate-door-r{transform:rotateY(-20deg);}
+.tome-details-toggle.open .gate-door-l{transform:rotateY(50deg);}
+.tome-details-toggle.open .gate-door-r{transform:rotateY(-50deg);}
+.gate-seal{
+  position:absolute;top:17px;left:50%;transform:translate(-50%,-50%);
+  width:16px;height:16px;border-radius:50%;
+  background:radial-gradient(circle,var(--gold-bright),#a8863f);
+  box-shadow:0 0 6px rgba(201,162,77,0.5);
+  pointer-events:none;z-index:2;
+}
+.gate-arrow{display:inline-block;transition:transform 0.3s;}
+.tome-details-toggle.open .gate-arrow{transform:rotate(180deg);}
+
+/* ============ AVATAR ACCOUNT CHIP (header) ============ */
+.acct-chip{display:flex;align-items:center;gap:6px;}
+.acct-chip-avatar{width:22px;height:22px;border-radius:50%;object-fit:cover;flex-shrink:0;}
 .card-idx-cover .mature{
   position:absolute;top:8px;right:8px;
   font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.1em;
