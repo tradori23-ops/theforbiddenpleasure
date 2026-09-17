@@ -426,6 +426,30 @@ body.theme-light .hero-bg::after{
   color:var(--verdigris);border:1px solid var(--verdigris);padding:3px 8px;letter-spacing:0.08em;
 }
 
+.genre-banner{
+  width:100%;aspect-ratio:1900/700;border-radius:14px;overflow:hidden;
+  background-size:cover;background-position:center;position:relative;margin-bottom:20px;
+  display:flex;align-items:flex-end;
+}
+.genre-banner::after{content:'';position:absolute;inset:0;background:linear-gradient(to top, rgba(11,6,7,0.85) 0%, transparent 55%);}
+.genre-banner-label{
+  position:relative;z-index:1;padding:14px 18px;
+  font-family:'Cinzel Decorative',serif;font-size:16px;letter-spacing:0.04em;color:var(--gold-bright);
+  text-shadow:0 2px 8px rgba(0,0,0,0.8);
+}
+
+.pixai-carousel{margin-bottom:24px;}
+.pixai-carousel-banner{width:100%;aspect-ratio:1900/700;object-fit:cover;border-radius:14px;display:block;margin-bottom:14px;}
+.pixai-carousel-row{display:flex;gap:12px;overflow-x:auto;padding-bottom:4px;}
+.pixai-community{margin-top:22px;}
+.pixai-community-row{display:flex;gap:14px;overflow-x:auto;padding-bottom:6px;}
+.pixai-community-card{
+  flex:0 0 84px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;
+}
+.pixai-community-name{font-family:'Space Mono',monospace;font-size:10px;color:var(--parchment-dim);line-height:1.3;}
+.pixai-community-card .btn{margin-top:2px;font-size:9px;padding:5px 8px;white-space:normal;line-height:1.3;}
+.pixai-carousel-row .card-idx{flex:0 0 140px;}
+
 /* ============ CATALOG / CARD INDEX ============ */
 .catalog-filters{
   display:flex;gap:8px;flex-wrap:wrap;
@@ -707,6 +731,26 @@ body.theme-light .hero-bg::after{
   font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.05em;text-transform:uppercase;
 }
 .community-tab.active{background:rgba(201,162,77,0.1);border-color:var(--gold);color:var(--gold-bright);}
+.contatti-badge{background:var(--gold);color:var(--void);font-size:9px;font-weight:700;border-radius:20px;padding:1px 6px;margin-left:4px;}
+
+/* ============ SERVER (dentro Community) ============ */
+.server-rail-row{display:flex;gap:10px;overflow-x:auto;padding-bottom:6px;margin-bottom:18px;}
+.server-rail-icon{
+  width:44px;height:44px;border-radius:50%;flex-shrink:0;
+  background:var(--void-2);border:1px solid var(--line);
+  display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer;
+  transition:border-radius .15s ease, border-color .15s ease;
+}
+.server-rail-icon.active{border-radius:16px;border-color:var(--gold);background:rgba(201,162,77,0.12);}
+.server-detail-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px;}
+.server-detail-title{font-family:'Cinzel Decorative',serif;font-size:17px;color:var(--gold-bright);}
+.server-channel-link{
+  display:inline-flex;align-items:center;gap:6px;margin-top:10px;
+  background:var(--void-2);border:1px solid var(--line);border-radius:20px;
+  padding:7px 14px;font-family:'Space Mono',monospace;font-size:11px;color:var(--gold);cursor:pointer;
+}
+.server-channel-link:hover{border-color:var(--gold);}
+#btnFollowToggle.active{background:rgba(201,162,77,0.1);border-color:var(--gold);color:var(--gold-bright);}
 
 /* ============ AVATAR ACCOUNT CHIP (header) ============ */
 .acct-chip{display:flex;align-items:center;gap:6px;}
