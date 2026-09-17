@@ -47,6 +47,15 @@
       <button type="button" class="community-tab" data-ctab="friends" data-i18n="community.tabFriends">Amici</button>
       <button type="button" class="community-tab" data-ctab="collab" data-i18n="community.tabCollab">Collaboratori</button>
       <button type="button" class="community-tab" data-ctab="diary" data-i18n="diary.tab">Diario</button>
+      <button type="button" class="community-tab" data-ctab="servers" data-i18n="servers.tab">Server</button>
+    </div>
+
+    <!-- SERVER: spazi dedicati creati da Amministra, ciascuno con un canale
+         reale collegato e un elenco di chi si iscrive — nessuna chat nuova. -->
+    <div class="community-panel hidden" data-cpanel="servers">
+      <div class="server-rail-row" id="serverRailRow"></div>
+      <div id="serverEmptyState" class="hidden"><p class="form-note" data-i18n="servers.empty">Nessun server ancora — torna a trovarci presto.</p></div>
+      <div id="serverDetailBox"></div>
     </div>
 
     <!-- DIARIO: foto / stati d'animo / note pubblicate dagli utenti -->

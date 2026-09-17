@@ -77,6 +77,7 @@
         <button class="admin-tab" data-tab="announcements" data-i18n="admin.tab.announcements">Novità</button>
         <button class="admin-tab" data-tab="playlists">Playlist</button>
         <button class="admin-tab" data-tab="podcasts">Podcast</button>
+        <button class="admin-tab" data-tab="servers">Server</button>
         <button class="admin-tab" data-tab="users" data-i18n="admin.tab.users">Utenti</button>
         <button class="admin-tab" data-tab="maintenance" data-i18n="admin.tab.maintenance">Manutenzione</button>
         <button class="admin-tab" data-tab="moderation" data-i18n="admin.tab.moderation">Moderazione Community</button>
@@ -419,6 +420,35 @@
         <div class="notice">
           <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Podcast esistenti</div>
           <div id="adminPodcastsList"></div>
+        </div>
+      </div>
+
+      <div class="admin-tab-panel hidden" data-tab-panel="servers">
+        <div class="notice">
+          <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Nuovo server community</div>
+          <p style="color:var(--parchment-dim);font-size:13px;margin-bottom:14px;">Un server è uno spazio dedicato dentro Community, con i suoi canali propri e un elenco di chi si iscrive. Nessuna chat anonima — i canali funzionano come quelli generali, solo che appartengono a questo server.</p>
+          <div class="admin-grid">
+            <div class="field">
+              <label>Nome</label>
+              <input type="text" id="fServerName" maxlength="40" placeholder="Es. Fan Art">
+            </div>
+            <div class="field">
+              <label>Icona (un'emoji)</label>
+              <input type="text" id="fServerIcon" maxlength="4" placeholder="🎨" value="💬">
+            </div>
+            <div class="field" style="grid-column:1/-1">
+              <label>Descrizione (opzionale)</label>
+              <textarea id="fServerDesc" rows="2" placeholder="Di cosa parla questo server?"></textarea>
+            </div>
+          </div>
+          <div class="form-error" id="serverError"></div>
+          <div class="modal-actions">
+            <button class="btn btn-primary btn-sm" id="btnAddServer">Crea server</button>
+          </div>
+        </div>
+        <div class="notice">
+          <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Server esistenti</div>
+          <div id="adminServersList"></div>
         </div>
       </div>
 
