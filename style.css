@@ -744,12 +744,18 @@ body.theme-light .hero-bg::after{
 .server-rail-icon.active{border-radius:16px;border-color:var(--gold);background:rgba(201,162,77,0.12);}
 .server-detail-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px;}
 .server-detail-title{font-family:'Cinzel Decorative',serif;font-size:17px;color:var(--gold-bright);}
+.server-channels-row{display:flex;flex-wrap:wrap;gap:8px;}
 .server-channel-link{
-  display:inline-flex;align-items:center;gap:6px;margin-top:10px;
+  display:inline-flex;align-items:center;gap:6px;
   background:var(--void-2);border:1px solid var(--line);border-radius:20px;
   padding:7px 14px;font-family:'Space Mono',monospace;font-size:11px;color:var(--gold);cursor:pointer;
 }
 .server-channel-link:hover{border-color:var(--gold);}
+.server-new-channel-row{display:flex;gap:8px;margin-top:10px;}
+.server-new-channel-row input{
+  flex:1;background:var(--void-2);border:1px solid var(--line);border-radius:20px;
+  padding:8px 14px;color:var(--parchment);font-family:'Space Mono',monospace;font-size:12px;
+}
 #btnFollowToggle.active{background:rgba(201,162,77,0.1);border-color:var(--gold);color:var(--gold-bright);}
 
 /* ============ AVATAR ACCOUNT CHIP (header) ============ */
