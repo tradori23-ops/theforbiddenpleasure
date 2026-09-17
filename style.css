@@ -524,7 +524,22 @@ body.theme-light .hero-bg::after{
 }
 .fav-char-opt input{accent-color:var(--gold);}
 .profile-social-grid{display:flex;flex-direction:column;gap:8px;}
-.profile-create-grid{display:flex;flex-wrap:wrap;gap:8px;}
+.profile-create-grid{display:flex;flex-wrap:wrap;gap:10px;}
+.profile-create-seal{
+  display:flex;flex-direction:column;align-items:center;gap:6px;
+  background:none;border:none;cursor:pointer;padding:4px;width:64px;
+}
+.profile-create-seal img,.profile-create-init{
+  width:52px;height:52px;border-radius:50%;object-fit:cover;
+  border:2px solid var(--line);
+}
+.profile-create-seal:hover img,.profile-create-seal:hover .profile-create-init{border-color:var(--gold);}
+.profile-create-init{
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Cinzel Decorative',serif;font-size:18px;color:var(--gold-bright);
+  background:linear-gradient(160deg,var(--wine-deep),var(--void));
+}
+.profile-create-seal span{font-family:'Space Mono',monospace;font-size:10px;color:var(--parchment-dim);}
 
 /* ============ SCHEDARIO — corpo card moderno (pulito, niente nastri) ============ */
 .tome-strap{display:none;} /* nastro/sigillo gotico spento: sostituito da un layout piatto */
