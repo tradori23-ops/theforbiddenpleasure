@@ -601,6 +601,7 @@ body.theme-light .hero-bg::after{
 .tome-plaque-text{font-family:'Cinzel',serif;font-size:14px;color:var(--parchment);line-height:1.25;}
 .tome-price-row{
   display:flex;align-items:center;justify-content:space-between;padding:2px 14px 12px;
+  margin-top:auto;
 }
 .tome-price-always{font-family:'Space Mono',monospace;font-size:12px;color:var(--gold-bright);}
 .tome-details-toggle{
@@ -638,7 +639,7 @@ body.theme-light .hero-bg::after{
 .card-idx-engagement{margin-top:8px;font-family:'Space Mono',monospace;font-size:10px;color:var(--parchment-dim);}
 
 /* ============ DOSSIER — selettore ritratti + pannello personaggio ============ */
-.dossier-seals{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:28px;}
+.dossier-seals{grid-column:1/-1;display:flex;gap:14px;flex-wrap:wrap;margin-bottom:28px;}
 .dossier-card{
   position:relative;width:84px;height:84px;border-radius:50%;overflow:hidden;
   cursor:pointer;border:2px solid var(--line);flex-shrink:0;
@@ -659,6 +660,7 @@ body.theme-light .hero-bg::after{
   color:var(--parchment);
 }
 .dossier-manuscript{
+  grid-column:1/-1;
   background:var(--void-2);border:1px solid var(--line);border-radius:14px;padding:24px;
 }
 .dossier-manuscript h2{font-family:'Cinzel Decorative',serif;font-size:22px;color:var(--gold-bright);margin-bottom:6px;}
@@ -672,7 +674,7 @@ body.theme-light .hero-bg::after{
 .dossier-goto:hover{background:rgba(201,162,77,0.1);}
 .dossier-shelf-empty{font-family:'Space Mono',monospace;font-size:12px;color:var(--parchment-dim);padding:14px 0;}
 /* Schedario: raggruppamento per collana — griglia a capo, come una libreria */
-.catalog-shelf{margin-bottom:32px;}
+.catalog-shelf{grid-column:1/-1;margin-bottom:32px;}
 .shelf-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--line);}
 .shelf-eyebrow{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);}
 .shelf-title{font-family:'Cinzel Decorative',serif;font-size:18px;color:var(--gold-bright);margin-top:2px;}
@@ -734,6 +736,26 @@ body.theme-light .hero-bg::after{
 .contatti-badge{background:var(--gold);color:var(--void);font-size:9px;font-weight:700;border-radius:20px;padding:1px 6px;margin-left:4px;}
 
 /* ============ SERVER (dentro Community) ============ */
+.community-tab-highlight{border-color:var(--gold);background:rgba(201,162,77,0.1);color:var(--gold-bright);display:inline-flex;align-items:center;gap:6px;}
+.tab-new-badge{background:var(--wine);color:var(--parchment);font-size:8px;letter-spacing:.04em;text-transform:uppercase;border-radius:20px;padding:2px 6px;}
+.server-teaser{
+  display:flex;align-items:center;gap:10px;margin-bottom:18px;padding:11px 16px;
+  background:linear-gradient(90deg, rgba(201,162,77,0.1), rgba(110,20,35,0.12));
+  border:1px solid var(--gold-soft,rgba(201,162,77,0.4));border-radius:12px;cursor:pointer;
+}
+.server-teaser-icon{font-size:18px;}
+.server-teaser-text{flex:1;font-size:12.5px;color:var(--parchment);}
+.server-teaser-arrow{color:var(--gold);font-size:15px;}
+
+.pixai-server-cta{
+  display:flex;align-items:center;gap:10px;width:100%;margin-bottom:16px;padding:14px 18px;
+  background:linear-gradient(90deg, rgba(201,162,77,0.15), rgba(110,20,35,0.18));
+  border:1px solid var(--gold);border-radius:14px;cursor:pointer;text-align:left;
+}
+.pixai-server-cta-icon{font-size:22px;}
+.pixai-server-cta-text{flex:1;font-family:'Cinzel Decorative',serif;font-size:14px;color:var(--gold-bright);}
+.pixai-server-cta-arrow{color:var(--gold);font-size:17px;}
+
 .server-rail-row{display:flex;gap:10px;overflow-x:auto;padding-bottom:6px;margin-bottom:18px;}
 .server-rail-icon{
   width:44px;height:44px;border-radius:50%;flex-shrink:0;
