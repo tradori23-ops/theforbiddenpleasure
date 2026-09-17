@@ -738,6 +738,16 @@ body.theme-light .hero-bg::after{
 /* ============ SERVER (dentro Community) ============ */
 .community-tab-highlight{border-color:var(--gold);background:rgba(201,162,77,0.1);color:var(--gold-bright);display:inline-flex;align-items:center;gap:6px;}
 .tab-new-badge{background:var(--wine);color:var(--parchment);font-size:8px;letter-spacing:.04em;text-transform:uppercase;border-radius:20px;padding:2px 6px;}
+.dms-link{
+  display:flex;align-items:center;gap:10px;margin-bottom:16px;padding:11px 16px;
+  background:linear-gradient(90deg, rgba(201,162,77,0.1), rgba(110,20,35,0.12));
+  border:1px solid var(--gold-soft,rgba(201,162,77,0.4));border-radius:12px;
+  text-decoration:none;color:var(--parchment);
+}
+.dms-link-icon{font-size:18px;}
+.dms-link-text{flex:1;font-size:12.5px;}
+.dms-link-arrow{color:var(--gold);font-size:15px;}
+
 .server-teaser{
   display:flex;align-items:center;gap:10px;margin-bottom:18px;padding:11px 16px;
   background:linear-gradient(90deg, rgba(201,162,77,0.1), rgba(110,20,35,0.12));
@@ -1298,6 +1308,27 @@ footer .fcopy{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
 .user-directory-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
 .user-directory-dot.online{background:#3fae54;}
 .user-directory-dot.offline{background:#a89a82;}
+/* ============ RIGA AMICO (tab Amici, "I tuoi amici") ============ */
+.friend-contact-row{
+  display:flex;align-items:center;gap:12px;padding:10px 0;
+  border-bottom:1px solid var(--line);cursor:pointer;
+}
+.friend-contact-avatar-wrap{position:relative;flex-shrink:0;width:40px;height:40px;}
+.friend-contact-avatar{
+  width:40px;height:40px;border-radius:50%;object-fit:cover;display:block;
+  background:linear-gradient(135deg,var(--wine),var(--wine-deep));
+}
+.friend-contact-dot{
+  position:absolute;bottom:0;right:0;width:11px;height:11px;border-radius:50%;
+  border:2px solid var(--void-2);
+}
+.friend-contact-dot.online{background:var(--verdigris);}
+.friend-contact-dot.offline{background:#5a4d44;}
+.friend-contact-info{flex:1;min-width:0;display:flex;flex-direction:column;}
+.friend-contact-name{font-size:13px;color:var(--parchment);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.friend-contact-status{font-family:'Space Mono',monospace;font-size:10.5px;color:var(--parchment-dim);margin-top:2px;}
+.friend-contact-invite{flex-shrink:0;}
+
 .user-directory-avatar-wrap{position:relative;flex-shrink:0;width:32px;height:32px;}
 .user-directory-avatar{
   width:32px;height:32px;border-radius:50%;object-fit:cover;
