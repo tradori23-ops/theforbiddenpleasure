@@ -439,7 +439,7 @@ body.theme-light .hero-bg::after{
 }
 .filter-chip.active{border-color:var(--gold);color:var(--gold-bright);background:rgba(212,98,47,0.12);}
 .filter-chip:hover{border-color:var(--gold);color:var(--gold-bright);}
-.catalog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:18px;margin-top:28px;}
+.catalog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;margin-top:28px;}
 .card-idx{
   border:1px solid var(--line);background:var(--void-2);
   display:flex;flex-direction:column;
@@ -606,8 +606,57 @@ body.theme-light .hero-bg::after{
 }
 .dossier-goto:hover{background:rgba(201,162,77,0.1);}
 .dossier-shelf-empty{font-family:'Space Mono',monospace;font-size:12px;color:var(--parchment-dim);padding:14px 0;}
-.shelf-row{display:flex;gap:14px;overflow-x:auto;padding-bottom:4px;}
-.shelf-row .card-idx{flex:0 0 160px;}
+/* Schedario: raggruppamento per collana — griglia a capo, come una libreria */
+.catalog-shelf{margin-bottom:32px;}
+.shelf-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--line);}
+.shelf-eyebrow{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);}
+.shelf-title{font-family:'Cinzel Decorative',serif;font-size:18px;color:var(--gold-bright);margin-top:2px;}
+.shelf-count{font-family:'Space Mono',monospace;font-size:12px;color:var(--parchment-dim);}
+.shelf-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;}
+.shelf-row .card-idx{width:auto;}
+
+/* Dossier: la striscia di titoli sotto il manoscritto resta a scorrimento orizzontale */
+#dossierCharShelf.shelf-row{display:flex;gap:14px;overflow-x:auto;padding-bottom:4px;grid-template-columns:none;}
+#dossierCharShelf.shelf-row .card-idx{flex:0 0 140px;width:140px;}
+
+/* ============ PROFILO PUBBLICO — layout "stile Facebook" (mai avuto CSS) ============ */
+.profile-layout-fb{max-width:600px;margin:0 auto;}
+.profile-fb-banner-wrap{position:relative;height:180px;border-radius:16px 16px 0 0;overflow:hidden;background:linear-gradient(135deg,var(--wine),var(--wine-deep));}
+.profile-fb-banner{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.profile-fb-avatar{
+  position:absolute;left:20px;bottom:-38px;width:86px;height:86px;border-radius:50%;
+  object-fit:cover;border:3px solid var(--void);background:var(--wine-deep);
+}
+.profile-fb-headrow{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:48px 20px 0;}
+.profile-fb-headrow-info h2{font-family:'Cinzel Decorative',serif;font-size:19px;color:var(--gold-bright);margin:0 0 4px;}
+.profile-fb-stats{display:flex;gap:18px;padding:14px 20px;font-family:'Space Mono',monospace;font-size:12px;color:var(--parchment-dim);flex-wrap:wrap;}
+.profile-fb-stats b{color:var(--gold);}
+.profile-fb-tabs{display:flex;gap:8px;padding:0 20px 16px;border-bottom:1px solid var(--line);flex-wrap:wrap;}
+.profile-fb-tab{
+  background:none;border:1px solid var(--line);border-radius:20px;cursor:pointer;
+  padding:8px 16px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.05em;text-transform:uppercase;
+  color:var(--parchment-dim);
+}
+.profile-fb-tab.active{background:rgba(201,162,77,0.1);border-color:var(--gold);color:var(--gold-bright);}
+.profile-fb-panel{display:none;padding:20px;}
+.profile-fb-panel.active{display:block;}
+.pub-profile-bio,.pub-profile-meta,.pub-profile-social-pill{color:var(--parchment-dim);}
+.pub-profile-bio{padding:0 20px;}
+.pub-profile-socials,.pub-profile-favs{padding:0 20px;}
+.pub-profile-social-pill{border-color:var(--gold-soft,rgba(201,162,77,0.4));color:var(--parchment);}
+.pub-profile-fav-tag{border-color:var(--gold-soft,rgba(201,162,77,0.4));color:var(--gold);}
+
+/* ============ SUPPORT — card donazioni (banner + testo + bottoni) ============ */
+.support-card{
+  border:1px solid var(--line);background:var(--void-2);border-radius:16px;overflow:hidden;
+}
+.support-banner-img{width:100%;max-height:220px;object-fit:cover;display:block;}
+.support-card-body{padding:26px;}
+.support-eyebrow{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+.support-heading{font-family:'Cinzel Decorative',serif;font-size:22px;color:var(--gold-bright);margin:0 0 12px;}
+.support-desc{font-size:14px;line-height:1.7;color:var(--parchment-dim);max-width:560px;}
+.support-btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px;}
+.support-note{margin-top:14px;font-size:11px;color:var(--parchment-dim);}
 
 /* ============ COMMUNITY — tab a pillola ============ */
 .community-tabs{border-bottom:none;gap:8px;}

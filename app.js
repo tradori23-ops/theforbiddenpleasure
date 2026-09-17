@@ -12349,6 +12349,22 @@ function __appInit(){
     }
   });
 
+  // Tab del profilo pubblico (diario/titoli/preferiti/instagram) — markup già
+  // presente in profile.html, mai avuto un click handler prima d'ora.
+  var profileTabsBox = document.getElementById('profileTabs');
+  if(profileTabsBox){
+    var pTabs = profileTabsBox.querySelectorAll('.profile-fb-tab');
+    var pPanels = document.querySelectorAll('.profile-fb-panel');
+    function switchProfileFbTab(name){
+      pTabs.forEach(function(b){ b.classList.toggle('active', b.dataset.ptab === name); });
+      pPanels.forEach(function(p){ p.classList.toggle('active', p.dataset.ppanel === name); });
+    }
+    pTabs.forEach(function(btn){
+      btn.addEventListener('click', function(){ switchProfileFbTab(btn.dataset.ptab); });
+    });
+    switchProfileFbTab('diary'); // tab di default, coerente con la classe "active" già sul bottone Diario
+  }
+
   document.querySelectorAll('.community-tab').forEach(function(btn){
     btn.addEventListener('click', function(){ switchCommunityTab(btn.dataset.ctab); });
   });
