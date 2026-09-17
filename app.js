@@ -6595,6 +6595,7 @@ function initChatPage(){
   var params = new URLSearchParams(window.location.search);
   var otherUserId = params.get('user');
   if(!otherUserId){
+    document.getElementById('chatBox').classList.remove('hidden');
     setChatMobileView('list');
     return;
   }
@@ -7505,7 +7506,7 @@ function renderFriendContactList(friendsBox, accepted, uid){
       if(profiles.length === 0){ friendsBox.innerHTML = '<p class="form-note">' + t('mod.empty') + '</p>'; return; }
       profiles.forEach(function(p){
         var online = isOnlineSince(p.last_seen);
-        var name = p.display_name || t('userDir.title');
+        var name = p.display_name || t('notif.someone');
         var row = document.createElement('div');
         row.className = 'friend-contact-row';
         row.innerHTML =
@@ -7693,7 +7694,7 @@ function toggleFollow(otherUserId, btnEl){
 
 /* ============ CONTATTI (hub Scopri / Amici / Richieste, stile pillola moderno) ============ */
 var contattiWired = false;
-var contattiActiveTab = 'scopri';
+var contattiActiveTab = 'amici';
 var contattiSearchDebounce = null;
 
 function switchContattiTab(tab){
