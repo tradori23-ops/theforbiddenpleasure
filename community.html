@@ -45,6 +45,7 @@
     <div class="community-tabs">
       <button type="button" class="community-tab active" data-ctab="channels" data-i18n="community.tabChannels">Canali</button>
       <button type="button" class="community-tab community-tab-highlight" data-ctab="servers"><span data-i18n="servers.tab">Server</span><span class="tab-new-badge" data-i18n="servers.newBadge">Nuovo</span></button>
+      <button type="button" class="community-tab" data-ctab="events" data-i18n="events.tab">Eventi</button>
       <button type="button" class="community-tab" data-ctab="friends" data-i18n="community.tabFriends">Amici</button>
       <button type="button" class="community-tab" data-ctab="collab" data-i18n="community.tabCollab">Collaboratori</button>
       <button type="button" class="community-tab" data-ctab="diary" data-i18n="diary.tab">Diario</button>
@@ -61,6 +62,15 @@
       <div class="server-rail-row" id="serverRailRow"></div>
       <div id="serverEmptyState" class="hidden"><p class="form-note" data-i18n="servers.empty">Nessun server ancora — torna a trovarci presto.</p></div>
       <div id="serverDetailBox"></div>
+    </div>
+
+    <!-- EVENTI: fiere, cinema, incontri — countdown finché non è passata la
+         data, poi resta solo la traccia di chi ha partecipato. -->
+    <div class="community-panel hidden" data-cpanel="events">
+      <div class="sec-eyebrow" data-i18n="events.upcomingLabel">In arrivo</div>
+      <div id="eventsUpcomingList"></div>
+      <div class="sec-eyebrow" style="margin-top:22px;" data-i18n="events.pastLabel">Passati — traccia</div>
+      <div id="eventsPastList"></div>
     </div>
 
     <!-- DIARIO: foto / stati d'animo / note pubblicate dagli utenti -->
