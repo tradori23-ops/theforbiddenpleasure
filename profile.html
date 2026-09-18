@@ -37,10 +37,10 @@
     <div id="profileLayout" class="profile-layout-fb hidden">
       <div class="profile-fb-banner-wrap">
         <img id="pubProfileBanner" class="profile-fb-banner" alt="" src="">
-        <img id="pubProfileAvatar" class="profile-fb-avatar" alt="" src="">
       </div>
 
       <div class="profile-fb-headrow">
+        <img id="pubProfileAvatar" class="profile-fb-avatar" alt="" src="">
         <div class="profile-fb-headrow-info">
           <h2 id="pubProfileName">—</h2>
           <div id="pubProfileMeta" class="pub-profile-meta"></div>
@@ -60,9 +60,29 @@
 
       <div class="profile-fb-tabs" id="profileTabs">
         <button type="button" class="profile-fb-tab active" data-ptab="diary" data-i18n="diary.tab">Diario</button>
+        <button type="button" class="profile-fb-tab" data-ptab="photos" data-i18n="profile.photosTab">Foto</button>
+        <button type="button" class="profile-fb-tab" data-ptab="videos" data-i18n="profile.videosTab">Video</button>
         <button type="button" class="profile-fb-tab" data-ptab="titles" data-i18n="pubProfile.titlesHeading">Titoli pubblicati</button>
         <button type="button" class="profile-fb-tab" data-ptab="favorites" data-i18n="pubProfile.favoritesHeading">Preferiti</button>
         <button type="button" class="profile-fb-tab hidden" id="profileInstagramTabBtn" data-ptab="instagram" data-i18n="profile.instagramHeading">Instagram</button>
+      </div>
+
+      <div class="profile-fb-panel hidden" data-ppanel="photos">
+        <div id="profilePhotosUpload" class="profile-gallery-upload hidden">
+          <input type="file" id="fProfilePhotoUpload" accept="image/*">
+          <button type="button" class="btn btn-ghost btn-sm" id="btnAddProfilePhoto" data-i18n="profile.addPhoto">+ Aggiungi foto</button>
+        </div>
+        <div class="form-error" id="profilePhotoError"></div>
+        <div id="profilePhotosGrid" class="profile-photo-grid"></div>
+      </div>
+
+      <div class="profile-fb-panel hidden" data-ppanel="videos">
+        <div id="profileVideosAdd" class="profile-video-add hidden">
+          <input type="text" id="fProfileVideoUrl" data-i18n-placeholder="profile.videoUrlPh" placeholder="Incolla un link YouTube o Vimeo…">
+          <button type="button" class="btn btn-ghost btn-sm" id="btnAddProfileVideo" data-i18n="profile.addVideo">Aggiungi</button>
+        </div>
+        <div class="form-error" id="profileVideoError"></div>
+        <div id="profileVideosList"></div>
       </div>
 
       <div class="profile-fb-panel" data-ppanel="diary">

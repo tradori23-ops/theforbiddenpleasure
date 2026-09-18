@@ -46,7 +46,7 @@ var STR = {
     "profile.title":"Il mio profilo","profile.sub":"Visibile agli altri quando commenti",
     "profile.displayName":"Nome visibile","profile.bio":"Bio (opzionale)","profile.favChars":"Personaggi preferiti","profile.createLabel":"Crea contenuti","profile.createHint":"Scegli il sigillo per cui vuoi pubblicare — ti porta al modulo giusto già pronto.",
     "profile.avatarHd":"Foto profilo HD (opzionale)","profile.avatarHdHint":"Mostrata a piena risoluzione a chi tocca il tuo avatar. Se non la carichi, si vede la foto normale.",
-    "profile.banner":"Banner del profilo (opzionale)","profile.socials":"I tuoi social (opzionali)","profile.website":"Sito web","pubProfile.favoritesHeading":"Preferiti",
+    "profile.banner":"Banner del profilo (opzionale)","profile.socials":"I tuoi social (opzionali)","profile.website":"Sito web","pubProfile.favoritesHeading":"Preferiti","profile.photosTab":"Foto","profile.videosTab":"Video","profile.addPhoto":"+ Aggiungi foto","profile.noPhotos":"Nessuna foto ancora.","profile.photoError":"Caricamento non riuscito. Riprova.","profile.deletePhotoConfirm":"Eliminare questa foto?","profile.addVideo":"Aggiungi","profile.noVideos":"Nessun video ancora.","profile.videoUrlPh":"Incolla un link YouTube o Vimeo…","profile.videoUrlError":"Link non valido — usa un link YouTube o Vimeo.","profile.deleteVideo":"Elimina",
     "push.enable":"Attiva notifiche","push.enabled":"Notifiche attive","push.unsupported":"Il tuo browser non supporta le notifiche push.","push.denied":"Permesso negato — puoi attivarle di nuovo dalle impostazioni del browser.","push.error":"Non è stato possibile attivare le notifiche, riprova.","push.errorShort":"Errore, riprova","push.installFirst":"Installa per notifiche","push.installFirstLong":"Su iPhone/iPad le notifiche funzionano solo dopo aver installato il sito: tocca Condividi → Aggiungi a Home, poi apri l'app da lì e riprova.",
     "profile.birthDate":"Data di nascita","profile.gender":"Sesso","profile.genderUnset":"— Preferisco non dirlo —","profile.genderM":"Maschio","profile.genderF":"Femmina","profile.genderX":"Altro","profile.avatarInfoEmpty":"Nessuna informazione aggiuntiva condivisa",
     "profile.save":"Salva profilo","profile.saveError":"Salvataggio non riuscito. Riprova.",
@@ -170,7 +170,7 @@ var STR = {
     "profile.title":"My profile","profile.sub":"Visible to others when you comment",
     "profile.displayName":"Display name","profile.bio":"Bio (optional)","profile.favChars":"Favorite characters","profile.createLabel":"Create content","profile.createHint":"Pick the seal you want to publish for — it takes you straight to the right form.",
     "profile.avatarHd":"HD profile photo (optional)","profile.avatarHdHint":"Shown at full resolution to whoever taps your avatar. If you don't upload one, your regular photo is shown.",
-    "profile.banner":"Profile banner (optional)","profile.socials":"Your socials (optional)","profile.website":"Website","pubProfile.favoritesHeading":"Favorites",
+    "profile.banner":"Profile banner (optional)","profile.socials":"Your socials (optional)","profile.website":"Website","pubProfile.favoritesHeading":"Favorites","profile.photosTab":"Photos","profile.videosTab":"Videos","profile.addPhoto":"+ Add photo","profile.noPhotos":"No photos yet.","profile.photoError":"Upload failed. Try again.","profile.deletePhotoConfirm":"Delete this photo?","profile.addVideo":"Add","profile.noVideos":"No videos yet.","profile.videoUrlPh":"Paste a YouTube or Vimeo link…","profile.videoUrlError":"Invalid link — use a YouTube or Vimeo link.","profile.deleteVideo":"Delete",
     "push.enable":"Enable notifications","push.enabled":"Notifications on","push.unsupported":"Your browser doesn't support push notifications.","push.denied":"Permission denied — you can re-enable it from your browser settings.","push.error":"Couldn't enable notifications, try again.","push.errorShort":"Error, retry","push.installFirst":"Install for notifications","push.installFirstLong":"On iPhone/iPad, notifications only work after installing the site: tap Share → Add to Home Screen, then open the app from there and try again.",
     "profile.birthDate":"Birth date","profile.gender":"Gender","profile.genderUnset":"— Prefer not to say —","profile.genderM":"Male","profile.genderF":"Female","profile.genderX":"Other","profile.avatarInfoEmpty":"No additional information shared",
     "profile.save":"Save profile","profile.saveError":"Save failed. Try again.",
@@ -294,7 +294,7 @@ var STR = {
     "profile.title":"Mi perfil","profile.sub":"Visible para otros cuando comentas",
     "profile.displayName":"Nombre visible","profile.bio":"Bio (opcional)","profile.favChars":"Personajes favoritos","profile.createLabel":"Crear contenido","profile.createHint":"Elige el sello para el que quieres publicar — te lleva directo al formulario correcto.",
     "profile.avatarHd":"Foto de perfil HD (opcional)","profile.avatarHdHint":"Se muestra a resolución completa a quien toque tu avatar. Si no la subes, se ve la foto normal.",
-    "profile.banner":"Banner del perfil (opcional)","profile.socials":"Tus redes sociales (opcional)","profile.website":"Sitio web","pubProfile.favoritesHeading":"Favoritos",
+    "profile.banner":"Banner del perfil (opcional)","profile.socials":"Tus redes sociales (opcional)","profile.website":"Sitio web","pubProfile.favoritesHeading":"Favoritos","profile.photosTab":"Fotos","profile.videosTab":"Videos","profile.addPhoto":"+ Añadir foto","profile.noPhotos":"Aún no hay fotos.","profile.photoError":"Error al subir. Inténtalo de nuevo.","profile.deletePhotoConfirm":"¿Eliminar esta foto?","profile.addVideo":"Añadir","profile.noVideos":"Aún no hay videos.","profile.videoUrlPh":"Pega un enlace de YouTube o Vimeo…","profile.videoUrlError":"Enlace no válido — usa un enlace de YouTube o Vimeo.","profile.deleteVideo":"Eliminar",
     "push.enable":"Activar notificaciones","push.enabled":"Notificaciones activas","push.unsupported":"Tu navegador no admite notificaciones push.","push.denied":"Permiso denegado — puedes activarlas de nuevo desde los ajustes del navegador.","push.error":"No se pudieron activar las notificaciones, inténtalo de nuevo.","push.errorShort":"Error, reinténtalo","push.installFirst":"Instala para notificaciones","push.installFirstLong":"En iPhone/iPad, las notificaciones solo funcionan tras instalar el sitio: toca Compartir → Añadir a inicio, luego abre la app desde ahí e inténtalo de nuevo.",
     "profile.birthDate":"Fecha de nacimiento","profile.gender":"Sexo","profile.genderUnset":"— Prefiero no decirlo —","profile.genderM":"Masculino","profile.genderF":"Femenino","profile.genderX":"Otro","profile.avatarInfoEmpty":"No se ha compartido información adicional",
     "profile.save":"Guardar perfil","profile.saveError":"Error al guardar. Inténtalo de nuevo.",
@@ -418,7 +418,7 @@ var STR = {
     "profile.title":"Mon profil","profile.sub":"Visible par les autres quand vous commentez",
     "profile.displayName":"Nom affiché","profile.bio":"Bio (facultatif)","profile.favChars":"Personnages préférés","profile.createLabel":"Créer du contenu","profile.createHint":"Choisis le sceau pour lequel publier — direction le bon formulaire.",
     "profile.avatarHd":"Photo de profil HD (facultatif)","profile.avatarHdHint":"Affichée en pleine résolution à quiconque touche votre avatar. Si vous n'en téléchargez pas, la photo normale s'affiche.",
-    "profile.banner":"Bannière du profil (facultatif)","profile.socials":"Vos réseaux sociaux (facultatif)","profile.website":"Site web","pubProfile.favoritesHeading":"Favoris",
+    "profile.banner":"Bannière du profil (facultatif)","profile.socials":"Vos réseaux sociaux (facultatif)","profile.website":"Site web","pubProfile.favoritesHeading":"Favoris","profile.photosTab":"Photos","profile.videosTab":"Vidéos","profile.addPhoto":"+ Ajouter une photo","profile.noPhotos":"Aucune photo pour l'instant.","profile.photoError":"Échec de l'envoi. Réessayez.","profile.deletePhotoConfirm":"Supprimer cette photo ?","profile.addVideo":"Ajouter","profile.noVideos":"Aucune vidéo pour l'instant.","profile.videoUrlPh":"Collez un lien YouTube ou Vimeo…","profile.videoUrlError":"Lien invalide — utilisez un lien YouTube ou Vimeo.","profile.deleteVideo":"Supprimer",
     "push.enable":"Activer les notifications","push.enabled":"Notifications activées","push.unsupported":"Votre navigateur ne prend pas en charge les notifications push.","push.denied":"Permission refusée — vous pouvez la réactiver dans les paramètres du navigateur.","push.error":"Impossible d'activer les notifications, réessayez.","push.errorShort":"Erreur, réessayez","push.installFirst":"Installer pour les notifications","push.installFirstLong":"Sur iPhone/iPad, les notifications ne fonctionnent qu'après avoir installé le site : appuyez sur Partager → Sur l'écran d'accueil, puis ouvrez l'app depuis là et réessayez.",
     "profile.birthDate":"Date de naissance","profile.gender":"Sexe","profile.genderUnset":"— Je préfère ne pas le dire —","profile.genderM":"Homme","profile.genderF":"Femme","profile.genderX":"Autre","profile.avatarInfoEmpty":"Aucune information supplémentaire partagée",
     "profile.save":"Enregistrer le profil","profile.saveError":"Échec de l'enregistrement. Réessayez.",
@@ -542,7 +542,7 @@ var STR = {
     "profile.title":"Mein Profil","profile.sub":"Für andere sichtbar, wenn du kommentierst",
     "profile.displayName":"Anzeigename","profile.bio":"Bio (optional)","profile.favChars":"Lieblingscharaktere","profile.createLabel":"Inhalte erstellen","profile.createHint":"Wähle das Siegel, für das du veröffentlichen willst — es geht direkt zum richtigen Formular.",
     "profile.avatarHd":"HD-Profilbild (optional)","profile.avatarHdHint":"Wird in voller Auflösung angezeigt, wenn jemand auf dein Avatar tippt. Wenn du keins hochlädst, wird das normale Foto angezeigt.",
-    "profile.banner":"Profil-Banner (optional)","profile.socials":"Deine Social-Media-Profile (optional)","profile.website":"Webseite","pubProfile.favoritesHeading":"Favoriten",
+    "profile.banner":"Profil-Banner (optional)","profile.socials":"Deine Social-Media-Profile (optional)","profile.website":"Webseite","pubProfile.favoritesHeading":"Favoriten","profile.photosTab":"Fotos","profile.videosTab":"Videos","profile.addPhoto":"+ Foto hinzufügen","profile.noPhotos":"Noch keine Fotos.","profile.photoError":"Hochladen fehlgeschlagen. Erneut versuchen.","profile.deletePhotoConfirm":"Dieses Foto löschen?","profile.addVideo":"Hinzufügen","profile.noVideos":"Noch keine Videos.","profile.videoUrlPh":"YouTube- oder Vimeo-Link einfügen…","profile.videoUrlError":"Ungültiger Link — verwende einen YouTube- oder Vimeo-Link.","profile.deleteVideo":"Löschen",
     "push.enable":"Benachrichtigungen aktivieren","push.enabled":"Benachrichtigungen an","push.unsupported":"Dein Browser unterstützt keine Push-Benachrichtigungen.","push.denied":"Erlaubnis verweigert — du kannst sie in den Browsereinstellungen wieder aktivieren.","push.error":"Benachrichtigungen konnten nicht aktiviert werden, versuch es erneut.","push.errorShort":"Fehler, erneut versuchen","push.installFirst":"Installieren für Benachrichtigungen","push.installFirstLong":"Auf iPhone/iPad funktionieren Benachrichtigungen erst nach der Installation der Seite: Tippe auf Teilen → Zum Home-Bildschirm, öffne die App von dort und versuch es erneut.",
     "profile.birthDate":"Geburtsdatum","profile.gender":"Geschlecht","profile.genderUnset":"— Möchte ich nicht angeben —","profile.genderM":"Männlich","profile.genderF":"Weiblich","profile.genderX":"Andere","profile.avatarInfoEmpty":"Keine zusätzlichen Informationen geteilt",
     "profile.save":"Profil speichern","profile.saveError":"Speichern fehlgeschlagen. Erneut versuchen.",
@@ -6529,6 +6529,13 @@ function showProfileContent(userId, p){
   renderProfileTitles(userId);
   renderProfileFavorites(userId);
   loadDiaryFeed('profileDiaryFeed', userId);
+  renderProfilePhotos(userId);
+  renderProfileVideos(userId);
+  var isOwn = isSignedIn() && currentUserId() === userId;
+  var uploadBox = document.getElementById('profilePhotosUpload');
+  if(uploadBox) uploadBox.classList.toggle('hidden', !isOwn);
+  var videoAddBox = document.getElementById('profileVideosAdd');
+  if(videoAddBox) videoAddBox.classList.toggle('hidden', !isOwn);
 }
 
 function trackProfileView(viewedUserId){
@@ -6598,6 +6605,150 @@ function renderProfileFavorites(userId){
       });
     })
     .catch(function(e){ console.warn('Profile favorites load failed:', e); box.classList.add('hidden'); });
+}
+
+/* ============ GALLERIA FOTO del profilo (upload vero, stesso schema di sicurezza degli avatar) ============ */
+function renderProfilePhotos(userId){
+  var grid = document.getElementById('profilePhotosGrid');
+  if(!grid) return;
+  var isOwn = isSignedIn() && currentUserId() === userId;
+  grid.innerHTML = '<p class="form-note">…</p>';
+  fetch(SUPABASE_URL + '/rest/v1/profile_photos?user_id=eq.' + encodeURIComponent(userId) + '&select=*&order=created_at.desc', { headers: communityHeaders() })
+    .then(function(r){ return r.ok ? r.json() : []; })
+    .then(function(rows){
+      grid.innerHTML = '';
+      if(rows.length === 0){ grid.innerHTML = '<p class="form-note">' + t('profile.noPhotos') + '</p>'; return; }
+      rows.forEach(function(photo){
+        var item = document.createElement('div');
+        item.className = 'profile-photo-item';
+        item.innerHTML = '<img src="' + escapeHtml(photo.image_url) + '" alt="">' +
+          (isOwn ? '<button type="button" class="profile-photo-remove" data-del-photo="' + photo.id + '">✕</button>' : '');
+        item.querySelector('img').addEventListener('click', function(){ openImageLightbox(photo.image_url); });
+        var delBtn = item.querySelector('[data-del-photo]');
+        if(delBtn) delBtn.addEventListener('click', function(e){
+          e.stopPropagation();
+          deleteProfilePhoto(photo.id, userId);
+        });
+        grid.appendChild(item);
+      });
+    })
+    .catch(function(e){ grid.innerHTML = ''; console.warn('Profile photos load failed:', e); });
+}
+
+function uploadProfilePhoto(){
+  var fileInput = document.getElementById('fProfilePhotoUpload');
+  var errEl = document.getElementById('profilePhotoError');
+  var file = fileInput.files[0];
+  errEl.textContent = '';
+  if(!file){ errEl.textContent = t('err.required'); return; }
+  var session = getSession();
+  if(!session) return;
+  var uid = currentUserId();
+  compressImageFile(file, 1600, 0.88).then(function(compressed){
+    var ext = (compressed.type && compressed.type.split('/')[1]) || 'jpg';
+    var path = uid + '/' + Date.now() + '_' + Math.random().toString(36).slice(2,8) + '.' + ext;
+    return fetch(SUPABASE_URL + '/storage/v1/object/profile-gallery/' + path, {
+      method:'POST',
+      headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type': compressed.type || 'image/jpeg' },
+      body: compressed
+    }).then(function(r){
+      if(!r.ok) throw new Error('upload foto fallito: ' + r.status);
+      return SUPABASE_URL + '/storage/v1/object/public/profile-gallery/' + path;
+    });
+  }).then(function(imageUrl){
+    return fetch(SUPABASE_URL + '/rest/v1/profile_photos', {
+      method:'POST',
+      headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
+      body: JSON.stringify({ user_id: uid, image_url: imageUrl })
+    });
+  }).then(function(r){
+    if(!r.ok) throw new Error('salvataggio foto fallito: ' + r.status);
+    fileInput.value = '';
+    renderProfilePhotos(uid);
+  }).catch(function(err){
+    console.warn('Upload foto profilo fallito:', err);
+    errEl.textContent = t('profile.photoError');
+  });
+}
+
+function deleteProfilePhoto(id, userId){
+  var session = getSession();
+  if(!session) return;
+  if(!confirm(t('profile.deletePhotoConfirm'))) return;
+  fetch(SUPABASE_URL + '/rest/v1/profile_photos?id=eq.' + encodeURIComponent(id), {
+    method:'DELETE',
+    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
+  }).then(function(){ renderProfilePhotos(userId); });
+}
+
+/* ============ VIDEO del profilo (link incorporato YouTube/Vimeo, nessun file caricato) ============ */
+function extractVideoEmbedUrl(url){
+  url = (url || '').trim();
+  var yt = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/shorts\/)([a-zA-Z0-9_-]{6,})/);
+  if(yt) return 'https://www.youtube.com/embed/' + yt[1];
+  var vimeo = url.match(/vimeo\.com\/(\d+)/);
+  if(vimeo) return 'https://player.vimeo.com/video/' + vimeo[1];
+  return null;
+}
+
+function renderProfileVideos(userId){
+  var list = document.getElementById('profileVideosList');
+  if(!list) return;
+  var isOwn = isSignedIn() && currentUserId() === userId;
+  list.innerHTML = '<p class="form-note">…</p>';
+  fetch(SUPABASE_URL + '/rest/v1/profile_videos?user_id=eq.' + encodeURIComponent(userId) + '&select=*&order=created_at.desc', { headers: communityHeaders() })
+    .then(function(r){ return r.ok ? r.json() : []; })
+    .then(function(rows){
+      list.innerHTML = '';
+      if(rows.length === 0){ list.innerHTML = '<p class="form-note">' + t('profile.noVideos') + '</p>'; return; }
+      rows.forEach(function(video){
+        var embedUrl = extractVideoEmbedUrl(video.video_url);
+        if(!embedUrl) return;
+        var card = document.createElement('div');
+        card.className = 'profile-video-card';
+        card.innerHTML =
+          '<iframe src="' + escapeHtml(embedUrl) + '" allowfullscreen loading="lazy"></iframe>' +
+          '<div class="cap"><span>' + escapeHtml(video.caption || '') + '</span>' +
+          (isOwn ? '<button type="button" class="btn btn-sm btn-ghost" data-del-video="' + video.id + '">' + t('profile.deleteVideo') + '</button>' : '') +
+          '</div>';
+        var delBtn = card.querySelector('[data-del-video]');
+        if(delBtn) delBtn.addEventListener('click', function(){ deleteProfileVideo(video.id, userId); });
+        list.appendChild(card);
+      });
+    })
+    .catch(function(e){ list.innerHTML = ''; console.warn('Profile videos load failed:', e); });
+}
+
+function addProfileVideo(){
+  var input = document.getElementById('fProfileVideoUrl');
+  var errEl = document.getElementById('profileVideoError');
+  errEl.textContent = '';
+  var embedUrl = extractVideoEmbedUrl(input.value);
+  if(!embedUrl){ errEl.textContent = t('profile.videoUrlError'); return; }
+  var session = getSession();
+  if(!session) return;
+  var uid = currentUserId();
+  fetch(SUPABASE_URL + '/rest/v1/profile_videos', {
+    method:'POST',
+    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
+    body: JSON.stringify({ user_id: uid, video_url: input.value.trim() })
+  }).then(function(r){
+    if(!r.ok) throw new Error('salvataggio video fallito: ' + r.status);
+    input.value = '';
+    renderProfileVideos(uid);
+  }).catch(function(err){
+    console.warn('Aggiunta video profilo fallita:', err);
+    errEl.textContent = t('profile.videoUrlError');
+  });
+}
+
+function deleteProfileVideo(id, userId){
+  var session = getSession();
+  if(!session) return;
+  fetch(SUPABASE_URL + '/rest/v1/profile_videos?id=eq.' + encodeURIComponent(id), {
+    method:'DELETE',
+    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
+  }).then(function(){ renderProfileVideos(userId); });
 }
 
 /* ============ CHAT DEDICATA (chat.html?user=<id>) — fuori da Community ============ */
@@ -13365,6 +13516,8 @@ function __appInit(){
     document.getElementById('profileAvatarImg').style.opacity = '1';
   });
   document.getElementById('btnSaveProfile') && document.getElementById('btnSaveProfile').addEventListener('click', saveProfile);
+  document.getElementById('btnAddProfilePhoto') && document.getElementById('btnAddProfilePhoto').addEventListener('click', uploadProfilePhoto);
+  document.getElementById('btnAddProfileVideo') && document.getElementById('btnAddProfileVideo').addEventListener('click', addProfileVideo);
   document.getElementById('btnSubmitRequest') && document.getElementById('btnSubmitRequest').addEventListener('click', submitRequest);
   document.getElementById('btnAddAnnouncement') && document.getElementById('btnAddAnnouncement').addEventListener('click', handleAddAnnouncement);
   document.getElementById('fAnnImage') && document.getElementById('fAnnImage').addEventListener('change', function(e){
