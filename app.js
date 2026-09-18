@@ -5174,6 +5174,14 @@ var readingProgressMap = {}; // catalog_id -> last_page (0-based), solo titoli i
 /* ============ USER PROFILE (display name, bio, avatar, favorite characters) ============ */
 var currentProfile = null;
 
+// Il popup "Il mio profilo" è superato — la pagina profile.html a schermo
+// intero ha già tutto (stessi campi, dentro "Modifica profilo"), più
+// diario/foto/video/titoli che il popup non mostrava affatto.
+function goToOwnProfile(){
+  if(!isSignedIn()){ openAuth('login'); return; }
+  window.location.href = 'profile.html?user=' + encodeURIComponent(currentUserId());
+}
+
 function openProfileModal(){
   if(!isSignedIn()){ openAuth('login'); return; }
   var profileErrEl = document.getElementById('profileError');
@@ -13350,7 +13358,7 @@ function __appInit(){
 
   document.getElementById('newsletterForm') && document.getElementById('newsletterForm').addEventListener('submit', handleNewsletterSubmit);
 
-  document.getElementById('acctChip') && document.getElementById('acctChip').addEventListener('click', openProfileModal);
+  document.getElementById('acctChip') && document.getElementById('acctChip').addEventListener('click', goToOwnProfile);
 
   document.getElementById('btnNotifications') && document.getElementById('btnNotifications').addEventListener('click', function(e){
     e.stopPropagation();
