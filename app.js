@@ -6640,7 +6640,7 @@ function renderProfilePhotos(userId){
         grid.appendChild(item);
       });
     })
-    .catch(function(e){ grid.innerHTML = ''; console.warn('Profile photos load failed:', e); });
+    .catch(function(e){ grid.innerHTML = '<p class="form-note">' + t('community.loadError') + '</p>'; console.warn('Profile photos load failed:', e); });
 }
 
 function uploadProfilePhoto(){
@@ -6724,7 +6724,7 @@ function renderProfileVideos(userId){
         list.appendChild(card);
       });
     })
-    .catch(function(e){ list.innerHTML = ''; console.warn('Profile videos load failed:', e); });
+    .catch(function(e){ list.innerHTML = '<p class="form-note">' + t('community.loadError') + '</p>'; console.warn('Profile videos load failed:', e); });
 }
 
 function addProfileVideo(){
