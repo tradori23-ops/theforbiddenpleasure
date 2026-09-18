@@ -78,6 +78,7 @@
         <button class="admin-tab" data-tab="playlists">Playlist</button>
         <button class="admin-tab" data-tab="podcasts">Podcast</button>
         <button class="admin-tab" data-tab="servers">Server</button>
+        <button class="admin-tab" data-tab="events">Eventi</button>
         <button class="admin-tab" data-tab="users" data-i18n="admin.tab.users">Utenti</button>
         <button class="admin-tab" data-tab="maintenance" data-i18n="admin.tab.maintenance">Manutenzione</button>
         <button class="admin-tab" data-tab="moderation" data-i18n="admin.tab.moderation">Moderazione Community</button>
@@ -449,6 +450,43 @@
         <div class="notice">
           <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Server esistenti</div>
           <div id="adminServersList"></div>
+        </div>
+      </div>
+
+      <div class="admin-tab-panel hidden" data-tab-panel="events">
+        <div class="notice">
+          <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Nuovo evento</div>
+          <p style="color:var(--parchment-dim);font-size:13px;margin-bottom:14px;">Fiere, presentazioni, uscite al cinema — mostra un countdown finché non è passata la data, poi diventa solo una traccia di chi ha partecipato.</p>
+          <div class="admin-grid">
+            <div class="field" style="grid-column:1/-1">
+              <label>Titolo</label>
+              <input type="text" id="fEventTitle" maxlength="80" placeholder="Es. Lucca Comics & Games 2026">
+            </div>
+            <div class="field" style="grid-column:1/-1">
+              <label>Descrizione (opzionale)</label>
+              <textarea id="fEventDesc" rows="2" placeholder="Di cosa si tratta?"></textarea>
+            </div>
+            <div class="field">
+              <label>Luogo</label>
+              <input type="text" id="fEventLocation" maxlength="80" placeholder="Es. Lucca, Italia">
+            </div>
+            <div class="field">
+              <label>Data e ora</label>
+              <input type="datetime-local" id="fEventDate">
+            </div>
+            <div class="field" style="grid-column:1/-1">
+              <label>Immagine (opzionale)</label>
+              <input type="file" id="fEventImage" accept="image/*">
+            </div>
+          </div>
+          <div class="form-error" id="eventError"></div>
+          <div class="modal-actions">
+            <button class="btn btn-primary btn-sm" id="btnAddEvent">Crea evento</button>
+          </div>
+        </div>
+        <div class="notice">
+          <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Eventi esistenti</div>
+          <div id="adminEventsList"></div>
         </div>
       </div>
 
