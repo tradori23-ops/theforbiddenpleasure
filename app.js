@@ -13402,7 +13402,11 @@ function __appInit(){
     var pPanels = document.querySelectorAll('.profile-fb-panel');
     function switchProfileFbTab(name){
       pTabs.forEach(function(b){ b.classList.toggle('active', b.dataset.ptab === name); });
-      pPanels.forEach(function(p){ p.classList.toggle('active', p.dataset.ppanel === name); });
+      pPanels.forEach(function(p){
+        var isTarget = p.dataset.ppanel === name;
+        p.classList.toggle('active', isTarget);
+        p.classList.toggle('hidden', !isTarget); // "hidden" ha !important nel CSS: se resta lì, vince sempre su "active" — va tolta davvero, non solo ignorata
+      });
     }
     pTabs.forEach(function(btn){
       btn.addEventListener('click', function(){ switchProfileFbTab(btn.dataset.ptab); });
