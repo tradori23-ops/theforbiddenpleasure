@@ -5783,6 +5783,15 @@ function communityHeaders(){
 
 function switchCommunityTab(tab){
   if(tab !== 'servers'){ closeServerChannel(); stopServerLivePoll(); }
+  var commSection = document.getElementById('communitySection');
+  if(commSection) commSection.classList.toggle('srv-wide', tab === 'servers');
+  if(tab === 'servers' && window.matchMedia('(min-width:900px)').matches){
+    // su schermo grande i Server occupano tutto lo schermo sotto la barra: porta il pannello in cima
+    setTimeout(function(){
+      var shell = document.getElementById('srvShell');
+      if(shell) shell.scrollIntoView({ block:'start', behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+    }, 60);
+  }
   document.querySelectorAll('.community-tab').forEach(function(btn){
     btn.classList.toggle('active', btn.dataset.ctab === tab);
   });
@@ -6422,34 +6431,21 @@ document.addEventListener('keydown', function(e){
   }
 });
 
-var CHANNEL_EMOJIS = ['😊','😂','😍','🥳','😢','😡','🤩','😴','🔥','✨','🌙','🖤','💜','🎨','📖','👀','👍','👏','🙏','💀','🐍','🔮','⚡','🎉'];
 function initChannelComposerTools(){
   var tools = document.getElementById('channelFmtTools');
   var ta = document.getElementById('fChannelMessage');
-  var panel = document.getElementById('channelEmojiPanel');
-  if(!tools || !ta || !panel || tools.dataset.ready) return;
+  if(!tools || !ta || tools.dataset.ready) return;
   tools.dataset.ready = '1';
   var labels = { '**':'fmt.bold', '*':'fmt.italic', '~~':'fmt.strike', '`':'fmt.code', '||':'fmt.spoiler' };
   tools.querySelectorAll('button').forEach(function(b){
-    var key = b.dataset.fmt ? labels[b.dataset.fmt] : (b.hasAttribute('data-quote') ? 'fmt.quote' : 'fmt.emoji');
+    var key = b.dataset.fmt ? labels[b.dataset.fmt] : 'fmt.quote';
     b.setAttribute('aria-label', t(key)); b.title = t(key);
   });
-  function insertText(txt){
-    var s = ta.selectionStart, e = ta.selectionEnd;
-    ta.value = ta.value.slice(0, s) + txt + ta.value.slice(e);
-    ta.focus(); ta.selectionStart = ta.selectionEnd = s + txt.length;
-  }
   function wrapSel(m){
     var s = ta.selectionStart, e = ta.selectionEnd, sel = ta.value.slice(s, e);
     ta.value = ta.value.slice(0, s) + m + sel + m + ta.value.slice(e);
     ta.focus(); ta.selectionStart = s + m.length; ta.selectionEnd = s + m.length + sel.length;
   }
-  CHANNEL_EMOJIS.forEach(function(em){
-    var b = document.createElement('button');
-    b.type = 'button'; b.textContent = em;
-    b.addEventListener('click', function(){ insertText(em); });
-    panel.appendChild(b);
-  });
   tools.addEventListener('click', function(e){
     var b = e.target.closest('button'); if(!b) return;
     if(b.dataset.fmt){ wrapSel(b.dataset.fmt); }
@@ -6458,7 +6454,6 @@ function initChannelComposerTools(){
       ta.value = ta.value.slice(0, ls) + '> ' + ta.value.slice(ls);
       ta.focus();
     }
-    else if(b.id === 'channelEmojiBtn'){ panel.classList.toggle('hidden'); }
   });
 }
 
