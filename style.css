@@ -1821,3 +1821,9 @@ body.chat-fullscreen .chat-page::after{ display:none; }
   .srv-members .admin-actions:empty{display:none;}
   .srv-members .admin-actions button{font-size:10px;padding:5px 10px;}
 }
+
+
+/* ============ STANZA VOCALE con audio Daily ============ */
+.srv-call{height:min(56vh, 480px);min-height:300px;margin-top:8px;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#0e0e12;}
+.srv-voice-warn{margin-top:12px;padding:10px 12px;border:1px dashed var(--gold);border-radius:12px;}
+.srv-voice-bar{margin-top:14px;}

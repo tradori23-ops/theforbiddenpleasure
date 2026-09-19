@@ -640,6 +640,11 @@ Object.assign(STR.en, {"nav.communityNews":"News in Community"});
 Object.assign(STR.es, {"nav.communityNews":"Novedades en Comunidad"});
 Object.assign(STR.fr, {"nav.communityNews":"Nouveautés dans la Communauté"});
 Object.assign(STR.de, {"nav.communityNews":"Neuigkeiten in der Community"});
+Object.assign(STR.it, {"servers.voiceNote": "Audio tramite Daily. La camera resta spenta e chat e condivisione dello schermo sono disattivate. Il browser ti chiede il permesso del microfono la prima volta.", "servers.voiceConnecting": "Mi collego…", "servers.voiceNoAudio": "Non riesco ad attivare l'audio in questo momento. Sei segnato nella stanza, ma nessuno può sentirti. Riprova più tardi."});
+Object.assign(STR.en, {"servers.voiceNote": "Audio is provided by Daily. Camera stays off, and chat and screen sharing are disabled. Your browser asks for microphone permission the first time.", "servers.voiceConnecting": "Connecting…", "servers.voiceNoAudio": "Couldn't turn on audio right now. You're listed in the room, but no one can hear you. Try again later."});
+Object.assign(STR.es, {"servers.voiceNote": "El audio funciona con Daily. La cámara queda apagada y el chat y compartir pantalla están desactivados. El navegador te pedirá permiso para el micrófono la primera vez.", "servers.voiceConnecting": "Conectando…", "servers.voiceNoAudio": "No se pudo activar el audio ahora mismo. Apareces en la sala, pero nadie puede oírte. Inténtalo más tarde."});
+Object.assign(STR.fr, {"servers.voiceNote": "L'audio passe par Daily. La caméra reste éteinte, et le chat et le partage d'écran sont désactivés. Le navigateur demande l'autorisation du micro la première fois.", "servers.voiceConnecting": "Connexion…", "servers.voiceNoAudio": "Impossible d'activer l'audio pour le moment. Vous apparaissez dans le salon, mais personne ne peut vous entendre. Réessayez plus tard."});
+Object.assign(STR.de, {"servers.voiceNote": "Der Ton läuft über Daily. Die Kamera bleibt aus, Chat und Bildschirmfreigabe sind deaktiviert. Beim ersten Mal fragt der Browser nach der Mikrofonfreigabe.", "servers.voiceConnecting": "Verbinde…", "servers.voiceNoAudio": "Der Ton konnte gerade nicht aktiviert werden. Du bist im Raum eingetragen, aber niemand kann dich hören. Versuche es später erneut."});
 
 var CHAR_META = {
   Lucifer:{role:{it:"Il Portatore di Luce",en:"The Light-Bearer",es:"El Portador de Luz",fr:"Le Porteur de Lumière",de:"Der Lichtträger"},
@@ -5853,7 +5858,7 @@ var activeServerChannelId = null;
 var serverChannelsCache = {}; // serverId -> { cats:[], chs:[] }
 var srvClosedCats = {};
 var serverLiveTimer = null;
-var voiceRoom = { channelId:null, channel:null, joined:false, muted:false, viewTimer:null, beatTimer:null };
+var voiceRoom = { channelId:null, channel:null, joined:false, connecting:false, audio:false, audioFailed:false, amIn:false, muted:false, frame:null, viewTimer:null, beatTimer:null };
 
 function channelIconFor(ch){
   if(ch.emoji) return ch.emoji;
@@ -6284,6 +6289,92 @@ function startServerLivePoll(serverId){
 }
 function stopServerLivePoll(){ clearInterval(serverLiveTimer); serverLiveTimer = null; }
 
+/* ---- Audio delle stanze vocali con Daily ----
+   La chiave API di Daily non sta mai nel sito: la funzione Supabase "daily-room" controlla che tu sia
+   loggato, prepara la stanza e ti dà un permesso d'ingresso. Il sito carica daily-js solo quando entri
+   in una stanza. Se qualcosa non funziona (funzione non attiva, rete, microfono) resta la sola presenza. */
+var DAILY_JS_SRC = 'daily-js.min.js';
+var dailyLoadPromise = null;
+var dailyDestroyPromise = Promise.resolve();
+
+function loadDailyJs(){
+  if(window.DailyIframe) return Promise.resolve(window.DailyIframe);
+  if(dailyLoadPromise) return dailyLoadPromise;
+  dailyLoadPromise = new Promise(function(resolve, reject){
+    var s = document.createElement('script');
+    s.src = DAILY_JS_SRC;
+    s.onload = function(){
+      if(window.DailyIframe) resolve(window.DailyIframe);
+      else { dailyLoadPromise = null; reject(new Error('daily-js caricato ma DailyIframe non definito')); }
+    };
+    s.onerror = function(){ dailyLoadPromise = null; reject(new Error('daily-js non caricato')); };
+    document.head.appendChild(s);
+  });
+  return dailyLoadPromise;
+}
+
+function requestDailyAccess(channelId, displayName){
+  if(!getSession()) return Promise.reject(new Error('nessuna sessione'));
+  return fetch(SUPABASE_URL + '/functions/v1/daily-room', {
+    method:'POST', headers: srvAuthHeaders(true),
+    body: JSON.stringify({ channel_id: channelId, display_name: displayName })
+  }).then(function(r){
+    if(!r.ok) throw new Error('daily-room ' + r.status);
+    return r.json();
+  }).then(function(d){
+    if(!d || !d.url || !d.token) throw new Error('daily-room: risposta incompleta');
+    return d;
+  });
+}
+
+function destroyDailyFrame(){
+  var f = voiceRoom.frame;
+  voiceRoom.frame = null;
+  voiceRoom.audio = false;
+  if(!f) return;
+  dailyDestroyPromise = Promise.resolve()
+    .then(function(){ return f.destroy(); })
+    .catch(function(e){ console.warn('Daily destroy:', e); });
+}
+
+function patchVoicePresence(fields){
+  if(!voiceRoom.channelId || !isSignedIn()) return Promise.resolve();
+  var body = Object.assign({ last_seen: new Date().toISOString() }, fields || {});
+  return fetch(SUPABASE_URL + '/rest/v1/voice_presence?channel_id=eq.' + encodeURIComponent(voiceRoom.channelId) + '&user_id=eq.' + encodeURIComponent(currentUserId()), {
+    method:'PATCH', headers: srvAuthHeaders(true), body: JSON.stringify(body)
+  }).catch(function(){});
+}
+
+function startDailyCall(access){
+  var chId = voiceRoom.channelId;
+  var box = document.getElementById('voiceCall');
+  if(!box) return Promise.reject(new Error('contenitore audio mancante'));
+  return Promise.all([loadDailyJs(), dailyDestroyPromise]).then(function(res){
+    var D = res[0];
+    if(voiceRoom.channelId !== chId || !voiceRoom.joined) return; // nel frattempo sei uscito
+    box.innerHTML = '';
+    var frame = D.createFrame(box, {
+      showLeaveButton: true,
+      showFullscreenButton: false,
+      iframeStyle: { width:'100%', height:'100%', border:'0' }
+    });
+    voiceRoom.frame = frame;
+    voiceRoom.audio = true;
+    renderVoiceLayout();
+    frame.on('left-meeting', function(){
+      if(voiceRoom.frame === frame) leaveVoicePresence(); // sei uscito dal pulsante di Daily: esci anche dalla stanza
+    });
+    frame.on('error', function(ev){ console.warn('Daily error:', ev); });
+    frame.on('participant-updated', function(ev){
+      var p = ev && ev.participant;
+      if(!p || !p.local || typeof p.audio !== 'boolean') return;
+      var muted = !p.audio;
+      if(muted !== voiceRoom.muted){ voiceRoom.muted = muted; patchVoicePresence({ muted: muted }); }
+    });
+    return frame.join({ url: access.url, token: access.token, startVideoOff: true });
+  });
+}
+
 function openVoiceRoom(ch){
   if(channelDetailMounted) restoreChannelDetail();
   stopVoiceView();
@@ -6291,6 +6382,7 @@ function openVoiceRoom(ch){
   if(!box) return;
   voiceRoom.channelId = ch.id;
   voiceRoom.channel = ch;
+  voiceRoom.amIn = false;
   box.innerHTML =
     '<div class="srv-voice-top">' +
       '<button type="button" class="btn btn-ghost btn-sm srv-voice-back" id="btnVoiceBack">' + t('community.back') + '</button>' +
@@ -6300,18 +6392,30 @@ function openVoiceRoom(ch){
     '<div class="srv-voice-count" id="voiceCount"></div>' +
     '<div class="srv-people" id="voicePeople"></div>' +
     '<button type="button" class="btn btn-primary" id="btnVoiceJoin">' + t('servers.voiceJoin') + '</button>' +
+    '<p class="form-note hidden" id="voiceConnecting">' + t('servers.voiceConnecting') + '</p>' +
+    '<div class="srv-call hidden" id="voiceCall"></div>' +
+    '<p class="form-note srv-voice-warn hidden" id="voiceWarn">' + t('servers.voiceNoAudio') + '</p>' +
     '<div class="srv-voice-bar hidden" id="voiceBar">' +
-      '<button type="button" class="srv-voice-btn" id="btnVoiceMute" aria-pressed="false" aria-label="' + t('servers.voiceMute') + '">🎙️</button>' +
-      '<button type="button" class="srv-voice-btn" id="btnVoiceLeave" aria-label="' + t('servers.voiceLeave') + '">📞</button>' +
+      '<button type="button" class="btn btn-ghost btn-sm" id="btnVoiceLeave">' + t('servers.voiceLeave') + '</button>' +
     '</div>';
   document.getElementById('voiceTitle').textContent = channelIconFor(ch) + ' ' + ch.name;
   document.getElementById('btnVoiceBack').addEventListener('click', closeServerChannel);
   document.getElementById('btnVoiceJoin').addEventListener('click', joinVoiceRoom);
   document.getElementById('btnVoiceLeave').addEventListener('click', leaveVoicePresence);
-  document.getElementById('btnVoiceMute').addEventListener('click', toggleVoiceMute);
   showSrvMain('voice');
+  renderVoiceLayout();
   renderVoiceRoom();
   voiceRoom.viewTimer = setInterval(function(){ if(!document.hidden) renderVoiceRoom(); }, 5000);
+}
+
+/* mostra/nasconde i pezzi della stanza in base allo stato (collegamento, in stanza, audio sì/no) */
+function renderVoiceLayout(){
+  function tog(id, hide){ var el = document.getElementById(id); if(el) el.classList.toggle('hidden', !!hide); }
+  tog('btnVoiceJoin', voiceRoom.connecting || voiceRoom.joined || voiceRoom.amIn);
+  tog('voiceConnecting', !voiceRoom.connecting);
+  tog('voiceCall', !voiceRoom.audio);
+  tog('voiceWarn', !(voiceRoom.joined && voiceRoom.audioFailed));
+  tog('voiceBar', !(voiceRoom.joined && !voiceRoom.audio));
 }
 
 function renderVoiceRoom(){
@@ -6323,7 +6427,7 @@ function renderVoiceRoom(){
     var count = document.getElementById('voiceCount');
     if(!people || !count) return;
     var me = currentUserId();
-    var amIn = rows.some(function(r){ return r.user_id === me; });
+    voiceRoom.amIn = rows.some(function(r){ return r.user_id === me; });
     count.textContent = rows.length === 0 ? t('servers.voiceEmpty')
       : (rows.length === 1 ? t('servers.voiceCount1') : t('servers.voiceCountN').replace('{n}', rows.length));
     people.innerHTML = '';
@@ -6334,52 +6438,68 @@ function renderVoiceRoom(){
       d.querySelector('.srv-person-name').textContent = p.user_id === me ? t('community.you') : (p.display_name || t('notif.someone'));
       people.appendChild(d);
     });
-    document.getElementById('btnVoiceJoin').classList.toggle('hidden', voiceRoom.joined || amIn);
-    document.getElementById('voiceBar').classList.toggle('hidden', !voiceRoom.joined);
+    renderVoiceLayout();
   });
 }
 
 function joinVoiceRoom(){
   if(!isSignedIn()){ openAuth('login'); return; }
   var chId = voiceRoom.channelId;
-  if(!chId) return;
+  if(!chId || voiceRoom.connecting || voiceRoom.joined) return;
+  voiceRoom.connecting = true;
+  voiceRoom.audioFailed = false;
+  renderVoiceLayout();
   var nameStep = currentProfile !== null ? Promise.resolve(currentProfile) : loadOwnProfile().then(function(){ return currentProfile; });
   nameStep.then(function(profile){
-    return fetch(SUPABASE_URL + '/rest/v1/voice_presence?on_conflict=channel_id,user_id', {
-      method:'POST',
-      headers: Object.assign(srvAuthHeaders(true), { 'Prefer':'resolution=merge-duplicates,return=minimal' }),
-      body: JSON.stringify({
-        channel_id: chId, user_id: currentUserId(),
-        display_name: publicDisplayName(profile),
-        avatar_url: profile && profile.avatar_url ? profile.avatar_url : null,
-        muted: false, last_seen: new Date().toISOString()
-      })
-    });
-  }).then(function(r){
-    if(!r.ok) throw new Error('voice join failed: ' + r.status);
-    voiceRoom.joined = true; voiceRoom.muted = false;
-    var m = document.getElementById('btnVoiceMute'); if(m) m.setAttribute('aria-pressed', 'false');
-    clearInterval(voiceRoom.beatTimer);
-    voiceRoom.beatTimer = setInterval(function(){
+    var name = publicDisplayName(profile);
+    // se l'audio non è disponibile si entra comunque, solo come presenza
+    return requestDailyAccess(chId, name)
+      .catch(function(e){ console.warn('Audio Daily non disponibile:', e); return null; })
+      .then(function(access){
+        return fetch(SUPABASE_URL + '/rest/v1/voice_presence?on_conflict=channel_id,user_id', {
+          method:'POST',
+          headers: Object.assign(srvAuthHeaders(true), { 'Prefer':'resolution=merge-duplicates,return=minimal' }),
+          body: JSON.stringify({
+            channel_id: chId, user_id: currentUserId(), display_name: name,
+            avatar_url: profile && profile.avatar_url ? profile.avatar_url : null,
+            muted: false, last_seen: new Date().toISOString()
+          })
+        }).then(function(r){
+          if(!r.ok) throw new Error('voice join failed: ' + r.status);
+          return access;
+        });
+      });
+  }).then(function(access){
+    voiceRoom.connecting = false;
+    if(voiceRoom.channelId !== chId){
+      // nel frattempo hai lasciato la stanza: togli la riga appena creata
       fetch(SUPABASE_URL + '/rest/v1/voice_presence?channel_id=eq.' + encodeURIComponent(chId) + '&user_id=eq.' + encodeURIComponent(currentUserId()), {
-        method:'PATCH', headers: srvAuthHeaders(true), body: JSON.stringify({ last_seen: new Date().toISOString() })
+        method:'DELETE', headers: srvAuthHeaders(false), keepalive: true
       }).catch(function(){});
-    }, 15000);
+      return;
+    }
+    voiceRoom.joined = true; voiceRoom.muted = false;
+    clearInterval(voiceRoom.beatTimer);
+    voiceRoom.beatTimer = setInterval(function(){ patchVoicePresence({}); }, 15000);
+    renderVoiceLayout();
     renderVoiceRoom();
-  }).catch(function(e){ console.warn('Voice join failed:', e); window.alert(t('servers.voiceJoinError')); });
-}
-
-function toggleVoiceMute(){
-  if(!voiceRoom.joined) return;
-  voiceRoom.muted = !voiceRoom.muted;
-  var m = document.getElementById('btnVoiceMute');
-  if(m) m.setAttribute('aria-pressed', voiceRoom.muted ? 'true' : 'false');
-  fetch(SUPABASE_URL + '/rest/v1/voice_presence?channel_id=eq.' + encodeURIComponent(voiceRoom.channelId) + '&user_id=eq.' + encodeURIComponent(currentUserId()), {
-    method:'PATCH', headers: srvAuthHeaders(true), body: JSON.stringify({ muted: voiceRoom.muted, last_seen: new Date().toISOString() })
-  }).then(renderVoiceRoom).catch(function(){});
+    if(!access){ voiceRoom.audioFailed = true; renderVoiceLayout(); return; }
+    return startDailyCall(access).catch(function(e){
+      console.warn('Audio Daily non partito:', e);
+      destroyDailyFrame();
+      voiceRoom.audioFailed = true;
+      renderVoiceLayout();
+    });
+  }).catch(function(e){
+    voiceRoom.connecting = false;
+    renderVoiceLayout();
+    console.warn('Voice join failed:', e);
+    window.alert(t('servers.voiceJoinError'));
+  });
 }
 
 function leaveVoicePresence(){
+  destroyDailyFrame();
   clearInterval(voiceRoom.beatTimer); voiceRoom.beatTimer = null;
   var wasIn = voiceRoom.joined && voiceRoom.channelId && isSignedIn();
   var done = wasIn
@@ -6387,11 +6507,13 @@ function leaveVoicePresence(){
         method:'DELETE', headers: srvAuthHeaders(false), keepalive: true
       }).catch(function(){})
     : Promise.resolve();
-  voiceRoom.joined = false; voiceRoom.muted = false;
+  voiceRoom.joined = false; voiceRoom.muted = false; voiceRoom.audioFailed = false; voiceRoom.amIn = false;
+  renderVoiceLayout();
   done.then(renderVoiceRoom); // dopo la cancellazione, così non ci si rivede ancora dentro per un attimo
 }
 
 function stopVoiceView(){
+  destroyDailyFrame();
   clearInterval(voiceRoom.viewTimer); voiceRoom.viewTimer = null;
   clearInterval(voiceRoom.beatTimer); voiceRoom.beatTimer = null;
   if(voiceRoom.joined && voiceRoom.channelId && isSignedIn()){
@@ -6399,7 +6521,8 @@ function stopVoiceView(){
       method:'DELETE', headers: srvAuthHeaders(false), keepalive: true
     }).catch(function(){});
   }
-  voiceRoom.joined = false; voiceRoom.muted = false; voiceRoom.channelId = null; voiceRoom.channel = null;
+  voiceRoom.joined = false; voiceRoom.muted = false; voiceRoom.connecting = false; voiceRoom.audioFailed = false;
+  voiceRoom.amIn = false; voiceRoom.channelId = null; voiceRoom.channel = null;
 }
 window.addEventListener('pagehide', function(){ if(voiceRoom.joined) stopVoiceView(); });
 
