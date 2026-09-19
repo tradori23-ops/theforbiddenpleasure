@@ -3801,6 +3801,22 @@ function renderAdminList(){
         '<button class="btn btn-sm btn-ghost" data-del="'+item.id+'" style="border-color:#e24b4a;color:#e24b4a;">×</button>'+
       '</div>';
 
+    // miniatura della copertina a sinistra del titolo; senza copertina resta uno spazio vuoto, così i titoli restano allineati
+    var rowThumb;
+    if(item.cover_url){
+      rowThumb = document.createElement('img');
+      rowThumb.alt = '';
+      rowThumb.loading = 'lazy';
+      rowThumb.decoding = 'async';
+      rowThumb.onerror = function(){ rowThumb.onerror = null; rowThumb.src = item.cover_url; }; // se la trasformazione immagini non c'è, si ripiega sull'originale
+      rowThumb.src = coverThumbUrl(item.cover_url, 120);
+    } else {
+      rowThumb = document.createElement('span');
+    }
+    rowThumb.className = 'admin-row-thumb';
+    var rowInfo = row.querySelector('.info');
+    if(rowInfo) row.insertBefore(rowThumb, rowInfo);
+
     row.querySelector('[data-select-row]').addEventListener('change', function(e){
       if(e.target.checked) adminSelectedIds.add(item.id); else adminSelectedIds.delete(item.id);
       var bb = document.getElementById('adminBulkbar');
