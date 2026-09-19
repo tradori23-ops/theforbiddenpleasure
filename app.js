@@ -6257,8 +6257,11 @@ function fetchVoicePresence(channelIds){
     .catch(function(){ return []; });
 }
 
+function srvEscAttr(s){
+  return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, '&#39;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
 function srvAvatarHtml(p, cls){
-  if(p.avatar_url) return '<img class="' + cls + '" src="' + escapeHtml(p.avatar_url) + '" alt="">';
+  if(p.avatar_url) return '<img class="' + cls + '" src="' + srvEscAttr(p.avatar_url) + '" alt="">';
   return '<span class="' + cls + ' ' + cls + '-fb">' + escapeHtml((p.display_name || '?').charAt(0).toUpperCase()) + '</span>';
 }
 
@@ -6498,22 +6501,44 @@ function toggleServerMembership(serverId, currentlyJoined, btn){
   }).catch(function(e){ btn.disabled = false; console.warn('Server membership toggle failed:', e); });
 }
 
+function fetchServerMemberProfiles(serverId){
+  var enc = encodeURIComponent(serverId);
+  return fetch(SUPABASE_URL + '/rest/v1/community_members?community_id=eq.' + enc + '&select=user_id,profiles(id,display_name,avatar_url,verified,last_seen)', { headers: communityHeaders() })
+    .then(function(r){
+      if(!r.ok) throw new Error('members embed failed: ' + r.status);
+      return r.json();
+    })
+    .then(function(rows){
+      return rows.map(function(row){ return row.profiles || { id: row.user_id, display_name: null }; });
+    })
+    .catch(function(e){
+      console.warn('Server members (embed) fallito, riprovo in due passaggi:', e);
+      return fetch(SUPABASE_URL + '/rest/v1/community_members?community_id=eq.' + enc + '&select=user_id', { headers: communityHeaders() })
+        .then(function(r){ if(!r.ok) throw new Error('members read failed: ' + r.status); return r.json(); })
+        .then(function(rows){
+          var ids = rows.map(function(x){ return x.user_id; });
+          if(!ids.length) return [];
+          return fetch(SUPABASE_URL + '/rest/v1/profiles?id=in.(' + ids.map(encodeURIComponent).join(',') + ')&select=id,display_name,avatar_url,verified,last_seen', { headers: communityHeaders() })
+            .then(function(r){ return r.ok ? r.json() : []; })
+            .then(function(ps){
+              return ids.map(function(id){ return ps.filter(function(p){ return p.id === id; })[0] || { id: id, display_name: null }; });
+            });
+        });
+    });
+}
+
 function renderServerMembers(serverId){
   var box = document.getElementById('serverMembersList');
   if(!box) return;
   box.innerHTML = '<p class="form-note">…</p>';
-  fetch(SUPABASE_URL + '/rest/v1/community_members?community_id=eq.' + encodeURIComponent(serverId) + '&select=user_id,profiles(id,display_name,avatar_url,verified,last_seen)', { headers: communityHeaders() })
-    .then(function(r){ return r.ok ? r.json() : []; })
-    .then(function(rows){
+  fetchServerMemberProfiles(serverId)
+    .then(function(profiles){
       box.innerHTML = '';
-      if(rows.length === 0){ box.innerHTML = '<p class="form-note">' + t('servers.noMembers') + '</p>'; return; }
+      if(profiles.length === 0){ box.innerHTML = '<p class="form-note">' + t('servers.noMembers') + '</p>'; return; }
       loadFriendshipMap().then(function(){
+        var me = currentUserId();
         var on = [], off = [];
-        rows.forEach(function(row){
-          var p = row.profiles;
-          if(!p) return;
-          (isOnlineSince(p.last_seen) ? on : off).push(p);
-        });
+        profiles.forEach(function(p){ (isOnlineSince(p.last_seen) ? on : off).push(p); });
         function grp(label, list, cls){
           if(!list.length) return;
           var h = document.createElement('div');
@@ -6522,7 +6547,7 @@ function renderServerMembers(serverId){
           box.appendChild(h);
           list.forEach(function(p){
             var built = contattiCardRow(p, '');
-            built.actions.appendChild(contattiFriendButton(p.id, p.display_name, false));
+            if(p.id !== me) built.actions.appendChild(contattiFriendButton(p.id, p.display_name, false));
             if(cls) built.row.classList.add(cls);
             box.appendChild(built.row);
           });
@@ -8088,16 +8113,44 @@ function getDisplayName(userId){
     .catch(function(){ return t('notif.someone'); });
 }
 
+var chatAvatarCache = {}; // user_id -> avatar_url ('' se non ne ha una)
+
+function chatMsgTime(iso){
+  if(!iso) return '';
+  var d = new Date(iso);
+  if(isNaN(d.getTime())) return '';
+  var hm = ('0' + d.getHours()).slice(-2) + ':' + ('0' + d.getMinutes()).slice(-2);
+  if(d.toDateString() === new Date().toDateString()) return hm;
+  return ('0' + d.getDate()).slice(-2) + '/' + ('0' + (d.getMonth() + 1)).slice(-2) + ' ' + hm;
+}
+
 function loadChannelMessages(){
   var wrap = document.getElementById('channelMessages');
+  var chId = currentChannelId;
   wrap.innerHTML = '<p class="form-note">…</p>';
-  fetch(SUPABASE_URL + '/rest/v1/channel_messages?channel_id=eq.' + encodeURIComponent(currentChannelId) + '&select=*&order=created_at.asc', { headers: communityHeaders() })
+  fetch(SUPABASE_URL + '/rest/v1/channel_messages?channel_id=eq.' + encodeURIComponent(chId) + '&select=*&order=created_at.asc', { headers: communityHeaders() })
     .then(function(r){ if(!r.ok) throw new Error('channel messages read failed'); return r.json(); })
     .then(function(rows){
-      wrap.innerHTML = '';
-      if(rows.length === 0){ wrap.innerHTML = '<p class="form-note">' + t('community.noMessages') + '</p>'; return; }
-      rows.forEach(function(m){ wrap.appendChild(renderChannelMessage(m)); });
-      wrap.scrollTop = wrap.scrollHeight;
+      var seen = {}, missing = [];
+      rows.forEach(function(m){
+        if(m.user_id && chatAvatarCache[m.user_id] === undefined && !seen[m.user_id]){ seen[m.user_id] = true; missing.push(m.user_id); }
+      });
+      var pre = missing.length
+        ? fetch(SUPABASE_URL + '/rest/v1/profiles?id=in.(' + missing.map(encodeURIComponent).join(',') + ')&select=id,avatar_url', { headers: communityHeaders() })
+            .then(function(r){ return r.ok ? r.json() : []; })
+            .then(function(ps){
+              missing.forEach(function(id){ chatAvatarCache[id] = ''; });
+              ps.forEach(function(p){ chatAvatarCache[p.id] = p.avatar_url || ''; });
+            })
+            .catch(function(){ missing.forEach(function(id){ chatAvatarCache[id] = ''; }); }) // senza avatar si vedono le iniziali
+        : Promise.resolve();
+      return pre.then(function(){
+        if(chId !== currentChannelId) return; // nel frattempo si è aperto un altro canale
+        wrap.innerHTML = '';
+        if(rows.length === 0){ wrap.innerHTML = '<p class="form-note">' + t('community.noMessages') + '</p>'; return; }
+        rows.forEach(function(m){ wrap.appendChild(renderChannelMessage(m)); });
+        wrap.scrollTop = wrap.scrollHeight;
+      });
     })
     .catch(function(err){ wrap.innerHTML = ''; console.warn('Channel messages load failed:', err); });
 }
@@ -8106,13 +8159,29 @@ function renderChannelMessage(m){
   var div = document.createElement('div');
   div.className = 'channel-msg' + (m.flagged ? ' flagged' : '');
   var isOwn = m.user_id === currentUserId();
-  div.innerHTML = '<span class="author">' + escapeHtml(m.author_name) + '</span>' +
+  var name = m.author_name || '';
+  var av;
+  if(chatAvatarCache[m.user_id]){
+    av = document.createElement('img');
+    av.className = 'msg-av';
+    av.alt = '';
+    av.src = chatAvatarCache[m.user_id];
+  } else {
+    av = document.createElement('span');
+    av.className = 'msg-av msg-av-fb';
+    av.textContent = (name || '?').charAt(0).toUpperCase();
+  }
+  div.appendChild(av);
+  var main = document.createElement('div');
+  main.className = 'msg-main';
+  main.innerHTML = '<div class="msg-head"><span class="author">' + escapeHtml(name) + '</span><span class="msg-time">' + escapeHtml(chatMsgTime(m.created_at)) + '</span></div>' +
     '<div class="body">' + renderRichBody(m.body) + '</div>' +
     '<div class="msg-actions"><span class="friend-action-slot"></span>' +
       '<button type="button" class="report-btn">' + t('community.report') + '</button>' +
     '</div>';
-  div.querySelector('.report-btn').addEventListener('click', function(){ reportContent('channel_message', m.id); });
-  if(!isOwn) renderFriendActionSlot(div.querySelector('.friend-action-slot'), m.user_id, m.author_name);
+  div.appendChild(main);
+  main.querySelector('.report-btn').addEventListener('click', function(){ reportContent('channel_message', m.id); });
+  if(!isOwn) renderFriendActionSlot(main.querySelector('.friend-action-slot'), m.user_id, m.author_name);
   return div;
 }
 
