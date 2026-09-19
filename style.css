@@ -1810,3 +1810,14 @@ body.chat-fullscreen .chat-page::after{ display:none; }
   .srv-main .channel-msg:hover .msg-actions,
   .srv-main .channel-msg:focus-within .msg-actions{opacity:1;}
 }
+
+
+/* colonna membri: riga allineata a sinistra, azione compatta sotto il nome */
+@media (min-width:1200px){
+  .srv-members .admin-row{justify-content:flex-start;align-items:center;}
+  .srv-members .admin-row .info{flex:1;min-width:0;}
+  .srv-members .admin-row .info .t{font-size:13px;overflow-wrap:anywhere;}
+  .srv-members .admin-actions{flex-basis:100%;margin-left:0;padding-left:44px;}
+  .srv-members .admin-actions:empty{display:none;}
+  .srv-members .admin-actions button{font-size:10px;padding:5px 10px;}
+}
