@@ -15,7 +15,7 @@
    arriva sempre live da Supabase, quindi resta sempre aggiornato
    indipendentemente da questa cache. */
 
-var CACHE_NAME = 'lux-comics-v4';
+var CACHE_NAME = 'lux-comics-v5';
 var CORE_ASSETS = [
   './',
   './index.html'
@@ -73,7 +73,18 @@ self.addEventListener('fetch', function(event){
       }).catch(function(){
         return caches.open(CACHE_NAME).then(function(cache){
           return cache.match(req).then(function(cached){
-            return cached || (req.mode === 'navigate' ? cache.match('./index.html') : undefined);
+            if(cached) return cached;
+            return cache.match('./index.html').then(function(indexCached){
+              if(indexCached) return indexCached;
+              // Offline e nessuna copia salvata da nessuna parte: rispondiamo
+              // comunque con una Response vera, invece di lasciare che la
+              // catena risolva a "undefined" — è proprio questo che rompeva
+              // event.respondWith() con "Failed to convert value to 'Response'".
+              return new Response('Connessione assente e nessuna copia salvata disponibile.', {
+                status: 503, statusText: 'Offline',
+                headers: { 'Content-Type': 'text/plain; charset=utf-8' }
+              });
+            });
           });
         });
       })
@@ -90,11 +101,10 @@ self.addEventListener('fetch', function(event){
           }
           return response;
         }).catch(function(){
-          // offline e nulla in cache per questa richiesta: se è una
-          // navigazione (apertura di una pagina) mostriamo almeno la home
-          // salvata, invece di una schermata bianca
-          if(req.mode === 'navigate') return caches.match('./index.html');
-          return cached;
+          // "cached" è già garantito falso qui sotto (altrimenti non
+          // saremmo mai arrivati a usare "network") — stesso principio
+          // del punto sopra: mai undefined, sempre una Response vera.
+          return new Response('', { status: 504, statusText: 'Offline' });
         });
         // se l'abbiamo già in cache la serviamo subito; il fetch sopra
         // aggiorna comunque la cache in background per la prossima volta
