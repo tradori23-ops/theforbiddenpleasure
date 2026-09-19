@@ -1780,3 +1780,17 @@ body.chat-fullscreen .chat-page::after{ display:none; }
 .nav-community-dot.pop{animation:navDotPop .5s ease-out;}
 @keyframes navDotPop{0%{transform:scale(.2);}70%{transform:scale(1.35);}100%{transform:scale(1);}}
 @media (prefers-reduced-motion:reduce){.nav-community-dot.pop{animation:none;}}
+
+
+/* ============ SERVER a tutto schermo (dentro la pagina Community) ============
+   La pagina Community sta in una colonna larga al massimo 1180px: nel tab Server la
+   togliamo, e il pannello prende tutta la larghezza e l'altezza sotto la barra.
+   Titolo e schede restano centrati alla larghezza di prima. */
+.srv-main .channel-messages > .form-note{padding:12px 20px;}
+@media (min-width:900px){
+  #communitySection.srv-wide{max-width:none;padding-left:calc(20px + var(--sal));padding-right:calc(20px + var(--sar));padding-top:34px;padding-bottom:30px;}
+  #communitySection.srv-wide .section-head,
+  #communitySection.srv-wide .community-tabs{max-width:1132px;margin-left:auto;margin-right:auto;}
+  #communitySection.srv-wide .server-teaser{display:none;}
+  #communitySection.srv-wide .srv-shell{height:max(520px, calc(100vh - 118px));scroll-margin-top:80px;}
+}
