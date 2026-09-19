@@ -56,12 +56,18 @@
       <span class="server-teaser-arrow">→</span>
     </div>
 
-    <!-- SERVER: spazi dedicati creati da Amministra, ciascuno con un canale
-         reale collegato e un elenco di chi si iscrive — nessuna chat nuova. -->
+    <!-- SERVER: categorie, canali con emoji e tipo (testo / vocale / annunci).
+         Da 900px in su è a colonne: server | canali | chat o stanza vocale | membri. -->
     <div class="community-panel hidden" data-cpanel="servers">
-      <div class="server-rail-row" id="serverRailRow"></div>
       <div id="serverEmptyState" class="hidden"><p class="form-note" data-i18n="servers.empty">Nessun server ancora — torna a trovarci presto.</p></div>
-      <div id="serverDetailBox"></div>
+      <div class="srv-shell" id="srvShell" data-view="list">
+        <nav class="server-rail-row" id="serverRailRow" aria-label="Server"></nav>
+        <div id="serverDetailBox" class="srv-detail"></div>
+        <div class="srv-main" id="srvMain">
+          <div class="srv-empty" id="srvEmpty"><div><b>🔮</b><p data-i18n="servers.pickChannel">Scegli un canale a sinistra per leggere i messaggi o entrare in una stanza vocale.</p></div></div>
+          <div id="srvVoice" class="srv-voice hidden"></div>
+        </div>
+      </div>
     </div>
 
     <!-- EVENTI: fiere, cinema, incontri — countdown finché non è passata la
@@ -152,10 +158,24 @@
       <div id="channelDetailView" class="hidden">
         <button type="button" class="btn btn-ghost btn-sm" id="btnBackToChannels" data-i18n="community.back">&larr; Torna ai canali</button>
         <h3 id="channelDetailName"></h3>
+        <p class="form-note hidden" id="channelDetailTopic"></p>
         <div id="channelMessages" class="channel-messages"></div>
-        <div class="channel-compose">
-          <textarea id="fChannelMessage" rows="2" data-i18n-placeholder="community.messagePh" placeholder="Scrivi un messaggio…"></textarea>
-          <button type="button" class="btn btn-primary btn-sm" id="btnSendChannelMessage" data-i18n="community.send">Invia</button>
+        <div class="channel-lock hidden" id="channelLockNote" data-i18n="servers.announceLocked">🔒 Solo lo staff può scrivere in questo canale.</div>
+        <div id="channelComposeWrap">
+          <div class="emoji-panel hidden" id="channelEmojiPanel"></div>
+          <div class="fmt-tools" id="channelFmtTools">
+            <button type="button" data-fmt="**"><b>B</b></button>
+            <button type="button" data-fmt="*"><i>I</i></button>
+            <button type="button" data-fmt="~~"><s>S</s></button>
+            <button type="button" data-fmt="`">&lt;/&gt;</button>
+            <button type="button" data-fmt="||">▮▮</button>
+            <button type="button" data-quote>❝</button>
+            <button type="button" id="channelEmojiBtn">😊</button>
+          </div>
+          <div class="channel-compose">
+            <textarea id="fChannelMessage" rows="2" data-i18n-placeholder="community.messagePh" placeholder="Scrivi un messaggio…"></textarea>
+            <button type="button" class="btn btn-primary btn-sm" id="btnSendChannelMessage" data-i18n="community.send">Invia</button>
+          </div>
         </div>
         <div class="form-error" id="channelMessageError"></div>
       </div>
