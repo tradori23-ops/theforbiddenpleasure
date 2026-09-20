@@ -1024,6 +1024,51 @@ var QUIZ_LOCKOUT_MS = 10 * 60 * 1000;
 var quizPassed = false;
 var currentQuizQuestion = null;
 
+/* Interruttore "domande alla registrazione" (gestionale → Manutenzione). Vale per tutto il sito.
+   Se la colonna non esiste ancora (SQL non lanciato) o la lettura fallisce, restano accese: comportamento di prima. */
+var registrationQuizEnabled = true;
+function fetchRegistrationQuizSetting(){
+  if(!SUPABASE_URL) return Promise.resolve(registrationQuizEnabled);
+  return fetch(SUPABASE_URL + '/rest/v1/site_status?select=registration_quiz&id=eq.1', {
+    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + SUPABASE_ANON_KEY }
+  })
+    .then(function(r){ if(!r.ok) throw new Error('registration quiz read failed: ' + r.status); return r.json(); })
+    .then(function(rows){
+      var row = rows && rows[0] ? rows[0] : null;
+      registrationQuizEnabled = !(row && row.registration_quiz === false);
+      var sw = document.getElementById('registrationQuizSwitch');
+      if(sw) sw.checked = registrationQuizEnabled;
+      applyRegistrationQuizSetting();
+      return registrationQuizEnabled;
+    })
+    .catch(function(err){ console.warn('Registration quiz setting read failed:', err); return registrationQuizEnabled; });
+}
+/* se il modulo di registrazione è già aperto con le domande e nel frattempo risulta che sono spente, le toglie */
+function applyRegistrationQuizSetting(){
+  var modal = document.getElementById('authModal');
+  if(!modal || modal.classList.contains('hidden')) return;
+  if(authMode === 'register' && !registrationQuizEnabled && !quizPassed){
+    quizPassed = true;
+    renderQuizGate();
+  }
+}
+function setRegistrationQuizSetting(on){
+  var session = getSession();
+  if(!SUPABASE_URL || !session) return Promise.resolve(false);
+  return fetch(SUPABASE_URL + '/rest/v1/site_status?id=eq.1', {
+    method:'PATCH',
+    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json', 'Prefer':'return=representation' },
+    body: JSON.stringify({ registration_quiz: on })
+  })
+    .then(function(r){ if(!r.ok) throw new Error('registration quiz write failed: ' + r.status); return r.json(); })
+    .then(function(rows){
+      if(!rows || !rows.length) throw new Error('registration quiz write: nessuna riga toccata (permessi?)');
+      registrationQuizEnabled = on;
+      return true;
+    })
+    .catch(function(err){ console.warn('Registration quiz write failed:', err); return false; });
+}
+
 function getQuizState(){
   try {
     var raw = localStorage.getItem('lux_quiz_state');
@@ -1110,8 +1155,9 @@ function openAuth(mode){
     switchLabel.textContent = t('auth.switchToLoginBtn');
   }
   if(authMode === 'register'){
-    quizPassed = false;
+    quizPassed = !registrationQuizEnabled; // domande spente dal gestionale: campi subito visibili
     renderQuizGate();
+    fetchRegistrationQuizSetting(); // riallinea con quello che ha scelto l'admin, senza bloccare l'apertura
   } else {
     document.getElementById('registerQuizGate').classList.add('hidden');
     document.getElementById('authFieldsWrap').classList.remove('hidden');
@@ -14370,11 +14416,21 @@ function __appInit(){
   document.getElementById('btnResync') && document.getElementById('btnResync').addEventListener('click', function(){
     fetchCatalogFromSupabase().then(function(){ renderCatalog(); renderAdminList(); });
     fetchMaintenanceStatus();
+    fetchRegistrationQuizSetting();
   });
   document.getElementById('maintenanceSwitch') && document.getElementById('maintenanceSwitch').addEventListener('change', function(e){
     var on = e.target.checked;
     setMaintenanceStatus(on).then(function(ok){
       if(!ok) e.target.checked = !on; // revert on failure
+    });
+  });
+  document.getElementById('registrationQuizSwitch') && document.getElementById('registrationQuizSwitch').addEventListener('change', function(e){
+    var on = e.target.checked;
+    var statusEl = document.getElementById('registrationQuizStatus');
+    if(statusEl) statusEl.textContent = '…';
+    setRegistrationQuizSetting(on).then(function(ok){
+      if(!ok) e.target.checked = !on; // torna com'era se non si è salvato
+      if(statusEl) statusEl.textContent = ok ? (on ? 'Domande attive.' : 'Domande disattivate: ci si registra subito.') : 'Non è stato possibile salvare. Riprova (serve prima lanciare lo SQL su Supabase).';
     });
   });
   document.getElementById('btnSaveMaintenanceSchedule') && document.getElementById('btnSaveMaintenanceSchedule').addEventListener('click', saveMaintenanceSchedule);
@@ -14442,6 +14498,7 @@ function __appInit(){
     maybeStartOfflineSync();
   });
   fetchMaintenanceStatus();
+  fetchRegistrationQuizSetting();
   setInterval(fetchMaintenanceStatus, 60000); // light polling so visitors already on the page see it too
   setInterval(renderNightClosureLock, 30000); // ricontrolla l'orario anche senza nuove risposte dal server
   setInterval(renderAdminUsers, 60000); // keeps "online now" fresh while you're on that tab; no-op if not admin
