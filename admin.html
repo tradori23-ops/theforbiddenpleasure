@@ -455,7 +455,7 @@
 
       <div class="admin-tab-panel hidden" data-tab-panel="events">
         <div class="notice">
-          <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Nuovo evento</div>
+          <div id="eventFormHeading" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Nuovo evento</div>
           <p style="color:var(--parchment-dim);font-size:13px;margin-bottom:14px;">Fiere, presentazioni, uscite al cinema — mostra un countdown finché non è passata la data, poi diventa solo una traccia di chi ha partecipato.</p>
           <div class="admin-grid">
             <div class="field" style="grid-column:1/-1">
@@ -466,22 +466,29 @@
               <label>Descrizione (opzionale)</label>
               <textarea id="fEventDesc" rows="2" placeholder="Di cosa si tratta?"></textarea>
             </div>
-            <div class="field">
+            <div class="field" style="grid-column:1/-1">
               <label>Luogo</label>
               <input type="text" id="fEventLocation" maxlength="80" placeholder="Es. Lucca, Italia">
             </div>
             <div class="field">
-              <label>Data e ora</label>
+              <label>Inizio (data e ora)</label>
               <input type="datetime-local" id="fEventDate">
+            </div>
+            <div class="field">
+              <label>Fine (opzionale, per eventi di più giorni)</label>
+              <input type="datetime-local" id="fEventEndDate">
             </div>
             <div class="field" style="grid-column:1/-1">
               <label>Immagine (opzionale)</label>
               <input type="file" id="fEventImage" accept="image/*">
+              <div class="form-note hidden" id="eventImageKeep">Si mantiene l'immagine attuale: scegli un file solo se vuoi cambiarla.</div>
             </div>
           </div>
           <div class="form-error" id="eventError"></div>
+          <div class="form-note" id="eventNote"></div>
           <div class="modal-actions">
             <button class="btn btn-primary btn-sm" id="btnAddEvent">Crea evento</button>
+            <button class="btn btn-ghost btn-sm hidden" id="btnCancelEventEdit" type="button">Annulla modifica</button>
           </div>
         </div>
         <div class="notice">
