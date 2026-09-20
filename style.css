@@ -1897,3 +1897,23 @@ body.chat-fullscreen .chat-page::after{ display:none; }
   #adminSection .title-form-drawer .field textarea{font-size:16px;}
   #adminSection .title-form-drawer .modal-actions .btn{flex:1;padding:13px 18px;}
 }
+
+
+/* ============ PROFILO e INTESTAZIONE su telefono ============ */
+#profileEditPanel{scroll-margin-top:80px;}
+@media (max-width:819px){
+  /* il nome parte sotto il banner (prima il bordo del banner lo attraversava) */
+  .profile-fb-headrow-info{align-self:flex-start;margin-top:46px;padding-bottom:0;}
+  /* le 5 schede: una sola fila che scorre di lato, invece di due righe storte */
+  .profile-fb-tabs{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+  .profile-fb-tabs::-webkit-scrollbar{display:none;}
+  .profile-fb-tab{flex:none;white-space:nowrap;}
+}
+@media (max-width:640px){
+  /* con l'account attivo l'intestazione è alta 4 righe: non deve restare incollata in cima e mangiare lo schermo */
+  header.topbar{position:relative;}
+  header.topbar .topbar-tools{gap:8px;max-width:100%;}
+  header.topbar select.langsel{flex:1 1 120px;min-width:0;max-width:100%;}
+  header.topbar .bell-btn{flex:none;}
+  header.topbar .acct-chip{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+}

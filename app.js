@@ -645,6 +645,11 @@ Object.assign(STR.en, {"servers.voiceNote": "Audio is provided by Daily. Camera 
 Object.assign(STR.es, {"servers.voiceNote": "El audio funciona con Daily. La cámara queda apagada y el chat y compartir pantalla están desactivados. El navegador te pedirá permiso para el micrófono la primera vez.", "servers.voiceConnecting": "Conectando…", "servers.voiceNoAudio": "No se pudo activar el audio ahora mismo. Apareces en la sala, pero nadie puede oírte. Inténtalo más tarde."});
 Object.assign(STR.fr, {"servers.voiceNote": "L'audio passe par Daily. La caméra reste éteinte, et le chat et le partage d'écran sont désactivés. Le navigateur demande l'autorisation du micro la première fois.", "servers.voiceConnecting": "Connexion…", "servers.voiceNoAudio": "Impossible d'activer l'audio pour le moment. Vous apparaissez dans le salon, mais personne ne peut vous entendre. Réessayez plus tard."});
 Object.assign(STR.de, {"servers.voiceNote": "Der Ton läuft über Daily. Die Kamera bleibt aus, Chat und Bildschirmfreigabe sind deaktiviert. Beim ersten Mal fragt der Browser nach der Mikrofonfreigabe.", "servers.voiceConnecting": "Verbinde…", "servers.voiceNoAudio": "Der Ton konnte gerade nicht aktiviert werden. Du bist im Raum eingetragen, aber niemand kann dich hören. Versuche es später erneut."});
+Object.assign(STR.it, {"profile.edit": "Modifica profilo", "profile.editClose": "Chiudi modifica", "profile.noNameYet": "Scegli il tuo nome"});
+Object.assign(STR.en, {"profile.edit": "Edit profile", "profile.editClose": "Close editing", "profile.noNameYet": "Choose your name"});
+Object.assign(STR.es, {"profile.edit": "Editar perfil", "profile.editClose": "Cerrar edición", "profile.noNameYet": "Elige tu nombre"});
+Object.assign(STR.fr, {"profile.edit": "Modifier le profil", "profile.editClose": "Fermer la modification", "profile.noNameYet": "Choisissez votre nom"});
+Object.assign(STR.de, {"profile.edit": "Profil bearbeiten", "profile.editClose": "Bearbeiten schließen", "profile.noNameYet": "Wähle deinen Namen"});
 
 var CHAR_META = {
   Lucifer:{role:{it:"Il Portatore di Luce",en:"The Light-Bearer",es:"El Portador de Luz",fr:"Le Porteur de Lumière",de:"Der Lichtträger"},
@@ -5390,6 +5395,35 @@ function pickAvatarHdPublicUrl(userId, ext){
 function pickBannerPublicUrl(userId, ext){
   return SUPABASE_URL + '/storage/v1/object/public/avatars/' + userId + '/banner.' + ext + '?t=' + Date.now();
 }
+/* Pannello "Modifica profilo" dentro profile.html: il pulsante lo apre e lo chiude (prima non era collegato a niente) */
+function setProfileEditOpen(open){
+  var panel = document.getElementById('profileEditPanel');
+  var btn = document.getElementById('btnToggleProfileEdit');
+  if(!panel) return;
+  if(open){
+    if(!isSignedIn()){ openAuth('login'); return; }
+    var errEl = document.getElementById('profileError');
+    if(errEl) errEl.textContent = '';
+    loadOwnProfile().then(function(){
+      populateProfileForm();
+      panel.classList.remove('hidden');
+      if(btn){ btn.textContent = t('profile.editClose'); btn.setAttribute('aria-expanded', 'true'); }
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      try { panel.scrollIntoView({ block:'start', behavior: reduce ? 'auto' : 'smooth' }); } catch(e){}
+      var nameEl = document.getElementById('fDisplayName');
+      if(nameEl && !nameEl.value){ try { nameEl.focus({ preventScroll:true }); } catch(e){ nameEl.focus(); } }
+    });
+  } else {
+    panel.classList.add('hidden');
+    if(btn){ btn.textContent = t('profile.edit'); btn.setAttribute('aria-expanded', 'false'); }
+  }
+}
+function toggleProfileEditPanel(){
+  var panel = document.getElementById('profileEditPanel');
+  if(!panel) return;
+  setProfileEditOpen(panel.classList.contains('hidden'));
+}
+
 function saveProfile(){
   var session = getSession();
   if(!session) return;
@@ -5485,6 +5519,7 @@ function saveProfile(){
     document.getElementById('fProfileAvatar').value = '';
     document.getElementById('fProfileAvatarHd').value = '';
     document.getElementById('fProfileBanner').value = '';
+    if(document.getElementById('profileSection')){ window.location.reload(); return; } // sulla pagina profilo: si rivedono subito nome e immagini nuovi
   }).catch(function(e){
     console.warn('Profile save failed:', e);
     err.textContent = t('profile.saveError');
@@ -7256,7 +7291,8 @@ function renderPublicProfilePage(){
       if(!p){ notFoundBox.classList.remove('hidden'); return; }
       layoutBox.classList.remove('hidden');
 
-      document.getElementById('pubProfileName').textContent = p.display_name || t('notif.someone');
+      var isOwnPage = isSignedIn() && currentUserId() === userId;
+      document.getElementById('pubProfileName').textContent = p.display_name || (isOwnPage ? t('profile.noNameYet') : t('notif.someone'));
       var bannerImg = document.getElementById('pubProfileBanner');
       bannerImg.src = p.banner_url || '';
       bannerImg.style.opacity = p.banner_url ? '1' : '0';
@@ -7324,6 +7360,11 @@ function renderPublicProfilePage(){
         if(followBtn) followBtn.classList.add('hidden');
         if(friendSlot) friendSlot.innerHTML = '';
         showProfileContent(userId, p);
+        if(!p.display_name){
+          var alreadyPrompted = false;
+          try { alreadyPrompted = !!sessionStorage.getItem('lux_profile_name_prompted'); sessionStorage.setItem('lux_profile_name_prompted', '1'); } catch(e){}
+          if(!alreadyPrompted) setProfileEditOpen(true);
+        }
       } else {
         if(editBtn) editBtn.classList.add('hidden');
         trackProfileView(userId);
@@ -14402,6 +14443,7 @@ function __appInit(){
     document.getElementById('profileAvatarImg').style.opacity = '1';
   });
   document.getElementById('btnSaveProfile') && document.getElementById('btnSaveProfile').addEventListener('click', saveProfile);
+  document.getElementById('btnToggleProfileEdit') && document.getElementById('btnToggleProfileEdit').addEventListener('click', toggleProfileEditPanel);
   document.getElementById('btnAddProfilePhoto') && document.getElementById('btnAddProfilePhoto').addEventListener('click', uploadProfilePhoto);
   document.getElementById('btnAddProfileVideo') && document.getElementById('btnAddProfileVideo').addEventListener('click', addProfileVideo);
   document.getElementById('btnSubmitRequest') && document.getElementById('btnSubmitRequest').addEventListener('click', submitRequest);
