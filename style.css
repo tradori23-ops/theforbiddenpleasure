@@ -1936,3 +1936,10 @@ body.chat-fullscreen .chat-page::after{ display:none; }
 @media (max-width:640px){
   .event-admin-actions{flex:1 1 100%;justify-content:flex-start;}
 }
+
+
+/* ============ EVENTI DI PIÙ GIORNI ============ */
+.event-phase{margin:10px 0 6px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-bright);}
+/* i campi data/ora su iPhone uscivano dalla scheda: si adattano alla larghezza */
+#adminSection input[type="datetime-local"]{width:100%;max-width:100%;min-width:0;box-sizing:border-box;-webkit-appearance:none;appearance:none;text-align:left;min-height:46px;}
+@media (max-width:760px){#adminSection input[type="datetime-local"]{font-size:16px;}}

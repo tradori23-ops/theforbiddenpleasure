@@ -655,6 +655,11 @@ Object.assign(STR.en, {"profile.instagramEmbed": "Your Instagram posts/reels (op
 Object.assign(STR.es, {"profile.instagramEmbed": "Tus posts/reels de Instagram (opcionales, los que quieras)", "profile.addInstagramLink": "+ Añadir enlace", "profile.instagramEmbedHint": "Se mostrarán directamente en tu perfil, como los ves en Instagram.", "profile.instagramHeading": "Instagram", "sound.settingsLabel": "Sonidos de notificaciones", "sound.enabled": "Sonidos activados", "sound.test": "Probar sonido", "community.important": "Importante"});
 Object.assign(STR.fr, {"profile.instagramEmbed": "Vos posts/reels Instagram (facultatifs, autant que vous voulez)", "profile.addInstagramLink": "+ Ajouter un lien", "profile.instagramEmbedHint": "Ils seront affichés directement sur votre profil, comme sur Instagram.", "profile.instagramHeading": "Instagram", "sound.settingsLabel": "Sons des notifications", "sound.enabled": "Sons activés", "sound.test": "Tester le son", "community.important": "Important"});
 Object.assign(STR.de, {"profile.instagramEmbed": "Deine Instagram-Posts/Reels (optional, beliebig viele)", "profile.addInstagramLink": "+ Link hinzufügen", "profile.instagramEmbedHint": "Sie werden direkt in deinem Profil angezeigt, so wie du sie auf Instagram siehst.", "profile.instagramHeading": "Instagram", "sound.settingsLabel": "Benachrichtigungstöne", "sound.enabled": "Töne an", "sound.test": "Ton testen", "community.important": "Wichtig"});
+Object.assign(STR.it, {"events.traceFrom": "dal", "events.traceTo": "al", "events.liveEndsIn": "In corso — finisce tra"});
+Object.assign(STR.en, {"events.traceFrom": "from", "events.traceTo": "to", "events.liveEndsIn": "Happening now — ends in"});
+Object.assign(STR.es, {"events.traceFrom": "del", "events.traceTo": "al", "events.liveEndsIn": "En curso — termina en"});
+Object.assign(STR.fr, {"events.traceFrom": "du", "events.traceTo": "au", "events.liveEndsIn": "En cours — se termine dans"});
+Object.assign(STR.de, {"events.traceFrom": "vom", "events.traceTo": "bis zum", "events.liveEndsIn": "Läuft gerade — endet in"});
 
 var CHAR_META = {
   Lucifer:{role:{it:"Il Portatore di Luce",en:"The Light-Bearer",es:"El Portador de Luz",fr:"Le Porteur de Lumière",de:"Der Lichtträger"},
@@ -6828,7 +6833,7 @@ function renderHomeEvents(){
     .then(function(r){ return r.ok ? r.json() : []; })
     .then(function(events){
       var now = new Date();
-      var upcoming = events.filter(function(ev){ return new Date(ev.event_date) >= now; });
+      var upcoming = events.filter(function(ev){ return !eventIsPast(ev, now); });
       if(upcoming.length === 0){ box.classList.add('hidden'); return; }
       box.classList.remove('hidden');
       list.innerHTML = '';
@@ -6876,9 +6881,9 @@ function renderEventsTab(){
     .then(function(r){ return r.ok ? r.json() : []; })
     .then(function(events){
       var now = new Date();
-      var upcoming = events.filter(function(ev){ return new Date(ev.event_date) >= now; });
-      var past = events.filter(function(ev){ return new Date(ev.event_date) < now; })
-        .sort(function(a,b){ return new Date(b.event_date) - new Date(a.event_date); });
+      var upcoming = events.filter(function(ev){ return !eventIsPast(ev, now); });
+      var past = events.filter(function(ev){ return eventIsPast(ev, now); })
+        .sort(function(a,b){ return eventEndDate(b) - eventEndDate(a); });
 
       upBox.innerHTML = '';
       if(upcoming.length === 0){ upBox.innerHTML = '<p class="form-note">' + t('events.noUpcoming') + '</p>'; }
@@ -6897,6 +6902,40 @@ function renderEventsTab(){
       console.warn('Events load failed:', e);
     });
 }
+
+/* ---- Eventi di più giorni ----
+   event_date = inizio; end_date (facoltativa) = fine. Senza fine l'evento dura fino all'inizio, come prima.
+   "Passato" vuol dire: la fine è già trascorsa. */
+function eventEndDate(ev){ return ev.end_date ? new Date(ev.end_date) : new Date(ev.event_date); }
+function eventIsPast(ev, now){ return eventEndDate(ev) < (now || new Date()); }
+function eventIsMultiDay(ev){
+  if(!ev.end_date) return false;
+  return new Date(ev.event_date).toDateString() !== new Date(ev.end_date).toDateString();
+}
+/* "28 ottobre 2026" · "12–13 dicembre 2026" · "28 ottobre – 1 novembre 2026" · "30 dicembre 2026 – 2 gennaio 2027" */
+function eventDateParts(ev){
+  var full = { day:'numeric', month:'long', year:'numeric' };
+  var a = new Date(ev.event_date);
+  if(!eventIsMultiDay(ev)){
+    var one = a.toLocaleDateString('it-IT', full);
+    return { multi:false, label:one, startPart:one, endLabel:one };
+  }
+  var b = new Date(ev.end_date);
+  var endLabel = b.toLocaleDateString('it-IT', full);
+  var startPart, label;
+  if(a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth()){
+    startPart = String(a.getDate());
+    label = a.getDate() + '\u2013' + endLabel;
+  } else if(a.getFullYear() === b.getFullYear()){
+    startPart = a.toLocaleDateString('it-IT', { day:'numeric', month:'long' });
+    label = startPart + ' \u2013 ' + endLabel;
+  } else {
+    startPart = a.toLocaleDateString('it-IT', full);
+    label = startPart + ' \u2013 ' + endLabel;
+  }
+  return { multi:true, label:label, startPart:startPart, endLabel:endLabel };
+}
+function formatEventDates(ev){ return eventDateParts(ev).label; }
 
 /* ---- Condivisione eventi con anteprima social ----
    Ogni evento ha (dopo "Crea anteprima social" nel gestionale) una pagina e/<id>.html con i tag Open Graph:
@@ -6917,7 +6956,7 @@ function shareEvent(ev){
     ? previewPagePath('e', ev.id)
     : window.location.origin + '/?event=' + encodeURIComponent(ev.id);
   var d = new Date(ev.event_date);
-  var dateLabel = isNaN(d.getTime()) ? '' : d.toLocaleDateString('it-IT', { day:'numeric', month:'long', year:'numeric' });
+  var dateLabel = isNaN(d.getTime()) ? '' : formatEventDates(ev);
   var text = ev.title + (ev.location ? ' — 📍 ' + ev.location : '') + (dateLabel ? ' · ' + dateLabel : '');
   if(navigator.share){
     navigator.share({ title: ev.title, text: text, url: url }).catch(function(){ /* annullato dall'utente, va bene così */ });
@@ -6936,14 +6975,15 @@ function buildEventCard(ev){
   var card = document.createElement('div');
   card.className = 'event-card';
   card.dataset.eventId = String(ev.id);
-  var dateLabel = new Date(ev.event_date).toLocaleDateString('it-IT', { day:'numeric', month:'long', year:'numeric' });
+  var dateLabel = formatEventDates(ev);
   card.innerHTML =
     (ev.image_url ? '<img class="event-img" src="' + escapeHtml(ev.image_url) + '" alt="">' : '') +
     '<div class="event-body">' +
       '<div class="event-title">' + escapeHtml(ev.title) + '</div>' +
       (ev.location ? '<div class="event-loc">📍 ' + escapeHtml(ev.location) + ' · ' + dateLabel + '</div>' : '<div class="event-loc">' + dateLabel + '</div>') +
       (ev.description ? '<div class="event-desc">' + escapeHtml(ev.description) + '</div>' : '') +
-      '<div class="countdown" data-target="' + new Date(ev.event_date).getTime() + '">' +
+      '<div class="event-phase hidden" data-phase>' + t('events.liveEndsIn') + '</div>' +
+      '<div class="countdown" data-target="' + new Date(ev.event_date).getTime() + '" data-end="' + eventEndDate(ev).getTime() + '">' +
         '<div class="cd-unit"><div class="cd-num" data-cd="d">–</div><div class="cd-label">' + t('events.days') + '</div></div>' +
         '<div class="cd-unit"><div class="cd-num" data-cd="h">–</div><div class="cd-label">' + t('events.hours') + '</div></div>' +
         '<div class="cd-unit"><div class="cd-num" data-cd="m">–</div><div class="cd-label">' + t('events.minutes') + '</div></div>' +
@@ -6970,9 +7010,15 @@ function buildEventCard(ev){
 function tickEventCountdowns(){
   var now = Date.now();
   document.querySelectorAll('.countdown[data-target]').forEach(function(box){
-    var target = parseInt(box.dataset.target, 10);
+    var start = parseInt(box.dataset.target, 10);
+    var end = box.dataset.end ? parseInt(box.dataset.end, 10) : start;
+    var multi = end > start;
+    var live = multi && now >= start && now < end;   // evento iniziato e non ancora finito
+    var target = (multi && now >= start) ? end : start;
     var diff = target - now;
     if(diff < 0) diff = 0;
+    var phaseEl = box.parentNode && box.parentNode.querySelector('[data-phase]');
+    if(phaseEl) phaseEl.classList.toggle('hidden', !live);
     var d = Math.floor(diff / 86400000);
     var h = Math.floor((diff % 86400000) / 3600000);
     var m = Math.floor((diff % 3600000) / 60000);
@@ -7024,10 +7070,11 @@ function renderEventTraces(box, pastEvents){
     fetch(SUPABASE_URL + '/rest/v1/event_attendees?event_id=eq.' + encodeURIComponent(ev.id) + '&select=profiles(display_name)', { headers: communityHeaders() })
       .then(function(r){ return r.ok ? r.json() : []; })
       .then(function(rows){
-        var dateLabel = new Date(ev.event_date).toLocaleDateString('it-IT', { day:'numeric', month:'long', year:'numeric' });
+        var dp = eventDateParts(ev);
+        var when = dp.multi ? (t('events.traceFrom') + ' ' + dp.startPart + ' ' + t('events.traceTo') + ' ' + dp.endLabel) : (t('events.traceOn') + ' ' + dp.label);
         rows.forEach(function(row){
           var name = (row.profiles && row.profiles.display_name) || t('notif.someone');
-          var traceText = t('events.traceHasAttended') + ' <b>' + escapeHtml(ev.title) + '</b> ' + t('events.traceOn') + ' ' + dateLabel +
+          var traceText = t('events.traceHasAttended') + ' <b>' + escapeHtml(ev.title) + '</b> ' + when +
             (ev.location ? ' ' + t('events.traceAt') + ' ' + escapeHtml(ev.location) : '') + '.';
           var line = document.createElement('div');
           line.className = 'event-trace';
@@ -12347,9 +12394,11 @@ function loadEventsAdminList(){
     .then(function(events){
       if(events.length === 0){ list.innerHTML = '<p class="form-note">Nessun evento ancora.</p>'; return; }
       var now = new Date();
+      adminEventsById = {};
+      events.forEach(function(e){ adminEventsById[e.id] = e; });
       list.innerHTML = events.map(function(ev){
-        var isPast = new Date(ev.event_date) < now;
-        var dateLabel = new Date(ev.event_date).toLocaleString('it-IT', { day:'2-digit', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit' });
+        var isPast = eventIsPast(ev, now);
+        var dateLabel = formatEventDates(ev) + ' · ' + new Date(ev.event_date).toLocaleTimeString('it-IT', { hour:'2-digit', minute:'2-digit' });
         return '<div class="admin-list-row" style="border-bottom:1px solid var(--line);padding:10px 0;display:flex;align-items:center;gap:10px;flex-wrap:wrap;">' +
           (ev.image_url ? '<img src="' + escapeHtml(ev.image_url) + '" style="width:44px;height:44px;object-fit:cover;border-radius:8px;flex-shrink:0;">' : '<span style="width:44px;height:44px;flex-shrink:0;">🎟️</span>') +
           '<div style="flex:1 1 170px;min-width:0;">' +
@@ -12360,10 +12409,14 @@ function loadEventsAdminList(){
           '<div class="event-admin-actions">' +
           '<span class="event-preview-pill" data-ev-pill="' + ev.id + '">…</span>' +
           '<button type="button" class="btn btn-sm btn-ghost" data-gen-event="' + ev.id + '">Anteprima social</button>' +
+          '<button type="button" class="btn btn-sm btn-ghost" data-edit-event="' + ev.id + '">Modifica</button>' +
           '<button type="button" class="btn btn-sm btn-ghost" data-del-event="' + ev.id + '" style="border-color:#e24b4a;color:#e24b4a;">Elimina</button>' +
           '</div>' +
         '</div>';
       }).join('');
+      Array.prototype.forEach.call(list.querySelectorAll('[data-edit-event]'), function(btn){
+        btn.addEventListener('click', function(){ startEditEvent(btn.dataset.editEvent); });
+      });
       Array.prototype.forEach.call(list.querySelectorAll('[data-del-event]'), function(btn){
         btn.addEventListener('click', function(){ deleteEvent(btn.dataset.delEvent); });
       });
@@ -12392,6 +12445,55 @@ function loadEventsAdminList(){
     });
 }
 
+var editingEventId = null;
+var adminEventsById = {};
+
+function toLocalInputValue(iso){
+  if(!iso) return '';
+  var d = new Date(iso);
+  if(isNaN(d.getTime())) return '';
+  function p(n){ return String(n).padStart(2, '0'); }
+  return d.getFullYear() + '-' + p(d.getMonth() + 1) + '-' + p(d.getDate()) + 'T' + p(d.getHours()) + ':' + p(d.getMinutes());
+}
+
+function setEventFormMode(editing){
+  var h = document.getElementById('eventFormHeading');
+  var b = document.getElementById('btnAddEvent');
+  var c = document.getElementById('btnCancelEventEdit');
+  var k = document.getElementById('eventImageKeep');
+  if(h) h.textContent = editing ? 'Modifica evento' : 'Nuovo evento';
+  if(b) b.textContent = editing ? 'Salva modifiche' : 'Crea evento';
+  if(c) c.classList.toggle('hidden', !editing);
+  if(k) k.classList.toggle('hidden', !editing);
+}
+
+function resetEventForm(){
+  editingEventId = null;
+  ['fEventTitle', 'fEventDesc', 'fEventLocation', 'fEventDate', 'fEventEndDate', 'fEventImage'].forEach(function(id){
+    var el = document.getElementById(id);
+    if(el) el.value = '';
+  });
+  setEventFormMode(false);
+}
+
+function startEditEvent(id){
+  var ev = adminEventsById[id];
+  if(!ev) return;
+  editingEventId = id;
+  document.getElementById('fEventTitle').value = ev.title || '';
+  document.getElementById('fEventDesc').value = ev.description || '';
+  document.getElementById('fEventLocation').value = ev.location || '';
+  document.getElementById('fEventDate').value = toLocalInputValue(ev.event_date);
+  var endEl = document.getElementById('fEventEndDate');
+  if(endEl) endEl.value = toLocalInputValue(ev.end_date);
+  document.getElementById('fEventImage').value = '';
+  document.getElementById('eventError').textContent = '';
+  var note = document.getElementById('eventNote'); if(note) note.textContent = '';
+  setEventFormMode(true);
+  var head = document.getElementById('eventFormHeading');
+  if(head){ try { head.scrollIntoView({ block:'start', behavior:'smooth' }); } catch(e){} }
+}
+
 function addEvent(){
   var session = getSession();
   if(!session) return;
@@ -12399,13 +12501,21 @@ function addEvent(){
   var descEl = document.getElementById('fEventDesc');
   var locEl = document.getElementById('fEventLocation');
   var dateEl = document.getElementById('fEventDate');
+  var endEl = document.getElementById('fEventEndDate');
   var imgFile = document.getElementById('fEventImage').files[0];
   var errEl = document.getElementById('eventError');
+  var noteEl = document.getElementById('eventNote');
   errEl.textContent = '';
+  if(noteEl) noteEl.textContent = '';
   if(!titleEl.value.trim()){ errEl.textContent = 'Scrivi un titolo.'; return; }
-  if(!dateEl.value){ errEl.textContent = 'Scegli data e ora.'; return; }
+  if(!dateEl.value){ errEl.textContent = 'Scegli data e ora di inizio.'; return; }
+  var endValue = endEl && endEl.value ? endEl.value : '';
+  if(endValue && new Date(endValue) <= new Date(dateEl.value)){ errEl.textContent = 'La fine deve essere dopo l\'inizio.'; return; }
 
-  var imgPromise = Promise.resolve(null);
+  var editingId = editingEventId;
+  var editingEv = editingId ? adminEventsById[editingId] : null;
+
+  var imgPromise = Promise.resolve(undefined); // undefined = non toccare l'immagine (in modifica)
   if(imgFile){
     var imgPath = Date.now() + '-' + imgFile.name.replace(/[^a-zA-Z0-9.\-]/g, '_');
     imgPromise = fetch(SUPABASE_URL + '/storage/v1/object/events/' + imgPath, {
@@ -12418,33 +12528,58 @@ function addEvent(){
     });
   }
 
+  var headers = { 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json', 'Prefer':'return=representation' };
+  var btn = document.getElementById('btnAddEvent');
+  if(btn) btn.disabled = true;
+
   imgPromise.then(function(imageUrl){
-    return fetch(SUPABASE_URL + '/rest/v1/community_events', {
-      method:'POST',
-      headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json', 'Prefer':'return=representation' },
-      body: JSON.stringify({
-        title: titleEl.value.trim(),
-        description: descEl.value.trim() || null,
-        location: locEl.value.trim() || null,
-        event_date: new Date(dateEl.value).toISOString(),
-        image_url: imageUrl,
-        created_by: currentUserId()
-      })
-    });
-  }).then(function(r){
-    if(!r.ok) throw new Error('creazione evento fallita: ' + r.status);
-    return r.json();
-  }).then(function(rows){
-    titleEl.value = ''; descEl.value = ''; locEl.value = ''; dateEl.value = ''; document.getElementById('fEventImage').value = '';
-    var newId = rows && rows[0] && rows[0].id;
-    if(newId){
-      generateEventPreview(newId, null).then(function(ok){
-        if(!ok) errEl.textContent = 'Evento creato, ma l\'anteprima social non è partita: usa "Anteprima social" nella lista qui sotto.';
+    var body = {
+      title: titleEl.value.trim(),
+      description: descEl.value.trim() || null,
+      location: locEl.value.trim() || null,
+      event_date: new Date(dateEl.value).toISOString()
+    };
+    // end_date si manda solo se serve: se la colonna non esiste ancora (SQL non lanciato) creare un evento normale continua a funzionare
+    if(endValue) body.end_date = new Date(endValue).toISOString();
+    else if(editingEv && ('end_date' in editingEv)) body.end_date = null;
+    if(editingId){
+      if(imageUrl !== undefined) body.image_url = imageUrl;
+      return fetch(SUPABASE_URL + '/rest/v1/community_events?id=eq.' + encodeURIComponent(editingId), { method:'PATCH', headers: headers, body: JSON.stringify(body) })
+        .then(function(r){
+          if(!r.ok) throw new Error('modifica evento fallita: ' + r.status);
+          return r.json();
+        }).then(function(rows){
+          if(!rows || !rows.length) throw new Error('modifica non salvata: serve il permesso di modifica sugli eventi (lancia lo SQL degli eventi)');
+          return { rows: rows, edited: true };
+        });
+    }
+    body.image_url = imageUrl === undefined ? null : imageUrl;
+    body.created_by = currentUserId();
+    return fetch(SUPABASE_URL + '/rest/v1/community_events', { method:'POST', headers: headers, body: JSON.stringify(body) })
+      .then(function(r){
+        if(!r.ok) throw new Error('creazione evento fallita: ' + r.status);
+        return r.json();
+      }).then(function(rows){ return { rows: rows, edited: false }; });
+  }).then(function(res){
+    if(btn) btn.disabled = false;
+    var id = res.rows && res.rows[0] && res.rows[0].id;
+    resetEventForm();
+    if(noteEl) noteEl.textContent = res.edited ? 'Modifiche salvate.' : 'Evento creato.';
+    if(id){
+      // l'anteprima social riparte da sola: sempre per un evento nuovo, e in modifica se la pagina esisteva già
+      var regenerate = res.edited ? checkEventPreview(id) : Promise.resolve(true);
+      delete eventPreviewCache[id];
+      regenerate.then(function(should){
+        if(!should) return;
+        generateEventPreview(id, null).then(function(ok){
+          if(!ok) errEl.textContent = (res.edited ? 'Modifiche salvate' : 'Evento creato') + ', ma l\'anteprima social non è partita: usa "Anteprima social" nella lista qui sotto.';
+        });
       });
     }
     loadEventsAdminList();
   }).catch(function(err){
-    console.warn('Creazione evento fallita:', err);
+    if(btn) btn.disabled = false;
+    console.warn('Salvataggio evento fallito:', err);
     errEl.textContent = 'Errore: ' + err.message;
   });
 }
@@ -14634,6 +14769,7 @@ function __appInit(){
   document.getElementById('btnAddPlaylist') && document.getElementById('btnAddPlaylist').addEventListener('click', addPlaylist);
   document.getElementById('btnAddServer') && document.getElementById('btnAddServer').addEventListener('click', addServer);
   document.getElementById('btnAddEvent') && document.getElementById('btnAddEvent').addEventListener('click', addEvent);
+  document.getElementById('btnCancelEventEdit') && document.getElementById('btnCancelEventEdit').addEventListener('click', function(){ resetEventForm(); var er = document.getElementById('eventError'); if(er) er.textContent = ''; });
   document.getElementById('btnAddPodcast') && document.getElementById('btnAddPodcast').addEventListener('click', addPodcast);
   document.getElementById('btnRunDiagnostics') && document.getElementById('btnRunDiagnostics').addEventListener('click', runSiteDiagnostics);
   loadPlaylistsAdminList();
