@@ -1015,6 +1015,7 @@ function initMatureToggle(){
       pendingDeepLinkItem = null;
       openTitleModal(toOpen);
     }
+    runPendingMatureAction();
   });
   document.getElementById('gateLeave') && document.getElementById('gateLeave').addEventListener('click', function(){
     closeMatureModal();
@@ -10482,7 +10483,7 @@ function previewPagePath(kind, id){
    di scrivere il titolo nella causale, come nella sezione principale. */
 /* ============ MUSICA (canzoni Suno per capitolo) ============ */
 function fetchSongsForTitle(catalogId){
-  return fetch(SUPABASE_URL + '/rest/v1/songs?catalog_id=eq.' + encodeURIComponent(catalogId) + '&select=*&order=position.asc,created_at.asc', {
+  return fetch(SUPABASE_URL + '/rest/v1/songs?catalog_id=eq.' + encodeURIComponent(catalogId) + '&select=*,catalog(title,cover_url,mature)&order=position.asc,created_at.asc', {
     headers:{ 'apikey':SUPABASE_ANON_KEY }
   }).then(function(r){ return r.ok ? r.json() : []; }).catch(function(){ return []; });
 }
@@ -10527,7 +10528,7 @@ function fetchPlaylistSongs(playlistId){
   var session = getSession();
   var headers = { 'apikey':SUPABASE_ANON_KEY };
   if(session) headers['Authorization'] = 'Bearer ' + session.access_token; // serve per leggere le PROPRIE playlist private
-  return fetch(SUPABASE_URL + '/rest/v1/playlist_songs?playlist_id=eq.' + encodeURIComponent(playlistId) + '&select=position,songs(*)&order=position.asc', {
+  return fetch(SUPABASE_URL + '/rest/v1/playlist_songs?playlist_id=eq.' + encodeURIComponent(playlistId) + '&select=position,songs(*,catalog(mature))&order=position.asc', {
     headers: headers
   }).then(function(r){ return r.ok ? r.json() : []; }).catch(function(){ return []; })
     .then(function(rows){ return rows.map(function(r){ return r.songs; }).filter(Boolean); });
@@ -10543,7 +10544,7 @@ function fetchPodcastEpisodes(podcastId){
   }).then(function(r){ return r.ok ? r.json() : []; }).catch(function(){ return []; });
 }
 function fetchAllSongsWithAlbum(){
-  return fetch(SUPABASE_URL + '/rest/v1/songs?select=*,catalog(title,cover_url)&order=created_at.desc', {
+  return fetch(SUPABASE_URL + '/rest/v1/songs?select=*,catalog(title,cover_url,mature)&order=created_at.desc', {
     headers:{ 'apikey':SUPABASE_ANON_KEY }
   }).then(function(r){ return r.ok ? r.json() : []; }).catch(function(){ return []; });
 }
@@ -10742,8 +10743,8 @@ function renderLuxtifyHome(){
 
   ensureMusicLibraryStyle(); // riusa lo stesso foglio di stile della libreria
 
+  initLuxtifyAdult();
   renderLuxtifyContinueListening();
-  renderLuxtifyDailyPick();
   renderLuxtifyMyPlaylists();
   renderLuxtifyCollabUpload();
   initLuxtifyMiniBar();
@@ -10751,8 +10752,8 @@ function renderLuxtifyHome(){
 
   Promise.all([fetchAllSongsWithAlbum(), fetchPlaylists(), fetchPodcasts()]).then(function(results){
     var songs = results[0], playlists = results[1], podcasts = results[2];
-    renderLuxtifyGenreChips(songs);
-    renderLuxtifyAlbumsRow(songs);
+    luxtifySongsCache = songs;
+    renderLuxtifyAll();
     renderLuxtifyMixes(songs);
     renderLuxtifyTopArtists(songs);
     renderLuxtifyStats(songs, playlists, podcasts);
@@ -10809,7 +10810,7 @@ function runLuxtifySearch(query){
         songs.map(function(s, i){
           return '<div class="luxtify-inline-card" data-search-song="' + i + '" style="margin-bottom:8px;">' +
             '<img src="' + escapeHtml(s.cover_url || MUSIC_COVER_FALLBACK) + '"' + coverImgAttrs() + ' style="width:40px;height:40px;border-radius:6px;object-fit:cover;flex-shrink:0;">' +
-            '<div style="flex:1;min-width:0;"><div style="color:#f0e4cd;font-size:12px;font-weight:600;">' + escapeHtml(s.title) + '</div>' +
+            '<div style="flex:1;min-width:0;"><div style="color:#f0e4cd;font-size:12px;font-weight:600;">' + escapeHtml(s.title) + lxExplicitTag(s) + '</div>' +
             '<div style="color:#8a7a5e;font-size:10px;">' + escapeHtml(s.artist || '') + '</div></div>' +
           '</div>';
         }).join('') + '</div>';
@@ -10894,87 +10895,218 @@ function renderLuxtifyContinueListening(){
   });
 }
 
-function renderLuxtifyDailyPick(){
-  var box = document.getElementById('luxtifyDailyPick');
-  if(!box) return;
-  fetchAllSongsWithAlbum().then(function(songs){
-    if(songs.length === 0){ box.closest('.luxtify-section').classList.add('hidden'); return; }
-    box.closest('.luxtify-section').classList.remove('hidden');
-    // scelta stabile per tutta la giornata (stesso giorno = stessa canzone per tutti),
-    // cambia da sola il giorno dopo senza bisogno di intervento manuale
-    var dayIndex = Math.floor(Date.now() / 86400000);
-    var pick = songs[dayIndex % songs.length];
-    box.innerHTML =
-      '<img src="' + escapeHtml(pick.cover_url || '') + '" alt=""' + coverImgAttrs() + ' style="width:52px;height:52px;border-radius:6px;object-fit:cover;flex-shrink:0;background:#150d0e;">' +
-      '<div style="flex:1;min-width:0;">' +
-        '<div style="color:#f0e4cd;font-size:12px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">' + escapeHtml(pick.title) + '</div>' +
-        '<div style="color:#c9a24d;font-size:10px;">Scelta della redazione di oggi</div>' +
-      '</div>' +
-      '<button type="button" id="luxtifyDailyPickBtn" style="background:none;border:none;color:#c9a24d;font-size:16px;cursor:pointer;">▶</button>';
-    document.getElementById('luxtifyDailyPickBtn').addEventListener('click', function(){
-      openMusicPlayer([pick], (pick.catalog && pick.catalog.title) || '');
+/* ============ LUXTIFY — layout "vetrina" e brani espliciti (18+) ============
+   Un brano è esplicito se è segnato così (songs.explicit) oppure se il suo album è collegato a un fumetto 18+.
+   Con l'interruttore 18+ spento i brani espliciti si vedono ma sono BLOCCATI: copertina sfocata, lucchetto, e al tocco
+   compare la conferma dell'età (la stessa del resto del sito). Con l'interruttore acceso si ascoltano normalmente. */
+var luxtifySongsCache = [];
+var luxtifyTag = '';
+var luxtifyCurrentList = [];
+var luxtifyCurrentLabel = '';
+var pendingMatureAction = null;
+var LX_LOCK_HTML = '<div class="lx-lockov"><svg class="lx-ico" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>18+</div>';
+
+function songIsExplicit(s){ return !!(s && (s.explicit === true || (s.catalog && s.catalog.mature === true))); }
+function songIsLocked(s){ return songIsExplicit(s) && !matureVisible; }
+function lxExplicitTag(s){
+  return songIsExplicit(s) ? ' <span class="lx-tag" title="Contenuto esplicito">' + (matureVisible ? 'E' : '18+') + '</span>' : '';
+}
+function lxCover(url, locked){
+  return '<div class="lx-cvwrap' + (locked ? ' lx-lock' : '') + '"><img class="lx-cov" src="' + escapeHtml(url || MUSIC_COVER_FALLBACK) + '" alt=""' + coverImgAttrs() + '>' + (locked ? LX_LOCK_HTML : '') + '</div>';
+}
+function lxSongCover(s){ return s.cover_url || (s.catalog && s.catalog.cover_url) || ''; }
+
+/* generi: "Upbeat Italian Pop, Indie Pop" diventa due filtri distinti invece di un unico pulsante lunghissimo */
+function lxSongTags(s){ return String(s.genre || '').split(',').map(function(x){ return x.trim(); }).filter(Boolean); }
+function lxAllTags(songs){
+  var seen = {}, out = [];
+  songs.forEach(function(s){
+    lxSongTags(s).forEach(function(tg){
+      var k = tg.toLowerCase();
+      if(!seen[k]){ seen[k] = true; out.push(tg); }
     });
   });
+  return out;
+}
+function lxMatchesTag(s){
+  if(!luxtifyTag) return true;
+  var k = luxtifyTag.toLowerCase();
+  return lxSongTags(s).some(function(x){ return x.toLowerCase() === k; });
 }
 
+/* ---- interruttore 18+ e conferma dell'età ---- */
+function setLuxtifyAdult(on){
+  matureVisible = !!on;
+  try { localStorage.setItem('lux_mature_visible', on ? '1' : '0'); } catch(e){}
+  var btn = document.getElementById('luxtifyAdultToggle');
+  if(btn) btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+  renderLuxtifyAll();
+}
+function enableAdultMode(){
+  if(document.getElementById('luxtifySection')){ setLuxtifyAdult(true); return; }
+  var sw = document.getElementById('matureSwitch');
+  if(sw && !sw.checked) sw.click(); else matureVisible = true;
+}
+function askLuxtifyAdult(afterConfirm){
+  var verified = false;
+  try { verified = localStorage.getItem('lux_age_ok') === '1'; } catch(e){}
+  if(verified){ enableAdultMode(); if(afterConfirm) afterConfirm(); return; }
+  pendingMatureAction = afterConfirm || null;
+  openMatureModal();
+}
+function runPendingMatureAction(){
+  var f = pendingMatureAction;
+  pendingMatureAction = null;
+  if(f) f();
+}
+function initLuxtifyAdult(){
+  var btn = document.getElementById('luxtifyAdultToggle');
+  if(!btn || btn.dataset.ready) return;
+  btn.dataset.ready = '1';
+  btn.addEventListener('click', function(){
+    if(matureVisible) setLuxtifyAdult(false); else askLuxtifyAdult(null);
+  });
+  // su questa pagina non c'è il menu principale, quindi i pulsanti della conferma età li collega Luxtify
+  var enter = document.getElementById('gateEnter');
+  var leave = document.getElementById('gateLeave');
+  var modal = document.getElementById('matureModal');
+  if(enter) enter.addEventListener('click', function(){
+    try { localStorage.setItem('lux_age_ok', '1'); } catch(e){}
+    closeMatureModal();
+    setLuxtifyAdult(true);
+    runPendingMatureAction();
+  });
+  if(leave) leave.addEventListener('click', function(){ closeMatureModal(); pendingMatureAction = null; });
+  if(modal) modal.addEventListener('click', function(e){ if(e.target.id === 'matureModal'){ closeMatureModal(); pendingMatureAction = null; } });
+}
+
+/* ---- in evidenza (era "Consigliata per oggi") ---- */
+function renderLuxtifyHero(songs){
+  var box = document.getElementById('luxtifyDailyPick');
+  if(!box) return;
+  var pool = songs.filter(function(s){ return !songIsLocked(s); }); // in prima pagina si preferisce un brano che tutti possono ascoltare
+  if(pool.length === 0) pool = songs;
+  if(pool.length === 0){ box.classList.add('hidden'); return; }
+  // scelta stabile per tutta la giornata (stesso giorno = stesso brano per tutti)
+  var pick = pool[Math.floor(Date.now() / 86400000) % pool.length];
+  var locked = songIsLocked(pick);
+  box.classList.remove('hidden');
+  box.innerHTML =
+    '<img class="lx-hero-img' + (locked ? ' lx-blur' : '') + '" src="' + escapeHtml(lxSongCover(pick) || MUSIC_COVER_FALLBACK) + '" alt=""' + coverImgAttrs() + '>' +
+    '<div class="lx-hero-shade"></div>' +
+    '<div class="lx-hero-txt"><div style="min-width:0">' +
+      '<div class="lx-hero-kicker">IN EVIDENZA · SCELTA DI OGGI' + lxExplicitTag(pick) + '</div>' +
+      '<span class="lx-hero-title">' + escapeHtml(pick.title) + '</span>' +
+      '<div class="lx-hero-artist">' + escapeHtml(pick.artist || '') + '</div>' +
+    '</div><button type="button" class="lx-play" aria-label="Riproduci">▶</button></div>' + (locked ? LX_LOCK_HTML : '');
+  box.onclick = function(){ openMusicPlayer([pick], (pick.catalog && pick.catalog.title) || ''); };
+}
+
+/* ---- filtri per genere ---- */
 function renderLuxtifyGenreChips(songs){
   var box = document.getElementById('luxtifyGenreChips');
   if(!box) return;
-  var genres = [];
-  songs.forEach(function(s){ if(s.genre && genres.indexOf(s.genre) === -1) genres.push(s.genre); });
-  if(genres.length === 0){ box.classList.add('hidden'); return; }
+  var tags = lxAllTags(songs);
+  if(tags.length === 0){ box.classList.add('hidden'); return; }
   box.classList.remove('hidden');
-  box.innerHTML = '<div class="luxtify-chip active" data-genre="">Tutti</div>' +
-    genres.map(function(g){ return '<div class="luxtify-chip" data-genre="' + escapeHtml(g) + '">' + escapeHtml(g) + '</div>'; }).join('');
+  box.innerHTML = '<button type="button" class="luxtify-chip' + (luxtifyTag ? '' : ' active') + '" data-genre="">Tutti</button>' +
+    tags.map(function(g){
+      return '<button type="button" class="luxtify-chip' + (luxtifyTag.toLowerCase() === g.toLowerCase() ? ' active' : '') + '" data-genre="' + escapeHtml(g) + '">' + escapeHtml(g) + '</button>';
+    }).join('');
   Array.prototype.forEach.call(box.querySelectorAll('.luxtify-chip'), function(chip){
     chip.addEventListener('click', function(){
-      Array.prototype.forEach.call(box.querySelectorAll('.luxtify-chip'), function(c){ c.classList.toggle('active', c === chip); });
-      var genre = chip.dataset.genre;
-      Array.prototype.forEach.call(document.querySelectorAll('#luxtifyAlbumsRow [data-genre-tag]'), function(card){
-        card.style.display = (!genre || card.dataset.genreTag === genre) ? '' : 'none';
-      });
+      luxtifyTag = chip.dataset.genre || '';
+      Array.prototype.forEach.call(box.querySelectorAll('.luxtify-chip'), function(c){ c.classList.toggle('active', c === chip); }); // i filtri non si ridisegnano: la fila non torna all'inizio
+      renderLuxtifyAll(true);
     });
   });
 }
 
+/* ---- album ---- */
 function renderLuxtifyAlbumsRow(songs){
   var row = document.getElementById('luxtifyAlbumsRow');
   if(!row) return;
   var albums = {}, order = [];
-  songs.forEach(function(s){
+  songs.filter(lxMatchesTag).forEach(function(s){
     var key = s.catalog_id || ('_' + s.id);
     if(!albums[key]){
-      albums[key] = { catalog_id: s.catalog_id, title: (s.catalog && s.catalog.title) || s.title, cover_url: (s.catalog && s.catalog.cover_url) || s.cover_url, genre: s.genre || '' };
+      albums[key] = { catalog_id: s.catalog_id, title: (s.catalog && s.catalog.title) || s.title, cover_url: (s.catalog && s.catalog.cover_url) || s.cover_url, explicit: false, songs: [] };
       order.push(key);
     }
+    if(songIsExplicit(s)) albums[key].explicit = true;
+    albums[key].songs.push(s);
   });
-  var likedCard = '<div class="luxtify-album-card" id="luxtifyLikedAlbum" style="width:84px;flex-shrink:0;cursor:pointer;">' +
-    '<div style="aspect-ratio:1/1;border-radius:8px;background:linear-gradient(150deg,#6e1423,#0b0607);margin-bottom:5px;display:flex;align-items:center;justify-content:center;">🤍</div>' +
-    '<div style="color:#e0d4b8;font-size:9px;font-weight:600;">Brani che mi piacciono</div>' +
-  '</div>';
-  var otherCards = order.map(function(k){
+  var heart = '<div class="lx-card" id="luxtifyLikedAlbum"><div class="lx-heart"><svg class="lx-ico" viewBox="0 0 24 24" style="width:30px;height:30px;fill:currentColor;stroke:none"><path d="M12 21s-7.5-4.6-9.5-9.2C1.2 8.6 3 5.5 6.2 5.5c1.9 0 3.2 1 3.8 2.1.6-1.1 1.9-2.1 3.8-2.1 3.2 0 5 3.1 3.7 6.3C19.5 16.4 12 21 12 21z"/></svg></div><div class="lx-card-title">Brani che mi piacciono</div></div>';
+  var cards = order.map(function(k, i){
     var a = albums[k];
-    return '<div class="luxtify-album-card" data-catalog="' + escapeHtml(a.catalog_id || '') + '" data-genre-tag="' + escapeHtml(a.genre) + '" style="width:84px;flex-shrink:0;cursor:pointer;">' +
-      '<img src="' + escapeHtml(a.cover_url || '') + '" alt=""' + coverImgAttrs() + ' style="width:100%;aspect-ratio:1/1;border-radius:8px;object-fit:cover;margin-bottom:5px;background:#150d0e;">' +
-      '<div style="color:#8a7a5e;font-size:9px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">' + escapeHtml(a.title) + '</div>' +
-    '</div>';
+    var locked = a.explicit && !matureVisible;
+    return '<div class="lx-card" data-album="' + i + '">' + lxCover(a.cover_url, locked) +
+      '<div class="lx-card-title">' + escapeHtml(a.title) + (a.explicit ? ' <span class="lx-tag">' + (matureVisible ? 'E' : '18+') + '</span>' : '') + '</div>' +
+      '<div class="lx-card-sub">Album</div></div>';
   }).join('');
-  row.innerHTML = likedCard + otherCards;
+  row.innerHTML = heart + cards;
 
   document.getElementById('luxtifyLikedAlbum').addEventListener('click', openLuxtifyLikedSongs);
-  Array.prototype.forEach.call(row.querySelectorAll('[data-catalog]'), function(card){
+  Array.prototype.forEach.call(row.querySelectorAll('[data-album]'), function(card){
     card.addEventListener('click', function(){
-      var catalogId = card.dataset.catalog;
-      if(!catalogId) return;
-      fetchSongsForTitle(catalogId).then(function(s){ openMusicPlayer(s, card.textContent.trim()); });
+      var a = albums[order[Number(card.dataset.album)]];
+      if(!a) return;
+      if(!a.catalog_id){ openMusicPlayer(a.songs, a.title); return; } // brano senza album: parte quello
+      fetchSongsForTitle(a.catalog_id).then(function(list){ openMusicPlayer(list.length ? list : a.songs, a.title); });
     });
+  });
+}
+
+/* ---- classifica del sito ---- */
+function renderLuxtifyTopSongs(songs){
+  var section = document.getElementById('luxtifyTopSection');
+  var box = document.getElementById('luxtifyTopSongs');
+  if(!section || !box) return;
+  var list = songs.filter(lxMatchesTag).slice().sort(function(a, b){ return (b.view_count || 0) - (a.view_count || 0); });
+  if(list.length === 0){ section.classList.add('hidden'); return; }
+  section.classList.remove('hidden');
+  box.innerHTML = list.map(function(s, i){
+    return '<div class="lx-trow" data-top-song="' + i + '"><span class="lx-num">' + (i + 1) + '</span>' + lxCover(lxSongCover(s), songIsLocked(s)) +
+      '<div class="lx-trow-main"><span class="lx-trow-title">' + escapeHtml(s.title) + lxExplicitTag(s) + '</span><span class="lx-trow-sub">' + escapeHtml(s.artist || '') + '</span></div>' +
+      '<button type="button" class="lx-play" aria-label="Riproduci">▶</button></div>';
+  }).join('');
+  Array.prototype.forEach.call(box.querySelectorAll('[data-top-song]'), function(el){
+    el.addEventListener('click', function(){ openMusicPlayer(list, 'Classifica del sito', {}, Number(el.dataset.topSong)); });
+  });
+}
+
+/* ridisegna le sezioni che dipendono dai brani (dopo il caricamento, dopo l'interruttore 18+, dopo un filtro) */
+function renderLuxtifyAll(skipChips){
+  var songs = luxtifySongsCache;
+  if(!skipChips) renderLuxtifyGenreChips(songs);
+  renderLuxtifyHero(songs);
+  renderLuxtifyAlbumsRow(songs);
+  renderLuxtifyTopSongs(songs);
+}
+
+/* pannello "In riproduzione" (schermi larghi): brano attuale e prossimi brani */
+function updateLuxtifyNowPanel(title, artist, cover){
+  var panel = document.getElementById('luxtifyNow');
+  if(!panel) return;
+  var idx = -1;
+  luxtifyCurrentList.forEach(function(s, i){ if(idx === -1 && s.title === title) idx = i; });
+  var next = idx === -1 ? [] : luxtifyCurrentList.slice(idx + 1, idx + 5);
+  panel.innerHTML = '<h3>In riproduzione</h3>' +
+    '<div class="lx-cvwrap lx-now-big"><img class="lx-cov" src="' + escapeHtml(cover || MUSIC_COVER_FALLBACK) + '" alt=""' + coverImgAttrs() + '></div>' +
+    '<span class="lx-now-title">' + escapeHtml(title) + '</span><span class="lx-now-artist">' + escapeHtml(artist) + '</span>' +
+    (next.length ? '<h3 style="margin-top:18px">Prossimi brani</h3>' + next.map(function(s, k){
+      return '<div class="lx-trow" data-now-song="' + (idx + 1 + k) + '">' + lxCover(lxSongCover(s), songIsLocked(s)) +
+        '<div class="lx-trow-main"><span class="lx-trow-title">' + escapeHtml(s.title) + lxExplicitTag(s) + '</span></div></div>';
+    }).join('') : '');
+  Array.prototype.forEach.call(panel.querySelectorAll('[data-now-song]'), function(el){
+    el.addEventListener('click', function(){ openMusicPlayer(luxtifyCurrentList, luxtifyCurrentLabel, {}, Number(el.dataset.nowSong)); });
   });
 }
 
 function openLuxtifyLikedSongs(){
   if(!isSignedIn()){ openAuth('login'); return; }
   var uid = currentUserId();
-  fetch(SUPABASE_URL + '/rest/v1/song_likes?user_id=eq.' + encodeURIComponent(uid) + '&select=songs(*)', {
+  fetch(SUPABASE_URL + '/rest/v1/song_likes?user_id=eq.' + encodeURIComponent(uid) + '&select=songs(*,catalog(mature))', {
     headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + getSession().access_token }
   }).then(function(r){ return r.ok ? r.json() : []; }).then(function(rows){
     var songs = rows.map(function(r){ return r.songs; }).filter(Boolean);
@@ -10989,15 +11121,17 @@ function renderLuxtifyMixes(songs){
   if(!section || !row) return;
   if(!isSignedIn()){ section.classList.add('hidden'); return; }
   var uid = currentUserId();
-  fetch(SUPABASE_URL + '/rest/v1/song_likes?user_id=eq.' + encodeURIComponent(uid) + '&select=songs(genre,title,cover_url,catalog_id)', {
+  fetch(SUPABASE_URL + '/rest/v1/song_likes?user_id=eq.' + encodeURIComponent(uid) + '&select=songs(*,catalog(mature))', {
     headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + getSession().access_token }
   }).then(function(r){ return r.ok ? r.json() : []; }).then(function(rows){
     var byGenre = {};
     rows.forEach(function(r){
       var s = r.songs;
       if(!s || !s.genre) return;
-      if(!byGenre[s.genre]) byGenre[s.genre] = [];
-      byGenre[s.genre].push(s);
+      lxSongTags(s).forEach(function(tg){
+        if(!byGenre[tg]) byGenre[tg] = [];
+        byGenre[tg].push(s);
+      });
     });
     var genres = Object.keys(byGenre).filter(function(g){ return byGenre[g].length >= 2; }); // un mix ha senso solo con almeno 2 brani dello stesso genere tra i tuoi like
     if(genres.length === 0){ section.classList.add('hidden'); return; }
@@ -11396,12 +11530,12 @@ function addLuxtifySong(){
     return fetch(SUPABASE_URL + '/rest/v1/songs', {
       method:'POST',
       headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
-      body: JSON.stringify({
+      body: JSON.stringify(Object.assign({
         catalog_id: null, // canzone caricata da un collaboratore, non legata a un titolo fumetto
         title: titleEl.value.trim(), artist: artistEl.value.trim() || null, genre: genreEl.value.trim() || null,
         audio_url: urls[0], cover_url: urls[1], created_by: currentUserId(),
         media_type: (audioFile.type && audioFile.type.indexOf('video') === 0) ? 'video' : 'audio'
-      })
+      }, (document.getElementById('fLuxExplicit') && document.getElementById('fLuxExplicit').checked) ? { explicit: true } : {})) // "explicit" si manda solo se spuntato: senza la colonna (SQL non lanciato) le canzoni normali si caricano lo stesso
     });
   }).then(function(r){
     if(!r.ok) throw new Error('salvataggio canzone fallito: ' + r.status);
@@ -11528,11 +11662,24 @@ function updateLuxtifyMiniBar(){
   document.getElementById('luxtifyMiniArtist').textContent = artistEl ? artistEl.textContent : '';
   var playPauseBtn = document.getElementById('luxtifyMiniPlayPause');
   playPauseBtn.textContent = mediaEl.paused ? '▶' : '⏸';
+  updateLuxtifyNowPanel(titleEl ? titleEl.textContent : '', artistEl ? artistEl.textContent : '', coverEl ? coverEl.src : '');
   bar.classList.remove('hidden');
 }
 
 function openMusicPlayer(songs, contextLabel, options, startIdx){
   options = options || {};
+  if(!matureVisible && Array.isArray(songs) && songs.some(songIsExplicit)){
+    var tapped = songs[startIdx || 0];
+    var allowed = songs.filter(function(s){ return !songIsExplicit(s); });
+    if(songIsExplicit(tapped) || allowed.length === 0){
+      var originalSongs = songs;
+      askLuxtifyAdult(function(){ openMusicPlayer(originalSongs, contextLabel, options, startIdx); }); // conferma dell'età, poi parte
+      return;
+    }
+    songs = allowed; // con il 18+ spento i brani espliciti dell'elenco vengono saltati
+    startIdx = allowed.indexOf(tapped);
+  }
+  if(Array.isArray(songs)){ luxtifyCurrentList = songs; luxtifyCurrentLabel = contextLabel || ''; }
   ensureMusicPlayerStyle();
   destroyMusicPlayerOverlay();
   closeMusicLibrary();
