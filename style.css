@@ -1917,3 +1917,15 @@ body.chat-fullscreen .chat-page::after{ display:none; }
   header.topbar .bell-btn{flex:none;}
   header.topbar .acct-chip{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 }
+
+
+/* ============ EVENTI: pulsante Condividi, link condiviso, stato anteprima nel gestionale ============ */
+.event-actions{gap:10px;flex-wrap:wrap;}
+.event-actions-main{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.btn-share-event{display:inline-flex;align-items:center;gap:6px;background:none;border:1px solid var(--line);color:var(--parchment-dim);border-radius:20px;padding:8px 14px;font-family:'Space Mono',monospace;font-size:11px;cursor:pointer;}
+.btn-share-event:hover,.btn-share-event:focus-visible{border-color:var(--gold);color:var(--gold-bright);}
+.event-card-focus{box-shadow:0 0 0 2px var(--gold-bright),0 0 26px rgba(201,162,77,.35);}
+@keyframes eventFocusPulse{0%{box-shadow:0 0 0 2px var(--gold-bright),0 0 0 rgba(201,162,77,0);}50%{box-shadow:0 0 0 2px var(--gold-bright),0 0 34px rgba(201,162,77,.55);}100%{box-shadow:0 0 0 2px var(--gold-bright),0 0 26px rgba(201,162,77,.35);}}
+@media (prefers-reduced-motion:no-preference){.event-card-focus{animation:eventFocusPulse 1.6s ease-out 1;}}
+.event-preview-pill{flex:none;font-family:'Space Mono',monospace;font-size:10.5px;border:1px solid var(--line);border-radius:14px;padding:3px 9px;color:var(--parchment-dim);white-space:nowrap;}
+.event-preview-pill.ok{border-color:#3f6b57;color:#5fb98a;}

@@ -6832,7 +6832,22 @@ function renderHomeEvents(){
       if(upcoming.length === 0){ box.classList.add('hidden'); return; }
       box.classList.remove('hidden');
       list.innerHTML = '';
+      // link condiviso (?event=<id>): l'evento indicato passa in cima, anche se non sarebbe tra i primi due
+      var deepEventId = new URLSearchParams(window.location.search).get('event');
+      if(deepEventId){
+        var di = upcoming.findIndex(function(e){ return String(e.id) === deepEventId; });
+        if(di > 0) upcoming.unshift(upcoming.splice(di, 1)[0]);
+      }
       upcoming.slice(0, 2).forEach(function(ev){ list.appendChild(buildEventCard(ev)); });
+      if(deepEventId){
+        var focusCard = list.querySelector('[data-event-id="' + deepEventId.replace(/[^A-Za-z0-9_-]/g, '') + '"]');
+        if(focusCard){
+          focusCard.classList.add('event-card-focus');
+          setTimeout(function(){
+            try { focusCard.scrollIntoView({ block:'center', behavior: (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) ? 'auto' : 'smooth' }); } catch(e){}
+          }, 250);
+        }
+      }
       if(upcoming.length > 2){
         var more = document.createElement('a');
         more.href = 'community.html#communitySection';
@@ -6883,9 +6898,44 @@ function renderEventsTab(){
     });
 }
 
+/* ---- Condivisione eventi con anteprima social ----
+   Ogni evento ha (dopo "Crea anteprima social" nel gestionale) una pagina e/<id>.html con i tag Open Graph:
+   è quella che i social leggono per mostrare immagine, titolo, luogo e data. Se la pagina non c'è ancora si
+   condivide il link semplice ?event=<id>, che apre comunque l'evento nel sito (con l'anteprima generica). */
+var eventPreviewCache = {}; // id -> true/false: esiste la pagina e/<id>.html?
+function checkEventPreview(id){
+  if(eventPreviewCache[id] !== undefined) return Promise.resolve(eventPreviewCache[id]);
+  return fetch(previewPagePath('e', id), { method:'HEAD', cache:'no-store' })
+    .then(function(r){ eventPreviewCache[id] = r.ok; return r.ok; })
+    .catch(function(){ eventPreviewCache[id] = false; return false; });
+}
+
+function shareEvent(ev){
+  // la scelta dell'indirizzo è immediata (cache già riempita alla creazione della card): il foglio di condivisione
+  // deve partire subito dal tocco, senza attese di rete, altrimenti iPhone lo blocca
+  var url = eventPreviewCache[ev.id] === true
+    ? previewPagePath('e', ev.id)
+    : window.location.origin + '/?event=' + encodeURIComponent(ev.id);
+  var d = new Date(ev.event_date);
+  var dateLabel = isNaN(d.getTime()) ? '' : d.toLocaleDateString('it-IT', { day:'numeric', month:'long', year:'numeric' });
+  var text = ev.title + (ev.location ? ' — 📍 ' + ev.location : '') + (dateLabel ? ' · ' + dateLabel : '');
+  if(navigator.share){
+    navigator.share({ title: ev.title, text: text, url: url }).catch(function(){ /* annullato dall'utente, va bene così */ });
+    return;
+  }
+  var full = text + '\n' + url;
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(full).then(function(){ alert(t('share.copied')); })
+      .catch(function(){ alert(t('share.manual') + '\n\n' + full); });
+  } else {
+    alert(t('share.manual') + '\n\n' + full);
+  }
+}
+
 function buildEventCard(ev){
   var card = document.createElement('div');
   card.className = 'event-card';
+  card.dataset.eventId = String(ev.id);
   var dateLabel = new Date(ev.event_date).toLocaleDateString('it-IT', { day:'numeric', month:'long', year:'numeric' });
   card.innerHTML =
     (ev.image_url ? '<img class="event-img" src="' + escapeHtml(ev.image_url) + '" alt="">' : '') +
@@ -6900,7 +6950,10 @@ function buildEventCard(ev){
         '<div class="cd-unit"><div class="cd-num" data-cd="s">–</div><div class="cd-label">' + t('events.seconds') + '</div></div>' +
       '</div>' +
       '<div class="event-actions">' +
-        '<button type="button" class="btn-attend" data-attend>' + t('events.attend') + '</button>' +
+        '<div class="event-actions-main">' +
+          '<button type="button" class="btn-attend" data-attend>' + t('events.attend') + '</button>' +
+          '<button type="button" class="btn-share-event" data-share-event><span aria-hidden="true">↗</span> ' + t('share.button') + '</button>' +
+        '</div>' +
         '<span class="attendee-count" data-count>…</span>' +
       '</div>' +
     '</div>';
@@ -6909,6 +6962,8 @@ function buildEventCard(ev){
   var countEl = card.querySelector('[data-count]');
   refreshEventAttendState(ev.id, attendBtn, countEl);
   attendBtn.addEventListener('click', function(){ toggleEventAttendance(ev.id, attendBtn, countEl); });
+  card.querySelector('[data-share-event]').addEventListener('click', function(){ shareEvent(ev); });
+  checkEventPreview(ev.id); // riempie la cache in anticipo
   return card;
 }
 
@@ -12254,6 +12309,36 @@ function removeSongFromPlaylist(playlistId, songId){
 }
 
 /* ---- Admin: Eventi ---- */
+/* Anteprima social di un evento: chiede alla funzione Supabase "generate-event-preview" di creare (o togliere)
+   la pagina e/<id>.html nel repository. Solo l'admin può chiamarla. */
+function generateEventPreview(eventId, statusEl, action){
+  var session = getSession();
+  if(!session) return Promise.resolve(false);
+  if(statusEl) statusEl.textContent = '…';
+  return fetch(SUPABASE_URL + '/functions/v1/generate-event-preview', {
+    method:'POST',
+    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
+    body: JSON.stringify({ event_id: eventId, action: action || 'create' })
+  }).then(function(r){
+    return r.json().catch(function(){ return {}; }).then(function(j){
+      if(!r.ok){
+        var e = new Error('generate-event-preview ' + r.status);
+        e.detail = [j.error, j.status, j.message].filter(Boolean).join(' ');
+        throw e;
+      }
+      return j;
+    });
+  }).then(function(){
+    delete eventPreviewCache[eventId];
+    if(statusEl) statusEl.textContent = action === 'delete' ? '' : 'Pagina inviata a GitHub: sarà online tra circa 1–2 minuti.';
+    return true;
+  }).catch(function(e){
+    console.warn('Event preview failed:', e);
+    if(statusEl) statusEl.textContent = 'Non è riuscito' + (e.detail ? ' (' + e.detail + ')' : '') + '.';
+    return false;
+  });
+}
+
 function loadEventsAdminList(){
   var list = document.getElementById('adminEventsList');
   if(!list) return;
@@ -12270,12 +12355,33 @@ function loadEventsAdminList(){
           '<div style="flex:1;">' +
             '<div style="font-weight:600;">' + escapeHtml(ev.title) + (isPast ? ' <span style="color:var(--parchment-dim);font-size:11px;">(passato)</span>' : '') + '</div>' +
             '<div style="font-size:11px;color:var(--parchment-dim);">' + dateLabel + (ev.location ? ' · ' + escapeHtml(ev.location) : '') + '</div>' +
+            '<div class="form-note" data-ev-status="' + ev.id + '" style="margin-top:4px;"></div>' +
           '</div>' +
+          '<span class="event-preview-pill" data-ev-pill="' + ev.id + '">…</span>' +
+          '<button type="button" class="btn btn-sm btn-ghost" data-gen-event="' + ev.id + '">Anteprima social</button>' +
           '<button type="button" class="btn btn-sm btn-ghost" data-del-event="' + ev.id + '" style="border-color:#e24b4a;color:#e24b4a;">Elimina</button>' +
         '</div>';
       }).join('');
       Array.prototype.forEach.call(list.querySelectorAll('[data-del-event]'), function(btn){
         btn.addEventListener('click', function(){ deleteEvent(btn.dataset.delEvent); });
+      });
+      Array.prototype.forEach.call(list.querySelectorAll('[data-gen-event]'), function(btn){
+        var id = btn.dataset.genEvent;
+        var pill = list.querySelector('[data-ev-pill="' + id + '"]');
+        var statusEl = list.querySelector('[data-ev-status="' + id + '"]');
+        function paint(ok){
+          if(pill){ pill.textContent = ok ? 'anteprima pronta' : 'anteprima non ancora pronta'; pill.classList.toggle('ok', !!ok); }
+          btn.textContent = ok ? 'Aggiorna anteprima' : 'Crea anteprima social';
+        }
+        delete eventPreviewCache[id];
+        checkEventPreview(id).then(paint);
+        btn.addEventListener('click', function(){
+          btn.disabled = true;
+          generateEventPreview(id, statusEl).then(function(ok){
+            btn.disabled = false;
+            if(ok && pill){ pill.textContent = 'in pubblicazione (1–2 min)'; pill.classList.remove('ok'); }
+          });
+        });
       });
     })
     .catch(function(e){
@@ -12313,7 +12419,7 @@ function addEvent(){
   imgPromise.then(function(imageUrl){
     return fetch(SUPABASE_URL + '/rest/v1/community_events', {
       method:'POST',
-      headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
+      headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json', 'Prefer':'return=representation' },
       body: JSON.stringify({
         title: titleEl.value.trim(),
         description: descEl.value.trim() || null,
@@ -12325,7 +12431,15 @@ function addEvent(){
     });
   }).then(function(r){
     if(!r.ok) throw new Error('creazione evento fallita: ' + r.status);
+    return r.json();
+  }).then(function(rows){
     titleEl.value = ''; descEl.value = ''; locEl.value = ''; dateEl.value = ''; document.getElementById('fEventImage').value = '';
+    var newId = rows && rows[0] && rows[0].id;
+    if(newId){
+      generateEventPreview(newId, null).then(function(ok){
+        if(!ok) errEl.textContent = 'Evento creato, ma l\'anteprima social non è partita: usa "Anteprima social" nella lista qui sotto.';
+      });
+    }
     loadEventsAdminList();
   }).catch(function(err){
     console.warn('Creazione evento fallita:', err);
@@ -12340,7 +12454,10 @@ function deleteEvent(id){
   fetch(SUPABASE_URL + '/rest/v1/community_events?id=eq.' + encodeURIComponent(id), {
     method:'DELETE',
     headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
-  }).then(function(){ loadEventsAdminList(); });
+  }).then(function(){
+    generateEventPreview(id, null, 'delete'); // toglie anche la pagina dell'anteprima, se c'era (senza aspettare)
+    loadEventsAdminList();
+  });
 }
 
 /* ---- Admin: Server community (canali propri, non condivisi con Community generale) ---- */
