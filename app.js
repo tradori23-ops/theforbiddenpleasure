@@ -13777,11 +13777,21 @@ function runSiteDiagnostics(){
       ['cover_url','audio_url'].forEach(function(field){
         if(!s[field]) return;
         var code = 'LX-3' + String(counter++).padStart(2, '0');
-        mediaChecks.push(
-          fetchWithTimeout(s[field], { method:'HEAD' }, 10000)
-            .then(function(r){ return { code: code, label: 'Media "' + (s.title || s.id) + '" (' + field + ')', ok: r.ok, detail: r.ok ? '' : 'HTTP ' + r.status }; })
-            .catch(function(err){ return { code: code, label: 'Media "' + (s.title || s.id) + '" (' + field + ')', ok: false, detail: 'Non raggiungibile (' + (err.name === 'AbortError' ? 'timeout' : err.message) + ')' }; })
-        );
+        var label = 'Media "' + (s.title || s.id) + '" (' + field + ')';
+        var check;
+        if(field === 'audio_url' && s[field].indexOf('http') !== 0){
+          // Audio protetto: nel database c'è solo il percorso nel bucket privato, non un indirizzo. Il lettore chiede un link
+          // firmato temporaneo: si controlla la stessa cosa (prima non lo si faceva, e ogni canzone nuova risultava "404" a torto)
+          check = resolveSongAudioUrl(s[field]).then(function(realUrl){
+            if(!realUrl) return { code: code, label: label, ok: false, detail: 'Link di ascolto non creato: il file non risulta nel bucket privato "songs-private" (percorso: ' + s[field] + ')' };
+            return fetchWithTimeout(realUrl, { method:'GET', headers:{ 'Range':'bytes=0-0' } }, 10000)
+              .then(function(r){ return { code: code, label: label, ok: r.ok, detail: r.ok ? '' : 'HTTP ' + r.status + ' sul link firmato' }; });
+          });
+        } else {
+          check = fetchWithTimeout(s[field], { method:'HEAD' }, 10000)
+            .then(function(r){ return { code: code, label: label, ok: r.ok, detail: r.ok ? '' : 'HTTP ' + r.status }; });
+        }
+        mediaChecks.push(check.catch(function(err){ return { code: code, label: label, ok: false, detail: 'Non raggiungibile (' + (err.name === 'AbortError' ? 'timeout' : err.message) + ')' }; }));
       });
     });
     return Promise.all(mediaChecks);
