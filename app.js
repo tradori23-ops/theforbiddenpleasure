@@ -11845,54 +11845,133 @@ function ensureMusicPlayerStyle(){
   if(existing) existing.remove(); // rimosso ad ogni apertura: permette di aggiornare lo stile senza dover ricaricare la pagina durante lo sviluppo
   var styleEl = document.createElement('style');
   styleEl.id = 'musicPlayerStyle';
-  styleEl.textContent =
-    /* overlay a SCHERMO INTERO, non più un popup centrato */
-    '.music-player-overlay{position:fixed;inset:0;background:#0b0607;z-index:300;display:flex;flex-direction:column;overflow:hidden;}' +
-    '.music-player-overlay.hidden{display:none;}' +
-    '.music-player-topbar{display:flex;align-items:center;gap:14px;padding:14px 20px;border-bottom:1px solid rgba(201,162,77,0.2);flex-shrink:0;}' +
-    '.music-player-close{background:transparent;border:1px solid rgba(201,162,77,0.4);color:#c9a24d;border-radius:50%;width:34px;height:34px;cursor:pointer;flex-shrink:0;font-size:16px;}' +
-    '.music-player-context{color:#c9a24d;font-family:"Space Mono",monospace;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;}' +
-    '.music-player-body{flex:1;display:flex;flex-direction:column;overflow-y:auto;min-height:0;}' +
-    '.music-player-main{flex:1;display:flex;flex-direction:column;align-items:center;text-align:center;padding:16px 16px 28px;overflow-y:auto;}' +
-    '.music-player-cover{width:100%;max-width:520px;aspect-ratio:1/1;border-radius:14px;object-fit:cover;box-shadow:0 16px 44px rgba(0,0,0,0.65);margin-bottom:22px;background:#150d0e;}' +
-    '.music-player-title{font-family:"Cinzel Decorative",serif;color:#f0e4cd;font-size:24px;margin:0 0 6px;}' +
-    '.music-player-artist{color:#c9a24d;font-size:13px;margin:0 0 20px;font-family:"Space Mono",monospace;letter-spacing:0.04em;}' +
-    '.music-player-collab{color:#8a7a5e;font-size:12px;margin:-14px 0 18px;}' +
-    '.music-player-collab a{color:#c9a24d;}' +
-    '.music-player-lyrics{color:#c8bda3;font-family:"Crimson Pro",serif;font-size:15px;line-height:1.8;white-space:pre-wrap;max-width:520px;border-top:1px solid rgba(201,162,77,0.2);padding-top:16px;margin-top:6px;}' +
-    '.music-player-stats{color:#8a7a5e;font-size:11px;margin-bottom:10px;}' +
-    '.music-player-social{display:flex;align-items:center;justify-content:center;gap:14px;width:100%;max-width:420px;padding:10px 0;border-top:1px solid rgba(201,162,77,0.15);border-bottom:1px solid rgba(201,162,77,0.15);margin-bottom:16px;}' +
-    '.music-player-social-item{display:flex;align-items:center;gap:5px;color:#c9a24d;font-size:12px;cursor:pointer;white-space:nowrap;}' +
-    '.music-player-social-sep{width:1px;height:14px;background:rgba(201,162,77,0.25);flex-shrink:0;}' +
-    '.music-player-avatar{width:28px;height:28px;border-radius:50%;background:linear-gradient(150deg,#6e1423,#1a1420);flex-shrink:0;}' +
-    '.music-player-comment-input{display:flex;gap:8px;margin-bottom:10px;align-items:flex-start;}' +
-    '.music-player-comments .music-player-comment-input textarea{flex:1;min-height:38px;width:auto;}' +
-    '.music-player-comment-row{display:flex;gap:8px;align-items:flex-start;padding:10px 0;}' +
-    '.music-player-comment-time{color:#5a4f3e;font-size:10px;}' +
-    '.music-player-side{flex-shrink:0;border-top:1px solid rgba(201,162,77,0.2);padding:20px;overflow-y:auto;}' +
-    '.music-player-tracklist{margin-bottom:22px;}' +
-    '.music-player-queue{margin-bottom:22px;}' +
-    '.music-player-queue-title{color:#8a7a5e;font-size:10px;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;}' +
-    '#musicPlayerShuffleBtn.active-control,#musicPlayerRepeatBtn.active-control{color:#c9a24d;border-color:#c9a24d;background:rgba(201,162,77,0.12);}' +
-    '.music-player-track{display:flex;align-items:center;gap:10px;padding:8px 6px;border-radius:8px;cursor:pointer;font-size:13px;color:#e0d4b8;}' +
-    '.music-player-track:hover{background:rgba(201,162,77,0.08);}' +
-    '.music-player-track.active{color:#c9a24d;font-weight:600;}' +
-    '.music-player-track img{width:40px;height:40px;border-radius:4px;object-fit:cover;flex-shrink:0;background:#150d0e;}' +
-    '.music-player-comments{border-top:1px solid rgba(201,162,77,0.2);padding-top:16px;}' +
-    '.music-player-comments textarea{width:100%;min-height:56px;background:#0b0607;border:1px solid rgba(201,162,77,0.3);border-radius:8px;color:#e0d4b8;padding:8px;font-family:inherit;font-size:13px;}' +
-    '.music-player-bottombar{flex-shrink:0;border-top:1px solid rgba(201,162,77,0.25);background:linear-gradient(180deg,#150d0e,#0b0607);padding:14px 20px;}' +
-    '.music-player-audio{width:100%;margin-bottom:12px;}' +
-    '.music-player-video{max-height:220px;border-radius:8px;background:#000;display:block;margin:0 auto 12px;}' +
-    '.music-player-actions{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;}' +
-    /* desktop: cover a sinistra, tracklist+commenti in colonna fissa a destra, come Spotify */
-    '@media (min-width:860px){' +
-      '.music-player-body{flex-direction:row;}' +
-      '.music-player-main{padding:40px;}' +
-      '.music-player-cover{max-width:380px;}' +
-      '.music-player-side{border-top:none;border-left:1px solid rgba(201,162,77,0.2);width:380px;padding:24px;}' +
-    '}';
+  styleEl.textContent = [
+    /* colori: seguono il tema giorno/notte del sito */
+    '.music-player-overlay{--mp-bg:#0b0607;--mp-card:rgba(255,255,255,0.06);--mp-card2:rgba(255,255,255,0.1);--mp-ink:#f5ecd8;--mp-dim:rgba(245,236,216,0.38);--mp-past:rgba(245,236,216,0.62);--mp-line:rgba(255,255,255,0.14);--mp-gold:#e3c273;--mp-wine:#6e1423;--mp-tint:0.7;',
+      'position:fixed;inset:0;background:var(--mp-bg);color:var(--mp-ink);z-index:300;display:flex;flex-direction:column;overflow:hidden;font-family:"Crimson Pro",serif;}',
+    'body.theme-light .music-player-overlay{--mp-bg:#f4efe2;--mp-card:rgba(0,0,0,0.05);--mp-card2:rgba(0,0,0,0.09);--mp-ink:#2a1d12;--mp-dim:rgba(42,29,18,0.36);--mp-past:rgba(42,29,18,0.62);--mp-line:rgba(0,0,0,0.14);--mp-gold:#8a6a1f;--mp-wine:#8a1a2c;--mp-tint:0.4;}',
+    '.music-player-overlay.hidden{display:none;}',
+    '.mp-tint{position:absolute;inset:0;pointer-events:none;opacity:var(--mp-tint);transition:background 0.6s;}',
+    '.mp-ico{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none;}',
+    '.mp-ico.f{fill:currentColor;stroke:none;}',
+    '.mp-top{position:relative;display:flex;align-items:center;gap:10px;padding:calc(14px + env(safe-area-inset-top)) 18px 6px;flex-shrink:0;}',
+    '.mp-ctx{flex:1;text-align:center;font-family:"Space Mono",monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--mp-past);min-width:0;}',
+    '.mp-ctx small{display:block;color:var(--mp-dim);font-size:9px;}',
+    '.music-player-context{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}',
+    '.mp-ib{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--mp-ink);flex:none;background:none;border:0;cursor:pointer;padding:0;}',
+    'button.mp-ib:hover{background:var(--mp-card2);}',
+    /* corpo: telefono in colonna, schermi larghi a due colonne (copertina e comandi a sinistra, testo a destra) */
+    '.mp-body{position:relative;flex:1;min-height:0;overflow-y:auto;display:flex;flex-direction:column;gap:14px;padding:6px 22px calc(18px + env(safe-area-inset-bottom));}',
+    '.mp-main{display:flex;flex-direction:column;gap:14px;}',
+    '.mp-cover{position:relative;align-self:center;width:min(290px,74vw);aspect-ratio:1/1;border-radius:12px;overflow:hidden;box-shadow:0 18px 44px rgba(0,0,0,0.45);margin-top:6px;background:var(--mp-card2);}',
+    '.mp-cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;}',
+    '#musicPlayerMediaWrap{position:absolute;inset:0;}',
+    '.mp-video{width:100%;height:100%;object-fit:contain;background:#000;display:block;}',
+    '#musicPlayerMediaWrap audio{display:none;}',
+    '.mp-meta{display:flex;align-items:center;gap:10px;}',
+    '.mp-meta .tx{flex:1;min-width:0;}',
+    '.mp-title{font-family:"Cinzel",serif;font-size:22px;line-height:1.15;font-weight:700;margin:0;color:var(--mp-ink);}',
+    '.mp-artist{font-size:15px;color:var(--mp-past);margin-top:2px;}',
+    '.mp-collab{font-size:13px;color:var(--mp-dim);margin-top:2px;}',
+    '.mp-collab a{color:var(--mp-gold);}',
+    '.mp-like{display:flex;flex-direction:column;align-items:center;gap:0;min-width:44px;padding:4px 6px;color:var(--mp-ink);font-family:"Space Mono",monospace;font-size:10px;background:none;border:0;cursor:pointer;border-radius:14px;}',
+    '.mp-like:hover{background:var(--mp-card2);}',
+    '.mp-like.on{color:#ff5c7a;}',
+    '.mp-prog{display:flex;align-items:center;gap:10px;font-family:"Space Mono",monospace;font-size:10.5px;color:var(--mp-past);}',
+    '.mp-seek{flex:1;-webkit-appearance:none;appearance:none;height:4px;border-radius:2px;background:linear-gradient(90deg,var(--mp-ink) var(--p,0%),var(--mp-line) var(--p,0%));outline-offset:6px;margin:0;}',
+    '.mp-seek::-webkit-slider-thumb{-webkit-appearance:none;width:12px;height:12px;border-radius:50%;background:var(--mp-ink);}',
+    '.mp-seek::-moz-range-thumb{width:12px;height:12px;border:0;border-radius:50%;background:var(--mp-ink);}',
+    '.mp-ctrls{display:flex;align-items:center;justify-content:center;gap:14px;}',
+    '.mp-cb{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--mp-past);background:none;border:0;cursor:pointer;padding:0;position:relative;}',
+    '.mp-cb:hover{color:var(--mp-ink);}',
+    '.mp-cb.on{color:var(--mp-gold);}',
+    '.mp-cb.big{width:62px;height:62px;background:var(--mp-ink);color:var(--mp-bg);}',
+    '.mp-cb.big:hover{color:var(--mp-bg);transform:scale(1.04);}',
+    '.mp-cb .one{position:absolute;right:7px;top:8px;font-family:"Space Mono",monospace;font-size:9px;font-weight:700;}',
+    /* azioni */
+    '.mp-tail{display:flex;flex-direction:column;gap:8px;}',
+    '.mp-acts{display:flex;justify-content:center;gap:4px;flex-wrap:wrap;}',
+    '.mp-a{display:flex;gap:7px;align-items:center;padding:8px 12px;border-radius:20px;color:var(--mp-past);font-family:"Space Mono",monospace;font-size:11px;background:none;border:0;cursor:pointer;}',
+    '.mp-a:hover{background:var(--mp-card2);color:var(--mp-ink);}',
+    '.mp-a .mp-ico{width:18px;height:18px;}',
+    '.mp-a.spd{border:1px solid var(--mp-line);padding:6px 10px;}',
+    '.mp-a.hidden,.mp-like.hidden{display:none;}',
+    '.music-player-stats{font-family:"Space Mono",monospace;font-size:10px;color:var(--mp-dim);text-align:center;}',
+    /* testo: karaoke */
+    '.mp-lyricscard{position:relative;border-radius:16px;background:var(--mp-card);padding:12px 6px 6px;cursor:pointer;}',
+    '.mp-lhead{display:flex;align-items:center;gap:8px;padding:0 12px 6px;font-family:"Space Mono",monospace;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--mp-past);}',
+    '.mp-lhead .sp{flex:1;}',
+    '.mp-lhead .mp-expand{color:var(--mp-gold);text-transform:none;letter-spacing:0.04em;}',
+    '.mp-lhead button{font-size:10.5px;letter-spacing:0.04em;color:var(--mp-gold);text-transform:none;border:1px solid var(--mp-line);border-radius:14px;padding:4px 10px;background:none;cursor:pointer;font-family:inherit;}',
+    '.mp-lyrwrap{position:relative;height:170px;}',
+    '.mp-lyr{position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;padding:14% 18px;scrollbar-width:none;-webkit-mask-image:linear-gradient(180deg,transparent,#000 14%,#000 86%,transparent);mask-image:linear-gradient(180deg,transparent,#000 14%,#000 86%,transparent);}',
+    '.mp-lyr::-webkit-scrollbar{display:none;}',
+    '.mp-ll{display:block;width:100%;text-align:left;padding:4px 0;font-family:"Crimson Pro",serif;font-size:19px;line-height:1.22;font-weight:600;letter-spacing:-0.005em;color:var(--mp-dim);transition:color 0.25s,transform 0.25s;transform-origin:left center;background:none;border:0;cursor:pointer;pointer-events:none;}',
+    '.mp-ll.past{color:var(--mp-past);}',
+    '.mp-ll.cur{color:var(--mp-ink);transform:scale(1.03);}',
+    '.mp-ll.cur .lt{background:linear-gradient(90deg,var(--mp-ink) var(--fill,100%),var(--mp-past) var(--fill,100%));-webkit-background-clip:text;background-clip:text;color:transparent;}',
+    '.mp-lyr.plain{padding:12px 18px;font-size:16px;line-height:1.7;color:var(--mp-past);white-space:pre-wrap;-webkit-mask-image:none;mask-image:none;}',
+    '.mp-lyr.none{display:flex;align-items:center;justify-content:center;text-align:center;padding:24px;font-family:"Space Mono",monospace;font-size:11px;color:var(--mp-dim);-webkit-mask-image:none;mask-image:none;}',
+    '.mp-follow{position:absolute;left:50%;bottom:10px;transform:translateX(-50%);background:var(--mp-ink);color:var(--mp-bg);border-radius:20px;padding:8px 14px;font-family:"Space Mono",monospace;font-size:11px;font-weight:700;display:none;box-shadow:0 6px 18px rgba(0,0,0,0.4);border:0;cursor:pointer;}',
+    '.mp-follow.on{display:block;}',
+    /* testo a tutto schermo (telefono) */
+    '.mp-full{position:absolute;inset:0;z-index:20;background:var(--mp-bg);display:flex;flex-direction:column;}',
+    '.mp-full.hidden{display:none;}',
+    '.mp-fbody{position:relative;flex:1;min-height:0;display:flex;flex-direction:column;padding:0 20px calc(12px + env(safe-area-inset-bottom));}',
+    '#mpFullLyr{flex:1;min-height:0;display:flex;flex-direction:column;}',
+    '.mp-fbody .mp-lyrwrap{flex:1;height:auto;min-height:0;}',
+    '.mp-fbody .mp-ll{font-size:28px;padding:7px 0;pointer-events:auto;}',
+    '.mp-fbody .mp-lyr{padding:36% 4px;}',
+    /* fogli: coda, commenti, sincronizzazione */
+    '.mp-sheet{position:absolute;inset:0;background:rgba(0,0,0,0.55);display:none;align-items:flex-end;justify-content:center;z-index:30;}',
+    '.mp-sheet.on{display:flex;}',
+    '.mp-sbox{background:var(--mp-bg);border:1px solid var(--mp-line);border-radius:18px 18px 0 0;width:100%;max-width:560px;max-height:82%;overflow-y:auto;padding:16px 16px calc(22px + env(safe-area-inset-bottom));}',
+    '.mp-sbox h3{font-family:"Space Mono",monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--mp-past);font-weight:400;margin:0 0 10px;display:flex;align-items:center;}',
+    '.mp-sbox h3 span{flex:1;}',
+    '.mp-sbtn{border:1px solid var(--mp-line);border-radius:20px;padding:9px 16px;font-family:"Space Mono",monospace;font-size:11px;font-weight:700;color:var(--mp-ink);background:none;cursor:pointer;}',
+    '.mp-sbtn.p{background:var(--mp-gold);border-color:var(--mp-gold);color:#150d0e;}',
+    '.mp-sbtn[disabled]{opacity:0.4;cursor:default;}',
+    '.mp-mark{width:100%;padding:20px;border-radius:16px;background:var(--mp-wine);color:#fff;font-family:"Cinzel",serif;font-size:20px;letter-spacing:0.06em;margin:10px 0;border:0;cursor:pointer;}',
+    '.mp-sl{display:flex;gap:10px;align-items:center;padding:6px 4px;border-bottom:1px solid var(--mp-line);font-size:16px;}',
+    '.mp-sl.next{background:var(--mp-card2);border-radius:8px;}',
+    '.mp-sl .tm{font-family:"Space Mono",monospace;font-size:11px;color:var(--mp-gold);width:60px;flex:none;}',
+    '.mp-sl .tm.no{color:var(--mp-dim);}',
+    '.mp-hint{font-size:13px;color:var(--mp-past);font-family:"Space Mono",monospace;margin:6px 0;line-height:1.5;}',
+    '.mp-sbox textarea.mp-big{width:100%;min-height:140px;background:var(--mp-card);border:1px solid var(--mp-line);border-radius:12px;padding:10px 12px;font-size:16px;font-family:"Crimson Pro",serif;color:var(--mp-ink);box-sizing:border-box;}',
+    '.mp-stabs{display:flex;gap:6px;margin-bottom:10px;}',
+    '.mp-stab{padding:7px 14px;border-radius:20px;border:1px solid var(--mp-line);color:var(--mp-past);font-size:14px;background:none;cursor:pointer;font-family:inherit;}',
+    '.mp-stab.on{background:var(--mp-ink);border-color:var(--mp-ink);color:var(--mp-bg);font-weight:600;}',
+    '.mp-qrow{display:flex;gap:12px;align-items:center;padding:8px;border-radius:10px;width:100%;text-align:left;background:none;border:0;cursor:pointer;color:inherit;font-family:inherit;}',
+    '.mp-qrow:hover{background:var(--mp-card2);}',
+    '.mp-qrow.now{background:var(--mp-card2);}',
+    '.mp-qrow img{width:44px;height:44px;border-radius:6px;object-fit:cover;flex:none;background:var(--mp-card2);}',
+    '.mp-qrow b{display:block;font-weight:600;font-size:16px;color:var(--mp-ink);}',
+    '.mp-qrow small{font-family:"Space Mono",monospace;font-size:10px;color:var(--mp-dim);}',
+    '.mp-toast{position:absolute;left:50%;bottom:calc(24px + env(safe-area-inset-bottom));transform:translateX(-50%);background:var(--mp-ink);color:var(--mp-bg);padding:10px 16px;border-radius:22px;font-size:13px;z-index:60;display:none;max-width:88%;text-align:center;font-family:"Space Mono",monospace;}',
+    /* commenti (le classi le usa loadSongComments) */
+    '.music-player-avatar{width:28px;height:28px;border-radius:50%;background:linear-gradient(150deg,#6e1423,#1a1420);flex-shrink:0;}',
+    '.music-player-comment-input{display:flex;gap:8px;margin-bottom:10px;align-items:flex-start;}',
+    '.music-player-comment-row{display:flex;gap:8px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--mp-line);}',
+    '.music-player-comment-row .author{color:var(--mp-ink);font-weight:600;}',
+    '.music-player-comment-row .body{color:var(--mp-past);font-size:15px;}',
+    '.music-player-comment-time{color:var(--mp-dim);font-size:10px;}',
+    '.music-player-comments textarea{flex:1;width:100%;min-height:56px;background:var(--mp-card);border:1px solid var(--mp-line);border-radius:10px;color:var(--mp-ink);padding:8px 10px;font-family:inherit;font-size:15px;box-sizing:border-box;}',
+    '.mp-sbox .form-note{color:var(--mp-past);}',
+    '@media (max-width:859px){.mp-lyricscard .mp-ll{pointer-events:none;}}',
+    '@media (min-width:860px){',
+      '.mp-body{display:grid;grid-template-columns:340px 1fr;grid-template-areas:"main lyr" "tail lyr";grid-template-rows:auto 1fr;column-gap:40px;row-gap:14px;padding:10px 48px 28px;align-content:start;}',
+      '.mp-main{grid-area:main;}.mp-tail{grid-area:tail;}',
+      '.mp-cover{width:300px;align-self:flex-start;margin-top:0;}',
+      '.mp-lyricscard{grid-area:lyr;display:flex;flex-direction:column;cursor:default;padding-top:16px;min-height:0;}',
+      '.mp-lyricscard .mp-lyrwrap{flex:1;height:auto;min-height:0;}',
+      '.mp-lyricscard .mp-ll{font-size:32px;padding:8px 0;pointer-events:auto;}',
+      '.mp-lyricscard .mp-lyr{padding:32% 24px;}',
+      '.mp-lyricscard .mp-expand{display:none;}',
+      '.mp-sheet{align-items:center;}.mp-sbox{border-radius:18px;}',
+    '}',
+    '@media (prefers-reduced-motion:reduce){.mp-ll,.mp-tint{transition:none;}}'
+  ].join('');
   document.head.appendChild(styleEl);
-
 }
 
 /* ---- Mini-barra persistente (solo Luxtify): musica che continua mentre navighi ---- */
@@ -11915,6 +11994,70 @@ function updateLuxtifyMiniBar(){
   bar.classList.remove('hidden');
 }
 
+/* ============ SCHERMATA DI RIPRODUZIONE ("Ora in riproduzione") ============
+   Comandi propri al posto della barra del browser, testo in stile karaoke sincronizzato, coda e commenti in fogli.
+   Il testo sincronizzato si salva nello stesso campo di prima (songs.lyrics) in formato LRC: righe "[01:23.40] testo".
+   Un testo senza tempi resta un normale testo leggibile. */
+var MP_ICONS = {
+  play: '<path d="M7 4.5v15l13-7.5z"/>',
+  pause: '<path d="M6 4h4v16H6zM14 4h4v16h-4z"/>',
+  prev: '<path d="M6 5v14M19 5.5v13L9 12z"/>',
+  next: '<path d="M18 5v14M5 5.5v13L15 12z"/>',
+  shuf: '<path d="M3 7h3c5 0 6 10 11 10h4M3 17h3c1.5 0 2.6-1 3.6-2.5M14 8.5C14.8 7.6 15.8 7 17 7h4M18 4l3 3-3 3M18 14l3 3-3 3"/>',
+  rep: '<path d="M4 11V9a3 3 0 0 1 3-3h13M17 3l3 3-3 3M20 13v2a3 3 0 0 1-3 3H4M7 21l-3-3 3-3"/>',
+  heart: '<path d="M12 20s-7-4.4-9-9c-1.2-3 .5-6 3.6-6 1.8 0 3 .9 3.9 2 .9-1.1 2.1-2 3.9-2 3.1 0 4.8 3 3.6 6-2 4.6-9 9-9 9z"/>',
+  chat: '<path d="M4 5h16v11H9l-5 4z"/>',
+  share: '<path d="M12 15V4M8 8l4-4 4 4M5 13v6h14v-6"/>',
+  plus: '<path d="M12 5v14M5 12h14"/>',
+  down: '<path d="M6 9l6 6 6-6"/>',
+  list: '<path d="M4 6h16M4 12h16M4 18h10"/>',
+  x: '<path d="M6 6l12 12M18 6L6 18"/>',
+  mic: '<rect x="9" y="3" width="6" height="11" rx="3"/><path d="M6 11a6 6 0 0 0 12 0M12 17v4"/>'
+};
+function mpIcon(name, filled, size){
+  return '<svg class="mp-ico' + (filled ? ' f' : '') + '" viewBox="0 0 24 24" aria-hidden="true"' + (size ? ' style="width:' + size + 'px;height:' + size + 'px"' : '') + '>' + MP_ICONS[name] + '</svg>';
+}
+function mpFmt(sec){
+  sec = Math.max(0, Math.floor(sec || 0));
+  return Math.floor(sec / 60) + ':' + String(sec % 60).padStart(2, '0');
+}
+
+/* ---- testo: LRC ("[mm:ss.xx] riga") oppure testo semplice ---- */
+function parseSongLyrics(text){
+  text = String(text || '');
+  if(!text.trim()) return { type: 'none' };
+  var synced = [], timedLines = 0;
+  text.split(/\r?\n/).forEach(function(line){
+    var rest = line, stamps = [], m;
+    var re = /^\s*\[(\d{1,3}):(\d{1,2}(?:[.,]\d{1,3})?)\]/;
+    while((m = rest.match(re))){
+      stamps.push(parseInt(m[1], 10) * 60 + parseFloat(m[2].replace(',', '.')));
+      rest = rest.slice(m[0].length);
+    }
+    if(stamps.length){
+      var tx = rest.trim() || '♪'; // riga vuota con tempo = pausa strumentale
+      stamps.forEach(function(sec){ synced.push([sec, tx]); });
+      timedLines++;
+    }
+  });
+  if(timedLines >= 2){
+    synced.sort(function(a, b){ return a[0] - b[0]; });
+    return { type: 'synced', lines: synced };
+  }
+  return { type: 'plain', text: text };
+}
+function toLRCText(lines){
+  return lines.map(function(l){
+    var m = Math.floor(l[0] / 60), s = l[0] - m * 60;
+    return '[' + String(m).padStart(2, '0') + ':' + (s < 10 ? '0' : '') + s.toFixed(2) + '] ' + l[1];
+  }).join('\n');
+}
+function mpCurLine(lines, sec){
+  var idx = -1;
+  for(var k = 0; k < lines.length; k++){ if(lines[k][0] <= sec) idx = k; else break; }
+  return idx;
+}
+
 function openMusicPlayer(songs, contextLabel, options, startIdx){
   options = options || {};
   if(!matureVisible && Array.isArray(songs) && songs.some(songIsExplicit)){
@@ -11932,63 +12075,78 @@ function openMusicPlayer(songs, contextLabel, options, startIdx){
   ensureMusicPlayerStyle();
   destroyMusicPlayerOverlay();
   closeMusicLibrary();
+
+  var multi = songs.length > 1;
+  var social = !options.hideSocial;
   var overlay = document.createElement('div');
   overlay.className = 'music-player-overlay';
   overlay.id = 'musicPlayerOverlay';
+  overlay.setAttribute('role', 'dialog');
+  overlay.setAttribute('aria-label', 'Ora in riproduzione');
+  overlay.tabIndex = -1;
+  var progHtml = '<div class="mp-prog"><span class="mp-tcur">0:00</span><input type="range" class="mp-seek" min="0" max="0" step="0.1" value="0" aria-label="Posizione del brano"><span class="mp-tdur">0:00</span></div>';
+  var ctrlHtml = '<div class="mp-ctrls">' +
+    (multi ? '<button type="button" class="mp-cb" data-mp="shuffle" id="musicPlayerShuffleBtn" aria-label="Riproduzione casuale">' + mpIcon('shuf') + '</button>' : '') +
+    (multi ? '<button type="button" class="mp-cb" data-mp="prev" id="musicPlayerPrevBtn" aria-label="Brano precedente">' + mpIcon('prev', true) + '</button>' : '') +
+    '<button type="button" class="mp-cb big" data-mp="play" aria-label="Riproduci o metti in pausa"><span class="mp-playico">' + mpIcon('play', true, 26) + '</span></button>' +
+    (multi ? '<button type="button" class="mp-cb" data-mp="next" id="musicPlayerNextBtn" aria-label="Brano successivo">' + mpIcon('next', true) + '</button>' : '') +
+    (multi ? '<button type="button" class="mp-cb" data-mp="repeat" id="musicPlayerRepeatBtn" aria-label="Ripeti">' + mpIcon('rep') + '</button>' : '') +
+  '</div>';
   overlay.innerHTML =
-    '<div class="music-player-topbar">' +
-      '<button type="button" class="music-player-close" id="musicPlayerClose">✕</button>' +
-      '<span class="music-player-context">' + escapeHtml(contextLabel || '') + '</span>' +
+    '<div class="mp-tint" id="mpTint"></div>' +
+    '<header class="mp-top">' +
+      '<button type="button" class="mp-ib" id="musicPlayerClose" aria-label="Riduci il lettore">' + mpIcon('down') + '</button>' +
+      '<div class="mp-ctx"><small>In riproduzione da</small><span class="music-player-context">' + escapeHtml(contextLabel || '') + '</span></div>' +
+      '<span class="mp-ib" aria-hidden="true"></span>' +
+    '</header>' +
+    '<div class="mp-body" id="mpBody">' +
+      '<section class="mp-main">' +
+        '<div class="mp-cover"><img id="musicPlayerCover" alt=""><div id="musicPlayerMediaWrap"></div></div>' +
+        '<div class="mp-meta"><div class="tx"><h1 class="mp-title" id="musicPlayerTitle"></h1><div class="mp-artist" id="musicPlayerArtist"></div><div class="mp-collab hidden" id="musicPlayerCollab"></div></div>' +
+          (social ? '<button type="button" class="mp-like" id="musicPlayerLikeBtn" aria-label="Mi piace"></button>' : '') + '</div>' +
+        progHtml + ctrlHtml +
+      '</section>' +
+      '<section class="mp-lyricscard hidden" id="mpLyricsBox"></section>' +
+      '<section class="mp-tail">' +
+        '<div class="mp-acts">' +
+          (social ? '<button type="button" class="mp-a" id="musicPlayerCommentsCount" data-mp="comments">' + mpIcon('chat') + '<span>0</span></button>' : '') +
+          (social ? '<button type="button" class="mp-a" id="musicPlayerShareBtn" data-mp="share">' + mpIcon('share') + escapeHtml(t('share.button')) + '</button>' : '') +
+          (social && isSignedIn() ? '<button type="button" class="mp-a" id="musicPlayerAddToPlaylistBtn" data-mp="playlist">' + mpIcon('plus') + 'Playlist</button>' : '') +
+          (multi ? '<button type="button" class="mp-a" id="musicPlayerQueueBtn" data-mp="queue">' + mpIcon('list') + 'Coda</button>' : '') +
+          '<button type="button" class="mp-a spd" id="musicPlayerSpeedBtn" data-mp="speed" aria-label="Velocità di riproduzione">1x</button>' +
+        '</div>' +
+        (social ? '<div class="music-player-stats" id="musicPlayerStats"></div>' : '') +
+      '</section>' +
     '</div>' +
-    '<div class="music-player-body">' +
-      '<div class="music-player-main">' +
-        '<img class="music-player-cover" id="musicPlayerCover" src="" alt="">' +
-        '<h3 class="music-player-title" id="musicPlayerTitle"></h3>' +
-        '<div class="music-player-artist" id="musicPlayerArtist"></div>' +
-        '<div class="music-player-collab hidden" id="musicPlayerCollab"></div>' +
-        '<button type="button" class="btn btn-sm btn-ghost hidden" id="musicPlayerLyricsToggle" style="margin-bottom:14px;">📝 Testo</button>' +
-        '<div class="music-player-lyrics hidden" id="musicPlayerLyrics"></div>' +
-        (options.hideSocial ? '' :
-          '<div class="music-player-stats" id="musicPlayerStats"></div>' +
-          '<div class="music-player-social" id="musicPlayerSocial">' +
-            '<div class="music-player-social-item" id="musicPlayerLikeBtn">🤍 <span>…</span></div>' +
-            '<div class="music-player-social-sep"></div>' +
-            '<div class="music-player-social-item" id="musicPlayerCommentsCount">💬 <span>…</span></div>' +
-            '<div class="music-player-social-sep"></div>' +
-            '<div class="music-player-social-item" id="musicPlayerShareBtn">↗ ' + t('share.button') + '</div>' +
-            (isSignedIn() ? '<div class="music-player-social-sep"></div><div class="music-player-social-item" id="musicPlayerAddToPlaylistBtn">➕ Playlist</div>' : '') +
-          '</div>' +
-          '<div class="music-player-comments" id="musicPlayerComments">' +
-            (isSignedIn() ?
-              '<div class="music-player-comment-input">' +
-                '<div class="music-player-avatar"></div>' +
-                '<textarea id="fSongCommentBody" placeholder="' + t('comments.placeholder') + '"></textarea>' +
-              '</div>' +
-              '<button type="button" class="btn btn-sm btn-ghost" id="btnSubmitSongComment" style="margin-bottom:12px;">' + t('comments.submit') + '</button>' +
-              '<div class="form-note" id="songCommentError"></div>'
-              : '') +
-            '<div id="songCommentsList"></div>' +
-          '</div>') +
-      '</div>' +
-      '<div class="music-player-side">' +
-        '<div class="music-player-tracklist hidden" id="musicPlayerTracklist"></div>' +
-        '<div class="music-player-queue hidden" id="musicPlayerQueue"></div>' +
-      '</div>' +
+    '<div class="mp-full hidden" id="mpFull">' +
+      '<div class="mp-tint" style="opacity:var(--mp-tint)" id="mpTint2"></div>' +
+      '<header class="mp-top"><button type="button" class="mp-ib" data-mp="collapse" aria-label="Riduci il testo">' + mpIcon('down') + '</button>' +
+        '<div class="mp-ctx"><span class="music-player-context" id="mpFullTitle"></span><small id="mpFullArtist"></small></div><span class="mp-ib" aria-hidden="true"></span></header>' +
+      '<div class="mp-fbody"><div id="mpFullLyr"></div><div style="padding:6px 0 4px;position:relative">' + progHtml + ctrlHtml + '</div></div>' +
     '</div>' +
-    '<div class="music-player-bottombar">' +
-      '<div id="musicPlayerMediaWrap"></div>' +
-      '<div class="music-player-actions" id="musicPlayerActions">' +
-        (songs.length > 1 ? '<button type="button" class="btn btn-sm btn-ghost" id="musicPlayerShuffleBtn">🔀</button>' : '') +
-        (songs.length > 1 ? '<button type="button" class="btn btn-sm btn-ghost" id="musicPlayerPrevBtn">⏮</button>' : '') +
-        (songs.length > 1 ? '<button type="button" class="btn btn-sm btn-ghost" id="musicPlayerNextBtn">⏭</button>' : '') +
-        (songs.length > 1 ? '<button type="button" class="btn btn-sm btn-ghost" id="musicPlayerRepeatBtn">🔁</button>' : '') +
-        '<button type="button" class="btn btn-sm btn-ghost" id="musicPlayerSpeedBtn">1x</button>' +
-        (songs.length > 1 ? '<button type="button" class="btn btn-sm btn-ghost" id="musicPlayerQueueBtn">📋</button>' : '') +
-      '</div>' +
-    '</div>';
+    '<div class="mp-sheet" id="mpSheet"><div class="mp-sbox" id="mpSbox">' +
+      '<div id="mpPanelComments" class="hidden"><h3><span>Commenti</span><button type="button" class="mp-ib" data-mp="sclose" style="width:32px;height:32px" aria-label="Chiudi">' + mpIcon('x', false, 18) + '</button></h3>' +
+        '<div class="music-player-comments" id="musicPlayerComments">' +
+          (social && isSignedIn() ?
+            '<div class="music-player-comment-input"><div class="music-player-avatar"></div><textarea id="fSongCommentBody" placeholder="' + escapeHtml(t('comments.placeholder')) + '"></textarea></div>' +
+            '<button type="button" class="mp-sbtn" id="btnSubmitSongComment" style="margin-bottom:12px;">' + escapeHtml(t('comments.submit')) + '</button>' +
+            '<div class="form-note" id="songCommentError"></div>' : '') +
+          '<div id="songCommentsList"></div>' +
+        '</div></div>' +
+      '<div id="mpPanelQueue" class="hidden"></div>' +
+      '<div id="mpPanelSync" class="hidden"></div>' +
+    '</div></div>' +
+    '<div class="mp-toast" id="mpToast" role="status"></div>';
   document.body.appendChild(overlay);
-  document.getElementById('musicPlayerClose').addEventListener('click', closeMusicPlayer);
-  overlay.addEventListener('click', function(e){ if(e.target === overlay) closeMusicPlayer(); });
+
+  function $mp(id){ return document.getElementById(id); }
+  function mpToast(msg){
+    var el = $mp('mpToast'); if(!el) return;
+    el.textContent = msg; el.style.display = 'block';
+    clearTimeout(mpToast._t);
+    mpToast._t = setTimeout(function(){ el.style.display = 'none'; }, 2200);
+  }
+  $mp('musicPlayerClose').addEventListener('click', closeMusicPlayer);
 
   var currentIdx = 0;
   var playOrder = songs.map(function(_, i){ return i; });
@@ -11996,6 +12154,11 @@ function openMusicPlayer(songs, contextLabel, options, startIdx){
   var repeatMode = 'off'; // 'off' | 'all' | 'one'
   var speeds = [1, 1.25, 1.5, 1.75, 2];
   var speedIdx = 0;
+  var mediaEl = null;
+  var lyricsParsed = { type: 'none' };
+  var seeking = false;
+  var rafId = 0;
+  var syncState = null;
 
   function shuffleArrayKeepingFirst(arr, keepValue){
     var rest = arr.filter(function(v){ return v !== keepValue; });
@@ -12005,7 +12168,6 @@ function openMusicPlayer(songs, contextLabel, options, startIdx){
     }
     return [keepValue].concat(rest);
   }
-
   function findNextIdx(){
     var pos = playOrder.indexOf(currentIdx);
     if(pos < playOrder.length - 1) return playOrder[pos + 1];
@@ -12017,19 +12179,141 @@ function openMusicPlayer(songs, contextLabel, options, startIdx){
     return repeatMode === 'all' ? playOrder[playOrder.length - 1] : null;
   }
   function goNext(){ var n = findNextIdx(); if(n !== null) playTrack(n); }
-  function goPrev(){ var p = findPrevIdx(); if(p !== null) playTrack(p); }
+  function goPrev(){
+    if(mediaEl && mediaEl.currentTime > 3){ mediaEl.currentTime = 0; return; } // come sugli altri lettori: prima si torna all'inizio
+    var p = findPrevIdx(); if(p !== null) playTrack(p);
+  }
 
+  /* ---- barra di avanzamento e icone ---- */
+  function updateProgress(){
+    if(!mediaEl) return;
+    var dur = mediaEl.duration && isFinite(mediaEl.duration) ? mediaEl.duration : 0;
+    var t0 = mediaEl.currentTime || 0;
+    Array.prototype.forEach.call(overlay.querySelectorAll('.mp-seek'), function(b){
+      b.max = dur || 0;
+      if(!seeking) b.value = t0;
+      b.style.setProperty('--p', (dur ? (t0 / dur * 100) : 0) + '%');
+    });
+    Array.prototype.forEach.call(overlay.querySelectorAll('.mp-tcur'), function(e){ e.textContent = mpFmt(t0); });
+    Array.prototype.forEach.call(overlay.querySelectorAll('.mp-tdur'), function(e){ e.textContent = mpFmt(dur); });
+  }
+  function updatePlayIcon(){
+    var playing = mediaEl && !mediaEl.paused;
+    Array.prototype.forEach.call(overlay.querySelectorAll('.mp-playico'), function(e){ e.innerHTML = mpIcon(playing ? 'pause' : 'play', true, 26); });
+  }
+
+  /* ---- karaoke ---- */
+  function updateKaraoke(force){
+    if(lyricsParsed.type !== 'synced' || !mediaEl) return;
+    var lines = lyricsParsed.lines;
+    var t0 = mediaEl.currentTime || 0;
+    var idx = mpCurLine(lines, t0);
+    var dur = mediaEl.duration && isFinite(mediaEl.duration) ? mediaEl.duration : (lines[lines.length - 1][0] + 6);
+    Array.prototype.forEach.call(overlay.querySelectorAll('.mp-lyr[data-sync]'), function(box){
+      var els = box.children;
+      if(box._last !== idx || force){
+        for(var i = 0; i < els.length; i++){ els[i].className = 'mp-ll' + (i === idx ? ' cur' : (i < idx ? ' past' : '')); }
+      }
+      if(idx >= 0){
+        var s0 = lines[idx][0], e0 = lines[idx + 1] ? lines[idx + 1][0] : dur;
+        var p = Math.min(1, Math.max(0, (t0 - s0) / Math.max(0.1, e0 - s0)));
+        els[idx].style.setProperty('--fill', Math.round(p * 100) + '%'); // la riga si riempie mentre si canta
+      }
+      if(box._follow !== false && (force || idx !== box._last) && idx >= 0 && box.scrollTo){
+        var el = els[idx];
+        var smooth = !(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+        box.scrollTo({ top: el.offsetTop - box.clientHeight / 2 + el.offsetHeight / 2, behavior: (force || !smooth) ? 'auto' : 'smooth' });
+      }
+      box._last = idx;
+    });
+  }
+  function rafLoop(){
+    if(!mediaEl || mediaEl.paused){ rafId = 0; return; }
+    updateProgress(); updateKaraoke(false);
+    rafId = requestAnimationFrame(rafLoop);
+  }
+  function startLoop(){ if(!rafId) rafId = requestAnimationFrame(rafLoop); }
+
+  function lyricsBodyHtml(mode){
+    if(lyricsParsed.type === 'synced'){
+      return '<div class="mp-lyrwrap"><div class="mp-lyr" data-sync="1" data-mode="' + mode + '">' +
+        lyricsParsed.lines.map(function(l, i){ return '<button type="button" class="mp-ll" data-line="' + i + '"><span class="lt">' + escapeHtml(l[1]) + '</span></button>'; }).join('') +
+        '</div><button type="button" class="mp-follow" data-mp="follow">Segui il testo</button></div>';
+    }
+    if(lyricsParsed.type === 'plain') return '<div class="mp-lyrwrap"><div class="mp-lyr plain">' + escapeHtml(lyricsParsed.text) + '</div></div>';
+    return '<div class="mp-lyrwrap"><div class="mp-lyr none">Per questo brano il testo non è ancora disponibile.</div></div>';
+  }
+  function bindLyricBoxes(){
+    Array.prototype.forEach.call(overlay.querySelectorAll('.mp-lyr[data-sync]'), function(box){
+      box._follow = true; box._last = -2;
+      var pill = box.parentNode.querySelector('.mp-follow');
+      function unfollow(){ box._follow = false; if(pill) pill.classList.add('on'); }
+      box.addEventListener('wheel', unfollow, { passive: true });
+      box.addEventListener('touchmove', unfollow, { passive: true });
+      if(pill) pill.addEventListener('click', function(e){ e.stopPropagation(); box._follow = true; pill.classList.remove('on'); updateKaraoke(true); });
+    });
+  }
+  function canEditLyrics(song){
+    return social && !!song.id && isSignedIn() && (isAdmin() || (song.created_by && song.created_by === currentUserId()));
+  }
+  function setLyrics(song){
+    lyricsParsed = parseSongLyrics(song.lyrics);
+    var box = $mp('mpLyricsBox');
+    var editable = canEditLyrics(song);
+    if(lyricsParsed.type === 'none' && !editable){
+      box.classList.add('hidden');
+      $mp('mpFullLyr').innerHTML = '';
+      return;
+    }
+    box.classList.remove('hidden');
+    box.innerHTML = '<div class="mp-lhead">Testo<span class="sp"></span>' +
+      (editable ? '<button type="button" data-mp="syncopen">' + mpIcon('mic', false, 14) + ' ' + (lyricsParsed.type === 'synced' ? 'Sincronizza' : 'Sincronizza') + '</button>' : '') +
+      (lyricsParsed.type !== 'none' ? '<span class="mp-expand">Espandi</span>' : '') + '</div>' + lyricsBodyHtml('card');
+    $mp('mpFullLyr').innerHTML = lyricsBodyHtml('full');
+    bindLyricBoxes();
+    updateKaraoke(true);
+  }
+
+  /* ---- colore di sfondo dalla copertina ---- */
+  function hueFromText(txt){ var h = 0; for(var i = 0; i < txt.length; i++){ h = (h * 31 + txt.charCodeAt(i)) % 360; } return h; }
+  function setTint(song){
+    var fallback = 'linear-gradient(180deg,hsl(' + hueFromText(song.title || '') + ',48%,24%),transparent 62%)';
+    $mp('mpTint').style.background = fallback; $mp('mpTint2').style.background = fallback;
+    if(!song.cover_url) return;
+    try {
+      var img = new Image();
+      img.crossOrigin = 'anonymous';
+      img.onload = function(){
+        try {
+          var c = document.createElement('canvas'); c.width = 16; c.height = 16;
+          var g = c.getContext('2d'); g.drawImage(img, 0, 0, 16, 16);
+          var d = g.getImageData(0, 0, 16, 16).data, r = 0, gg = 0, b = 0, n = 0;
+          for(var i = 0; i < d.length; i += 4){ if(d[i + 3] < 200) continue; r += d[i]; gg += d[i + 1]; b += d[i + 2]; n++; }
+          if(!n) return;
+          r = Math.round(r / n * 0.55); gg = Math.round(gg / n * 0.55); b = Math.round(b / n * 0.55); // scurito: il testo resta leggibile
+          var grad = 'linear-gradient(180deg,rgb(' + r + ',' + gg + ',' + b + '),transparent 62%)';
+          if($mp('mpTint')){ $mp('mpTint').style.background = grad; $mp('mpTint2').style.background = grad; }
+        } catch(e){ /* copertina non leggibile dal browser: resta il colore di riserva */ }
+      };
+      img.src = song.cover_url;
+    } catch(e){}
+  }
+
+  /* ---- traccia ---- */
   function playTrack(idx){
     currentIdx = idx;
     var song = songs[idx];
-    var coverImgEl = document.getElementById('musicPlayerCover');
+    if(rafId){ cancelAnimationFrame(rafId); rafId = 0; }
+    var coverImgEl = $mp('musicPlayerCover');
     coverImgEl.onerror = function(){ coverImgEl.onerror = null; coverImgEl.src = MUSIC_COVER_FALLBACK; };
     coverImgEl.src = song.cover_url || MUSIC_COVER_FALLBACK;
-    document.getElementById('musicPlayerTitle').textContent = song.title;
-    document.getElementById('musicPlayerArtist').textContent = (song.artist ? song.artist + ' · ' : '') + contextLabel;
+    $mp('musicPlayerTitle').textContent = song.title;
+    $mp('musicPlayerArtist').textContent = (song.artist ? song.artist + ' · ' : '') + contextLabel;
+    $mp('mpFullTitle').textContent = song.title;
+    $mp('mpFullArtist').textContent = song.artist || '';
+    setTint(song);
 
-    // per "Riprendi l'ascolto" su Luxtify — salva solo se la traccia ha un id
-    // reale (non gli episodi podcast senza social, che comunque hanno id ora)
+    // per "Riprendi l'ascolto" su Luxtify — salva solo se la traccia ha un id reale
     if(song.id){
       try {
         localStorage.setItem('luxtifyLastPlayed', JSON.stringify({
@@ -12039,7 +12323,7 @@ function openMusicPlayer(songs, contextLabel, options, startIdx){
       } catch(e){} // storage pieno o non disponibile: non blocca la riproduzione
     }
 
-    var collabEl = document.getElementById('musicPlayerCollab');
+    var collabEl = $mp('musicPlayerCollab');
     if(song.collaborators && song.collaborators.length){
       collabEl.innerHTML = t('collab.credit') + ' ' + song.collaborators.map(function(c){
         var nameLink = c.url
@@ -12052,33 +12336,38 @@ function openMusicPlayer(songs, contextLabel, options, startIdx){
       collabEl.classList.add('hidden');
     }
 
-    var mediaWrap = document.getElementById('musicPlayerMediaWrap');
+    var mediaWrap = $mp('musicPlayerMediaWrap');
     var isVideo = song.media_type === 'video';
     mediaWrap.innerHTML = isVideo
-      ? '<video class="music-player-audio music-player-video" id="musicPlayerMedia" controls controlsList="nodownload noremoteplayback" disablePictureInPicture oncontextmenu="return false;" playsinline></video>'
-      : '<audio class="music-player-audio" id="musicPlayerMedia" controls controlsList="nodownload noremoteplayback" oncontextmenu="return false;"></audio>';
-    var mediaEl = document.getElementById('musicPlayerMedia');
+      ? '<video class="mp-video" id="musicPlayerMedia" controlsList="nodownload noremoteplayback" disablePictureInPicture oncontextmenu="return false;" playsinline></video>'
+      : '<audio id="musicPlayerMedia" controlsList="nodownload noremoteplayback" oncontextmenu="return false;"></audio>';
+    mediaEl = $mp('musicPlayerMedia');
     resolveSongAudioUrl(song.audio_url).then(function(realUrl){
       if(!realUrl) return; // link scaduto/introvabile: niente riproduzione invece di un errore confuso
       mediaEl.src = realUrl;
       mediaEl.playbackRate = speeds[speedIdx];
       mediaEl.play().catch(function(){}); // l'autoplay può essere bloccato dal browser, non è un errore da segnalare
     });
+    mediaEl.addEventListener('loadedmetadata', function(){ updateProgress(); updateKaraoke(true); });
+    mediaEl.addEventListener('timeupdate', function(){ updateProgress(); updateKaraoke(false); });
+    mediaEl.addEventListener('seeked', function(){ updateKaraoke(true); });
+    mediaEl.addEventListener('play', function(){ updatePlayIcon(); startLoop(); });
+    mediaEl.addEventListener('pause', function(){ updatePlayIcon(); updateProgress(); });
     mediaEl.addEventListener('ended', function(){
       if(repeatMode === 'one'){ mediaEl.currentTime = 0; mediaEl.play().catch(function(){}); return; }
       goNext();
     });
+    updatePlayIcon(); updateProgress();
 
-    // Visualizzazioni: contate una volta ad ogni apertura della canzone nel
-    // lettore. Ascolti: contati una volta sola alla prima riproduzione reale
-    // (non ad ogni pausa/ripresa dello stesso ascolto).
+    // Visualizzazioni: contate una volta ad ogni apertura della canzone nel lettore. Ascolti: contati una volta sola
+    // alla prima riproduzione reale (non ad ogni pausa/ripresa dello stesso ascolto).
     var playAlreadyCounted = false;
-    if(song.id && !options.hideSocial){
-      var statsEl = document.getElementById('musicPlayerStats');
+    if(song.id && social){
+      var statsEl = $mp('musicPlayerStats');
       var startViews = song.views || 0, startPlays = song.plays || 0;
       statsEl.textContent = startViews + ' visualizzazioni · ' + startPlays + ' ascolti';
       trackSongView(song.id);
-      statsEl.textContent = (startViews + 1) + ' visualizzazioni · ' + startPlays + ' ascolti'; // aggiornamento ottimistico, senza aspettare il giro di rete
+      statsEl.textContent = (startViews + 1) + ' visualizzazioni · ' + startPlays + ' ascolti'; // aggiornamento ottimistico
       mediaEl.addEventListener('play', function(){
         if(playAlreadyCounted) return;
         playAlreadyCounted = true;
@@ -12087,9 +12376,7 @@ function openMusicPlayer(songs, contextLabel, options, startIdx){
       });
     }
 
-    // Controlli nativi del telefono (schermata di blocco / notifica): mostra
-    // titolo/artista/copertina VERI della canzone in corso, non il nome
-    // generico del sito, e collega avanti/indietro/play alle tracce reali.
+    // Controlli nativi del telefono (schermata di blocco / notifica): titolo/artista/copertina veri del brano in corso
     if('mediaSession' in navigator){
       navigator.mediaSession.metadata = new MediaMetadata({
         title: song.title || '',
@@ -12100,9 +12387,7 @@ function openMusicPlayer(songs, contextLabel, options, startIdx){
       navigator.mediaSession.setActionHandler('pause', function(){ mediaEl.pause(); });
       navigator.mediaSession.setActionHandler('previoustrack', songs.length > 1 ? goPrev : null);
       navigator.mediaSession.setActionHandler('nexttrack', songs.length > 1 ? goNext : null);
-      // permette di trascinare il cursore nella schermata di blocco e usare
-      // i tasti "salta indietro/avanti di 10s" — senza questi handler il
-      // cursore resta bloccato e non risponde al trascinamento
+      // permette di trascinare il cursore nella schermata di blocco e usare i tasti "salta indietro/avanti di 10s"
       navigator.mediaSession.setActionHandler('seekto', function(details){
         if(details.fastSeek && 'fastSeek' in mediaEl){ mediaEl.fastSeek(details.seekTime); return; }
         mediaEl.currentTime = details.seekTime;
@@ -12113,16 +12398,11 @@ function openMusicPlayer(songs, contextLabel, options, startIdx){
       navigator.mediaSession.setActionHandler('seekforward', function(details){
         mediaEl.currentTime = Math.min(mediaEl.duration || Infinity, mediaEl.currentTime + (details.seekOffset || 10));
       });
-      // tiene aggiornata la posizione mostrata nella schermata di blocco,
-      // altrimenti resta ferma a 0 e il trascinamento non ha effetto visibile
+      // tiene aggiornata la posizione mostrata nella schermata di blocco
       var updatePositionState = function(){
         if(!mediaEl.duration || isNaN(mediaEl.duration)) return;
         try {
-          navigator.mediaSession.setPositionState({
-            duration: mediaEl.duration,
-            playbackRate: mediaEl.playbackRate,
-            position: mediaEl.currentTime
-          });
+          navigator.mediaSession.setPositionState({ duration: mediaEl.duration, playbackRate: mediaEl.playbackRate, position: mediaEl.currentTime });
         } catch(e){} // alcuni browser vecchi non supportano setPositionState, si ignora
       };
       mediaEl.addEventListener('loadedmetadata', updatePositionState);
@@ -12131,161 +12411,233 @@ function openMusicPlayer(songs, contextLabel, options, startIdx){
       mediaEl.addEventListener('pause', function(){ navigator.mediaSession.playbackState = 'paused'; updateLuxtifyMiniBar(); });
     }
 
-    var lyricsEl = document.getElementById('musicPlayerLyrics');
-    var lyricsToggle = document.getElementById('musicPlayerLyricsToggle');
-    lyricsEl.classList.add('hidden'); // resta nascosto di default a ogni cambio traccia: la copertina occupa tutto lo spazio
-    if(song.lyrics){
-      lyricsEl.textContent = song.lyrics;
-      lyricsToggle.classList.remove('hidden');
-      lyricsToggle.onclick = function(){ lyricsEl.classList.toggle('hidden'); };
-    } else {
-      lyricsToggle.classList.add('hidden');
-    }
-    Array.prototype.forEach.call(overlay.querySelectorAll('.music-player-track[data-idx]'), function(el){
-      el.classList.toggle('active', Number(el.dataset.idx) === idx);
-    });
-    var queuePanelEl = document.getElementById('musicPlayerQueue');
-    if(queuePanelEl && !queuePanelEl.classList.contains('hidden')) renderQueuePanel();
+    setLyrics(song);
 
-    if(!options.hideSocial && song.id){
-      renderSongLikeButton(song, document.getElementById('musicPlayerLikeBtn'));
-      loadSongComments(song.id, document.getElementById('songCommentsList'), document.getElementById('musicPlayerCommentsCount'));
-      var submitBtn = document.getElementById('btnSubmitSongComment');
+    if(social && song.id){
+      renderSongLikeButton(song, $mp('musicPlayerLikeBtn'));
+      loadSongComments(song.id, $mp('songCommentsList'), $mp('musicPlayerCommentsCount'));
+      var submitBtn = $mp('btnSubmitSongComment');
       if(submitBtn){
         submitBtn.onclick = function(){
-          submitSongComment(song.id, document.getElementById('fSongCommentBody'), document.getElementById('songCommentsList'), document.getElementById('songCommentError'), document.getElementById('musicPlayerCommentsCount'));
-        };
-      }
-      var commentsCountEl = document.getElementById('musicPlayerCommentsCount');
-      if(commentsCountEl){
-        commentsCountEl.onclick = function(){
-          document.getElementById('musicPlayerComments').scrollIntoView({ behavior:'smooth', block:'start' });
+          submitSongComment(song.id, $mp('fSongCommentBody'), $mp('songCommentsList'), $mp('songCommentError'), $mp('musicPlayerCommentsCount'));
         };
       }
     }
-    var shareBtn = document.getElementById('musicPlayerShareBtn');
-    if(shareBtn){
-      if(song.id){
-        shareBtn.classList.remove('hidden');
-        shareBtn.onclick = function(){ shareSong(song, contextLabel, options.shareKind || 's'); };
-      } else {
-        shareBtn.classList.add('hidden');
-      }
-    }
-    var addToPlaylistBtn = document.getElementById('musicPlayerAddToPlaylistBtn');
-    if(addToPlaylistBtn){
-      if(song.id){
-        addToPlaylistBtn.classList.remove('hidden');
-        addToPlaylistBtn.onclick = function(){ openAddToPlaylistPopup(song); };
-      } else {
-        addToPlaylistBtn.classList.add('hidden');
-      }
-    }
+    var shareBtn = $mp('musicPlayerShareBtn');
+    if(shareBtn) shareBtn.classList.toggle('hidden', !song.id);
+    var addBtn = $mp('musicPlayerAddToPlaylistBtn');
+    if(addBtn) addBtn.classList.toggle('hidden', !song.id);
+    if($mp('mpPanelQueue') && !$mp('mpPanelQueue').classList.contains('hidden')) renderQueuePanel();
   }
 
-  var prevBtn = document.getElementById('musicPlayerPrevBtn');
-  if(prevBtn) prevBtn.addEventListener('click', goPrev);
-  var nextBtn = document.getElementById('musicPlayerNextBtn');
-  if(nextBtn) nextBtn.addEventListener('click', goNext);
-
-  var shuffleBtn = document.getElementById('musicPlayerShuffleBtn');
-  if(shuffleBtn){
-    shuffleBtn.addEventListener('click', function(){
-      shuffleOn = !shuffleOn;
-      playOrder = shuffleOn
-        ? shuffleArrayKeepingFirst(songs.map(function(_, i){ return i; }), currentIdx)
-        : songs.map(function(_, i){ return i; });
-      shuffleBtn.classList.toggle('active-control', shuffleOn);
-      renderQueuePanel();
-    });
+  /* ---- fogli ---- */
+  function openSheet(panel){
+    ['mpPanelComments', 'mpPanelQueue', 'mpPanelSync'].forEach(function(id){ $mp(id).classList.toggle('hidden', id !== panel); });
+    $mp('mpSheet').classList.add('on');
   }
-
-  var repeatBtn = document.getElementById('musicPlayerRepeatBtn');
-  if(repeatBtn){
-    repeatBtn.addEventListener('click', function(){
-      repeatMode = repeatMode === 'off' ? 'all' : (repeatMode === 'all' ? 'one' : 'off');
-      repeatBtn.textContent = repeatMode === 'one' ? '🔂' : '🔁';
-      repeatBtn.classList.toggle('active-control', repeatMode !== 'off');
-    });
-  }
-
-  var speedBtn = document.getElementById('musicPlayerSpeedBtn');
-  if(speedBtn){
-    speedBtn.addEventListener('click', function(){
-      speedIdx = (speedIdx + 1) % speeds.length;
-      var mediaEl = document.getElementById('musicPlayerMedia');
-      if(mediaEl) mediaEl.playbackRate = speeds[speedIdx];
-      speedBtn.textContent = speeds[speedIdx] + 'x';
-    });
-  }
-
-  var queueBtn = document.getElementById('musicPlayerQueueBtn');
-  if(queueBtn){
-    queueBtn.addEventListener('click', function(){
-      var tracklistEl = document.getElementById('musicPlayerTracklist');
-      var queueEl = document.getElementById('musicPlayerQueue');
-      var showingQueue = !queueEl.classList.contains('hidden');
-      if(showingQueue){
-        queueEl.classList.add('hidden');
-        if(songs.length > 1) tracklistEl.classList.remove('hidden');
-      } else {
-        tracklistEl.classList.add('hidden');
-        renderQueuePanel();
-        queueEl.classList.remove('hidden');
-      }
-    });
-  }
-
+  function closeSheet(){ $mp('mpSheet').classList.remove('on'); syncState = null; }
   function renderQueuePanel(){
-    var queueEl = document.getElementById('musicPlayerQueue');
-    if(!queueEl) return;
-    var pos = playOrder.indexOf(currentIdx);
-    var upcoming = playOrder.slice(pos + 1);
-    var html = '<div class="music-player-queue-title">In riproduzione</div>' +
-      '<div class="music-player-track active">' +
-        '<img src="' + escapeHtml(songs[currentIdx].cover_url || MUSIC_COVER_FALLBACK) + '"' + coverImgAttrs() + '>' +
-        '<span>' + escapeHtml(songs[currentIdx].title) + '</span>' +
-      '</div>';
-    if(upcoming.length > 0){
-      html += '<div class="music-player-queue-title" style="margin-top:14px;">Prossimi in coda</div>';
-      html += upcoming.map(function(i){
-        return '<div class="music-player-track" data-queue-idx="' + i + '">' +
-          '<img src="' + escapeHtml(songs[i].cover_url || MUSIC_COVER_FALLBACK) + '"' + coverImgAttrs() + '>' +
-          '<span>' + escapeHtml(songs[i].title) + '</span>' +
-        '</div>';
+    var el = $mp('mpPanelQueue');
+    el.innerHTML = '<h3><span>Coda' + (shuffleOn ? ' · ordine casuale' : '') + '</span><button type="button" class="mp-ib" data-mp="sclose" style="width:32px;height:32px" aria-label="Chiudi">' + mpIcon('x', false, 18) + '</button></h3>' +
+      playOrder.map(function(i){
+        var s = songs[i];
+        return '<button type="button" class="mp-qrow' + (i === currentIdx ? ' now' : '') + '" data-queue-idx="' + i + '"><img src="' + escapeHtml(s.cover_url || MUSIC_COVER_FALLBACK) + '" alt=""' + coverImgAttrs() + '><span><b>' + escapeHtml(s.title) + lxExplicitTag(s) + '</b><small>' + escapeHtml(s.artist || '') + '</small></span></button>';
       }).join('');
+  }
+
+  /* ---- sincronizzazione del testo (solo admin e chi ha caricato il brano) ---- */
+  function syncPanelHtml(){
+    var s = syncState, lines = s.lines, done = s.idx >= lines.length;
+    var head = '<h3><span>Sincronizza il testo</span><button type="button" class="mp-ib" data-mp="sclose" style="width:32px;height:32px" aria-label="Chiudi">' + mpIcon('x', false, 18) + '</button></h3>' +
+      '<div class="mp-stabs"><button type="button" class="mp-stab' + (s.tab === 'tap' ? ' on' : '') + '" data-stab="tap">Segna a tempo</button><button type="button" class="mp-stab' + (s.tab === 'lrc' ? ' on' : '') + '" data-stab="lrc">Incolla / copia LRC</button></div>';
+    if(s.tab === 'lrc'){
+      var stamped = lines.filter(function(l){ return l.t != null; }).map(function(l){ return [l.t, l.txt]; });
+      return head + '<div class="mp-hint">Puoi incollare un testo già sincronizzato (una riga per verso: <b>[01:23.40] testo</b>) oppure copiare quello creato qui.</div>' +
+        '<textarea class="mp-big" id="mpLrcTxt">' + escapeHtml(s.lrcRaw != null ? s.lrcRaw : toLRCText(stamped)) + '</textarea>' +
+        '<div style="display:flex;gap:8px;margin-top:10px"><button type="button" class="mp-sbtn p" data-mp="lrcsave">Applica e salva</button></div><div class="form-note" id="mpSyncMsg"></div>';
     }
-    queueEl.innerHTML = html;
-    Array.prototype.forEach.call(queueEl.querySelectorAll('[data-queue-idx]'), function(el){
-      el.addEventListener('click', function(){ playTrack(Number(el.dataset.queueIdx)); });
+    if(!s.started){
+      return head + '<div class="mp-hint">1. Scrivi o incolla il testo, un verso per riga.<br>2. Premi “Avvia”: il brano riparte da capo.<br>3. Premi <b>SEGNA</b> nel momento in cui parte ogni riga.</div>' +
+        '<textarea class="mp-big" id="mpRawTxt">' + escapeHtml(lines.map(function(l){ return l.txt; }).join('\n')) + '</textarea>' +
+        '<div style="display:flex;gap:8px;margin-top:10px"><button type="button" class="mp-sbtn p" data-mp="syncgo">Avvia</button></div>';
+    }
+    var list = lines.map(function(l, i){
+      return '<div class="mp-sl' + (i === s.idx ? ' next' : '') + '"><span class="tm' + (l.t == null ? ' no' : '') + '">' + (l.t == null ? '—' : mpFmt(l.t) + '.' + Math.round((l.t % 1) * 10)) + '</span><span>' + escapeHtml(l.txt) + '</span></div>';
+    }).join('');
+    return head + '<div class="mp-hint">' + (done ? 'Fatto: tutte le righe hanno il loro tempo.' : 'Prossima riga: <b>' + escapeHtml(lines[s.idx].txt) + '</b>') + '</div>' +
+      '<button type="button" class="mp-mark" data-mp="mark"' + (done ? ' disabled style="opacity:.4"' : '') + '>SEGNA</button>' +
+      '<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px"><button type="button" class="mp-sbtn" data-mp="unmark">↶ Annulla ultima</button><button type="button" class="mp-sbtn" data-mp="nudge-">−0,1 s</button><button type="button" class="mp-sbtn" data-mp="nudge+">+0,1 s</button></div>' +
+      '<div style="max-height:190px;overflow-y:auto">' + list + '</div>' +
+      '<div style="display:flex;gap:8px;margin-top:12px"><button type="button" class="mp-sbtn p" data-mp="syncsave">Salva la sincronizzazione</button></div><div class="form-note" id="mpSyncMsg"></div>';
+  }
+  function showSync(){ $mp('mpPanelSync').innerHTML = syncPanelHtml(); openSheet('mpPanelSync'); }
+  function openSync(){
+    var song = songs[currentIdx];
+    var base = lyricsParsed.type === 'synced' ? lyricsParsed.lines.map(function(l){ return { txt: l[1], t: l[0] }; })
+      : (lyricsParsed.type === 'plain' ? lyricsParsed.text.split(/\r?\n/).filter(function(x){ return x.trim(); }).map(function(x){ return { txt: x, t: null }; })
+      : [{ txt: '', t: null }]);
+    syncState = { tab: 'tap', lines: base, idx: lyricsParsed.type === 'synced' ? base.length : 0, started: lyricsParsed.type === 'synced', lrcRaw: null };
+    showSync();
+  }
+  function saveLyrics(text){
+    var song = songs[currentIdx];
+    var session = getSession();
+    var msg = $mp('mpSyncMsg');
+    if(!session){ if(msg) msg.textContent = 'Accedi per salvare.'; return; }
+    if(msg) msg.textContent = 'Salvataggio…';
+    fetch(SUPABASE_URL + '/rest/v1/songs?id=eq.' + encodeURIComponent(song.id), {
+      method: 'PATCH',
+      headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': 'Bearer ' + session.access_token, 'Content-Type': 'application/json', 'Prefer': 'return=representation' },
+      body: JSON.stringify({ lyrics: text })
+    }).then(function(r){
+      if(!r.ok) throw new Error('HTTP ' + r.status);
+      return r.json();
+    }).then(function(rows){
+      if(!rows || !rows.length) throw new Error('nessuna riga modificata: manca il permesso di modifica sui brani');
+      song.lyrics = text;
+      closeSheet();
+      setLyrics(song);
+      mpToast(parseSongLyrics(text).type === 'synced' ? 'Testo sincronizzato: ora è un karaoke' : 'Testo salvato');
+    }).catch(function(err){
+      console.warn('Salvataggio testo fallito:', err);
+      var m2 = $mp('mpSyncMsg');
+      if(m2) m2.textContent = 'Non salvato (' + err.message + ').';
     });
   }
 
-  if(songs.length > 1){
-    var trackListEl = document.getElementById('musicPlayerTracklist');
-    trackListEl.innerHTML = songs.map(function(s, i){
-      return '<div class="music-player-track" data-idx="' + i + '">' +
-        '<img src="' + escapeHtml(s.cover_url || '') + '" alt=""' + coverImgAttrs() + '>' +
-        '<span>' + escapeHtml(s.title) + '</span></div>';
-    }).join('');
-    trackListEl.classList.remove('hidden');
-    Array.prototype.forEach.call(trackListEl.querySelectorAll('.music-player-track'), function(el){
-      el.addEventListener('click', function(){ playTrack(Number(el.dataset.idx)); });
-    });
-  }
+  /* ---- comandi (un solo ascoltatore per tutto il lettore) ---- */
+  overlay.addEventListener('click', function(e){
+    var el = e.target.closest('[data-mp]');
+    if(el){
+      var a = el.dataset.mp;
+      if(a === 'play'){ if(mediaEl){ if(mediaEl.paused) mediaEl.play().catch(function(){}); else mediaEl.pause(); } return; }
+      if(a === 'next'){ goNext(); return; }
+      if(a === 'prev'){ goPrev(); return; }
+      if(a === 'shuffle'){
+        shuffleOn = !shuffleOn;
+        playOrder = shuffleOn ? shuffleArrayKeepingFirst(songs.map(function(_, i){ return i; }), currentIdx) : songs.map(function(_, i){ return i; });
+        el.classList.toggle('on', shuffleOn);
+        if(!$mp('mpPanelQueue').classList.contains('hidden')) renderQueuePanel();
+        return;
+      }
+      if(a === 'repeat'){
+        repeatMode = repeatMode === 'off' ? 'all' : (repeatMode === 'all' ? 'one' : 'off');
+        el.classList.toggle('on', repeatMode !== 'off');
+        el.innerHTML = mpIcon('rep') + (repeatMode === 'one' ? '<span class="one">1</span>' : '');
+        return;
+      }
+      if(a === 'speed'){
+        speedIdx = (speedIdx + 1) % speeds.length;
+        if(mediaEl) mediaEl.playbackRate = speeds[speedIdx];
+        el.textContent = speeds[speedIdx] + 'x';
+        return;
+      }
+      if(a === 'queue'){ renderQueuePanel(); openSheet('mpPanelQueue'); return; }
+      if(a === 'comments'){ openSheet('mpPanelComments'); return; }
+      if(a === 'share'){ shareSong(songs[currentIdx], contextLabel, options.shareKind || 's'); return; }
+      if(a === 'playlist'){ openAddToPlaylistPopup(songs[currentIdx]); return; }
+      if(a === 'collapse'){ $mp('mpFull').classList.add('hidden'); return; }
+      if(a === 'sclose'){ closeSheet(); return; }
+      if(a === 'follow') return; // lo gestisce il pulsante stesso
+      if(a === 'syncopen'){ e.stopPropagation(); openSync(); return; }
+      if(a === 'syncgo'){
+        var raw = ($mp('mpRawTxt').value || '').split(/\r?\n/).filter(function(x){ return x.trim(); });
+        if(raw.length < 2){ mpToast('Servono almeno due righe di testo'); return; }
+        syncState.lines = raw.map(function(x){ return { txt: x.trim(), t: null }; });
+        syncState.idx = 0; syncState.started = true;
+        if(mediaEl){ mediaEl.currentTime = 0; mediaEl.play().catch(function(){}); }
+        showSync(); return;
+      }
+      if(a === 'mark'){
+        if(syncState.idx < syncState.lines.length && mediaEl){
+          syncState.lines[syncState.idx].t = Math.round(mediaEl.currentTime * 10) / 10;
+          syncState.idx++;
+        }
+        showSync(); return;
+      }
+      if(a === 'unmark'){ if(syncState.idx > 0){ syncState.idx--; syncState.lines[syncState.idx].t = null; } showSync(); return; }
+      if(a === 'nudge-' || a === 'nudge+'){
+        var k = syncState.idx - 1;
+        if(k >= 0){ syncState.lines[k].t = Math.max(0, Math.round((syncState.lines[k].t + (a === 'nudge+' ? 0.1 : -0.1)) * 10) / 10); }
+        showSync(); return;
+      }
+      if(a === 'syncsave'){
+        var stamped = syncState.lines.filter(function(l){ return l.t != null; }).map(function(l){ return [l.t, l.txt]; });
+        if(stamped.length < 2){ var m1 = $mp('mpSyncMsg'); if(m1) m1.textContent = 'Segna almeno due righe.'; return; }
+        stamped.sort(function(x, y){ return x[0] - y[0]; });
+        saveLyrics(toLRCText(stamped)); return;
+      }
+      if(a === 'lrcsave'){
+        var txt = $mp('mpLrcTxt').value;
+        if(parseSongLyrics(txt).type !== 'synced'){ var m3 = $mp('mpSyncMsg'); if(m3) m3.textContent = 'Servono almeno due righe nel formato [mm:ss.xx] testo.'; return; }
+        saveLyrics(txt); return;
+      }
+    }
+    var stab = e.target.closest('[data-stab]');
+    if(stab && syncState){
+      if(syncState.tab === 'lrc'){ syncState.lrcRaw = ($mp('mpLrcTxt') || {}).value; } // non si perde quello che era stato scritto
+      syncState.tab = stab.dataset.stab;
+      if(syncState.tab === 'tap') syncState.lrcRaw = null;
+      showSync(); return;
+    }
+    var q = e.target.closest('[data-queue-idx]');
+    if(q){ closeSheet(); playTrack(Number(q.dataset.queueIdx)); return; }
+    var line = e.target.closest('.mp-ll');
+    if(line && lyricsParsed.type === 'synced' && mediaEl){
+      var box = line.parentNode;
+      var isFull = box.parentNode.parentNode && box.parentNode.parentNode.id === 'mpFullLyr';
+      var wide = window.matchMedia && window.matchMedia('(min-width:860px)').matches;
+      if(isFull || wide){ mediaEl.currentTime = lyricsParsed.lines[Number(line.dataset.line)][0]; updateKaraoke(true); return; }
+    }
+    var card = e.target.closest('#mpLyricsBox');
+    if(card && lyricsParsed.type !== 'none' && !(window.matchMedia && window.matchMedia('(min-width:860px)').matches)){
+      $mp('mpFull').classList.remove('hidden'); updateKaraoke(true); return;
+    }
+    if(e.target === overlay) closeMusicPlayer();
+    if(e.target === $mp('mpSheet')) closeSheet();
+  });
+  overlay.addEventListener('input', function(e){
+    if(e.target.classList.contains('mp-seek') && mediaEl){ seeking = true; mediaEl.currentTime = parseFloat(e.target.value); updateProgress(); }
+  });
+  overlay.addEventListener('change', function(e){ if(e.target.classList.contains('mp-seek')) seeking = false; });
+  overlay.addEventListener('pointerup', function(){ seeking = false; });
+  overlay.addEventListener('keydown', function(e){
+    var tag = (e.target.tagName || '').toLowerCase();
+    if(e.key === 'Escape'){
+      if($mp('mpSheet').classList.contains('on')) closeSheet();
+      else if(!$mp('mpFull').classList.contains('hidden')) $mp('mpFull').classList.add('hidden');
+      else closeMusicPlayer();
+      return;
+    }
+    if(e.key === ' ' && tag !== 'input' && tag !== 'textarea' && tag !== 'button' && mediaEl){
+      e.preventDefault();
+      if(mediaEl.paused) mediaEl.play().catch(function(){}); else mediaEl.pause();
+    }
+  });
+  try { overlay.focus(); } catch(e){}
+
   playTrack(startIdx || 0);
 }
 
 /* ---- Like su una canzone (stesso pattern like/unlike, ma su song_likes) ---- */
 function renderSongLikeButton(song, btn){
   if(!btn) return;
-  btn.textContent = '🤍 …';
+  var mp = btn.classList.contains('mp-like');
+  function draw(liked, n){
+    if(mp){
+      btn.classList.toggle('on', !!liked);
+      btn.innerHTML = mpIcon('heart', !!liked, 24) + '<span class="lk">' + n + '</span>';
+    } else {
+      btn.textContent = (liked ? '♥ ' : '♡ ') + n;
+    }
+  }
+  draw(false, '…');
   fetch(SUPABASE_URL + '/rest/v1/song_likes?song_id=eq.' + encodeURIComponent(song.id) + '&select=user_id', {
     headers:{ 'apikey':SUPABASE_ANON_KEY }
   }).then(function(r){ return r.ok ? r.json() : []; }).catch(function(){ return []; }).then(function(rows){
     var uid = currentUserId();
     var likedByMe = !!(uid && rows.some(function(r){ return r.user_id === uid; }));
-    function paint(){ btn.textContent = (likedByMe ? '❤️ ' : '🤍 ') + rows.length; }
+    function paint(){ draw(likedByMe, rows.length); }
     paint();
     btn.onclick = function(){
       if(!isSignedIn()){ openAuth('login'); return; }
@@ -12483,7 +12835,7 @@ function closeMusicPlayer(){
 }
 
 function openAllMusicBrowser(){
-  fetch(SUPABASE_URL + '/rest/v1/songs?select=*,catalog(title)&order=created_at.desc', {
+  fetch(SUPABASE_URL + '/rest/v1/songs?select=*,catalog(title,mature)&order=created_at.desc', {
     headers:{ 'apikey':SUPABASE_ANON_KEY }
   }).then(function(r){ return r.ok ? r.json() : []; }).then(function(rows){
     if(!rows || rows.length === 0){
@@ -12491,7 +12843,7 @@ function openAllMusicBrowser(){
       return;
     }
     var songs = rows.map(function(row){
-      return { id: row.id, title: row.title, artist: (row.catalog && row.catalog.title) || row.artist, cover_url: row.cover_url, audio_url: row.audio_url, lyrics: row.lyrics, media_type: row.media_type };
+      return { id: row.id, title: row.title, artist: (row.catalog && row.catalog.title) || row.artist, cover_url: row.cover_url, audio_url: row.audio_url, lyrics: row.lyrics, media_type: row.media_type, explicit: row.explicit, catalog: row.catalog, created_by: row.created_by };
     });
     openMusicPlayer(songs, t('songs.allMusic'));
   });
