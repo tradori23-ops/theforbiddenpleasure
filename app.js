@@ -11936,6 +11936,9 @@ function ensureMusicPlayerStyle(){
     '.mp-sl.next{background:var(--mp-card2);border-radius:8px;}',
     '.mp-sl .tm{font-family:"Space Mono",monospace;font-size:11px;color:var(--mp-gold);width:60px;flex:none;}',
     '.mp-sl .tm.no{color:var(--mp-dim);}',
+    '.mp-nextline{font-family:"Crimson Pro",serif;font-size:26px;line-height:1.2;font-weight:700;color:var(--mp-ink);margin:10px 0 2px;}',
+    '.mp-afterline{font-size:14px;color:var(--mp-dim);margin-bottom:4px;}',
+    '.mp-sl.label{opacity:0.55;font-style:italic;}',
     '.mp-hint{font-size:13px;color:var(--mp-past);font-family:"Space Mono",monospace;margin:6px 0;line-height:1.5;}',
     '.mp-sbox textarea.mp-big{width:100%;min-height:140px;background:var(--mp-card);border:1px solid var(--mp-line);border-radius:12px;padding:10px 12px;font-size:16px;font-family:"Crimson Pro",serif;color:var(--mp-ink);box-sizing:border-box;}',
     '.mp-stabs{display:flex;gap:6px;margin-bottom:10px;}',
@@ -12045,6 +12048,14 @@ function parseSongLyrics(text){
     return { type: 'synced', lines: synced };
   }
   return { type: 'plain', text: text };
+}
+/* Righe che non si cantano e non hanno bisogno di un tempo: "[Chorus – All]", "(Verse 2)", "NaeRy:", "Lucifera & Lilith:" */
+function mpIsLabelLine(txt){
+  var s = String(txt || '').trim();
+  if(!s) return true;
+  if(/^\[[^\]]*\]$/.test(s) || /^\([^)]*\)$/.test(s)) return true;
+  if(/^[^\s"“”'‘’][^:]{0,32}:$/.test(s)) return true;
+  return false;
 }
 function toLRCText(lines){
   return lines.map(function(l){
@@ -12196,6 +12207,7 @@ function openMusicPlayer(songs, contextLabel, options, startIdx){
     });
     Array.prototype.forEach.call(overlay.querySelectorAll('.mp-tcur'), function(e){ e.textContent = mpFmt(t0); });
     Array.prototype.forEach.call(overlay.querySelectorAll('.mp-tdur'), function(e){ e.textContent = mpFmt(dur); });
+    Array.prototype.forEach.call(overlay.querySelectorAll('.mp-synctime'), function(e){ e.textContent = mpFmt(t0) + '.' + Math.floor((t0 % 1) * 10); });
   }
   function updatePlayIcon(){
     var playing = mediaEl && !mediaEl.paused;
@@ -12446,37 +12458,76 @@ function openMusicPlayer(songs, contextLabel, options, startIdx){
   }
 
   /* ---- sincronizzazione del testo (solo admin e chi ha caricato il brano) ---- */
+  function syncAdvance(){ while(syncState.idx < syncState.lines.length && syncState.lines[syncState.idx].label) syncState.idx++; }
   function syncPanelHtml(){
-    var s = syncState, lines = s.lines, done = s.idx >= lines.length;
+    var s = syncState, lines = s.lines;
     var head = '<h3><span>Sincronizza il testo</span><button type="button" class="mp-ib" data-mp="sclose" style="width:32px;height:32px" aria-label="Chiudi">' + mpIcon('x', false, 18) + '</button></h3>' +
       '<div class="mp-stabs"><button type="button" class="mp-stab' + (s.tab === 'tap' ? ' on' : '') + '" data-stab="tap">Segna a tempo</button><button type="button" class="mp-stab' + (s.tab === 'lrc' ? ' on' : '') + '" data-stab="lrc">Incolla / copia LRC</button></div>';
     if(s.tab === 'lrc'){
       var stamped = lines.filter(function(l){ return l.t != null; }).map(function(l){ return [l.t, l.txt]; });
-      return head + '<div class="mp-hint">Puoi incollare un testo già sincronizzato (una riga per verso: <b>[01:23.40] testo</b>) oppure copiare quello creato qui.</div>' +
+      return head + '<div class="mp-hint">Per chi ha già un testo con i tempi: incollalo qui (una riga per verso, nel formato <b>[01:23.40] testo</b>) e premi Applica. Oppure copia da qui quello creato con “Segna a tempo”.</div>' +
         '<textarea class="mp-big" id="mpLrcTxt">' + escapeHtml(s.lrcRaw != null ? s.lrcRaw : toLRCText(stamped)) + '</textarea>' +
         '<div style="display:flex;gap:8px;margin-top:10px"><button type="button" class="mp-sbtn p" data-mp="lrcsave">Applica e salva</button></div><div class="form-note" id="mpSyncMsg"></div>';
     }
     if(!s.started){
-      return head + '<div class="mp-hint">1. Scrivi o incolla il testo, un verso per riga.<br>2. Premi “Avvia”: il brano riparte da capo.<br>3. Premi <b>SEGNA</b> nel momento in cui parte ogni riga.</div>' +
+      var nLabels = lines.filter(function(l){ return mpIsLabelLine(l.txt); }).length;
+      return head + '<div class="mp-hint"><b>Come funziona</b><br>1. Qui sotto c\'è il testo: correggilo se serve, un verso per riga.<br>2. Premi <b>Avvia</b>: il brano riparte da capo.<br>3. Ascolta e premi <b>SEGNA</b> (oppure Invio o Spazio) nel momento in cui comincia a cantarsi la riga indicata. Una riga alla volta, fino alla fine.</div>' +
         '<textarea class="mp-big" id="mpRawTxt">' + escapeHtml(lines.map(function(l){ return l.txt; }).join('\n')) + '</textarea>' +
-        '<div style="display:flex;gap:8px;margin-top:10px"><button type="button" class="mp-sbtn p" data-mp="syncgo">Avvia</button></div>';
+        '<label class="mp-hint" style="display:flex;gap:8px;align-items:center;cursor:pointer"><input type="checkbox" id="mpSkipLabels" checked> Salta le etichette che non si cantano (es. [Chorus – All], “NaeRy:”)' + (nLabels ? ' — ne ho trovate ' + nLabels : '') + '</label>' +
+        '<div style="display:flex;gap:8px;margin-top:10px"><button type="button" class="mp-sbtn p" data-mp="syncgo">Avvia</button></div><div class="form-note" id="mpSyncMsg"></div>';
     }
+    var sung = lines.filter(function(l){ return !l.label; });
+    var doneCount = sung.filter(function(l){ return l.t != null; }).length;
+    var done = s.idx >= lines.length;
+    var next = done ? null : lines[s.idx];
+    var after = null;
+    for(var k = s.idx + 1; k < lines.length; k++){ if(!lines[k].label){ after = lines[k]; break; } }
     var list = lines.map(function(l, i){
+      if(l.label) return '<div class="mp-sl label"><span class="tm no">etichetta</span><span>' + escapeHtml(l.txt) + '</span></div>';
       return '<div class="mp-sl' + (i === s.idx ? ' next' : '') + '"><span class="tm' + (l.t == null ? ' no' : '') + '">' + (l.t == null ? '—' : mpFmt(l.t) + '.' + Math.round((l.t % 1) * 10)) + '</span><span>' + escapeHtml(l.txt) + '</span></div>';
     }).join('');
-    return head + '<div class="mp-hint">' + (done ? 'Fatto: tutte le righe hanno il loro tempo.' : 'Prossima riga: <b>' + escapeHtml(lines[s.idx].txt) + '</b>') + '</div>' +
+    return head +
+      '<div class="mp-hint">Ascolta il brano e premi <b>SEGNA</b> (o Invio / Spazio) appena comincia la riga qui sotto. Tempo del brano: <b class="mp-synctime">0:00.0</b> · segnate ' + doneCount + ' di ' + sung.length + '</div>' +
+      (done ? '<div class="mp-nextline" style="color:var(--mp-gold)">Fatto! Ora premi “Salva la sincronizzazione”.</div>'
+            : '<div class="mp-nextline">' + escapeHtml(next.txt) + '</div>' + (after ? '<div class="mp-afterline">poi: ' + escapeHtml(after.txt) + '</div>' : '')) +
       '<button type="button" class="mp-mark" data-mp="mark"' + (done ? ' disabled style="opacity:.4"' : '') + '>SEGNA</button>' +
-      '<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px"><button type="button" class="mp-sbtn" data-mp="unmark">↶ Annulla ultima</button><button type="button" class="mp-sbtn" data-mp="nudge-">−0,1 s</button><button type="button" class="mp-sbtn" data-mp="nudge+">+0,1 s</button></div>' +
-      '<div style="max-height:190px;overflow-y:auto">' + list + '</div>' +
+      '<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px"><button type="button" class="mp-sbtn" data-mp="synctoggle">⏯ Pausa / Riprendi</button><button type="button" class="mp-sbtn" data-mp="unmark">↶ Annulla ultima</button><button type="button" class="mp-sbtn" data-mp="nudge-">−0,1 s</button><button type="button" class="mp-sbtn" data-mp="nudge+">+0,1 s</button><button type="button" class="mp-sbtn" data-mp="syncrestart">⏮ Ricomincia da capo</button></div>' +
+      '<div id="mpSyncList" style="max-height:170px;overflow-y:auto">' + list + '</div>' +
       '<div style="display:flex;gap:8px;margin-top:12px"><button type="button" class="mp-sbtn p" data-mp="syncsave">Salva la sincronizzazione</button></div><div class="form-note" id="mpSyncMsg"></div>';
   }
-  function showSync(){ $mp('mpPanelSync').innerHTML = syncPanelHtml(); openSheet('mpPanelSync'); }
+  function showSync(){
+    $mp('mpPanelSync').innerHTML = syncPanelHtml();
+    openSheet('mpPanelSync');
+    var box = $mp('mpSyncList'), nx = box && box.querySelector('.mp-sl.next');
+    if(box && nx) box.scrollTop = Math.max(0, nx.offsetTop - box.clientHeight / 2); // la riga da segnare resta sempre in vista
+    updateProgress();
+  }
   function openSync(){
-    var song = songs[currentIdx];
-    var base = lyricsParsed.type === 'synced' ? lyricsParsed.lines.map(function(l){ return { txt: l[1], t: l[0] }; })
-      : (lyricsParsed.type === 'plain' ? lyricsParsed.text.split(/\r?\n/).filter(function(x){ return x.trim(); }).map(function(x){ return { txt: x, t: null }; })
-      : [{ txt: '', t: null }]);
+    var base = lyricsParsed.type === 'synced' ? lyricsParsed.lines.map(function(l){ return { txt: l[1], t: l[0], label: false }; })
+      : (lyricsParsed.type === 'plain' ? lyricsParsed.text.split(/\r?\n/).filter(function(x){ return x.trim(); }).map(function(x){ return { txt: x, t: null, label: false }; })
+      : [{ txt: '', t: null, label: false }]);
     syncState = { tab: 'tap', lines: base, idx: lyricsParsed.type === 'synced' ? base.length : 0, started: lyricsParsed.type === 'synced', lrcRaw: null };
+    showSync();
+  }
+  /* le etichette ("[Chorus]", "NaeRy:") prendono il tempo della prima riga cantata che le segue: compaiono insieme, senza doverle segnare */
+  function buildSyncedFromState(){
+    var lines = syncState.lines, out = [];
+    for(var i = 0; i < lines.length; i++){
+      var l = lines[i];
+      if(!l.label){ if(l.t != null) out.push([l.t, l.txt]); continue; }
+      var t2 = null;
+      for(var k = i + 1; k < lines.length; k++){ if(!lines[k].label && lines[k].t != null){ t2 = lines[k].t; break; } }
+      if(t2 != null) out.push([t2, l.txt]);
+    }
+    out.sort(function(a, b){ return a[0] - b[0]; }); // a parità di tempo l'etichetta resta prima della riga (ordinamento stabile)
+    return out;
+  }
+  function syncMark(){
+    if(!syncState || !syncState.started || syncState.tab !== 'tap' || !mediaEl) return;
+    if(syncState.idx < syncState.lines.length){
+      syncState.lines[syncState.idx].t = Math.round(mediaEl.currentTime * 10) / 10;
+      syncState.idx++; syncAdvance();
+    }
     showSync();
   }
   function saveLyrics(text){
@@ -12543,29 +12594,36 @@ function openMusicPlayer(songs, contextLabel, options, startIdx){
       if(a === 'syncgo'){
         var raw = ($mp('mpRawTxt').value || '').split(/\r?\n/).filter(function(x){ return x.trim(); });
         if(raw.length < 2){ mpToast('Servono almeno due righe di testo'); return; }
-        syncState.lines = raw.map(function(x){ return { txt: x.trim(), t: null }; });
-        syncState.idx = 0; syncState.started = true;
+        var skip = $mp('mpSkipLabels') ? $mp('mpSkipLabels').checked : true;
+        syncState.lines = raw.map(function(x){ return { txt: x.trim(), t: null, label: skip && mpIsLabelLine(x) }; });
+        syncState.idx = 0; syncState.started = true; syncAdvance();
         if(mediaEl){ mediaEl.currentTime = 0; mediaEl.play().catch(function(){}); }
         showSync(); return;
       }
-      if(a === 'mark'){
-        if(syncState.idx < syncState.lines.length && mediaEl){
-          syncState.lines[syncState.idx].t = Math.round(mediaEl.currentTime * 10) / 10;
-          syncState.idx++;
-        }
+      if(a === 'mark'){ syncMark(); return; }
+      if(a === 'synctoggle'){ if(mediaEl){ if(mediaEl.paused) mediaEl.play().catch(function(){}); else mediaEl.pause(); } return; }
+      if(a === 'syncrestart'){
+        syncState.lines.forEach(function(l){ l.t = null; });
+        syncState.idx = 0; syncAdvance();
+        if(mediaEl){ mediaEl.currentTime = 0; mediaEl.play().catch(function(){}); }
         showSync(); return;
       }
-      if(a === 'unmark'){ if(syncState.idx > 0){ syncState.idx--; syncState.lines[syncState.idx].t = null; } showSync(); return; }
+      if(a === 'unmark'){
+        var u = syncState.idx - 1;
+        while(u >= 0 && syncState.lines[u].label) u--;
+        if(u >= 0){ syncState.lines[u].t = null; syncState.idx = u; }
+        showSync(); return;
+      }
       if(a === 'nudge-' || a === 'nudge+'){
         var k = syncState.idx - 1;
-        if(k >= 0){ syncState.lines[k].t = Math.max(0, Math.round((syncState.lines[k].t + (a === 'nudge+' ? 0.1 : -0.1)) * 10) / 10); }
+        while(k >= 0 && syncState.lines[k].label) k--;
+        if(k >= 0 && syncState.lines[k].t != null){ syncState.lines[k].t = Math.max(0, Math.round((syncState.lines[k].t + (a === 'nudge+' ? 0.1 : -0.1)) * 10) / 10); }
         showSync(); return;
       }
       if(a === 'syncsave'){
-        var stamped = syncState.lines.filter(function(l){ return l.t != null; }).map(function(l){ return [l.t, l.txt]; });
-        if(stamped.length < 2){ var m1 = $mp('mpSyncMsg'); if(m1) m1.textContent = 'Segna almeno due righe.'; return; }
-        stamped.sort(function(x, y){ return x[0] - y[0]; });
-        saveLyrics(toLRCText(stamped)); return;
+        var sungStamped = syncState.lines.filter(function(l){ return !l.label && l.t != null; }).length;
+        if(sungStamped < 2){ var m1 = $mp('mpSyncMsg'); if(m1) m1.textContent = 'Segna almeno due righe cantate: ascolta il brano e premi SEGNA quando comincia ognuna.'; return; }
+        saveLyrics(toLRCText(buildSyncedFromState())); return;
       }
       if(a === 'lrcsave'){
         var txt = $mp('mpLrcTxt').value;
@@ -12608,6 +12666,9 @@ function openMusicPlayer(songs, contextLabel, options, startIdx){
       else if(!$mp('mpFull').classList.contains('hidden')) $mp('mpFull').classList.add('hidden');
       else closeMusicPlayer();
       return;
+    }
+    if((e.key === 'Enter' || e.key === ' ') && syncState && syncState.started && syncState.tab === 'tap' && $mp('mpSheet').classList.contains('on') && tag !== 'textarea' && tag !== 'input'){
+      e.preventDefault(); syncMark(); return; // mentre si sincronizza, Invio e Spazio fanno SEGNA
     }
     if(e.key === ' ' && tag !== 'input' && tag !== 'textarea' && tag !== 'button' && mediaEl){
       e.preventDefault();
