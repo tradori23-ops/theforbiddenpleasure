@@ -1929,3 +1929,10 @@ body.chat-fullscreen .chat-page::after{ display:none; }
 @media (prefers-reduced-motion:no-preference){.event-card-focus{animation:eventFocusPulse 1.6s ease-out 1;}}
 .event-preview-pill{flex:none;font-family:'Space Mono',monospace;font-size:10.5px;border:1px solid var(--line);border-radius:14px;padding:3px 9px;color:var(--parchment-dim);white-space:nowrap;}
 .event-preview-pill.ok{border-color:#3f6b57;color:#5fb98a;}
+
+
+/* gestionale eventi: pillola e pulsanti vanno a capo invece di uscire dallo schermo su iPhone */
+.event-admin-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end;}
+@media (max-width:640px){
+  .event-admin-actions{flex:1 1 100%;justify-content:flex-start;}
+}

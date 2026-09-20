@@ -12350,16 +12350,18 @@ function loadEventsAdminList(){
       list.innerHTML = events.map(function(ev){
         var isPast = new Date(ev.event_date) < now;
         var dateLabel = new Date(ev.event_date).toLocaleString('it-IT', { day:'2-digit', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit' });
-        return '<div class="admin-list-row" style="border-bottom:1px solid var(--line);padding:10px 0;display:flex;align-items:center;gap:10px;">' +
+        return '<div class="admin-list-row" style="border-bottom:1px solid var(--line);padding:10px 0;display:flex;align-items:center;gap:10px;flex-wrap:wrap;">' +
           (ev.image_url ? '<img src="' + escapeHtml(ev.image_url) + '" style="width:44px;height:44px;object-fit:cover;border-radius:8px;flex-shrink:0;">' : '<span style="width:44px;height:44px;flex-shrink:0;">🎟️</span>') +
-          '<div style="flex:1;">' +
+          '<div style="flex:1 1 170px;min-width:0;">' +
             '<div style="font-weight:600;">' + escapeHtml(ev.title) + (isPast ? ' <span style="color:var(--parchment-dim);font-size:11px;">(passato)</span>' : '') + '</div>' +
             '<div style="font-size:11px;color:var(--parchment-dim);">' + dateLabel + (ev.location ? ' · ' + escapeHtml(ev.location) : '') + '</div>' +
             '<div class="form-note" data-ev-status="' + ev.id + '" style="margin-top:4px;"></div>' +
           '</div>' +
+          '<div class="event-admin-actions">' +
           '<span class="event-preview-pill" data-ev-pill="' + ev.id + '">…</span>' +
           '<button type="button" class="btn btn-sm btn-ghost" data-gen-event="' + ev.id + '">Anteprima social</button>' +
           '<button type="button" class="btn btn-sm btn-ghost" data-del-event="' + ev.id + '" style="border-color:#e24b4a;color:#e24b4a;">Elimina</button>' +
+          '</div>' +
         '</div>';
       }).join('');
       Array.prototype.forEach.call(list.querySelectorAll('[data-del-event]'), function(btn){
