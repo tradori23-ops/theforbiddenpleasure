@@ -660,6 +660,11 @@ Object.assign(STR.en, {"events.traceFrom": "from", "events.traceTo": "to", "even
 Object.assign(STR.es, {"events.traceFrom": "del", "events.traceTo": "al", "events.liveEndsIn": "En curso — termina en"});
 Object.assign(STR.fr, {"events.traceFrom": "du", "events.traceTo": "au", "events.liveEndsIn": "En cours — se termine dans"});
 Object.assign(STR.de, {"events.traceFrom": "vom", "events.traceTo": "bis zum", "events.liveEndsIn": "Läuft gerade — endet in"});
+Object.assign(STR.it, {"notif.verified": "Complimenti! Hai ricevuto la spunta blu: ora compare accanto al tuo nome nei commenti.", "users.verifiedNotice": "Spunta assegnata. {name} riceve una notifica, un push e un'email."});
+Object.assign(STR.en, {"notif.verified": "Congratulations! You've received the blue check: it now shows next to your name in comments.", "users.verifiedNotice": "Blue check granted. {name} receives a notification, a push and an email."});
+Object.assign(STR.es, {"notif.verified": "¡Enhorabuena! Has recibido la marca azul: ahora aparece junto a tu nombre en los comentarios.", "users.verifiedNotice": "Marca azul concedida. {name} recibe una notificación, un push y un correo."});
+Object.assign(STR.fr, {"notif.verified": "Félicitations ! Vous avez reçu le badge bleu : il apparaît désormais à côté de votre nom dans les commentaires.", "users.verifiedNotice": "Badge bleu attribué. {name} reçoit une notification, un push et un e-mail."});
+Object.assign(STR.de, {"notif.verified": "Glückwunsch! Du hast den blauen Haken erhalten: Er erscheint jetzt neben deinem Namen in den Kommentaren.", "users.verifiedNotice": "Blauer Haken vergeben. {name} erhält eine Benachrichtigung, einen Push und eine E-Mail."});
 
 var CHAR_META = {
   Lucifer:{role:{it:"Il Portatore di Luce",en:"The Light-Bearer",es:"El Portador de Luz",fr:"Le Porteur de Lumière",de:"Der Lichtträger"},
@@ -5751,6 +5756,7 @@ function pruneOldNotifications(session){
 function smallNoxState(n){
   var msg = n.message || '';
   if(n.type === 'signup_auto') return 'calm';
+  if(n.type === 'verified') return 'calm';
   if(n.type === 'friend_request' && msg.indexOf('sospetto') !== -1) return 'angry';
   if(n.type === 'admin_comment' && msg.indexOf('segnalato') !== -1) return 'angry';
   return null;
@@ -5775,7 +5781,7 @@ function renderNotifPanel(){
       var refItem = getCatalog().find(function(i){ return i.id === n.catalog_id; });
       if(refItem) refHtml = ' <span class="notif-ref" style="color:var(--gold, #c9a24d);font-style:italic;">«' + escapeHtml(refItem.title) + '»</span>';
     }
-    btn.innerHTML = noxImg + '<span class="actor">' + escapeHtml(n.actor_name || t('notif.someone')) + '</span> ' + escapeHtml(n.message || '') + refHtml +
+    btn.innerHTML = noxImg + '<span class="actor">' + escapeHtml(n.actor_name || t('notif.someone')) + '</span> ' + escapeHtml(n.type === 'verified' ? t('notif.verified') : (n.message || '')) + refHtml +
       '<span class="when">' + notifTimeAgo(n.created_at) + '</span>';
     btn.addEventListener('click', function(){ openNotification(n); });
     list.appendChild(btn);
@@ -5805,7 +5811,7 @@ function openNotification(n){
     }
     return;
   }
-  if((n.type === 'new_follower' || n.type === 'profile_view') && n.source_id){
+  if((n.type === 'new_follower' || n.type === 'profile_view' || n.type === 'verified') && n.source_id){
     window.location.href = 'profile.html?user=' + encodeURIComponent(n.source_id);
     return;
   }
@@ -14032,6 +14038,26 @@ function handleAddAnnouncement(){
 
 var VERIFICATION_MIN_DAYS = 90; // regola dei 90 giorni: la spunta blu non si può assegnare prima
 
+/* Dopo "Assegna spunta": l'utente riceve da solo notifica, push ed email (le manda il database) — lo si scrive sopra l'elenco */
+function showUsersVerifyNotice(name){
+  var list = document.getElementById('adminUsersList');
+  if(!list || !list.parentNode) return;
+  var el = document.getElementById('usersVerifyNote');
+  if(!el){
+    el = document.createElement('div');
+    el.id = 'usersVerifyNote';
+    el.className = 'form-note';
+    el.setAttribute('role', 'status');
+    el.style.color = '#5fb98a';
+    list.parentNode.insertBefore(el, list);
+  }
+  el.textContent = t('users.verifiedNotice').replace('{name}', name);
+}
+function clearUsersVerifyNotice(){
+  var el = document.getElementById('usersVerifyNote');
+  if(el) el.textContent = '';
+}
+
 function renderAdminUsers(){
   if(!isAdmin()) return;
   var list = document.getElementById('adminUsersList');
@@ -14079,11 +14105,20 @@ function renderAdminUsers(){
             var msg = t('users.earlyGrantConfirm').replace('{n}', VERIFICATION_MIN_DAYS - daysHere).replace('{name}', displayLabel);
             if(!window.confirm(msg)) return;
           }
+          var willGrant = !u.verified; // deciso al momento del click: true = si sta assegnando la spunta
           fetch(SUPABASE_URL + '/rest/v1/profiles?id=eq.' + encodeURIComponent(u.id), {
             method:'PATCH',
             headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
-            body: JSON.stringify({verified: !u.verified})
-          }).then(function(r){ if(r.ok) renderAdminUsers(); else r.json().then(function(e){ window.alert((e && e.message) || 'Errore'); }).catch(function(){ window.alert('Errore'); }); });
+            body: JSON.stringify({verified: willGrant})
+          }).then(function(r){
+            if(r.ok){
+              renderAdminUsers();
+              if(willGrant) showUsersVerifyNotice(u.display_name || (t('users.noName') + ' ' + u.id.slice(0,8)));
+              else clearUsersVerifyNotice();
+            } else {
+              r.json().then(function(e){ window.alert((e && e.message) || 'Errore'); }).catch(function(){ window.alert('Errore'); });
+            }
+          });
         });
         list.appendChild(row);
       });
