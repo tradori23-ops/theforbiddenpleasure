@@ -5518,8 +5518,10 @@ function saveProfile(){
       birth_date: birthDate || null, gender: gender || null,
       social_instagram: socialInstagram || null, social_twitter: socialTwitter || null,
       social_tiktok: socialTiktok || null, social_website: socialWebsite || null,
-      favorite_characters: favs, is_private: isPrivate
+      favorite_characters: favs
     };
+    // "profilo privato" si manda solo se questa schermata ha davvero l'interruttore: sulla pagina profilo non c'è, e così non si tocca una colonna che potrebbe non esistere
+    if(isPrivateCb) fields.is_private = isPrivate;
     var writeHeaders = {
       'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token,
       'Content-Type':'application/json', 'Prefer':'return=representation'
