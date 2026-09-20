@@ -920,7 +920,7 @@ var matureVisible = false;
 // invece di ripetere il confronto in ogni funzione di rendering.
 function matureOk(item){ return matureVisible || !item.mature; }
 
-function openMatureModal(){ document.getElementById('matureModal').classList.remove('hidden'); }
+function openMatureModal(){ var m = document.getElementById('matureModal'); m.style.zIndex = '1000'; m.classList.remove('hidden'); }
 function closeMatureModal(){ document.getElementById('matureModal').classList.add('hidden'); }
 
 function setMatureVisible(on){
@@ -930,6 +930,7 @@ function setMatureVisible(on){
   if(sw) sw.checked = on;
   updateMatureStateLabel();
   renderCatalog();
+  refreshMusicLibraryIfOpen();
   if(on) scrollToMatureContent();
 }
 
@@ -10544,126 +10545,373 @@ function fetchPodcastEpisodes(podcastId){
   }).then(function(r){ return r.ok ? r.json() : []; }).catch(function(){ return []; });
 }
 function fetchAllSongsWithAlbum(){
-  return fetch(SUPABASE_URL + '/rest/v1/songs?select=*,catalog(title,cover_url,mature)&order=created_at.desc', {
+  return fetch(SUPABASE_URL + '/rest/v1/songs?select=*,catalog(title,cover_url,mature,character)&order=created_at.desc', {
     headers:{ 'apikey':SUPABASE_ANON_KEY }
   }).then(function(r){ return r.ok ? r.json() : []; }).catch(function(){ return []; });
 }
 
 /* ============ LIBRERIA MUSICALE (pagina "Musica" del menu, stile Spotify:
    sidebar Album/Playlist/Podcast/Artisti + griglia) ============ */
+/* ============ LIBRERIA MUSICALE ("Libreria" di Luxtify) ============
+   Album: layout "mosaico" — in alto l'ultima uscita, sotto la griglia; filtri per collana, ricerca, ordinamento;
+   toccando un album si apre la sua pagina (brani, Riproduci, Mischia). Segue il tema giorno/notte e l'interruttore 18+:
+   con il 18+ spento gli album espliciti hanno la copertina sfocata e il lucchetto. */
+var ML_ICONS = {
+  disc: '<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="2"/>',
+  lib: '<path d="M5 4v16M10 4v16"/><path d="M15 6l4 1-3 13-4-1z"/>',
+  mic: '<rect x="9" y="3" width="6" height="11" rx="3"/><path d="M6 11a6 6 0 0 0 12 0M12 17v4"/>',
+  user: '<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>',
+  x: '<path d="M6 6l12 12M18 6L6 18"/>',
+  back: '<path d="M15 5l-7 7 7 7"/>',
+  search: '<circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/>',
+  lock: '<rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/>'
+};
+function mlIcon(name){ return '<svg class="ml-ico" viewBox="0 0 24 24" aria-hidden="true">' + ML_ICONS[name] + '</svg>'; }
+var mlState = { tab: 'albums', coll: 'Tutte', sort: 'recent', q: '', open: null, albums: [], byKey: {} };
+var ML_COLL_ORDER = ['Lucifer', 'Lilith', 'Lucifera', 'Lucio', 'Nox'];
+
+/* i titoli portano emoji decorative: nelle schede si tolgono (nella pagina dell'album restano) */
+function mlClean(t){
+  return String(t || '').replace(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}\u{FE0F}\u{200D}]/gu, '').replace(/\s{2,}/g, ' ').replace(/\s+([:.,])/g, '$1').trim();
+}
+
 function ensureMusicLibraryStyle(){
-  if(document.getElementById('musicLibraryStyle')) return;
+  var old = document.getElementById('musicLibraryStyle');
+  if(old) old.remove(); // si rifà ad ogni apertura: gli aggiornamenti dello stile arrivano senza ricaricare
   var styleEl = document.createElement('style');
   styleEl.id = 'musicLibraryStyle';
-  styleEl.textContent =
-    '.music-library-overlay{position:fixed;inset:0;background:#0b0607;z-index:299;display:flex;flex-direction:column;overflow:hidden;}' +
-    '.music-library-body{flex:1;display:flex;flex-direction:column;overflow:hidden;min-height:0;}' +
-    '.music-library-sidebar{flex-shrink:0;display:flex;gap:6px;padding:12px 20px;border-bottom:1px solid rgba(201,162,77,0.2);overflow-x:auto;}' +
-    '.music-library-navbtn{background:transparent;border:1px solid rgba(201,162,77,0.3);color:#c9a24d;border-radius:20px;padding:7px 16px;font-size:13px;white-space:nowrap;cursor:pointer;}' +
-    '.music-library-navbtn.active{background:#6e1423;color:#f0e4cd;border-color:#6e1423;}' +
-    '.music-library-grid{flex:1;overflow-y:auto;padding:20px;display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:16px;align-content:start;}' +
-    '.music-library-card{cursor:pointer;background:rgba(201,162,77,0.05);border-radius:10px;padding:10px;transition:background 0.15s;}' +
-    '.music-library-card:hover{background:rgba(201,162,77,0.14);}' +
-    '.music-library-card img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:8px;background:#150d0e;margin-bottom:8px;}' +
-    '.music-library-card-title{color:#f0e4cd;font-size:13px;font-weight:600;margin-bottom:2px;}' +
-    '.music-library-card-sub{color:#8a7a5e;font-size:11px;}' +
-    '@media (min-width:860px){.music-library-grid{grid-template-columns:repeat(auto-fill,minmax(200px,1fr));}}' +
-    '.luxtify-add-song-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:400;display:flex;align-items:flex-end;justify-content:center;}' +
-    '.luxtify-add-song-box{background:#150d0e;border:1px solid rgba(201,162,77,0.35);border-radius:14px 14px 0 0;padding:20px;width:100%;max-width:480px;box-sizing:border-box;max-height:80vh;display:flex;flex-direction:column;}' +
-    '.luxtify-add-song-box input{width:100%;box-sizing:border-box;margin-bottom:10px;background:#0b0607;border:1px solid rgba(201,162,77,0.3);border-radius:20px;color:#e0d4b8;padding:9px 14px;font-size:13px;font-family:inherit;}' +
-    '.luxtify-add-song-results{overflow-y:auto;flex:1;}' +
-    '.luxtify-add-song-row{display:flex;align-items:center;gap:10px;padding:8px 4px;cursor:pointer;border-radius:8px;}' +
-    '.luxtify-add-song-row:hover{background:rgba(201,162,77,0.08);}' +
-    '.luxtify-add-song-row img{width:36px;height:36px;border-radius:5px;object-fit:cover;background:#0b0607;flex-shrink:0;}';
+  styleEl.textContent = [
+    '.ml-overlay{--ml-bg:#0b0607;--ml-card:#150c0d;--ml-card2:#1d1112;--ml-ink:#f0e4cd;--ml-dim:#a89a7c;--ml-line:rgba(201,162,77,0.25);--ml-gold:#c9a24d;--ml-goldb:#e3c273;--ml-wine:#6e1423;',
+      'position:fixed;inset:0;background:var(--ml-bg);color:var(--ml-ink);z-index:299;display:flex;flex-direction:column;overflow:hidden;font-family:"Crimson Pro",serif;}',
+    'body.theme-light .ml-overlay{--ml-bg:#f4efe2;--ml-card:#ffffff;--ml-card2:#efe7d3;--ml-ink:#2a1d12;--ml-dim:#6a5b44;--ml-line:rgba(138,106,31,0.35);--ml-gold:#8a6a1f;--ml-goldb:#6b5015;--ml-wine:#8a1a2c;}',
+    '.ml-ico{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none;}',
+    '.ml-head{display:flex;align-items:center;gap:10px;padding:calc(14px + env(safe-area-inset-top)) 16px 8px;flex-shrink:0;}',
+    '.ml-x{width:38px;height:38px;border-radius:50%;border:1px solid var(--ml-line);background:var(--ml-card);color:var(--ml-dim);display:flex;align-items:center;justify-content:center;cursor:pointer;flex:none;padding:0;}',
+    '.ml-x:hover{border-color:var(--ml-gold);color:var(--ml-goldb);}',
+    '.ml-title{font-family:"Space Mono",monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ml-gold);flex:1;}',
+    '.ml-adult{display:flex;align-items:center;gap:7px;border:1px solid var(--ml-line);border-radius:20px;padding:5px 7px 5px 12px;font-family:"Space Mono",monospace;font-size:11px;font-weight:700;background:var(--ml-card);color:var(--ml-ink);cursor:pointer;flex:none;}',
+    '.ml-adult .sw{width:36px;height:20px;border-radius:12px;background:#4a3c3c;position:relative;transition:background .15s;flex:none;}',
+    '.ml-adult .sw::after{content:"";position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#fff;transition:transform .15s;}',
+    '.ml-adult[aria-pressed="true"]{border-color:var(--ml-gold);}',
+    '.ml-adult[aria-pressed="true"] .sw{background:linear-gradient(90deg,#e07a5f,#5dcaa5);}',
+    '.ml-adult[aria-pressed="true"] .sw::after{transform:translateX(16px);}',
+    '.ml-tabs{display:flex;gap:6px;padding:0 16px 10px;overflow-x:auto;flex-shrink:0;scrollbar-width:none;}',
+    '.ml-tabs::-webkit-scrollbar{display:none;}',
+    '.music-library-navbtn{flex:none;display:flex;gap:7px;align-items:center;border:1px solid var(--ml-line);border-radius:20px;padding:7px 14px;font-size:14px;color:var(--ml-dim);background:var(--ml-card);cursor:pointer;white-space:nowrap;font-family:inherit;}',
+    '.music-library-navbtn.active{background:var(--ml-wine);border-color:var(--ml-wine);color:#fff;}',
+    '.ml-tools{display:flex;gap:10px;flex-wrap:wrap;align-items:center;padding:0 16px 8px;flex-shrink:0;}',
+    '.ml-search{flex:1 1 200px;max-width:420px;display:flex;gap:10px;align-items:center;border:1px solid var(--ml-line);border-radius:22px;background:var(--ml-card);padding:9px 14px;color:var(--ml-dim);}',
+    '.ml-search input{flex:1;min-width:0;background:none;border:0;color:var(--ml-ink);font-size:16px;outline:none;font-family:inherit;}',
+    '.ml-search input::placeholder{color:var(--ml-dim);}',
+    '.ml-sort{border:1px solid var(--ml-line);border-radius:22px;background:var(--ml-card);padding:9px 14px;font-size:14px;color:var(--ml-ink);font-family:inherit;}',
+    '.ml-chips{display:flex;gap:8px;overflow-x:auto;padding:0 16px 10px;flex-shrink:0;scrollbar-width:none;}',
+    '.ml-chips::-webkit-scrollbar{display:none;}',
+    '.ml-chip{flex:none;border:1px solid var(--ml-line);border-radius:20px;padding:6px 14px;font-size:14px;color:var(--ml-dim);background:var(--ml-card);cursor:pointer;font-family:inherit;}',
+    '.ml-chip.on{border-color:var(--ml-gold);color:var(--ml-goldb);background:rgba(201,162,77,0.12);font-weight:600;}',
+    '.ml-count{padding:0 16px 8px;color:var(--ml-dim);font-size:11px;letter-spacing:0.06em;font-family:"Space Mono",monospace;flex-shrink:0;}',
+    '.ml-content{flex:1;overflow-y:auto;overflow-x:hidden;padding:4px 16px 40px;min-height:0;}',
+    '.ml-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:16px;align-content:start;}',
+    '.music-library-card{cursor:pointer;background:var(--ml-card);border:1px solid var(--ml-line);border-radius:10px;padding:10px;transition:border-color .15s;}',
+    '.music-library-card:hover{border-color:var(--ml-gold);}',
+    '.music-library-card img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:8px;background:var(--ml-card2);margin-bottom:8px;display:block;}',
+    '.music-library-card-title{color:var(--ml-ink);font-size:15px;font-weight:600;margin-bottom:2px;}',
+    '.music-library-card-sub{color:var(--ml-dim);font-size:11px;font-family:"Space Mono",monospace;}',
+    /* copertine, etichette */
+    '.ml-cv{position:relative;overflow:hidden;border-radius:10px;background:var(--ml-card2);aspect-ratio:1/1;width:100%;}',
+    '.ml-cv img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;}',
+    '.ml-lock img{filter:blur(10px) saturate(0.6);transform:scale(1.15);}',
+    '.ml-lockov{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:2px;background:rgba(10,6,8,0.42);color:#fff;font-family:"Space Mono",monospace;font-size:10px;font-weight:700;}',
+    '.ml-lockov .ml-ico{width:20px;height:20px;}',
+    '.ml-tag{font-family:"Space Mono",monospace;font-size:9px;font-weight:700;border:1px solid currentColor;border-radius:4px;padding:0 4px;line-height:14px;color:var(--ml-dim);display:inline-block;vertical-align:middle;}',
+    '.ml-pl{position:absolute;right:8px;bottom:8px;width:38px;height:38px;border-radius:50%;background:var(--ml-wine);color:#fff;display:flex;align-items:center;justify-content:center;font-size:14px;box-shadow:0 4px 12px rgba(0,0,0,0.4);cursor:pointer;}',
+    /* mosaico: ultima uscita + griglia */
+    '.ml-feat{display:flex;gap:16px;align-items:flex-end;border:1px solid var(--ml-line);border-radius:16px;background:var(--ml-card);padding:14px;margin-bottom:18px;}',
+    '.ml-feat .ml-cv{width:46%;max-width:300px;flex:none;}',
+    '.ml-feat-tx{min-width:0;flex:1;}',
+    '.ml-feat-tx small{font-family:"Space Mono",monospace;font-size:10px;letter-spacing:0.14em;color:var(--ml-dim);text-transform:uppercase;}',
+    '.ml-feat-tx h2{font-family:"Cinzel",serif;font-size:22px;line-height:1.15;margin:4px 0 6px;color:var(--ml-ink);font-weight:700;}',
+    '.ml-feat-bt{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;}',
+    '.ml-btn{border:1px solid var(--ml-line);border-radius:20px;padding:9px 16px;font-family:"Space Mono",monospace;font-size:11px;font-weight:700;color:var(--ml-ink);background:transparent;cursor:pointer;}',
+    '.ml-btn.p{background:var(--ml-gold);border-color:var(--ml-gold);color:#150d0e;}',
+    '.ml-grid{display:grid;gap:18px 14px;grid-template-columns:repeat(2,1fr);}',
+    '.ml-ac{text-align:left;background:none;border:0;padding:0;cursor:pointer;color:inherit;font-family:inherit;}',
+    '.ml-nm{display:block;margin-top:8px;font-weight:600;font-size:15px;line-height:1.25;max-height:2.5em;overflow:hidden;color:var(--ml-ink);}',
+    '.ml-sb{font-family:"Space Mono",monospace;font-size:10px;color:var(--ml-dim);margin-top:2px;display:block;}',
+    '.ml-ac:hover .ml-cv{box-shadow:0 0 0 2px var(--ml-gold);}',
+    '.ml-empty{padding:30px 10px;color:var(--ml-dim);text-align:center;}',
+    /* pagina dell'album */
+    '.ml-detail{position:absolute;top:0;bottom:0;right:0;width:100%;background:var(--ml-bg);z-index:5;transform:translateX(102%);transition:transform .22s;display:flex;flex-direction:column;overflow-y:auto;}',
+    '.ml-detail.on{transform:none;}',
+    '.ml-dtop{display:flex;align-items:center;gap:10px;padding:calc(14px + env(safe-area-inset-top)) 16px 14px;}',
+    '.ml-dbody{padding:0 20px 40px;}',
+    '.ml-dcov{max-width:300px;margin:0 auto 16px;}',
+    '.ml-dbody h2{font-family:"Cinzel",serif;font-size:22px;line-height:1.2;color:var(--ml-ink);text-align:center;font-weight:700;}',
+    '.ml-dmeta{text-align:center;font-family:"Space Mono",monospace;font-size:11px;color:var(--ml-dim);margin:6px 0 14px;}',
+    '.ml-dbtns{display:flex;gap:8px;justify-content:center;margin-bottom:16px;flex-wrap:wrap;}',
+    '.ml-tr{display:flex;align-items:center;gap:12px;padding:10px 6px;border:0;border-bottom:1px solid var(--ml-line);text-align:left;width:100%;background:none;cursor:pointer;color:inherit;font-family:inherit;}',
+    '.ml-tr:hover{background:rgba(201,162,77,0.07);}',
+    '.ml-tr .n{width:22px;text-align:center;color:var(--ml-dim);font-family:"Space Mono",monospace;font-size:12px;}',
+    '.ml-tr .t{flex:1;min-width:0;}',
+    '.ml-tr .t b{display:block;font-weight:600;font-size:16px;color:var(--ml-ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}',
+    '.ml-tr .t small{font-family:"Space Mono",monospace;font-size:10px;color:var(--ml-dim);}',
+    '@media (min-width:700px){',
+      '.ml-head,.ml-tabs,.ml-tools,.ml-chips,.ml-count{padding-left:28px;padding-right:28px;}',
+      '.ml-content{padding:4px 28px 40px;}',
+      '.ml-grid{grid-template-columns:repeat(4,1fr);}',
+      '.ml-detail{width:440px;border-left:1px solid var(--ml-line);box-shadow:-12px 0 30px rgba(0,0,0,0.35);}',
+    '}',
+    '@media (min-width:1100px){.ml-grid{grid-template-columns:repeat(6,1fr);}}',
+    '@media (prefers-reduced-motion:reduce){.ml-detail,.ml-adult .sw,.ml-adult .sw::after{transition:none;}}',
+    /* finestra "aggiungi una canzone alla playlist" (usa la stessa cartella di stili) */
+    '.luxtify-add-song-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:400;display:flex;align-items:flex-end;justify-content:center;}',
+    '.luxtify-add-song-box{background:#150d0e;border:1px solid rgba(201,162,77,0.35);border-radius:14px 14px 0 0;padding:20px;width:100%;max-width:480px;box-sizing:border-box;max-height:80vh;display:flex;flex-direction:column;}',
+    '.luxtify-add-song-box input{width:100%;box-sizing:border-box;margin-bottom:10px;background:#0b0607;border:1px solid rgba(201,162,77,0.3);border-radius:20px;color:#e0d4b8;padding:9px 14px;font-size:13px;font-family:inherit;}',
+    '.luxtify-add-song-results{overflow-y:auto;flex:1;}',
+    '.luxtify-add-song-row{display:flex;align-items:center;gap:10px;padding:8px 4px;cursor:pointer;border-radius:8px;}',
+    '.luxtify-add-song-row:hover{background:rgba(201,162,77,0.08);}',
+    '.luxtify-add-song-row img{width:36px;height:36px;border-radius:5px;object-fit:cover;background:#0b0607;flex-shrink:0;}'
+  ].join('');
   document.head.appendChild(styleEl);
 }
 
 function closeMusicLibrary(){
   var overlay = document.getElementById('musicLibraryOverlay');
   if(overlay) overlay.remove();
+  mlState.open = null;
+}
+
+/* dopo un cambio dell'interruttore 18+ la libreria aperta si ridisegna */
+function refreshMusicLibraryIfOpen(){
+  var overlay = document.getElementById('musicLibraryOverlay');
+  if(!overlay) return;
+  var btn = document.getElementById('mlAdult');
+  if(btn) btn.setAttribute('aria-pressed', matureVisible ? 'true' : 'false');
+  renderMusicLibraryTab(mlState.tab);
+}
+
+function mlToggleAdult(){
+  if(!matureVisible){ askLuxtifyAdult(null); return; }
+  if(document.getElementById('luxtifySection')){ setLuxtifyAdult(false); return; }
+  var sw = document.getElementById('matureSwitch');
+  if(sw && sw.checked) sw.click(); else { matureVisible = false; refreshMusicLibraryIfOpen(); }
 }
 
 function openMusicLibrary(){
   ensureMusicLibraryStyle();
   closeMusicLibrary();
   closeMusicPlayer();
+  mlState = { tab: 'albums', coll: 'Tutte', sort: 'recent', q: '', open: null, albums: [], byKey: {} };
   var overlay = document.createElement('div');
-  overlay.className = 'music-library-overlay';
+  overlay.className = 'ml-overlay';
   overlay.id = 'musicLibraryOverlay';
+  overlay.setAttribute('role', 'dialog');
+  overlay.setAttribute('aria-label', t('songs.allMusic'));
   overlay.innerHTML =
-    '<div class="music-player-topbar">' +
-      '<button type="button" class="music-player-close" id="musicLibraryClose">✕</button>' +
-      '<span class="music-player-context">' + t('songs.allMusic') + '</span>' +
+    '<header class="ml-head">' +
+      '<button type="button" class="ml-x" id="musicLibraryClose" aria-label="Chiudi">' + mlIcon('x') + '</button>' +
+      '<span class="ml-title">' + escapeHtml(t('songs.allMusic')) + '</span>' +
+      '<button type="button" class="ml-adult" id="mlAdult" aria-pressed="' + (matureVisible ? 'true' : 'false') + '" aria-label="Mostra i brani 18+">18+<span class="sw"></span></button>' +
+    '</header>' +
+    '<div class="ml-tabs" id="mlTabs">' +
+      '<button type="button" class="music-library-navbtn active" data-lib-tab="albums">' + mlIcon('disc') + 'Album</button>' +
+      '<button type="button" class="music-library-navbtn" data-lib-tab="playlists">' + mlIcon('lib') + 'Playlist</button>' +
+      '<button type="button" class="music-library-navbtn" data-lib-tab="podcasts">' + mlIcon('mic') + 'Podcast</button>' +
+      '<button type="button" class="music-library-navbtn" data-lib-tab="artists">' + mlIcon('user') + 'Artisti</button>' +
     '</div>' +
-    '<div class="music-library-body">' +
-      '<div class="music-library-sidebar">' +
-        '<button type="button" class="music-library-navbtn active" data-lib-tab="albums">💿 Album</button>' +
-        '<button type="button" class="music-library-navbtn" data-lib-tab="playlists">📁 Playlist</button>' +
-        '<button type="button" class="music-library-navbtn" data-lib-tab="podcasts">🎙 Podcast</button>' +
-        '<button type="button" class="music-library-navbtn" data-lib-tab="artists">🎤 Artisti</button>' +
-      '</div>' +
-      '<div style="padding:0 20px;flex-shrink:0;">' +
-        '<input type="text" id="musicLibrarySearch" placeholder="Cosa vuoi ascoltare?" style="width:100%;max-width:340px;margin:12px 0 0;background:rgba(201,162,77,0.08);border:1px solid rgba(201,162,77,0.3);border-radius:20px;padding:8px 16px;color:#f0e4cd;font-size:13px;">' +
-      '</div>' +
-      '<div class="music-library-grid" id="musicLibraryGrid"><p class="form-note">…</p></div>' +
-    '</div>';
+    '<div class="ml-tools">' +
+      '<label class="ml-search">' + mlIcon('search') + '<input type="text" id="musicLibrarySearch" placeholder="Cosa vuoi ascoltare?" autocomplete="off"></label>' +
+      '<select class="ml-sort" id="mlSort" aria-label="Ordina gli album"><option value="recent">Più recenti</option><option value="az">A–Z</option><option value="plays">Più ascoltati</option></select>' +
+    '</div>' +
+    '<div class="ml-chips" id="mlChips"></div>' +
+    '<div class="ml-count" id="mlCount"></div>' +
+    '<div class="ml-content" id="musicLibraryGrid"><p class="form-note">…</p></div>' +
+    '<aside class="ml-detail" id="mlDetail" aria-label="Pagina dell\'album"></aside>';
   document.body.appendChild(overlay);
+
   document.getElementById('musicLibraryClose').addEventListener('click', closeMusicLibrary);
+  document.getElementById('mlAdult').addEventListener('click', mlToggleAdult);
+  overlay.addEventListener('keydown', function(e){
+    if(e.key === 'Escape'){ if(mlState.open){ mlCloseDetail(); } else { closeMusicLibrary(); } }
+  });
   document.getElementById('musicLibrarySearch').addEventListener('input', function(e){
     var q = e.target.value.trim().toLowerCase();
+    if(mlState.tab === 'albums'){ mlState.q = q; mlRenderAlbums(); return; }
     Array.prototype.forEach.call(document.querySelectorAll('#musicLibraryGrid .music-library-card'), function(card){
-      var text = card.textContent.toLowerCase();
-      card.style.display = (!q || text.indexOf(q) !== -1) ? '' : 'none';
+      card.style.display = (!q || card.textContent.toLowerCase().indexOf(q) !== -1) ? '' : 'none';
     });
   });
+  document.getElementById('mlSort').addEventListener('change', function(e){ mlState.sort = e.target.value; mlRenderAlbums(); });
   Array.prototype.forEach.call(overlay.querySelectorAll('.music-library-navbtn'), function(btn){
     btn.addEventListener('click', function(){
       Array.prototype.forEach.call(overlay.querySelectorAll('.music-library-navbtn'), function(b){ b.classList.toggle('active', b === btn); });
       document.getElementById('musicLibrarySearch').value = '';
+      mlState.q = '';
+      mlCloseDetail();
       renderMusicLibraryTab(btn.dataset.libTab);
     });
   });
   renderMusicLibraryTab('albums');
 }
 
+/* ---- album: dati, filtri, ordinamento ---- */
+function mlBuildAlbums(rows){
+  var albums = {}, order = [];
+  rows.forEach(function(row, i){
+    var key = row.catalog_id || ('_' + row.id);
+    var a = albums[key];
+    if(!a){
+      a = albums[key] = { key: key, catalog_id: row.catalog_id, title: (row.catalog && row.catalog.title) || row.title,
+        cover_url: (row.catalog && row.catalog.cover_url) || row.cover_url, coll: (row.catalog && row.catalog.character) || '',
+        plays: 0, explicit: false, songs: [] };
+      order.push(key);
+    }
+    if(songIsExplicit(row)) a.explicit = true;
+    a.plays += (row.view_count || 0);
+    a.songs.push(row);
+  });
+  return order.map(function(k){ return albums[k]; }); // già dal più recente
+}
+function mlFilteredAlbums(){
+  var q = mlState.q;
+  var r = mlState.albums.filter(function(a){
+    var collOk = mlState.coll === 'Tutte' || (mlState.coll === 'Altri' ? !a.coll : a.coll === mlState.coll);
+    if(!collOk) return false;
+    if(!q) return true;
+    return mlClean(a.title).toLowerCase().indexOf(q) !== -1 || a.songs.some(function(s){
+      return (s.title || '').toLowerCase().indexOf(q) !== -1 || (s.artist || '').toLowerCase().indexOf(q) !== -1;
+    });
+  });
+  if(mlState.sort === 'az') r = r.slice().sort(function(a, b){ return mlClean(a.title).localeCompare(mlClean(b.title), 'it'); });
+  if(mlState.sort === 'plays') r = r.slice().sort(function(a, b){ return b.plays - a.plays; });
+  return r;
+}
+function mlCover(url, locked, extra){
+  return '<div class="ml-cv' + (locked ? ' ml-lock' : '') + '"><img src="' + escapeHtml(url || MUSIC_COVER_FALLBACK) + '" alt=""' + coverImgAttrs() + '>' +
+    (locked ? '<div class="ml-lockov">' + mlIcon('lock') + '18+</div>' : '') + (extra || '') + '</div>';
+}
+function mlTag(a){ return a.explicit ? ' <span class="ml-tag">' + (matureVisible ? 'E' : '18+') + '</span>' : ''; }
+function mlSub(a){ return escapeHtml(a.coll || 'Altri') + ' · ' + a.songs.length + (a.songs.length === 1 ? ' brano' : ' brani'); }
+function mlAlbumCard(a){
+  var locked = a.explicit && !matureVisible;
+  return '<button type="button" class="ml-ac" data-ml-album="' + escapeHtml(a.key) + '">' +
+    mlCover(a.cover_url, locked, '<span class="ml-pl" role="button" aria-label="Riproduci" data-ml-play="' + escapeHtml(a.key) + '">▶</span>') +
+    '<span class="ml-nm">' + escapeHtml(mlClean(a.title)) + mlTag(a) + '</span><span class="ml-sb">' + mlSub(a) + '</span></button>';
+}
+function mlRenderAlbums(){
+  var grid = document.getElementById('musicLibraryGrid');
+  var chipsEl = document.getElementById('mlChips');
+  var countEl = document.getElementById('mlCount');
+  if(!grid || !chipsEl) return;
+  grid.classList.remove('ml-cards');
+  // filtri per collana: solo quelle presenti
+  var present = {}, hasOther = false;
+  mlState.albums.forEach(function(a){ if(a.coll) present[a.coll] = true; else hasOther = true; });
+  var colls = ML_COLL_ORDER.filter(function(c){ return present[c]; });
+  Object.keys(present).forEach(function(c){ if(colls.indexOf(c) === -1) colls.push(c); });
+  if(hasOther && colls.length) colls.push('Altri');
+  chipsEl.classList.toggle('hidden', colls.length === 0);
+  chipsEl.innerHTML = ['Tutte'].concat(colls).map(function(c){
+    return '<button type="button" class="ml-chip' + (mlState.coll === c ? ' on' : '') + '" data-ml-coll="' + escapeHtml(c) + '">' + escapeHtml(c) + '</button>';
+  }).join('');
+  Array.prototype.forEach.call(chipsEl.querySelectorAll('[data-ml-coll]'), function(b){
+    b.addEventListener('click', function(){ mlState.coll = b.dataset.mlColl; mlRenderAlbums(); });
+  });
+  var list = mlFilteredAlbums();
+  if(countEl) countEl.textContent = list.length + ' album' + (mlState.coll !== 'Tutte' ? ' · ' + mlState.coll : '');
+  if(list.length === 0){ grid.innerHTML = '<div class="ml-empty">' + (mlState.albums.length ? 'Nessun album con questi filtri.' : t('songs.noneYet')) + '</div>'; return; }
+  var html = '', rest = list;
+  if(mlState.sort === 'recent' && !mlState.q){
+    var f = list[0];
+    rest = list.slice(1);
+    var fl = f.explicit && !matureVisible;
+    html += '<div class="ml-feat">' + mlCover(f.cover_url, fl) + '<div class="ml-feat-tx"><small>Ultima uscita</small><h2>' + escapeHtml(mlClean(f.title)) + mlTag(f) + '</h2>' +
+      '<div class="ml-sb">' + mlSub(f) + '</div><div class="ml-feat-bt"><button type="button" class="ml-btn p" data-ml-play="' + escapeHtml(f.key) + '">▶ Riproduci</button>' +
+      '<button type="button" class="ml-btn" data-ml-album="' + escapeHtml(f.key) + '">Apri album</button></div></div></div>';
+  }
+  html += '<div class="ml-grid">' + rest.map(mlAlbumCard).join('') + '</div>';
+  grid.innerHTML = html;
+  mlState.byKey = {};
+  mlState.albums.forEach(function(a){ mlState.byKey[a.key] = a; });
+}
+
+/* ---- pagina dell'album ---- */
+function mlGetSongs(a){
+  if(!a.catalog_id) return Promise.resolve(a.songs);
+  return fetchSongsForTitle(a.catalog_id).then(function(list){ return list.length ? list : a.songs; });
+}
+function mlPlay(a, shuffle, idx){
+  mlGetSongs(a).then(function(list){
+    var songs = list.slice();
+    if(shuffle) songs.sort(function(){ return Math.random() - 0.5; });
+    openMusicPlayer(songs, a.title, {}, idx || 0); // se l'album è esplicito e il 18+ è spento, qui compare la conferma dell'età
+  });
+}
+function mlOpenAlbum(key){
+  var a = mlState.byKey[key];
+  var dt = document.getElementById('mlDetail');
+  if(!a || !dt) return;
+  mlState.open = key;
+  var locked = a.explicit && !matureVisible;
+  dt.innerHTML = '<div class="ml-dtop"><button type="button" class="ml-x" id="mlBack" aria-label="Torna agli album">' + mlIcon('back') + '</button><span class="ml-title">Album</span></div>' +
+    '<div class="ml-dbody"><div class="ml-dcov">' + mlCover(a.cover_url, locked) + '</div><h2>' + escapeHtml(a.title) + mlTag(a) + '</h2>' +
+    '<div class="ml-dmeta">' + escapeHtml(a.coll || 'Altri') + ' · ' + a.songs.length + (a.songs.length === 1 ? ' brano' : ' brani') + '</div>' +
+    '<div class="ml-dbtns"><button type="button" class="ml-btn p" id="mlDPlay">▶ Riproduci</button><button type="button" class="ml-btn" id="mlDShuffle">⤮ Mischia</button></div>' +
+    '<div id="mlDTracks"><p class="form-note">…</p></div></div>';
+  dt.classList.add('on');
+  document.getElementById('mlBack').addEventListener('click', mlCloseDetail);
+  document.getElementById('mlDPlay').addEventListener('click', function(){ mlPlay(a, false, 0); });
+  document.getElementById('mlDShuffle').addEventListener('click', function(){ mlPlay(a, true, 0); });
+  mlGetSongs(a).then(function(list){
+    if(mlState.open !== key) return; // nel frattempo si è aperto altro
+    var box = document.getElementById('mlDTracks');
+    if(!box) return;
+    box.innerHTML = list.map(function(s, i){
+      return '<button type="button" class="ml-tr" data-ml-track="' + i + '"><span class="n">' + (i + 1) + '</span><span class="t"><b>' + escapeHtml(s.title) + lxExplicitTag(s) + '</b><small>' + escapeHtml(s.artist || '') + '</small></span><span aria-hidden="true">▶</span></button>';
+    }).join('');
+    Array.prototype.forEach.call(box.querySelectorAll('[data-ml-track]'), function(el){
+      el.addEventListener('click', function(){ openMusicPlayer(list, a.title, {}, Number(el.dataset.mlTrack)); });
+    });
+  });
+}
+function mlCloseDetail(){
+  mlState.open = null;
+  var dt = document.getElementById('mlDetail');
+  if(dt) dt.classList.remove('on');
+}
+
 function renderMusicLibraryTab(tab){
   var grid = document.getElementById('musicLibraryGrid');
   if(!grid) return;
+  mlState.tab = tab;
+  var isAlbums = tab === 'albums';
+  var sortEl = document.getElementById('mlSort');
+  var chipsEl = document.getElementById('mlChips');
+  var countEl = document.getElementById('mlCount');
+  if(sortEl) sortEl.classList.toggle('hidden', !isAlbums);
+  if(chipsEl) chipsEl.classList.toggle('hidden', !isAlbums);
+  if(countEl) countEl.textContent = '';
+  grid.classList.toggle('ml-cards', !isAlbums);
   grid.innerHTML = '<p class="form-note">…</p>';
 
-  if(tab === 'albums'){
+  if(isAlbums){
     fetchAllSongsWithAlbum().then(function(rows){
-      var albums = {}, order = [];
-      rows.forEach(function(row){
-        var key = row.catalog_id || ('_' + row.id);
-        if(!albums[key]){
-          albums[key] = { catalog_id: row.catalog_id, title: (row.catalog && row.catalog.title) || row.title, cover_url: (row.catalog && row.catalog.cover_url) || row.cover_url, count: 0 };
-          order.push(key);
-        }
-        albums[key].count++;
-      });
-      var list = order.map(function(k){ return albums[k]; });
-      if(list.length === 0){ grid.innerHTML = '<p class="form-note">' + t('songs.noneYet') + '</p>'; return; }
-      grid.innerHTML = list.map(function(a, i){
-        return '<div class="music-library-card" data-album-idx="' + i + '">' +
-          '<img src="' + escapeHtml(a.cover_url || '') + '" alt=""' + coverImgAttrs() + '>' +
-          '<div class="music-library-card-title">' + escapeHtml(a.title) + '</div>' +
-          '<div class="music-library-card-sub">' + a.count + (a.count === 1 ? ' brano' : ' brani') + '</div>' +
-        '</div>';
-      }).join('');
-      Array.prototype.forEach.call(grid.querySelectorAll('[data-album-idx]'), function(el){
-        el.addEventListener('click', function(){
-          var a = list[Number(el.dataset.albumIdx)];
-          if(!a.catalog_id) return;
-          fetchSongsForTitle(a.catalog_id).then(function(songs){
-            closeMusicLibrary();
-            openMusicPlayer(songs, a.title);
-          });
-        });
-      });
+      mlState.albums = mlBuildAlbums(rows);
+      mlState.byKey = {};
+      mlState.albums.forEach(function(a){ mlState.byKey[a.key] = a; });
+      mlRenderAlbums();
+      if(mlState.open && mlState.byKey[mlState.open]) mlOpenAlbum(mlState.open); // dopo un cambio di 18+ la pagina aperta si aggiorna
     });
-
-  } else if(tab === 'playlists'){
+    // un solo ascoltatore per tutta la vita del contenitore: apre la pagina o fa partire l'album
+    if(!grid.dataset.mlBound){
+      grid.dataset.mlBound = '1';
+      grid.addEventListener('click', function(e){
+        var play = e.target.closest('[data-ml-play]');
+        if(play){ e.stopPropagation(); var pa = mlState.byKey[play.dataset.mlPlay]; if(pa) mlPlay(pa, false, 0); return; }
+        var open = e.target.closest('[data-ml-album]');
+        if(open) mlOpenAlbum(open.dataset.mlAlbum);
+      });
+    }
+} else if(tab === 'playlists'){
     fetchPlaylists().then(function(playlists){
       if(playlists.length === 0){ grid.innerHTML = '<p class="form-note">Nessuna playlist ancora.</p>'; return; }
       grid.innerHTML = playlists.map(function(p, i){
@@ -10941,6 +11189,7 @@ function setLuxtifyAdult(on){
   var btn = document.getElementById('luxtifyAdultToggle');
   if(btn) btn.setAttribute('aria-pressed', on ? 'true' : 'false');
   renderLuxtifyAll();
+  refreshMusicLibraryIfOpen();
 }
 function enableAdultMode(){
   if(document.getElementById('luxtifySection')){ setLuxtifyAdult(true); return; }
