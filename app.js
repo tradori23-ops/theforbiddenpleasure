@@ -650,6 +650,11 @@ Object.assign(STR.en, {"profile.edit": "Edit profile", "profile.editClose": "Clo
 Object.assign(STR.es, {"profile.edit": "Editar perfil", "profile.editClose": "Cerrar edición", "profile.noNameYet": "Elige tu nombre"});
 Object.assign(STR.fr, {"profile.edit": "Modifier le profil", "profile.editClose": "Fermer la modification", "profile.noNameYet": "Choisissez votre nom"});
 Object.assign(STR.de, {"profile.edit": "Profil bearbeiten", "profile.editClose": "Bearbeiten schließen", "profile.noNameYet": "Wähle deinen Namen"});
+Object.assign(STR.it, {"profile.instagramEmbed": "I tuoi post/reel Instagram (opzionali, quanti vuoi)", "profile.addInstagramLink": "+ Aggiungi link", "profile.instagramEmbedHint": "Verranno mostrati direttamente nel tuo profilo, come li vedi su Instagram.", "profile.instagramHeading": "Instagram", "sound.settingsLabel": "Suoni notifiche", "sound.enabled": "Suoni attivi", "sound.test": "Prova suono", "community.important": "Importante"});
+Object.assign(STR.en, {"profile.instagramEmbed": "Your Instagram posts/reels (optional, as many as you like)", "profile.addInstagramLink": "+ Add link", "profile.instagramEmbedHint": "They will be shown right on your profile, the way you see them on Instagram.", "profile.instagramHeading": "Instagram", "sound.settingsLabel": "Notification sounds", "sound.enabled": "Sounds on", "sound.test": "Test sound", "community.important": "Important"});
+Object.assign(STR.es, {"profile.instagramEmbed": "Tus posts/reels de Instagram (opcionales, los que quieras)", "profile.addInstagramLink": "+ Añadir enlace", "profile.instagramEmbedHint": "Se mostrarán directamente en tu perfil, como los ves en Instagram.", "profile.instagramHeading": "Instagram", "sound.settingsLabel": "Sonidos de notificaciones", "sound.enabled": "Sonidos activados", "sound.test": "Probar sonido", "community.important": "Importante"});
+Object.assign(STR.fr, {"profile.instagramEmbed": "Vos posts/reels Instagram (facultatifs, autant que vous voulez)", "profile.addInstagramLink": "+ Ajouter un lien", "profile.instagramEmbedHint": "Ils seront affichés directement sur votre profil, comme sur Instagram.", "profile.instagramHeading": "Instagram", "sound.settingsLabel": "Sons des notifications", "sound.enabled": "Sons activés", "sound.test": "Tester le son", "community.important": "Important"});
+Object.assign(STR.de, {"profile.instagramEmbed": "Deine Instagram-Posts/Reels (optional, beliebig viele)", "profile.addInstagramLink": "+ Link hinzufügen", "profile.instagramEmbedHint": "Sie werden direkt in deinem Profil angezeigt, so wie du sie auf Instagram siehst.", "profile.instagramHeading": "Instagram", "sound.settingsLabel": "Benachrichtigungstöne", "sound.enabled": "Töne an", "sound.test": "Ton testen", "community.important": "Wichtig"});
 
 var CHAR_META = {
   Lucifer:{role:{it:"Il Portatore di Luce",en:"The Light-Bearer",es:"El Portador de Luz",fr:"Le Porteur de Lumière",de:"Der Lichtträger"},
@@ -5424,6 +5429,17 @@ function toggleProfileEditPanel(){
   setProfileEditOpen(panel.classList.contains('hidden'));
 }
 
+/* Errore HTTP con dettaglio leggibile (stato + messaggio del server), mostrato accanto a "Salvataggio non riuscito" */
+function httpFailure(what, r){
+  return r.text().then(function(txt){
+    var msg = '';
+    try { var j = JSON.parse(txt); msg = j.message || j.error_description || j.error || j.hint || ''; } catch(e){ msg = String(txt || '').slice(0, 90); }
+    var e = new Error(what + ' failed: ' + r.status);
+    e.detail = what + ' ' + r.status + (msg ? ': ' + String(msg).slice(0, 90) : '');
+    throw e;
+  });
+}
+
 function saveProfile(){
   var session = getSession();
   if(!session) return;
@@ -5454,7 +5470,7 @@ function saveProfile(){
       headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'x-upsert':'true', 'Content-Type': avatarFile.type || 'image/jpeg' },
       body: avatarFile
     }).then(function(r){
-      if(!r.ok) throw new Error('avatar upload failed');
+      if(!r.ok) return httpFailure('avatar', r);
       return pickAvatarPublicUrl(currentUserId(), ext);
     });
   }
@@ -5470,7 +5486,7 @@ function saveProfile(){
       headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'x-upsert':'true', 'Content-Type': avatarHdFile.type || 'image/jpeg' },
       body: avatarHdFile
     }).then(function(r){
-      if(!r.ok) throw new Error('avatar hd upload failed');
+      if(!r.ok) return httpFailure('avatar-hd', r);
       return pickAvatarHdPublicUrl(currentUserId(), extHd);
     });
   }
@@ -5486,7 +5502,7 @@ function saveProfile(){
       headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'x-upsert':'true', 'Content-Type': bannerFile.type || 'image/jpeg' },
       body: bannerFile
     }).then(function(r){
-      if(!r.ok) throw new Error('banner upload failed');
+      if(!r.ok) return httpFailure('banner', r);
       return pickBannerPublicUrl(currentUserId(), extBn);
     });
   }
@@ -5495,24 +5511,37 @@ function saveProfile(){
     var avatarUrl = results[0];
     var avatarHdUrl = results[1];
     var bannerUrl = results[2];
-    return fetch(SUPABASE_URL + '/rest/v1/profiles', {
-      method:'POST',
-      headers:{
-        'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token,
-        'Content-Type':'application/json', 'Prefer':'resolution=merge-duplicates,return=representation'
-      },
-      body: JSON.stringify({
-        id: currentUserId(), display_name: displayName || null, bio: bio || null,
-        avatar_url: avatarUrl || null, avatar_hd_url: avatarHdUrl || null, banner_url: bannerUrl || null,
-        birth_date: birthDate || null, gender: gender || null,
-        social_instagram: socialInstagram || null, social_twitter: socialTwitter || null,
-        social_tiktok: socialTiktok || null, social_website: socialWebsite || null,
-        favorite_characters: favs, is_private: isPrivate
-      })
+    var uid = currentUserId();
+    var fields = {
+      display_name: displayName || null, bio: bio || null,
+      avatar_url: avatarUrl || null, avatar_hd_url: avatarHdUrl || null, banner_url: bannerUrl || null,
+      birth_date: birthDate || null, gender: gender || null,
+      social_instagram: socialInstagram || null, social_twitter: socialTwitter || null,
+      social_tiktok: socialTiktok || null, social_website: socialWebsite || null,
+      favorite_characters: favs, is_private: isPrivate
+    };
+    var writeHeaders = {
+      'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token,
+      'Content-Type':'application/json', 'Prefer':'return=representation'
+    };
+    // prima si aggiorna la riga che c'è già: serve solo il permesso di modificare il proprio profilo
+    return fetch(SUPABASE_URL + '/rest/v1/profiles?id=eq.' + encodeURIComponent(uid), {
+      method:'PATCH', headers: writeHeaders, body: JSON.stringify(fields)
+    }).then(function(r){
+      if(!r.ok) return httpFailure('save', r);
+      return r.json();
+    }).then(function(rows){
+      if(rows && rows.length) return rows;
+      // nessuna riga da aggiornare: il profilo non c'è ancora, lo creiamo
+      return fetch(SUPABASE_URL + '/rest/v1/profiles', {
+        method:'POST',
+        headers: Object.assign({}, writeHeaders, { 'Prefer':'resolution=merge-duplicates,return=representation' }),
+        body: JSON.stringify(Object.assign({ id: uid }, fields))
+      }).then(function(r){
+        if(!r.ok) return httpFailure('create', r);
+        return r.json();
+      });
     });
-  }).then(function(r){
-    if(!r.ok) throw new Error('profile save failed');
-    return r.json();
   }).then(function(rows){
     currentProfile = rows[0];
     populateProfileForm();
@@ -5522,7 +5551,7 @@ function saveProfile(){
     if(document.getElementById('profileSection')){ window.location.reload(); return; } // sulla pagina profilo: si rivedono subito nome e immagini nuovi
   }).catch(function(e){
     console.warn('Profile save failed:', e);
-    err.textContent = t('profile.saveError');
+    err.textContent = t('profile.saveError') + (e && e.detail ? ' (' + e.detail + ')' : '');
   }).then(function(){
     btn.disabled = false;
   });
