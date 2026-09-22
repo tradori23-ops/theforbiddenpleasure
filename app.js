@@ -14714,6 +14714,7 @@ function switchAdminTab(tabName){
   if(tabName === 'artists') renderAdminArtistsList();
   if(tabName === 'servers') loadServersAdminList();
   if(tabName === 'events') loadEventsAdminList();
+  if(tabName === 'maintenance') renderAdminStatusPanel();
 }
 
 function renderAdminArtistsList(){
@@ -15713,6 +15714,8 @@ function __appInit(){
     if(!deepLinkChecked) checkDeepLinkOnLoad(); // retry once fresh data has arrived
     renderPublicProfilePage(); // no-op sulle pagine diverse da profile.html
     renderLuxtifyHome(); // no-op sulle pagine diverse da luxtify.html
+    renderStatusPage(); // no-op fuori da status.html
+    renderFaqPage(); // no-op fuori da faq.html
     checkForSiteUpdates();
     maybeStartOfflineSync();
   });
@@ -15722,10 +15725,166 @@ function __appInit(){
   setInterval(renderNightClosureLock, 30000); // ricontrolla l'orario anche senza nuove risposte dal server
   setInterval(renderAdminUsers, 60000); // keeps "online now" fresh while you're on that tab; no-op if not admin
   heartbeatPresence();
+  initTextOnlyToggle();
   setInterval(function(){ if(!document.hidden) refreshCommunityDot(); }, 60000); // pallino Community
   document.addEventListener('visibilitychange', function(){ if(!document.hidden) refreshCommunityDot(); });
   setInterval(heartbeatPresence, 60000); // aggiorna "ultimo attivo" per lo stato online nei DM
 }
+/* ============ BATCH 1: Stato del sito (status.html) ============ */
+function renderStatusPage(){
+  var list = document.getElementById('statusList');
+  if(!list) return; // no-op fuori da status.html
+  fetch(SUPABASE_URL + '/rest/v1/site_status_items?select=*&order=id.asc', { headers:{ 'apikey':SUPABASE_ANON_KEY } })
+    .then(function(r){ if(!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+    .then(function(rows){
+      if(!rows.length){ list.innerHTML = '<p class="status-empty">Nessuna informazione pubblicata ancora.</p>'; return; }
+      var worst = rows.some(function(r){ return r.status === 'bad'; }) ? 'bad' : (rows.some(function(r){ return r.status === 'warn'; }) ? 'warn' : 'ok');
+      var overallText = { ok: 'Tutto regolare', warn: 'Alcuni rallentamenti', bad: 'Problemi in corso' }[worst];
+      document.getElementById('statusOverall').innerHTML = '<span class="status-dot ' + worst + '"></span>' + overallText;
+      list.innerHTML = rows.map(function(row){
+        var word = { ok: 'Operativo', warn: 'Rallentato', bad: 'Non disponibile' }[row.status] || row.status;
+        var when = relativeTimeShort(row.updated_at);
+        return '<div class="status-row"><span class="status-dot ' + escapeHtml(row.status) + '"></span>' +
+          '<div class="tx"><b>' + escapeHtml(row.label) + '</b><small>' + (row.note ? escapeHtml(row.note) + ' · ' : '') + 'aggiornato ' + when + '</small></div>' +
+          '<span class="word status-word-' + escapeHtml(row.status) + '">' + word + '</span></div>';
+      }).join('');
+    })
+    .catch(function(e){
+      console.warn('Status page load failed:', e);
+      list.innerHTML = '<p class="status-empty">Non riesco a leggere lo stato in questo momento.</p>';
+    });
+}
+
+/* ============ BATCH 1: Pannello admin "Stato dei servizi" (in Amministra → Manutenzione) ============ */
+function renderAdminStatusPanel(){
+  var box = document.getElementById('adminStatusList');
+  if(!box) return;
+  var session = getSession();
+  if(!session) return;
+  box.innerHTML = '<p class="form-note">…</p>';
+  fetch(SUPABASE_URL + '/rest/v1/site_status_items?select=*&order=id.asc', {
+    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
+  }).then(function(r){ if(!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+    .then(function(rows){
+      box.innerHTML = rows.map(function(row){
+        return '<div class="admin-list-row" style="border-bottom:1px solid var(--line);padding:10px 0;display:flex;align-items:center;gap:10px;flex-wrap:wrap;" data-status-id="' + escapeHtml(row.id) + '">' +
+          '<div style="flex:1 1 170px;min-width:0;"><b>' + escapeHtml(row.label) + '</b></div>' +
+          '<select class="admin-status-select" data-status-select style="min-width:150px;">' +
+            ['ok','warn','bad'].map(function(v){ var lab = { ok:'Operativo', warn:'Rallentato', bad:'Non disponibile' }[v]; return '<option value="' + v + '"' + (row.status === v ? ' selected' : '') + '>' + lab + '</option>'; }).join('') +
+          '</select>' +
+          '<input type="text" data-status-note placeholder="Nota facoltativa" value="' + escapeHtml(row.note || '') + '" style="flex:1 1 180px;">' +
+          '</div>';
+      }).join('') + '<button class="btn btn-ghost btn-sm" id="btnSaveStatus" style="margin-top:14px;">Salva stato</button><div class="form-note" id="statusSaveMsg" style="margin-top:8px;"></div>';
+      document.getElementById('btnSaveStatus').addEventListener('click', saveAdminStatus);
+    })
+    .catch(function(e){
+      console.warn('Admin status load failed:', e);
+      box.innerHTML = '<p class="form-note">Non riesco a caricare lo stato (' + e.message + ').</p>';
+    });
+}
+function saveAdminStatus(){
+  var session = getSession();
+  if(!session) return;
+  var msg = document.getElementById('statusSaveMsg');
+  msg.textContent = 'Salvataggio…';
+  var rows = Array.prototype.map.call(document.querySelectorAll('[data-status-id]'), function(row){
+    return {
+      id: row.dataset.statusId,
+      status: row.querySelector('[data-status-select]').value,
+      note: row.querySelector('[data-status-note]').value.trim() || null,
+      updated_at: new Date().toISOString()
+    };
+  });
+  Promise.all(rows.map(function(item){
+    return fetch(SUPABASE_URL + '/rest/v1/site_status_items?id=eq.' + encodeURIComponent(item.id), {
+      method:'PATCH',
+      headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json', 'Prefer':'return=representation' },
+      body: JSON.stringify({ status: item.status, note: item.note, updated_at: item.updated_at })
+    }).then(function(r){ return r.json().then(function(j){ return { ok: r.ok, id: item.id, rows: j }; }); });
+  })).then(function(results){
+    var failed = results.filter(function(r){ return !r.ok || !r.rows || !r.rows.length; });
+    msg.textContent = failed.length
+      ? 'Salvato parzialmente: ' + failed.length + ' voce/i non aggiornata/e (serve lo SQL del pannello di stato).'
+      : 'Salvato. La pagina pubblica si aggiorna subito.';
+  }).catch(function(e){
+    console.warn('Status save failed:', e);
+    msg.textContent = 'Errore: ' + e.message;
+  });
+}
+
+/* ============ BATCH 1: Assistenza / FAQ (faq.html) ============ */
+var FAQ_DATA = [
+  { group: 'Account', items: [
+    ['Come mi registro?', 'Dal pulsante "Accedi" in alto, poi "Crea account". Se le domande di verifica sono attive, rispondi prima a una domanda sull\u2019Archivio.'],
+    ['Ho dimenticato la password, e ora?', 'Dalla schermata di accesso c\u2019è il link "Password dimenticata": arriva un\u2019email per sceglierne una nuova.'],
+    ['Posso rendere privato il mio profilo?', 'Sì, dal tuo profilo puoi scegliere se è pubblico o visibile solo a chi accetti come amico.']
+  ]},
+  { group: 'Spunta blu e ruoli', items: [
+    ['Come ottengo la spunta blu?', 'Serve essere iscritti da almeno 90 giorni. Dopo, è l\u2019admin a poterla assegnare dal pannello Utenti.'],
+    ['Cosa vuol dire "Collaboratore"?', 'È chi ha lavorato a un titolo insieme all\u2019autore principale: compare nei crediti di quel titolo o brano.']
+  ]},
+  { group: 'Titoli e lettura', items: [
+    ['Come carico un titolo?', 'Da "Crea contenuto" nel menu, se hai un account. Il titolo viene controllato automaticamente prima di essere visibile a tutti.'],
+    ['Perché alcuni titoli sono bloccati?', 'Sono contenuti 18+: si sbloccano accendendo l\u2019interruttore "Contenuti 18+" dopo aver confermato l\u2019età.'],
+    ['Posso leggere senza account?', 'Sì, ma i PDF e alcune pagine pulite (senza filigrana) richiedono l\u2019accesso.']
+  ]},
+  { group: 'Community', items: [
+    ['Come segnalo un messaggio?', 'Tocca "Segnala" sul messaggio, dentro il canale della Community. Lo vede solo la moderazione.'],
+    ['Perché sono stato bannato?', 'Per una violazione della regola sui contenuti: niente materiale pornografico, solo sensuale. La decisione è dell\u2019admin.']
+  ]},
+  { group: 'Luxtify', items: [
+    ['Perché un brano è sfocato?', 'È un brano 18+: con l\u2019interruttore acceso e l\u2019età confermata si sblocca, come per i titoli.'],
+    ['Posso vedere il testo mentre ascolto?', 'Sì, se il brano ha il testo sincronizzato compare in stile karaoke nella schermata di riproduzione.']
+  ]}
+];
+function renderFaqPage(){
+  var groupsEl = document.getElementById('faqGroups');
+  if(!groupsEl) return; // no-op fuori da faq.html
+  var searchEl = document.getElementById('faqSearch');
+  var emptyEl = document.getElementById('faqEmpty');
+  function paint(query){
+    var q = (query || '').trim().toLowerCase();
+    var any = false;
+    groupsEl.innerHTML = FAQ_DATA.map(function(g){
+      var items = g.items.filter(function(it){ return !q || it[0].toLowerCase().indexOf(q) > -1 || it[1].toLowerCase().indexOf(q) > -1; });
+      if(!items.length) return '';
+      any = true;
+      return '<div><div class="faq-group-title">' + escapeHtml(g.group) + '</div>' +
+        items.map(function(it, i){
+          return '<div class="faq-item"><button type="button" class="faq-q" data-faq="' + escapeHtml(g.group) + '-' + i + '">' + escapeHtml(it[0]) + '<span class="x">+</span></button>' +
+            '<div class="faq-a">' + escapeHtml(it[1]) + '</div></div>';
+        }).join('') + '</div>';
+    }).join('');
+    emptyEl.classList.toggle('hidden', any);
+    Array.prototype.forEach.call(groupsEl.querySelectorAll('.faq-q'), function(btn){
+      btn.addEventListener('click', function(){ btn.parentNode.classList.toggle('open'); });
+    });
+  }
+  if(searchEl){
+    searchEl.addEventListener('input', function(){ paint(searchEl.value); });
+  }
+  paint('');
+}
+
+/* ============ BATCH 1: Modalità "solo testo" (risparmia dati, vale su tutto il sito) ============
+   Nasconde le immagini pesanti (copertine, banner, avatar) con un riquadro leggero al loro posto,
+   mantenendo tutto leggibile. Non tocca le icone SVG dell'interfaccia, solo <img> di contenuto. */
+function applyTextOnlyMode(on){
+  document.body.classList.toggle('text-only-mode', !!on);
+  try { localStorage.setItem('lux_text_only', on ? '1' : '0'); } catch(e){}
+  var btn = document.getElementById('btnTextOnly');
+  if(btn) btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+}
+function initTextOnlyToggle(){
+  var btn = document.getElementById('btnTextOnly');
+  if(!btn || btn.dataset.ready) return;
+  btn.dataset.ready = '1';
+  var on = false;
+  try { on = localStorage.getItem('lux_text_only') === '1'; } catch(e){}
+  applyTextOnlyMode(on);
+  btn.addEventListener('click', function(){ applyTextOnlyMode(!document.body.classList.contains('text-only-mode')); });
+}
+
 // Il loader.js inietta questo file DOPO che DOMContentLoaded è già passato
 // (perché aspetta prima il fetch di header/footer/modali condivisi).
 // Per questo non possiamo più aspettare quell'evento: se il documento ha
