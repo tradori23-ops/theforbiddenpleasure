@@ -233,11 +233,12 @@
               <label style="font-size:11px;color:var(--parchment-dim);display:block;margin-bottom:2px;">File audio (mp3) o video (mp4)</label>
               <input type="file" id="fSongAudio" accept="audio/*,video/mp4" style="margin-bottom:6px;">
               <textarea id="fSongLyrics" placeholder="Testo della canzone (opzionale)" style="margin-bottom:6px;"></textarea>
-              <label style="font-size:11px;color:var(--parchment-dim);display:block;margin-bottom:2px;">Collaboratori (fino a 3 — spunta blu se già verificati)</label>
+              <label style="font-size:11px;color:var(--parchment-dim);display:block;margin-bottom:2px;">Collaboratori (fino a 3 — con ruolo, es. Voce, Testo, Produzione — spunta blu se già verificati)</label>
               <div id="songCollabRows">
-                <div class="song-collab-row" style="display:flex;gap:6px;margin-bottom:4px;align-items:center;">
-                  <input type="text" class="fSongCollabName" placeholder="Nome" style="flex:1;">
-                  <input type="url" class="fSongCollabUrl" placeholder="Link Instagram (opz.)" style="flex:1;">
+                <div class="song-collab-row" style="display:flex;gap:6px;margin-bottom:4px;align-items:center;flex-wrap:wrap;">
+                  <input type="text" class="fSongCollabName" placeholder="Nome" style="flex:1 1 110px;">
+                  <input type="text" class="fSongCollabRole" placeholder="Ruolo (es. Voce, Testo)" style="flex:1 1 110px;">
+                  <input type="url" class="fSongCollabUrl" placeholder="Link Instagram (opz.)" style="flex:1 1 140px;">
                   <label style="font-size:11px;white-space:nowrap;"><input type="checkbox" class="fSongCollabVerified"> ✓</label>
                 </div>
               </div>
