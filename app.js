@@ -790,7 +790,7 @@ function showEntryModeGate(){
 var SUPABASE_URL = 'https://ukafvwyxdjsfzzoewujq.supabase.co';
 // Copertina segnaposto (nota musicale oro su sfondo scuro) per canzoni/album/podcast senza immagine
 var MUSIC_COVER_FALLBACK = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iIzE1MGQwZSIvPjx0ZXh0IHg9IjUwIiB5PSI2NCIgZm9udC1zaXplPSI0MiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2M5YTI0ZCI+4pmqPC90ZXh0Pjwvc3ZnPg==';
-function coverImgAttrs(){ return ' onerror="this.onerror=null;this.src=\'' + MUSIC_COVER_FALLBACK + '\';"'; }
+function coverImgAttrs(){ return ' loading="lazy" onerror="this.onerror=null;this.src=\'' + MUSIC_COVER_FALLBACK + '\';"'; }
 var SUPABASE_ANON_KEY = 'sb_publishable_-jO_WGzMVo-3Xp5J75RwiA__u49YnPr';
 var ADMIN_EMAIL = 'sergio.tradori@outlook.it'; // UI-gating only; real enforcement is server-side RLS
 
@@ -1240,7 +1240,7 @@ function afterAuthChange(){
 
 function acctChipAvatarHtml(avatarUrl, name){
   if(avatarUrl){
-    return '<img class="acct-chip-avatar" src="' + escapeHtml(avatarUrl) + '" alt="">';
+    return '<img class="acct-chip-avatar" src="' + coverThumbUrl(escapeHtml(avatarUrl), 60) + '" alt="" loading="lazy">';
   }
   var initial = (name || '?').replace('@','').charAt(0).toUpperCase();
   return '<span class="acct-chip-avatar-init">' + escapeHtml(initial) + '</span>';
@@ -2291,7 +2291,7 @@ function renderDossiers(){
     names.forEach(function(name, i){
       var imgUrl = characterImages[name];
       var cardInner = imgUrl
-        ? '<img class="dossier-card-photo" src="'+imgUrl+'" alt="'+name+'">'
+        ? '<img class="dossier-card-photo" src="'+coverThumbUrl(imgUrl, 300)+'" alt="'+name+'" loading="lazy">'
         : '<span class="dossier-card-init">'+name.charAt(0)+'</span>';
       var card = document.createElement('div');
       card.className = 'dossier-card'+(i===activeIdx?' active':'');
@@ -2677,7 +2677,7 @@ function initCmdSearch(){
     if(matches.length === 0){ results.innerHTML = '<p class="form-note">Nessun risultato.</p>'; return; }
     results.innerHTML = matches.map(function(item, i){
       return '<div class="cmdk-result-row" data-cmdk-result="' + i + '">' +
-        (item.cover_url ? '<img src="' + coverThumbUrl(item.cover_url, 100) + '" alt="">' : '<span class="cmdk-noimg"></span>') +
+        (item.cover_url ? '<img src="' + coverThumbUrl(item.cover_url, 100) + '" alt="" loading="lazy">' : '<span class="cmdk-noimg"></span>') +
         '<div><div class="cmdk-result-title">' + escapeHtml(item.title) + '</div><div class="cmdk-result-sub">' + escapeHtml(item.character || '') + '</div></div>' +
       '</div>';
     }).join('');
@@ -2763,7 +2763,7 @@ function renderPixaiCommunity(pixaiItems){
         profiles.forEach(function(p){
           var online = isOnlineSince(p.last_seen);
           var avatarHtml = p.avatar_url
-            ? '<img class="user-directory-avatar" src="'+escapeHtml(p.avatar_url)+'" alt="">'
+            ? '<img class="user-directory-avatar" src="'+coverThumbUrl(escapeHtml(p.avatar_url), 80)+'" alt="" loading="lazy">'
             : '<span class="user-directory-avatar user-directory-avatar-fallback">'+escapeHtml((p.display_name||'?').charAt(0).toUpperCase())+'</span>';
           var card = document.createElement('div');
           card.className = 'pixai-community-card';
@@ -6412,7 +6412,7 @@ function srvEscAttr(s){
   return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, '&#39;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
 function srvAvatarHtml(p, cls){
-  if(p.avatar_url) return '<img class="' + cls + '" src="' + srvEscAttr(p.avatar_url) + '" alt="">';
+  if(p.avatar_url) return '<img class="' + cls + '" src="' + coverThumbUrl(srvEscAttr(p.avatar_url), 80) + '" alt="" loading="lazy">';
   return '<span class="' + cls + ' ' + cls + '-fb">' + escapeHtml((p.display_name || '?').charAt(0).toUpperCase()) + '</span>';
 }
 
@@ -6990,7 +6990,7 @@ function buildEventCard(ev){
   card.dataset.eventId = String(ev.id);
   var dateLabel = formatEventDates(ev);
   card.innerHTML =
-    (ev.image_url ? '<img class="event-img" src="' + escapeHtml(ev.image_url) + '" alt="">' : '') +
+    (ev.image_url ? '<img class="event-img" src="' + coverThumbUrl(escapeHtml(ev.image_url), 500) + '" alt="" loading="lazy">' : '') +
     '<div class="event-body">' +
       '<div class="event-title">' + escapeHtml(ev.title) + '</div>' +
       (ev.location ? '<div class="event-loc">📍 ' + escapeHtml(ev.location) + ' · ' + dateLabel + '</div>' : '<div class="event-loc">' + dateLabel + '</div>') +
@@ -7285,7 +7285,7 @@ function renderDiaryFeed(posts, containerId){
     card.className = 'diary-post';
     card.dataset.postId = p.id;
     var kindIcon = p.kind === 'photo' ? '📷' : (p.kind === 'mood' ? '🙂' : '📝');
-    var mediaHtml = p.image_url ? '<img class="diary-post-img" src="'+escapeHtml(p.image_url)+'" alt="">' : '';
+    var mediaHtml = p.image_url ? '<img class="diary-post-img" src="'+coverThumbUrl(escapeHtml(p.image_url), 700)+'" alt="" loading="lazy">' : '';
     var bodyHtml = p.body ? '<div class="diary-post-body">'+renderBodyHtml(p.body)+'</div>' : '';
     card.innerHTML =
       '<div class="diary-post-head">'+
@@ -7643,7 +7643,7 @@ function renderProfilePhotos(userId){
       rows.forEach(function(photo){
         var item = document.createElement('div');
         item.className = 'profile-photo-item';
-        item.innerHTML = '<img src="' + escapeHtml(photo.image_url) + '" alt="">' +
+        item.innerHTML = '<img src="' + coverThumbUrl(escapeHtml(photo.image_url), 300) + '" alt="" loading="lazy">' +
           (isOwn ? '<button type="button" class="profile-photo-remove" data-del-photo="' + photo.id + '">✕</button>' : '');
         item.querySelector('img').addEventListener('click', function(){ openImageLightbox(photo.image_url); });
         var delBtn = item.querySelector('[data-del-photo]');
@@ -8150,7 +8150,7 @@ function renderChatSidebar(profiles, threadByOtherId){
     main.className = 'chat-sidebar-row-main';
     main.innerHTML =
       '<span class="chat-sidebar-avatar-wrap">' +
-        '<img class="chat-sidebar-avatar" src="' + (p.avatar_url ? escapeHtml(p.avatar_url) : '') + '" alt="">' +
+        '<img class="chat-sidebar-avatar" src="' + (p.avatar_url ? coverThumbUrl(escapeHtml(p.avatar_url), 80) : '') + '" alt="" loading="lazy">' +
         '<span class="chat-sidebar-dot ' + (online ? 'online' : 'offline') + '"></span>' +
       '</span>' +
       '<span class="chat-sidebar-info">' +
@@ -8294,7 +8294,7 @@ function loadChatMessages(){
             var attachHtml = '';
             if(m.attachment_url){
               if(m.attachment_type === 'image'){
-                attachHtml = '<img class="chat-attachment-img" src="' + escapeHtml(m.attachment_url) + '" alt="">';
+                attachHtml = '<img class="chat-attachment-img" src="' + coverThumbUrl(escapeHtml(m.attachment_url), 500) + '" alt="" loading="lazy">';
               } else {
                 attachHtml = '<a class="chat-attachment-file" href="' + escapeHtml(m.attachment_url) + '" target="_blank" rel="noopener">📎 ' + escapeHtml(m.attachment_name || t('chat.file')) + '</a>';
               }
@@ -8908,7 +8908,7 @@ function renderFriendContactList(friendsBox, accepted, uid){
         row.className = 'friend-contact-row';
         row.innerHTML =
           '<span class="friend-contact-avatar-wrap">' +
-            '<img class="friend-contact-avatar" src="' + (p.avatar_url ? escapeHtml(p.avatar_url) : '') + '" alt="">' +
+            '<img class="friend-contact-avatar" src="' + (p.avatar_url ? coverThumbUrl(escapeHtml(p.avatar_url), 80) : '') + '" alt="" loading="lazy">' +
             '<span class="friend-contact-dot ' + (online ? 'online' : 'offline') + '"></span>' +
           '</span>' +
           '<span class="friend-contact-info">' +
@@ -9184,7 +9184,7 @@ function contattiCardRow(p, extraMetaHtml){
   var row = document.createElement('div');
   row.className = 'admin-row';
   var avatarHtml = p.avatar_url
-    ? '<img class="user-directory-avatar" src="'+escapeHtml(p.avatar_url)+'" alt="">'
+    ? '<img class="user-directory-avatar" src="'+coverThumbUrl(escapeHtml(p.avatar_url), 80)+'" alt="" loading="lazy">'
     : '<span class="user-directory-avatar user-directory-avatar-fallback">'+escapeHtml((p.display_name||'?').charAt(0).toUpperCase())+'</span>';
   var lockHtml = p.is_private ? ' 🔒' : '';
   var verifiedHtml = ' ' + verifiedBadge('verified.commenter', !!p.verified);
@@ -13364,7 +13364,7 @@ function loadEventsAdminList(){
         var isPast = eventIsPast(ev, now);
         var dateLabel = formatEventDates(ev) + ' · ' + new Date(ev.event_date).toLocaleTimeString('it-IT', { hour:'2-digit', minute:'2-digit' });
         return '<div class="admin-list-row" style="border-bottom:1px solid var(--line);padding:10px 0;display:flex;align-items:center;gap:10px;flex-wrap:wrap;">' +
-          (ev.image_url ? '<img src="' + escapeHtml(ev.image_url) + '" style="width:44px;height:44px;object-fit:cover;border-radius:8px;flex-shrink:0;">' : '<span style="width:44px;height:44px;flex-shrink:0;">🎟️</span>') +
+          (ev.image_url ? '<img src="' + coverThumbUrl(escapeHtml(ev.image_url), 90) + '" style="width:44px;height:44px;object-fit:cover;border-radius:8px;flex-shrink:0;" loading="lazy">' : '<span style="width:44px;height:44px;flex-shrink:0;">🎟️</span>') +
           '<div style="flex:1 1 170px;min-width:0;">' +
             '<div style="font-weight:600;">' + escapeHtml(ev.title) + (isPast ? ' <span style="color:var(--parchment-dim);font-size:11px;">(passato)</span>' : '') + '</div>' +
             '<div style="font-size:11px;color:var(--parchment-dim);">' + dateLabel + (ev.location ? ' · ' + escapeHtml(ev.location) : '') + '</div>' +
@@ -14599,7 +14599,7 @@ function openGifPicker(field, anchor){
         results.innerHTML = items.map(function(g){
           var thumb = g.media && g.media[0] && g.media[0].tinygif ? g.media[0].tinygif.url : '';
           var full = g.media && g.media[0] && g.media[0].gif ? g.media[0].gif.url : thumb;
-          return '<img class="picker-gif-thumb" src="' + escapeHtml(thumb) + '" data-full="' + escapeHtml(full) + '" alt="">';
+          return '<img class="picker-gif-thumb" src="' + escapeHtml(thumb) + '" data-full="' + escapeHtml(full) + '" alt="" loading="lazy">';
         }).join('');
         Array.prototype.forEach.call(results.querySelectorAll('.picker-gif-thumb'), function(img){
           img.addEventListener('click', function(){

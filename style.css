@@ -1955,14 +1955,14 @@ body.chat-fullscreen .chat-page::after{ display:none; }
 html,body{max-width:100%;overflow-x:clip;}
 
 
-/* ============ MODALITÀ "SOLO TESTO" (alleggerisce la pagina) ============
-   Le immagini di contenuto (copertine, banner, avatar, gallerie) restano nel loro riquadro ma
-   non vengono più disegnate: niente decodifica, pagina più leggera e più veloce da scorrere.
-   Le icone SVG dell'interfaccia e i loghi non sono toccati: sono già leggeri.
+/* ============ MODALITÀ "SOLO TESTO" (risparmia dati per davvero) ============
+   La maggior parte delle immagini del sito è già caricata "loading=lazy": il browser le scarica
+   solo quando stanno per entrare nello schermo. display:none le toglie dal flusso della pagina
+   PRIMA che questo controllo scatti, quindi con la modalità attiva non vengono proprio scaricate
+   (non solo nascoste) — utile con una connessione debole. Le icone SVG dell'interfaccia e i loghi
+   non sono toccati: sono già leggeri.
 */
 body.text-only-mode img:not(.no-text-only){
-  visibility:hidden;
-  background:repeating-linear-gradient(135deg,var(--void-2),var(--void-2) 8px,var(--void) 8px,var(--void) 16px);
-  border:1px dashed var(--line);
+  display:none;
 }
 #btnTextOnly[aria-pressed="true"]{border-color:var(--gold);color:var(--gold-bright);}
