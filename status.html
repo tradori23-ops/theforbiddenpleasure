@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, viewport-fit=cover">
+<title>LUX COMICS &amp; MEDUSA COMICS — Stato del sito</title>
+<meta property="og:type" content="website">
+<meta property="og:title" content="Stato del sito — LUX COMICS &amp; MEDUSA COMICS">
+<meta property="og:description" content="Se qualcosa non funziona, controlla qui prima di scrivere.">
+<meta property="og:image" content="https://noxmorningstar.com/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://noxmorningstar.com/status.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Stato del sito — LUX COMICS &amp; MEDUSA COMICS">
+<meta name="twitter:image" content="https://noxmorningstar.com/og-image.jpg">
+<link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAIAAAD8GO2jAAAHoklEQVR42pWWS49cVxWF9+Oc+6pHV1W37W53K3YMCYkjZZBYkQgSDGCQaRgx5Cfwg5jyB5hmABOQ">
+<link rel="icon" type="image/png" sizes="16x16" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAACF0lEQVR42k2SuW4cVxAA+3jHHEuKh9cUBFsUFJAAMwbO/CH+X3+E4dSyIRPQasmZ2Zl3dbcDwoIq">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cinzel+Decorative:wght@700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Space+Mono:wght@400;700&display=swap">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cinzel+Decorative:wght@700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Space+Mono:wght@400;700&display=swap"></noscript>
+<link rel="stylesheet" href="style.css">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="manifest" href="manifest.json">
+<style>
+  /* Pagina di stato: elenco semplice, un pallino colorato per servizio. */
+  #statusSection{max-width:640px;margin:0 auto;padding:34px 20px 60px;}
+  .status-list{display:flex;flex-direction:column;gap:10px;margin-top:20px;}
+  .status-row{display:flex;align-items:center;gap:12px;border:1px solid var(--line);border-radius:8px;padding:14px 16px;background:var(--void-2);}
+  .status-dot{width:11px;height:11px;border-radius:50%;flex:none;}
+  .status-dot.ok{background:#5fb98a;box-shadow:0 0 8px rgba(95,185,138,0.5);}
+  .status-dot.warn{background:#e3c273;box-shadow:0 0 8px rgba(227,194,115,0.5);}
+  .status-dot.bad{background:#e24b4a;box-shadow:0 0 8px rgba(226,75,74,0.5);}
+  .status-row .tx{flex:1;min-width:0;}
+  .status-row b{display:block;font-size:15px;color:var(--parchment);}
+  .status-row small{display:block;font-size:11.5px;color:var(--parchment-dim);font-family:'Space Mono',monospace;margin-top:2px;}
+  .status-row .word{font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.06em;text-transform:uppercase;flex:none;}
+  .status-word-ok{color:#5fb98a;} .status-word-warn{color:#e3c273;} .status-word-bad{color:#e24b4a;}
+  .status-empty,.status-loading{color:var(--parchment-dim);font-size:14px;margin-top:20px;}
+  .status-overall{display:flex;align-items:center;gap:10px;margin-top:6px;font-family:'Space Mono',monospace;font-size:12px;color:var(--parchment-dim);}
+</style>
+</head>
+<body>
+<div id="app">
+<div id="chrome-top-slot"></div>
+
+  <section class="section ornate-divider" id="statusSection">
+    <div class="section-head">
+      <div class="section-eyebrow">Diagnostica pubblica</div>
+      <h2>Stato del sito</h2>
+      <p class="section-desc">Se qualcosa non funziona, controlla qui prima di scrivere — questa pagina la aggiorna a mano l'admin, non è automatica.</p>
+    </div>
+    <div class="status-overall" id="statusOverall"></div>
+    <div class="status-list" id="statusList"><p class="status-loading">…</p></div>
+  </section>
+
+<div id="chrome-footer-slot"></div>
+</div>
+<div id="chrome-modals-slot"></div>
+<link rel="preload" href="app.js" as="script">
+<script src="qrcode-lib.js" defer></script>
+<script src="loader.js" defer></script>
+</body>
+</html>
