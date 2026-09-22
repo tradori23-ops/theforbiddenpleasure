@@ -307,6 +307,16 @@
       <label class="lx-popup-label">File audio (mp3) o video (mp4)</label>
       <input type="file" id="fLuxAudio" accept="audio/*,video/mp4">
       <label class="lx-explicit-check"><input type="checkbox" id="fLuxExplicit"> Brano esplicito (18+): visibile solo con l'interruttore 18+ acceso</label>
+      <label class="lx-popup-label" style="margin-top:4px;">Collaboratori (fino a 3 — con ruolo, es. Voce, Testo, Produzione)</label>
+      <div id="songCollabRows">
+        <div class="song-collab-row" style="display:flex;gap:6px;margin-bottom:6px;align-items:center;flex-wrap:wrap;">
+          <input type="text" class="fSongCollabName" placeholder="Nome" style="flex:1 1 100px;background:var(--lx-bg);border:1px solid var(--lx-line);border-radius:6px;color:var(--lx-ink);padding:8px;font-size:13px;">
+          <input type="text" class="fSongCollabRole" placeholder="Ruolo" style="flex:1 1 90px;background:var(--lx-bg);border:1px solid var(--lx-line);border-radius:6px;color:var(--lx-ink);padding:8px;font-size:13px;">
+          <input type="url" class="fSongCollabUrl" placeholder="Link (opz.)" style="flex:1 1 110px;background:var(--lx-bg);border:1px solid var(--lx-line);border-radius:6px;color:var(--lx-ink);padding:8px;font-size:13px;">
+          <label style="font-size:11px;white-space:nowrap;color:var(--lx-dim);"><input type="checkbox" class="fSongCollabVerified"> ✓</label>
+        </div>
+      </div>
+      <button type="button" id="btnAddSongCollabRow" class="lx-ghostbtn" style="padding:6px 12px;font-size:11px;margin-bottom:10px;">+ Aggiungi collaboratore</button>
       <button type="button" id="btnAddLuxtifySong" style="width:100%;background:var(--lx-wine);color:#fff;border:none;border-radius:6px;padding:12px;font-size:14px;cursor:pointer;margin-top:4px;">Pubblica canzone</button>
       <div id="luxUploadStatus" style="color:var(--lx-gold);font-size:11px;margin-top:6px;"></div>
     </div>

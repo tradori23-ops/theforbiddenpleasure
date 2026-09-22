@@ -10616,6 +10616,8 @@ function ensureMusicLibraryStyle(){
     '.ml-count{padding:0 16px 8px;color:var(--ml-dim);font-size:11px;letter-spacing:0.06em;font-family:"Space Mono",monospace;flex-shrink:0;}',
     '.ml-content{flex:1;overflow-y:auto;overflow-x:hidden;padding:4px 16px 40px;min-height:0;}',
     '.ml-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:16px;align-content:start;}',
+    '.ml-section-title{font-family:"Space Mono",monospace;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ml-dim);margin-bottom:10px;}',
+    '.ml-cards-auto{margin-bottom:0;}',
     '.music-library-card{cursor:pointer;background:var(--ml-card);border:1px solid var(--ml-line);border-radius:10px;padding:10px;transition:border-color .15s;}',
     '.music-library-card:hover{border-color:var(--ml-gold);}',
     '.music-library-card img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:8px;background:var(--ml-card2);margin-bottom:8px;display:block;}',
@@ -10917,15 +10919,47 @@ function renderMusicLibraryTab(tab){
       });
     }
 } else if(tab === 'playlists'){
-    fetchPlaylists().then(function(playlists){
-      if(playlists.length === 0){ grid.innerHTML = '<p class="form-note">Nessuna playlist ancora.</p>'; return; }
-      grid.innerHTML = playlists.map(function(p, i){
-        return '<div class="music-library-card" data-pl-idx="' + i + '">' +
-          '<img src="' + escapeHtml(p.cover_url || '') + '" alt=""' + coverImgAttrs() + '>' +
-          '<div class="music-library-card-title">' + escapeHtml(p.title) + '</div>' +
-          (p.description ? '<div class="music-library-card-sub">' + escapeHtml(p.description) + '</div>' : '') +
-        '</div>';
-      }).join('');
+    /* "Playlist automatiche": una per collana (Lucifer, Lilith...), generata da sola dai brani
+       già presenti — non richiede nessuna playlist creata a mano. */
+    Promise.all([fetchAllSongsWithAlbum(), fetchPlaylists()]).then(function(results){
+      var songs = results[0], playlists = results[1];
+      var byColl = {}, order = [];
+      songs.forEach(function(row){
+        var coll = (row.catalog && row.catalog.character) || null;
+        if(!coll) return; // brani senza collana (caricati liberamente) non entrano in una playlist automatica
+        if(!byColl[coll]){ byColl[coll] = []; order.push(coll); }
+        byColl[coll].push(row);
+      });
+      var collOrder = ML_COLL_ORDER.filter(function(c){ return byColl[c]; }).concat(order.filter(function(c){ return ML_COLL_ORDER.indexOf(c) === -1; }));
+      var autoHtml = collOrder.length ? (
+        '<div class="ml-section-title">Playlist automatiche</div><div class="ml-cards ml-cards-auto">' +
+        collOrder.map(function(coll, i){
+          var list = byColl[coll];
+          var cover = list.filter(function(s){ return s.cover_url || (s.catalog && s.catalog.cover_url); })[0];
+          var coverUrl = cover ? (cover.cover_url || cover.catalog.cover_url) : '';
+          return '<div class="music-library-card" data-auto-idx="' + i + '">' +
+            '<img src="' + escapeHtml(coverUrl) + '" alt=""' + coverImgAttrs() + '>' +
+            '<div class="music-library-card-title">Tutto ' + escapeHtml(coll) + '</div>' +
+            '<div class="music-library-card-sub">' + list.length + (list.length === 1 ? ' brano · generata da sola' : ' brani · generata da sola') + '</div>' +
+          '</div>';
+        }).join('') + '</div>'
+      ) : '';
+      var mineHtml = '<div class="ml-section-title" style="margin-top:' + (autoHtml ? '22px' : '0') + ';">Le mie playlist</div>' +
+        (playlists.length === 0 ? '<p class="form-note">Nessuna playlist ancora.</p>' : playlists.map(function(p, i){
+          return '<div class="music-library-card" data-pl-idx="' + i + '">' +
+            '<img src="' + escapeHtml(p.cover_url || '') + '" alt=""' + coverImgAttrs() + '>' +
+            '<div class="music-library-card-title">' + escapeHtml(p.title) + '</div>' +
+            (p.description ? '<div class="music-library-card-sub">' + escapeHtml(p.description) + '</div>' : '') +
+          '</div>';
+        }).join(''));
+      grid.innerHTML = autoHtml + mineHtml;
+      Array.prototype.forEach.call(grid.querySelectorAll('[data-auto-idx]'), function(el){
+        el.addEventListener('click', function(){
+          var coll = collOrder[Number(el.dataset.autoIdx)];
+          closeMusicLibrary();
+          openMusicPlayer(byColl[coll], 'Tutto ' + coll);
+        });
+      });
       Array.prototype.forEach.call(grid.querySelectorAll('[data-pl-idx]'), function(el){
         el.addEventListener('click', function(){
           var p = playlists[Number(el.dataset.plIdx)];
@@ -11788,7 +11822,8 @@ function addLuxtifySong(){
         catalog_id: null, // canzone caricata da un collaboratore, non legata a un titolo fumetto
         title: titleEl.value.trim(), artist: artistEl.value.trim() || null, genre: genreEl.value.trim() || null,
         audio_url: urls[0], cover_url: urls[1], created_by: currentUserId(),
-        media_type: (audioFile.type && audioFile.type.indexOf('video') === 0) ? 'video' : 'audio'
+        media_type: (audioFile.type && audioFile.type.indexOf('video') === 0) ? 'video' : 'audio',
+        collaborators: collectSongCollabRows()
       }, (document.getElementById('fLuxExplicit') && document.getElementById('fLuxExplicit').checked) ? { explicit: true } : {})) // "explicit" si manda solo se spuntato: senza la colonna (SQL non lanciato) le canzoni normali si caricano lo stesso
     });
   }).then(function(r){
@@ -11796,6 +11831,7 @@ function addLuxtifySong(){
     titleEl.value = ''; artistEl.value = ''; genreEl.value = '';
     document.getElementById('fLuxCover').value = '';
     document.getElementById('fLuxAudio').value = '';
+    resetSongCollabRows();
     statusEl.textContent = 'Pubblicata! Ricarica la pagina per vederla in Album.';
     var popup = document.getElementById('luxSongPopup');
     if(popup) setTimeout(function(){ popup.classList.add('hidden'); }, 1200);
@@ -11878,6 +11914,7 @@ function ensureMusicPlayerStyle(){
     '.mp-title{font-family:"Cinzel",serif;font-size:22px;line-height:1.15;font-weight:700;margin:0;color:var(--mp-ink);}',
     '.mp-artist{font-size:15px;color:var(--mp-past);margin-top:2px;}',
     '.mp-collab{font-size:13px;color:var(--mp-dim);margin-top:2px;}',
+    '.mp-collab b{color:var(--mp-past);font-weight:600;}',
     '.mp-collab a{color:var(--mp-gold);}',
     '.mp-like{display:flex;flex-direction:column;align-items:center;gap:0;min-width:44px;padding:4px 6px;color:var(--mp-ink);font-family:"Space Mono",monospace;font-size:10px;background:none;border:0;cursor:pointer;border-radius:14px;}',
     '.mp-like:hover{background:var(--mp-card2);}',
@@ -11949,6 +11986,10 @@ function ensureMusicPlayerStyle(){
     '.mp-afterline{font-size:14px;color:var(--mp-dim);margin-bottom:4px;}',
     '.mp-sl.label{opacity:0.55;font-style:italic;}',
     '.mp-hint{font-size:13px;color:var(--mp-past);font-family:"Space Mono",monospace;margin:6px 0;line-height:1.5;}',
+    '.mp-eq-row{display:flex;align-items:center;gap:12px;padding:12px 2px;}',
+    '.mp-eq-row label{width:52px;flex:none;font-size:13.5px;color:var(--mp-ink);}',
+    '.mp-eq-row input[type="range"]{flex:1;}',
+    '.mp-eq-val{width:56px;flex:none;text-align:right;font-family:"Space Mono",monospace;font-size:11px;color:var(--mp-gold);}',
     '.mp-sbox textarea.mp-big{width:100%;min-height:140px;background:var(--mp-card);border:1px solid var(--mp-line);border-radius:12px;padding:10px 12px;font-size:16px;font-family:"Crimson Pro",serif;color:var(--mp-ink);box-sizing:border-box;}',
     '.mp-stabs{display:flex;gap:6px;margin-bottom:10px;}',
     '.mp-stab{padding:7px 14px;border-radius:20px;border:1px solid var(--mp-line);color:var(--mp-past);font-size:14px;background:none;cursor:pointer;font-family:inherit;}',
@@ -12025,7 +12066,8 @@ var MP_ICONS = {
   down: '<path d="M6 9l6 6 6-6"/>',
   list: '<path d="M4 6h16M4 12h16M4 18h10"/>',
   x: '<path d="M6 6l12 12M18 6L6 18"/>',
-  mic: '<rect x="9" y="3" width="6" height="11" rx="3"/><path d="M6 11a6 6 0 0 0 12 0M12 17v4"/>'
+  mic: '<rect x="9" y="3" width="6" height="11" rx="3"/><path d="M6 11a6 6 0 0 0 12 0M12 17v4"/>',
+  eq: '<path d="M6 20V10M6 7V4M12 20v-4M12 13V4M18 20v-7M18 10V4"/><circle cx="6" cy="8.5" r="1.6"/><circle cx="12" cy="15.5" r="1.6"/><circle cx="18" cy="11.5" r="1.6"/>'
 };
 function mpIcon(name, filled, size){
   return '<svg class="mp-ico' + (filled ? ' f' : '') + '" viewBox="0 0 24 24" aria-hidden="true"' + (size ? ' style="width:' + size + 'px;height:' + size + 'px"' : '') + '>' + MP_ICONS[name] + '</svg>';
@@ -12034,6 +12076,21 @@ function mpFmt(sec){
   sec = Math.max(0, Math.floor(sec || 0));
   return Math.floor(sec / 60) + ':' + String(sec % 60).padStart(2, '0');
 }
+
+/* ---- Equalizzatore: preferenza salvata sul dispositivo (non per brano, vale per tutti) ----
+   Finché resta a 0 su tutte le bande non tocca l'audio: il brano suona esattamente come prima.
+   Solo se l'ascoltatore muove almeno un cursore l'audio viene fatto passare dal grafo Web Audio. */
+function mpEqDefaults(){ return { bass: 0, mid: 0, voice: 0, treble: 0 }; }
+function mpGetEqGains(){
+  try {
+    var raw = localStorage.getItem('lux_eq');
+    if(raw) return Object.assign(mpEqDefaults(), JSON.parse(raw));
+  } catch(e){} // preferenza non leggibile: si riparte da zero, non è un errore che blocca l'ascolto
+  return mpEqDefaults();
+}
+function mpSaveEqGains(g){ try { localStorage.setItem('lux_eq', JSON.stringify(g)); } catch(e){} }
+function mpEqIsCustomized(g){ return g.bass !== 0 || g.mid !== 0 || g.voice !== 0 || g.treble !== 0; }
+var mpAudioCtx = null; // un solo contesto audio per tutta la pagina, riusato ad ogni brano
 
 /* ---- testo: LRC ("[mm:ss.xx] riga") oppure testo semplice ----
    Legge anche i testi "sporchi": più tempi sulla stessa riga, tempi scritti male ("[01:59:00 testo"), etichette tra
@@ -12154,6 +12211,7 @@ function openMusicPlayer(songs, contextLabel, options, startIdx){
           (social && isSignedIn() ? '<button type="button" class="mp-a" id="musicPlayerAddToPlaylistBtn" data-mp="playlist">' + mpIcon('plus') + 'Playlist</button>' : '') +
           (multi ? '<button type="button" class="mp-a" id="musicPlayerQueueBtn" data-mp="queue">' + mpIcon('list') + 'Coda</button>' : '') +
           '<button type="button" class="mp-a spd" id="musicPlayerSpeedBtn" data-mp="speed" aria-label="Velocità di riproduzione">1x</button>' +
+          '<button type="button" class="mp-a" id="musicPlayerEqBtn" data-mp="eqopen" aria-label="Equalizzatore">' + mpIcon('eq') + 'EQ</button>' +
         '</div>' +
         (social ? '<div class="music-player-stats" id="musicPlayerStats"></div>' : '') +
       '</section>' +
@@ -12175,6 +12233,7 @@ function openMusicPlayer(songs, contextLabel, options, startIdx){
         '</div></div>' +
       '<div id="mpPanelQueue" class="hidden"></div>' +
       '<div id="mpPanelSync" class="hidden"></div>' +
+      '<div id="mpPanelEq" class="hidden"></div>' +
     '</div></div>' +
     '<div class="mp-toast" id="mpToast" role="status"></div>';
   document.body.appendChild(overlay);
@@ -12199,6 +12258,7 @@ function openMusicPlayer(songs, contextLabel, options, startIdx){
   var seeking = false;
   var rafId = 0;
   var syncState = null;
+  var eqSource = null, eqNodes = null; // ricreati ad ogni brano: un elemento audio/video si collega al grafo Web Audio una sola volta nella sua vita
 
   function shuffleArrayKeepingFirst(arr, keepValue){
     var rest = arr.filter(function(v){ return v !== keepValue; });
@@ -12342,6 +12402,46 @@ function openMusicPlayer(songs, contextLabel, options, startIdx){
   }
 
   /* ---- traccia ---- */
+  /* ---- Equalizzatore: si ricollega ad ogni brano, solo se l'ascoltatore lo ha già usato una volta ---- */
+  function connectEq(el){
+    try {
+      var AC = window.AudioContext || window.webkitAudioContext;
+      if(!AC) return null; // browser senza Web Audio: il brano suona comunque, solo senza equalizzatore
+      if(!mpAudioCtx) mpAudioCtx = new AC();
+      if(mpAudioCtx.state === 'suspended') mpAudioCtx.resume().catch(function(){});
+      if(eqSource){ try { eqSource.disconnect(); } catch(e){} }
+      if(eqNodes){ Object.keys(eqNodes).forEach(function(k){ try { eqNodes[k].disconnect(); } catch(e){} }); }
+      var src = mpAudioCtx.createMediaElementSource(el);
+      var bass = mpAudioCtx.createBiquadFilter(); bass.type = 'lowshelf'; bass.frequency.value = 200;
+      var mid = mpAudioCtx.createBiquadFilter(); mid.type = 'peaking'; mid.frequency.value = 1000; mid.Q.value = 1;
+      var voice = mpAudioCtx.createBiquadFilter(); voice.type = 'peaking'; voice.frequency.value = 2500; voice.Q.value = 1;
+      var treble = mpAudioCtx.createBiquadFilter(); treble.type = 'highshelf'; treble.frequency.value = 6000;
+      src.connect(bass); bass.connect(mid); mid.connect(voice); voice.connect(treble); treble.connect(mpAudioCtx.destination);
+      eqSource = src; eqNodes = { bass: bass, mid: mid, voice: voice, treble: treble };
+      applyEqGains(mpGetEqGains());
+      return eqNodes;
+    } catch(e){
+      console.warn('Equalizzatore non disponibile su questo brano:', e);
+      return null; // niente equalizzatore, ma la riproduzione normale continua
+    }
+  }
+  function applyEqGains(g){
+    if(!eqNodes) return;
+    eqNodes.bass.gain.value = g.bass; eqNodes.mid.gain.value = g.mid; eqNodes.voice.gain.value = g.voice; eqNodes.treble.gain.value = g.treble;
+  }
+  function eqPanelHtml(){
+    var g = mpGetEqGains();
+    var labels = [['bass', 'Bassi'], ['mid', 'Medi'], ['voice', 'Voce'], ['treble', 'Alti']];
+    return '<h3><span>Equalizzatore</span><button type="button" class="mp-ib" data-mp="sclose" style="width:32px;height:32px" aria-label="Chiudi">' + mpIcon('x', false, 18) + '</button></h3>' +
+      '<div class="mp-hint">Resta salvato su questo dispositivo e si applica a ogni brano che ascolti.</div>' +
+      labels.map(function(l){
+        var v = g[l[0]];
+        return '<div class="mp-eq-row"><label>' + l[1] + '</label><input type="range" min="-12" max="12" step="1" value="' + v + '" data-eq="' + l[0] + '" aria-label="' + l[1] + '"><span class="mp-eq-val" data-eqval="' + l[0] + '">' + (v > 0 ? '+' : '') + v + ' dB</span></div>';
+      }).join('') +
+      '<button type="button" class="mp-sbtn" data-mp="eqreset" style="margin-top:10px;">Azzera</button>';
+  }
+  function showEqPanel(){ $mp('mpPanelEq').innerHTML = eqPanelHtml(); openSheet('mpPanelEq'); }
+
   function playTrack(idx){
     currentIdx = idx;
     var song = songs[idx];
@@ -12367,12 +12467,12 @@ function openMusicPlayer(songs, contextLabel, options, startIdx){
 
     var collabEl = $mp('musicPlayerCollab');
     if(song.collaborators && song.collaborators.length){
-      collabEl.innerHTML = t('collab.credit') + ' ' + song.collaborators.map(function(c){
+      collabEl.innerHTML = song.collaborators.map(function(c){
         var nameLink = c.url
           ? '<a href="' + escapeHtml(c.url) + '" target="_blank" rel="noopener">' + escapeHtml(c.name) + '</a>'
           : escapeHtml(c.name);
-        return nameLink + verifiedBadge('verified.collaborator', !!c.verified);
-      }).join(', ');
+        return (c.role ? '<b>' + escapeHtml(c.role) + ':</b> ' : '') + nameLink + verifiedBadge('verified.collaborator', !!c.verified);
+      }).join(' · ');
       collabEl.classList.remove('hidden');
     } else {
       collabEl.classList.add('hidden');
@@ -12384,6 +12484,7 @@ function openMusicPlayer(songs, contextLabel, options, startIdx){
       ? '<video class="mp-video" id="musicPlayerMedia" controlsList="nodownload noremoteplayback" disablePictureInPicture oncontextmenu="return false;" playsinline></video>'
       : '<audio id="musicPlayerMedia" controlsList="nodownload noremoteplayback" oncontextmenu="return false;"></audio>';
     mediaEl = $mp('musicPlayerMedia');
+    eqNodes = mpEqIsCustomized(mpGetEqGains()) ? connectEq(mediaEl) : null; // tocca il grafo audio solo se l'ascoltatore l'ha già usato
     resolveSongAudioUrl(song.audio_url).then(function(realUrl){
       if(!realUrl) return; // link scaduto/introvabile: niente riproduzione invece di un errore confuso
       mediaEl.src = realUrl;
@@ -12474,7 +12575,7 @@ function openMusicPlayer(songs, contextLabel, options, startIdx){
 
   /* ---- fogli ---- */
   function openSheet(panel){
-    ['mpPanelComments', 'mpPanelQueue', 'mpPanelSync'].forEach(function(id){ $mp(id).classList.toggle('hidden', id !== panel); });
+    ['mpPanelComments', 'mpPanelQueue', 'mpPanelSync', 'mpPanelEq'].forEach(function(id){ $mp(id).classList.toggle('hidden', id !== panel); });
     $mp('mpSheet').classList.add('on');
   }
   function closeSheet(){ $mp('mpSheet').classList.remove('on'); syncState = null; }
@@ -12614,6 +12715,8 @@ function openMusicPlayer(songs, contextLabel, options, startIdx){
         return;
       }
       if(a === 'queue'){ renderQueuePanel(); openSheet('mpPanelQueue'); return; }
+      if(a === 'eqopen'){ if(!eqNodes) eqNodes = connectEq(mediaEl); showEqPanel(); return; }
+      if(a === 'eqreset'){ var g0 = mpEqDefaults(); mpSaveEqGains(g0); applyEqGains(g0); showEqPanel(); return; }
       if(a === 'comments'){ openSheet('mpPanelComments'); return; }
       if(a === 'share'){ shareSong(songs[currentIdx], contextLabel, options.shareKind || 's'); return; }
       if(a === 'playlist'){ openAddToPlaylistPopup(songs[currentIdx]); return; }
@@ -12693,6 +12796,14 @@ function openMusicPlayer(songs, contextLabel, options, startIdx){
   });
   overlay.addEventListener('input', function(e){
     if(e.target.classList.contains('mp-seek') && mediaEl){ seeking = true; mediaEl.currentTime = parseFloat(e.target.value); updateProgress(); }
+    if(e.target.dataset && e.target.dataset.eq){
+      var key = e.target.dataset.eq, val = parseInt(e.target.value, 10);
+      var gains = mpGetEqGains(); gains[key] = val; mpSaveEqGains(gains);
+      if(!eqNodes) eqNodes = connectEq(mediaEl); // prima modifica in assoluto: collega ora, senza aspettare il brano dopo
+      else applyEqGains(gains);
+      var valEl = overlay.querySelector('[data-eqval="' + key + '"]');
+      if(valEl) valEl.textContent = (val > 0 ? '+' : '') + val + ' dB';
+    }
   });
   overlay.addEventListener('change', function(e){ if(e.target.classList.contains('mp-seek')) seeking = false; });
   overlay.addEventListener('pointerup', function(){ seeking = false; });
@@ -13077,35 +13188,36 @@ function collectSongCollabRows(){
   Array.prototype.forEach.call(rows, function(row){
     var name = row.querySelector('.fSongCollabName').value.trim();
     if(!name) return;
+    var roleEl = row.querySelector('.fSongCollabRole');
     out.push({
       name: name,
+      role: roleEl ? (roleEl.value.trim() || null) : null,
       url: row.querySelector('.fSongCollabUrl').value.trim() || null,
       verified: row.querySelector('.fSongCollabVerified').checked
     });
   });
   return out.slice(0, 3);
 }
+function songCollabRowHtml(){
+  return '<div class="song-collab-row" style="display:flex;gap:6px;margin-bottom:4px;align-items:center;flex-wrap:wrap;">' +
+    '<input type="text" class="fSongCollabName" placeholder="Nome" style="flex:1 1 110px;">' +
+    '<input type="text" class="fSongCollabRole" placeholder="Ruolo (es. Voce, Testo)" style="flex:1 1 110px;">' +
+    '<input type="url" class="fSongCollabUrl" placeholder="Link Instagram (opz.)" style="flex:1 1 140px;">' +
+    '<label style="font-size:11px;white-space:nowrap;"><input type="checkbox" class="fSongCollabVerified"> ✓</label>' +
+  '</div>';
+}
 function resetSongCollabRows(){
   var wrap = document.getElementById('songCollabRows');
   if(!wrap) return;
-  wrap.innerHTML = '<div class="song-collab-row" style="display:flex;gap:6px;margin-bottom:4px;align-items:center;">' +
-    '<input type="text" class="fSongCollabName" placeholder="Nome" style="flex:1;">' +
-    '<input type="url" class="fSongCollabUrl" placeholder="Link Instagram (opz.)" style="flex:1;">' +
-    '<label style="font-size:11px;white-space:nowrap;"><input type="checkbox" class="fSongCollabVerified"> ✓</label>' +
-  '</div>';
+  wrap.innerHTML = songCollabRowHtml();
 }
 function addSongCollabRow(){
   var wrap = document.getElementById('songCollabRows');
   if(!wrap) return;
   if(wrap.querySelectorAll('.song-collab-row').length >= 3) return; // massimo 3 per canzone
   var row = document.createElement('div');
-  row.className = 'song-collab-row';
-  row.style.cssText = 'display:flex;gap:6px;margin-bottom:4px;align-items:center;';
-  row.innerHTML =
-    '<input type="text" class="fSongCollabName" placeholder="Nome" style="flex:1;">' +
-    '<input type="url" class="fSongCollabUrl" placeholder="Link Instagram (opz.)" style="flex:1;">' +
-    '<label style="font-size:11px;white-space:nowrap;"><input type="checkbox" class="fSongCollabVerified"> ✓</label>';
-  wrap.appendChild(row);
+  row.innerHTML = songCollabRowHtml();
+  wrap.appendChild(row.firstChild);
 }
 
 /* ---- Admin: Playlist ---- */

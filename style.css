@@ -1953,3 +1953,16 @@ body.chat-fullscreen .chat-page::after{ display:none; }
 .community-tab{flex:none;white-space:nowrap;}
 /* rete di sicurezza: nessun elemento fuori misura può più allargare la pagina in orizzontale */
 html,body{max-width:100%;overflow-x:clip;}
+
+
+/* ============ MODALITÀ "SOLO TESTO" (alleggerisce la pagina) ============
+   Le immagini di contenuto (copertine, banner, avatar, gallerie) restano nel loro riquadro ma
+   non vengono più disegnate: niente decodifica, pagina più leggera e più veloce da scorrere.
+   Le icone SVG dell'interfaccia e i loghi non sono toccati: sono già leggeri.
+*/
+body.text-only-mode img:not(.no-text-only){
+  visibility:hidden;
+  background:repeating-linear-gradient(135deg,var(--void-2),var(--void-2) 8px,var(--void) 8px,var(--void) 16px);
+  border:1px dashed var(--line);
+}
+#btnTextOnly[aria-pressed="true"]{border-color:var(--gold);color:var(--gold-bright);}
