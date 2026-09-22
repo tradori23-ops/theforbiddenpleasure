@@ -1943,3 +1943,13 @@ body.chat-fullscreen .chat-page::after{ display:none; }
 /* i campi data/ora su iPhone uscivano dalla scheda: si adattano alla larghezza */
 #adminSection input[type="datetime-local"]{width:100%;max-width:100%;min-width:0;box-sizing:border-box;-webkit-appearance:none;appearance:none;text-align:left;min-height:46px;}
 @media (max-width:760px){#adminSection input[type="datetime-local"]{font-size:16px;}}
+
+
+/* ============ COMMUNITY: le schede scorrono nella loro riga, la pagina non si allarga ============
+   Con sei schede la riga era più larga del telefono e allargava tutta la pagina (intestazione tagliata a sinistra,
+   scorrimento laterale della pagina). Ora è la riga a scorrere, come i filtri di Luxtify. */
+.community-tabs{flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;max-width:100%;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:2px;}
+.community-tabs::-webkit-scrollbar{display:none;}
+.community-tab{flex:none;white-space:nowrap;}
+/* rete di sicurezza: nessun elemento fuori misura può più allargare la pagina in orizzontale */
+html,body{max-width:100%;overflow-x:clip;}
