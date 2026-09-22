@@ -5940,6 +5940,11 @@ function switchCommunityTab(tab){
   }
   document.querySelectorAll('.community-tab').forEach(function(btn){
     btn.classList.toggle('active', btn.dataset.ctab === tab);
+    if(btn.dataset.ctab === tab && btn.parentNode && btn.parentNode.scrollTo){
+      // la scheda scelta resta in vista dentro la riga (senza spostare la pagina)
+      var row = btn.parentNode;
+      row.scrollTo({ left: Math.max(0, btn.offsetLeft - (row.clientWidth - btn.offsetWidth) / 2), behavior: 'smooth' });
+    }
   });
   document.querySelectorAll('.community-panel').forEach(function(panel){
     panel.classList.toggle('hidden', panel.dataset.cpanel !== tab);
@@ -11908,6 +11913,8 @@ function ensureMusicPlayerStyle(){
     '.mp-lyr::-webkit-scrollbar{display:none;}',
     '.mp-ll{display:block;width:100%;text-align:left;padding:4px 0;font-family:"Crimson Pro",serif;font-size:19px;line-height:1.22;font-weight:600;letter-spacing:-0.005em;color:var(--mp-dim);transition:color 0.25s,transform 0.25s;transform-origin:left center;background:none;border:0;cursor:pointer;pointer-events:none;}',
     '.mp-ll.past{color:var(--mp-past);}',
+    '.mp-ll.label{font-family:"Space Mono",monospace;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;font-weight:400;color:var(--mp-dim);padding:14px 0 2px;}',
+    '.mp-ll.label.past{color:var(--mp-dim);}',
     '.mp-ll.cur{color:var(--mp-ink);transform:scale(1.03);}',
     '.mp-ll.cur .lt{background:linear-gradient(90deg,var(--mp-ink) var(--fill,100%),var(--mp-past) var(--fill,100%));-webkit-background-clip:text;background-clip:text;color:transparent;}',
     '.mp-lyr.plain{padding:12px 18px;font-size:16px;line-height:1.7;color:var(--mp-past);white-space:pre-wrap;-webkit-mask-image:none;mask-image:none;}',
@@ -11921,6 +11928,8 @@ function ensureMusicPlayerStyle(){
     '#mpFullLyr{flex:1;min-height:0;display:flex;flex-direction:column;}',
     '.mp-fbody .mp-lyrwrap{flex:1;height:auto;min-height:0;}',
     '.mp-fbody .mp-ll{font-size:28px;padding:7px 0;pointer-events:auto;}',
+    '.mp-fbody .mp-ll.label{font-size:11px;padding:18px 0 2px;}',
+    '.mp-lyricscard .mp-ll.label{font-size:10px;padding:8px 0 2px;}',
     '.mp-fbody .mp-lyr{padding:36% 4px;}',
     /* fogli: coda, commenti, sincronizzazione */
     '.mp-sheet{position:absolute;inset:0;background:rgba(0,0,0,0.55);display:none;align-items:flex-end;justify-content:center;z-index:30;}',
@@ -11968,6 +11977,7 @@ function ensureMusicPlayerStyle(){
       '.mp-lyricscard{grid-area:lyr;display:flex;flex-direction:column;cursor:default;padding-top:16px;min-height:0;}',
       '.mp-lyricscard .mp-lyrwrap{flex:1;height:auto;min-height:0;}',
       '.mp-lyricscard .mp-ll{font-size:32px;padding:8px 0;pointer-events:auto;}',
+      '.mp-lyricscard .mp-ll.label,.mp-fbody .mp-ll.label{font-size:11px;padding:18px 0 2px;}',
       '.mp-lyricscard .mp-lyr{padding:32% 24px;}',
       '.mp-lyricscard .mp-expand{display:none;}',
       '.mp-sheet{align-items:center;}.mp-sbox{border-radius:18px;}',
@@ -12025,22 +12035,39 @@ function mpFmt(sec){
   return Math.floor(sec / 60) + ':' + String(sec % 60).padStart(2, '0');
 }
 
-/* ---- testo: LRC ("[mm:ss.xx] riga") oppure testo semplice ---- */
+/* ---- testo: LRC ("[mm:ss.xx] riga") oppure testo semplice ----
+   Legge anche i testi "sporchi": più tempi sulla stessa riga, tempi scritti male ("[01:59:00 testo"), etichette tra
+   parentesi quadre. Ogni voce è [secondi, testo, èEtichetta]. */
+var MP_STAMP_RE = /\[\s*(\d{1,3})\s*:\s*(\d{1,2})(?:[.:,](\d{1,3}))?\s*\]?/g;
+function mpIsBracketLabel(txt){
+  var s = String(txt || '').trim();
+  return /^\[[^\]]*\]$/.test(s) || /^\([^)]*\)$/.test(s);
+}
+/* cosa si mostra di un'etichetta: "[VERSE 1 — LUCIO | male voice, deep baritone]" diventa "VERSE 1 — LUCIO" */
+function mpLabelText(txt){
+  var s = String(txt || '').trim().replace(/^[\[(]\s*/, '').replace(/\s*[\])]$/, '');
+  var cut = s.indexOf('|');
+  return (cut > 0 ? s.slice(0, cut) : s).trim();
+}
 function parseSongLyrics(text){
   text = String(text || '');
   if(!text.trim()) return { type: 'none' };
   var synced = [], timedLines = 0;
   text.split(/\r?\n/).forEach(function(line){
-    var rest = line, stamps = [], m;
-    var re = /^\s*\[(\d{1,3}):(\d{1,2}(?:[.,]\d{1,3})?)\]/;
-    while((m = rest.match(re))){
-      stamps.push(parseInt(m[1], 10) * 60 + parseFloat(m[2].replace(',', '.')));
-      rest = rest.slice(m[0].length);
-    }
-    if(stamps.length){
-      var tx = rest.trim() || '♪'; // riga vuota con tempo = pausa strumentale
-      stamps.forEach(function(sec){ synced.push([sec, tx]); });
+    var ms = [], m;
+    MP_STAMP_RE.lastIndex = 0;
+    while((m = MP_STAMP_RE.exec(line))){ ms.push({ start: m.index, end: m.index + m[0].length, sec: parseInt(m[1], 10) * 60 + parseInt(m[2], 10) + (m[3] ? parseFloat('0.' + m[3]) : 0) }); }
+    var i = 0;
+    while(i < ms.length){
+      var group = [ms[i]], j = i + 1;
+      while(j < ms.length && line.slice(group[group.length - 1].end, ms[j].start).trim() === ''){ group.push(ms[j]); j++; } // più tempi di seguito = stesso testo
+      var stop = j < ms.length ? ms[j].start : line.length;
+      var tx = line.slice(group[group.length - 1].end, stop).trim();
+      var isLabel = mpIsBracketLabel(tx);
+      if(!tx) tx = '♪'; // riga vuota con tempo = pausa strumentale
+      group.forEach(function(g){ synced.push([g.sec, tx, isLabel]); });
       timedLines++;
+      i = j;
     }
   });
   if(timedLines >= 2){
@@ -12049,23 +12076,25 @@ function parseSongLyrics(text){
   }
   return { type: 'plain', text: text };
 }
-/* Righe che non si cantano e non hanno bisogno di un tempo: "[Chorus – All]", "(Verse 2)", "NaeRy:", "Lucifera & Lilith:" */
-function mpIsLabelLine(txt){
-  var s = String(txt || '').trim();
-  if(!s) return true;
-  if(/^\[[^\]]*\]$/.test(s) || /^\([^)]*\)$/.test(s)) return true;
-  if(/^[^\s"“”'‘’][^:]{0,32}:$/.test(s)) return true;
-  return false;
-}
 function toLRCText(lines){
   return lines.map(function(l){
     var m = Math.floor(l[0] / 60), s = l[0] - m * 60;
     return '[' + String(m).padStart(2, '0') + ':' + (s < 10 ? '0' : '') + s.toFixed(2) + '] ' + l[1];
   }).join('\n');
 }
+/* Righe che non si cantano e non hanno bisogno di un tempo: "[Chorus – All]", "(Verse 2)", "NaeRy:", "Lucifera & Lilith:" */
+function mpIsLabelLine(txt){
+  var s = String(txt || '').trim();
+  if(!s) return true;
+  if(mpIsBracketLabel(s)) return true;
+  if(/^[^\s"“”'‘’][^:]{0,32}:$/.test(s)) return true;
+  return false;
+}
 function mpCurLine(lines, sec){
   var idx = -1;
-  for(var k = 0; k < lines.length; k++){ if(lines[k][0] <= sec) idx = k; else break; }
+  for(var k = 0; k < lines.length; k++){
+    if(lines[k][0] <= sec){ if(!lines[k][2]) idx = k; } else break; // le etichette non diventano mai "la riga che si canta"
+  }
   return idx;
 }
 
@@ -12224,10 +12253,11 @@ function openMusicPlayer(songs, contextLabel, options, startIdx){
     Array.prototype.forEach.call(overlay.querySelectorAll('.mp-lyr[data-sync]'), function(box){
       var els = box.children;
       if(box._last !== idx || force){
-        for(var i = 0; i < els.length; i++){ els[i].className = 'mp-ll' + (i === idx ? ' cur' : (i < idx ? ' past' : '')); }
+        for(var i = 0; i < els.length; i++){ els[i].className = 'mp-ll' + (lines[i][2] ? ' label' : '') + (i === idx ? ' cur' : (i < idx ? ' past' : '')); }
       }
       if(idx >= 0){
-        var s0 = lines[idx][0], e0 = lines[idx + 1] ? lines[idx + 1][0] : dur;
+        var s0 = lines[idx][0], e0 = dur;
+        for(var kk = idx + 1; kk < lines.length; kk++){ if(!lines[kk][2] && lines[kk][0] > s0){ e0 = lines[kk][0]; break; } }
         var p = Math.min(1, Math.max(0, (t0 - s0) / Math.max(0.1, e0 - s0)));
         els[idx].style.setProperty('--fill', Math.round(p * 100) + '%'); // la riga si riempie mentre si canta
       }
@@ -12249,7 +12279,7 @@ function openMusicPlayer(songs, contextLabel, options, startIdx){
   function lyricsBodyHtml(mode){
     if(lyricsParsed.type === 'synced'){
       return '<div class="mp-lyrwrap"><div class="mp-lyr" data-sync="1" data-mode="' + mode + '">' +
-        lyricsParsed.lines.map(function(l, i){ return '<button type="button" class="mp-ll" data-line="' + i + '"><span class="lt">' + escapeHtml(l[1]) + '</span></button>'; }).join('') +
+        lyricsParsed.lines.map(function(l, i){ return '<button type="button" class="mp-ll' + (l[2] ? ' label' : '') + '" data-line="' + i + '"><span class="lt">' + escapeHtml(l[2] ? mpLabelText(l[1]) : l[1]) + '</span></button>'; }).join('') +
         '</div><button type="button" class="mp-follow" data-mp="follow">Segui il testo</button></div>';
     }
     if(lyricsParsed.type === 'plain') return '<div class="mp-lyrwrap"><div class="mp-lyr plain">' + escapeHtml(lyricsParsed.text) + '</div></div>';
@@ -12467,7 +12497,7 @@ function openMusicPlayer(songs, contextLabel, options, startIdx){
       var stamped = lines.filter(function(l){ return l.t != null; }).map(function(l){ return [l.t, l.txt]; });
       return head + '<div class="mp-hint">Per chi ha già un testo con i tempi: incollalo qui (una riga per verso, nel formato <b>[01:23.40] testo</b>) e premi Applica. Oppure copia da qui quello creato con “Segna a tempo”.</div>' +
         '<textarea class="mp-big" id="mpLrcTxt">' + escapeHtml(s.lrcRaw != null ? s.lrcRaw : toLRCText(stamped)) + '</textarea>' +
-        '<div style="display:flex;gap:8px;margin-top:10px"><button type="button" class="mp-sbtn p" data-mp="lrcsave">Applica e salva</button></div><div class="form-note" id="mpSyncMsg"></div>';
+        '<div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap"><button type="button" class="mp-sbtn p" data-mp="lrcsave">Applica e salva</button><button type="button" class="mp-sbtn" data-mp="lrcshift-">Sposta tutto −0,5 s</button><button type="button" class="mp-sbtn" data-mp="lrcshift+">Sposta tutto +0,5 s</button></div><div class="form-note" id="mpSyncMsg"></div>';
     }
     if(!s.started){
       var nLabels = lines.filter(function(l){ return mpIsLabelLine(l.txt); }).length;
@@ -12503,7 +12533,7 @@ function openMusicPlayer(songs, contextLabel, options, startIdx){
     updateProgress();
   }
   function openSync(){
-    var base = lyricsParsed.type === 'synced' ? lyricsParsed.lines.map(function(l){ return { txt: l[1], t: l[0], label: false }; })
+    var base = lyricsParsed.type === 'synced' ? lyricsParsed.lines.map(function(l){ return { txt: l[1], t: l[0], label: !!l[2] }; })
       : (lyricsParsed.type === 'plain' ? lyricsParsed.text.split(/\r?\n/).filter(function(x){ return x.trim(); }).map(function(x){ return { txt: x, t: null, label: false }; })
       : [{ txt: '', t: null, label: false }]);
     syncState = { tab: 'tap', lines: base, idx: lyricsParsed.type === 'synced' ? base.length : 0, started: lyricsParsed.type === 'synced', lrcRaw: null };
@@ -12624,6 +12654,13 @@ function openMusicPlayer(songs, contextLabel, options, startIdx){
         var sungStamped = syncState.lines.filter(function(l){ return !l.label && l.t != null; }).length;
         if(sungStamped < 2){ var m1 = $mp('mpSyncMsg'); if(m1) m1.textContent = 'Segna almeno due righe cantate: ascolta il brano e premi SEGNA quando comincia ognuna.'; return; }
         saveLyrics(toLRCText(buildSyncedFromState())); return;
+      }
+      if(a === 'lrcshift-' || a === 'lrcshift+'){
+        var ta = $mp('mpLrcTxt'), pr = parseSongLyrics(ta.value);
+        if(pr.type !== 'synced'){ var m4 = $mp('mpSyncMsg'); if(m4) m4.textContent = 'Incolla prima un testo con i tempi.'; return; }
+        var dl = a === 'lrcshift+' ? 0.5 : -0.5;
+        ta.value = toLRCText(pr.lines.map(function(l){ return [Math.max(0, l[0] + dl), l[1]]; })); // i tempi riscritti in modo pulito
+        return;
       }
       if(a === 'lrcsave'){
         var txt = $mp('mpLrcTxt').value;
