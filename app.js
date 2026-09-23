@@ -12327,29 +12327,43 @@ function mpLabelText(txt){
 function parseSongLyrics(text){
   text = String(text || '');
   if(!text.trim()) return { type: 'none' };
-  var synced = [], timedLines = 0;
-  text.split(/\r?\n/).forEach(function(line){
-    var ms = [], m;
-    MP_STAMP_RE.lastIndex = 0;
-    while((m = MP_STAMP_RE.exec(line))){ ms.push({ start: m.index, end: m.index + m[0].length, sec: parseInt(m[1], 10) * 60 + parseInt(m[2], 10) + (m[3] ? parseFloat('0.' + m[3]) : 0) }); }
-    var i = 0;
-    while(i < ms.length){
-      var group = [ms[i]], j = i + 1;
-      while(j < ms.length && line.slice(group[group.length - 1].end, ms[j].start).trim() === ''){ group.push(ms[j]); j++; } // più tempi di seguito = stesso testo
-      var stop = j < ms.length ? ms[j].start : line.length;
-      var tx = line.slice(group[group.length - 1].end, stop).trim();
-      var isLabel = mpIsBracketLabel(tx);
-      if(!tx) tx = '♪'; // riga vuota con tempo = pausa strumentale
-      group.forEach(function(g){ synced.push([g.sec, tx, isLabel]); });
-      timedLines++;
-      i = j;
+  MP_STAMP_RE.lastIndex = 0;
+  var stamps = [], m;
+  while((m = MP_STAMP_RE.exec(text))){ stamps.push({ start: m.index, end: m.index + m[0].length, sec: parseInt(m[1], 10) * 60 + parseInt(m[2], 10) + (m[3] ? parseFloat('0.' + m[3]) : 0) }); }
+  if(stamps.length < 2) return { type: 'plain', text: text }; // meno di due tempi: non è testo sincronizzato
+
+  // tempi consecutivi separati solo da spazi/a-capo = stesso punto (es. una parola ribattuta)
+  var groups = [], gi = 0;
+  while(gi < stamps.length){
+    var group = [stamps[gi]], gj = gi + 1;
+    while(gj < stamps.length && text.slice(group[group.length - 1].end, stamps[gj].start).trim() === ''){ group.push(stamps[gj]); gj++; }
+    groups.push(group);
+    gi = gj;
+  }
+
+  var synced = [];
+  groups.forEach(function(group, gi3){
+    var spanStart = group[group.length - 1].end;
+    var spanEnd = gi3 + 1 < groups.length ? groups[gi3 + 1][0].start : text.length;
+    var lines = text.slice(spanStart, spanEnd).split(/\r?\n/);
+    var li = 0;
+    while(li < lines.length && lines[li].trim() === '') li++;
+    var firstLine = li < lines.length ? lines[li].trim() : '';
+    if(firstLine && mpIsBracketLabel(firstLine)){
+      // prima riga = etichetta ("[VERSE 1 — VEYRA]", "[INTRO — ...]"): diventa un'intestazione a sé
+      group.forEach(function(g){ synced.push([g.sec, firstLine, true]); });
+      // il testo cantato, se ce n'è, segue sulle righe dopo l'etichetta ma allo STESSO tempo
+      var rest = lines.slice(li + 1).join(' ').replace(/\s+/g, ' ').trim();
+      if(rest) group.forEach(function(g){ synced.push([g.sec, rest, false]); });
+    } else {
+      // nessuna etichetta: tutto lo spazio fino al tempo successivo è la riga cantata,
+      // anche se sulla sorgente va a capo prima delle parole vere e proprie
+      var whole = lines.slice(li).join(' ').replace(/\s+/g, ' ').trim();
+      group.forEach(function(g){ synced.push([g.sec, whole || '♪', false]); }); // riga vuota con tempo = pausa strumentale
     }
   });
-  if(timedLines >= 2){
-    synced.sort(function(a, b){ return a[0] - b[0]; });
-    return { type: 'synced', lines: synced };
-  }
-  return { type: 'plain', text: text };
+  synced.sort(function(a, b){ return a[0] - b[0]; });
+  return { type: 'synced', lines: synced };
 }
 function toLRCText(lines){
   return lines.map(function(l){
