@@ -89,17 +89,35 @@
     <div class="sub mono" id="titleModalMeta"></div>
     <h3 id="titleModalTitle"></h3>
     <p class="detail-synopsis" id="titleModalSynopsis"></p>
+    <div id="titleModalSeries" class="hidden"></div>
     <p class="collab-credit hidden" id="titleModalCollab"></p>
     <p class="publisher-credit hidden" id="titleModalPublisher"></p>
     <div id="pageReader" class="page-reader hidden">
+      <div class="reader-ctl" id="readerCtl">
+        <span class="reader-ctl-grp">
+          <button type="button" id="readerModeSingle" data-i18n="reader.single">Singola</button>
+          <button type="button" id="readerModeDouble" data-i18n="reader.double">Doppia pagina</button>
+        </span>
+        <span class="reader-ctl-grp">
+          <button type="button" class="reader-zoom-btn" data-zoom="100">100%</button>
+          <button type="button" class="reader-zoom-btn" data-zoom="150">150%</button>
+          <button type="button" class="reader-zoom-btn" data-zoom="200">200%</button>
+        </span>
+        <span class="reader-ctl-grp">
+          <button type="button" id="readerThemeLight" data-i18n="reader.themeLight">☀ Chiaro</button>
+          <button type="button" id="readerThemeDark" data-i18n="reader.themeDark">● Scuro</button>
+        </span>
+      </div>
       <div class="page-reader-main">
         <button type="button" class="page-reader-nav prev" id="pageReaderPrev" aria-label="Pagina precedente">‹</button>
         <img id="pageReaderImg" src="" alt="" oncontextmenu="return false" draggable="false">
+        <img id="pageReaderImg2" src="" alt="" class="hidden" oncontextmenu="return false" draggable="false">
         <button type="button" class="page-reader-nav next" id="pageReaderNext" aria-label="Pagina successiva">›</button>
       </div>
       <div class="page-reader-count mono" id="pageReaderCount"></div>
       <div class="page-reader-thumbs" id="pageReaderThumbs"></div>
     </div>
+    <div class="rating-block" id="titleModalRating"></div>
     <div class="modal-actions" style="margin-top:6px;">
       <button class="btn btn-ghost btn-sm" id="titleModalFav" data-i18n="fav.add">♡ Salva</button>
       <button class="btn btn-ghost btn-sm" id="titleModalLike" data-i18n="like.add">👍 Mi piace</button>
