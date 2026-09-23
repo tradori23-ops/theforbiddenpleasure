@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, viewport-fit=cover">
+<title>LUX COMICS &amp; MEDUSA COMICS — Guida al sito</title>
+<meta property="og:type" content="website">
+<meta property="og:title" content="Guida al sito — LUX COMICS &amp; MEDUSA COMICS">
+<meta property="og:description" content="Come usare il sito: account, lettura, Luxtify, Community, profilo.">
+<meta property="og:image" content="https://noxmorningstar.com/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://noxmorningstar.com/guida.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Guida al sito — LUX COMICS &amp; MEDUSA COMICS">
+<meta name="twitter:image" content="https://noxmorningstar.com/og-image.jpg">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#6e1423">
+<meta name="description" content="Guida a LUX COMICS &amp; MEDUSA COMICS: come usare account, lettura, Luxtify, Community e profilo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cinzel+Decorative:wght@700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Space+Mono:wght@400;700&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cinzel+Decorative:wght@700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Space+Mono:wght@400;700&display=swap"></noscript>
+<!-- style.css è iniettato da loader.js con la versione sempre aggiornata -->
+<style>
+  #guideSection{max-width:720px;margin:0 auto;padding:34px 20px 60px;}
+  .guide-toc{display:flex;gap:7px;overflow-x:auto;padding-bottom:8px;margin:20px 0 26px;-webkit-overflow-scrolling:touch;}
+  .guide-toc button{flex:none;border:1px solid var(--line);border-radius:16px;padding:7px 13px;font-family:'Space Mono',monospace;font-size:10.5px;color:var(--parchment-dim);white-space:nowrap;background:none;cursor:pointer;}
+  .guide-toc button.on{background:var(--gold);color:#150d0e;font-weight:700;border-color:var(--gold);}
+  .guide-sec-head{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+  .guide-sec-icon{width:36px;height:36px;border-radius:8px;background:var(--void-2);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:17px;flex:none;}
+  .guide-sec-head h3{font-family:'Cinzel',serif;font-size:19px;color:var(--parchment);}
+  .guide-step{display:flex;gap:12px;margin:16px 0;}
+  .guide-step .n{width:23px;height:23px;border-radius:50%;background:var(--void-2);border:1px solid var(--line);color:var(--gold-bright);font-family:'Space Mono',monospace;font-size:11px;display:flex;align-items:center;justify-content:center;flex:none;margin-top:1px;}
+  .guide-step .t b{display:block;font-size:14.5px;color:var(--parchment);margin-bottom:2px;}
+  .guide-step .t p{color:var(--parchment-dim);font-size:14px;line-height:1.6;}
+  .guide-progress{display:flex;gap:6px;margin:22px 0 4px;}
+  .guide-progress .dot{flex:1;height:3px;border-radius:2px;background:var(--line);}
+  .guide-progress .dot.done{background:var(--gold);}
+  .guide-nav-btns{display:flex;justify-content:space-between;margin-top:8px;}
+  .guide-nav-btns button{border:1px solid var(--line);border-radius:20px;padding:8px 15px;font-family:'Space Mono',monospace;font-size:11px;color:var(--parchment-dim);background:none;cursor:pointer;}
+  .guide-nav-btns button:hover:not(:disabled){border-color:var(--gold);color:var(--gold-bright);}
+  .guide-nav-btns button:disabled{opacity:0.3;cursor:default;}
+</style>
+</head>
+<body>
+<div id="app">
+<div id="chrome-top-slot"></div>
+
+  <section class="section ornate-divider" id="guideSection">
+    <div class="section-head">
+      <div>
+        <div class="section-eyebrow" data-i18n="guidePage.eyebrow">Comincia da qui</div>
+        <h2 data-i18n="guidePage.title">Guida al sito</h2>
+        <div class="section-desc" data-i18n="guidePage.desc">Tocca una sezione per saltarci, oppure scorri tutto in ordine.</div>
+      </div>
+    </div>
+    <div class="guide-toc" id="guideToc"></div>
+    <div id="guideContent"></div>
+  </section>
+
+<div id="chrome-footer-slot"></div>
+</div>
+<div id="chrome-modals-slot"></div>
+<link rel="preload" href="app.js" as="script">
+<script src="qrcode-lib.js" defer></script>
+<script src="loader.js" defer></script>
+</body>
+</html>
