@@ -1891,7 +1891,7 @@ body.chat-fullscreen .chat-page::after{ display:none; }
   #adminSection .admin-row-compact{padding:14px 4px;gap:10px;}
   #adminSection .admin-row-thumb{width:44px;height:44px;}
   #adminSection .admin-toolbar input[type=text]{min-height:44px;font-size:16px;}
-  #adminSection .title-form-drawer-inner{--dp:16px;width:100vw;box-shadow:none;}
+  #adminSection .title-form-drawer-inner{--dp:16px;width:100%;box-shadow:none;}
   #adminSection .title-form-drawer .field input:not([type=checkbox]):not([type=file]),
   #adminSection .title-form-drawer .field select,
   #adminSection .title-form-drawer .field textarea{font-size:16px;}

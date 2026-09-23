@@ -680,6 +680,11 @@ Object.assign(STR.en, {"series.f.key": "Series (optional — same for every link
 Object.assign(STR.es, {"series.f.key": "Serie (opcional — igual para cada capítulo vinculado)", "series.f.number": "Número de capítulo (opcional, decide el orden)", "series.chapterLabel": "Capítulo", "series.partOf": "Parte de:", "series.prevChapter": "Capítulo anterior", "series.nextChapter": "Capítulo siguiente", "reader.single": "Página única", "reader.double": "Doble página", "reader.themeLight": "☀ Claro", "reader.themeDark": "● Oscuro", "rating.none": "Aún sin votos"});
 Object.assign(STR.fr, {"series.f.key": "Série (facultatif — identique pour chaque chapitre lié)", "series.f.number": "Numéro de chapitre (facultatif, définit l'ordre)", "series.chapterLabel": "Chapitre", "series.partOf": "Fait partie de :", "series.prevChapter": "Chapitre précédent", "series.nextChapter": "Chapitre suivant", "reader.single": "Simple", "reader.double": "Double page", "reader.themeLight": "☀ Clair", "reader.themeDark": "● Sombre", "rating.none": "Aucun vote pour le moment"});
 Object.assign(STR.de, {"series.f.key": "Serie (optional — für jedes verknüpfte Kapitel gleich)", "series.f.number": "Kapitelnummer (optional, legt die Reihenfolge fest)", "series.chapterLabel": "Kapitel", "series.partOf": "Teil von:", "series.prevChapter": "Vorheriges Kapitel", "series.nextChapter": "Nächstes Kapitel", "reader.single": "Einzeln", "reader.double": "Doppelseite", "reader.themeLight": "☀ Hell", "reader.themeDark": "● Dunkel", "rating.none": "Noch keine Bewertungen"});
+Object.assign(STR.it, {"statusPage.eyebrow": "Diagnostica pubblica", "statusPage.title": "Stato del sito", "statusPage.desc": "Se qualcosa non funziona, controlla qui prima di scrivere — questa pagina la aggiorna a mano l'admin, non è automatica.", "statusPage.empty": "Nessuna informazione pubblicata ancora.", "statusPage.error": "Non riesco a leggere lo stato in questo momento.", "statusPage.ok": "Tutto regolare", "statusPage.warn": "Alcuni rallentamenti", "statusPage.bad": "Problemi in corso", "statusPage.wordOk": "Operativo", "statusPage.wordWarn": "Rallentato", "statusPage.wordBad": "Non disponibile", "statusPage.updated": "aggiornato", "faqPage.eyebrow": "Assistenza", "faqPage.title": "Domande frequenti", "faqPage.desc": "Le domande più comuni su account, spunta blu, titoli e Luxtify.", "faqPage.searchPh": "Cerca una domanda…", "faqPage.noResults": "Nessuna domanda corrisponde alla ricerca.", "faqPage.contact1": "Non hai trovato risposta? Scrivi da", "faqPage.contact2": "oppure lascia una richiesta dal tuo", "faqPage.contactProfile": "profilo"});
+Object.assign(STR.en, {"statusPage.eyebrow": "Public status", "statusPage.title": "Site status", "statusPage.desc": "If something isn't working, check here before writing in — the admin updates this page by hand, it isn't automatic.", "statusPage.empty": "No information published yet.", "statusPage.error": "Can't read the status right now.", "statusPage.ok": "Everything normal", "statusPage.warn": "Some slowdowns", "statusPage.bad": "Issues ongoing", "statusPage.wordOk": "Operational", "statusPage.wordWarn": "Slowed down", "statusPage.wordBad": "Unavailable", "statusPage.updated": "updated", "faqPage.eyebrow": "Support", "faqPage.title": "Frequently asked questions", "faqPage.desc": "The most common questions about accounts, the blue check, titles and Luxtify.", "faqPage.searchPh": "Search a question…", "faqPage.noResults": "No question matches your search.", "faqPage.contact1": "Didn't find an answer? Write from", "faqPage.contact2": "or leave a request from your", "faqPage.contactProfile": "profile"});
+Object.assign(STR.es, {"statusPage.eyebrow": "Estado público", "statusPage.title": "Estado del sitio", "statusPage.desc": "Si algo no funciona, mira aquí antes de escribir — esta página la actualiza el admin a mano, no es automática.", "statusPage.empty": "Aún no hay información publicada.", "statusPage.error": "No puedo leer el estado en este momento.", "statusPage.ok": "Todo normal", "statusPage.warn": "Algunas lentitudes", "statusPage.bad": "Problemas en curso", "statusPage.wordOk": "Operativo", "statusPage.wordWarn": "Ralentizado", "statusPage.wordBad": "No disponible", "statusPage.updated": "actualizado", "faqPage.eyebrow": "Asistencia", "faqPage.title": "Preguntas frecuentes", "faqPage.desc": "Las preguntas más comunes sobre cuentas, verificación azul, títulos y Luxtify.", "faqPage.searchPh": "Busca una pregunta…", "faqPage.noResults": "Ninguna pregunta coincide con la búsqueda.", "faqPage.contact1": "¿No encontraste respuesta? Escribe desde", "faqPage.contact2": "o deja una solicitud desde tu", "faqPage.contactProfile": "perfil"});
+Object.assign(STR.fr, {"statusPage.eyebrow": "État public", "statusPage.title": "État du site", "statusPage.desc": "Si quelque chose ne fonctionne pas, regardez ici avant d'écrire — cette page est mise à jour à la main par l'admin, pas automatiquement.", "statusPage.empty": "Aucune information publiée pour l'instant.", "statusPage.error": "Impossible de lire l'état pour le moment.", "statusPage.ok": "Tout va bien", "statusPage.warn": "Quelques ralentissements", "statusPage.bad": "Problèmes en cours", "statusPage.wordOk": "Opérationnel", "statusPage.wordWarn": "Ralenti", "statusPage.wordBad": "Indisponible", "statusPage.updated": "mis à jour", "faqPage.eyebrow": "Assistance", "faqPage.title": "Questions fréquentes", "faqPage.desc": "Les questions les plus courantes sur les comptes, la coche bleue, les titres et Luxtify.", "faqPage.searchPh": "Rechercher une question…", "faqPage.noResults": "Aucune question ne correspond à la recherche.", "faqPage.contact1": "Vous n'avez pas trouvé de réponse ? Écrivez depuis", "faqPage.contact2": "ou laissez une demande depuis votre", "faqPage.contactProfile": "profil"});
+Object.assign(STR.de, {"statusPage.eyebrow": "Öffentlicher Status", "statusPage.title": "Website-Status", "statusPage.desc": "Wenn etwas nicht funktioniert, schau hier nach, bevor du schreibst — diese Seite wird vom Admin von Hand aktualisiert, nicht automatisch.", "statusPage.empty": "Noch keine Informationen veröffentlicht.", "statusPage.error": "Der Status kann gerade nicht gelesen werden.", "statusPage.ok": "Alles normal", "statusPage.warn": "Einige Verzögerungen", "statusPage.bad": "Probleme laufen", "statusPage.wordOk": "Betriebsbereit", "statusPage.wordWarn": "Verlangsamt", "statusPage.wordBad": "Nicht verfügbar", "statusPage.updated": "aktualisiert", "faqPage.eyebrow": "Hilfe", "faqPage.title": "Häufig gestellte Fragen", "faqPage.desc": "Die häufigsten Fragen zu Konten, blauem Haken, Titeln und Luxtify.", "faqPage.searchPh": "Frage suchen…", "faqPage.noResults": "Keine Frage passt zur Suche.", "faqPage.contact1": "Keine Antwort gefunden? Schreib über", "faqPage.contact2": "oder hinterlasse eine Anfrage über dein", "faqPage.contactProfile": "Profil"});
 
 var CHAR_META = {
   Lucifer:{role:{it:"Il Portatore di Luce",en:"The Light-Bearer",es:"El Portador de Luz",fr:"Le Porteur de Lumière",de:"Der Lichtträger"},
@@ -16133,21 +16138,21 @@ function renderStatusPage(){
   fetch(SUPABASE_URL + '/rest/v1/site_status_items?select=*&order=id.asc', { headers:{ 'apikey':SUPABASE_ANON_KEY } })
     .then(function(r){ if(!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
     .then(function(rows){
-      if(!rows.length){ list.innerHTML = '<p class="status-empty">Nessuna informazione pubblicata ancora.</p>'; return; }
+      if(!rows.length){ list.innerHTML = '<p class="status-empty">' + t('statusPage.empty') + '</p>'; return; }
       var worst = rows.some(function(r){ return r.status === 'bad'; }) ? 'bad' : (rows.some(function(r){ return r.status === 'warn'; }) ? 'warn' : 'ok');
-      var overallText = { ok: 'Tutto regolare', warn: 'Alcuni rallentamenti', bad: 'Problemi in corso' }[worst];
+      var overallText = { ok: t('statusPage.ok'), warn: t('statusPage.warn'), bad: t('statusPage.bad') }[worst];
       document.getElementById('statusOverall').innerHTML = '<span class="status-dot ' + worst + '"></span>' + overallText;
       list.innerHTML = rows.map(function(row){
-        var word = { ok: 'Operativo', warn: 'Rallentato', bad: 'Non disponibile' }[row.status] || row.status;
+        var word = { ok: t('statusPage.wordOk'), warn: t('statusPage.wordWarn'), bad: t('statusPage.wordBad') }[row.status] || row.status;
         var when = relativeTimeShort(row.updated_at);
         return '<div class="status-row"><span class="status-dot ' + escapeHtml(row.status) + '"></span>' +
-          '<div class="tx"><b>' + escapeHtml(row.label) + '</b><small>' + (row.note ? escapeHtml(row.note) + ' · ' : '') + 'aggiornato ' + when + '</small></div>' +
+          '<div class="tx"><b>' + escapeHtml(row.label) + '</b><small>' + (row.note ? escapeHtml(row.note) + ' · ' : '') + t('statusPage.updated') + ' ' + when + '</small></div>' +
           '<span class="word status-word-' + escapeHtml(row.status) + '">' + word + '</span></div>';
       }).join('');
     })
     .catch(function(e){
       console.warn('Status page load failed:', e);
-      list.innerHTML = '<p class="status-empty">Non riesco a leggere lo stato in questo momento.</p>';
+      list.innerHTML = '<p class="status-empty">' + t('statusPage.error') + '</p>';
     });
 }
 
@@ -16166,7 +16171,7 @@ function renderAdminStatusPanel(){
         return '<div class="admin-list-row" style="border-bottom:1px solid var(--line);padding:10px 0;display:flex;align-items:center;gap:10px;flex-wrap:wrap;" data-status-id="' + escapeHtml(row.id) + '">' +
           '<div style="flex:1 1 170px;min-width:0;"><b>' + escapeHtml(row.label) + '</b></div>' +
           '<select class="admin-status-select" data-status-select style="min-width:150px;">' +
-            ['ok','warn','bad'].map(function(v){ var lab = { ok:'Operativo', warn:'Rallentato', bad:'Non disponibile' }[v]; return '<option value="' + v + '"' + (row.status === v ? ' selected' : '') + '>' + lab + '</option>'; }).join('') +
+            ['ok','warn','bad'].map(function(v){ var lab = { ok:t('statusPage.wordOk'), warn:t('statusPage.wordWarn'), bad:t('statusPage.wordBad') }[v]; return '<option value="' + v + '"' + (row.status === v ? ' selected' : '') + '>' + lab + '</option>'; }).join('') +
           '</select>' +
           '<input type="text" data-status-note placeholder="Nota facoltativa" value="' + escapeHtml(row.note || '') + '" style="flex:1 1 180px;">' +
           '</div>';
@@ -16209,39 +16214,138 @@ function saveAdminStatus(){
 }
 
 /* ============ BATCH 1: Assistenza / FAQ (faq.html) ============ */
-var FAQ_DATA = [
-  { group: 'Account', items: [
-    ['Come mi registro?', 'Dal pulsante "Accedi" in alto, poi "Crea account". Se le domande di verifica sono attive, rispondi prima a una domanda sull\u2019Archivio.'],
-    ['Ho dimenticato la password, e ora?', 'Dalla schermata di accesso c\u2019è il link "Password dimenticata": arriva un\u2019email per sceglierne una nuova.'],
-    ['Posso rendere privato il mio profilo?', 'Sì, dal tuo profilo puoi scegliere se è pubblico o visibile solo a chi accetti come amico.']
-  ]},
-  { group: 'Spunta blu e ruoli', items: [
-    ['Come ottengo la spunta blu?', 'Serve essere iscritti da almeno 90 giorni. Dopo, è l\u2019admin a poterla assegnare dal pannello Utenti.'],
-    ['Cosa vuol dire "Collaboratore"?', 'È chi ha lavorato a un titolo insieme all\u2019autore principale: compare nei crediti di quel titolo o brano.']
-  ]},
-  { group: 'Titoli e lettura', items: [
-    ['Come carico un titolo?', 'Da "Crea contenuto" nel menu, se hai un account. Il titolo viene controllato automaticamente prima di essere visibile a tutti.'],
-    ['Perché alcuni titoli sono bloccati?', 'Sono contenuti 18+: si sbloccano accendendo l\u2019interruttore "Contenuti 18+" dopo aver confermato l\u2019età.'],
-    ['Posso leggere senza account?', 'Sì, ma i PDF e alcune pagine pulite (senza filigrana) richiedono l\u2019accesso.']
-  ]},
-  { group: 'Community', items: [
-    ['Come segnalo un messaggio?', 'Tocca "Segnala" sul messaggio, dentro il canale della Community. Lo vede solo la moderazione.'],
-    ['Perché sono stato bannato?', 'Per una violazione della regola sui contenuti: niente materiale pornografico, solo sensuale. La decisione è dell\u2019admin.']
-  ]},
-  { group: 'Luxtify', items: [
-    ['Perché un brano è sfocato?', 'È un brano 18+: con l\u2019interruttore acceso e l\u2019età confermata si sblocca, come per i titoli.'],
-    ['Posso vedere il testo mentre ascolto?', 'Sì, se il brano ha il testo sincronizzato compare in stile karaoke nella schermata di riproduzione.']
-  ]}
-];
+var FAQ_DATA = {
+  it: [
+    { group: 'Account', items: [
+      ['Come mi registro?', 'Dal pulsante "Accedi" in alto, poi "Crea account". Se le domande di verifica sono attive, rispondi prima a una domanda sull\u2019Archivio.'],
+      ['Ho dimenticato la password, e ora?', 'Dalla schermata di accesso c\u2019è il link "Password dimenticata": arriva un\u2019email per sceglierne una nuova.'],
+      ['Posso rendere privato il mio profilo?', 'Sì, dal tuo profilo puoi scegliere se è pubblico o visibile solo a chi accetti come amico.']
+    ]},
+    { group: 'Spunta blu e ruoli', items: [
+      ['Come ottengo la spunta blu?', 'Serve essere iscritti da almeno 90 giorni. Dopo, è l\u2019admin a poterla assegnare dal pannello Utenti.'],
+      ['Cosa vuol dire "Collaboratore"?', 'È chi ha lavorato a un titolo insieme all\u2019autore principale: compare nei crediti di quel titolo o brano.']
+    ]},
+    { group: 'Titoli e lettura', items: [
+      ['Come carico un titolo?', 'Da "Crea contenuto" nel menu, se hai un account. Il titolo viene controllato automaticamente prima di essere visibile a tutti.'],
+      ['Perché alcuni titoli sono bloccati?', 'Sono contenuti 18+: si sbloccano accendendo l\u2019interruttore "Contenuti 18+" dopo aver confermato l\u2019età.'],
+      ['Posso leggere senza account?', 'Sì, ma i PDF e alcune pagine pulite (senza filigrana) richiedono l\u2019accesso.']
+    ]},
+    { group: 'Community', items: [
+      ['Come segnalo un messaggio?', 'Tocca "Segnala" sul messaggio, dentro il canale della Community. Lo vede solo la moderazione.'],
+      ['Perché sono stato bannato?', 'Per una violazione della regola sui contenuti: niente materiale pornografico, solo sensuale. La decisione è dell\u2019admin.']
+    ]},
+    { group: 'Luxtify', items: [
+      ['Perché un brano è sfocato?', 'È un brano 18+: con l\u2019interruttore acceso e l\u2019età confermata si sblocca, come per i titoli.'],
+      ['Posso vedere il testo mentre ascolto?', 'Sì, se il brano ha il testo sincronizzato compare in stile karaoke nella schermata di riproduzione.']
+    ]}
+  ],
+  en: [
+    { group: 'Account', items: [
+      ['How do I sign up?', 'From the "Sign in" button up top, then "Create account". If the verification questions are on, you\u2019ll answer one about the Archive first.'],
+      ['I forgot my password, now what?', 'On the sign-in screen there\u2019s a "Forgot password" link: you\u2019ll get an email to choose a new one.'],
+      ['Can I make my profile private?', 'Yes, from your profile you can choose whether it\u2019s public or visible only to people you accept as friends.']
+    ]},
+    { group: 'Blue check and roles', items: [
+      ['How do I get the blue check?', 'You need to have been a member for at least 90 days. After that, the admin can grant it from the Users panel.'],
+      ['What does "Collaborator" mean?', 'Someone who worked on a title together with the main author: it shows up in the credits of that title or song.']
+    ]},
+    { group: 'Titles and reading', items: [
+      ['How do I upload a title?', 'From "Create content" in the menu, if you have an account. The title is checked automatically before it becomes visible to everyone.'],
+      ['Why are some titles locked?', 'They\u2019re 18+ content: they unlock once you turn on "18+ Content" after confirming your age.'],
+      ['Can I read without an account?', 'Yes, but PDFs and some clean pages (without the watermark) require signing in.']
+    ]},
+    { group: 'Community', items: [
+      ['How do I report a message?', 'Tap "Report" on the message, inside the Community channel. Only moderation sees it.'],
+      ['Why was I banned?', 'For breaking the content rule: no pornographic material, sensual only. The decision is the admin\u2019s.']
+    ]},
+    { group: 'Luxtify', items: [
+      ['Why is a song blurred?', 'It\u2019s 18+ content: it unlocks with the switch on and your age confirmed, same as titles.'],
+      ['Can I see the lyrics while listening?', 'Yes, if the song has synced lyrics they show up karaoke-style on the playback screen.']
+    ]}
+  ],
+  es: [
+    { group: 'Cuenta', items: [
+      ['¿Cómo me registro?', 'Desde el botón "Acceder" arriba, luego "Crear cuenta". Si las preguntas de verificación están activas, antes responderás una sobre el Archivo.'],
+      ['Olvidé mi contraseña, ¿y ahora?', 'En la pantalla de acceso hay un enlace "Olvidé mi contraseña": llega un correo para elegir una nueva.'],
+      ['¿Puedo hacer privado mi perfil?', 'Sí, desde tu perfil puedes elegir si es público o visible solo para quienes aceptes como amigos.']
+    ]},
+    { group: 'Verificación azul y roles', items: [
+      ['¿Cómo consigo la verificación azul?', 'Hay que llevar al menos 90 días como miembro. Después, el admin puede otorgarla desde el panel de Usuarios.'],
+      ['¿Qué significa "Colaborador"?', 'Alguien que trabajó en un título junto al autor principal: aparece en los créditos de ese título o canción.']
+    ]},
+    { group: 'Títulos y lectura', items: [
+      ['¿Cómo subo un título?', 'Desde "Crear contenido" en el menú, si tienes cuenta. El título se revisa automáticamente antes de ser visible para todos.'],
+      ['¿Por qué algunos títulos están bloqueados?', 'Son contenido 18+: se desbloquean activando "Contenido 18+" tras confirmar tu edad.'],
+      ['¿Puedo leer sin cuenta?', 'Sí, pero los PDF y algunas páginas limpias (sin marca de agua) requieren iniciar sesión.']
+    ]},
+    { group: 'Comunidad', items: [
+      ['¿Cómo reporto un mensaje?', 'Toca "Reportar" en el mensaje, dentro del canal de la Comunidad. Solo lo ve la moderación.'],
+      ['¿Por qué me banearon?', 'Por incumplir la regla de contenido: nada pornográfico, solo sensual. La decisión es del admin.']
+    ]},
+    { group: 'Luxtify', items: [
+      ['¿Por qué una canción está borrosa?', 'Es contenido 18+: se desbloquea con el interruptor activado y la edad confirmada, igual que los títulos.'],
+      ['¿Puedo ver la letra mientras escucho?', 'Sí, si la canción tiene letra sincronizada aparece estilo karaoke en la pantalla de reproducción.']
+    ]}
+  ],
+  fr: [
+    { group: 'Compte', items: [
+      ['Comment je m\u2019inscris ?', 'Depuis le bouton "Se connecter" en haut, puis "Créer un compte". Si les questions de vérification sont actives, vous répondrez d\u2019abord à une question sur l\u2019Archive.'],
+      ['J\u2019ai oublié mon mot de passe, et maintenant ?', 'Sur l\u2019écran de connexion, il y a un lien "Mot de passe oublié" : un e-mail arrive pour en choisir un nouveau.'],
+      ['Puis-je rendre mon profil privé ?', 'Oui, depuis votre profil vous pouvez choisir s\u2019il est public ou visible seulement par les personnes que vous acceptez comme amis.']
+    ]},
+    { group: 'Coche bleue et rôles', items: [
+      ['Comment j\u2019obtiens la coche bleue ?', 'Il faut être inscrit depuis au moins 90 jours. Ensuite, c\u2019est l\u2019admin qui peut l\u2019attribuer depuis le panneau Utilisateurs.'],
+      ['Que veut dire "Collaborateur" ?', 'Quelqu\u2019un qui a travaillé sur un titre avec l\u2019auteur principal : cela apparaît dans les crédits de ce titre ou de cette chanson.']
+    ]},
+    { group: 'Titres et lecture', items: [
+      ['Comment je publie un titre ?', 'Depuis "Créer du contenu" dans le menu, si vous avez un compte. Le titre est vérifié automatiquement avant d\u2019être visible par tous.'],
+      ['Pourquoi certains titres sont-ils verrouillés ?', 'Ce sont des contenus 18+ : ils se débloquent en activant "Contenu 18+" après confirmation de votre âge.'],
+      ['Puis-je lire sans compte ?', 'Oui, mais les PDF et certaines pages propres (sans filigrane) nécessitent une connexion.']
+    ]},
+    { group: 'Communauté', items: [
+      ['Comment je signale un message ?', 'Touchez "Signaler" sur le message, dans le canal de la Communauté. Seule la modération le voit.'],
+      ['Pourquoi ai-je été banni ?', 'Pour non-respect de la règle sur le contenu : rien de pornographique, seulement sensuel. La décision revient à l\u2019admin.']
+    ]},
+    { group: 'Luxtify', items: [
+      ['Pourquoi une chanson est-elle floutée ?', 'C\u2019est un contenu 18+ : elle se débloque avec l\u2019interrupteur activé et l\u2019âge confirmé, comme pour les titres.'],
+      ['Puis-je voir les paroles en écoutant ?', 'Oui, si la chanson a des paroles synchronisées, elles apparaissent façon karaoké sur l\u2019écran de lecture.']
+    ]}
+  ],
+  de: [
+    { group: 'Konto', items: [
+      ['Wie melde ich mich an?', 'Über den Button "Anmelden" oben, dann "Konto erstellen". Sind die Verifizierungsfragen aktiv, beantwortest du zuerst eine Frage zum Archiv.'],
+      ['Ich habe mein Passwort vergessen, was jetzt?', 'Auf dem Anmeldebildschirm gibt es den Link "Passwort vergessen": eine E-Mail kommt, um ein neues zu wählen.'],
+      ['Kann ich mein Profil privat machen?', 'Ja, in deinem Profil kannst du wählen, ob es öffentlich ist oder nur für Personen sichtbar, die du als Freunde akzeptierst.']
+    ]},
+    { group: 'Blauer Haken und Rollen', items: [
+      ['Wie bekomme ich den blauen Haken?', 'Du musst seit mindestens 90 Tagen Mitglied sein. Danach kann der Admin ihn im Nutzer-Panel vergeben.'],
+      ['Was bedeutet "Mitwirkende(r)"?', 'Jemand, der zusammen mit dem Hauptautor an einem Titel gearbeitet hat: erscheint im Abspann dieses Titels oder Songs.']
+    ]},
+    { group: 'Titel und Lesen', items: [
+      ['Wie lade ich einen Titel hoch?', 'Über "Inhalt erstellen" im Menü, wenn du ein Konto hast. Der Titel wird automatisch geprüft, bevor er für alle sichtbar wird.'],
+      ['Warum sind manche Titel gesperrt?', 'Das sind 18+ Inhalte: sie werden freigeschaltet, wenn du "18+ Inhalte" aktivierst und dein Alter bestätigst.'],
+      ['Kann ich ohne Konto lesen?', 'Ja, aber PDFs und manche sauberen Seiten (ohne Wasserzeichen) erfordern eine Anmeldung.']
+    ]},
+    { group: 'Community', items: [
+      ['Wie melde ich eine Nachricht?', 'Tippe auf "Melden" bei der Nachricht, im Community-Kanal. Das sieht nur die Moderation.'],
+      ['Warum wurde ich gebannt?', 'Wegen eines Verstoßes gegen die Inhaltsregel: nichts Pornografisches, nur sinnlich. Die Entscheidung liegt beim Admin.']
+    ]},
+    { group: 'Luxtify', items: [
+      ['Warum ist ein Song unscharf?', 'Das ist 18+ Inhalt: er wird mit aktiviertem Schalter und bestätigtem Alter freigeschaltet, genau wie bei Titeln.'],
+      ['Kann ich den Text beim Hören sehen?', 'Ja, wenn der Song synchronisierten Text hat, erscheint er im Karaoke-Stil auf dem Wiedergabebildschirm.']
+    ]}
+  ]
+};
 function renderFaqPage(){
   var groupsEl = document.getElementById('faqGroups');
   if(!groupsEl) return; // no-op fuori da faq.html
+  var faqData = FAQ_DATA[currentLang] || FAQ_DATA.it;
   var searchEl = document.getElementById('faqSearch');
   var emptyEl = document.getElementById('faqEmpty');
   function paint(query){
     var q = (query || '').trim().toLowerCase();
     var any = false;
-    groupsEl.innerHTML = FAQ_DATA.map(function(g){
+    groupsEl.innerHTML = faqData.map(function(g){
       var items = g.items.filter(function(it){ return !q || it[0].toLowerCase().indexOf(q) > -1 || it[1].toLowerCase().indexOf(q) > -1; });
       if(!items.length) return '';
       any = true;
