@@ -665,6 +665,11 @@ Object.assign(STR.en, {"notif.verified": "Congratulations! You've received the b
 Object.assign(STR.es, {"notif.verified": "¡Enhorabuena! Has recibido la marca azul: ahora aparece junto a tu nombre en los comentarios.", "users.verifiedNotice": "Marca azul concedida. {name} recibe una notificación, un push y un correo."});
 Object.assign(STR.fr, {"notif.verified": "Félicitations ! Vous avez reçu le badge bleu : il apparaît désormais à côté de votre nom dans les commentaires.", "users.verifiedNotice": "Badge bleu attribué. {name} reçoit une notification, un push et un e-mail."});
 Object.assign(STR.de, {"notif.verified": "Glückwunsch! Du hast den blauen Haken erhalten: Er erscheint jetzt neben deinem Namen in den Kommentaren.", "users.verifiedNotice": "Blauer Haken vergeben. {name} erhält eine Benachrichtigung, einen Push und eine E-Mail."});
+Object.assign(STR.it, {"role.none": "Nessun ruolo", "role.mod": "Moderatore", "role.coll": "Collaboratore", "events.addPhoto": "Aggiungi foto"});
+Object.assign(STR.en, {"role.none": "No role", "role.mod": "Moderator", "role.coll": "Collaborator", "events.addPhoto": "Add photo"});
+Object.assign(STR.es, {"role.none": "Sin rol", "role.mod": "Moderador", "role.coll": "Colaborador", "events.addPhoto": "Añadir foto"});
+Object.assign(STR.fr, {"role.none": "Aucun rôle", "role.mod": "Modérateur", "role.coll": "Collaborateur", "events.addPhoto": "Ajouter une photo"});
+Object.assign(STR.de, {"role.none": "Keine Rolle", "role.mod": "Moderator", "role.coll": "Mitwirkende(r)", "events.addPhoto": "Foto hinzufügen"});
 
 var CHAR_META = {
   Lucifer:{role:{it:"Il Portatore di Luce",en:"The Light-Bearer",es:"El Portador de Luz",fr:"Le Porteur de Lumière",de:"Der Lichtträger"},
@@ -7079,23 +7084,77 @@ function toggleEventAttendance(eventId, btn, countEl){
 
 function renderEventTraces(box, pastEvents){
   box.innerHTML = '';
+  var myId = currentUserId();
   pastEvents.forEach(function(ev){
-    fetch(SUPABASE_URL + '/rest/v1/event_attendees?event_id=eq.' + encodeURIComponent(ev.id) + '&select=profiles(display_name)', { headers: communityHeaders() })
-      .then(function(r){ return r.ok ? r.json() : []; })
-      .then(function(rows){
-        var dp = eventDateParts(ev);
-        var when = dp.multi ? (t('events.traceFrom') + ' ' + dp.startPart + ' ' + t('events.traceTo') + ' ' + dp.endLabel) : (t('events.traceOn') + ' ' + dp.label);
-        rows.forEach(function(row){
-          var name = (row.profiles && row.profiles.display_name) || t('notif.someone');
-          var traceText = t('events.traceHasAttended') + ' <b>' + escapeHtml(ev.title) + '</b> ' + when +
-            (ev.location ? ' ' + t('events.traceAt') + ' ' + escapeHtml(ev.location) : '') + '.';
-          var line = document.createElement('div');
-          line.className = 'event-trace';
-          line.innerHTML = '<span class="trace-icon">🎟️</span><span class="trace-text"><b>' + escapeHtml(name) + '</b> ' + traceText + '</span>';
-          box.appendChild(line);
+    Promise.all([
+      fetch(SUPABASE_URL + '/rest/v1/event_attendees?event_id=eq.' + encodeURIComponent(ev.id) + '&select=user_id,profiles(display_name)', { headers: communityHeaders() }).then(function(r){ return r.ok ? r.json() : []; }),
+      fetch(SUPABASE_URL + '/rest/v1/event_photos?event_id=eq.' + encodeURIComponent(ev.id) + '&select=*&order=created_at.asc', { headers: communityHeaders() }).then(function(r){ return r.ok ? r.json() : []; })
+    ]).then(function(results){
+      var attendees = results[0], photos = results[1];
+      if(attendees.length === 0 && photos.length === 0) return;
+      var dp = eventDateParts(ev);
+      var when = dp.multi ? (t('events.traceFrom') + ' ' + dp.startPart + ' ' + t('events.traceTo') + ' ' + dp.endLabel) : (t('events.traceOn') + ' ' + dp.label);
+      var linesHtml = attendees.map(function(row){
+        var name = (row.profiles && row.profiles.display_name) || t('notif.someone');
+        var traceText = t('events.traceHasAttended') + ' <b>' + escapeHtml(ev.title) + '</b> ' + when +
+          (ev.location ? ' ' + t('events.traceAt') + ' ' + escapeHtml(ev.location) : '') + '.';
+        return '<div class="event-trace"><span class="trace-icon">🎟️</span><span class="trace-text"><b>' + escapeHtml(name) + '</b> ' + traceText + '</span></div>';
+      }).join('');
+      var iAttended = !!(myId && attendees.some(function(a){ return a.user_id === myId; }));
+      var photosHtml = photos.map(function(p){
+        return '<div class="event-photo"><img src="' + coverThumbUrl(escapeHtml(p.image_url), 240) + '" alt="" loading="lazy"></div>';
+      }).join('');
+      var addHtml = iAttended
+        ? '<label class="event-photo-add" for="evPhotoInput-' + escapeHtml(ev.id) + '">+<span>' + t('events.addPhoto') + '</span></label>' +
+          '<input type="file" id="evPhotoInput-' + escapeHtml(ev.id) + '" accept="image/*" class="hidden" data-event-photo-input="' + escapeHtml(ev.id) + '">'
+        : '';
+      var wrap = document.createElement('div');
+      wrap.className = 'event-trace-group';
+      wrap.innerHTML = linesHtml + ((photos.length || iAttended) ? ('<div class="event-gallery" data-event-photos="' + escapeHtml(ev.id) + '">' + photosHtml + addHtml + '</div>') : '');
+      box.appendChild(wrap);
+      var fileInput = wrap.querySelector('[data-event-photo-input]');
+      if(fileInput){
+        fileInput.addEventListener('change', function(){
+          uploadEventPhoto(ev.id, fileInput, wrap.querySelector('[data-event-photos]'));
         });
-      })
-      .catch(function(){});
+      }
+    }).catch(function(){});
+  });
+}
+
+function uploadEventPhoto(eventId, fileInput, galleryEl){
+  var session = getSession();
+  var file = fileInput.files[0];
+  if(!session || !file) return;
+  var path = Date.now() + '-' + file.name.replace(/[^a-zA-Z0-9.\-]/g, '_');
+  fetch(SUPABASE_URL + '/storage/v1/object/event-photos/' + path, {
+    method:'POST',
+    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type': file.type || 'image/jpeg' },
+    body: file
+  }).then(function(r){
+    if(!r.ok) throw new Error('upload foto evento fallito: ' + r.status);
+    var url = SUPABASE_URL + '/storage/v1/object/public/event-photos/' + path;
+    return fetch(SUPABASE_URL + '/rest/v1/event_photos', {
+      method:'POST',
+      headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json', 'Prefer':'return=representation' },
+      body: JSON.stringify({ event_id: eventId, user_id: currentUserId(), image_url: url })
+    });
+  }).then(function(r){
+    if(!r.ok) throw new Error('salvataggio foto evento fallito: ' + r.status);
+    return r.json();
+  }).then(function(rows){
+    var p = rows[0];
+    if(!p) throw new Error('nessuna riga salvata: manca il permesso (hai confermato "Ci sarò" a questo evento?)');
+    var div = document.createElement('div');
+    div.className = 'event-photo';
+    div.innerHTML = '<img src="' + coverThumbUrl(escapeHtml(p.image_url), 240) + '" alt="" loading="lazy">';
+    var addLabel = galleryEl.querySelector('.event-photo-add');
+    if(addLabel) galleryEl.insertBefore(div, addLabel); else galleryEl.appendChild(div);
+    fileInput.value = '';
+  }).catch(function(e){
+    console.warn('Foto evento non caricata:', e);
+    window.alert('Non è stato possibile caricare la foto (' + e.message + ').');
+    fileInput.value = '';
   });
 }
 
@@ -8486,6 +8545,19 @@ function getDisplayName(userId){
 }
 
 var chatAvatarCache = {}; // user_id -> avatar_url ('' se non ne ha una)
+var chatRoleCache = {}; // user_id -> 'mod' | 'coll' | '' (nessun ruolo)
+function roleBadgeHtml(role){
+  if(role === 'mod') return ' <span class="role-badge role-mod">' + t('role.mod') + '</span>';
+  if(role === 'coll') return ' <span class="role-badge role-coll">' + t('role.coll') + '</span>';
+  return '';
+}
+function chatRoleBadge(userId){ return roleBadgeHtml(chatRoleCache[userId]); }
+/* Il nome nei commenti porta al profilo di chi ha scritto — se il commento non ha un user_id
+   collegato (account cancellato, o commento molto vecchio) resta testo semplice, non cliccabile. */
+function commentAuthorHtml(name, userId){
+  var safeName = escapeHtml(name);
+  return userId ? '<a href="profile.html?user=' + encodeURIComponent(userId) + '" class="author author-link">' + safeName + '</a>' : '<span class="author">' + safeName + '</span>';
+}
 
 function chatMsgTime(iso){
   if(!iso) return '';
@@ -8500,6 +8572,9 @@ function loadChannelMessages(){
   var wrap = document.getElementById('channelMessages');
   var chId = currentChannelId;
   wrap.innerHTML = '<p class="form-note">…</p>';
+  var searchInput = document.getElementById('channelSearchInput');
+  if(searchInput) searchInput.value = ''; // canale nuovo: la ricerca del canale precedente non ha senso qui
+  initChannelSearch();
   fetch(SUPABASE_URL + '/rest/v1/channel_messages?channel_id=eq.' + encodeURIComponent(chId) + '&select=*&order=created_at.asc', { headers: communityHeaders() })
     .then(function(r){ if(!r.ok) throw new Error('channel messages read failed'); return r.json(); })
     .then(function(rows){
@@ -8508,13 +8583,13 @@ function loadChannelMessages(){
         if(m.user_id && chatAvatarCache[m.user_id] === undefined && !seen[m.user_id]){ seen[m.user_id] = true; missing.push(m.user_id); }
       });
       var pre = missing.length
-        ? fetch(SUPABASE_URL + '/rest/v1/profiles?id=in.(' + missing.map(encodeURIComponent).join(',') + ')&select=id,avatar_url', { headers: communityHeaders() })
+        ? fetch(SUPABASE_URL + '/rest/v1/profiles?id=in.(' + missing.map(encodeURIComponent).join(',') + ')&select=id,avatar_url,role', { headers: communityHeaders() })
             .then(function(r){ return r.ok ? r.json() : []; })
             .then(function(ps){
-              missing.forEach(function(id){ chatAvatarCache[id] = ''; });
-              ps.forEach(function(p){ chatAvatarCache[p.id] = p.avatar_url || ''; });
+              missing.forEach(function(id){ chatAvatarCache[id] = ''; chatRoleCache[id] = ''; });
+              ps.forEach(function(p){ chatAvatarCache[p.id] = p.avatar_url || ''; chatRoleCache[p.id] = p.role || ''; });
             })
-            .catch(function(){ missing.forEach(function(id){ chatAvatarCache[id] = ''; }); }) // senza avatar si vedono le iniziali
+            .catch(function(){ missing.forEach(function(id){ chatAvatarCache[id] = ''; chatRoleCache[id] = ''; }); }) // senza avatar si vedono le iniziali, senza ruolo nessuna etichetta
         : Promise.resolve();
       return pre.then(function(){
         if(chId !== currentChannelId) return; // nel frattempo si è aperto un altro canale
@@ -8525,6 +8600,27 @@ function loadChannelMessages(){
       });
     })
     .catch(function(err){ wrap.innerHTML = ''; console.warn('Channel messages load failed:', err); });
+}
+
+/* ---- Ricerca dentro il canale aperto: filtra quello che è già stato caricato, senza nuove richieste ---- */
+function initChannelSearch(){
+  var input = document.getElementById('channelSearchInput');
+  if(!input || input.dataset.ready) return;
+  input.dataset.ready = '1';
+  input.addEventListener('input', function(){ filterChannelMessages(input.value); });
+}
+function filterChannelMessages(query){
+  var wrap = document.getElementById('channelMessages');
+  if(!wrap) return;
+  var q = (query || '').trim().toLowerCase();
+  var any = false;
+  Array.prototype.forEach.call(wrap.querySelectorAll('.channel-msg'), function(msg){
+    var match = !q || msg.textContent.toLowerCase().indexOf(q) > -1;
+    msg.classList.toggle('hidden', !match);
+    if(match) any = true;
+  });
+  var empty = document.getElementById('channelSearchEmpty');
+  if(empty) empty.classList.toggle('hidden', any || !q);
 }
 
 function renderChannelMessage(m){
@@ -8546,7 +8642,7 @@ function renderChannelMessage(m){
   div.appendChild(av);
   var main = document.createElement('div');
   main.className = 'msg-main';
-  main.innerHTML = '<div class="msg-head"><span class="author">' + escapeHtml(name) + '</span><span class="msg-time">' + escapeHtml(chatMsgTime(m.created_at)) + '</span></div>' +
+  main.innerHTML = '<div class="msg-head"><span class="author">' + escapeHtml(name) + '</span>' + chatRoleBadge(m.user_id) + '<span class="msg-time">' + escapeHtml(chatMsgTime(m.created_at)) + '</span></div>' +
     '<div class="body">' + renderRichBody(m.body) + '</div>' +
     '<div class="msg-actions"><span class="friend-action-slot"></span>' +
       '<button type="button" class="report-btn">' + t('community.report') + '</button>' +
@@ -12907,27 +13003,28 @@ function loadSongComments(songId, listEl, countEl){
       // dato che comments e profiles non sono collegate da una vera foreign key
       var userIds = rows.map(function(c){ return c.user_id; }).filter(Boolean);
       var uniqueIds = userIds.filter(function(id, i){ return userIds.indexOf(id) === i; });
-      var verifiedLookup = Promise.resolve({});
+      var profileLookup = Promise.resolve({ verified:{}, role:{} });
       if(uniqueIds.length > 0){
-        verifiedLookup = fetch(SUPABASE_URL + '/rest/v1/profiles?id=in.(' + uniqueIds.join(',') + ')&select=id,verified', { headers:{ 'apikey':SUPABASE_ANON_KEY } })
+        profileLookup = fetch(SUPABASE_URL + '/rest/v1/profiles?id=in.(' + uniqueIds.join(',') + ')&select=id,verified,role', { headers:{ 'apikey':SUPABASE_ANON_KEY } })
           .then(function(r){ return r.ok ? r.json() : []; })
           .then(function(profiles){
-            var map = {};
-            profiles.forEach(function(p){ map[p.id] = p.verified; });
-            return map;
-          }).catch(function(){ return {}; });
+            var verified = {}, role = {};
+            profiles.forEach(function(p){ verified[p.id] = p.verified; if(p.role) role[p.id] = p.role; });
+            return { verified: verified, role: role };
+          }).catch(function(){ return { verified:{}, role:{} }; });
       }
 
-      verifiedLookup.then(function(map){
+      profileLookup.then(function(map){
         rows.forEach(function(c){
           var div = document.createElement('div');
           div.className = 'comment-item music-player-comment-row';
           var pendingTag = !c.approved ? '<span class="pending-tag">' + t('comments.pending') + '</span>' : '';
-          var badge = verifiedBadge('verified.collaborator', !!map[c.user_id]);
+          var badge = verifiedBadge('verified.collaborator', !!map.verified[c.user_id]);
+          var roleTag = roleBadgeHtml(map.role[c.user_id]);
           div.innerHTML =
             '<div class="music-player-avatar"></div>' +
             '<div style="flex:1;min-width:0;">' +
-              '<span class="author">' + escapeHtml(c.author_name) + '</span>' + badge +
+              commentAuthorHtml(c.author_name, c.user_id) + badge + roleTag +
               ' <span class="music-player-comment-time">· ' + relativeTimeShort(c.created_at) + '</span>' + pendingTag +
               '<div class="body">' + renderBodyHtml(c.body) + '</div>' +
             '</div>';
@@ -14323,22 +14420,22 @@ function loadComments(catalogId){
   fetch(SUPABASE_URL + '/rest/v1/comments?catalog_id=eq.' + encodeURIComponent(catalogId) + '&select=*&order=created_at.desc', { headers: headers })
     .then(function(r){ if(!r.ok) throw new Error('comments read failed'); return r.json(); })
     .then(function(rows){
-      if(rows.length === 0) return { rows: rows, verifiedIds: {} };
-      // la spunta riflette lo stato ATTUALE del profilo (che tu puoi cambiare in ogni momento),
+      if(rows.length === 0) return { rows: rows, verifiedIds: {}, roleIds: {} };
+      // la spunta e il ruolo riflettono lo stato ATTUALE del profilo (che tu puoi cambiare in ogni momento),
       // non uno scatto fissato al momento in cui il commento fu scritto
       var userIds = Array.from(new Set(rows.map(function(c){ return c.user_id; }).filter(Boolean)));
-      if(userIds.length === 0) return { rows: rows, verifiedIds: {} };
+      if(userIds.length === 0) return { rows: rows, verifiedIds: {}, roleIds: {} };
       var idFilter = userIds.map(encodeURIComponent).join(',');
-      return fetch(SUPABASE_URL + '/rest/v1/profiles?id=in.(' + idFilter + ')&select=id,verified', { headers: headers })
+      return fetch(SUPABASE_URL + '/rest/v1/profiles?id=in.(' + idFilter + ')&select=id,verified,role', { headers: headers })
         .then(function(r2){ return r2.ok ? r2.json() : []; })
         .then(function(profileRows){
-          var verifiedIds = {};
-          profileRows.forEach(function(p){ if(p.verified) verifiedIds[p.id] = true; });
-          return { rows: rows, verifiedIds: verifiedIds };
+          var verifiedIds = {}, roleIds = {};
+          profileRows.forEach(function(p){ if(p.verified) verifiedIds[p.id] = true; if(p.role) roleIds[p.id] = p.role; });
+          return { rows: rows, verifiedIds: verifiedIds, roleIds: roleIds };
         });
     })
     .then(function(data){
-      var rows = data.rows, verifiedIds = data.verifiedIds;
+      var rows = data.rows, verifiedIds = data.verifiedIds, roleIds = data.roleIds;
       list.innerHTML = '';
       if(rows.length === 0){ list.innerHTML = '<p class="form-note">' + t('comments.empty') + '</p>'; return; }
       rows.forEach(function(c){
@@ -14346,8 +14443,9 @@ function loadComments(catalogId){
         div.className = 'comment-item';
         var pendingTag = !c.approved ? '<span class="pending-tag">' + t('comments.pending') + '</span>' : '';
         var verifiedTag = verifiedBadge('verified.commenter', !!verifiedIds[c.user_id]);
+        var roleTag = roleBadgeHtml(roleIds[c.user_id]);
         var replyBtnHtml = isSignedIn() ? '<button type="button" class="comment-reply-btn">' + t('comments.reply') + '</button>' : '';
-        div.innerHTML = '<span class="author">' + escapeHtml(c.author_name) + '</span>' + verifiedTag + pendingTag +
+        div.innerHTML = commentAuthorHtml(c.author_name, c.user_id) + verifiedTag + roleTag + pendingTag +
           '<div class="body">' + renderBodyHtml(c.body) + '</div>' + replyBtnHtml;
         var replyBtn = div.querySelector('.comment-reply-btn');
         if(replyBtn){
@@ -15022,7 +15120,7 @@ function renderAdminUsers(){
   var list = document.getElementById('adminUsersList');
   if(!list) return;
   var session = getSession();
-  fetch(SUPABASE_URL + '/rest/v1/profiles?select=id,display_name,created_at,verified,last_seen&order=created_at.desc', {
+  fetch(SUPABASE_URL + '/rest/v1/profiles?select=id,display_name,created_at,verified,last_seen,role&order=created_at.desc', {
     headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
   })
     .then(function(r){ if(!r.ok) throw new Error('admin users read failed'); return r.json(); })
@@ -15055,10 +15153,27 @@ function renderAdminUsers(){
           '<div class="info"><div class="t">' + onlineHtml + displayLabel + ' ' + verifiedBadge('verified.commenter', !!u.verified) + '</div>' +
           '<div class="m">' + t('users.joined') + ' ' + joined.toISOString().slice(0,10) + ' · ' + t('users.daysHere').replace('{n}', daysHere) + ' · ' + statusHtml + '</div></div>' +
           '<div class="admin-actions">' +
+            '<select class="admin-role-select" data-role-select="' + u.id + '" aria-label="Ruolo">' +
+              '<option value=""' + (u.role ? '' : ' selected') + '>' + t('role.none') + '</option>' +
+              '<option value="mod"' + (u.role === 'mod' ? ' selected' : '') + '>' + t('role.mod') + '</option>' +
+              '<option value="coll"' + (u.role === 'coll' ? ' selected' : '') + '>' + t('role.coll') + '</option>' +
+            '</select>' +
             '<button class="btn btn-sm btn-ghost" data-toggle-verified="' + u.id + '">' +
               (u.verified ? t('users.revoke') : t('users.grant')) +
             '</button>' +
           '</div>';
+        row.querySelector('[data-role-select]').addEventListener('change', function(e){
+          var sel = e.target;
+          fetch(SUPABASE_URL + '/rest/v1/profiles?id=eq.' + encodeURIComponent(u.id), {
+            method:'PATCH',
+            headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json', 'Prefer':'return=representation' },
+            body: JSON.stringify({ role: sel.value || null })
+          }).then(function(r){ return r.json().then(function(j){ return { ok:r.ok, rows:j }; }); })
+            .then(function(res){
+              if(!res.ok || !res.rows.length){ sel.value = u.role || ''; window.alert('Non salvato: manca il permesso sui ruoli (lancia lo SQL dei ruoli).'); }
+            })
+            .catch(function(){ sel.value = u.role || ''; window.alert('Errore di rete.'); });
+        });
         row.querySelector('[data-toggle-verified]').addEventListener('click', function(){
           if(!eligible && !u.verified){
             var msg = t('users.earlyGrantConfirm').replace('{n}', VERIFICATION_MIN_DAYS - daysHere).replace('{name}', displayLabel);
