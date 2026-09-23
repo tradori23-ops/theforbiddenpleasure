@@ -670,6 +670,11 @@ Object.assign(STR.en, {"role.none": "No role", "role.mod": "Moderator", "role.co
 Object.assign(STR.es, {"role.none": "Sin rol", "role.mod": "Moderador", "role.coll": "Colaborador", "events.addPhoto": "Añadir foto"});
 Object.assign(STR.fr, {"role.none": "Aucun rôle", "role.mod": "Modérateur", "role.coll": "Collaborateur", "events.addPhoto": "Ajouter une photo"});
 Object.assign(STR.de, {"role.none": "Keine Rolle", "role.mod": "Moderator", "role.coll": "Mitwirkende(r)", "events.addPhoto": "Foto hinzufügen"});
+Object.assign(STR.it, {"recommended.eyebrow": "Per te", "recommended.title": "Consigliati per te", "recommended.because": "Perché segui {char}", "novitaArchive.eyebrow": "Dalla Redazione", "novitaArchive.title": "Archivio delle novità", "novitaArchive.desc": "Tutto quello che è stato pubblicato, anche quello che non è più in home.", "novitaArchive.seeAll": "Tutte le novità →", "novitaArchive.archived": "Archiviato", "novitaArchive.empty": "Nessuna novità pubblicata ancora.", "novitaArchive.error": "Non riesco a leggere le novità in questo momento.", "exportData.title": "I tuoi dati", "exportData.hint": "Un file con il tuo profilo, i preferiti, i commenti e le richieste che hai scritto — solo per te, da tenere.", "exportData.button": "Scarica i tuoi dati", "exportData.needLogin": "Accedi per scaricare i tuoi dati.", "exportData.preparing": "Preparazione…", "exportData.done": "Scaricato.", "exportData.error": "Non riuscito."});
+Object.assign(STR.en, {"recommended.eyebrow": "For you", "recommended.title": "Recommended for you", "recommended.because": "Because you follow {char}", "novitaArchive.eyebrow": "From the editors", "novitaArchive.title": "News archive", "novitaArchive.desc": "Everything published, including what's no longer on the home page.", "novitaArchive.seeAll": "All news →", "novitaArchive.archived": "Archived", "novitaArchive.empty": "No news published yet.", "novitaArchive.error": "Can't load the news right now.", "exportData.title": "Your data", "exportData.hint": "A file with your profile, favorites, comments and requests — just for you, to keep.", "exportData.button": "Download your data", "exportData.needLogin": "Sign in to download your data.", "exportData.preparing": "Preparing…", "exportData.done": "Downloaded.", "exportData.error": "Failed."});
+Object.assign(STR.es, {"recommended.eyebrow": "Para ti", "recommended.title": "Recomendados para ti", "recommended.because": "Porque sigues {char}", "novitaArchive.eyebrow": "De la redacción", "novitaArchive.title": "Archivo de novedades", "novitaArchive.desc": "Todo lo publicado, incluso lo que ya no está en la portada.", "novitaArchive.seeAll": "Todas las novedades →", "novitaArchive.archived": "Archivado", "novitaArchive.empty": "Aún no hay novedades publicadas.", "novitaArchive.error": "No puedo leer las novedades ahora.", "exportData.title": "Tus datos", "exportData.hint": "Un archivo con tu perfil, favoritos, comentarios y solicitudes — solo para ti.", "exportData.button": "Descargar tus datos", "exportData.needLogin": "Inicia sesión para descargar tus datos.", "exportData.preparing": "Preparando…", "exportData.done": "Descargado.", "exportData.error": "No se pudo."});
+Object.assign(STR.fr, {"recommended.eyebrow": "Pour vous", "recommended.title": "Recommandés pour vous", "recommended.because": "Parce que vous suivez {char}", "novitaArchive.eyebrow": "De la rédaction", "novitaArchive.title": "Archives des nouveautés", "novitaArchive.desc": "Tout ce qui a été publié, y compris ce qui n'est plus sur l'accueil.", "novitaArchive.seeAll": "Toutes les nouveautés →", "novitaArchive.archived": "Archivé", "novitaArchive.empty": "Aucune nouveauté publiée pour le moment.", "novitaArchive.error": "Impossible de charger les nouveautés.", "exportData.title": "Vos données", "exportData.hint": "Un fichier avec votre profil, favoris, commentaires et demandes — pour vous seul.", "exportData.button": "Télécharger vos données", "exportData.needLogin": "Connectez-vous pour télécharger vos données.", "exportData.preparing": "Préparation…", "exportData.done": "Téléchargé.", "exportData.error": "Échec."});
+Object.assign(STR.de, {"recommended.eyebrow": "Für dich", "recommended.title": "Für dich empfohlen", "recommended.because": "Weil du {char} folgst", "novitaArchive.eyebrow": "Von der Redaktion", "novitaArchive.title": "Neuigkeiten-Archiv", "novitaArchive.desc": "Alles Veröffentlichte, auch was nicht mehr auf der Startseite ist.", "novitaArchive.seeAll": "Alle Neuigkeiten →", "novitaArchive.archived": "Archiviert", "novitaArchive.empty": "Noch keine Neuigkeiten veröffentlicht.", "novitaArchive.error": "Neuigkeiten können gerade nicht geladen werden.", "exportData.title": "Deine Daten", "exportData.hint": "Eine Datei mit deinem Profil, Favoriten, Kommentaren und Anfragen — nur für dich.", "exportData.button": "Deine Daten herunterladen", "exportData.needLogin": "Melde dich an, um deine Daten herunterzuladen.", "exportData.preparing": "Wird vorbereitet…", "exportData.done": "Heruntergeladen.", "exportData.error": "Fehlgeschlagen."});
 
 var CHAR_META = {
   Lucifer:{role:{it:"Il Portatore di Luce",en:"The Light-Bearer",es:"El Portador de Luz",fr:"Le Porteur de Lumière",de:"Der Lichtträger"},
@@ -2796,6 +2801,7 @@ function renderCatalog(){
   renderCatalogStories();
   initCmdSearch();
   renderTopRanked();
+  renderRecommended();
   renderPixaiCarousel();
   renderLatestChapters();
   renderMyComics();
@@ -15943,6 +15949,7 @@ function __appInit(){
     renderLuxtifyHome(); // no-op sulle pagine diverse da luxtify.html
     renderStatusPage(); // no-op fuori da status.html
     renderFaqPage(); // no-op fuori da faq.html
+    renderNovitaArchive(); // no-op fuori da novita.html
     checkForSiteUpdates();
     maybeStartOfflineSync();
   });
@@ -15953,6 +15960,7 @@ function __appInit(){
   setInterval(renderAdminUsers, 60000); // keeps "online now" fresh while you're on that tab; no-op if not admin
   heartbeatPresence();
   initTextOnlyToggle();
+  initExportData();
   setInterval(function(){ if(!document.hidden) refreshCommunityDot(); }, 60000); // pallino Community
   document.addEventListener('visibilitychange', function(){ if(!document.hidden) refreshCommunityDot(); });
   setInterval(heartbeatPresence, 60000); // aggiorna "ultimo attivo" per lo stato online nei DM
@@ -16110,6 +16118,126 @@ function initTextOnlyToggle(){
   try { on = localStorage.getItem('lux_text_only') === '1'; } catch(e){}
   applyTextOnlyMode(on);
   btn.addEventListener('click', function(){ applyTextOnlyMode(!document.body.classList.contains('text-only-mode')); });
+}
+
+/* ============ CONSIGLIATI PER TE (home, solo per chi ha già letto o salvato qualcosa) ============ */
+function renderRecommended(){
+  var section = document.getElementById('recommendedSection');
+  var grid = document.getElementById('recommendedGrid');
+  if(!section || !grid) return;
+  if(!isSignedIn()){ section.classList.add('hidden'); return; }
+  var items = getCatalog().filter(matureOk);
+  var engaged = {};
+  Object.keys(readingProgressMap).forEach(function(id){ engaged[id] = true; });
+  favoriteIds.forEach(function(id){ engaged[id] = true; });
+  var engagedItems = items.filter(function(i){ return engaged[i.id]; });
+  if(engagedItems.length === 0){ section.classList.add('hidden'); return; } // niente letto/salvato ancora: nessun consiglio da dare
+  var charCount = {};
+  engagedItems.forEach(function(i){ charCount[i.character] = (charCount[i.character] || 0) + 1; });
+  var topChar = Object.keys(charCount).sort(function(a, b){ return charCount[b] - charCount[a]; })[0];
+  var recs = items.filter(function(i){ return i.character === topChar && !engaged[i.id]; })
+    .sort(function(a, b){ return (b.view_count || 0) - (a.view_count || 0); }).slice(0, 8);
+  if(recs.length === 0){ section.classList.add('hidden'); return; } // hai già tutto quello che c'è di quella collana
+  section.classList.remove('hidden');
+  var eyebrow = document.getElementById('recommendedEyebrow');
+  if(eyebrow) eyebrow.textContent = t('recommended.because').replace('{char}', topChar);
+  grid.innerHTML = '';
+  recs.forEach(function(item){
+    var card = document.createElement('div');
+    card.className = 'latest-card';
+    var coverInner = item.cover_url
+      ? '<img src="' + coverThumbUrl(item.cover_url, 400) + '" data-fallback="' + escapeHtml(item.cover_url) + '" alt="" loading="lazy" decoding="async">'
+      : '<span class="init">' + item.character.charAt(0) + '</span>';
+    card.innerHTML =
+      '<div class="latest-card-cover">' + coverInner +
+        '<div class="tome-strap"><div class="tome-seal"><img src="logo-lm-seal.webp" alt=""></div></div>' +
+      '</div>' +
+      '<div class="latest-card-body"><h5>' + escapeHtml(item.title) + '</h5><div class="character">' + escapeHtml(item.character) + '</div></div>';
+    card.addEventListener('click', function(){ openTitleModal(item); });
+    grid.appendChild(card);
+    attachCoverSignature(card.querySelector('.latest-card-cover'), item);
+  });
+}
+
+/* ============ ARCHIVIO DELLE NOVITÀ (novita.html) ============ */
+function renderNovitaArchive(){
+  var grid = document.getElementById('novitaArchiveGrid');
+  if(!grid) return; // no-op fuori da novita.html
+  fetch(SUPABASE_URL + '/rest/v1/announcements?select=*&published=eq.true&order=created_at.desc', {
+    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + SUPABASE_ANON_KEY }
+  }).then(function(r){ if(!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+    .then(function(rows){
+      if(rows.length === 0){ grid.innerHTML = '<p class="novita-archive-empty">' + t('novitaArchive.empty') + '</p>'; return; }
+      var nowIso = new Date().toISOString();
+      grid.innerHTML = rows.map(function(a){
+        var dateStr = a.created_at ? a.created_at.slice(0, 10) : '';
+        var expired = !!(a.expires_at && a.expires_at <= nowIso);
+        var linkHtml = a.link_url ? '<a class="link" href="' + escapeHtml(a.link_url) + '" target="_blank" rel="noopener">' + t('announcements.readMore') + ' →</a>' : '';
+        var pdfHtml = a.pdf_url ? '<a class="link" href="' + escapeHtml(a.pdf_url) + '" target="_blank" rel="noopener" download>' + t('announcements.downloadPdf') + '</a>' : '';
+        var imageHtml = a.image_url ? '<div class="announcement-card-img"><img src="' + escapeHtml(a.image_url) + '" alt="" loading="lazy"></div>' : '';
+        return '<div class="announcement-card" data-ann-id="' + a.id + '">' +
+          (expired ? '<span class="novita-archive-tag">' + t('novitaArchive.archived') + '</span>' : '') +
+          imageHtml +
+          '<div class="announcement-card-body">' +
+          '<div class="date">' + dateStr + '</div>' +
+          '<h4>' + escapeHtml(a.title) + '</h4>' +
+          '<p>' + renderBodyHtml(a.body) + '</p>' +
+          '<div class="announcement-card-actions">' + linkHtml + pdfHtml +
+          '<button type="button" class="ann-share-btn" data-share-ann="' + a.id + '">' + t('announcements.share') + '</button></div>' +
+          '</div></div>';
+      }).join('');
+      Array.prototype.forEach.call(grid.querySelectorAll('[data-share-ann]'), function(btn){
+        var row = rows.filter(function(x){ return String(x.id) === btn.dataset.shareAnn; })[0];
+        if(row) btn.addEventListener('click', function(){ shareAnnouncement(row.id, row.title, row.body, row.image_url); });
+      });
+    })
+    .catch(function(e){
+      console.warn('Novità archive load failed:', e);
+      grid.innerHTML = '<p class="novita-archive-empty">' + t('novitaArchive.error') + '</p>';
+    });
+}
+
+/* ============ ESPORTA I TUOI DATI (profile.html, solo il proprio profilo) ============ */
+function initExportData(){
+  var btn = document.getElementById('btnExportData');
+  if(!btn || btn.dataset.ready) return;
+  btn.dataset.ready = '1';
+  btn.addEventListener('click', exportUserData);
+}
+function exportUserData(){
+  var session = getSession();
+  var statusEl = document.getElementById('exportDataStatus');
+  if(!session){ if(statusEl) statusEl.textContent = t('exportData.needLogin'); return; }
+  var uid = currentUserId();
+  var headers = communityHeaders();
+  if(statusEl) statusEl.textContent = t('exportData.preparing');
+  Promise.all([
+    fetch(SUPABASE_URL + '/rest/v1/profiles?id=eq.' + encodeURIComponent(uid) + '&select=*', { headers: headers }).then(function(r){ return r.ok ? r.json() : []; }),
+    fetch(SUPABASE_URL + '/rest/v1/favorites?user_id=eq.' + encodeURIComponent(uid) + '&select=*', { headers: headers }).then(function(r){ return r.ok ? r.json() : []; }),
+    fetch(SUPABASE_URL + '/rest/v1/comments?user_id=eq.' + encodeURIComponent(uid) + '&select=*', { headers: headers }).then(function(r){ return r.ok ? r.json() : []; }),
+    fetch(SUPABASE_URL + '/rest/v1/requests?user_id=eq.' + encodeURIComponent(uid) + '&select=*', { headers: headers }).then(function(r){ return r.ok ? r.json() : []; })
+  ]).then(function(results){
+    var data = {
+      esportato_il: new Date().toISOString(),
+      profilo: results[0][0] || null,
+      preferiti: results[1],
+      commenti: results[2],
+      richieste: results[3]
+    };
+    var blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = 'lux-comics-dati-' + new Date().toISOString().slice(0, 10) + '.json';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(function(){ URL.revokeObjectURL(url); }, 4000);
+    if(statusEl) statusEl.textContent = t('exportData.done');
+  }).catch(function(e){
+    console.warn('Export dati fallito:', e);
+    if(statusEl) statusEl.textContent = t('exportData.error') + ' (' + e.message + ')';
+  });
 }
 
 // Il loader.js inietta questo file DOPO che DOMContentLoaded è già passato
