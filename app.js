@@ -1860,7 +1860,7 @@ function fetchAnnouncements(){
         var dateStr = a.created_at ? a.created_at.slice(0,10) : '';
         var linkHtml = a.link_url ? '<a class="link" href="' + escapeHtml(a.link_url) + '" target="_blank" rel="noopener">' + t('announcements.readMore') + ' →</a>' : '';
         var pdfHtml = a.pdf_url ? '<a class="link" href="' + escapeHtml(a.pdf_url) + '" target="_blank" rel="noopener" download>' + t('announcements.downloadPdf') + '</a>' : '';
-        var imageHtml = a.image_url ? '<div class="announcement-card-img"><img src="' + escapeHtml(a.image_url) + '" alt="" loading="lazy"></div>' : '';
+        var imageHtml = a.image_url ? '<div class="announcement-card-img" style="--img-url:url(\'' + escapeHtml(a.image_url) + '\')"><img src="' + escapeHtml(a.image_url) + '" alt="" loading="lazy"></div>' : '';
         card.innerHTML =
           imageHtml +
           '<div class="announcement-card-body">' +
@@ -7032,7 +7032,7 @@ function buildEventCard(ev){
   card.dataset.eventId = String(ev.id);
   var dateLabel = formatEventDates(ev);
   card.innerHTML =
-    (ev.image_url ? '<img class="event-img" src="' + coverThumbUrl(escapeHtml(ev.image_url), 500) + '" alt="" loading="lazy">' : '') +
+    (ev.image_url ? '<div class="event-img-wrap" style="--img-url:url(\'' + coverThumbUrl(escapeHtml(ev.image_url), 500) + '\')"><img class="event-img" src="' + coverThumbUrl(escapeHtml(ev.image_url), 500) + '" alt="" loading="lazy"></div>' : '') +
     '<div class="event-body">' +
       '<div class="event-title">' + escapeHtml(ev.title) + '</div>' +
       (ev.location ? '<div class="event-loc">📍 ' + escapeHtml(ev.location) + ' · ' + dateLabel + '</div>' : '<div class="event-loc">' + dateLabel + '</div>') +
@@ -16461,7 +16461,7 @@ function renderNovitaArchive(){
         var expired = !!(a.expires_at && a.expires_at <= nowIso);
         var linkHtml = a.link_url ? '<a class="link" href="' + escapeHtml(a.link_url) + '" target="_blank" rel="noopener">' + t('announcements.readMore') + ' →</a>' : '';
         var pdfHtml = a.pdf_url ? '<a class="link" href="' + escapeHtml(a.pdf_url) + '" target="_blank" rel="noopener" download>' + t('announcements.downloadPdf') + '</a>' : '';
-        var imageHtml = a.image_url ? '<div class="announcement-card-img"><img src="' + escapeHtml(a.image_url) + '" alt="" loading="lazy"></div>' : '';
+        var imageHtml = a.image_url ? '<div class="announcement-card-img" style="--img-url:url(\'' + escapeHtml(a.image_url) + '\')"><img src="' + escapeHtml(a.image_url) + '" alt="" loading="lazy"></div>' : '';
         return '<div class="announcement-card" data-ann-id="' + a.id + '">' +
           (expired ? '<span class="novita-archive-tag">' + t('novitaArchive.archived') + '</span>' : '') +
           imageHtml +

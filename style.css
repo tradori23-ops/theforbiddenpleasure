@@ -372,8 +372,9 @@ body.theme-light .hero-bg::after{
 }
 .announcements-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(420px,1fr));gap:18px;}
 .announcement-card{border:1px solid var(--gold);background:var(--void-2);display:flex;align-items:stretch;}
-.announcement-card-img{flex:0 0 180px;width:180px;overflow:hidden;border-bottom:none;border-right:1px solid var(--gold);}
-.announcement-card-img img{width:100%;height:100%;object-fit:cover;display:block;}
+.announcement-card-img{position:relative;flex:0 0 180px;width:180px;overflow:hidden;border-bottom:none;border-right:1px solid var(--gold);background:var(--void-2);}
+.announcement-card-img::before{content:"";position:absolute;inset:-8%;background-image:var(--img-url);background-size:cover;background-position:center;filter:blur(18px) brightness(0.55) saturate(1.2);}
+.announcement-card-img img{position:relative;width:100%;height:100%;object-fit:contain;display:block;}
 .announcement-card-body{padding:20px 22px;flex:1;min-width:0;}
 @media (max-width:520px){
   .announcement-card{flex-direction:column;}
@@ -839,7 +840,9 @@ body.theme-light .hero-bg::after{
 /* ============ EVENTI (fiere, cinema, incontri) ============ */
 .sec-eyebrow{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin:4px 0 10px;}
 .event-card{border:1px solid var(--gold);background:var(--void-2);border-radius:14px;overflow:hidden;margin-bottom:16px;}
-.event-img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;}
+.event-img-wrap{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;background:var(--void-2);}
+.event-img-wrap::before{content:"";position:absolute;inset:-8%;background-image:var(--img-url);background-size:cover;background-position:center;filter:blur(22px) brightness(0.5) saturate(1.25);}
+.event-img{position:relative;width:100%;height:100%;object-fit:contain;display:block;}
 .event-body{padding:16px;}
 .event-title{font-family:'Cinzel Decorative',serif;font-size:17px;color:var(--gold-bright);margin-bottom:6px;}
 .event-loc{font-family:'Space Mono',monospace;font-size:11px;color:var(--gold);margin-bottom:8px;}
