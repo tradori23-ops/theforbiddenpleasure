@@ -675,6 +675,11 @@ Object.assign(STR.en, {"recommended.eyebrow": "For you", "recommended.title": "R
 Object.assign(STR.es, {"recommended.eyebrow": "Para ti", "recommended.title": "Recomendados para ti", "recommended.because": "Porque sigues {char}", "novitaArchive.eyebrow": "De la redacción", "novitaArchive.title": "Archivo de novedades", "novitaArchive.desc": "Todo lo publicado, incluso lo que ya no está en la portada.", "novitaArchive.seeAll": "Todas las novedades →", "novitaArchive.archived": "Archivado", "novitaArchive.empty": "Aún no hay novedades publicadas.", "novitaArchive.error": "No puedo leer las novedades ahora.", "exportData.title": "Tus datos", "exportData.hint": "Un archivo con tu perfil, favoritos, comentarios y solicitudes — solo para ti.", "exportData.button": "Descargar tus datos", "exportData.needLogin": "Inicia sesión para descargar tus datos.", "exportData.preparing": "Preparando…", "exportData.done": "Descargado.", "exportData.error": "No se pudo."});
 Object.assign(STR.fr, {"recommended.eyebrow": "Pour vous", "recommended.title": "Recommandés pour vous", "recommended.because": "Parce que vous suivez {char}", "novitaArchive.eyebrow": "De la rédaction", "novitaArchive.title": "Archives des nouveautés", "novitaArchive.desc": "Tout ce qui a été publié, y compris ce qui n'est plus sur l'accueil.", "novitaArchive.seeAll": "Toutes les nouveautés →", "novitaArchive.archived": "Archivé", "novitaArchive.empty": "Aucune nouveauté publiée pour le moment.", "novitaArchive.error": "Impossible de charger les nouveautés.", "exportData.title": "Vos données", "exportData.hint": "Un fichier avec votre profil, favoris, commentaires et demandes — pour vous seul.", "exportData.button": "Télécharger vos données", "exportData.needLogin": "Connectez-vous pour télécharger vos données.", "exportData.preparing": "Préparation…", "exportData.done": "Téléchargé.", "exportData.error": "Échec."});
 Object.assign(STR.de, {"recommended.eyebrow": "Für dich", "recommended.title": "Für dich empfohlen", "recommended.because": "Weil du {char} folgst", "novitaArchive.eyebrow": "Von der Redaktion", "novitaArchive.title": "Neuigkeiten-Archiv", "novitaArchive.desc": "Alles Veröffentlichte, auch was nicht mehr auf der Startseite ist.", "novitaArchive.seeAll": "Alle Neuigkeiten →", "novitaArchive.archived": "Archiviert", "novitaArchive.empty": "Noch keine Neuigkeiten veröffentlicht.", "novitaArchive.error": "Neuigkeiten können gerade nicht geladen werden.", "exportData.title": "Deine Daten", "exportData.hint": "Eine Datei mit deinem Profil, Favoriten, Kommentaren und Anfragen — nur für dich.", "exportData.button": "Deine Daten herunterladen", "exportData.needLogin": "Melde dich an, um deine Daten herunterzuladen.", "exportData.preparing": "Wird vorbereitet…", "exportData.done": "Heruntergeladen.", "exportData.error": "Fehlgeschlagen."});
+Object.assign(STR.it, {"series.f.key": "Serie (opzionale — uguale per ogni capitolo collegato)", "series.f.number": "Numero capitolo (opzionale, decide l'ordine)", "series.chapterLabel": "Capitolo", "series.partOf": "Fa parte di:", "series.prevChapter": "Capitolo precedente", "series.nextChapter": "Capitolo successivo", "reader.single": "Singola", "reader.double": "Doppia pagina", "reader.themeLight": "☀ Chiaro", "reader.themeDark": "● Scuro", "rating.none": "Ancora nessun voto"});
+Object.assign(STR.en, {"series.f.key": "Series (optional — same for every linked chapter)", "series.f.number": "Chapter number (optional, sets the order)", "series.chapterLabel": "Chapter", "series.partOf": "Part of:", "series.prevChapter": "Previous chapter", "series.nextChapter": "Next chapter", "reader.single": "Single", "reader.double": "Two-page", "reader.themeLight": "☀ Light", "reader.themeDark": "● Dark", "rating.none": "No ratings yet"});
+Object.assign(STR.es, {"series.f.key": "Serie (opcional — igual para cada capítulo vinculado)", "series.f.number": "Número de capítulo (opcional, decide el orden)", "series.chapterLabel": "Capítulo", "series.partOf": "Parte de:", "series.prevChapter": "Capítulo anterior", "series.nextChapter": "Capítulo siguiente", "reader.single": "Página única", "reader.double": "Doble página", "reader.themeLight": "☀ Claro", "reader.themeDark": "● Oscuro", "rating.none": "Aún sin votos"});
+Object.assign(STR.fr, {"series.f.key": "Série (facultatif — identique pour chaque chapitre lié)", "series.f.number": "Numéro de chapitre (facultatif, définit l'ordre)", "series.chapterLabel": "Chapitre", "series.partOf": "Fait partie de :", "series.prevChapter": "Chapitre précédent", "series.nextChapter": "Chapitre suivant", "reader.single": "Simple", "reader.double": "Double page", "reader.themeLight": "☀ Clair", "reader.themeDark": "● Sombre", "rating.none": "Aucun vote pour le moment"});
+Object.assign(STR.de, {"series.f.key": "Serie (optional — für jedes verknüpfte Kapitel gleich)", "series.f.number": "Kapitelnummer (optional, legt die Reihenfolge fest)", "series.chapterLabel": "Kapitel", "series.partOf": "Teil von:", "series.prevChapter": "Vorheriges Kapitel", "series.nextChapter": "Nächstes Kapitel", "reader.single": "Einzeln", "reader.double": "Doppelseite", "reader.themeLight": "☀ Hell", "reader.themeDark": "● Dunkel", "rating.none": "Noch keine Bewertungen"});
 
 var CHAR_META = {
   Lucifer:{role:{it:"Il Portatore di Luce",en:"The Light-Bearer",es:"El Portador de Luz",fr:"Le Porteur de Lumière",de:"Der Lichtträger"},
@@ -4890,6 +4895,8 @@ function openEditTitle(id){
   document.getElementById('fTitle').value = item.title || '';
   document.getElementById('fCharacter').value = item.character || '';
   document.getElementById('fIssue').value = item.issue || '';
+  document.getElementById('fSeriesKey').value = item.series_key || '';
+  document.getElementById('fChapterNumber').value = item.chapter_number != null ? item.chapter_number : '';
   document.getElementById('fDate').value = item.date || '';
   document.getElementById('fPrice').value = item.price != null ? item.price : '';
   document.getElementById('fStock').value = item.stock != null ? item.stock : '';
@@ -4929,6 +4936,8 @@ function cancelEditTitle(){
   editingItemId = null;
   document.getElementById('fTitle').value = '';
   document.getElementById('fIssue').value = '';
+  document.getElementById('fSeriesKey').value = '';
+  document.getElementById('fChapterNumber').value = '';
   document.getElementById('fDate').value = '';
   document.getElementById('fPrice').value = '';
   document.getElementById('fStock').value = '';
@@ -5050,6 +5059,7 @@ function publishSingleDraftNewItem(draftItem){
   var newItem = {
     id: 'c' + Date.now() + Math.floor(Math.random()*1000),
     character: draftItem.character, title: draftItem.title, issue: draftItem.issue,
+    series_key: draftItem.seriesKey || null, chapter_number: (draftItem.chapterNumber !== '' && draftItem.chapterNumber != null) ? Number(draftItem.chapterNumber) : null,
     date: draftItem.date || new Date().toISOString().slice(0,10),
     price: draftItem.price ? Number(draftItem.price) : null,
     stock: (draftItem.stock !== undefined && draftItem.stock !== '') ? Number(draftItem.stock) : null,
@@ -5081,6 +5091,8 @@ function handleAddEntry(){
   var title = document.getElementById('fTitle').value.trim();
   var character = document.getElementById('fCharacter').value;
   var issue = document.getElementById('fIssue').value.trim();
+  var seriesKey = document.getElementById('fSeriesKey').value.trim();
+  var chapterNumberRaw = document.getElementById('fChapterNumber').value;
   var date = document.getElementById('fDate').value;
   var price = document.getElementById('fPrice').value;
   var stock = document.getElementById('fStock').value;
@@ -5124,6 +5136,7 @@ function handleAddEntry(){
   if(!isEdit && isDraftModeOn()){
     var draftItem = {
       character: character, title: title, issue: issue, date: date,
+      seriesKey: seriesKey || null, chapterNumber: chapterNumberRaw,
       price: price, stock: stock, synopsis: synopsis, mature: mature, genres: genres, coverDataUrl: null
     };
     var afterSave = function(){
@@ -5132,6 +5145,8 @@ function handleAddEntry(){
       saveDraft(d);
       document.getElementById('fTitle').value = '';
       document.getElementById('fIssue').value = '';
+      document.getElementById('fSeriesKey').value = '';
+      document.getElementById('fChapterNumber').value = '';
       document.getElementById('fDate').value = '';
       document.getElementById('fPrice').value = '';
       document.getElementById('fStock').value = '';
@@ -5170,6 +5185,7 @@ function handleAddEntry(){
     collaborator_url: collabList[0] ? collabList[0].url : null,
     collaborator_verified: collabList[0] ? collabList[0].verified : false,
     collaborators: collabList,
+    series_key: seriesKey || null, chapter_number: chapterNumberRaw !== '' ? Number(chapterNumberRaw) : null,
     synopsis: synopsis, mature: mature, genres: genres,
     pages: existing.pages || [], pages_clean: existing.pages_clean || [],
     pages_watermarked: existing.pages_watermarked, cover_url: existing.cover_url || null,
@@ -5187,6 +5203,7 @@ function handleAddEntry(){
     collaborator_url: collabList[0] ? collabList[0].url : null,
     collaborator_verified: collabList[0] ? collabList[0].verified : false,
     collaborators: collabList,
+    series_key: seriesKey || null, chapter_number: chapterNumberRaw !== '' ? Number(chapterNumberRaw) : null,
     synopsis: synopsis, mature: mature, genres: genres, pages: [], cover_url: null, pdf_url: null,
     created_by: !isAdmin() ? currentUserId() : null,
     synopsis_it: null, synopsis_es: null, synopsis_fr: null, synopsis_de: null
@@ -5254,6 +5271,8 @@ function handleAddEntry(){
     saveCatalogLocal(items);
     document.getElementById('fTitle').value = '';
     document.getElementById('fIssue').value = '';
+    document.getElementById('fSeriesKey').value = '';
+    document.getElementById('fChapterNumber').value = '';
     document.getElementById('fDate').value = '';
     document.getElementById('fPrice').value = '';
     document.getElementById('fStock').value = '';
@@ -10400,11 +10419,96 @@ function checkDeepLinkOnLoad(){
 }
 
 
+/* ---- Capitoli collegati: stessa "serie" (testo libero), ordinati per numero capitolo ---- */
+function renderTitleModalSeries(item){
+  var box = document.getElementById('titleModalSeries');
+  if(!box) return;
+  if(!item.series_key){ box.classList.add('hidden'); box.innerHTML = ''; return; }
+  var siblings = getCatalog().filter(function(i){ return i.series_key === item.series_key; })
+    .sort(function(a, b){ return (a.chapter_number || 0) - (b.chapter_number || 0); });
+  if(siblings.length < 2){ box.classList.add('hidden'); box.innerHTML = ''; return; } // serie di un solo capitolo: niente da collegare
+  var idx = siblings.findIndex(function(i){ return i.id === item.id; });
+  var chipsHtml = siblings.map(function(s){
+    return '<button type="button" class="chapter-chip' + (s.id === item.id ? ' now' : '') + '" data-series-id="' + escapeHtml(s.id) + '">' +
+      t('series.chapterLabel') + ' ' + (s.chapter_number != null ? s.chapter_number : '?') + '</button>';
+  }).join('');
+  var prevItem = idx > 0 ? siblings[idx - 1] : null;
+  var nextItem = idx < siblings.length - 1 ? siblings[idx + 1] : null;
+  box.innerHTML = '<div class="series-label">' + t('series.partOf') + ' ' + escapeHtml(item.series_key) + '</div>' +
+    '<div class="chapter-row">' + chipsHtml + '</div>' +
+    '<div class="chapter-nav">' +
+      '<button type="button" id="seriesPrevBtn"' + (prevItem ? '' : ' disabled') + '>← ' + t('series.prevChapter') + '</button>' +
+      '<button type="button" id="seriesNextBtn"' + (nextItem ? '' : ' disabled') + '>' + t('series.nextChapter') + ' →</button>' +
+    '</div>';
+  box.classList.remove('hidden');
+  Array.prototype.forEach.call(box.querySelectorAll('[data-series-id]'), function(btn){
+    btn.addEventListener('click', function(){
+      var target = siblings.find(function(s){ return s.id === btn.dataset.seriesId; });
+      if(target && target.id !== item.id) openTitleModal(target);
+    });
+  });
+  var prevBtn = document.getElementById('seriesPrevBtn'), nextBtn = document.getElementById('seriesNextBtn');
+  if(prevBtn && prevItem) prevBtn.addEventListener('click', function(){ openTitleModal(prevItem); });
+  if(nextBtn && nextItem) nextBtn.addEventListener('click', function(){ openTitleModal(nextItem); });
+}
+
+/* ---- Recensioni a stelle: un voto per persona, la media si vede anche in copertina ---- */
+function renderTitleModalRating(catalogId){
+  var box = document.getElementById('titleModalRating');
+  if(!box) return;
+  var myVote = 0;
+  function paint(avgStars, votesCount){
+    var starsHtml = '';
+    for(var i = 1; i <= 5; i++){ starsHtml += '<button type="button" class="' + (i <= myVote ? 'on' : '') + '" data-star="' + i + '" aria-label="' + i + ' stelle">★</button>'; }
+    box.innerHTML = '<span class="stars">' + starsHtml + '</span><span class="rating-avg mono">' +
+      (votesCount > 0 ? Number(avgStars).toFixed(1) + ' ★ · ' + votesCount + (votesCount === 1 ? ' voto' : ' voti') : t('rating.none')) + '</span>';
+    Array.prototype.forEach.call(box.querySelectorAll('[data-star]'), function(b){
+      b.addEventListener('click', function(){
+        var v = Number(b.dataset.star);
+        voteRating(catalogId, v === myVote ? 0 : v);
+      });
+    });
+  }
+  paint(0, 0);
+  var session = getSession();
+  var statsReq = fetch(SUPABASE_URL + '/rest/v1/title_rating_stats?catalog_id=eq.' + encodeURIComponent(catalogId) + '&select=avg_stars,votes_count', { headers:{ 'apikey':SUPABASE_ANON_KEY } })
+    .then(function(r){ return r.ok ? r.json() : []; }).catch(function(){ return []; });
+  var mineReq = session
+    ? fetch(SUPABASE_URL + '/rest/v1/title_ratings?catalog_id=eq.' + encodeURIComponent(catalogId) + '&user_id=eq.' + encodeURIComponent(currentUserId()) + '&select=stars', { headers: communityHeaders() })
+        .then(function(r){ return r.ok ? r.json() : []; }).catch(function(){ return []; })
+    : Promise.resolve([]);
+  Promise.all([statsReq, mineReq]).then(function(results){
+    if(currentModalCatalogId !== catalogId) return; // il modale è stato chiuso o si è passati a un altro titolo nel frattempo
+    var stat = results[0][0] || { avg_stars: 0, votes_count: 0 };
+    myVote = results[1][0] ? results[1][0].stars : 0;
+    paint(stat.avg_stars, stat.votes_count);
+  });
+}
+function voteRating(catalogId, stars){
+  if(!isSignedIn()){ openAuth('login'); return; }
+  var session = getSession();
+  var req = stars === 0
+    ? fetch(SUPABASE_URL + '/rest/v1/title_ratings?catalog_id=eq.' + encodeURIComponent(catalogId) + '&user_id=eq.' + encodeURIComponent(currentUserId()), {
+        method:'DELETE', headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
+      })
+    : fetch(SUPABASE_URL + '/rest/v1/title_ratings', {
+        method:'POST',
+        headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json', 'Prefer':'resolution=merge-duplicates' },
+        body: JSON.stringify({ catalog_id: catalogId, user_id: currentUserId(), stars: stars })
+      });
+  req.then(function(r){
+    if(!r.ok) throw new Error('HTTP ' + r.status);
+    renderTitleModalRating(catalogId);
+  }).catch(function(e){ console.warn('Voto non salvato (serve lo SQL delle recensioni):', e); });
+}
+
 function openTitleModal(item){
   currentModalCatalogId = item.id;
   document.getElementById('titleModalTitle').textContent = item.title;
   document.getElementById('titleModalMeta').textContent = item.character + ' · ' + (item.issue || '') + ' · ' + (item.date || '');
   document.getElementById('titleModalSynopsis').innerHTML = renderBodyHtml(synopsisForCurrentLang(item));
+  renderTitleModalSeries(item);
+  renderTitleModalRating(item.id);
   refreshTitleModalFav(item.id);
   refreshTitleModalLike(item.id);
   openPageReader(item);
@@ -14121,6 +14225,8 @@ function openPageReader(item){
     }
   });
   showReaderPage(0);
+  initReaderControls();
+  applyReaderPrefs();
 }
 
 function fetchAuthenticatedCleanPage(path){
@@ -14360,34 +14466,89 @@ function maybeStartOfflineSync(){
   });
 }
 
-function showReaderPage(idx){
-  if(idx < 0 || idx >= readerPages.length) return;
-  readerIndex = idx;
-  saveReadingProgress(readerItem, idx);
-  document.getElementById('pageReaderCount').textContent = (idx + 1) + ' / ' + readerPages.length;
-  document.getElementById('pageReaderPrev').disabled = idx === 0;
-  document.getElementById('pageReaderNext').disabled = idx === readerPages.length - 1;
-  document.querySelectorAll('#pageReaderThumbs img').forEach(function(img, i){
-    img.classList.toggle('active', i === idx);
+/* ---- Preferenze di lettura: doppia pagina, zoom, tema del lettore ----
+   Salvate sul dispositivo, indipendenti dal tema giorno/notte del sito: chi legge su
+   sfondo chiaro può comunque avere il sito in modalità notte, e viceversa. */
+var readerPrefs = { double: false, zoom: 100, theme: 'dark' };
+(function(){
+  try {
+    var raw = localStorage.getItem('lux_reader_prefs');
+    if(raw) readerPrefs = Object.assign(readerPrefs, JSON.parse(raw));
+  } catch(e){} // preferenza non leggibile: si riparte dai valori di sempre
+})();
+function saveReaderPrefs(){ try { localStorage.setItem('lux_reader_prefs', JSON.stringify(readerPrefs)); } catch(e){} }
+function readerStep(){ return readerPrefs.double ? 2 : 1; }
+function applyReaderPrefs(){
+  var main = document.querySelector('#pageReader .page-reader-main');
+  if(!main) return;
+  main.classList.toggle('double-page', readerPrefs.double);
+  main.classList.toggle('reader-theme-light', readerPrefs.theme === 'light');
+  main.classList.toggle('reader-theme-dark', readerPrefs.theme !== 'light');
+  var s1 = document.getElementById('readerModeSingle'), s2 = document.getElementById('readerModeDouble');
+  if(s1) s1.classList.toggle('on', !readerPrefs.double);
+  if(s2) s2.classList.toggle('on', readerPrefs.double);
+  var tl = document.getElementById('readerThemeLight'), td = document.getElementById('readerThemeDark');
+  if(tl) tl.classList.toggle('on', readerPrefs.theme === 'light');
+  if(td) td.classList.toggle('on', readerPrefs.theme !== 'light');
+  Array.prototype.forEach.call(document.querySelectorAll('.reader-zoom-btn'), function(b){
+    b.classList.toggle('on', Number(b.dataset.zoom) === readerPrefs.zoom);
   });
-
-  var imgEl = document.getElementById('pageReaderImg');
+  var pct = readerPrefs.zoom + '%';
+  var img1 = document.getElementById('pageReaderImg'), img2 = document.getElementById('pageReaderImg2');
+  if(img1) img1.style.width = pct;
+  if(img2) img2.style.width = pct;
+}
+function initReaderControls(){
+  var ctl = document.getElementById('readerCtl');
+  if(!ctl || ctl.dataset.ready) return;
+  ctl.dataset.ready = '1';
+  var single = document.getElementById('readerModeSingle'), double = document.getElementById('readerModeDouble');
+  if(single) single.addEventListener('click', function(){ readerPrefs.double = false; saveReaderPrefs(); applyReaderPrefs(); showReaderPage(readerIndex); });
+  if(double) double.addEventListener('click', function(){ readerPrefs.double = true; saveReaderPrefs(); applyReaderPrefs(); showReaderPage(readerIndex - (readerIndex % 2)); });
+  var tl = document.getElementById('readerThemeLight'), td = document.getElementById('readerThemeDark');
+  if(tl) tl.addEventListener('click', function(){ readerPrefs.theme = 'light'; saveReaderPrefs(); applyReaderPrefs(); });
+  if(td) td.addEventListener('click', function(){ readerPrefs.theme = 'dark'; saveReaderPrefs(); applyReaderPrefs(); });
+  Array.prototype.forEach.call(document.querySelectorAll('.reader-zoom-btn'), function(b){
+    b.addEventListener('click', function(){ readerPrefs.zoom = Number(b.dataset.zoom); saveReaderPrefs(); applyReaderPrefs(); });
+  });
+}
+function loadReaderImage(imgEl, idx){
   var cleanPath = (readerItem && readerItem.pages_clean) ? readerItem.pages_clean[idx] : null;
-
   if(isSignedIn() && cleanPath){
-    if(readerBlobUrlCache[cleanPath]){
-      imgEl.src = readerBlobUrlCache[cleanPath];
-      return;
-    }
+    if(readerBlobUrlCache[cleanPath]){ imgEl.src = readerBlobUrlCache[cleanPath]; return; }
     imgEl.src = readerPages[idx]; // versione filigranata come anteprima immediata mentre quella pulita si scarica
     fetchAuthenticatedCleanPage(cleanPath).then(function(blobUrl){
       readerBlobUrlCache[cleanPath] = blobUrl;
-      if(readerIndex === idx){ imgEl.src = blobUrl; } // solo se siamo ancora su questa pagina quando arriva
+      if(imgEl.dataset.pageIdx === String(idx)){ imgEl.src = blobUrl; } // solo se l'immagine mostra ancora questa pagina
     }).catch(function(err){
       console.warn('Clean page fetch failed, showing watermarked version instead:', err);
     });
   } else {
     imgEl.src = readerPages[idx];
+  }
+  imgEl.dataset.pageIdx = String(idx);
+}
+function showReaderPage(idx){
+  if(idx < 0 || idx >= readerPages.length) return;
+  readerIndex = idx;
+  saveReadingProgress(readerItem, idx);
+  var hasSecond = readerPrefs.double && (idx + 1) < readerPages.length;
+  var countText = hasSecond ? (idx + 1) + '–' + (idx + 2) + ' / ' + readerPages.length : (idx + 1) + ' / ' + readerPages.length;
+  document.getElementById('pageReaderCount').textContent = countText;
+  document.getElementById('pageReaderPrev').disabled = idx === 0;
+  document.getElementById('pageReaderNext').disabled = hasSecond ? (idx + 2) >= readerPages.length : idx === readerPages.length - 1;
+  document.querySelectorAll('#pageReaderThumbs img').forEach(function(img, i){
+    img.classList.toggle('active', i === idx || (hasSecond && i === idx + 1));
+  });
+
+  var imgEl = document.getElementById('pageReaderImg');
+  var imgEl2 = document.getElementById('pageReaderImg2');
+  loadReaderImage(imgEl, idx);
+  if(hasSecond){
+    imgEl2.classList.remove('hidden');
+    loadReaderImage(imgEl2, idx + 1);
+  } else {
+    imgEl2.classList.add('hidden');
   }
 }
 function refreshTitleModalFav(catalogId){
@@ -15918,8 +16079,8 @@ function __appInit(){
   document.getElementById('titleModalLike') && document.getElementById('titleModalLike').addEventListener('click', function(){
     if(currentModalCatalogId) toggleLike(currentModalCatalogId);
   });
-  document.getElementById('pageReaderPrev') && document.getElementById('pageReaderPrev').addEventListener('click', function(){ showReaderPage(readerIndex - 1); });
-  document.getElementById('pageReaderNext') && document.getElementById('pageReaderNext').addEventListener('click', function(){ showReaderPage(readerIndex + 1); });
+  document.getElementById('pageReaderPrev') && document.getElementById('pageReaderPrev').addEventListener('click', function(){ showReaderPage(readerIndex - readerStep()); });
+  document.getElementById('pageReaderNext') && document.getElementById('pageReaderNext').addEventListener('click', function(){ showReaderPage(readerIndex + readerStep()); });
   document.getElementById('btnSubmitComment') && document.getElementById('btnSubmitComment').addEventListener('click', submitComment);
 
   document.getElementById('btnCart') && document.getElementById('btnCart').addEventListener('click', openCartModal);
