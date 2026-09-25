@@ -12043,20 +12043,27 @@ function addLuxtifySong(){
   var statusEl = document.getElementById('luxUploadStatus');
   if(!titleEl.value.trim()){ window.alert('Scrivi il titolo della canzone.'); return; }
   if(!audioFile){ window.alert('Carica il file audio.'); return; }
+  runLuxSongUpload(session, titleEl, artistEl, genreEl, coverFile, audioFile, statusEl);
+}
 
-  statusEl.textContent = 'Caricamento in corso...';
+/* Funzione a sé — non solo dentro addLuxtifySong — così "Riprova" nella schermata di SmallNox
+   può richiamarla di nuovo sugli stessi identici file audio/copertina. */
+function runLuxSongUpload(session, titleEl, artistEl, genreEl, coverFile, audioFile, statusEl){
+  statusEl.textContent = '';
+  var totalBytes = audioFile.size + (coverFile ? coverFile.size : 0);
+  var sentBytes = 0;
+  function bumpBytes(delta){ sentBytes += delta; snoProgress((sentBytes / Math.max(totalBytes, 1)) * 100); }
+  snoStart(t('sno.uploadStart'), function(){ runLuxSongUpload(session, titleEl, artistEl, genreEl, coverFile, audioFile, statusEl); });
+
   var uploads = [];
-
   var audioPath = Date.now() + '-' + audioFile.name.replace(/[^a-zA-Z0-9.\-]/g, '_');
   uploads.push(
     addInvisibleWatermark(audioFile).then(function(watermarkedFile){
-      return fetch(SUPABASE_URL + '/storage/v1/object/songs-private/' + audioPath, {
-        method:'POST',
-        headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type': audioFile.type || 'audio/mpeg' },
-        body: watermarkedFile
+      var lastLoaded = 0;
+      return xhrUpload(SUPABASE_URL + '/storage/v1/object/songs-private/' + audioPath, watermarkedFile, session, function(loaded){
+        bumpBytes(loaded - lastLoaded); lastLoaded = loaded;
       });
-    }).then(function(r){
-      if(!r.ok) throw new Error('upload audio fallito: ' + r.status);
+    }).then(function(){
       return audioPath;
     })
   );
@@ -12064,12 +12071,12 @@ function addLuxtifySong(){
   if(coverFile){
     var coverPath = Date.now() + '-cover-' + coverFile.name.replace(/[^a-zA-Z0-9.\-]/g, '_');
     uploads.push(
-      fetch(SUPABASE_URL + '/storage/v1/object/songs/' + coverPath, {
-        method:'POST',
-        headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type': coverFile.type || 'image/jpeg' },
-        body: coverFile
-      }).then(function(r){
-        if(!r.ok) throw new Error('upload copertina fallito: ' + r.status);
+      (function(){
+        var lastLoaded = 0;
+        return xhrUpload(SUPABASE_URL + '/storage/v1/object/songs/' + coverPath, coverFile, session, function(loaded){
+          bumpBytes(loaded - lastLoaded); lastLoaded = loaded;
+        });
+      })().then(function(){
         return SUPABASE_URL + '/storage/v1/object/public/songs/' + coverPath;
       })
     );
@@ -12096,11 +12103,13 @@ function addLuxtifySong(){
     document.getElementById('fLuxAudio').value = '';
     resetSongCollabRows();
     statusEl.textContent = 'Pubblicata! Ricarica la pagina per vederla in Album.';
+    snoFinish(true, t('sno.uploadDoneCaption'), t('sno.uploadDoneStatus'));
     var popup = document.getElementById('luxSongPopup');
     if(popup) setTimeout(function(){ popup.classList.add('hidden'); }, 1200);
   }).catch(function(err){
     console.warn('Caricamento canzone da collaboratore fallito:', err);
     statusEl.textContent = 'Errore: ' + err.message;
+    snoFinish(false, t('sno.errorCaption'), t('sno.uploadFailStatus'));
   });
 }
 
@@ -13395,34 +13404,41 @@ function addSong(){
   var statusEl = document.getElementById('songUploadStatus');
   if(!titleEl.value.trim()){ window.alert('Scrivi il titolo della canzone.'); return; }
   if(!audioFile){ window.alert('Carica il file audio.'); return; }
+  runCatalogSongUpload(catalogId, session, titleEl, artistEl, genreEl, coverFile, audioFile, lyricsEl, statusEl);
+}
 
-  statusEl.textContent = 'Caricamento in corso...';
+/* Funzione a sé — non solo dentro addSong — così "Riprova" nella schermata di SmallNox può
+   richiamarla di nuovo sugli stessi identici file audio/copertina. */
+function runCatalogSongUpload(catalogId, session, titleEl, artistEl, genreEl, coverFile, audioFile, lyricsEl, statusEl){
+  statusEl.textContent = '';
   var addBtn = document.getElementById('btnAddSong');
   addBtn.disabled = true;
+  var totalBytes = audioFile.size + (coverFile ? coverFile.size : 0);
+  var sentBytes = 0;
+  function bumpBytes(delta){ sentBytes += delta; snoProgress((sentBytes / Math.max(totalBytes, 1)) * 100); }
+  snoStart(t('sno.uploadStart'), function(){ runCatalogSongUpload(catalogId, session, titleEl, artistEl, genreEl, coverFile, audioFile, lyricsEl, statusEl); });
 
   var uploads = [];
   var audioPath = catalogId + '/' + Date.now() + '-' + audioFile.name.replace(/[^a-zA-Z0-9.\-]/g, '_');
   uploads.push(
     addInvisibleWatermark(audioFile).then(function(watermarkedFile){
-      return fetch(SUPABASE_URL + '/storage/v1/object/songs-private/' + audioPath, {
-        method:'POST',
-        headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type': audioFile.type || 'audio/mpeg' },
-        body: watermarkedFile
+      var lastLoaded = 0;
+      return xhrUpload(SUPABASE_URL + '/storage/v1/object/songs-private/' + audioPath, watermarkedFile, session, function(loaded){
+        bumpBytes(loaded - lastLoaded); lastLoaded = loaded;
       });
-    }).then(function(r){
-      if(!r.ok) throw new Error('upload audio fallito: ' + r.status);
+    }).then(function(){
       return audioPath; // si salva solo il percorso: il bucket è privato, serve un link firmato per ascoltare
     })
   );
   if(coverFile){
     var coverPath = catalogId + '/' + Date.now() + '-cover-' + coverFile.name.replace(/[^a-zA-Z0-9.\-]/g, '_');
     uploads.push(
-      fetch(SUPABASE_URL + '/storage/v1/object/songs/' + coverPath, {
-        method:'POST',
-        headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type': coverFile.type || 'image/jpeg' },
-        body: coverFile
-      }).then(function(r){
-        if(!r.ok) throw new Error('upload copertina fallito: ' + r.status);
+      (function(){
+        var lastLoaded = 0;
+        return xhrUpload(SUPABASE_URL + '/storage/v1/object/songs/' + coverPath, coverFile, session, function(loaded){
+          bumpBytes(loaded - lastLoaded); lastLoaded = loaded;
+        });
+      })().then(function(){
         return SUPABASE_URL + '/storage/v1/object/public/songs/' + coverPath;
       })
     );
@@ -13451,11 +13467,13 @@ function addSong(){
     resetSongCollabRows();
     statusEl.textContent = '';
     loadSongsAdminList(catalogId);
+    addBtn.disabled = false;
+    snoFinish(true, t('sno.uploadDoneCaption'), t('sno.uploadDoneStatus'));
   }).catch(function(err){
     console.warn('Aggiunta canzone fallita:', err);
     statusEl.textContent = 'Errore: ' + err.message;
-  }).finally(function(){
     addBtn.disabled = false;
+    snoFinish(false, t('sno.errorCaption'), t('sno.uploadFailStatus'));
   });
 }
 
