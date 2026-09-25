@@ -2021,3 +2021,45 @@ body.text-only-mode img:not(.no-text-only){
 .rating-block .stars button{color:rgba(201,162,77,0.3);background:none;border:0;cursor:pointer;padding:0;}
 .rating-block .stars button.on{color:var(--gold-bright);}
 .rating-block .rating-avg{font-size:12px;color:var(--parchment-dim);}
+
+/* ============ SMALLNOX OVERLAY — caricamento file (Amministra) e download fumetti (offline) ============ */
+.smallnox-overlay{position:fixed;inset:0;z-index:300;background:radial-gradient(circle at 50% 45%,#1a0d12 0%,#050303 70%);display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;}
+.smallnox-overlay.hidden{display:none;}
+.smallnox-overlay.sno-bad{--sno-glow:#ff5a3c;}
+.sno-energy{position:absolute;top:0;bottom:0;width:52%;opacity:.55;filter:blur(40px);}
+.sno-energy.sno-left{left:0;background:radial-gradient(ellipse at left,var(--wine),transparent 70%);}
+.sno-energy.sno-right{right:0;background:radial-gradient(ellipse at right,#0f4a4a,transparent 70%);}
+.smallnox-overlay.sno-bad .sno-energy.sno-left{background:radial-gradient(ellipse at left,#8a0f0f,transparent 70%);}
+.smallnox-overlay.sno-bad .sno-energy.sno-right{background:radial-gradient(ellipse at right,#3a0808,transparent 70%);}
+.sno-spark{position:absolute;bottom:-10px;width:3px;height:3px;border-radius:50%;background:var(--sno-glow,var(--gold-bright));box-shadow:0 0 6px var(--sno-glow,var(--gold-bright)),0 0 12px var(--sno-glow,var(--gold-bright));opacity:0;}
+.sno-bolt{position:absolute;pointer-events:none;opacity:0;mix-blend-mode:screen;}
+.sno-bolt svg{width:100%;height:100%;}
+.sno-bolt path{stroke:#fff;stroke-width:2;fill:none;filter:drop-shadow(0 0 6px var(--sno-glow,var(--gold-bright))) drop-shadow(0 0 14px var(--sno-glow,var(--gold-bright)));}
+.sno-circle{position:relative;width:min(70vw,300px);height:min(70vw,300px);}
+.sno-svg{position:absolute;inset:0;width:100%;height:100%;}
+.sno-svg circle{fill:none;stroke:var(--sno-glow,var(--gold-bright));}
+.sno-ring-outer{stroke-width:1.4;opacity:.55;animation:snoRotCW 14s linear infinite;transform-origin:center;}
+.sno-ring-runes{stroke-width:1;stroke-dasharray:2 7;opacity:.7;animation:snoRotCCW 9s linear infinite;transform-origin:center;}
+.sno-ring-inner{stroke-width:2;opacity:.85;animation:snoRotCW 20s linear infinite reverse;transform-origin:center;}
+@keyframes snoRotCW{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+@keyframes snoRotCCW{from{transform:rotate(0deg);}to{transform:rotate(-360deg);}}
+.sno-portrait{position:absolute;inset:20%;border-radius:50%;overflow:hidden;background:#000;box-shadow:0 0 0 2px rgba(255,255,255,.06),inset 0 0 40px rgba(0,0,0,.8);}
+.sno-portrait img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.5);filter:blur(4px);}
+.sno-pct{position:relative;z-index:5;font-family:'Cinzel',serif;font-weight:900;font-size:clamp(30px,10vw,54px);color:#fff;text-shadow:0 0 18px var(--sno-glow,var(--gold-bright)),0 0 40px var(--sno-glow,var(--gold-bright));letter-spacing:2px;margin-top:16px;}
+.sno-status{position:relative;z-index:5;font-family:'Space Mono',monospace;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--parchment-dim);margin-top:4px;text-align:center;padding:0 20px;min-height:16px;}
+.sno-reveal{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;z-index:20;}
+.sno-reveal-img{width:min(56vw,230px);height:min(56vw,230px);border-radius:50%;object-fit:cover;opacity:0;transform:scale(.3);box-shadow:0 0 0 4px var(--sno-glow,var(--gold-bright)),0 0 60px var(--sno-glow,var(--gold-bright));}
+.sno-reveal-img.on{animation:snoSlamIn .55s cubic-bezier(.17,.9,.3,1.3) forwards;}
+@keyframes snoSlamIn{0%{opacity:0;transform:scale(2.6);filter:blur(8px);}60%{opacity:1;transform:scale(.88);filter:blur(0);}100%{opacity:1;transform:scale(1);}}
+.sno-impact{position:absolute;inset:-40%;opacity:0;z-index:19;width:auto;height:auto;}
+.sno-impact.on{animation:snoImpactPop .5s ease-out forwards;}
+@keyframes snoImpactPop{0%{opacity:1;transform:scale(.3);}100%{opacity:0;transform:scale(1.8);}}
+.sno-impact line{stroke:var(--sno-glow,var(--gold-bright));stroke-width:2;}
+.sno-caption{position:absolute;bottom:22%;z-index:21;font-family:'Cinzel',serif;font-weight:900;font-size:clamp(18px,5.5vw,28px);color:#fff;text-shadow:0 0 16px var(--sno-glow,var(--gold-bright));opacity:0;letter-spacing:1px;text-align:center;padding:0 20px;}
+.sno-caption.on{animation:snoCapIn .4s ease .2s forwards;}
+@keyframes snoCapIn{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+.sno-actions{position:relative;z-index:30;display:flex;gap:10px;margin-top:20px;}
+.smallnox-overlay.sno-shake{animation:none;}
+.smallnox-overlay.sno-shake.go{animation:snoScreenShake .45s ease;}
+@keyframes snoScreenShake{0%,100%{transform:translate(0,0);}20%{transform:translate(-8px,4px);}40%{transform:translate(7px,-5px);}60%{transform:translate(-6px,3px);}80%{transform:translate(5px,-3px);}}
+.sno-flash{position:fixed;inset:0;background:#fff;opacity:0;pointer-events:none;z-index:310;}
