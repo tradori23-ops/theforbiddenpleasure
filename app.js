@@ -690,6 +690,11 @@ Object.assign(STR.en, {"guidePage.eyebrow": "Start here", "guidePage.title": "Si
 Object.assign(STR.es, {"guidePage.eyebrow": "Empieza aquí", "guidePage.title": "Guía del sitio", "guidePage.desc": "Toca una sección para ir a ella, o recórrelas en orden.", "guidePage.prev": "Anterior", "guidePage.next": "Siguiente"});
 Object.assign(STR.fr, {"guidePage.eyebrow": "Commencez ici", "guidePage.title": "Guide du site", "guidePage.desc": "Touchez une section pour y accéder, ou parcourez-les dans l’ordre.", "guidePage.prev": "Précédent", "guidePage.next": "Suivant"});
 Object.assign(STR.de, {"guidePage.eyebrow": "Hier beginnen", "guidePage.title": "Website-Guide", "guidePage.desc": "Tippe auf einen Abschnitt, um dorthin zu springen, oder gehe sie der Reihe nach durch.", "guidePage.prev": "Zurück", "guidePage.next": "Weiter"});
+Object.assign(STR.it, {"sno.retry": "Riprova", "sno.close": "Chiudi", "sno.uploadStart": "Caricamento in corso…", "sno.uploadDoneCaption": "CARICAMENTO RIUSCITO", "sno.uploadDoneStatus": "File salvati.", "sno.uploadFailStatus": "Controlla la connessione e riprova.", "sno.downloadStart": "Scaricamento in corso…", "sno.downloadDoneCaption": "DISPONIBILE OFFLINE", "sno.downloadDoneStatus": "Titolo salvato per la lettura offline.", "sno.downloadFailStatus": "Controlla la connessione o lo spazio disponibile.", "sno.errorCaption": "QUALCOSA È ANDATO STORTO"});
+Object.assign(STR.en, {"sno.retry": "Retry", "sno.close": "Close", "sno.uploadStart": "Uploading…", "sno.uploadDoneCaption": "UPLOAD COMPLETE", "sno.uploadDoneStatus": "Files saved.", "sno.uploadFailStatus": "Check your connection and try again.", "sno.downloadStart": "Downloading…", "sno.downloadDoneCaption": "AVAILABLE OFFLINE", "sno.downloadDoneStatus": "Title saved for offline reading.", "sno.downloadFailStatus": "Check your connection or available space.", "sno.errorCaption": "SOMETHING WENT WRONG"});
+Object.assign(STR.es, {"sno.retry": "Reintentar", "sno.close": "Cerrar", "sno.uploadStart": "Subiendo…", "sno.uploadDoneCaption": "CARGA COMPLETADA", "sno.uploadDoneStatus": "Archivos guardados.", "sno.uploadFailStatus": "Revisa tu conexión e inténtalo de nuevo.", "sno.downloadStart": "Descargando…", "sno.downloadDoneCaption": "DISPONIBLE SIN CONEXIÓN", "sno.downloadDoneStatus": "Título guardado para leer sin conexión.", "sno.downloadFailStatus": "Revisa tu conexión o el espacio disponible.", "sno.errorCaption": "ALGO SALIÓ MAL"});
+Object.assign(STR.fr, {"sno.retry": "Réessayer", "sno.close": "Fermer", "sno.uploadStart": "Envoi en cours…", "sno.uploadDoneCaption": "ENVOI RÉUSSI", "sno.uploadDoneStatus": "Fichiers enregistrés.", "sno.uploadFailStatus": "Vérifiez votre connexion et réessayez.", "sno.downloadStart": "Téléchargement en cours…", "sno.downloadDoneCaption": "DISPONIBLE HORS LIGNE", "sno.downloadDoneStatus": "Titre enregistré pour la lecture hors ligne.", "sno.downloadFailStatus": "Vérifiez votre connexion ou l'espace disponible.", "sno.errorCaption": "UN PROBLÈME EST SURVENU"});
+Object.assign(STR.de, {"sno.retry": "Erneut versuchen", "sno.close": "Schließen", "sno.uploadStart": "Wird hochgeladen…", "sno.uploadDoneCaption": "UPLOAD ERFOLGREICH", "sno.uploadDoneStatus": "Dateien gespeichert.", "sno.uploadFailStatus": "Verbindung prüfen und erneut versuchen.", "sno.downloadStart": "Wird heruntergeladen…", "sno.downloadDoneCaption": "OFFLINE VERFÜGBAR", "sno.downloadDoneStatus": "Titel für Offline-Lesen gespeichert.", "sno.downloadFailStatus": "Verbindung oder verfügbaren Speicher prüfen.", "sno.errorCaption": "ETWAS IST SCHIEFGELAUFEN"});
 
 var CHAR_META = {
   Lucifer:{role:{it:"Il Portatore di Luce",en:"The Light-Bearer",es:"El Portador de Luz",fr:"Le Porteur de Lumière",de:"Der Lichtträger"},
@@ -4270,41 +4275,44 @@ function translateChatMessage(text){
   });
 }
 
-function uploadCatalogAsset(file, path){
-  var session = getSession();
-  return fetch(SUPABASE_URL + '/storage/v1/object/comic-pages/' + path, {
-    method:'POST',
-    headers:{
-      'apikey':SUPABASE_ANON_KEY,
-      'Authorization':'Bearer ' + session.access_token,
-      'Content-Type': file.type || 'application/octet-stream',
-      'x-upsert': 'true'
-    },
-    body: file
-  }).then(function(r){
-    if(!r.ok) throw new Error('asset upload failed: ' + r.status);
-    return SUPABASE_URL + '/storage/v1/object/public/comic-pages/' + path;
+/* Carica un file con XMLHttpRequest invece di fetch: è l'unico modo, su tutti i browser
+   (Safari/iPhone incluso), di sapere quanti byte sono già arrivati DURANTE l'invio — fetch
+   non lo garantisce in modo affidabile. onProgress(byteInviati, byteTotali) viene richiamata
+   più volte durante l'invio, non solo alla fine. */
+function xhrUpload(url, file, session, onProgress){
+  return new Promise(function(resolve, reject){
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', url, true);
+    xhr.setRequestHeader('apikey', SUPABASE_ANON_KEY);
+    xhr.setRequestHeader('Authorization', 'Bearer ' + session.access_token);
+    xhr.setRequestHeader('Content-Type', file.type || 'application/octet-stream');
+    xhr.setRequestHeader('x-upsert', 'true');
+    if(xhr.upload && onProgress){
+      xhr.upload.onprogress = function(e){
+        if(e.lengthComputable) onProgress(e.loaded, e.total);
+      };
+    }
+    xhr.onload = function(){
+      if(xhr.status >= 200 && xhr.status < 300){ if(onProgress) onProgress(file.size, file.size); resolve(); }
+      else reject(new Error('upload failed: ' + xhr.status));
+    };
+    xhr.onerror = function(){ reject(new Error('network error during upload')); };
+    xhr.send(file);
   });
+}
+function uploadCatalogAsset(file, path, onProgress){
+  var session = getSession();
+  return xhrUpload(SUPABASE_URL + '/storage/v1/object/comic-pages/' + path, file, session, onProgress)
+    .then(function(){ return SUPABASE_URL + '/storage/v1/object/public/comic-pages/' + path; });
 }
 
 // Il PDF va nel bucket protetto (stesso di comic-pages-clean): niente indirizzo
 // pubblico, solo chi ha il permesso (admin o verificato) riesce a scaricarlo
 // davvero, non solo a non vedere il bottone.
-function uploadCatalogPdf(file, path){
+function uploadCatalogPdf(file, path, onProgress){
   var session = getSession();
-  return fetch(SUPABASE_URL + '/storage/v1/object/comic-pages-clean/' + path, {
-    method:'POST',
-    headers:{
-      'apikey':SUPABASE_ANON_KEY,
-      'Authorization':'Bearer ' + session.access_token,
-      'Content-Type': file.type || 'application/octet-stream',
-      'x-upsert': 'true'
-    },
-    body: file
-  }).then(function(r){
-    if(!r.ok) throw new Error('pdf upload failed: ' + r.status);
-    return path; // salviamo solo il percorso, non un indirizzo pubblico — non esiste
-  });
+  return xhrUpload(SUPABASE_URL + '/storage/v1/object/comic-pages-clean/' + path, file, session, onProgress)
+    .then(function(){ return path; }); // salviamo solo il percorso, non un indirizzo pubblico — non esiste
 }
 
 /* Comprime un'immagine PRIMA di caricarla, ridimensionandola a un massimo
@@ -4491,36 +4499,19 @@ function watermarkImageFile(file){
   });
 }
 
-function uploadComicPage(file, path){
+function uploadComicPage(file, path, onProgress){
   var session = getSession();
-  return fetch(SUPABASE_URL + '/storage/v1/object/comic-pages/' + path, {
-    method:'POST',
-    headers:{
-      'apikey':SUPABASE_ANON_KEY,
-      'Authorization':'Bearer ' + session.access_token,
-      'Content-Type': file.type || 'image/jpeg',
-      'x-upsert': 'true'
-    },
-    body: file
-  }).then(function(r){
-    if(!r.ok) throw new Error('page upload failed: ' + r.status);
-    return SUPABASE_URL + '/storage/v1/object/public/comic-pages/' + path;
-  });
+  return xhrUpload(SUPABASE_URL + '/storage/v1/object/comic-pages/' + path, file, session, onProgress)
+    .then(function(){ return SUPABASE_URL + '/storage/v1/object/public/comic-pages/' + path; });
 }
 
-function uploadCleanPage(file, path){
+function uploadCleanPage(file, path, onProgress){
   var session = getSession();
-  return fetch(SUPABASE_URL + '/storage/v1/object/comic-pages-clean/' + path, {
-    method:'POST',
-    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type': file.type || 'image/jpeg' },
-    body: file
-  }).then(function(r){
-    if(!r.ok) throw new Error('clean page upload failed: ' + r.status);
-    return path; // bucket privato — restituiamo solo il percorso, non un url pubblico
-  });
+  return xhrUpload(SUPABASE_URL + '/storage/v1/object/comic-pages-clean/' + path, file, session, onProgress)
+    .then(function(){ return path; }); // bucket privato — restituiamo solo il percorso, non un url pubblico
 }
 
-function uploadAllPendingPages(comicId){
+function uploadAllPendingPages(comicId, onProgress){
   var status = document.getElementById('pagesUploadStatus');
   if(pendingPages.length === 0) return Promise.resolve({urls:[], cleanPaths:[]});
   var urls = [];
@@ -4528,16 +4519,24 @@ function uploadAllPendingPages(comicId){
   var i = 0;
   function next(){
     if(i >= pendingPages.length) return Promise.resolve({urls:urls, cleanPaths:cleanPaths});
-    status.textContent = t('pages.uploading').replace('{n}', i + 1).replace('{total}', pendingPages.length);
+    var label = t('pages.uploading').replace('{n}', i + 1).replace('{total}', pendingPages.length);
+    status.textContent = label;
+    if(onProgress) onProgress(0, label); // aggiorna solo l'etichetta: nessun byte nuovo ancora
     var file = pendingPages[i].file;
     var pageNum = String(i + 1);
     while(pageNum.length < 3) pageNum = '0' + pageNum;
     var path = comicId + '/' + pageNum + '.jpg'; // watermarking always re-encodes to JPEG
     return watermarkImageFile(file).then(function(watermarkedBlob){
-      return uploadComicPage(watermarkedBlob, path);
+      var lastLoaded = 0;
+      return uploadComicPage(watermarkedBlob, path, function(loaded){
+        if(onProgress) onProgress(loaded - lastLoaded); lastLoaded = loaded;
+      });
     }).then(function(url){
       urls.push(url);
-      return uploadCleanPage(file, path); // stesso nome file, bucket diverso (privato)
+      var lastLoaded2 = 0;
+      return uploadCleanPage(file, path, function(loaded){ // stesso nome file, bucket diverso (privato)
+        if(onProgress) onProgress(loaded - lastLoaded2); lastLoaded2 = loaded;
+      });
     }).then(function(cleanPath){
       cleanPaths.push(cleanPath);
       i++;
@@ -5223,6 +5222,31 @@ function handleAddEntry(){
 
   var btn = document.getElementById('btnAddEntry');
   btn.disabled = true;
+  runTitleUploadSequence(newItem, isEdit);
+}
+
+/* Costruisce e lancia la sequenza di caricamento di un titolo (traduzione sinossi, copertina,
+   PDF, pagine). Funzione a sé — non solo dentro handleAddEntry — perché così "Riprova" nella
+   schermata di SmallNox può richiamarla di nuovo sugli stessi identici file, senza dover
+   rifare tutto il modulo da capo. Se qualcosa fallisce a metà, ripartire la rifà tutta da capo
+   (non riprende esattamente dal punto interrotto), ma sugli stessi file, non su altri a caso. */
+function runTitleUploadSequence(newItem, isEdit){
+  var btn = document.getElementById('btnAddEntry');
+  var err = document.getElementById('adminError');
+  var status = document.getElementById('pagesUploadStatus');
+  btn.disabled = true;
+  err.textContent = '';
+
+  var totalBytes = (pendingCover ? pendingCover.file.size : 0) + (pendingPdf ? pendingPdf.size : 0)
+    + pendingPages.reduce(function(sum, p){ return sum + p.file.size * 2; }, 0); // ogni pagina viaggia due volte: filigranata + pulita
+  var sentBytes = 0;
+  var showsOverlay = totalBytes > 0;
+  function bumpBytes(delta){
+    sentBytes += delta;
+    if(showsOverlay) snoProgress((sentBytes / Math.max(totalBytes, 1)) * 100);
+  }
+  function setLabel(label){ if(showsOverlay) document.getElementById('snoStatus').textContent = label; }
+  if(showsOverlay) snoStart(t('sno.uploadStart'), function(){ runTitleUploadSequence(newItem, isEdit); });
 
   var uploadSteps = Promise.resolve();
 
@@ -5231,13 +5255,13 @@ function handleAddEntry(){
   // just falls back to the English synopsis until it's translated later
   uploadSteps = uploadSteps.then(function(){
     status.textContent = t('synopsis.translating');
-    return translateSynopsis(synopsis).then(function(result){
+    return translateSynopsis(newItem.synopsis).then(function(result){
       newItem.synopsis_it = result.it || null;
       newItem.synopsis_es = result.es || null;
       newItem.synopsis_fr = result.fr || null;
       newItem.synopsis_de = result.de || null;
-    }).catch(function(err){
-      console.warn('Synopsis translation failed, continuing without it:', err);
+    }).catch(function(translateErr){
+      console.warn('Synopsis translation failed, continuing without it:', translateErr);
     });
   });
 
@@ -5246,10 +5270,14 @@ function handleAddEntry(){
     var coverExt = coverExtMatch ? coverExtMatch[1].toLowerCase() : 'jpg';
     uploadSteps = uploadSteps.then(function(){
       status.textContent = t('cover.uploading');
+      setLabel(t('cover.uploading'));
       return compressImageFile(pendingCover.file, 2600, 0.92).then(function(compressed){
         return classifyFileMaturity(compressed).then(function(isMature){
           if(isMature) newItem.mature = true;
-          return uploadCatalogAsset(compressed, newItem.id + '/cover-' + Date.now() + '.' + coverExt);
+          var lastLoaded = 0;
+          return uploadCatalogAsset(compressed, newItem.id + '/cover-' + Date.now() + '.' + coverExt, function(loaded){
+            bumpBytes(loaded - lastLoaded); lastLoaded = loaded;
+          });
         });
       });
     }).then(function(url){ newItem.cover_url = url; });
@@ -5258,12 +5286,19 @@ function handleAddEntry(){
   if(pendingPdf){
     uploadSteps = uploadSteps.then(function(){
       status.textContent = t('pdf.uploading');
-      return uploadCatalogPdf(pendingPdf, newItem.id + '/comic.pdf');
+      setLabel(t('pdf.uploading'));
+      var lastLoaded = 0;
+      return uploadCatalogPdf(pendingPdf, newItem.id + '/comic.pdf', function(loaded){
+        bumpBytes(loaded - lastLoaded); lastLoaded = loaded;
+      });
     }).then(function(path){ newItem.pdf_url = path; });
   }
 
   uploadSteps = uploadSteps.then(function(){
-    return uploadAllPendingPages(newItem.id);
+    return uploadAllPendingPages(newItem.id, function(delta, label){
+      bumpBytes(delta);
+      if(label != null) setLabel(label);
+    });
   });
 
   uploadSteps.then(function(result){
@@ -5306,12 +5341,14 @@ function handleAddEntry(){
     } else {
       supabaseInsert(newItem);
     }
+    btn.disabled = false;
+    if(showsOverlay) snoFinish(true, t('sno.uploadDoneCaption'), t('sno.uploadDoneStatus'));
   }).catch(function(e){
     status.textContent = '';
     err.textContent = t('pages.uploadError');
     console.warn('Asset upload failed:', e);
-  }).then(function(){
     btn.disabled = false;
+    if(showsOverlay) snoFinish(false, t('sno.errorCaption'), t('sno.uploadFailStatus'));
   });
 }
 
@@ -10654,15 +10691,23 @@ function openTitleModal(item){
         offlineBtn.textContent = t('offline.download');
         offlineBtn.onclick = function(){
           offlineBtn.disabled = true;
-          offlineBtn.textContent = t('pdf.preparing');
-          downloadItemForOffline(item).then(function(){
-            offlineBtn.disabled = false;
-            refreshOfflineBtnState();
-            if(myComicsTab === 'offline') renderMyComics();
-          }).catch(function(){
-            offlineBtn.disabled = false;
-            refreshOfflineBtnState();
-          });
+          function attempt(){
+            snoStart(t('sno.downloadStart'), attempt);
+            downloadItemForOffline(item, function(done, total){
+              snoProgress((done / total) * 100, t('pages.uploading').replace('{n}', done).replace('{total}', total));
+            }).then(function(){
+              snoFinish(true, t('sno.downloadDoneCaption'), t('sno.downloadDoneStatus'));
+              offlineBtn.disabled = false;
+              refreshOfflineBtnState();
+              if(myComicsTab === 'offline') renderMyComics();
+            }).catch(function(err){
+              console.warn('Offline download failed:', err);
+              snoFinish(false, t('sno.errorCaption'), t('sno.downloadFailStatus'));
+              offlineBtn.disabled = false;
+              refreshOfflineBtnState();
+            });
+          }
+          attempt();
         };
       }
     }
@@ -14331,12 +14376,14 @@ var offlineSyncRunning = false;
 // Scarica in cache un singolo titolo (pagine pulite + fallback pubblico + PDF)
 // e aggiorna la sua voce in lux_offline_meta. Usata sia dal bottone "Scarica
 // tutto per offline" sia dal bottone di download sul singolo titolo.
-function syncSingleItemForOffline(item, cache, meta){
+function syncSingleItemForOffline(item, cache, meta, onProgress){
   var cleanPages = item.pages_clean || [];
   var publicPages = item.pages || [];
   var itemKeys = cleanPages.map(function(path){ return 'https://offline-cache.local/clean/' + path; });
   var pdfKey = item.pdf_url ? 'https://offline-cache.local/clean/' + item.pdf_url : null;
   var toFetchCount = cleanPages.length + (item.pdf_url ? 1 : 0);
+  var doneCount = 0;
+  function tick(){ doneCount++; if(onProgress) onProgress(doneCount, Math.max(toFetchCount, 1)); }
   return Promise.all(cleanPages.map(function(path, idx){
     var cacheKey = 'https://offline-cache.local/clean/' + path;
     return cache.match(cacheKey).then(function(existing){
@@ -14356,7 +14403,7 @@ function syncSingleItemForOffline(item, cache, meta){
       }).then(function(blob){
         if(blob) return cache.put(cacheKey, new Response(blob));
       }).catch(function(){}); // un titolo che fallisce non deve fermare gli altri
-    });
+    }).then(tick);
   }).concat(item.pdf_url ? [(function(){
     var cacheKey = pdfKey;
     return cache.match(cacheKey).then(function(existing){
@@ -14374,7 +14421,7 @@ function syncSingleItemForOffline(item, cache, meta){
         if(!r.ok) return;
         return r.blob().then(function(blob){ return cache.put(cacheKey, new Response(blob)); });
       }).catch(function(){});
-    });
+    }).then(tick);
   })()] : [])).then(function(){
     // il download (anche parziale) resetta la finestra di 3 giorni per questo titolo
     if(toFetchCount) meta[item.id] = { t: Date.now(), keys: pdfKey ? itemKeys.concat([pdfKey]) : itemKeys };
@@ -14385,13 +14432,13 @@ function syncSingleItemForOffline(item, cache, meta){
 // come file: il contenuto resta dentro la cache dell'app e compare nella
 // scheda "Offline" di "I Miei Comic", da dove si legge come tutto il resto.
 // Sparisce da solo dopo 3 giorni (vedi purgeExpiredOfflineContent).
-function downloadItemForOffline(item){
+function downloadItemForOffline(item, onProgress){
   if(!('caches' in window)) return Promise.reject(new Error('cache API not available'));
   return purgeExpiredOfflineContent().then(function(){
     return caches.open(OFFLINE_CATALOG_CACHE);
   }).then(function(cache){
     var meta = getOfflineMeta();
-    return syncSingleItemForOffline(item, cache, meta).then(function(){
+    return syncSingleItemForOffline(item, cache, meta, onProgress).then(function(){
       saveOfflineMeta(meta);
       localStorage.setItem('lux_offline_synced_at', String(Date.now()));
     });
@@ -16149,6 +16196,7 @@ function __appInit(){
   heartbeatPresence();
   initTextOnlyToggle();
   initExportData();
+  initSnoOverlay();
   setInterval(function(){ if(!document.hidden) refreshCommunityDot(); }, 60000); // pallino Community
   document.addEventListener('visibilitychange', function(){ if(!document.hidden) refreshCommunityDot(); });
   setInterval(heartbeatPresence, 60000); // aggiorna "ultimo attivo" per lo stato online nei DM
@@ -16563,6 +16611,142 @@ function renderGuidePage(){
   if(!document.getElementById('guideToc')) return; // no-op fuori da guida.html
   renderGuideToc();
   renderGuideSection();
+}
+
+/* ============ SMALLNOX OVERLAY — motore condiviso (caricamento Amministra, download offline) ============
+   Un'unica schermata, riusata nei due punti dove serve mostrare avanzamento reale: mentre si
+   caricano i file di un titolo da Amministra, e mentre si scarica un titolo per leggerlo offline.
+   snoStart() la apre, snoProgress() aggiorna la percentuale, snoFinish() mostra l'esito. */
+var snoTimers = { spark: null, bolt: null };
+var snoRetryFn = null; // richiamata se l'utente preme "Riprova" dopo un errore
+function snoBuildImpactLines(){
+  var svg = document.getElementById('snoImpact');
+  if(!svg || svg.childNodes.length) return; // costruito una volta sola, poi riusato
+  var html = '';
+  for(var i = 0; i < 16; i++){
+    var ang = (i / 16) * Math.PI * 2, r1 = 60, r2 = 190;
+    var x1 = 200 + Math.cos(ang) * r1, y1 = 200 + Math.sin(ang) * r1;
+    var x2 = 200 + Math.cos(ang) * r2, y2 = 200 + Math.sin(ang) * r2;
+    html += '<line x1="' + x1 + '" y1="' + y1 + '" x2="' + x2 + '" y2="' + y2 + '"/>';
+  }
+  svg.innerHTML = html;
+}
+function snoSpawnSpark(){
+  var box = document.getElementById('snoSparks');
+  if(!box || box.children.length >= 14) return; // tetto massimo: non si accumulano se la pagina è impegnata
+  var s = document.createElement('div');
+  s.className = 'sno-spark';
+  s.style.left = (10 + Math.random() * 80) + '%';
+  var dur = 2.4 + Math.random() * 1.6;
+  s.style.transition = 'transform ' + dur + 's linear, opacity ' + dur + 's linear';
+  s.addEventListener('transitionend', function(){ s.remove(); });
+  box.appendChild(s);
+  requestAnimationFrame(function(){
+    requestAnimationFrame(function(){
+      s.style.opacity = '.9';
+      s.style.transform = 'translateY(-' + (220 + Math.random() * 160) + 'px) translateX(' + (Math.random() * 60 - 30) + 'px)';
+    });
+  });
+  setTimeout(function(){ if(s.parentNode) s.remove(); }, dur * 1000 + 400); // rete di sicurezza
+}
+function snoSpawnBolt(){
+  var stage = document.getElementById('smallnoxOverlay');
+  if(!stage) return;
+  var w = stage.clientWidth, h = stage.clientHeight;
+  var x1 = Math.random() * w, y1 = 0, x2 = x1 + (Math.random() * 160 - 80), y2 = h * 0.5 + Math.random() * h * 0.3;
+  var midx = (x1 + x2) / 2 + (Math.random() * 60 - 30), midy = (y1 + y2) / 2;
+  var b = document.createElement('div');
+  b.className = 'sno-bolt';
+  b.style.cssText = 'left:0;top:0;width:' + w + 'px;height:' + h + 'px;';
+  b.innerHTML = '<svg viewBox="0 0 ' + w + ' ' + h + '"><path d="M' + x1 + ',' + y1 + ' L' + midx + ',' + midy + ' L' + x2 + ',' + y2 + '"/></svg>';
+  document.getElementById('snoBolts').appendChild(b);
+  requestAnimationFrame(function(){ b.style.transition = 'opacity .08s'; b.style.opacity = '1'; });
+  setTimeout(function(){ b.style.transition = 'opacity .25s'; b.style.opacity = '0'; }, 90);
+  setTimeout(function(){ b.remove(); }, 400);
+}
+function snoKillAnimations(el){ if(el && el.getAnimations){ el.getAnimations().forEach(function(a){ a.cancel(); }); } }
+function snoReset(){
+  var overlay = document.getElementById('smallnoxOverlay');
+  clearInterval(snoTimers.spark); clearInterval(snoTimers.bolt);
+  overlay.className = 'smallnox-overlay sno-shake';
+  var portrait = document.getElementById('snoPortrait');
+  portrait.style.opacity = '0';
+  var revealImg = document.getElementById('snoRevealImg');
+  revealImg.className = 'sno-reveal-img'; revealImg.src = '';
+  document.getElementById('snoImpact').setAttribute('class', 'sno-impact');
+  var caption = document.getElementById('snoCaption');
+  caption.className = 'sno-caption'; caption.textContent = '';
+  // annulla animazioni ancora attive: senza questo, rifare subito dopo un esito può lasciare
+  // incollato lo stato precedente sopra quello nuovo (i browser a volte non ripartono da soli)
+  snoKillAnimations(revealImg); snoKillAnimations(document.getElementById('snoImpact')); snoKillAnimations(caption);
+  document.getElementById('snoSparks').innerHTML = '';
+  document.getElementById('snoBolts').innerHTML = '';
+  document.getElementById('snoPct').textContent = '0%';
+  document.getElementById('snoStatus').textContent = '';
+  document.getElementById('snoActions').classList.add('hidden');
+  void revealImg.offsetWidth; // forza un ridisegno: garantisce che l'animazione riparta ogni volta
+}
+function snoStart(initialStatus, retryFn){
+  snoReset();
+  snoRetryFn = retryFn || null;
+  snoBuildImpactLines();
+  document.getElementById('smallnoxOverlay').classList.remove('hidden');
+  document.getElementById('snoStatus').textContent = initialStatus || '';
+  snoTimers.spark = setInterval(snoSpawnSpark, 220);
+  snoTimers.bolt = setInterval(function(){ if(Math.random() < 0.5) snoSpawnBolt(); }, 380);
+}
+function snoProgress(pct, statusText){
+  pct = Math.max(0, Math.min(100, pct));
+  document.getElementById('snoPct').textContent = Math.round(pct) + '%';
+  var portrait = document.getElementById('snoPortrait');
+  portrait.style.opacity = String(Math.min(pct / 100, 0.9));
+  portrait.style.transform = 'scale(' + (1.5 - pct / 100 * 0.5) + ') rotate(' + ((100 - pct) / 100 * 8) + 'deg)';
+  portrait.style.filter = 'blur(' + (4 * (1 - pct / 100)) + 'px)';
+  if(statusText != null) document.getElementById('snoStatus').textContent = statusText;
+}
+function snoFinish(ok, captionText, statusText){
+  clearInterval(snoTimers.spark); clearInterval(snoTimers.bolt);
+  var overlay = document.getElementById('smallnoxOverlay');
+  var portrait = document.getElementById('snoPortrait');
+  portrait.src = ok ? 'smallnox-load-calm.jpg' : 'smallnox-load-angry.jpg';
+  portrait.style.opacity = '1'; portrait.style.transform = 'scale(1)'; portrait.style.filter = 'blur(0)';
+  document.getElementById('snoPct').textContent = '100%';
+  if(!ok){
+    overlay.classList.add('sno-bad');
+    for(var i = 0; i < 3; i++) setTimeout(snoSpawnBolt, i * 70);
+  }
+  var flash = document.getElementById('snoFlash');
+  flash.style.transition = 'opacity .05s'; flash.style.opacity = '.85';
+  setTimeout(function(){ flash.style.transition = 'opacity .4s'; flash.style.opacity = '0'; }, 60);
+  overlay.classList.add('go'); setTimeout(function(){ overlay.classList.remove('go'); }, 450);
+  var img = document.getElementById('snoRevealImg');
+  img.src = ok ? 'smallnox-load-calm.jpg' : 'smallnox-load-angry.jpg';
+  snoKillAnimations(img); snoKillAnimations(document.getElementById('snoImpact'));
+  void img.offsetWidth;
+  setTimeout(function(){
+    img.classList.add('on');
+    document.getElementById('snoImpact').classList.add('on');
+    var cap = document.getElementById('snoCaption');
+    cap.textContent = captionText || '';
+    cap.classList.add('on');
+    if(statusText != null) document.getElementById('snoStatus').textContent = statusText;
+  }, 80);
+  var actions = document.getElementById('snoActions');
+  var retryBtn = document.getElementById('snoRetryBtn');
+  retryBtn.classList.toggle('hidden', ok || !snoRetryFn); // "Riprova" solo se è fallito e sappiamo cosa rilanciare
+  actions.classList.remove('hidden');
+}
+function snoClose(){
+  document.getElementById('smallnoxOverlay').classList.add('hidden');
+  clearInterval(snoTimers.spark); clearInterval(snoTimers.bolt);
+  snoRetryFn = null;
+}
+function initSnoOverlay(){
+  var closeBtn = document.getElementById('snoCloseBtn'), retryBtn = document.getElementById('snoRetryBtn');
+  if(!closeBtn || closeBtn.dataset.ready) return;
+  closeBtn.dataset.ready = '1';
+  closeBtn.addEventListener('click', snoClose);
+  retryBtn.addEventListener('click', function(){ if(snoRetryFn) snoRetryFn(); });
 }
 
 // Il loader.js inietta questo file DOPO che DOMContentLoaded è già passato
