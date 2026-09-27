@@ -16925,13 +16925,13 @@ function closeBookmarkChat(){
   document.getElementById('bookmarkListView').classList.remove('hidden');
 }
 function sendBookmarkChatMessage(){
-  var box = document.getElementById('fChatMessage');
-  var err = document.getElementById('chatMessageError');
+  var box = document.getElementById('bmChatInput');
+  var err = document.getElementById('bmChatError');
   var body = box.value.trim();
   err.textContent = '';
   if(!body || !currentChatThreadId) return;
   var session = getSession();
-  var sendBtn = document.getElementById('btnSendChat');
+  var sendBtn = document.getElementById('bmSendChat');
   sendBtn.disabled = true;
   fetch(SUPABASE_URL + '/rest/v1/dm_messages', {
     method:'POST',
@@ -16973,8 +16973,8 @@ function initBookmarkTab(){
   document.getElementById('bookmarkClose2').addEventListener('click', closeDrawer);
   document.getElementById('bookmarkChatBack').addEventListener('click', closeBookmarkChat);
   backdrop.addEventListener('click', closeDrawer);
-  document.getElementById('btnSendChat').addEventListener('click', sendBookmarkChatMessage);
-  document.getElementById('fChatMessage').addEventListener('keydown', function(e){ if(e.key === 'Enter'){ e.preventDefault(); sendBookmarkChatMessage(); } });
+  document.getElementById('bmSendChat').addEventListener('click', sendBookmarkChatMessage);
+  document.getElementById('bmChatInput').addEventListener('keydown', function(e){ if(e.key === 'Enter'){ e.preventDefault(); sendBookmarkChatMessage(); } });
 }
 function initSnoOverlay(){
   var closeBtn = document.getElementById('snoCloseBtn'), retryBtn = document.getElementById('snoRetryBtn');
