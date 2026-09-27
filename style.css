@@ -1411,6 +1411,13 @@ footer .fcopy{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
   font-size:12px;line-height:1;cursor:pointer;
 }
 .friend-contact-remove:hover{border-color:#e24b4a;color:#e24b4a;}
+.friend-contact-msg{
+  width:26px;height:26px;border-radius:50%;flex-shrink:0;
+  background:none;border:1px solid var(--line);color:var(--gold-bright);
+  font-size:13px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;
+}
+.friend-contact-msg:hover{border-color:var(--gold);background:rgba(201,162,77,0.12);}
+.contatti-chat-new-row{padding:10px 12px 4px;display:flex;justify-content:flex-end;}
 
 .user-directory-avatar-wrap{position:relative;flex-shrink:0;width:32px;height:32px;}
 .user-directory-avatar{

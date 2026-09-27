@@ -695,6 +695,11 @@ Object.assign(STR.en, {"sno.retry": "Retry", "sno.close": "Close", "sno.uploadSt
 Object.assign(STR.es, {"sno.retry": "Reintentar", "sno.close": "Cerrar", "sno.uploadStart": "Subiendo…", "sno.uploadDoneCaption": "CARGA COMPLETADA", "sno.uploadDoneStatus": "Archivos guardados.", "sno.uploadFailStatus": "Revisa tu conexión e inténtalo de nuevo.", "sno.downloadStart": "Descargando…", "sno.downloadDoneCaption": "DISPONIBLE SIN CONEXIÓN", "sno.downloadDoneStatus": "Título guardado para leer sin conexión.", "sno.downloadFailStatus": "Revisa tu conexión o el espacio disponible.", "sno.errorCaption": "ALGO SALIÓ MAL"});
 Object.assign(STR.fr, {"sno.retry": "Réessayer", "sno.close": "Fermer", "sno.uploadStart": "Envoi en cours…", "sno.uploadDoneCaption": "ENVOI RÉUSSI", "sno.uploadDoneStatus": "Fichiers enregistrés.", "sno.uploadFailStatus": "Vérifiez votre connexion et réessayez.", "sno.downloadStart": "Téléchargement en cours…", "sno.downloadDoneCaption": "DISPONIBLE HORS LIGNE", "sno.downloadDoneStatus": "Titre enregistré pour la lecture hors ligne.", "sno.downloadFailStatus": "Vérifiez votre connexion ou l'espace disponible.", "sno.errorCaption": "UN PROBLÈME EST SURVENU"});
 Object.assign(STR.de, {"sno.retry": "Erneut versuchen", "sno.close": "Schließen", "sno.uploadStart": "Wird hochgeladen…", "sno.uploadDoneCaption": "UPLOAD ERFOLGREICH", "sno.uploadDoneStatus": "Dateien gespeichert.", "sno.uploadFailStatus": "Verbindung prüfen und erneut versuchen.", "sno.downloadStart": "Wird heruntergeladen…", "sno.downloadDoneCaption": "OFFLINE VERFÜGBAR", "sno.downloadDoneStatus": "Titel für Offline-Lesen gespeichert.", "sno.downloadFailStatus": "Verbindung oder verfügbaren Speicher prüfen.", "sno.errorCaption": "ETWAS IST SCHIEFGELAUFEN"});
+Object.assign(STR.it, {"contatti.chatTab": "Chat", "contatti.newMessage": "Nuovo messaggio"});
+Object.assign(STR.en, {"contatti.chatTab": "Chat", "contatti.newMessage": "New message"});
+Object.assign(STR.es, {"contatti.chatTab": "Chat", "contatti.newMessage": "Nuevo mensaje"});
+Object.assign(STR.fr, {"contatti.chatTab": "Chat", "contatti.newMessage": "Nouveau message"});
+Object.assign(STR.de, {"contatti.chatTab": "Chat", "contatti.newMessage": "Neue Nachricht"});
 
 var CHAR_META = {
   Lucifer:{role:{it:"Il Portatore di Luce",en:"The Light-Bearer",es:"El Portador de Luz",fr:"Le Porteur de Lumière",de:"Der Lichtträger"},
@@ -1262,6 +1267,7 @@ function afterAuthChange(){
   loadReadingProgress();
   loadLikes();
   loadNotifications();
+  loadUnreadDmCount();
   loadMyCreationSession().then(refreshAdminUI);
   sendHeartbeat();
   renderMaintenanceBanner(); // se chi si è appena autenticato è l'admin, il blocco manutenzione deve sparire subito
@@ -5783,6 +5789,7 @@ function loadMyRequests(){
 
 /* ============ NOTIFICATIONS (bell icon — comments on threads you're in, likes/comments for admin) ============ */
 var notifPollTimer = null;
+var dmCountPollTimer = null;
 var notifCache = [];
 
 function notifTimeAgo(iso){
@@ -8162,6 +8169,7 @@ function openChatWithUser(otherUserId, updateHistory){
           var dot = row.querySelector('.chat-sidebar-unread-dot');
           if(dot) dot.remove();
         }
+        loadUnreadDmCount(); // il numeretto sull'icona in alto deve scendere subito, non al prossimo giro di polling
       }).catch(function(){});
     })
     .catch(function(e){ console.warn('Chat init failed:', e); document.getElementById('chatOpenError').classList.remove('hidden'); });
@@ -8294,7 +8302,13 @@ function renderChatSidebar(profiles, threadByOtherId){
         (th && th.last_message_at ? '<span class="chat-sidebar-time">' + notifTimeAgo(th.last_message_at) + '</span>' : '') +
         (unread ? '<span class="chat-sidebar-unread-dot"></span>' : '') +
       '</span>';
-    main.addEventListener('click', function(){ openChatWithUser(p.id, true); });
+    main.addEventListener('click', function(){
+      // dentro chat.html la conversazione si apre sul posto (c'è già tutto il resto
+      // dell'interfaccia); da qualunque altra pagina (es. la nuova scheda Chat in
+      // Contatti) non ci sono gli stessi elementi, quindi si naviga per davvero
+      if(document.getElementById('chatBox')) openChatWithUser(p.id, true);
+      else window.location.href = 'chat.html?user=' + encodeURIComponent(p.id);
+    });
     row.appendChild(main);
 
     if(th){
@@ -9086,11 +9100,17 @@ function renderFriendContactList(friendsBox, accepted, uid){
             '<span class="friend-contact-status">' + (online ? t('userDir.online') : t('userDir.offline')) + '</span>' +
           '</span>' +
           '<span class="friend-contact-actions">' +
+            '<button type="button" class="friend-contact-msg" data-msg aria-label="' + t('community.privateMessage') + '" title="' + t('community.privateMessage') + '">💬</button>' +
             (isAdmin() ? '<button type="button" class="btn btn-sm btn-ghost friend-contact-invite" data-invite>' + t('collabSession.invite') + '</button>' : '') +
             '<button type="button" class="friend-contact-remove" data-remove aria-label="' + t('community.removeFriend') + '" title="' + t('community.removeFriend') + '">✕</button>' +
           '</span>';
         row.addEventListener('click', function(e){
-          if(e.target.closest('[data-invite]') || e.target.closest('[data-remove]')) return;
+          if(e.target.closest('[data-invite]') || e.target.closest('[data-remove]') || e.target.closest('[data-msg]')) return;
+          window.location.href = 'chat.html?user=' + encodeURIComponent(p.id);
+        });
+        var msgBtn = row.querySelector('[data-msg]');
+        msgBtn.addEventListener('click', function(e){
+          e.stopPropagation();
           window.location.href = 'chat.html?user=' + encodeURIComponent(p.id);
         });
         var inviteBtn = row.querySelector('[data-invite]');
@@ -9161,6 +9181,26 @@ function sendChannelMessage(){
 /* ---- Messaggi privati ---- */
 var dmActiveTab = 'all'; // all | unread | important | archived
 var dmThreadsCache = [];
+
+function loadUnreadDmCount(){
+  var session = getSession();
+  var badge = document.getElementById('chatHeaderBadge');
+  var btn = document.getElementById('btnChatHeader');
+  if(!isSignedIn()){ if(btn) btn.classList.add('hidden'); if(dmCountPollTimer){ clearInterval(dmCountPollTimer); dmCountPollTimer = null; } return Promise.resolve(); }
+  if(btn) btn.classList.remove('hidden');
+  var uid = currentUserId();
+  return fetch(SUPABASE_URL + '/rest/v1/dm_threads?select=*&or=(user_a.eq.' + encodeURIComponent(uid) + ',user_b.eq.' + encodeURIComponent(uid) + ')', { headers: communityHeaders() })
+    .then(function(r){ return r.ok ? r.json() : []; })
+    .then(function(rows){
+      var unread = rows.filter(function(th){ return !dmThreadState(th, uid).read; }).length;
+      if(badge){
+        if(unread > 0){ badge.textContent = unread > 99 ? '99+' : String(unread); badge.classList.remove('hidden'); }
+        else { badge.classList.add('hidden'); }
+      }
+      if(!dmCountPollTimer){ dmCountPollTimer = setInterval(loadUnreadDmCount, 45000); } // stesso ritmo leggero delle notifiche, non realtime
+    })
+    .catch(function(err){ console.warn('Unread DM count failed:', err); });
+}
 
 function dmThreadState(th, uid){
   var mine = th.user_a === uid;
@@ -9289,7 +9329,7 @@ function toggleFollow(otherUserId, btnEl){
 
 /* ============ CONTATTI (hub Scopri / Amici / Richieste, stile pillola moderno) ============ */
 var contattiWired = false;
-var contattiActiveTab = 'amici';
+var contattiActiveTab = 'chat'; // prima cosa che si vede aprendo Contatti: le conversazioni, non la rubrica amici
 var contattiSearchDebounce = null;
 
 function switchContattiTab(tab){
@@ -9300,9 +9340,45 @@ function switchContattiTab(tab){
   document.querySelectorAll('#contattiSignedIn .community-panel').forEach(function(p){
     p.classList.toggle('hidden', p.dataset.cpanel !== tab);
   });
-  if(tab === 'scopri') renderContattiScopri('');
+  if(tab === 'chat') loadChatSidebar();
+  else if(tab === 'scopri') renderContattiScopri('');
   else if(tab === 'amici') renderContattiAmici();
   else renderContattiRichieste();
+}
+
+/* Aggiunge la scheda "Chat" a Contatti, per prima — riusa la stessa lista che
+   già esiste in chat.html (stesso aspetto, stesso caricamento), così non c'è
+   una seconda versione da mantenere a parte. Va chiamata una sola volta,
+   prima di wireContattiHub(), così il pulsante nuovo viene agganciato dal
+   suo stesso giro di ascolto — solo su contatti.html: altrove i contenitori
+   che cerca non esistono e la funzione non fa nulla. */
+function ensureContattiChatTab(){
+  var tabsBar = document.getElementById('contattiTabs');
+  var panelsHost = document.getElementById('contattiSignedIn');
+  if(!tabsBar || !panelsHost || document.getElementById('contattiChatTabBtn')) return;
+
+  var existingBtn = tabsBar.querySelector('[data-ctab]');
+  var chatBtn = document.createElement('button');
+  chatBtn.type = 'button';
+  chatBtn.id = 'contattiChatTabBtn';
+  chatBtn.dataset.ctab = 'chat';
+  chatBtn.className = (existingBtn ? existingBtn.className : 'community-tab').replace(/\bactive\b/g, '').replace(/\s+/g, ' ').trim(); // stessa classe delle altre schede, ma mai "già attiva" di suo
+  chatBtn.textContent = t('contatti.chatTab');
+  chatBtn.addEventListener('click', function(){ switchContattiTab('chat'); });
+  tabsBar.insertBefore(chatBtn, tabsBar.firstChild);
+
+  var panel = document.createElement('div');
+  panel.className = 'community-panel hidden';
+  panel.dataset.cpanel = 'chat';
+  panel.id = 'contattiChatPanel';
+  panel.innerHTML =
+    '<div class="contatti-chat-new-row">' +
+      '<button type="button" class="btn btn-sm btn-ghost" id="contattiNewMsgBtn">+ ' + t('contatti.newMessage') + '</button>' +
+    '</div>' +
+    '<div class="chat-sidebar-list" id="chatSidebarList"></div>';
+  var firstPanel = panelsHost.querySelector('.community-panel');
+  if(firstPanel) panelsHost.insertBefore(panel, firstPanel); else panelsHost.appendChild(panel);
+  document.getElementById('contattiNewMsgBtn').addEventListener('click', function(){ switchContattiTab('scopri'); });
 }
 
 function wireContattiHub(){
@@ -9497,6 +9573,7 @@ function loadContattiPage(){
   if(signedOutBox) signedOutBox.classList.add('hidden');
   signedInBox.classList.remove('hidden');
   followingCache = null;
+  ensureContattiChatTab();
   wireContattiHub();
   refreshContattiRequestBadge();
   switchContattiTab(contattiActiveTab);
@@ -15862,6 +15939,7 @@ function __appInit(){
     loadReadingProgress();
     loadLikes();
     loadNotifications();
+    loadUnreadDmCount();
     loadMyCreationSession().then(function(){ refreshAdminUI(); refreshSupportSectionVisibility(); });
     initChatPage(); // deve aspettare che la sessione sia confermata, non solo che il catalogo sia caricato
   });
