@@ -7366,7 +7366,11 @@ function submitDiaryPost(){
   }
 
   payloadStep.then(function(payload){
-    payload.user_id = currentUserId();
+    // la pagina profilo è sempre di una persona precisa, letta dall'indirizzo:
+    // è LA SUA bacheca il bersaglio del post, anche quando scrive qualcun altro
+    var wallUserId = new URLSearchParams(window.location.search).get('user') || currentUserId();
+    payload.user_id = wallUserId;
+    payload.author_id = currentUserId();
     return fetch(SUPABASE_URL + '/rest/v1/user_posts', {
       method:'POST',
       headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json', 'Prefer':'return=representation' },
@@ -7421,6 +7425,10 @@ function renderDiaryFeed(posts, containerId){
     });
   }
   posts.forEach(function(p){
+    // author_id è chi ha scritto per davvero (può differire da user_id quando è
+    // un post lasciato sulla bacheca di un altro); sui post più vecchi, da prima
+    // che questa colonna esistesse, ripiega su user_id — post "di sé", come sempre
+    var authorId = p.author_id || p.user_id;
     var card = document.createElement('div');
     card.className = 'diary-post';
     card.dataset.postId = p.id;
@@ -7429,7 +7437,7 @@ function renderDiaryFeed(posts, containerId){
     var bodyHtml = p.body ? '<div class="diary-post-body">'+renderBodyHtml(p.body)+'</div>' : '';
     card.innerHTML =
       '<div class="diary-post-head">'+
-        '<button type="button" class="diary-post-author" data-author="'+p.user_id+'">'+t('notif.someone')+'</button>'+
+        '<button type="button" class="diary-post-author" data-author="'+authorId+'">'+t('notif.someone')+'</button>'+
         '<span class="diary-post-kind">'+kindIcon+'</span>'+
         '<span class="diary-post-when">'+notifTimeAgo(p.created_at)+'</span>'+
       '</div>'+
@@ -7440,7 +7448,7 @@ function renderDiaryFeed(posts, containerId){
       '</div>'+
       '<div class="diary-comments hidden" id="diaryComments_'+p.id+'"></div>';
 
-    getDisplayName(p.user_id).then(function(name){
+    getDisplayName(authorId).then(function(name){
       var authorBtn = card.querySelector('[data-author]');
       if(authorBtn) authorBtn.textContent = name;
     });
@@ -7698,6 +7706,11 @@ function showProfileContent(userId, p){
   if(uploadBox) uploadBox.classList.toggle('hidden', !isOwn);
   var videoAddBox = document.getElementById('profileVideosAdd');
   if(videoAddBox) videoAddBox.classList.toggle('hidden', !isOwn);
+  var diaryComposer = document.getElementById('profileDiaryComposer');
+  // il compositore era scritto per intero ma non era mai mostrato: chi è firmato
+  // può scrivere sia sulla propria bacheca sia su quella di un altro — il post
+  // resta visibile a chiunque legga quella pagina, non solo al proprietario
+  if(diaryComposer) diaryComposer.classList.toggle('hidden', !isSignedIn());
 }
 
 function trackProfileView(viewedUserId){
@@ -7784,7 +7797,8 @@ function renderProfilePhotos(userId){
         var item = document.createElement('div');
         item.className = 'profile-photo-item';
         item.innerHTML = '<img src="' + coverThumbUrl(escapeHtml(photo.image_url), 300) + '" alt="" loading="lazy">' +
-          (isOwn ? '<button type="button" class="profile-photo-remove" data-del-photo="' + photo.id + '">✕</button>' : '');
+          (isOwn ? '<button type="button" class="profile-photo-remove" data-del-photo="' + photo.id + '">✕</button>' : '') +
+          (photo.caption ? '<div class="profile-photo-caption">' + escapeHtml(photo.caption) + '</div>' : '');
         item.querySelector('img').addEventListener('click', function(){ openImageLightbox(photo.image_url); });
         var delBtn = item.querySelector('[data-del-photo]');
         if(delBtn) delBtn.addEventListener('click', function(e){
@@ -7799,6 +7813,7 @@ function renderProfilePhotos(userId){
 
 function uploadProfilePhoto(){
   var fileInput = document.getElementById('fProfilePhotoUpload');
+  var captionInput = document.getElementById('fProfilePhotoCaption');
   var errEl = document.getElementById('profilePhotoError');
   var file = fileInput.files[0];
   errEl.textContent = '';
@@ -7821,11 +7836,12 @@ function uploadProfilePhoto(){
     return fetch(SUPABASE_URL + '/rest/v1/profile_photos', {
       method:'POST',
       headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
-      body: JSON.stringify({ user_id: uid, image_url: imageUrl })
+      body: JSON.stringify({ user_id: uid, image_url: imageUrl, caption: captionInput.value.trim() || null })
     });
   }).then(function(r){
     if(!r.ok) throw new Error('salvataggio foto fallito: ' + r.status);
     fileInput.value = '';
+    captionInput.value = '';
     renderProfilePhotos(uid);
   }).catch(function(err){
     console.warn('Upload foto profilo fallito:', err);
