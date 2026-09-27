@@ -299,4 +299,48 @@
   </div>
 </div>
 
+<!-- ============ SEGNALIBRO CONTATTI (nascosto via JS su chat.html e contatti.html, dove la stessa lista vive già) ============ -->
+<button type="button" class="bookmark-tab hidden" id="bookmarkTab" aria-label="Contatti" title="Contatti">
+  <span class="bookmark-flourish">✦</span>
+  <span class="bookmark-label" data-i18n="contatti.chatTab">Chat</span>
+  <span class="bookmark-dot hidden" id="bookmarkDot"></span>
+</button>
+<div class="bookmark-backdrop" id="bookmarkBackdrop"></div>
+<div class="bookmark-drawer" id="bookmarkDrawer">
+  <div id="bookmarkListView">
+    <div class="bookmark-drawer-head">
+      <h3 data-i18n="contatti.chatTab">Chat</h3>
+      <span class="bookmark-drawer-close" id="bookmarkClose">✕</span>
+    </div>
+    <div class="chat-sidebar-list" id="chatSidebarList"></div>
+    <div class="bookmark-drawer-foot">
+      <a href="contatti.html#contattiSection" data-i18n="contatti.seeAll">Vedi tutte le conversazioni →</a>
+    </div>
+  </div>
+  <div id="bookmarkChatView" class="hidden">
+    <div class="chat-page-header">
+      <button type="button" class="chat-back" id="bookmarkChatBack" aria-label="Indietro">←</button>
+      <span class="chat-header-avatar-wrap">
+        <img id="chatOtherAvatar" class="chat-header-avatar" src="" alt="">
+        <span id="chatOtherDot" class="chat-header-dot offline"></span>
+      </span>
+      <div class="chat-header-info">
+        <div id="chatOtherName" class="chat-header-name">—</div>
+        <div id="chatOtherStatus" class="chat-header-status"></div>
+      </div>
+      <span class="bookmark-drawer-close" id="bookmarkClose2">✕</span>
+    </div>
+    <div id="chatMessages" class="chat-page-messages"></div>
+    <div class="chat-page-composer">
+      <div class="form-error" id="chatMessageError"></div>
+      <div class="chat-composer-row">
+        <input type="text" id="fChatMessage" class="chat-text-input" data-i18n-placeholder="chat.messagePlaceholder" placeholder="Scrivi un messaggio…">
+        <button type="button" class="btn btn-primary btn-sm" id="btnSendChat" data-i18n="community.send">Invia</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
 

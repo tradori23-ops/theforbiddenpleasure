@@ -700,6 +700,11 @@ Object.assign(STR.en, {"contatti.chatTab": "Chat", "contatti.newMessage": "New m
 Object.assign(STR.es, {"contatti.chatTab": "Chat", "contatti.newMessage": "Nuevo mensaje"});
 Object.assign(STR.fr, {"contatti.chatTab": "Chat", "contatti.newMessage": "Nouveau message"});
 Object.assign(STR.de, {"contatti.chatTab": "Chat", "contatti.newMessage": "Neue Nachricht"});
+Object.assign(STR.it, {"contatti.seeAll": "Vedi tutte le conversazioni →"});
+Object.assign(STR.en, {"contatti.seeAll": "See all conversations →"});
+Object.assign(STR.es, {"contatti.seeAll": "Ver todas las conversaciones →"});
+Object.assign(STR.fr, {"contatti.seeAll": "Voir toutes les conversations →"});
+Object.assign(STR.de, {"contatti.seeAll": "Alle Unterhaltungen ansehen →"});
 
 var CHAR_META = {
   Lucifer:{role:{it:"Il Portatore di Luce",en:"The Light-Bearer",es:"El Portador de Luz",fr:"Le Porteur de Lumière",de:"Der Lichtträger"},
@@ -8319,10 +8324,12 @@ function renderChatSidebar(profiles, threadByOtherId){
         (unread ? '<span class="chat-sidebar-unread-dot"></span>' : '') +
       '</span>';
     main.addEventListener('click', function(){
-      // dentro chat.html la conversazione si apre sul posto (c'è già tutto il resto
-      // dell'interfaccia); da qualunque altra pagina (es. la nuova scheda Chat in
-      // Contatti) non ci sono gli stessi elementi, quindi si naviga per davvero
+      // tre casi possibili: dentro chat.html si apre sul posto con tutto il resto
+      // dell'interfaccia già presente; dentro il cassetto del segnalibro si apre lì
+      // dentro (ha la sua vista conversazione, con gli stessi id ma un contesto suo);
+      // da qualunque altra pagina (es. la scheda Chat di Contatti) si naviga per davvero
       if(document.getElementById('chatBox')) openChatWithUser(p.id, true);
+      else if(main.closest('#bookmarkDrawer')) openBookmarkChat(p.id);
       else window.location.href = 'chat.html?user=' + encodeURIComponent(p.id);
     });
     row.appendChild(main);
@@ -8501,7 +8508,7 @@ function loadChatMessages(){
     .catch(function(e){ wrap.innerHTML = '<p class="form-note">' + t('community.loadError') + '</p>'; console.warn('Chat messages load failed:', e); });
 }
 
-function startChatPolling(){
+function startChatPolling(otherUserIdParam){
   if(chatPollTimer) clearInterval(chatPollTimer);
   chatPollTimer = setInterval(function(){
     if(!currentChatThreadId) return;
@@ -8517,8 +8524,8 @@ function startChatPolling(){
         loadChatMessages();
         // segna come letti anche i messaggi arrivati mentre la chat è aperta
         var session = getSession();
-        var params = new URLSearchParams(window.location.search);
-        var otherUserId = params.get('user');
+        // fuori da chat.html non c'è ?user= nell'indirizzo: usa quello passato da chi ha aperto la conversazione
+        var otherUserId = otherUserIdParam || new URLSearchParams(window.location.search).get('user');
         if(session && otherUserId){
           var userA = uid < otherUserId ? uid : otherUserId;
           var field = (userA === uid) ? 'last_read_at_a' : 'last_read_at_b';
@@ -9202,6 +9209,7 @@ function loadUnreadDmCount(){
   var session = getSession();
   var badge = document.getElementById('chatHeaderBadge');
   var btn = document.getElementById('btnChatHeader');
+  var bookmarkDot = document.getElementById('bookmarkDot');
   if(!isSignedIn()){ if(btn) btn.classList.add('hidden'); if(dmCountPollTimer){ clearInterval(dmCountPollTimer); dmCountPollTimer = null; } return Promise.resolve(); }
   if(btn) btn.classList.remove('hidden');
   var uid = currentUserId();
@@ -9213,6 +9221,7 @@ function loadUnreadDmCount(){
         if(unread > 0){ badge.textContent = unread > 99 ? '99+' : String(unread); badge.classList.remove('hidden'); }
         else { badge.classList.add('hidden'); }
       }
+      if(bookmarkDot) bookmarkDot.classList.toggle('hidden', unread === 0);
       if(!dmCountPollTimer){ dmCountPollTimer = setInterval(loadUnreadDmCount, 45000); } // stesso ritmo leggero delle notifiche, non realtime
     })
     .catch(function(err){ console.warn('Unread DM count failed:', err); });
@@ -16309,6 +16318,7 @@ function __appInit(){
   initTextOnlyToggle();
   initExportData();
   initSnoOverlay();
+  initBookmarkTab();
   setInterval(function(){ if(!document.hidden) refreshCommunityDot(); }, 60000); // pallino Community
   document.addEventListener('visibilitychange', function(){ if(!document.hidden) refreshCommunityDot(); });
   setInterval(heartbeatPresence, 60000); // aggiorna "ultimo attivo" per lo stato online nei DM
@@ -16852,6 +16862,119 @@ function snoClose(){
   document.getElementById('smallnoxOverlay').classList.add('hidden');
   clearInterval(snoTimers.spark); clearInterval(snoTimers.bolt);
   snoRetryFn = null;
+}
+/* Apre una conversazione DENTRO il cassetto del segnalibro — non è chat.html, ma
+   riusa la stessa logica di caricamento/invio messaggi (loadChatMessages,
+   startChatPolling), solo con un aggancio più leggero: niente sfondo a schermo
+   intero, niente allegati, niente indirizzo che cambia — è pensata per una
+   risposta rapida, non per sostituire la pagina chat vera e propria. */
+function openBookmarkChat(otherUserId){
+  var uid = currentUserId();
+  if(otherUserId === uid) return;
+  currentChatOtherId = otherUserId;
+  var userA = uid < otherUserId ? uid : otherUserId;
+  var userB = uid < otherUserId ? otherUserId : uid;
+  var session = getSession();
+
+  document.getElementById('bookmarkListView').classList.add('hidden');
+  document.getElementById('bookmarkChatView').classList.remove('hidden');
+  document.getElementById('chatMessages').innerHTML = '<p class="form-note">…</p>';
+
+  fetch(SUPABASE_URL + '/rest/v1/dm_threads?user_a=eq.' + encodeURIComponent(userA) + '&user_b=eq.' + encodeURIComponent(userB) + '&select=id', { headers: communityHeaders() })
+    .then(function(r){ return r.ok ? r.json() : []; })
+    .then(function(rows){
+      if(rows.length > 0) return rows[0].id;
+      return fetch(SUPABASE_URL + '/rest/v1/dm_threads', {
+        method:'POST',
+        headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json', 'Prefer':'return=representation' },
+        body: JSON.stringify({ user_a: userA, user_b: userB })
+      }).then(function(r2){ if(!r2.ok) throw new Error('dm thread create failed'); return r2.json(); })
+        .then(function(rows2){ return rows2[0].id; });
+    })
+    .then(function(threadId){
+      currentChatThreadId = threadId;
+      getDisplayName(otherUserId).then(function(name){ document.getElementById('chatOtherName').textContent = name; });
+      var avatarEl = document.getElementById('chatOtherAvatar');
+      fetch(SUPABASE_URL + '/rest/v1/profiles?id=eq.' + encodeURIComponent(otherUserId) + '&select=avatar_url,last_seen', { headers: communityHeaders() })
+        .then(function(r){ return r.ok ? r.json() : []; })
+        .then(function(rows){
+          var p = rows[0];
+          if(!p) return;
+          if(p.avatar_url) avatarEl.src = p.avatar_url;
+          var online = isOnlineSince(p.last_seen);
+          document.getElementById('chatOtherDot').className = 'chat-header-dot ' + (online ? 'online' : 'offline');
+          document.getElementById('chatOtherStatus').textContent = online ? t('userDir.online') : (p.last_seen ? notifTimeAgo(p.last_seen) : t('userDir.offline'));
+        }).catch(function(){});
+      loadChatMessages();
+      startChatPolling(otherUserId);
+      // segna subito come letto, come già fa openChatWithUser su chat.html
+      var field = userA === uid ? 'last_read_at_a' : 'last_read_at_b';
+      var patch = {}; patch[field] = new Date().toISOString();
+      fetch(SUPABASE_URL + '/rest/v1/dm_threads?id=eq.' + encodeURIComponent(threadId), {
+        method:'PATCH',
+        headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
+        body: JSON.stringify(patch)
+      }).then(function(){ loadUnreadDmCount(); }).catch(function(){});
+    })
+    .catch(function(e){ console.warn('Bookmark chat open failed:', e); document.getElementById('chatMessages').innerHTML = '<p class="form-note">' + t('community.loadError') + '</p>'; });
+}
+function closeBookmarkChat(){
+  if(chatPollTimer){ clearInterval(chatPollTimer); chatPollTimer = null; }
+  currentChatThreadId = null; currentChatOtherId = null;
+  document.getElementById('bookmarkChatView').classList.add('hidden');
+  document.getElementById('bookmarkListView').classList.remove('hidden');
+}
+function sendBookmarkChatMessage(){
+  var box = document.getElementById('fChatMessage');
+  var err = document.getElementById('chatMessageError');
+  var body = box.value.trim();
+  err.textContent = '';
+  if(!body || !currentChatThreadId) return;
+  var session = getSession();
+  var sendBtn = document.getElementById('btnSendChat');
+  sendBtn.disabled = true;
+  fetch(SUPABASE_URL + '/rest/v1/dm_messages', {
+    method:'POST',
+    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
+    body: JSON.stringify({ thread_id: currentChatThreadId, sender_id: currentUserId(), body: body })
+  }).then(function(r){
+    if(!r.ok) throw new Error('bookmark chat message insert failed');
+    box.value = '';
+    playChatSound('sent');
+    loadChatMessages();
+  }).catch(function(e){
+    err.textContent = t('chat.sendError');
+    console.warn('Bookmark chat send failed:', e);
+  }).then(function(){ sendBtn.disabled = false; });
+}
+
+/* Il segnalibro non compare su chat.html e su contatti.html: lì la stessa identica
+   lista (#chatSidebarList) vive già nella pagina — mostrarlo anche lì darebbe due
+   copie con lo stesso id, ambiguo per il browser oltre che inutile per chi legge. */
+function initBookmarkTab(){
+  var tab = document.getElementById('bookmarkTab');
+  if(!tab) return;
+  var path = window.location.pathname;
+  if(/\/(chat|contatti)\.html$/.test(path)) return; // resta nascosto, come all'avvio
+  tab.classList.remove('hidden');
+  var drawer = document.getElementById('bookmarkDrawer');
+  var backdrop = document.getElementById('bookmarkBackdrop');
+  var loaded = false;
+  function openDrawer(){
+    drawer.classList.add('open'); backdrop.classList.add('open');
+    if(!loaded){ loaded = true; loadChatSidebar(); } // caricata solo al primo utilizzo, non ad ogni pagina
+  }
+  function closeDrawer(){
+    drawer.classList.remove('open'); backdrop.classList.remove('open');
+    setTimeout(closeBookmarkChat, 300); // dopo l'animazione, così non si vede il passaggio
+  }
+  tab.addEventListener('click', openDrawer);
+  document.getElementById('bookmarkClose').addEventListener('click', closeDrawer);
+  document.getElementById('bookmarkClose2').addEventListener('click', closeDrawer);
+  document.getElementById('bookmarkChatBack').addEventListener('click', closeBookmarkChat);
+  backdrop.addEventListener('click', closeDrawer);
+  document.getElementById('btnSendChat').addEventListener('click', sendBookmarkChatMessage);
+  document.getElementById('fChatMessage').addEventListener('keydown', function(e){ if(e.key === 'Enter'){ e.preventDefault(); sendBookmarkChatMessage(); } });
 }
 function initSnoOverlay(){
   var closeBtn = document.getElementById('snoCloseBtn'), retryBtn = document.getElementById('snoRetryBtn');
