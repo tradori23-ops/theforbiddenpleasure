@@ -122,20 +122,35 @@ self.addEventListener('push', function(event){
   var title = data.title || 'LUX COMICS';
   var options = {
     body: data.body || '',
-    icon: data.icon || './icon-192.png',
-    badge: './icon-192.png',
-    data: { url: data.url || './' }
+    icon: data.icon || './icon-192.png', // avatar di chi ha fatto l'azione, quando c'è
+    badge: './icon-192.png', // resta sempre il sigillo del sito: è la sagoma piccola in alto, un avatar lì sarebbe illeggibile
+    image: data.image || undefined, // copertina del titolo, quando la notifica lo riguarda
+    tag: data.tag || undefined, // stesso tag = si sostituiscono invece di accumularsi (es. più "mi piace" sullo stesso titolo)
+    renotify: !!data.tag, // ...ma avvisano comunque di nuovo, non restano mute alla seconda volta
+    actions: Array.isArray(data.actions) ? data.actions : undefined,
+    data: { url: data.url || './', actionUrls: data.actionUrls || null }
   };
   event.waitUntil(self.registration.showNotification(title, options));
 });
 
 self.addEventListener('notificationclick', function(event){
   event.notification.close();
-  var url = (event.notification.data && event.notification.data.url) || './';
+  var ndata = event.notification.data || {};
+  var url = ndata.url || './';
+  // un pulsante dell'azione (es. "Rispondi") può avere un indirizzo diverso da quello di base
+  if(event.action && ndata.actionUrls && ndata.actionUrls[event.action]) url = ndata.actionUrls[event.action];
   event.waitUntil(
     clients.matchAll({ type: 'window', includeUncontrolled: true }).then(function(list){
       for (var i = 0; i < list.length; i++){
-        if ('focus' in list[i]) return list[i].focus();
+        var client = list[i];
+        if('focus' in client){
+          // una scheda già aperta va portata proprio al punto giusto, non solo messa a fuoco
+          // ferma com'era — è esattamente il difetto che si voleva correggere
+          if('navigate' in client){
+            return client.navigate(url).then(function(c){ return c ? c.focus() : client.focus(); }, function(){ return client.focus(); });
+          }
+          return client.focus();
+        }
       }
       if (clients.openWindow) return clients.openWindow(url);
     })
