@@ -3161,6 +3161,32 @@ function escapeHtml(str){
   return d.innerHTML;
 }
 
+/* Iniziali (1-2 lettere) e coppia di colori derivata dal nome/id, sempre le
+   stesse per la stessa persona — usate come riserva ovunque un avatar possa
+   mancare o non caricarsi, invece di lasciare un\u2019immagine rotta. */
+function avatarInitials(name){
+  var parts = (name || '').trim().split(/\s+/).filter(Boolean);
+  if(parts.length === 0) return '?';
+  if(parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
+  return (parts[0][0] + parts[1][0]).toUpperCase();
+}
+function avatarColorPair(seed){
+  var s = String(seed || '');
+  var hash = 0;
+  for(var i = 0; i < s.length; i++){ hash = (hash * 31 + s.charCodeAt(i)) >>> 0; }
+  var hue = hash % 360;
+  return 'hsl(' + hue + ',42%,26%)' + ',' + 'hsl(' + ((hue + 40) % 360) + ',38%,14%)';
+}
+/* Markup avatar condiviso: mostra la foto se c'è e carica bene, altrimenti le
+   iniziali con rilievo — mai più un\u2019icona di immagine rotta */
+function avatarHtml(imgClass, initialsClass, avatarUrl, name, seed, size){
+  var colors = avatarColorPair(seed).split(',');
+  var initials = avatarInitials(name);
+  var imgSrc = avatarUrl ? coverThumbUrl(escapeHtml(avatarUrl), size || 80) : '';
+  return '<span class="' + initialsClass + '" style="--c1:' + colors[0] + ';--c2:' + colors[1] + '">' + escapeHtml(initials) + '</span>' +
+    (imgSrc ? '<img class="' + imgClass + '" src="' + imgSrc + '" alt="" loading="lazy" onerror="this.remove()">' : '');
+}
+
 /* A message/comment body that is ONLY a direct .gif link renders as an image
    instead of plain text. Strict pattern (https, no spaces, .gif ending) to
    avoid any injection risk — escapeHtml is still applied to the URL itself. */
@@ -8312,7 +8338,7 @@ function renderChatSidebar(profiles, threadByOtherId){
     main.className = 'chat-sidebar-row-main';
     main.innerHTML =
       '<span class="chat-sidebar-avatar-wrap">' +
-        '<img class="chat-sidebar-avatar" src="' + (p.avatar_url ? coverThumbUrl(escapeHtml(p.avatar_url), 80) : '') + '" alt="" loading="lazy">' +
+        avatarHtml('chat-sidebar-avatar', 'chat-sidebar-avatar-initials', p.avatar_url, name, p.id, 80) +
         '<span class="chat-sidebar-dot ' + (online ? 'online' : 'offline') + '"></span>' +
       '</span>' +
       '<span class="chat-sidebar-info">' +
@@ -9115,7 +9141,7 @@ function renderFriendContactList(friendsBox, accepted, uid){
         row.className = 'friend-contact-row';
         row.innerHTML =
           '<span class="friend-contact-avatar-wrap">' +
-            '<img class="friend-contact-avatar" src="' + (p.avatar_url ? coverThumbUrl(escapeHtml(p.avatar_url), 80) : '') + '" alt="" loading="lazy">' +
+            avatarHtml('friend-contact-avatar', 'friend-contact-avatar-initials', p.avatar_url, name, p.id, 80) +
             '<span class="friend-contact-dot ' + (online ? 'online' : 'offline') + '"></span>' +
           '</span>' +
           '<span class="friend-contact-info">' +
@@ -15447,10 +15473,34 @@ function handleAddAnnouncement(){
     if(document.getElementById('fAnnPdf')) document.getElementById('fAnnPdf').value = '';
     renderAdminAnnouncements();
     fetchAnnouncements();
+    broadcastAnnouncementPush(title, body);
   }).catch(function(e){
     console.warn('Announcement publish failed:', e);
     err.textContent = t('announcements.publishError') + (e && e.message ? ' — ' + e.message : '');
   });
+}
+
+/* Pubblicare una novità avvisa tutti — un annuncio esiste apposta per essere
+   notato, quindi niente pulsante a parte: crea una riga in notifications per
+   OGNI utente, con lo stesso tipo "announcement" che send-push sa già gestire
+   (manda verso novita.html); il webhook già collegato fa il resto da solo,
+   esattamente come per un commento o un like, solo moltiplicato per tutti. */
+function broadcastAnnouncementPush(title, body){
+  var session = getSession();
+  fetch(SUPABASE_URL + '/rest/v1/profiles?select=id&limit=5000', { headers: communityHeaders() })
+    .then(function(r){ return r.ok ? r.json() : []; })
+    .then(function(rows){
+      if(rows.length === 0) return;
+      var payload = rows.map(function(p){
+        return { user_id: p.id, type: 'announcement', actor_name: title, message: body };
+      });
+      return fetch(SUPABASE_URL + '/rest/v1/notifications', {
+        method:'POST',
+        headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
+        body: JSON.stringify(payload)
+      });
+    })
+    .catch(function(e){ console.warn('Broadcast annuncio non riuscito:', e); });
 }
 
 var VERIFICATION_MIN_DAYS = 90; // regola dei 90 giorni: la spunta blu non si può assegnare prima
