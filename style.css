@@ -1,5 +1,7 @@
 /* ============ TOKENS ============ */
 :root{
+  /* Formato unico delle copertine dei fumetti: cambialo solo qui. */
+  --cover-ratio:1 / 1;
   --void:#0b0607;
   --void-2:#150c0d;
   --wine:#6e1423;
@@ -399,7 +401,7 @@ body.theme-light .hero-bg::after{
 }
 .latest-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;}
 .latest-card{cursor:pointer;border:1px solid var(--line);background:var(--void-2);}
-.latest-card-cover{aspect-ratio:3/4;position:relative;background:linear-gradient(160deg, var(--wine-deep), var(--void));display:flex;align-items:center;justify-content:center;}
+.latest-card-cover{aspect-ratio:var(--cover-ratio);position:relative;background:linear-gradient(160deg, var(--wine-deep), var(--void));display:flex;align-items:center;justify-content:center;}
 .latest-card-cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
 .latest-card-cover .init{font-family:'Cinzel Decorative',serif;font-size:32px;color:rgba(201,162,77,0.35);}
 .latest-card-cover .new-tag{
@@ -471,7 +473,7 @@ body.theme-light .hero-bg::after{
   position:relative;overflow:hidden;
 }
 .card-idx-cover{
-  aspect-ratio:3/4;
+  aspect-ratio:var(--cover-ratio);
   display:flex;align-items:center;justify-content:center;
   position:relative;
   background:linear-gradient(160deg, var(--wine-deep), var(--void));
@@ -521,7 +523,7 @@ body.theme-light .hero-bg::after{
   60%{opacity:1;transform:scaleX(1.03);}
   100%{opacity:0;transform:scaleX(0.25);}
 }
-.card-idx-cover.opening .cover-img{transform:scale(1.08);transition:transform 0.62s ease;}
+.card-idx-cover.opening .cover-img{transform:scale(1.04);transition:transform 0.25s ease;}
 .card-idx-cover.opening .tome-strap:not(.in-progress){animation:strapPart 0.62s ease-in forwards;}
 .card-idx-cover.opening .tome-seal{animation:sealBreak 0.62s ease-in forwards;}
 
@@ -568,6 +570,7 @@ body.theme-light .hero-bg::after{
 
 /* ============ SCHEDARIO — corpo card moderno (pulito, niente nastri) ============ */
 .tome-strap{display:none;} /* nastro/sigillo gotico spento: sostituito da un layout piatto */
+.tome-strap.in-progress{display:flex;} /* ma la fascia "Interrotto a pagina X di Y" deve restare visibile */
 .card-idx{
   border-radius:14px;transition:transform .18s ease, border-color .18s ease;
 }
@@ -577,10 +580,6 @@ body.theme-light .hero-bg::after{
   content:'';position:absolute;inset:0;
   background:linear-gradient(to top, rgba(11,6,7,0.85) 0%, transparent 45%);
   pointer-events:none;
-}
-.card-idx-cover .mature,.card-idx-cover .allages{
-  border-radius:20px;border:none;font-weight:600;
-  background:rgba(11,6,7,0.7);backdrop-filter:blur(3px);
 }
 .card-idx-fav{
   position:absolute;bottom:10px;right:10px;z-index:3;
@@ -870,16 +869,15 @@ body.theme-light .hero-bg::after{
 /* ============ AVATAR ACCOUNT CHIP (header) ============ */
 .acct-chip{display:flex;align-items:center;gap:6px;}
 .acct-chip-avatar{width:22px;height:22px;border-radius:50%;object-fit:cover;flex-shrink:0;}
-.card-idx-cover .mature{
-  position:absolute;top:8px;right:8px;
-  font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.1em;
-  background:var(--wine);color:var(--parchment);padding:2px 6px;border:1px solid var(--gold);
+/* Etichetta 18+ / Per tutti sulla copertina — regola unica (prima erano due
+   che si sovrascrivevano a metà). Il colore porta il significato. */
+.card-idx-cover .mature,.card-idx-cover .allages{
+  position:absolute;top:8px;right:8px;z-index:3;
+  font-family:'Space Mono',monospace;font-size:9px;font-weight:600;letter-spacing:0.1em;
+  color:var(--parchment);padding:3px 8px;border:1px solid var(--gold);border-radius:20px;
 }
-.card-idx-cover .allages{
-  position:absolute;top:8px;right:8px;
-  font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.1em;
-  background:var(--verdigris);color:var(--parchment);padding:2px 6px;border:1px solid var(--gold);
-}
+.card-idx-cover .mature{background:var(--wine);}
+.card-idx-cover .allages{background:var(--verdigris);}
 .card-idx-body{padding:16px;flex:1;display:flex;flex-direction:column;gap:6px;}
 .card-idx-body .num{font-family:'Space Mono',monospace;font-size:10px;color:var(--verdigris);letter-spacing:0.1em;}
 .card-idx-body h4{font-family:'Cinzel',serif;font-size:15px;margin:0;line-height:1.3;}
@@ -983,7 +981,7 @@ body.theme-light .hero-bg::after{
   position:absolute;top:0;right:0;background:rgba(11,6,7,0.8);color:var(--parchment);
   border:none;width:20px;height:20px;font-size:12px;line-height:1;cursor:pointer;
 }
-.cover-preview{position:relative;width:130px;aspect-ratio:3/4;margin-top:12px;border:1px solid var(--line);}
+.cover-preview{position:relative;width:130px;aspect-ratio:var(--cover-ratio);margin-top:12px;border:1px solid var(--line);}
 .cover-preview img{width:100%;height:100%;object-fit:cover;display:block;}
 .cover-preview .rm{
   position:absolute;top:0;right:0;background:rgba(11,6,7,0.8);color:var(--parchment);
@@ -1205,7 +1203,6 @@ footer .fcopy{font-family:'Space Mono',monospace;font-size:10px;color:var(--parc
   .admin-panel .mature-toggle .switch{flex:none;margin-top:2px;}
   .modal{padding:26px 20px;}
   .founder-wordmark{padding:14px;}
-  .card-idx-cover{aspect-ratio:1/1;}
   .hero{padding-top:56px;padding-bottom:44px;}
   .page-reader-nav{width:32px;height:32px;font-size:17px;}
 }
