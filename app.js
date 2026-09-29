@@ -851,6 +851,59 @@ function coverThumbUrl(url, width){
   return url.slice(0, idx) + '/storage/v1/render/image/public/' + url.slice(idx + marker.length) + '?width=' + width + '&quality=70';
 }
 
+/* ============ AVATAR CON INIZIALI DI RISERVA ============
+   Quando manca la foto profilo, invece di un'immagine rotta si mostra un
+   cerchio con le iniziali, sempre dello stesso colore per la stessa persona.
+   avatarSrc() restituisce direttamente un src per <img>: così si può usare
+   ovunque ci sia già un <img> (liste, intestazione chat) senza cambiare
+   la struttura HTML né gli id/eventi collegati. */
+function avatarInitials(name){
+  // solo lettere e cifre: simboli ed emoji nel nome non diventano iniziali
+  var words = String(name || '').trim().split(/\s+/)
+    .map(function(w){ return w.replace(/[^\p{L}\p{N}]/gu, ''); })
+    .filter(Boolean);
+  if(words.length === 0) return '?';
+  var first = Array.from(words[0])[0] || '';
+  var second = words.length > 1 ? (Array.from(words[words.length - 1])[0] || '') : '';
+  return (first + second).toUpperCase() || '?';
+}
+function avatarColorPair(seed){
+  var pairs = [
+    ['#7a1a2b', '#2a080e'], // vino
+    ['#2b5a4c', '#0c1f1c'], // verderame
+    ['#6b4718', '#231505'], // bronzo
+    ['#4b2660', '#160a1d'], // prugna
+    ['#5c2a24', '#1c0c0b'], // sangue di bue
+    ['#2c3f5c', '#0b1220']  // blu notte
+  ];
+  var str = String(seed || ''), h = 0;
+  for(var i = 0; i < str.length; i++){ h = ((h << 5) - h + str.charCodeAt(i)) | 0; }
+  return pairs[Math.abs(h) % pairs.length];
+}
+function avatarInitialsDataUri(name, seed){
+  var c = avatarColorPair(seed || name);
+  var txt = avatarInitials(name).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  var svg =
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80">' +
+      '<defs>' +
+        '<radialGradient id="g" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="' + c[0] + '"/><stop offset="1" stop-color="' + c[1] + '"/></radialGradient>' +
+        '<linearGradient id="r" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".18"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/></linearGradient>' +
+      '</defs>' +
+      '<circle cx="40" cy="40" r="40" fill="url(#g)"/>' +
+      '<circle cx="40" cy="40" r="38.5" fill="url(#r)" stroke="#e3c273" stroke-opacity=".35" stroke-width="1"/>' +
+      '<text x="40" y="41" text-anchor="middle" dominant-baseline="central" font-family="Cinzel,Georgia,\'Times New Roman\',serif" font-size="' + (txt.length > 1 ? 28 : 34) + '" font-weight="700" fill="#000" fill-opacity=".45" dx="0" dy="1.5">' + txt + '</text>' +
+      '<text x="40" y="41" text-anchor="middle" dominant-baseline="central" font-family="Cinzel,Georgia,\'Times New Roman\',serif" font-size="' + (txt.length > 1 ? 28 : 34) + '" font-weight="700" fill="#e3c273">' + txt + '</text>' +
+    '</svg>';
+  return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+}
+function avatarSrc(avatarUrl, name, seed, size){
+  if(avatarUrl) return coverThumbUrl(avatarUrl, size || 80);
+  return avatarInitialsDataUri(name, seed);
+}
+function avatarHtml(avatarUrl, name, seed, cls, size){
+  return '<img class="' + escapeHtml(cls || '') + '" src="' + escapeHtml(avatarSrc(avatarUrl, name, seed, size)) + '" alt="" loading="lazy">';
+}
+
 /* Se la trasformazione immagini non è disponibile sul progetto Supabase,
    la versione ridotta risponde con errore invece che con l'immagine.
    Questo intercetta l'errore e mette al suo posto l'originale, in
@@ -2273,7 +2326,8 @@ function renderLatestChapters(){
       var coverEl = card.querySelector('.latest-card-cover');
       if(coverEl.classList.contains('opening')) return;
       coverEl.classList.add('opening');
-      setTimeout(function(){ openTitleModal(item); }, 620);
+      openTitleModal(item);
+      setTimeout(function(){ coverEl.classList.remove('opening'); }, 400);
     });
     grid.appendChild(card);
     attachCoverSignature(card.querySelector('.latest-card-cover'), item);
@@ -2562,7 +2616,8 @@ function wireTomeCard(card, item){
   coverEl.addEventListener('click', function(){
     if(coverEl.classList.contains('opening')) return;
     coverEl.classList.add('opening');
-    setTimeout(function(){ openTitleModal(item); }, 620);
+    openTitleModal(item);
+    setTimeout(function(){ coverEl.classList.remove('opening'); }, 400);
   });
   card.querySelector('[data-fav]').addEventListener('click', function(e){
     e.stopPropagation();
@@ -8165,6 +8220,7 @@ function openChatWithUser(otherUserId, updateHistory){
           var p = rows[0];
           if(!p) return;
           if(p.avatar_url) avatarEl.src = p.avatar_url;
+          else getDisplayName(otherUserId).then(function(n){ avatarEl.src = avatarInitialsDataUri(n, otherUserId); });
           var online = isOnlineSince(p.last_seen);
           document.getElementById('chatOtherDot').className = 'chat-header-dot ' + (online ? 'online' : 'offline');
           document.getElementById('chatOtherStatus').textContent = online ? t('userDir.online') : (p.last_seen ? notifTimeAgo(p.last_seen) : t('userDir.offline'));
@@ -8312,7 +8368,7 @@ function renderChatSidebar(profiles, threadByOtherId){
     main.className = 'chat-sidebar-row-main';
     main.innerHTML =
       '<span class="chat-sidebar-avatar-wrap">' +
-        '<img class="chat-sidebar-avatar" src="' + (p.avatar_url ? coverThumbUrl(escapeHtml(p.avatar_url), 80) : '') + '" alt="" loading="lazy">' +
+        avatarHtml(p.avatar_url, name, p.id, 'chat-sidebar-avatar') +
         '<span class="chat-sidebar-dot ' + (online ? 'online' : 'offline') + '"></span>' +
       '</span>' +
       '<span class="chat-sidebar-info">' +
@@ -9115,7 +9171,7 @@ function renderFriendContactList(friendsBox, accepted, uid){
         row.className = 'friend-contact-row';
         row.innerHTML =
           '<span class="friend-contact-avatar-wrap">' +
-            '<img class="friend-contact-avatar" src="' + (p.avatar_url ? coverThumbUrl(escapeHtml(p.avatar_url), 80) : '') + '" alt="" loading="lazy">' +
+            avatarHtml(p.avatar_url, name, p.id, 'friend-contact-avatar') +
             '<span class="friend-contact-dot ' + (online ? 'online' : 'offline') + '"></span>' +
           '</span>' +
           '<span class="friend-contact-info">' +
@@ -16901,6 +16957,7 @@ function openBookmarkChat(otherUserId){
           var p = rows[0];
           if(!p) return;
           if(p.avatar_url) avatarEl.src = p.avatar_url;
+          else getDisplayName(otherUserId).then(function(n){ avatarEl.src = avatarInitialsDataUri(n, otherUserId); });
           var online = isOnlineSince(p.last_seen);
           document.getElementById('chatOtherDot').className = 'chat-header-dot ' + (online ? 'online' : 'offline');
           document.getElementById('chatOtherStatus').textContent = online ? t('userDir.online') : (p.last_seen ? notifTimeAgo(p.last_seen) : t('userDir.offline'));
