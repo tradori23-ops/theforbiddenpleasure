@@ -34,7 +34,7 @@
   // hai visto live sul sito prima di caricare — questo file parte da una
   // copia salvata in sessione e potrebbe non riflettere bump fatti nel
   // frattempo direttamente su GitHub.
-  var V = "197";
+  var V = "199";
 
   // style.css iniettato qui (non più con un <link> scritto a mano in ogni
   // pagina) così la sua versione segue sempre la stessa V di app.js,
@@ -42,7 +42,52 @@
   var cssLink = document.createElement("link");
   cssLink.rel = "stylesheet";
   cssLink.href = "style.css?v=" + V;
+  // Avvio pulito: ogni pagina parte coperta dal suo colore di fondo (blocco
+  // "luxBoot" nel <head>) e si scopre solo quando lo stile è arrivato E
+  // l'intestazione è già al suo posto — niente lampo di pagina bianca senza
+  // stile, niente intestazione che spunta dopo spingendo giù tutto il resto.
+  var cssReady = new Promise(function (resolve) {
+    cssLink.onload = resolve;
+    cssLink.onerror = resolve; // anche se lo stile non arriva, la pagina non resta coperta
+  });
   document.head.appendChild(cssLink);
+
+  // Sfondo della home: si scarica e si decodifica per intero PRIMA di
+  // mostrarlo (vedi .hero-bg::before in style.css), poi appare in
+  // dissolvenza — mai più l'immagine che si disegna a quadretti. Parte
+  // dopo lo stile, così non gli ruba banda: nel frattempo si vede
+  // l'anteprima sfocata già contenuta nel CSS.
+  var heroBg = document.getElementById("heroBg");
+  if (heroBg) {
+    cssReady.then(function () {
+      var heroImg = new Image();
+      var markHero = function () { heroBg.classList.add("is-ready"); };
+      heroImg.onload = function () {
+        if (heroImg.decode) heroImg.decode().then(markHero, markHero);
+        else markHero();
+      };
+      heroImg.onerror = markHero;
+      heroImg.src = "hero-bg.webp";
+    });
+  }
+
+  // Tema chiaro/scuro applicato subito, con lo stesso criterio di
+  // initTheme() in app.js — chi usa il tema chiaro non vede prima la
+  // versione scura per un attimo, in attesa che arrivi app.js.
+  function applyEarlyTheme() {
+    try {
+      var theme = localStorage.getItem("lux_theme");
+      if (!theme && window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches) theme = "light";
+      if (theme === "light") document.body.classList.add("theme-light");
+    } catch (e) {}
+  }
+  // Il sigillo nell'intestazione compare insieme a lei, non dopo (prima lo
+  // impostava solo app.js, che arriva per ultimo).
+  function setLogos() {
+    document.querySelectorAll('.seal-img[data-size="sm"]').forEach(function (img) { if (!img.getAttribute("src")) img.src = "logo-sm.webp"; });
+    document.querySelectorAll('.seal-img[data-size="lg"]').forEach(function (img) { if (!img.getAttribute("src")) img.src = "logo-lg.webp"; });
+  }
+  function reveal() { document.documentElement.classList.add("lux-ready"); }
 
   function replaceSlot(id, html) {
     var slot = document.getElementById(id);
@@ -97,6 +142,23 @@
     // Non blocchiamo comunque il caricamento di app.js: meglio una pagina
     // con qualche pezzo mancante che una pagina completamente morta.
   }
+  applyEarlyTheme();
+  setLogos();
+  cssReady.then(function () {
+    // Il lettore applica subito lo stile a tutta la pagina (ancora coperta):
+    // così i caratteri del sito iniziano a scaricarsi, e le transizioni
+    // dei pulsanti non "animano" il passaggio da pagina grezza a pagina
+    // finita davanti agli occhi di chi guarda.
+    void document.body.offsetWidth;
+    // Si aspettano anche i caratteri del sito (al massimo 0,8 s), così il
+    // testo non cambia forma e non si sposta subito dopo essere apparso.
+    var fontsReady = (document.fonts && document.fonts.ready) ? document.fonts.ready : Promise.resolve();
+    var maxWait = new Promise(function (resolve) { setTimeout(resolve, 800); });
+    Promise.race([fontsReady, maxWait]).then(function () {
+      void document.body.offsetWidth;
+      reveal();
+    });
+  });
   // app.js si aspetta che TUTTO il DOM (header, sezione, footer, modali)
   // sia già presente quando parte: lo carichiamo solo ora, a iniezione completata.
   var s = document.createElement("script");

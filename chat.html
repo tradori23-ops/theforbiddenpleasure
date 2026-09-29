@@ -12,6 +12,12 @@
 <!-- style.css è iniettato da loader.js con la versione sempre aggiornata -->
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 <link rel="manifest" href="manifest.json">
+<!-- Avvio pulito: la pagina resta coperta dal suo colore di fondo finché
+     stile e intestazione non sono pronti — la scopre loader.js. Rete di
+     sicurezza: dopo 5 secondi si mostra comunque. -->
+<style id="luxBoot">.hidden{display:none!important}html{background:#0b0607}html.lux-light{background:#f4efe2}body{visibility:hidden}html.lux-ready body{visibility:visible}html:not(.lux-ready) *,html:not(.lux-ready) *::before,html:not(.lux-ready) *::after{transition:none!important}</style>
+<script>(function(){var d=document.documentElement;try{var t=localStorage.getItem('lux_theme');if(!t&&window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches)t='light';if(t==='light')d.classList.add('lux-light');}catch(e){}setTimeout(function(){d.classList.add('lux-ready');},5000);})();</script>
+<noscript><style>body{visibility:visible}</style></noscript>
 </head>
 <body>
 <div id="app">
@@ -79,7 +85,6 @@
 <div id="chrome-footer-slot"></div>
 </div>
 <div id="chrome-modals-slot"></div>
-<link rel="preload" href="app.js" as="script">
 <script src="loader.js" defer></script>
 </body>
 </html>

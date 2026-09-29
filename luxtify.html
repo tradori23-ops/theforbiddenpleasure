@@ -218,6 +218,12 @@
     .lx-now-empty{color:var(--lx-dim);font-size:15px;}
   }
 </style>
+<!-- Avvio pulito: la pagina resta coperta dal suo colore di fondo finché
+     stile e intestazione non sono pronti — la scopre loader.js. Rete di
+     sicurezza: dopo 5 secondi si mostra comunque. -->
+<style id="luxBoot">.hidden{display:none!important}html{background:#0b0607}html.lux-light{background:#f4efe2}body{visibility:hidden}html.lux-ready body{visibility:visible}html:not(.lux-ready) *,html:not(.lux-ready) *::before,html:not(.lux-ready) *::after{transition:none!important}</style>
+<script>(function(){var d=document.documentElement;try{var t=localStorage.getItem('lux_theme');if(!t&&window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches)t='light';if(t==='light')d.classList.add('lux-light');}catch(e){}setTimeout(function(){d.classList.add('lux-ready');},5000);})();</script>
+<noscript><style>body{visibility:visible}</style></noscript>
 </head>
 <body class="lx-page">
 <div id="app">
@@ -369,8 +375,7 @@
     document.getElementById('luxSongPopup').classList.add('hidden');
   });
 </script>
-<link rel="preload" href="app.js" as="script">
-<script src="qrcode-lib.js" defer></script>
 <script src="loader.js" defer></script>
+<script src="qrcode-lib.js" defer></script>
 </body>
 </html>

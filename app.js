@@ -945,8 +945,13 @@ function publicDisplayName(profile){
 var HEARTBEAT_INTERVAL_MS = 60000; // manda un segnale ogni 60 secondi
 var ONLINE_WINDOW_MS = 120000; // considerato "online ora" se visto negli ultimi 2 minuti
 
+// sendHeartbeat e heartbeatPresence scrivevano entrambe "ultimo attivo"
+// ogni minuto, negli stessi istanti: due scritture identiche nel database.
+// Ora chi arriva per secondo, entro 30 secondi dall'altro, non riscrive.
+var lastHeartbeatAt = 0;
 function sendHeartbeat(){
   if(!isSignedIn()) return;
+  lastHeartbeatAt = Date.now();
   var session = getSession();
   fetch(SUPABASE_URL + '/rest/v1/profiles?id=eq.' + encodeURIComponent(currentUserId()), {
     method:'PATCH',
@@ -1054,6 +1059,7 @@ function updateMatureStateLabel(){
 /* ============ DAY / NIGHT THEME ============ */
 function applyTheme(theme){
   document.body.classList.toggle('theme-light', theme === 'light');
+  document.documentElement.classList.toggle('lux-light', theme === 'light'); // colore di fondo usato durante l'avvio (vedi loader.js)
   var moonIcon = document.getElementById('themeIconMoon');
   var sunIcon = document.getElementById('themeIconSun');
   if(moonIcon) moonIcon.classList.toggle('hidden', theme === 'light');
@@ -1321,8 +1327,7 @@ function afterAuthChange(){
   refreshAuthUI();
   refreshAdminUI();
   renderCatalog();
-  loadFavorites();
-  loadReadingProgress();
+  Promise.all([loadFavorites(true), loadReadingProgress(true)]).then(renderCatalogIfReady);
   loadLikes();
   loadNotifications();
   loadUnreadDmCount();
@@ -1356,14 +1361,26 @@ function setCommunityDot(on){
   if(on && wasHidden){ dot.classList.remove('pop'); void dot.offsetWidth; dot.classList.add('pop'); }
 }
 
+// Il pallino della Community e il contatore dei messaggi non letti leggono
+// esattamente le stesse conversazioni: se chiedono entro 5 secondi l'uno
+// dall'altro, la richiesta a Supabase è una sola e la risposta si condivide.
+var _dmThreadsShared = { at:0, uid:null, promise:null };
+function fetchMyDmThreads(uid){
+  var now = Date.now();
+  if(_dmThreadsShared.promise && _dmThreadsShared.uid === uid && now - _dmThreadsShared.at < 5000) return _dmThreadsShared.promise;
+  var promise = fetch(SUPABASE_URL + '/rest/v1/dm_threads?select=*&or=(user_a.eq.' + encodeURIComponent(uid) + ',user_b.eq.' + encodeURIComponent(uid) + ')', { headers: communityHeaders() })
+    .then(function(r){ return r.ok ? r.json() : null; }).catch(function(){ return null; });
+  _dmThreadsShared = { at:now, uid:uid, promise:promise };
+  return promise;
+}
+
 function refreshCommunityDot(){
   if(!document.getElementById('navCommunityDot')) return;
   if(!isSignedIn() || isOnCommunityPage()){ setCommunityDot(false); return; }
   var uid = currentUserId();
   var pendingReq = fetch(SUPABASE_URL + '/rest/v1/friendships?addressee_id=eq.' + encodeURIComponent(uid) + '&status=eq.pending&select=id&limit=1', { headers: communityHeaders() })
     .then(function(r){ return r.ok ? r.json() : null; }).catch(function(){ return null; });
-  var threads = fetch(SUPABASE_URL + '/rest/v1/dm_threads?select=*&or=(user_a.eq.' + encodeURIComponent(uid) + ',user_b.eq.' + encodeURIComponent(uid) + ')', { headers: communityHeaders() })
-    .then(function(r){ return r.ok ? r.json() : null; }).catch(function(){ return null; });
+  var threads = fetchMyDmThreads(uid);
   Promise.all([pendingReq, threads]).then(function(res){
     if(res[0] === null && res[1] === null) return; // entrambe fallite: non cambiamo quello che si vede
     var hasReq = !!(res[0] && res[0].length);
@@ -2568,17 +2585,19 @@ function buildTomeCardHtml(item){
   var totalPages = (item.pages && item.pages.length) || 0;
   var lastPage = readingProgressMap[item.id];
   var inProgress = (typeof lastPage === 'number' && totalPages > 1 && lastPage > 0 && lastPage < totalPages - 1);
-  var stripHtml;
+  var stripHtml = '<div class="tome-strap" aria-hidden="true"><span class="tome-seal"><img src="logo-lm-seal.webp" alt=""></span></div>';
+  // Il punto di lettura sta SOTTO la copertina, non sopra: in basso sulla
+  // copertina c'è già la firma NoxMorningstar con il QR, e le due cose si
+  // coprivano a vicenda.
+  var progressHtml = '';
   if(inProgress){
     var pageLabel = t('card.progress').replace('{page}', lastPage + 1).replace('{total}', totalPages);
     var pct = Math.round(((lastPage + 1) / totalPages) * 100);
-    stripHtml =
-      '<div class="tome-strap in-progress">'+
+    progressHtml =
+      '<div class="tome-progress">'+
         '<div class="progress-label">🔖 '+pageLabel+'</div>'+
         '<div class="progress-bar"><div class="progress-bar-fill" style="width:'+pct+'%;"></div></div>'+
       '</div>';
-  } else {
-    stripHtml = '<div class="tome-strap" aria-hidden="true"><span class="tome-seal"><img src="logo-lm-seal.webp" alt=""></span></div>';
   }
 
   return (
@@ -2587,6 +2606,7 @@ function buildTomeCardHtml(item){
         stripHtml+
         '<span class="card-idx-fav'+(isFav?' active':'')+'" data-fav="'+item.id+'">'+(isFav?'♥':'♡')+'</span>'+
       '</div>'+
+      progressHtml+
       '<div class="tome-plaque"><span class="tome-plaque-dot"></span><div class="tome-plaque-text">'+escapeHtml(item.title)+'</div></div>'+
       '<div class="tome-price-row">'+
         (priceTxt ? '<span class="tome-price-always">'+priceTxt+'</span>' : '<span></span>')+
@@ -5457,6 +5477,14 @@ function handleImport(file){
 /* ============ FAVORITES ============ */
 var favoriteIds = new Set();
 var readingProgressMap = {}; // catalog_id -> last_page (0-based), solo titoli iniziati e non finiti
+// Diventa true quando il catalogo fresco è arrivato da Supabase. Prima di
+// allora preferiti e progressi di lettura NON ridisegnano niente: vengono
+// solo ricordati, e il primo disegno del catalogo li usa già. Prima ognuno
+// dei due ridisegnava tutta la home per conto suo — a volte con la copia
+// vecchia salvata sul telefono, prima ancora che arrivasse quella nuova —
+// così la home veniva ricostruita fino a tre volte di fila all'apertura.
+var catalogFreshLoaded = false;
+function renderCatalogIfReady(){ if(catalogFreshLoaded) renderCatalog(); }
 
 /* ============ USER PROFILE (display name, bio, avatar, favorite characters) ============ */
 var currentProfile = null;
@@ -6982,22 +7010,39 @@ function renderServerMembers(serverId){
    la card con il countdown sparisce solo lato client, sostituita da una
    riga "X ha partecipato..." per ciascuno che aveva detto "Ci sarò". */
 var eventCountdownTimer = null;
+// Gli eventi della home si scaricano una volta sola per pagina: prima ogni
+// ridisegno del catalogo li richiedeva di nuovo (e con loro chi partecipa a
+// ciascun evento), anche tre volte di fila all'apertura della home.
+var _homeEventsPromise = null;
+var _homeEventsScrolled = false;
+function fetchHomeEventsOnce(){
+  if(!_homeEventsPromise){
+    _homeEventsPromise = fetch(SUPABASE_URL + '/rest/v1/community_events?select=*&order=event_date.asc', { headers: communityHeaders() })
+      .then(function(r){ return r.ok ? r.json() : []; })
+      .catch(function(e){ _homeEventsPromise = null; throw e; }); // se fallisce, al prossimo giro si riprova
+  }
+  return _homeEventsPromise;
+}
 
 /* Home: teaser dei prossimi 2 eventi, stessa card di Community → Eventi */
 function renderHomeEvents(){
   var box = document.getElementById('homeEventsSection');
   var list = document.getElementById('homeEventsList');
   if(!box || !list) return;
-  fetch(SUPABASE_URL + '/rest/v1/community_events?select=*&order=event_date.asc', { headers: communityHeaders() })
-    .then(function(r){ return r.ok ? r.json() : []; })
+  fetchHomeEventsOnce()
     .then(function(events){
       var now = new Date();
       var upcoming = events.filter(function(ev){ return !eventIsPast(ev, now); });
       if(upcoming.length === 0){ box.classList.add('hidden'); return; }
       box.classList.remove('hidden');
-      list.innerHTML = '';
       // link condiviso (?event=<id>): l'evento indicato passa in cima, anche se non sarebbe tra i primi due
       var deepEventId = new URLSearchParams(window.location.search).get('event');
+      // se eventi e lingua sono gli stessi dell'ultimo disegno, le schede restano
+      // come sono (conto alla rovescia e "Ci sarò" compresi) invece di rifarle
+      var sig = currentLang + '|' + (deepEventId || '') + '|' + upcoming.map(function(ev){ return ev.id + '@' + ev.event_date + '@' + (ev.end_date || '') + '@' + (ev.title || ''); }).join(',');
+      if(list.dataset.sig === sig && list.children.length) return;
+      list.dataset.sig = sig;
+      list.innerHTML = '';
       if(deepEventId){
         var di = upcoming.findIndex(function(e){ return String(e.id) === deepEventId; });
         if(di > 0) upcoming.unshift(upcoming.splice(di, 1)[0]);
@@ -7005,7 +7050,8 @@ function renderHomeEvents(){
       upcoming.slice(0, 2).forEach(function(ev){ list.appendChild(buildEventCard(ev)); });
       if(deepEventId){
         var focusCard = list.querySelector('[data-event-id="' + deepEventId.replace(/[^A-Za-z0-9_-]/g, '') + '"]');
-        if(focusCard){
+        if(focusCard && !_homeEventsScrolled){
+          _homeEventsScrolled = true; // si scorre fino all'evento una volta sola, non a ogni ridisegno
           focusCard.classList.add('event-card-focus');
           setTimeout(function(){
             try { focusCard.scrollIntoView({ block:'center', behavior: (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) ? 'auto' : 'smooth' }); } catch(e){}
@@ -9269,9 +9315,9 @@ function loadUnreadDmCount(){
   if(!isSignedIn()){ if(btn) btn.classList.add('hidden'); if(dmCountPollTimer){ clearInterval(dmCountPollTimer); dmCountPollTimer = null; } return Promise.resolve(); }
   if(btn) btn.classList.remove('hidden');
   var uid = currentUserId();
-  return fetch(SUPABASE_URL + '/rest/v1/dm_threads?select=*&or=(user_a.eq.' + encodeURIComponent(uid) + ',user_b.eq.' + encodeURIComponent(uid) + ')', { headers: communityHeaders() })
-    .then(function(r){ return r.ok ? r.json() : []; })
+  return fetchMyDmThreads(uid)
     .then(function(rows){
+      if(rows === null) return; // richiesta fallita: il contatore resta com'era
       var unread = rows.filter(function(th){ return !dmThreadState(th, uid).read; }).length;
       if(badge){
         if(unread > 0){ badge.textContent = unread > 99 ? '99+' : String(unread); badge.classList.remove('hidden'); }
@@ -9972,6 +10018,8 @@ function dismissSiteUpdates(){
 
 function heartbeatPresence(){
   if(!isSignedIn()) return;
+  if(Date.now() - lastHeartbeatAt < 30000) return; // appena scritto dall'altro battito
+  lastHeartbeatAt = Date.now();
   var session = getSession();
   var uid = currentUserId();
   if(!uid) return;
@@ -10342,9 +10390,9 @@ function renderModRow(box, targetType, targetId, text, reportId, knownUserId){
   box.appendChild(row);
 }
 
-function loadFavorites(){
+function loadFavorites(deferRender){
   favoriteIds = new Set();
-  if(!isSignedIn() || !SUPABASE_URL) { renderCatalog(); return Promise.resolve(); }
+  if(!isSignedIn() || !SUPABASE_URL) { if(!deferRender) renderCatalogIfReady(); return Promise.resolve(); }
   var session = getSession();
   return fetch(SUPABASE_URL + '/rest/v1/favorites?select=catalog_id&user_id=eq.' + encodeURIComponent(currentUserId()), {
     headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
@@ -10352,7 +10400,7 @@ function loadFavorites(){
     .then(function(r){ if(!r.ok) throw new Error('favorites read failed'); return r.json(); })
     .then(function(rows){
       favoriteIds = new Set(rows.map(function(r){ return r.catalog_id; }));
-      renderCatalog();
+      if(!deferRender) renderCatalogIfReady();
     })
     .catch(function(err){ console.warn('Favorites load failed:', err); });
 }
@@ -10362,9 +10410,9 @@ function loadFavorites(){
    per utente, letta in modo sincrono da buildTomeCardHtml quando
    costruisce ogni card. Solo i titoli con last_page valorizzato (cioè
    aperti almeno una volta nel lettore a pagine) finiscono nella mappa. */
-function loadReadingProgress(){
+function loadReadingProgress(deferRender){
   readingProgressMap = {};
-  if(!isSignedIn() || !SUPABASE_URL) { renderCatalog(); return Promise.resolve(); }
+  if(!isSignedIn() || !SUPABASE_URL) { if(!deferRender) renderCatalogIfReady(); return Promise.resolve(); }
   var session = getSession();
   return fetch(SUPABASE_URL + '/rest/v1/reading_progress?select=catalog_id,last_page&user_id=eq.' + encodeURIComponent(currentUserId()), {
     headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
@@ -10375,7 +10423,7 @@ function loadReadingProgress(){
       rows.forEach(function(row){
         if(row.last_page !== null && row.last_page !== undefined) readingProgressMap[row.catalog_id] = row.last_page;
       });
-      renderCatalog();
+      if(!deferRender) renderCatalogIfReady();
     })
     .catch(function(err){ console.warn('Reading progress load failed:', err); });
 }
@@ -15862,7 +15910,10 @@ function renderHeroBg(){
     if(!url) return;
     var slice = document.createElement('div');
     slice.className = 'char-slice';
-    slice.innerHTML = '<img src="' + url + '" alt="">';
+    // versione ridotta invece dell'originale a piena risoluzione (sono comunque
+    // velate e scurite): si scaricano in una frazione del tempo, e compaiono
+    // solo a immagine completa invece di disegnarsi a pezzi
+    slice.innerHTML = '<img src="' + escapeHtml(coverThumbUrl(url, 600)) + '" data-fallback="' + escapeHtml(url) + '" alt="" decoding="async" onload="this.classList.add(\'is-in\')">';
     box.appendChild(slice);
   });
 }
@@ -16016,8 +16067,7 @@ function __appInit(){
   refreshSessionIfNeeded().then(function(){
     refreshAuthUI();
     refreshAdminUI();
-    loadFavorites();
-    loadReadingProgress();
+    Promise.all([loadFavorites(true), loadReadingProgress(true)]).then(renderCatalogIfReady);
     loadLikes();
     loadNotifications();
     loadUnreadDmCount();
@@ -16354,6 +16404,7 @@ function __appInit(){
   updateSyncStatus();
   checkDeepLinkOnLoad(); // try immediately in case the title is already in local cache
   fetchCatalogFromSupabase().then(function(items){
+    catalogFreshLoaded = true;
     renderCatalog(); renderAdminList(); // disegna sempre — con i dati freschi se la sincronizzazione è riuscita, altrimenti con l'ultima copia salvata, mai col vuoto
     if(!deepLinkChecked) checkDeepLinkOnLoad(); // retry once fresh data has arrived
     renderPublicProfilePage(); // no-op sulle pagine diverse da profile.html
