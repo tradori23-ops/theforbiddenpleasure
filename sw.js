@@ -34,13 +34,60 @@ self.addEventListener('install', function(event){
 
 var OFFLINE_CATALOG_CACHE = 'lux-offline-catalog-v1'; // mai da cancellare agli aggiornamenti — è la cache dei verificati, deve sopravvivere
 
+// File che il sito non usa più ma che le versioni precedenti tenevano in
+// cache: occupano spazio sul telefono per niente (support-banner.png da solo
+// pesava più di 3 MB, "app.js" senza ?v= era un doppione da 1 MB).
+var OBSOLETE_PATHS = ['/app.js', '/support-banner.png', '/hero-bg.jpg'];
+
 self.addEventListener('activate', function(event){
   event.waitUntil(
     caches.keys().then(function(keys){
       return Promise.all(keys.filter(function(k){ return k !== CACHE_NAME && k !== OFFLINE_CATALOG_CACHE; }).map(function(k){ return caches.delete(k); }));
+    }).then(function(){
+      return caches.open(CACHE_NAME).then(function(cache){
+        return cache.keys().then(function(reqs){
+          // 1) file che il sito non usa più
+          var doomed = reqs.filter(function(r){
+            var u = new URL(r.url);
+            return !u.search && OBSOLETE_PATHS.some(function(p){ return u.pathname.slice(-p.length) === p; });
+          });
+          // 2) per ogni file con ?v=N si tiene solo la versione più recente
+          var newest = {};
+          reqs.forEach(function(r){
+            var u = new URL(r.url);
+            var v = parseInt(u.searchParams.get('v'), 10);
+            if(isNaN(v)) return;
+            if(!newest[u.pathname] || v > newest[u.pathname]) newest[u.pathname] = v;
+          });
+          reqs.forEach(function(r){
+            var u = new URL(r.url);
+            var v = parseInt(u.searchParams.get('v'), 10);
+            if(!isNaN(v) && v < newest[u.pathname]) doomed.push(r);
+          });
+          return Promise.all(doomed.map(function(r){ return cache.delete(r); }));
+        });
+      }).catch(function(){});
     }).then(function(){ return self.clients.claim(); })
   );
 });
+
+/* I file con ?v=N nell'indirizzo (app.js, style.css, chrome-*.html) non
+   cambiano mai: quando esce una versione nuova cambia l'indirizzo stesso.
+   Quando ne salviamo una, le versioni vecchie dello stesso file si buttano. */
+function dropOlderVersions(cache, url){
+  cache.keys().then(function(reqs){
+    reqs.forEach(function(r){
+      var u = new URL(r.url);
+      if(u.pathname === url.pathname && u.searchParams.has('v') && u.search !== url.search) cache.delete(r);
+    });
+  }).catch(function(){});
+}
+
+// Per gli altri file (immagini, icone, font del sito) il controllo in rete
+// "ci sono novità?" si fa al massimo ogni 10 minuti per file, non a ogni
+// singola pagina aperta.
+var REVALIDATE_EVERY_MS = 10 * 60 * 1000;
+var lastRevalidated = {};
 
 function isAlwaysFreshRequest(req, url){
   // Navigazioni = apertura di una pagina (index.html, admin.html, ecc.)
@@ -92,12 +139,22 @@ self.addEventListener('fetch', function(event){
     return;
   }
 
+  // Prima questo ramo riscaricava in sottofondo OGNI file a OGNI pagina
+  // aperta, anche quelli già in cache e immutabili: circa 1-2 MB in più a
+  // ogni cambio pagina (app.js da solo pesa 1 MB), che rubavano banda a
+  // copertine e dati proprio mentre la pagina si stava caricando.
+  var versioned = url.searchParams.has('v');
   event.respondWith(
     caches.open(CACHE_NAME).then(function(cache){
       return cache.match(req).then(function(cached){
+        if(cached && versioned) return cached; // immutabile: niente da ricontrollare
+        var now = Date.now();
+        if(cached && lastRevalidated[req.url] && now - lastRevalidated[req.url] < REVALIDATE_EVERY_MS) return cached;
+        lastRevalidated[req.url] = now;
         var network = fetch(req).then(function(response){
           if(response && response.ok){
             try { cache.put(req, response.clone()); } catch(e){} // vedi nota sopra
+            if(versioned) dropOlderVersions(cache, url);
           }
           return response;
         }).catch(function(){
@@ -107,7 +164,7 @@ self.addEventListener('fetch', function(event){
           return new Response('', { status: 504, statusText: 'Offline' });
         });
         // se l'abbiamo già in cache la serviamo subito; il fetch sopra
-        // aggiorna comunque la cache in background per la prossima volta
+        // aggiorna la cache in background, al massimo ogni 10 minuti
         return cached || network;
       });
     })

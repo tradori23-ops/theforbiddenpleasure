@@ -316,17 +316,30 @@ select.langsel{
 .hero-bg{
   position:absolute;top:0;left:0;right:0;bottom:0;width:100%;height:100%;z-index:0;
   display:flex;
-  background-image:url('hero-bg.jpg');
-  background-size:cover;
-  background-position:center 30%;
+  /* Mentre l'immagine vera arriva si vede questa anteprima minuscola (meno di
+     1 KB, già dentro il CSS): sfocata e morbida, mai a quadretti. */
+  background:#3a2c22 url('data:image/webp;base64,UklGRr4AAABXRUJQVlA4ILIAAACQBgCdASowABsAPrlMnkunJKKhtUwA4BcJZQC3uCwZVKTNa7J9OG2HHgNyA4vY3t2UB2oW9rEwdlgRf0qAAP72ily404w8RCA1//QdzH2/8/7JMDE0RicTRbdroYwznYpbPEtN9tc8JffJsuBISANvU1RDoN+MYovxwjsxgdA0N8y1mvuKx+37Y9WG8TAckI8ghz/MyrU1sWejRtrXNyBcTy6F32qen1OSpVjKR8q6AAAA') center 30% / cover no-repeat;
 }
+/* L'immagine vera sta qui sopra, invisibile finché non è scaricata e
+   decodificata per intero — così non si vede mai caricare a pezzi.
+   loader.js aggiunge .is-ready quando è pronta, e appare in dissolvenza. */
+.hero-bg::before{
+  content:'';position:absolute;inset:0;
+  background:url('hero-bg.webp') center 30% / cover no-repeat;
+  opacity:0;transition:opacity .6s ease;
+}
+.hero-bg.is-ready::before{opacity:1;}
 .hero-bg .char-slice{
   flex:1;position:relative;overflow:hidden;
 }
 .hero-bg .char-slice img{
   position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center;
   filter:sepia(0.85) saturate(0.7) contrast(1.05) brightness(0.55);
-  opacity:0.4;
+  opacity:0;transition:opacity .6s ease; /* appaiono solo quando sono scaricati per intero */
+}
+.hero-bg .char-slice img.is-in{opacity:0.4;}
+@media (prefers-reduced-motion: reduce){
+  .hero-bg::before,.hero-bg .char-slice img{transition:none;}
 }
 .hero-bg::after{
   content:'';position:absolute;inset:0;
@@ -570,7 +583,12 @@ body.theme-light .hero-bg::after{
 
 /* ============ SCHEDARIO — corpo card moderno (pulito, niente nastri) ============ */
 .tome-strap{display:none;} /* nastro/sigillo gotico spento: sostituito da un layout piatto */
-.tome-strap.in-progress{display:flex;} /* ma la fascia "Interrotto a pagina X di Y" deve restare visibile */
+/* Punto di lettura ("Interrotto a pagina X di Y"): sotto la copertina, così
+   non si sovrappone alla firma NoxMorningstar con il QR */
+.tome-progress{padding:10px 14px 0;}
+.tome-progress .progress-label{font-family:'Space Mono',monospace;font-size:10px;line-height:1.35;color:var(--gold-bright);margin-bottom:6px;text-shadow:none;}
+.tome-progress .progress-bar{height:3px;background:var(--line);border-radius:2px;overflow:hidden;}
+.tome-progress .progress-bar-fill{height:100%;background:var(--gold);}
 .card-idx{
   border-radius:14px;transition:transform .18s ease, border-color .18s ease;
 }
