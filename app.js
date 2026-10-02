@@ -12,7 +12,7 @@ var STR = {
     "gate.enter":"Ho almeno 18 anni — Sblocca",
     "gate.leave":"Annulla",
     "gate.legal":"Continuando dichiari inoltre di rispettare le leggi vigenti nella tua giurisdizione riguardo l'accesso a contenuti per adulti.",
-    "nav.library":"Schedario","nav.characters":"Dossier","nav.music":"Musica","nav.founder":"Fondatore","nav.admin":"Amministra","nav.login":"Accedi","nav.logout":"Esci","songs.listen":"🎵 Ascolta musica","songs.allMusic":"Musica","songs.noneYet":"Nessuna canzone disponibile ancora.",
+    "apptab.home":"Home","apptab.messages":"Messaggi","apptab.you":"Tu","apptu.guest":"Ospite","apptu.guestSub":"Accedi per salvare letture e preferiti","apptu.profile":"Il tuo profilo","apptu.cart":"Carrello","apptu.more":"Scopri","apptu.news":"Archivio delle novità","apptu.guide":"Guida al sito","apptu.help":"Assistenza","apptu.status":"Stato del sito","apptu.settings":"Impostazioni","apptu.lang":"Lingua","apptu.dark":"Tema scuro","apptu.mature":"Contenuti 18+","apptu.textOnly":"Solo testo","apptu.push":"Attiva le notifiche","apptu.iosNote":"Su iPhone le notifiche arrivano solo se aggiungi il sito alla schermata Home.","apptu.close":"Chiudi","apphome.resume":"Riprendi","nav.library":"Schedario","nav.characters":"Dossier","nav.music":"Musica","nav.founder":"Fondatore","nav.admin":"Amministra","nav.login":"Accedi","nav.logout":"Esci","songs.listen":"🎵 Ascolta musica","songs.allMusic":"Musica","songs.noneYet":"Nessuna canzone disponibile ancora.",
     "hero.title1":"L'ARCHIVIO DEL","hero.title2":"PIACERE PROIBITO",
     "hero.tagline":"Fumetti d'autore — edizione riservata",
     "hero.lede":"Quattro sigilli, quattro voci: Lucifer, Lilith, Lucifera e Lucio custodiscono le collane di questa casa. Lo schedario è aperto a tutti — i contenuti 18+ restano dietro un interruttore separato, da sbloccare quando vuoi. Ogni tavola nasce in inglese ed entra nello schedario così com'è — solo la tua lingua d'accesso è cosa nostra.",
@@ -136,7 +136,7 @@ var STR = {
     "gate.body":"This archive contains works intended for a mature audience. By continuing you confirm you are at least 18 years old and knowingly consent to explicit content.",
     "gate.enter":"I am 18 or older — Unlock","gate.leave":"Cancel",
     "gate.legal":"By continuing you also confirm compliance with the laws of your jurisdiction regarding access to adult content.",
-    "nav.library":"Index","nav.characters":"Dossiers","nav.music":"Music","nav.founder":"Founder","nav.admin":"Admin","nav.login":"Sign in","nav.logout":"Sign out","songs.listen":"🎵 Listen to music","songs.allMusic":"Music","songs.noneYet":"No music available yet.",
+    "apptab.home":"Home","apptab.messages":"Messages","apptab.you":"You","apptu.guest":"Guest","apptu.guestSub":"Sign in to save your reading and favorites","apptu.profile":"Your profile","apptu.cart":"Cart","apptu.more":"Explore","apptu.news":"News archive","apptu.guide":"Site guide","apptu.help":"Help","apptu.status":"Site status","apptu.settings":"Settings","apptu.lang":"Language","apptu.dark":"Dark theme","apptu.mature":"18+ content","apptu.textOnly":"Text only","apptu.push":"Turn on notifications","apptu.iosNote":"On iPhone, notifications only arrive if you add the site to your Home Screen.","apptu.close":"Close","apphome.resume":"Resume","nav.library":"Index","nav.characters":"Dossiers","nav.music":"Music","nav.founder":"Founder","nav.admin":"Admin","nav.login":"Sign in","nav.logout":"Sign out","songs.listen":"🎵 Listen to music","songs.allMusic":"Music","songs.noneYet":"No music available yet.",
     "hero.title1":"THE ARCHIVE OF","hero.title2":"FORBIDDEN PLEASURE",
     "hero.tagline":"Author comics — restricted edition",
     "hero.lede":"Four seals, four voices: Lucifer, Lilith, Lucifera and Lucio each guard a line of this house. The index is open to everyone — 18+ titles sit behind a separate switch, unlockable whenever you like. Every page is drawn in English and enters the index as-is — only your access language is yours to choose.",
@@ -260,7 +260,7 @@ var STR = {
     "gate.body":"Este archivo contiene obras destinadas a un público adulto. Al continuar confirmas tener al menos 18 años y aceptar conscientemente contenido explícito.",
     "gate.enter":"Tengo 18 años o más — Desbloquear","gate.leave":"Cancelar",
     "gate.legal":"Al continuar también confirmas cumplir con las leyes de tu jurisdicción respecto al acceso a contenido para adultos.",
-    "nav.library":"Índice","nav.characters":"Expedientes","nav.music":"Música","nav.founder":"Fundador","nav.admin":"Admin","nav.login":"Acceder","nav.logout":"Salir","songs.listen":"🎵 Escuchar música","songs.allMusic":"Música","songs.noneYet":"Aún no hay música disponible.",
+    "apptab.home":"Inicio","apptab.messages":"Mensajes","apptab.you":"Tú","apptu.guest":"Invitado","apptu.guestSub":"Inicia sesión para guardar lecturas y favoritos","apptu.profile":"Tu perfil","apptu.cart":"Carrito","apptu.more":"Descubre","apptu.news":"Archivo de novedades","apptu.guide":"Guía del sitio","apptu.help":"Ayuda","apptu.status":"Estado del sitio","apptu.settings":"Ajustes","apptu.lang":"Idioma","apptu.dark":"Tema oscuro","apptu.mature":"Contenido 18+","apptu.textOnly":"Solo texto","apptu.push":"Activar notificaciones","apptu.iosNote":"En iPhone, las notificaciones solo llegan si añades el sitio a la pantalla de inicio.","apptu.close":"Cerrar","apphome.resume":"Continuar","nav.library":"Índice","nav.characters":"Expedientes","nav.music":"Música","nav.founder":"Fundador","nav.admin":"Admin","nav.login":"Acceder","nav.logout":"Salir","songs.listen":"🎵 Escuchar música","songs.allMusic":"Música","songs.noneYet":"Aún no hay música disponible.",
     "hero.title1":"EL ARCHIVO DEL","hero.title2":"PLACER PROHIBIDO",
     "hero.tagline":"Cómics de autor — edición restringida",
     "hero.lede":"Cuatro sellos, cuatro voces: Lucifer, Lilith, Lucifera y Lucio custodian las colecciones de esta casa. El índice está abierto a todos — los títulos 18+ quedan tras un interruptor aparte, que puedes desbloquear cuando quieras. Cada página se dibuja en inglés y entra al índice tal cual — solo tu idioma de acceso es asunto tuyo.",
@@ -384,7 +384,7 @@ var STR = {
     "gate.body":"Cette archive contient des œuvres destinées à un public averti. En continuant, vous confirmez avoir au moins 18 ans et consentir sciemment à un contenu explicite.",
     "gate.enter":"J'ai 18 ans ou plus — Débloquer","gate.leave":"Annuler",
     "gate.legal":"En continuant, vous confirmez également respecter les lois de votre juridiction concernant l'accès aux contenus pour adultes.",
-    "nav.library":"Index","nav.characters":"Dossiers","nav.music":"Musique","nav.founder":"Fondateur","nav.admin":"Admin","nav.login":"Connexion","nav.logout":"Déconnexion","songs.listen":"🎵 Écouter la musique","songs.allMusic":"Musique","songs.noneYet":"Aucune musique disponible pour le moment.",
+    "apptab.home":"Accueil","apptab.messages":"Messages","apptab.you":"Toi","apptu.guest":"Invité","apptu.guestSub":"Connecte-toi pour garder tes lectures et tes favoris","apptu.profile":"Ton profil","apptu.cart":"Panier","apptu.more":"Découvrir","apptu.news":"Archives des actualités","apptu.guide":"Guide du site","apptu.help":"Assistance","apptu.status":"État du site","apptu.settings":"Réglages","apptu.lang":"Langue","apptu.dark":"Thème sombre","apptu.mature":"Contenu 18+","apptu.textOnly":"Texte seul","apptu.push":"Activer les notifications","apptu.iosNote":"Sur iPhone, les notifications n’arrivent que si tu ajoutes le site à l’écran d’accueil.","apptu.close":"Fermer","apphome.resume":"Reprendre","nav.library":"Index","nav.characters":"Dossiers","nav.music":"Musique","nav.founder":"Fondateur","nav.admin":"Admin","nav.login":"Connexion","nav.logout":"Déconnexion","songs.listen":"🎵 Écouter la musique","songs.allMusic":"Musique","songs.noneYet":"Aucune musique disponible pour le moment.",
     "hero.title1":"L'ARCHIVE DU","hero.title2":"PLAISIR INTERDIT",
     "hero.tagline":"Bandes dessinées d'auteur — édition réservée",
     "hero.lede":"Quatre sceaux, quatre voix : Lucifer, Lilith, Lucifera et Lucio veillent chacun sur une collection de cette maison. L'index est ouvert à tous — les titres 18+ restent derrière un interrupteur séparé, à débloquer quand vous voulez. Chaque planche est dessinée en anglais et entre dans l'index telle quelle — seule votre langue d'accès vous appartient.",
@@ -508,7 +508,7 @@ var STR = {
     "gate.body":"Dieses Archiv enthält Werke für ein erwachsenes Publikum. Mit dem Fortfahren bestätigen Sie, mindestens 18 Jahre alt zu sein und bewusst expliziten Inhalten zuzustimmen.",
     "gate.enter":"Ich bin 18 Jahre oder älter — Freischalten","gate.leave":"Abbrechen",
     "gate.legal":"Mit dem Fortfahren bestätigen Sie außerdem, die Gesetze Ihrer Rechtsordnung zum Zugang zu Erwachseneninhalten einzuhalten.",
-    "nav.library":"Index","nav.characters":"Dossiers","nav.music":"Musik","nav.founder":"Gründer","nav.admin":"Admin","nav.login":"Anmelden","nav.logout":"Abmelden","songs.listen":"🎵 Musik hören","songs.allMusic":"Musik","songs.noneYet":"Noch keine Musik verfügbar.",
+    "apptab.home":"Start","apptab.messages":"Nachrichten","apptab.you":"Du","apptu.guest":"Gast","apptu.guestSub":"Melde dich an, um Lesestand und Favoriten zu speichern","apptu.profile":"Dein Profil","apptu.cart":"Warenkorb","apptu.more":"Entdecken","apptu.news":"Neuigkeiten-Archiv","apptu.guide":"Website-Guide","apptu.help":"Hilfe","apptu.status":"Website-Status","apptu.settings":"Einstellungen","apptu.lang":"Sprache","apptu.dark":"Dunkles Design","apptu.mature":"18+ Inhalte","apptu.textOnly":"Nur Text","apptu.push":"Benachrichtigungen aktivieren","apptu.iosNote":"Auf dem iPhone kommen Benachrichtigungen nur an, wenn du die Seite zum Home-Bildschirm hinzufügst.","apptu.close":"Schließen","apphome.resume":"Fortsetzen","nav.library":"Index","nav.characters":"Dossiers","nav.music":"Musik","nav.founder":"Gründer","nav.admin":"Admin","nav.login":"Anmelden","nav.logout":"Abmelden","songs.listen":"🎵 Musik hören","songs.allMusic":"Musik","songs.noneYet":"Noch keine Musik verfügbar.",
     "hero.title1":"DAS ARCHIV DER","hero.title2":"VERBOTENEN LUST",
     "hero.tagline":"Autoren-Comics — exklusive Ausgabe",
     "hero.lede":"Vier Siegel, vier Stimmen: Lucifer, Lilith, Lucifera und Lucio hüten je eine Reihe dieses Hauses. Der Index steht allen offen — 18+-Titel liegen hinter einem eigenen Schalter, den Sie jederzeit freischalten können. Jede Seite entsteht auf Englisch und kommt so in den Index — nur Ihre Zugangssprache liegt bei Ihnen.",
@@ -2913,6 +2913,7 @@ function renderCatalog(){
   renderPixaiCarousel();
   renderLatestChapters();
   renderMyComics();
+  renderHomeContinue();
   renderHomeEvents();
   var grid = document.getElementById('catalogGrid');
   if(!grid) return;
@@ -5485,6 +5486,154 @@ var readingProgressMap = {}; // catalog_id -> last_page (0-based), solo titoli i
 // così la home veniva ricostruita fino a tre volte di fila all'apertura.
 var catalogFreshLoaded = false;
 function renderCatalogIfReady(){ if(catalogFreshLoaded) renderCatalog(); }
+
+/* ============ APP SU TELEFONO: foglio "Tu" e contatori della barra in basso ============
+   La barra e il foglio sono in chrome-footer.html; qui solo il comportamento.
+   Il foglio non rifà nessuna logica: ogni voce "preme" il comando vero che sta
+   nell'intestazione (nascosta su telefono), così tema, 18+, lingua, solo testo,
+   accesso e carrello continuano a funzionare esattamente come prima. */
+function initAppShell(){
+  var sheet = document.getElementById('appTuSheet');
+  var backdrop = document.getElementById('appTuBackdrop');
+  var tuTab = document.getElementById('appTabTu');
+  if(!sheet || !backdrop || !tuTab) return;
+  if(sheet.dataset.ready) return;
+  sheet.dataset.ready = '1';
+  var byId = function(id){ return document.getElementById(id); };
+  var press = function(id){ var el = byId(id); if(el) el.click(); };
+
+  function setSwitch(id, on){ var sw = byId(id); if(sw) sw.setAttribute('aria-checked', on ? 'true' : 'false'); }
+  function sync(){
+    var signed = isSignedIn();
+    var chip = byId('acctChip');
+    var who = byId('appTuWho');
+    if(who) who.innerHTML = (signed && chip) ? chip.innerHTML : '';
+    if(byId('appTuGuest')) byId('appTuGuest').hidden = signed;
+    if(byId('appTuLogin')) byId('appTuLogin').hidden = signed;
+    if(byId('appTuProfile')) byId('appTuProfile').hidden = !signed;
+    if(byId('appTuLogout')) byId('appTuLogout').hidden = !signed;
+    var navAdmin = byId('navAdmin');
+    if(byId('appTuAdmin')) byId('appTuAdmin').hidden = !navAdmin || navAdmin.classList.contains('hidden');
+    var push = byId('btnEnablePush');
+    if(byId('appTuPush')) byId('appTuPush').hidden = !push || push.classList.contains('hidden');
+    var count = (typeof cart !== 'undefined' && cart && cart.length) ? String(cart.length) : '';
+    if(byId('appTuCartCount')) byId('appTuCartCount').textContent = count;
+    setSwitch('appTuTheme', !document.body.classList.contains('theme-light'));
+    var ms = byId('matureSwitch');
+    setSwitch('appTuMature', !!(ms && ms.checked));
+    setSwitch('appTuTextOnly', document.body.classList.contains('text-only-mode'));
+    var src = byId('langSelect'), dst = byId('appTuLang');
+    if(src && dst){
+      if(dst.options.length !== src.options.length){
+        dst.innerHTML = '';
+        Array.prototype.forEach.call(src.options, function(o){ dst.appendChild(new Option(o.textContent, o.value)); });
+      }
+      dst.value = src.value;
+    }
+    if(byId('appTuClose')) byId('appTuClose').setAttribute('aria-label', t('apptu.close'));
+  }
+  function open(){
+    sync();
+    sheet.classList.add('open');
+    backdrop.classList.add('open');
+    tuTab.setAttribute('aria-expanded', 'true');
+    setTimeout(function(){ var c = byId('appTuClose'); if(c) c.focus(); }, 60);
+  }
+  function close(){
+    if(!sheet.classList.contains('open')) return;
+    sheet.classList.remove('open');
+    backdrop.classList.remove('open');
+    tuTab.setAttribute('aria-expanded', 'false');
+    tuTab.focus();
+  }
+  tuTab.addEventListener('click', function(){ if(sheet.classList.contains('open')) close(); else open(); });
+  backdrop.addEventListener('click', close);
+  if(byId('appTuClose')) byId('appTuClose').addEventListener('click', close);
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && sheet.classList.contains('open')) close(); });
+
+  if(byId('appTuLogin')) byId('appTuLogin').addEventListener('click', function(){ close(); press('btnLoginTop'); });
+  if(byId('appTuLogout')) byId('appTuLogout').addEventListener('click', function(){ close(); press('btnLogoutTop'); });
+  if(byId('appTuProfile')) byId('appTuProfile').addEventListener('click', function(){ close(); goToOwnProfile(); });
+  if(byId('appTuCart')) byId('appTuCart').addEventListener('click', function(){ close(); openCartModal(); });
+  if(byId('appTuPush')) byId('appTuPush').addEventListener('click', function(){ press('btnEnablePush'); setTimeout(sync, 400); });
+  if(byId('appTuTheme')) byId('appTuTheme').addEventListener('click', function(){ press('btnTheme'); sync(); });
+  if(byId('appTuTextOnly')) byId('appTuTextOnly').addEventListener('click', function(){ press('btnTextOnly'); sync(); });
+  if(byId('appTuMature')) byId('appTuMature').addEventListener('click', function(){
+    // stesso percorso dell'interruttore in alto: conferma dell'età compresa
+    close();
+    press('matureSwitch');
+  });
+  var ms = byId('matureSwitch');
+  if(ms) ms.addEventListener('change', function(){ setTimeout(sync, 0); });
+  if(byId('appTuLang')) byId('appTuLang').addEventListener('change', function(e){
+    var src = byId('langSelect');
+    if(!src) return;
+    src.value = e.target.value;
+    src.dispatchEvent(new Event('change', { bubbles: true }));
+    setTimeout(sync, 0);
+  });
+
+  // contatori della barra: copiano quelli dell'intestazione, aggiornati dalle funzioni di sempre
+  function mirror(srcId, apply){
+    var src = byId(srcId);
+    if(!src || !window.MutationObserver) return;
+    var run = function(){ apply(src); };
+    run();
+    new MutationObserver(run).observe(src, { attributes: true, childList: true, characterData: true, subtree: true });
+  }
+  mirror('chatHeaderBadge', function(src){
+    var b = byId('appTabMsgBadge');
+    if(!b) return;
+    var n = (src.textContent || '').trim();
+    b.textContent = n;
+    b.classList.toggle('hidden', src.classList.contains('hidden') || !n || n === '0');
+  });
+  mirror('navCommunityDot', function(src){
+    var d = byId('appTabCommunityDot');
+    if(d) d.classList.toggle('hidden', src.classList.contains('hidden'));
+  });
+  mirror('acctChip', function(){ if(sheet.classList.contains('open')) sync(); });
+}
+
+/* ============ HOME: CONTINUA A LEGGERE (si vede solo su telefono) ============
+   Il primo titolo iniziato e non finito, con il punto in cui ci si era fermati. */
+function renderHomeContinue(){
+  var hero = document.getElementById('testo');
+  if(!hero || !hero.parentNode) return;
+  var sec = document.getElementById('homeContinueSection');
+  var items = (isSignedIn() ? getCatalog() : []).filter(function(item){
+    if(!matureOk(item)) return false;
+    var total = (item.pages && item.pages.length) || 0;
+    var lp = readingProgressMap[item.id];
+    return typeof lp === 'number' && total > 1 && lp > 0 && lp < total - 1;
+  });
+  if(items.length === 0){ if(sec) sec.classList.add('hidden'); return; }
+  if(!sec){
+    sec = document.createElement('section');
+    sec.className = 'section';
+    sec.id = 'homeContinueSection';
+    hero.parentNode.insertBefore(sec, hero.nextSibling);
+  }
+  var item = items[0];
+  var total = item.pages.length;
+  var lp = readingProgressMap[item.id];
+  var pct = Math.round(((lp + 1) / total) * 100);
+  var cover = item.cover_url
+    ? '<img src="' + escapeHtml(coverThumbUrl(item.cover_url, 200)) + '" data-fallback="' + escapeHtml(item.cover_url) + '" alt="" loading="lazy" decoding="async">'
+    : '<span class="init">' + escapeHtml((item.character || '?').charAt(0)) + '</span>';
+  sec.innerHTML =
+    '<div class="section-head"><div><h2>' + escapeHtml(t('mycomics.tab.continue')) + '</h2></div></div>' +
+    '<button type="button" class="home-continue-card">' + cover +
+      '<span class="home-continue-text">' +
+        '<span class="home-continue-title">' + escapeHtml(item.title) + '</span>' +
+        '<span class="home-continue-label">' + escapeHtml(t('card.progress').replace('{page}', lp + 1).replace('{total}', total)) + '</span>' +
+        '<span class="home-continue-bar"><span style="width:' + pct + '%"></span></span>' +
+      '</span>' +
+      '<span class="home-continue-go">' + escapeHtml(t('apphome.resume')) + '</span>' +
+    '</button>';
+  sec.classList.remove('hidden');
+  sec.querySelector('.home-continue-card').addEventListener('click', function(){ openTitleModal(item); });
+}
 
 /* ============ USER PROFILE (display name, bio, avatar, favorite characters) ============ */
 var currentProfile = null;
@@ -16049,6 +16198,7 @@ function __appInit(){
   initTheme();
   applyI18n();
   ensureSectionHeadingStyle();
+  initAppShell(); // barra in basso e foglio "Tu" (solo telefono)
   showEntryModeGate();
   renderDossiers();
   renderGenreChecks(); // se il form del catalogo è in questa pagina (Admin), popola i sigilli genere subito — non solo aprendo un titolo esistente in modifica

@@ -34,7 +34,7 @@
   // hai visto live sul sito prima di caricare — questo file parte da una
   // copia salvata in sessione e potrebbe non riflettere bump fatti nel
   // frattempo direttamente su GitHub.
-  var V = "199";
+  var V = "200";
 
   // style.css iniettato qui (non più con un <link> scritto a mano in ogni
   // pagina) così la sua versione segue sempre la stessa V di app.js,
@@ -89,6 +89,30 @@
   }
   function reveal() { document.documentElement.classList.add("lux-ready"); }
 
+  // Barra in basso dell'app (solo telefono, vedi style.css): si attiva qui,
+  // prima che la pagina si scopra, così non compare a scatti dopo. Su Luxtify
+  // (che ha già la sua barra) e su Amministra non c'è.
+  function setupAppTabbar() {
+    var bar = document.getElementById("appTabbar");
+    if (!bar) return;
+    var page = (location.pathname.split("/").pop() || "index.html").toLowerCase();
+    if (document.body.classList.contains("lx-page") || page === "luxtify.html" || page === "admin.html") {
+      ["appTabbar", "appTuSheet", "appTuBackdrop"].forEach(function (id) {
+        var el = document.getElementById(id);
+        if (el && el.parentNode) el.parentNode.removeChild(el);
+      });
+      return;
+    }
+    document.body.classList.add("has-app-tabbar");
+    var map = { "index.html": "home", "schedario.html": "schedario", "dossier.html": "schedario",
+                "community.html": "community", "contatti.html": "messaggi", "chat.html": "messaggi" };
+    var key = map[page] || "tu";
+    var cur = bar.querySelector('[data-tab="' + key + '"]');
+    if (!cur) return;
+    if (cur.tagName === "A") cur.setAttribute("aria-current", "page");
+    else cur.classList.add("is-section"); // le pagine raggiungibili da "Tu"
+  }
+
   function replaceSlot(id, html) {
     var slot = document.getElementById(id);
     if (!slot) {
@@ -101,6 +125,7 @@
   // sinistra, piccola e discreta — così sappiamo sempre con certezza se
   // il sito sta mostrando l'ultima versione, senza controllare altrove.
   var vTag = document.createElement('div');
+  vTag.id = 'luxVersionTag'; // su telefono style.css lo sposta sopra la barra in basso
   vTag.textContent = 'v' + V;
   vTag.style.cssText = 'position:fixed;bottom:4px;left:6px;z-index:99999;font-family:monospace;font-size:10px;color:rgba(201,162,77,0.55);pointer-events:none;';
   document.documentElement.appendChild(vTag);
@@ -144,6 +169,7 @@
   }
   applyEarlyTheme();
   setLogos();
+  setupAppTabbar();
   cssReady.then(function () {
     // Il lettore applica subito lo stile a tutta la pagina (ancora coperta):
     // così i caratteri del sito iniziano a scaricarsi, e le transizioni
