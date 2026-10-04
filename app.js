@@ -724,6 +724,12 @@ Object.assign(STR.es, {"apptu.version": "Versión del sitio", "apptu.update": "A
 Object.assign(STR.fr, {"apptu.version": "Version du site", "apptu.update": "Mettre à jour"});
 Object.assign(STR.de, {"apptu.version": "Website-Version", "apptu.update": "Aktualisieren"});
 
+Object.assign(STR.it, {"follow.off": "Segui", "follow.on": "Segui già", "follow.hint": "Ti avvisiamo quando esce un suo capitolo nuovo.", "follow.done": "Segui {name}: ti avviseremo dei capitoli nuovi", "follow.undone": "Non segui più {name}", "follow.error": "Non è stato possibile, riprova tra poco.", "a2hs.title": "Installa LUX COMICS", "a2hs.sub": "Si apre a tutto schermo e ti avvisa di messaggi e capitoli nuovi.", "a2hs.subInApp": "Aprila in Safari per installarla sul telefono.", "a2hs.how": "Come si fa", "a2hs.install": "Installa", "a2hs.later": "Non ora", "a2hs.guideTitle": "Installa LUX COMICS sul telefono", "a2hs.step1": "Tocca Condividi: in Safari è in basso (su iPad in alto), in Chrome in alto a destra.", "a2hs.step2": "Scorri e tocca «Aggiungi alla schermata Home».", "a2hs.step3": "Tocca «Aggiungi»: l’icona compare tra le tue app.", "a2hs.step4": "Apri LUX COMICS dall’icona e attiva le notifiche in Tu › Impostazioni.", "a2hs.inapp1": "Tocca i tre puntini (⋯) in alto.", "a2hs.inapp2": "Scegli «Apri in Safari» (o «Apri nel browser»).", "a2hs.inapp3": "Da Safari segui i passaggi per installarla.", "a2hs.ok": "Ho capito", "push.askTitle": "Attiva le notifiche", "push.askSub": "Messaggi, capitoli nuovi dei personaggi che segui ed eventi.", "push.askGo": "Attiva", "apptu.install": "Installa l’app"});
+Object.assign(STR.en, {"follow.off": "Follow", "follow.on": "Following", "follow.hint": "We’ll let you know when a new chapter comes out.", "follow.done": "Following {name}: you’ll hear about new chapters", "follow.undone": "You no longer follow {name}", "follow.error": "That didn’t work, please try again shortly.", "a2hs.title": "Install LUX COMICS", "a2hs.sub": "Opens full screen and alerts you to messages and new chapters.", "a2hs.subInApp": "Open it in Safari to install it on your phone.", "a2hs.how": "Show me how", "a2hs.install": "Install", "a2hs.later": "Not now", "a2hs.guideTitle": "Install LUX COMICS on your phone", "a2hs.step1": "Tap Share: in Safari it’s at the bottom (top on iPad), in Chrome at the top right.", "a2hs.step2": "Scroll and tap “Add to Home Screen”.", "a2hs.step3": "Tap “Add”: the icon appears among your apps.", "a2hs.step4": "Open LUX COMICS from the icon and turn on notifications in You › Settings.", "a2hs.inapp1": "Tap the three dots (⋯) at the top.", "a2hs.inapp2": "Choose “Open in Safari” (or “Open in browser”).", "a2hs.inapp3": "In Safari, follow the steps to install it.", "a2hs.ok": "Got it", "push.askTitle": "Turn on notifications", "push.askSub": "Messages, new chapters from characters you follow, and events.", "push.askGo": "Turn on", "apptu.install": "Install the app"});
+Object.assign(STR.es, {"follow.off": "Seguir", "follow.on": "Siguiendo", "follow.hint": "Te avisaremos cuando salga un capítulo nuevo.", "follow.done": "Sigues a {name}: te avisaremos de los capítulos nuevos", "follow.undone": "Ya no sigues a {name}", "follow.error": "No ha sido posible, inténtalo de nuevo en breve.", "a2hs.title": "Instala LUX COMICS", "a2hs.sub": "Se abre a pantalla completa y te avisa de mensajes y capítulos nuevos.", "a2hs.subInApp": "Ábrela en Safari para instalarla en el teléfono.", "a2hs.how": "Cómo se hace", "a2hs.install": "Instalar", "a2hs.later": "Ahora no", "a2hs.guideTitle": "Instala LUX COMICS en el teléfono", "a2hs.step1": "Toca Compartir: en Safari está abajo (arriba en iPad), en Chrome arriba a la derecha.", "a2hs.step2": "Desliza y toca «Añadir a pantalla de inicio».", "a2hs.step3": "Toca «Añadir»: el icono aparece entre tus apps.", "a2hs.step4": "Abre LUX COMICS desde el icono y activa las notificaciones en Tú › Ajustes.", "a2hs.inapp1": "Toca los tres puntos (⋯) arriba.", "a2hs.inapp2": "Elige «Abrir en Safari» (o «Abrir en el navegador»).", "a2hs.inapp3": "Desde Safari sigue los pasos para instalarla.", "a2hs.ok": "Entendido", "push.askTitle": "Activa las notificaciones", "push.askSub": "Mensajes, capítulos nuevos de los personajes que sigues y eventos.", "push.askGo": "Activar", "apptu.install": "Instalar la app"});
+Object.assign(STR.fr, {"follow.off": "Suivre", "follow.on": "Suivi", "follow.hint": "On te prévient à la sortie d’un nouveau chapitre.", "follow.done": "Tu suis {name} : on te préviendra des nouveaux chapitres", "follow.undone": "Tu ne suis plus {name}", "follow.error": "Cela n’a pas marché, réessaie dans un instant.", "a2hs.title": "Installe LUX COMICS", "a2hs.sub": "S’ouvre en plein écran et te prévient des messages et des nouveaux chapitres.", "a2hs.subInApp": "Ouvre-la dans Safari pour l’installer sur ton téléphone.", "a2hs.how": "Comment faire", "a2hs.install": "Installer", "a2hs.later": "Pas maintenant", "a2hs.guideTitle": "Installe LUX COMICS sur ton téléphone", "a2hs.step1": "Touche Partager : dans Safari c’est en bas (en haut sur iPad), dans Chrome en haut à droite.", "a2hs.step2": "Fais défiler et touche « Sur l’écran d’accueil ».", "a2hs.step3": "Touche « Ajouter » : l’icône apparaît parmi tes apps.", "a2hs.step4": "Ouvre LUX COMICS depuis l’icône et active les notifications dans Toi › Réglages.", "a2hs.inapp1": "Touche les trois points (⋯) en haut.", "a2hs.inapp2": "Choisis « Ouvrir dans Safari » (ou « Ouvrir dans le navigateur »).", "a2hs.inapp3": "Depuis Safari, suis les étapes pour l’installer.", "a2hs.ok": "Compris", "push.askTitle": "Active les notifications", "push.askSub": "Messages, nouveaux chapitres des personnages que tu suis et événements.", "push.askGo": "Activer", "apptu.install": "Installer l’app"});
+Object.assign(STR.de, {"follow.off": "Folgen", "follow.on": "Folge ich", "follow.hint": "Wir sagen dir Bescheid, wenn ein neues Kapitel erscheint.", "follow.done": "Du folgst {name}: Wir melden dir neue Kapitel", "follow.undone": "Du folgst {name} nicht mehr", "follow.error": "Das hat nicht geklappt, versuch es gleich noch einmal.", "a2hs.title": "LUX COMICS installieren", "a2hs.sub": "Öffnet sich im Vollbild und meldet Nachrichten und neue Kapitel.", "a2hs.subInApp": "Öffne die Seite in Safari, um sie zu installieren.", "a2hs.how": "So geht’s", "a2hs.install": "Installieren", "a2hs.later": "Nicht jetzt", "a2hs.guideTitle": "LUX COMICS auf dem Handy installieren", "a2hs.step1": "Tippe auf Teilen: in Safari unten (auf dem iPad oben), in Chrome oben rechts.", "a2hs.step2": "Scrolle und tippe auf „Zum Home-Bildschirm“.", "a2hs.step3": "Tippe auf „Hinzufügen“: Das Symbol erscheint bei deinen Apps.", "a2hs.step4": "Öffne LUX COMICS über das Symbol und aktiviere die Benachrichtigungen unter Du › Einstellungen.", "a2hs.inapp1": "Tippe oben auf die drei Punkte (⋯).", "a2hs.inapp2": "Wähle „In Safari öffnen“ (oder „Im Browser öffnen“).", "a2hs.inapp3": "Folge in Safari den Schritten zur Installation.", "a2hs.ok": "Verstanden", "push.askTitle": "Benachrichtigungen aktivieren", "push.askSub": "Nachrichten, neue Kapitel deiner Figuren und Events.", "push.askGo": "Aktivieren", "apptu.install": "App installieren"});
+
 var CHAR_META = {
   Lucifer:{role:{it:"Il Portatore di Luce",en:"The Light-Bearer",es:"El Portador de Luz",fr:"Le Porteur de Lumière",de:"Der Lichtträger"},
     bio:{it:"Sovrano della collana ammiraglia: potere, caduta e desiderio raccontati su grande scala.",
@@ -1349,6 +1355,7 @@ function afterAuthChange(){
   loadLikes();
   loadNotifications();
   loadUnreadDmCount();
+  loadCharacterFollows();
   loadMyCreationSession().then(refreshAdminUI);
   sendHeartbeat();
   renderMaintenanceBanner(); // se chi si è appena autenticato è l'admin, il blocco manutenzione deve sparire subito
@@ -2398,6 +2405,7 @@ function renderDossiers(){
       '<h2>'+escapeHtml(ch.name)+'</h2>'+
       '<div class="dossier-role">'+escapeHtml(charRole(ch))+'</div>'+
       '<p>'+escapeHtml(charBio(ch))+'</p>'+
+      '<div class="dossier-follow">'+followButtonHtml(name)+'<span class="acn-follow-hint">'+escapeHtml(t('follow.hint'))+'</span></div>'+
       '<span class="dossier-goto" data-char="'+name+'">'+t('nav.library')+' →</span>'+
       '<div class="shelf-row" id="dossierCharShelf" style="margin-top:20px;"></div>';
     ms.querySelector('.dossier-goto').addEventListener('click', function(){ goToLibrary(name); });
@@ -2759,6 +2767,7 @@ function renderAppCatalogNav(count){
         '<div class="acn-char-names"><div class="acn-char-name">' + escapeHtml(cur.name) + '</div>' +
         (charRole(cur) ? '<div class="acn-char-role">' + escapeHtml(charRole(cur)) + '</div>' : '') + '</div></div>' +
       (charBio(cur) ? '<p class="acn-char-bio">' + escapeHtml(charBio(cur)) + '</p>' : '') +
+      '<div class="acn-char-follow">' + followButtonHtml(cur.id) + '<span class="acn-follow-hint">' + escapeHtml(t('follow.hint')) + '</span></div>' +
       (cur.visible === false ? '<p class="acn-char-note">Nascosto ai lettori: lo vedi solo tu.</p>' : '') +
       (admin ? '<div class="acn-char-admin"><button type="button" data-admin="edit" data-id="' + escapeHtml(cur.id) + '">Modifica</button><button type="button" class="danger" data-admin="delete" data-id="' + escapeHtml(cur.id) + '">Elimina</button></div>' : '') +
     '</section>';
@@ -6138,6 +6147,7 @@ function initAppShell(){
       dst.value = src.value;
     }
     if(byId('appTuClose')) byId('appTuClose').setAttribute('aria-label', t('apptu.close'));
+    if(byId('appTuInstall')) byId('appTuInstall').hidden = !a2hsCanInstall();
   }
   function open(){
     sync();
@@ -6166,6 +6176,7 @@ function initAppShell(){
   if(byId('appTuCart')) byId('appTuCart').addEventListener('click', function(){ close(); openCartModal(); });
   if(byId('appTuPush')) byId('appTuPush').addEventListener('click', function(){ press('btnEnablePush'); setTimeout(sync, 400); });
   if(byId('appTuUpdate')) byId('appTuUpdate').addEventListener('click', function(){ window.location.reload(); });
+  if(byId('appTuInstall')) byId('appTuInstall').addEventListener('click', function(){ close(); openInstallGuide(); });
   if(byId('appTuTheme')) byId('appTuTheme').addEventListener('click', function(){ press('btnTheme'); sync(); });
   if(byId('appTuTextOnly')) byId('appTuTextOnly').addEventListener('click', function(){ press('btnTextOnly'); sync(); });
   if(byId('appTuMature')) byId('appTuMature').addEventListener('click', function(){
@@ -6213,6 +6224,204 @@ function initAppShell(){
     menu.appendChild(line);
   }
 }
+
+/* ============ INSTALLA L'APP (iPhone, iPad, Android) ============
+   Su iPhone le notifiche arrivano solo se il sito è stato aggiunto alla
+   schermata Home, e Apple non lascia che un sito si installi da solo: questo
+   avviso spiega i due tocchi necessari. Su Android Chrome offre la sua
+   finestra di installazione e basta un pulsante. Nell'app già installata
+   l'avviso non compare: al suo posto, una volta, l'invito alle notifiche. */
+var a2hsDeferredPrompt = null;
+window.addEventListener('beforeinstallprompt', function(e){
+  e.preventDefault();
+  a2hsDeferredPrompt = e;
+  setTimeout(function(){ maybeShowInstallBanner(); }, 1500);
+});
+window.addEventListener('appinstalled', function(){
+  a2hsDeferredPrompt = null;
+  var b = document.getElementById('a2hsBanner');
+  if(b && b.parentNode) b.parentNode.removeChild(b);
+});
+function a2hsInAppBrowser(){
+  return /FBAN|FBAV|Instagram|TikTok|BytedanceWebview|musical_ly|Line\/|Snapchat|Pinterest|LinkedInApp|Twitter/i.test(navigator.userAgent || '');
+}
+function a2hsSnoozed(key){ try { return Date.now() < +(localStorage.getItem(key) || 0); } catch(e){ return false; } }
+function a2hsSnooze(key, days){ try { localStorage.setItem(key, String(Date.now() + days * 86400000)); } catch(e){} }
+function a2hsCountVisit(){
+  // una visita per sessione di navigazione, non una per ogni pagina aperta
+  try {
+    if(sessionStorage.getItem('lux_pv_counted')) return +(localStorage.getItem('lux_pv') || 0);
+    var n = +(localStorage.getItem('lux_pv') || 0) + 1;
+    localStorage.setItem('lux_pv', String(n));
+    sessionStorage.setItem('lux_pv_counted', '1');
+    return n;
+  } catch(e){ return 1; }
+}
+function a2hsCanInstall(){
+  if(isStandaloneApp()) return false;
+  return isIOSDevice() || !!a2hsDeferredPrompt;
+}
+var A2HS_SHARE_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V3M8 7l4-4 4 4M6 11H5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-8a1 1 0 0 0-1-1h-1"/></svg>';
+var A2HS_ADD_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zM12 8v8M8 12h8"/></svg>';
+var A2HS_DOTS_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h.01M12 12h.01M19 12h.01"/></svg>';
+var A2HS_BELL_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 16V11a6 6 0 0 1 12 0v5l2 2H4zM10 20a2 2 0 0 0 4 0"/></svg>';
+
+function luxBottomCard(id, iconHtml, title, sub, goLabel, onGo, onClose){
+  var old = document.getElementById(id);
+  if(old && old.parentNode) old.parentNode.removeChild(old);
+  var el = document.createElement('div');
+  el.id = id;
+  el.className = 'lux-bottom-card';
+  el.setAttribute('role', 'dialog');
+  el.setAttribute('aria-labelledby', id + 'Title');
+  el.innerHTML = iconHtml +
+    '<div class="lbc-text"><div class="lbc-title" id="' + id + 'Title">' + escapeHtml(title) + '</div><div class="lbc-sub">' + escapeHtml(sub) + '</div></div>' +
+    '<div class="lbc-actions"><button type="button" class="lbc-go">' + escapeHtml(goLabel) + '</button>' +
+    '<button type="button" class="lbc-close" aria-label="' + escapeHtml(t('a2hs.later')) + '">×</button></div>';
+  document.body.appendChild(el);
+  el.querySelector('.lbc-go').addEventListener('click', function(){ onGo(el); });
+  el.querySelector('.lbc-close').addEventListener('click', function(){ if(el.parentNode) el.parentNode.removeChild(el); onClose(); });
+  requestAnimationFrame(function(){ el.classList.add('on'); });
+  return el;
+}
+function closeBottomCard(id){
+  var el = document.getElementById(id);
+  if(el && el.parentNode) el.parentNode.removeChild(el);
+}
+function a2hsBlockedNow(){
+  // mai sopra il lettore, la chat a schermo intero o una finestra aperta
+  var reader = document.getElementById('pageReader');
+  if(reader && !reader.classList.contains('hidden')) return true;
+  if(document.body.classList.contains('chat-fullscreen')) return true;
+  if(document.querySelector('.modal-backdrop:not(.hidden)')) return true;
+  return false;
+}
+function maybeShowInstallBanner(){
+  if(!a2hsCanInstall() || a2hsSnoozed('lux_a2hs_until') || document.getElementById('a2hsBanner')) return;
+  if(a2hsBlockedNow()) return;
+  // solo dopo un segno di interesse: chi ha fatto l'accesso, o chi torna sul sito
+  var visits = +(localStorage.getItem('lux_pv') || 0);
+  if(!isSignedIn() && visits < 2) return;
+  var inApp = isIOSDevice() && a2hsInAppBrowser();
+  var android = !isIOSDevice() && !!a2hsDeferredPrompt;
+  luxBottomCard('a2hsBanner', '<img class="lbc-icon" src="apple-touch-icon.png" alt="" width="44" height="44">',
+    t('a2hs.title'), inApp ? t('a2hs.subInApp') : t('a2hs.sub'),
+    android ? t('a2hs.install') : t('a2hs.how'),
+    function(el){
+      if(android && a2hsDeferredPrompt){
+        var p = a2hsDeferredPrompt;
+        a2hsDeferredPrompt = null;
+        p.prompt();
+        (p.userChoice || Promise.resolve()).then(function(){ closeBottomCard('a2hsBanner'); });
+        return;
+      }
+      openInstallGuide();
+    },
+    function(){ a2hsSnooze('lux_a2hs_until', 30); });
+}
+function openInstallGuide(){
+  if(!isIOSDevice() && a2hsDeferredPrompt){
+    var p = a2hsDeferredPrompt;
+    a2hsDeferredPrompt = null;
+    p.prompt();
+    return;
+  }
+  var inApp = a2hsInAppBrowser();
+  var steps = inApp
+    ? [[A2HS_DOTS_SVG, t('a2hs.inapp1')], ['', t('a2hs.inapp2')], ['', t('a2hs.inapp3')]]
+    : [[A2HS_SHARE_SVG, t('a2hs.step1')], [A2HS_ADD_SVG, t('a2hs.step2')], ['', t('a2hs.step3')], [A2HS_BELL_SVG, t('a2hs.step4')]];
+  luxSheet('<h2 class="las-title">' + escapeHtml(t('a2hs.guideTitle')) + '</h2>' +
+    '<ol class="a2hs-steps">' + steps.map(function(st, i){
+      return '<li><span class="a2hs-num">' + (i + 1) + '</span><span class="a2hs-step-text">' + escapeHtml(st[1]) + '</span>' + (st[0] ? '<span class="a2hs-step-ico">' + st[0] + '</span>' : '') + '</li>';
+    }).join('') + '</ol>' +
+    '<button type="button" class="las-primary" data-las-close>' + escapeHtml(t('a2hs.ok')) + '</button>');
+  closeBottomCard('a2hsBanner');
+  a2hsSnooze('lux_a2hs_until', 7); // l'ha visto: lo si ripropone solo tra una settimana
+}
+// dentro l'app installata: una volta, l'invito ad attivare le notifiche
+function maybeAskPushInApp(force){
+  if(!isSignedIn() || pushUnavailableReason() !== null) return;
+  if(typeof Notification === 'undefined' || Notification.permission !== 'default') return;
+  if(!force && (!isStandaloneApp() || a2hsSnoozed('lux_pushask_until'))) return;
+  if(a2hsBlockedNow() || document.getElementById('pushAskCard')) return;
+  luxBottomCard('pushAskCard', '<span class="lbc-icon lbc-bell">' + A2HS_BELL_SVG + '</span>',
+    t('push.askTitle'), t('push.askSub'), t('push.askGo'),
+    function(){ closeBottomCard('pushAskCard'); enablePushNotifications(); },
+    function(){ a2hsSnooze('lux_pushask_until', 30); });
+}
+function initInstallPrompts(){
+  a2hsCountVisit();
+  setTimeout(function(){
+    if(isStandaloneApp()) maybeAskPushInApp(false);
+    else maybeShowInstallBanner();
+  }, 3500);
+}
+
+/* ============ SEGUI UN PERSONAGGIO ============
+   Chi segue un personaggio riceve un avviso nella campanella (e sul telefono,
+   se ha le notifiche attive) quando esce un suo titolo nuovo. L'avviso lo
+   scrive Supabase stesso con un trigger sulla tabella catalog: non dipende da
+   chi ha il sito aperto. Qui solo il pulsante e la lista di chi segui. */
+var followedChars = new Set();
+function loadCharacterFollows(){
+  if(!isSignedIn() || !SUPABASE_URL){ followedChars = new Set(); refreshFollowButtons(); return Promise.resolve(); }
+  return fetch(SUPABASE_URL + '/rest/v1/character_follows?select=character_id&user_id=eq.' + encodeURIComponent(currentUserId()), { headers: communityHeaders() })
+    .then(function(r){ return r.ok ? r.json() : []; })
+    .then(function(rows){ followedChars = new Set((rows || []).map(function(r){ return r.character_id; })); refreshFollowButtons(); })
+    .catch(function(){});
+}
+function followButtonHtml(id){
+  var on = followedChars.has(id);
+  return '<button type="button" class="follow-btn' + (on ? ' is-on' : '') + '" data-follow="' + escapeHtml(id) + '" aria-pressed="' + on + '">' +
+    A2HS_BELL_SVG + '<span class="follow-label">' + escapeHtml(on ? t('follow.on') : t('follow.off')) + '</span></button>';
+}
+function refreshFollowButtons(){
+  document.querySelectorAll('[data-follow]').forEach(function(b){
+    var on = followedChars.has(b.getAttribute('data-follow'));
+    b.classList.toggle('is-on', on);
+    b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    var l = b.querySelector('.follow-label');
+    if(l) l.textContent = on ? t('follow.on') : t('follow.off');
+  });
+}
+function toggleFollowCharacter(id){
+  if(!isSignedIn()){ openAuth('login'); return; }
+  var session = getSession();
+  var uid = currentUserId();
+  var wasOn = followedChars.has(id);
+  var name = charDisplayName(id);
+  if(wasOn) followedChars.delete(id); else followedChars.add(id);
+  refreshFollowButtons();
+  var req = wasOn
+    ? fetch(SUPABASE_URL + '/rest/v1/character_follows?user_id=eq.' + encodeURIComponent(uid) + '&character_id=eq.' + encodeURIComponent(id), {
+        method: 'DELETE', headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': 'Bearer ' + session.access_token } })
+    : fetch(SUPABASE_URL + '/rest/v1/character_follows', {
+        method: 'POST', headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': 'Bearer ' + session.access_token, 'Content-Type': 'application/json', 'Prefer': 'resolution=ignore-duplicates' },
+        body: JSON.stringify({ user_id: uid, character_id: id }) });
+  req.then(function(r){
+    if(!r.ok) throw new Error('follow ' + r.status);
+    luxToast((wasOn ? t('follow.undone') : t('follow.done')).replace('{name}', name));
+    if(!wasOn){
+      // per ricevere l'avviso anche sul telefono: su iPhone serve l'app installata,
+      // altrove le notifiche attive. Lo si propone subito, una volta sola.
+      var reason = pushUnavailableReason();
+      if(reason === 'ios-not-installed' && !a2hsSnoozed('lux_a2hs_follow')){ a2hsSnooze('lux_a2hs_follow', 30); setTimeout(openInstallGuide, 900); }
+      else if(reason === null) setTimeout(function(){ maybeAskPushInApp(true); }, 900);
+    }
+  }).catch(function(err){
+    console.warn('Segui personaggio:', err);
+    if(wasOn) followedChars.add(id); else followedChars.delete(id);
+    refreshFollowButtons();
+    luxToast(t('follow.error'));
+  });
+}
+document.addEventListener('click', function(e){
+  var b = e.target.closest && e.target.closest('[data-follow]');
+  if(!b) return;
+  e.preventDefault();
+  e.stopPropagation();
+  toggleFollowCharacter(b.getAttribute('data-follow'));
+});
 
 /* ============ HOME: CONTINUA A LEGGERE (si vede solo su telefono) ============
    Il primo titolo iniziato e non finito, con il punto in cui ci si era fermati. */
@@ -16885,6 +17094,8 @@ function __appInit(){
   applyI18n();
   ensureSectionHeadingStyle();
   initAppShell(); // barra in basso e foglio "Tu" (solo telefono)
+  loadCharacterFollows(); // personaggi che segui (pulsante "Segui")
+  initInstallPrompts(); // avviso "Installa l'app" / invito alle notifiche nell'app installata
   fillCharacterSelect();
   fetchTaxonomy(); // personaggi e categorie dalle tabelle Supabase (se ci sono)
   showEntryModeGate();
