@@ -34,7 +34,7 @@
   // hai visto live sul sito prima di caricare — questo file parte da una
   // copia salvata in sessione e potrebbe non riflettere bump fatti nel
   // frattempo direttamente su GitHub.
-  var V = "203";
+  var V = "204";
 
   // style.css iniettato qui (non più con un <link> scritto a mano in ogni
   // pagina) così la sua versione segue sempre la stessa V di app.js,
@@ -89,6 +89,30 @@
   }
   function reveal() { document.documentElement.classList.add("lux-ready"); }
 
+  // Home: le sezioni sotto la copertina d'apertura restano coperte (con un
+  // segnaposto discreto) finché catalogo, novità ed eventi non sono arrivati;
+  // poi app.js le scopre tutte insieme, già al loro posto. Prima comparivano
+  // in ordine sparso e spingevano giù quello che si stava guardando.
+  function setupHomeLoading() {
+    if (!document.getElementById("heroBg")) return;
+    var hero = document.getElementById("testo") || document.querySelector(".hero");
+    if (!hero || !hero.parentNode) return;
+    document.body.classList.add("home-loading");
+    if (!document.getElementById("homeSkeleton")) {
+      var sk = document.createElement("div");
+      sk.id = "homeSkeleton";
+      sk.setAttribute("aria-hidden", "true");
+      sk.innerHTML = '<div class="hs-title"></div><div class="hs-card"></div><div class="hs-row"><div></div><div></div></div>';
+      hero.parentNode.insertBefore(sk, hero.nextSibling);
+    }
+    // rete di sicurezza: se app.js non arriva, la pagina si mostra comunque
+    setTimeout(function () {
+      document.body.classList.remove("home-loading");
+      var s2 = document.getElementById("homeSkeleton");
+      if (s2 && s2.parentNode) s2.parentNode.removeChild(s2);
+    }, 8000);
+  }
+
   // Barra in basso dell'app (solo telefono, vedi style.css): si attiva qui,
   // prima che la pagina si scopra, così non compare a scatti dopo. Su Luxtify
   // (che ha già la sua barra) e su Amministra non c'è.
@@ -124,11 +148,10 @@
   // Etichetta visibile con la versione caricata — angolo in basso a
   // sinistra, piccola e discreta — così sappiamo sempre con certezza se
   // il sito sta mostrando l'ultima versione, senza controllare altrove.
-  var vTag = document.createElement('div');
-  vTag.id = 'luxVersionTag'; // su telefono style.css lo sposta sopra la barra in basso
-  vTag.textContent = 'v' + V;
-  vTag.style.cssText = 'position:fixed;bottom:4px;left:6px;z-index:99999;font-family:monospace;font-size:10px;color:rgba(201,162,77,0.55);pointer-events:none;';
-  document.documentElement.appendChild(vTag);
+  // v204: il numero di versione non è più un'etichetta fissa in basso a
+  // sinistra: si legge nelle impostazioni (foglio "Tu" su telefono, in fondo
+  // al menu da computer). app.js lo prende da qui.
+  window.LUX_VERSION = V;
 
   // Verifica dell'età (soluzione temporanea) — widget esterno Common Ninja,
   // iniettato qui così parte su ogni pagina senza doverlo copiare a mano
@@ -170,6 +193,7 @@
   applyEarlyTheme();
   setLogos();
   setupAppTabbar();
+  setupHomeLoading();
   cssReady.then(function () {
     // Il lettore applica subito lo stile a tutta la pagina (ancora coperta):
     // così i caratteri del sito iniziano a scaricarsi, e le transizioni

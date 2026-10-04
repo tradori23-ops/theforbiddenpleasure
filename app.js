@@ -712,6 +712,18 @@ Object.assign(STR.es, {"appcat.all": "Todas", "appcat.allChars": "Todos", "appca
 Object.assign(STR.fr, {"appcat.all": "Toutes", "appcat.allChars": "Tous", "appcat.collab": "En collaboration", "appcat.seeAll": "Tout voir", "appcat.grid": "Grille", "appcat.list": "Liste", "appcat.titles": "{n} titres", "appcat.title1": "1 titre", "appcat.characters": "Personnages", "appcat.categories": "Catégories"});
 Object.assign(STR.de, {"appcat.all": "Alle", "appcat.allChars": "Alle", "appcat.collab": "Kollaborationen", "appcat.seeAll": "Alle ansehen", "appcat.grid": "Raster", "appcat.list": "Liste", "appcat.titles": "{n} Titel", "appcat.title1": "1 Titel", "appcat.characters": "Figuren", "appcat.categories": "Kategorien"});
 
+Object.assign(STR.it, {"chat.archivedToggle": "Archiviate ({n})", "chat.unarchive": "Ripristina", "chat.archivedNote": "Conversazione archiviata"});
+Object.assign(STR.en, {"chat.archivedToggle": "Archived ({n})", "chat.unarchive": "Restore", "chat.archivedNote": "Archived conversation"});
+Object.assign(STR.es, {"chat.archivedToggle": "Archivadas ({n})", "chat.unarchive": "Restaurar", "chat.archivedNote": "Conversación archivada"});
+Object.assign(STR.fr, {"chat.archivedToggle": "Archivées ({n})", "chat.unarchive": "Restaurer", "chat.archivedNote": "Conversation archivée"});
+Object.assign(STR.de, {"chat.archivedToggle": "Archiviert ({n})", "chat.unarchive": "Wiederherstellen", "chat.archivedNote": "Archivierte Unterhaltung"});
+
+Object.assign(STR.it, {"apptu.version": "Versione del sito", "apptu.update": "Aggiorna"});
+Object.assign(STR.en, {"apptu.version": "Site version", "apptu.update": "Update"});
+Object.assign(STR.es, {"apptu.version": "Versión del sitio", "apptu.update": "Actualizar"});
+Object.assign(STR.fr, {"apptu.version": "Version du site", "apptu.update": "Mettre à jour"});
+Object.assign(STR.de, {"apptu.version": "Website-Version", "apptu.update": "Aktualisieren"});
+
 var CHAR_META = {
   Lucifer:{role:{it:"Il Portatore di Luce",en:"The Light-Bearer",es:"El Portador de Luz",fr:"Le Porteur de Lumière",de:"Der Lichtträger"},
     bio:{it:"Sovrano della collana ammiraglia: potere, caduta e desiderio raccontati su grande scala.",
@@ -1364,7 +1376,7 @@ function setCommunityDot(on){
   var wasHidden = dot.classList.contains('hidden');
   dot.classList.toggle('hidden', !on);
   dot.setAttribute('aria-label', t('nav.communityNews'));
-  if(on && wasHidden){ dot.classList.remove('pop'); void dot.offsetWidth; dot.classList.add('pop'); }
+  if(on && wasHidden){ dot.classList.remove('pop'); requestAnimationFrame(function(){ dot.classList.add('pop'); }); } // prima: void offsetWidth = ricalcolo forzato di tutta la pagina
 }
 
 // Il pallino della Community e il contatore dei messaggi non letti leggono
@@ -2583,6 +2595,7 @@ var LUX_DEFAULT_CATS = GENRE_LIST.map(function(g, i){ return { id: g, name: g, s
 var luxChars = luxReadTaxonomyCache('chars') || LUX_DEFAULT_CHARS.slice();
 var luxCats = luxReadTaxonomyCache('cats') || LUX_DEFAULT_CATS.slice();
 var luxTaxonomyLive = false; // diventa true quando le tabelle su Supabase rispondono
+var SHELF_PREVIEW_MAX = 12;
 var catalogView = (function(){ try { return localStorage.getItem('lux_catalog_view') === 'list' ? 'list' : 'grid'; } catch(e){ return 'grid'; } })();
 
 function luxReadTaxonomyCache(kind){
@@ -2801,6 +2814,9 @@ function onAppCatalogNavClick(e){
 function renderCatalogAdminBar(){
   var genres = document.getElementById('catalogGenreFilters');
   var bar = document.getElementById('catalogAdminBar');
+  // v204: lo scaffale nuovo c'è anche su computer e ha già i comandi dell'admin
+  if(bar && bar.parentNode) bar.parentNode.removeChild(bar);
+  return;
   if(!genres || !isAdmin()){ if(bar) bar.parentNode.removeChild(bar); return; }
   if(!bar){
     bar = document.createElement('div');
@@ -3522,7 +3538,7 @@ function renderCatalog(){
             '<div class="shelf-title">'+escapeHtml(charDisplayName(group.character))+'</div>'+
           '</div>'+
           '<div class="shelf-count mono">'+group.items.length+'</div>'+
-          '<button type="button" class="shelf-see-all" data-see-all>'+escapeHtml(t('appcat.seeAll'))+'</button>'+
+          '<button type="button" class="shelf-see-all" data-see-all>'+escapeHtml(t('appcat.seeAll'))+' ('+group.items.length+')</button>'+
         '</div>';
       // su telefono ogni collana è una fila da scorrere: "Vedi tutti" apre la sua pagina
       shelf.querySelector('[data-see-all]').addEventListener('click', function(){
@@ -3534,13 +3550,16 @@ function renderCatalog(){
     }
     var row = document.createElement('div');
     row.className = 'shelf-row';
-    group.items.forEach(function(item){
+    // con tutte le collane insieme se ne mostrano 12 per collana (le prime per
+    // data): meno copertine da preparare, pagina più leggera; il resto è a un tocco
+    var shown = (!singleShelfMode && group.items.length > SHELF_PREVIEW_MAX) ? group.items.slice(0, SHELF_PREVIEW_MAX) : group.items;
+    shown.forEach(function(item){
       row.insertAdjacentHTML('beforeend', buildTomeCardHtml(item));
     });
     shelf.appendChild(row);
     grid.appendChild(shelf);
     var cardEls = row.querySelectorAll('.tome-card');
-    group.items.forEach(function(item, idx){
+    shown.forEach(function(item, idx){
       wireTomeCard(cardEls[idx], item);
     });
   });
@@ -3596,13 +3615,41 @@ function buildCoverSignatureNode(item){
     return null; // un errore nella generazione del QR non deve mai rompere la copertina
   }
 }
+var _sigQueue = [], _sigScheduled = false, _sigObserver = null;
+function _sigPump(deadline){
+  _sigScheduled = false;
+  var start = Date.now();
+  while(_sigQueue.length){
+    var hasTime = deadline && deadline.timeRemaining ? deadline.timeRemaining() > 6 : (Date.now() - start) < 8;
+    if(!hasTime) break;
+    var job = _sigQueue.shift();
+    if(!job[0].isConnected || job[0].querySelector('.cover-signature')) continue;
+    var node = buildCoverSignatureNode(job[1]);
+    if(node) job[0].appendChild(node);
+  }
+  if(_sigQueue.length) _sigSchedule();
+}
+function _sigSchedule(){
+  if(_sigScheduled) return;
+  _sigScheduled = true;
+  if(window.requestIdleCallback) requestIdleCallback(_sigPump, { timeout: 1500 });
+  else setTimeout(function(){ _sigPump(null); }, 16);
+}
 function attachCoverSignature(coverEl, item){
   if(!coverEl || !item) return;
-  var runLater = window.requestIdleCallback || function(fn){ return setTimeout(fn, 0); };
-  runLater(function(){
-    var node = buildCoverSignatureNode(item);
-    if(node) coverEl.appendChild(node);
-  });
+  if(!('IntersectionObserver' in window)){ _sigQueue.push([coverEl, item]); _sigSchedule(); return; }
+  if(!_sigObserver){
+    _sigObserver = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(!en.isIntersecting) return;
+        _sigObserver.unobserve(en.target);
+        _sigQueue.push([en.target, en.target._sigItem]);
+      });
+      _sigSchedule();
+    }, { rootMargin: '300px 300px' });
+  }
+  coverEl._sigItem = item;
+  _sigObserver.observe(coverEl);
 }
 
 /* ============ FIRMA + QR ANCHE SULLA COPERTINA DEL PDF ============
@@ -6029,6 +6076,23 @@ var readingProgressMap = {}; // catalog_id -> last_page (0-based), solo titoli i
 // così la home veniva ricostruita fino a tre volte di fila all'apertura.
 var catalogFreshLoaded = false;
 function renderCatalogIfReady(){ if(catalogFreshLoaded) renderCatalog(); }
+var luxCatalogLoad = null;
+function luxHomeReveal(promises){
+  var done = false;
+  var finish = function(){
+    if(done) return;
+    done = true;
+    requestAnimationFrame(function(){
+      document.body.classList.remove('home-loading');
+      document.body.classList.add('home-ready');
+      var sk = document.getElementById('homeSkeleton');
+      if(sk && sk.parentNode) sk.parentNode.removeChild(sk);
+    });
+  };
+  Promise.all(promises.map(function(p){ return Promise.resolve(p).catch(function(){}); }))
+    .then(function(){ setTimeout(finish, 40); });
+  setTimeout(finish, 2600); // mai più di così: se un dato tarda, la pagina si mostra lo stesso
+}
 
 /* ============ APP SU TELEFONO: foglio "Tu" e contatori della barra in basso ============
    La barra e il foglio sono in chrome-footer.html; qui solo il comportamento.
@@ -6077,6 +6141,8 @@ function initAppShell(){
   }
   function open(){
     sync();
+    var vv = byId('appTuVersion');
+    if(vv) vv.textContent = 'v' + (window.LUX_VERSION || '');
     sheet.classList.add('open');
     backdrop.classList.add('open');
     tuTab.setAttribute('aria-expanded', 'true');
@@ -6099,6 +6165,7 @@ function initAppShell(){
   if(byId('appTuProfile')) byId('appTuProfile').addEventListener('click', function(){ close(); goToOwnProfile(); });
   if(byId('appTuCart')) byId('appTuCart').addEventListener('click', function(){ close(); openCartModal(); });
   if(byId('appTuPush')) byId('appTuPush').addEventListener('click', function(){ press('btnEnablePush'); setTimeout(sync, 400); });
+  if(byId('appTuUpdate')) byId('appTuUpdate').addEventListener('click', function(){ window.location.reload(); });
   if(byId('appTuTheme')) byId('appTuTheme').addEventListener('click', function(){ press('btnTheme'); sync(); });
   if(byId('appTuTextOnly')) byId('appTuTextOnly').addEventListener('click', function(){ press('btnTextOnly'); sync(); });
   if(byId('appTuMature')) byId('appTuMature').addEventListener('click', function(){
@@ -6136,6 +6203,15 @@ function initAppShell(){
     if(d) d.classList.toggle('hidden', src.classList.contains('hidden'));
   });
   mirror('acctChip', function(){ if(sheet.classList.contains('open')) sync(); });
+  // anche nel menu da computer, in fondo
+  var menu = byId('mainNavDropdown');
+  if(menu && !byId('menuVersionLine')){
+    var line = document.createElement('div');
+    line.id = 'menuVersionLine';
+    line.className = 'menu-version-line';
+    line.textContent = t('apptu.version') + ' v' + (window.LUX_VERSION || '');
+    menu.appendChild(line);
+  }
 }
 
 /* ============ HOME: CONTINUA A LEGGERE (si vede solo su telefono) ============
@@ -7810,24 +7886,28 @@ function eventIsMultiDay(ev){
   return new Date(ev.event_date).toDateString() !== new Date(ev.end_date).toDateString();
 }
 /* "28 ottobre 2026" · "12–13 dicembre 2026" · "28 ottobre – 1 novembre 2026" · "30 dicembre 2026 – 2 gennaio 2027" */
+// creare un formattatore di date costa: prima se ne creava uno nuovo a ogni
+// data mostrata (anche ogni secondo, col conto alla rovescia). Ora uno per tipo.
+var _evFmtFull = null, _evFmtDayMonth = null;
+function evFmtFull(d){ if(!_evFmtFull) _evFmtFull = new Intl.DateTimeFormat('it-IT', { day:'numeric', month:'long', year:'numeric' }); return _evFmtFull.format(d); }
+function evFmtDayMonth(d){ if(!_evFmtDayMonth) _evFmtDayMonth = new Intl.DateTimeFormat('it-IT', { day:'numeric', month:'long' }); return _evFmtDayMonth.format(d); }
 function eventDateParts(ev){
-  var full = { day:'numeric', month:'long', year:'numeric' };
   var a = new Date(ev.event_date);
   if(!eventIsMultiDay(ev)){
-    var one = a.toLocaleDateString('it-IT', full);
+    var one = evFmtFull(a);
     return { multi:false, label:one, startPart:one, endLabel:one };
   }
   var b = new Date(ev.end_date);
-  var endLabel = b.toLocaleDateString('it-IT', full);
+  var endLabel = evFmtFull(b);
   var startPart, label;
   if(a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth()){
     startPart = String(a.getDate());
     label = a.getDate() + '\u2013' + endLabel;
   } else if(a.getFullYear() === b.getFullYear()){
-    startPart = a.toLocaleDateString('it-IT', { day:'numeric', month:'long' });
+    startPart = evFmtDayMonth(a);
     label = startPart + ' \u2013 ' + endLabel;
   } else {
-    startPart = a.toLocaleDateString('it-IT', full);
+    startPart = evFmtFull(a);
     label = startPart + ' \u2013 ' + endLabel;
   }
   return { multi:true, label:label, startPart:startPart, endLabel:endLabel };
@@ -9058,18 +9138,20 @@ function loadChatSidebar(){
 
       return Promise.all([profilesStep, threadsStep]).then(function(results){
         var profiles = results[0], threads = results[1];
-        var threadByOtherId = {};
+        var threadByOtherId = {}, archivedByOtherId = {};
         threads.forEach(function(th){
           var st = dmThreadState(th, uid);
           if(!st.archived) threadByOtherId[st.otherId] = th;
+          else archivedByOtherId[st.otherId] = th; // prima sparivano per sempre: ora si possono ripristinare
         });
+        var archivedProfiles = profiles.filter(function(p){ return archivedByOtherId[p.id] && !threadByOtherId[p.id]; });
         // solo conversazioni davvero iniziate — chi cancelli sparisce per
         // davvero da qui; per scriverne una nuova c'è il bottone "Nuovo messaggio"
         profiles = profiles.filter(function(p){ return threadByOtherId[p.id]; });
         profiles.sort(function(a,b){
           return (a.display_name || '').localeCompare(b.display_name || '', 'it', { sensitivity:'base' });
         });
-        renderChatSidebar(profiles, threadByOtherId);
+        renderChatSidebar(profiles, threadByOtherId, archivedProfiles, archivedByOtherId);
       });
     })
     .catch(function(err){ console.warn('Chat sidebar load failed:', err); });
@@ -9079,15 +9161,18 @@ function loadChatSidebar(){
    alfabetico, con pallino online/offline — non più solo le conversazioni
    già iniziate. Se un amico ha già una conversazione, mostriamo comunque
    l'anteprima dell'ultimo messaggio e i pulsanti Archivia/Elimina. */
-function renderChatSidebar(profiles, threadByOtherId){
+var chatSidebarArchivedOpen = false;
+function renderChatSidebar(profiles, threadByOtherId, archivedProfiles, archivedByOtherId){
   var list = document.getElementById('chatSidebarList');
   if(!list) return;
   var uid = currentUserId();
+  archivedProfiles = archivedProfiles || [];
   list.innerHTML = '';
-  if(profiles.length === 0){
+  if(profiles.length === 0 && archivedProfiles.length === 0){
     list.innerHTML = '<p class="form-note">' + t('community.noDms') + '</p>';
     return;
   }
+  if(profiles.length === 0) list.innerHTML = '<p class="form-note">' + t('community.noDms') + '</p>';
 
   var rowsByThreadId = {}; // per aggiornare l'anteprima dell'ultimo messaggio
 
@@ -9165,6 +9250,64 @@ function renderChatSidebar(profiles, threadByOtherId){
 
     list.appendChild(row);
   });
+
+  // ---- conversazioni archiviate: in fondo, chiuse finché non le apri ----
+  if(archivedProfiles.length){
+    var archToggle = document.createElement('button');
+    archToggle.type = 'button';
+    archToggle.className = 'chat-sidebar-archived-toggle';
+    archToggle.setAttribute('aria-expanded', chatSidebarArchivedOpen ? 'true' : 'false');
+    archToggle.textContent = t('chat.archivedToggle').replace('{n}', archivedProfiles.length) + (chatSidebarArchivedOpen ? '  ▴' : '  ▾');
+    archToggle.addEventListener('click', function(){
+      chatSidebarArchivedOpen = !chatSidebarArchivedOpen;
+      renderChatSidebar(profiles, threadByOtherId, archivedProfiles, archivedByOtherId);
+    });
+    list.appendChild(archToggle);
+    if(chatSidebarArchivedOpen){
+      archivedProfiles.forEach(function(p){
+        var th = archivedByOtherId[p.id];
+        var name = p.display_name || t('userDir.title');
+        var row = document.createElement('div');
+        row.className = 'chat-sidebar-row is-archived';
+        var main = document.createElement('div');
+        main.className = 'chat-sidebar-row-main';
+        main.innerHTML =
+          '<span class="chat-sidebar-avatar-wrap">' + avatarHtml(p.avatar_url, name, p.id, 'chat-sidebar-avatar') + '</span>' +
+          '<span class="chat-sidebar-info"><span class="chat-sidebar-name">' + escapeHtml(name) + '</span>' +
+          '<span class="chat-sidebar-preview">' + escapeHtml(t('chat.archivedNote')) + '</span></span>';
+        main.addEventListener('click', function(){
+          if(document.getElementById('chatBox')) openChatWithUser(p.id, true);
+          else if(main.closest('#bookmarkDrawer')) openBookmarkChat(p.id);
+          else window.location.href = 'chat.html?user=' + encodeURIComponent(p.id);
+        });
+        row.appendChild(main);
+        var actions = document.createElement('div');
+        actions.className = 'chat-sidebar-actions';
+        var back = document.createElement('button');
+        back.type = 'button';
+        back.className = 'chat-sidebar-action';
+        back.textContent = t('chat.unarchive');
+        back.addEventListener('click', function(e){
+          e.stopPropagation();
+          var field = th.user_a === uid ? 'archived_a' : 'archived_b';
+          setDmFlag(th.id, field, false).then(function(){ loadChatSidebar(); });
+        });
+        actions.appendChild(back);
+        var del = document.createElement('button');
+        del.type = 'button';
+        del.className = 'chat-sidebar-action danger';
+        del.textContent = t('chat.delete') || 'Elimina';
+        del.addEventListener('click', function(e){
+          e.stopPropagation();
+          if(!window.confirm(t('chat.deleteConfirm'))) return;
+          deleteDmThread(th.id);
+        });
+        actions.appendChild(del);
+        row.appendChild(actions);
+        list.appendChild(row);
+      });
+    }
+  }
 
   // un'unica richiesta per tutte le anteprime, invece di una per contatto:
   // prendiamo più messaggi recenti del necessario (ordinati dal più nuovo)
@@ -16774,7 +16917,7 @@ function __appInit(){
   renderCartCount();
   fetchSocialLinks();
   fetchCharacterImages();
-  fetchAnnouncements();
+  var annLoad = fetchAnnouncements();
   startHeartbeat();
 
   document.getElementById('langSelect') && document.getElementById('langSelect').addEventListener('change', function(e){
@@ -17098,7 +17241,7 @@ function __appInit(){
 
   updateSyncStatus();
   checkDeepLinkOnLoad(); // try immediately in case the title is already in local cache
-  fetchCatalogFromSupabase().then(function(items){
+  luxCatalogLoad = fetchCatalogFromSupabase().then(function(items){
     catalogFreshLoaded = true;
     renderCatalog(); renderAdminList(); // disegna sempre — con i dati freschi se la sincronizzazione è riuscita, altrimenti con l'ultima copia salvata, mai col vuoto
     if(!deepLinkChecked) checkDeepLinkOnLoad(); // retry once fresh data has arrived
@@ -17111,6 +17254,12 @@ function __appInit(){
     checkForSiteUpdates();
     maybeStartOfflineSync();
   });
+  // Home: le sezioni sotto la copertina restano coperte finché catalogo,
+  // novità ed eventi non sono arrivati, poi compaiono insieme al loro posto
+  // (prima arrivavano in ordine sparso e spingevano giù quello che guardavi)
+  if(document.body.classList.contains('home-loading')){
+    luxHomeReveal([luxCatalogLoad, annLoad, document.getElementById('homeEventsList') ? fetchHomeEventsOnce().catch(function(){}) : null]);
+  }
   fetchMaintenanceStatus();
   fetchRegistrationQuizSetting();
   setInterval(fetchMaintenanceStatus, 60000); // light polling so visitors already on the page see it too

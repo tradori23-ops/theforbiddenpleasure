@@ -2343,71 +2343,109 @@ body.text-only-mode img:not(.no-text-only){
 }
 
 /* =====================================================================
-   SCHEDARIO: PERSONAGGI E CATEGORIE GESTIBILI (v201)
-   Su telefono: scaffale dei dorsi, categorie da scorrere, pagina del
-   personaggio, griglia o elenco, una fila per collana. Su computer resta
-   tutto com'era (solo i nomi arrivano dai dati). I fogli di gestione
-   (#luxAdminSheet) valgono per tutte le larghezze.
+   SCHEDARIO: PERSONAGGI E CATEGORIE GESTIBILI
+   v201 su telefono, v204 anche su computer: scaffale dei dorsi, categorie,
+   pagina del personaggio, griglia o elenco, "Vedi tutti" per collana.
+   I vecchi riquadri dei filtri (#catalogFilters, #catalogGenreFilters)
+   restano nel codice ma non si vedono più.
    ===================================================================== */
-#appCatalogNav,.shelf-see-all{display:none;}
+#library #catalogFilters,#library #catalogGenreFilters{display:none !important;}
+#appCatalogNav{display:block;margin:0 0 8px;}
+.shelf-see-all{display:none;}
+
+/* scaffale dei personaggi */
+.acn-shelf{display:flex;align-items:flex-end;gap:12px;height:204px;overflow-x:auto;padding:26px 2px 10px;scrollbar-width:thin;}
+.acn-spine{position:relative;flex:none;width:64px;height:170px;padding:0;margin:0;border:0;border-radius:6px;overflow:hidden;cursor:pointer;
+  transition:transform .25s,opacity .2s;-webkit-tap-highlight-color:transparent;}
+.acn-spine:hover{transform:translateY(-4px);}
+.acn-spine.is-active{transform:translateY(-10px);outline:2px solid #e3c273;outline-offset:2px;}
+.acn-spine:focus-visible{outline:2px solid #e3c273;outline-offset:3px;}
+.acn-spine.is-hidden{opacity:.45;}
+.acn-spine-name{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;writing-mode:vertical-rl;transform:rotate(180deg);
+  font-family:'Cinzel',serif;font-size:14px;font-weight:700;letter-spacing:.12em;text-shadow:0 1px 3px rgba(0,0,0,.9);white-space:nowrap;}
+.acn-all{background:linear-gradient(180deg,#3a2a12,#120b04);box-shadow:inset 0 0 0 3px #120b04,inset 0 0 0 4px rgba(227,194,115,.7);}
+.acn-all .acn-spine-name{color:#f0d690;letter-spacing:.14em;}
+.acn-round{width:76px;height:76px;margin-bottom:4px;border-radius:50%;}
+.acn-round .acn-seal{display:flex;width:100% !important;height:100% !important;font-size:28px;}
+.acn-add{border:1.5px dashed rgba(227,194,115,.55);background:rgba(227,194,115,.05);color:#e3c273;}
+.acn-add .acn-plus{position:absolute;top:14px;left:0;right:0;text-align:center;font-size:24px;line-height:1;}
+.acn-add .acn-spine-name{font-family:'Crimson Pro',Georgia,serif;font-size:13px;letter-spacing:.06em;text-shadow:none;color:#e3c273;}
+span.acn-seal{line-height:1;padding-top:.09em;box-sizing:border-box;}
+.acn-seal{flex:none;display:flex;align-items:center;justify-content:center;border-radius:50%;object-fit:cover;border:1.5px solid rgba(227,194,115,.45);
+  font-family:'Cinzel',serif;font-size:22px;font-weight:700;}
+
+/* comandi dell'admin */
+.acn-admin{display:flex;flex-wrap:wrap;gap:10px;padding:0 0 16px;}
+.acn-admin button,.acn-char-admin button{height:40px;padding:0 18px;border-radius:12px;border:1px solid rgba(227,194,115,.45);background:transparent;color:#e3c273;
+  font-family:'Crimson Pro',Georgia,serif;font-size:15.5px;font-weight:600;letter-spacing:0;text-transform:none;cursor:pointer;}
+.acn-admin button:hover,.acn-char-admin button:hover{background:rgba(227,194,115,.08);}
+.acn-char-admin button.danger{border-color:rgba(224,100,90,.45);color:#e78c80;}
+
+/* categorie */
+.acn-chips{display:flex;flex-wrap:wrap;gap:8px;padding:0 0 16px;}
+.acn-chip{flex:none;height:36px;padding:0 14px;border-radius:18px;border:1px solid rgba(201,162,77,.3);background:transparent;color:#d8ccad;
+  font-family:'Crimson Pro',Georgia,serif;font-size:15px;font-weight:600;letter-spacing:0;text-transform:none;white-space:nowrap;cursor:pointer;transition:background .2s,color .2s,border-color .2s;}
+.acn-chip:hover{border-color:#e3c273;}
+.acn-chip.is-active{background:#e3c273;border-color:#e3c273;color:#1a0f08;}
+
+/* pagina del personaggio scelto (prima era il Dossier) */
+.acn-char{max-width:760px;margin:0 0 18px;padding:18px;border-radius:18px;background:#150c0d;border:1px solid rgba(227,194,115,.22);}
+.acn-char-top{display:flex;align-items:center;gap:14px;}
+.acn-char-names{min-width:0;}
+.acn-char-name{font-family:'Cinzel',serif;font-size:24px;font-weight:700;color:var(--parchment);}
+.acn-char-role{font-family:'Crimson Pro',Georgia,serif;font-size:16.5px;font-style:italic;color:#e3c273;}
+.acn-char-bio{margin:12px 0 0;font-family:'Crimson Pro',Georgia,serif;font-size:17px;line-height:1.45;color:#e2d7bb;}
+.acn-char-note{margin:10px 0 0;font-size:14.5px;color:var(--parchment-dim);}
+.acn-char-admin{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;}
+
+/* conteggio e scelta griglia/elenco */
+.acn-meta{display:flex;align-items:center;justify-content:space-between;padding:0 0 12px;}
+.acn-count{font-family:'Crimson Pro',Georgia,serif;font-size:15.5px;color:var(--parchment-dim);}
+.acn-view{display:flex;padding:3px;border-radius:10px;background:#1e1215;}
+.acn-view button{width:38px;height:32px;border:0;border-radius:8px;background:transparent;color:#b8ac8e;display:flex;align-items:center;justify-content:center;cursor:pointer;}
+.acn-view button[aria-pressed="true"]{background:#3a2226;color:#f0d690;}
+.acn-view svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
+
+/* intestazione delle collane con "Vedi tutti (N)" quando sono mostrate tutte insieme */
+#catalogGrid .shelf-head{align-items:center;gap:10px;}
+#catalogGrid .shelf-head-text{flex:1;min-width:0;}
+#catalogGrid:not(.single-shelf) .shelf-count{display:none;}
+#catalogGrid:not(.single-shelf) .shelf-see-all{display:block;flex:none;height:34px;padding:0 2px;border:0;background:none;color:#e3c273;
+  font-family:'Crimson Pro',Georgia,serif;font-size:15.5px;font-weight:600;letter-spacing:0;text-transform:none;cursor:pointer;}
+#catalogGrid:not(.single-shelf) .shelf-see-all:hover{text-decoration:underline;}
+
+/* vista a elenco: copertina piccola a sinistra, titolo e prezzo a destra (su computer in due colonne) */
+#catalogGrid.view-list .shelf-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 18px;}
+#catalogGrid.view-list .card-idx{display:grid;grid-template-columns:72px minmax(0,1fr);column-gap:12px;align-items:center;
+  padding:10px 12px;margin:0;border:0;border-top:1px solid rgba(201,162,77,.12);border-radius:0;background:none;box-shadow:none;}
+#catalogGrid.view-list .card-idx-cover{grid-column:1;grid-row:1 / span 3;width:72px;height:72px;border-radius:10px;overflow:hidden;}
+#catalogGrid.view-list .card-idx-cover .cover-signature,
+#catalogGrid.view-list .card-idx-cover .card-idx-fav,
+#catalogGrid.view-list .card-idx-cover .mature,
+#catalogGrid.view-list .card-idx-cover .allages,
+#catalogGrid.view-list .tome-details,
+#catalogGrid.view-list .tome-details-toggle{display:none !important;}
+#catalogGrid.view-list .tome-plaque,
+#catalogGrid.view-list .tome-price-row,
+#catalogGrid.view-list .tome-progress{grid-column:2;padding:0;margin:0;min-height:0;background:none;border:0;}
+#catalogGrid.view-list .tome-plaque-text{font-size:16px;line-height:1.25;}
 
 @media (max-width:640px){
-  body.has-app-tabbar #catalogFilters,
-  body.has-app-tabbar #catalogGenreFilters{display:none !important;}
   body.has-app-tabbar #library .section-head{margin-bottom:6px;}
-  body.has-app-tabbar #appCatalogNav{display:block;margin:0 -18px 6px;}
-
-  /* scaffale dei personaggi */
-  .acn-shelf{display:flex;align-items:flex-end;gap:10px;height:178px;overflow-x:auto;padding:22px 18px 8px;scrollbar-width:none;}
+  body.has-app-tabbar #appCatalogNav{margin:0 -18px 6px;}
+  .acn-shelf{height:178px;gap:10px;padding:22px 18px 8px;scrollbar-width:none;}
   .acn-shelf::-webkit-scrollbar{display:none;}
-  .acn-spine{position:relative;flex:none;width:56px;height:146px;padding:0;margin:0;border:0;border-radius:6px;overflow:hidden;cursor:pointer;
-    transition:transform .25s,opacity .2s;-webkit-tap-highlight-color:transparent;}
-  .acn-spine.is-active{transform:translateY(-10px);outline:2px solid #e3c273;outline-offset:2px;}
-  .acn-spine.is-hidden{opacity:.45;}
-  .acn-spine-name{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;writing-mode:vertical-rl;transform:rotate(180deg);
-    font-family:'Cinzel',serif;font-size:13.5px;font-weight:700;letter-spacing:.12em;text-shadow:0 1px 3px rgba(0,0,0,.9);white-space:nowrap;}
-  .acn-all{background:linear-gradient(180deg,#3a2a12,#120b04);box-shadow:inset 0 0 0 3px #120b04,inset 0 0 0 4px rgba(227,194,115,.7);}
-  .acn-all .acn-spine-name{color:#f0d690;letter-spacing:.14em;}
-  .acn-round{width:66px;height:66px;margin-bottom:4px;border-radius:50%;}
-  .acn-round .acn-seal{display:flex;width:100% !important;height:100% !important;font-size:28px;} /* v203: prima display:block spingeva la lettera in alto */
-  .acn-add{border:1.5px dashed rgba(227,194,115,.55);background:rgba(227,194,115,.05);color:#e3c273;}
-  .acn-add .acn-plus{position:absolute;top:14px;left:0;right:0;text-align:center;font-size:24px;line-height:1;}
-  .acn-add .acn-spine-name{font-family:'Crimson Pro',Georgia,serif;font-size:13px;letter-spacing:.06em;text-shadow:none;color:#e3c273;}
-  span.acn-seal{line-height:1;padding-top:.09em;box-sizing:border-box;} /* le maiuscole Cinzel stanno alte: questo le porta al centro dell'occhio */
-  .acn-seal{flex:none;display:flex;align-items:center;justify-content:center;border-radius:50%;object-fit:cover;border:1.5px solid rgba(227,194,115,.45);
-    font-family:'Cinzel',serif;font-size:22px;font-weight:700;}
-
-  /* comandi dell'admin */
+  .acn-spine{width:56px;height:146px;}
+  .acn-spine:hover{transform:none;}
+  .acn-spine.is-active{transform:translateY(-10px);}
+  .acn-spine-name{font-size:13.5px;}
+  .acn-round{width:66px;height:66px;}
   .acn-admin{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:0 18px 14px;}
-  .acn-admin button,.acn-char-admin button{height:40px;border-radius:12px;border:1px solid rgba(227,194,115,.45);background:transparent;color:#e3c273;
-    font-family:'Crimson Pro',Georgia,serif;font-size:15.5px;font-weight:600;letter-spacing:0;text-transform:none;cursor:pointer;}
-  .acn-char-admin button.danger{border-color:rgba(224,100,90,.45);color:#e78c80;}
-
-  /* categorie */
-  .acn-chips{display:flex;gap:8px;overflow-x:auto;padding:0 18px 14px;scrollbar-width:none;}
+  .acn-chips{flex-wrap:nowrap;overflow-x:auto;padding:0 18px 14px;scrollbar-width:none;}
   .acn-chips::-webkit-scrollbar{display:none;}
-  .acn-chip{flex:none;height:36px;padding:0 14px;border-radius:18px;border:1px solid rgba(201,162,77,.3);background:transparent;color:#d8ccad;
-    font-family:'Crimson Pro',Georgia,serif;font-size:15px;font-weight:600;letter-spacing:0;text-transform:none;white-space:nowrap;cursor:pointer;}
-  .acn-chip.is-active{background:#e3c273;border-color:#e3c273;color:#1a0f08;}
-
-  /* pagina del personaggio scelto (prima era il Dossier) */
-  .acn-char{margin:0 18px 16px;padding:16px;border-radius:18px;background:#150c0d;border:1px solid rgba(227,194,115,.22);}
-  .acn-char-top{display:flex;align-items:center;gap:14px;}
-  .acn-char-names{min-width:0;}
-  .acn-char-name{font-family:'Cinzel',serif;font-size:24px;font-weight:700;color:var(--parchment);}
-  .acn-char-role{font-family:'Crimson Pro',Georgia,serif;font-size:16.5px;font-style:italic;color:#e3c273;}
-  .acn-char-bio{margin:12px 0 0;font-family:'Crimson Pro',Georgia,serif;font-size:17px;line-height:1.45;color:#e2d7bb;}
-  .acn-char-note{margin:10px 0 0;font-size:14.5px;color:var(--parchment-dim);}
-  .acn-char-admin{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px;}
-
-  /* conteggio e scelta griglia/elenco */
-  .acn-meta{display:flex;align-items:center;justify-content:space-between;padding:0 18px 10px 20px;}
-  .acn-count{font-family:'Crimson Pro',Georgia,serif;font-size:15.5px;color:var(--parchment-dim);}
-  .acn-view{display:flex;padding:3px;border-radius:10px;background:#1e1215;}
-  .acn-view button{width:38px;height:32px;border:0;border-radius:8px;background:transparent;color:#b8ac8e;display:flex;align-items:center;justify-content:center;cursor:pointer;}
-  .acn-view button[aria-pressed="true"]{background:#3a2226;color:#f0d690;}
-  .acn-view svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
-
+  .acn-char{margin:0 18px 16px;padding:16px;}
+  .acn-char-admin{display:grid;grid-template-columns:1fr 1fr;}
+  .acn-meta{padding:0 18px 10px 20px;}
   /* "Tutti": una fila da scorrere per ogni collana */
   body.has-app-tabbar #catalogGrid.shelves-wrap:not(.single-shelf):not(.view-list) .shelf-row{
     display:grid;grid-auto-flow:column;grid-auto-columns:150px;grid-template-columns:none;overflow-x:auto;scroll-snap-type:x proximity;
@@ -2415,32 +2453,41 @@ body.text-only-mode img:not(.no-text-only){
   body.has-app-tabbar #catalogGrid.shelves-wrap:not(.single-shelf):not(.view-list) .shelf-row::-webkit-scrollbar{display:none;}
   body.has-app-tabbar #catalogGrid.shelves-wrap:not(.single-shelf):not(.view-list) .shelf-row .card-idx{scroll-snap-align:start;}
   body.has-app-tabbar #catalogGrid .catalog-shelf{margin-bottom:22px;}
-  body.has-app-tabbar #catalogGrid .shelf-head{align-items:center;gap:10px;border-bottom:0;padding-bottom:0;margin-bottom:10px;}
-  body.has-app-tabbar #catalogGrid .shelf-head-text{flex:1;min-width:0;}
+  body.has-app-tabbar #catalogGrid .shelf-head{border-bottom:0;padding-bottom:0;margin-bottom:10px;}
   body.has-app-tabbar #catalogGrid .shelf-eyebrow{font-family:'Crimson Pro',Georgia,serif;font-size:14px;font-style:italic;letter-spacing:0;text-transform:none;}
   body.has-app-tabbar #catalogGrid .shelf-title{font-size:20px;}
-  body.has-app-tabbar #catalogGrid:not(.single-shelf) .shelf-count{display:none;}
-  body.has-app-tabbar #catalogGrid:not(.single-shelf) .shelf-see-all{display:block;flex:none;height:34px;padding:0 2px;border:0;background:none;color:#e3c273;
-    font-family:'Crimson Pro',Georgia,serif;font-size:15.5px;font-weight:600;letter-spacing:0;text-transform:none;cursor:pointer;}
-
-  /* vista a elenco: copertina piccola a sinistra, titolo e prezzo a destra */
-  body.has-app-tabbar #catalogGrid.view-list .shelf-row{display:flex;flex-direction:column;gap:0;border-radius:14px;overflow:hidden;
-    background:#150c0d;border:1px solid rgba(201,162,77,.14);}
-  body.has-app-tabbar #catalogGrid.view-list .card-idx{display:grid;grid-template-columns:72px minmax(0,1fr);column-gap:12px;align-items:center;
-    padding:10px 12px;margin:0;border:0;border-top:1px solid rgba(201,162,77,.1);border-radius:0;background:none;box-shadow:none;}
-  body.has-app-tabbar #catalogGrid.view-list .card-idx:first-child{border-top:0;}
-  body.has-app-tabbar #catalogGrid.view-list .card-idx-cover{grid-column:1;grid-row:1 / span 3;width:72px;height:72px;border-radius:10px;overflow:hidden;}
-  body.has-app-tabbar #catalogGrid.view-list .card-idx-cover .cover-signature,
-  body.has-app-tabbar #catalogGrid.view-list .card-idx-cover .card-idx-fav,
-  body.has-app-tabbar #catalogGrid.view-list .card-idx-cover .mature,
-  body.has-app-tabbar #catalogGrid.view-list .card-idx-cover .allages,
-  body.has-app-tabbar #catalogGrid.view-list .tome-details,
-  body.has-app-tabbar #catalogGrid.view-list .tome-details-toggle{display:none !important;}
-  body.has-app-tabbar #catalogGrid.view-list .tome-plaque,
-  body.has-app-tabbar #catalogGrid.view-list .tome-price-row,
-  body.has-app-tabbar #catalogGrid.view-list .tome-progress{grid-column:2;padding:0;margin:0;min-height:0;background:none;border:0;}
-  body.has-app-tabbar #catalogGrid.view-list .tome-plaque-text{font-size:16.5px;line-height:1.25;}
+  /* elenco su telefono: una colonna, dentro un riquadro */
+  #catalogGrid.view-list .shelf-row{display:flex;flex-direction:column;gap:0;border-radius:14px;overflow:hidden;background:#150c0d;border:1px solid rgba(201,162,77,.14);}
+  #catalogGrid.view-list .card-idx:first-child{border-top:0;}
+  #catalogGrid.view-list .tome-plaque-text{font-size:16.5px;}
 }
+
+/* tema chiaro: lo scaffale nuovo prima restava scuro e con testi poco leggibili */
+body.theme-light .acn-chip{color:#5a4a33;border-color:rgba(138,106,31,.35);}
+body.theme-light .acn-chip.is-active{background:#6b5015;border-color:#6b5015;color:#fff8ea;}
+body.theme-light .acn-char{background:#fffdf7;border-color:rgba(138,106,31,.28);}
+body.theme-light .acn-char-name{color:#2a1d12;}
+body.theme-light .acn-char-role{color:#6b5015;}
+body.theme-light .acn-char-bio{color:#3a2c1c;}
+body.theme-light .acn-count{color:#6a5b44;}
+body.theme-light .acn-view{background:#efe4cc;}
+body.theme-light .acn-view button{color:#6a5b44;}
+body.theme-light .acn-view button[aria-pressed="true"]{background:#fffdf7;color:#6b5015;}
+body.theme-light .acn-admin button,body.theme-light .acn-char-admin button{color:#6b5015;border-color:rgba(107,80,21,.45);}
+body.theme-light .acn-char-admin button.danger{color:#a3322a;border-color:rgba(163,50,42,.45);}
+body.theme-light #catalogGrid:not(.single-shelf) .shelf-see-all{color:#6b5015;}
+body.theme-light #catalogGrid.view-list .shelf-row{background:#fffdf7;border-color:rgba(138,106,31,.25);}
+body.theme-light #catalogGrid.view-list .card-idx{border-top-color:rgba(138,106,31,.18);}
+
+/* copertine strette (file da scorrere, griglie su telefono): firma e QR in
+   scala, così "NoxMorningstar" non viene più tagliato; titoli al massimo su 3 righe */
+.card-idx-cover,.latest-card-cover{container-type:inline-size;}
+@container (max-width: 210px){
+  .cover-signature{padding:6px 7px !important;gap:5px !important;}
+  .cover-signature-text{font-size:10.5px !important;}
+  .cover-signature-qr{width:28px !important;height:28px !important;min-width:28px !important;min-height:28px !important;max-width:28px !important;max-height:28px !important;padding:2px !important;}
+}
+.tome-plaque-text{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
 
 /* fogli di gestione dell'admin (personaggi e categorie) */
 #luxAdminSheet{position:fixed;inset:0;z-index:300;visibility:hidden;}
@@ -2513,3 +2560,37 @@ body.text-only-mode img:not(.no-text-only){
 .genre-seal-label{white-space:nowrap;}
 .genre-seal-wrap.active{background:var(--wine);border-color:var(--gold);color:#f3e9d2;} /* chiaro anche col tema chiaro: sta sul vino */
 .genre-seal-wrap.active .genre-seal{background:var(--gold);color:#1a0f08;}
+
+/* Chat: conversazioni archiviate, in fondo alla lista e ripristinabili (v204) */
+.chat-sidebar-archived-toggle{display:block;width:100%;margin:10px 0 4px;padding:10px 12px;border:1px dashed rgba(201,162,77,0.35);border-radius:10px;
+  background:transparent;color:var(--parchment-dim);font-family:'Crimson Pro',Georgia,serif;font-size:15.5px;font-weight:600;letter-spacing:0;text-transform:none;text-align:left;cursor:pointer;}
+.chat-sidebar-archived-toggle:hover{border-color:var(--gold);color:var(--parchment);}
+.chat-sidebar-row.is-archived .chat-sidebar-row-main{opacity:.72;}
+
+/* Home: le sezioni compaiono tutte insieme, già al loro posto (v204) */
+#homeSkeleton{display:none;}
+body.home-loading #app > section:not(#testo):not(.hero),
+body.home-loading #app > .section:not(#testo):not(.hero),
+body.home-loading #app > footer,
+body.home-loading #app > .newsletter-section{visibility:hidden;}
+body.home-loading #homeSkeleton{display:block;max-width:1100px;margin:22px auto 0;padding:0 18px;}
+#homeSkeleton .hs-title{width:44%;height:22px;margin:6px 0 14px;border-radius:6px;}
+#homeSkeleton .hs-card{height:96px;margin-bottom:16px;border-radius:16px;}
+#homeSkeleton .hs-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+#homeSkeleton .hs-row div{aspect-ratio:1 / 1;border-radius:14px;}
+#homeSkeleton .hs-title,#homeSkeleton .hs-card,#homeSkeleton .hs-row div{background:rgba(236,226,198,0.06);animation:hsPulse 1.4s ease-in-out infinite;}
+body.theme-light #homeSkeleton .hs-title,body.theme-light #homeSkeleton .hs-card,body.theme-light #homeSkeleton .hs-row div{background:rgba(42,29,18,0.07);}
+@keyframes hsPulse{0%,100%{opacity:.55}50%{opacity:1}}
+body.home-ready #app > section:not(#testo):not(.hero),
+body.home-ready #app > .newsletter-section{animation:luxFadeUp .45s ease both;}
+@keyframes luxFadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion: reduce){
+  #homeSkeleton .hs-title,#homeSkeleton .hs-card,#homeSkeleton .hs-row div{animation:none;}
+  body.home-ready #app > section:not(#testo):not(.hero),body.home-ready #app > .newsletter-section{animation:none;}
+}
+
+/* versione del sito: nelle impostazioni (foglio Tu) e in fondo al menu da computer (v204) */
+.app-mini-btn{flex:none;height:34px;padding:0 12px;margin-left:8px;border-radius:10px;border:1px solid rgba(227,194,115,.4);background:transparent;color:#e3c273;
+  font-family:'Crimson Pro',Georgia,serif;font-size:14.5px;font-weight:600;letter-spacing:0;text-transform:none;cursor:pointer;}
+body.theme-light .app-mini-btn{color:#6b5015;border-color:rgba(107,80,21,.45);}
+.menu-version-line{margin-top:12px;padding-top:10px;border-top:1px solid var(--line);font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.04em;color:var(--parchment-dim);}
