@@ -2490,3 +2490,24 @@ body.text-only-mode img:not(.no-text-only){
 #luxToast{position:fixed;left:50%;top:calc(14px + env(safe-area-inset-top,0px));z-index:400;transform:translate(-50%,-12px);opacity:0;max-width:90vw;padding:10px 16px;border-radius:20px;
   background:#241417;border:1px solid rgba(227,194,115,.4);color:#ece2c6;font-family:'Crimson Pro',Georgia,serif;font-size:15.5px;pointer-events:none;transition:opacity .2s,transform .25s;}
 #luxToast.on{opacity:1;transform:translate(-50%,0);}
+
+/* Schedario da computer: riga dei comandi dell'admin (v202) */
+.catalog-admin-bar{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:4px 0 22px;padding:12px 14px;border:1px dashed rgba(227,194,115,0.4);border-radius:12px;}
+.catalog-admin-label{margin-right:4px;font-family:'Crimson Pro',Georgia,serif;font-size:15px;font-style:italic;color:var(--parchment-dim);}
+@media (max-width:640px){
+  body.has-app-tabbar .catalog-admin-bar{display:none;} /* su telefono i comandi sono nello scaffale */
+}
+
+/* Generi dello Schedario da computer: prima non avevano nessuno stile e
+   comparivano come pulsanti bianchi di sistema con l'iniziale attaccata
+   al nome ("NNovità"). Ora: sigillo dorato con l'iniziale, poi il nome. */
+.genre-seal-wrap{display:inline-flex;align-items:center;gap:8px;height:38px;margin:0;padding:0 14px 0 5px;border-radius:19px;border:1px solid var(--line);
+  background:transparent;color:var(--parchment-dim);font-family:'Crimson Pro',Georgia,serif;font-size:15px;font-weight:600;letter-spacing:0;text-transform:none;
+  cursor:pointer;transition:border-color .2s,color .2s,background .2s;}
+.genre-seal-wrap:hover{border-color:var(--gold);color:var(--parchment);}
+.genre-seal-wrap:focus-visible{outline:2px solid var(--gold-bright);outline-offset:2px;}
+.genre-seal{flex:none;width:28px;height:28px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--gold);
+  color:var(--gold-bright);font-family:'Cinzel',serif;font-size:11px;font-weight:700;letter-spacing:0;}
+.genre-seal-label{white-space:nowrap;}
+.genre-seal-wrap.active{background:var(--wine);border-color:var(--gold);color:#f3e9d2;} /* chiaro anche col tema chiaro: sta sul vino */
+.genre-seal-wrap.active .genre-seal{background:var(--gold);color:#1a0f08;}

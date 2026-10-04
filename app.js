@@ -2499,6 +2499,7 @@ function renderFilters(){
       genreWrap.appendChild(btn);
     });
   }
+  renderCatalogAdminBar();
 }
 
 function genreMonogram(g){
@@ -2791,6 +2792,39 @@ function onAppCatalogNavClick(e){
   else if(act === 'cats') openCatManager();
   else if(act === 'edit') openCharEditor(b.getAttribute('data-id'));
   else if(act === 'delete') openCharDelete(b.getAttribute('data-id'));
+}
+
+/* ---------- comandi dell'admin sullo Schedario da computer ----------
+   Su telefono stanno nella navigazione nuova (scaffale); qui una riga sotto
+   i filtri, visibile solo all'admin. Aprono le stesse finestre di gestione. */
+function renderCatalogAdminBar(){
+  var genres = document.getElementById('catalogGenreFilters');
+  var bar = document.getElementById('catalogAdminBar');
+  if(!genres || !isAdmin()){ if(bar) bar.parentNode.removeChild(bar); return; }
+  if(!bar){
+    bar = document.createElement('div');
+    bar.id = 'catalogAdminBar';
+    bar.className = 'catalog-admin-bar';
+    bar.setAttribute('role', 'group');
+    bar.setAttribute('aria-label', 'Gestione dello schedario');
+    genres.parentNode.insertBefore(bar, genres.nextSibling);
+    bar.addEventListener('click', function(e){
+      var b = e.target.closest('button');
+      if(!b || !isAdmin()) return;
+      var act = b.getAttribute('data-admin');
+      if(act === 'manage') openCharManager();
+      else if(act === 'add') openCharEditor(null);
+      else if(act === 'cats') openCatManager();
+      else if(act === 'edit') openCharEditor(b.getAttribute('data-id'));
+    });
+  }
+  var cur = activeFilter !== 'all' && activeFilter !== 'Collaboratori' ? charById(activeFilter) : null;
+  bar.innerHTML =
+    '<span class="catalog-admin-label">Solo per te</span>' +
+    '<button type="button" class="btn btn-ghost btn-sm" data-admin="manage">Personaggi</button>' +
+    '<button type="button" class="btn btn-ghost btn-sm" data-admin="add">+ Nuovo personaggio</button>' +
+    '<button type="button" class="btn btn-ghost btn-sm" data-admin="cats">Categorie</button>' +
+    (cur ? '<button type="button" class="btn btn-ghost btn-sm" data-admin="edit" data-id="' + escapeHtml(cur.id) + '">Modifica ' + escapeHtml(cur.name) + '</button>' : '');
 }
 
 /* ---------- fogli di gestione (solo admin) ---------- */
