@@ -706,6 +706,12 @@ Object.assign(STR.es, {"contatti.seeAll": "Ver todas las conversaciones →"});
 Object.assign(STR.fr, {"contatti.seeAll": "Voir toutes les conversations →"});
 Object.assign(STR.de, {"contatti.seeAll": "Alle Unterhaltungen ansehen →"});
 
+Object.assign(STR.it, {"appcat.all": "Tutte", "appcat.allChars": "Tutti", "appcat.collab": "In collaborazione", "appcat.seeAll": "Vedi tutti", "appcat.grid": "Griglia", "appcat.list": "Elenco", "appcat.titles": "{n} titoli", "appcat.title1": "1 titolo", "appcat.characters": "Personaggi", "appcat.categories": "Categorie"});
+Object.assign(STR.en, {"appcat.all": "All", "appcat.allChars": "All", "appcat.collab": "Collaborations", "appcat.seeAll": "See all", "appcat.grid": "Grid", "appcat.list": "List", "appcat.titles": "{n} titles", "appcat.title1": "1 title", "appcat.characters": "Characters", "appcat.categories": "Categories"});
+Object.assign(STR.es, {"appcat.all": "Todas", "appcat.allChars": "Todos", "appcat.collab": "En colaboración", "appcat.seeAll": "Ver todos", "appcat.grid": "Cuadrícula", "appcat.list": "Lista", "appcat.titles": "{n} títulos", "appcat.title1": "1 título", "appcat.characters": "Personajes", "appcat.categories": "Categorías"});
+Object.assign(STR.fr, {"appcat.all": "Toutes", "appcat.allChars": "Tous", "appcat.collab": "En collaboration", "appcat.seeAll": "Tout voir", "appcat.grid": "Grille", "appcat.list": "Liste", "appcat.titles": "{n} titres", "appcat.title1": "1 titre", "appcat.characters": "Personnages", "appcat.categories": "Catégories"});
+Object.assign(STR.de, {"appcat.all": "Alle", "appcat.allChars": "Alle", "appcat.collab": "Kollaborationen", "appcat.seeAll": "Alle ansehen", "appcat.grid": "Raster", "appcat.list": "Liste", "appcat.titles": "{n} Titel", "appcat.title1": "1 Titel", "appcat.characters": "Figuren", "appcat.categories": "Kategorien"});
+
 var CHAR_META = {
   Lucifer:{role:{it:"Il Portatore di Luce",en:"The Light-Bearer",es:"El Portador de Luz",fr:"Le Porteur de Lumière",de:"Der Lichtträger"},
     bio:{it:"Sovrano della collana ammiraglia: potere, caduta e desiderio raccontati su grande scala.",
@@ -1018,7 +1024,7 @@ var matureVisible = false;
 
 // Singola fonte di verità per il filtro 18+/Tutti, usata ovunque nel sito
 // invece di ripetere il confronto in ogni funzione di rendering.
-function matureOk(item){ return matureVisible || !item.mature; }
+function matureOk(item){ return (matureVisible || !item.mature) && characterVisible(item); }
 
 function openMatureModal(){ var m = document.getElementById('matureModal'); m.style.zIndex = '1000'; m.classList.remove('hidden'); }
 function closeMatureModal(){ document.getElementById('matureModal').classList.add('hidden'); }
@@ -2354,7 +2360,8 @@ function renderLatestChapters(){
 function renderDossiers(){
   var wrap = document.getElementById('dossierGrid');
   if(!wrap) return;
-  var names = ['Lucifer','Lilith','Lucifera','Lucio','Nox'];
+  var names = charList(isAdmin()).map(function(c){ return c.id; });
+  if(names.length === 0) return;
   var lang = STR[currentLang] ? currentLang : 'it';
 
   function goToLibrary(name){
@@ -2372,13 +2379,13 @@ function renderDossiers(){
 
   function renderManuscript(idx){
     var name = names[idx];
-    var meta = CHAR_META[name];
+    var ch = charById(name) || { id: name, name: name };
     var ms = wrap.querySelector('.dossier-manuscript');
     if(!ms) return;
     ms.innerHTML =
-      '<h2>'+name+'</h2>'+
-      '<div class="dossier-role">'+meta.role[lang]+'</div>'+
-      '<p>'+meta.bio[lang]+'</p>'+
+      '<h2>'+escapeHtml(ch.name)+'</h2>'+
+      '<div class="dossier-role">'+escapeHtml(charRole(ch))+'</div>'+
+      '<p>'+escapeHtml(charBio(ch))+'</p>'+
       '<span class="dossier-goto" data-char="'+name+'">'+t('nav.library')+' →</span>'+
       '<div class="shelf-row" id="dossierCharShelf" style="margin-top:20px;"></div>';
     ms.querySelector('.dossier-goto').addEventListener('click', function(){ goToLibrary(name); });
@@ -2406,13 +2413,13 @@ function renderDossiers(){
       var imgUrl = characterImages[name];
       var cardInner = imgUrl
         ? '<img class="dossier-card-photo" src="'+coverThumbUrl(imgUrl, 300)+'" alt="'+name+'" loading="lazy">'
-        : '<span class="dossier-card-init">'+name.charAt(0)+'</span>';
+        : '<span class="dossier-card-init">'+escapeHtml(charDisplayName(name).charAt(0))+'</span>';
       var card = document.createElement('div');
       card.className = 'dossier-card'+(i===activeIdx?' active':'');
       card.innerHTML =
         cardInner+
         '<div class="dossier-card-scrim"></div>'+
-        '<div class="dossier-card-name">'+name+'</div>';
+        '<div class="dossier-card-name">'+escapeHtml(charDisplayName(name))+'</div>';
       card.addEventListener('click', function(){
         renderSeals(i);
         renderManuscript(i);
@@ -2459,11 +2466,11 @@ function renderFilters(){
   var wrap = document.getElementById('catalogFilters');
   if(!wrap) return;
   wrap.innerHTML = '';
-  var opts = ['all','Lucifer','Lilith','Lucifera','Lucio','Nox','Collaboratori'];
+  var opts = ['all'].concat(charList(isAdmin()).map(function(c){ return c.id; })).concat(['Collaboratori']);
   opts.forEach(function(opt){
     var btn = document.createElement('button');
     btn.className = 'filter-chip' + (activeFilter === opt ? ' active' : '');
-    btn.textContent = opt === 'all' ? t('filter.all') : (opt === 'Collaboratori' ? t('collab.categoryLabel') : opt);
+    btn.textContent = opt === 'all' ? t('filter.all') : (opt === 'Collaboratori' ? t('collab.categoryLabel') : charDisplayName(opt));
     btn.addEventListener('click', function(){
       activeFilter = opt;
       renderFilters();
@@ -2478,7 +2485,7 @@ function renderFilters(){
     var gOpts = [
       {key:'all', label:t('filter.allGenres'), mono:'✦'},
       {key:'new', label:t('filter.new'), mono:'N'}
-    ].concat(GENRE_LIST.map(function(g){ return {key:g, label:g, mono: genreMonogram(g)}; }));
+    ].concat(catList().map(function(c){ return {key:c.id, label:c.name, mono: genreMonogram(c.name)}; }));
     gOpts.forEach(function(g){
       var btn = document.createElement('button');
       btn.className = 'genre-seal-wrap' + (activeGenreFilter === g.key ? ' active' : '');
@@ -2544,7 +2551,492 @@ function renderGenreBanner(){
 var GENRE_LIST = ['Crossover',"Assassin's Creed Infernale",'The Morningstar Royal House','Thriller','Funny Comics','Horror','PixAI'];
 var activeGenreFilter = 'all';
 
-var COLLANA_ORDER = ['Lucifer','Lilith','Lucifera','Lucio','Nox'];
+var COLLANA_ORDER = ['Lucifer','Lilith','Lucifera','Lucio','Nox']; // ordine di riserva: quello vero ora viene dai dati (charList)
+
+/* ============ PERSONAGGI E CATEGORIE: DATI, NON PIÙ CODICE ============
+   Prima personaggi (Lucifer, Lilith…) e generi erano scritti qui dentro: per
+   aggiungerne uno bisognava cambiare il codice. Ora vivono nelle tabelle
+   Supabase "characters" e "categories" e l'admin li gestisce dallo Schedario.
+   Finché le tabelle non esistono (SQL non ancora lanciato) il sito usa i
+   valori qui sotto, cioè esattamente quelli di prima.
+   - L'id di un personaggio è il valore salvato in catalog.character (es.
+     "Lucifer"): cambiare il nome mostrato non tocca i titoli.
+   - L'id di una categoria è il valore salvato in catalog.genres. */
+var LUX_CHAR_COLORS = {
+  vino:      { label: 'Vino',      a: '#7a1a2b', b: '#2a080e', ink: '#f0d690' },
+  verderame: { label: 'Verderame', a: '#2b5a4c', b: '#0c1f1c', ink: '#9fd3b9' },
+  prugna:    { label: 'Prugna',    a: '#4b2660', b: '#160a1d', ink: '#d9b3ee' },
+  bronzo:    { label: 'Bronzo',    a: '#6b4718', b: '#231505', ink: '#f0d690' },
+  notte:     { label: 'Blu notte', a: '#2c3f5c', b: '#0b1220', ink: '#b9cdf0' },
+  ossidiana: { label: 'Ossidiana', a: '#3a3a3a', b: '#111111', ink: '#e3c273' }
+};
+var LUX_CHAR_SPINES = { Lucifer: 'shelf-lucifer.webp', Lilith: 'shelf-lilith.webp', Lucifera: 'shelf-lucifera.webp', Lucio: 'shelf-lucio.webp' };
+var LUX_DEFAULT_CHARS = [
+  { id: 'Lucifer', color: 'vino' }, { id: 'Lilith', color: 'verderame' }, { id: 'Lucifera', color: 'prugna' },
+  { id: 'Lucio', color: 'bronzo' }, { id: 'Nox', color: 'ossidiana' }
+].map(function(c, i){
+  var m = CHAR_META[c.id];
+  return { id: c.id, name: c.id, role: m ? m.role.it : '', bio: m ? m.bio.it : '', color: c.color, sort_order: i + 1, visible: true };
+});
+var LUX_DEFAULT_CATS = GENRE_LIST.map(function(g, i){ return { id: g, name: g, sort_order: i + 1 }; });
+var luxChars = luxReadTaxonomyCache('chars') || LUX_DEFAULT_CHARS.slice();
+var luxCats = luxReadTaxonomyCache('cats') || LUX_DEFAULT_CATS.slice();
+var luxTaxonomyLive = false; // diventa true quando le tabelle su Supabase rispondono
+var catalogView = (function(){ try { return localStorage.getItem('lux_catalog_view') === 'list' ? 'list' : 'grid'; } catch(e){ return 'grid'; } })();
+
+function luxReadTaxonomyCache(kind){
+  try {
+    var v = JSON.parse(localStorage.getItem('lux_taxonomy_' + kind) || 'null');
+    return Array.isArray(v) && v.length ? v : null;
+  } catch(e){ return null; }
+}
+function luxWriteTaxonomyCache(){
+  try {
+    localStorage.setItem('lux_taxonomy_chars', JSON.stringify(luxChars));
+    localStorage.setItem('lux_taxonomy_cats', JSON.stringify(luxCats));
+  } catch(e){}
+}
+function charList(includeHidden){
+  return luxChars.slice()
+    .sort(function(a, b){ return (a.sort_order || 0) - (b.sort_order || 0); })
+    .filter(function(c){ return includeHidden || c.visible !== false; });
+}
+function charById(id){
+  for(var i = 0; i < luxChars.length; i++){ if(luxChars[i].id === id) return luxChars[i]; }
+  return null;
+}
+function charDisplayName(id){
+  if(id === 'Collaboratori') return t('collab.categoryLabel');
+  var c = charById(id);
+  return c ? c.name : (id || '');
+}
+// per i cinque personaggi storici, nelle altre lingue restano le traduzioni
+// di sempre finché il testo italiano non viene cambiato dall'admin
+function charRole(c){
+  var m = CHAR_META[c.id];
+  if(currentLang !== 'it' && m && m.role[currentLang] && (!c.role || c.role === m.role.it)) return m.role[currentLang];
+  return c.role || '';
+}
+function charBio(c){
+  var m = CHAR_META[c.id];
+  if(currentLang !== 'it' && m && m.bio[currentLang] && (!c.bio || c.bio === m.bio.it)) return m.bio[currentLang];
+  return c.bio || '';
+}
+// i titoli di un personaggio nascosto non si vedono, tranne all'admin
+function characterVisible(item){
+  if(!item || !item.character || item.character === 'Collaboratori') return true;
+  var c = charById(item.character);
+  return !c || c.visible !== false || isAdmin();
+}
+function catList(){
+  return luxCats.slice().sort(function(a, b){ return (a.sort_order || 0) - (b.sort_order || 0); });
+}
+function catDisplayName(id){
+  for(var i = 0; i < luxCats.length; i++){ if(luxCats[i].id === id) return luxCats[i].name; }
+  return id;
+}
+function isCollabItem(i){
+  return i.character === 'Collaboratori' || !!(i.collaborators && i.collaborators.length) || !!i.collaborator_name;
+}
+function charSpineStyle(c){
+  var col = LUX_CHAR_COLORS[c.color] || LUX_CHAR_COLORS.vino;
+  var spine = LUX_CHAR_SPINES[c.id];
+  if(spine) return 'background:#150c0d url(' + spine + ') center/cover no-repeat;';
+  return 'background:linear-gradient(180deg,' + col.a + ',' + col.b + ');box-shadow:inset 0 0 0 3px ' + col.b + ',inset 0 0 0 4px rgba(227,194,115,0.55);';
+}
+function charSealHtml(c, size){
+  var img = characterImages[c.id];
+  var col = LUX_CHAR_COLORS[c.color] || LUX_CHAR_COLORS.vino;
+  if(img) return '<img class="acn-seal" style="width:' + size + 'px;height:' + size + 'px" src="' + escapeHtml(coverThumbUrl(img, size * 2)) + '" data-fallback="' + escapeHtml(img) + '" alt="">';
+  return '<span class="acn-seal" style="width:' + size + 'px;height:' + size + 'px;background:radial-gradient(circle at 35% 30%,' + col.a + ',' + col.b + ');color:' + col.ink + '">' + escapeHtml((c.name || '?').charAt(0).toUpperCase()) + '</span>';
+}
+
+function fetchTaxonomy(){
+  if(!SUPABASE_URL) return Promise.resolve();
+  var h = { 'apikey': SUPABASE_ANON_KEY, 'Authorization': 'Bearer ' + SUPABASE_ANON_KEY };
+  var get = function(table){
+    return fetch(SUPABASE_URL + '/rest/v1/' + table + '?select=*&order=sort_order.asc', { headers: h })
+      .then(function(r){ return r.ok ? r.json() : null; })
+      .catch(function(){ return null; });
+  };
+  return Promise.all([get('characters'), get('categories')]).then(function(res){
+    luxTaxonomyLive = Array.isArray(res[0]) && Array.isArray(res[1]);
+    if(Array.isArray(res[0]) && res[0].length) luxChars = res[0];
+    if(Array.isArray(res[1]) && res[1].length) luxCats = res[1];
+    luxWriteTaxonomyCache();
+    luxTaxonomyChanged();
+  });
+}
+function luxTaxonomyChanged(){
+  renderFilters();
+  renderDossiers();
+  fillCharacterSelect();
+  refreshGenreChecks();
+  renderCharImageAdmin();
+  renderHeroBg();
+  renderCatalogIfReady();
+}
+// scelta del personaggio nel modulo dei titoli (Amministra): stessa lista dei dati
+function fillCharacterSelect(){
+  var sel = document.getElementById('fCharacter');
+  if(!sel) return;
+  var current = sel.value;
+  var collabOpt = sel.querySelector('option[value="Collaboratori"]');
+  var collabHtml = collabOpt ? collabOpt.outerHTML : '<option value="Collaboratori">' + escapeHtml(t('collab.categoryLabel')) + '</option>';
+  sel.innerHTML = charList(true).map(function(c){
+    return '<option value="' + escapeHtml(c.id) + '">' + escapeHtml(c.name) + (c.visible === false ? ' (nascosto)' : '') + '</option>';
+  }).join('') + collabHtml;
+  if(current) sel.value = current;
+}
+function refreshGenreChecks(){
+  var block = document.getElementById('fGenresBlock');
+  if(!block || !block.childElementCount) return;
+  var picked = getSelectedGenres();
+  block.innerHTML = '';
+  renderGenreChecks();
+  block.querySelectorAll('input[type="checkbox"]').forEach(function(input){
+    if(picked.indexOf(input.value) !== -1){ input.checked = true; input.closest('.genre-check-seal').classList.add('active'); }
+  });
+}
+
+/* ---------- navigazione dello Schedario su telefono ----------
+   Scaffale con i dorsi dei personaggi, categorie da scorrere, pagina del
+   personaggio scelto, griglia o elenco. Su computer non si vede (style.css). */
+function renderAppCatalogNav(count){
+  var grid = document.getElementById('catalogGrid');
+  if(!grid) return;
+  var nav = document.getElementById('appCatalogNav');
+  if(!nav){
+    nav = document.createElement('div');
+    nav.id = 'appCatalogNav';
+    var anchor = document.getElementById('catalogGenreFilters') || grid;
+    anchor.parentNode.insertBefore(nav, anchor.nextSibling);
+    nav.addEventListener('click', onAppCatalogNavClick);
+  }
+  var admin = isAdmin();
+  var chars = charList(admin);
+  var spines = '<button type="button" class="acn-spine acn-all' + (activeFilter === 'all' ? ' is-active' : '') + '" data-char="all" aria-pressed="' + (activeFilter === 'all') + '"><span class="acn-spine-name">' + escapeHtml(t('appcat.allChars')) + '</span></button>';
+  chars.forEach(function(c){
+    var on = activeFilter === c.id;
+    var col = LUX_CHAR_COLORS[c.color] || LUX_CHAR_COLORS.vino;
+    var round = c.id === 'Nox' && !LUX_CHAR_SPINES[c.id];
+    if(round){
+      spines += '<button type="button" class="acn-spine acn-round' + (on ? ' is-active' : '') + (c.visible === false ? ' is-hidden' : '') + '" data-char="' + escapeHtml(c.id) + '" aria-pressed="' + on + '" aria-label="' + escapeHtml(c.name) + '">' + charSealHtml(c, 62) + '</button>';
+    } else {
+      spines += '<button type="button" class="acn-spine' + (on ? ' is-active' : '') + (c.visible === false ? ' is-hidden' : '') + '" data-char="' + escapeHtml(c.id) + '" aria-pressed="' + on + '" style="' + charSpineStyle(c) + '"><span class="acn-spine-name" style="color:' + col.ink + '">' + escapeHtml(c.name) + '</span></button>';
+    }
+  });
+  if(admin) spines += '<button type="button" class="acn-spine acn-add" data-admin="add"><span class="acn-plus" aria-hidden="true">+</span><span class="acn-spine-name">Aggiungi</span></button>';
+
+  var chipsData = [{ key: 'all', label: t('appcat.all') }, { key: 'new', label: t('filter.new') }]
+    .concat(catList().map(function(c){ return { key: c.id, label: c.name }; }))
+    .concat([{ key: 'collab', label: t('appcat.collab') }]);
+  var chips = chipsData.map(function(g){
+    var on = activeGenreFilter === g.key;
+    return '<button type="button" class="acn-chip' + (on ? ' is-active' : '') + '" data-genre="' + escapeHtml(g.key) + '" aria-pressed="' + on + '">' + escapeHtml(g.label) + '</button>';
+  }).join('');
+
+  var head = '';
+  var cur = activeFilter !== 'all' && activeFilter !== 'Collaboratori' ? charById(activeFilter) : null;
+  if(cur){
+    head = '<section class="acn-char" aria-label="' + escapeHtml(cur.name) + '">' +
+      '<div class="acn-char-top">' + charSealHtml(cur, 58) +
+        '<div class="acn-char-names"><div class="acn-char-name">' + escapeHtml(cur.name) + '</div>' +
+        (charRole(cur) ? '<div class="acn-char-role">' + escapeHtml(charRole(cur)) + '</div>' : '') + '</div></div>' +
+      (charBio(cur) ? '<p class="acn-char-bio">' + escapeHtml(charBio(cur)) + '</p>' : '') +
+      (cur.visible === false ? '<p class="acn-char-note">Nascosto ai lettori: lo vedi solo tu.</p>' : '') +
+      (admin ? '<div class="acn-char-admin"><button type="button" data-admin="edit" data-id="' + escapeHtml(cur.id) + '">Modifica</button><button type="button" class="danger" data-admin="delete" data-id="' + escapeHtml(cur.id) + '">Elimina</button></div>' : '') +
+    '</section>';
+  }
+  var n = typeof count === 'number' ? count : 0;
+  var countLabel = n === 1 ? t('appcat.title1') : t('appcat.titles').replace('{n}', n);
+  var gridIco = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z"/></svg>';
+  var listIco = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>';
+  nav.innerHTML =
+    '<div class="acn-shelf" role="group" aria-label="' + escapeHtml(t('appcat.characters')) + '">' + spines + '</div>' +
+    (admin ? '<div class="acn-admin"><button type="button" data-admin="manage">Personaggi</button><button type="button" data-admin="cats">Categorie</button></div>' : '') +
+    '<div class="acn-chips" role="group" aria-label="' + escapeHtml(t('appcat.categories')) + '">' + chips + '</div>' +
+    head +
+    '<div class="acn-meta"><span class="acn-count">' + escapeHtml(countLabel) + '</span>' +
+      '<div class="acn-view" role="group">' +
+        '<button type="button" data-view="grid" aria-pressed="' + (catalogView === 'grid') + '" aria-label="' + escapeHtml(t('appcat.grid')) + '">' + gridIco + '</button>' +
+        '<button type="button" data-view="list" aria-pressed="' + (catalogView === 'list') + '" aria-label="' + escapeHtml(t('appcat.list')) + '">' + listIco + '</button>' +
+      '</div></div>';
+}
+function onAppCatalogNavClick(e){
+  var b = e.target.closest('button');
+  if(!b) return;
+  if(b.hasAttribute('data-char')){
+    var id = b.getAttribute('data-char');
+    activeFilter = (activeFilter === id && id !== 'all') ? 'all' : id;
+    activeCollabFilter = null;
+    renderFilters(); renderCollabBanner(); renderCatalog();
+    return;
+  }
+  if(b.hasAttribute('data-genre')){
+    activeGenreFilter = b.getAttribute('data-genre');
+    renderFilters(); renderCatalog();
+    return;
+  }
+  if(b.hasAttribute('data-view')){
+    catalogView = b.getAttribute('data-view') === 'list' ? 'list' : 'grid';
+    try { localStorage.setItem('lux_catalog_view', catalogView); } catch(err){}
+    renderCatalog();
+    return;
+  }
+  var act = b.getAttribute('data-admin');
+  if(!act || !isAdmin()) return;
+  if(act === 'add') openCharEditor(null);
+  else if(act === 'manage') openCharManager();
+  else if(act === 'cats') openCatManager();
+  else if(act === 'edit') openCharEditor(b.getAttribute('data-id'));
+  else if(act === 'delete') openCharDelete(b.getAttribute('data-id'));
+}
+
+/* ---------- fogli di gestione (solo admin) ---------- */
+function luxToast(msg){
+  var el = document.getElementById('luxToast');
+  if(!el){ el = document.createElement('div'); el.id = 'luxToast'; el.setAttribute('role', 'status'); el.setAttribute('aria-live', 'polite'); document.body.appendChild(el); }
+  el.textContent = msg;
+  el.classList.add('on');
+  clearTimeout(el._t);
+  el._t = setTimeout(function(){ el.classList.remove('on'); }, 2600);
+}
+function luxSheet(html, mount){
+  var wrap = document.getElementById('luxAdminSheet');
+  if(!wrap){
+    wrap = document.createElement('div');
+    wrap.id = 'luxAdminSheet';
+    wrap.innerHTML = '<div class="las-backdrop" data-las-close></div><div class="las-panel" role="dialog" aria-modal="true"><button type="button" class="las-close" data-las-close aria-label="Chiudi">×</button><div class="las-body"></div></div>';
+    document.body.appendChild(wrap);
+    wrap.addEventListener('click', function(e){ if(e.target.closest('[data-las-close]')) closeLuxSheet(); });
+    document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && wrap.classList.contains('open')) closeLuxSheet(); });
+  }
+  wrap.querySelector('.las-body').innerHTML = html;
+  wrap.classList.add('open');
+  if(mount) mount(wrap.querySelector('.las-body'));
+  setTimeout(function(){ var f = wrap.querySelector('.las-body input, .las-body button'); if(f) f.focus(); }, 60);
+}
+function closeLuxSheet(){
+  var wrap = document.getElementById('luxAdminSheet');
+  if(wrap) wrap.classList.remove('open');
+}
+function luxDb(method, path, body){
+  var session = getSession();
+  if(!SUPABASE_URL || !session) return Promise.reject(new Error('Accesso richiesto'));
+  return fetch(SUPABASE_URL + '/rest/v1/' + path, {
+    method: method,
+    headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': 'Bearer ' + session.access_token, 'Content-Type': 'application/json', 'Prefer': 'return=representation' },
+    body: body ? JSON.stringify(body) : undefined
+  }).then(function(r){
+    if(!r.ok) return r.text().then(function(tx){ throw new Error(r.status + ' ' + tx); });
+    return r.status === 204 ? null : r.json().catch(function(){ return null; });
+  });
+}
+function luxDbError(err){
+  console.warn('Gestione personaggi/categorie:', err);
+  luxToast(luxTaxonomyLive ? 'Non è stato possibile salvare. Riprova tra poco.' : 'Per salvare serve prima lanciare su Supabase l’SQL di personaggi e categorie.');
+}
+function charTitleCount(id){ return getCatalog().filter(function(i){ return i.character === id; }).length; }
+function catTitleCount(id){ return getCatalog().filter(function(i){ return (i.genres || []).indexOf(id) !== -1; }).length; }
+function luxAfterCatalogChange(){
+  luxWriteTaxonomyCache();
+  fetchCatalogFromSupabase().then(function(){ luxTaxonomyChanged(); });
+}
+
+function openCharManager(){
+  var rows = charList(true).map(function(c, i, arr){
+    var n = charTitleCount(c.id);
+    return '<div class="las-row">' + charSealHtml(c, 38) +
+      '<button type="button" class="las-row-main" data-edit="' + escapeHtml(c.id) + '"><span class="las-row-name">' + escapeHtml(c.name) +
+        (c.visible === false ? ' <span class="las-tag">Nascosto</span>' : '') + '</span><span class="las-row-sub">' + (n === 1 ? '1 titolo' : n + ' titoli') + '</span></button>' +
+      '<button type="button" class="las-ico" data-eye="' + escapeHtml(c.id) + '" aria-label="' + (c.visible === false ? 'Mostra ' : 'Nascondi ') + escapeHtml(c.name) + '">' + (c.visible === false ? '◌' : '◉') + '</button>' +
+      '<button type="button" class="las-ico" data-move="-1" data-id="' + escapeHtml(c.id) + '" aria-label="Sposta su"' + (i === 0 ? ' disabled' : '') + '>↑</button>' +
+      '<button type="button" class="las-ico" data-move="1" data-id="' + escapeHtml(c.id) + '" aria-label="Sposta giù"' + (i === arr.length - 1 ? ' disabled' : '') + '>↓</button>' +
+    '</div>';
+  }).join('');
+  luxSheet('<h2 class="las-title">Personaggi</h2><p class="las-note">L’ordine qui è quello dello scaffale. Nascondendo un personaggio, lui e i suoi titoli spariscono per i lettori ma non si perde niente.</p>' +
+    '<div class="las-group">' + rows + '</div><button type="button" class="las-primary" data-add>+ Aggiungi personaggio</button>', function(body){
+    body.addEventListener('click', function(e){
+      var b = e.target.closest('button');
+      if(!b) return;
+      if(b.hasAttribute('data-add')) return openCharEditor(null);
+      if(b.hasAttribute('data-edit')) return openCharEditor(b.getAttribute('data-edit'));
+      if(b.hasAttribute('data-eye')){
+        var c = charById(b.getAttribute('data-eye'));
+        return luxDb('PATCH', 'characters?id=eq.' + encodeURIComponent(c.id), { visible: c.visible === false })
+          .then(function(){ c.visible = c.visible === false; luxWriteTaxonomyCache(); luxTaxonomyChanged(); openCharManager(); })
+          .catch(luxDbError);
+      }
+      if(b.hasAttribute('data-move')){
+        var list = charList(true), id = b.getAttribute('data-id'), dir = +b.getAttribute('data-move');
+        var i = list.findIndex(function(x){ return x.id === id; }), j = i + dir;
+        if(i < 0 || j < 0 || j >= list.length) return;
+        var a = list[i], o = list[j];
+        var sa = a.sort_order || i + 1, so = o.sort_order || j + 1;
+        if(sa === so) so = sa + dir;
+        return Promise.all([
+          luxDb('PATCH', 'characters?id=eq.' + encodeURIComponent(a.id), { sort_order: so }),
+          luxDb('PATCH', 'characters?id=eq.' + encodeURIComponent(o.id), { sort_order: sa })
+        ]).then(function(){ a.sort_order = so; o.sort_order = sa; luxWriteTaxonomyCache(); luxTaxonomyChanged(); openCharManager(); })
+          .catch(luxDbError);
+      }
+    });
+  });
+}
+
+function openCharEditor(id){
+  var c = id ? charById(id) : null;
+  var color = c ? c.color || 'vino' : 'notte';
+  var swatches = Object.keys(LUX_CHAR_COLORS).map(function(k){
+    var col = LUX_CHAR_COLORS[k];
+    return '<button type="button" role="radio" class="las-swatch" data-color="' + k + '" aria-checked="' + (k === color) + '" aria-label="' + col.label + '" style="background:linear-gradient(180deg,' + col.a + ',' + col.b + ')"></button>';
+  }).join('');
+  luxSheet('<h2 class="las-title">' + (c ? 'Modifica personaggio' : 'Nuovo personaggio') + '</h2>' +
+    '<p class="las-note">Il dorso è quello che i lettori vedono nello scaffale. La foto del Dossier si carica come sempre in Amministra, alla voce delle immagini dei personaggi.</p>' +
+    '<label class="las-field">Nome<input type="text" id="lasName" maxlength="30" placeholder="es. Medusa" value="' + escapeHtml(c ? c.name : '') + '"></label>' +
+    '<label class="las-field">Titolo<input type="text" id="lasRole" maxlength="50" placeholder="es. La Regina di Pietra" value="' + escapeHtml(c ? c.role || '' : '') + '"></label>' +
+    '<label class="las-field">Descrizione breve<textarea id="lasBio" rows="3" maxlength="240" placeholder="Due righe per la sua pagina.">' + escapeHtml(c ? c.bio || '' : '') + '</textarea></label>' +
+    '<div class="las-field">Colore del dorso</div><div class="las-swatches" role="radiogroup" aria-label="Colore del dorso">' + swatches + '</div>' +
+    '<label class="las-check"><input type="checkbox" id="lasVisible"' + (!c || c.visible !== false ? ' checked' : '') + '> Visibile ai lettori</label>' +
+    '<button type="button" class="las-primary" id="lasSave">Salva</button>' +
+    (c ? '<button type="button" class="las-danger" id="lasDelete">Elimina personaggio</button>' : ''), function(body){
+    var pick = color;
+    body.querySelectorAll('.las-swatch').forEach(function(s){
+      s.addEventListener('click', function(){
+        pick = s.getAttribute('data-color');
+        body.querySelectorAll('.las-swatch').forEach(function(x){ x.setAttribute('aria-checked', x === s ? 'true' : 'false'); });
+      });
+    });
+    if(c) body.querySelector('#lasDelete').addEventListener('click', function(){ openCharDelete(c.id); });
+    body.querySelector('#lasSave').addEventListener('click', function(){
+      var name = body.querySelector('#lasName').value.trim();
+      if(!name){ body.querySelector('#lasName').focus(); return; }
+      var data = { name: name, role: body.querySelector('#lasRole').value.trim(), bio: body.querySelector('#lasBio').value.trim(), color: pick, visible: body.querySelector('#lasVisible').checked };
+      var req;
+      if(c){
+        req = luxDb('PATCH', 'characters?id=eq.' + encodeURIComponent(c.id), data).then(function(){ Object.assign(c, data); });
+      } else {
+        var base = name.replace(/[^\p{L}\p{N} _-]/gu, '').trim() || 'Personaggio';
+        var newId = base, k = 2;
+        while(charById(newId) || newId === 'Collaboratori'){ newId = base + ' ' + (k++); }
+        data.id = newId;
+        data.sort_order = charList(true).reduce(function(m, x){ return Math.max(m, x.sort_order || 0); }, 0) + 1;
+        req = luxDb('POST', 'characters', data).then(function(){ luxChars.push(data); activeFilter = newId; });
+      }
+      req.then(function(){
+        closeLuxSheet();
+        luxWriteTaxonomyCache(); luxTaxonomyChanged();
+        luxToast(c ? name + ' aggiornato' : name + ' aggiunto allo schedario');
+      }).catch(luxDbError);
+    });
+  });
+}
+
+function openCharDelete(id){
+  var c = charById(id);
+  if(!c) return;
+  var n = charTitleCount(id);
+  var others = charList(true).filter(function(x){ return x.id !== id; });
+  var targets = others.map(function(x, i){
+    return '<button type="button" role="radio" class="las-pill" data-target="' + escapeHtml(x.id) + '" aria-checked="' + (i === 0) + '">' + escapeHtml(x.name) + '</button>';
+  }).join('');
+  luxSheet('<h2 class="las-title">Eliminare ' + escapeHtml(c.name) + '?</h2>' +
+    (n ? '<p class="las-note">' + (n === 1 ? 'Ha 1 titolo' : 'Ha ' + n + ' titoli') + ' nello schedario. Scegli che fine fanno: i titoli non vengono mai cancellati.</p>' +
+      '<label class="las-radio"><input type="radio" name="lasMode" value="move" checked> Spostali su un altro personaggio</label>' +
+      '<div class="las-pills" role="radiogroup" aria-label="Sposta su">' + targets + '</div>' +
+      '<label class="las-radio"><input type="radio" name="lasMode" value="none"> Lasciali senza collana</label>'
+      : '<p class="las-note">Non ha titoli nello schedario: si può eliminare senza conseguenze.</p>') +
+    '<button type="button" class="las-danger solid" id="lasConfirm">Elimina ' + escapeHtml(c.name) + '</button>' +
+    '<button type="button" class="las-secondary" id="lasHide">Nascondilo invece</button>', function(body){
+    var target = others.length ? others[0].id : '';
+    body.querySelectorAll('.las-pill').forEach(function(p){
+      p.addEventListener('click', function(){
+        target = p.getAttribute('data-target');
+        body.querySelectorAll('.las-pill').forEach(function(x){ x.setAttribute('aria-checked', x === p ? 'true' : 'false'); });
+        var mv = body.querySelector('input[value="move"]'); if(mv) mv.checked = true;
+      });
+    });
+    body.querySelector('#lasHide').addEventListener('click', function(){
+      luxDb('PATCH', 'characters?id=eq.' + encodeURIComponent(id), { visible: false })
+        .then(function(){ c.visible = false; closeLuxSheet(); luxWriteTaxonomyCache(); luxTaxonomyChanged(); luxToast(c.name + ' nascosto ai lettori'); })
+        .catch(luxDbError);
+    });
+    body.querySelector('#lasConfirm').addEventListener('click', function(){
+      var modeEl = body.querySelector('input[name="lasMode"]:checked');
+      var mode = n ? (modeEl ? modeEl.value : 'move') : 'none';
+      var dest = mode === 'move' ? target : '';
+      var move = n ? luxDb('PATCH', 'catalog?character=eq.' + encodeURIComponent(id), { character: dest }) : Promise.resolve();
+      move.then(function(){ return luxDb('DELETE', 'characters?id=eq.' + encodeURIComponent(id)); })
+        .then(function(){
+          luxChars = luxChars.filter(function(x){ return x.id !== id; });
+          if(activeFilter === id) activeFilter = 'all';
+          closeLuxSheet();
+          luxToast(c.name + ' eliminato' + (n ? (dest ? ': titoli spostati su ' + charDisplayName(dest) : ': titoli senza collana') : ''));
+          luxAfterCatalogChange();
+        }).catch(luxDbError);
+    });
+  });
+}
+
+function openCatManager(){
+  var rows = catList().map(function(c){
+    var n = catTitleCount(c.id);
+    return '<button type="button" class="las-row las-row-btn" data-cat="' + escapeHtml(c.id) + '"><span class="las-row-name">' + escapeHtml(c.name) + '</span><span class="las-row-sub">' + (n === 1 ? '1 titolo' : n + ' titoli') + '</span><span aria-hidden="true">›</span></button>';
+  }).join('');
+  luxSheet('<h2 class="las-title">Categorie</h2><p class="las-note">Tocca una categoria per rinominarla o eliminarla. “Novità” e “In collaborazione” si calcolano dai titoli, quindi non vanno gestite a mano.</p>' +
+    '<div class="las-group">' + rows + '</div><button type="button" class="las-primary" data-add>+ Aggiungi categoria</button>', function(body){
+    body.addEventListener('click', function(e){
+      var b = e.target.closest('button');
+      if(!b) return;
+      if(b.hasAttribute('data-add')) return openCatEditor(null);
+      if(b.hasAttribute('data-cat')) return openCatEditor(b.getAttribute('data-cat'));
+    });
+  });
+}
+
+function openCatEditor(id){
+  var c = null;
+  luxCats.forEach(function(x){ if(x.id === id) c = x; });
+  var n = c ? catTitleCount(c.id) : 0;
+  luxSheet('<button type="button" class="las-back" id="lasBack">‹ Categorie</button>' +
+    '<h2 class="las-title">' + (c ? 'Modifica categoria' : 'Nuova categoria') + '</h2>' +
+    '<label class="las-field">Nome<input type="text" id="lasCatName" maxlength="40" placeholder="es. Fantasy" value="' + escapeHtml(c ? c.name : '') + '"></label>' +
+    (c ? '<p class="las-note">' + (n === 1 ? 'È usata da 1 titolo' : 'È usata da ' + n + ' titoli') + ': eliminandola, i titoli restano ma senza questa categoria.</p>' : '') +
+    '<button type="button" class="las-primary" id="lasCatSave">Salva</button>' +
+    (c ? '<button type="button" class="las-danger" id="lasCatDelete">Elimina categoria</button>' : ''), function(body){
+    body.querySelector('#lasBack').addEventListener('click', openCatManager);
+    body.querySelector('#lasCatSave').addEventListener('click', function(){
+      var name = body.querySelector('#lasCatName').value.trim();
+      if(!name){ body.querySelector('#lasCatName').focus(); return; }
+      var req;
+      if(c){
+        req = luxDb('PATCH', 'categories?id=eq.' + encodeURIComponent(c.id), { name: name }).then(function(){ c.name = name; });
+      } else {
+        if(luxCats.some(function(x){ return x.id === name; })){ luxToast('Esiste già una categoria con questo nome'); return; }
+        var row = { id: name, name: name, sort_order: luxCats.reduce(function(m, x){ return Math.max(m, x.sort_order || 0); }, 0) + 1 };
+        req = luxDb('POST', 'categories', row).then(function(){ luxCats.push(row); });
+      }
+      req.then(function(){
+        luxWriteTaxonomyCache(); luxTaxonomyChanged(); openCatManager();
+        luxToast(c ? 'Categoria rinominata' : 'Categoria “' + name + '” aggiunta');
+      }).catch(luxDbError);
+    });
+    if(c) body.querySelector('#lasCatDelete').addEventListener('click', function(){
+      var affected = getCatalog().filter(function(i){ return (i.genres || []).indexOf(c.id) !== -1; });
+      Promise.all(affected.map(function(i){
+        return luxDb('PATCH', 'catalog?id=eq.' + encodeURIComponent(i.id), { genres: (i.genres || []).filter(function(g){ return g !== c.id; }) });
+      })).then(function(){ return luxDb('DELETE', 'categories?id=eq.' + encodeURIComponent(c.id)); })
+        .then(function(){
+          luxCats = luxCats.filter(function(x){ return x.id !== c.id; });
+          if(activeGenreFilter === c.id) activeGenreFilter = 'all';
+          openCatManager();
+          luxToast('Categoria “' + c.name + '” eliminata');
+          luxAfterCatalogChange();
+        }).catch(luxDbError);
+    });
+  });
+}
 
 function ensureMetaRowStyle(){
   if(document.getElementById('metaRowStyle')) return;
@@ -2922,6 +3414,7 @@ function renderCatalog(){
     // carosello dedicato (renderPixaiCarousel), mai nelle mensole qui sotto.
     grid.innerHTML = '';
     grid.classList.remove('shelves-wrap');
+    renderAppCatalogNav(getCatalog().filter(function(i){ return (i.genres||[]).indexOf('PixAI') !== -1 && matureOk(i); }).length);
     return;
   }
   var items = getCatalog().filter(function(i){ return (i.genres||[]).indexOf('PixAI') === -1 && matureOk(i); });
@@ -2944,16 +3437,22 @@ function renderCatalog(){
   if(activeGenreFilter === 'new'){
     var cutoff = new Date(Date.now() - 14*24*60*60*1000).toISOString().slice(0,10);
     items = items.filter(function(i){ return (i.date||'') >= cutoff; });
+  } else if(activeGenreFilter === 'collab'){
+    items = items.filter(isCollabItem); // "In collaborazione": opere a più mani, di qualunque collana
   } else if(activeGenreFilter !== 'all'){
     items = items.filter(function(i){ return (i.genres||[]).indexOf(activeGenreFilter) !== -1; });
   }
   grid.innerHTML = '';
   grid.classList.add('shelves-wrap');
+  grid.classList.toggle('single-shelf', singleShelfMode);
+  grid.classList.toggle('view-list', catalogView === 'list');
+  renderAppCatalogNav(items.length);
   if(items.length === 0){
     var empty = document.createElement('div');
     empty.className = 'empty-state';
     empty.style.gridColumn = '1/-1';
-    empty.textContent = '— ' + t('filter.all') + ' —';
+    // un personaggio appena creato non ha ancora titoli: lo si dice a parole
+    empty.textContent = (activeFilter !== 'all' && activeFilter !== 'Collaboratori' && !activeCollabFilter) ? t('dossier.comingSoon') : '— ' + t('filter.all') + ' —';
     grid.appendChild(empty);
     return;
   }
@@ -2971,8 +3470,9 @@ function renderCatalog(){
       if(!byChar[c]) byChar[c] = [];
       byChar[c].push(item);
     });
-    var order = COLLANA_ORDER.filter(function(c){ return byChar[c]; })
-      .concat(Object.keys(byChar).filter(function(c){ return COLLANA_ORDER.indexOf(c) === -1; }));
+    var collOrder = charList(true).map(function(c){ return c.id; });
+    var order = collOrder.filter(function(c){ return byChar[c]; })
+      .concat(Object.keys(byChar).filter(function(c){ return collOrder.indexOf(c) === -1; }));
     order.forEach(function(c){ groups.push({ character: c, items: byChar[c] }); });
   }
 
@@ -2984,10 +3484,18 @@ function renderCatalog(){
         '<div class="shelf-head" data-shelf-anchor="'+escapeHtml(group.character)+'">'+
           '<div class="shelf-head-text">'+
             '<div class="shelf-eyebrow">'+t('shelf.eyebrow')+'</div>'+
-            '<div class="shelf-title">'+escapeHtml(group.character)+'</div>'+
+            '<div class="shelf-title">'+escapeHtml(charDisplayName(group.character))+'</div>'+
           '</div>'+
           '<div class="shelf-count mono">'+group.items.length+'</div>'+
+          '<button type="button" class="shelf-see-all" data-see-all>'+escapeHtml(t('appcat.seeAll'))+'</button>'+
         '</div>';
+      // su telefono ogni collana è una fila da scorrere: "Vedi tutti" apre la sua pagina
+      shelf.querySelector('[data-see-all]').addEventListener('click', function(){
+        activeFilter = group.character;
+        renderFilters(); renderCatalog();
+        var nav = document.getElementById('appCatalogNav');
+        if(nav) nav.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
     }
     var row = document.createElement('div');
     row.className = 'shelf-row';
@@ -4957,7 +5465,7 @@ function renderGenreChecks(){
   preview.innerHTML = '<div class="genre-check-preview-label"></div>';
   block.appendChild(preview);
 
-  GENRE_LIST.forEach(function(g){
+  catList().map(function(c){ return c.id; }).forEach(function(g){
     var wrap = document.createElement('label');
     wrap.className = 'genre-check-seal';
     wrap.innerHTML = '<input type="checkbox" value="'+escapeHtml(g)+'">' +
@@ -5712,7 +6220,7 @@ function renderProfileCreateBox(){
   var canCreate = isSignedIn();
   box.classList.toggle('hidden', !canCreate);
   if(!canCreate) return;
-  var chars = ['Lucifer','Lilith','Lucifera','Lucio','Nox'];
+  var chars = charList(false).map(function(c){ return c.id; });
   grid.innerHTML = chars.map(function(name){
     var img = characterImages[name];
     var inner = img ? '<img src="'+img+'" alt="">' : '<span class="profile-create-init">'+name.charAt(0)+'</span>';
@@ -16054,7 +16562,7 @@ function renderHeroBg(){
   var box = document.getElementById('heroBg');
   if(!box) return;
   box.innerHTML = '';
-  CHAR_LIST.forEach(function(name){
+  charList(false).map(function(c){ return c.id; }).slice(0, 6).forEach(function(name){
     var url = characterImages[name];
     if(!url) return;
     var slice = document.createElement('div');
@@ -16072,7 +16580,7 @@ function renderCharImageAdmin(){
   var row = document.getElementById('charImageRow');
   if(!row) return;
   row.innerHTML = '';
-  CHAR_LIST.forEach(function(name){
+  charList(true).map(function(c){ return c.id; }).forEach(function(name){
     var item = document.createElement('div');
     item.className = 'char-image-item';
     var thumbSrc = characterImages[name] || '';
@@ -16199,6 +16707,8 @@ function __appInit(){
   applyI18n();
   ensureSectionHeadingStyle();
   initAppShell(); // barra in basso e foglio "Tu" (solo telefono)
+  fillCharacterSelect();
+  fetchTaxonomy(); // personaggi e categorie dalle tabelle Supabase (se ci sono)
   showEntryModeGate();
   renderDossiers();
   renderGenreChecks(); // se il form del catalogo è in questa pagina (Admin), popola i sigilli genere subito — non solo aprendo un titolo esistente in modifica

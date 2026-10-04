@@ -2341,3 +2341,152 @@ body.text-only-mode img:not(.no-text-only){
 @media (max-width:640px){
   .founder-seal{display:block;width:min(260px,72vw);height:auto;margin:0 auto 20px;}
 }
+
+/* =====================================================================
+   SCHEDARIO: PERSONAGGI E CATEGORIE GESTIBILI (v201)
+   Su telefono: scaffale dei dorsi, categorie da scorrere, pagina del
+   personaggio, griglia o elenco, una fila per collana. Su computer resta
+   tutto com'era (solo i nomi arrivano dai dati). I fogli di gestione
+   (#luxAdminSheet) valgono per tutte le larghezze.
+   ===================================================================== */
+#appCatalogNav,.shelf-see-all{display:none;}
+
+@media (max-width:640px){
+  body.has-app-tabbar #catalogFilters,
+  body.has-app-tabbar #catalogGenreFilters{display:none !important;}
+  body.has-app-tabbar #library .section-head{margin-bottom:6px;}
+  body.has-app-tabbar #appCatalogNav{display:block;margin:0 -18px 6px;}
+
+  /* scaffale dei personaggi */
+  .acn-shelf{display:flex;align-items:flex-end;gap:10px;height:178px;overflow-x:auto;padding:22px 18px 8px;scrollbar-width:none;}
+  .acn-shelf::-webkit-scrollbar{display:none;}
+  .acn-spine{position:relative;flex:none;width:56px;height:146px;padding:0;margin:0;border:0;border-radius:6px;overflow:hidden;cursor:pointer;
+    transition:transform .25s,opacity .2s;-webkit-tap-highlight-color:transparent;}
+  .acn-spine.is-active{transform:translateY(-10px);outline:2px solid #e3c273;outline-offset:2px;}
+  .acn-spine.is-hidden{opacity:.45;}
+  .acn-spine-name{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;writing-mode:vertical-rl;transform:rotate(180deg);
+    font-family:'Cinzel',serif;font-size:13.5px;font-weight:700;letter-spacing:.12em;text-shadow:0 1px 3px rgba(0,0,0,.9);white-space:nowrap;}
+  .acn-all{background:linear-gradient(180deg,#3a2a12,#120b04);box-shadow:inset 0 0 0 3px #120b04,inset 0 0 0 4px rgba(227,194,115,.7);}
+  .acn-all .acn-spine-name{color:#f0d690;letter-spacing:.14em;}
+  .acn-round{width:66px;height:66px;margin-bottom:4px;border-radius:50%;}
+  .acn-round .acn-seal{display:block;width:100% !important;height:100% !important;}
+  .acn-add{border:1.5px dashed rgba(227,194,115,.55);background:rgba(227,194,115,.05);color:#e3c273;}
+  .acn-add .acn-plus{position:absolute;top:14px;left:0;right:0;text-align:center;font-size:24px;line-height:1;}
+  .acn-add .acn-spine-name{font-family:'Crimson Pro',Georgia,serif;font-size:13px;letter-spacing:.06em;text-shadow:none;color:#e3c273;}
+  .acn-seal{flex:none;display:flex;align-items:center;justify-content:center;border-radius:50%;object-fit:cover;border:1.5px solid rgba(227,194,115,.45);
+    font-family:'Cinzel',serif;font-size:22px;font-weight:700;}
+
+  /* comandi dell'admin */
+  .acn-admin{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:0 18px 14px;}
+  .acn-admin button,.acn-char-admin button{height:40px;border-radius:12px;border:1px solid rgba(227,194,115,.45);background:transparent;color:#e3c273;
+    font-family:'Crimson Pro',Georgia,serif;font-size:15.5px;font-weight:600;letter-spacing:0;text-transform:none;cursor:pointer;}
+  .acn-char-admin button.danger{border-color:rgba(224,100,90,.45);color:#e78c80;}
+
+  /* categorie */
+  .acn-chips{display:flex;gap:8px;overflow-x:auto;padding:0 18px 14px;scrollbar-width:none;}
+  .acn-chips::-webkit-scrollbar{display:none;}
+  .acn-chip{flex:none;height:36px;padding:0 14px;border-radius:18px;border:1px solid rgba(201,162,77,.3);background:transparent;color:#d8ccad;
+    font-family:'Crimson Pro',Georgia,serif;font-size:15px;font-weight:600;letter-spacing:0;text-transform:none;white-space:nowrap;cursor:pointer;}
+  .acn-chip.is-active{background:#e3c273;border-color:#e3c273;color:#1a0f08;}
+
+  /* pagina del personaggio scelto (prima era il Dossier) */
+  .acn-char{margin:0 18px 16px;padding:16px;border-radius:18px;background:#150c0d;border:1px solid rgba(227,194,115,.22);}
+  .acn-char-top{display:flex;align-items:center;gap:14px;}
+  .acn-char-names{min-width:0;}
+  .acn-char-name{font-family:'Cinzel',serif;font-size:24px;font-weight:700;color:var(--parchment);}
+  .acn-char-role{font-family:'Crimson Pro',Georgia,serif;font-size:16.5px;font-style:italic;color:#e3c273;}
+  .acn-char-bio{margin:12px 0 0;font-family:'Crimson Pro',Georgia,serif;font-size:17px;line-height:1.45;color:#e2d7bb;}
+  .acn-char-note{margin:10px 0 0;font-size:14.5px;color:var(--parchment-dim);}
+  .acn-char-admin{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px;}
+
+  /* conteggio e scelta griglia/elenco */
+  .acn-meta{display:flex;align-items:center;justify-content:space-between;padding:0 18px 10px 20px;}
+  .acn-count{font-family:'Crimson Pro',Georgia,serif;font-size:15.5px;color:var(--parchment-dim);}
+  .acn-view{display:flex;padding:3px;border-radius:10px;background:#1e1215;}
+  .acn-view button{width:38px;height:32px;border:0;border-radius:8px;background:transparent;color:#b8ac8e;display:flex;align-items:center;justify-content:center;cursor:pointer;}
+  .acn-view button[aria-pressed="true"]{background:#3a2226;color:#f0d690;}
+  .acn-view svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
+
+  /* "Tutti": una fila da scorrere per ogni collana */
+  body.has-app-tabbar #catalogGrid.shelves-wrap:not(.single-shelf):not(.view-list) .shelf-row{
+    display:grid;grid-auto-flow:column;grid-auto-columns:150px;grid-template-columns:none;overflow-x:auto;scroll-snap-type:x proximity;
+    margin:0 -18px;padding:0 18px 6px;scrollbar-width:none;}
+  body.has-app-tabbar #catalogGrid.shelves-wrap:not(.single-shelf):not(.view-list) .shelf-row::-webkit-scrollbar{display:none;}
+  body.has-app-tabbar #catalogGrid.shelves-wrap:not(.single-shelf):not(.view-list) .shelf-row .card-idx{scroll-snap-align:start;}
+  body.has-app-tabbar #catalogGrid .catalog-shelf{margin-bottom:22px;}
+  body.has-app-tabbar #catalogGrid .shelf-head{align-items:center;gap:10px;border-bottom:0;padding-bottom:0;margin-bottom:10px;}
+  body.has-app-tabbar #catalogGrid .shelf-head-text{flex:1;min-width:0;}
+  body.has-app-tabbar #catalogGrid .shelf-eyebrow{font-family:'Crimson Pro',Georgia,serif;font-size:14px;font-style:italic;letter-spacing:0;text-transform:none;}
+  body.has-app-tabbar #catalogGrid .shelf-title{font-size:20px;}
+  body.has-app-tabbar #catalogGrid:not(.single-shelf) .shelf-count{display:none;}
+  body.has-app-tabbar #catalogGrid:not(.single-shelf) .shelf-see-all{display:block;flex:none;height:34px;padding:0 2px;border:0;background:none;color:#e3c273;
+    font-family:'Crimson Pro',Georgia,serif;font-size:15.5px;font-weight:600;letter-spacing:0;text-transform:none;cursor:pointer;}
+
+  /* vista a elenco: copertina piccola a sinistra, titolo e prezzo a destra */
+  body.has-app-tabbar #catalogGrid.view-list .shelf-row{display:flex;flex-direction:column;gap:0;border-radius:14px;overflow:hidden;
+    background:#150c0d;border:1px solid rgba(201,162,77,.14);}
+  body.has-app-tabbar #catalogGrid.view-list .card-idx{display:grid;grid-template-columns:72px minmax(0,1fr);column-gap:12px;align-items:center;
+    padding:10px 12px;margin:0;border:0;border-top:1px solid rgba(201,162,77,.1);border-radius:0;background:none;box-shadow:none;}
+  body.has-app-tabbar #catalogGrid.view-list .card-idx:first-child{border-top:0;}
+  body.has-app-tabbar #catalogGrid.view-list .card-idx-cover{grid-column:1;grid-row:1 / span 3;width:72px;height:72px;border-radius:10px;overflow:hidden;}
+  body.has-app-tabbar #catalogGrid.view-list .card-idx-cover .cover-signature,
+  body.has-app-tabbar #catalogGrid.view-list .card-idx-cover .card-idx-fav,
+  body.has-app-tabbar #catalogGrid.view-list .card-idx-cover .mature,
+  body.has-app-tabbar #catalogGrid.view-list .card-idx-cover .allages,
+  body.has-app-tabbar #catalogGrid.view-list .tome-details,
+  body.has-app-tabbar #catalogGrid.view-list .tome-details-toggle{display:none !important;}
+  body.has-app-tabbar #catalogGrid.view-list .tome-plaque,
+  body.has-app-tabbar #catalogGrid.view-list .tome-price-row,
+  body.has-app-tabbar #catalogGrid.view-list .tome-progress{grid-column:2;padding:0;margin:0;min-height:0;background:none;border:0;}
+  body.has-app-tabbar #catalogGrid.view-list .tome-plaque-text{font-size:16.5px;line-height:1.25;}
+}
+
+/* fogli di gestione dell'admin (personaggi e categorie) */
+#luxAdminSheet{position:fixed;inset:0;z-index:300;visibility:hidden;}
+#luxAdminSheet.open{visibility:visible;}
+#luxAdminSheet .las-backdrop{position:absolute;inset:0;background:rgba(5,2,3,.62);opacity:0;transition:opacity .25s;}
+#luxAdminSheet.open .las-backdrop{opacity:1;}
+#luxAdminSheet .las-panel{position:absolute;left:0;right:0;bottom:0;max-height:90vh;max-height:90dvh;overflow-y:auto;padding:22px 20px calc(28px + env(safe-area-inset-bottom,0px));
+  border-radius:22px 22px 0 0;background:#170d0f;color:var(--parchment);border-top:1px solid rgba(227,194,115,.3);box-shadow:0 -12px 40px rgba(0,0,0,.5);
+  transform:translateY(104%);transition:transform .3s cubic-bezier(.2,.8,.2,1);font-family:'Crimson Pro',Georgia,serif;}
+#luxAdminSheet.open .las-panel{transform:translateY(0);}
+@media (min-width:641px){
+  #luxAdminSheet .las-panel{left:50%;right:auto;bottom:auto;top:50%;width:min(520px,92vw);max-height:84vh;border-radius:18px;border:1px solid rgba(227,194,115,.3);
+    transform:translate(-50%,-46%);opacity:0;transition:transform .25s,opacity .2s;}
+  #luxAdminSheet.open .las-panel{transform:translate(-50%,-50%);opacity:1;}
+}
+.las-close{position:absolute;top:12px;right:12px;width:40px;height:40px;border:0;border-radius:20px;background:rgba(236,226,198,.08);color:var(--parchment);font-size:22px;line-height:1;cursor:pointer;}
+.las-title{margin:0 48px 6px 0;font-family:'Cinzel',serif;font-size:22px;font-weight:600;color:var(--parchment);}
+.las-note{margin:0 0 16px;font-size:15.5px;line-height:1.45;color:var(--parchment-dim);}
+.las-group{margin:0 0 16px;border-radius:14px;background:#150c0d;border:1px solid rgba(201,162,77,.14);overflow:hidden;}
+.las-row{display:flex;align-items:center;gap:10px;width:100%;padding:8px 6px 8px 12px;border:0;border-top:1px solid rgba(201,162,77,.1);background:none;color:var(--parchment);text-align:left;}
+.las-group > .las-row:first-child{border-top:0;}
+.las-row-btn{min-height:52px;cursor:pointer;font:inherit;padding-right:14px;}
+.las-row-main{flex:1;min-width:0;display:flex;flex-direction:column;padding:4px 0;border:0;background:none;color:inherit;text-align:left;font:inherit;cursor:pointer;}
+.las-row-name{flex:1;min-width:0;font-size:17px;font-weight:600;}
+.las-row-sub{font-size:14px;color:var(--parchment-dim);}
+.las-tag{padding:0 6px;border-radius:6px;border:1px solid rgba(184,172,142,.5);font-size:12px;font-weight:400;color:var(--parchment-dim);}
+.las-ico{flex:none;width:38px;height:40px;border:0;border-radius:10px;background:none;color:#e3c273;font-size:18px;cursor:pointer;}
+.las-ico[disabled]{opacity:.3;cursor:default;}
+.las-field{display:block;margin:0 0 14px;font-size:15px;font-weight:600;color:var(--parchment-dim);}
+.las-field input,.las-field textarea{display:block;width:100%;margin-top:6px;padding:10px 14px;border-radius:12px;border:1px solid rgba(201,162,77,.25);background:#1e1215;
+  color:var(--parchment);font-family:'Crimson Pro',Georgia,serif;font-size:17px;font-weight:400;box-sizing:border-box;}
+.las-field textarea{resize:vertical;line-height:1.4;}
+.las-swatches{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;margin:-6px 0 16px;}
+.las-swatch{height:44px;border-radius:10px;border:1px solid rgba(227,194,115,.35);cursor:pointer;}
+.las-swatch[aria-checked="true"]{box-shadow:0 0 0 2px #170d0f,0 0 0 4px #e3c273;}
+.las-check,.las-radio{display:flex;align-items:center;gap:10px;margin:0 0 14px;font-size:17px;font-weight:600;color:var(--parchment);}
+.las-check input,.las-radio input{width:20px;height:20px;accent-color:#c9a24d;}
+.las-pills{display:flex;flex-wrap:wrap;gap:8px;margin:-4px 0 14px 30px;}
+.las-pill{height:36px;padding:0 14px;border-radius:18px;border:1px solid rgba(201,162,77,.3);background:transparent;color:#d8ccad;font:inherit;font-size:15.5px;font-weight:600;cursor:pointer;}
+.las-pill[aria-checked="true"]{background:#e3c273;border-color:#e3c273;color:#1a0f08;}
+.las-primary,.las-secondary,.las-danger{display:block;width:100%;height:50px;margin-top:10px;border-radius:14px;font-family:'Crimson Pro',Georgia,serif;font-size:17px;font-weight:600;cursor:pointer;}
+.las-primary{border:0;background:#8a1a2c;color:#f3e9d2;}
+.las-secondary{border:1px solid rgba(201,162,77,.35);background:transparent;color:var(--parchment);}
+.las-danger{border:1px solid rgba(224,100,90,.45);background:transparent;color:#e78c80;}
+.las-danger.solid{background:#6b1420;border-color:#6b1420;color:#f3e9d2;}
+.las-back{height:36px;margin:-6px 0 6px;padding:0;border:0;background:none;color:#e3c273;font:inherit;font-size:16.5px;cursor:pointer;}
+.las-row .acn-seal{display:flex;align-items:center;justify-content:center;border-radius:50%;object-fit:cover;border:1px solid rgba(227,194,115,.35);font-family:'Cinzel',serif;font-size:15px;font-weight:700;}
+#luxToast{position:fixed;left:50%;top:calc(14px + env(safe-area-inset-top,0px));z-index:400;transform:translate(-50%,-12px);opacity:0;max-width:90vw;padding:10px 16px;border-radius:20px;
+  background:#241417;border:1px solid rgba(227,194,115,.4);color:#ece2c6;font-family:'Crimson Pro',Georgia,serif;font-size:15.5px;pointer-events:none;transition:opacity .2s,transform .25s;}
+#luxToast.on{opacity:1;transform:translate(-50%,0);}
