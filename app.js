@@ -2646,7 +2646,8 @@ function charSpineStyle(c){
   return 'background:linear-gradient(180deg,' + col.a + ',' + col.b + ');box-shadow:inset 0 0 0 3px ' + col.b + ',inset 0 0 0 4px rgba(227,194,115,0.55);';
 }
 function charSealHtml(c, size){
-  var img = characterImages[c.id];
+  // Nox senza foto caricata: il suo sigillo di Fondatore invece della sola iniziale
+  var img = characterImages[c.id] || (c.id === 'Nox' ? 'founder-seal.webp' : '');
   var col = LUX_CHAR_COLORS[c.color] || LUX_CHAR_COLORS.vino;
   if(img) return '<img class="acn-seal" style="width:' + size + 'px;height:' + size + 'px" src="' + escapeHtml(coverThumbUrl(img, size * 2)) + '" data-fallback="' + escapeHtml(img) + '" alt="">';
   return '<span class="acn-seal" style="width:' + size + 'px;height:' + size + 'px;background:radial-gradient(circle at 35% 30%,' + col.a + ',' + col.b + ');color:' + col.ink + '">' + escapeHtml((c.name || '?').charAt(0).toUpperCase()) + '</span>';
