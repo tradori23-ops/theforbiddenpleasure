@@ -9494,8 +9494,9 @@ function renderChatSidebar(profiles, threadByOtherId, archivedProfiles, archived
         actions.className = 'chat-sidebar-actions';
         var back = document.createElement('button');
         back.type = 'button';
-        back.className = 'chat-sidebar-action';
+        back.className = 'chat-sidebar-action restore';
         back.textContent = t('chat.unarchive');
+        back.setAttribute('aria-label', t('chat.unarchive'));
         back.addEventListener('click', function(e){
           e.stopPropagation();
           var field = th.user_a === uid ? 'archived_a' : 'archived_b';
@@ -9506,6 +9507,7 @@ function renderChatSidebar(profiles, threadByOtherId, archivedProfiles, archived
         del.type = 'button';
         del.className = 'chat-sidebar-action danger';
         del.textContent = t('chat.delete') || 'Elimina';
+        del.setAttribute('aria-label', t('chat.delete') || 'Elimina');
         del.addEventListener('click', function(e){
           e.stopPropagation();
           if(!window.confirm(t('chat.deleteConfirm'))) return;
