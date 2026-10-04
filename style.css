@@ -2369,10 +2369,11 @@ body.text-only-mode img:not(.no-text-only){
   .acn-all{background:linear-gradient(180deg,#3a2a12,#120b04);box-shadow:inset 0 0 0 3px #120b04,inset 0 0 0 4px rgba(227,194,115,.7);}
   .acn-all .acn-spine-name{color:#f0d690;letter-spacing:.14em;}
   .acn-round{width:66px;height:66px;margin-bottom:4px;border-radius:50%;}
-  .acn-round .acn-seal{display:block;width:100% !important;height:100% !important;}
+  .acn-round .acn-seal{display:flex;width:100% !important;height:100% !important;font-size:28px;} /* v203: prima display:block spingeva la lettera in alto */
   .acn-add{border:1.5px dashed rgba(227,194,115,.55);background:rgba(227,194,115,.05);color:#e3c273;}
   .acn-add .acn-plus{position:absolute;top:14px;left:0;right:0;text-align:center;font-size:24px;line-height:1;}
   .acn-add .acn-spine-name{font-family:'Crimson Pro',Georgia,serif;font-size:13px;letter-spacing:.06em;text-shadow:none;color:#e3c273;}
+  span.acn-seal{line-height:1;padding-top:.09em;box-sizing:border-box;} /* le maiuscole Cinzel stanno alte: questo le porta al centro dell'occhio */
   .acn-seal{flex:none;display:flex;align-items:center;justify-content:center;border-radius:50%;object-fit:cover;border:1.5px solid rgba(227,194,115,.45);
     font-family:'Cinzel',serif;font-size:22px;font-weight:700;}
 
@@ -2487,6 +2488,7 @@ body.text-only-mode img:not(.no-text-only){
 .las-danger.solid{background:#6b1420;border-color:#6b1420;color:#f3e9d2;}
 .las-back{height:36px;margin:-6px 0 6px;padding:0;border:0;background:none;color:#e3c273;font:inherit;font-size:16.5px;cursor:pointer;}
 .las-row .acn-seal{display:flex;align-items:center;justify-content:center;border-radius:50%;object-fit:cover;border:1px solid rgba(227,194,115,.35);font-family:'Cinzel',serif;font-size:15px;font-weight:700;}
+.las-row span.acn-seal{line-height:1;padding-top:.09em;box-sizing:border-box;}
 #luxToast{position:fixed;left:50%;top:calc(14px + env(safe-area-inset-top,0px));z-index:400;transform:translate(-50%,-12px);opacity:0;max-width:90vw;padding:10px 16px;border-radius:20px;
   background:#241417;border:1px solid rgba(227,194,115,.4);color:#ece2c6;font-family:'Crimson Pro',Georgia,serif;font-size:15.5px;pointer-events:none;transition:opacity .2s,transform .25s;}
 #luxToast.on{opacity:1;transform:translate(-50%,0);}
