@@ -6,17 +6,41 @@
 (async function () {
   "use strict";
 
-  // Banner d'errore visibile in pagina — temporaneo, per continuare a
-  // diagnosticare da iPhone senza Mac/Web Inspector.
+  // Riquadro rosso con gli errori: v212, SOLO per l'admin (app.js scrive
+  // "lux_is_admin" quando entri con l'account admin) o con lux_debug=1 per una
+  // diagnosi su un dispositivo senza accesso. I visitatori non vedono più
+  // messaggi tecnici: gli errori restano comunque nella console del browser.
+  // interruttore di diagnosi dall'indirizzo: ?debug=1 lo accende su questo
+  // dispositivo, ?debug=0 lo spegne (comodo da iPhone, senza strumenti)
+  try {
+    var dbg = new URLSearchParams(location.search).get("debug");
+    if (dbg === "1") localStorage.setItem("lux_debug", "1");
+    else if (dbg === "0") localStorage.removeItem("lux_debug");
+  } catch (err) {}
+  function luxShowErrors() {
+    try { return localStorage.getItem("lux_is_admin") === "1" || localStorage.getItem("lux_debug") === "1"; }
+    catch (err) { return false; }
+  }
   window.addEventListener('error', function (e) {
+    if (!luxShowErrors()) return;
     var box = document.getElementById('__debugErrorBox');
     if (!box) {
       box = document.createElement('div');
       box.id = '__debugErrorBox';
-      box.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:99999;background:#b00020;color:#fff;font-family:monospace;font-size:12px;padding:10px;white-space:pre-wrap;max-height:40vh;overflow:auto;';
+      box.setAttribute('role', 'alert');
+      box.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:99999;max-height:40vh;overflow:auto;background:#b00020;color:#fff;font-family:monospace;font-size:12px;padding:10px 40px 10px 12px;';
+      var close = document.createElement('button');
+      close.type = 'button';
+      close.textContent = '×';
+      close.setAttribute('aria-label', 'Chiudi');
+      close.style.cssText = 'position:absolute;top:4px;right:6px;width:30px;height:30px;border:0;background:none;color:#fff;font-size:22px;line-height:1;cursor:pointer;';
+      close.addEventListener('click', function () { box.parentNode && box.parentNode.removeChild(box); });
+      box.appendChild(close);
       document.documentElement.appendChild(box);
     }
+    if (box.querySelectorAll('.lux-err-line').length >= 5) return; // al massimo 5 righe
     var line = document.createElement('div');
+    line.className = 'lux-err-line';
     line.style.cssText = 'border-top:1px solid rgba(255,255,255,0.3);padding-top:6px;margin-top:6px;';
     line.textContent = (e.message || 'Errore sconosciuto') + '  —  ' + (e.filename || '?') + ':' + (e.lineno || '?') + ':' + (e.colno || '?');
     box.appendChild(line);
@@ -34,7 +58,7 @@
   // hai visto live sul sito prima di caricare — questo file parte da una
   // copia salvata in sessione e potrebbe non riflettere bump fatti nel
   // frattempo direttamente su GitHub.
-  var V = "211";
+  var V = "212";
 
   // style.css iniettato qui (non più con un <link> scritto a mano in ogni
   // pagina) così la sua versione segue sempre la stessa V di app.js,

@@ -1368,6 +1368,7 @@ function afterAuthChange(){
   loadNotifications();
   loadUnreadDmCount();
   loadCharacterFollows();
+  syncAdminErrorFlag();
   loadMyCreationSession().then(refreshAdminUI);
   sendHeartbeat();
   renderMaintenanceBanner(); // se chi si è appena autenticato è l'admin, il blocco manutenzione deve sparire subito
@@ -6123,6 +6124,13 @@ function luxHomeReveal(promises){
    Il foglio non rifà nessuna logica: ogni voce "preme" il comando vero che sta
    nell'intestazione (nascosta su telefono), così tema, 18+, lingua, solo testo,
    accesso e carrello continuano a funzionare esattamente come prima. */
+// loader.js mostra il riquadro rosso degli errori solo se qui risulta l'admin
+function syncAdminErrorFlag(){
+  try {
+    if(isAdmin()) localStorage.setItem('lux_is_admin', '1');
+    else localStorage.removeItem('lux_is_admin');
+  } catch(e){}
+}
 function initAppShell(){
   var sheet = document.getElementById('appTuSheet');
   var backdrop = document.getElementById('appTuBackdrop');
@@ -17232,6 +17240,7 @@ function __appInit(){
   applyI18n();
   ensureSectionHeadingStyle();
   initAppShell(); // barra in basso e foglio "Tu" (solo telefono)
+  syncAdminErrorFlag(); // riquadro rosso degli errori: solo per l'admin (vedi loader.js)
   loadCharacterFollows(); // personaggi che segui (pulsante "Segui")
   initInstallPrompts(); // avviso "Installa l'app" / invito alle notifiche nell'app installata
   fillCharacterSelect();
