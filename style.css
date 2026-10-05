@@ -2986,3 +2986,27 @@ body.theme-light .mycomics-purchase-row .txt{color:#2a1d12;}
   body.theme-light.has-app-tabbar #mycomics[data-tab="continue"] #mycomicsGrid{background:#fffdf7;border-color:rgba(138,106,31,.25);}
   body.has-app-tabbar .offline-sync-row #btnOfflineSyncManual{align-self:stretch;}
 }
+
+/* =====================================================================
+   v210: LETTURA A SCORRIMENTO (stile webtoon)
+   Le tavole una sotto l'altra a tutta larghezza; il contatore resta in vista
+   in basso mentre scorri. In questa modalità spariscono frecce, miniature,
+   pagina singola/doppia e ingrandimento, che servono solo a tavole.
+   ===================================================================== */
+.page-reader-scroll{display:none;}
+#pageReader.flow-scroll .page-reader-scroll{display:flex;flex-direction:column;align-items:center;margin:10px 0 6px;}
+#pageReader.flow-scroll .page-reader-main,
+#pageReader.flow-scroll .page-reader-thumbs,
+#pageReader.flow-scroll .reader-grp-mode,
+#pageReader.flow-scroll .reader-grp-zoom{display:none !important;}
+.page-reader-strip{display:block;width:100%;max-width:820px;height:auto;margin:0;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;-webkit-user-drag:none;}
+.page-reader-strip:not(.is-loaded){aspect-ratio:var(--page-ratio, 2 / 3);background:rgba(236,226,198,.05);}
+#pageReader.flow-scroll .page-reader-count{position:sticky;bottom:calc(14px + env(safe-area-inset-bottom, 0px));z-index:3;width:max-content;margin:8px auto 0;
+  padding:4px 14px;border-radius:14px;background:rgba(11,6,7,.86);border:1px solid rgba(227,194,115,.4);color:#e3c273;}
+@media (max-width:640px){
+  /* a scorrimento, su telefono, le tavole vanno da bordo a bordo dello schermo */
+  #titleModal:has(#pageReader.flow-scroll:not(.hidden)){padding-left:0;padding-right:0;}
+  #titleModal:has(#pageReader.flow-scroll:not(.hidden)) .modal{border-left:0;border-right:0;border-radius:0;}
+  #pageReader.flow-scroll .page-reader-scroll{margin-left:-20px;margin-right:-20px;}
+  #pageReader.flow-scroll .page-reader-strip{max-width:none;}
+}
