@@ -15935,7 +15935,9 @@ var readerPrefs = { double: false, zoom: 100, theme: 'dark' };
   }
 })();
 function saveReaderPrefs(){ try { localStorage.setItem('lux_reader_prefs', JSON.stringify(readerPrefs)); } catch(e){} }
-function readerStep(){ return readerPrefs.double ? 2 : 1; }
+function luxIsPhone(){ return !!(window.matchMedia && window.matchMedia('(max-width: 640px)').matches); }
+function readerDouble(){ return !!readerPrefs.double && !luxIsPhone(); } // v213: la doppia pagina non ha senso su uno schermo da telefono
+function readerStep(){ return readerDouble() ? 2 : 1; }
 function applyReaderPrefs(){
   var main = document.querySelector('#pageReader .page-reader-main');
   if(!main) return;
@@ -15944,7 +15946,7 @@ function applyReaderPrefs(){
   var fp = document.getElementById('readerFlowPages'), fs = document.getElementById('readerFlowScroll');
   if(fp){ fp.classList.toggle('on', !readerPrefs.scroll); fp.setAttribute('aria-pressed', readerPrefs.scroll ? 'false' : 'true'); }
   if(fs){ fs.classList.toggle('on', !!readerPrefs.scroll); fs.setAttribute('aria-pressed', readerPrefs.scroll ? 'true' : 'false'); }
-  main.classList.toggle('double-page', readerPrefs.double);
+  main.classList.toggle('double-page', readerDouble());
   main.classList.toggle('reader-theme-light', readerPrefs.theme === 'light');
   main.classList.toggle('reader-theme-dark', readerPrefs.theme !== 'light');
   var s1 = document.getElementById('readerModeSingle'), s2 = document.getElementById('readerModeDouble');
@@ -15956,7 +15958,7 @@ function applyReaderPrefs(){
   Array.prototype.forEach.call(document.querySelectorAll('.reader-zoom-btn'), function(b){
     b.classList.toggle('on', Number(b.dataset.zoom) === readerPrefs.zoom);
   });
-  var pct = readerPrefs.zoom + '%';
+  var pct = (luxIsPhone() ? 100 : readerPrefs.zoom) + '%'; // su telefono si ingrandisce con le dita
   var img1 = document.getElementById('pageReaderImg'), img2 = document.getElementById('pageReaderImg2');
   if(img1) img1.style.width = pct;
   if(img2) img2.style.width = pct;
@@ -15965,6 +15967,7 @@ function initReaderControls(){
   var ctl = document.getElementById('readerCtl');
   if(!ctl || ctl.dataset.ready) return;
   ctl.dataset.ready = '1';
+  initReaderSwipe();
   // v210: scelta "Tavole | Scorrimento", in testa ai comandi del lettore
   if(!document.getElementById('readerFlowScroll')){
     var flow = document.createElement('span');
@@ -15995,6 +15998,25 @@ function initReaderControls(){
     b.addEventListener('click', function(){ readerPrefs.zoom = Number(b.dataset.zoom); saveReaderPrefs(); applyReaderPrefs(); });
   });
 }
+function initReaderSwipe(){
+  var main = document.querySelector('#pageReader .page-reader-main');
+  if(!main || main.dataset.swipe) return;
+  main.dataset.swipe = '1';
+  var x0 = null, y0 = 0, t0 = 0;
+  main.addEventListener('touchstart', function(e){
+    if(e.touches.length !== 1){ x0 = null; return; }
+    x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; t0 = Date.now();
+  }, { passive: true });
+  main.addEventListener('touchend', function(e){
+    if(x0 === null || readerPrefs.scroll) return;
+    var tch = e.changedTouches[0];
+    var dx = tch.clientX - x0, dy = tch.clientY - y0;
+    x0 = null;
+    // un gesto deciso e orizzontale: niente cambi pagina mentre si scorre in verticale
+    if(Math.abs(dx) < 50 || Math.abs(dx) < Math.abs(dy) * 1.5 || Date.now() - t0 > 800) return;
+    showReaderPage(readerIndex + (dx < 0 ? readerStep() : -readerStep()));
+  }, { passive: true });
+}
 function loadReaderImage(imgEl, idx){
   var cleanPath = (readerItem && readerItem.pages_clean) ? readerItem.pages_clean[idx] : null;
   if(isSignedIn() && cleanPath){
@@ -16019,7 +16041,7 @@ function showReaderPage(idx){
   }
   readerIndex = idx;
   saveReadingProgress(readerItem, idx);
-  var hasSecond = readerPrefs.double && (idx + 1) < readerPages.length;
+  var hasSecond = readerDouble() && (idx + 1) < readerPages.length;
   var countText = hasSecond ? (idx + 1) + '–' + (idx + 2) + ' / ' + readerPages.length : (idx + 1) + ' / ' + readerPages.length;
   document.getElementById('pageReaderCount').textContent = countText;
   document.getElementById('pageReaderPrev').disabled = idx === 0;

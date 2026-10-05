@@ -3095,3 +3095,80 @@ body.theme-light .mycomics-purchase-row .txt{color:#2a1d12;}
   body.has-app-tabbar #adminSection .mini-heading,body.has-app-tabbar #adminSection .sec-eyebrow,body.has-app-tabbar #adminSection .notice > .mono:first-child{
     font-family:'Crimson Pro',Georgia,serif;font-size:16px;font-style:italic;font-weight:600;letter-spacing:0;text-transform:none;color:var(--gold-bright);}
 }
+
+/* =====================================================================
+   v213: SCHEDA DEL TITOLO E LETTORE COME SCHERMATA DA APP (telefono)
+   A tutto schermo, × sempre raggiungibile, comandi essenziali a pillola
+   (Tavole/Scorrimento e Chiaro/Scuro: doppia pagina e ingrandimento non
+   servono su un telefono), tavole a tutta larghezza da sfogliare col dito,
+   pulsanti sempre a portata in basso, commenti in schede.
+   ===================================================================== */
+@media (max-width:640px){
+  body.has-app-tabbar #titleModal{padding:0 !important;align-items:stretch;justify-content:stretch;}
+  body.has-app-tabbar #titleModal .detail-modal{width:100%;max-width:none;height:100vh;height:100dvh;max-height:none;margin:0;border:0;border-radius:0;
+    padding:calc(58px + env(safe-area-inset-top, 0px)) 20px 0;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;background:var(--void);}
+  body.has-app-tabbar #titleModalClose{position:fixed;top:calc(8px + env(safe-area-inset-top, 0px));right:12px;z-index:6;width:44px;height:44px;border-radius:22px;
+    display:flex;align-items:center;justify-content:center;background:rgba(11,6,7,.78);border:1px solid rgba(227,194,115,.35);color:var(--parchment);font-size:26px;
+    -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);}
+
+  /* intestazione: collana e data, titolo, trama */
+  body.has-app-tabbar #titleModalMeta{font-family:'Crimson Pro',Georgia,serif;font-size:15px;font-style:italic;letter-spacing:0;text-transform:none;color:var(--gold-bright);}
+  body.has-app-tabbar #titleModalTitle{margin:4px 0 8px;font-family:'Cinzel',serif;font-size:24px;line-height:1.2;}
+  body.has-app-tabbar #titleModalSynopsis{font-size:17px;line-height:1.5;}
+
+  /* comandi del lettore: due pillole, il resto nascosto */
+  body.has-app-tabbar #readerCtl{display:flex;flex-wrap:nowrap;gap:8px;overflow-x:auto;margin:14px 0 10px;padding:0 0 4px;scrollbar-width:none;}
+  body.has-app-tabbar #readerCtl::-webkit-scrollbar{display:none;}
+  body.has-app-tabbar #readerCtl .reader-ctl-grp{flex:none;display:inline-flex;gap:2px;padding:3px;border:0;border-radius:12px;background:#1e1215;overflow:visible;}
+  body.has-app-tabbar #readerCtl .reader-grp-mode,body.has-app-tabbar #readerCtl .reader-grp-zoom{display:none !important;}
+  body.has-app-tabbar #readerCtl button{height:34px;padding:0 13px;border:0;border-radius:9px;background:transparent;color:#b8ac8e;
+    font-family:'Crimson Pro',Georgia,serif;font-size:15px;font-weight:600;letter-spacing:0;text-transform:none;white-space:nowrap;}
+  body.has-app-tabbar #readerCtl button.on{background:#3a2226;color:#f0d690;}
+
+  /* a tavole: la tavola a tutta larghezza, frecce tonde sopra, miniature in fila */
+  body.has-app-tabbar #pageReader .page-reader-main{margin:0 -20px;border:0;}
+  body.has-app-tabbar #pageReader .page-reader-main img{display:block;width:100% !important;height:auto;}
+  body.has-app-tabbar #pageReader .page-reader-nav{width:44px;height:44px;border-radius:22px;border:1px solid rgba(227,194,115,.4);background:rgba(11,6,7,.55);font-size:24px;}
+  body.has-app-tabbar #pageReader .page-reader-nav.prev{left:8px;}
+  body.has-app-tabbar #pageReader .page-reader-nav.next{right:8px;}
+  body.has-app-tabbar #pageReader .page-reader-nav:disabled{opacity:0;pointer-events:none;}
+  body.has-app-tabbar #pageReader:not(.flow-scroll) .page-reader-count{width:max-content;margin:10px auto 0;padding:3px 12px;border-radius:12px;background:#1e1215;color:var(--gold-bright);}
+  body.has-app-tabbar #pageReaderThumbs{gap:8px;margin:12px -20px 0;padding:0 20px 4px;scrollbar-width:none;}
+  body.has-app-tabbar #pageReaderThumbs::-webkit-scrollbar{display:none;}
+  body.has-app-tabbar #pageReaderThumbs img{flex:none;width:52px;height:52px;object-fit:cover;border-radius:8px;border:1px solid rgba(201,162,77,.2);opacity:.7;}
+  body.has-app-tabbar #pageReaderThumbs img.active{opacity:1;border-color:#e3c273;box-shadow:0 0 0 1px #e3c273;}
+
+  /* pulsanti sempre a portata: restano in basso mentre leggi, poi scorrono con la pagina */
+  body.has-app-tabbar #titleModal .modal-actions{position:sticky;bottom:0;z-index:4;display:flex;flex-wrap:wrap;align-items:center;gap:8px;
+    margin:16px -20px 0 !important;padding:10px 14px calc(10px + env(safe-area-inset-bottom, 0px));
+    background:rgba(14,8,9,.96);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-top:1px solid rgba(201,162,77,.25);}
+  body.has-app-tabbar #titleModal .modal-actions .btn{min-height:40px;height:auto;padding:6px 14px;border-radius:20px;font-family:'Crimson Pro',Georgia,serif;font-size:15px;
+    font-weight:700;letter-spacing:0;text-transform:none;line-height:1.2;}
+  body.has-app-tabbar #titleModal .modal-actions #titleModalAddCart:not(.hidden){order:-1;flex:1 1 100%;}
+  body.has-app-tabbar #titleModalCounts{order:9;flex:1 1 100%;font-family:'Crimson Pro',Georgia,serif;font-size:13.5px;letter-spacing:0;color:var(--parchment-dim);}
+
+  /* recensioni e commenti */
+  body.has-app-tabbar #titleModalRating{margin:16px 0 4px;}
+  body.has-app-tabbar #titleModal .sub.mono{font-family:'Crimson Pro',Georgia,serif;font-size:16px;font-style:italic;font-weight:600;letter-spacing:0;text-transform:none;color:var(--gold-bright);}
+  body.has-app-tabbar #commentsList .comment-item{margin:0 0 10px;padding:12px 14px;border:1px solid rgba(201,162,77,.14);border-radius:14px;background:#150c0d;font-size:15.5px;line-height:1.45;}
+  body.has-app-tabbar #fCommentBody{width:100%;min-height:90px;padding:10px 14px;border-radius:14px;border:1px solid rgba(201,162,77,.3);background:#1e1215;color:var(--parchment);
+    font-family:'Crimson Pro',Georgia,serif;font-size:16px;line-height:1.4;box-sizing:border-box;}
+  body.has-app-tabbar #btnSubmitComment{min-height:40px;padding:6px 16px;border-radius:20px;font-family:'Crimson Pro',Georgia,serif;font-size:15px;font-weight:700;letter-spacing:0;text-transform:none;}
+  body.has-app-tabbar #titleModal .detail-modal > div:last-child{padding-bottom:calc(28px + env(safe-area-inset-bottom, 0px));}
+
+  /* tema chiaro */
+  body.theme-light.has-app-tabbar #titleModal .modal-actions{background:rgba(247,241,227,.96);border-top-color:rgba(138,106,31,.3);}
+  body.theme-light.has-app-tabbar #titleModalClose{background:rgba(255,253,247,.85);color:#2a1d12;border-color:rgba(138,106,31,.35);}
+  body.theme-light.has-app-tabbar #readerCtl .reader-ctl-grp,body.theme-light.has-app-tabbar #pageReader:not(.flow-scroll) .page-reader-count{background:#efe4cc;}
+  body.theme-light.has-app-tabbar #readerCtl button{color:#6a5b44;}
+  body.theme-light.has-app-tabbar #readerCtl button.on{background:#fffdf7;color:#6b5015;}
+  body.theme-light.has-app-tabbar #commentsList .comment-item,body.theme-light.has-app-tabbar #fCommentBody{background:#fffdf7;border-color:rgba(138,106,31,.25);color:#2a1d12;}
+}
+@media (max-width:640px){
+  /* fascia dei pulsanti: una sola riga da scorrere, così non copre la tavola */
+  body.has-app-tabbar #titleModal .modal-actions{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding-top:8px;padding-bottom:calc(8px + env(safe-area-inset-bottom, 0px));}
+  body.has-app-tabbar #titleModal .modal-actions::-webkit-scrollbar{display:none;}
+  body.has-app-tabbar #titleModal .modal-actions > *{flex:none;white-space:nowrap;}
+  body.has-app-tabbar #titleModal .modal-actions #titleModalAddCart:not(.hidden){flex:none;}
+  body.has-app-tabbar #titleModalCounts{flex:none;padding-right:6px;}
+}
