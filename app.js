@@ -730,6 +730,12 @@ Object.assign(STR.es, {"follow.off": "Seguir", "follow.on": "Siguiendo", "follow
 Object.assign(STR.fr, {"follow.off": "Suivre", "follow.on": "Suivi", "follow.hint": "On te prévient à la sortie d’un nouveau chapitre.", "follow.done": "Tu suis {name} : on te préviendra des nouveaux chapitres", "follow.undone": "Tu ne suis plus {name}", "follow.error": "Cela n’a pas marché, réessaie dans un instant.", "a2hs.title": "Installe LUX COMICS", "a2hs.sub": "S’ouvre en plein écran et te prévient des messages et des nouveaux chapitres.", "a2hs.subInApp": "Ouvre-la dans Safari pour l’installer sur ton téléphone.", "a2hs.how": "Comment faire", "a2hs.install": "Installer", "a2hs.later": "Pas maintenant", "a2hs.guideTitle": "Installe LUX COMICS sur ton téléphone", "a2hs.step1": "Touche Partager : dans Safari c’est en bas (en haut sur iPad), dans Chrome en haut à droite.", "a2hs.step2": "Fais défiler et touche « Sur l’écran d’accueil ».", "a2hs.step3": "Touche « Ajouter » : l’icône apparaît parmi tes apps.", "a2hs.step4": "Ouvre LUX COMICS depuis l’icône et active les notifications dans Toi › Réglages.", "a2hs.inapp1": "Touche les trois points (⋯) en haut.", "a2hs.inapp2": "Choisis « Ouvrir dans Safari » (ou « Ouvrir dans le navigateur »).", "a2hs.inapp3": "Depuis Safari, suis les étapes pour l’installer.", "a2hs.ok": "Compris", "push.askTitle": "Active les notifications", "push.askSub": "Messages, nouveaux chapitres des personnages que tu suis et événements.", "push.askGo": "Activer", "apptu.install": "Installer l’app"});
 Object.assign(STR.de, {"follow.off": "Folgen", "follow.on": "Folge ich", "follow.hint": "Wir sagen dir Bescheid, wenn ein neues Kapitel erscheint.", "follow.done": "Du folgst {name}: Wir melden dir neue Kapitel", "follow.undone": "Du folgst {name} nicht mehr", "follow.error": "Das hat nicht geklappt, versuch es gleich noch einmal.", "a2hs.title": "LUX COMICS installieren", "a2hs.sub": "Öffnet sich im Vollbild und meldet Nachrichten und neue Kapitel.", "a2hs.subInApp": "Öffne die Seite in Safari, um sie zu installieren.", "a2hs.how": "So geht’s", "a2hs.install": "Installieren", "a2hs.later": "Nicht jetzt", "a2hs.guideTitle": "LUX COMICS auf dem Handy installieren", "a2hs.step1": "Tippe auf Teilen: in Safari unten (auf dem iPad oben), in Chrome oben rechts.", "a2hs.step2": "Scrolle und tippe auf „Zum Home-Bildschirm“.", "a2hs.step3": "Tippe auf „Hinzufügen“: Das Symbol erscheint bei deinen Apps.", "a2hs.step4": "Öffne LUX COMICS über das Symbol und aktiviere die Benachrichtigungen unter Du › Einstellungen.", "a2hs.inapp1": "Tippe oben auf die drei Punkte (⋯).", "a2hs.inapp2": "Wähle „In Safari öffnen“ (oder „Im Browser öffnen“).", "a2hs.inapp3": "Folge in Safari den Schritten zur Installation.", "a2hs.ok": "Verstanden", "push.askTitle": "Benachrichtigungen aktivieren", "push.askSub": "Nachrichten, neue Kapitel deiner Figuren und Events.", "push.askGo": "Aktivieren", "apptu.install": "App installieren"});
 
+Object.assign(STR.it, {"collab.noWorks": "Ancora nessuna opera a più mani. Quando ne pubblicherai una con un collaboratore, comparirà qui."});
+Object.assign(STR.en, {"collab.noWorks": "No joint works yet. When you publish one with a collaborator, it will appear here."});
+Object.assign(STR.es, {"collab.noWorks": "Todavía no hay obras a cuatro manos. Cuando publiques una con un colaborador, aparecerá aquí."});
+Object.assign(STR.fr, {"collab.noWorks": "Pas encore d’œuvre à plusieurs mains. Quand tu en publieras une avec un collaborateur, elle apparaîtra ici."});
+Object.assign(STR.de, {"collab.noWorks": "Noch keine gemeinsamen Werke. Wenn du eines mit einer Kollaboration veröffentlichst, erscheint es hier."});
+
 var CHAR_META = {
   Lucifer:{role:{it:"Il Portatore di Luce",en:"The Light-Bearer",es:"El Portador de Luz",fr:"Le Porteur de Lumière",de:"Der Lichtträger"},
     bio:{it:"Sovrano della collana ammiraglia: potere, caduta e desiderio raccontati su grande scala.",
@@ -8338,7 +8344,7 @@ function renderCollabWorksTab(){
     var empty = document.createElement('div');
     empty.className = 'empty-state';
     empty.style.gridColumn = '1/-1';
-    empty.textContent = '— ' + t('filter.all') + ' —';
+    empty.textContent = t('collab.noWorks'); // prima: "— Tutti —", che qui non voleva dire niente
     grid.appendChild(empty);
     return;
   }

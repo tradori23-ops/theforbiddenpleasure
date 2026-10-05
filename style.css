@@ -2781,3 +2781,118 @@ body.theme-light #fNewChannelName,body.theme-light #fFriendSearch,body.theme-lig
     font-family:'Crimson Pro',Georgia,serif;font-size:13px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;}
   body.theme-light.has-app-tabbar .composer-btn{background:#fffdf7;color:#6b5015;border-color:rgba(138,106,31,.35);}
 }
+
+/* =====================================================================
+   v207: SERVER, EVENTI, DIARIO, COLLABORATORI E AMICI IN VERSIONE APP
+   Solo stile: la logica resta quella di sempre. Fuori da @media, le
+   correzioni valide anche da computer (caselle bianche e pulsante di
+   sistema per scegliere la foto del Diario).
+   ===================================================================== */
+#fNewServerChannelName,#fDiaryPhotoCaption,#fDiaryMoodText,#fDiaryNote{
+  display:block;width:100%;min-height:42px;padding:9px 14px;border-radius:12px;border:1px solid rgba(201,162,77,.3);background:#1e1215;color:var(--parchment);
+  font-family:'Crimson Pro',Georgia,serif;font-size:16px;line-height:1.4;box-sizing:border-box;-webkit-appearance:none;appearance:none;}
+#fDiaryNote{min-height:96px;resize:vertical;}
+#fNewServerChannelName:focus,#fDiaryPhotoCaption:focus,#fDiaryMoodText:focus,#fDiaryNote:focus{outline:none;border-color:var(--gold);}
+body.theme-light #fNewServerChannelName,body.theme-light #fDiaryPhotoCaption,body.theme-light #fDiaryMoodText,body.theme-light #fDiaryNote{background:#fffdf7;color:#2a1d12;border-color:rgba(138,106,31,.35);}
+#fDiaryPhoto{display:block;width:100%;margin:2px 0 10px;color:var(--parchment-dim);font-family:'Crimson Pro',Georgia,serif;font-size:15px;}
+#fDiaryPhoto::file-selector-button{margin-right:12px;height:38px;padding:0 16px;border-radius:19px;border:1px solid rgba(227,194,115,.5);background:transparent;color:var(--gold-bright);
+  font-family:'Crimson Pro',Georgia,serif;font-size:15px;font-weight:700;cursor:pointer;}
+#fDiaryPhoto::-webkit-file-upload-button{margin-right:12px;height:38px;padding:0 16px;border-radius:19px;border:1px solid rgba(227,194,115,.5);background:transparent;color:#e3c273;
+  font-family:'Crimson Pro',Georgia,serif;font-size:15px;font-weight:700;cursor:pointer;}
+
+@media (max-width:640px){
+  /* ---------- titoletti: niente maiuscolo spaziato, corsivo dorato come nel resto dell'app ---------- */
+  body.has-app-tabbar #communitySection .mini-heading,
+  body.has-app-tabbar #communitySection .sec-eyebrow,
+  body.has-app-tabbar #communitySection .srv-members .shelf-eyebrow,
+  body.has-app-tabbar #communitySection .srv-mem-h{margin:0 0 8px;font-family:'Crimson Pro',Georgia,serif;font-size:15.5px;font-style:italic;font-weight:600;
+    letter-spacing:0;text-transform:none;color:var(--gold-bright);}
+  body.has-app-tabbar #communitySection .community-panel > .form-note{font-size:15.5px;line-height:1.4;}
+
+  /* ---------- riquadri: schede morbide invece dei bordi arancioni pesanti ---------- */
+  body.has-app-tabbar #communitySection .notice{margin:0 0 12px;padding:14px;border-radius:14px;background:#150c0d;border:1px solid rgba(201,162,77,.16);box-shadow:none;}
+  body.theme-light.has-app-tabbar #communitySection .notice{background:#fffdf7;border-color:rgba(138,106,31,.25);}
+
+  /* ---------- SERVER ---------- */
+  body.has-app-tabbar .server-rail-row{display:flex;gap:12px;overflow-x:auto;padding:4px 2px 12px;scrollbar-width:none;}
+  body.has-app-tabbar .server-rail-row::-webkit-scrollbar{display:none;}
+  body.has-app-tabbar .server-rail-icon{flex:none;width:54px;height:54px;padding:0;border-radius:27px;border:1px solid rgba(201,162,77,.3);background:#1e1215;font-size:24px;line-height:1;
+    display:flex;align-items:center;justify-content:center;transition:box-shadow .2s,background .2s;}
+  body.has-app-tabbar .server-rail-icon.active{background:#3a2226;box-shadow:0 0 0 2px #0b0607,0 0 0 4px #e3c273;}
+  body.has-app-tabbar .server-detail-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:6px 0 4px;}
+  body.has-app-tabbar .server-detail-title{font-family:'Cinzel',serif;font-size:20px;font-weight:600;color:var(--parchment);}
+  body.has-app-tabbar #serverJoinBtn{flex:none;height:34px;padding:0 14px;border-radius:17px;font-family:'Crimson Pro',Georgia,serif;font-size:14.5px;font-weight:700;letter-spacing:0;text-transform:none;}
+  body.has-app-tabbar .srv-cats{margin:10px 0 14px;border-radius:14px;overflow:hidden;background:#150c0d;border:1px solid rgba(201,162,77,.14);}
+  body.has-app-tabbar .srv-cat + .srv-cat{border-top:1px solid rgba(201,162,77,.12);}
+  body.has-app-tabbar .srv-cat-toggle{display:flex;align-items:center;gap:8px;width:100%;padding:10px 12px;border:0;background:none;color:var(--parchment-dim);
+    font-family:'Crimson Pro',Georgia,serif;font-size:15px;font-weight:700;letter-spacing:0;text-transform:none;text-align:left;}
+  body.has-app-tabbar .srv-cat-count{margin-left:auto;min-width:22px;height:20px;padding:0 6px;border-radius:10px;background:rgba(236,226,198,.08);font-size:12.5px;line-height:20px;text-align:center;}
+  body.has-app-tabbar .srv-ch{display:flex;align-items:center;gap:10px;width:100%;min-height:46px;padding:8px 12px;border:0;border-radius:0;background:none;color:var(--parchment);
+    font-family:'Crimson Pro',Georgia,serif;font-size:16.5px;text-align:left;}
+  body.has-app-tabbar .srv-ch.active,body.has-app-tabbar .srv-ch[aria-current="true"]{background:rgba(227,194,115,.08);}
+  body.has-app-tabbar .srv-ch-ic{flex:none;width:30px;height:30px;border-radius:8px;background:#26161a;color:#e3c273;display:flex;align-items:center;justify-content:center;font-size:15px;}
+  body.has-app-tabbar .server-new-channel-row{display:flex;gap:8px;align-items:center;margin:4px 0 20px;}
+  body.has-app-tabbar .server-new-channel-row #fNewServerChannelName{flex:1;min-width:0;}
+  body.has-app-tabbar #btnAddServerChannel{flex:none;height:42px;padding:0 14px;border-radius:12px;font-family:'Crimson Pro',Georgia,serif;font-size:15px;font-weight:700;letter-spacing:0;text-transform:none;}
+  body.has-app-tabbar .srv-members{position:static;margin:0;padding:0;border:0;}
+  body.has-app-tabbar .srv-members .shelf-head{margin:0 0 6px;padding:0;border:0;}
+  body.has-app-tabbar #serverMembersList{border-radius:14px;overflow:hidden;background:#150c0d;border:1px solid rgba(201,162,77,.14);padding:6px 12px;}
+  body.has-app-tabbar #serverMembersList .srv-mem-h{margin:8px 0 4px;font-size:14.5px;}
+  body.has-app-tabbar #serverMembersList .admin-row{display:flex;align-items:center;gap:12px;padding:8px 0;border:0;border-top:1px solid rgba(201,162,77,.1);text-align:left;}
+  body.has-app-tabbar #serverMembersList .admin-row .info{flex:1;min-width:0;text-align:left;}
+  body.has-app-tabbar #serverMembersList .admin-row .info .t{font-family:'Crimson Pro',Georgia,serif;font-size:16.5px;font-weight:700;letter-spacing:0;justify-content:flex-start;}
+  body.has-app-tabbar #serverMembersList .admin-actions .btn{height:34px;padding:0 12px;border-radius:17px;font-family:'Crimson Pro',Georgia,serif;font-size:14px;font-weight:700;letter-spacing:0;text-transform:none;white-space:nowrap;}
+  body.theme-light.has-app-tabbar .srv-cats,body.theme-light.has-app-tabbar #serverMembersList{background:#fffdf7;border-color:rgba(138,106,31,.25);}
+  body.theme-light.has-app-tabbar .server-rail-icon,body.theme-light.has-app-tabbar .srv-ch-ic{background:#efe4cc;}
+
+  /* ---------- EVENTI ---------- */
+  body.has-app-tabbar #eventsUpcomingList .event-card,body.has-app-tabbar #eventsPastList .event-card{border-radius:16px;}
+  body.has-app-tabbar .event-actions .btn-attend,body.has-app-tabbar .event-actions .btn-share-event{height:38px;padding:0 14px;border-radius:19px;
+    font-family:'Crimson Pro',Georgia,serif;font-size:15px;font-weight:700;letter-spacing:0;text-transform:none;}
+  body.has-app-tabbar .event-card .attendee-count{font-family:'Crimson Pro',Georgia,serif;font-size:14.5px;letter-spacing:0;}
+
+  /* ---------- DIARIO ---------- */
+  body.has-app-tabbar .diary-composer{padding:14px;border-radius:16px;background:#150c0d;border:1px solid rgba(201,162,77,.16);}
+  body.has-app-tabbar .diary-kind-tabs,body.has-app-tabbar .diary-filters{display:flex;flex-wrap:nowrap;gap:8px;overflow-x:auto;padding-bottom:4px;margin-bottom:12px;scrollbar-width:none;}
+  body.has-app-tabbar .diary-kind-tabs::-webkit-scrollbar,body.has-app-tabbar .diary-filters::-webkit-scrollbar{display:none;}
+  body.has-app-tabbar .diary-kind-tab,body.has-app-tabbar .diary-filter-btn{flex:none;height:36px;margin:0;padding:0 14px;border-radius:18px;border:1px solid rgba(201,162,77,.3);background:transparent;color:#d8ccad;
+    font-family:'Crimson Pro',Georgia,serif;font-size:15px;font-weight:600;letter-spacing:0;text-transform:none;white-space:nowrap;}
+  body.has-app-tabbar .diary-kind-tab.active,body.has-app-tabbar .diary-filter-btn.active{background:#e3c273;border-color:#e3c273;color:#1a0f08;}
+  body.has-app-tabbar .diary-form{display:flex;flex-direction:column;gap:10px;}
+  body.has-app-tabbar .diary-mood-picker{display:flex;flex-wrap:wrap;gap:8px;}
+  body.has-app-tabbar .diary-mood-btn{width:44px;height:44px;padding:0;border-radius:22px;border:1px solid rgba(201,162,77,.25);background:#1e1215;font-size:22px;line-height:1;}
+  body.has-app-tabbar .diary-mood-btn.active,body.has-app-tabbar .diary-mood-btn[aria-pressed="true"]{box-shadow:0 0 0 2px #0b0607,0 0 0 4px #e3c273;}
+  body.has-app-tabbar #btnDiaryPublish{align-self:flex-start;height:42px;margin-top:4px;padding:0 20px;border-radius:21px;font-family:'Crimson Pro',Georgia,serif;font-size:15.5px;font-weight:700;letter-spacing:0;text-transform:none;}
+  body.has-app-tabbar .diary-post{margin-bottom:12px;padding:14px;border-radius:16px;background:#150c0d;border:1px solid rgba(201,162,77,.16);}
+  body.has-app-tabbar .diary-post-head{display:flex;align-items:center;gap:8px;}
+  body.has-app-tabbar .diary-post-author{padding:0;border:0;background:none;color:#e3c273;font-family:'Crimson Pro',Georgia,serif;font-size:16.5px;font-weight:700;letter-spacing:0;text-transform:none;}
+  body.has-app-tabbar .diary-post-when{margin-left:auto;font-family:'Crimson Pro',Georgia,serif;font-size:13.5px;letter-spacing:0;color:var(--parchment-dim);}
+  body.has-app-tabbar .diary-post-body{margin-top:6px;font-size:17px;line-height:1.45;}
+  body.has-app-tabbar .diary-post-body img{border-radius:12px;}
+  body.has-app-tabbar .diary-post-actions{display:flex;gap:8px;margin-top:10px;}
+  body.has-app-tabbar .diary-like-btn,body.has-app-tabbar .diary-comment-toggle{height:34px;padding:0 12px;border-radius:17px;border:1px solid rgba(201,162,77,.25);background:transparent;color:var(--parchment-dim);
+    font-family:'Crimson Pro',Georgia,serif;font-size:14.5px;letter-spacing:0;}
+  body.theme-light.has-app-tabbar .diary-composer,body.theme-light.has-app-tabbar .diary-post{background:#fffdf7;border-color:rgba(138,106,31,.25);}
+  body.theme-light.has-app-tabbar .diary-kind-tab,body.theme-light.has-app-tabbar .diary-filter-btn{color:#5a4a33;border-color:rgba(138,106,31,.35);}
+  body.theme-light.has-app-tabbar .diary-kind-tab.active,body.theme-light.has-app-tabbar .diary-filter-btn.active{background:#6b5015;border-color:#6b5015;color:#fff8ea;}
+  body.theme-light.has-app-tabbar .diary-mood-btn{background:#fffdf7;}
+  body.theme-light.has-app-tabbar .diary-post-author{color:#6b5015;}
+
+  /* ---------- COLLABORATORI ---------- */
+  body.has-app-tabbar #collabWorksGrid .empty-state{padding:18px 16px;border-radius:14px;border:1px dashed rgba(201,162,77,.35);font-family:'Crimson Pro',Georgia,serif;font-size:16px;
+    font-style:italic;line-height:1.45;letter-spacing:0;text-transform:none;text-align:center;color:var(--parchment-dim);}
+
+  /* ---------- AMICI ---------- */
+  body.has-app-tabbar .dms-link{display:flex;align-items:center;gap:12px;margin:0 0 12px;padding:12px 14px;border-radius:14px;background:#150c0d;border:1px solid rgba(201,162,77,.18);
+    font-family:'Crimson Pro',Georgia,serif;font-size:17px;font-weight:700;text-decoration:none;color:var(--parchment);}
+  body.has-app-tabbar .dms-link .dms-link-arrow{margin-left:auto;color:#e3c273;}
+  body.has-app-tabbar #friendsList .friend-contact-row{display:flex;align-items:center;gap:12px;padding:10px 4px;border-top:1px solid rgba(201,162,77,.1);}
+  body.has-app-tabbar #friendsList .friend-contact-row:first-child{border-top:0;}
+  body.has-app-tabbar .friend-contact-name{font-family:'Crimson Pro',Georgia,serif;font-size:17px;font-weight:700;letter-spacing:0;}
+  body.has-app-tabbar .friend-contact-status{font-family:'Crimson Pro',Georgia,serif;font-size:14px;letter-spacing:0;text-transform:none;}
+  body.has-app-tabbar .friend-contact-actions{margin-left:auto;display:flex;gap:6px;}
+  body.has-app-tabbar .friend-contact-msg,body.has-app-tabbar .friend-contact-remove{width:38px;height:38px;padding:0;border-radius:19px;border:1px solid rgba(201,162,77,.25);
+    background:rgba(236,226,198,.05);color:var(--gold-bright);font-size:16px;line-height:1;display:flex;align-items:center;justify-content:center;}
+  body.has-app-tabbar .friend-contact-remove{color:#e78c80;}
+  body.theme-light.has-app-tabbar .dms-link{background:#fffdf7;border-color:rgba(138,106,31,.25);color:#2a1d12;}
+}
