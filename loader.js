@@ -34,7 +34,7 @@
   // hai visto live sul sito prima di caricare — questo file parte da una
   // copia salvata in sessione e potrebbe non riflettere bump fatti nel
   // frattempo direttamente su GitHub.
-  var V = "207";
+  var V = "209";
 
   // style.css iniettato qui (non più con un <link> scritto a mano in ogni
   // pagina) così la sua versione segue sempre la stessa V di app.js,
@@ -211,7 +211,19 @@
   });
   // app.js si aspetta che TUTTO il DOM (header, sezione, footer, modali)
   // sia già presente quando parte: lo carichiamo solo ora, a iniezione completata.
+  // v209: le traduzioni non italiane sono file a parte. Si carica solo quella
+  // scelta, PRIMA di app.js (async=false mantiene l'ordine); se non arriva,
+  // app.js parte lo stesso in italiano.
+  var luxLang = null;
+  try { luxLang = localStorage.getItem("lux_lang"); } catch (e) {}
+  if (luxLang && /^(en|es|fr|de)$/.test(luxLang)) {
+    var ls = document.createElement("script");
+    ls.src = "lang-" + luxLang + ".js?v=" + V;
+    ls.async = false;
+    document.body.appendChild(ls);
+  }
   var s = document.createElement("script");
   s.src = "app.js?v=" + V;
+  s.async = false;
   document.body.appendChild(s);
 })();
