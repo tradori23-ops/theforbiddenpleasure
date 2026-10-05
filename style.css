@@ -2896,3 +2896,93 @@ body.theme-light #fNewServerChannelName,body.theme-light #fDiaryPhotoCaption,bod
   body.has-app-tabbar .friend-contact-remove{color:#e78c80;}
   body.theme-light.has-app-tabbar .dms-link{background:#fffdf7;border-color:rgba(138,106,31,.25);color:#2a1d12;}
 }
+
+/* =====================================================================
+   v208: I MIEI COMIC
+   Prima nessuno di questi elementi aveva uno stile: schede come pulsanti
+   di sistema, numeri attaccati ("0 posseduti8 in corso"), scaricamento e
+   spiegazioni sulla stessa riga. Valido a tutte le larghezze; su telefono
+   in più "Continua a leggere" diventa un elenco.
+   ===================================================================== */
+#mycomics{display:flex;flex-direction:column;}
+#mycomics > .section-head{order:0;}
+#mycomics > #mycomicsCodex{order:1;}
+#mycomics > #mycomicsTabs{order:2;}
+#mycomics > #offlineSyncRow{order:3;}
+#mycomics > #mycomicsSignedOut{order:4;}
+#mycomics > #mycomicsGrid{order:5;}
+#mycomics > #mycomicsEmpty{order:6;}
+#mycomics > .mycomics-purchase-list{order:5;} /* l'elenco degli acquisti è inserito accanto alla griglia */
+
+/* i due numeri: posseduti e in corso */
+.mycomics-codex{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;max-width:520px;margin:0 0 16px;}
+.mycomics-codex.hidden{display:none;}
+.mycomics-codex > span{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px 8px;border-radius:14px;background:#150c0d;
+  border:1px solid rgba(201,162,77,.16);font-family:'Crimson Pro',Georgia,serif;font-size:14.5px;color:var(--parchment-dim);text-align:center;}
+.mycomics-codex > span b{display:block;font-family:'Cinzel',serif;font-size:24px;font-weight:700;line-height:1.15;color:var(--parchment);}
+
+/* schede: pillole, quella attiva piena */
+.mycomics-tabs{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px;}
+.mycomics-tabs.hidden{display:none;}
+.mycomics-tab{flex:none;height:38px;margin:0;padding:0 16px;border-radius:19px;border:1px solid rgba(201,162,77,.3);background:transparent;color:#d8ccad;
+  font-family:'Crimson Pro',Georgia,serif;font-size:15.5px;font-weight:600;letter-spacing:0;text-transform:none;white-space:nowrap;cursor:pointer;
+  -webkit-appearance:none;appearance:none;transition:background .2s,color .2s,border-color .2s;}
+.mycomics-tab:hover{border-color:#e3c273;}
+.mycomics-tab.active{background:#e3c273;border-color:#e3c273;color:#1a0f08;}
+
+/* scaricamento offline: una scheda a sé, solo dentro "Offline" */
+#mycomics:not([data-tab="offline"]) #offlineSyncRow{display:none !important;}
+.offline-sync-row{display:flex;flex-direction:column;align-items:stretch;gap:8px;max-width:620px;margin:0 0 16px;padding:16px;border-radius:16px;
+  background:#150c0d;border:1px solid rgba(201,162,77,.18);}
+.offline-sync-row.hidden{display:none;}
+.offline-sync-row .mycomics-hint-note{display:block;order:1;font-family:'Crimson Pro',Georgia,serif;font-size:15.5px;line-height:1.45;color:var(--parchment-dim);}
+.offline-sync-row .mycomics-hint-note.hidden{display:none;}
+.offline-sync-row #btnOfflineSyncManual{order:2;align-self:flex-start;height:44px;margin-top:4px;padding:0 20px;border-radius:22px;border:0;background:#8a1a2c;color:#f3e9d2;
+  font-family:'Crimson Pro',Georgia,serif;font-size:16px;font-weight:700;letter-spacing:0;text-transform:none;}
+.offline-sync-row #btnOfflineSyncManual.hidden{display:none;}
+.offline-sync-row #offlineSyncStatus{order:3;font-family:'Crimson Pro',Georgia,serif;font-size:15px;color:var(--gold-bright);}
+
+/* vuoto, non hai fatto l'accesso */
+.mycomics-empty{padding:22px 18px;border-radius:14px;border:1px dashed rgba(201,162,77,.35);font-family:'Crimson Pro',Georgia,serif;font-size:16.5px;font-style:italic;
+  line-height:1.45;text-align:center;color:var(--parchment-dim);}
+.mycomics-empty.hidden{display:none;}
+
+/* I miei acquisti: righe */
+.mycomics-purchase-list{border-radius:14px;overflow:hidden;background:#150c0d;border:1px solid rgba(201,162,77,.14);}
+.mycomics-purchase-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 14px;border-top:1px solid rgba(201,162,77,.1);}
+.mycomics-purchase-row:first-child{border-top:0;}
+.mycomics-purchase-row .txt{flex:1;min-width:0;font-family:'Crimson Pro',Georgia,serif;font-size:16.5px;line-height:1.35;color:var(--parchment);}
+.mycomics-purchase-row .status{flex:none;padding:2px 10px;border-radius:10px;border:1px solid rgba(201,162,77,.35);font-size:11.5px;color:var(--gold-bright);}
+
+/* tema chiaro */
+body.theme-light .mycomics-codex > span,body.theme-light .offline-sync-row,body.theme-light .mycomics-purchase-list{background:#fffdf7;border-color:rgba(138,106,31,.25);}
+body.theme-light .mycomics-codex > span b{color:#2a1d12;}
+body.theme-light .mycomics-tab{color:#5a4a33;border-color:rgba(138,106,31,.35);}
+body.theme-light .mycomics-tab.active{background:#6b5015;border-color:#6b5015;color:#fff8ea;}
+body.theme-light .mycomics-purchase-row .txt{color:#2a1d12;}
+
+@media (max-width:640px){
+  /* schede da scorrere col pollice, come nella Community */
+  body.has-app-tabbar .mycomics-tabs{flex-wrap:nowrap;overflow-x:auto;margin:0 -18px 14px;padding:0 18px 4px;scrollbar-width:none;}
+  body.has-app-tabbar .mycomics-tabs::-webkit-scrollbar{display:none;}
+  /* "Continua a leggere": elenco con copertina, punto in cui sei e barra */
+  body.has-app-tabbar #mycomics[data-tab="continue"] #mycomicsGrid{display:flex;flex-direction:column;gap:0;border-radius:14px;overflow:hidden;background:#150c0d;border:1px solid rgba(201,162,77,.14);}
+  body.has-app-tabbar #mycomics[data-tab="continue"] #mycomicsGrid.hidden{display:none;}
+  body.has-app-tabbar #mycomics[data-tab="continue"] .card-idx{display:grid;grid-template-columns:76px minmax(0,1fr);column-gap:12px;align-items:center;
+    padding:10px 12px;margin:0;border:0;border-top:1px solid rgba(201,162,77,.1);border-radius:0;background:none;box-shadow:none;}
+  body.has-app-tabbar #mycomics[data-tab="continue"] .card-idx:first-child{border-top:0;}
+  body.has-app-tabbar #mycomics[data-tab="continue"] .card-idx-cover{grid-column:1;grid-row:1 / span 3;width:76px;height:76px;border-radius:10px;overflow:hidden;}
+  body.has-app-tabbar #mycomics[data-tab="continue"] .card-idx-cover .cover-signature,
+  body.has-app-tabbar #mycomics[data-tab="continue"] .card-idx-cover .card-idx-fav,
+  body.has-app-tabbar #mycomics[data-tab="continue"] .card-idx-cover .mature,
+  body.has-app-tabbar #mycomics[data-tab="continue"] .card-idx-cover .allages,
+  body.has-app-tabbar #mycomics[data-tab="continue"] .tome-details,
+  body.has-app-tabbar #mycomics[data-tab="continue"] .tome-price-row{display:none !important;}
+  body.has-app-tabbar #mycomics[data-tab="continue"] .tome-plaque,
+  body.has-app-tabbar #mycomics[data-tab="continue"] .tome-progress{grid-column:2;padding:0;margin:0;min-height:0;background:none;border:0;}
+  body.has-app-tabbar #mycomics[data-tab="continue"] .tome-plaque{grid-row:1;}
+  body.has-app-tabbar #mycomics[data-tab="continue"] .tome-progress{grid-row:2;margin-top:4px;}
+  body.has-app-tabbar #mycomics[data-tab="continue"] .tome-plaque-text{font-size:16.5px;line-height:1.25;}
+  body.theme-light.has-app-tabbar #mycomics[data-tab="continue"] #mycomicsGrid{background:#fffdf7;border-color:rgba(138,106,31,.25);}
+  body.has-app-tabbar .offline-sync-row #btnOfflineSyncManual{align-self:stretch;}
+}
