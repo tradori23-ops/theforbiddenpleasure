@@ -736,6 +736,12 @@ Object.assign(STR.es, {"collab.noWorks": "Todavía no hay obras a cuatro manos. 
 Object.assign(STR.fr, {"collab.noWorks": "Pas encore d’œuvre à plusieurs mains. Quand tu en publieras une avec un collaborateur, elle apparaîtra ici."});
 Object.assign(STR.de, {"collab.noWorks": "Noch keine gemeinsamen Werke. Wenn du eines mit einer Kollaboration veröffentlichst, erscheint es hier."});
 
+Object.assign(STR.it, {"reader.flowPages": "Tavole", "reader.flowScroll": "Scorrimento", "reader.pageN": "Tavola {n}"});
+Object.assign(STR.en, {"reader.flowPages": "Pages", "reader.flowScroll": "Scroll", "reader.pageN": "Page {n}"});
+Object.assign(STR.es, {"reader.flowPages": "Páginas", "reader.flowScroll": "Desplazamiento", "reader.pageN": "Página {n}"});
+Object.assign(STR.fr, {"reader.flowPages": "Planches", "reader.flowScroll": "Défilement", "reader.pageN": "Planche {n}"});
+Object.assign(STR.de, {"reader.flowPages": "Seiten", "reader.flowScroll": "Scrollen", "reader.pageN": "Seite {n}"});
+
 var CHAR_META = {
   Lucifer:{role:{it:"Il Portatore di Luce",en:"The Light-Bearer",es:"El Portador de Luz",fr:"Le Porteur de Lumière",de:"Der Lichtträger"},
     bio:{it:"Sovrano della collana ammiraglia: potere, caduta e desiderio raccontati su grande scala.",
@@ -12097,7 +12103,9 @@ var ML_ICONS = {
 };
 function mlIcon(name){ return '<svg class="ml-ico" viewBox="0 0 24 24" aria-hidden="true">' + ML_ICONS[name] + '</svg>'; }
 var mlState = { tab: 'albums', coll: 'Tutte', sort: 'recent', q: '', open: null, albums: [], byKey: {} };
-var ML_COLL_ORDER = ['Lucifer', 'Lilith', 'Lucifera', 'Lucio', 'Nox'];
+var ML_COLL_ORDER = ['Lucifer', 'Lilith', 'Lucifera', 'Lucio', 'Nox']; // riserva: l'ordine vero viene dai personaggi (v210)
+function mlCollOrder(){ var ids = charList(isAdmin()).map(function(c){ return c.id; }); return ids.length ? ids : ML_COLL_ORDER; }
+function mlCollLabel(c){ return (c === 'Tutte' || c === 'Altri') ? c : charDisplayName(c); }
 
 /* i titoli portano emoji decorative: nelle schede si tolgono (nella pagina dell'album restano) */
 function mlClean(t){
@@ -12337,18 +12345,18 @@ function mlRenderAlbums(){
   // filtri per collana: solo quelle presenti
   var present = {}, hasOther = false;
   mlState.albums.forEach(function(a){ if(a.coll) present[a.coll] = true; else hasOther = true; });
-  var colls = ML_COLL_ORDER.filter(function(c){ return present[c]; });
+  var colls = mlCollOrder().filter(function(c){ return present[c]; });
   Object.keys(present).forEach(function(c){ if(colls.indexOf(c) === -1) colls.push(c); });
   if(hasOther && colls.length) colls.push('Altri');
   chipsEl.classList.toggle('hidden', colls.length === 0);
   chipsEl.innerHTML = ['Tutte'].concat(colls).map(function(c){
-    return '<button type="button" class="ml-chip' + (mlState.coll === c ? ' on' : '') + '" data-ml-coll="' + escapeHtml(c) + '">' + escapeHtml(c) + '</button>';
+    return '<button type="button" class="ml-chip' + (mlState.coll === c ? ' on' : '') + '" data-ml-coll="' + escapeHtml(c) + '">' + escapeHtml(mlCollLabel(c)) + '</button>';
   }).join('');
   Array.prototype.forEach.call(chipsEl.querySelectorAll('[data-ml-coll]'), function(b){
     b.addEventListener('click', function(){ mlState.coll = b.dataset.mlColl; mlRenderAlbums(); });
   });
   var list = mlFilteredAlbums();
-  if(countEl) countEl.textContent = list.length + ' album' + (mlState.coll !== 'Tutte' ? ' · ' + mlState.coll : '');
+  if(countEl) countEl.textContent = list.length + ' album' + (mlState.coll !== 'Tutte' ? ' · ' + mlCollLabel(mlState.coll) : '');
   if(list.length === 0){ grid.innerHTML = '<div class="ml-empty">' + (mlState.albums.length ? 'Nessun album con questi filtri.' : t('songs.noneYet')) + '</div>'; return; }
   var html = '', rest = list;
   if(mlState.sort === 'recent' && !mlState.q){
@@ -12454,7 +12462,8 @@ function renderMusicLibraryTab(tab){
         if(!byColl[coll]){ byColl[coll] = []; order.push(coll); }
         byColl[coll].push(row);
       });
-      var collOrder = ML_COLL_ORDER.filter(function(c){ return byColl[c]; }).concat(order.filter(function(c){ return ML_COLL_ORDER.indexOf(c) === -1; }));
+      var mlo = mlCollOrder();
+      var collOrder = mlo.filter(function(c){ return byColl[c]; }).concat(order.filter(function(c){ return mlo.indexOf(c) === -1; }));
       var autoHtml = collOrder.length ? (
         '<div class="ml-section-title">Playlist automatiche</div><div class="ml-cards ml-cards-auto">' +
         collOrder.map(function(coll, i){
@@ -12463,7 +12472,7 @@ function renderMusicLibraryTab(tab){
           var coverUrl = cover ? (cover.cover_url || cover.catalog.cover_url) : '';
           return '<div class="music-library-card" data-auto-idx="' + i + '">' +
             '<img src="' + escapeHtml(coverUrl) + '" alt=""' + coverImgAttrs() + '>' +
-            '<div class="music-library-card-title">Tutto ' + escapeHtml(coll) + '</div>' +
+            '<div class="music-library-card-title">Tutto ' + escapeHtml(mlCollLabel(coll)) + '</div>' +
             '<div class="music-library-card-sub">' + list.length + (list.length === 1 ? ' brano · generata da sola' : ' brani · generata da sola') + '</div>' +
           '</div>';
         }).join('') + '</div>'
@@ -15574,9 +15583,93 @@ function openPageReader(item){
       }
     }
   });
-  showReaderPage(0);
+  var resume = readingProgressMap[item.id];
+  var startIdx = (typeof resume === 'number' && resume > 0 && resume < readerPages.length) ? resume : 0;
   initReaderControls();
   applyReaderPrefs();
+  if(readerPrefs.scroll){ readerIndex = startIdx; renderReaderFlow(); }
+  else { renderReaderFlow(); showReaderPage(startIdx - (startIdx % readerStep())); }
+}
+
+/* ---- Lettura a scorrimento (stile webtoon), v210 ----
+   Tutte le tavole una sotto l'altra, a tutta larghezza. Stesse tavole e stesse
+   regole del lettore a tavole: filigranate per tutti, pulite per chi ha
+   l'accesso (scaricate solo quando stanno per arrivare sullo schermo). La
+   tavola più visibile diventa quella corrente e il punto di lettura si salva. */
+var readerScrollObserver = null, readerLazyObserver = null, readerFlowSettling = false;
+function renderReaderFlow(){
+  var reader = document.getElementById('pageReader');
+  if(!reader) return;
+  if(readerScrollObserver){ readerScrollObserver.disconnect(); readerScrollObserver = null; }
+  if(readerLazyObserver){ readerLazyObserver.disconnect(); readerLazyObserver = null; }
+  var box = document.getElementById('pageReaderScroll');
+  if(!readerPrefs.scroll){ if(box) box.innerHTML = ''; return; }
+  if(!box){
+    box = document.createElement('div');
+    box.id = 'pageReaderScroll';
+    box.className = 'page-reader-scroll';
+    var main = reader.querySelector('.page-reader-main');
+    main.parentNode.insertBefore(box, main.nextSibling);
+  }
+  box.innerHTML = '';
+  box.style.removeProperty('--page-ratio');
+  readerPages.forEach(function(url, idx){
+    var img = document.createElement('img');
+    img.className = 'page-reader-strip';
+    img.alt = t('reader.pageN').replace('{n}', idx + 1);
+    img.loading = 'lazy';
+    img.decoding = 'async';
+    img.draggable = false;
+    img.dataset.pageIdx = String(idx);
+    img.addEventListener('contextmenu', function(e){ e.preventDefault(); });
+    img.addEventListener('load', function(){
+      img.classList.add('is-loaded');
+      // la prima tavola arrivata dà la proporzione ai segnaposto delle altre
+      if(!box.style.getPropertyValue('--page-ratio') && img.naturalWidth && img.naturalHeight){
+        box.style.setProperty('--page-ratio', img.naturalWidth + ' / ' + img.naturalHeight);
+      }
+    });
+    img.src = url;
+    box.appendChild(img);
+  });
+  var imgs = box.querySelectorAll('img');
+  if('IntersectionObserver' in window){
+    if(isSignedIn() && readerItem && readerItem.pages_clean){
+      readerLazyObserver = new IntersectionObserver(function(entries){
+        entries.forEach(function(en){
+          if(!en.isIntersecting) return;
+          readerLazyObserver.unobserve(en.target);
+          loadReaderImage(en.target, +en.target.dataset.pageIdx);
+        });
+      }, { rootMargin: '900px 0px' });
+      imgs.forEach(function(img){ readerLazyObserver.observe(img); });
+    }
+    readerScrollObserver = new IntersectionObserver(function(){
+      if(readerFlowSettling) return; // durante il salto iniziale alla tua tavola non si registra niente
+      // la tavola corrente è quella che occupa la parte alta dello schermo, dove si legge
+      var line = window.innerHeight * 0.25, idx = -1, bestDist = Infinity;
+      for(var i = 0; i < imgs.length; i++){
+        var r = imgs[i].getBoundingClientRect();
+        if(r.top <= line && r.bottom > line){ idx = i; break; }
+        var d = Math.min(Math.abs(r.top - line), Math.abs(r.bottom - line));
+        if(d < bestDist){ bestDist = d; idx = i; }
+      }
+      if(idx < 0 || idx === readerIndex) return;
+      readerIndex = idx;
+      var c = document.getElementById('pageReaderCount');
+      if(c) c.textContent = (idx + 1) + ' / ' + readerPages.length;
+      saveReadingProgress(readerItem, idx);
+    }, { threshold: [0.35, 0.6, 0.85] });
+    imgs.forEach(function(img){ readerScrollObserver.observe(img); });
+  }
+  var cnt = document.getElementById('pageReaderCount');
+  if(cnt) cnt.textContent = (readerIndex + 1) + ' / ' + readerPages.length;
+  readerFlowSettling = true;
+  if(readerIndex > 0 && imgs[readerIndex]){
+    var target = imgs[readerIndex];
+    setTimeout(function(){ target.scrollIntoView({ block: 'start' }); }, 80);
+  }
+  setTimeout(function(){ readerFlowSettling = false; }, 700);
 }
 
 function fetchAuthenticatedCleanPage(path){
@@ -15827,12 +15920,22 @@ var readerPrefs = { double: false, zoom: 100, theme: 'dark' };
     var raw = localStorage.getItem('lux_reader_prefs');
     if(raw) readerPrefs = Object.assign(readerPrefs, JSON.parse(raw));
   } catch(e){} // preferenza non leggibile: si riparte dai valori di sempre
+  // v210: lettura a scorrimento (stile webtoon). Finché non scegli, sul telefono
+  // si parte a scorrimento, da computer a tavole.
+  if(typeof readerPrefs.scroll !== 'boolean'){
+    readerPrefs.scroll = !!(window.matchMedia && window.matchMedia('(max-width: 640px)').matches);
+  }
 })();
 function saveReaderPrefs(){ try { localStorage.setItem('lux_reader_prefs', JSON.stringify(readerPrefs)); } catch(e){} }
 function readerStep(){ return readerPrefs.double ? 2 : 1; }
 function applyReaderPrefs(){
   var main = document.querySelector('#pageReader .page-reader-main');
   if(!main) return;
+  var rd = document.getElementById('pageReader');
+  if(rd) rd.classList.toggle('flow-scroll', !!readerPrefs.scroll);
+  var fp = document.getElementById('readerFlowPages'), fs = document.getElementById('readerFlowScroll');
+  if(fp){ fp.classList.toggle('on', !readerPrefs.scroll); fp.setAttribute('aria-pressed', readerPrefs.scroll ? 'false' : 'true'); }
+  if(fs){ fs.classList.toggle('on', !!readerPrefs.scroll); fs.setAttribute('aria-pressed', readerPrefs.scroll ? 'true' : 'false'); }
   main.classList.toggle('double-page', readerPrefs.double);
   main.classList.toggle('reader-theme-light', readerPrefs.theme === 'light');
   main.classList.toggle('reader-theme-dark', readerPrefs.theme !== 'light');
@@ -15854,6 +15957,26 @@ function initReaderControls(){
   var ctl = document.getElementById('readerCtl');
   if(!ctl || ctl.dataset.ready) return;
   ctl.dataset.ready = '1';
+  // v210: scelta "Tavole | Scorrimento", in testa ai comandi del lettore
+  if(!document.getElementById('readerFlowScroll')){
+    var flow = document.createElement('span');
+    flow.className = 'reader-ctl-grp reader-grp-flow';
+    flow.innerHTML = '<button type="button" id="readerFlowPages">' + escapeHtml(t('reader.flowPages')) + '</button>' +
+      '<button type="button" id="readerFlowScroll">' + escapeHtml(t('reader.flowScroll')) + '</button>';
+    ctl.insertBefore(flow, ctl.firstChild);
+    var ms = document.getElementById('readerModeSingle');
+    if(ms && ms.parentNode) ms.parentNode.classList.add('reader-grp-mode');
+    var zb = ctl.querySelector('.reader-zoom-btn');
+    if(zb && zb.parentNode) zb.parentNode.classList.add('reader-grp-zoom');
+    document.getElementById('readerFlowPages').addEventListener('click', function(){
+      if(!readerPrefs.scroll) return;
+      readerPrefs.scroll = false; saveReaderPrefs(); applyReaderPrefs(); renderReaderFlow(); showReaderPage(readerIndex - (readerIndex % readerStep()));
+    });
+    document.getElementById('readerFlowScroll').addEventListener('click', function(){
+      if(readerPrefs.scroll) return;
+      readerPrefs.scroll = true; saveReaderPrefs(); applyReaderPrefs(); renderReaderFlow();
+    });
+  }
   var single = document.getElementById('readerModeSingle'), double = document.getElementById('readerModeDouble');
   if(single) single.addEventListener('click', function(){ readerPrefs.double = false; saveReaderPrefs(); applyReaderPrefs(); showReaderPage(readerIndex); });
   if(double) double.addEventListener('click', function(){ readerPrefs.double = true; saveReaderPrefs(); applyReaderPrefs(); showReaderPage(readerIndex - (readerIndex % 2)); });
@@ -15882,6 +16005,10 @@ function loadReaderImage(imgEl, idx){
 }
 function showReaderPage(idx){
   if(idx < 0 || idx >= readerPages.length) return;
+  if(readerPrefs.scroll){
+    var strip = document.querySelectorAll('#pageReaderScroll img')[idx];
+    if(strip){ strip.scrollIntoView({ block: 'start', behavior: 'smooth' }); return; }
+  }
   readerIndex = idx;
   saveReadingProgress(readerItem, idx);
   var hasSecond = readerPrefs.double && (idx + 1) < readerPages.length;
