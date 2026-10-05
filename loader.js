@@ -34,7 +34,7 @@
   // hai visto live sul sito prima di caricare — questo file parte da una
   // copia salvata in sessione e potrebbe non riflettere bump fatti nel
   // frattempo direttamente su GitHub.
-  var V = "210";
+  var V = "211";
 
   // style.css iniettato qui (non più con un <link> scritto a mano in ogni
   // pagina) così la sua versione segue sempre la stessa V di app.js,
@@ -120,7 +120,8 @@
     var bar = document.getElementById("appTabbar");
     if (!bar) return;
     var page = (location.pathname.split("/").pop() || "index.html").toLowerCase();
-    if (document.body.classList.contains("lx-page") || page === "luxtify.html" || page === "admin.html") {
+    // v211: anche Amministra ha la versione app (barra in basso, intestazione compatta)
+    if (document.body.classList.contains("lx-page") || page === "luxtify.html") {
       ["appTabbar", "appTuSheet", "appTuBackdrop"].forEach(function (id) {
         var el = document.getElementById(id);
         if (el && el.parentNode) el.parentNode.removeChild(el);

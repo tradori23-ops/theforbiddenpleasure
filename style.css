@@ -3010,3 +3010,88 @@ body.theme-light .mycomics-purchase-row .txt{color:#2a1d12;}
   #pageReader.flow-scroll .page-reader-scroll{margin-left:-20px;margin-right:-20px;}
   #pageReader.flow-scroll .page-reader-strip{max-width:none;}
 }
+
+/* =====================================================================
+   v211: AMMINISTRA IN VERSIONE APP (telefono)
+   Solo stile: tutte le funzioni restano quelle di sempre. Da computer la
+   pagina resta com'era.
+   ===================================================================== */
+@media (max-width:640px){
+  body.has-app-tabbar #adminSection .section-head h2{font-size:24px;line-height:1.2;}
+  /* niente cornice dorata intorno a tutto */
+  body.has-app-tabbar #adminManageBox.admin-panel,
+  body.has-app-tabbar #adminSection .admin-shell,
+  body.has-app-tabbar #adminSection .admin-shell-content,
+  body.has-app-tabbar #adminSection .admin-tab-panel{padding:0;margin-left:0;margin-right:0;border:0;background:none;box-shadow:none;}
+  body.has-app-tabbar #adminSection .notice{margin:0 0 12px;padding:14px;border-radius:14px;background:#150c0d;border:1px solid rgba(201,162,77,.18);box-shadow:none;}
+  body.has-app-tabbar #smallnoxCard{display:flex;align-items:center;gap:12px;}
+  body.has-app-tabbar #smallnoxAdminImg{flex:none;width:60px;height:60px;}
+
+  /* schede: pillole da scorrere col pollice */
+  body.has-app-tabbar #adminTabs.admin-tabs{display:flex;flex-wrap:nowrap;gap:8px;overflow-x:auto;margin:4px -18px 16px;padding:2px 18px 6px;border:0;scrollbar-width:none;}
+  body.has-app-tabbar #adminTabs.admin-tabs::-webkit-scrollbar{display:none;}
+  body.has-app-tabbar .admin-tab{flex:none;height:36px;margin:0;padding:0 14px;border-radius:18px;border:1px solid rgba(201,162,77,.3);background:transparent;color:#d8ccad;
+    font-family:'Crimson Pro',Georgia,serif;font-size:15px;font-weight:600;letter-spacing:0;text-transform:none;white-space:nowrap;}
+  body.has-app-tabbar .admin-tab.active{background:#e3c273;border-color:#e3c273;color:#1a0f08;}
+
+  /* pulsanti: arrotondati, testo normale */
+  body.has-app-tabbar #adminSection .btn{min-height:42px;height:auto;padding:8px 16px;border-radius:12px;font-family:'Crimson Pro',Georgia,serif;font-size:15.5px;font-weight:700;
+    letter-spacing:0;text-transform:none;line-height:1.2;}
+  body.has-app-tabbar #adminSection .btn-sm{min-height:38px;padding:6px 14px;font-size:15px;}
+  body.has-app-tabbar #btnExport,body.has-app-tabbar #btnImport{display:inline-flex;align-items:center;justify-content:center;margin:0 6px 10px 0;}
+
+  /* modalità bozza: una riga con casella grande */
+  body.has-app-tabbar .draft-mode-toggle-wrap{margin:4px 0 12px;padding:12px 14px;border-radius:14px;background:#150c0d;border:1px solid rgba(201,162,77,.16);}
+  body.has-app-tabbar .draft-mode-toggle{display:flex;align-items:flex-start;gap:12px;font-family:'Crimson Pro',Georgia,serif;font-size:16px;line-height:1.4;color:var(--parchment);}
+  body.has-app-tabbar #chkDraftMode{flex:none;width:22px;height:22px;margin:1px 0 0;accent-color:#c9a24d;}
+  body.has-app-tabbar #nsfwRescanWrap{margin:0 0 16px;}
+  body.has-app-tabbar #btnRescanMaturity{width:100%;}
+
+  /* nuovo titolo, ricerca e filtri */
+  body.has-app-tabbar .admin-toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:6px 0 12px;padding:0;border:0;}
+  body.has-app-tabbar #adminSearchInput{flex:1 1 160px;min-width:0;}
+  body.has-app-tabbar .admin-chip{height:34px;padding:0 13px;border-radius:17px;border:1px solid rgba(201,162,77,.3);background:transparent;color:#d8ccad;
+    font-family:'Crimson Pro',Georgia,serif;font-size:14.5px;font-weight:600;letter-spacing:0;text-transform:none;}
+  body.has-app-tabbar .admin-chip.active{background:#e3c273;border-color:#e3c273;color:#1a0f08;}
+
+  /* elenco dei titoli: righe ordinate */
+  body.has-app-tabbar #adminList.admin-list{border-radius:14px;overflow:hidden;background:#150c0d;border:1px solid rgba(201,162,77,.14);}
+  body.has-app-tabbar .admin-row-compact{display:flex;align-items:center;gap:10px;padding:10px 10px 10px 12px;margin:0;border:0;border-top:1px solid rgba(201,162,77,.1);}
+  body.has-app-tabbar .admin-row-compact:first-child{border-top:0;}
+  body.has-app-tabbar .admin-row-compact input[type="checkbox"]{flex:none;width:20px;height:20px;margin:0;accent-color:#c9a24d;}
+  body.has-app-tabbar .admin-row-thumb{flex:none;width:48px;height:48px;border-radius:9px;object-fit:cover;background:#26161a;}
+  body.has-app-tabbar .admin-row-compact .info{flex:1;min-width:0;}
+  body.has-app-tabbar .admin-row-compact .info .t{font-family:'Crimson Pro',Georgia,serif;font-size:16.5px;font-weight:700;line-height:1.25;}
+  body.has-app-tabbar .admin-row-compact .info .m{font-family:'Crimson Pro',Georgia,serif;font-size:13.5px;letter-spacing:0;color:var(--parchment-dim);}
+  body.has-app-tabbar .permanent-tag{display:inline-block;margin-top:3px;padding:0 7px;border-radius:8px;border:1px solid rgba(227,194,115,.4);font-size:11px;letter-spacing:.02em;}
+  body.has-app-tabbar .admin-menu-btn{flex:none;height:34px;padding:0 12px;border-radius:17px;border:1px solid rgba(227,194,115,.45);background:transparent;color:#e3c273;
+    font-family:'Crimson Pro',Georgia,serif;font-size:14.5px;font-weight:700;letter-spacing:0;text-transform:none;}
+  body.has-app-tabbar .admin-pager{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:12px 0 0;padding:0;border:0;font-family:'Crimson Pro',Georgia,serif;font-size:14.5px;}
+  body.has-app-tabbar .admin-pager button{height:36px;padding:0 12px;border-radius:18px;border:1px solid rgba(201,162,77,.3);background:transparent;color:#d8ccad;
+    font-family:'Crimson Pro',Georgia,serif;font-size:14.5px;letter-spacing:0;text-transform:none;}
+
+  /* tutti i campi dei moduli (titoli, eventi, server, playlist…): scuri e a 16px */
+  body.has-app-tabbar #adminSection input[type="text"],body.has-app-tabbar #adminSection input[type="search"],body.has-app-tabbar #adminSection input[type="number"],
+  body.has-app-tabbar #adminSection input[type="url"],body.has-app-tabbar #adminSection input[type="email"],body.has-app-tabbar #adminSection input[type="date"],
+  body.has-app-tabbar #adminSection input[type="datetime-local"],body.has-app-tabbar #adminSection input[type="time"],
+  body.has-app-tabbar #adminSection select,body.has-app-tabbar #adminSection textarea{
+    max-width:100%;min-height:42px;padding:8px 12px;border-radius:12px;border:1px solid rgba(201,162,77,.3);background:#1e1215;color:var(--parchment);
+    font-family:'Crimson Pro',Georgia,serif;font-size:16px;box-sizing:border-box;}
+  body.has-app-tabbar #adminSection textarea{min-height:96px;line-height:1.4;}
+  body.has-app-tabbar #adminSection input[type="file"]{font-family:'Crimson Pro',Georgia,serif;font-size:15px;color:var(--parchment-dim);max-width:100%;}
+  body.has-app-tabbar #adminSection input[type="file"]::file-selector-button{margin-right:10px;height:36px;padding:0 14px;border-radius:18px;border:1px solid rgba(227,194,115,.5);background:transparent;color:#e3c273;
+    font-family:'Crimson Pro',Georgia,serif;font-size:14.5px;font-weight:700;}
+  body.has-app-tabbar #adminSection .field label,body.has-app-tabbar #adminSection label.mono,body.has-app-tabbar #adminSection .sub.mono{font-family:'Crimson Pro',Georgia,serif;font-size:15px;
+    font-style:italic;letter-spacing:0;text-transform:none;color:var(--gold-bright);}
+
+  /* tema chiaro */
+  body.theme-light.has-app-tabbar #adminSection .notice,body.theme-light.has-app-tabbar .draft-mode-toggle-wrap,body.theme-light.has-app-tabbar #adminList.admin-list{background:#fffdf7;border-color:rgba(138,106,31,.25);}
+  body.theme-light.has-app-tabbar .admin-tab,body.theme-light.has-app-tabbar .admin-chip{color:#5a4a33;border-color:rgba(138,106,31,.35);}
+  body.theme-light.has-app-tabbar .admin-tab.active,body.theme-light.has-app-tabbar .admin-chip.active{background:#6b5015;border-color:#6b5015;color:#fff8ea;}
+  body.theme-light.has-app-tabbar #adminSection input[type="text"],body.theme-light.has-app-tabbar #adminSection input[type="search"],body.theme-light.has-app-tabbar #adminSection select,body.theme-light.has-app-tabbar #adminSection textarea{background:#fffdf7;color:#2a1d12;border-color:rgba(138,106,31,.35);}
+}
+@media (max-width:640px){
+  /* titoletti dei moduli di Amministra ("Nuovo evento"…): corsivo dorato, niente maiuscolo spaziato */
+  body.has-app-tabbar #adminSection .mini-heading,body.has-app-tabbar #adminSection .sec-eyebrow,body.has-app-tabbar #adminSection .notice > .mono:first-child{
+    font-family:'Crimson Pro',Georgia,serif;font-size:16px;font-style:italic;font-weight:600;letter-spacing:0;text-transform:none;color:var(--gold-bright);}
+}
