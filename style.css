@@ -3311,7 +3311,7 @@ body.has-app-tabbar .app-tabbar .app-tab-wide{display:none;}
   body.has-app-tabbar .app-tab.is-section,body.has-app-tabbar .app-tab[aria-current="page"],body.has-app-tabbar .app-tab[aria-expanded="true"]{color:#e3c273;background:none;}
   body.has-app-tabbar .app-tab .app-tab-ic{flex:none;width:46px;height:32px;}
   body.has-app-tabbar .app-tab .app-tab-arch{display:block;width:46px;height:32px;}
-  body.has-app-tabbar .app-tab:hover .app-tab-arch{opacity:.4;}
+  /* v218: al passaggio del mouse cambia solo il colore della scritta: l'arco resta il segno della voce attiva */
   body.has-app-tabbar .app-tab.is-section .app-tab-arch,body.has-app-tabbar .app-tab[aria-current="page"] .app-tab-arch,body.has-app-tabbar .app-tab[aria-expanded="true"] .app-tab-arch{opacity:1;}
   body.has-app-tabbar .app-tab .app-tab-svg{width:21px;height:21px;margin-top:7px;}
   body.has-app-tabbar .app-tab .app-tab-label{padding-top:4px;} /* le maiuscole Cinzel stanno alte: così il testo è in linea con l'icona nell'arco */
@@ -3387,3 +3387,13 @@ body.theme-light.has-app-tabbar .newsletter-box{background:#fffdf7;border-color:
 body.theme-light.has-app-tabbar #contattiNewMsgBtn{color:#6b5015;border-color:rgba(107,80,21,.45);}
 /* tema chiaro: la scritta "NUOVO" sulle schede era marrone scuro su fondo vino, quasi illeggibile */
 body.theme-light .tab-new-badge{color:#fff8ea;}
+
+/* =====================================================================
+   v218: VOCE ATTIVA BEN VISIBILE ANCHE NEL TEMA CHIARO
+   Prima l'arco era beige su fondo beige e la scritta cambiava appena: ora,
+   come nel tema scuro, arco color vino con l'icona chiara e scritta color
+   vino. Vale per la barra in basso (telefono, iPad) e per quella laterale.
+   ===================================================================== */
+body.theme-light .app-tab.is-section .app-tab-arch path,body.theme-light .app-tab[aria-current="page"] .app-tab-arch path,body.theme-light .app-tab[aria-expanded="true"] .app-tab-arch path{fill:#6e1423;stroke:rgba(107,80,21,.55);}
+body.theme-light .app-tab.is-section .app-tab-svg,body.theme-light .app-tab[aria-current="page"] .app-tab-svg,body.theme-light .app-tab[aria-expanded="true"] .app-tab-svg{color:#f6ead0;}
+body.theme-light.has-app-tabbar .app-tab.is-section,body.theme-light.has-app-tabbar .app-tab[aria-current="page"],body.theme-light.has-app-tabbar .app-tab[aria-expanded="true"]{color:#6e1423;}
