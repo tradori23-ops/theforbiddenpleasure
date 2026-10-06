@@ -742,6 +742,12 @@ Object.assign(STR.es, {"reader.flowPages": "Páginas", "reader.flowScroll": "Des
 Object.assign(STR.fr, {"reader.flowPages": "Planches", "reader.flowScroll": "Défilement", "reader.pageN": "Planche {n}"});
 Object.assign(STR.de, {"reader.flowPages": "Seiten", "reader.flowScroll": "Scrollen", "reader.pageN": "Seite {n}"});
 
+Object.assign(STR.it, {"apptab.notifications": "Notifiche", "apptab.cart": "Carrello"});
+Object.assign(STR.en, {"apptab.notifications": "Notifications", "apptab.cart": "Cart"});
+Object.assign(STR.es, {"apptab.notifications": "Notificaciones", "apptab.cart": "Carrito"});
+Object.assign(STR.fr, {"apptab.notifications": "Notifications", "apptab.cart": "Panier"});
+Object.assign(STR.de, {"apptab.notifications": "Benachrichtigungen", "apptab.cart": "Warenkorb"});
+
 var CHAR_META = {
   Lucifer:{role:{it:"Il Portatore di Luce",en:"The Light-Bearer",es:"El Portador de Luz",fr:"Le Porteur de Lumière",de:"Der Lichtträger"},
     bio:{it:"Sovrano della collana ammiraglia: potere, caduta e desiderio raccontati su grande scala.",
@@ -6249,6 +6255,34 @@ function initAppShell(){
     var d = byId('appTabCommunityDot');
     if(d) d.classList.toggle('hidden', src.classList.contains('hidden'));
   });
+  // v216: sugli schermi grandi la navigazione a sinistra ha anche Notifiche e
+  // Carrello. Aprono gli stessi pannelli dell'intestazione e ne copiano i contatori.
+  var wideNotif = byId('appTabNotif'), wideCart = byId('appTabCart');
+  if(wideNotif){
+    wideNotif.addEventListener('click', function(e){
+      e.stopPropagation(); // altrimenti il clic "fuori dal pannello" lo richiuderebbe subito
+      press('btnNotifications');
+    });
+    mirror('btnNotifications', function(src){ wideNotif.hidden = src.classList.contains('hidden'); });
+    mirror('notifBadge', function(src){
+      var b = byId('appTabNotifBadge');
+      if(!b) return;
+      var n = (src.textContent || '').trim();
+      b.textContent = n;
+      b.classList.toggle('hidden', src.classList.contains('hidden') || !n || n === '0');
+    });
+    mirror('notifPanel', function(src){ wideNotif.setAttribute('aria-expanded', src.classList.contains('hidden') ? 'false' : 'true'); });
+  }
+  if(wideCart){
+    wideCart.addEventListener('click', function(){ press('btnCart'); });
+    mirror('cartCount', function(src){
+      var b = byId('appTabCartBadge');
+      if(!b) return;
+      var n = (src.textContent || '').trim();
+      b.textContent = n;
+      b.classList.toggle('hidden', src.classList.contains('hidden') || !n || n === '0');
+    });
+  }
   mirror('acctChip', function(){ if(sheet.classList.contains('open')) sync(); });
   // anche nel menu da computer, in fondo
   var menu = byId('mainNavDropdown');
@@ -15608,7 +15642,7 @@ function openPageReader(item){
   var startIdx = (typeof resume === 'number' && resume > 0 && resume < readerPages.length) ? resume : 0;
   initReaderControls();
   applyReaderPrefs();
-  if(readerPrefs.scroll){ readerIndex = startIdx; renderReaderFlow(); }
+  if(readerScrollOn()){ readerIndex = startIdx; renderReaderFlow(); }
   else { renderReaderFlow(); showReaderPage(startIdx - (startIdx % readerStep())); }
 }
 
@@ -15624,7 +15658,7 @@ function renderReaderFlow(){
   if(readerScrollObserver){ readerScrollObserver.disconnect(); readerScrollObserver = null; }
   if(readerLazyObserver){ readerLazyObserver.disconnect(); readerLazyObserver = null; }
   var box = document.getElementById('pageReaderScroll');
-  if(!readerPrefs.scroll){ if(box) box.innerHTML = ''; return; }
+  if(!readerScrollOn()){ if(box) box.innerHTML = ''; return; }
   if(!box){
     box = document.createElement('div');
     box.id = 'pageReaderScroll';
@@ -15943,22 +15977,32 @@ var readerPrefs = { double: false, zoom: 100, theme: 'dark' };
   } catch(e){} // preferenza non leggibile: si riparte dai valori di sempre
   // v210: lettura a scorrimento (stile webtoon). Finché non scegli, sul telefono
   // si parte a scorrimento, da computer a tavole.
-  if(typeof readerPrefs.scroll !== 'boolean'){
-    readerPrefs.scroll = !!(window.matchMedia && window.matchMedia('(max-width: 640px)').matches);
-  }
+  // v216: finché non scegli, la modalità si decide quando apri il lettore
+  // (readerScrollOn), non all'avvio della pagina: conta la finestra di quel momento
 })();
 function saveReaderPrefs(){ try { localStorage.setItem('lux_reader_prefs', JSON.stringify(readerPrefs)); } catch(e){} }
-function luxIsPhone(){ return !!(window.matchMedia && window.matchMedia('(max-width: 640px)').matches); }
+// v216: sugli schermi larghi con mouse (computer) tornano Singola/Doppia pagina;
+// telefono e iPad leggono una tavola alla volta, a tutta larghezza
+var LUX_WIDE_READER_MQ = '(min-width: 1024px) and (hover: hover) and (pointer: fine)';
+function luxWideReader(){ return !!(window.matchMedia && window.matchMedia(LUX_WIDE_READER_MQ).matches); }
+function readerScrollOn(){
+  if(typeof readerPrefs.scroll === 'boolean') return readerPrefs.scroll;
+  return !!(window.matchMedia && window.matchMedia('(max-width: 640px), (hover: none) and (pointer: coarse)').matches); // telefoni e tablet: a scorrimento
+}
+function luxIsPhone(){
+  if(luxWideReader()) return false;
+  return document.body.classList.contains('has-app-tabbar') || !!(window.matchMedia && window.matchMedia('(max-width: 640px)').matches);
+}
 function readerDouble(){ return !!readerPrefs.double && !luxIsPhone(); } // v213: la doppia pagina non ha senso su uno schermo da telefono
 function readerStep(){ return readerDouble() ? 2 : 1; }
 function applyReaderPrefs(){
   var main = document.querySelector('#pageReader .page-reader-main');
   if(!main) return;
   var rd = document.getElementById('pageReader');
-  if(rd) rd.classList.toggle('flow-scroll', !!readerPrefs.scroll);
+  if(rd) rd.classList.toggle('flow-scroll', !!readerScrollOn());
   var fp = document.getElementById('readerFlowPages'), fs = document.getElementById('readerFlowScroll');
-  if(fp){ fp.classList.toggle('on', !readerPrefs.scroll); fp.setAttribute('aria-pressed', readerPrefs.scroll ? 'false' : 'true'); }
-  if(fs){ fs.classList.toggle('on', !!readerPrefs.scroll); fs.setAttribute('aria-pressed', readerPrefs.scroll ? 'true' : 'false'); }
+  if(fp){ fp.classList.toggle('on', !readerScrollOn()); fp.setAttribute('aria-pressed', readerScrollOn() ? 'false' : 'true'); }
+  if(fs){ fs.classList.toggle('on', !!readerScrollOn()); fs.setAttribute('aria-pressed', readerScrollOn() ? 'true' : 'false'); }
   main.classList.toggle('double-page', readerDouble());
   main.classList.toggle('reader-theme-light', readerPrefs.theme === 'light');
   main.classList.toggle('reader-theme-dark', readerPrefs.theme !== 'light');
@@ -15971,7 +16015,7 @@ function applyReaderPrefs(){
   Array.prototype.forEach.call(document.querySelectorAll('.reader-zoom-btn'), function(b){
     b.classList.toggle('on', Number(b.dataset.zoom) === readerPrefs.zoom);
   });
-  var pct = (luxIsPhone() ? 100 : readerPrefs.zoom) + '%'; // su telefono si ingrandisce con le dita
+  var pct = ((luxIsPhone() || document.body.classList.contains('has-app-tabbar')) ? 100 : readerPrefs.zoom) + '%'; // su telefono si ingrandisce con le dita
   var img1 = document.getElementById('pageReaderImg'), img2 = document.getElementById('pageReaderImg2');
   if(img1) img1.style.width = pct;
   if(img2) img2.style.width = pct;
@@ -15993,11 +16037,11 @@ function initReaderControls(){
     var zb = ctl.querySelector('.reader-zoom-btn');
     if(zb && zb.parentNode) zb.parentNode.classList.add('reader-grp-zoom');
     document.getElementById('readerFlowPages').addEventListener('click', function(){
-      if(!readerPrefs.scroll) return;
+      if(!readerScrollOn()) return;
       readerPrefs.scroll = false; saveReaderPrefs(); applyReaderPrefs(); renderReaderFlow(); showReaderPage(readerIndex - (readerIndex % readerStep()));
     });
     document.getElementById('readerFlowScroll').addEventListener('click', function(){
-      if(readerPrefs.scroll) return;
+      if(readerScrollOn()) return;
       readerPrefs.scroll = true; saveReaderPrefs(); applyReaderPrefs(); renderReaderFlow();
     });
   }
@@ -16021,7 +16065,7 @@ function initReaderSwipe(){
     x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; t0 = Date.now();
   }, { passive: true });
   main.addEventListener('touchend', function(e){
-    if(x0 === null || readerPrefs.scroll) return;
+    if(x0 === null || readerScrollOn()) return;
     var tch = e.changedTouches[0];
     var dx = tch.clientX - x0, dy = tch.clientY - y0;
     x0 = null;
@@ -16048,7 +16092,7 @@ function loadReaderImage(imgEl, idx){
 }
 function showReaderPage(idx){
   if(idx < 0 || idx >= readerPages.length) return;
-  if(readerPrefs.scroll){
+  if(readerScrollOn()){
     var strip = document.querySelectorAll('#pageReaderScroll img')[idx];
     if(strip){ strip.scrollIntoView({ block: 'start', behavior: 'smooth' }); return; }
   }
