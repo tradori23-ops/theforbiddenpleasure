@@ -2131,7 +2131,7 @@ body.text-only-mode img:not(.no-text-only){
 .app-tabbar,.app-sheet,.app-sheet-backdrop,#homeContinueSection{display:none;}
 .app-sheet [hidden]{display:none !important;}
 
-@media (max-width:640px){
+@media all{ /* v215: versione app a tutte le larghezze (prima solo max-width:640px) */
   /* ---------- spazio per la barra in basso ---------- */
   body.has-app-tabbar{padding-bottom:calc(84px + env(safe-area-inset-bottom, 0px));}
   body.has-app-tabbar.chat-fullscreen{padding-bottom:0;}
@@ -2268,7 +2268,7 @@ body.text-only-mode img:not(.no-text-only){
 }
 
 /* ---------- HOME su telefono ---------- */
-@media (max-width:640px){
+@media all{ /* v215: versione app a tutte le larghezze (prima solo max-width:640px) */
   /* copertina d'apertura come una scheda, testo a sinistra, i due pulsanti affiancati */
   body.has-app-tabbar .hero{margin:12px 14px 4px;width:auto;padding:150px 20px 22px;border:1px solid rgba(227,194,115,0.25);border-radius:22px;text-align:left;}
   body.has-app-tabbar .hero h1{font-size:30px;line-height:1.12;}
@@ -2338,7 +2338,7 @@ body.text-only-mode img:not(.no-text-only){
 }
 
 /* Pagina del Fondatore su telefono: il sigillo (440px) usciva dallo schermo */
-@media (max-width:640px){
+@media all{ /* v215: versione app a tutte le larghezze (prima solo max-width:640px) */
   .founder-seal{display:block;width:min(260px,72vw);height:auto;margin:0 auto 20px;}
 }
 
@@ -2430,7 +2430,7 @@ span.acn-seal{line-height:1;padding-top:.09em;box-sizing:border-box;}
 #catalogGrid.view-list .tome-progress{grid-column:2;padding:0;margin:0;min-height:0;background:none;border:0;}
 #catalogGrid.view-list .tome-plaque-text{font-size:16px;line-height:1.25;}
 
-@media (max-width:640px){
+@media all{ /* v215: versione app a tutte le larghezze (prima solo max-width:640px) */
   body.has-app-tabbar #library .section-head{margin-bottom:6px;}
   body.has-app-tabbar #appCatalogNav{margin:0 -18px 6px;}
   .acn-shelf{height:178px;gap:10px;padding:22px 18px 8px;scrollbar-width:none;}
@@ -2543,7 +2543,7 @@ body.theme-light #catalogGrid.view-list .card-idx{border-top-color:rgba(138,106,
 /* Schedario da computer: riga dei comandi dell'admin (v202) */
 .catalog-admin-bar{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:4px 0 22px;padding:12px 14px;border:1px dashed rgba(227,194,115,0.4);border-radius:12px;}
 .catalog-admin-label{margin-right:4px;font-family:'Crimson Pro',Georgia,serif;font-size:15px;font-style:italic;color:var(--parchment-dim);}
-@media (max-width:640px){
+@media all{ /* v215: versione app a tutte le larghezze (prima solo max-width:640px) */
   body.has-app-tabbar .catalog-admin-bar{display:none;} /* su telefono i comandi sono nello scaffale */
 }
 
@@ -2603,7 +2603,7 @@ body.theme-light .app-mini-btn{color:#6b5015;border-color:rgba(107,80,21,.45);}
   box-shadow:0 12px 36px rgba(0,0,0,.55);color:var(--parchment);font-family:'Crimson Pro',Georgia,serif;
   opacity:0;transform:translateY(16px);transition:opacity .3s,transform .35s cubic-bezier(.2,.8,.2,1);}
 .lux-bottom-card.on{opacity:1;transform:none;}
-@media (max-width:640px){
+@media all{ /* v215: versione app a tutte le larghezze (prima solo max-width:640px) */
   body.has-app-tabbar .lux-bottom-card{bottom:calc(94px + env(safe-area-inset-bottom, 0px));}
 }
 .lbc-icon{flex:none;width:44px;height:44px;border-radius:11px;}
@@ -2659,7 +2659,7 @@ body.theme-light #fNewChannelName,body.theme-light #fFriendSearch,body.theme-lig
   font-family:'Crimson Pro',Georgia,serif;font-size:15px;font-weight:700;letter-spacing:0;text-transform:none;cursor:pointer;-webkit-appearance:none;appearance:none;}
 .chat-new-message-btn:hover{background:rgba(227,194,115,.08);}
 
-@media (max-width:640px){
+@media all{ /* v215: versione app a tutte le larghezze (prima solo max-width:640px) */
   /* ---------- schede della Community e di Contatti: pillole come nello Schedario ---------- */
   body.has-app-tabbar .community-tabs{display:flex;flex-wrap:nowrap;gap:8px;overflow-x:auto;margin:0 -18px 14px;padding:2px 18px 4px;border-bottom:0;scrollbar-width:none;}
   body.has-app-tabbar .community-tabs::-webkit-scrollbar{display:none;}
@@ -2774,7 +2774,7 @@ body.theme-light #fNewChannelName,body.theme-light #fFriendSearch,body.theme-lig
   body.has-app-tabbar .contatti-list .admin-row .info .t{font-family:'Crimson Pro',Georgia,serif;font-size:17px;font-weight:700;letter-spacing:0;}
   body.has-app-tabbar .contatti-list .admin-row .admin-actions .btn{height:36px;padding:0 12px;border-radius:10px;font-family:'Crimson Pro',Georgia,serif;font-size:15px;font-weight:700;letter-spacing:0;text-transform:none;}
 }
-@media (max-width:640px){
+@media all{ /* v215: versione app a tutte le larghezze (prima solo max-width:640px) */
   /* emoji e GIF accanto al campo di scrittura: tondi e scuri come il resto (prima riquadri color crema) */
   body.has-app-tabbar .composer-toolbar{gap:6px;margin:0;align-self:center;}
   body.has-app-tabbar .composer-btn{width:38px;height:38px;padding:0;border-radius:19px;border:1px solid rgba(201,162,77,.3);background:#1e1215;color:#e3c273;
@@ -2800,7 +2800,7 @@ body.theme-light #fNewServerChannelName,body.theme-light #fDiaryPhotoCaption,bod
 #fDiaryPhoto::-webkit-file-upload-button{margin-right:12px;height:38px;padding:0 16px;border-radius:19px;border:1px solid rgba(227,194,115,.5);background:transparent;color:#e3c273;
   font-family:'Crimson Pro',Georgia,serif;font-size:15px;font-weight:700;cursor:pointer;}
 
-@media (max-width:640px){
+@media all{ /* v215: versione app a tutte le larghezze (prima solo max-width:640px) */
   /* ---------- titoletti: niente maiuscolo spaziato, corsivo dorato come nel resto dell'app ---------- */
   body.has-app-tabbar #communitySection .mini-heading,
   body.has-app-tabbar #communitySection .sec-eyebrow,
@@ -2961,7 +2961,7 @@ body.theme-light .mycomics-tab{color:#5a4a33;border-color:rgba(138,106,31,.35);}
 body.theme-light .mycomics-tab.active{background:#6b5015;border-color:#6b5015;color:#fff8ea;}
 body.theme-light .mycomics-purchase-row .txt{color:#2a1d12;}
 
-@media (max-width:640px){
+@media all{ /* v215: versione app a tutte le larghezze (prima solo max-width:640px) */
   /* schede da scorrere col pollice, come nella Community */
   body.has-app-tabbar .mycomics-tabs{flex-wrap:nowrap;overflow-x:auto;margin:0 -18px 14px;padding:0 18px 4px;scrollbar-width:none;}
   body.has-app-tabbar .mycomics-tabs::-webkit-scrollbar{display:none;}
@@ -3003,7 +3003,7 @@ body.theme-light .mycomics-purchase-row .txt{color:#2a1d12;}
 .page-reader-strip:not(.is-loaded){aspect-ratio:var(--page-ratio, 2 / 3);background:rgba(236,226,198,.05);}
 #pageReader.flow-scroll .page-reader-count{position:sticky;bottom:calc(14px + env(safe-area-inset-bottom, 0px));z-index:3;width:max-content;margin:8px auto 0;
   padding:4px 14px;border-radius:14px;background:rgba(11,6,7,.86);border:1px solid rgba(227,194,115,.4);color:#e3c273;}
-@media (max-width:640px){
+@media all{ /* v215: versione app a tutte le larghezze (prima solo max-width:640px) */
   /* a scorrimento, su telefono, le tavole vanno da bordo a bordo dello schermo */
   #titleModal:has(#pageReader.flow-scroll:not(.hidden)){padding-left:0;padding-right:0;}
   #titleModal:has(#pageReader.flow-scroll:not(.hidden)) .modal{border-left:0;border-right:0;border-radius:0;}
@@ -3016,7 +3016,7 @@ body.theme-light .mycomics-purchase-row .txt{color:#2a1d12;}
    Solo stile: tutte le funzioni restano quelle di sempre. Da computer la
    pagina resta com'era.
    ===================================================================== */
-@media (max-width:640px){
+@media all{ /* v215: versione app a tutte le larghezze (prima solo max-width:640px) */
   body.has-app-tabbar #adminSection .section-head h2{font-size:24px;line-height:1.2;}
   /* niente cornice dorata intorno a tutto */
   body.has-app-tabbar #adminManageBox.admin-panel,
@@ -3090,7 +3090,7 @@ body.theme-light .mycomics-purchase-row .txt{color:#2a1d12;}
   body.theme-light.has-app-tabbar .admin-tab.active,body.theme-light.has-app-tabbar .admin-chip.active{background:#6b5015;border-color:#6b5015;color:#fff8ea;}
   body.theme-light.has-app-tabbar #adminSection input[type="text"],body.theme-light.has-app-tabbar #adminSection input[type="search"],body.theme-light.has-app-tabbar #adminSection select,body.theme-light.has-app-tabbar #adminSection textarea{background:#fffdf7;color:#2a1d12;border-color:rgba(138,106,31,.35);}
 }
-@media (max-width:640px){
+@media all{ /* v215: versione app a tutte le larghezze (prima solo max-width:640px) */
   /* titoletti dei moduli di Amministra ("Nuovo evento"…): corsivo dorato, niente maiuscolo spaziato */
   body.has-app-tabbar #adminSection .mini-heading,body.has-app-tabbar #adminSection .sec-eyebrow,body.has-app-tabbar #adminSection .notice > .mono:first-child{
     font-family:'Crimson Pro',Georgia,serif;font-size:16px;font-style:italic;font-weight:600;letter-spacing:0;text-transform:none;color:var(--gold-bright);}
@@ -3103,7 +3103,7 @@ body.theme-light .mycomics-purchase-row .txt{color:#2a1d12;}
    servono su un telefono), tavole a tutta larghezza da sfogliare col dito,
    pulsanti sempre a portata in basso, commenti in schede.
    ===================================================================== */
-@media (max-width:640px){
+@media all{ /* v215: versione app a tutte le larghezze (prima solo max-width:640px) */
   body.has-app-tabbar #titleModal{padding:0 !important;align-items:stretch;justify-content:stretch;}
   body.has-app-tabbar #titleModal .detail-modal{width:100%;max-width:none;height:100vh;height:100dvh;max-height:none;margin:0;border:0;border-radius:0;
     padding:calc(58px + env(safe-area-inset-top, 0px)) 20px 0;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;background:var(--void);}
@@ -3128,6 +3128,7 @@ body.theme-light .mycomics-purchase-row .txt{color:#2a1d12;}
   /* a tavole: la tavola a tutta larghezza, frecce tonde sopra, miniature in fila */
   body.has-app-tabbar #pageReader .page-reader-main{margin:0 -20px;border:0;}
   body.has-app-tabbar #pageReader .page-reader-main img{display:block;width:100% !important;height:auto;}
+  body.has-app-tabbar #pageReader .page-reader-main.double-page img{width:50% !important;} /* v216: doppia pagina sugli schermi grandi */
   body.has-app-tabbar #pageReader .page-reader-nav{width:44px;height:44px;border-radius:22px;border:1px solid rgba(227,194,115,.4);background:rgba(11,6,7,.55);font-size:24px;}
   body.has-app-tabbar #pageReader .page-reader-nav.prev{left:8px;}
   body.has-app-tabbar #pageReader .page-reader-nav.next{right:8px;}
@@ -3164,7 +3165,7 @@ body.theme-light .mycomics-purchase-row .txt{color:#2a1d12;}
   body.theme-light.has-app-tabbar #readerCtl button.on{background:#fffdf7;color:#6b5015;}
   body.theme-light.has-app-tabbar #commentsList .comment-item,body.theme-light.has-app-tabbar #fCommentBody{background:#fffdf7;border-color:rgba(138,106,31,.25);color:#2a1d12;}
 }
-@media (max-width:640px){
+@media all{ /* v215: versione app a tutte le larghezze (prima solo max-width:640px) */
   /* fascia dei pulsanti: una sola riga da scorrere, così non copre la tavola */
   body.has-app-tabbar #titleModal .modal-actions{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding-top:8px;padding-bottom:calc(8px + env(safe-area-inset-bottom, 0px));}
   body.has-app-tabbar #titleModal .modal-actions::-webkit-scrollbar{display:none;}
@@ -3180,7 +3181,7 @@ body.theme-light .mycomics-purchase-row .txt{color:#2a1d12;}
    ===================================================================== */
 .smallnox-float{transition:opacity .25s ease,transform .25s ease;}
 .smallnox-float.sn-away{opacity:0;transform:translateY(14px) scale(.85);animation:none;pointer-events:none;}
-@media (max-width:640px){
+@media all{ /* v215: versione app a tutte le larghezze (prima solo max-width:640px) */
   body.has-app-tabbar .smallnox-float{width:40px;height:40px;right:12px;bottom:calc(98px + env(safe-area-inset-bottom, 0px));border-width:1.5px;animation:none;box-shadow:0 3px 10px rgba(0,0,0,.45);}
 }
 
@@ -3189,7 +3190,7 @@ body.theme-light .mycomics-purchase-row .txt{color:#2a1d12;}
    Copertina a tutta larghezza, avatar sovrapposto, pulsanti a pillola,
    numeri in riquadri, schede a pillola, Diario senza cornice color crema.
    ===================================================================== */
-@media (max-width:640px){
+@media all{ /* v215: versione app a tutte le larghezze (prima solo max-width:640px) */
   body.has-app-tabbar #profileSection .profile-layout-fb{border:0;box-shadow:none;background:none;padding:0;}
   body.has-app-tabbar #profileSection .profile-fb-banner-wrap{height:150px;margin:0 -18px;border:0;border-radius:0;box-shadow:none;}
   body.has-app-tabbar #profileSection .profile-fb-headrow{display:flex;flex-wrap:wrap;align-items:flex-end;gap:10px 12px;margin-top:-46px;padding:0 2px;position:relative;z-index:2;border:0;background:none;}
@@ -3240,10 +3241,102 @@ body.theme-light .mycomics-purchase-row .txt{color:#2a1d12;}
   body.theme-light.has-app-tabbar .profile-fb-tab.active{background:#6b5015;border-color:#6b5015;color:#fff8ea;}
   body.theme-light.has-app-tabbar #profileSection input[type="text"],body.theme-light.has-app-tabbar #profileSection textarea{background:#fffdf7;color:#2a1d12;border-color:rgba(138,106,31,.35);}
 }
-@media (max-width:640px){
+@media all{ /* v215: versione app a tutte le larghezze (prima solo max-width:640px) */
   /* copertina del profilo senza cornice dorata: va da bordo a bordo */
   body.has-app-tabbar #profileSection .profile-banner-ink{border:0;border-radius:0;box-shadow:inset 0 -40px 40px -20px rgba(11,6,7,.55);}
   /* numeri dritti (prima erano "timbri" leggermente ruotati) e con la maiuscola */
   body.has-app-tabbar #profileFbStats .profile-stat-stamp{transform:none !important;}
   body.has-app-tabbar #profileFbStats .profile-stat-stamp span{text-transform:capitalize;}
 }
+
+
+/* =====================================================================
+   v215-216: VERSIONE APP ANCHE SU iPAD E COMPUTER
+   Le regole della versione app valgono a tutte le larghezze. Da 641px il
+   sito è una colonna centrale (860px; 1040px per lo Schedario) con la barra
+   in basso centrata. Da 1320px la barra diventa una navigazione a sinistra
+   con il logo in cima e le voci Notifiche e Carrello: navigazione e colonna
+   stanno al centro insieme, come un blocco unico.
+   Variabili: --lux-col colonna, --lux-side navigazione + spazio (0 se la
+   barra è in basso), --lux-bar barra in basso, --lux-sheet scheda del titolo.
+   ===================================================================== */
+body.has-app-tabbar .app-tabbar .app-tab-wide{display:none;}
+@media (min-width:641px){
+  body.has-app-tabbar{--lux-col:860px;--lux-side:0px;--lux-bar:860px;--lux-sheet:860px;}
+  body.has-app-tabbar:has(#library){--lux-col:1040px;} /* Schedario: più copertine per riga */
+  body.has-app-tabbar #app,body.has-app-tabbar .page-wrap{max-width:var(--lux-col);
+    margin-left:max(0px, calc(50% - (var(--lux-col) + var(--lux-side)) / 2 + var(--lux-side)));margin-right:auto;}
+  body.has-app-tabbar #app > section,body.has-app-tabbar #app > .section,body.has-app-tabbar #app > .newsletter-section,body.has-app-tabbar #app > footer,
+  body.has-app-tabbar .page-wrap > section,body.has-app-tabbar .page-wrap > .section,body.has-app-tabbar .page-wrap > .newsletter-section,body.has-app-tabbar .page-wrap > footer{
+    padding-left:18px;padding-right:18px;max-width:none;}
+  body.has-app-tabbar #adminSection{max-width:none;}
+  /* barra in basso, centrata */
+  body.has-app-tabbar .app-tabbar{left:0;right:0;margin:0 auto;max-width:var(--lux-bar);border-radius:18px 18px 0 0;border-left:1px solid rgba(201,162,77,.18);border-right:1px solid rgba(201,162,77,.18);}
+  /* fogli e finestre */
+  body.has-app-tabbar .app-sheet{left:0;right:0;margin:0 auto;max-width:560px;}
+  body.has-app-tabbar #luxAdminSheet .las-panel{left:0;right:0;margin:0 auto;max-width:560px;}
+  body.has-app-tabbar #titleModal .detail-modal{max-width:var(--lux-sheet);margin:0 auto;}
+  body.has-app-tabbar #titleModalClose{right:max(12px, calc(50% - var(--lux-sheet) / 2 + 12px));}
+  body.has-app-tabbar #channelDetailView:not(.hidden){left:0;right:0;max-width:var(--lux-col);margin-right:auto;
+    margin-left:max(0px, calc(50% - (var(--lux-col) + var(--lux-side)) / 2 + var(--lux-side)));}
+  body.has-app-tabbar .smallnox-float{right:max(12px, calc(50% - (var(--lux-col) + var(--lux-side)) / 2 + 12px));}
+  /* le vecchie regole di Amministra da computer (schede in colonna, caratteri piccoli) cedono il passo */
+  body.has-app-tabbar #adminSection #adminTabs.admin-tabs{flex-basis:auto;}
+  body.has-app-tabbar #adminSection #adminTabs .admin-tab{padding:0 14px;font-size:15px;}
+  body.has-app-tabbar #adminSection .admin-row-compact{padding:10px 10px 10px 12px;}
+}
+@media (min-width:1100px){
+  body.has-app-tabbar{--lux-sheet:1040px;} /* scheda del titolo più larga: c'è posto per la doppia pagina */
+}
+
+/* schermi grandi: navigazione a sinistra con il logo, centrata insieme alla colonna */
+@media (min-width:1320px){
+  body.has-app-tabbar{--lux-side:232px;--lux-left:calc(50% - (var(--lux-col) + var(--lux-side)) / 2);padding-bottom:0;}
+  body.has-app-tabbar .app-tabbar{top:0;bottom:0;left:var(--lux-left);right:auto;margin:0;width:208px;max-width:none;height:100vh;
+    flex-direction:column;align-items:stretch;justify-content:flex-start;gap:4px;padding:116px 10px 24px;border:0;border-right:1px solid rgba(201,162,77,.14);border-radius:0;
+    background:transparent;-webkit-backdrop-filter:none;backdrop-filter:none;box-shadow:none;}
+  body.has-app-tabbar .app-tab{flex:none;flex-direction:row;justify-content:flex-start;gap:14px;height:48px;padding:0 14px;border-radius:14px;font-size:17px;}
+  body.has-app-tabbar .app-tab:hover{background:rgba(227,194,115,.06);}
+  body.has-app-tabbar .app-tab.is-section,body.has-app-tabbar .app-tab[aria-current="page"]{background:rgba(227,194,115,.10);}
+  body.has-app-tabbar .app-tab .app-tab-arch{display:none;}
+  body.has-app-tabbar .app-tab svg{width:24px;height:24px;}
+  body.has-app-tabbar .app-tab-badge{top:8px;left:30px;right:auto;}
+  body.has-app-tabbar .app-tab-dot{top:10px;left:34px;right:auto;}
+  body.has-app-tabbar .app-tabbar .app-tab-wide:not([hidden]){display:flex;}
+  /* il logo sale in cima alla navigazione; campanella e carrello diventano voci */
+  body.has-app-tabbar header.topbar{position:fixed;top:0;left:var(--lux-left);right:auto;width:208px;z-index:96;justify-content:flex-start;
+    padding:30px 12px 0 16px;background:none;border:0;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none;}
+  body.has-app-tabbar header.topbar .topbar-tools{position:static;}
+  body.has-app-tabbar header.topbar .topbar-tools > *:not(#notifPanel){display:none !important;}
+  body.has-app-tabbar #notifPanel{position:fixed;top:24px;left:calc(var(--lux-left) + 220px);right:auto;width:360px;max-height:calc(100vh - 48px);border-radius:16px;}
+  body.has-app-tabbar #app,body.has-app-tabbar .page-wrap{padding-top:16px;}
+  body.has-app-tabbar .smallnox-float{bottom:24px;}
+  body.has-app-tabbar .lux-bottom-card{bottom:24px;}
+}
+
+/* lettore da computer (schermo largo e mouse): tornano Singola | Doppia pagina,
+   la tavola intera sta nello schermo; telefono e iPad restano a tavola singola */
+@media (min-width:1024px) and (hover:hover) and (pointer:fine){
+  body.has-app-tabbar #pageReader:not(.flow-scroll) #readerCtl .reader-grp-mode{display:inline-flex !important;}
+  body.has-app-tabbar #pageReader .page-reader-main{margin-left:0;margin-right:0;border-radius:12px;overflow:hidden;}
+  body.has-app-tabbar #pageReader .page-reader-main img{max-height:82vh;object-fit:contain;}
+}
+
+/* ultimi pezzi del vecchio stile: pulsanti, ricerca dei contatti, newsletter, piè di pagina */
+body.has-app-tabbar .btn{border-radius:22px;font-family:'Crimson Pro',Georgia,serif;font-size:15.5px;font-weight:700;letter-spacing:0;text-transform:none;line-height:1.2;padding:10px 20px;}
+body.has-app-tabbar .btn-sm{padding:7px 14px;font-size:14.5px;}
+body.has-app-tabbar #contattiSearchInput{display:block;width:100%;height:44px;padding:0 16px;border-radius:22px;border:1px solid rgba(201,162,77,.3);background:#1e1215;color:var(--parchment);
+  font-family:'Crimson Pro',Georgia,serif;font-size:16px;box-sizing:border-box;-webkit-appearance:none;appearance:none;}
+body.has-app-tabbar #contattiSearchInput:focus{outline:none;border-color:var(--gold);}
+body.has-app-tabbar .contatti-chat-new-row{display:flex;justify-content:flex-end;margin:0 0 10px;}
+body.has-app-tabbar #contattiNewMsgBtn{border-color:rgba(227,194,115,.5);color:var(--gold-bright);}
+body.has-app-tabbar .newsletter-box{max-width:620px;padding:28px 22px;border:1px solid rgba(201,162,77,.18);border-radius:20px;background:#150c0d;}
+body.has-app-tabbar .newsletter-form input{height:46px;padding:0 18px;border-radius:23px;border:1px solid rgba(201,162,77,.3);background:#1e1215;
+  font-family:'Crimson Pro',Georgia,serif;font-size:16px;box-sizing:border-box;}
+body.has-app-tabbar .newsletter-form .btn{height:46px;padding:0 24px;}
+body.has-app-tabbar footer .fline,body.has-app-tabbar footer .fcopy{font-family:'Crimson Pro',Georgia,serif;font-size:13.5px;letter-spacing:.05em;}
+body.theme-light.has-app-tabbar #contattiSearchInput,body.theme-light.has-app-tabbar .newsletter-form input{background:#fffdf7;color:#2a1d12;border-color:rgba(138,106,31,.35);}
+body.theme-light.has-app-tabbar .newsletter-box{background:#fffdf7;border-color:rgba(138,106,31,.25);}
+body.theme-light.has-app-tabbar #contattiNewMsgBtn{color:#6b5015;border-color:rgba(107,80,21,.45);}
+/* tema chiaro: la scritta "NUOVO" sulle schede era marrone scuro su fondo vino, quasi illeggibile */
+body.theme-light .tab-new-badge{color:#fff8ea;}
