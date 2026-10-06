@@ -748,6 +748,12 @@ Object.assign(STR.es, {"apptab.notifications": "Notificaciones", "apptab.cart": 
 Object.assign(STR.fr, {"apptab.notifications": "Notifications", "apptab.cart": "Panier"});
 Object.assign(STR.de, {"apptab.notifications": "Benachrichtigungen", "apptab.cart": "Warenkorb"});
 
+Object.assign(STR.it, {"apptab.share": "Condividi l’app", "apptab.youSub": "Profilo e impostazioni"});
+Object.assign(STR.en, {"apptab.share": "Share the app", "apptab.youSub": "Profile and settings"});
+Object.assign(STR.es, {"apptab.share": "Compartir la app", "apptab.youSub": "Perfil y ajustes"});
+Object.assign(STR.fr, {"apptab.share": "Partager l’app", "apptab.youSub": "Profil et réglages"});
+Object.assign(STR.de, {"apptab.share": "App teilen", "apptab.youSub": "Profil und Einstellungen"});
+
 var CHAR_META = {
   Lucifer:{role:{it:"Il Portatore di Luce",en:"The Light-Bearer",es:"El Portador de Luz",fr:"Le Porteur de Lumière",de:"Der Lichtträger"},
     bio:{it:"Sovrano della collana ammiraglia: potere, caduta e desiderio raccontati su grande scala.",
@@ -6273,6 +6279,16 @@ function initAppShell(){
     });
     mirror('notifPanel', function(src){ wideNotif.setAttribute('aria-expanded', src.classList.contains('hidden') ? 'false' : 'true'); });
   }
+  // v217: in fondo alla navigazione il tuo account (immagine e nome, come
+  // nell'intestazione) e "Condividi l'app", al posto del pulsante rosso volante
+  var wideWho = byId('appTabWho');
+  if(wideWho){
+    mirror('acctChip', function(src){
+      wideWho.innerHTML = (isSignedIn() && !src.classList.contains('hidden')) ? src.innerHTML : '';
+    });
+  }
+  var wideShare = byId('appTabShare');
+  if(wideShare) wideShare.addEventListener('click', function(){ shareApp(); });
   if(wideCart){
     wideCart.addEventListener('click', function(){ press('btnCart'); });
     mirror('cartCount', function(src){
