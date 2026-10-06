@@ -3289,29 +3289,76 @@ body.has-app-tabbar .app-tabbar .app-tab-wide{display:none;}
   body.has-app-tabbar{--lux-sheet:1040px;} /* scheda del titolo più larga: c'è posto per la doppia pagina */
 }
 
-/* schermi grandi: navigazione a sinistra con il logo, centrata insieme alla colonna */
+/* schermi grandi (v217): la barra laterale è l'indice dell'archivio. Logo in
+   cima, voci in Cinzel, la voce attiva segnata dall'arco color vino della barra
+   del telefono (non più il rettangolo), il tuo account in fondo come scheda e
+   "Condividi l'app" come riga tranquilla al posto del pulsante rosso volante.
+   Navigazione e colonna restano centrate insieme, come un blocco unico. */
+.app-tabbar .app-tab-share,.app-tab-acct{display:none;}
 @media (min-width:1320px){
-  body.has-app-tabbar{--lux-side:232px;--lux-left:calc(50% - (var(--lux-col) + var(--lux-side)) / 2);padding-bottom:0;}
-  body.has-app-tabbar .app-tabbar{top:0;bottom:0;left:var(--lux-left);right:auto;margin:0;width:208px;max-width:none;height:100vh;
-    flex-direction:column;align-items:stretch;justify-content:flex-start;gap:4px;padding:116px 10px 24px;border:0;border-right:1px solid rgba(201,162,77,.14);border-radius:0;
+  body.has-app-tabbar{--lux-side:256px;--lux-left:calc(50% - (var(--lux-col) + var(--lux-side)) / 2);padding-bottom:0;}
+  body.has-app-tabbar .app-tabbar{top:0;bottom:0;left:var(--lux-left);right:auto;margin:0;width:224px;max-width:none;height:100vh;box-sizing:border-box;
+    flex-direction:column;align-items:stretch;justify-content:flex-start;gap:2px;padding:126px 6px 22px 6px;border:0;border-radius:0;
     background:transparent;-webkit-backdrop-filter:none;backdrop-filter:none;box-shadow:none;}
-  body.has-app-tabbar .app-tab{flex:none;flex-direction:row;justify-content:flex-start;gap:14px;height:48px;padding:0 14px;border-radius:14px;font-size:17px;}
-  body.has-app-tabbar .app-tab:hover{background:rgba(227,194,115,.06);}
-  body.has-app-tabbar .app-tab.is-section,body.has-app-tabbar .app-tab[aria-current="page"]{background:rgba(227,194,115,.10);}
-  body.has-app-tabbar .app-tab .app-tab-arch{display:none;}
-  body.has-app-tabbar .app-tab svg{width:24px;height:24px;}
-  body.has-app-tabbar .app-tab-badge{top:8px;left:30px;right:auto;}
-  body.has-app-tabbar .app-tab-dot{top:10px;left:34px;right:auto;}
+  body.theme-light.has-app-tabbar .app-tabbar{background:transparent;border:0;}
+  /* filo sottile che sfuma, al posto della linea piena da cima a fondo */
+  body.has-app-tabbar .app-tabbar::after{content:"";position:absolute;top:110px;bottom:110px;right:0;width:1px;
+    background:linear-gradient(to bottom, transparent, rgba(201,162,77,.24) 20%, rgba(201,162,77,.24) 80%, transparent);pointer-events:none;}
+  body.has-app-tabbar .app-tab{flex:none;flex-direction:row;justify-content:flex-start;align-items:center;gap:10px;height:46px;min-height:0;padding:0 6px 0 0;border-radius:0;background:none;
+    font-family:'Cinzel',serif;font-size:13.5px;font-weight:600;letter-spacing:.08em;color:#a29581;}
+  body.has-app-tabbar .app-tab:hover{color:#ece2c6;}
+  body.has-app-tabbar .app-tab:focus-visible{outline:1px solid rgba(227,194,115,.6);outline-offset:2px;border-radius:10px;}
+  body.has-app-tabbar .app-tab.is-section,body.has-app-tabbar .app-tab[aria-current="page"],body.has-app-tabbar .app-tab[aria-expanded="true"]{color:#e3c273;background:none;}
+  body.has-app-tabbar .app-tab .app-tab-ic{flex:none;width:46px;height:32px;}
+  body.has-app-tabbar .app-tab .app-tab-arch{display:block;width:46px;height:32px;}
+  body.has-app-tabbar .app-tab:hover .app-tab-arch{opacity:.4;}
+  body.has-app-tabbar .app-tab.is-section .app-tab-arch,body.has-app-tabbar .app-tab[aria-current="page"] .app-tab-arch,body.has-app-tabbar .app-tab[aria-expanded="true"] .app-tab-arch{opacity:1;}
+  body.has-app-tabbar .app-tab .app-tab-svg{width:21px;height:21px;margin-top:7px;}
+  body.has-app-tabbar .app-tab .app-tab-label{padding-top:4px;} /* le maiuscole Cinzel stanno alte: così il testo è in linea con l'icona nell'arco */
+  body.has-app-tabbar .app-tab-badge{top:-3px;right:-4px;left:auto;}
+  body.has-app-tabbar .app-tab-dot{top:2px;right:4px;left:auto;}
   body.has-app-tabbar .app-tabbar .app-tab-wide:not([hidden]){display:flex;}
-  /* il logo sale in cima alla navigazione; campanella e carrello diventano voci */
-  body.has-app-tabbar header.topbar{position:fixed;top:0;left:var(--lux-left);right:auto;width:208px;z-index:96;justify-content:flex-start;
-    padding:30px 12px 0 16px;background:none;border:0;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none;}
+  /* Notifiche e Carrello: un piccolo stacco dalle sezioni del sito */
+  body.has-app-tabbar #appTabNotif,body.has-app-tabbar #appTabNotif[hidden] + #appTabCart{margin-top:18px;position:relative;}
+  body.has-app-tabbar #appTabNotif::before,body.has-app-tabbar #appTabNotif[hidden] + #appTabCart::before{content:"";position:absolute;top:-10px;left:12px;width:22px;height:1px;background:rgba(201,162,77,.45);}
+  /* Condividi l'app: una riga tranquilla in fondo, invece del pulsante rosso volante */
+  body.has-app-tabbar .app-tabbar .app-tab-share{display:flex;align-items:center;gap:10px;margin-top:auto;height:38px;padding:0 0 0 14px;border:0;background:none;cursor:pointer;
+    font-family:'Crimson Pro',Georgia,serif;font-size:15px;color:#a29581;text-align:left;}
+  body.has-app-tabbar .app-tabbar .app-tab-share svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;}
+  body.has-app-tabbar .app-tabbar .app-tab-share:hover{color:#ece2c6;}
+  body.has-app-tabbar .share-app-fab-wrap{display:none !important;}
+  /* il tuo account in fondo, come scheda: apre il foglio "Tu" */
+  body.has-app-tabbar #appTabTu{margin-top:8px;}
+  body.has-app-tabbar #appTabTu:has(.app-tab-who:not(:empty)){height:auto;min-height:62px;padding:10px 10px;border:1px solid rgba(201,162,77,.18);border-radius:16px;background:#150c0d;
+    font-family:'Crimson Pro',Georgia,serif;letter-spacing:0;color:var(--parchment);}
+  body.has-app-tabbar #appTabTu:has(.app-tab-who:not(:empty)):hover{border-color:rgba(227,194,115,.45);}
+  body.has-app-tabbar #appTabTu:has(.app-tab-who:not(:empty)) .app-tab-ic,body.has-app-tabbar #appTabTu:has(.app-tab-who:not(:empty)) .app-tab-label{display:none;}
+  body.has-app-tabbar #appTabTu:has(.app-tab-who:not(:empty)) .app-tab-acct{display:flex;}
+  body.has-app-tabbar .app-tab-acct{flex-direction:column;align-items:flex-start;gap:1px;min-width:0;max-width:100%;text-align:left;}
+  body.has-app-tabbar .app-tab-who{display:flex;align-items:center;gap:8px;max-width:100%;font-size:15.5px;font-weight:700;color:var(--parchment);white-space:nowrap;}
+  body.has-app-tabbar .app-tab-who > span{overflow:hidden;text-overflow:ellipsis;min-width:0;}
+  body.has-app-tabbar .app-tab-who .acct-chip-avatar{width:30px;height:30px;flex:none;}
+  body.has-app-tabbar .app-tab-who .acct-chip-avatar-init{flex:none;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    background:radial-gradient(circle at 35% 30%,#7a1a2b,#2a080e);border:1px solid rgba(227,194,115,.45);color:#f0d690;font-family:'Cinzel',serif;font-size:14px;font-weight:700;}
+  body.has-app-tabbar .app-tab-who svg{flex:none;}
+  body.has-app-tabbar .app-tab-who-sub{padding-left:38px;font-size:13.5px;font-weight:400;color:var(--parchment-dim);}
+  /* il logo in cima alla navigazione; campanella e carrello sono voci */
+  body.has-app-tabbar header.topbar{position:fixed;top:0;left:var(--lux-left);right:auto;width:224px;box-sizing:border-box;z-index:96;justify-content:flex-start;
+    padding:30px 12px 0 8px;background:none;border:0;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none;}
+  body.has-app-tabbar header.topbar .brand .seal{width:40px;height:40px;}
+  body.has-app-tabbar header.topbar::after{content:"";position:absolute;left:8px;width:150px;top:96px;height:1px;background:linear-gradient(to right, rgba(201,162,77,.55), rgba(201,162,77,0));}
   body.has-app-tabbar header.topbar .topbar-tools{position:static;}
   body.has-app-tabbar header.topbar .topbar-tools > *:not(#notifPanel){display:none !important;}
-  body.has-app-tabbar #notifPanel{position:fixed;top:24px;left:calc(var(--lux-left) + 220px);right:auto;width:360px;max-height:calc(100vh - 48px);border-radius:16px;}
+  body.has-app-tabbar #notifPanel{position:fixed;top:24px;left:calc(var(--lux-left) + 236px);right:auto;width:360px;max-height:calc(100vh - 48px);border-radius:16px;}
   body.has-app-tabbar #app,body.has-app-tabbar .page-wrap{padding-top:16px;}
   body.has-app-tabbar .smallnox-float{bottom:24px;}
   body.has-app-tabbar .lux-bottom-card{bottom:24px;}
+  /* tema chiaro */
+  body.theme-light.has-app-tabbar .app-tab,body.theme-light.has-app-tabbar .app-tabbar .app-tab-share{color:#7a6a52;}
+  body.theme-light.has-app-tabbar .app-tab:hover,body.theme-light.has-app-tabbar .app-tabbar .app-tab-share:hover{color:#2a1d12;}
+  body.theme-light.has-app-tabbar .app-tab.is-section,body.theme-light.has-app-tabbar .app-tab[aria-current="page"],body.theme-light.has-app-tabbar .app-tab[aria-expanded="true"]{color:#6b5015;}
+  body.theme-light.has-app-tabbar #appTabTu:has(.app-tab-who:not(:empty)){background:#fffdf7;border-color:rgba(138,106,31,.28);}
+  body.theme-light.has-app-tabbar .app-tab-who{color:#2a1d12;}
 }
 
 /* lettore da computer (schermo largo e mouse): tornano Singola | Doppia pagina,
