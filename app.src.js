@@ -6124,6 +6124,19 @@ function luxHomeReveal(promises){
    Il foglio non rifà nessuna logica: ogni voce "preme" il comando vero che sta
    nell'intestazione (nascosta su telefono), così tema, 18+, lingua, solo testo,
    accesso e carrello continuano a funzionare esattamente come prima. */
+// v214: la bolla di SmallNox si fa da parte mentre scorri e torna quando ti fermi,
+// così non copre prezzi, pulsanti e testi mentre leggi
+function initSmallnoxAutoHide(){
+  var el = document.getElementById('smallnoxFloat');
+  if(!el || el.dataset.autohide) return;
+  el.dataset.autohide = '1';
+  var timer = null;
+  window.addEventListener('scroll', function(){
+    el.classList.add('sn-away');
+    clearTimeout(timer);
+    timer = setTimeout(function(){ el.classList.remove('sn-away'); }, 900);
+  }, { passive: true });
+}
 // loader.js mostra il riquadro rosso degli errori solo se qui risulta l'admin
 function syncAdminErrorFlag(){
   try {
@@ -17263,6 +17276,7 @@ function __appInit(){
   ensureSectionHeadingStyle();
   initAppShell(); // barra in basso e foglio "Tu" (solo telefono)
   syncAdminErrorFlag(); // riquadro rosso degli errori: solo per l'admin (vedi loader.js)
+  initSmallnoxAutoHide(); // SmallNox non copre i contenuti mentre scorri
   loadCharacterFollows(); // personaggi che segui (pulsante "Segui")
   initInstallPrompts(); // avviso "Installa l'app" / invito alle notifiche nell'app installata
   fillCharacterSelect();

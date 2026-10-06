@@ -3172,3 +3172,78 @@ body.theme-light .mycomics-purchase-row .txt{color:#2a1d12;}
   body.has-app-tabbar #titleModal .modal-actions #titleModalAddCart:not(.hidden){flex:none;}
   body.has-app-tabbar #titleModalCounts{flex:none;padding-right:6px;}
 }
+
+/* =====================================================================
+   v214: SMALLNOX MENO INVADENTE
+   Più piccolo sul telefono, senza il continuo su e giù; a tutte le
+   larghezze si fa da parte mentre scorri e torna quando ti fermi.
+   ===================================================================== */
+.smallnox-float{transition:opacity .25s ease,transform .25s ease;}
+.smallnox-float.sn-away{opacity:0;transform:translateY(14px) scale(.85);animation:none;pointer-events:none;}
+@media (max-width:640px){
+  body.has-app-tabbar .smallnox-float{width:40px;height:40px;right:12px;bottom:calc(98px + env(safe-area-inset-bottom, 0px));border-width:1.5px;animation:none;box-shadow:0 3px 10px rgba(0,0,0,.45);}
+}
+
+/* =====================================================================
+   v214: PROFILO IN VERSIONE APP (telefono)
+   Copertina a tutta larghezza, avatar sovrapposto, pulsanti a pillola,
+   numeri in riquadri, schede a pillola, Diario senza cornice color crema.
+   ===================================================================== */
+@media (max-width:640px){
+  body.has-app-tabbar #profileSection .profile-layout-fb{border:0;box-shadow:none;background:none;padding:0;}
+  body.has-app-tabbar #profileSection .profile-fb-banner-wrap{height:150px;margin:0 -18px;border:0;border-radius:0;box-shadow:none;}
+  body.has-app-tabbar #profileSection .profile-fb-headrow{display:flex;flex-wrap:wrap;align-items:flex-end;gap:10px 12px;margin-top:-46px;padding:0 2px;position:relative;z-index:2;border:0;background:none;}
+  body.has-app-tabbar #profileSection .profile-avatar-ring{width:88px;height:88px;padding:3px;}
+  body.has-app-tabbar #profileSection .profile-fb-headrow-info{flex:1;min-width:0;padding-bottom:6px;}
+  body.has-app-tabbar #pubProfileName{margin:0;font-family:'Cinzel',serif;font-size:22px;line-height:1.2;}
+  body.has-app-tabbar #pubProfileMeta{font-family:'Crimson Pro',Georgia,serif;font-size:14px;letter-spacing:0;text-transform:none;}
+  body.has-app-tabbar #profileSection .btn{min-height:38px;height:auto;padding:6px 16px;border-radius:19px;font-family:'Crimson Pro',Georgia,serif;font-size:15px;font-weight:700;
+    letter-spacing:0;text-transform:none;line-height:1.2;}
+  body.has-app-tabbar #btnToggleProfileEdit,body.has-app-tabbar #btnFollowToggle,body.has-app-tabbar #pubProfileFriendSlot{flex:1 1 140px;}
+  body.has-app-tabbar #pubProfileFriendSlot .btn{width:100%;}
+  body.has-app-tabbar #pubProfileBio{margin:12px 0 0;font-size:16.5px;line-height:1.45;}
+
+  /* numeri: riquadri come in I Miei Comic */
+  body.has-app-tabbar #profileFbStats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:16px 0;justify-content:stretch;}
+  body.has-app-tabbar #profileFbStats .profile-stat-stamp{width:auto;height:auto;padding:10px 6px;border-radius:14px;border:1px solid rgba(201,162,77,.16);background:#150c0d;}
+  body.has-app-tabbar #profileFbStats .profile-stat-stamp b{font-family:'Cinzel',serif;font-size:22px;line-height:1.15;color:var(--parchment);}
+  body.has-app-tabbar #profileFbStats .profile-stat-stamp span{font-family:'Crimson Pro',Georgia,serif;font-size:13.5px;letter-spacing:0;text-transform:none;color:var(--parchment-dim);}
+
+  /* schede: pillole da scorrere */
+  body.has-app-tabbar #profileTabs.profile-fb-tabs{display:flex;flex-wrap:nowrap;gap:8px;overflow-x:auto;margin:4px -18px 14px;padding:2px 18px 6px;border:0;scrollbar-width:none;}
+  body.has-app-tabbar #profileTabs.profile-fb-tabs::-webkit-scrollbar{display:none;}
+  body.has-app-tabbar .profile-fb-tab{flex:none;height:36px;margin:0;padding:0 14px;border-radius:18px;border:1px solid rgba(201,162,77,.3);background:transparent;color:#d8ccad;
+    font-family:'Crimson Pro',Georgia,serif;font-size:15px;font-weight:600;letter-spacing:0;text-transform:none;white-space:nowrap;}
+  body.has-app-tabbar .profile-fb-tab.active{background:#e3c273;border-color:#e3c273;color:#1a0f08;}
+
+  /* riquadri color crema: sul telefono scuri come il resto */
+  body.has-app-tabbar #profileSection .parchment-card{background:none;border:0;border-radius:0;box-shadow:none;padding:0;overflow:visible;}
+  body.has-app-tabbar #profileDiaryFeed .diary-post{border:1px solid rgba(201,162,77,.16);border-radius:16px;}
+  body.has-app-tabbar #profileDiaryFeed .diary-post::before,body.has-app-tabbar #profileDiaryFeed .diary-post::after{display:none;}
+
+  /* foto, video, titoli */
+  body.has-app-tabbar #profilePhotosGrid.profile-photo-grid{gap:6px;}
+  body.has-app-tabbar #profilePhotosGrid img{width:100%;aspect-ratio:1 / 1;object-fit:cover;border-radius:10px;}
+  body.has-app-tabbar #profileSection input[type="text"],body.has-app-tabbar #profileSection input[type="url"],body.has-app-tabbar #profileSection input[type="email"],
+  body.has-app-tabbar #profileSection textarea,body.has-app-tabbar #profileSection select{
+    max-width:100%;min-height:42px;padding:8px 12px;border-radius:12px;border:1px solid rgba(201,162,77,.3);background:#1e1215;color:var(--parchment);
+    font-family:'Crimson Pro',Georgia,serif;font-size:16px;box-sizing:border-box;}
+  body.has-app-tabbar #profileSection input[type="file"]{font-family:'Crimson Pro',Georgia,serif;font-size:15px;color:var(--parchment-dim);max-width:100%;}
+  body.has-app-tabbar #profileSection input[type="file"]::file-selector-button{margin-right:10px;height:36px;padding:0 14px;border-radius:18px;border:1px solid rgba(227,194,115,.5);background:transparent;color:#e3c273;
+    font-family:'Crimson Pro',Georgia,serif;font-size:14.5px;font-weight:700;}
+  body.has-app-tabbar #profileSection .sub.mono,body.has-app-tabbar #profileSection .field label{font-family:'Crimson Pro',Georgia,serif;font-size:15.5px;font-style:italic;letter-spacing:0;text-transform:none;color:var(--gold-bright);}
+
+  /* tema chiaro */
+  body.theme-light.has-app-tabbar #profileFbStats .profile-stat-stamp{background:#fffdf7;border-color:rgba(138,106,31,.25);}
+  body.theme-light.has-app-tabbar #profileFbStats .profile-stat-stamp b{color:#2a1d12;}
+  body.theme-light.has-app-tabbar .profile-fb-tab{color:#5a4a33;border-color:rgba(138,106,31,.35);}
+  body.theme-light.has-app-tabbar .profile-fb-tab.active{background:#6b5015;border-color:#6b5015;color:#fff8ea;}
+  body.theme-light.has-app-tabbar #profileSection input[type="text"],body.theme-light.has-app-tabbar #profileSection textarea{background:#fffdf7;color:#2a1d12;border-color:rgba(138,106,31,.35);}
+}
+@media (max-width:640px){
+  /* copertina del profilo senza cornice dorata: va da bordo a bordo */
+  body.has-app-tabbar #profileSection .profile-banner-ink{border:0;border-radius:0;box-shadow:inset 0 -40px 40px -20px rgba(11,6,7,.55);}
+  /* numeri dritti (prima erano "timbri" leggermente ruotati) e con la maiuscola */
+  body.has-app-tabbar #profileFbStats .profile-stat-stamp{transform:none !important;}
+  body.has-app-tabbar #profileFbStats .profile-stat-stamp span{text-transform:capitalize;}
+}
