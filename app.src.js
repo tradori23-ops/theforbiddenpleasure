@@ -766,6 +766,11 @@ Object.assign(STR.es, {"del.auth": "La sesión ha caducado: recarga la página e
 Object.assign(STR.fr, {"del.auth": "La session a expiré : rechargez la page et réessayez."});
 Object.assign(STR.de, {"del.auth": "Die Sitzung ist abgelaufen: Lade die Seite neu und versuche es erneut."});
 
+Object.assign(STR.it, {"side.discover": "Scopri", "side.theme": "Giorno o notte", "rail.label": "Taccuino dell’archivio", "rail.now": "Adesso nell’archivio", "rail.online": "Online ora", "rail.onlineOne": "{a} è nell’archivio", "rail.onlineTwo": "{a} e {b}", "rail.onlineMany": "{a}, {b} e altri {n}", "rail.viewsTitle": "Visualizzazioni", "rail.views": "visualizzazioni", "rail.today": "oggi", "rail.toCommunity": "Vai alla Community", "rail.onLuxtify": "Su Luxtify", "rail.latestSong": "Ultima uscita", "rail.listen": "Ascolta", "rail.fromCommunity": "Dalla Community", "rail.latestMsgs": "Ultimi messaggi", "rail.openCommunity": "Apri la Community", "rail.seals": "Quattro sigilli", "rail.keepers": "I custodi", "rail.collection": "Collana di {name}", "rail.gif": "ha mandato una GIF", "rail.attach": "ha mandato un allegato", "rank.reads": "letture", "rec.readNow": "Leggi ora"});
+Object.assign(STR.en, {"side.discover": "Discover", "side.theme": "Day or night", "rail.label": "Archive notebook", "rail.now": "In the archive now", "rail.online": "Online now", "rail.onlineOne": "{a} is in the archive", "rail.onlineTwo": "{a} and {b}", "rail.onlineMany": "{a}, {b} and {n} more", "rail.viewsTitle": "Views", "rail.views": "views", "rail.today": "today", "rail.toCommunity": "Go to the Community", "rail.onLuxtify": "On Luxtify", "rail.latestSong": "Latest release", "rail.listen": "Listen", "rail.fromCommunity": "From the Community", "rail.latestMsgs": "Latest messages", "rail.openCommunity": "Open the Community", "rail.seals": "Four seals", "rail.keepers": "The keepers", "rail.collection": "{name}’s collection", "rail.gif": "sent a GIF", "rail.attach": "sent an attachment", "rank.reads": "reads", "rec.readNow": "Read now"});
+Object.assign(STR.es, {"side.discover": "Descubre", "side.theme": "Día o noche", "rail.label": "Cuaderno del archivo", "rail.now": "Ahora en el archivo", "rail.online": "En línea ahora", "rail.onlineOne": "{a} está en el archivo", "rail.onlineTwo": "{a} y {b}", "rail.onlineMany": "{a}, {b} y {n} más", "rail.viewsTitle": "Visualizaciones", "rail.views": "visualizaciones", "rail.today": "hoy", "rail.toCommunity": "Ir a la Comunidad", "rail.onLuxtify": "En Luxtify", "rail.latestSong": "Último lanzamiento", "rail.listen": "Escuchar", "rail.fromCommunity": "Desde la Comunidad", "rail.latestMsgs": "Últimos mensajes", "rail.openCommunity": "Abrir la Comunidad", "rail.seals": "Cuatro sellos", "rail.keepers": "Los custodios", "rail.collection": "Colección de {name}", "rail.gif": "envió un GIF", "rail.attach": "envió un archivo", "rank.reads": "lecturas", "rec.readNow": "Leer ahora"});
+Object.assign(STR.fr, {"side.discover": "Découvrir", "side.theme": "Jour ou nuit", "rail.label": "Carnet de l’archive", "rail.now": "En ce moment dans l’archive", "rail.online": "En ligne", "rail.onlineOne": "{a} est dans l’archive", "rail.onlineTwo": "{a} et {b}", "rail.onlineMany": "{a}, {b} et {n} autres", "rail.viewsTitle": "Vues", "rail.views": "vues", "rail.today": "aujourd’hui", "rail.toCommunity": "Aller à la Communauté", "rail.onLuxtify": "Sur Luxtify", "rail.latestSong": "Dernière sortie", "rail.listen": "Écouter", "rail.fromCommunity": "De la Communauté", "rail.latestMsgs": "Derniers messages", "rail.openCommunity": "Ouvrir la Communauté", "rail.seals": "Quatre sceaux", "rail.keepers": "Les gardiens", "rail.collection": "Collection de {name}", "rail.gif": "a envoyé un GIF", "rail.attach": "a envoyé une pièce jointe", "rank.reads": "lectures", "rec.readNow": "Lire maintenant"});
+Object.assign(STR.de, {"side.discover": "Entdecken", "side.theme": "Tag oder Nacht", "rail.label": "Notizbuch des Archivs", "rail.now": "Gerade im Archiv", "rail.online": "Jetzt online", "rail.onlineOne": "{a} ist im Archiv", "rail.onlineTwo": "{a} und {b}", "rail.onlineMany": "{a}, {b} und {n} weitere", "rail.viewsTitle": "Aufrufe", "rail.views": "Aufrufe", "rail.today": "heute", "rail.toCommunity": "Zur Community", "rail.onLuxtify": "Auf Luxtify", "rail.latestSong": "Neueste Veröffentlichung", "rail.listen": "Anhören", "rail.fromCommunity": "Aus der Community", "rail.latestMsgs": "Neueste Nachrichten", "rail.openCommunity": "Community öffnen", "rail.seals": "Vier Siegel", "rail.keepers": "Die Hüter", "rail.collection": "Reihe von {name}", "rail.gif": "hat ein GIF gesendet", "rail.attach": "hat einen Anhang gesendet", "rank.reads": "Aufrufe", "rec.readNow": "Jetzt lesen"});
 var CHAR_META = {
   Lucifer:{role:{it:"Il Portatore di Luce",en:"The Light-Bearer",es:"El Portador de Luz",fr:"Le Porteur de Lumière",de:"Der Lichtträger"},
     bio:{it:"Sovrano della collana ammiraglia: potere, caduta e desiderio raccontati su grande scala.",
@@ -833,6 +838,7 @@ function setLang(lang){
   updateSyncStatus();
   renderFaqPage();
   renderGuidePage(); // rifà anche l'indice e la sezione aperta, nella lingua nuova
+  refreshHomeRailLang(); // v220
 }
 
 /* ============ SCHERMATA DI INGRESSO — Online / Offline ============
@@ -1577,6 +1583,7 @@ function refreshAdminUI(){
     loadSocialLinksIntoForm();
     renderCharImageAdmin();
     renderStatsPanel();
+    renderSiteViewsAdmin(); // v220
     renderAdminRequests();
     renderAdminAnnouncements();
     renderAdminUsers();
@@ -2226,9 +2233,11 @@ function renderTopRanked(){
   if(items.length === 0){ section.classList.add('hidden'); return; }
   section.classList.remove('hidden');
   var heights = [128, 112, 120]; // altezze cicliche per un profilo da scaffale, non tutte uguali
+  var rankRows = Math.ceil(items.length / 2); // v220: da computer due colonne, i primi a sinistra
+  grid.style.setProperty('--rank-rows', rankRows);
   items.forEach(function(item, idx){
     var rank = document.createElement('div');
-    rank.className = 'rank-card';
+    rank.className = 'rank-card' + (idx >= rankRows ? ' rank-col2' : '') + (idx === rankRows ? ' rank-col2-top' : '');
     rank.style.height = heights[idx % heights.length] + 'px';
     var coverInner = item.cover_url
       ? '<img src="' + coverThumbUrl(item.cover_url, 400) + '" data-fallback="' + escapeHtml(item.cover_url) + '" alt="" loading="lazy" decoding="async">'
@@ -2236,7 +2245,8 @@ function renderTopRanked(){
     rank.innerHTML =
       '<div class="rank-card-cover">' + coverInner + '</div>' +
       '<div class="rank-num mono">' + (idx+1) + '</div>' +
-      '<div class="rank-card-body"><h5>' + escapeHtml(item.title) + '</h5></div>';
+      '<div class="rank-card-body"><h5>' + escapeHtml(item.title) + '</h5>' +
+        '<span class="rank-meta">' + escapeHtml(charDisplayName(item.character)) + ' · ' + Number(item.view_count || 0).toLocaleString(currentLang) + ' ' + escapeHtml(t('rank.reads')) + '</span></div>';
     rank.addEventListener('click', function(){ openTitleModal(item); });
     grid.appendChild(rank);
     attachCoverSignature(rank.querySelector('.rank-card-cover'), item);
@@ -5069,12 +5079,16 @@ function translateSynopsis(englishText){
    partire da una qualsiasi delle 5 lingue del sito: il rilevamento della
    lingua di partenza lo fa DeepL stesso lato server. */
 function translateChatMessage(text){
-  var session = getSession();
-  if(!session) return Promise.reject(new Error('not signed in'));
-  return fetch(SUPABASE_URL + '/functions/v1/translate-message', {
-    method:'POST',
-    headers:{ 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
-    body: JSON.stringify({ text: text, target: currentLang })
+  if(!getSession()) return Promise.reject(new Error('not signed in'));
+  // v220: la funzione accetta solo un accesso valido: se sta per scadere, prima si rinnova
+  return refreshSessionIfNeeded().then(function(){
+    var session = getSession();
+    if(!session) throw new Error('not signed in');
+    return fetch(SUPABASE_URL + '/functions/v1/translate-message', {
+      method:'POST',
+      headers:{ 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
+      body: JSON.stringify({ text: text, target: currentLang })
+    });
   }).then(function(r){
     if(!r.ok) throw new Error('translation failed: ' + r.status);
     return r.json(); // {translated}
@@ -6330,6 +6344,32 @@ function initAppShell(){
     src.dispatchEvent(new Event('change', { bubbles: true }));
     setTimeout(sync, 0);
   });
+  // v220: da computer, in fondo alla navigazione: tema, 18+ e lingua a un clic
+  function syncSide(){
+    var sw = byId('matureSwitch'), m = byId('appSideMature');
+    if(m) m.setAttribute('aria-pressed', sw && sw.checked ? 'true' : 'false');
+    var src = byId('langSelect'), dst = byId('appSideLang'), code = byId('appSideLangCode');
+    if(src && dst){
+      if(dst.options.length !== src.options.length){
+        dst.innerHTML = '';
+        Array.prototype.forEach.call(src.options, function(o){ dst.appendChild(new Option(o.textContent, o.value)); });
+      }
+      dst.value = src.value;
+      if(code) code.textContent = String(src.value || '').toUpperCase();
+    }
+  }
+  if(byId('appSideTheme')) byId('appSideTheme').addEventListener('click', function(){ press('btnTheme'); });
+  if(byId('appSideMature')) byId('appSideMature').addEventListener('click', function(){ press('matureSwitch'); setTimeout(syncSide, 0); });
+  if(byId('appSideLang')) byId('appSideLang').addEventListener('change', function(e){
+    var src = byId('langSelect');
+    if(!src) return;
+    src.value = e.target.value;
+    src.dispatchEvent(new Event('change', { bubbles: true }));
+    setTimeout(syncSide, 0);
+  });
+  if(ms) ms.addEventListener('change', function(){ setTimeout(syncSide, 0); });
+  if(byId('langSelect')) byId('langSelect').addEventListener('change', function(){ setTimeout(syncSide, 0); });
+  syncSide();
 
   // contatori della barra: copiano quelli dell'intestazione, aggiornati dalle funzioni di sempre
   function mirror(srcId, apply){
@@ -6398,6 +6438,276 @@ function initAppShell(){
     line.textContent = t('apptu.version') + ' v' + (window.LUX_VERSION || '');
     menu.appendChild(line);
   }
+}
+
+/* ============ HOME DA COMPUTER: IL TACCUINO A DESTRA (v220) ============
+   Sugli schermi larghi (da 1560px) la home ha una terza colonna: chi è
+   online e le visualizzazioni del sito, l'ultima canzone su Luxtify (si
+   ascolta da qui, col lettore di sempre), gli ultimi messaggi dei canali
+   pubblici e i quattro custodi. Su telefono e iPad non compare e non scarica
+   niente; su 2G nemmeno da computer. */
+var homeRailMq = null;
+function setupHomeRail(){
+  if(!document.getElementById('testo') || !window.matchMedia || !SUPABASE_URL) return;
+  if(window.LUX_NET === 'slow') return;
+  if(!homeRailMq){
+    homeRailMq = window.matchMedia('(min-width: 1560px)');
+    var onChange = function(){ if(homeRailMq.matches) buildHomeRail(); };
+    if(homeRailMq.addEventListener) homeRailMq.addEventListener('change', onChange);
+    else if(homeRailMq.addListener) homeRailMq.addListener(onChange);
+  }
+  if(homeRailMq.matches) buildHomeRail();
+}
+// cambio lingua: il Taccuino si rifà nella lingua nuova
+function refreshHomeRailLang(){
+  var old = document.getElementById('homeRail');
+  if(!old) return;
+  old.parentNode.removeChild(old);
+  buildHomeRail();
+}
+function homeRailName(p){
+  return (p && p.display_name) || (t('notif.someone') + ' ' + String((p && p.id) || '').slice(0, 6));
+}
+// testo semplice per l'anteprima di un messaggio: niente formattazione, spoiler coperti
+function homeRailPlain(body){
+  return String(body || '')
+    .replace(/```[\s\S]*?```/g, ' … ')
+    .replace(/\|\|[^|\n]+\|\|/g, '•••')
+    .replace(/`([^`\n]+)`/g, '$1')
+    .replace(/\*\*([^*\n]+)\*\*/g, '$1').replace(/\*([^*\n]+)\*/g, '$1').replace(/~~([^~\n]+)~~/g, '$1')
+    .replace(/(^|\n)>\s?/g, '$1')
+    .replace(/\s+/g, ' ').trim();
+}
+function homeRailCard(key, eyebrow, title, inner, link){
+  return '<section class="home-rail-card" data-rail="' + key + '"' + (key === 'seals' ? '' : ' hidden') + '>' +
+    '<div class="home-rail-head"><div class="home-rail-eyebrow">' + escapeHtml(eyebrow) + '</div><h3>' + escapeHtml(title) + '</h3></div>' +
+    inner + (link || '') + '</section>';
+}
+function buildHomeRail(){
+  if(document.getElementById('homeRail')) return;
+  var arrow = ' <span aria-hidden="true">→</span>';
+  var spines = Object.keys(LUX_CHAR_SPINES).filter(function(id){ var c = charById(id); return !c || c.visible !== false; }).map(function(id){
+    var name = charDisplayName(id);
+    return '<a class="lux-spine lux-spine-' + id.toLowerCase() + '" href="schedario.html?character=' + encodeURIComponent(id) + '#library" aria-label="' +
+      escapeHtml(t('rail.collection').replace('{name}', name)) + '"><em>' + escapeHtml(name) + '</em></a>';
+  }).join('');
+  var rail = document.createElement('aside');
+  rail.id = 'homeRail';
+  rail.className = 'home-rail';
+  rail.setAttribute('aria-label', t('rail.label'));
+  rail.innerHTML =
+    homeRailCard('now', t('rail.now'), t('rail.online'), '<div class="home-rail-online"></div><p class="home-rail-note"></p><div class="home-rail-stats"></div>',
+      '<a class="home-rail-link" href="community.html#communitySection">' + escapeHtml(t('rail.toCommunity')) + arrow + '</a>') +
+    homeRailCard('song', t('rail.onLuxtify'), t('rail.latestSong'), '<div class="home-rail-song"></div>') +
+    homeRailCard('posts', t('rail.fromCommunity'), t('rail.latestMsgs'), '<div class="home-rail-posts"></div>',
+      '<a class="home-rail-link" href="community.html#communitySection">' + escapeHtml(t('rail.openCommunity')) + arrow + '</a>') +
+    (spines ? homeRailCard('seals', t('rail.seals'), t('rail.keepers'), '<div class="home-rail-spines">' + spines + '</div>') : '');
+  document.body.appendChild(rail);
+  document.body.classList.add('has-home-rail');
+  fillHomeRailNow(rail);
+  fillHomeRailSong(rail);
+  fillHomeRailPosts(rail);
+}
+function fillHomeRailNow(rail){
+  var card = rail.querySelector('[data-rail="now"]');
+  var me = currentUserId();
+  // chi è online lo vede solo chi ha fatto l'accesso, come nel resto del sito
+  var people = isSignedIn()
+    ? fetch(SUPABASE_URL + '/rest/v1/profiles?select=id,display_name,avatar_url,last_seen&order=last_seen.desc.nullslast&limit=40', { headers: communityHeaders() })
+        .then(function(r){ return r.ok ? r.json() : []; }).catch(function(){ return []; })
+    : Promise.resolve([]);
+  var totals = fetch(SUPABASE_URL + '/rest/v1/rpc/site_view_totals', {
+    method:'POST', headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + SUPABASE_ANON_KEY, 'Content-Type':'application/json' }, body:'{}'
+  }).then(function(r){ return r.ok ? r.json() : null; }).catch(function(){ return null; });
+  Promise.all([people, totals]).then(function(res){
+    if(!card || !card.isConnected) return;
+    var on = (Array.isArray(res[0]) ? res[0] : []).filter(function(p){ return p && p.id !== me && isOnlineSince(p.last_seen); });
+    var tot = res[1] && typeof res[1] === 'object' && res[1].views != null ? res[1] : null;
+    var avBox = card.querySelector('.home-rail-online'), note = card.querySelector('.home-rail-note'), stats = card.querySelector('.home-rail-stats');
+    if(on.length){
+      avBox.innerHTML = on.slice(0, 5).map(function(p){
+        var name = homeRailName(p);
+        return '<a class="home-rail-av" href="profile.html?user=' + encodeURIComponent(p.id) + '" title="' + escapeHtml(name) + '">' +
+          '<img src="' + escapeHtml(avatarSrc(p.avatar_url, p.display_name, p.id, 80)) + '" alt="' + escapeHtml(name) + '" loading="lazy"><i aria-hidden="true"></i></a>';
+      }).join('') + (on.length > 5 ? '<span class="home-rail-more">+' + (on.length - 5) + '</span>' : '');
+      var a = homeRailName(on[0]), b = on[1] ? homeRailName(on[1]) : '';
+      note.textContent = on.length === 1 ? t('rail.onlineOne').replace('{a}', a)
+        : on.length === 2 ? t('rail.onlineTwo').replace('{a}', a).replace('{b}', b)
+        : t('rail.onlineMany').replace('{a}', a).replace('{b}', b).replace('{n}', on.length - 2);
+    } else {
+      avBox.parentNode.removeChild(avBox);
+      note.parentNode.removeChild(note);
+      card.querySelector('h3').textContent = t('rail.viewsTitle');
+    }
+    if(tot){
+      var fmt = function(n){ return Number(n || 0).toLocaleString(currentLang); };
+      stats.innerHTML = '<div class="home-rail-stat"><b>' + fmt(tot.views) + '</b><span>' + escapeHtml(t('rail.views')) + '</span></div>' +
+        '<div class="home-rail-stat"><b>' + fmt(tot.today_views) + '</b><span>' + escapeHtml(t('rail.today')) + '</span></div>';
+    } else {
+      stats.parentNode.removeChild(stats);
+    }
+    if(on.length || tot) card.hidden = false;
+  });
+}
+function fillHomeRailSong(rail){
+  var card = rail.querySelector('[data-rail="song"]');
+  fetch(SUPABASE_URL + '/rest/v1/songs?select=*,catalog(title,cover_url,mature,character)&order=created_at.desc&limit=12', { headers:{ 'apikey':SUPABASE_ANON_KEY } })
+    .then(function(r){ return r.ok ? r.json() : []; }).catch(function(){ return []; })
+    .then(function(rows){
+      if(!card || !card.isConnected || !Array.isArray(rows)) return;
+      // l'ultima canzone che si può ascoltare: con il 18+ spento le esplicite si saltano
+      var s = rows.filter(function(x){ return x && x.audio_url && !songIsLocked(x); })[0];
+      if(!s) return;
+      var cover = lxSongCover(s);
+      card.querySelector('.home-rail-song').innerHTML =
+        (cover ? '<img src="' + escapeHtml(coverThumbUrl(cover, 160)) + '" data-fallback="' + escapeHtml(cover) + '" alt="" loading="lazy">' : '') +
+        '<div class="home-rail-song-t"><b>' + escapeHtml(s.title || '') + '</b><span>' + escapeHtml(s.artist || 'Luxtify') + '</span></div>' +
+        '<button type="button" class="home-rail-play" aria-label="' + escapeHtml(t('rail.listen') + ': ' + (s.title || '')) + '">' +
+        '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg></button>';
+      card.querySelector('.home-rail-play').addEventListener('click', function(){ openMusicPlayer([s], t('rail.latestSong')); });
+      card.hidden = false;
+    });
+}
+function fillHomeRailPosts(rail){
+  var card = rail.querySelector('[data-rail="posts"]');
+  // solo i canali pubblici (non quelli dei server), e niente messaggi nascosti dalla moderazione
+  fetch(SUPABASE_URL + '/rest/v1/channels?community_id=is.null&select=id,name', { headers: communityHeaders() })
+    .then(function(r){ return r.ok ? r.json() : []; })
+    .then(function(chans){
+      if(!Array.isArray(chans) || !chans.length) return [];
+      var names = {};
+      chans.forEach(function(c){ names[c.id] = c.name; });
+      return fetch(SUPABASE_URL + '/rest/v1/channel_messages?channel_id=in.(' + chans.map(function(c){ return encodeURIComponent(c.id); }).join(',') +
+          ')&hidden=not.is.true&select=id,channel_id,user_id,author_name,body,created_at&order=created_at.desc&limit=3', { headers: communityHeaders() })
+        .then(function(r){ return r.ok ? r.json() : []; })
+        .then(function(msgs){ return (Array.isArray(msgs) ? msgs : []).map(function(m){ m._ch = names[m.channel_id] || ''; return m; }); });
+    })
+    .catch(function(){ return []; })
+    .then(function(msgs){
+      if(!card || !card.isConnected || !msgs.length) return;
+      var ids = msgs.map(function(m){ return m.user_id; }).filter(function(id, i, all){ return id && all.indexOf(id) === i; });
+      var avatars = ids.length
+        ? fetch(SUPABASE_URL + '/rest/v1/profiles?id=in.(' + ids.map(encodeURIComponent).join(',') + ')&select=id,avatar_url', { headers: communityHeaders() })
+            .then(function(r){ return r.ok ? r.json() : []; }).catch(function(){ return []; })
+        : Promise.resolve([]);
+      return avatars.then(function(ps){
+        var av = {};
+        (Array.isArray(ps) ? ps : []).forEach(function(p){ av[p.id] = p.avatar_url; });
+        card.querySelector('.home-rail-posts').innerHTML = msgs.map(function(m){
+          var name = m.author_name || t('notif.someone');
+          var raw = String(m.body || '').trim();
+          var text = !raw ? '<i>' + escapeHtml(t('rail.attach')) + '</i>' : isGifUrl(raw) ? '<i>' + escapeHtml(t('rail.gif')) + '</i>' : escapeHtml(homeRailPlain(raw));
+          return '<a class="home-rail-post" href="community.html#communitySection">' +
+            '<span class="home-rail-av"><img src="' + escapeHtml(avatarSrc(av[m.user_id], name, m.user_id, 64)) + '" alt="" loading="lazy"></span>' +
+            '<div class="home-rail-post-b"><div class="home-rail-post-h"><b>' + escapeHtml(name) + '</b><span>' +
+            (m._ch ? '#' + escapeHtml(m._ch) + ' · ' : '') + escapeHtml(notifTimeAgo(m.created_at)) + '</span></div><p>' + text + '</p></div></a>';
+        }).join('');
+        card.hidden = false;
+      });
+    });
+}
+
+/* ============ VISUALIZZAZIONI DEL SITO (v220) ============
+   Ogni pagina aperta conta una visualizzazione; la prima pagina di ogni visita
+   conta anche una visita. Non contano: le tue pagine da amministratore, la
+   stessa pagina ricaricata entro mezz'ora, i programmi automatici.
+   Niente di personale: nel database ci sono solo due numeri per giorno
+   (vedi visualizzazioni.sql). */
+function scheduleSiteViewCount(){
+  setTimeout(countSiteView, window.LUX_NET === 'slow' ? 8000 : 2500); // dopo i contenuti, mai al loro posto
+}
+function countSiteView(){
+  if(!SUPABASE_URL || isAdmin() || navigator.webdriver) return;
+  var newVisit = false;
+  try {
+    var key = 'lux_sv:' + (window.location.pathname || '/');
+    var last = +(sessionStorage.getItem(key) || 0);
+    if(last && Date.now() - last < 30 * 60000) return;
+    sessionStorage.setItem(key, String(Date.now()));
+    if(!sessionStorage.getItem('lux_sv_visit')){ sessionStorage.setItem('lux_sv_visit', '1'); newVisit = true; }
+  } catch(e){}
+  fetch(SUPABASE_URL + '/rest/v1/rpc/count_site_view', {
+    method:'POST', keepalive:true,
+    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + SUPABASE_ANON_KEY, 'Content-Type':'application/json' },
+    body: JSON.stringify({ new_visit: newVisit })
+  }).catch(function(){});
+}
+
+/* Amministra › Statistiche: visualizzazioni del sito, ultimi 14 giorni */
+function renderSiteViewsAdmin(){
+  if(!isAdmin()) return;
+  var box = document.getElementById('siteViewsAdmin');
+  if(!box || !SUPABASE_URL) return;
+  var h = { 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + SUPABASE_ANON_KEY, 'Content-Type':'application/json' };
+  Promise.all([
+    fetch(SUPABASE_URL + '/rest/v1/site_views_daily?select=day,views,visits&order=day.desc&limit=30', { headers: h })
+      .then(function(r){ if(!r.ok) throw new Error('site_views_daily ' + r.status); return r.json(); }),
+    fetch(SUPABASE_URL + '/rest/v1/rpc/site_view_totals', { method:'POST', headers: h, body:'{}' })
+      .then(function(r){ if(!r.ok) throw new Error('site_view_totals ' + r.status); return r.json(); })
+  ]).then(function(res){
+    var rows = Array.isArray(res[0]) ? res[0] : [], tot = res[1] || {};
+    var byDay = {};
+    rows.forEach(function(r){ byDay[r.day] = r; });
+    // i giorni del calendario di Roma (anche col cambio dell'ora)
+    var todayKey = new Intl.DateTimeFormat('en-CA', { timeZone:'Europe/Rome', year:'numeric', month:'2-digit', day:'2-digit' }).format(new Date());
+    var p = todayKey.split('-').map(Number);
+    var days = [];
+    for(var i = 13; i >= 0; i--){
+      var dt = new Date(Date.UTC(p[0], p[1] - 1, p[2] - i));
+      var k = dt.toISOString().slice(0, 10), r = byDay[k] || {};
+      days.push({ label: i === 0 ? 'oggi' : dt.toLocaleDateString('it-IT', { day:'numeric', month:'short', timeZone:'UTC' }),
+        long: dt.toLocaleDateString('it-IT', { weekday:'long', day:'numeric', month:'long', timeZone:'UTC' }), views: +(r.views || 0), visits: +(r.visits || 0) });
+    }
+    var n = function(x){ return Number(x || 0).toLocaleString('it-IT'); };
+    var last7 = days.slice(-7).reduce(function(s, d){ return s + d.views; }, 0);
+    var last7v = days.slice(-7).reduce(function(s, d){ return s + d.visits; }, 0);
+    var today = days[days.length - 1];
+    var max = Math.max.apply(null, days.map(function(d){ return d.views; })) || 0;
+    var maxIdx = max ? days.map(function(d){ return d.views; }).lastIndexOf(max) : -1;
+    var since = tot.since ? new Date(tot.since + 'T12:00:00Z').toLocaleDateString('it-IT', { day:'numeric', month:'long', year:'numeric', timeZone:'UTC' }) : '';
+    box.innerHTML =
+      '<div class="sv-figs">' +
+        '<div class="sv-fig"><span>Oggi</span><b>' + n(today.views) + '</b><small>' + n(today.visits) + ' visite</small></div>' +
+        '<div class="sv-fig"><span>Ultimi 7 giorni</span><b>' + n(last7) + '</b><small>' + n(last7v) + ' visite</small></div>' +
+        '<div class="sv-fig"><span>In totale</span><b>' + n(tot.views) + '</b><small>' + n(tot.visits) + ' visite</small></div>' +
+      '</div>' +
+      '<div class="sv-chart"><div class="sv-cols">' + days.map(function(d, i){
+          var pct = max ? Math.round(d.views / max * 1000) / 10 : 0;
+          var showVal = d.views && (i === days.length - 1 || i === maxIdx);
+          return '<button type="button" class="sv-col" style="--h:' + pct + '%" data-i="' + i + '" aria-label="' + escapeHtml(d.long + ': ' + n(d.views) + ' visualizzazioni, ' + n(d.visits) + ' visite') + '">' +
+            (showVal ? '<em aria-hidden="true">' + n(d.views) + '</em>' : '') +
+            '<i style="height:' + pct + '%' + (d.views ? ';min-height:2px' : '') + '"></i></button>';
+        }).join('') + '</div>' +
+        '<div class="sv-axis" aria-hidden="true"><span>' + escapeHtml(days[0].label) + '</span><span>' + escapeHtml(days[6].label) + '</span><span>oggi</span></div>' +
+        '<div class="sv-tip" hidden></div></div>' +
+      '<details class="sv-more"><summary>I numeri giorno per giorno</summary><table class="sv-table"><thead><tr><th>Giorno</th><th>Visualizzazioni</th><th>Visite</th></tr></thead><tbody>' +
+        days.slice().reverse().map(function(d){ return '<tr><td>' + escapeHtml(d.long) + '</td><td>' + n(d.views) + '</td><td>' + n(d.visits) + '</td></tr>'; }).join('') +
+      '</tbody></table></details>' +
+      '<p class="form-note">Una visualizzazione è una pagina aperta; una visita è un giro sul sito, anche di più pagine. Le tue pagine da amministratore non contano.' +
+        (since ? ' Conteggio iniziato ' + (/^(8|11) /.test(since) ? 'l’' : 'il ') + escapeHtml(since) + '.' : '') + '</p>';
+    var tip = box.querySelector('.sv-tip'), chart = box.querySelector('.sv-chart');
+    Array.prototype.forEach.call(box.querySelectorAll('.sv-col'), function(col){
+      var d = days[+col.getAttribute('data-i')];
+      var show = function(){
+        tip.textContent = '';
+        var b = document.createElement('b'); b.textContent = n(d.views) + ' visualizzazioni';
+        tip.appendChild(b);
+        tip.appendChild(document.createTextNode(n(d.visits) + ' visite · ' + d.long));
+        var cr = chart.getBoundingClientRect(), r2 = col.getBoundingClientRect();
+        tip.hidden = false;
+        var half = tip.offsetWidth / 2, x = r2.left - cr.left + r2.width / 2;
+        tip.style.left = Math.max(half, Math.min(cr.width - half, x)) + 'px';
+      };
+      var hide = function(){ tip.hidden = true; };
+      col.addEventListener('pointerenter', show);
+      col.addEventListener('focus', show);
+      col.addEventListener('pointerleave', hide);
+      col.addEventListener('blur', hide);
+    });
+  }).catch(function(e){
+    console.warn('Visualizzazioni del sito:', e);
+    box.innerHTML = '<p class="form-note">Per contare le visualizzazioni lancia <b>visualizzazioni.sql</b> in Supabase → SQL Editor (una volta sola). Da quel momento i numeri compaiono qui.</p>';
+  });
 }
 
 /* ============ INSTALLA L'APP (iPhone, iPad, Android) ============
@@ -17628,9 +17938,13 @@ function __appInit(){
     loadUnreadDmCount();
     loadMyCreationSession().then(function(){ refreshAdminUI(); refreshSupportSectionVisibility(); });
     initChatPage(); // deve aspettare che la sessione sia confermata, non solo che il catalogo sia caricato
+    setupHomeRail(); // v220: il Taccuino della home, solo sugli schermi larghi
+    scheduleSiteViewCount(); // v220: una visualizzazione per pagina aperta
   });
   setInterval(refreshSessionIfNeeded, 4 * 60 * 1000); // keep the token fresh while the tab stays open
   window.addEventListener('online', function(){ refreshSessionIfNeeded(); }); // v219: rinnovo saltato per la rete? si riprova appena torna
+  // v220: il telefono sospende i timer delle schede in background: al ritorno si rinnova subito
+  document.addEventListener('visibilitychange', function(){ if(document.visibilityState === 'visible') refreshSessionIfNeeded(); });
 
   renderCartCount();
   fetchSocialLinks();
@@ -18278,11 +18592,15 @@ function renderRecommended(){
       '<div class="latest-card-cover">' + coverInner +
         '<div class="tome-strap"><div class="tome-seal"><img src="logo-lm-seal.webp" alt=""></div></div>' +
       '</div>' +
-      '<div class="latest-card-body"><h5>' + escapeHtml(item.title) + '</h5><div class="character">' + escapeHtml(item.character) + '</div></div>';
+      '<div class="latest-card-body"><h5>' + escapeHtml(item.title) + '</h5><div class="character">' + escapeHtml(item.character) + '</div>' +
+        '<span class="rec-go">' + escapeHtml(t('rec.readNow')) + ' →</span></div>';
     card.addEventListener('click', function(){ openTitleModal(item); });
     grid.appendChild(card);
     attachCoverSignature(card.querySelector('.latest-card-cover'), item);
   });
+  // v220: con pochi consigli la fila restava mezza vuota: da computer diventano schede larghe
+  grid.classList.toggle('rec-few', recs.length <= 3);
+  grid.style.setProperty('--rec-n', recs.length);
 }
 
 /* ============ ARCHIVIO DELLE NOVITÀ (novita.html) ============ */
