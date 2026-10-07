@@ -3624,3 +3624,14 @@ body.theme-light .sv-col:hover i,body.theme-light .sv-col:focus-visible i{backgr
 body.theme-light .sv-cols{border-bottom-color:rgba(138,106,31,.3);}
 body.theme-light .sv-tip{background:#fffdf7;border-color:rgba(138,106,31,.35);box-shadow:0 8px 20px rgba(80,60,40,.18);}
 body.theme-light .sv-table th,body.theme-light .sv-table td{border-bottom-color:rgba(138,106,31,.15);}
+
+/* ============ v221: la voce Notifiche del menu Tu dice com'è davvero ============ */
+.app-row.is-on .app-row-ic{background:rgba(93,202,165,0.16);color:#5dcaa5;}
+.app-row.is-on .app-row-value{color:#5dcaa5;font-weight:600;}
+.app-row.is-error .app-row-ic{background:rgba(226,75,74,0.16);color:#e24b4a;}
+.app-row.is-error .app-row-label{color:#e78c80;}
+body.theme-light .app-row.is-on .app-row-ic{background:#dff3ea;color:#1f7a5a;}
+body.theme-light .app-row.is-on .app-row-value{color:#1f7a5a;}
+body.theme-light .app-row.is-error .app-row-ic{background:#f8e0df;color:#b3261e;}
+body.theme-light .app-row.is-error .app-row-label{color:#b3261e;}
+#btnEnablePush.push-btn-active{cursor:pointer;}
