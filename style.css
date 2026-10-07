@@ -220,12 +220,12 @@ button{font-family:inherit;cursor:pointer;}
 .retry-link{background:none;border:none;padding:0;margin-left:4px;color:var(--gold);text-decoration:underline;cursor:pointer;font-size:inherit;}
 .retry-link:hover{color:var(--gold-bright);}
 .community-panel[data-cpanel="friends"]{
-  background-image:linear-gradient(rgba(6,4,5,0.55),rgba(6,4,5,0.7)), url('friends-bg.jpg');
+  background-image:linear-gradient(rgba(6,4,5,0.55),rgba(6,4,5,0.7)), url('friends-bg.webp');
   background-size:cover;background-position:top center;
   padding:20px;border:1px solid var(--line);
 }
 body.theme-light .community-panel[data-cpanel="friends"]{
-  background-image:linear-gradient(rgba(255,255,255,0.75),rgba(255,255,255,0.85)), url('friends-bg.jpg');
+  background-image:linear-gradient(rgba(255,255,255,0.75),rgba(255,255,255,0.85)), url('friends-bg.webp');
 }
 .gate-legal{margin-top:22px;font-size:11px;color:var(--parchment-dim);opacity:0.7;line-height:1.6;}
 
@@ -325,10 +325,15 @@ select.langsel{
    loader.js aggiunge .is-ready quando è pronta, e appare in dissolvenza. */
 .hero-bg::before{
   content:'';position:absolute;inset:0;
-  background:url('hero-bg.webp') center 30% / cover no-repeat;
+  background:center 30% / cover no-repeat;
   opacity:0;transition:opacity .6s ease;
 }
-.hero-bg.is-ready::before{opacity:1;}
+/* v219: l'indirizzo della foto c'è solo da pronta (loader.js l'ha già
+   scaricata, di solito dopo app.js): prima la scaricava il CSS subito, in
+   concorrenza con app.js. Sui telefoni una versione leggera (95 KB invece di 240). */
+.hero-bg.is-ready::before{opacity:1;background-image:url('hero-bg.webp');}
+@media (max-width:700px){ .hero-bg.is-ready::before{background-image:url('hero-bg-m.webp');} }
+.support-banner-img:not([src]){background:#1e1215;}
 .hero-bg .char-slice{
   flex:1;position:relative;overflow:hidden;
 }
@@ -1061,13 +1066,13 @@ body.theme-light .hero-bg::after{
 .maintenance-lock{
   position:fixed;inset:0;z-index:150;
   background:var(--void);
-  background-image:linear-gradient(rgba(6,4,5,0.82),rgba(6,4,5,0.92)), url('maintenance-bg.jpg');
+  background-image:linear-gradient(rgba(6,4,5,0.82),rgba(6,4,5,0.92)), url('maintenance-bg.webp');
   background-size:cover;background-position:center;
   display:flex;align-items:center;justify-content:center;
   padding:20px;text-align:center;
 }
 .maintenance-lock.night-lock{
-  background-image:linear-gradient(rgba(6,4,5,0.82),rgba(6,4,5,0.92)), url('night-bg.jpg');
+  background-image:linear-gradient(rgba(6,4,5,0.82),rgba(6,4,5,0.92)), url('night-bg.webp');
 }
 .night-multilang{
   font-family:'Cinzel',serif;font-size:12px;letter-spacing:0.1em;
@@ -3397,3 +3402,32 @@ body.theme-light .tab-new-badge{color:#fff8ea;}
 body.theme-light .app-tab.is-section .app-tab-arch path,body.theme-light .app-tab[aria-current="page"] .app-tab-arch path,body.theme-light .app-tab[aria-expanded="true"] .app-tab-arch path{fill:#6e1423;stroke:rgba(107,80,21,.55);}
 body.theme-light .app-tab.is-section .app-tab-svg,body.theme-light .app-tab[aria-current="page"] .app-tab-svg,body.theme-light .app-tab[aria-expanded="true"] .app-tab-svg{color:#f6ead0;}
 body.theme-light.has-app-tabbar .app-tab.is-section,body.theme-light.has-app-tabbar .app-tab[aria-current="page"],body.theme-light.has-app-tabbar .app-tab[aria-expanded="true"]{color:#6e1423;}
+
+/* v219: "Elimina" sui propri contenuti, traduzione e GIF più chiare */
+.lux-del-btn{background:none;border:0;padding:0;margin-left:12px;cursor:pointer;font-family:'Crimson Pro',Georgia,serif;font-size:13.5px;font-style:normal;
+  letter-spacing:0;text-transform:none;color:#d98a8a;text-decoration:underline;text-underline-offset:2px;box-shadow:none;}
+.lux-del-btn:hover,.lux-del-btn:focus-visible{color:#f0a3a3;}
+.lux-del-btn[disabled]{opacity:.5;cursor:default;}
+body.theme-light .lux-del-btn{color:#a3262f;}
+body.theme-light .lux-del-btn:hover{color:#6e1423;}
+.diary-post-head .lux-del-btn{margin-left:2px;}
+.channel-msg .msg-actions .lux-del-btn{margin-left:0;}
+body.has-app-tabbar .channel-msg .msg-actions .lux-del-btn{color:#d98a8a;}
+body.theme-light.has-app-tabbar .channel-msg .msg-actions .lux-del-btn{color:#a3262f;}
+/* nella chat "Elimina" compare toccando il proprio messaggio (o passandoci sopra col mouse) */
+.chat-bubble .chat-del-btn{display:none;margin-left:8px;font-size:12.5px;color:rgba(243,233,210,.8);}
+.chat-bubble.show-actions .chat-del-btn{display:inline;}
+@media (hover:hover){ .chat-bubble:hover .chat-del-btn{display:inline;} }
+body.theme-light .chat-bubble.mine .chat-del-btn{color:rgba(255,248,234,.85);}
+.chat-translated-body{margin-top:6px;padding-top:6px;border-top:1px solid rgba(201,162,77,.22);font-style:italic;}
+.chat-translate-btn.is-error{color:#e8a0a0 !important;}
+body.theme-light.has-app-tabbar .chat-bubble .chat-translate-btn{color:#7a5a12;}
+body.theme-light .chat-translate-btn.is-error{color:#a3262f !important;}
+.req-done-tag{align-self:center;padding:4px 8px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.04em;color:var(--parchment-dim);white-space:nowrap;}
+body.theme-light .req-done-tag{color:#6a5b44;}
+body.has-app-tabbar .diary-comment-form{display:flex;gap:8px;align-items:center;margin-top:8px;}
+body.has-app-tabbar .diary-comment-input{min-width:0;min-height:40px;padding:8px 14px;border-radius:20px;border:1px solid rgba(201,162,77,.3);background:#1e1215;color:var(--parchment);
+  font-family:'Crimson Pro',Georgia,serif;font-size:16px;box-sizing:border-box;}
+body.theme-light.has-app-tabbar .diary-comment-input{background:#fffdf7;color:#2a1d12;border-color:rgba(138,106,31,.35);}
+#chatOpenError,#chatNotFound{padding:28px 18px;text-align:center;}
+#chatOpenError .form-note,#chatNotFound .form-note{font-size:15px;}

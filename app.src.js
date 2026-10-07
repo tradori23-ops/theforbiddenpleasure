@@ -754,6 +754,18 @@ Object.assign(STR.es, {"apptab.share": "Compartir la app", "apptab.youSub": "Per
 Object.assign(STR.fr, {"apptab.share": "Partager l’app", "apptab.youSub": "Profil et réglages"});
 Object.assign(STR.de, {"apptab.share": "App teilen", "apptab.youSub": "Profil und Einstellungen"});
 
+Object.assign(STR.it, {"common.delete": "Elimina", "del.confirmPost": "Eliminare questo post? Non si può annullare.", "del.confirmComment": "Eliminare questo commento?", "del.confirmMessage": "Eliminare questo messaggio? Sparisce anche per l'altra persona.", "del.confirmChannelMsg": "Eliminare questo messaggio dal canale?", "del.failed": "Eliminazione non riuscita. Controlla la connessione e riprova.", "del.denied": "Non è stato possibile eliminarlo: manca il permesso.", "del.linked": "Non è stato possibile eliminarlo: ci sono ancora contenuti collegati.", "del.offline": "Sei offline: riprova quando torna la connessione.", "net.actionFailed": "Non è andata a buon fine. Controlla la connessione e riprova.", "chat.translateFail": "Traduzione non riuscita · riprova", "chat.translateSame": "È già nella tua lingua", "comments.sendError": "Commento non inviato. Controlla la connessione e riprova.", "gif.search": "Cerca GIF…", "gif.none": "Nessuna GIF trovata", "gif.error": "Ricerca GIF non disponibile ora. Riprova tra poco.", "gif.offline": "Sei offline: le GIF tornano con la connessione."});
+Object.assign(STR.en, {"common.delete": "Delete", "del.confirmPost": "Delete this post? This can't be undone.", "del.confirmComment": "Delete this comment?", "del.confirmMessage": "Delete this message? It disappears for the other person too.", "del.confirmChannelMsg": "Delete this message from the channel?", "del.failed": "Couldn't delete. Check your connection and try again.", "del.denied": "Couldn't delete it: permission missing.", "del.linked": "Couldn't delete it: there is still content linked to it.", "del.offline": "You're offline: try again when the connection is back.", "net.actionFailed": "That didn't go through. Check your connection and try again.", "chat.translateFail": "Translation failed · try again", "chat.translateSame": "Already in your language", "comments.sendError": "Comment not sent. Check your connection and try again.", "gif.search": "Search GIFs…", "gif.none": "No GIFs found", "gif.error": "GIF search isn't available right now. Try again shortly.", "gif.offline": "You're offline: GIFs come back with the connection."});
+Object.assign(STR.es, {"common.delete": "Eliminar", "del.confirmPost": "¿Eliminar esta publicación? No se puede deshacer.", "del.confirmComment": "¿Eliminar este comentario?", "del.confirmMessage": "¿Eliminar este mensaje? También desaparece para la otra persona.", "del.confirmChannelMsg": "¿Eliminar este mensaje del canal?", "del.failed": "No se pudo eliminar. Revisa la conexión e inténtalo de nuevo.", "del.denied": "No se pudo eliminar: falta el permiso.", "del.linked": "No se pudo eliminar: todavía hay contenido vinculado.", "del.offline": "Estás sin conexión: inténtalo cuando vuelva la conexión.", "net.actionFailed": "No se ha completado. Revisa la conexión e inténtalo de nuevo.", "chat.translateFail": "Traducción fallida · reintentar", "chat.translateSame": "Ya está en tu idioma", "comments.sendError": "Comentario no enviado. Revisa la conexión e inténtalo de nuevo.", "gif.search": "Buscar GIF…", "gif.none": "No se encontraron GIF", "gif.error": "La búsqueda de GIF no está disponible ahora. Inténtalo en un momento.", "gif.offline": "Estás sin conexión: los GIF vuelven con la conexión."});
+Object.assign(STR.fr, {"common.delete": "Supprimer", "del.confirmPost": "Supprimer cette publication ? Action irréversible.", "del.confirmComment": "Supprimer ce commentaire ?", "del.confirmMessage": "Supprimer ce message ? Il disparaît aussi pour l'autre personne.", "del.confirmChannelMsg": "Supprimer ce message du canal ?", "del.failed": "Suppression impossible. Vérifiez la connexion et réessayez.", "del.denied": "Suppression impossible : autorisation manquante.", "del.linked": "Suppression impossible : du contenu y est encore lié.", "del.offline": "Vous êtes hors ligne : réessayez quand la connexion revient.", "net.actionFailed": "Cela n'a pas abouti. Vérifiez la connexion et réessayez.", "chat.translateFail": "Échec de la traduction · réessayer", "chat.translateSame": "Déjà dans votre langue", "comments.sendError": "Commentaire non envoyé. Vérifiez la connexion et réessayez.", "gif.search": "Rechercher des GIF…", "gif.none": "Aucun GIF trouvé", "gif.error": "La recherche de GIF n'est pas disponible pour le moment. Réessayez bientôt.", "gif.offline": "Vous êtes hors ligne : les GIF reviennent avec la connexion."});
+Object.assign(STR.de, {"common.delete": "Löschen", "del.confirmPost": "Diesen Beitrag löschen? Das kann nicht rückgängig gemacht werden.", "del.confirmComment": "Diesen Kommentar löschen?", "del.confirmMessage": "Diese Nachricht löschen? Sie verschwindet auch für die andere Person.", "del.confirmChannelMsg": "Diese Nachricht aus dem Kanal löschen?", "del.failed": "Löschen fehlgeschlagen. Prüfe die Verbindung und versuche es erneut.", "del.denied": "Löschen nicht möglich: Berechtigung fehlt.", "del.linked": "Löschen nicht möglich: Es sind noch Inhalte damit verknüpft.", "del.offline": "Du bist offline: Versuche es erneut, wenn die Verbindung zurück ist.", "net.actionFailed": "Das hat nicht geklappt. Prüfe die Verbindung und versuche es erneut.", "chat.translateFail": "Übersetzung fehlgeschlagen · erneut versuchen", "chat.translateSame": "Schon in deiner Sprache", "comments.sendError": "Kommentar nicht gesendet. Prüfe die Verbindung und versuche es erneut.", "gif.search": "GIFs suchen…", "gif.none": "Keine GIFs gefunden", "gif.error": "Die GIF-Suche ist gerade nicht verfügbar. Versuche es gleich noch einmal.", "gif.offline": "Du bist offline: GIFs kommen mit der Verbindung zurück."});
+
+Object.assign(STR.it, {"del.auth": "La sessione è scaduta: ricarica la pagina e riprova."});
+Object.assign(STR.en, {"del.auth": "Your session has expired: reload the page and try again."});
+Object.assign(STR.es, {"del.auth": "La sesión ha caducado: recarga la página e inténtalo de nuevo."});
+Object.assign(STR.fr, {"del.auth": "La session a expiré : rechargez la page et réessayez."});
+Object.assign(STR.de, {"del.auth": "Die Sitzung ist abgelaufen: Lade die Seite neu und versuche es erneut."});
+
 var CHAR_META = {
   Lucifer:{role:{it:"Il Portatore di Luce",en:"The Light-Bearer",es:"El Portador de Luz",fr:"Le Porteur de Lumière",de:"Der Lichtträger"},
     bio:{it:"Sovrano della collana ammiraglia: potere, caduta e desiderio raccontati su grande scala.",
@@ -896,6 +908,8 @@ function coverThumbUrl(url, width){
   var marker = '/storage/v1/object/public/';
   var idx = url.indexOf(marker);
   if(idx === -1) return url;
+  // v219: su 2G / risparmio dati miniature più piccole (circa un terzo dei byte)
+  if(window.LUX_NET === 'slow') width = Math.round(width * 0.6);
   return url.slice(0, idx) + '/storage/v1/render/image/public/' + url.slice(idx + marker.length) + '?width=' + width + '&quality=70';
 }
 
@@ -1024,11 +1038,17 @@ function refreshSessionIfNeeded(){
     method:'POST',
     headers:{ 'apikey':SUPABASE_ANON_KEY, 'Content-Type':'application/json' },
     body: JSON.stringify({refresh_token: s.refresh_token})
-  }).then(function(r){ return r.json().then(function(data){
-    if(!r.ok || !data.access_token){ setSession(null); return false; }
-    setSession(data);
-    return true;
-  }); }).catch(function(){ setSession(null); return false; });
+  }).then(function(r){ return r.json().catch(function(){ return {}; }).then(function(data){
+    if(r.ok && data.access_token){ setSession(data); return true; }
+    // v219: solo un rifiuto vero (rinnovo non più valido) chiude la sessione.
+    // Prima anche un errore di rete la chiudeva: su 2G/3G, in galleria o in
+    // ascensore, aprire il sito voleva dire ritrovarsi fuori dall'account.
+    // E solo se nel frattempo un'altra scheda non l'ha già rinnovata: in quel
+    // caso il "no" riguarda il codice vecchio, non la sessione di adesso.
+    var now = getSession();
+    if((r.status === 400 || r.status === 401 || r.status === 403) && now && now.refresh_token === s.refresh_token) setSession(null);
+    return false;
+  }); }).catch(function(){ return false; });
 }
 
 function authSignIn(email, password){
@@ -1658,22 +1678,21 @@ function updateSyncStatus(){
 function fetchCatalogFromSupabase(){
   if(!SUPABASE_URL) return Promise.resolve(null);
   syncState = 'syncing'; updateSyncStatus();
-  return fetch(SUPABASE_URL + '/rest/v1/catalog?select=*&order=date.desc', {
-    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + SUPABASE_ANON_KEY }
-  })
+  // v219: catalogo e numero dei commenti partono insieme (prima uno dopo
+  // l'altro: su 2G era quasi un secondo in più prima di vedere i titoli)
+  var hdr = { headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + SUPABASE_ANON_KEY } };
+  var countsReq = fetch(SUPABASE_URL + '/rest/v1/comment_counts?select=*', hdr)
+    .then(function(r2){ return r2.ok ? r2.json() : []; })
+    .catch(function(){ return []; });
+  return fetch(SUPABASE_URL + '/rest/v1/catalog?select=*&order=date.desc', hdr)
     .then(function(r){ if(!r.ok) throw new Error('read failed: ' + r.status); return r.json(); })
     .then(function(items){
-      return fetch(SUPABASE_URL + '/rest/v1/comment_counts?select=*', {
-        headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + SUPABASE_ANON_KEY }
-      })
-        .then(function(r2){ return r2.ok ? r2.json() : []; })
-        .catch(function(){ return []; })
-        .then(function(counts){
-          var countMap = {};
-          counts.forEach(function(c){ countMap[c.catalog_id] = c.comment_count; });
-          items.forEach(function(item){ item.comment_count = countMap[item.id] || 0; });
-          return items;
-        });
+      return countsReq.then(function(counts){
+        var countMap = {};
+        counts.forEach(function(c){ countMap[c.catalog_id] = c.comment_count; });
+        items.forEach(function(item){ item.comment_count = countMap[item.id] || 0; });
+        return items;
+      });
     })
     .then(function(items){
       saveCatalogLocal(items);
@@ -1739,19 +1758,18 @@ function supabaseUpdate(id, patch){
     });
 }
 
+// restituisce true, oppure l'errore (con .kind) da mostrare: prima il titolo
+// spariva subito dalla lista anche quando il database rifiutava, e poi tornava
 function supabaseDelete(id){
   var session = getSession();
-  if(!SUPABASE_URL || !session) return Promise.resolve(false);
+  if(!SUPABASE_URL || !session) return Promise.resolve(luxDeleteErr('auth'));
   syncState = 'syncing'; updateSyncStatus();
-  return fetch(SUPABASE_URL + '/rest/v1/catalog?id=eq.' + encodeURIComponent(id), {
-    method:'DELETE',
-    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
-  })
-    .then(function(r){ if(!r.ok) throw new Error('delete failed: ' + r.status); syncState = 'idle'; updateSyncStatus(); return true; })
+  return luxDelete('catalog?id=eq.' + encodeURIComponent(id))
+    .then(function(){ syncState = 'idle'; updateSyncStatus(); return true; })
     .catch(function(err){
       syncState = 'error'; updateSyncStatus();
-      console.warn('Supabase sync (delete) failed:', err);
-      return false;
+      console.warn('Supabase sync (delete) failed:', err, err && err.detail);
+      return err;
     });
 }
 
@@ -2921,6 +2939,67 @@ function luxDb(method, path, body){
     return r.status === 204 ? null : r.json().catch(function(){ return null; });
   });
 }
+/* ============ ELIMINAZIONE VERIFICATA (v219) ============
+   Una DELETE che il database rifiuta per i permessi (RLS) risponde "ok"
+   lo stesso, solo con zero righe: prima il sito toglieva l'elemento,
+   che poi ricompariva al caricamento successivo senza una spiegazione.
+   Qui il database restituisce le righe davvero eliminate; se non ne
+   arriva nessuna, si controlla se c'è ancora (permesso negato) o se era
+   già sparito (eliminato altrove: va bene così). */
+function luxDeleteErr(kind, detail){ var e = new Error('delete ' + kind); e.kind = kind; e.detail = detail || ''; return e; }
+function luxDelete(path, opts, retried){
+  opts = opts || {};
+  var session = getSession();
+  if(!SUPABASE_URL || !session) return Promise.reject(luxDeleteErr('auth'));
+  if(navigator.onLine === false) return Promise.reject(luxDeleteErr('offline'));
+  var h = { 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token };
+  var netErr = function(e){ throw luxDeleteErr('network', String(e && e.message || e)); };
+  // zero righe eliminate: o non c'era più (va bene) o i permessi non lo consentono.
+  // Solo una lettura RIUSCITA che non la trova vuol dire "eliminata": se il
+  // controllo stesso fallisce non si dà per fatto (prima tornava fuori al ricaricare)
+  var checkGone = function(rows){
+    if(Array.isArray(rows) && rows.length) return rows;
+    if(opts.allowEmpty) return [];
+    var q = path.indexOf('?') === -1 ? path + '?' : path + '&';
+    return fetch(SUPABASE_URL + '/rest/v1/' + q + 'select=*&limit=1', { headers: h })
+      .then(function(r){
+        if(!r.ok) throw luxDeleteErr(r.status === 401 ? 'auth' : 'http', 'verifica ' + r.status);
+        return r.json();
+      }, netErr)
+      .then(function(still){ if(still && still.length) throw luxDeleteErr('denied'); return []; });
+  };
+  return fetch(SUPABASE_URL + '/rest/v1/' + path, { method:'DELETE', headers: Object.assign({ 'Prefer':'return=representation' }, h) })
+    .then(function(r){
+      if(r.ok) return r.json().catch(function(){ return []; }).then(checkGone);
+      return r.text().then(function(tx){
+        if(r.status === 401){
+          // accesso scaduto (per esempio un rinnovo saltato per la rete): si rinnova e si riprova una volta
+          if(!retried) return refreshSessionIfNeeded().then(function(){ return luxDelete(path, opts, true); });
+          throw luxDeleteErr('auth', '401 ' + tx);
+        }
+        throw luxDeleteErr((r.status === 409 || /foreign key|23503/i.test(tx)) ? 'linked' : (r.status === 403 ? 'denied' : 'http'), r.status + ' ' + tx);
+      });
+    }, netErr);
+}
+function luxDeleteMsg(err){
+  var kind = err && err.kind;
+  if(kind === 'offline' || navigator.onLine === false) return t('del.offline');
+  if(kind === 'auth') return t('del.auth');
+  if(kind === 'denied'){
+    return t('del.denied') + (isAdmin() ? ' — Il database non lo consente: lancia elimina_contenuti.sql su Supabase (SQL Editor).' : '');
+  }
+  if(kind === 'linked'){
+    var d = err.detail || '';
+    var m = /referenced from table \\?"([a-z_]+)/i.exec(d) || /foreign key constraint.* on table \\?"([a-z_]+)/i.exec(d);
+    return t('del.linked') + (isAdmin() ? ' — Contenuti collegati' + (m ? ' in «' + m[1] + '»' : '') +
+      '. Per eliminarli insieme, lancia elimina_collegati.sql su Supabase (SQL Editor).' : '');
+  }
+  return t('del.failed');
+}
+function luxDeleteFail(err){
+  console.warn('Eliminazione non riuscita:', err, err && err.detail);
+  window.alert(luxDeleteMsg(err));
+}
 function luxDbError(err){
   console.warn('Gestione personaggi/categorie:', err);
   luxToast(luxTaxonomyLive ? 'Non è stato possibile salvare. Riprova tra poco.' : 'Per salvare serve prima lanciare su Supabase l’SQL di personaggi e categorie.');
@@ -3881,7 +3960,10 @@ function renderBodyHtml(body){
 
 /* ============ PWA: SERVICE WORKER + CONDIVIDI L'APP ============ */
 if('serviceWorker' in navigator){
-  window.addEventListener('load', function(){
+  var swRegistered = false;
+  var registerSW = function(){
+    if(swRegistered) return;
+    swRegistered = true;
     navigator.serviceWorker.register('/sw.js').then(function(){
       // il primo tentativo di mostrare il pulsante può capitare prima che
       // il service worker sia pronto — ora che lo è davvero, riproviamo
@@ -3889,7 +3971,11 @@ if('serviceWorker' in navigator){
     }).catch(function(err){
       console.warn('Service worker registration failed:', err);
     });
-  });
+  };
+  // v219: non si aspetta più che sia arrivata OGNI immagine della pagina
+  // (su 2G anche un minuto: chi chiudeva prima restava senza copia salvata)
+  window.addEventListener('load', registerSW);
+  setTimeout(registerSW, 6000);
 }
 
 /* ============ RILEVAMENTO AUTOMATICO CONTENUTI ESPLICITI ============
@@ -4504,12 +4590,15 @@ function bulkDeleteSelected(){
   var ids = Array.prototype.slice.call(adminSelectedIds);
   if(ids.length === 0) return;
   if(!confirm(ids.length + ' titoli selezionati — eliminarli tutti?')) return;
-  var all = getCatalog().filter(function(x){ return !adminSelectedIds.has(x.id); });
-  saveCatalogLocal(all);
-  renderCatalog();
-  ids.forEach(function(id){ supabaseDelete(id); });
-  adminSelectedIds.clear();
-  renderAdminList();
+  Promise.all(ids.map(function(id){ return supabaseDelete(id).then(function(res){ return { id: id, res: res }; }); })).then(function(out){
+    var gone = {}, firstErr = null, failed = 0;
+    out.forEach(function(o){ if(o.res === true) gone[o.id] = true; else { failed++; firstErr = firstErr || o.res; } });
+    saveCatalogLocal(getCatalog().filter(function(x){ return !gone[x.id]; }));
+    adminSelectedIds.clear();
+    renderCatalog();
+    renderAdminList();
+    if(failed) window.alert(failed + ' su ' + ids.length + ' non eliminati. ' + luxDeleteMsg(firstErr));
+  });
 }
 
 function renderAdminList(){
@@ -4704,11 +4793,14 @@ function renderAdminList(){
     });
     row.querySelector('[data-del]').addEventListener('click', function(){
       if(!confirm(t('admin.confirmDelete'))) return;
-      var all = getCatalog().filter(function(x){return x.id !== item.id;});
-      saveCatalogLocal(all);
-      renderCatalog();
-      renderAdminList();
-      supabaseDelete(item.id);
+      var delBtn = this;
+      delBtn.disabled = true;
+      supabaseDelete(item.id).then(function(res){
+        if(res !== true){ delBtn.disabled = false; window.alert(luxDeleteMsg(res)); return; }
+        saveCatalogLocal(getCatalog().filter(function(x){ return x.id !== item.id; }));
+        renderCatalog();
+        renderAdminList();
+      });
     });
     row.querySelector('[data-cover-for]').addEventListener('change', function(e){
       if(!e.target.files[0]) return;
@@ -5383,10 +5475,7 @@ function saveSavedCollaborator(){
 function deleteSavedCollaborator(id){
   var session = getSession();
   if(!session) return;
-  fetch(SUPABASE_URL + '/rest/v1/saved_collaborators?id=eq.' + encodeURIComponent(id), {
-    method:'DELETE',
-    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
-  }).then(function(){ loadSavedCollaborators(); });
+  luxDelete('saved_collaborators?id=eq.' + encodeURIComponent(id)).then(function(){ loadSavedCollaborators(); }, luxDeleteFail);
 }
 
 /* Collegato a ognuno dei 6 campi nome collaboratore: appena il testo
@@ -8556,7 +8645,9 @@ function submitDiaryPost(){
     document.getElementById('fDiaryMoodText').value = '';
     document.getElementById('fDiaryNote').value = '';
     document.querySelectorAll('.diary-mood-btn').forEach(function(b){ b.classList.remove('active'); });
-    loadDiaryFeed();
+    // sul profilo la bacheca è #profileDiaryFeed (quella della persona aperta), in Community #diaryFeed
+    if(document.getElementById('profileDiaryFeed')) loadDiaryFeed('profileDiaryFeed', new URLSearchParams(window.location.search).get('user') || currentUserId());
+    else loadDiaryFeed();
   }).catch(function(e){
     console.warn('Diary post failed:', e);
     err.textContent = t('diary.publishError');
@@ -8605,6 +8696,10 @@ function renderDiaryFeed(posts, containerId){
     var card = document.createElement('div');
     card.className = 'diary-post';
     card.dataset.postId = p.id;
+    card.dataset.postOwner = p.user_id || ''; // NON data-author: il clic su [data-author] apre il profilo
+    card.dataset.postAuthor = authorId || '';
+    var uidNow = currentUserId();
+    var canDelete = isSignedIn() && (authorId === uidNow || p.user_id === uidNow || isAdmin());
     var kindIcon = p.kind === 'photo' ? '📷' : (p.kind === 'mood' ? '🙂' : '📝');
     var mediaHtml = p.image_url ? '<img class="diary-post-img" src="'+coverThumbUrl(escapeHtml(p.image_url), 700)+'" alt="" loading="lazy">' : '';
     var bodyHtml = p.body ? '<div class="diary-post-body">'+renderBodyHtml(p.body)+'</div>' : '';
@@ -8613,6 +8708,7 @@ function renderDiaryFeed(posts, containerId){
         '<button type="button" class="diary-post-author" data-author="'+authorId+'">'+t('notif.someone')+'</button>'+
         '<span class="diary-post-kind">'+kindIcon+'</span>'+
         '<span class="diary-post-when">'+notifTimeAgo(p.created_at)+'</span>'+
+        (canDelete ? '<button type="button" class="lux-del-btn diary-post-del" data-del-post="'+p.id+'">'+t('common.delete')+'</button>' : '')+
       '</div>'+
       mediaHtml + bodyHtml +
       '<div class="diary-post-actions">'+
@@ -8627,6 +8723,15 @@ function renderDiaryFeed(posts, containerId){
     });
 
     card.querySelector('[data-like]').addEventListener('click', function(){ toggleDiaryLike(p.id, this); });
+    var delPost = card.querySelector('[data-del-post]');
+    if(delPost) delPost.addEventListener('click', function(){
+      if(!window.confirm(t('del.confirmPost'))) return;
+      delPost.disabled = true;
+      luxDelete('user_posts?id=eq.' + encodeURIComponent(p.id)).then(function(){
+        card.remove();
+        if(!feed.querySelector('.diary-post')) feed.innerHTML = '<p class="form-note">' + t('diary.empty') + '</p>';
+      }).catch(function(err){ delPost.disabled = false; luxDeleteFail(err); });
+    });
     card.querySelector('[data-comments]').addEventListener('click', function(){ toggleDiaryComments(p.id); });
 
     feed.appendChild(card);
@@ -8669,7 +8774,7 @@ function toggleDiaryLike(postId, btnEl){
     cnt = isLiked ? Math.max(cnt - 1, 0) : cnt + 1;
     btnEl.classList.toggle('active', !isLiked);
     btnEl.innerHTML = (isLiked ? '♡ ' : '♥ ') + '<span class="cnt">'+cnt+'</span>';
-  }).catch(function(e){ console.warn('Post like toggle failed:', e); });
+  }).catch(function(e){ console.warn('Post like toggle failed:', e); luxToast(t('net.actionFailed')); });
 }
 
 function toggleDiaryComments(postId){
@@ -8693,10 +8798,29 @@ function loadDiaryComments(postId, box){
       if(rows.length === 0){
         list.innerHTML = '<p class="form-note">' + t('comments.empty') + '</p>';
       } else {
+        var postCard = document.querySelector('.diary-post[data-post-id="'+postId+'"]');
+        var uidNow = currentUserId();
+        var ownsPost = !!(postCard && uidNow && (postCard.dataset.postOwner === uidNow || postCard.dataset.postAuthor === uidNow));
         rows.forEach(function(c){
           var div = document.createElement('div');
           div.className = 'comment-item';
           div.innerHTML = '<span class="author">'+escapeHtml(c.author_name || t('notif.someone'))+'</span><div class="body">'+renderBodyHtml(c.body)+'</div>';
+          if(isSignedIn() && c.id && (c.user_id === uidNow || ownsPost || isAdmin())){
+            var delC = document.createElement('button');
+            delC.type = 'button';
+            delC.className = 'lux-del-btn comment-del-btn';
+            delC.textContent = t('common.delete');
+            delC.addEventListener('click', function(){
+              if(!window.confirm(t('del.confirmComment'))) return;
+              delC.disabled = true;
+              luxDelete('post_comments?id=eq.' + encodeURIComponent(c.id)).then(function(){
+                loadDiaryComments(postId, box);
+                var cntEl = postCard && postCard.querySelector('[data-comments] .cnt');
+                if(cntEl) cntEl.textContent = Math.max(0, (parseInt(cntEl.textContent, 10) || 0) - 1);
+              }).catch(function(err){ delC.disabled = false; luxDeleteFail(err); });
+            });
+            div.appendChild(delC);
+          }
           list.appendChild(div);
         });
       }
@@ -8704,7 +8828,7 @@ function loadDiaryComments(postId, box){
       box.appendChild(list);
       if(isSignedIn()){
         box.insertAdjacentHTML('beforeend',
-          '<div class="diary-comment-form"><input type="text" class="diary-comment-input" maxlength="300" placeholder="'+t('requests.placeholder')+'"><button type="button" class="btn btn-sm btn-ghost diary-comment-send">'+t('community.send')+'</button></div>');
+          '<div class="diary-comment-form"><input type="text" class="diary-comment-input" maxlength="300" placeholder="'+t('comments.placeholder')+'"><button type="button" class="btn btn-sm btn-ghost diary-comment-send">'+t('community.send')+'</button></div>');
         var input = box.querySelector('.diary-comment-input');
         var sendBtn = box.querySelector('.diary-comment-send');
         sendBtn.addEventListener('click', function(){ submitDiaryComment(postId, input, box); });
@@ -8737,7 +8861,7 @@ function submitDiaryComment(postId, input, box){
       var cntEl = card.querySelector('[data-comments] .cnt');
       if(cntEl) cntEl.textContent = (parseInt(cntEl.textContent,10)||0) + 1;
     }
-  }).catch(function(e){ console.warn('Post comment submit failed:', e); });
+  }).catch(function(e){ console.warn('Post comment submit failed:', e); luxToast(t('comments.sendError')); });
 }
 
 /* ============ PROFILO PUBBLICO (profile.html?user=<id>) ============ */
@@ -9026,10 +9150,7 @@ function deleteProfilePhoto(id, userId){
   var session = getSession();
   if(!session) return;
   if(!confirm(t('profile.deletePhotoConfirm'))) return;
-  fetch(SUPABASE_URL + '/rest/v1/profile_photos?id=eq.' + encodeURIComponent(id), {
-    method:'DELETE',
-    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
-  }).then(function(){ renderProfilePhotos(userId); });
+  luxDelete('profile_photos?id=eq.' + encodeURIComponent(id)).then(function(){ renderProfilePhotos(userId); }, luxDeleteFail);
 }
 
 /* ============ VIDEO del profilo (link incorporato YouTube/Vimeo, nessun file caricato) ============ */
@@ -9096,10 +9217,7 @@ function addProfileVideo(){
 function deleteProfileVideo(id, userId){
   var session = getSession();
   if(!session) return;
-  fetch(SUPABASE_URL + '/rest/v1/profile_videos?id=eq.' + encodeURIComponent(id), {
-    method:'DELETE',
-    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
-  }).then(function(){ renderProfileVideos(userId); });
+  luxDelete('profile_videos?id=eq.' + encodeURIComponent(id)).then(function(){ renderProfileVideos(userId); }, luxDeleteFail);
 }
 
 /* ============ CHAT DEDICATA (chat.html?user=<id>) — fuori da Community ============ */
@@ -9362,7 +9480,19 @@ function openChatWithUser(otherUserId, updateHistory){
         loadUnreadDmCount(); // il numeretto sull'icona in alto deve scendere subito, non al prossimo giro di polling
       }).catch(function(){});
     })
-    .catch(function(e){ console.warn('Chat init failed:', e); document.getElementById('chatOpenError').classList.remove('hidden'); });
+    .catch(function(e){
+      console.warn('Chat init failed:', e);
+      var errBox = document.getElementById('chatOpenError');
+      if(!errBox) return;
+      var errMsg = errBox.querySelector('[data-i18n="chat.openError"]');
+      if(errMsg) errMsg.textContent = navigator.onLine === false ? t('del.offline') : t('chat.openError');
+      errBox.classList.remove('hidden');
+      var retry = document.getElementById('chatOpenRetry');
+      if(retry && !retry.dataset.wired){
+        retry.dataset.wired = '1';
+        retry.addEventListener('click', function(){ errBox.classList.add('hidden'); openChatWithUser(otherUserId, false); });
+      }
+    });
 }
 
 /* ============ LISTA CONVERSAZIONI FISSA (chat.html, stile WhatsApp) ============
@@ -9418,6 +9548,7 @@ function loadChatSidebar(){
 
   var threadsStep = fetch(SUPABASE_URL + '/rest/v1/dm_threads?select=*&or=(user_a.eq.' + encodeURIComponent(uid) + ',user_b.eq.' + encodeURIComponent(uid) + ')', { headers: communityHeaders() })
     .then(function(r){ return r.ok ? r.json() : []; });
+  threadsStep.catch(function(){}); // senza rete: l'errore lo gestisce il ramo qui sotto, non resta "in sospeso"
 
   fetch(SUPABASE_URL + '/rest/v1/friendships?select=requester_id,addressee_id&status=eq.accepted&or=(requester_id.eq.' + encodeURIComponent(uid) + ',addressee_id.eq.' + encodeURIComponent(uid) + ')', { headers: communityHeaders() })
     .then(function(r){ return r.ok ? r.json() : []; })
@@ -9449,7 +9580,12 @@ function loadChatSidebar(){
         renderChatSidebar(profiles, threadByOtherId, archivedProfiles, archivedByOtherId);
       });
     })
-    .catch(function(err){ console.warn('Chat sidebar load failed:', err); });
+    .catch(function(err){
+      console.warn('Chat sidebar load failed:', err);
+      if(list.querySelector('.chat-sidebar-row')) return; // c'è già una lista: resta quella, riprova il prossimo aggiornamento
+      list.innerHTML = '<p class="form-note">' + t('community.loadError') + ' <button type="button" class="retry-link">' + t('community.retry') + '</button></p>';
+      list.querySelector('.retry-link').addEventListener('click', loadChatSidebar);
+    });
 }
 
 /* Rubrica amici in stile WhatsApp: TUTTI gli amici accettati, in ordine
@@ -9639,13 +9775,10 @@ function renderChatSidebar(profiles, threadByOtherId, archivedProfiles, archived
 function deleteDmThread(threadId){
   var session = getSession();
   if(!session) return;
-  var headers = { 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token };
-  fetch(SUPABASE_URL + '/rest/v1/dm_messages?thread_id=eq.' + encodeURIComponent(threadId), { method:'DELETE', headers: headers })
+  // prima i messaggi (possono essere zero), poi la conversazione: deve sparire davvero
+  luxDelete('dm_messages?thread_id=eq.' + encodeURIComponent(threadId), { allowEmpty: true })
+    .then(function(){ return luxDelete('dm_threads?id=eq.' + encodeURIComponent(threadId)); })
     .then(function(){
-      return fetch(SUPABASE_URL + '/rest/v1/dm_threads?id=eq.' + encodeURIComponent(threadId), { method:'DELETE', headers: headers });
-    })
-    .then(function(r){
-      if(!r.ok) throw new Error('delete thread failed: ' + r.status);
       if(currentChatThreadId === threadId){
         currentChatThreadId = null;
         var wrap = document.getElementById('chatMessages');
@@ -9659,10 +9792,11 @@ function deleteDmThread(threadId){
     })
     .catch(function(e){
       console.warn('Delete thread failed:', e);
-      window.alert(t('chat.deleteError'));
+      window.alert(e && e.kind && e.kind !== 'http' && e.kind !== 'network' ? luxDeleteMsg(e) : t('chat.deleteError'));
     });
 }
 
+var chatTranslations = {}; // id messaggio -> traduzione già fatta (sopravvive al ridisegno della chat)
 function loadChatMessages(){
   var wrap = document.getElementById('chatMessages');
   if(!wrap || !currentChatThreadId) return;
@@ -9711,29 +9845,68 @@ function loadChatMessages(){
               translateBtn.type = 'button';
               translateBtn.className = 'chat-translate-btn';
               translateBtn.textContent = t('chat.translate') || 'Traduci';
+              var showTranslation = function(text){
+                var tDiv = document.createElement('div');
+                tDiv.className = 'chat-translated-body';
+                tDiv.textContent = text;
+                translateBtn.insertAdjacentElement('afterend', tDiv);
+                translateBtn.dataset.done = '1';
+                translateBtn.textContent = t('chat.translateUndo') || 'Mostra originale';
+              };
               translateBtn.addEventListener('click', function(){
                 if(translateBtn.dataset.done === '1'){
                   var existing = div.querySelector('.chat-translated-body');
                   if(existing) existing.remove();
+                  delete chatTranslations[m.id]; // al prossimo aggiornamento resta l'originale
                   translateBtn.dataset.done = '0';
                   translateBtn.textContent = t('chat.translate') || 'Traduci';
                   return;
                 }
                 translateBtn.disabled = true;
+                translateBtn.classList.remove('is-error');
                 translateBtn.textContent = '…';
                 translateChatMessage(m.body).then(function(res){
-                  var tDiv = document.createElement('div');
-                  tDiv.className = 'chat-translated-body';
-                  tDiv.textContent = res.translated;
-                  translateBtn.insertAdjacentElement('afterend', tDiv);
-                  translateBtn.dataset.done = '1';
-                  translateBtn.textContent = t('chat.translateUndo') || 'Mostra originale';
+                  var out = (res && res.translated) || '';
+                  var src = (res && res.detected_source_language || '').slice(0, 2).toLowerCase();
+                  if(!out || out.trim() === String(m.body).trim() || src === currentLang){
+                    // stessa lingua: DeepL restituisce il testo identico, meglio dirlo
+                    translateBtn.textContent = t('chat.translateSame');
+                    setTimeout(function(){ if(translateBtn.dataset.done !== '1') translateBtn.textContent = t('chat.translate') || 'Traduci'; }, 3500);
+                    return;
+                  }
+                  chatTranslations[m.id] = out;
+                  showTranslation(out);
                 }).catch(function(err){
                   console.warn('Chat translate failed:', err);
-                  translateBtn.textContent = t('chat.translate') || 'Traduci';
+                  // prima tornava "Traduci" come se niente fosse: ora si vede, e un tocco riprova
+                  translateBtn.classList.add('is-error');
+                  translateBtn.textContent = navigator.onLine === false ? t('del.offline') : t('chat.translateFail');
                 }).then(function(){ translateBtn.disabled = false; });
               });
               div.appendChild(translateBtn);
+              if(chatTranslations[m.id]) showTranslation(chatTranslations[m.id]); // la chat si ridisegna a ogni messaggio nuovo: la traduzione resta
+            }
+            if(m.sender_id === uid && m.id){
+              // i propri messaggi si possono eliminare (tocca il messaggio per vedere "Elimina")
+              var delBtn = document.createElement('button');
+              delBtn.type = 'button';
+              delBtn.className = 'lux-del-btn chat-del-btn';
+              delBtn.textContent = t('common.delete');
+              delBtn.addEventListener('click', function(e){
+                e.stopPropagation();
+                if(!window.confirm(t('del.confirmMessage'))) return;
+                delBtn.disabled = true;
+                luxDelete('dm_messages?id=eq.' + encodeURIComponent(m.id)).then(function(){
+                  div.remove();
+                  loadChatMessages();
+                }).catch(function(err){ delBtn.disabled = false; luxDeleteFail(err); });
+              });
+              var metaEl = div.querySelector('.chat-bubble-meta');
+              (metaEl || div).appendChild(delBtn);
+              div.addEventListener('click', function(e){
+                if(e.target.closest('a, button')) return;
+                div.classList.toggle('show-actions');
+              });
             }
             wrap.appendChild(div);
           });
@@ -9990,10 +10163,19 @@ function renderChannelMessage(m){
   main.innerHTML = '<div class="msg-head"><span class="author">' + escapeHtml(name) + '</span>' + chatRoleBadge(m.user_id) + '<span class="msg-time">' + escapeHtml(chatMsgTime(m.created_at)) + '</span></div>' +
     '<div class="body">' + renderRichBody(m.body) + '</div>' +
     '<div class="msg-actions"><span class="friend-action-slot"></span>' +
-      '<button type="button" class="report-btn">' + t('community.report') + '</button>' +
+      (isOwn ? '' : '<button type="button" class="report-btn">' + t('community.report') + '</button>') +
+      ((isOwn || isAdmin()) && m.id ? '<button type="button" class="lux-del-btn channel-del-btn">' + t('common.delete') + '</button>' : '') +
     '</div>';
   div.appendChild(main);
-  main.querySelector('.report-btn').addEventListener('click', function(){ reportContent('channel_message', m.id); });
+  var reportBtn = main.querySelector('.report-btn');
+  if(reportBtn) reportBtn.addEventListener('click', function(){ reportContent('channel_message', m.id); });
+  var chDel = main.querySelector('.channel-del-btn');
+  if(chDel) chDel.addEventListener('click', function(){
+    if(!window.confirm(t('del.confirmChannelMsg'))) return;
+    chDel.disabled = true;
+    luxDelete('channel_messages?id=eq.' + encodeURIComponent(m.id)).then(function(){ div.remove(); })
+      .catch(function(err){ chDel.disabled = false; luxDeleteFail(err); });
+  });
   if(!isOwn) renderFriendActionSlot(main.querySelector('.friend-action-slot'), m.user_id, m.author_name);
   return div;
 }
@@ -10092,6 +10274,7 @@ function sendFriendRequest(otherUserId, btnEl){
   }).catch(function(e){
     if(btnEl) btnEl.disabled = false;
     console.warn('Friend request failed:', e);
+    luxToast(t('net.actionFailed'));
   });
 }
 
@@ -10107,10 +10290,11 @@ function respondFriendRequest(friendshipId, accept){
         method:'DELETE',
         headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
       });
-  action.then(function(){
+  action.then(function(r){
+    if(!r.ok) throw new Error('friend response failed: ' + r.status);
     loadFriendsPanel();
     if(currentChannelId) loadChannelMessages();
-  }).catch(function(e){ console.warn('Friend response failed:', e); });
+  }).catch(function(e){ console.warn('Friend response failed:', e); luxToast(t('net.actionFailed')); });
 }
 
 /* ---- Sessioni di creazione a tempo (amico/collaboratore invitato a pubblicare) ---- */
@@ -10394,18 +10578,14 @@ function removeFriend(friendshipId, otherName, rowEl){
   if(!window.confirm(t('community.removeFriendConfirm').replace('{name}', otherName))) return;
   var session = getSession();
   if(!session) return;
-  fetch(SUPABASE_URL + '/rest/v1/friendships?id=eq.' + encodeURIComponent(friendshipId), {
-    method:'DELETE',
-    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
-  }).then(function(r){
-    if(!r.ok) throw new Error('remove friend failed: ' + r.status);
+  luxDelete('friendships?id=eq.' + encodeURIComponent(friendshipId)).then(function(){
     friendshipCache = {}; // la cache amicizie va ricalcolata: questo amico non c'è più
     if(rowEl && rowEl.parentNode) rowEl.parentNode.removeChild(rowEl);
     if(document.getElementById('friendsList')) loadFriendsPanel();
     if(document.getElementById('contattiAmiciList')) renderContattiAmici();
   }).catch(function(err){
     console.warn('Remove friend failed:', err);
-    window.alert(t('community.removeFriendError'));
+    window.alert(err && err.kind === 'denied' ? luxDeleteMsg(err) : t('community.removeFriendError'));
   });
 }
 
@@ -10583,7 +10763,7 @@ function toggleFollow(otherUserId, btnEl){
     btnEl.disabled = false;
     var statEl = document.getElementById('profileStatFollowers');
     if(statEl) statEl.textContent = String(Math.max(0, (parseInt(statEl.textContent, 10) || 0) + (nowFollowing ? 1 : -1)));
-  }).catch(function(e){ btnEl.disabled = false; console.warn('Follow toggle failed:', e); });
+  }).catch(function(e){ btnEl.disabled = false; console.warn('Follow toggle failed:', e); luxToast(t('net.actionFailed')); });
 }
 
 /* ============ CONTATTI (hub Scopri / Amici / Richieste, stile pillola moderno) ============ */
@@ -11408,7 +11588,7 @@ function reportContent(targetType, targetId){
   }).then(function(r){
     if(!r.ok) throw new Error('report insert failed');
     window.alert(t('community.reportSent'));
-  }).catch(function(e){ console.warn('Report failed:', e); });
+  }).catch(function(e){ console.warn('Report failed:', e); luxToast(t('net.actionFailed')); });
 }
 
 /* ---- Moderazione (solo admin) ---- */
@@ -11618,7 +11798,7 @@ function toggleLike(catalogId){
       saveCatalogLocal(items);
     }
     refreshTitleModalLike(catalogId);
-  }).catch(function(err){ console.warn('Like toggle failed:', err); });
+  }).catch(function(err){ console.warn('Like toggle failed:', err); luxToast(t('net.actionFailed')); });
 }
 
 function callCounterRpc(fnName, body){
@@ -11736,7 +11916,7 @@ function toggleFavorite(catalogId){
     bumpLocalCount(catalogId, 'save_count', isFav ? -1 : 1);
     renderCatalog();
     if(!document.getElementById('titleModal').classList.contains('hidden')) refreshTitleModalFav(catalogId);
-  }).catch(function(err){ console.warn('Favorite toggle failed:', err); });
+  }).catch(function(err){ console.warn('Favorite toggle failed:', err); luxToast(t('net.actionFailed')); });
 }
 
 /* ============ CART (client-side only — no payment processor connected yet) ============ */
@@ -11886,7 +12066,7 @@ function voteRating(catalogId, stars){
   req.then(function(r){
     if(!r.ok) throw new Error('HTTP ' + r.status);
     renderTitleModalRating(catalogId);
-  }).catch(function(e){ console.warn('Voto non salvato (serve lo SQL delle recensioni):', e); });
+  }).catch(function(e){ console.warn('Voto non salvato (serve lo SQL delle recensioni):', e); luxToast(t('net.actionFailed')); });
 }
 
 function openTitleModal(item){
@@ -14726,10 +14906,7 @@ function deleteSong(id, catalogId){
   var session = getSession();
   if(!session) return;
   if(!confirm('Eliminare questa canzone?')) return;
-  fetch(SUPABASE_URL + '/rest/v1/songs?id=eq.' + encodeURIComponent(id), {
-    method:'DELETE',
-    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
-  }).then(function(){ loadSongsAdminList(catalogId); });
+  luxDelete('songs?id=eq.' + encodeURIComponent(id)).then(function(){ loadSongsAdminList(catalogId); }, luxDeleteFail);
 }
 function addSong(){
   var catalogId = editingItemId;
@@ -14950,10 +15127,7 @@ function addSongToPlaylistByTitle(playlistId, title, inputEl){
 function removeSongFromPlaylist(playlistId, songId){
   var session = getSession();
   if(!session) return;
-  fetch(SUPABASE_URL + '/rest/v1/playlist_songs?playlist_id=eq.' + encodeURIComponent(playlistId) + '&song_id=eq.' + encodeURIComponent(songId), {
-    method:'DELETE',
-    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
-  }).then(function(){ renderPlaylistSongsAdmin(playlistId); });
+  luxDelete('playlist_songs?playlist_id=eq.' + encodeURIComponent(playlistId) + '&song_id=eq.' + encodeURIComponent(songId)).then(function(){ renderPlaylistSongsAdmin(playlistId); }, luxDeleteFail);
 }
 
 /* ---- Admin: Eventi ---- */
@@ -15189,13 +15363,10 @@ function deleteEvent(id){
   var session = getSession();
   if(!session) return;
   if(!confirm('Eliminare questo evento? Andrà persa anche la lista di chi ha detto "Ci sarò".')) return;
-  fetch(SUPABASE_URL + '/rest/v1/community_events?id=eq.' + encodeURIComponent(id), {
-    method:'DELETE',
-    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
-  }).then(function(){
+  luxDelete('community_events?id=eq.' + encodeURIComponent(id)).then(function(){
     generateEventPreview(id, null, 'delete'); // toglie anche la pagina dell'anteprima, se c'era (senza aspettare)
     loadEventsAdminList();
-  });
+  }, luxDeleteFail);
 }
 
 /* ---- Admin: Server community (canali propri, non condivisi con Community generale) ---- */
@@ -15265,10 +15436,7 @@ function deleteServer(id){
   var session = getSession();
   if(!session) return;
   if(!confirm('Eliminare questo server? Verranno eliminati anche i suoi canali.')) return;
-  fetch(SUPABASE_URL + '/rest/v1/communities?id=eq.' + encodeURIComponent(id), {
-    method:'DELETE',
-    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
-  }).then(function(){ loadServersAdminList(); });
+  luxDelete('communities?id=eq.' + encodeURIComponent(id)).then(function(){ loadServersAdminList(); }, luxDeleteFail);
 }
 
 function addPlaylist(){
@@ -15314,10 +15482,7 @@ function deletePlaylist(id){
   var session = getSession();
   if(!session) return;
   if(!confirm('Eliminare questa playlist?')) return;
-  fetch(SUPABASE_URL + '/rest/v1/playlists?id=eq.' + encodeURIComponent(id), {
-    method:'DELETE',
-    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
-  }).then(function(){ loadPlaylistsAdminList(); });
+  luxDelete('playlists?id=eq.' + encodeURIComponent(id)).then(function(){ loadPlaylistsAdminList(); }, luxDeleteFail);
 }
 
 /* ---- Admin: Podcast ---- */
@@ -15404,10 +15569,7 @@ function deletePodcastEpisode(id, podcastId){
   var session = getSession();
   if(!session) return;
   if(!confirm('Eliminare questo episodio?')) return;
-  fetch(SUPABASE_URL + '/rest/v1/podcast_episodes?id=eq.' + encodeURIComponent(id), {
-    method:'DELETE',
-    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
-  }).then(function(){ renderPodcastEpisodesAdmin(podcastId); });
+  luxDelete('podcast_episodes?id=eq.' + encodeURIComponent(id)).then(function(){ renderPodcastEpisodesAdmin(podcastId); }, luxDeleteFail);
 }
 
 function addPodcast(){
@@ -15453,10 +15615,7 @@ function deletePodcast(id){
   var session = getSession();
   if(!session) return;
   if(!confirm('Eliminare questo podcast e tutti i suoi episodi?')) return;
-  fetch(SUPABASE_URL + '/rest/v1/podcasts?id=eq.' + encodeURIComponent(id), {
-    method:'DELETE',
-    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
-  }).then(function(){ loadPodcastsAdminList(); });
+  luxDelete('podcasts?id=eq.' + encodeURIComponent(id)).then(function(){ loadPodcastsAdminList(); }, luxDeleteFail);
 }
 
 function insertSupportTitleButton(item){
@@ -16200,6 +16359,22 @@ function loadComments(catalogId){
         if(replyBtn){
           replyBtn.addEventListener('click', function(){ replyToComment(c.author_name); });
         }
+        if(isSignedIn() && c.id && (c.user_id === currentUserId() || isAdmin())){
+          var delC = document.createElement('button');
+          delC.type = 'button';
+          delC.className = 'lux-del-btn comment-del-btn';
+          delC.textContent = t('common.delete');
+          delC.addEventListener('click', function(){
+            if(!window.confirm(t('del.confirmComment'))) return;
+            delC.disabled = true;
+            luxDelete('comments?id=eq.' + encodeURIComponent(c.id)).then(function(){
+              if(c.approved) bumpLocalCommentCount(catalogId, -1);
+              updateEngagementCountsLabel(catalogId);
+              loadComments(catalogId);
+            }).catch(function(err){ delC.disabled = false; luxDeleteFail(err); });
+          });
+          div.appendChild(delC);
+        }
         list.appendChild(div);
       });
     })
@@ -16244,7 +16419,7 @@ function submitComment(){
     if(autoApproved) bumpLocalCommentCount(currentModalCatalogId, 1);
     loadComments(currentModalCatalogId);
   }).catch(function(e){
-    err.textContent = t('err.required');
+    err.textContent = t('comments.sendError'); // prima diceva "campo obbligatorio" anche col testo scritto
     console.warn('Comment submit failed:', e);
   });
 }
@@ -16350,7 +16525,11 @@ document.addEventListener('keydown', function(e){
 });
 
 /* ============ EMOJI + GIF PICKER (comments, channel messages, DMs) ============ */
-var TENOR_API_KEY = 'LIVDSRZULELA';
+/* GIF: Tenor ha chiuso le sue API il 30 giugno 2026, la ricerca passa a KLIPY
+   (stesso tipo di servizio, gratuito). La chiave si crea su partner.klipy.com →
+   API Keys. Finché è vuota il pulsante GIF non compare: un link .gif incollato
+   nel messaggio si vede comunque come immagine. */
+var KLIPY_API_KEY = '';
 var EMOJI_LIST = ['😀','😁','😂','🤣','😊','🙂','😉','😍','😘','😜','🤔','😎','🥰','😏',
   '😢','😭','😡','😱','🙄','😴','😅','🤩','👍','👎','👏','🙏','💪','🔥','✨','💯',
   '❤️','🧡','💛','💚','💙','💜','🖤','💔','⛓️','😈','👑','🌙','⭐','🎉','💋','🌹'];
@@ -16424,30 +16603,63 @@ function openEmojiPicker(field, anchor){
   box.classList.remove('hidden');
 }
 
-/* Selecting a GIF replaces the whole field content with the direct .gif URL:
-   renderBodyHtml() only shows the image when the message body IS the URL
-   (nothing else), same convention most chat apps use for "send a GIF". */
+/* Scegliere una GIF mette nel campo il suo indirizzo .gif diretto:
+   renderBodyHtml() mostra l'immagine solo quando il messaggio È l'indirizzo
+   (nient'altro), come nelle app di chat. Anteprime piccole (xs/sm, webp se
+   c'è) e GIF inviata in formato medio: su 2G/3G pesa molto meno. */
+function gifCustomerId(){
+  // KLIPY chiede un id per utente: uno anonimo per dispositivo, mai l'account
+  var v = null;
+  try{ v = localStorage.getItem('lux_gif_cid'); }catch(e){}
+  if(!v){ v = 'lux-' + Math.random().toString(36).slice(2, 12); try{ localStorage.setItem('lux_gif_cid', v); }catch(e){} }
+  return v;
+}
+function gifLocale(){ return ({ it:'it_IT', en:'en_US', es:'es_ES', fr:'fr_FR', de:'de_DE' })[currentLang] || 'it_IT'; }
+// legge sia il formato di KLIPY (file → misure → formato) sia quello "stile Tenor"
+function gifPickUrls(g){
+  var f = g && (g.file || g.files);
+  function pick(sizes, fmt){
+    for(var i = 0; i < sizes.length; i++){ var x = f && f[sizes[i]]; if(x && x[fmt] && x[fmt].url) return x[fmt].url; }
+    return '';
+  }
+  if(f) return { thumb: pick(['xs', 'sm'], 'webp') || pick(['xs', 'sm', 'md'], 'gif'), full: pick(['md', 'sm', 'hd'], 'gif') };
+  var m = g && g.media_formats;
+  if(m) return { thumb: (m.tinygif || m.nanogif || m.gif || {}).url || '', full: (m.gif || m.mediumgif || m.tinygif || {}).url || '' };
+  return { thumb: '', full: '' };
+}
 function openGifPicker(field, anchor){
   var box = ensurePickerBox();
-  box.innerHTML = '<input type="text" class="picker-gif-search" placeholder="Cerca GIF…">' +
-    '<div class="picker-gif-results"></div>';
+  box.innerHTML = '<input type="search" class="picker-gif-search" placeholder="' + escapeHtml(t('gif.search')) + '" enterkeyhint="search" autocomplete="off">' +
+    '<div class="picker-gif-results"></div><div class="picker-gif-brand">Powered by KLIPY</div>';
   positionPickerBox(anchor);
   box.classList.remove('hidden');
   var input = box.querySelector('.picker-gif-search');
   var results = box.querySelector('.picker-gif-results');
+  var seq = 0;
+  function note(key){ results.innerHTML = '<div class="picker-gif-empty">' + escapeHtml(t(key)) + '</div>'; }
   function doSearch(q){
+    var mine = ++seq;
     if(!q){ results.innerHTML = ''; return; }
+    if(navigator.onLine === false){ note('gif.offline'); return; }
     results.innerHTML = '<div class="picker-gif-empty">…</div>';
-    fetch('https://g.tenor.com/v1/search?q=' + encodeURIComponent(q) + '&key=' + TENOR_API_KEY + '&limit=8&media_filter=minimal')
-      .then(function(r){ return r.ok ? r.json() : { results: [] }; })
+    var conn = navigator.connection || {};
+    var few = conn.saveData || /(^|-)2g|3g/.test(conn.effectiveType || '');
+    var url = 'https://api.klipy.com/api/v1/' + encodeURIComponent(KLIPY_API_KEY) + '/gifs/search?q=' + encodeURIComponent(q) +
+      '&page=1&per_page=' + (few ? 8 : 16) + '&rating=pg-13&locale=' + gifLocale() + '&customer_id=' + encodeURIComponent(gifCustomerId());
+    fetchWithTimeout(url, {}, 12000)
+      .then(function(r){ if(!r.ok) throw new Error('KLIPY HTTP ' + r.status); return r.json(); })
       .then(function(data){
-        var items = data.results || [];
-        if(!items.length){ results.innerHTML = '<div class="picker-gif-empty">Nessun risultato</div>'; return; }
-        results.innerHTML = items.map(function(g){
-          var thumb = g.media && g.media[0] && g.media[0].tinygif ? g.media[0].tinygif.url : '';
-          var full = g.media && g.media[0] && g.media[0].gif ? g.media[0].gif.url : thumb;
-          return '<img class="picker-gif-thumb" src="' + escapeHtml(thumb) + '" data-full="' + escapeHtml(full) + '" alt="" loading="lazy">';
+        if(mine !== seq) return; // nel frattempo è partita una ricerca più nuova
+        var items = (data && data.data && data.data.data) || (data && data.results) || [];
+        var html = items.map(function(g){
+          if(!g || g.type === 'ad') return '';
+          var u = gifPickUrls(g);
+          if(!u.full || !isGifUrl(u.full)) return '';
+          return '<img class="picker-gif-thumb" src="' + escapeHtml(u.thumb || u.full) + '" data-full="' + escapeHtml(u.full) + '" alt="' + escapeHtml(g.title || 'GIF') + '" loading="lazy" decoding="async">';
         }).join('');
+        if(!html){ note('gif.none'); return; }
+        results.innerHTML = html;
+        positionPickerBox(anchor); // ora che è pieno: se sotto non c'è spazio si apre sopra
         Array.prototype.forEach.call(results.querySelectorAll('.picker-gif-thumb'), function(img){
           img.addEventListener('click', function(){
             field.value = img.getAttribute('data-full');
@@ -16456,12 +16668,19 @@ function openGifPicker(field, anchor){
           });
         });
       })
-      .catch(function(){ results.innerHTML = '<div class="picker-gif-empty">Errore di ricerca</div>'; });
+      .catch(function(e){
+        if(mine !== seq) return;
+        console.warn('Ricerca GIF non riuscita:', e);
+        note(navigator.onLine === false ? 'gif.offline' : 'gif.error');
+      });
   }
   input.addEventListener('input', function(){
     clearTimeout(gifSearchDebounce);
     var q = input.value.trim();
-    gifSearchDebounce = setTimeout(function(){ doSearch(q); }, 400);
+    gifSearchDebounce = setTimeout(function(){ doSearch(q); }, 450);
+  });
+  input.addEventListener('keydown', function(e){
+    if(e.key === 'Enter'){ e.preventDefault(); clearTimeout(gifSearchDebounce); doSearch(input.value.trim()); }
   });
   input.focus();
 }
@@ -16473,15 +16692,17 @@ function ensureComposerToolbar(field){
   toolbar.className = 'composer-toolbar';
   toolbar.innerHTML =
     '<button type="button" class="composer-btn emoji-btn" title="Emoji">😊</button>' +
-    '<button type="button" class="composer-btn gif-btn" title="GIF">GIF</button>';
+    // senza chiave KLIPY niente pulsante: meglio assente che rotto
+    (KLIPY_API_KEY ? '<button type="button" class="composer-btn gif-btn" title="GIF">GIF</button>' : '');
   field.parentNode.insertBefore(toolbar, field.nextSibling);
   toolbar.querySelector('.emoji-btn').addEventListener('click', function(e){
     e.preventDefault();
     openEmojiPicker(field, toolbar.querySelector('.emoji-btn'));
   });
-  toolbar.querySelector('.gif-btn').addEventListener('click', function(e){
+  var gifBtn = toolbar.querySelector('.gif-btn');
+  if(gifBtn) gifBtn.addEventListener('click', function(e){
     e.preventDefault();
-    openGifPicker(field, toolbar.querySelector('.gif-btn'));
+    openGifPicker(field, gifBtn);
   });
 }
 function scanForComposerFields(){
@@ -16509,9 +16730,10 @@ scanForComposerFields();
     '.picker-emoji:hover{background:rgba(110,20,35,.12);}' +
     '.picker-gif-search{width:100%;box-sizing:border-box;padding:4px 6px;margin-bottom:6px;' +
     'border:1px solid #6e1423;border-radius:4px;background:#fff;color:#2a1a1d;}' +
-    '.picker-gif-results{display:grid;grid-template-columns:1fr 1fr;gap:4px;max-height:220px;overflow-y:auto;}' +
+    '.picker-gif-results{display:grid;grid-template-columns:1fr 1fr;gap:4px;max-height:220px;min-height:200px;align-content:start;overflow-y:auto;}' +
     '.picker-gif-thumb{width:100%;border-radius:4px;cursor:pointer;display:block;}' +
     '.picker-gif-empty{grid-column:1/-1;text-align:center;opacity:.6;font-size:13px;padding:8px;}' +
+    '.picker-gif-brand{font-size:10px;letter-spacing:.05em;text-align:right;opacity:.6;margin-top:6px;}' +
     '.chat-gif{max-width:200px;border-radius:6px;display:block;}';
   document.head.appendChild(style);
 })();
@@ -17000,10 +17222,7 @@ function renderAdminAnnouncements(){
         });
         row.querySelector('[data-del-ann]').addEventListener('click', function(){
           if(!confirm(t('admin.confirmDelete'))) return;
-          fetch(SUPABASE_URL + '/rest/v1/announcements?id=eq.' + encodeURIComponent(a.id), {
-            method:'DELETE',
-            headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
-          }).then(function(r){ if(r.ok){ renderAdminAnnouncements(); fetchAnnouncements(); } });
+          luxDelete('announcements?id=eq.' + encodeURIComponent(a.id)).then(function(){ renderAdminAnnouncements(); fetchAnnouncements(); }, luxDeleteFail);
         });
         list.appendChild(row);
       });
@@ -17024,10 +17243,11 @@ function ensureClearReadRequestsButton(){
   btn.addEventListener('click', function(){
     if(!confirm('Eliminare tutte le richieste già segnate come lette?')) return;
     var session = getSession();
-    fetch(SUPABASE_URL + '/rest/v1/requests?status=eq.read', {
-      method:'DELETE',
-      headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
-    }).then(function(r){ if(r.ok) renderAdminRequests(); else console.warn('Pulizia richieste fallita:', r.status); });
+    luxDelete('requests?status=eq.read', { allowEmpty: true }).then(function(rows){
+      renderAdminRequests();
+      // "ok" con zero righe ma richieste lette ancora in lista = permesso negato
+      if(!rows.length && document.querySelector('#adminRequestsList [data-read-tag]')) luxDeleteFail(luxDeleteErr('denied'));
+    }, luxDeleteFail);
   });
   list.parentNode.insertBefore(btn, list);
 }
@@ -17038,11 +17258,17 @@ function renderAdminRequests(){
   if(!list) return;
   ensureClearReadRequestsButton();
   var session = getSession();
-  fetch(SUPABASE_URL + '/rest/v1/requests?select=*&order=created_at.desc', {
-    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
-  })
-    .then(function(r){ if(!r.ok) throw new Error('admin requests read failed'); return r.json(); })
-    .then(function(rows){
+  var authH = { 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token };
+  // chi ha già il pagamento verificato: il pulsante lo ricorda anche dopo aver ricaricato
+  var verifiedReq = fetch(SUPABASE_URL + '/rest/v1/verified_supporters?select=user_id', { headers: authH })
+    .then(function(r){ return r.ok ? r.json() : []; }).catch(function(){ return []; });
+  var requestsReq = fetch(SUPABASE_URL + '/rest/v1/requests?select=*&order=created_at.desc', { headers: authH })
+    .then(function(r){ if(!r.ok) throw new Error('admin requests read failed'); return r.json(); });
+  Promise.all([requestsReq, verifiedReq])
+    .then(function(res){
+      var rows = res[0];
+      var verified = {};
+      (res[1] || []).forEach(function(v){ if(v && v.user_id) verified[v.user_id] = true; });
       list.innerHTML = '';
       if(rows.length === 0){ list.innerHTML = '<p class="form-note">' + t('requests.empty') + '</p>'; return; }
       rows.forEach(function(req){
@@ -17057,25 +17283,38 @@ function renderAdminRequests(){
             '<div class="txt">' + escapeHtml(req.body) + '</div>' +
           '</div>' +
           '<div class="admin-actions">' +
-          (isSupport && req.user_id ? '<button class="btn btn-primary btn-sm" data-verify-supporter="' + req.id + '">Verifica pagamento (sblocca pagine pulite)</button>' : '') +
+          (isSupport && req.user_id ? (verified[req.user_id]
+            ? '<span class="req-done-tag">✓ Pagamento verificato</span>'
+            : '<button class="btn btn-primary btn-sm" data-verify-supporter="' + req.id + '">Verifica pagamento (sblocca pagine pulite)</button>') : '') +
           (isSupport && !req.user_id ? '<span class="mono" style="font-size:11px;color:var(--parchment-dim);">non collegato a un account — non verificabile</span>' : '') +
           (isSupport ? '' : '<button class="btn btn-primary btn-sm" data-approve-collab="' + req.id + '">Approva collaborazione</button>') +
-          '<button class="btn btn-ghost btn-sm" data-mark-read="' + req.id + '" ' + (req.status !== 'new' ? 'disabled' : '') + '>' + t('requests.markRead') + '</button>' +
+          (req.status === 'new'
+            ? '<button class="btn btn-ghost btn-sm" data-mark-read="' + req.id + '">' + t('requests.markRead') + '</button>'
+            : '<span class="req-done-tag" data-read-tag>✓ Letta</span>') +
           '<button class="btn btn-ghost btn-sm" data-del-req="' + req.id + '" style="border-color:#e24b4a;color:#e24b4a;">Elimina</button>' +
           '</div>';
-        row.querySelector('[data-mark-read]').addEventListener('click', function(){
+        var markBtn = row.querySelector('[data-mark-read]');
+        if(markBtn) markBtn.addEventListener('click', function(){
+          markBtn.disabled = true;
           fetch(SUPABASE_URL + '/rest/v1/requests?id=eq.' + encodeURIComponent(req.id), {
             method:'PATCH',
-            headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
+            headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json', 'Prefer':'return=representation' },
             body: JSON.stringify({status:'read'})
-          }).then(function(r){ if(r.ok) renderAdminRequests(); });
+          }).then(function(r){
+            if(!r.ok) throw new Error('HTTP ' + r.status);
+            return r.json();
+          }).then(function(changed){
+            // "ok" ma nessuna riga cambiata = il database non lo permette (prima non succedeva niente)
+            if(!changed || !changed.length) window.alert('Non è stato possibile segnarla come letta: il database non lo consente. Lancia elimina_contenuti.sql su Supabase (SQL Editor).');
+            renderAdminRequests();
+          }).catch(function(){ markBtn.disabled = false; luxToast(t('net.actionFailed')); });
         });
         row.querySelector('[data-del-req]').addEventListener('click', function(){
           if(!confirm('Eliminare questa richiesta?')) return;
-          fetch(SUPABASE_URL + '/rest/v1/requests?id=eq.' + encodeURIComponent(req.id), {
-            method:'DELETE',
-            headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
-          }).then(function(r){ if(r.ok) renderAdminRequests(); else console.warn('Eliminazione richiesta fallita:', r.status); });
+          var delReqBtn = this;
+          delReqBtn.disabled = true;
+          luxDelete('requests?id=eq.' + encodeURIComponent(req.id)).then(function(){ renderAdminRequests(); })
+            .catch(function(err){ delReqBtn.disabled = false; luxDeleteFail(err); });
         });
         var approveBtn = row.querySelector('[data-approve-collab]');
         if(approveBtn){
@@ -17147,15 +17386,12 @@ function moderateComment(id, approve, catalogId){
         headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
         body: JSON.stringify({approved:true})
       })
-    : fetch(SUPABASE_URL + '/rest/v1/comments?id=eq.' + encodeURIComponent(id), {
-        method:'DELETE',
-        headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
-      });
+    : luxDelete('comments?id=eq.' + encodeURIComponent(id)).then(function(){ return { ok: true }; });
   req.then(function(r){
     if(!r.ok) throw new Error('moderation action failed');
     if(approve && catalogId) bumpLocalCommentCount(catalogId, 1);
     renderModerationQueue();
-  }).catch(function(err){ console.warn('Moderation action failed:', err); });
+  }).catch(function(err){ console.warn('Moderation action failed:', err); if(err && err.kind) luxDeleteFail(err); else luxToast(t('net.actionFailed')); });
 }
 function bumpLocalCommentCount(catalogId, delta){
   var items = getCatalog();
@@ -17189,7 +17425,9 @@ function fetchCharacterImages(){
 function renderHeroBg(){
   var box = document.getElementById('heroBg');
   if(!box) return;
+  if(window.LUX_NET === 'slow') return; // su 2G: niente ritratti velati, resta lo sfondo leggero
   box.innerHTML = '';
+  var sliceW = window.innerWidth <= 700 ? 300 : 600; // su telefono ogni striscia è larga un dito: basta metà
   charList(false).map(function(c){ return c.id; }).slice(0, 6).forEach(function(name){
     var url = characterImages[name];
     if(!url) return;
@@ -17198,10 +17436,35 @@ function renderHeroBg(){
     // versione ridotta invece dell'originale a piena risoluzione (sono comunque
     // velate e scurite): si scaricano in una frazione del tempo, e compaiono
     // solo a immagine completa invece di disegnarsi a pezzi
-    slice.innerHTML = '<img src="' + escapeHtml(coverThumbUrl(url, 600)) + '" data-fallback="' + escapeHtml(url) + '" alt="" decoding="async" onload="this.classList.add(\'is-in\')">';
+    slice.innerHTML = '<img src="' + escapeHtml(coverThumbUrl(url, sliceW)) + '" data-fallback="' + escapeHtml(url) + '" alt="" decoding="async" onload="this.classList.add(\'is-in\')">';
     box.appendChild(slice);
   });
 }
+
+/* v219: immagini decorative sotto la piega (data-lazy-src) solo quando ci si
+   avvicina. Il loading="lazy" del browser su 2G/3G scarica tutto ciò che sta
+   nei primi 2500px — sulla home anche il banner del sostegno, 127 KB. */
+function luxLazyImages(){
+  var imgs = document.querySelectorAll('img[data-lazy-src]');
+  if(!imgs.length) return;
+  var load = function(img){ var u = img.getAttribute('data-lazy-src'); if(!u) return; img.removeAttribute('data-lazy-src'); img.src = u; };
+  if(!('IntersectionObserver' in window)){ Array.prototype.forEach.call(imgs, load); return; }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(!en.isIntersecting) return;
+      if(document.body.classList.contains('home-loading')){
+        // home ancora coperta: appena compare le sezioni si spostano, si ricontrolla tra poco
+        setTimeout(function(){ io.unobserve(en.target); io.observe(en.target); }, 800);
+        return;
+      }
+      io.unobserve(en.target);
+      load(en.target);
+    });
+  }, { rootMargin: '300px 0px' });
+  Array.prototype.forEach.call(imgs, function(img){ io.observe(img); });
+}
+if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', luxLazyImages);
+else luxLazyImages();
 
 function renderCharImageAdmin(){
   if(!isAdmin()) return;
@@ -17367,6 +17630,7 @@ function __appInit(){
     initChatPage(); // deve aspettare che la sessione sia confermata, non solo che il catalogo sia caricato
   });
   setInterval(refreshSessionIfNeeded, 4 * 60 * 1000); // keep the token fresh while the tab stays open
+  window.addEventListener('online', function(){ refreshSessionIfNeeded(); }); // v219: rinnovo saltato per la rete? si riprova appena torna
 
   renderCartCount();
   fetchSocialLinks();
