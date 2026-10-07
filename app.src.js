@@ -771,6 +771,11 @@ Object.assign(STR.en, {"side.discover": "Discover", "side.theme": "Day or night"
 Object.assign(STR.es, {"side.discover": "Descubre", "side.theme": "Día o noche", "rail.label": "Cuaderno del archivo", "rail.now": "Ahora en el archivo", "rail.online": "En línea ahora", "rail.onlineOne": "{a} está en el archivo", "rail.onlineTwo": "{a} y {b}", "rail.onlineMany": "{a}, {b} y {n} más", "rail.viewsTitle": "Visualizaciones", "rail.views": "visualizaciones", "rail.today": "hoy", "rail.toCommunity": "Ir a la Comunidad", "rail.onLuxtify": "En Luxtify", "rail.latestSong": "Último lanzamiento", "rail.listen": "Escuchar", "rail.fromCommunity": "Desde la Comunidad", "rail.latestMsgs": "Últimos mensajes", "rail.openCommunity": "Abrir la Comunidad", "rail.seals": "Cuatro sellos", "rail.keepers": "Los custodios", "rail.collection": "Colección de {name}", "rail.gif": "envió un GIF", "rail.attach": "envió un archivo", "rank.reads": "lecturas", "rec.readNow": "Leer ahora"});
 Object.assign(STR.fr, {"side.discover": "Découvrir", "side.theme": "Jour ou nuit", "rail.label": "Carnet de l’archive", "rail.now": "En ce moment dans l’archive", "rail.online": "En ligne", "rail.onlineOne": "{a} est dans l’archive", "rail.onlineTwo": "{a} et {b}", "rail.onlineMany": "{a}, {b} et {n} autres", "rail.viewsTitle": "Vues", "rail.views": "vues", "rail.today": "aujourd’hui", "rail.toCommunity": "Aller à la Communauté", "rail.onLuxtify": "Sur Luxtify", "rail.latestSong": "Dernière sortie", "rail.listen": "Écouter", "rail.fromCommunity": "De la Communauté", "rail.latestMsgs": "Derniers messages", "rail.openCommunity": "Ouvrir la Communauté", "rail.seals": "Quatre sceaux", "rail.keepers": "Les gardiens", "rail.collection": "Collection de {name}", "rail.gif": "a envoyé un GIF", "rail.attach": "a envoyé une pièce jointe", "rank.reads": "lectures", "rec.readNow": "Lire maintenant"});
 Object.assign(STR.de, {"side.discover": "Entdecken", "side.theme": "Tag oder Nacht", "rail.label": "Notizbuch des Archivs", "rail.now": "Gerade im Archiv", "rail.online": "Jetzt online", "rail.onlineOne": "{a} ist im Archiv", "rail.onlineTwo": "{a} und {b}", "rail.onlineMany": "{a}, {b} und {n} weitere", "rail.viewsTitle": "Aufrufe", "rail.views": "Aufrufe", "rail.today": "heute", "rail.toCommunity": "Zur Community", "rail.onLuxtify": "Auf Luxtify", "rail.latestSong": "Neueste Veröffentlichung", "rail.listen": "Anhören", "rail.fromCommunity": "Aus der Community", "rail.latestMsgs": "Neueste Nachrichten", "rail.openCommunity": "Community öffnen", "rail.seals": "Vier Siegel", "rail.keepers": "Die Hüter", "rail.collection": "Reihe von {name}", "rail.gif": "hat ein GIF gesendet", "rail.attach": "hat einen Anhang gesendet", "rank.reads": "Aufrufe", "rec.readNow": "Jetzt lesen"});
+Object.assign(STR.it, {"push.test": "Prova", "push.testTitle": "Notifiche attive — tocca per una notifica di prova", "push.testBody": "Notifica di prova: se la vedi, su questo dispositivo le notifiche funzionano.", "push.testSent": "Inviata ✓", "push.testFail": "Questo dispositivo non riesce a mostrare le notifiche. Controlla che siano consentite: Impostazioni → Notifiche (su iPhone) o le impostazioni del browser.", "push.testHint": "«Prova» fa comparire una notifica da questo dispositivo. Se non la vedi, controlla Non disturbare (Full immersion) e Impostazioni → Notifiche."});
+Object.assign(STR.en, {"push.test": "Test", "push.testTitle": "Notifications on — tap for a test notification", "push.testBody": "Test notification: if you can see this, notifications work on this device.", "push.testSent": "Sent ✓", "push.testFail": "This device can’t show notifications. Check that they’re allowed: Settings → Notifications (on iPhone) or your browser settings.", "push.testHint": "“Test” shows a notification from this device. If you don’t see it, check Do Not Disturb (Focus) and Settings → Notifications."});
+Object.assign(STR.es, {"push.test": "Probar", "push.testTitle": "Notificaciones activas — toca para una notificación de prueba", "push.testBody": "Notificación de prueba: si la ves, las notificaciones funcionan en este dispositivo.", "push.testSent": "Enviada ✓", "push.testFail": "Este dispositivo no puede mostrar notificaciones. Comprueba que estén permitidas: Ajustes → Notificaciones (en iPhone) o los ajustes del navegador.", "push.testHint": "«Probar» muestra una notificación desde este dispositivo. Si no la ves, revisa No molestar (Concentración) y Ajustes → Notificaciones."});
+Object.assign(STR.fr, {"push.test": "Tester", "push.testTitle": "Notifications activées — touche pour une notification de test", "push.testBody": "Notification de test : si tu la vois, les notifications fonctionnent sur cet appareil.", "push.testSent": "Envoyée ✓", "push.testFail": "Cet appareil ne peut pas afficher les notifications. Vérifie qu’elles sont autorisées : Réglages → Notifications (sur iPhone) ou les réglages du navigateur.", "push.testHint": "« Tester » affiche une notification depuis cet appareil. Si tu ne la vois pas, vérifie Ne pas déranger (Concentration) et Réglages → Notifications."});
+Object.assign(STR.de, {"push.test": "Testen", "push.testTitle": "Benachrichtigungen an — tippe für eine Testbenachrichtigung", "push.testBody": "Testbenachrichtigung: Wenn du sie siehst, funktionieren Benachrichtigungen auf diesem Gerät.", "push.testSent": "Gesendet ✓", "push.testFail": "Dieses Gerät kann keine Benachrichtigungen anzeigen. Prüfe, ob sie erlaubt sind: Einstellungen → Mitteilungen (auf dem iPhone) oder die Browsereinstellungen.", "push.testHint": "„Testen“ zeigt eine Benachrichtigung von diesem Gerät. Wenn du sie nicht siehst, prüfe „Nicht stören“ (Fokus) und Einstellungen → Mitteilungen."});
 var CHAR_META = {
   Lucifer:{role:{it:"Il Portatore di Luce",en:"The Light-Bearer",es:"El Portador de Luz",fr:"Le Porteur de Lumière",de:"Der Lichtträger"},
     bio:{it:"Sovrano della collana ammiraglia: potere, caduta e desiderio raccontati su grande scala.",
@@ -1471,6 +1476,7 @@ function refreshCommunityDot(){
 function refreshAuthUI(){
   var chip = document.getElementById('acctChip');
   if(!chip) return; // pagina senza il menu principale (es. luxtify.html) — niente da aggiornare qui
+  homeRailAuthCheck();
   var btnLogin = document.getElementById('btnLoginTop');
   var btnLogout = document.getElementById('btnLogoutTop');
   var navCommunity = document.getElementById('navCommunity');
@@ -4117,6 +4123,59 @@ function setPushBtnState(btn, state, label){
   if(state === 'active') btn.classList.add('push-btn-active');
   else if(state === 'error') btn.classList.add('push-btn-error');
   btn.textContent = label;
+  btn.title = state === 'active' ? t('push.testTitle') : label; // v221: attive → si tocca per la prova
+}
+
+// v221: salva (o aggiorna) nel database l'iscrizione di questo dispositivo
+function savePushSubscription(sub, session){
+  var json = sub.toJSON();
+  return fetch(SUPABASE_URL + '/rest/v1/push_subscriptions?on_conflict=endpoint', {
+    method: 'POST',
+    headers: {
+      'apikey': SUPABASE_ANON_KEY, 'Authorization': 'Bearer ' + session.access_token,
+      'Content-Type': 'application/json', 'Prefer': 'resolution=merge-duplicates'
+    },
+    body: JSON.stringify({ user_id: currentUserId(), endpoint: json.endpoint, p256dh: json.keys.p256dh, auth: json.keys.auth })
+  });
+}
+
+// v221: il permesso c'è già ma il browser ha perso l'iscrizione (capita dopo
+// un aggiornamento del telefono o del browser): la si rifà da sola, senza
+// chiedere niente. Se il browser vuole un tocco, resta «Attiva le notifiche».
+var pushSilentTried = false;
+function trySilentResubscribe(){
+  if(pushSilentTried) return;
+  if(typeof Notification === 'undefined' || Notification.permission !== 'granted') return;
+  var session = getSession();
+  if(!session || !('serviceWorker' in navigator)) return;
+  pushSilentTried = true;
+  navigator.serviceWorker.ready.then(function(reg){
+    return reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: urlBase64ToUint8Array(VAPID_PUBLIC_KEY) });
+  }).then(function(sub){
+    return savePushSubscription(sub, getSession() || session);
+  }).then(function(r){
+    if(r && r.ok) refreshPushButtonUI();
+  }).catch(function(){ /* serve un tocco: resta il pulsante */ });
+}
+
+// v221: con le notifiche già attive il pulsante fa comparire una notifica di
+// prova, creata dal dispositivo stesso. Se compare, il telefono è a posto
+// (permesso, Non disturbare, impostazioni); se poi quelle vere non arrivano,
+// il problema è nel server, non qui.
+function testPushNotification(){
+  var sent = t('push.testSent');
+  var done = function(ok){
+    if(!ok){ window.alert(t('push.testFail')); return; }
+    var btn = document.getElementById('btnEnablePush'), st = document.getElementById('appTuPushState');
+    if(btn){ btn.textContent = sent; setTimeout(function(){ if(btn.textContent === sent) btn.textContent = t('push.enabled'); }, 6000); }
+    if(st){ st.textContent = sent; setTimeout(function(){ if(st.textContent === sent) st.textContent = t('push.test'); }, 6000); }
+  };
+  if(!('serviceWorker' in navigator) || typeof Notification === 'undefined' || Notification.permission !== 'granted'){ done(false); return; }
+  navigator.serviceWorker.ready.then(function(reg){
+    return reg.showNotification('LUX COMICS', {
+      body: t('push.testBody'), icon: './icon-192.png', badge: './icon-192.png', tag: 'lux-test', data: { url: './' }
+    });
+  }).then(function(){ done(true); }, function(){ done(false); });
 }
 
 function refreshPushButtonUI(){
@@ -4163,6 +4222,7 @@ function refreshPushButtonUI(){
       btn.classList.remove('hidden');
       setPushBtnState(btn, 'idle', t('push.enable'));
       btn.disabled = false;
+      trySilentResubscribe(); // v221
       return;
     }
     // Il browser ha già un'iscrizione attiva, ma questo da solo non
@@ -4190,7 +4250,7 @@ function refreshPushButtonUI(){
         clearTimeout(safetyTimer);
         btn.classList.remove('hidden');
         setPushBtnState(btn, 'active', t('push.enabled'));
-        btn.disabled = true;
+        btn.disabled = false;
         return;
       }
       // In database non c'è — la risalviamo silenziosamente con gli stessi
@@ -4210,7 +4270,7 @@ function refreshPushButtonUI(){
         btn.classList.remove('hidden');
         if(r2.ok){
           setPushBtnState(btn, 'active', t('push.enabled'));
-          btn.disabled = true;
+          btn.disabled = false;
         } else {
           // Il browser dice di essere iscritto ma il salvataggio è fallito
           // di nuovo — segnale rosso invece di tornare silenziosamente al
@@ -4229,6 +4289,8 @@ function refreshPushButtonUI(){
 }
 
 function enablePushNotifications(){
+  var pbtn = document.getElementById('btnEnablePush');
+  if(pbtn && pbtn.classList.contains('push-btn-active')){ testPushNotification(); return; } // v221: già attive → prova
   var reason = pushUnavailableReason();
   if(reason === 'ios-not-installed'){ window.alert(t('push.installFirstLong')); return; }
   if(reason === 'unsupported'){ window.alert(t('push.unsupported')); return; }
@@ -6281,8 +6343,19 @@ function initAppShell(){
     if(byId('appTuLogout')) byId('appTuLogout').hidden = !signed;
     var navAdmin = byId('navAdmin');
     if(byId('appTuAdmin')) byId('appTuAdmin').hidden = !navAdmin || navAdmin.classList.contains('hidden');
-    var push = byId('btnEnablePush');
-    if(byId('appTuPush')) byId('appTuPush').hidden = !push || push.classList.contains('hidden');
+    var push = byId('btnEnablePush'), pushRow = byId('appTuPush');
+    if(pushRow){
+      pushRow.hidden = !push || push.classList.contains('hidden');
+      // v221: la voce dice com'è davvero: attive (con «Prova»), da attivare, errore
+      var pst = !push ? 'off' : push.classList.contains('push-btn-active') ? 'on' : push.classList.contains('push-btn-error') ? 'error' : 'off';
+      pushRow.classList.toggle('is-on', pst === 'on');
+      pushRow.classList.toggle('is-error', pst === 'error');
+      var pl = byId('appTuPushLabel'), pv = byId('appTuPushState'), ph = byId('appTuPushHint');
+      if(pl) pl.textContent = pst === 'on' ? t('push.enabled') : pst === 'error' ? t('push.errorShort')
+        : (pushUnavailableReason() === 'ios-not-installed' ? t('push.installFirst') : t('apptu.push'));
+      if(pv && pv.textContent !== t('push.testSent')) pv.textContent = pst === 'on' ? t('push.test') : '';
+      if(ph) ph.hidden = pst !== 'on' || pushRow.hidden;
+    }
     var count = (typeof cart !== 'undefined' && cart && cart.length) ? String(cart.length) : '';
     if(byId('appTuCartCount')) byId('appTuCartCount').textContent = count;
     setSwitch('appTuTheme', !document.body.classList.contains('theme-light'));
@@ -6465,6 +6538,14 @@ function refreshHomeRailLang(){
   old.parentNode.removeChild(old);
   buildHomeRail();
 }
+// v221: se chi guarda entra o esce, il Taccuino si rifà ("Online ora" e la
+// Community si vedono solo dopo l'accesso)
+function homeRailAuthCheck(){
+  var rail = document.getElementById('homeRail');
+  if(!rail) return;
+  if(rail.getAttribute('data-signed') === (isSignedIn() ? '1' : '0')) return;
+  refreshHomeRailLang();
+}
 function homeRailName(p){
   return (p && p.display_name) || (t('notif.someone') + ' ' + String((p && p.id) || '').slice(0, 6));
 }
@@ -6476,6 +6557,7 @@ function homeRailPlain(body){
     .replace(/`([^`\n]+)`/g, '$1')
     .replace(/\*\*([^*\n]+)\*\*/g, '$1').replace(/\*([^*\n]+)\*/g, '$1').replace(/~~([^~\n]+)~~/g, '$1')
     .replace(/(^|\n)>\s?/g, '$1')
+    .replace(/[^\s@<>()"']+@[^\s@<>()"']+\.[a-z]{2,}/gi, '•••') // v221: niente indirizzi email in home
     .replace(/\s+/g, ' ').trim();
 }
 function homeRailCard(key, eyebrow, title, inner, link){
@@ -6495,6 +6577,7 @@ function buildHomeRail(){
   rail.id = 'homeRail';
   rail.className = 'home-rail';
   rail.setAttribute('aria-label', t('rail.label'));
+  rail.setAttribute('data-signed', isSignedIn() ? '1' : '0');
   rail.innerHTML =
     homeRailCard('now', t('rail.now'), t('rail.online'), '<div class="home-rail-online"></div><p class="home-rail-note"></p><div class="home-rail-stats"></div>',
       '<a class="home-rail-link" href="community.html#communitySection">' + escapeHtml(t('rail.toCommunity')) + arrow + '</a>') +
@@ -6570,11 +6653,15 @@ function fillHomeRailSong(rail){
 }
 function fillHomeRailPosts(rail){
   var card = rail.querySelector('[data-rail="posts"]');
+  // v221: la Community si legge solo dopo l'accesso, come nella sua pagina
+  if(!isSignedIn()) return;
   // solo i canali pubblici (non quelli dei server), e niente messaggi nascosti dalla moderazione
   fetch(SUPABASE_URL + '/rest/v1/channels?community_id=is.null&select=id,name', { headers: communityHeaders() })
     .then(function(r){ return r.ok ? r.json() : []; })
     .then(function(chans){
-      if(!Array.isArray(chans) || !chans.length) return [];
+      // v221: un canale che ha per nome un indirizzo email non compare mai in home
+      chans = (Array.isArray(chans) ? chans : []).filter(function(c){ return c && c.id && String(c.name || '').indexOf('@') === -1; });
+      if(!chans.length) return [];
       var names = {};
       chans.forEach(function(c){ names[c.id] = c.name; });
       return fetch(SUPABASE_URL + '/rest/v1/channel_messages?channel_id=in.(' + chans.map(function(c){ return encodeURIComponent(c.id); }).join(',') +
