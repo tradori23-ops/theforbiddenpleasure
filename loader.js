@@ -58,11 +58,48 @@
   // hai visto live sul sito prima di caricare — questo file parte da una
   // copia salvata in sessione e potrebbe non riflettere bump fatti nel
   // frattempo direttamente su GitHub.
-  var V = "218";
+  var V = "219";
 
   // style.css iniettato qui (non più con un <link> scritto a mano in ogni
   // pagina) così la sua versione segue sempre la stessa V di app.js,
   // ovunque, senza doverla tenere sincronizzata a mano in più file.
+  // v219: quanto è veloce la rete? "slow" = 2G o risparmio dati, "mid" = 3G.
+  // Dove il browser non lo dice (iPhone), si stima dal tempo che ha
+  // impiegato ad arrivare questa stessa pagina.
+  var NET = (function () {
+    try {
+      var c = navigator.connection;
+      if (c) {
+        if (c.saveData) return "slow";
+        // Chrome chiama "3g" anche un 2G vero (300 kbps, 800 ms): conta di più la banda stimata
+        var et = c.effectiveType || "", dl = typeof c.downlink === "number" ? c.downlink : 0, rtt = typeof c.rtt === "number" ? c.rtt : 0;
+        if (/(^|-)2g$/.test(et) || (dl > 0 && dl < 0.45) || rtt >= 900) return "slow";
+        if (et === "3g" || (dl > 0 && dl < 2) || rtt >= 300) return "mid";
+        if (et) return "fast";
+      }
+      var n = performance.getEntriesByType && performance.getEntriesByType("navigation")[0];
+      if (n && n.transferSize > 0) {
+        var d = n.responseEnd - n.requestStart;
+        if (d > 2200) return "slow";
+        if (d > 900) return "mid";
+      }
+    } catch (e) {}
+    return "fast";
+  })();
+  window.LUX_NET = NET;
+  document.documentElement.setAttribute("data-net", NET);
+  // Su rete lenta i caratteri del sito aspettano app.js: il testo si legge
+  // subito coi caratteri del telefono e cambia aspetto un attimo dopo,
+  // invece di rubare banda proprio a ciò che rende la pagina utilizzabile.
+  var lateFonts = [];
+  if (NET === "slow") {
+    document.querySelectorAll('link[rel="stylesheet"][href*="fonts.googleapis.com"]').forEach(function (l) {
+      l.onload = null;
+      l.media = "print";
+      lateFonts.push(l);
+    });
+  }
+
   var cssLink = document.createElement("link");
   cssLink.rel = "stylesheet";
   cssLink.href = "style.css?v=" + V;
@@ -81,18 +118,29 @@
   // dissolvenza — mai più l'immagine che si disegna a quadretti. Parte
   // dopo lo stile, così non gli ruba banda: nel frattempo si vede
   // l'anteprima sfocata già contenuta nel CSS.
+  // v219: parte DOPO app.js (vedi in fondo) — prima i suoi 240 KB arrivavano
+  // insieme ad app.js e su 2G lo rallentavano di 10-15 secondi. Sui telefoni
+  // si scarica la versione leggera; su 2G / risparmio dati niente foto: resta
+  // l'anteprima sfocata, che pesa meno di 1 KB.
   var heroBg = document.getElementById("heroBg");
-  if (heroBg) {
-    cssReady.then(function () {
-      var heroImg = new Image();
-      var markHero = function () { heroBg.classList.add("is-ready"); };
-      heroImg.onload = function () {
-        if (heroImg.decode) heroImg.decode().then(markHero, markHero);
-        else markHero();
-      };
-      heroImg.onerror = markHero;
-      heroImg.src = "hero-bg.webp";
-    });
+  var heroStarted = false;
+  function startHero() {
+    if (!heroBg || heroStarted || NET === "slow") return;
+    heroStarted = true;
+    var small = window.matchMedia && window.matchMedia("(max-width: 700px)").matches;
+    var heroImg = new Image();
+    var markHero = function () { heroBg.classList.add("is-ready"); };
+    heroImg.onload = function () {
+      if (heroImg.decode) heroImg.decode().then(markHero, markHero);
+      else markHero();
+    };
+    heroImg.onerror = markHero;
+    heroImg.src = small ? "hero-bg-m.webp" : "hero-bg.webp";
+  }
+  function afterApp() {
+    lateFonts.forEach(function (l) { l.media = "all"; });
+    lateFonts = [];
+    startHero();
   }
 
   // Tema chiaro/scuro applicato subito, con lo stesso criterio di
@@ -130,11 +178,13 @@
       hero.parentNode.insertBefore(sk, hero.nextSibling);
     }
     // rete di sicurezza: se app.js non arriva, la pagina si mostra comunque
+    // (su 2G app.js può metterci 15-20 secondi: meglio non scoprire prima
+    // sezioni ancora vuote)
     setTimeout(function () {
       document.body.classList.remove("home-loading");
       var s2 = document.getElementById("homeSkeleton");
       if (s2 && s2.parentNode) s2.parentNode.removeChild(s2);
-    }, 8000);
+    }, NET === "slow" ? 25000 : (NET === "mid" ? 12000 : 8000));
   }
 
   // Barra in basso dell'app (solo telefono, vedi style.css): si attiva qui,
@@ -190,8 +240,11 @@
   // ai cambi pagina ma si azzera da solo alla chiusura della scheda/del
   // browser, quindi lo mostriamo una sola volta per sessione, non ad ogni
   // click su un titolo o un menu.
-  if(!sessionStorage.getItem('lux_age_verify_shown')){
-    sessionStorage.setItem('lux_age_verify_shown', '1');
+  // v219: con la memoria del browser bloccata (alcune modalità private)
+  // questa riga fermava tutto il caricamento: ora al massimo si salta il widget
+  var ageShown = true;
+  try { ageShown = !!sessionStorage.getItem('lux_age_verify_shown'); if(!ageShown) sessionStorage.setItem('lux_age_verify_shown', '1'); } catch (e) {}
+  if(!ageShown){
     var ninjaScript = document.createElement('script');
     ninjaScript.src = 'https://cdn.commoninja.com/sdk/latest/commonninja.js';
     ninjaScript.defer = true;
@@ -250,5 +303,8 @@
   var s = document.createElement("script");
   s.src = "app.js?v=" + V;
   s.async = false;
+  s.onload = s.onerror = function () { setTimeout(afterApp, 0); };
+  // rete veloce: la foto può partire anche prima, non toglie quasi niente ad app.js
+  if (NET === "fast") setTimeout(startHero, 1200);
   document.body.appendChild(s);
 })();
