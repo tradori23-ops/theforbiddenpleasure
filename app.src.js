@@ -776,6 +776,11 @@ Object.assign(STR.en, {"push.test": "Test", "push.testTitle": "Notifications on 
 Object.assign(STR.es, {"push.test": "Probar", "push.testTitle": "Notificaciones activas — toca para una notificación de prueba", "push.testBody": "Notificación de prueba: si la ves, las notificaciones funcionan en este dispositivo.", "push.testSent": "Enviada ✓", "push.testFail": "Este dispositivo no puede mostrar notificaciones. Comprueba que estén permitidas: Ajustes → Notificaciones (en iPhone) o los ajustes del navegador.", "push.testHint": "«Probar» muestra una notificación desde este dispositivo. Si no la ves, revisa No molestar (Concentración) y Ajustes → Notificaciones."});
 Object.assign(STR.fr, {"push.test": "Tester", "push.testTitle": "Notifications activées — touche pour une notification de test", "push.testBody": "Notification de test : si tu la vois, les notifications fonctionnent sur cet appareil.", "push.testSent": "Envoyée ✓", "push.testFail": "Cet appareil ne peut pas afficher les notifications. Vérifie qu’elles sont autorisées : Réglages → Notifications (sur iPhone) ou les réglages du navigateur.", "push.testHint": "« Tester » affiche une notification depuis cet appareil. Si tu ne la vois pas, vérifie Ne pas déranger (Concentration) et Réglages → Notifications."});
 Object.assign(STR.de, {"push.test": "Testen", "push.testTitle": "Benachrichtigungen an — tippe für eine Testbenachrichtigung", "push.testBody": "Testbenachrichtigung: Wenn du sie siehst, funktionieren Benachrichtigungen auf diesem Gerät.", "push.testSent": "Gesendet ✓", "push.testFail": "Dieses Gerät kann keine Benachrichtigungen anzeigen. Prüfe, ob sie erlaubt sind: Einstellungen → Mitteilungen (auf dem iPhone) oder die Browsereinstellungen.", "push.testHint": "„Testen“ zeigt eine Benachrichtigung von diesem Gerät. Wenn du sie nicht siehst, prüfe „Nicht stören“ (Fokus) und Einstellungen → Mitteilungen."});
+Object.assign(STR.it, {"share.title": "Condividi", "share.close": "Chiudi", "share.email": "Email", "share.copyLink": "Copia link", "share.copiedShort": "Copiato ✓", "share.copyManual": "Copialo qui sopra", "share.more": "Altro…", "share.others": "Altre app", "share.rowLabel": "Condividi su", "share.note": "WhatsApp e Telegram si aprono con i tuoi contatti: scegli a chi mandarlo. Chi lo riceve vede la copertina e il titolo.", "share.igCopied": "Link copiato: incollalo nella chat di Instagram che si è appena aperta.", "chatInfo.label": "Info contatto", "chatInfo.profile": "Vedi profilo", "chatInfo.background": "Sfondo chat", "chatInfo.bio": "Bio", "chatInfo.numbers": "Sul sito", "chatInfo.friends": "amici", "chatInfo.followers": "follower", "chatInfo.favs": "preferiti", "chatInfo.favChars": "Personaggi preferiti", "chatInfo.photos": "Foto nella chat", "chatInfo.noPhotos": "Le foto che vi mandate compaiono qui.", "chatInfo.lastSeen": "ultimo accesso {t}", "chatInfo.privateTitle": "Profilo privato", "chatInfo.private": "I dettagli del profilo li vedono solo gli amici.", "chatInfo.none": "Profilo non trovato."});
+Object.assign(STR.en, {"share.title": "Share", "share.close": "Close", "share.email": "Email", "share.copyLink": "Copy link", "share.copiedShort": "Copied ✓", "share.copyManual": "Copy it above", "share.more": "More…", "share.others": "More apps", "share.rowLabel": "Share on", "share.note": "WhatsApp and Telegram open with your contacts: choose who to send it to. They will see the cover and the title.", "share.igCopied": "Link copied: paste it into the Instagram chat that just opened.", "chatInfo.label": "Contact info", "chatInfo.profile": "View profile", "chatInfo.background": "Chat background", "chatInfo.bio": "Bio", "chatInfo.numbers": "On the site", "chatInfo.friends": "friends", "chatInfo.followers": "followers", "chatInfo.favs": "favorites", "chatInfo.favChars": "Favorite characters", "chatInfo.photos": "Photos in this chat", "chatInfo.noPhotos": "The photos you send each other show up here.", "chatInfo.lastSeen": "last seen {t}", "chatInfo.privateTitle": "Private profile", "chatInfo.private": "Only friends can see the profile details.", "chatInfo.none": "Profile not found."});
+Object.assign(STR.es, {"share.title": "Compartir", "share.close": "Cerrar", "share.email": "Correo", "share.copyLink": "Copiar enlace", "share.copiedShort": "Copiado ✓", "share.copyManual": "Cópialo arriba", "share.more": "Más…", "share.others": "Más apps", "share.rowLabel": "Compartir en", "share.note": "WhatsApp y Telegram se abren con tus contactos: elige a quién enviarlo. Quien lo reciba verá la portada y el título.", "share.igCopied": "Enlace copiado: pégalo en el chat de Instagram que se acaba de abrir.", "chatInfo.label": "Info del contacto", "chatInfo.profile": "Ver perfil", "chatInfo.background": "Fondo del chat", "chatInfo.bio": "Bio", "chatInfo.numbers": "En el sitio", "chatInfo.friends": "amigos", "chatInfo.followers": "seguidores", "chatInfo.favs": "favoritos", "chatInfo.favChars": "Personajes favoritos", "chatInfo.photos": "Fotos del chat", "chatInfo.noPhotos": "Las fotos que os enviáis aparecen aquí.", "chatInfo.lastSeen": "última conexión {t}", "chatInfo.privateTitle": "Perfil privado", "chatInfo.private": "Solo los amigos ven los detalles del perfil.", "chatInfo.none": "Perfil no encontrado."});
+Object.assign(STR.fr, {"share.title": "Partager", "share.close": "Fermer", "share.email": "E-mail", "share.copyLink": "Copier le lien", "share.copiedShort": "Copié ✓", "share.copyManual": "Copiez-le ci-dessus", "share.more": "Plus…", "share.others": "Autres apps", "share.rowLabel": "Partager sur", "share.note": "WhatsApp et Telegram s'ouvrent avec vos contacts : choisissez à qui l'envoyer. La personne verra la couverture et le titre.", "share.igCopied": "Lien copié : collez-le dans la discussion Instagram qui vient de s'ouvrir.", "chatInfo.label": "Infos du contact", "chatInfo.profile": "Voir le profil", "chatInfo.background": "Fond de la discussion", "chatInfo.bio": "Bio", "chatInfo.numbers": "Sur le site", "chatInfo.friends": "amis", "chatInfo.followers": "abonnés", "chatInfo.favs": "favoris", "chatInfo.favChars": "Personnages préférés", "chatInfo.photos": "Photos de la discussion", "chatInfo.noPhotos": "Les photos que vous vous envoyez apparaissent ici.", "chatInfo.lastSeen": "dernière connexion {t}", "chatInfo.privateTitle": "Profil privé", "chatInfo.private": "Seuls les amis voient les détails du profil.", "chatInfo.none": "Profil introuvable."});
+Object.assign(STR.de, {"share.title": "Teilen", "share.close": "Schließen", "share.email": "E-Mail", "share.copyLink": "Link kopieren", "share.copiedShort": "Kopiert ✓", "share.copyManual": "Oben kopieren", "share.more": "Mehr…", "share.others": "Weitere Apps", "share.rowLabel": "Teilen auf", "share.note": "WhatsApp und Telegram öffnen sich mit deinen Kontakten: Wähle aus, wem du es schickst. Wer es bekommt, sieht Cover und Titel.", "share.igCopied": "Link kopiert: Füge ihn in den Instagram-Chat ein, der sich gerade geöffnet hat.", "chatInfo.label": "Kontaktinfo", "chatInfo.profile": "Profil ansehen", "chatInfo.background": "Chat-Hintergrund", "chatInfo.bio": "Bio", "chatInfo.numbers": "Auf der Seite", "chatInfo.friends": "Freunde", "chatInfo.followers": "Follower", "chatInfo.favs": "Favoriten", "chatInfo.favChars": "Lieblingsfiguren", "chatInfo.photos": "Fotos im Chat", "chatInfo.noPhotos": "Fotos, die ihr euch schickt, erscheinen hier.", "chatInfo.lastSeen": "zuletzt online {t}", "chatInfo.privateTitle": "Privates Profil", "chatInfo.private": "Nur Freunde sehen die Profildetails.", "chatInfo.none": "Profil nicht gefunden."});
 var CHAR_META = {
   Lucifer:{role:{it:"Il Portatore di Luce",en:"The Light-Bearer",es:"El Portador de Luz",fr:"Le Porteur de Lumière",de:"Der Lichtträger"},
     bio:{it:"Sovrano della collana ammiraglia: potere, caduta e desiderio raccontati su grande scala.",
@@ -2062,6 +2067,10 @@ function shareAnnouncement(id, title, body, imageUrl){
   var excerpt = body.length > 120 ? body.slice(0, 117) + '…' : body;
   var shareText = title + ' — ' + excerpt + '\n';
   var shareUrl = previewPagePath('a', id);
+  if(luxShareMode()){ // v223
+    openSharePanel({ title: title, text: shareText.trim(), url: shareUrl, image: imageUrl ? coverThumbUrl(imageUrl, 160) : '', cover: imageUrl || '' });
+    return;
+  }
 
   function shareWithoutImage(){
     if(navigator.share){
@@ -4347,6 +4356,7 @@ function shareApp(){
     text: "Fumetti d'autore — edizione riservata.",
     url: window.location.origin + '/'
   };
+  if(luxShareMode()){ openSharePanel({ title: shareData.title, text: shareData.text, url: shareData.url, image: 'logo-lm-seal.webp', sub: 'noxmorningstar.com' }); return; } // v223
   if(navigator.share){
     navigator.share(shareData).catch(function(){ /* annullato dall'utente, va bene così */ });
   } else if(navigator.clipboard && navigator.clipboard.writeText){
@@ -6532,7 +6542,7 @@ function initAppShell(){
    niente; su 2G nemmeno da computer. */
 var homeRailMq = null;
 function setupHomeRail(){
-  if(!document.getElementById('testo') || !window.matchMedia || !SUPABASE_URL) return;
+  if(!sideRailPage() || !window.matchMedia || !SUPABASE_URL) return; // v223: anche nelle altre pagine
   if(window.LUX_NET === 'slow') return;
   if(!homeRailMq){
     homeRailMq = window.matchMedia('(min-width: 1560px)');
@@ -6703,6 +6713,335 @@ function fillHomeRailPosts(rail){
         card.hidden = false;
       });
     });
+}
+
+/* ============ v223: SPAZI DA COMPUTER, SCHEDA DEL CONTATTO, CONDIVIDI ============ */
+// Le scelte A della v222. Si accendono con tre classi sul body che mette loader.js
+// (lux-wide, lux-chat3, lux-share-a): senza le classi il sito resta com'era.
+
+// ---- impaginazione da computer (lux-wide, vedi style.css) ----
+function luxLayoutMode(){ return document.body.classList.contains('lux-wide') ? 'wide' : ''; }
+// il Taccuino a destra: in home sempre; nelle altre pagine quando lo schermo si riempie
+function sideRailPage(){
+  if(document.getElementById('testo')) return true;
+  if(!luxLayoutMode() || !document.body.classList.contains('has-app-tabbar')) return false;
+  if(document.getElementById('chatSection') || document.getElementById('adminSection') || document.getElementById('luxtifySection')) return false;
+  return true;
+}
+// cambiando impaginazione il Taccuino compare o sparisce (serve all'anteprima)
+function luxLayoutChanged(){
+  if(sideRailPage()){ setupHomeRail(); return; }
+  var old = document.getElementById('homeRail');
+  if(old && old.parentNode) old.parentNode.removeChild(old);
+  document.body.classList.remove('has-home-rail');
+}
+
+// ---- Messaggi da computer: la scheda del contatto ----
+var chatInfoPhotoList = [];
+var chatInfoMq = null, chatInfoPending = null;
+function chatInfoMode(){ return document.body.classList.contains('lux-chat3') ? 3 : 0; }
+// la scheda c'è solo da computer (da 1320 px): su telefono e tablet non si scarica niente
+function chatInfoWide(){ return !!(window.matchMedia && window.matchMedia('(min-width: 1320px)').matches); }
+function chatInfoEl(){
+  var box = document.getElementById('chatBox');
+  if(!box) return null;
+  var el = document.getElementById('chatInfo');
+  if(!el){
+    el = document.createElement('aside');
+    el.id = 'chatInfo';
+    el.className = 'chat-info';
+    el.setAttribute('aria-label', t('chatInfo.label'));
+    box.appendChild(el);
+  }
+  return el;
+}
+function ensureChatInfoButton(){
+  var head = document.querySelector('#chatBox .chat-page-header');
+  if(!head || document.getElementById('btnChatInfo')) return;
+  var b = document.createElement('button');
+  b.type = 'button';
+  b.id = 'btnChatInfo';
+  b.className = 'chat-icon-btn chat-header-action chat-info-btn';
+  b.setAttribute('aria-label', t('chatInfo.label'));
+  b.setAttribute('aria-expanded', 'false');
+  b.title = t('chatInfo.label');
+  b.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5.5M12 7.6h.01"/></svg>';
+  b.addEventListener('click', function(){ toggleChatInfo(); });
+  head.appendChild(b);
+  // anche il nome in alto apre la scheda
+  var info = head.querySelector('.chat-header-info');
+  if(info){
+    info.classList.add('chat-header-info-btn');
+    info.addEventListener('click', function(){ if(chatInfoMode()) toggleChatInfo(true); });
+  }
+}
+function toggleChatInfo(force){
+  var el = chatInfoEl();
+  if(!el) return;
+  var open = typeof force === 'boolean' ? force : !el.classList.contains('open');
+  el.classList.toggle('open', open);
+  var b = document.getElementById('btnChatInfo');
+  if(b) b.setAttribute('aria-expanded', open ? 'true' : 'false');
+}
+function chatInfoPhotosHtml(){
+  if(!chatInfoPhotoList.length) return '<p class="chat-info-note">' + escapeHtml(t('chatInfo.noPhotos')) + '</p>';
+  return '<div class="chat-info-photos">' + chatInfoPhotoList.slice(-9).reverse().map(function(u){
+    return '<button type="button" data-photo="' + escapeHtml(u) + '"><img src="' + escapeHtml(coverThumbUrl(u, 200)) + '" alt="" loading="lazy"></button>';
+  }).join('') + '</div>';
+}
+function wireChatInfoPhotos(root){
+  Array.prototype.forEach.call(root.querySelectorAll('[data-photo]'), function(b){
+    b.addEventListener('click', function(){ openImageLightbox(b.getAttribute('data-photo')); });
+  });
+}
+// le foto della conversazione aperta (chiamata da loadChatMessages)
+function updateChatInfoPhotos(rows){
+  chatInfoPhotoList = (rows || []).filter(function(m){ return m && m.attachment_url && m.attachment_type === 'image'; }).map(function(m){ return m.attachment_url; });
+  var sec = document.getElementById('chatInfoPhotos');
+  if(!sec) return;
+  sec.querySelector('h4 span').textContent = '(' + chatInfoPhotoList.length + ')';
+  var body = sec.querySelector('.chat-info-photos-body');
+  body.innerHTML = chatInfoPhotosHtml();
+  wireChatInfoPhotos(body);
+}
+function renderChatInfo(otherUserId){
+  if(!chatInfoMode() || !otherUserId) return;
+  if(!chatInfoWide()){
+    // schermo stretto: la scheda si prepara solo se la finestra si allarga
+    chatInfoPending = otherUserId;
+    if(!chatInfoMq && window.matchMedia){
+      chatInfoMq = window.matchMedia('(min-width: 1320px)');
+      var onWide = function(){ if(chatInfoMq.matches && chatInfoPending){ var id = chatInfoPending; chatInfoPending = null; renderChatInfo(id); } };
+      if(chatInfoMq.addEventListener) chatInfoMq.addEventListener('change', onWide);
+      else if(chatInfoMq.addListener) chatInfoMq.addListener(onWide);
+    }
+    return;
+  }
+  chatInfoPending = null;
+  ensureChatInfoButton();
+  var el = chatInfoEl();
+  if(!el) return;
+  el.setAttribute('data-user', otherUserId);
+  el.innerHTML = '<p class="chat-info-loading">…</p>';
+  var enc = encodeURIComponent(otherUserId);
+  var hdr = { headers: communityHeaders() };
+  var asList = function(r){ return r.ok ? r.json() : []; };
+  var profile = fetch(SUPABASE_URL + '/rest/v1/profiles?id=eq.' + enc + '&select=*', hdr).then(asList).then(function(rows){ return rows[0] || null; }).catch(function(){ return null; });
+  var friends = fetch(SUPABASE_URL + '/rest/v1/friendships?select=id&status=eq.accepted&or=(requester_id.eq.' + enc + ',addressee_id.eq.' + enc + ')', hdr)
+    .then(asList).then(function(rows){ return rows.length; }).catch(function(){ return null; });
+  var followers = loadFollowerCount(otherUserId).then(function(n){ return n; }, function(){ return null; });
+  var favs = fetch(SUPABASE_URL + '/rest/v1/favorites?user_id=eq.' + enc + '&select=catalog_id', hdr).then(asList).then(function(rows){ return rows.length; }).catch(function(){ return null; });
+  Promise.all([profile, friends, followers, favs]).then(function(res){
+    if(el.getAttribute('data-user') !== otherUserId) return; // nel frattempo si è aperta un'altra conversazione
+    var p = res[0];
+    if(!p){ el.innerHTML = '<p class="chat-info-empty">' + escapeHtml(t('chatInfo.none')) + '</p>'; return; }
+    var name = p.display_name || t('notif.someone');
+    var online = isOnlineSince(p.last_seen);
+    var status = online ? t('userDir.online') : (p.last_seen ? t('chatInfo.lastSeen').replace('{t}', notifTimeAgo(p.last_seen)) : t('userDir.offline'));
+    var num = function(n, key){ return '<div class="chat-info-num"><b>' + (n == null ? '—' : Number(n).toLocaleString(currentLang)) + '</b><span>' + escapeHtml(t(key)) + '</span></div>'; };
+    var sec = function(title, inner, id){ return '<div class="chat-info-sec"' + (id ? ' id="' + id + '"' : '') + '><h4>' + title + '</h4>' + inner + '</div>'; };
+    var socialDefs = [['social_instagram', 'Instagram'], ['social_twitter', 'X'], ['social_tiktok', 'TikTok'], ['social_website', t('profile.website')]];
+    var socials = socialDefs.filter(function(s){ return p[s[0]]; }).map(function(s){
+      var raw = String(p[s[0]]);
+      var href = /^https?:\/\//i.test(raw) ? raw : ('https://' + raw.replace(/^@/, ''));
+      return '<a class="chat-info-tag" href="' + escapeHtml(href) + '" target="_blank" rel="noopener">' + escapeHtml(s[1]) + '</a>';
+    }).join('');
+    var favChars = (p.favorite_characters || []).map(function(f){ return '<span class="chat-info-tag">' + escapeHtml(f) + '</span>'; }).join('');
+    var joined = p.created_at ? new Date(p.created_at) : null;
+    var hidden = p.is_private && !(friendshipCache[otherUserId] && friendshipCache[otherUserId].status === 'accepted');
+    el.innerHTML =
+      '<div class="chat-info-banner"><button type="button" class="chat-info-close" aria-label="' + escapeHtml(t('share.close')) + '">×</button></div>' +
+      '<div class="chat-info-id"><span class="chat-info-av"><img src="' + escapeHtml(avatarSrc(p.avatar_url, name, otherUserId, 192)) + '" alt=""><i class="' + (online ? 'on' : '') + '"></i></span>' +
+        '<div class="chat-info-name">' + escapeHtml(name) + ' ' + verifiedBadge('verified.commenter', !!p.verified) + roleBadgeHtml(p.role) + '</div>' +
+        '<div class="chat-info-status">' + escapeHtml(status) + '</div></div>' +
+      '<div class="chat-info-actions"><a class="btn btn-ghost btn-sm" href="profile.html?user=' + enc + '">' + escapeHtml(t('chatInfo.profile')) + '</a>' +
+        '<button type="button" class="btn btn-ghost btn-sm" data-ci="bg">' + escapeHtml(t('chatInfo.background')) + '</button></div>' +
+      (hidden ? sec(escapeHtml(t('chatInfo.privateTitle')), '<p class="chat-info-note">' + escapeHtml(t('chatInfo.private')) + '</p>') :
+        (p.bio ? sec(escapeHtml(t('chatInfo.bio')), '<p class="chat-info-bio">' + escapeHtml(p.bio) + '</p>') : '') +
+        sec(escapeHtml(t('chatInfo.numbers')), '<div class="chat-info-nums">' + num(res[1], 'chatInfo.friends') + num(res[2], 'chatInfo.followers') + num(res[3], 'chatInfo.favs') + '</div>') +
+        (favChars ? sec(escapeHtml(t('chatInfo.favChars')), '<div class="chat-info-tags">' + favChars + '</div>') : '') +
+        (socials ? sec('Social', '<div class="chat-info-tags">' + socials + '</div>') : '')) +
+      sec(escapeHtml(t('chatInfo.photos')) + ' <span>(' + chatInfoPhotoList.length + ')</span>', '<div class="chat-info-photos-body">' + chatInfoPhotosHtml() + '</div>', 'chatInfoPhotos') +
+      (joined && !isNaN(joined) ? '<p class="chat-info-joined">' + escapeHtml(t('pubProfile.memberSince').replace('{date}', joined.toLocaleDateString(currentLang, { day: 'numeric', month: 'long', year: 'numeric' }))) + '</p>' : '');
+    if(p.banner_url) el.querySelector('.chat-info-banner').style.backgroundImage = 'url("' + String(p.banner_url).replace(/["\\\n\r]/g, '') + '")';
+    el.querySelector('.chat-info-close').addEventListener('click', function(){ toggleChatInfo(false); });
+    el.querySelector('.chat-info-av img').addEventListener('click', function(){ openAvatarInfo(otherUserId); });
+    el.querySelector('[data-ci="bg"]').addEventListener('click', function(){ var b = document.getElementById('btnChatBg'); if(b) b.click(); });
+    wireChatInfoPhotos(el);
+  });
+}
+
+// ---- Condividi: le app, con il link della pagina d'anteprima (copertina e titolo) ----
+function luxShareMode(){ return document.body.classList.contains('lux-share-a') ? 'a' : ''; }
+var LUX_SHARE_IC = {
+  whatsapp: '<path d="M20 11.4a8.2 8.2 0 0 1-12.1 7.2L4 19.8l1.3-3.7A8.2 8.2 0 1 1 20 11.4z"/>',
+  telegram: '<path d="M5 12h13.5M13 6.5l5.5 5.5-5.5 5.5"/>',
+  instagram: '<rect x="3.5" y="7" width="17" height="12.5" rx="3"/><circle cx="12" cy="13.2" r="3.4"/><path d="M8.6 7l1.4-2.5h4L15.4 7"/>',
+  facebook: '<circle cx="9" cy="8.6" r="3.1"/><path d="M3.6 19c.6-3.1 2.7-4.9 5.4-4.9s4.8 1.8 5.4 4.9"/><circle cx="16.6" cy="9.6" r="2.5"/><path d="M15.8 14.3c2.5-.2 4.2 1.3 4.7 4.7"/>',
+  x: '<path d="M4.5 19.5l1-4.2L15.8 5a2.1 2.1 0 0 1 3 3L8.5 18.4z"/><path d="M13.8 7l3 3"/>',
+  email: '<rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="M4 7l8 6.2L20 7"/>',
+  copy: '<path d="M10.2 13.8a4.2 4.2 0 0 0 6 0l2.9-2.9a4.2 4.2 0 0 0-6-6l-1.1 1.1"/><path d="M13.8 10.2a4.2 4.2 0 0 0-6 0l-2.9 2.9a4.2 4.2 0 0 0 6 6l1.1-1.1"/>',
+  more: '<path d="M12 3.5v11M8 7.5l4-4 4 4"/><path d="M5.5 11.5v7a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2v-7"/>',
+  done: '<path d="M5 12.5l4.5 4.5L19 7.5"/>'
+};
+function luxShareIcon(id){ return '<svg viewBox="0 0 24 24" aria-hidden="true">' + (LUX_SHARE_IC[id] || '') + '</svg>'; }
+function luxShareTargets(){
+  var list = [
+    { id: 'whatsapp', label: 'WhatsApp', c: '#128c4a' },
+    { id: 'telegram', label: 'Telegram', c: '#1b88c2' },
+    { id: 'instagram', label: 'Instagram', c: 'linear-gradient(45deg,#e8762c,#cf2872 55%,#7b3fb0)' },
+    { id: 'facebook', label: 'Facebook', c: '#1764d6' },
+    { id: 'x', label: 'X', c: '#16181c' },
+    { id: 'email', label: t('share.email'), c: '#6e1423' },
+    { id: 'copy', label: t('share.copyLink'), c: '#3b2a1f' }
+  ];
+  if(navigator.share) list.push({ id: 'more', label: t('share.more'), c: '#2c2024' });
+  return list;
+}
+function luxShareHref(id, s){
+  var e = encodeURIComponent;
+  if(id === 'whatsapp') return 'https://wa.me/?text=' + e(s.text + ' ' + s.url);
+  if(id === 'telegram') return 'https://t.me/share/url?url=' + e(s.url) + '&text=' + e(s.text);
+  if(id === 'facebook') return 'https://www.facebook.com/sharer/sharer.php?u=' + e(s.url);
+  if(id === 'x') return 'https://twitter.com/intent/tweet?text=' + e(s.text) + '&url=' + e(s.url);
+  if(id === 'email') return 'mailto:?subject=' + e(s.title) + '&body=' + e(s.text + '\n' + s.url);
+  if(id === 'instagram') return 'https://www.instagram.com/direct/inbox/';
+  return '';
+}
+function luxShareButton(target, s){
+  var href = luxShareHref(target.id, s);
+  var inner = '<span class="lux-share-ic" style="--c:' + target.c + ';background:' + target.c + '">' + luxShareIcon(target.id) + '</span><span class="lux-share-lbl">' + escapeHtml(target.label) + '</span>';
+  if(href) return '<a class="lux-share-btn" data-share="' + target.id + '" href="' + escapeHtml(href) + '"' + (target.id === 'email' ? '' : ' target="_blank" rel="noopener"') + '>' + inner + '</a>';
+  return '<button type="button" class="lux-share-btn" data-share="' + target.id + '">' + inner + '</button>';
+}
+function luxCopyText(text){
+  if(navigator.clipboard && navigator.clipboard.writeText) return navigator.clipboard.writeText(text);
+  return new Promise(function(res, rej){
+    try {
+      var ta = document.createElement('textarea');
+      ta.value = text; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      var ok = document.execCommand('copy');
+      document.body.removeChild(ta);
+      if(ok) res(); else rej(new Error('copy'));
+    } catch(e){ rej(e); }
+  });
+}
+function luxShareFlash(btn, ok){
+  var lbl = btn.querySelector('.lux-share-lbl'), ic = btn.querySelector('.lux-share-ic');
+  if(!lbl || !ic || btn.dataset.flash) return;
+  btn.dataset.flash = '1';
+  var oldL = lbl.textContent, oldI = ic.innerHTML;
+  lbl.textContent = ok ? t('share.copiedShort') : t('share.copyManual');
+  if(ok){ btn.classList.add('is-done'); ic.innerHTML = luxShareIcon('done'); }
+  setTimeout(function(){ lbl.textContent = oldL; ic.innerHTML = oldI; btn.classList.remove('is-done'); delete btn.dataset.flash; }, 2200);
+}
+function luxShareNative(s, withFile){
+  if(!navigator.share) return Promise.reject(new Error('no share'));
+  var data = { title: s.title, text: s.text, url: s.url };
+  if(!withFile || !s.cover || !navigator.canShare) return navigator.share(data);
+  return fetchAsBlob(s.cover).then(function(blob){
+    var file = new File([blob], 'copertina.' + ((blob.type && blob.type.split('/')[1]) || 'jpg'), { type: blob.type || 'image/jpeg' });
+    if(navigator.canShare({ files: [file] })) data.files = [file];
+    return navigator.share(data);
+  }, function(){ return navigator.share(data); });
+}
+function wireShareButtons(root, s){
+  Array.prototype.forEach.call(root.querySelectorAll('[data-share]'), function(btn){
+    btn.addEventListener('click', function(e){
+      var id = btn.getAttribute('data-share');
+      if(s.onShare && !s.counted){ s.counted = true; try { s.onShare(); } catch(err){} }
+      if(id === 'copy'){
+        e.preventDefault();
+        luxCopyText(s.text + ' ' + s.url).then(function(){ luxShareFlash(btn, true); }, function(){
+          luxShareFlash(btn, false);
+          var inp = document.querySelector('#luxShare .lux-share-url');
+          if(inp){ inp.focus(); inp.select(); }
+        });
+        return;
+      }
+      if(id === 'more'){
+        e.preventDefault();
+        luxShareNative(s, true).catch(function(){});
+        return;
+      }
+      if(id === 'instagram'){
+        // Instagram non accetta link mandati da un sito: dal telefono si passa dal
+        // menu di condivisione (dove compare Instagram, con la copertina); dal
+        // computer si copia il link e si aprono i messaggi di Instagram
+        var coarse = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
+        if(coarse && navigator.share){ e.preventDefault(); luxShareNative(s, true).catch(function(){}); return; }
+        luxCopyText(s.text + ' ' + s.url).catch(function(){});
+        var note = document.querySelector('#luxShare .lux-share-note');
+        if(note) note.innerHTML = '<b>' + escapeHtml(t('share.igCopied')) + '</b>';
+      }
+    });
+  });
+}
+function openSharePanel(s){
+  var box = document.getElementById('luxShare');
+  if(!box){
+    box = document.createElement('div');
+    box.id = 'luxShare';
+    box.className = 'lux-share';
+    box.hidden = true;
+    box.setAttribute('role', 'dialog');
+    box.setAttribute('aria-modal', 'true');
+    box.setAttribute('aria-labelledby', 'luxShareTitle');
+    box.addEventListener('click', function(e){ if(e.target === box) closeSharePanel(); });
+    document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && !box.hidden) closeSharePanel(); });
+    document.body.appendChild(box);
+  }
+  box.innerHTML =
+    '<div class="lux-share-sheet">' +
+      '<div class="lux-share-head"><h3 id="luxShareTitle">' + escapeHtml(t('share.title')) + '</h3><button type="button" class="lux-share-x" aria-label="' + escapeHtml(t('share.close')) + '">×</button></div>' +
+      '<div class="lux-share-card">' + (s.image ? '<img src="' + escapeHtml(s.image) + '" alt="">' : '') +
+        '<div class="lux-share-card-t"><b>' + escapeHtml(s.title) + '</b><span>' + escapeHtml(s.sub || t('share.tagline')) + '</span>' +
+        '<input class="lux-share-url" type="text" readonly value="' + escapeHtml(s.url) + '" aria-label="Link"></div></div>' +
+      '<div class="lux-share-grid">' + luxShareTargets().map(function(tg){ return luxShareButton(tg, s); }).join('') + '</div>' +
+      '<p class="lux-share-note">' + escapeHtml(t('share.note')) + '</p>' +
+    '</div>';
+  box.querySelector('.lux-share-x').addEventListener('click', closeSharePanel);
+  wireShareButtons(box, s);
+  box.hidden = false;
+  var first = box.querySelector('.lux-share-btn');
+  if(first) setTimeout(function(){ first.focus(); }, 30);
+}
+function closeSharePanel(){ var box = document.getElementById('luxShare'); if(box) box.hidden = true; }
+
+// nella scheda del titolo le app principali sono già in vista
+function renderTitleShareRow(item){
+  var modal = document.getElementById('titleModal');
+  var old = document.getElementById('titleShareRow');
+  if(old && old.parentNode) old.parentNode.removeChild(old);
+  if(luxShareMode() !== 'a' || !modal || !item) return;
+  var anchor = document.getElementById('pageReader'); // subito sotto titolo e trama, prima delle tavole: si vede appena si apre la scheda
+  if(!anchor || !anchor.parentNode) return;
+  var s = titleShareData(item);
+  var keep = { whatsapp: 1, telegram: 1, instagram: 1, facebook: 1 };
+  var row = document.createElement('div');
+  row.id = 'titleShareRow';
+  row.className = 'lux-share-row';
+  row.innerHTML = '<span class="lux-share-row-label">' + escapeHtml(t('share.rowLabel')) + '</span>' +
+    luxShareTargets().filter(function(tg){ return keep[tg.id]; }).map(function(tg){ return luxShareButton(tg, s); }).join('') +
+    '<button type="button" class="lux-share-btn" id="titleShareMore"><span class="lux-share-ic" style="background:#3b2a1f">' + luxShareIcon('more') + '</span>' +
+    '<span class="lux-share-lbl">' + escapeHtml(t('share.others')) + '</span></button>';
+  anchor.parentNode.insertBefore(row, anchor);
+  wireShareButtons(row, s);
+  // "Altre app" apre il pannello completo (X, email, copia link…)
+  row.querySelector('#titleShareMore').addEventListener('click', function(){ openSharePanel(titleShareData(item)); });
+}
+function titleShareData(item){
+  var collabArr = (item.collaborators && item.collaborators.length) ? item.collaborators : (item.collaborator_name ? [{ name: item.collaborator_name }] : []);
+  var collabNames = collabArr.map(function(c){ return c.name; }).join(', ');
+  return {
+    title: item.title,
+    text: item.title + ' — ' + t('share.tagline') + (collabNames ? ' ' + t('collab.credit') + ' ' + collabNames : ''),
+    url: previewPagePath('t', item.id),
+    image: item.cover_url ? coverThumbUrl(item.cover_url, 160) : '',
+    cover: item.cover_url || '',
+    onShare: function(){ trackShare(item.id); bumpLocalCount(item.id, 'share_count', 1); }
+  };
 }
 
 /* ============ VISUALIZZAZIONI DEL SITO (v220) ============
@@ -8727,6 +9066,10 @@ function shareEvent(ev){
   var d = new Date(ev.event_date);
   var dateLabel = isNaN(d.getTime()) ? '' : formatEventDates(ev);
   var text = ev.title + (ev.location ? ' — 📍 ' + ev.location : '') + (dateLabel ? ' · ' + dateLabel : '');
+  if(luxShareMode()){ // v223
+    openSharePanel({ title: ev.title, text: text, url: url, image: ev.image_url ? coverThumbUrl(ev.image_url, 160) : '', cover: ev.image_url || '', sub: dateLabel || t('share.tagline') });
+    return;
+  }
   if(navigator.share){
     navigator.share({ title: ev.title, text: text, url: url }).catch(function(){ /* annullato dall'utente, va bene così */ });
     return;
@@ -9815,6 +10158,7 @@ function setChatMobileView(mode){
 
 function openChatWithUser(otherUserId, updateHistory){
   var uid = currentUserId();
+  chatInfoPhotoList = []; // v223: le foto sono della conversazione che si apre
   if(otherUserId === uid){ document.getElementById('chatNotFound').classList.remove('hidden'); return; }
   currentChatOtherId = otherUserId;
   var userA = uid < otherUserId ? uid : otherUserId;
@@ -9846,6 +10190,7 @@ function openChatWithUser(otherUserId, updateHistory){
       currentChatThreadId = threadId;
       document.getElementById('chatBox').classList.remove('hidden');
       document.body.classList.add('chat-fullscreen'); // nasconde l'intestazione del sito: la chat occupa tutto lo schermo, come un'app di messaggistica
+      renderChatInfo(otherUserId); // v223: da computer la scheda del contatto
 
       getDisplayName(otherUserId).then(function(name){
         document.getElementById('chatOtherName').textContent = name;
@@ -10220,6 +10565,7 @@ function loadChatMessages(){
   Promise.all([messagesStep, threadStep])
     .then(function(results){
       var rows = results[0], thRows = results[1];
+      updateChatInfoPhotos(rows); // v223
       wrap.innerHTML = '';
       if(rows.length > 0) currentChatLastMessageAt = rows[rows.length - 1].created_at;
       if(rows.length === 0){ wrap.innerHTML = '<p class="form-note">' + t('community.noMessages') + '</p>'; return; }
@@ -12556,6 +12902,7 @@ function openTitleModal(item){
   }
 
   document.getElementById('titleModalShare').onclick = function(){ shareTitle(item); };
+  renderTitleShareRow(item); // v223
   insertSupportTitleButton(item);
   insertMusicButton(item);
 
@@ -15192,6 +15539,10 @@ function shareSong(song, contextLabel, kind){
   kind = kind || 's';
   var shareText = song.title + (contextLabel ? ' — ' + contextLabel : '') + '\n';
   var shareUrl = previewPagePath(kind, song.id);
+  if(luxShareMode()){ // v223
+    openSharePanel({ title: song.title, text: shareText.trim(), url: shareUrl, image: song.cover_url ? coverThumbUrl(song.cover_url, 160) : '', cover: song.cover_url || '', sub: contextLabel || 'Luxtify' });
+    return;
+  }
 
   function shareWithoutImage(){
     if(navigator.share){
@@ -16138,6 +16489,7 @@ function openSupportTitlePanel(item){
 }
 
 function shareTitle(item){
+  if(luxShareMode()){ openSharePanel(titleShareData(item)); return; } // v223
   var collabArr = (item.collaborators && item.collaborators.length)
     ? item.collaborators
     : (item.collaborator_name ? [{ name: item.collaborator_name }] : []);

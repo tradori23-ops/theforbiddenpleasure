@@ -3635,3 +3635,157 @@ body.theme-light .app-row.is-on .app-row-value{color:#1f7a5a;}
 body.theme-light .app-row.is-error .app-row-ic{background:#f8e0df;color:#b3261e;}
 body.theme-light .app-row.is-error .app-row-label{color:#b3261e;}
 #btnEnablePush.push-btn-active{cursor:pointer;}
+
+/* =====================================================================
+   v223: DA COMPUTER NIENTE SPAZI VUOTI, SCHEDA DEL CONTATTO, CONDIVIDI
+   (le scelte A della v222). loader.js mette tre classi sul body:
+   - lux-wide: il menu sta al bordo sinistro, il Taccuino al bordo destro
+     (su ogni pagina), la colonna centrale si allarga fino a riempire;
+   - lux-chat3: Messaggi da computer = elenco | chat | scheda del contatto;
+   - lux-share-a: nella scheda del titolo le app per condividere sono in
+     vista; gli altri «Condividi» aprono il pannello con tutte le app.
+   Senza le classi il sito resta com'era.
+   ===================================================================== */
+@media (min-width:1320px){
+  body.has-app-tabbar.lux-wide{--lux-gut:20px;--lux-railw:0px;}
+  body.has-app-tabbar.lux-wide,body.has-app-tabbar.lux-wide:has(#library){
+    --lux-col:min(1480px, calc(100% - var(--lux-side) - var(--lux-railw) - var(--lux-gut) * 2));
+    --lux-left:max(var(--lux-gut), calc((100% - var(--lux-side) - var(--lux-col) - var(--lux-railw)) / 2));
+    --lux-x:calc(var(--lux-left) + var(--lux-side));
+  }
+  body.has-app-tabbar.lux-wide #app,body.has-app-tabbar.lux-wide .page-wrap{margin-left:var(--lux-x);}
+  body.has-app-tabbar.lux-wide #channelDetailView:not(.hidden){margin-left:var(--lux-x);}
+  body.has-app-tabbar.lux-wide .smallnox-float{right:calc(100% - var(--lux-x) - var(--lux-col) + 12px);}
+  /* più spazio: più copertine e schede per riga */
+  body.has-app-tabbar.lux-wide #latestGrid{grid-template-columns:repeat(auto-fill, minmax(230px, 1fr));}
+  body.has-app-tabbar.lux-wide #homeEventsList{display:grid;grid-template-columns:repeat(auto-fit, minmax(560px, 1fr));gap:18px;}
+}
+@media (min-width:1560px){
+  body.has-app-tabbar.lux-wide.has-home-rail{--lux-railw:356px;}
+  body.has-app-tabbar.lux-wide.has-home-rail #app,body.has-app-tabbar.lux-wide.has-home-rail .page-wrap{margin-left:var(--lux-x);}
+  body.has-app-tabbar.lux-wide.has-home-rail .home-rail{left:calc(var(--lux-x) + var(--lux-col) + 16px);width:340px;}
+  body.has-app-tabbar.lux-wide.has-home-rail .smallnox-float{right:calc(100% - var(--lux-x) - var(--lux-col) + 12px);}
+}
+
+/* ---------- Messaggi da computer: tutto lo schermo ---------- */
+.chat-info,.chat-info-btn{display:none;}
+@media (min-width:1320px){
+  body.has-app-tabbar.chat-fullscreen.lux-chat3{--lux-left:20px;}
+  body.chat-fullscreen.lux-chat3 .app-tabbar{display:flex !important;}
+  body.chat-fullscreen.lux-chat3 header.topbar{display:flex !important;}
+  body.has-app-tabbar.chat-fullscreen.lux-chat3 #app{max-width:none;margin-left:calc(var(--lux-left) + var(--lux-side));margin-right:0;padding-top:0;}
+  body.chat-fullscreen.lux-chat3 .chat-page{position:relative;border-left:1px solid rgba(201,162,77,.22);}
+  body.chat-fullscreen.lux-chat3 .chat-sidebar{width:340px;}
+  body.chat-fullscreen.lux-chat3 .chat-sidebar-home{display:none;}
+  body.chat-fullscreen.lux-chat3 .chat-conversation{flex:1;min-width:0;}
+  body.lux-chat3 .chat-info-btn{display:inline-flex;align-items:center;justify-content:center;}
+  .chat-info-btn svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
+  .chat-info-btn[aria-expanded="true"]{border-color:var(--gold);color:var(--gold-bright);}
+  body.lux-chat3 .chat-header-info-btn{cursor:pointer;}
+  /* da 1320 a 1499 px la scheda si apre a richiesta (ⓘ o nome in alto), sopra il lato destro della chat */
+  body.lux-chat3 .chat-info{display:flex;flex-direction:column;position:absolute;top:0;right:0;bottom:0;z-index:6;width:340px;box-sizing:border-box;
+    overflow-y:auto;scrollbar-width:thin;border-left:1px solid rgba(201,162,77,.22);background:var(--void-2);box-shadow:-18px 0 40px rgba(0,0,0,.35);
+    transform:translateX(100%);visibility:hidden;transition:transform .22s ease, visibility .22s;}
+  body.lux-chat3 .chat-info.open{transform:none;visibility:visible;}
+}
+/* da 1500 px la scheda è una terza colonna, sempre aperta */
+@media (min-width:1500px){
+  body.lux-chat3 .chat-info{position:relative;transform:none;visibility:visible;box-shadow:none;flex:none;transition:none;}
+  body.lux-chat3 .chat-info-close,body.lux-chat3 .chat-info-btn{display:none;}
+  body.lux-chat3 .chat-header-info-btn{cursor:default;}
+}
+@media (prefers-reduced-motion: reduce){ .chat-info{transition:none !important;} }
+.chat-info-loading,.chat-info-empty{padding:40px 18px;text-align:center;color:var(--parchment-dim);}
+.chat-info-banner{position:relative;flex:none;height:118px;background:radial-gradient(circle at 30% 20%, #4a1420, #150c0d 70%);background-size:cover;background-position:center;}
+.chat-info-close{position:absolute;top:10px;right:10px;width:36px;height:36px;border:0;border-radius:50%;background:rgba(11,6,7,.6);color:#ece2c6;font-size:22px;line-height:1;cursor:pointer;}
+.chat-info-close:hover{background:rgba(11,6,7,.85);}
+.chat-info-id{position:relative;display:flex;flex-direction:column;align-items:center;margin-top:-50px;padding:0 18px;text-align:center;}
+.chat-info-av{position:relative;width:96px;height:96px;}
+.chat-info-av img{display:block;width:100%;height:100%;border-radius:50%;object-fit:cover;border:3px solid var(--void-2);background:#2a1a1d;box-sizing:border-box;cursor:zoom-in;}
+.chat-info-av i{position:absolute;right:6px;bottom:6px;width:16px;height:16px;border-radius:50%;border:3px solid var(--void-2);background:#7d6f5c;}
+.chat-info-av i.on{background:#5fbf86;}
+.chat-info-name{margin-top:10px;font-family:'Cinzel',serif;font-size:19px;font-weight:700;letter-spacing:.03em;color:var(--parchment);overflow-wrap:anywhere;}
+.chat-info-status{margin-top:2px;font-family:'Crimson Pro',Georgia,serif;font-size:15px;color:var(--parchment-dim);}
+.chat-info-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:14px 16px 6px;}
+.chat-info-actions .btn{min-height:38px;}
+.chat-info-sec{padding:14px 18px;border-top:1px solid rgba(201,162,77,.14);}
+.chat-info-sec h4{margin:0 0 8px;font-family:'Crimson Pro',Georgia,serif;font-size:14.5px;font-style:italic;font-weight:600;color:var(--gold-bright);}
+.chat-info-sec h4 span{font-style:normal;color:var(--parchment-dim);}
+.chat-info-bio{margin:0;font-family:'Crimson Pro',Georgia,serif;font-size:16px;line-height:1.45;color:var(--parchment);white-space:pre-wrap;overflow-wrap:anywhere;}
+.chat-info-nums{display:flex;justify-content:space-between;gap:8px;}
+.chat-info-num{flex:1;display:flex;flex-direction:column;align-items:center;gap:1px;}
+.chat-info-num b{font-family:'Crimson Pro',Georgia,serif;font-size:22px;font-weight:700;line-height:1.1;color:var(--parchment);font-variant-numeric:tabular-nums;}
+.chat-info-num span{font-family:'Crimson Pro',Georgia,serif;font-size:13.5px;color:var(--parchment-dim);}
+.chat-info-tags{display:flex;flex-wrap:wrap;gap:6px;}
+.chat-info-tag{display:inline-flex;align-items:center;min-height:28px;padding:0 11px;border-radius:14px;border:1px solid rgba(201,162,77,.3);font-family:'Crimson Pro',Georgia,serif;font-size:14.5px;color:var(--parchment);text-decoration:none;}
+a.chat-info-tag:hover{border-color:var(--gold);color:var(--gold-bright);}
+.chat-info-photos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;}
+.chat-info-photos button{display:block;padding:0;border:0;border-radius:8px;overflow:hidden;background:#2a1a1d;aspect-ratio:1;cursor:zoom-in;}
+.chat-info-photos img{display:block;width:100%;height:100%;object-fit:cover;}
+.chat-info-note{margin:0;font-family:'Crimson Pro',Georgia,serif;font-size:14.5px;line-height:1.4;color:var(--parchment-dim);}
+.chat-info-joined{margin:0;padding:12px 18px 22px;border-top:1px solid rgba(201,162,77,.14);font-family:'Crimson Pro',Georgia,serif;font-size:14.5px;color:var(--parchment-dim);text-align:center;}
+body.theme-light .chat-info-banner{background-color:#ead9b8;background-image:radial-gradient(circle at 30% 20%, #f3e3c2, #e2cfa8 70%);}
+body.theme-light .chat-info-av img,body.theme-light .chat-info-av i{border-color:var(--void-2);}
+body.theme-light .chat-info-sec,body.theme-light .chat-info-joined{border-top-color:rgba(138,106,31,.18);}
+body.theme-light .chat-info-tag{border-color:rgba(138,106,31,.35);color:#2a1d12;}
+body.theme-light .chat-info-photos button{background:#efe4cc;}
+body.theme-light.lux-chat3 .chat-info{border-left-color:rgba(138,106,31,.25);box-shadow:-18px 0 40px rgba(80,60,40,.18);}
+
+/* ---------- Condividi: pannello con le app ---------- */
+.lux-share{position:fixed;inset:0;z-index:1300;display:flex;align-items:flex-end;justify-content:center;background:rgba(5,2,3,.62);}
+.lux-share[hidden]{display:none;}
+.lux-share-sheet{width:100%;max-width:520px;max-height:92vh;overflow-y:auto;box-sizing:border-box;padding:16px 18px calc(20px + env(safe-area-inset-bottom, 0px));
+  border-radius:22px 22px 0 0;background:#170d0f;border:1px solid rgba(201,162,77,.25);border-bottom:0;box-shadow:0 -18px 50px rgba(0,0,0,.5);}
+@media (min-width:641px){
+  .lux-share{align-items:center;padding:24px;}
+  .lux-share-sheet{border-radius:22px;border-bottom:1px solid rgba(201,162,77,.25);box-shadow:0 24px 60px rgba(0,0,0,.55);}
+}
+.lux-share-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px;}
+.lux-share-head h3{margin:0;font-family:'Cinzel',serif;font-size:19px;font-weight:700;letter-spacing:.04em;color:var(--parchment);}
+.lux-share-x{flex:none;width:38px;height:38px;border:0;border-radius:50%;background:rgba(236,226,198,.08);color:var(--parchment);font-size:22px;line-height:1;cursor:pointer;}
+.lux-share-x:hover{background:rgba(236,226,198,.16);}
+.lux-share-card{display:flex;align-items:center;gap:12px;padding:10px;margin-bottom:18px;border-radius:14px;background:#1e1215;border:1px solid rgba(201,162,77,.16);}
+.lux-share-card img{flex:none;width:58px;height:78px;border-radius:8px;object-fit:cover;background:#2a1a1d;}
+.lux-share-card-t{flex:1;min-width:0;}
+.lux-share-card b{display:block;font-family:'Crimson Pro',Georgia,serif;font-size:17px;font-weight:700;line-height:1.25;color:var(--parchment);overflow-wrap:anywhere;}
+.lux-share-card span{display:block;font-family:'Crimson Pro',Georgia,serif;font-size:14.5px;color:var(--parchment-dim);}
+.lux-share-url{display:block;width:100%;margin-top:4px;padding:0;border:0;background:none;font-family:'Space Mono',monospace;font-size:12px;color:var(--gold-bright);text-overflow:ellipsis;}
+.lux-share-url:focus{outline:none;}
+.lux-share-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px 6px;}
+.lux-share-btn{display:flex;flex-direction:column;align-items:center;gap:7px;min-width:0;padding:2px 0;border:0;background:none;color:var(--parchment);
+  font-family:'Crimson Pro',Georgia,serif;font-size:14.5px;line-height:1.2;text-align:center;text-decoration:none;cursor:pointer;}
+.lux-share-ic{display:flex;align-items:center;justify-content:center;flex:none;width:54px;height:54px;border-radius:50%;background:var(--c, #2a1a1d);color:#fff;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);transition:transform .15s ease, box-shadow .15s ease;}
+.lux-share-ic svg{width:25px;height:25px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
+.lux-share-btn:hover .lux-share-ic{transform:translateY(-2px);box-shadow:inset 0 0 0 1px rgba(255,255,255,.18),0 6px 16px rgba(0,0,0,.35);}
+.lux-share-btn:focus-visible{outline:none;}
+.lux-share-btn:focus-visible .lux-share-ic{outline:2px solid var(--gold-bright);outline-offset:3px;}
+.lux-share-btn.is-done .lux-share-ic{background:#1f7a5a;}
+.lux-share-note{margin:18px 2px 0;font-family:'Crimson Pro',Georgia,serif;font-size:14.5px;line-height:1.4;color:var(--parchment-dim);}
+.lux-share-note b{color:var(--parchment);font-weight:600;}
+@media (prefers-reduced-motion: reduce){ .lux-share-ic{transition:none;} .lux-share-btn:hover .lux-share-ic{transform:none;} }
+body.theme-light .lux-share{background:rgba(42,29,18,.45);}
+body.theme-light .lux-share-sheet{background:#fbf6ea;border-color:rgba(138,106,31,.3);box-shadow:0 24px 60px rgba(80,60,40,.25);}
+body.theme-light .lux-share-x{background:rgba(42,29,18,.07);color:#2a1d12;}
+body.theme-light .lux-share-card{background:#fffdf7;border-color:rgba(138,106,31,.25);}
+body.theme-light .lux-share-btn{color:#2a1d12;}
+body.theme-light .lux-share-url{color:#6b5015;}
+
+/* ---------- Condividi: le app in vista nella scheda del titolo ---------- */
+.lux-share-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:14px 0 18px;}
+.lux-share-row-label{margin-right:4px;font-family:'Crimson Pro',Georgia,serif;font-size:15.5px;font-style:italic;color:var(--gold-bright);}
+.lux-share-row .lux-share-btn{flex-direction:row;gap:8px;height:40px;padding:0 14px 0 5px;border-radius:20px;border:1px solid rgba(201,162,77,.25);background:#1e1215;font-size:15px;font-weight:600;}
+.lux-share-row .lux-share-btn:hover{border-color:var(--gold);}
+.lux-share-row .lux-share-ic{width:30px;height:30px;}
+.lux-share-row .lux-share-ic svg{width:16px;height:16px;stroke-width:2;}
+.lux-share-row .lux-share-btn:hover .lux-share-ic{transform:none;box-shadow:none;}
+body.theme-light .lux-share-row .lux-share-btn{background:#fffdf7;border-color:rgba(138,106,31,.3);}
+body.lux-share-a #titleModalShare{display:none;}
+/* telefono: le app della scheda in una fila, icone tonde con il nome sotto (come nel pannello) */
+@media (max-width:640px){
+  .lux-share-row{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px 4px;}
+  .lux-share-row-label{grid-column:1 / -1;margin:0;}
+  .lux-share-row .lux-share-btn,body.theme-light .lux-share-row .lux-share-btn{flex-direction:column;gap:6px;height:auto;padding:0;border:0;background:none;font-size:13.5px;}
+  .lux-share-row .lux-share-ic{width:46px;height:46px;}
+  .lux-share-row .lux-share-ic svg{width:21px;height:21px;}
+}
