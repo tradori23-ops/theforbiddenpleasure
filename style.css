@@ -3789,3 +3789,16 @@ body.lux-share-a #titleModalShare{display:none;}
   .lux-share-row .lux-share-ic{width:46px;height:46px;}
   .lux-share-row .lux-share-ic svg{width:21px;height:21px;}
 }
+
+/* =====================================================================
+   v225: IL CAMPO DEI MESSAGGI VA A CAPO
+   Prima era su una riga sola e un testo lungo scorreva di lato. Ora va a
+   capo e si allunga mentre scrivi (fino a 6 righe, poi scorre dentro; vedi
+   luxAutoGrow in app.js). Le bolle spezzano anche le parole o i link
+   lunghissimi invece di uscire dal bordo.
+   ===================================================================== */
+textarea.chat-text-input{display:block;box-sizing:border-box;min-height:44px;resize:none;overflow-y:hidden;line-height:1.45;
+  white-space:pre-wrap;overflow-wrap:anywhere;scrollbar-width:thin;}
+body.has-app-tabbar textarea.chat-text-input{line-height:22px;padding-top:10px;padding-bottom:10px;}
+#fChannelMessage{overflow-wrap:anywhere;scrollbar-width:thin;}
+.chat-bubble .body,.chat-translated-body{overflow-wrap:anywhere;}
