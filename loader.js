@@ -58,7 +58,7 @@
   // hai visto live sul sito prima di caricare — questo file parte da una
   // copia salvata in sessione e potrebbe non riflettere bump fatti nel
   // frattempo direttamente su GitHub.
-  var V = "222";
+  var V = "223";
 
   // style.css iniettato qui (non più con un <link> scritto a mano in ogni
   // pagina) così la sua versione segue sempre la stessa V di app.js,
@@ -203,6 +203,10 @@
       return;
     }
     document.body.classList.add("has-app-tabbar");
+    // v223: da computer la pagina riempie lo schermo (menu a sinistra, Taccuino
+    // a destra, colonna larga) e Messaggi ha la scheda del contatto. Amministra
+    // resta com'è. Su telefono e tablet non cambia niente (vedi style.css).
+    if (page !== "admin.html") document.body.classList.add("lux-wide", "lux-chat3");
     var map = { "index.html": "home", "schedario.html": "schedario", "dossier.html": "schedario",
                 "community.html": "community", "contatti.html": "messaggi", "chat.html": "messaggi" };
     var key = map[page] || "tu";
@@ -270,6 +274,8 @@
   }
   applyEarlyTheme();
   setLogos();
+  // v223: «Condividi» mostra le app (WhatsApp, Telegram, Instagram, Facebook…)
+  document.body.classList.add("lux-share-a");
   setupAppTabbar();
   setupHomeLoading();
   cssReady.then(function () {
