@@ -1102,9 +1102,19 @@ function matureOk(item){ return (matureVisible || !item.mature) && characterVisi
 function openMatureModal(){ var m = document.getElementById('matureModal'); m.style.zIndex = '1000'; m.classList.remove('hidden'); }
 function closeMatureModal(){ document.getElementById('matureModal').classList.add('hidden'); }
 
+// v222: il 18+ vale per tutta la visita (finché il browser o l'app restano aperti),
+// non più per la sola pagina: a ogni nuova visita riparte spento, come prima
+function matureOnThisVisit(){
+  try { return sessionStorage.getItem('lux_mature_on') === '1' && localStorage.getItem('lux_age_ok') === '1'; } catch(e){ return false; }
+}
+function rememberMatureForVisit(on){
+  try { if(on) sessionStorage.setItem('lux_mature_on', '1'); else sessionStorage.removeItem('lux_mature_on'); } catch(e){}
+}
+
 function setMatureVisible(on){
   matureVisible = on;
-  localStorage.setItem('lux_mature_visible', on ? '1' : '0');
+  rememberMatureForVisit(on);
+  try { localStorage.setItem('lux_mature_visible', on ? '1' : '0'); } catch(e){}
   var sw = document.getElementById('matureSwitch');
   if(sw) sw.checked = on;
   updateMatureStateLabel();
@@ -1161,8 +1171,9 @@ function initTheme(){
 function initMatureToggle(){
   var sw = document.getElementById('matureSwitch');
   if(!sw){ matureVisible = false; return; } // pagina senza il menu principale (es. luxtify.html) — niente da inizializzare qui
-  matureVisible = false; // always starts off on load/refresh, regardless of prior age verification
-  sw.checked = false;
+  // spento a ogni nuova visita; acceso se lo era già in questa visita (pagina precedente)
+  matureVisible = matureOnThisVisit();
+  sw.checked = matureVisible;
   updateMatureStateLabel();
 
   sw.addEventListener('change', function(){
@@ -13405,6 +13416,7 @@ function lxMatchesTag(s){
 /* ---- interruttore 18+ e conferma dell'età ---- */
 function setLuxtifyAdult(on){
   matureVisible = !!on;
+  rememberMatureForVisit(!!on);
   try { localStorage.setItem('lux_mature_visible', on ? '1' : '0'); } catch(e){}
   var btn = document.getElementById('luxtifyAdultToggle');
   if(btn) btn.setAttribute('aria-pressed', on ? 'true' : 'false');
@@ -13432,6 +13444,7 @@ function initLuxtifyAdult(){
   var btn = document.getElementById('luxtifyAdultToggle');
   if(!btn || btn.dataset.ready) return;
   btn.dataset.ready = '1';
+  if(matureOnThisVisit()){ matureVisible = true; btn.setAttribute('aria-pressed', 'true'); } // v222: acceso nelle pagine di prima
   btn.addEventListener('click', function(){
     if(matureVisible) setLuxtifyAdult(false); else askLuxtifyAdult(null);
   });
