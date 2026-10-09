@@ -10702,6 +10702,46 @@ function startChatPolling(otherUserIdParam){
   }, 6000);
 }
 
+/* ============ v225: IL CAMPO DEI MESSAGGI VA A CAPO ============
+   Il campo si allunga mentre scrivi, fino a 6 righe (poi scorre dentro).
+   Da computer Invio manda e Maiuscolo+Invio va a capo; da telefono e tablet
+   il tasto Invio va a capo e si manda con «Invia», come su WhatsApp.
+   (Con una pagina vecchia ancora in memoria il campo può essere su una riga:
+   allora Invio manda, come prima.) */
+var CHAT_INPUT_MAX_LINES = 6;
+function luxAutoGrow(el){
+  if(!el || el.tagName !== 'TEXTAREA') return;
+  if(!el.getClientRects().length){ el.style.height = ''; return; } // nascosto (es. telefono, si vede l'elenco): si misura quando compare
+  var cs = window.getComputedStyle(el);
+  var borders = (parseFloat(cs.borderTopWidth) || 0) + (parseFloat(cs.borderBottomWidth) || 0);
+  var line = parseFloat(cs.lineHeight) || 22;
+  var max = Math.round(line * CHAT_INPUT_MAX_LINES + (parseFloat(cs.paddingTop) || 0) + (parseFloat(cs.paddingBottom) || 0) + borders);
+  var cssMax = parseFloat(cs.maxHeight);
+  if(cssMax > 0) max = Math.min(max, cssMax);
+  el.style.height = 'auto';
+  var h = el.scrollHeight + borders;
+  el.style.height = Math.min(h, max) + 'px';
+  el.style.overflowY = h > max + 1 ? 'auto' : 'hidden';
+}
+// telefono o tablet (dito, tastiera sullo schermo): lì il tasto Invio va a capo
+function luxTouchTyping(){ return !!(window.matchMedia && window.matchMedia('(pointer: coarse)').matches); }
+function setupChatInput(el, send){
+  if(!el || el.dataset.luxInput) return;
+  el.dataset.luxInput = '1';
+  el.addEventListener('keydown', function(e){
+    if(e.key !== 'Enter' || e.isComposing || e.keyCode === 229) return; // 229: la tastiera sta ancora componendo la parola
+    if(el.tagName === 'TEXTAREA' && (e.shiftKey || luxTouchTyping())) return; // va a capo
+    e.preventDefault();
+    send();
+  });
+  luxAutoGrow(el);
+}
+// mentre scrivi (anche incollando) il campo si allunga; vale anche per i canali
+document.addEventListener('input', function(e){
+  var el = e.target;
+  if(el && (el.id === 'fChatMessage' || el.id === 'bmChatInput' || el.id === 'fChannelMessage')) luxAutoGrow(el);
+});
+
 function sendChatMessage(){
   var box = document.getElementById('fChatMessage');
   var fileInput = document.getElementById('fChatAttachment');
@@ -10732,6 +10772,7 @@ function sendChatMessage(){
   }).then(function(r){
     if(!r.ok) throw new Error('chat message insert failed');
     box.value = '';
+    luxAutoGrow(box); // v225: il campo torna a una riga
     fileInput.value = '';
     document.getElementById('chatAttachPreview').classList.add('hidden');
     playChatSound('sent');
@@ -11361,7 +11402,7 @@ function sendChannelMessage(){
     });
   }).then(function(r){
     if(!r.ok) throw new Error('channel message insert failed');
-    box.value = '';
+    box.value = ''; luxAutoGrow(box);
     loadChannelMessages();
   }).catch(function(e){
     err.textContent = t('err.required');
@@ -17261,6 +17302,7 @@ function insertMention(field, username){
   var newPos = replaced.length;
   field.focus();
   field.setSelectionRange(newPos, newPos);
+  luxAutoGrow(field); // v225
   hideMentionBox();
 }
 
@@ -17351,6 +17393,7 @@ function insertAtCursor(field, text){
   var newPos = pos + text.length;
   field.focus();
   field.setSelectionRange(newPos, newPos);
+  luxAutoGrow(field); // v225: con l'emoji il testo può andare a capo
 }
 
 function openEmojiPicker(field, anchor){
@@ -18572,9 +18615,7 @@ function __appInit(){
   window.addEventListener('popstate', function(){
     if(document.getElementById('chatSection')) initChatPage();
   });
-  document.getElementById('fChatMessage') && document.getElementById('fChatMessage').addEventListener('keydown', function(e){
-    if(e.key === 'Enter') sendChatMessage();
-  });
+  setupChatInput(document.getElementById('fChatMessage'), sendChatMessage); // v225: va a capo; Invio manda solo da computer
   document.getElementById('fChatAttachment') && document.getElementById('fChatAttachment').addEventListener('change', function(e){
     var file = e.target.files[0];
     var preview = document.getElementById('chatAttachPreview');
@@ -19380,6 +19421,7 @@ function sendBookmarkChatMessage(){
   }).then(function(r){
     if(!r.ok) throw new Error('bookmark chat message insert failed');
     box.value = '';
+    luxAutoGrow(box); // v225
     playChatSound('sent');
     loadChatMessages();
   }).catch(function(e){
@@ -19414,7 +19456,7 @@ function initBookmarkTab(){
   document.getElementById('bookmarkChatBack').addEventListener('click', closeBookmarkChat);
   backdrop.addEventListener('click', closeDrawer);
   document.getElementById('bmSendChat').addEventListener('click', sendBookmarkChatMessage);
-  document.getElementById('bmChatInput').addEventListener('keydown', function(e){ if(e.key === 'Enter'){ e.preventDefault(); sendBookmarkChatMessage(); } });
+  setupChatInput(document.getElementById('bmChatInput'), sendBookmarkChatMessage); // v225
 }
 function initSnoOverlay(){
   var closeBtn = document.getElementById('snoCloseBtn'), retryBtn = document.getElementById('snoRetryBtn');
