@@ -58,7 +58,7 @@
   // hai visto live sul sito prima di caricare — questo file parte da una
   // copia salvata in sessione e potrebbe non riflettere bump fatti nel
   // frattempo direttamente su GitHub.
-  var V = "223";
+  var V = "224";
 
   // style.css iniettato qui (non più con un <link> scritto a mano in ogni
   // pagina) così la sua versione segue sempre la stessa V di app.js,
@@ -240,14 +240,25 @@
   //
   // Il sito è multi-pagina: loader.js gira di nuovo a ogni cambio pagina,
   // quindi senza questo controllo il widget si reiniettava — e si
-  // ripresentava — a ogni singola pagina aperta. sessionStorage sopravvive
-  // ai cambi pagina ma si azzera da solo alla chiusura della scheda/del
-  // browser, quindi lo mostriamo una sola volta per sessione, non ad ogni
-  // click su un titolo o un menu.
+  // ripresentava — a ogni singola pagina aperta.
+  // v224: compare al massimo una volta ogni 30 giorni su ogni dispositivo
+  // (la data resta nel browser), e mai a chi ha già confermato l'età sul
+  // sito con l'interruttore 18+ (lux_age_ok). Prima ricompariva a ogni
+  // nuova visita, cioè ogni volta che si riapriva il browser o l'app.
   // v219: con la memoria del browser bloccata (alcune modalità private)
   // questa riga fermava tutto il caricamento: ora al massimo si salta il widget
   var ageShown = true;
-  try { ageShown = !!sessionStorage.getItem('lux_age_verify_shown'); if(!ageShown) sessionStorage.setItem('lux_age_verify_shown', '1'); } catch (e) {}
+  try {
+    var ageEvery = 30 * 24 * 60 * 60 * 1000;
+    var ageOk = localStorage.getItem('lux_age_ok') === '1';
+    var ageLast = parseInt(localStorage.getItem('lux_age_verify_at') || '0', 10) || 0;
+    var ageThisVisit = !!sessionStorage.getItem('lux_age_verify_shown');
+    ageShown = ageOk || ageThisVisit || (Date.now() - ageLast >= 0 && Date.now() - ageLast < ageEvery);
+    if (!ageShown) {
+      sessionStorage.setItem('lux_age_verify_shown', '1');
+      localStorage.setItem('lux_age_verify_at', String(Date.now()));
+    }
+  } catch (e) {}
   if(!ageShown){
     var ninjaScript = document.createElement('script');
     ninjaScript.src = 'https://cdn.commoninja.com/sdk/latest/commonninja.js';
