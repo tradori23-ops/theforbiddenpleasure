@@ -58,7 +58,7 @@
   // hai visto live sul sito prima di caricare — questo file parte da una
   // copia salvata in sessione e potrebbe non riflettere bump fatti nel
   // frattempo direttamente su GitHub.
-  var V = "226";
+  var V = "227";
 
   // style.css iniettato qui (non più con un <link> scritto a mano in ogni
   // pagina) così la sua versione segue sempre la stessa V di app.js,
@@ -153,7 +153,7 @@
       var l = localStorage.getItem("lux_lang");
       if (!l) return;
       document.documentElement.lang = l;
-      if (["ar"].indexOf(l) !== -1) document.documentElement.classList.add("lux-rtl");
+      if (["ar", "pnb"].indexOf(l) !== -1) document.documentElement.classList.add("lux-rtl");
     } catch (e) {}
   }
   function applyEarlyTheme() {
@@ -322,7 +322,7 @@
   // app.js parte lo stesso in italiano.
   var luxLang = null;
   try { luxLang = localStorage.getItem("lux_lang"); } catch (e) {}
-  if (luxLang && /^(en|es|fr|de|pt|ru|zh|ja|hi|bn|ar)$/.test(luxLang)) {
+  if (luxLang && /^(en|es|fr|de|pt|ru|zh|ja|hi|bn|ar|pnb)$/.test(luxLang)) {
     var ls = document.createElement("script");
     ls.src = "lang-" + luxLang + ".js?v=" + V;
     ls.async = false;
