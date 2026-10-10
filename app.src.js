@@ -823,6 +823,20 @@ Object.assign(STR.hi, {"support.registerDonation": "अपना दान द�
 Object.assign(STR.bn, {"support.registerDonation": "আপনার দান নথিভুক্ত করুন", "support.registerHint": "তারিখ, নিকনেম আর ইমেইলসহ একটি PDF রসিদ পাবেন।", "support.amountLabel": "দানের পরিমাণ (ঐচ্ছিক)", "support.amountPlaceholder": "যেমন 5", "support.methodLabel": "পেমেন্টের মাধ্যম", "support.amountInvalid": "সঠিক পরিমাণ লিখুন, যেমন 5 বা 7.50।", "support.donationSaved": "দান নথিভুক্ত হয়েছে। ধন্যবাদ!", "support.receiptBtn": "রসিদ (PDF)", "support.prevReceipts": "এই শিরোনামের জন্য আপনার রসিদ", "receipt.heading": "দানের রসিদ", "receipt.download": "PDF ডাউনলোড করুন", "receipt.share": "শেয়ার করুন", "receipt.lang": "রসিদের ভাষা", "receipt.close": "বন্ধ করুন", "receipt.making": "রসিদ তৈরি হচ্ছে…", "receipt.failed": "রসিদ তৈরি করা যায়নি। আবার চেষ্টা করুন।", "receipt.nonFiscal": "এটি কর-সংক্রান্ত নথি নয়", "receipt.number": "রসিদ নম্বর", "receipt.date": "তারিখ", "receipt.donor": "দাতা", "receipt.nickname": "নিকনেম", "receipt.email": "ইমেইল", "receipt.donation": "দান", "receipt.reason": "উদ্দেশ্য", "receipt.reasonText": "“{title}”-এর জন্য স্বেচ্ছায় সহায়তা", "receipt.amount": "পরিমাণ", "receipt.amountNone": "উল্লেখ করা হয়নি", "receipt.method": "পেমেন্টের মাধ্যম", "receipt.status": "অবস্থা", "receipt.verified": "পেমেন্ট যাচাই করা হয়েছে", "receipt.thanks": "আপনার সহায়তার জন্য ধন্যবাদ!", "receipt.footer": "এই নথিটি কোনো ইনভয়েস নয় এবং এর কোনো কর-সংক্রান্ত মূল্য নেই: এটি শুধু {site} সাইটে নথিভুক্ত দানটির প্রমাণ।", "receipt.generated": "তৈরি: {date}"});
 Object.assign(STR.ar, {"support.registerDonation": "سجّل تبرّعك", "support.registerHint": "ستحصل على إيصال PDF يتضمن التاريخ واسمك المستعار وبريدك الإلكتروني.", "support.amountLabel": "المبلغ المتبرَّع به (اختياري)", "support.amountPlaceholder": "مثلًا 5", "support.methodLabel": "طريقة الدفع", "support.amountInvalid": "أدخل مبلغًا صحيحًا، مثل 5 أو 7.50.", "support.donationSaved": "تم تسجيل التبرّع. شكرًا لك!", "support.receiptBtn": "الإيصال (PDF)", "support.prevReceipts": "إيصالاتك لهذا العنوان", "receipt.heading": "إيصال تبرّع", "receipt.download": "تنزيل PDF", "receipt.share": "مشاركة", "receipt.lang": "لغة الإيصال", "receipt.close": "إغلاق", "receipt.making": "جارٍ إعداد الإيصال…", "receipt.failed": "تعذّر إنشاء الإيصال. حاول مرة أخرى.", "receipt.nonFiscal": "ليس مستندًا ضريبيًا", "receipt.number": "رقم الإيصال", "receipt.date": "التاريخ", "receipt.donor": "المتبرّع", "receipt.nickname": "الاسم المستعار", "receipt.email": "البريد الإلكتروني", "receipt.donation": "التبرّع", "receipt.reason": "الغرض", "receipt.reasonText": "دعم طوعي لـ«{title}»", "receipt.amount": "المبلغ", "receipt.amountNone": "غير محدد", "receipt.method": "طريقة الدفع", "receipt.status": "الحالة", "receipt.verified": "تم التحقق من الدفع", "receipt.thanks": "شكرًا لدعمك!", "receipt.footer": "هذا المستند ليس فاتورة وليست له أي قيمة ضريبية: إنه يثبت فقط التبرّع المسجَّل على موقع {site}.", "receipt.generated": "أُنشئ في {date}"});
 Object.assign(STR.pnb, {"support.registerDonation": "اپنا عطیہ درج کرو", "support.registerHint": "تہانوں تاریخ، نک نیم تے ای میل والی اک PDF رسید ملے گی۔", "support.amountLabel": "عطیہ دی رقم (اختیاری)", "support.amountPlaceholder": "جیویں 5", "support.methodLabel": "ادائیگی دا طریقہ", "support.amountInvalid": "درست رقم لکھو، جیویں 5 یا 7.50۔", "support.donationSaved": "عطیہ درج ہو گیا۔ شکریہ!", "support.receiptBtn": "رسید (PDF)", "support.prevReceipts": "ایس ٹائٹل لئی تہاڈیاں رسیداں", "receipt.heading": "عطیے دی رسید", "receipt.download": "PDF ڈاؤن لوڈ کرو", "receipt.share": "شیئر کرو", "receipt.lang": "رسید دی زبان", "receipt.close": "بند کرو", "receipt.making": "رسید تیار ہو رہی اے…", "receipt.failed": "رسید نہیں بن سکی۔ دوبارہ کوشش کرو۔", "receipt.nonFiscal": "ٹیکس دی دستاویز نہیں", "receipt.number": "رسید نمبر", "receipt.date": "تاریخ", "receipt.donor": "عطیہ دین والا", "receipt.nickname": "نک نیم", "receipt.email": "ای میل", "receipt.donation": "عطیہ", "receipt.reason": "مقصد", "receipt.reasonText": "«{title}» لئی اپنی مرضی دی مدد", "receipt.amount": "رقم", "receipt.amountNone": "نہیں دسی گئی", "receipt.method": "ادائیگی دا طریقہ", "receipt.status": "حالت", "receipt.verified": "ادائیگی دی تصدیق ہو گئی", "receipt.thanks": "تہاڈی مدد دا شکریہ!", "receipt.footer": "ایہہ دستاویز بل نہیں اے تے ایہدی کوئی ٹیکس حیثیت نہیں: ایہہ صرف {site} سائٹ تے درج عطیے دی تصدیق کردی اے۔", "receipt.generated": "بنائی گئی: {date}"});
+// v230: ricevuta anche per gli acquisti
+Object.assign(STR.it, {"support.amountPaidLabel": "Importo pagato (facoltativo)", "receipt.headingPurchase": "Ricevuta d'acquisto", "receipt.buyer": "Acquirente", "receipt.purchase": "Acquisto", "receipt.reasonPurchase": "Acquisto di «{title}»", "receipt.thanksPurchase": "Grazie per il tuo acquisto!", "receipt.footerPurchase": "Questo documento non è una fattura e non ha valore fiscale: attesta soltanto l'acquisto registrato sul sito {site}."});
+Object.assign(STR.en, {"support.amountPaidLabel": "Amount paid (optional)", "receipt.headingPurchase": "Purchase receipt", "receipt.buyer": "Buyer", "receipt.purchase": "Purchase", "receipt.reasonPurchase": "Purchase of “{title}”", "receipt.thanksPurchase": "Thank you for your purchase!", "receipt.footerPurchase": "This document is not an invoice and has no tax value: it only certifies the purchase registered on {site}."});
+Object.assign(STR.es, {"support.amountPaidLabel": "Importe pagado (opcional)", "receipt.headingPurchase": "Recibo de compra", "receipt.buyer": "Comprador", "receipt.purchase": "Compra", "receipt.reasonPurchase": "Compra de «{title}»", "receipt.thanksPurchase": "¡Gracias por tu compra!", "receipt.footerPurchase": "Este documento no es una factura y no tiene valor fiscal: solo certifica la compra registrada en el sitio {site}."});
+Object.assign(STR.fr, {"support.amountPaidLabel": "Montant payé (facultatif)", "receipt.headingPurchase": "Reçu d'achat", "receipt.buyer": "Acheteur", "receipt.purchase": "Achat", "receipt.reasonPurchase": "Achat de « {title} »", "receipt.thanksPurchase": "Merci pour votre achat !", "receipt.footerPurchase": "Ce document n'est pas une facture et n'a aucune valeur fiscale : il atteste seulement l'achat enregistré sur le site {site}."});
+Object.assign(STR.de, {"support.amountPaidLabel": "Bezahlter Betrag (optional)", "receipt.headingPurchase": "Kaufquittung", "receipt.buyer": "Käufer", "receipt.purchase": "Kauf", "receipt.reasonPurchase": "Kauf von „{title}“", "receipt.thanksPurchase": "Danke für deinen Kauf!", "receipt.footerPurchase": "Dieses Dokument ist keine Rechnung und hat keinen steuerlichen Wert: Es bestätigt nur den auf der Website {site} registrierten Kauf."});
+Object.assign(STR.pt, {"support.amountPaidLabel": "Valor pago (opcional)", "receipt.headingPurchase": "Recibo de compra", "receipt.buyer": "Comprador", "receipt.purchase": "Compra", "receipt.reasonPurchase": "Compra de “{title}”", "receipt.thanksPurchase": "Obrigado pela sua compra!", "receipt.footerPurchase": "Este documento não é uma nota fiscal e não tem valor fiscal: apenas atesta a compra registrada no site {site}."});
+Object.assign(STR.ru, {"support.amountPaidLabel": "Оплаченная сумма (необязательно)", "receipt.headingPurchase": "Квитанция о покупке", "receipt.buyer": "Покупатель", "receipt.purchase": "Покупка", "receipt.reasonPurchase": "Покупка комикса «{title}»", "receipt.thanksPurchase": "Спасибо за покупку!", "receipt.footerPurchase": "Этот документ не является счётом и не имеет налоговой силы: он лишь подтверждает покупку, зарегистрированную на сайте {site}."});
+Object.assign(STR.zh, {"support.amountPaidLabel": "实付金额（选填）", "receipt.headingPurchase": "购买收据", "receipt.buyer": "购买人", "receipt.purchase": "购买", "receipt.reasonPurchase": "购买《{title}》", "receipt.thanksPurchase": "感谢你的购买！", "receipt.footerPurchase": "本文件不是发票，不具有税务效力，仅证明在 {site} 网站上登记的购买。"});
+Object.assign(STR.ja, {"support.amountPaidLabel": "支払った金額（任意）", "receipt.headingPurchase": "購入の領収書", "receipt.buyer": "購入者", "receipt.purchase": "購入", "receipt.reasonPurchase": "『{title}』のご購入", "receipt.thanksPurchase": "ご購入ありがとうございます！", "receipt.footerPurchase": "この書類は請求書ではなく、税務上の効力もありません。{site} で登録された購入を証明するものです。"});
+Object.assign(STR.hi, {"support.amountPaidLabel": "भुगतान की गई राशि (वैकल्पिक)", "receipt.headingPurchase": "ख़रीद की रसीद", "receipt.buyer": "ख़रीदार", "receipt.purchase": "ख़रीद", "receipt.reasonPurchase": "“{title}” की ख़रीद", "receipt.thanksPurchase": "आपकी ख़रीदारी के लिए धन्यवाद!", "receipt.footerPurchase": "यह दस्तावेज़ इनवॉइस नहीं है और इसका कोई कर-संबंधी मूल्य नहीं है: यह केवल {site} साइट पर दर्ज की गई ख़रीद की पुष्टि करता है।"});
+Object.assign(STR.bn, {"support.amountPaidLabel": "পরিশোধিত পরিমাণ (ঐচ্ছিক)", "receipt.headingPurchase": "কেনার রসিদ", "receipt.buyer": "ক্রেতা", "receipt.purchase": "কেনাকাটা", "receipt.reasonPurchase": "“{title}” কেনা", "receipt.thanksPurchase": "আপনার কেনাকাটার জন্য ধন্যবাদ!", "receipt.footerPurchase": "এই নথিটি কোনো ইনভয়েস নয় এবং এর কোনো কর-সংক্রান্ত মূল্য নেই: এটি শুধু {site} সাইটে নথিভুক্ত কেনাকাটার প্রমাণ।"});
+Object.assign(STR.ar, {"support.amountPaidLabel": "المبلغ المدفوع (اختياري)", "receipt.headingPurchase": "إيصال شراء", "receipt.buyer": "المشتري", "receipt.purchase": "الشراء", "receipt.reasonPurchase": "شراء «{title}»", "receipt.thanksPurchase": "شكرًا لشرائك!", "receipt.footerPurchase": "هذا المستند ليس فاتورة وليست له أي قيمة ضريبية: إنه يثبت فقط عملية الشراء المسجَّلة على موقع {site}."});
+Object.assign(STR.pnb, {"support.amountPaidLabel": "ادا کیتی رقم (اختیاری)", "receipt.headingPurchase": "خریداری دی رسید", "receipt.buyer": "خریدار", "receipt.purchase": "خریداری", "receipt.reasonPurchase": "«{title}» دی خریداری", "receipt.thanksPurchase": "تہاڈی خریداری دا شکریہ!", "receipt.footerPurchase": "ایہہ دستاویز بل نہیں اے تے ایہدی کوئی ٹیکس حیثیت نہیں: ایہہ صرف {site} سائٹ تے درج خریداری دی تصدیق کردی اے۔"});
 var CHAR_META = {
   Lucifer:{role:{it:"Il Portatore di Luce",en:"The Light-Bearer",es:"El Portador de Luz",fr:"Le Porteur de Lumière",de:"Der Lichtträger"},
     bio:{it:"Sovrano della collana ammiraglia: potere, caduta e desiderio raccontati su grande scala.",
@@ -2397,6 +2411,7 @@ function renderMyComics(){
   // v208: lo stile cambia con la scheda (elenco per "Continua", scaricamento solo in "Offline")
   section.setAttribute('data-tab', myComicsTab);
   grid.innerHTML = '';
+  Array.prototype.forEach.call(section.querySelectorAll('.mycomics-purchase-list'), function(l){ l.remove(); }); // v230
   empty.classList.add('hidden');
   grid.classList.remove('hidden');
 
@@ -2405,6 +2420,7 @@ function renderMyComics(){
     fetch(SUPABASE_URL + '/rest/v1/requests?user_id=eq.' + encodeURIComponent(currentUserId()) + '&select=*&order=created_at.desc', {
       headers: communityHeaders()
     }).then(function(r){ return r.json(); }).then(function(rows){
+      if(myComicsTab !== 'purchases') return; // v230: nel frattempo hai cambiato scheda
       rows = (rows||[]).filter(function(r){ return (r.body||'').indexOf('[ACQUISTO]') === 0; });
       if(rows.length === 0){
         empty.textContent = t('mycomics.emptyPurchases');
@@ -2416,10 +2432,23 @@ function renderMyComics(){
       rows.forEach(function(r){
         var row = document.createElement('div');
         row.className = 'mycomics-purchase-row';
-        row.innerHTML = '<div class="txt">' + escapeHtml(r.body.replace('[ACQUISTO] ','')) + '</div>' +
-          '<div class="mono status">' + (r.status === 'read' ? t('mycomics.statusSeen') : t('mycomics.statusPending')) + '</div>';
+        // v230: titolo, data e importo al posto del testo grezzo, e la ricevuta in PDF
+        var pp = luxParsePurchase(r.body), d = new Date(r.created_at);
+        var line = [pp.title || (r.body || '').replace('[ACQUISTO] ', ''), isNaN(d.getTime()) ? '' : d.toLocaleDateString(luxLocale(), { day:'numeric', month:'short', year:'numeric' }),
+          pp.amount != null ? luxMoney(pp.amount, currentLang) : ''].filter(Boolean).join(' · ');
+        row.innerHTML = '<div class="txt">' + escapeHtml(line) + '</div>' +
+          '<div class="mono status">' + (r.status === 'read' ? t('mycomics.statusSeen') : t('mycomics.statusPending')) + '</div>' +
+          '<button type="button" class="btn btn-ghost btn-sm lux-buy-rc">' + escapeHtml(t('support.receiptBtn')) + '</button>';
+        var rb = row.querySelector('.lux-buy-rc');
+        rb.addEventListener('click', function(){
+          rb.disabled = true;
+          luxPurchaseReceipt(r, false).then(function(rec){ openReceiptModal(rec); })
+            .catch(function(e){ console.warn('Ricevuta non preparata:', e); luxToast(t('receipt.failed')); })
+            .then(function(){ rb.disabled = false; });
+        });
         list.appendChild(row);
       });
+      Array.prototype.forEach.call(section.querySelectorAll('.mycomics-purchase-list'), function(l){ l.remove(); });
       grid.parentNode.insertBefore(list, empty);
     });
     return;
@@ -16776,6 +16805,7 @@ function luxDrawReceipt(rec, lang, logo){
   g.fillRect(0, 0, W, H);
   g.scale(W / PW, H / PH);
   var rtl = luxIsRtl(lang), R = function(k){ return luxRt(lang, k); };
+  var KEYS = luxReceiptKeys(rec); // v230: donazione o acquisto
   var spaced = !/^(ar|pnb|hi|bn|zh|ja)$/.test(lang);
   var INK = '#1d1416', MUTED = '#6d6064', GOLD = '#9c7623', GOLD_L = '#dcc68c', PAPER = '#f8f2e4', OK = '#2d7a4b';
   var L = 50, CW = PW - 100;
@@ -16833,7 +16863,7 @@ function luxDrawReceipt(rec, lang, logo){
 
   // titolo del documento
   var y = 172, tf = '700 25px ' + DISPLAY;
-  lines(R('receipt.heading'), tf, CW).forEach(function(s){ put(s, L, y, tf, INK); y += 30; });
+  lines(R(KEYS.heading), tf, CW).forEach(function(s){ put(s, L, y, tf, INK); y += 30; });
   put(R('receipt.nonFiscal'), L, y - 8, 'italic 400 12px ' + SERIF, MUTED);
   y += 18;
 
@@ -16866,12 +16896,12 @@ function luxDrawReceipt(rec, lang, logo){
     vl.forEach(function(s, i){ put(s, L + lw, y + i * 17, vf, color || INK); });
     y += Math.max(ll.length * 15, vl.length * 17) + 9;
   }
-  section(R('receipt.donor'));
+  section(R(KEYS.who));
   field('receipt.nickname', rec.name || '—');
   field('receipt.email', rec.email || '—');
   y += 14;
-  section(R('receipt.donation'));
-  field('receipt.reason', R('receipt.reasonText').replace('{title}', rec.title || '—'));
+  section(R(KEYS.what));
+  field('receipt.reason', R(KEYS.reason).replace('{title}', rec.title || '—'));
   field('receipt.amount', rec.amount != null && !isNaN(rec.amount) ? luxMoney(rec.amount, lang) : R('receipt.amountNone'));
   if(rec.method) field('receipt.method', rec.method);
   if(rec.verified) field('receipt.status', '✓ ' + R('receipt.verified'), OK);
@@ -16879,7 +16909,7 @@ function luxDrawReceipt(rec, lang, logo){
   // grazie
   y += 30;
   var thf = '700 17px ' + DISPLAY;
-  lines(R('receipt.thanks'), thf, CW).forEach(function(s){ put(s, PW / 2, y, thf, GOLD, 'center'); y += 22; });
+  lines(R(KEYS.thanks), thf, CW).forEach(function(s){ put(s, PW / 2, y, thf, GOLD, 'center'); y += 22; });
   g.fillStyle = GOLD_L;
   g.fillRect(PW / 2 - 64, y - 4, 52, 0.7);
   g.fillRect(PW / 2 + 12, y - 4, 52, 0.7);
@@ -16888,7 +16918,7 @@ function luxDrawReceipt(rec, lang, logo){
 
   // piede: cosa vale questo foglio, e quando è stato creato
   var ff = 'italic 400 9.5px ' + SERIF;
-  var fl = lines(R('receipt.footer').replace('{site}', LUX_RECEIPT_SITE), ff, CW);
+  var fl = lines(R(KEYS.footer).replace('{site}', LUX_RECEIPT_SITE), ff, CW);
   var fy = PH - 50 - fl.length * 12.5 - 12;
   rule(fy - 16, GOLD_L, 0.6);
   fl.forEach(function(s){ put(s, L, fy, ff, MUTED); fy += 12.5; });
@@ -16959,7 +16989,7 @@ function luxBuildReceipt(rec, lang){
   return Promise.all([luxEnsureLang(lang), luxReceiptFonts(), luxReceiptLogo()]).then(function(res){
     var lg = res[0], c = luxDrawReceipt(rec, lg, res[2]);
     return luxCanvasJpeg(c).then(function(jpeg){
-      var pdf = luxJpegToPdf(jpeg, c.width, c.height, { title: luxRt(lg, 'receipt.heading') + ' ' + rec.code, author: 'LUX COMICS & MEDUSA COMICS', subject: rec.title || '' });
+      var pdf = luxJpegToPdf(jpeg, c.width, c.height, { title: luxRt(lg, luxReceiptKeys(rec).heading) + ' ' + rec.code, author: 'LUX COMICS & MEDUSA COMICS', subject: rec.title || '' });
       return { lang: lg, pdf: new Blob([pdf], { type: 'application/pdf' }), jpeg: new Blob([jpeg], { type: 'image/jpeg' }), name: luxReceiptFileName(rec, lg) };
     });
   });
@@ -16985,18 +17015,18 @@ function openReceiptModal(rec, opts){
   ov.className = 'lux-rc-overlay';
   ov.setAttribute('role', 'dialog');
   ov.setAttribute('aria-modal', 'true');
-  ov.setAttribute('aria-label', t('receipt.heading'));
+  ov.setAttribute('aria-label', t(luxReceiptKeys(rec).heading));
   var methodOpts = '<option value="">—</option>' + LUX_RECEIPT_METHODS.map(function(m){ return '<option value="' + m + '">' + m + '</option>'; }).join('');
   ov.innerHTML =
     '<div class="lux-rc-box">' +
       '<button type="button" class="lux-rc-x" aria-label="' + escapeHtml(t('receipt.close')) + '">×</button>' +
-      '<div class="lux-rc-eyebrow">' + escapeHtml(t('receipt.heading')) + ' · <span class="mono">' + escapeHtml(rec.code) + '</span></div>' +
+      '<div class="lux-rc-eyebrow">' + escapeHtml(t(luxReceiptKeys(rec).heading)) + ' · <span class="mono">' + escapeHtml(rec.code) + '</span></div>' +
       (opts.editable ?
         '<div class="lux-rc-edit">' +
           '<label><span>' + escapeHtml(t('receipt.amount')) + ' (€)</span><input type="text" inputmode="decimal" class="lux-rc-amount" autocomplete="off"></label>' +
           '<label><span>' + escapeHtml(t('receipt.method')) + '</span><select class="lux-rc-method">' + methodOpts + '</select></label>' +
         '</div>' : '') +
-      '<div class="lux-rc-paper"><img class="lux-rc-img" alt="' + escapeHtml(t('receipt.heading')) + '"></div>' +
+      '<div class="lux-rc-paper"><img class="lux-rc-img" alt="' + escapeHtml(t(luxReceiptKeys(rec).heading)) + '"></div>' +
       '<div class="lux-rc-status" role="status"></div>' +
       '<div class="lux-rc-actions">' +
         '<label class="lux-rc-lang"><span>' + escapeHtml(t('receipt.lang')) + '</span><select class="lux-rc-langsel">' +
@@ -17068,7 +17098,7 @@ function openReceiptModal(rec, opts){
   dl.addEventListener('click', function(){ if(cur) luxSaveBlob(cur.pdf, cur.name); });
   share.addEventListener('click', function(){
     if(!cur || !cur.file) return;
-    navigator.share({ files: [cur.file], title: luxRt(cur.lang, 'receipt.heading') + ' ' + rec.code }).catch(function(e){
+    navigator.share({ files: [cur.file], title: luxRt(cur.lang, luxReceiptKeys(rec).heading) + ' ' + rec.code }).catch(function(e){
       if(e && e.name !== 'AbortError') luxSaveBlob(cur.pdf, cur.name);
     });
   });
@@ -17079,14 +17109,8 @@ function openReceiptModal(rec, opts){
 
 // ---------- nella scheda «Sostieni»: importo, metodo, ricevute già fatte ----------
 function luxDonationFormHtml(price){
-  var pre = price ? new Intl.NumberFormat(luxLocale(), { minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: false }).format(price) : '';
   return '<div class="lux-don" style="margin-bottom:16px;">' +
-    '<div class="lux-don-row">' +
-      '<label class="lux-don-field"><span>' + escapeHtml(t('support.amountLabel')) + '</span>' +
-        '<span class="lux-don-money"><input type="text" inputmode="decimal" id="supportDonationAmount" autocomplete="off" placeholder="' + escapeHtml(t('support.amountPlaceholder')) + '" value="' + escapeHtml(pre) + '"><b>€</b></span></label>' +
-      '<label class="lux-don-field"><span>' + escapeHtml(t('support.methodLabel')) + '</span><select id="supportDonationMethod"><option value="">—</option>' +
-        LUX_RECEIPT_METHODS.map(function(m){ return '<option value="' + m + '">' + m + '</option>'; }).join('') + '</select></label>' +
-    '</div>' +
+    luxPayFieldsHtml(price, 'support.amountLabel', 'supportDonationAmount', 'supportDonationMethod') + // v230: la stessa riga degli acquisti
     '<div id="supportDonationError" class="lux-don-err"></div>' +
     '<button type="button" id="supportDonationRegister" class="btn btn-ghost" style="width:100%;">' + escapeHtml(t('support.registerDonation')) + '</button>' +
     '<div class="lux-don-hint">' + escapeHtml(t('support.registerHint')) + '</div>' +
@@ -17173,6 +17197,139 @@ function luxDonationReceipt(req, isVerified){
   });
 }
 
+/* ============ v230: LA RICEVUTA ANCHE PER GLI ACQUISTI ============
+   La stessa ricevuta non fiscale delle donazioni, per chi compra un titolo
+   in vendita: si scarica appena inviata la richiesta, poi da «I Miei Comic ›
+   I Miei Acquisti» (da qualsiasi telefono o computer) e, per te, da
+   Amministra › Richieste. Il testo della richiesta tiene i dati:
+   [ACQUISTO] "Titolo" (id x) — spedire a: email · 4,90 € · PayPal · ricevuta LUX-20261010-7F3K · nickname: Aurora */
+function luxParsePurchase(body){
+  var b = String(body || ''), out = { title: '', titleId: null, email: null, amount: null, method: null, code: null, nick: null }, rest = '';
+  var m = /^\[ACQUISTO\] "([\s\S]*)" \(id ([^)]*)\) — spedire a: ([\s\S]*)$/.exec(b);
+  if(m){
+    out.title = m[1]; out.titleId = m[2];
+    var tail = m[3], cut = tail.indexOf(' · ');
+    out.email = (cut === -1 ? tail : tail.slice(0, cut)).trim() || null;
+    rest = cut === -1 ? '' : tail.slice(cut);
+  } else {
+    // scritto a mano o in un formato più vecchio, per esempio: [ACQUISTO] Il Re Geloso — €4,90
+    var m2 = /^\[ACQUISTO\]\s*"?([^"]*?)"?\s*(?: — ([\s\S]*))?$/.exec(b);
+    out.title = m2 ? m2[1].trim() : b.replace(/^\[ACQUISTO\]\s*/, '');
+    rest = m2 && m2[2] ? ' · ' + m2[2] : '';
+  }
+  var nk = /· nickname: ([\s\S]*)$/.exec(rest);
+  if(nk){ out.nick = nk[1].trim() || null; rest = rest.slice(0, nk.index); }
+  var am = /· (\d+(?:,\d{1,2})?) €/.exec(rest) || /· €\s?(\d+(?:[.,]\d{1,2})?)(?=\s|$)/.exec(rest);
+  if(am) out.amount = parseFloat(am[1].replace(',', '.'));
+  var me = new RegExp('· (' + LUX_RECEIPT_METHODS.join('|') + ')(?= ·|\\s*$)').exec(rest);
+  if(me) out.method = me[1];
+  var cd = /· ricevuta (LUX-\d{8}-[A-Z0-9]{4,8})/.exec(rest);
+  if(cd) out.code = cd[1];
+  return out;
+}
+// il nickname: quello scritto nella richiesta, se c'è; se no quello del profilo di oggi
+function luxNickOf(req, nick){
+  if(nick) return Promise.resolve(nick);
+  if(!req.user_id) return Promise.resolve('—');
+  var session = getSession();
+  var fallback = t('notif.someone') + ' ' + String(req.user_id).slice(0, 6);
+  return fetch(SUPABASE_URL + '/rest/v1/profiles?id=eq.' + encodeURIComponent(req.user_id) + '&select=display_name', {
+    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + (session ? session.access_token : SUPABASE_ANON_KEY) }
+  }).then(function(r){ return r.ok ? r.json() : []; }).then(function(rows){
+    return rows[0] && rows[0].display_name ? rows[0].display_name : fallback;
+  }).catch(function(){ return fallback; });
+}
+function luxPurchaseReceipt(req, isVerified){
+  var p = luxParsePurchase(req.body);
+  return luxNickOf(req, p.nick).then(function(name){
+    return { kind: 'purchase', code: p.code || luxReceiptCodeFor(req), at: req.created_at || new Date().toISOString(), name: name,
+      email: p.email || req.author_email || '', title: p.title, titleId: p.titleId, amount: p.amount, method: p.method, verified: !!isVerified };
+  });
+}
+function luxRequestReceipt(req, isVerified){
+  return (req.body || '').indexOf('[ACQUISTO]') === 0 ? luxPurchaseReceipt(req, isVerified) : luxDonationReceipt(req, isVerified);
+}
+// le scritte che cambiano tra ricevuta di donazione e d'acquisto
+function luxReceiptKeys(rec){
+  var buy = !!rec && rec.kind === 'purchase';
+  return { heading: buy ? 'receipt.headingPurchase' : 'receipt.heading', who: buy ? 'receipt.buyer' : 'receipt.donor',
+    what: buy ? 'receipt.purchase' : 'receipt.donation', reason: buy ? 'receipt.reasonPurchase' : 'receipt.reasonText',
+    thanks: buy ? 'receipt.thanksPurchase' : 'receipt.thanks', footer: buy ? 'receipt.footerPurchase' : 'receipt.footer' };
+}
+// importo e metodo: la stessa riga per chi dona e per chi compra
+function luxPayFieldsHtml(price, amountKey, amountId, methodId){
+  var pre = price ? new Intl.NumberFormat(luxLocale(), { minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: false }).format(price) : '';
+  return '<div class="lux-don-row">' +
+    '<label class="lux-don-field"><span>' + escapeHtml(t(amountKey)) + '</span>' +
+      '<span class="lux-don-money"><input type="text" inputmode="decimal" id="' + amountId + '" autocomplete="off" placeholder="' + escapeHtml(t('support.amountPlaceholder')) + '" value="' + escapeHtml(pre) + '"><b>€</b></span></label>' +
+    '<label class="lux-don-field"><span>' + escapeHtml(t('support.methodLabel')) + '</span><select id="' + methodId + '"><option value="">—</option>' +
+      LUX_RECEIPT_METHODS.map(function(m){ return '<option value="' + m + '">' + m + '</option>'; }).join('') + '</select></label>' +
+  '</div>';
+}
+function luxPurchaseFormHtml(price){
+  return '<div class="lux-don lux-buy" style="margin-bottom:16px;">' +
+    '<label class="lux-don-field lux-don-email"><span>' + escapeHtml(t('support.emailLabel')) + '</span>' +
+      '<input type="email" id="supportBuyerEmail" autocomplete="email" placeholder="' + escapeHtml(t('support.emailPlaceholder')) + '" value="' + escapeHtml(currentUserEmail() || '') + '"></label>' +
+    luxPayFieldsHtml(price, 'support.amountPaidLabel', 'supportBuyerAmount', 'supportBuyerMethod') +
+    '<div id="supportEmailError" class="lux-don-err"></div>' +
+    '<button type="button" id="supportEmailSubmit" class="btn btn-ghost" style="width:100%;">' + escapeHtml(t('support.emailSubmit')) + '</button>' +
+    '<div class="lux-don-hint">' + escapeHtml(t('support.registerHint')) + '</div>' +
+    '<div id="supportEmailSent" style="font-size:12px;color:var(--gold-bright);margin-top:8px;"></div>' +
+    '<div id="supportDonationPrev" class="lux-don-prev"></div>' +
+  '</div>';
+}
+function setupPurchaseRequest(item, overlay){
+  var btn = document.getElementById('supportEmailSubmit');
+  if(!btn) return;
+  var emailField = document.getElementById('supportBuyerEmail'), amountEl = document.getElementById('supportBuyerAmount'), methodEl = document.getElementById('supportBuyerMethod');
+  var err = document.getElementById('supportEmailError'), sent = document.getElementById('supportEmailSent');
+  Array.prototype.forEach.call(overlay.querySelectorAll('a[data-pay]'), function(a){
+    a.addEventListener('click', function(){ if(methodEl) methodEl.value = a.getAttribute('data-pay'); });
+  });
+  luxRenderPrevReceipts(item);
+  btn.addEventListener('click', function(){
+    var email = emailField.value.trim();
+    err.textContent = ''; sent.textContent = '';
+    if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ err.textContent = t('support.emailRequired'); emailField.focus(); return; }
+    var amount = luxParseAmount(amountEl ? amountEl.value : '');
+    if(amount !== null && isNaN(amount)){ err.textContent = t('support.amountInvalid'); if(amountEl) amountEl.focus(); return; }
+    var method = methodEl && methodEl.value ? methodEl.value : null;
+    var session = getSession();
+    btn.disabled = true;
+    var now = new Date(), code = luxReceiptCode(now);
+    var nameStep = !session ? Promise.resolve(null)
+      : (currentProfile !== null ? Promise.resolve(currentProfile) : loadOwnProfile().then(function(){ return currentProfile; }));
+    nameStep.then(function(profile){
+      var nick = session ? publicDisplayName(profile) : null;
+      var payload = {
+        author_email: email,
+        body: '[ACQUISTO] "' + item.title + '" (id ' + item.id + ') — spedire a: ' + email +
+          (amount !== null ? ' · ' + luxAmountIt(amount) + ' €' : '') + (method ? ' · ' + method : '') +
+          ' · ricevuta ' + code + (nick ? ' · nickname: ' + nick : '')
+      };
+      if(session) payload.user_id = currentUserId();
+      var headers = { 'apikey':SUPABASE_ANON_KEY, 'Content-Type':'application/json' };
+      if(session) headers.Authorization = 'Bearer ' + session.access_token;
+      return fetch(SUPABASE_URL + '/rest/v1/requests', { method:'POST', headers: headers, body: JSON.stringify(payload) }).then(function(r){
+        if(!r.ok) throw new Error('purchase request failed: ' + r.status);
+        var rec = { kind: 'purchase', code: code, at: now.toISOString(), name: nick, email: email, title: item.title, titleId: item.id,
+          amount: amount, method: method, uid: currentUserId() };
+        luxKeepReceipt(rec);
+        btn.disabled = false;
+        emailField.value = '';
+        sent.innerHTML = escapeHtml(t('support.emailSent')) +
+          '<br><button type="button" class="btn btn-primary btn-sm lux-don-rc">' + escapeHtml(t('support.receiptBtn')) + '</button>';
+        sent.querySelector('.lux-don-rc').addEventListener('click', function(){ openReceiptModal(rec); });
+        luxRenderPrevReceipts(item, code);
+      });
+    }).catch(function(e){
+      console.warn('Purchase email request failed:', e);
+      btn.disabled = false;
+      err.textContent = t('net.actionFailed');
+    });
+  });
+}
+
 function insertSupportTitleButton(item){
   var shareBtn = document.getElementById('titleModalShare');
   if(!shareBtn) return;
@@ -17207,14 +17364,7 @@ function openSupportTitlePanel(item){
       '<div style="font-family:\'Space Mono\',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold-bright);margin-bottom:6px;">'+t('support.titlePanelHeading')+'</div>'+
       '<div style="font-size:16px;margin-bottom:4px;">'+escapeHtml(item.title)+'</div>'+
       (price ? '<div style="font-size:13px;color:var(--parchment-dim);margin-bottom:14px;">'+t('support.priceNote').replace('{price}', price.toFixed(2))+'</div>' : '<div style="font-size:13px;color:var(--parchment-dim);margin-bottom:14px;">'+t('support.freeNote')+'</div>')+
-      (isForSale ?
-        '<div style="margin-bottom:16px;">'+
-          '<label style="display:block;font-family:\'Space Mono\',monospace;font-size:10px;color:var(--gold-bright);margin-bottom:6px;">'+t('support.emailLabel')+'</label>'+
-          '<input type="email" id="supportBuyerEmail" placeholder="'+t('support.emailPlaceholder')+'" style="width:100%;box-sizing:border-box;padding:9px 10px;background:var(--void);border:1px solid var(--line);color:var(--parchment);font-family:\'Crimson Pro\',serif;font-size:14px;margin-bottom:6px;">'+
-          '<div id="supportEmailError" style="font-size:11px;color:#d9756b;margin-bottom:6px;"></div>'+
-          '<button type="button" id="supportEmailSubmit" class="btn btn-ghost" style="width:100%;">'+t('support.emailSubmit')+'</button>'+
-          '<div id="supportEmailSent" style="font-size:12px;color:var(--gold-bright);margin-top:8px;"></div>'+
-        '</div>'
+      (isForSale ? luxPurchaseFormHtml(price) // v230: importo, metodo e ricevuta anche per gli acquisti
         : (isSignedIn() ? luxDonationFormHtml(price) : ''))+ // v229: importo, metodo e ricevuta in PDF
       '<div style="display:flex;flex-direction:column;gap:8px;">'+
         '<a href="'+paypalUrl+'" target="_blank" rel="noopener" class="btn btn-primary" data-pay="PayPal">'+t('support.paypal')+'</a>'+
@@ -17228,35 +17378,7 @@ function openSupportTitlePanel(item){
   overlay.addEventListener('click', function(e){ if(e.target === overlay) overlay.remove(); });
 
   if(isForSale){
-    document.getElementById('supportEmailSubmit').addEventListener('click', function(){
-      var emailField = document.getElementById('supportBuyerEmail');
-      var err = document.getElementById('supportEmailError');
-      var sent = document.getElementById('supportEmailSent');
-      var email = emailField.value.trim();
-      err.textContent = ''; sent.textContent = '';
-      if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
-        err.textContent = t('support.emailRequired');
-        return;
-      }
-      var session = getSession();
-      var payload = {
-        author_email: email,
-        body: '[ACQUISTO] "' + item.title + '" (id ' + item.id + ') — spedire a: ' + email
-      };
-      if(session) payload.user_id = currentUserId();
-      var headers = { 'apikey':SUPABASE_ANON_KEY, 'Content-Type':'application/json' };
-      if(session) headers.Authorization = 'Bearer ' + session.access_token;
-      fetch(SUPABASE_URL + '/rest/v1/requests', {
-        method:'POST', headers: headers, body: JSON.stringify(payload)
-      }).then(function(r){
-        if(!r.ok) throw new Error('purchase request failed: ' + r.status);
-        sent.textContent = t('support.emailSent');
-        emailField.value = '';
-      }).catch(function(e){
-        console.warn('Purchase email request failed:', e);
-        err.textContent = t('support.emailRequired');
-      });
-    });
+    setupPurchaseRequest(item, overlay); // v230: richiesta d'acquisto con la sua ricevuta
   } else {
     setupDonationRegister(item, overlay); // v229: registra la donazione e prepara la ricevuta
   }
@@ -18822,7 +18944,7 @@ function renderAdminRequests(){
             '<div class="txt">' + escapeHtml(req.body) + '</div>' +
           '</div>' +
           '<div class="admin-actions">' +
-          (isDonation ? '<button class="btn btn-ghost btn-sm" data-receipt="' + req.id + '">Ricevuta PDF</button>' : '') + // v229
+          (isSupport ? '<button class="btn btn-ghost btn-sm" data-receipt="' + req.id + '">Ricevuta PDF</button>' : '') + // v229 · v230: anche gli acquisti
           (isSupport && req.user_id ? (verified[req.user_id]
             ? '<span class="req-done-tag">✓ Pagamento verificato</span>'
             : '<button class="btn btn-primary btn-sm" data-verify-supporter="' + req.id + '">Verifica pagamento (sblocca pagine pulite)</button>') : '') +
@@ -18865,7 +18987,7 @@ function renderAdminRequests(){
         var receiptBtn = row.querySelector('[data-receipt]'); // v229
         if(receiptBtn) receiptBtn.addEventListener('click', function(){
           receiptBtn.disabled = true;
-          luxDonationReceipt(req, verified[req.user_id]).then(function(rec){ openReceiptModal(rec, { editable: true }); })
+          luxRequestReceipt(req, verified[req.user_id]).then(function(rec){ openReceiptModal(rec, { editable: true }); })
             .catch(function(e){ console.warn('Ricevuta non preparata:', e); luxToast(t('receipt.failed')); })
             .then(function(){ receiptBtn.disabled = false; });
         });
