@@ -58,7 +58,7 @@
   // hai visto live sul sito prima di caricare — questo file parte da una
   // copia salvata in sessione e potrebbe non riflettere bump fatti nel
   // frattempo direttamente su GitHub.
-  var V = "225";
+  var V = "226";
 
   // style.css iniettato qui (non più con un <link> scritto a mano in ogni
   // pagina) così la sua versione segue sempre la stessa V di app.js,
@@ -146,6 +146,16 @@
   // Tema chiaro/scuro applicato subito, con lo stesso criterio di
   // initTheme() in app.js — chi usa il tema chiaro non vede prima la
   // versione scura per un attimo, in attesa che arrivi app.js.
+  // v226: lingua e verso di scrittura subito, prima che la pagina si scopra
+  // (arabo e panjabi vanno da destra a sinistra)
+  function applyEarlyLang() {
+    try {
+      var l = localStorage.getItem("lux_lang");
+      if (!l) return;
+      document.documentElement.lang = l;
+      if (["ar"].indexOf(l) !== -1) document.documentElement.classList.add("lux-rtl");
+    } catch (e) {}
+  }
   function applyEarlyTheme() {
     try {
       var theme = localStorage.getItem("lux_theme");
@@ -283,6 +293,7 @@
     // Non blocchiamo comunque il caricamento di app.js: meglio una pagina
     // con qualche pezzo mancante che una pagina completamente morta.
   }
+  applyEarlyLang();
   applyEarlyTheme();
   setLogos();
   // v223: «Condividi» mostra le app (WhatsApp, Telegram, Instagram, Facebook…)
@@ -311,7 +322,7 @@
   // app.js parte lo stesso in italiano.
   var luxLang = null;
   try { luxLang = localStorage.getItem("lux_lang"); } catch (e) {}
-  if (luxLang && /^(en|es|fr|de)$/.test(luxLang)) {
+  if (luxLang && /^(en|es|fr|de|pt|ru|zh|ja|hi|bn|ar)$/.test(luxLang)) {
     var ls = document.createElement("script");
     ls.src = "lang-" + luxLang + ".js?v=" + V;
     ls.async = false;

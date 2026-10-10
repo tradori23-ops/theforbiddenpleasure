@@ -3802,3 +3802,32 @@ textarea.chat-text-input{display:block;box-sizing:border-box;min-height:44px;res
 body.has-app-tabbar textarea.chat-text-input{line-height:22px;padding-top:10px;padding-bottom:10px;}
 #fChannelMessage{overflow-wrap:anywhere;scrollbar-width:thin;}
 .chat-bubble .body,.chat-translated-body{overflow-wrap:anywhere;}
+
+/* =====================================================================
+   v226: LINGUE CON ALTRE SCRITTURE
+   - Testi scritti dagli utenti (chat, canali, commenti, bio): ogni
+     paragrafo prende il verso della lingua in cui è scritto, così un
+     messaggio in arabo si legge da destra a sinistra anche col sito in
+     italiano (e la punteggiatura resta al suo posto).
+   - Arabo (html.lux-rtl): il testo va da destra a sinistra ed è allineato
+     a destra; menu, colonne e pulsanti restano dove sono.
+   - Arabo, hindi e bengalese: niente spaziatura tra le lettere (spezzerebbe
+     le lettere legate); un filo di interlinea in più per i segni sopra e
+     sotto la riga.
+   ===================================================================== */
+.chat-bubble .body,.chat-translated-body,.channel-msg .body,.channel-msg .msg-body,.comment-body,.comment .body,
+.diary-post-body,.diary-post .body,.pub-profile-bio,.chat-info-bio,#fChatMessage,#bmChatInput,#fChannelMessage,
+#fCommentBody,.post-comment-body{unicode-bidi:plaintext;text-align:start;}
+
+html.lux-rtl body{text-align:right;}
+html.lux-rtl :is(p,h1,h2,h3,h4,h5,h6,li,dt,dd,blockquote,figcaption,label,legend,summary,td,th,
+  .synopsis,.desc,.form-note,.eyebrow,.meta,.hint){unicode-bidi:plaintext;}
+html.lux-rtl :is(input,textarea){unicode-bidi:plaintext;}
+html.lux-rtl :is(input,textarea)::placeholder{text-align:right;}
+/* le tavole dei fumetti restano da sinistra a destra */
+html.lux-rtl #pageReader,html.lux-rtl #pageReader *{unicode-bidi:normal;}
+
+html:lang(ar) *,html:lang(pnb) *,html:lang(hi) *,html:lang(bn) *{letter-spacing:0 !important;}
+html:lang(ar) body,html:lang(pnb) body{line-height:1.6;}
+html:lang(hi) body,html:lang(bn) body{line-height:1.55;}
+html:lang(zh) body,html:lang(ja) body{line-break:strict;word-break:normal;overflow-wrap:anywhere;}
