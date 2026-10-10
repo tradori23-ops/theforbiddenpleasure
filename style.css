@@ -3899,3 +3899,91 @@ html:lang(zh) body,html:lang(ja) body{line-break:strict;word-break:normal;overfl
   .mycomics-purchase-row .txt{flex-basis:100%;}
   .mycomics-purchase-row .lux-buy-rc{margin-left:auto;}
 }
+
+/* =====================================================================
+   v232: I MODULI SEGUONO GIORNO E NOTTE · IMMAGINI E BIOGRAFIE
+   - La scheda «Nuovo titolo» di Amministra (e la sua barra in fondo) era
+     sempre scura: ora di giorno è chiara come il resto della pagina.
+   - Di giorno i campi con numeri, date, link ed email restavano scuri
+     (solo testo e menu diventavano chiari): ora tutti i campi, anche nel
+     Profilo, sono chiari di giorno e scuri di notte.
+   - Il calendario delle date usa i colori del tema (prima l'icona spariva).
+   - La finestra «Personaggi» (modifica, nuovo, elimina) di giorno è chiara.
+   - Immagini dei personaggi: pulsante «Carica/Cambia immagine», il
+     messaggio sotto (salvata o perché no) e «Biografia».
+   - Dossier: la biografia, con «Leggi tutta la biografia».
+   ===================================================================== */
+body{--bg-1:#150d0e;}
+body.theme-light{--bg-1:#fffdf7;}
+body.theme-light .title-form-drawer-inner{box-shadow:-8px 0 24px rgba(80,60,40,.18);}
+
+body.theme-light #adminSection input[type="number"],body.theme-light #adminSection input[type="url"],body.theme-light #adminSection input[type="email"],
+body.theme-light #adminSection input[type="date"],body.theme-light #adminSection input[type="datetime-local"],body.theme-light #adminSection input[type="time"],
+body.theme-light #adminSection input[type="tel"],body.theme-light #adminSection input[type="password"],
+body.theme-light.has-app-tabbar #adminSection input[type="number"],body.theme-light.has-app-tabbar #adminSection input[type="url"],body.theme-light.has-app-tabbar #adminSection input[type="email"],
+body.theme-light.has-app-tabbar #adminSection input[type="date"],body.theme-light.has-app-tabbar #adminSection input[type="datetime-local"],body.theme-light.has-app-tabbar #adminSection input[type="time"],
+body.theme-light.has-app-tabbar #adminSection input[type="tel"],body.theme-light.has-app-tabbar #adminSection input[type="password"],
+body.theme-light #profileSection input[type="url"],body.theme-light #profileSection input[type="email"],body.theme-light #profileSection input[type="date"],
+body.theme-light #profileSection input[type="number"],body.theme-light #profileSection select,
+body.theme-light.has-app-tabbar #profileSection input[type="url"],body.theme-light.has-app-tabbar #profileSection input[type="email"],body.theme-light.has-app-tabbar #profileSection input[type="date"],
+body.theme-light.has-app-tabbar #profileSection input[type="number"],body.theme-light.has-app-tabbar #profileSection select{
+  background:#fffdf7;color:#2a1d12;border-color:rgba(138,106,31,.35);}
+body.theme-light #adminSection ::placeholder,body.theme-light #profileSection ::placeholder{color:rgba(42,29,18,.45);}
+#adminSection input[type="date"],#adminSection input[type="datetime-local"],#adminSection input[type="time"],#profileSection input[type="date"]{color-scheme:dark;}
+body.theme-light #adminSection input[type="date"],body.theme-light #adminSection input[type="datetime-local"],body.theme-light #adminSection input[type="time"],
+body.theme-light #profileSection input[type="date"]{color-scheme:light;}
+
+/* nella scheda «Nuovo titolo» di giorno: i generi e i pulsanti «Scegli file» erano color crema su bianco */
+body.theme-light .gcs-label{color:#2a1d12;}
+body.theme-light .gcs-circle{border-color:#8a6a1f;color:#8a6a1f;}
+body.theme-light .genre-check-seal:hover{border-color:rgba(138,106,31,.35);}
+body.theme-light .genre-check-seal.active{border-color:#8a6a1f;background:rgba(138,106,31,.08);}
+body.theme-light #adminSection input[type="file"]::file-selector-button,body.theme-light.has-app-tabbar #adminSection input[type="file"]::file-selector-button,
+body.theme-light #profileSection input[type="file"]::file-selector-button,body.theme-light.has-app-tabbar #profileSection input[type="file"]::file-selector-button{
+  color:#6b5015;border-color:rgba(138,106,31,.45);}
+
+/* la finestra «Personaggi» di giorno */
+body.theme-light #luxAdminSheet .las-panel{background:#fffdf7;color:#2a1d12;border-color:rgba(138,106,31,.3);box-shadow:0 -12px 40px rgba(80,60,40,.18);}
+body.theme-light .las-group{background:#f7f1e3;border-color:rgba(138,106,31,.2);}
+body.theme-light .las-row{border-top-color:rgba(138,106,31,.14);}
+body.theme-light .las-field input,body.theme-light .las-field textarea{background:#ffffff;color:#2a1d12;border-color:rgba(138,106,31,.35);}
+body.theme-light .las-close{background:rgba(42,29,18,.06);}
+body.theme-light .las-ico,body.theme-light .las-back{color:#8a6a1f;}
+body.theme-light .las-swatch[aria-checked="true"]{box-shadow:0 0 0 2px #fffdf7,0 0 0 4px #8a6a1f;}
+body.theme-light .las-pill{color:#5a4a33;border-color:rgba(138,106,31,.35);}
+body.theme-light .las-pill[aria-checked="true"]{background:#6b5015;border-color:#6b5015;color:#fff8ea;}
+body.theme-light .las-secondary{color:#2a1d12;border-color:rgba(138,106,31,.35);}
+body.theme-light #luxToast{background:#fffdf7;color:#2a1d12;border-color:rgba(138,106,31,.4);}
+.las-field textarea#lasBiography{min-height:12em;font-size:16px;line-height:1.55;}
+
+/* immagini dei personaggi in Amministra */
+.char-image-row{gap:18px 14px;}
+.char-image-item{width:124px;display:flex;flex-direction:column;align-items:center;}
+.char-image-item .thumb-empty{display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-size:28px;color:var(--gold);}
+.char-img-pick{position:relative;display:inline-flex;align-items:center;justify-content:center;min-height:32px;padding:0 12px;border-radius:16px;
+  border:1px solid rgba(201,162,77,.55);color:var(--gold-bright);font-family:'Crimson Pro',Georgia,serif;font-size:13.5px;font-weight:700;cursor:pointer;white-space:nowrap;}
+.char-img-pick:hover{background:rgba(201,162,77,.1);}
+.char-img-pick input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;font-size:0;}
+.char-img-pick:focus-within{outline:2px solid var(--gold-bright);outline-offset:2px;}
+.char-img-status{min-height:1.3em;margin-top:6px;font-family:'Crimson Pro',Georgia,serif;font-size:12.5px;line-height:1.3;color:var(--parchment-dim);text-align:center;}
+.char-img-status.is-ok{color:#6cbf8a;}
+.char-img-status.is-err{color:#e48478;}
+body.theme-light .char-img-status.is-ok{color:#2d7a4b;}
+body.theme-light .char-img-status.is-err{color:#a8322a;}
+.char-bio-btn{margin-top:4px;padding:4px 6px;border:0;background:none;color:var(--gold-bright);font-family:'Crimson Pro',Georgia,serif;font-size:13.5px;
+  text-decoration:underline;text-underline-offset:2px;cursor:pointer;}
+.char-bio-btn:focus-visible{outline:2px solid var(--gold-bright);outline-offset:2px;}
+
+/* la biografia nel Dossier */
+.dossier-biography{margin-top:22px;padding-top:18px;border-top:1px solid var(--line);}
+.dossier-biography h3{margin:0 0 12px;font-family:'Cinzel',serif;font-size:15px;font-weight:700;letter-spacing:.06em;color:var(--gold-bright);}
+.dossier-biography-text{max-width:68ch;}
+html.lux-rtl .dossier-biography-text{margin-left:auto;} /* in arabo e panjabi il testo sta sul lato destro */
+.dossier-biography-text p{margin:0 0 12px;font-size:15.5px;line-height:1.75;color:var(--parchment);}
+.dossier-biography.is-collapsed .dossier-biography-text{max-height:14em;overflow:hidden;
+  -webkit-mask-image:linear-gradient(180deg,#000 55%,transparent);mask-image:linear-gradient(180deg,#000 55%,transparent);}
+.dossier-bio-more{margin-top:6px;padding:7px 14px;border:1px solid rgba(201,162,77,.45);border-radius:18px;background:transparent;color:var(--gold-bright);
+  font-family:'Crimson Pro',Georgia,serif;font-size:14.5px;font-weight:700;cursor:pointer;}
+.dossier-bio-more:hover{background:rgba(201,162,77,.1);}
+.acn-char-bio-link{display:inline-block;margin-top:8px;font-family:'Crimson Pro',Georgia,serif;font-size:15px;font-weight:700;color:var(--gold-bright);text-decoration:none;}
+.acn-char-bio-link:hover{text-decoration:underline;text-underline-offset:2px;}

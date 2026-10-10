@@ -851,6 +851,20 @@ Object.assign(STR.hi, {"smallnox.tip10": "दान किया है? “स�
 Object.assign(STR.bn, {"smallnox.tip10": "দান করেছেন? “পাশে দাঁড়ান” থেকে সেটি নথিভুক্ত করুন আর তারিখ, নিকনেম ও ইমেইলসহ PDF রসিদ ডাউনলোড করুন।", "smallnox.tip11": "কমিক কিনেছেন? অনুরোধ পাঠানোর পরই PDF রসিদ ডাউনলোড করুন, আর যেকোনো সময় “আমার কমিকস › আমার ক্রয়”-এ খুঁজে নিন।"});
 Object.assign(STR.ar, {"smallnox.tip10": "تبرّعت؟ سجّل تبرّعك من «ادعم» ونزّل إيصال PDF يتضمن التاريخ واسمك المستعار وبريدك الإلكتروني.", "smallnox.tip11": "اشتريت قصة مصوّرة؟ نزّل إيصال PDF فور إرسال الطلب، وستجده دائمًا في «قصصي المصوّرة › مشترياتي»."});
 Object.assign(STR.pnb, {"smallnox.tip10": "عطیہ دتا اے؟ «مدد کرو» توں اوہنوں درج کرو تے تاریخ، نک نیم تے ای میل والی PDF رسید ڈاؤن لوڈ کرو۔", "smallnox.tip11": "کامک خریدی اے؟ درخواست بھیجدیاں ای PDF رسید ڈاؤن لوڈ کرو، تے اوہ ہمیشہ «میرے کامکس › میریاں خریداریاں» وچ لبھ جاوے گی۔"});
+// v232: la biografia dei personaggi nel Dossier
+Object.assign(STR.it, {"dossier.biography": "Biografia", "dossier.readMore": "Leggi tutta la biografia", "dossier.readLess": "Mostra meno", "dossier.readBio": "Leggi la biografia"});
+Object.assign(STR.en, {"dossier.biography": "Biography", "dossier.readMore": "Read the full biography", "dossier.readLess": "Show less", "dossier.readBio": "Read the biography"});
+Object.assign(STR.es, {"dossier.biography": "Biografía", "dossier.readMore": "Leer la biografía completa", "dossier.readLess": "Mostrar menos", "dossier.readBio": "Leer la biografía"});
+Object.assign(STR.fr, {"dossier.biography": "Biographie", "dossier.readMore": "Lire toute la biographie", "dossier.readLess": "Afficher moins", "dossier.readBio": "Lire la biographie"});
+Object.assign(STR.de, {"dossier.biography": "Biografie", "dossier.readMore": "Ganze Biografie lesen", "dossier.readLess": "Weniger anzeigen", "dossier.readBio": "Biografie lesen"});
+Object.assign(STR.pt, {"dossier.biography": "Biografia", "dossier.readMore": "Ler a biografia completa", "dossier.readLess": "Mostrar menos", "dossier.readBio": "Ler a biografia"});
+Object.assign(STR.ru, {"dossier.biography": "Биография", "dossier.readMore": "Читать биографию полностью", "dossier.readLess": "Свернуть", "dossier.readBio": "Читать биографию"});
+Object.assign(STR.zh, {"dossier.biography": "生平", "dossier.readMore": "阅读完整生平", "dossier.readLess": "收起", "dossier.readBio": "阅读生平"});
+Object.assign(STR.ja, {"dossier.biography": "経歴", "dossier.readMore": "経歴をすべて読む", "dossier.readLess": "閉じる", "dossier.readBio": "経歴を読む"});
+Object.assign(STR.hi, {"dossier.biography": "जीवनी", "dossier.readMore": "पूरी जीवनी पढ़ें", "dossier.readLess": "कम दिखाएँ", "dossier.readBio": "जीवनी पढ़ें"});
+Object.assign(STR.bn, {"dossier.biography": "জীবনী", "dossier.readMore": "পুরো জীবনী পড়ুন", "dossier.readLess": "কম দেখান", "dossier.readBio": "জীবনী পড়ুন"});
+Object.assign(STR.ar, {"dossier.biography": "السيرة", "dossier.readMore": "اقرأ السيرة كاملة", "dossier.readLess": "عرض أقل", "dossier.readBio": "اقرأ السيرة"});
+Object.assign(STR.pnb, {"dossier.biography": "سوانح حیات", "dossier.readMore": "پوری سوانح حیات پڑھو", "dossier.readLess": "گھٹ وکھاؤ", "dossier.readBio": "سوانح حیات پڑھو"});
 var CHAR_META = {
   Lucifer:{role:{it:"Il Portatore di Luce",en:"The Light-Bearer",es:"El Portador de Luz",fr:"Le Porteur de Lumière",de:"Der Lichtträger"},
     bio:{it:"Sovrano della collana ammiraglia: potere, caduta e desiderio raccontati su grande scala.",
@@ -2591,10 +2605,19 @@ function renderDossiers(){
       '<h2>'+escapeHtml(ch.name)+'</h2>'+
       '<div class="dossier-role">'+escapeHtml(charRole(ch))+'</div>'+
       '<p>'+escapeHtml(charBio(ch))+'</p>'+
+      dossierBioHtml(ch)+ // v232
       '<div class="dossier-follow">'+followButtonHtml(name)+'<span class="acn-follow-hint">'+escapeHtml(t('follow.hint'))+'</span></div>'+
       '<span class="dossier-goto" data-char="'+name+'">'+t('nav.library')+' →</span>'+
       '<div class="shelf-row" id="dossierCharShelf" style="margin-top:20px;"></div>';
     ms.querySelector('.dossier-goto').addEventListener('click', function(){ goToLibrary(name); });
+    dossierSel = name; // v232
+    var more = ms.querySelector('.dossier-bio-more');
+    if(more) more.addEventListener('click', function(){
+      var sec = ms.querySelector('.dossier-biography');
+      var open = !sec.classList.toggle('is-collapsed');
+      more.textContent = t(open ? 'dossier.readLess' : 'dossier.readMore');
+      more.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
 
     var shelfRow = ms.querySelector('#dossierCharShelf');
     var charItems = getCatalog().filter(function(i){
@@ -2637,9 +2660,14 @@ function renderDossiers(){
   wrap.innerHTML =
     '<div class="dossier-seals"></div>'+
     '<div class="dossier-manuscript"></div>';
-  renderSeals(0);
-  renderManuscript(0);
+  // v232: resta sul personaggio scelto quando la pagina si ridisegna; dal link «Leggi la biografia» si apre sul suo
+  var startIdx = names.indexOf(dossierSel);
+  if(startIdx < 0){ try { startIdx = names.indexOf(new URLSearchParams(window.location.search).get('character')); } catch(e){ startIdx = -1; } }
+  if(startIdx < 0) startIdx = 0;
+  renderSeals(startIdx);
+  renderManuscript(startIdx);
 }
+var dossierSel = null;
 
 function showCollaboratorCollection(collab){
   if(!collab || !collab.name) return;
@@ -2830,11 +2858,15 @@ function charMetaText(id, field){
 function charRole(c){
   var m = CHAR_META[c.id], tr = charMetaText(c.id, 'role');
   if(currentLang !== 'it' && m && tr && (!c.role || c.role === m.role.it)) return tr;
+  var x = currentLang !== 'it' && c.i18n && c.i18n[currentLang]; // v232: tradotto quando l'admin lo salva
+  if(x && x.role) return x.role;
   return c.role || '';
 }
 function charBio(c){
   var m = CHAR_META[c.id], tr = charMetaText(c.id, 'bio');
   if(currentLang !== 'it' && m && tr && (!c.bio || c.bio === m.bio.it)) return tr;
+  var x = currentLang !== 'it' && c.i18n && c.i18n[currentLang]; // v232
+  if(x && x.bio) return x.bio;
   return c.bio || '';
 }
 // i titoli di un personaggio nascosto non si vedono, tranne all'admin
@@ -2960,6 +2992,7 @@ function renderAppCatalogNav(count){
         '<div class="acn-char-names"><div class="acn-char-name">' + escapeHtml(cur.name) + '</div>' +
         (charRole(cur) ? '<div class="acn-char-role">' + escapeHtml(charRole(cur)) + '</div>' : '') + '</div></div>' +
       (charBio(cur) ? '<p class="acn-char-bio">' + escapeHtml(charBio(cur)) + '</p>' : '') +
+      (charBiography(cur) ? '<a class="acn-char-bio-link" href="dossier.html?character=' + encodeURIComponent(cur.id) + '#characters">' + escapeHtml(t('dossier.readBio')) + ' →</a>' : '') + // v232
       '<div class="acn-char-follow">' + followButtonHtml(cur.id) + '<span class="acn-follow-hint">' + escapeHtml(t('follow.hint')) + '</span></div>' +
       (cur.visible === false ? '<p class="acn-char-note">Nascosto ai lettori: lo vedi solo tu.</p>' : '') +
       (admin ? '<div class="acn-char-admin"><button type="button" data-admin="edit" data-id="' + escapeHtml(cur.id) + '">Modifica</button><button type="button" class="danger" data-admin="delete" data-id="' + escapeHtml(cur.id) + '">Elimina</button></div>' : '') +
@@ -3149,6 +3182,9 @@ function luxDeleteFail(err){
 }
 function luxDbError(err){
   console.warn('Gestione personaggi/categorie:', err);
+  var em = String(err && err.message || ''); // v232: dire cosa manca invece di un «riprova» generico
+  if(/biography|i18n|PGRST204/.test(em)){ luxToast('Per salvare la biografia lancia prima su Supabase lo SQL personaggi_v232.sql.'); return; }
+  if(/^40[13]\b|42501|nessuna riga/.test(em)){ luxToast('Il database non ha permesso di salvare: lancia lo SQL personaggi_v232.sql su Supabase.'); return; }
   luxToast(luxTaxonomyLive ? 'Non è stato possibile salvare. Riprova tra poco.' : 'Per salvare serve prima lanciare su Supabase l’SQL di personaggi e categorie.');
 }
 function charTitleCount(id){ return getCatalog().filter(function(i){ return i.character === id; }).length; }
@@ -3199,7 +3235,8 @@ function openCharManager(){
   });
 }
 
-function openCharEditor(id){
+function openCharEditor(id, opts){
+  opts = opts || {};
   var c = id ? charById(id) : null;
   var color = c ? c.color || 'vino' : 'notte';
   var swatches = Object.keys(LUX_CHAR_COLORS).map(function(k){
@@ -3211,11 +3248,14 @@ function openCharEditor(id){
     '<label class="las-field">Nome<input type="text" id="lasName" maxlength="30" placeholder="es. Medusa" value="' + escapeHtml(c ? c.name : '') + '"></label>' +
     '<label class="las-field">Titolo<input type="text" id="lasRole" maxlength="50" placeholder="es. La Regina di Pietra" value="' + escapeHtml(c ? c.role || '' : '') + '"></label>' +
     '<label class="las-field">Descrizione breve<textarea id="lasBio" rows="3" maxlength="240" placeholder="Due righe per la sua pagina.">' + escapeHtml(c ? c.bio || '' : '') + '</textarea></label>' +
+    '<label class="las-field">Biografia<textarea id="lasBiography" rows="10" maxlength="20000" placeholder="La storia completa del personaggio, come vuoi raccontarla nel Dossier. Lascia una riga vuota tra un paragrafo e l’altro.">' + escapeHtml(c ? c.biography || '' : '') + '</textarea></label>' + // v232
+    '<p class="las-note">La biografia si legge nel Dossier, sotto la descrizione breve. Quando salvi, titolo, descrizione e biografia si traducono da soli nelle 13 lingue del sito.</p>' +
     '<div class="las-field">Colore del dorso</div><div class="las-swatches" role="radiogroup" aria-label="Colore del dorso">' + swatches + '</div>' +
     '<label class="las-check"><input type="checkbox" id="lasVisible"' + (!c || c.visible !== false ? ' checked' : '') + '> Visibile ai lettori</label>' +
     '<button type="button" class="las-primary" id="lasSave">Salva</button>' +
     (c ? '<button type="button" class="las-danger" id="lasDelete">Elimina personaggio</button>' : ''), function(body){
     var pick = color;
+    if(opts.focusBio) setTimeout(function(){ var ta = body.querySelector('#lasBiography'); if(ta){ ta.focus(); try { ta.scrollIntoView({ block: 'center' }); } catch(e){} } }, 150); // v232
     body.querySelectorAll('.las-swatch').forEach(function(s){
       s.addEventListener('click', function(){
         pick = s.getAttribute('data-color');
@@ -3227,9 +3267,16 @@ function openCharEditor(id){
       var name = body.querySelector('#lasName').value.trim();
       if(!name){ body.querySelector('#lasName').focus(); return; }
       var data = { name: name, role: body.querySelector('#lasRole').value.trim(), bio: body.querySelector('#lasBio').value.trim(), color: pick, visible: body.querySelector('#lasVisible').checked };
+      // v232: la biografia (si manda solo se c'è, o se il database ha già la colonna: senza lo SQL il resto si salva come sempre)
+      var biography = body.querySelector('#lasBiography').value.trim();
+      if(biography || (c && 'biography' in c)) data.biography = biography;
+      var touched = ['role', 'bio', 'biography'].filter(function(f){ return (f in data) && (data[f] || '') !== ((c && c[f]) || ''); });
       var req;
       if(c){
-        req = luxDb('PATCH', 'characters?id=eq.' + encodeURIComponent(c.id), data).then(function(){ Object.assign(c, data); });
+        req = luxDb('PATCH', 'characters?id=eq.' + encodeURIComponent(c.id), data).then(function(rows){
+          if(Array.isArray(rows) && rows.length === 0) throw new Error('403 nessuna riga modificata'); // v232: il database non l'ha permesso
+          Object.assign(c, data);
+        });
       } else {
         var base = name.replace(/[^\p{L}\p{N} _-]/gu, '').trim() || 'Personaggio';
         var newId = base, k = 2;
@@ -3242,6 +3289,8 @@ function openCharEditor(id){
         closeLuxSheet();
         luxWriteTaxonomyCache(); luxTaxonomyChanged();
         luxToast(c ? name + ' aggiornato' : name + ' aggiunto allo schedario');
+        var saved = charById(c ? c.id : data.id);
+        if(saved && touched.length) setTimeout(function(){ luxTranslateChar(saved, touched); }, 1400); // v232: nelle 13 lingue
       }).catch(luxDbError);
     });
   });
@@ -19103,6 +19152,7 @@ function fetchCharacterImages(){
       rows.forEach(function(row){ if(row.image_url) characterImages[row.character] = row.image_url; });
       renderDossiers();
       renderHeroBg();
+      renderCharImageAdmin(); // v232
     })
     .catch(function(err){ console.warn('Character images load failed:', err); });
 }
@@ -19150,44 +19200,242 @@ function luxLazyImages(){
 if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', luxLazyImages);
 else luxLazyImages();
 
+/* ============ v232: IMMAGINI E BIOGRAFIE DEI PERSONAGGI ============
+   Immagini: ogni caricamento ha un nome nuovo (personaggio + ora), così non
+   c'è un file da sovrascrivere (che l'archivio può rifiutare) e nessuno
+   resta con la vecchia immagine in memoria; sotto ogni personaggio si legge
+   se è andata e, se no, perché.
+   Biografie: la storia lunga del personaggio, scritta in Amministra, si
+   legge nel Dossier; quando la salvi si traduce da sola nelle 13 lingue
+   (colonna i18n dei personaggi, come per eventi e novità). */
+function luxSlug(s){
+  return String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '') || 'personaggio';
+}
+// carica un'immagine pubblica nell'archivio delle copertine; se non va, dice a che punto si è fermata
+function luxUploadPublicImage(path, blob){
+  var session = getSession();
+  return new Promise(function(resolve, reject){
+    if(!session){ reject({ stage: 'auth' }); return; }
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', SUPABASE_URL + '/storage/v1/object/comic-pages/' + path, true);
+    xhr.setRequestHeader('apikey', SUPABASE_ANON_KEY);
+    xhr.setRequestHeader('Authorization', 'Bearer ' + session.access_token);
+    xhr.setRequestHeader('Content-Type', blob.type || 'image/jpeg');
+    xhr.setRequestHeader('x-upsert', 'true');
+    xhr.onload = function(){
+      if(xhr.status >= 200 && xhr.status < 300) resolve(SUPABASE_URL + '/storage/v1/object/public/comic-pages/' + path);
+      else reject({ stage: 'upload', status: xhr.status, text: String(xhr.responseText || '').slice(0, 300) });
+    };
+    xhr.onerror = function(){ reject({ stage: 'network' }); };
+    xhr.send(blob);
+  });
+}
+function luxCharImageError(err){
+  err = err || {};
+  var tx = String(err.text || err.message || '');
+  if(err.stage === 'auth') return 'Accesso scaduto: ricarica la pagina e accedi di nuovo.';
+  if(err.stage === 'network') return 'Connessione assente: riprova.';
+  if(err.stage === 'type') return 'Questo file non è un’immagine.';
+  if(err.stage === 'upload'){
+    if(err.status === 413 || /too large|exceed|payload/i.test(tx)) return 'Immagine troppo pesante: provane una più piccola.';
+    if(err.status === 401 || err.status === 403 || /security|policy|unauthori/i.test(tx)) return 'L’archivio dei file non ha accettato l’immagine (permesso negato).';
+    return 'Caricamento non riuscito (codice ' + (err.status || '?') + ').';
+  }
+  if(err.stage === 'save'){
+    if(err.status === 401 || err.status === 403 || /42501|security|policy/i.test(tx)) return 'Il database non l’ha salvata: lancia lo SQL personaggi_v232.sql su Supabase.';
+    if(/42P10|unique or exclusion|on conflict|42P01|does not exist/i.test(tx)) return 'Manca un’impostazione nel database: lancia lo SQL personaggi_v232.sql su Supabase.';
+    return 'Salvataggio non riuscito (codice ' + (err.status || '?') + ').';
+  }
+  return 'Qualcosa non è andato: riprova.';
+}
+function charImageItemHtml(c){
+  var name = c.id, url = characterImages[name] || '';
+  return (url ? '<img class="thumb" src="' + escapeHtml(url) + '" alt="' + escapeHtml(c.name || name) + '">'
+              : '<span class="thumb thumb-empty" aria-hidden="true">' + escapeHtml((c.name || name || '?').charAt(0).toUpperCase()) + '</span>') +
+    '<div class="name">' + escapeHtml(c.name || name) + '</div>' +
+    '<label class="char-img-pick"><span>' + (url ? 'Cambia immagine' : 'Carica immagine') + '</span><input type="file" accept="image/*" data-char="' + escapeHtml(name) + '"></label>' +
+    '<div class="char-img-status" role="status" aria-live="polite"></div>' +
+    '<button type="button" class="char-bio-btn">' + (c.biography ? 'Biografia ✓' : 'Scrivi la biografia') + '</button>';
+}
 function renderCharImageAdmin(){
   if(!isAdmin()) return;
   var row = document.getElementById('charImageRow');
   if(!row) return;
   row.innerHTML = '';
-  charList(true).map(function(c){ return c.id; }).forEach(function(name){
+  if(!document.getElementById('charImageNote') && row.parentNode){
+    var note = document.createElement('p');
+    note.id = 'charImageNote';
+    note.className = 'form-note';
+    note.style.margin = '14px 0 0';
+    note.textContent = 'Sotto ogni personaggio: «Carica immagine» per la sua foto nel Dossier e «Scrivi la biografia» per la sua storia, che si traduce da sola in tutte le lingue.';
+    row.parentNode.insertBefore(note, row.nextSibling);
+  }
+  charList(true).forEach(function(c){
     var item = document.createElement('div');
     item.className = 'char-image-item';
-    var thumbSrc = characterImages[name] || '';
-    item.innerHTML =
-      '<img class="thumb" src="'+thumbSrc+'" alt="'+name+'" style="'+(thumbSrc ? '' : 'opacity:0.25;')+'">'+
-      '<div class="name">'+name+'</div>'+
-      '<input type="file" accept="image/*" data-char="'+name+'">';
-    item.querySelector('input').addEventListener('change', function(e){
-      if(e.target.files[0]) uploadCharacterImage(name, e.target.files[0]);
-    });
+    item.setAttribute('data-char', c.id);
+    item.innerHTML = charImageItemHtml(c);
+    wireCharImageItem(item, c.id);
     row.appendChild(item);
   });
 }
-
-function uploadCharacterImage(name, file){
-  var extMatch = /\.([a-zA-Z0-9]+)$/.exec(file.name || '');
-  var ext = extMatch ? extMatch[1].toLowerCase() : 'jpg';
-  compressImageFile(file, 800, 0.85).then(function(compressed){
-    return uploadCatalogAsset(compressed, 'characters/' + name.toLowerCase() + '.' + ext);
+function wireCharImageItem(item, name){
+  var input = item.querySelector('input[type=file]');
+  input.addEventListener('change', function(){
+    var f = input.files && input.files[0];
+    input.value = '';
+    if(f) uploadCharacterImage(name, f, item);
+  });
+  item.querySelector('.char-bio-btn').addEventListener('click', function(){ openCharEditor(name, { focusBio: true }); });
+}
+function uploadCharacterImage(name, file, item){
+  var status = item ? item.querySelector('.char-img-status') : null;
+  var say = function(text, kind){ if(status){ status.textContent = text; status.className = 'char-img-status' + (kind ? ' is-' + kind : ''); } };
+  var preview = null;
+  var showThumb = function(src, busy){
+    if(!item) return;
+    var th = item.querySelector('.thumb');
+    if(!src){ return; }
+    if(th && th.tagName !== 'IMG'){ var img = document.createElement('img'); img.className = 'thumb'; img.alt = ''; th.parentNode.replaceChild(img, th); th = img; }
+    th.src = src; th.style.opacity = busy ? '0.5' : '';
+  };
+  if(!file.type || file.type.indexOf('image/') !== 0){ say(luxCharImageError({ stage: 'type' }), 'err'); return Promise.resolve(false); }
+  try { preview = URL.createObjectURL(file); showThumb(preview, true); } catch(e){}
+  say('Carico l’immagine…');
+  return compressImageFile(file, 800, 0.85).then(function(img){
+    var ext = img.type === 'image/png' ? 'png' : img.type === 'image/webp' ? 'webp' : img.type === 'image/gif' ? 'gif' : 'jpg';
+    // un nome nuovo a ogni caricamento: niente da sovrascrivere e niente immagine vecchia rimasta in memoria
+    return luxUploadPublicImage('characters/' + luxSlug(name) + '-' + Date.now() + '.' + ext, img);
   }).then(function(url){
     var session = getSession();
     return fetch(SUPABASE_URL + '/rest/v1/character_images?on_conflict=character', {
       method:'POST',
-      headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json', 'Prefer':'resolution=merge-duplicates' },
-      body: JSON.stringify({character: name, image_url: url})
+      headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json', 'Prefer':'resolution=merge-duplicates,return=representation' },
+      body: JSON.stringify({ character: name, image_url: url })
     }).then(function(r){
-      if(!r.ok) throw new Error('character image save failed');
-      characterImages[name] = url;
-      renderDossiers();
-      renderCharImageAdmin();
+      if(!r.ok) return r.text().then(function(tx){ throw { stage: 'save', status: r.status, text: tx }; });
+      return r.json().catch(function(){ return null; }).then(function(rows){
+        if(Array.isArray(rows) && rows.length === 0) throw { stage: 'save', status: 403, text: 'policy' };
+        characterImages[name] = url;
+        renderDossiers();
+        renderHeroBg();
+        showThumb(url, false);
+        var lbl = item && item.querySelector('.char-img-pick span');
+        if(lbl) lbl.textContent = 'Cambia immagine';
+        say('Salvata ✓', 'ok');
+        luxToast('Immagine di ' + charDisplayName(name) + ' salvata');
+        return true;
+      });
     });
-  }).catch(function(err){ console.warn('Character image upload failed:', err); });
+  }).catch(function(err){
+    console.warn('Character image upload failed:', err);
+    var old = characterImages[name];
+    if(old) showThumb(old, false);
+    else if(item){ var th = item.querySelector('.thumb'); if(th && th.tagName === 'IMG') th.style.opacity = '0.25'; }
+    say(luxCharImageError(err), 'err');
+    return false;
+  }).then(function(ok){ if(preview) URL.revokeObjectURL(preview); return ok; });
+}
+
+// biografia nella lingua di chi legge (anche l'italiano, se l'hai scritta in un'altra lingua);
+// finché la traduzione non c'è, si legge com'è stata scritta
+function charBiography(c){
+  if(!c) return '';
+  var x = c.i18n && c.i18n[currentLang];
+  if(x && x.biography) return x.biography;
+  return c.biography || '';
+}
+function luxBioParagraphs(text){
+  return String(text || '').split(/\n\s*\n/).map(function(p){ return p.trim(); }).filter(Boolean)
+    .map(function(p){ return '<p>' + escapeHtml(p).replace(/\n/g, '<br>') + '</p>'; }).join('');
+}
+// un testo lungo in più pezzi (la funzione di traduzione ne accetta 6000 caratteri alla volta)
+function luxTextChunks(text, max){
+  max = max || 4500;
+  var out = [], cur = '';
+  var push = function(s){
+    if(s.length <= max){ out.push(s); return; }
+    var parts = s.match(/[^.!?。！？]+[.!?。！？]*\s*/g) || [s], buf = '';
+    parts.forEach(function(x){
+      while(x.length > max){ if(buf){ out.push(buf); buf = ''; } out.push(x.slice(0, max)); x = x.slice(max); }
+      if((buf + x).length > max){ out.push(buf); buf = x; } else buf += x;
+    });
+    if(buf) out.push(buf);
+  };
+  String(text || '').split(/\n\s*\n/).forEach(function(p){
+    if(!p.trim()) return;
+    if(cur && (cur.length + p.length + 2) > max){ push(cur); cur = p; }
+    else cur = cur ? cur + '\n\n' + p : p;
+  });
+  if(cur) push(cur);
+  return out;
+}
+function luxTranslateLong(text){
+  var chunks = luxTextChunks(text);
+  if(!chunks.length) return Promise.resolve({});
+  return chunks.reduce(function(p, ch){
+    return p.then(function(acc){ return translateSynopsis(ch).then(function(r){ acc.push(r || {}); return acc; }); });
+  }, Promise.resolve([])).then(function(parts){
+    var out = {};
+    LUX_LANGS.forEach(function(l){
+      var segs = parts.map(function(r){ return r[l.code]; });
+      if(segs.every(function(s){ return typeof s === 'string' && s; })) out[l.code] = segs.join('\n\n');
+    });
+    return out;
+  });
+}
+// due testi quasi uguali (la «traduzione» in italiano di un testo già italiano): non si salva, così
+// chi legge in italiano vede la biografia esattamente come l'hai scritta
+function luxSameText(a, b){
+  var words = function(s){ return String(s || '').toLowerCase().replace(/[^\p{L}\p{N}\s]/gu, ' ').split(/\s+/).filter(Boolean); };
+  var A = words(a), B = words(b);
+  if(!A.length || !B.length) return false;
+  var bag = {};
+  B.forEach(function(w){ bag[w] = (bag[w] || 0) + 1; });
+  var common = 0;
+  A.forEach(function(w){ if(bag[w]){ common++; bag[w]--; } });
+  return common / Math.max(A.length, B.length) > 0.8;
+}
+// dopo il salvataggio: titolo, descrizione e biografia cambiati, in tutte le lingue.
+// touched = i campi cambiati (anche svuotati): le loro traduzioni vecchie si tolgono sempre
+function luxTranslateChar(c, touched){
+  if(!c || !touched || !touched.length || !getSession()) return Promise.resolve(false);
+  var withText = touched.filter(function(f){ return !!c[f]; });
+  if(withText.length) luxToast('Traduco ' + (withText.indexOf('biography') !== -1 ? 'la biografia' : 'la scheda') + ' di ' + c.name + ' nelle lingue del sito…');
+  return Promise.all(withText.map(function(f){ return luxTranslateLong(c[f]).catch(function(){ return null; }); })).then(function(res){
+    var i18n = JSON.parse(JSON.stringify(c.i18n || {}));
+    Object.keys(i18n).forEach(function(l){ if(i18n[l]) touched.forEach(function(f){ delete i18n[l][f]; }); });
+    var n = 0;
+    res.forEach(function(r, i){
+      if(!r) return;
+      Object.keys(r).forEach(function(l){
+        if(typeof r[l] !== 'string' || !r[l]) return;
+        if(l === 'it' && luxSameText(r[l], c[withText[i]])) return; // scritta in italiano: resta com'è
+        (i18n[l] = i18n[l] || {})[withText[i]] = r[l]; n++;
+      });
+    });
+    return luxDb('PATCH', 'characters?id=eq.' + encodeURIComponent(c.id), { i18n: i18n }).then(function(rows){
+      if(Array.isArray(rows) && rows.length === 0) throw new Error('403 nessuna riga modificata');
+      c.i18n = i18n;
+      luxWriteTaxonomyCache();
+      luxTaxonomyChanged();
+      if(withText.length) luxToast(n ? 'Tradotta in tutte le lingue del sito' : 'Traduzione non riuscita: per ora si legge com’è scritta');
+      return n > 0;
+    });
+  }).catch(function(e){
+    console.warn('Traduzione personaggio:', e);
+    var m = String(e && e.message);
+    luxToast(/i18n|PGRST204|^40[13]|42501|nessuna riga/.test(m) ? 'Per le traduzioni lancia lo SQL personaggi_v232.sql su Supabase.' : 'Traduzione non riuscita: per ora si legge com’è scritta');
+    return false;
+  });
+}
+function dossierBioHtml(ch){
+  var bio = charBiography(ch);
+  if(!bio) return '';
+  var long = bio.length > 700 || bio.split(/\n\s*\n/).length > 3;
+  return '<section class="dossier-biography' + (long ? ' is-collapsed' : '') + '"><h3>' + escapeHtml(t('dossier.biography')) + '</h3>' +
+    '<div class="dossier-biography-text">' + luxBioParagraphs(bio) + '</div>' +
+    (long ? '<button type="button" class="dossier-bio-more" aria-expanded="false">' + escapeHtml(t('dossier.readMore')) + '</button>' : '') + '</section>';
 }
 
 var SOCIAL_ICONS = {
