@@ -3883,3 +3883,19 @@ html:lang(zh) body,html:lang(ja) body{line-break:strict;word-break:normal;overfl
   .lux-rc-box{padding:16px 14px 14px;max-height:calc(100vh - 20px);max-height:calc(100dvh - 20px);}
   .lux-rc-actions .btn{flex:1 1 100%;}
 }
+
+/* =====================================================================
+   v230: RICEVUTA ANCHE PER GLI ACQUISTI
+   - scheda «Sostieni» di un titolo in vendita: email, importo e metodo
+     con lo stesso aspetto della donazione;
+   - I Miei Acquisti: accanto a ogni acquisto il pulsante della ricevuta;
+     da telefono il titolo prende tutta la riga e sotto vanno stato e
+     pulsante.
+   ===================================================================== */
+.lux-don-email{margin-bottom:8px;}
+.mycomics-purchase-row{flex-wrap:wrap;}
+.mycomics-purchase-row .lux-buy-rc{flex:none;}
+@media (max-width:520px){
+  .mycomics-purchase-row .txt{flex-basis:100%;}
+  .mycomics-purchase-row .lux-buy-rc{margin-left:auto;}
+}
