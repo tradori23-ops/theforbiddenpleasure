@@ -809,6 +809,20 @@ Object.assign(STR.hi, {"smallnox.tip7": "🌐 मेनू से भाषा �
 Object.assign(STR.bn, {"smallnox.tip7": "🌐 মেনু থেকে ভাষা বদলান: সাইট, সারাংশ, ইভেন্ট আর খবর আপনার ভাষায় চলে আসবে।", "smallnox.tip8": "কোনো কমিকের পাতায় WhatsApp, Telegram, Instagram বা Facebook-এ ট্যাপ করে যাকে খুশি পাঠান।", "smallnox.tip9": "কম্পিউটারে, বার্তায় চ্যাটের পাশে মানুষটির কার্ড দেখা যায়: পরিচয়, বন্ধুরা আর আপনাদের পাঠানো ছবি।"});
 Object.assign(STR.ar, {"smallnox.tip7": "غيّر اللغة من قائمة 🌐: يتحوّل الموقع والملخصات والفعاليات والأخبار إلى لغتك.", "smallnox.tip8": "في صفحة القصة المصوّرة، اضغط WhatsApp أو Telegram أو Instagram أو Facebook لإرسالها لمن تشاء.", "smallnox.tip9": "على الكمبيوتر، تظهر في الرسائل بطاقة الشخص بجانب المحادثة: النبذة والأصدقاء والصور التي تبادلتموها."});
 Object.assign(STR.pnb, {"smallnox.tip7": "🌐 مینو توں زبان بدلو: سائٹ، خلاصے، ایونٹ تے خبراں تہاڈی زبان وچ آ جاندیاں نیں۔", "smallnox.tip8": "کسے کامک دے صفحے تے WhatsApp، Telegram، Instagram یا Facebook تے ٹیپ کرو تے جنہوں چاہو بھیج دیو۔", "smallnox.tip9": "کمپیوٹر تے، پیغاماں وچ چیٹ دے نال بندے دا کارڈ دسدا اے: تعارف، دوست تے اوہ فوٹواں جیہڑیاں تسیں اک دوجے نوں بھیجیاں۔"});
+// v229: ricevuta della donazione
+Object.assign(STR.it, {"support.registerDonation": "Registra la tua donazione", "support.registerHint": "Riceverai una ricevuta in PDF con data, nickname ed email.", "support.amountLabel": "Importo donato (facoltativo)", "support.amountPlaceholder": "es. 5", "support.methodLabel": "Pagato con", "support.amountInvalid": "Scrivi un importo valido, per esempio 5 o 7,50.", "support.donationSaved": "Donazione registrata. Grazie!", "support.receiptBtn": "Ricevuta (PDF)", "support.prevReceipts": "Le tue ricevute per questo titolo", "receipt.heading": "Ricevuta di donazione", "receipt.download": "Scarica PDF", "receipt.share": "Condividi", "receipt.lang": "Lingua della ricevuta", "receipt.close": "Chiudi", "receipt.making": "Preparo la ricevuta…", "receipt.failed": "Non è stato possibile creare la ricevuta. Riprova.", "receipt.nonFiscal": "Documento non fiscale", "receipt.number": "N. ricevuta", "receipt.date": "Data", "receipt.donor": "Donatore", "receipt.nickname": "Nickname", "receipt.email": "Email", "receipt.donation": "Donazione", "receipt.reason": "Causale", "receipt.reasonText": "Supporto libero a «{title}»", "receipt.amount": "Importo", "receipt.amountNone": "non indicato", "receipt.method": "Metodo", "receipt.status": "Stato", "receipt.verified": "Pagamento verificato", "receipt.thanks": "Grazie per il tuo supporto!", "receipt.footer": "Questo documento non è una fattura e non ha valore fiscale: attesta soltanto la donazione registrata sul sito {site}.", "receipt.generated": "Creata il {date}"});
+Object.assign(STR.en, {"support.registerDonation": "Register your donation", "support.registerHint": "You'll get a PDF receipt with the date, your nickname and your email.", "support.amountLabel": "Amount donated (optional)", "support.amountPlaceholder": "e.g. 5", "support.methodLabel": "Paid with", "support.amountInvalid": "Enter a valid amount, for example 5 or 7.50.", "support.donationSaved": "Donation registered. Thank you!", "support.receiptBtn": "Receipt (PDF)", "support.prevReceipts": "Your receipts for this title", "receipt.heading": "Donation receipt", "receipt.download": "Download PDF", "receipt.share": "Share", "receipt.lang": "Receipt language", "receipt.close": "Close", "receipt.making": "Preparing the receipt…", "receipt.failed": "The receipt couldn't be created. Please try again.", "receipt.nonFiscal": "Not a tax document", "receipt.number": "Receipt no.", "receipt.date": "Date", "receipt.donor": "Donor", "receipt.nickname": "Nickname", "receipt.email": "Email", "receipt.donation": "Donation", "receipt.reason": "Purpose", "receipt.reasonText": "Voluntary support for “{title}”", "receipt.amount": "Amount", "receipt.amountNone": "not stated", "receipt.method": "Method", "receipt.status": "Status", "receipt.verified": "Payment verified", "receipt.thanks": "Thank you for your support!", "receipt.footer": "This document is not an invoice and has no tax value: it only certifies the donation registered on {site}.", "receipt.generated": "Created on {date}"});
+Object.assign(STR.es, {"support.registerDonation": "Registra tu donación", "support.registerHint": "Recibirás un recibo en PDF con la fecha, tu apodo y tu email.", "support.amountLabel": "Importe donado (opcional)", "support.amountPlaceholder": "p. ej. 5", "support.methodLabel": "Pagado con", "support.amountInvalid": "Escribe un importe válido, por ejemplo 5 o 7,50.", "support.donationSaved": "Donación registrada. ¡Gracias!", "support.receiptBtn": "Recibo (PDF)", "support.prevReceipts": "Tus recibos de este título", "receipt.heading": "Recibo de donación", "receipt.download": "Descargar PDF", "receipt.share": "Compartir", "receipt.lang": "Idioma del recibo", "receipt.close": "Cerrar", "receipt.making": "Preparando el recibo…", "receipt.failed": "No se ha podido crear el recibo. Inténtalo de nuevo.", "receipt.nonFiscal": "Documento sin valor fiscal", "receipt.number": "N.º de recibo", "receipt.date": "Fecha", "receipt.donor": "Donante", "receipt.nickname": "Apodo", "receipt.email": "Email", "receipt.donation": "Donación", "receipt.reason": "Concepto", "receipt.reasonText": "Apoyo libre a «{title}»", "receipt.amount": "Importe", "receipt.amountNone": "no indicado", "receipt.method": "Método", "receipt.status": "Estado", "receipt.verified": "Pago verificado", "receipt.thanks": "¡Gracias por tu apoyo!", "receipt.footer": "Este documento no es una factura y no tiene valor fiscal: solo certifica la donación registrada en el sitio {site}.", "receipt.generated": "Creado el {date}"});
+Object.assign(STR.fr, {"support.registerDonation": "Enregistrer votre don", "support.registerHint": "Vous recevrez un reçu PDF avec la date, votre pseudo et votre email.", "support.amountLabel": "Montant donné (facultatif)", "support.amountPlaceholder": "ex. 5", "support.methodLabel": "Payé avec", "support.amountInvalid": "Saisissez un montant valide, par exemple 5 ou 7,50.", "support.donationSaved": "Don enregistré. Merci !", "support.receiptBtn": "Reçu (PDF)", "support.prevReceipts": "Vos reçus pour ce titre", "receipt.heading": "Reçu de don", "receipt.download": "Télécharger le PDF", "receipt.share": "Partager", "receipt.lang": "Langue du reçu", "receipt.close": "Fermer", "receipt.making": "Préparation du reçu…", "receipt.failed": "Impossible de créer le reçu. Réessayez.", "receipt.nonFiscal": "Document sans valeur fiscale", "receipt.number": "Reçu n°", "receipt.date": "Date", "receipt.donor": "Donateur", "receipt.nickname": "Pseudo", "receipt.email": "Email", "receipt.donation": "Don", "receipt.reason": "Motif", "receipt.reasonText": "Soutien libre à « {title} »", "receipt.amount": "Montant", "receipt.amountNone": "non indiqué", "receipt.method": "Moyen de paiement", "receipt.status": "Statut", "receipt.verified": "Paiement vérifié", "receipt.thanks": "Merci pour votre soutien !", "receipt.footer": "Ce document n'est pas une facture et n'a aucune valeur fiscale : il atteste seulement le don enregistré sur le site {site}.", "receipt.generated": "Créé le {date}"});
+Object.assign(STR.de, {"support.registerDonation": "Spende registrieren", "support.registerHint": "Du erhältst eine PDF-Quittung mit Datum, Nickname und E-Mail.", "support.amountLabel": "Gespendeter Betrag (optional)", "support.amountPlaceholder": "z. B. 5", "support.methodLabel": "Bezahlt mit", "support.amountInvalid": "Gib einen gültigen Betrag ein, zum Beispiel 5 oder 7,50.", "support.donationSaved": "Spende registriert. Danke!", "support.receiptBtn": "Quittung (PDF)", "support.prevReceipts": "Deine Quittungen für diesen Titel", "receipt.heading": "Spendenquittung", "receipt.download": "PDF herunterladen", "receipt.share": "Teilen", "receipt.lang": "Sprache der Quittung", "receipt.close": "Schließen", "receipt.making": "Quittung wird erstellt …", "receipt.failed": "Die Quittung konnte nicht erstellt werden. Bitte versuche es erneut.", "receipt.nonFiscal": "Kein steuerlicher Beleg", "receipt.number": "Quittungs-Nr.", "receipt.date": "Datum", "receipt.donor": "Spender", "receipt.nickname": "Nickname", "receipt.email": "E-Mail", "receipt.donation": "Spende", "receipt.reason": "Verwendungszweck", "receipt.reasonText": "Freiwillige Unterstützung für „{title}“", "receipt.amount": "Betrag", "receipt.amountNone": "nicht angegeben", "receipt.method": "Zahlungsart", "receipt.status": "Status", "receipt.verified": "Zahlung bestätigt", "receipt.thanks": "Danke für deine Unterstützung!", "receipt.footer": "Dieses Dokument ist keine Rechnung und hat keinen steuerlichen Wert: Es bestätigt nur die auf der Website {site} registrierte Spende.", "receipt.generated": "Erstellt am {date}"});
+Object.assign(STR.pt, {"support.registerDonation": "Registre sua doação", "support.registerHint": "Você vai receber um recibo em PDF com a data, seu apelido e seu e-mail.", "support.amountLabel": "Valor doado (opcional)", "support.amountPlaceholder": "ex.: 5", "support.methodLabel": "Pago com", "support.amountInvalid": "Informe um valor válido, por exemplo 5 ou 7,50.", "support.donationSaved": "Doação registrada. Obrigado!", "support.receiptBtn": "Recibo (PDF)", "support.prevReceipts": "Seus recibos deste título", "receipt.heading": "Recibo de doação", "receipt.download": "Baixar PDF", "receipt.share": "Compartilhar", "receipt.lang": "Idioma do recibo", "receipt.close": "Fechar", "receipt.making": "Preparando o recibo…", "receipt.failed": "Não foi possível criar o recibo. Tente novamente.", "receipt.nonFiscal": "Documento sem valor fiscal", "receipt.number": "Recibo nº", "receipt.date": "Data", "receipt.donor": "Doador", "receipt.nickname": "Apelido", "receipt.email": "E-mail", "receipt.donation": "Doação", "receipt.reason": "Finalidade", "receipt.reasonText": "Apoio voluntário a “{title}”", "receipt.amount": "Valor", "receipt.amountNone": "não informado", "receipt.method": "Forma de pagamento", "receipt.status": "Situação", "receipt.verified": "Pagamento verificado", "receipt.thanks": "Obrigado pelo seu apoio!", "receipt.footer": "Este documento não é uma nota fiscal e não tem valor fiscal: apenas atesta a doação registrada no site {site}.", "receipt.generated": "Criado em {date}"});
+Object.assign(STR.ru, {"support.registerDonation": "Зарегистрировать пожертвование", "support.registerHint": "Вы получите PDF-квитанцию с датой, вашим ником и email.", "support.amountLabel": "Сумма пожертвования (необязательно)", "support.amountPlaceholder": "напр. 5", "support.methodLabel": "Способ оплаты", "support.amountInvalid": "Введите корректную сумму, например 5 или 7,50.", "support.donationSaved": "Пожертвование зарегистрировано. Спасибо!", "support.receiptBtn": "Квитанция (PDF)", "support.prevReceipts": "Ваши квитанции по этому комиксу", "receipt.heading": "Квитанция о пожертвовании", "receipt.download": "Скачать PDF", "receipt.share": "Поделиться", "receipt.lang": "Язык квитанции", "receipt.close": "Закрыть", "receipt.making": "Готовим квитанцию…", "receipt.failed": "Не удалось создать квитанцию. Попробуйте ещё раз.", "receipt.nonFiscal": "Не является налоговым документом", "receipt.number": "Квитанция №", "receipt.date": "Дата", "receipt.donor": "Жертвователь", "receipt.nickname": "Ник", "receipt.email": "Email", "receipt.donation": "Пожертвование", "receipt.reason": "Назначение", "receipt.reasonText": "Добровольная поддержка комикса «{title}»", "receipt.amount": "Сумма", "receipt.amountNone": "не указана", "receipt.method": "Способ оплаты", "receipt.status": "Статус", "receipt.verified": "Платёж подтверждён", "receipt.thanks": "Спасибо за вашу поддержку!", "receipt.footer": "Этот документ не является счётом и не имеет налоговой силы: он лишь подтверждает пожертвование, зарегистрированное на сайте {site}.", "receipt.generated": "Создано {date}"});
+Object.assign(STR.zh, {"support.registerDonation": "登记你的捐赠", "support.registerHint": "你将收到一份 PDF 收据，包含日期、昵称和邮箱。", "support.amountLabel": "捐赠金额（选填）", "support.amountPlaceholder": "例如 5", "support.methodLabel": "支付方式", "support.amountInvalid": "请输入有效金额，例如 5 或 7.50。", "support.donationSaved": "捐赠已登记，谢谢！", "support.receiptBtn": "收据（PDF）", "support.prevReceipts": "你为这部作品捐赠的收据", "receipt.heading": "捐赠收据", "receipt.download": "下载 PDF", "receipt.share": "分享", "receipt.lang": "收据语言", "receipt.close": "关闭", "receipt.making": "正在生成收据…", "receipt.failed": "无法生成收据，请重试。", "receipt.nonFiscal": "非税务凭证", "receipt.number": "收据编号", "receipt.date": "日期", "receipt.donor": "捐赠人", "receipt.nickname": "昵称", "receipt.email": "邮箱", "receipt.donation": "捐赠", "receipt.reason": "用途", "receipt.reasonText": "自愿支持《{title}》", "receipt.amount": "金额", "receipt.amountNone": "未填写", "receipt.method": "支付方式", "receipt.status": "状态", "receipt.verified": "付款已核实", "receipt.thanks": "感谢你的支持！", "receipt.footer": "本文件不是发票，不具有税务效力，仅证明在 {site} 网站上登记的捐赠。", "receipt.generated": "生成于 {date}"});
+Object.assign(STR.ja, {"support.registerDonation": "寄付を登録する", "support.registerHint": "日付・ニックネーム・メールアドレス入りのPDF領収書を受け取れます。", "support.amountLabel": "寄付した金額（任意）", "support.amountPlaceholder": "例：5", "support.methodLabel": "支払い方法", "support.amountInvalid": "有効な金額を入力してください（例：5 または 7.50）。", "support.donationSaved": "寄付を登録しました。ありがとうございます！", "support.receiptBtn": "領収書（PDF）", "support.prevReceipts": "この作品へのあなたの領収書", "receipt.heading": "寄付の領収書", "receipt.download": "PDFをダウンロード", "receipt.share": "共有", "receipt.lang": "領収書の言語", "receipt.close": "閉じる", "receipt.making": "領収書を作成しています…", "receipt.failed": "領収書を作成できませんでした。もう一度お試しください。", "receipt.nonFiscal": "税務上の書類ではありません", "receipt.number": "領収書番号", "receipt.date": "日付", "receipt.donor": "寄付者", "receipt.nickname": "ニックネーム", "receipt.email": "メールアドレス", "receipt.donation": "寄付", "receipt.reason": "名目", "receipt.reasonText": "『{title}』への自由な支援", "receipt.amount": "金額", "receipt.amountNone": "未記入", "receipt.method": "支払い方法", "receipt.status": "状態", "receipt.verified": "支払い確認済み", "receipt.thanks": "ご支援ありがとうございます！", "receipt.footer": "この書類は請求書ではなく、税務上の効力もありません。{site} で登録された寄付を証明するものです。", "receipt.generated": "作成日：{date}"});
+Object.assign(STR.hi, {"support.registerDonation": "अपना दान दर्ज करें", "support.registerHint": "आपको तारीख, निकनेम और ईमेल वाली एक PDF रसीद मिलेगी।", "support.amountLabel": "दान की गई राशि (वैकल्पिक)", "support.amountPlaceholder": "जैसे 5", "support.methodLabel": "पेमेंट का तरीका", "support.amountInvalid": "सही राशि लिखें, जैसे 5 या 7.50।", "support.donationSaved": "दान दर्ज हो गया। धन्यवाद!", "support.receiptBtn": "रसीद (PDF)", "support.prevReceipts": "इस टाइटल के लिए आपकी रसीदें", "receipt.heading": "दान की रसीद", "receipt.download": "PDF डाउनलोड करें", "receipt.share": "शेयर करें", "receipt.lang": "रसीद की भाषा", "receipt.close": "बंद करें", "receipt.making": "रसीद तैयार हो रही है…", "receipt.failed": "रसीद नहीं बन सकी। फिर से कोशिश करें।", "receipt.nonFiscal": "यह कर-संबंधी दस्तावेज़ नहीं है", "receipt.number": "रसीद संख्या", "receipt.date": "तारीख", "receipt.donor": "दानदाता", "receipt.nickname": "निकनेम", "receipt.email": "ईमेल", "receipt.donation": "दान", "receipt.reason": "उद्देश्य", "receipt.reasonText": "“{title}” के लिए स्वैच्छिक सहयोग", "receipt.amount": "राशि", "receipt.amountNone": "नहीं बताई गई", "receipt.method": "पेमेंट का तरीका", "receipt.status": "स्थिति", "receipt.verified": "पेमेंट सत्यापित", "receipt.thanks": "आपके सहयोग के लिए धन्यवाद!", "receipt.footer": "यह दस्तावेज़ इनवॉइस नहीं है और इसका कोई कर-संबंधी मूल्य नहीं है: यह केवल {site} साइट पर दर्ज किए गए दान की पुष्टि करता है।", "receipt.generated": "बनाई गई: {date}"});
+Object.assign(STR.bn, {"support.registerDonation": "আপনার দান নথিভুক্ত করুন", "support.registerHint": "তারিখ, নিকনেম আর ইমেইলসহ একটি PDF রসিদ পাবেন।", "support.amountLabel": "দানের পরিমাণ (ঐচ্ছিক)", "support.amountPlaceholder": "যেমন 5", "support.methodLabel": "পেমেন্টের মাধ্যম", "support.amountInvalid": "সঠিক পরিমাণ লিখুন, যেমন 5 বা 7.50।", "support.donationSaved": "দান নথিভুক্ত হয়েছে। ধন্যবাদ!", "support.receiptBtn": "রসিদ (PDF)", "support.prevReceipts": "এই শিরোনামের জন্য আপনার রসিদ", "receipt.heading": "দানের রসিদ", "receipt.download": "PDF ডাউনলোড করুন", "receipt.share": "শেয়ার করুন", "receipt.lang": "রসিদের ভাষা", "receipt.close": "বন্ধ করুন", "receipt.making": "রসিদ তৈরি হচ্ছে…", "receipt.failed": "রসিদ তৈরি করা যায়নি। আবার চেষ্টা করুন।", "receipt.nonFiscal": "এটি কর-সংক্রান্ত নথি নয়", "receipt.number": "রসিদ নম্বর", "receipt.date": "তারিখ", "receipt.donor": "দাতা", "receipt.nickname": "নিকনেম", "receipt.email": "ইমেইল", "receipt.donation": "দান", "receipt.reason": "উদ্দেশ্য", "receipt.reasonText": "“{title}”-এর জন্য স্বেচ্ছায় সহায়তা", "receipt.amount": "পরিমাণ", "receipt.amountNone": "উল্লেখ করা হয়নি", "receipt.method": "পেমেন্টের মাধ্যম", "receipt.status": "অবস্থা", "receipt.verified": "পেমেন্ট যাচাই করা হয়েছে", "receipt.thanks": "আপনার সহায়তার জন্য ধন্যবাদ!", "receipt.footer": "এই নথিটি কোনো ইনভয়েস নয় এবং এর কোনো কর-সংক্রান্ত মূল্য নেই: এটি শুধু {site} সাইটে নথিভুক্ত দানটির প্রমাণ।", "receipt.generated": "তৈরি: {date}"});
+Object.assign(STR.ar, {"support.registerDonation": "سجّل تبرّعك", "support.registerHint": "ستحصل على إيصال PDF يتضمن التاريخ واسمك المستعار وبريدك الإلكتروني.", "support.amountLabel": "المبلغ المتبرَّع به (اختياري)", "support.amountPlaceholder": "مثلًا 5", "support.methodLabel": "طريقة الدفع", "support.amountInvalid": "أدخل مبلغًا صحيحًا، مثل 5 أو 7.50.", "support.donationSaved": "تم تسجيل التبرّع. شكرًا لك!", "support.receiptBtn": "الإيصال (PDF)", "support.prevReceipts": "إيصالاتك لهذا العنوان", "receipt.heading": "إيصال تبرّع", "receipt.download": "تنزيل PDF", "receipt.share": "مشاركة", "receipt.lang": "لغة الإيصال", "receipt.close": "إغلاق", "receipt.making": "جارٍ إعداد الإيصال…", "receipt.failed": "تعذّر إنشاء الإيصال. حاول مرة أخرى.", "receipt.nonFiscal": "ليس مستندًا ضريبيًا", "receipt.number": "رقم الإيصال", "receipt.date": "التاريخ", "receipt.donor": "المتبرّع", "receipt.nickname": "الاسم المستعار", "receipt.email": "البريد الإلكتروني", "receipt.donation": "التبرّع", "receipt.reason": "الغرض", "receipt.reasonText": "دعم طوعي لـ«{title}»", "receipt.amount": "المبلغ", "receipt.amountNone": "غير محدد", "receipt.method": "طريقة الدفع", "receipt.status": "الحالة", "receipt.verified": "تم التحقق من الدفع", "receipt.thanks": "شكرًا لدعمك!", "receipt.footer": "هذا المستند ليس فاتورة وليست له أي قيمة ضريبية: إنه يثبت فقط التبرّع المسجَّل على موقع {site}.", "receipt.generated": "أُنشئ في {date}"});
+Object.assign(STR.pnb, {"support.registerDonation": "اپنا عطیہ درج کرو", "support.registerHint": "تہانوں تاریخ، نک نیم تے ای میل والی اک PDF رسید ملے گی۔", "support.amountLabel": "عطیہ دی رقم (اختیاری)", "support.amountPlaceholder": "جیویں 5", "support.methodLabel": "ادائیگی دا طریقہ", "support.amountInvalid": "درست رقم لکھو، جیویں 5 یا 7.50۔", "support.donationSaved": "عطیہ درج ہو گیا۔ شکریہ!", "support.receiptBtn": "رسید (PDF)", "support.prevReceipts": "ایس ٹائٹل لئی تہاڈیاں رسیداں", "receipt.heading": "عطیے دی رسید", "receipt.download": "PDF ڈاؤن لوڈ کرو", "receipt.share": "شیئر کرو", "receipt.lang": "رسید دی زبان", "receipt.close": "بند کرو", "receipt.making": "رسید تیار ہو رہی اے…", "receipt.failed": "رسید نہیں بن سکی۔ دوبارہ کوشش کرو۔", "receipt.nonFiscal": "ٹیکس دی دستاویز نہیں", "receipt.number": "رسید نمبر", "receipt.date": "تاریخ", "receipt.donor": "عطیہ دین والا", "receipt.nickname": "نک نیم", "receipt.email": "ای میل", "receipt.donation": "عطیہ", "receipt.reason": "مقصد", "receipt.reasonText": "«{title}» لئی اپنی مرضی دی مدد", "receipt.amount": "رقم", "receipt.amountNone": "نہیں دسی گئی", "receipt.method": "ادائیگی دا طریقہ", "receipt.status": "حالت", "receipt.verified": "ادائیگی دی تصدیق ہو گئی", "receipt.thanks": "تہاڈی مدد دا شکریہ!", "receipt.footer": "ایہہ دستاویز بل نہیں اے تے ایہدی کوئی ٹیکس حیثیت نہیں: ایہہ صرف {site} سائٹ تے درج عطیے دی تصدیق کردی اے۔", "receipt.generated": "بنائی گئی: {date}"});
 var CHAR_META = {
   Lucifer:{role:{it:"Il Portatore di Luce",en:"The Light-Bearer",es:"El Portador de Luz",fr:"Le Porteur de Lumière",de:"Der Lichtträger"},
     bio:{it:"Sovrano della collana ammiraglia: potere, caduta e desiderio raccontati su grande scala.",
@@ -16630,6 +16644,535 @@ function deletePodcast(id){
   luxDelete('podcasts?id=eq.' + encodeURIComponent(id)).then(function(){ loadPodcastsAdminList(); }, luxDeleteFail);
 }
 
+/* ============ v229: RICEVUTA DELLA DONAZIONE (PDF) ============
+   Chi registra una donazione riceve una ricevuta non fiscale in PDF:
+   numero, data e ora, nickname ed email di chi ha donato, il titolo
+   sostenuto e, se li ha scritti, importo e metodo di pagamento.
+   In Amministra › Richieste ogni donazione ha il suo pulsante
+   «Ricevuta PDF» (con "Pagamento verificato" se l'hai verificato).
+   La pagina si disegna su un <canvas>, così ogni lingua e ogni scrittura
+   esce giusta (arabo compreso), e si mette in un PDF A4 scritto qui
+   sotto: nessuna libreria in più da scaricare. */
+var LUX_RECEIPT_SITE = 'noxmorningstar.com';
+var LUX_RECEIPT_METHODS = ['PayPal', 'Satispay', 'Revolut'];
+
+function luxRt(lang, key){ return (STR[lang] && STR[lang][key]) || STR.it[key] || key; }
+function luxLocaleOf(lang){ return LUX_LOCALES[lang] || lang; }
+// la lingua scelta per la ricevuta può non essere ancora sul telefono: la si scarica
+function luxEnsureLang(lang){
+  if(lang === 'it' || STR[lang]) return Promise.resolve(lang);
+  if(typeof luxLoadLang === 'function') return luxLoadLang(lang).then(function(){ return lang; }, function(){ return 'it'; });
+  return Promise.resolve('it');
+}
+// importo scritto a mano: «5», «7,50», «7.50», «€ 10», anche con le cifre arabe, indiane o bengalesi
+function luxParseAmount(raw){
+  var s = String(raw == null ? '' : raw).replace(/[٠-٩۰-۹०-९০-৯０-９]/g, function(ch){
+    var c = ch.charCodeAt(0), bases = [0x660, 0x6F0, 0x966, 0x9E6, 0xFF10];
+    for(var i = 0; i < bases.length; i++){ if(c >= bases[i] && c <= bases[i] + 9) return String(c - bases[i]); }
+    return ch;
+  }).replace(/[٫．]/g, '.').replace(/[٬，]/g, ',').replace(/€|eur|euro/gi, '').replace(/[\s  ‎‏]/g, '');
+  if(!s) return null;
+  if(/^\d{1,3}(\.\d{3})+(,\d{1,2})?$/.test(s)) s = s.replace(/\./g, '').replace(',', '.');
+  else if(/^\d{1,3}(,\d{3})+(\.\d{1,2})?$/.test(s)) s = s.replace(/,/g, '');
+  else s = s.replace(',', '.');
+  if(!/^\d+(\.\d{1,2})?$/.test(s)) return NaN;
+  var n = Math.round(parseFloat(s) * 100) / 100;
+  return n > 0 && n < 100000 ? n : NaN;
+}
+function luxAmountIt(n){ return n.toFixed(2).replace('.', ','); }
+function luxMoney(n, lang){
+  try { return new Intl.NumberFormat(luxLocaleOf(lang), { style:'currency', currency:'EUR' }).format(n); }
+  catch(e){ return luxAmountIt(n) + ' €'; }
+}
+function luxReceiptWhen(when, lang){
+  var d = new Date(when);
+  if(isNaN(d.getTime())) return String(when || '');
+  try { return d.toLocaleString(luxLocaleOf(lang), { day:'numeric', month:'long', year:'numeric', hour:'2-digit', minute:'2-digit', timeZoneName:'short' }); }
+  catch(e){ return d.toLocaleString(); }
+}
+function luxPad2(n){ return (n < 10 ? '0' : '') + n; }
+function luxYmd(d){ return '' + d.getFullYear() + luxPad2(d.getMonth() + 1) + luxPad2(d.getDate()); }
+// numero della ricevuta: LUX-AAAAMMGG-XXXX (4 caratteri a caso, senza 0/O e 1/I che si confondono)
+function luxReceiptCode(when){
+  var A = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789', r = new Uint8Array(4), s = '';
+  try { crypto.getRandomValues(r); } catch(e){ for(var i = 0; i < 4; i++) r[i] = Math.floor(Math.random() * 256); }
+  for(var j = 0; j < 4; j++) s += A.charAt(r[j] % A.length);
+  return 'LUX-' + luxYmd(when || new Date()) + '-' + s;
+}
+// le donazioni registrate prima della v229 non hanno un numero scritto: lo si ricava, sempre uguale, da data e id
+function luxReceiptCodeFor(req){
+  var d = new Date(req.created_at || Date.now());
+  if(isNaN(d.getTime())) d = new Date();
+  var id = String(req.id == null ? '' : req.id).replace(/[^0-9a-zA-Z]/g, '').toUpperCase();
+  if(/^\d+$/.test(id) && id.length < 4) id = ('0000' + id).slice(-4);
+  return 'LUX-' + luxYmd(d) + '-' + (id.slice(0, 8) || '0000');
+}
+/* Il testo della richiesta (quello che vedi in Richieste) tiene anche i dati della ricevuta:
+   [DONAZIONE] "Titolo" — supporto libero registrato · 5,00 € · PayPal · ricevuta LUX-20261010-7F3K · nickname: Aurora */
+function luxParseDonation(body){
+  var b = String(body || ''), out = { title: '', amount: null, method: null, code: null, nick: null }, rest = '';
+  var m = /^\[DONAZIONE\] "([\s\S]*)" — supporto libero registrato([\s\S]*)$/.exec(b);
+  if(m){ out.title = m[1]; rest = m[2]; }
+  else {
+    var m2 = /^\[DONAZIONE\]\s*"([^"]*)"/.exec(b);
+    out.title = m2 ? m2[1] : b.replace(/^\[DONAZIONE\]\s*/, '').split(' — ')[0];
+    rest = b;
+  }
+  var nk = /· nickname: ([\s\S]*)$/.exec(rest);
+  if(nk){ out.nick = nk[1].trim() || null; rest = rest.slice(0, nk.index); }
+  var am = /· (\d+(?:,\d{1,2})?) €/.exec(rest);
+  if(am) out.amount = parseFloat(am[1].replace(',', '.'));
+  var me = new RegExp('· (' + LUX_RECEIPT_METHODS.join('|') + ')(?= ·|\\s*$)').exec(rest);
+  if(me) out.method = me[1];
+  var cd = /· ricevuta (LUX-\d{8}-[A-Z0-9]{4,8})/.exec(rest);
+  if(cd) out.code = cd[1];
+  return out;
+}
+
+// ricevute di chi dona, tenute anche su questo telefono/computer (per riscaricarle dalla stessa scheda)
+function luxMyReceipts(){
+  var uid = currentUserId();
+  try {
+    var a = JSON.parse(localStorage.getItem('lux_receipts') || '[]');
+    return Array.isArray(a) ? a.filter(function(r){ return r && r.uid === uid; }) : [];
+  } catch(e){ return []; }
+}
+function luxKeepReceipt(rec){
+  try {
+    var all = JSON.parse(localStorage.getItem('lux_receipts') || '[]');
+    if(!Array.isArray(all)) all = [];
+    all = all.filter(function(r){ return r && r.code !== rec.code; });
+    all.unshift(rec);
+    localStorage.setItem('lux_receipts', JSON.stringify(all.slice(0, 40)));
+  } catch(e){}
+}
+
+// ---------- il foglio della ricevuta ----------
+var LUX_RC_FONTS = ['700 20px Cinzel', '400 20px "Crimson Pro"', '600 20px "Crimson Pro"', 'italic 400 20px "Crimson Pro"', '400 20px "Space Mono"', '700 20px "Space Mono"'];
+function luxReceiptFonts(){
+  if(!document.fonts || !document.fonts.load) return Promise.resolve();
+  var all = Promise.all(LUX_RC_FONTS.map(function(f){ return document.fonts.load(f).catch(function(){}); }));
+  return Promise.race([all, new Promise(function(res){ setTimeout(res, 2500); })]);
+}
+var _luxRcLogo = null;
+function luxReceiptLogo(){
+  if(_luxRcLogo) return _luxRcLogo;
+  _luxRcLogo = new Promise(function(resolve){
+    var img = new Image();
+    img.onload = function(){ resolve(img); };
+    img.onerror = function(){ _luxRcLogo = null; resolve(null); };
+    img.src = LOGO_SM;
+  });
+  return _luxRcLogo;
+}
+var LUX_RTL_CHARS = /[֐-ࣿיִ-﷿ﹰ-﻿‏]/;
+// A4 a 200 punti per pollice: 1654 × 2339 pixel; si disegna in punti tipografici (595 × 842)
+function luxDrawReceipt(rec, lang, logo){
+  var W = 1654, H = 2339, PW = 595.28, PH = 841.89;
+  var c = document.createElement('canvas');
+  c.width = W; c.height = H;
+  var g = c.getContext('2d');
+  g.fillStyle = '#ffffff';
+  g.fillRect(0, 0, W, H);
+  g.scale(W / PW, H / PH);
+  var rtl = luxIsRtl(lang), R = function(k){ return luxRt(lang, k); };
+  var spaced = !/^(ar|pnb|hi|bn|zh|ja)$/.test(lang);
+  var INK = '#1d1416', MUTED = '#6d6064', GOLD = '#9c7623', GOLD_L = '#dcc68c', PAPER = '#f8f2e4', OK = '#2d7a4b';
+  var L = 50, CW = PW - 100;
+  var SERIF = '"Crimson Pro", Georgia, "Times New Roman", serif', MONO = '"Space Mono", "Courier New", monospace', DISPLAY = 'Cinzel, ' + SERIF;
+  function X(x){ return rtl ? PW - x : x; }
+  function upper(s){ try { return s.toLocaleUpperCase(luxLocaleOf(lang)); } catch(e){ return s.toUpperCase(); } }
+  // ogni riga di testo prende il verso della sua scrittura; la colonna (destra o sinistra) la decide la lingua
+  function put(str, x, y, font, color, align){
+    str = String(str);
+    g.font = font; g.fillStyle = color;
+    g.direction = LUX_RTL_CHARS.test(str) ? 'rtl' : 'ltr';
+    if(align === 'center'){ g.textAlign = 'center'; g.fillText(str, x, y); return; }
+    g.textAlign = ((align || 'start') === 'start') !== rtl ? 'left' : 'right';
+    g.fillText(str, X(x), y);
+  }
+  function lines(str, font, maxW){
+    g.font = font;
+    var out = [], cur = '';
+    var fits = function(s){ return g.measureText(s).width <= maxW; };
+    String(str).split(' ').forEach(function(w){
+      var trial = cur ? cur + ' ' + w : w;
+      if(fits(trial)){ cur = trial; return; }
+      if(cur) out.push(cur);
+      cur = '';
+      if(fits(w)){ cur = w; return; }
+      // parola troppo lunga, o lingua che non mette spazi (cinese, giapponese): si va a capo tra i caratteri
+      Array.from(w).forEach(function(ch){
+        if(fits(cur + ch)) cur += ch; else { if(cur) out.push(cur); cur = ch; }
+      });
+    });
+    if(cur) out.push(cur);
+    return out.length ? out : [''];
+  }
+  function rule(y, color, h){ g.fillStyle = color; g.fillRect(L, y, CW, h); }
+  function box(x, y, w, h, r){
+    g.beginPath();
+    g.moveTo(x + r, y); g.lineTo(x + w - r, y); g.quadraticCurveTo(x + w, y, x + w, y + r);
+    g.lineTo(x + w, y + h - r); g.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+    g.lineTo(x + r, y + h); g.quadraticCurveTo(x, y + h, x, y + h - r);
+    g.lineTo(x, y + r); g.quadraticCurveTo(x, y, x + r, y);
+    g.closePath();
+  }
+  function label(str, x, y, size){
+    if(spaced) g.letterSpacing = '1.4px';
+    put(upper(str), x, y, '700 ' + (size || 7.5) + 'px ' + MONO, GOLD);
+    if(spaced) g.letterSpacing = '0px';
+  }
+
+  // intestazione: stemma, nome, sito
+  if(logo){ try { g.drawImage(logo, rtl ? PW - L - 56 : L, 46, 56, 56); } catch(e){} }
+  put('LUX COMICS & MEDUSA COMICS', L + 70, 72, '700 15px ' + DISPLAY, INK);
+  put(LUX_RECEIPT_SITE, L + 70, 90, '400 9px ' + MONO, MUTED);
+  rule(122, GOLD, 1.2);
+  rule(125.5, GOLD_L, 0.5);
+
+  // titolo del documento
+  var y = 172, tf = '700 25px ' + DISPLAY;
+  lines(R('receipt.heading'), tf, CW).forEach(function(s){ put(s, L, y, tf, INK); y += 30; });
+  put(R('receipt.nonFiscal'), L, y - 8, 'italic 400 12px ' + SERIF, MUTED);
+  y += 18;
+
+  // riquadro: numero e data
+  var col2 = 0.44 * CW, df = '600 12.5px ' + SERIF;
+  var dl = lines(luxReceiptWhen(rec.at, lang), df, CW - col2 - 18).slice(0, 3);
+  var ch = 62 + (dl.length - 1) * 15;
+  box(L, y, CW, ch, 6);
+  g.fillStyle = PAPER; g.fill();
+  g.lineWidth = 0.8; g.strokeStyle = GOLD_L; g.stroke();
+  label(R('receipt.number'), L + 18, y + 23);
+  put(rec.code, L + 18, y + 43, '700 13px ' + MONO, INK);
+  label(R('receipt.date'), L + col2, y + 23);
+  dl.forEach(function(s, i){ put(s, L + col2, y + 43 + i * 15, df, INK); });
+  y += ch + 40;
+
+  // righe: etichetta a sinistra (a destra in arabo), valore accanto
+  var lf = '400 11.5px ' + SERIF, vf = '600 13.5px ' + SERIF;
+  var keys = ['receipt.nickname', 'receipt.email', 'receipt.reason', 'receipt.amount', 'receipt.method', 'receipt.status'];
+  g.font = lf;
+  var lw = Math.min(165, Math.max(96, Math.max.apply(null, keys.map(function(k){ return g.measureText(R(k)).width; })) + 18));
+  function section(str){
+    label(str, L, y, 8.5);
+    rule(y + 7, GOLD_L, 0.6);
+    y += 28;
+  }
+  function field(key, value, color){
+    var ll = lines(R(key), lf, lw - 12), vl = lines(value, vf, CW - lw);
+    ll.forEach(function(s, i){ put(s, L, y + i * 15, lf, MUTED); });
+    vl.forEach(function(s, i){ put(s, L + lw, y + i * 17, vf, color || INK); });
+    y += Math.max(ll.length * 15, vl.length * 17) + 9;
+  }
+  section(R('receipt.donor'));
+  field('receipt.nickname', rec.name || '—');
+  field('receipt.email', rec.email || '—');
+  y += 14;
+  section(R('receipt.donation'));
+  field('receipt.reason', R('receipt.reasonText').replace('{title}', rec.title || '—'));
+  field('receipt.amount', rec.amount != null && !isNaN(rec.amount) ? luxMoney(rec.amount, lang) : R('receipt.amountNone'));
+  if(rec.method) field('receipt.method', rec.method);
+  if(rec.verified) field('receipt.status', '✓ ' + R('receipt.verified'), OK);
+
+  // grazie
+  y += 30;
+  var thf = '700 17px ' + DISPLAY;
+  lines(R('receipt.thanks'), thf, CW).forEach(function(s){ put(s, PW / 2, y, thf, GOLD, 'center'); y += 22; });
+  g.fillStyle = GOLD_L;
+  g.fillRect(PW / 2 - 64, y - 4, 52, 0.7);
+  g.fillRect(PW / 2 + 12, y - 4, 52, 0.7);
+  g.beginPath(); g.moveTo(PW / 2, y - 8); g.lineTo(PW / 2 + 4, y - 3.65); g.lineTo(PW / 2, y + 0.7); g.lineTo(PW / 2 - 4, y - 3.65); g.closePath();
+  g.fillStyle = GOLD; g.fill();
+
+  // piede: cosa vale questo foglio, e quando è stato creato
+  var ff = 'italic 400 9.5px ' + SERIF;
+  var fl = lines(R('receipt.footer').replace('{site}', LUX_RECEIPT_SITE), ff, CW);
+  var fy = PH - 50 - fl.length * 12.5 - 12;
+  rule(fy - 16, GOLD_L, 0.6);
+  fl.forEach(function(s){ put(s, L, fy, ff, MUTED); fy += 12.5; });
+  put(R('receipt.generated').replace('{date}', luxReceiptWhen(new Date(), lang)), L, fy + 4, '400 7.5px ' + MONO, MUTED);
+  return c;
+}
+function luxCanvasJpeg(c){
+  return new Promise(function(resolve, reject){
+    function viaDataUrl(){
+      try { resolve(base64ToBytes(c.toDataURL('image/jpeg', 0.92).split(',')[1])); } catch(e){ reject(e); }
+    }
+    if(!c.toBlob) return viaDataUrl();
+    try {
+      c.toBlob(function(b){
+        if(!b) return viaDataUrl();
+        var fr = new FileReader();
+        fr.onload = function(){ resolve(new Uint8Array(fr.result)); };
+        fr.onerror = viaDataUrl;
+        fr.readAsArrayBuffer(b);
+      }, 'image/jpeg', 0.92);
+    } catch(e){ viaDataUrl(); }
+  });
+}
+// un PDF di una pagina A4 con l'immagine della ricevuta: struttura minima, scritta a mano
+function luxPdfText(s){
+  var hex = 'FEFF';
+  for(var i = 0; i < s.length; i++) hex += ('000' + s.charCodeAt(i).toString(16).toUpperCase()).slice(-4);
+  return '<' + hex + '>';
+}
+function luxPdfDate(d){
+  var off = -d.getTimezoneOffset(), sign = off >= 0 ? '+' : '-', a = Math.abs(off);
+  return 'D:' + luxYmd(d) + luxPad2(d.getHours()) + luxPad2(d.getMinutes()) + luxPad2(d.getSeconds()) + sign + luxPad2(Math.floor(a / 60)) + "'" + luxPad2(a % 60) + "'";
+}
+function luxJpegToPdf(jpeg, w, h, meta){
+  var parts = [], len = 0, offs = [];
+  function add(x){
+    var b = x;
+    if(typeof x === 'string'){ b = new Uint8Array(x.length); for(var i = 0; i < x.length; i++) b[i] = x.charCodeAt(i) & 0xFF; }
+    parts.push(b); len += b.length;
+  }
+  function obj(n, body){ offs[n] = len; add(n + ' 0 obj\n' + body + '\nendobj\n'); }
+  add('%PDF-1.4\n');
+  add(new Uint8Array([0x25, 0xE2, 0xE3, 0xCF, 0xD3, 0x0A]));
+  obj(1, '<< /Type /Catalog /Pages 2 0 R >>');
+  obj(2, '<< /Type /Pages /Kids [3 0 R] /Count 1 >>');
+  obj(3, '<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /XObject << /Im0 4 0 R >> /ProcSet [/PDF /ImageC] >> /Contents 5 0 R >>');
+  offs[4] = len;
+  add('4 0 obj\n<< /Type /XObject /Subtype /Image /Width ' + w + ' /Height ' + h + ' /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length ' + jpeg.length + ' >>\nstream\n');
+  add(jpeg);
+  add('\nendstream\nendobj\n');
+  var content = 'q 595.28 0 0 841.89 0 0 cm /Im0 Do Q';
+  obj(5, '<< /Length ' + content.length + ' >>\nstream\n' + content + '\nendstream');
+  var now = new Date();
+  obj(6, '<< /Title ' + luxPdfText(meta.title || '') + ' /Author ' + luxPdfText(meta.author || '') + ' /Subject ' + luxPdfText(meta.subject || '') +
+    ' /Creator (' + LUX_RECEIPT_SITE + ') /Producer (LUX COMICS) /CreationDate (' + luxPdfDate(now) + ') /ModDate (' + luxPdfDate(now) + ') >>');
+  var xref = len, x = 'xref\n0 7\n0000000000 65535 f \n';
+  for(var i = 1; i <= 6; i++) x += ('000000000' + offs[i]).slice(-10) + ' 00000 n \n';
+  add(x + 'trailer\n<< /Size 7 /Root 1 0 R /Info 6 0 R >>\nstartxref\n' + xref + '\n%%EOF\n');
+  var out = new Uint8Array(len), p = 0;
+  parts.forEach(function(b){ out.set(b, p); p += b.length; });
+  return out;
+}
+function luxReceiptFileName(rec, lang){
+  var w = { it: 'ricevuta', es: 'recibo', pt: 'recibo', fr: 'recu', de: 'quittung' }[lang] || 'receipt';
+  return w + '-' + rec.code + '.pdf';
+}
+function luxBuildReceipt(rec, lang){
+  return Promise.all([luxEnsureLang(lang), luxReceiptFonts(), luxReceiptLogo()]).then(function(res){
+    var lg = res[0], c = luxDrawReceipt(rec, lg, res[2]);
+    return luxCanvasJpeg(c).then(function(jpeg){
+      var pdf = luxJpegToPdf(jpeg, c.width, c.height, { title: luxRt(lg, 'receipt.heading') + ' ' + rec.code, author: 'LUX COMICS & MEDUSA COMICS', subject: rec.title || '' });
+      return { lang: lg, pdf: new Blob([pdf], { type: 'application/pdf' }), jpeg: new Blob([jpeg], { type: 'image/jpeg' }), name: luxReceiptFileName(rec, lg) };
+    });
+  });
+}
+function luxSaveBlob(blob, name){
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url; a.download = name; a.rel = 'noopener';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  setTimeout(function(){ URL.revokeObjectURL(url); }, 60000);
+}
+
+// ---------- la finestra della ricevuta (chi dona e Amministra) ----------
+function openReceiptModal(rec, opts){
+  opts = opts || {};
+  rec = JSON.parse(JSON.stringify(rec));
+  var old = document.getElementById('luxReceiptModal');
+  if(old && old.__luxClose) old.__luxClose(); else if(old) old.remove();
+  var ov = document.createElement('div');
+  ov.id = 'luxReceiptModal';
+  ov.className = 'lux-rc-overlay';
+  ov.setAttribute('role', 'dialog');
+  ov.setAttribute('aria-modal', 'true');
+  ov.setAttribute('aria-label', t('receipt.heading'));
+  var methodOpts = '<option value="">—</option>' + LUX_RECEIPT_METHODS.map(function(m){ return '<option value="' + m + '">' + m + '</option>'; }).join('');
+  ov.innerHTML =
+    '<div class="lux-rc-box">' +
+      '<button type="button" class="lux-rc-x" aria-label="' + escapeHtml(t('receipt.close')) + '">×</button>' +
+      '<div class="lux-rc-eyebrow">' + escapeHtml(t('receipt.heading')) + ' · <span class="mono">' + escapeHtml(rec.code) + '</span></div>' +
+      (opts.editable ?
+        '<div class="lux-rc-edit">' +
+          '<label><span>' + escapeHtml(t('receipt.amount')) + ' (€)</span><input type="text" inputmode="decimal" class="lux-rc-amount" autocomplete="off"></label>' +
+          '<label><span>' + escapeHtml(t('receipt.method')) + '</span><select class="lux-rc-method">' + methodOpts + '</select></label>' +
+        '</div>' : '') +
+      '<div class="lux-rc-paper"><img class="lux-rc-img" alt="' + escapeHtml(t('receipt.heading')) + '"></div>' +
+      '<div class="lux-rc-status" role="status"></div>' +
+      '<div class="lux-rc-actions">' +
+        '<label class="lux-rc-lang"><span>' + escapeHtml(t('receipt.lang')) + '</span><select class="lux-rc-langsel">' +
+          LUX_LANGS.map(function(l){ return '<option value="' + l.code + '">' + escapeHtml(l.name) + '</option>'; }).join('') + '</select></label>' +
+        '<button type="button" class="btn btn-primary lux-rc-dl" disabled>' + escapeHtml(t('receipt.download')) + '</button>' +
+        '<button type="button" class="btn btn-ghost lux-rc-share" hidden>' + escapeHtml(t('receipt.share')) + '</button>' +
+      '</div>' +
+    '</div>';
+  document.body.appendChild(ov);
+  var q = function(s){ return ov.querySelector(s); };
+  var img = q('.lux-rc-img'), status = q('.lux-rc-status'), dl = q('.lux-rc-dl'), share = q('.lux-rc-share'), langSel = q('.lux-rc-langsel');
+  var amountEl = q('.lux-rc-amount'), methodEl = q('.lux-rc-method');
+  var cur = null, seq = 0, imgUrl = null, timer = null;
+  langSel.value = opts.lang || currentLang;
+  if(amountEl) amountEl.value = rec.amount != null ? new Intl.NumberFormat(luxLocale(), { minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: false }).format(rec.amount) : '';
+  if(methodEl) methodEl.value = rec.method || '';
+  function close(){
+    clearTimeout(timer);
+    document.removeEventListener('keydown', onKey);
+    if(imgUrl) URL.revokeObjectURL(imgUrl);
+    ov.remove();
+  }
+  ov.__luxClose = close;
+  function onKey(e){ if(e.key === 'Escape') close(); }
+  document.addEventListener('keydown', onKey);
+  q('.lux-rc-x').addEventListener('click', close);
+  ov.addEventListener('click', function(e){ if(e.target === ov) close(); });
+  function render(){
+    var my = ++seq;
+    cur = null;
+    dl.disabled = true; share.hidden = true;
+    status.textContent = t('receipt.making');
+    luxBuildReceipt(rec, langSel.value).then(function(out){
+      if(my !== seq || !ov.isConnected) return;
+      cur = out;
+      if(imgUrl) URL.revokeObjectURL(imgUrl);
+      imgUrl = URL.createObjectURL(out.jpeg);
+      img.onerror = function(){
+        img.onerror = null;
+        var fr = new FileReader();
+        fr.onload = function(){ if(my === seq) img.src = fr.result; };
+        fr.readAsDataURL(out.jpeg);
+      };
+      img.src = imgUrl;
+      status.textContent = '';
+      dl.disabled = false;
+      try {
+        var file = new File([out.pdf], out.name, { type: 'application/pdf' });
+        share.hidden = !(navigator.canShare && navigator.share && navigator.canShare({ files: [file] }));
+        cur.file = file;
+      } catch(e){ share.hidden = true; }
+    }).catch(function(e){
+      console.warn('Ricevuta non creata:', e);
+      if(my === seq) status.textContent = t('receipt.failed');
+    });
+  }
+  langSel.addEventListener('change', render);
+  function edited(){
+    clearTimeout(timer);
+    timer = setTimeout(function(){
+      var n = amountEl ? luxParseAmount(amountEl.value) : rec.amount;
+      rec.amount = (n === null || isNaN(n)) ? null : n;
+      if(methodEl) rec.method = methodEl.value || null;
+      render();
+    }, 450);
+  }
+  if(amountEl) amountEl.addEventListener('input', edited);
+  if(methodEl) methodEl.addEventListener('change', edited);
+  dl.addEventListener('click', function(){ if(cur) luxSaveBlob(cur.pdf, cur.name); });
+  share.addEventListener('click', function(){
+    if(!cur || !cur.file) return;
+    navigator.share({ files: [cur.file], title: luxRt(cur.lang, 'receipt.heading') + ' ' + rec.code }).catch(function(e){
+      if(e && e.name !== 'AbortError') luxSaveBlob(cur.pdf, cur.name);
+    });
+  });
+  render();
+  try { q('.lux-rc-x').focus({ preventScroll: true }); } catch(e){}
+  return ov;
+}
+
+// ---------- nella scheda «Sostieni»: importo, metodo, ricevute già fatte ----------
+function luxDonationFormHtml(price){
+  var pre = price ? new Intl.NumberFormat(luxLocale(), { minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: false }).format(price) : '';
+  return '<div class="lux-don" style="margin-bottom:16px;">' +
+    '<div class="lux-don-row">' +
+      '<label class="lux-don-field"><span>' + escapeHtml(t('support.amountLabel')) + '</span>' +
+        '<span class="lux-don-money"><input type="text" inputmode="decimal" id="supportDonationAmount" autocomplete="off" placeholder="' + escapeHtml(t('support.amountPlaceholder')) + '" value="' + escapeHtml(pre) + '"><b>€</b></span></label>' +
+      '<label class="lux-don-field"><span>' + escapeHtml(t('support.methodLabel')) + '</span><select id="supportDonationMethod"><option value="">—</option>' +
+        LUX_RECEIPT_METHODS.map(function(m){ return '<option value="' + m + '">' + m + '</option>'; }).join('') + '</select></label>' +
+    '</div>' +
+    '<div id="supportDonationError" class="lux-don-err"></div>' +
+    '<button type="button" id="supportDonationRegister" class="btn btn-ghost" style="width:100%;">' + escapeHtml(t('support.registerDonation')) + '</button>' +
+    '<div class="lux-don-hint">' + escapeHtml(t('support.registerHint')) + '</div>' +
+    '<div id="supportDonationSent" style="font-size:12px;color:var(--gold-bright);margin-top:8px;"></div>' +
+    '<div id="supportDonationPrev" class="lux-don-prev"></div>' +
+  '</div>';
+}
+function luxRenderPrevReceipts(item, skipCode){
+  var box = document.getElementById('supportDonationPrev');
+  if(!box) return;
+  // quella appena fatta ha già il suo pulsante qui sopra: nell'elenco restano le precedenti
+  var mine = luxMyReceipts().filter(function(r){ return String(r.titleId) === String(item.id) && r.code !== skipCode; }).slice(0, 4);
+  if(!mine.length){ box.innerHTML = ''; return; }
+  box.innerHTML = '<span>' + escapeHtml(t('support.prevReceipts')) + '</span>' + mine.map(function(r, i){
+    var d = new Date(r.at), when = isNaN(d.getTime()) ? '' : d.toLocaleDateString(luxLocale(), { day:'numeric', month:'short', year:'numeric' });
+    return '<button type="button" class="lux-don-prev-btn" data-rc="' + i + '">📄 ' + escapeHtml(when + (r.amount != null ? ' · ' + luxMoney(r.amount, currentLang) : '')) + '</button>';
+  }).join('');
+  Array.prototype.forEach.call(box.querySelectorAll('[data-rc]'), function(b){
+    b.addEventListener('click', function(){ openReceiptModal(mine[+b.getAttribute('data-rc')]); });
+  });
+}
+function setupDonationRegister(item, overlay){
+  var btn = document.getElementById('supportDonationRegister');
+  if(!btn) return;
+  var amountEl = document.getElementById('supportDonationAmount'), methodEl = document.getElementById('supportDonationMethod');
+  var err = document.getElementById('supportDonationError'), sent = document.getElementById('supportDonationSent');
+  // il metodo si sceglie da solo quando tocchi PayPal, Satispay o Revolut qui sotto
+  Array.prototype.forEach.call(overlay.querySelectorAll('a[data-pay]'), function(a){
+    a.addEventListener('click', function(){ if(methodEl) methodEl.value = a.getAttribute('data-pay'); });
+  });
+  luxRenderPrevReceipts(item);
+  btn.addEventListener('click', function(){
+    err.textContent = '';
+    var amount = luxParseAmount(amountEl ? amountEl.value : '');
+    if(amount !== null && isNaN(amount)){ err.textContent = t('support.amountInvalid'); if(amountEl) amountEl.focus(); return; }
+    var method = methodEl && methodEl.value ? methodEl.value : null;
+    var session = getSession();
+    if(!session){ openAuth('login'); return; }
+    btn.disabled = true;
+    var now = new Date(), code = luxReceiptCode(now);
+    var nameStep = currentProfile !== null ? Promise.resolve(currentProfile) : loadOwnProfile().then(function(){ return currentProfile; });
+    nameStep.then(function(profile){
+      var nick = publicDisplayName(profile);
+      var body = '[DONAZIONE] "' + item.title + '" — supporto libero registrato' +
+        (amount !== null ? ' · ' + luxAmountIt(amount) + ' €' : '') + (method ? ' · ' + method : '') +
+        ' · ricevuta ' + code + ' · nickname: ' + nick;
+      return fetch(SUPABASE_URL + '/rest/v1/requests', {
+        method:'POST',
+        headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
+        body: JSON.stringify({ user_id: currentUserId(), author_email: currentUserEmail(), body: body })
+      }).then(function(r){
+        if(!r.ok) throw new Error('donation register failed: ' + r.status);
+        var rec = { code: code, at: now.toISOString(), name: nick, email: currentUserEmail(), title: item.title, titleId: item.id, amount: amount, method: method, uid: currentUserId() };
+        luxKeepReceipt(rec);
+        sent.innerHTML = '✓ ' + escapeHtml(t('support.donationSaved')) +
+          '<br><button type="button" class="btn btn-primary btn-sm lux-don-rc">' + escapeHtml(t('support.receiptBtn')) + '</button>';
+        sent.querySelector('.lux-don-rc').addEventListener('click', function(){ openReceiptModal(rec); });
+        luxRenderPrevReceipts(item, code);
+      });
+    }).catch(function(e){
+      console.warn('Donation register failed:', e);
+      btn.disabled = false;
+      err.textContent = t('net.actionFailed');
+    });
+  });
+}
+
+// ---------- Amministra › Richieste: la ricevuta di una donazione ----------
+function luxDonationReceipt(req, isVerified){
+  var p = luxParseDonation(req.body);
+  var nameStep;
+  if(p.nick) nameStep = Promise.resolve(p.nick);
+  else if(req.user_id){
+    var session = getSession();
+    nameStep = fetch(SUPABASE_URL + '/rest/v1/profiles?id=eq.' + encodeURIComponent(req.user_id) + '&select=display_name', {
+      headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + (session ? session.access_token : SUPABASE_ANON_KEY) }
+    }).then(function(r){ return r.ok ? r.json() : []; }).then(function(rows){
+      return rows[0] && rows[0].display_name ? rows[0].display_name : t('notif.someone') + ' ' + String(req.user_id).slice(0, 6);
+    }).catch(function(){ return t('notif.someone') + ' ' + String(req.user_id).slice(0, 6); });
+  } else nameStep = Promise.resolve('—');
+  return nameStep.then(function(name){
+    return { code: p.code || luxReceiptCodeFor(req), at: req.created_at || new Date().toISOString(), name: name, email: req.author_email || '',
+      title: p.title, amount: p.amount, method: p.method, verified: !!isVerified };
+  });
+}
+
 function insertSupportTitleButton(item){
   var shareBtn = document.getElementById('titleModalShare');
   if(!shareBtn) return;
@@ -16672,16 +17215,11 @@ function openSupportTitlePanel(item){
           '<button type="button" id="supportEmailSubmit" class="btn btn-ghost" style="width:100%;">'+t('support.emailSubmit')+'</button>'+
           '<div id="supportEmailSent" style="font-size:12px;color:var(--gold-bright);margin-top:8px;"></div>'+
         '</div>'
-        : (isSignedIn() ?
-          '<div style="margin-bottom:16px;">'+
-            '<button type="button" id="supportDonationRegister" class="btn btn-ghost" style="width:100%;">Registra questo supporto (per lo sblocco pagine pulite)</button>'+
-            '<div id="supportDonationSent" style="font-size:12px;color:var(--gold-bright);margin-top:8px;"></div>'+
-          '</div>'
-          : ''))+
+        : (isSignedIn() ? luxDonationFormHtml(price) : ''))+ // v229: importo, metodo e ricevuta in PDF
       '<div style="display:flex;flex-direction:column;gap:8px;">'+
-        '<a href="'+paypalUrl+'" target="_blank" rel="noopener" class="btn btn-primary">'+t('support.paypal')+'</a>'+
-        '<a href="'+satispayUrl+'" target="_blank" rel="noopener" class="btn btn-ghost">'+t('support.satispay')+'</a>'+
-        '<a href="'+revolutUrl+'" target="_blank" rel="noopener" class="btn btn-ghost">'+t('support.revolut')+'</a>'+
+        '<a href="'+paypalUrl+'" target="_blank" rel="noopener" class="btn btn-primary" data-pay="PayPal">'+t('support.paypal')+'</a>'+
+        '<a href="'+satispayUrl+'" target="_blank" rel="noopener" class="btn btn-ghost" data-pay="Satispay">'+t('support.satispay')+'</a>'+
+        '<a href="'+revolutUrl+'" target="_blank" rel="noopener" class="btn btn-ghost" data-pay="Revolut">'+t('support.revolut')+'</a>'+
       '</div>'+
       '<div style="font-size:11px;color:var(--parchment-dim);margin-top:14px;">'+t('support.payNote').replace('{title}', escapeHtml(item.title))+'</div>'+
     '</div>';
@@ -16720,22 +17258,7 @@ function openSupportTitlePanel(item){
       });
     });
   } else {
-    var donationBtn = document.getElementById('supportDonationRegister');
-    if(donationBtn){
-      donationBtn.addEventListener('click', function(){
-        var sent = document.getElementById('supportDonationSent');
-        var session = getSession();
-        fetch(SUPABASE_URL + '/rest/v1/requests', {
-          method:'POST',
-          headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
-          body: JSON.stringify({ user_id: currentUserId(), author_email: currentUserEmail(), body: '[DONAZIONE] "' + item.title + '" — supporto libero registrato' })
-        }).then(function(r){
-          if(!r.ok) throw new Error('donation register failed: ' + r.status);
-          sent.textContent = t('support.emailSent');
-          donationBtn.disabled = true;
-        }).catch(function(e){ console.warn('Donation register failed:', e); });
-      });
-    }
+    setupDonationRegister(item, overlay); // v229: registra la donazione e prepara la ricevuta
   }
 }
 
@@ -18299,6 +18822,7 @@ function renderAdminRequests(){
             '<div class="txt">' + escapeHtml(req.body) + '</div>' +
           '</div>' +
           '<div class="admin-actions">' +
+          (isDonation ? '<button class="btn btn-ghost btn-sm" data-receipt="' + req.id + '">Ricevuta PDF</button>' : '') + // v229
           (isSupport && req.user_id ? (verified[req.user_id]
             ? '<span class="req-done-tag">✓ Pagamento verificato</span>'
             : '<button class="btn btn-primary btn-sm" data-verify-supporter="' + req.id + '">Verifica pagamento (sblocca pagine pulite)</button>') : '') +
@@ -18338,6 +18862,13 @@ function renderAdminRequests(){
             inviteFriendToCreate(req.user_id, req.author_email || 'questo utente');
           });
         }
+        var receiptBtn = row.querySelector('[data-receipt]'); // v229
+        if(receiptBtn) receiptBtn.addEventListener('click', function(){
+          receiptBtn.disabled = true;
+          luxDonationReceipt(req, verified[req.user_id]).then(function(rec){ openReceiptModal(rec, { editable: true }); })
+            .catch(function(e){ console.warn('Ricevuta non preparata:', e); luxToast(t('receipt.failed')); })
+            .then(function(){ receiptBtn.disabled = false; });
+        });
         var verifyBtn = row.querySelector('[data-verify-supporter]');
         if(verifyBtn){
           verifyBtn.addEventListener('click', function(){
@@ -18353,6 +18884,7 @@ function renderAdminRequests(){
                 return r.text().then(function(errText){ throw new Error(r.status + ': ' + errText); });
               }
               verifyBtn.textContent = '✓ Verificato';
+              verified[req.user_id] = true; // v229: da adesso la ricevuta lo riporta
             }).catch(function(e){
               console.warn('Verify supporter failed:', e);
               verifyBtn.textContent = originalText;
