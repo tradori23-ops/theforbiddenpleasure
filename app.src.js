@@ -921,6 +921,20 @@ Object.assign(STR.hi, {"lxcover.issue": "अंक {n}", "lxcover.stamp": "स�
 Object.assign(STR.bn, {"lxcover.issue": "সংখ্যা {n}", "lxcover.stamp": "সংরক্ষিত সংস্করণ", "lxcover.inIssue": "এই সংখ্যায়", "lxcover.signup": "অ্যাকাউন্ট খুলুন", "lxcover.guest": "অ্যাকাউন্ট ছাড়াই দেখুন", "lxcover.sealTap": "সিলমোহরে ট্যাপ করুন", "lxcover.sealClick": "সিলমোহরে ক্লিক করুন", "lxcover.sealAria": "সিলমোহর ভাঙুন: আর্কাইভে লগ ইন করুন", "lxcover.drag": "অথবা কোণটা টেনে অতিথি হিসেবে দেখুন", "lxcover.luxtify": "Luxtify: গান, প্লেলিস্ট আর পডকাস্ট", "lxcover.open": "আর্কাইভ খুলে গেছে", "lxcover.hello": "হ্যালো {name}: আর্কাইভ খুলে গেছে", "lxcover.guestToast": "আপনি অতিথি হিসেবে দেখছেন: যখন খুশি লগ ইন করুন", "lxcover.aria": "সাইটের প্রচ্ছদ: লগ ইন করুন বা ঘুরে দেখুন"});
 Object.assign(STR.ar, {"lxcover.issue": "العدد {n}", "lxcover.stamp": "إصدار مقيَّد", "lxcover.inIssue": "في هذا العدد", "lxcover.signup": "إنشاء حساب", "lxcover.guest": "تصفّح بدون حساب", "lxcover.sealTap": "المس الختم", "lxcover.sealClick": "انقر على الختم", "lxcover.sealAria": "اكسر الختم: سجّل الدخول إلى الأرشيف", "lxcover.drag": "أو اسحب الزاوية لتتصفّح كزائر", "lxcover.luxtify": "Luxtify: موسيقى وقوائم تشغيل وبودكاست", "lxcover.open": "الأرشيف مفتوح", "lxcover.hello": "مرحبًا {name}: الأرشيف مفتوح", "lxcover.guestToast": "أنت تتصفّح كزائر: سجّل الدخول متى شئت", "lxcover.aria": "غلاف الموقع: سجّل الدخول أو تصفّح"});
 Object.assign(STR.pnb, {"lxcover.issue": "شمارہ {n}", "lxcover.stamp": "مخصوص ایڈیشن", "lxcover.inIssue": "ایس شمارے وچ", "lxcover.signup": "اکاؤنٹ بناؤ", "lxcover.guest": "اکاؤنٹ بغیر ویکھو", "lxcover.sealTap": "مہر تے ٹیپ کرو", "lxcover.sealClick": "مہر تے کلک کرو", "lxcover.sealAria": "مہر توڑو: آرکائیو وچ لاگ ان کرو", "lxcover.drag": "یا کونا کھچ کے مہمان وانگوں ویکھو", "lxcover.luxtify": "Luxtify: موسیقی، پلے لسٹاں تے پوڈکاسٹ", "lxcover.open": "آرکائیو کھل گیا اے", "lxcover.hello": "سلام {name}: آرکائیو کھل گیا اے", "lxcover.guestToast": "تسیں مہمان وانگوں ویکھ رہے او: جدوں چاہو لاگ ان کرو", "lxcover.aria": "سائٹ دا کور: لاگ ان کرو یا ویکھو"});
+// v239: la copertina (tessera, «In questo numero»)
+Object.assign(STR.it, {"lxcover.card": "Tessera dell'Archivio", "lxcover.read": "Leggi", "lxcover.openTitle": "Leggi «{title}» senza account"});
+Object.assign(STR.en, {"lxcover.card": "Archive card", "lxcover.read": "Read", "lxcover.openTitle": "Read “{title}” without an account"});
+Object.assign(STR.es, {"lxcover.card": "Carné del Archivo", "lxcover.read": "Leer", "lxcover.openTitle": "Lee «{title}» sin cuenta"});
+Object.assign(STR.fr, {"lxcover.card": "Carte de l'Archive", "lxcover.read": "Lire", "lxcover.openTitle": "Lire « {title} » sans compte"});
+Object.assign(STR.de, {"lxcover.card": "Archivausweis", "lxcover.read": "Lesen", "lxcover.openTitle": "„{title}“ ohne Konto lesen"});
+Object.assign(STR.pt, {"lxcover.card": "Carteirinha do Acervo", "lxcover.read": "Ler", "lxcover.openTitle": "Ler “{title}” sem conta"});
+Object.assign(STR.ru, {"lxcover.card": "Читательский билет архива", "lxcover.read": "Читать", "lxcover.openTitle": "Читать «{title}» без аккаунта"});
+Object.assign(STR.zh, {"lxcover.card": "档案库借阅证", "lxcover.read": "阅读", "lxcover.openTitle": "不登录阅读《{title}》"});
+Object.assign(STR.ja, {"lxcover.card": "アーカイブ会員証", "lxcover.read": "読む", "lxcover.openTitle": "アカウントなしで「{title}」を読む"});
+Object.assign(STR.hi, {"lxcover.card": "आर्काइव सदस्यता कार्ड", "lxcover.read": "पढ़ें", "lxcover.openTitle": "बिना अकाउंट के “{title}” पढ़ें"});
+Object.assign(STR.bn, {"lxcover.card": "আর্কাইভের সদস্য কার্ড", "lxcover.read": "পড়ুন", "lxcover.openTitle": "অ্যাকাউন্ট ছাড়াই “{title}” পড়ুন"});
+Object.assign(STR.ar, {"lxcover.card": "بطاقة الأرشيف", "lxcover.read": "اقرأ", "lxcover.openTitle": "اقرأ «{title}» بدون حساب"});
+Object.assign(STR.pnb, {"lxcover.card": "آرکائیو دا کارڈ", "lxcover.read": "پڑھو", "lxcover.openTitle": "اکاؤنٹ بغیر «{title}» پڑھو"});
 var CHAR_META = {
   Lucifer:{role:{it:"Il Portatore di Luce",en:"The Light-Bearer",es:"El Portador de Luz",fr:"Le Porteur de Lumière",de:"Der Lichtträger"},
     bio:{it:"Sovrano della collana ammiraglia: potere, caduta e desiderio raccontati su grande scala.",
@@ -1068,13 +1082,15 @@ function showEntryModeGate(){
   });
 }
 
-/* ============ v237: LA COPERTINA ============
+/* ============ v237–v239: LA COPERTINA ============
    Chi non ha fatto l'accesso trova il sito chiuso come un fumetto: la copertina con
    l'arte della schermata d'ingresso e il sigillo LM. Si entra in tre modi:
-   - il sigillo, «Accedi» o «Crea account»: si apre la finestra di accesso; appena dentro
-     il sigillo si spacca con un lampo d'oro e la copertina gira come la pagina di un albo;
-   - «Sfoglia senza account»: la stessa apertura, da ospite;
-   - trascinando l'angolo in basso, come si sfoglia una pagina vera (da ospite).
+   - il sigillo, «Accedi» o «Crea account»: si apre la «Tessera dell'Archivio» (la finestra
+     di accesso, vestita come la copertina); appena dentro il sigillo si spezza in due con un
+     lampo d'oro e la pagina si solleva e gira come quella di un albo vero;
+   - «Sfoglia senza account» (o «In questo numero», che apre subito quel fumetto): la stessa
+     apertura, da ospite;
+   - prendendo l'orecchia in basso e tirandola: la pagina segue il dito e, oltre metà, gira.
    Telefono e tablet: la copertina riempie lo schermo (girato in orizzontale: testata,
    sigillo e pulsanti stanno su tre colonne). Computer: l'albo è appoggiato sul tavolo,
    si inclina seguendo il mouse e, aperto, si avvicina fino a diventare il sito.
@@ -1082,11 +1098,19 @@ function showEntryModeGate(){
    Torna a ogni visita: finché il browser o l'app restano aperti si passa una volta sola.
    Non c'è per i motori di ricerca, su Luxtify, sulle pagine legali e sullo Stato del sito,
    né senza rete (lì resta la scelta «versione offline»). In arabo e panjabi (da destra a
-   sinistra) l'albo si apre dall'altro lato, come i libri in quelle lingue. */
+   sinistra) l'albo si apre dall'altro lato, come i libri in quelle lingue.
+   v239: la pagina si piega come carta (si vede il retro mentre gira, con le sue ombre); il
+   sigillo si spezza davvero (crepa, due metà, scintille; su Android una piccola vibrazione);
+   l'accesso è la «Tessera dell'Archivio»; la copertina respira (riflesso sul titolo, portali,
+   braci); «In questo numero» si tocca; il numero dell'uscita conta i fumetti dell'Archivio.
+   Chi ha chiesto al telefono meno movimento la vede ferma, e si apre con una dissolvenza. */
 var LUX_COVER_ART = {
-  // dove sta il sigillo nell'immagine: centro (ex, ey) e raggio (er) in proporzione
-  tall: { src: 'entry-bg-mobile.webp', w: 887, h: 1774, ex: .5, ey: .265, er: .276 },
-  wide: { src: 'entry-bg-desktop.webp', w: 1672, h: 941, ex: .5, ey: .266, er: .173 }
+  // dove sta il sigillo nell'immagine: centro (ex, ey) e raggio (er) in proporzione;
+  // i due portali (fuoco a sinistra, cosmo a destra): centro e misure in proporzione
+  tall: { src: 'entry-bg-mobile.webp', w: 887, h: 1774, ex: .502, ey: .254, er: .282,
+          portals: [[.150, .452, .234, .476], [.848, .452, .245, .480]] },
+  wide: { src: 'entry-bg-desktop.webp', w: 1672, h: 941, ex: .5, ey: .372, er: .183,
+          portals: [[.166, .524, .179, .612], [.821, .531, .200, .625]] }
 };
 var luxCoverEl = null;        // la copertina, finché è sullo schermo
 var luxCoverInertList = [];   // le parti del sito rese «inerti» sotto la copertina
@@ -1107,6 +1131,11 @@ function luxCoverWanted(){
 // computer (finestra abbastanza grande): l'albo sul tavolo; altrimenti a schermo intero
 function luxCoverMode(){ return (window.innerWidth >= 900 && window.innerHeight >= 680) ? 'book' : 'full'; }
 function luxCoverArtKey(mode){ return (mode === 'book' || window.innerWidth < window.innerHeight * 1.3) ? 'tall' : 'wide'; }
+// telefoni con poca memoria, rete lenta o risparmio dati: la copertina resta più tranquilla
+function luxCoverLite(){
+  try { if(window.LUX_NET === 'slow' || (navigator.connection && navigator.connection.saveData) || (navigator.deviceMemory && navigator.deviceMemory <= 2)) return true; } catch(e){}
+  return false;
+}
 function luxCoverReduced(){ try { return window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch(e){ return false; } }
 function luxCoverLater(ms, fn){ luxCoverTimers.push(setTimeout(fn, ms)); }
 function luxCoverClearTimers(){ luxCoverTimers.forEach(function(id){ clearTimeout(id); }); luxCoverTimers = []; }
@@ -1134,17 +1163,143 @@ function luxCoverPrefetch(){
   setTimeout(function(){ new Image().src = LUX_COVER_ART[luxCoverArtKey(luxCoverMode())].src; }, 6000);
 }
 
+/* ---- v239: la pagina che si piega come carta ----
+   Coordinate della pagina: (0,0) in alto a sinistra, larghezza W, altezza H. Il dorso è a
+   sinistra (a destra in arabo e panjabi); l'angolo che si solleva è quello in basso dall'altra
+   parte. P = dove si trova adesso quell'angolo. La piega è l'asse tra l'angolo e P: la parte
+   oltre la piega si ribalta sopra la pagina e se ne vede il retro (il risguardo). */
+function lxcClip(poly, nx, ny, c, cornerSide){
+  var out = [];
+  for(var i = 0; i < poly.length; i++){
+    var a = poly[i], b = poly[(i + 1) % poly.length];
+    var fa = nx * a.x + ny * a.y - c, fb = nx * b.x + ny * b.y - c;
+    var ina = cornerSide ? fa >= 0 : fa <= 0, inb = cornerSide ? fb >= 0 : fb <= 0;
+    if(ina) out.push(a);
+    if(ina !== inb){ var k = fa / (fa - fb); out.push({ x: a.x + (b.x - a.x) * k, y: a.y + (b.y - a.y) * k }); }
+  }
+  return out;
+}
+function lxcPoly(pts){
+  if(pts.length < 3) return 'polygon(0px 0px,0px 0px,0px 0px)';
+  return 'polygon(' + pts.map(function(p){ return p.x.toFixed(1) + 'px ' + p.y.toFixed(1) + 'px'; }).join(',') + ')';
+}
+function lxcClipStyle(el, v){ el.style.clipPath = v; el.style.webkitClipPath = v; }
+function lxcCorner(g){ return { x: g.rtl ? 0 : g.W, y: g.H }; }
+function lxcRest(g){ var k = Math.min(30, g.W * .08); return { x: g.rtl ? k : g.W - k, y: g.H - k }; } // l'orecchia
+function lxcPeek(g){ var k = Math.min(62, g.W * .16), j = Math.min(48, g.W * .12); return { x: g.rtl ? k : g.W - k, y: g.H - j }; }
+function lxcEnd(g){ return { x: g.rtl ? 2 * g.W : -g.W, y: g.H }; }
+// la carta non si strappa: l'angolo resta entro la larghezza della pagina dal piede del dorso,
+// entro la diagonale dalla sua cima, e non scende sotto il bordo
+function lxcConstrain(g, P){
+  var bx = g.rtl ? g.W : 0, dx = P.x - bx, dy = P.y - g.H, d = Math.sqrt(dx * dx + dy * dy);
+  if(d > g.W){ P = { x: bx + dx * g.W / d, y: g.H + dy * g.W / d }; }
+  var D = Math.sqrt(g.W * g.W + g.H * g.H);
+  dx = P.x - bx; dy = P.y; d = Math.sqrt(dx * dx + dy * dy);
+  if(d > D){ P = { x: bx + dx * D / d, y: dy * D / d }; }
+  return { x: P.x, y: Math.min(g.H, P.y) };
+}
+function lxcCurlInit(el){
+  var sheet = el.querySelector('.lxc-sheet');
+  var c = el._curl || (el._curl = {
+    front: el.querySelector('.lxc-front'), flap: el.querySelector('.lxc-flap'), cast: el.querySelector('.lxc-cast'), castg: el.querySelector('.lxc-castg'),
+    fsh: el.querySelector('.lxc-fshade'), flsh: el.querySelector('.lxc-flshade'), raf: 0, P: null
+  });
+  c.g = { W: sheet.offsetWidth, H: sheet.offsetHeight, rtl: luxIsRtl() };
+  c.g.D = c.g.W + c.g.H;
+  [c.fsh, c.flsh, c.castg].forEach(function(b){ b.style.height = (2 * c.g.D) + 'px'; });
+  return c;
+}
+// un'ombra lungo la piega: una striscia con il suo sfumato (larga 100px nel foglio di stile, alta 2D),
+// messa di traverso con una trasformazione: così mentre la pagina si muove non si ridisegna niente.
+// Inizia a distanza s0 dalla piega (misurata lungo n) ed è larga w.
+function lxcBand(b, nx, ny, s0, w, D){
+  var k = w / 100, ux = -ny, uy = nx;
+  b.style.transform = 'matrix(' + [nx * k, ny * k, ux, uy, s0 * nx - D * ux, s0 * ny - D * uy].map(function(v){ return v.toFixed(4); }).join(',') + ')';
+}
+function lxcCurl(el, P){
+  var c = el._curl;
+  if(!c || !c.g.W || !c.g.H) return;
+  c.P = P;
+  var g = c.g, W = g.W, H = g.H, C = lxcCorner(g);
+  var dx = C.x - P.x, dy = C.y - P.y, d = Math.sqrt(dx * dx + dy * dy);
+  if(d < .5){ // chiusa e piatta: niente piega
+    lxcClipStyle(c.front, '');
+    c.flap.style.display = 'none'; c.cast.style.display = 'none'; c.fsh.style.visibility = 'hidden';
+    return;
+  }
+  var nx = dx / d, ny = dy / d, cc = nx * (C.x + P.x) / 2 + ny * (C.y + P.y) / 2;
+  var rect = [{ x: 0, y: 0 }, { x: W, y: 0 }, { x: W, y: H }, { x: 0, y: H }];
+  lxcClipStyle(c.front, lxcPoly(lxcClip(rect, nx, ny, cc, false)));
+  // il retro: lo specchio del risguardo, ribaltato lungo la piega (una rotazione con spostamento)
+  var a00 = 1 - 2 * nx * nx, a01 = -2 * nx * ny, a11 = 1 - 2 * ny * ny, tx = 2 * cc * nx, ty = 2 * cc * ny;
+  c.flap.style.transform = 'matrix(' + [-a00, -a01, a01, a11, a00 * W + tx, a01 * W + ty].map(function(v){ return v.toFixed(5); }).join(',') + ')';
+  // (il ritaglio del retro va un po' oltre i bordi della pagina: lì si vede la sua ombra sulla copertina)
+  var m = 26, big = [{ x: -m, y: -m }, { x: W + m, y: -m }, { x: W + m, y: H + m }, { x: -m, y: H + m }];
+  lxcClipStyle(c.flap, lxcPoly(lxcClip(big, nx, ny, cc, true).map(function(p){ return { x: W - p.x, y: p.y }; })));
+  c.flap.style.display = 'block'; c.cast.style.display = 'block'; // (nel foglio di stile partono nascosti)
+  // le ombre: sulla pagina subito prima della piega, sotto (dove la pagina si è sollevata; si spegne
+  // quando è quasi del tutto girata) e sul retro che si curva (nelle coordinate del retro: n' = (-nx, ny))
+  var sw = Math.max(8, Math.min(90, d * .45)), E = lxcEnd(g);
+  var f = Math.min(1, Math.sqrt((P.x - E.x) * (P.x - E.x) + (P.y - E.y) * (P.y - E.y)) / (W * .35));
+  c.fsh.style.visibility = 'visible';
+  lxcBand(c.fsh, nx, ny, cc - sw, sw, g.D);
+  lxcBand(c.castg, nx, ny, cc, sw * 1.5, g.D);
+  c.castg.style.opacity = f.toFixed(3);
+  lxcBand(c.flsh, -nx, ny, cc - W * nx, sw * 2.2, g.D);
+}
+// muove l'angolo da «from» a «to» (con «lift» si alza a metà strada, come quando si gira una pagina)
+function lxcAnimate(el, from, to, ms, lift, done){
+  var c = el._curl;
+  if(!c) return;
+  cancelAnimationFrame(c.raf);
+  var t0 = 0;
+  function step(now){
+    if(!el.parentNode) return;
+    if(!t0) t0 = now;
+    var s = Math.min(1, (now - t0) / ms), e = s < .5 ? 4 * s * s * s : 1 - Math.pow(-2 * s + 2, 3) / 2;
+    var P = { x: from.x + (to.x - from.x) * e, y: from.y + (to.y - from.y) * e - lift * Math.sin(Math.PI * e) };
+    lxcCurl(el, s < 1 ? lxcConstrain(c.g, P) : to);
+    if(s < 1) c.raf = requestAnimationFrame(step);
+    else { c.raf = 0; if(done) done(); }
+  }
+  c.raf = requestAnimationFrame(step);
+}
+// ogni tanto l'orecchia si solleva un poco: si capisce che la pagina si può girare
+function lxcPeekLater(el){
+  clearTimeout(el._peekT);
+  if(luxCoverReduced()) return;
+  el._peekT = setTimeout(function(){
+    if(el !== luxCoverEl) return;
+    if(el._opening || el._drag || el._hover || el.classList.contains('lxc-anim') || el.classList.contains('lxc-carded') || document.visibilityState === 'hidden'){ lxcPeekLater(el); return; }
+    var g = el._curl.g;
+    lxcAnimate(el, lxcRest(g), lxcPeek(g), 520, 0, function(){
+      lxcAnimate(el, lxcPeek(g), lxcRest(g), 620, 0, function(){ lxcPeekLater(el); });
+    });
+  }, el._peekCount++ ? 5200 : 2400);
+}
+
 function luxCoverBuild(){
   var mode = luxCoverMode(), artKey = luxCoverArtKey(mode), art = LUX_COVER_ART[artKey];
   var paper = window.innerWidth <= 700 ? 'hero-bg-m.webp' : 'hero-bg.webp';
   var el = document.createElement('div');
   el.id = 'luxCover';
-  el.className = 'lux-cover lxc-' + mode + ' lxc-art-' + artKey;
+  el.className = 'lux-cover lxc-' + mode + ' lxc-art-' + artKey + (luxCoverLite() ? ' lxc-lite' : '');
   el.setAttribute('role', 'dialog');
   el.setAttribute('aria-modal', 'true');
   el.tabIndex = -1;
   el._mode = mode;
   el._art = artKey;
+  el._peekCount = 0;
+  var sparks = '', embers = '';
+  for(var i = 0; i < 16; i++){ // scintille: direzioni sparse a raggiera
+    var a = (i / 16) * 360 + Math.random() * 20;
+    sparks += '<i style="--a:' + a.toFixed(0) + 'deg;--k:' + (1.3 + Math.random() * 1.1).toFixed(2) + ';--d:' + (Math.random() * 90).toFixed(0) + 'ms;--s:' + (2.4 + Math.random() * 2).toFixed(1) + 'px"></i>';
+  }
+  for(var j = 0; j < 14; j++){ // braci dal portale di fuoco (LUX, a sinistra), polvere di stelle da quello del cosmo (MEDUSA)
+    var left = j % 2 === 0, x = left ? 3 + Math.random() * 27 : 70 + Math.random() * 27;
+    embers += '<i class="' + (left ? 'f' : 's') + '" style="--x:' + x.toFixed(1) + '%;--dx:' + ((Math.random() - .5) * 60).toFixed(0) + 'px;--k:' + (.45 + Math.random() * .4).toFixed(2) +
+      ';--t:' + (6 + Math.random() * 6).toFixed(1) + 's;--d:-' + (Math.random() * 10).toFixed(1) + 's;--s:' + (2 + Math.random() * 2.5).toFixed(1) + 'px"></i>';
+  }
   el.innerHTML =
     '<div class="lxc-table" aria-hidden="true"></div>' +
     '<div class="lxc-brand" aria-hidden="true"><img src="logo-sm.webp" alt=""><span>LUX COMICS · MEDUSA COMICS</span></div>' +
@@ -1152,23 +1307,31 @@ function luxCoverBuild(){
     '<div class="lxc-bookwrap"><div class="lxc-tilt">' +
       '<div class="lxc-pages" aria-hidden="true"><img class="lxc-pages-bg" src="' + paper + '" alt=""><img class="lxc-pages-logo" src="logo-lg.webp" alt=""><p class="lxc-pages-txt"></p></div>' +
       '<div class="lxc-sheet">' +
+        '<div class="lxc-cast" aria-hidden="true"><i class="lxc-castg"></i></div>' +
         '<div class="lxc-face lxc-front">' +
           '<img class="lxc-art" src="' + art.src + '" alt="" decoding="async">' +
+          // (sotto i veli, la testata e il timbro: a riposo le due metà coincidono con l'immagine)
+          '<div class="lxc-sealfx" aria-hidden="true"><div class="lxc-core"></div><div class="lxc-half l"></div><div class="lxc-half r"></div>' +
+            '<svg class="lxc-zig" viewBox="0 0 100 100" preserveAspectRatio="none"><path pathLength="100" d="M50 0 L46 11 L54 23 L47 36 L55 49 L46 62 L53 75 L47 88 L50 100"/></svg>' +
+            '<div class="lxc-sparks">' + sparks + '</div></div>' +
+          '<div class="lxc-glow l" aria-hidden="true"></div><div class="lxc-glow r" aria-hidden="true"></div>' +
+          '<div class="lxc-embers" aria-hidden="true">' + embers + '</div>' +
           '<div class="lxc-veil-top"></div><div class="lxc-veil-bottom"></div>' +
           '<div class="lxc-mast"><div class="lxc-issue"><span class="lxc-issue-n"></span><span class="lxc-issue-m"></span></div>' +
             '<div class="lxc-lux">LUX COMICS</div><div class="lxc-medusa">&amp; MEDUSA COMICS</div></div>' +
           '<div class="lxc-stamp" aria-hidden="true"></div>' +
-          '<div class="lxc-burst" aria-hidden="true"></div><div class="lxc-crack" aria-hidden="true"></div>' +
+          '<div class="lxc-burst" aria-hidden="true"></div>' +
           '<button type="button" class="lxc-seal" data-lxc="seal"></button>' +
           '<div class="lxc-seal-label" aria-hidden="true"></div>' +
-          '<div class="lxc-blurb hidden"><small></small><b></b><span></span></div>' +
+          '<button type="button" class="lxc-blurb hidden" data-lxc="title"><img class="lxc-blurb-img" alt="" loading="lazy"><span class="lxc-blurb-txt"><small></small><b></b><span class="lxc-blurb-sub"></span><em class="lxc-blurb-go"></em></span></button>' +
           '<div class="lxc-barcode" aria-hidden="true"><div class="lxc-bars"></div><span>noxmorningstar.com</span></div>' +
           '<div class="lxc-actions"><button type="button" class="lxc-btn lxc-primary" data-lxc="login"></button><button type="button" class="lxc-btn lxc-ghost" data-lxc="register"></button></div>' +
           '<button type="button" class="lxc-guest" data-lxc="guest"></button>' +
           '<a class="lxc-luxtify" href="luxtify.html" data-lxc="luxtify"><span aria-hidden="true">💿</span><span class="lxc-lx-t">Luxtify</span></a>' +
-          '<div class="lxc-corner" aria-hidden="true"></div>' +
+          '<div class="lxc-fshade" aria-hidden="true"></div>' +
         '</div>' +
-        '<div class="lxc-face lxc-back" aria-hidden="true"><img class="lxc-backseal" src="logo-lg.webp" alt=""><div class="lxc-exlibris"></div></div>' +
+        '<div class="lxc-face lxc-flap" aria-hidden="true"><div class="lxc-back"><img class="lxc-backseal" src="logo-lg.webp" alt=""><div class="lxc-exlibris"></div></div><div class="lxc-flshade"></div></div>' +
+        '<div class="lxc-corner" aria-hidden="true"></div>' +
       '</div>' +
     '</div></div>' +
     '<p class="lxc-hint" aria-hidden="true"></p>';
@@ -1177,6 +1340,8 @@ function luxCoverBuild(){
   var ready = function(){ img.classList.add('is-ready'); };
   if(img.complete && img.naturalWidth) ready();
   else { img.addEventListener('load', ready); img.addEventListener('error', ready); }
+  // le due metà del sigillo sono ritagliate dalla stessa immagine, esattamente al loro posto
+  Array.prototype.forEach.call(el.querySelectorAll('.lxc-half'), function(h){ h.style.backgroundImage = 'url("' + art.src + '")'; });
 
   // la lingua: come il selettore principale (così si aggiornano anche quello di lato e quello in «Tu»)
   var sel = el.querySelector('#luxCoverLang');
@@ -1193,43 +1358,73 @@ function luxCoverBuild(){
     var act = b.getAttribute('data-lxc');
     if(act === 'luxtify'){ try { sessionStorage.setItem('lux_cover_ok', '1'); } catch(err){} return; } // il link porta a Luxtify
     if(act === 'guest'){ luxCoverOpen(true, false); return; }
+    if(act === 'title'){ luxCoverOpen(true, false, el._item || null); return; } // v239: «In questo numero» apre quel fumetto
     el._ret = act === 'register' ? 'register' : 'login';
+    luxCoverCard(true);
     openAuth(el._ret);
   });
 
-  // l'angolo in basso: si trascina come una pagina vera (oltre metà strada si apre, da ospite)
-  var corner = el.querySelector('.lxc-corner'), sheet = el.querySelector('.lxc-sheet'), drag = null;
-  function dragEnd(open){
-    if(!drag) return;
-    drag = null;
+  // l'orecchia in basso: la pagina segue il dito (oltre metà, o con uno strappo deciso, gira)
+  var corner = el.querySelector('.lxc-corner'), wrap = el.querySelector('.lxc-bookwrap');
+  function pointerOnSheet(e){
+    var r = wrap.getBoundingClientRect(), g = el._curl.g;
+    return { x: (e.clientX - r.left) * (g.W / (r.width || g.W)), y: (e.clientY - r.top) * (g.H / (r.height || g.H)) };
+  }
+  function dragEnd(e, cancel){
+    var d = el._drag;
+    if(!d) return;
+    el._drag = null;
+    el._hover = false;
     el.classList.remove('lxc-dragging');
-    if(open) luxCoverOpen(true, true);
-    else sheet.style.transform = '';
+    var g = el._curl.g, P = el._curl.P || lxcRest(g), dt = Math.max(1, d.lt - d.pt);
+    var vx = (d.lx - d.px) / dt * (g.rtl ? -1 : 1); // velocità verso il dorso (px/ms, negativa = verso il dorso)
+    var past = g.rtl ? P.x > g.W * .55 : P.x < g.W * .45;
+    if(!cancel && (past || (vx < -.55 && Math.abs(d.lx - d.x0) > 40))) { luxCoverOpen(true, true); return; }
+    if(!cancel && Math.abs(d.lx - d.x0) < 6 && Math.abs(d.ly - d.y0) < 6 && !luxCoverReduced()){
+      // solo un tocco sull'orecchia: la pagina si solleva un poco e ricade (si capisce che va tirata)
+      var up = { x: g.rtl ? g.W * .24 : g.W * .76, y: g.H - g.H * .09 };
+      lxcAnimate(el, P, up, 300, 0, function(){ lxcAnimate(el, up, lxcRest(g), 520, 0, function(){ lxcPeekLater(el); }); });
+      return;
+    }
+    lxcAnimate(el, P, lxcRest(g), 360, 0, function(){ lxcPeekLater(el); });
   }
   corner.addEventListener('pointerdown', function(e){
-    if(el._opening || (e.pointerType === 'mouse' && e.button !== 0)) return;
-    drag = { x: e.clientX, id: e.pointerId, a: 0 };
+    if(el._opening || el.classList.contains('lxc-anim') || (e.pointerType === 'mouse' && e.button !== 0)) return;
+    clearTimeout(el._peekT);
+    cancelAnimationFrame(el._curl.raf);
+    var p = pointerOnSheet(e), now = performance.now();
+    el._drag = { id: e.pointerId, x0: e.clientX, y0: e.clientY, ly: e.clientY, start: p, P0: el._curl.P || lxcRest(el._curl.g), px: e.clientX, pt: now, lx: e.clientX, lt: now };
     try { corner.setPointerCapture(e.pointerId); } catch(err){}
     el.classList.add('lxc-dragging');
     luxCoverTilt(el, null);
     e.preventDefault();
   });
   corner.addEventListener('pointermove', function(e){
-    if(!drag || e.pointerId !== drag.id) return;
-    var w = sheet.offsetWidth || window.innerWidth;
-    var a = (e.clientX - drag.x) / w * 210;
-    a = luxIsRtl() ? Math.max(0, Math.min(175, a)) : Math.max(-175, Math.min(0, a));
-    drag.a = a;
-    sheet.style.transform = 'rotateY(' + a.toFixed(1) + 'deg)';
+    var d = el._drag;
+    if(!d || e.pointerId !== d.id) return;
+    var p = pointerOnSheet(e), now = performance.now();
+    d.px = d.lx; d.pt = d.lt; d.lx = e.clientX; d.lt = now; d.ly = e.clientY;
+    lxcCurl(el, lxcConstrain(el._curl.g, { x: d.P0.x + p.x - d.start.x, y: d.P0.y + p.y - d.start.y }));
   });
-  corner.addEventListener('pointerup', function(e){ if(drag && e.pointerId === drag.id) dragEnd(Math.abs(drag.a) > 65); });
-  corner.addEventListener('pointercancel', function(){ dragEnd(false); });
-  corner.addEventListener('lostpointercapture', function(){ if(drag) dragEnd(Math.abs(drag.a) > 65); });
+  corner.addEventListener('pointerenter', function(e){
+    if(e.pointerType !== 'mouse' || el._drag || el._opening || el.classList.contains('lxc-anim') || luxCoverReduced()) return;
+    el._hover = true;
+    clearTimeout(el._peekT);
+    lxcAnimate(el, el._curl.P || lxcRest(el._curl.g), lxcPeek(el._curl.g), 240, 0);
+  });
+  corner.addEventListener('pointerleave', function(){
+    if(!el._hover) return;
+    el._hover = false;
+    if(el._drag || el._opening || el.classList.contains('lxc-anim')) return;
+    lxcAnimate(el, el._curl.P || lxcRest(el._curl.g), lxcRest(el._curl.g), 300, 0, function(){ lxcPeekLater(el); });
+  });
+  corner.addEventListener('pointerup', function(e){ if(el._drag && e.pointerId === el._drag.id) dragEnd(e, false); });
+  corner.addEventListener('pointercancel', function(e){ dragEnd(e, true); });
+  corner.addEventListener('lostpointercapture', function(e){ if(el._drag) dragEnd(e, false); });
 
   // computer: l'albo si inclina un poco seguendo il mouse
-  var wrap = el.querySelector('.lxc-bookwrap');
   wrap.addEventListener('pointermove', function(e){
-    if(el._mode !== 'book' || e.pointerType !== 'mouse' || drag || el._opening || luxCoverReduced()) return;
+    if(el._mode !== 'book' || e.pointerType !== 'mouse' || el._drag || el._opening || luxCoverReduced()) return;
     var r = wrap.getBoundingClientRect();
     if(!r.width || !r.height) return;
     luxCoverTilt(el, { x: (e.clientX - r.left) / r.width - .5, y: (e.clientY - r.top) / r.height - .5 });
@@ -1245,14 +1440,39 @@ function luxCoverTilt(el, p){
   tilt.style.setProperty('--lxc-rx', (-p.y * 8).toFixed(2) + 'deg');
 }
 
+// v239: la «Tessera dell'Archivio» — la finestra di accesso, aperta dalla copertina, ne prende l'aspetto
+function luxCoverCard(on){
+  var el = luxCoverEl;
+  if(el) el.classList.toggle('lxc-carded', !!on);
+  if(!on) return;
+  var modal = document.querySelector('#authModal .modal');
+  if(!modal) return;
+  var lab = modal.querySelector('.lxc-card-label');
+  if(!lab){
+    lab = document.createElement('div');
+    lab.className = 'lxc-card-label';
+    lab.setAttribute('aria-hidden', 'true');
+    modal.insertBefore(lab, modal.firstChild);
+  }
+  lab.textContent = t('lxcover.card');
+}
+
+// il numero dell'uscita: quanti fumetti ci sono nell'Archivio (0 = non ancora noto)
+function luxCoverIssueN(){
+  try {
+    if(!catalogFreshLoaded && !localStorage.getItem('lux_catalog')) return 0;
+    return getCatalog().filter(function(x){ return x && !/^c\d+$/.test(String(x.id || '')); }).length;
+  } catch(e){ return 0; }
+}
+
 // i testi nella lingua scelta (anche quando si cambia lingua con la copertina aperta)
 function luxCoverTexts(){
   var el = luxCoverEl;
   if(!el) return;
   var q = function(s){ return el.querySelector(s); };
   el.setAttribute('aria-label', t('lxcover.aria'));
-  var v = String(window.LUX_VERSION || '');
-  q('.lxc-issue-n').textContent = v ? t('lxcover.issue').replace('{n}', v) : '';
+  var n = luxCoverIssueN();
+  q('.lxc-issue-n').textContent = n ? t('lxcover.issue').replace('{n}', String(n)) : '';
   var month = '';
   try { month = new Date().toLocaleDateString(luxLocale(), { month: 'long', year: 'numeric' }); }
   catch(e){ try { month = new Date().toLocaleDateString(undefined, { month: 'long', year: 'numeric' }); } catch(e2){} }
@@ -1275,10 +1495,12 @@ function luxCoverTexts(){
   sel.value = currentLang;
   sel.setAttribute('aria-label', t('apptu.lang'));
   q('.lxc-lang-code').textContent = currentLang.toUpperCase();
+  var lab = document.querySelector('#authModal .lxc-card-label');
+  if(lab) lab.textContent = t('lxcover.card');
   luxCoverBlurb();
   luxCoverPlaceSeal();
 }
-// «In questo numero»: l'ultima uscita per tutti (mai un 18+), solo con il catalogo vero
+// «In questo numero»: l'ultima uscita per tutti (mai un 18+), solo con il catalogo vero; si tocca e si legge
 function luxCoverBlurb(){
   var el = luxCoverEl;
   if(!el) return;
@@ -1291,13 +1513,25 @@ function luxCoverBlurb(){
       });
     }
   } catch(e){ item = null; }
+  el._item = item;
+  var n = luxCoverIssueN(), ni = el.querySelector('.lxc-issue-n');
+  if(ni) ni.textContent = n ? t('lxcover.issue').replace('{n}', String(n)) : '';
   if(!item){ box.classList.add('hidden'); return; }
   box.querySelector('small').textContent = t('lxcover.inIssue');
   box.querySelector('b').textContent = item.title;
-  box.querySelector('span').textContent = [item.character === 'Collaboratori' ? '' : item.character, item.issue].filter(Boolean).join(' · ');
+  box.querySelector('.lxc-blurb-sub').textContent = [item.character === 'Collaboratori' ? '' : item.character, item.issue].filter(Boolean).join(' · ');
+  box.querySelector('.lxc-blurb-go').textContent = t('lxcover.read');
+  box.setAttribute('aria-label', t('lxcover.openTitle').replace('{title}', item.title));
+  var im = box.querySelector('.lxc-blurb-img');
+  if(item.cover_url){
+    var src = coverThumbUrl(item.cover_url, 120);
+    if(im.getAttribute('src') !== src){ im.setAttribute('data-fallback', item.cover_url); im.src = src; }
+    im.classList.remove('hidden');
+  } else im.classList.add('hidden');
   box.classList.remove('hidden');
 }
-// il pulsante del sigillo va sopra il sigillo disegnato nell'immagine (che si adatta allo schermo)
+// il pulsante del sigillo va sopra il sigillo disegnato nell'immagine (che si adatta allo schermo);
+// lì vanno anche le due metà che si spezzano, i bagliori dei portali e le braci
 function luxCoverPlaceSeal(){
   var el = luxCoverEl;
   if(!el) return;
@@ -1306,10 +1540,22 @@ function luxCoverPlaceSeal(){
   if(!W || !H) return;
   var A = LUX_COVER_ART[el._art];
   var s = Math.max(W / A.w, H / A.h); // come object-fit: cover, appoggiata in alto (vedi .lxc-art)
-  var sx = (W - A.w * s) / 2 + A.ex * A.w * s, sy = A.ey * A.h * s, sr = A.er * A.w * s;
-  front.style.setProperty('--lxc-sx', sx.toFixed(1) + 'px');
-  front.style.setProperty('--lxc-sy', sy.toFixed(1) + 'px');
-  front.style.setProperty('--lxc-sr', sr.toFixed(1) + 'px');
+  var ox = (W - A.w * s) / 2;
+  var sx = ox + A.ex * A.w * s, sy = A.ey * A.h * s, sr = A.er * A.w * s;
+  var set = function(k, v){ front.style.setProperty(k, v.toFixed(1) + 'px'); };
+  set('--lxc-sx', sx); set('--lxc-sy', sy); set('--lxc-sr', sr);
+  set('--lxc-bgw', A.w * s); set('--lxc-bgh', A.h * s); set('--lxc-bgx', ox - (sx - sr)); set('--lxc-bgy', -(sy - sr));
+  A.portals.forEach(function(p, i){
+    set('--lxc-p' + i + 'x', ox + p[0] * A.w * s); set('--lxc-p' + i + 'y', p[1] * A.h * s);
+    set('--lxc-p' + i + 'w', p[2] * A.w * s); set('--lxc-p' + i + 'h', p[3] * A.h * s);
+  });
+  front.style.setProperty('--lxc-rise', (H * .5).toFixed(0) + 'px');
+  // la pagina: misure nuove, la piega dov'era
+  var c = lxcCurlInit(el);
+  if(!c.raf && !el._drag){
+    if(el.classList.contains('lxc-turned')) lxcCurl(el, lxcEnd(c.g));
+    else if(!el._opening) lxcCurl(el, el._hover ? lxcPeek(c.g) : lxcRest(c.g));
+  }
   // schermi bassi: si toglie quello che finirebbe sopra il sigillo o sotto i pulsanti
   el.classList.remove('lxc-noblurb', 'lxc-nolabel');
   if(el._art !== 'tall') return;
@@ -1360,7 +1606,8 @@ function luxCoverShow(how){
   document.body.appendChild(el);
   luxCoverEl = el;
   document.documentElement.classList.add('lux-cover-on');
-  luxCoverTexts();
+  luxCoverTexts(); // (dentro: le misure e la piega a riposo)
+  if(closing) lxcCurl(el, lxcEnd(el._curl.g)); // si parte dalla pagina girata
   luxCoverSetInert(true);
   try { el.focus({ preventScroll: true }); } catch(e){}
   var img = el.querySelector('.lxc-art');
@@ -1376,6 +1623,7 @@ function luxCoverShow(how){
         luxCoverLater(480, function(){
           document.documentElement.classList.remove('lux-cover-wait');
           el.classList.remove('lxc-anim');
+          lxcPeekLater(el);
         });
         return;
       }
@@ -1383,12 +1631,14 @@ function luxCoverShow(how){
       if(book) el.classList.remove('lxc-zoom');
       luxCoverLater(unzoom, function(){
         el.classList.remove('lxc-turned');
-        luxCoverLater(1180, function(){
+        var g = el._curl.g;
+        lxcAnimate(el, lxcEnd(g), lxcRest(g), 1150, g.H * .26, function(){
           el.classList.add('lxc-stamping');
           luxCoverLater(650, function(){
             el.classList.remove('lxc-stamping', 'lxc-anim');
             var b = el.querySelector('[data-lxc="login"]');
             try { if(b) b.focus({ preventScroll: true }); } catch(e){}
+            lxcPeekLater(el);
           });
         });
       });
@@ -1399,45 +1649,56 @@ function luxCoverShow(how){
   else { img.addEventListener('load', go); img.addEventListener('error', go); luxCoverLater(1200, go); }
 }
 
-// l'apertura: il sigillo si spacca, la copertina gira (dal computer poi ci si avvicina alla pagina)
-function luxCoverOpen(guest, fromDrag){
+// l'apertura: il sigillo si spezza, la pagina si solleva e gira (dal computer poi ci si avvicina alla pagina)
+function luxCoverOpen(guest, fromDrag, openItem){
   var el = luxCoverEl;
   if(!el || el._opening) return;
   el._opening = true;
   luxCoverClearTimers();
+  clearTimeout(el._peekT);
   luxCoverTilt(el, null);
+  luxCoverCard(false);
   el.classList.remove('lxc-enter', 'lxc-instant', 'lxc-stamping');
   el.classList.add('lxc-anim');
   document.documentElement.classList.remove('lux-cover-wait');
   if(luxCoverReduced()){
     el.classList.add('lxc-fade');
-    luxCoverLater(400, function(){ luxCoverFinish(guest); });
+    luxCoverLater(400, function(){ luxCoverFinish(guest, openItem); });
     return;
   }
-  var book = el._mode === 'book';
-  var crack = fromDrag ? 0 : 520;
-  if(crack) el.classList.add('lxc-cracking');
+  var book = el._mode === 'book', c = el._curl;
+  var crack = fromDrag ? 0 : 600;
+  if(crack){
+    el.classList.add('lxc-cracking');
+    luxCoverLater(200, function(){ try { if(navigator.vibrate) navigator.vibrate([16, 40, 24]); } catch(e){} }); // Android: il sigillo si spezza anche in mano
+  }
   luxCoverLater(crack, function(){
     el.classList.remove('lxc-dragging');
-    el.querySelector('.lxc-sheet').style.transform = ''; // dall'angolo trascinato la pagina finisce di girare da dov'è
     el.classList.add('lxc-turned');
-    // telefono: a metà giro la pagina è già fuori dallo schermo; computer: un attimo sul libro aperto, poi dentro
-    luxCoverLater(book ? 1000 : 780, function(){
-      if(!book){ luxCoverFinish(guest); return; }
-      el.classList.add('lxc-zoom');
-      luxCoverLater(780, function(){ luxCoverFinish(guest); });
+    var g = c.g, from = c.P || lxcRest(g);
+    lxcAnimate(el, from, lxcEnd(g), book ? 1150 : 1000, fromDrag ? g.H * .12 : g.H * .26, function(){
+      if(!book){ luxCoverFinish(guest, openItem); return; }
+      luxCoverLater(220, function(){ // un attimo sul libro aperto, poi dentro
+        el.classList.add('lxc-zoom');
+        luxCoverLater(780, function(){ luxCoverFinish(guest, openItem); });
+      });
     });
   });
 }
-function luxCoverFinish(guest){
+function luxCoverFinish(guest, openItem){
   var el = luxCoverEl;
   luxCoverClearTimers();
+  if(el){ clearTimeout(el._peekT); if(el._curl) cancelAnimationFrame(el._curl.raf); }
   luxCoverSetInert(false);
   if(el && el.parentNode) el.parentNode.removeChild(el);
   luxCoverEl = null;
   document.documentElement.classList.remove('lux-cover-on', 'lux-cover-wait');
   try { sessionStorage.setItem('lux_cover_ok', '1'); } catch(e){}
   try { if(luxCoverScrollY) window.scrollTo(0, luxCoverScrollY); } catch(e){}
+  if(openItem){ // v239: dritti nel fumetto scelto da «In questo numero»
+    setTimeout(function(){ try { openTitleModal(openItem); } catch(e){ console.warn('[copertina]', e); } }, 60);
+    return;
+  }
   var name = guest ? '' : luxCoverName();
   luxToast(guest ? t('lxcover.guestToast') : (name ? t('lxcover.hello').replace('{name}', name) : t('lxcover.open')));
 }
@@ -1463,6 +1724,7 @@ function luxCoverOnLogout(){
 function luxCoverRefocus(){
   var el = luxCoverEl;
   if(!el || el._opening) return;
+  luxCoverCard(false);
   var b = el.querySelector('[data-lxc="' + (el._ret || 'login') + '"]');
   try { if(b) b.focus({ preventScroll: true }); } catch(e){}
 }
@@ -1475,17 +1737,22 @@ function luxCoverOnResize(){
   clearTimeout(luxCoverResizeT);
   luxCoverResizeT = setTimeout(function(){
     var el = luxCoverEl;
-    if(!el || el._opening) return;
+    if(!el || el._opening || el._drag) return;
     if(el.classList.contains('lxc-anim')){ luxCoverOnResize(); return; } // si risistema appena finisce l'animazione
     var mode = luxCoverMode(), art = luxCoverArtKey(mode);
     if(mode === el._mode && art === el._art){ luxCoverPlaceSeal(); return; }
-    var had = el.contains(document.activeElement);
+    var had = el.contains(document.activeElement), carded = el.classList.contains('lxc-carded');
+    clearTimeout(el._peekT);
+    if(el._curl) cancelAnimationFrame(el._curl.raf);
     luxCoverSetInert(false);
     var nel = luxCoverBuild();
+    nel._ret = el._ret;
     el.parentNode.replaceChild(nel, el);
     luxCoverEl = nel;
+    if(carded) nel.classList.add('lxc-carded');
     luxCoverTexts();
     luxCoverSetInert(true);
+    lxcPeekLater(nel);
     if(had){ try { nel.focus({ preventScroll: true }); } catch(e){} }
   }, 150);
 }
