@@ -4025,7 +4025,10 @@ body.theme-light .admin-translate-bar{background:rgba(138,106,31,0.06);}
 
 /* ============ v237: la copertina (vedi luxCoverShow in app.js) ============
    Sempre scura (è una copertina), in qualunque tema. Sopra a tutto il sito; sopra di lei
-   solo la finestra di accesso e gli avvisi. */
+   solo la finestra di accesso (la «Tessera dell'Archivio») e gli avvisi.
+   v239: la pagina si piega come carta: la piega la calcola lxcCurl in app.js, qui ci sono
+   solo i pezzi (il fronte ritagliato, il retro ribaltato, le ombre). Il sigillo si spezza in
+   due, la copertina respira (riflesso sul titolo, portali, braci), «In questo numero» si tocca. */
 /* in attesa di app.js: lo sfondo della copertina al posto della pagina (niente lampo della home) */
 html.lux-cover-wait body::after{content:"";position:fixed;inset:0;z-index:9799;background:#0b0607;}
 @media (min-width:900px) and (min-height:680px){
@@ -4046,45 +4049,76 @@ html.lux-cover-on #luxToast{z-index:9950;}
 .lux-cover.lxc-anim{pointer-events:none;}
 .lux-cover.lxc-instant,.lux-cover.lxc-instant *{transition:none!important;}
 
-/* telefono: un velo scuro sul sito, che sparisce mentre la copertina gira;
-   computer: il tavolo su cui è appoggiato l'albo */
+/* telefono: un velo scuro sul sito (si intravede sotto l'orecchia, e sparisce mentre la pagina
+   gira); computer: il tavolo su cui è appoggiato l'albo */
 .lxc-table{position:absolute;inset:0;background:rgba(5,3,3,.62);transition:opacity .75s ease;}
 .lxc-book .lxc-table{background:radial-gradient(ellipse 60% 70% at 50% 46%,#3a0d16 0%,#170c0e 55%,#0b0607 100%);transition:opacity .8s ease;}
 .lxc-full.lxc-turned .lxc-table,.lxc-book.lxc-zoom .lxc-table{opacity:0;}
 .lxc-brand,.lxc-hint{display:none;}
 
-/* l'albo: la copertina gira sul dorso (a sinistra; in arabo e panjabi a destra) */
-.lxc-bookwrap{position:absolute;inset:0;perspective:1800px;}
-.lxc-tilt{position:absolute;inset:0;transform-style:preserve-3d;-webkit-transform-style:preserve-3d;}
+/* l'albo: il dorso è a sinistra (in arabo e panjabi a destra) */
+.lxc-bookwrap{position:absolute;inset:0;}
+.lxc-tilt{position:absolute;inset:0;}
 .lxc-pages{display:none;}
-.lxc-sheet{position:absolute;inset:0;transform-origin:0 50%;transform-style:preserve-3d;-webkit-transform-style:preserve-3d;
-  transition:transform 1.15s cubic-bezier(.6,.02,.25,1);will-change:transform;}
-.lxc-turned .lxc-sheet{transform:rotateY(-180deg);}
-html.lux-rtl .lxc-sheet{transform-origin:100% 50%;}
-html.lux-rtl .lxc-turned .lxc-sheet{transform:rotateY(180deg);}
-.lxc-dragging .lxc-sheet{transition:none;}
-.lxc-face{position:absolute;inset:0;overflow:hidden;-webkit-backface-visibility:hidden;backface-visibility:hidden;}
+.lxc-sheet{position:absolute;inset:0;}
+.lxc-face{position:absolute;inset:0;overflow:hidden;}
 .lxc-front{background:#0b0607;--lxc-sx:50%;--lxc-sy:30%;--lxc-sr:110px;}
-.lxc-front::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,0) 35%,rgba(0,0,0,.6));opacity:0;transition:opacity .8s ease;}
-html.lux-rtl .lxc-front::after{background:linear-gradient(270deg,rgba(0,0,0,0) 35%,rgba(0,0,0,.6));}
-.lxc-turned .lxc-front::after,.lxc-dragging .lxc-front::after{opacity:1;}
-.lxc-back{transform:rotateY(180deg);background-color:#22080e;background-image:radial-gradient(rgba(227,194,115,.17) 1.2px,transparent 1.7px),radial-gradient(rgba(227,194,115,.08) 1.2px,transparent 1.7px);background-size:26px 26px;background-position:0 0,13px 13px;}
+/* la piega: il fronte si ritaglia lungo la piega, la parte sollevata si ribalta sopra la pagina
+   (se ne vede il retro, il risguardo); sotto, dove la pagina si è alzata, la sua ombra */
+.lxc-flap,.lxc-cast{display:none;pointer-events:none;}
+.lxc-flap{transform-origin:0 0;overflow:hidden;box-shadow:0 0 18px 3px rgba(0,0,0,.5);}
+.lxc-cast{position:absolute;inset:0;overflow:hidden;}
+/* fronte e retro su livelli propri: mentre la pagina si muove cambia solo il loro ritaglio */
+.lxc-front,.lxc-flap{will-change:transform;}
+/* le ombre sono strisce sfumate messe di traverso lungo la piega (vedi lxcBand in app.js) */
+.lxc-fshade,.lxc-flshade,.lxc-castg{position:absolute;left:0;top:0;width:100px;height:2000px;transform-origin:0 0;pointer-events:none;will-change:transform;}
+.lxc-fshade{z-index:3;visibility:hidden;background:linear-gradient(90deg,rgba(0,0,0,0),rgba(0,0,0,.32));}
+.lxc-castg{background:linear-gradient(90deg,rgba(0,0,0,.58),rgba(0,0,0,.2) 40%,rgba(0,0,0,0));}
+.lxc-flshade{background:linear-gradient(90deg,rgba(0,0,0,.5),rgba(255,236,190,.2) 13.6%,rgba(0,0,0,.12) 45.5%,rgba(0,0,0,0));}
+.lxc-back{position:absolute;inset:0;background-color:#22080e;background-image:radial-gradient(rgba(227,194,115,.17) 1.2px,transparent 1.7px),radial-gradient(rgba(227,194,115,.08) 1.2px,transparent 1.7px);background-size:26px 26px;background-position:0 0,13px 13px;}
 .lxc-back::before{content:"";position:absolute;inset:14px;border:1px solid rgba(201,162,77,.35);pointer-events:none;}
+.lxc-backseal{position:absolute;left:50%;top:44%;width:38%;max-width:170px;transform:translate(-50%,-50%);filter:drop-shadow(0 6px 18px rgba(0,0,0,.7));}
+.lxc-exlibris{position:absolute;left:24px;right:24px;top:59%;text-align:center;font:600 13px/1.5 'Cinzel',Georgia,serif;letter-spacing:.14em;text-transform:uppercase;color:#e3c273;text-shadow:0 1px 6px #000;}
+/* l'orecchia da prendere: sta sopra la pagina (anche dove la piega l'ha già ritagliata) */
+.lxc-corner{position:absolute;right:0;bottom:0;width:64px;height:64px;touch-action:none;cursor:grab;}
+html.lux-rtl .lxc-corner{right:auto;left:0;}
+.lxc-dragging,.lxc-dragging .lxc-corner{cursor:grabbing;}
+.lxc-turned .lxc-corner,.lxc-cracking .lxc-corner{display:none;}
 
 /* il fronte */
 .lxc-art{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 0;opacity:0;transition:opacity .35s ease;}
 .lxc-art.is-ready{opacity:1;}
-.lxc-veil-top{position:absolute;left:0;right:0;top:0;height:calc(190px + var(--lxc-st));background:linear-gradient(#0b0607 0%,rgba(11,6,7,.72) 48%,rgba(11,6,7,0));pointer-events:none;}
+.lxc-veil-top{position:absolute;left:0;right:0;top:0;height:calc(190px + var(--lxc-st));background:linear-gradient(#0b0607 0%,rgba(11,6,7,.72) 48%,rgba(11,6,7,0));pointer-events:none;transition:opacity .4s ease;}
 .lxc-veil-bottom{position:absolute;left:0;right:0;bottom:0;height:calc(290px + var(--lxc-sb));background:linear-gradient(rgba(11,6,7,0),rgba(11,6,7,.84) 42%,#0b0607);pointer-events:none;}
-.lxc-mast{position:absolute;left:calc(16px + var(--lxc-sl));right:calc(16px + var(--lxc-se));top:calc(14px + var(--lxc-st));height:96px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:3px;text-align:center;pointer-events:none;}
+.lxc-mast{position:absolute;z-index:1;left:calc(16px + var(--lxc-sl));right:calc(16px + var(--lxc-se));top:calc(14px + var(--lxc-st));height:96px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:3px;text-align:center;pointer-events:none;}
 .lxc-issue{position:absolute;left:0;top:0;display:flex;flex-direction:column;gap:1px;padding:5px 7px;border:1px solid rgba(201,162,77,.6);background:rgba(11,6,7,.35);font:400 9.5px/1.2 'Space Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:#e3c273;text-align:left;white-space:nowrap;}
 .lxc-issue span:empty{display:none;}
+/* il titolo d'oro, con un riflesso di luce che lo attraversa ogni tanto */
 .lxc-lux{font:700 clamp(28px,9.5vw,37px)/1 'Cinzel Decorative','Cinzel',Georgia,serif;letter-spacing:.04em;white-space:nowrap;
-  background:linear-gradient(180deg,#f6dc8e 0%,#c9a24d 55%,#8c6a24 100%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;filter:drop-shadow(0 2px 6px rgba(0,0,0,.85));}
+  background-image:linear-gradient(105deg,rgba(255,250,232,0) 45%,rgba(255,250,232,.95) 50%,rgba(255,250,232,0) 55%),linear-gradient(180deg,#f6dc8e 0%,#c9a24d 55%,#8c6a24 100%);
+  background-size:260% 100%,100% 100%;background-repeat:no-repeat;background-position:95% 0,0 0;
+  -webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;filter:drop-shadow(0 2px 6px rgba(0,0,0,.85));
+  animation:lxcShine 7s ease-in-out 1.6s infinite;}
+@keyframes lxcShine{0%,82%{background-position:95% 0,0 0}100%{background-position:5% 0,0 0}}
 .lxc-medusa{font:400 11px/1.4 'Space Mono',monospace;letter-spacing:.42em;margin-right:-.42em;text-transform:uppercase;color:#6fd3c4;text-shadow:0 1px 4px #000;white-space:nowrap;}
-.lxc-stamp{position:absolute;right:calc(14px + var(--lxc-se));top:calc(126px + var(--lxc-st));width:86px;height:86px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-align:center;padding:8px;
+.lxc-stamp{position:absolute;z-index:1;right:calc(14px + var(--lxc-se));top:calc(126px + var(--lxc-st));width:86px;height:86px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-align:center;padding:8px;
   background:#6e1423;border:2px solid #c9a24d;box-shadow:0 4px 14px rgba(0,0,0,.6),inset 0 0 0 3px rgba(110,20,35,1),inset 0 0 0 4px rgba(243,213,139,.45);transform:rotate(12deg);
   font:700 8.5px/1.25 'Cinzel',Georgia,serif;letter-spacing:.04em;color:#f3d58b;text-transform:uppercase;pointer-events:none;}
+
+/* la copertina respira: i portali pulsano piano, salgono braci (a sinistra, il fuoco di LUX)
+   e polvere di stelle (a destra, il cosmo di MEDUSA) */
+.lxc-glow{position:absolute;pointer-events:none;border-radius:50%;opacity:.5;animation:lxcBreath 4.6s ease-in-out infinite;}
+.lxc-glow.l{left:calc(var(--lxc-p0x) - var(--lxc-p0w) / 2);top:calc(var(--lxc-p0y) - var(--lxc-p0h) / 2);width:var(--lxc-p0w);height:var(--lxc-p0h);
+  background:radial-gradient(closest-side,rgba(255,140,60,.42),rgba(235,70,25,.2) 55%,rgba(235,70,25,0));}
+.lxc-glow.r{left:calc(var(--lxc-p1x) - var(--lxc-p1w) / 2);top:calc(var(--lxc-p1y) - var(--lxc-p1h) / 2);width:var(--lxc-p1w);height:var(--lxc-p1h);
+  background:radial-gradient(closest-side,rgba(140,232,255,.38),rgba(60,160,225,.18) 55%,rgba(60,160,225,0));animation-delay:-2.3s;}
+@keyframes lxcBreath{0%,100%{opacity:.3;transform:scale(.96)}50%{opacity:.85;transform:scale(1.04)}}
+.lxc-embers{position:absolute;inset:0;overflow:hidden;pointer-events:none;}
+.lxc-embers i{position:absolute;bottom:28%;left:var(--x);width:var(--s);height:var(--s);border-radius:50%;opacity:0;animation:lxcEmber var(--t) linear var(--d) infinite;}
+.lxc-embers i.f{background:#ffc27a;box-shadow:0 0 6px 1px rgba(255,120,40,.85);}
+.lxc-embers i.s{background:#dcfbff;box-shadow:0 0 6px 1px rgba(111,211,196,.85);}
+@keyframes lxcEmber{0%{opacity:0;transform:translate(0,0)}10%{opacity:1}70%{opacity:.75}100%{opacity:0;transform:translate(var(--dx),calc(var(--lxc-rise) * -1 * var(--k)))}}
+.lxc-art:not(.is-ready)~.lxc-glow,.lxc-art:not(.is-ready)~.lxc-embers{visibility:hidden;}
 
 /* il sigillo: al suo posto nell'immagine (--lxc-sx/sy/sr li calcola luxCoverPlaceSeal) */
 .lxc-seal{position:absolute;left:calc(var(--lxc-sx) - var(--lxc-sr));top:calc(var(--lxc-sy) - var(--lxc-sr));width:calc(var(--lxc-sr) * 2);height:calc(var(--lxc-sr) * 2);
@@ -4100,23 +4134,68 @@ html.lux-rtl .lxc-front::after{background:linear-gradient(270deg,rgba(0,0,0,0) 3
   background:rgba(11,6,7,.72);border:1px solid rgba(201,162,77,.5);font:400 10px/1.2 'Space Mono',monospace;letter-spacing:.16em;text-transform:uppercase;color:#e3c273;white-space:nowrap;pointer-events:none;transition:opacity .3s ease;}
 .lxc-cracking .lxc-seal,.lxc-cracking .lxc-seal-label,.lxc-turned .lxc-seal,.lxc-turned .lxc-seal-label,.lxc-dragging .lxc-seal-label,.lxc-nolabel .lxc-seal-label{opacity:0;}
 .lxc-cracking .lxc-seal::before,.lxc-turned .lxc-seal::before{animation:none;opacity:0;}
-/* si spacca: una crepa d'oro e un lampo */
-.lxc-crack{position:absolute;left:var(--lxc-sx);top:calc(var(--lxc-sy) - var(--lxc-sr) * 1.1);height:calc(var(--lxc-sr) * 2.2);width:3px;margin-left:-1.5px;pointer-events:none;
-  background:linear-gradient(rgba(255,243,196,0),#fff3c4 18%,#ffd36e 50%,#fff3c4 82%,rgba(255,243,196,0));box-shadow:0 0 18px #ffd36e,0 0 40px rgba(255,211,110,.6);transform:scaleY(0);opacity:0;}
-.lxc-cracking .lxc-crack{animation:lxcCrack .46s ease-out forwards;}
-@keyframes lxcCrack{0%{transform:scaleY(0);opacity:0}30%{opacity:1}100%{transform:scaleY(1);opacity:1}}
-.lxc-burst{position:absolute;left:calc(var(--lxc-sx) - var(--lxc-sr) * 1.3);top:calc(var(--lxc-sy) - var(--lxc-sr) * 1.3);width:calc(var(--lxc-sr) * 2.6);height:calc(var(--lxc-sr) * 2.6);border-radius:50%;pointer-events:none;
-  background:radial-gradient(circle,rgba(255,236,170,.95) 0%,rgba(255,200,90,.55) 30%,rgba(255,200,90,0) 70%);transform:scale(.2);opacity:0;}
-.lxc-cracking .lxc-burst{animation:lxcBurst .5s ease-out forwards;}
-@keyframes lxcBurst{0%{transform:scale(.2);opacity:0}35%{opacity:1}100%{transform:scale(1.5);opacity:0}}
 
-/* «In questo numero» e il codice a barre */
-.lxc-blurb{position:absolute;left:calc(16px + var(--lxc-sl));bottom:calc(136px + var(--lxc-sb));max-width:min(230px,calc(100% - 128px));padding:7px 11px 8px;background:#ece2c6;color:#1e1410;transform:rotate(-2deg);box-shadow:3px 3px 0 #0b0607;
-  font:400 14px/1.25 'Crimson Pro',Georgia,serif;text-align:left;pointer-events:none;}
+/* il sigillo si spezza davvero: una crepa d'oro a zigzag, le due metà (ritagliate dall'immagine,
+   esattamente al loro posto) si separano, da dentro esce la luce, volano scintille. Sta sotto i
+   veli, la testata e il timbro (come l'immagine); mentre si spezza il velo in alto si schiarisce */
+.lxc-sealfx{position:absolute;left:calc(var(--lxc-sx) - var(--lxc-sr));top:calc(var(--lxc-sy) - var(--lxc-sr));width:calc(var(--lxc-sr) * 2);height:calc(var(--lxc-sr) * 2);pointer-events:none;}
+.lxc-core{position:absolute;inset:-1px;border-radius:50%;opacity:0;
+  background:radial-gradient(circle,#fff6d6 0%,#ffd36e 11%,#e8952f 24%,#8a3312 42%,#3a0f0a 64%,#160708 84%,#0f0506 100%);}
+.lxc-half{position:absolute;inset:0;opacity:0;background-repeat:no-repeat;background-size:var(--lxc-bgw) var(--lxc-bgh);background-position:var(--lxc-bgx) var(--lxc-bgy);}
+.lxc-art.is-ready~.lxc-sealfx .lxc-half{opacity:1;}
+.lxc-half.l{transform-origin:28% 55%;
+  -webkit-clip-path:polygon(50% 0%,46% 11%,54% 23%,47% 36%,55% 49%,46% 62%,53% 75%,47% 88%,50% 100%,42.18% 99.38%,34.55% 97.55%,27.3% 94.55%,20.61% 90.45%,14.64% 85.36%,9.55% 79.39%,5.45% 72.7%,2.45% 65.45%,0.62% 57.82%,0% 50%,0.62% 42.18%,2.45% 34.55%,5.45% 27.3%,9.55% 20.61%,14.64% 14.64%,20.61% 9.55%,27.3% 5.45%,34.55% 2.45%,42.18% 0.62%);
+  clip-path:polygon(50% 0%,46% 11%,54% 23%,47% 36%,55% 49%,46% 62%,53% 75%,47% 88%,50% 100%,42.18% 99.38%,34.55% 97.55%,27.3% 94.55%,20.61% 90.45%,14.64% 85.36%,9.55% 79.39%,5.45% 72.7%,2.45% 65.45%,0.62% 57.82%,0% 50%,0.62% 42.18%,2.45% 34.55%,5.45% 27.3%,9.55% 20.61%,14.64% 14.64%,20.61% 9.55%,27.3% 5.45%,34.55% 2.45%,42.18% 0.62%);}
+.lxc-half.r{transform-origin:72% 55%;
+  -webkit-clip-path:polygon(50% 100%,47% 88%,53% 75%,46% 62%,55% 49%,47% 36%,54% 23%,46% 11%,50% 0%,57.82% 0.62%,65.45% 2.45%,72.7% 5.45%,79.39% 9.55%,85.36% 14.64%,90.45% 20.61%,94.55% 27.3%,97.55% 34.55%,99.38% 42.18%,100% 50%,99.38% 57.82%,97.55% 65.45%,94.55% 72.7%,90.45% 79.39%,85.36% 85.36%,79.39% 90.45%,72.7% 94.55%,65.45% 97.55%,57.82% 99.38%);
+  clip-path:polygon(50% 100%,47% 88%,53% 75%,46% 62%,55% 49%,47% 36%,54% 23%,46% 11%,50% 0%,57.82% 0.62%,65.45% 2.45%,72.7% 5.45%,79.39% 9.55%,85.36% 14.64%,90.45% 20.61%,94.55% 27.3%,97.55% 34.55%,99.38% 42.18%,100% 50%,99.38% 57.82%,97.55% 65.45%,94.55% 72.7%,90.45% 79.39%,85.36% 85.36%,79.39% 90.45%,72.7% 94.55%,65.45% 97.55%,57.82% 99.38%);}
+.lxc-zig{position:absolute;inset:0;width:100%;height:100%;overflow:visible;opacity:0;filter:drop-shadow(0 0 3px #ffd36e) drop-shadow(0 0 9px rgba(255,170,60,.85));}
+.lxc-zig path{fill:none;stroke:#fff3c4;stroke-width:1.5;stroke-linejoin:round;stroke-linecap:round;stroke-dasharray:100;stroke-dashoffset:100;}
+.lxc-sparks{position:absolute;inset:0;}
+.lxc-sparks i{position:absolute;inset:0;transform:rotate(var(--a));opacity:0;}
+.lxc-sparks i::before{content:"";position:absolute;left:50%;top:50%;width:calc(var(--s) * 5);height:var(--s);margin-top:calc(var(--s) / -2);border-radius:var(--s);
+  background:linear-gradient(90deg,rgba(255,236,180,0),#fff8e2 80%);box-shadow:0 0 7px 1px rgba(255,190,80,.85);transform-origin:100% 50%;}
+.lxc-burst{position:absolute;z-index:2;left:calc(var(--lxc-sx) - var(--lxc-sr) * 1.3);top:calc(var(--lxc-sy) - var(--lxc-sr) * 1.3);width:calc(var(--lxc-sr) * 2.6);height:calc(var(--lxc-sr) * 2.6);border-radius:50%;pointer-events:none;mix-blend-mode:screen;
+  background:radial-gradient(circle,rgba(255,240,190,.95) 0%,rgba(255,200,90,.55) 32%,rgba(255,200,90,0) 70%);transform:scale(.2);opacity:0;}
+/* la sequenza (0,6 s, poi la pagina comincia a girare): tremito, crepa, metà che si aprono con
+   la luce dentro, lampo e scintille */
+.lxc-cracking .lxc-sealfx{animation:lxcShake .2s linear;}
+.lxc-cracking .lxc-veil-top{opacity:.4;}
+.lxc-cracking .lxc-core{opacity:1;animation:lxcCore 1s ease-out both;}
+.lxc-cracking .lxc-zig{animation:lxcZigShow .62s ease both;}
+.lxc-cracking .lxc-zig path{animation:lxcZig .2s ease-in both;}
+.lxc-cracking .lxc-half.l{animation:lxcHalfL .62s cubic-bezier(.2,.75,.3,1) .2s both;}
+.lxc-cracking .lxc-half.r{animation:lxcHalfR .62s cubic-bezier(.2,.75,.3,1) .2s both;}
+.lxc-cracking .lxc-sparks i{animation:lxcSparkO .75s linear calc(.2s + var(--d)) both;}
+.lxc-cracking .lxc-sparks i::before{animation:lxcSpark .75s cubic-bezier(.15,.75,.35,1) calc(.2s + var(--d)) both;}
+.lxc-cracking .lxc-burst{animation:lxcBurst .6s ease-out .18s both;}
+@keyframes lxcShake{0%,100%{transform:translate(0,0)}20%{transform:translate(-1.5px,1px)}40%{transform:translate(1.5px,-1px)}60%{transform:translate(-1px,-1px)}80%{transform:translate(1px,1px)}}
+@keyframes lxcCore{0%{filter:brightness(.6)}22%{filter:brightness(.8)}38%{filter:brightness(1.9)}100%{filter:brightness(1)}}
+@keyframes lxcZig{to{stroke-dashoffset:0}}
+@keyframes lxcZigShow{0%,45%{opacity:1}100%{opacity:0}}
+@keyframes lxcHalfL{0%{transform:translate(0,0) rotate(0)}100%{transform:translate(-15%,7%) rotate(-12deg)}}
+@keyframes lxcHalfR{0%{transform:translate(0,0) rotate(0)}100%{transform:translate(15%,10%) rotate(9deg)}}
+@keyframes lxcSparkO{0%{opacity:0}6%{opacity:1}65%{opacity:.9}100%{opacity:0}}
+@keyframes lxcSpark{0%{transform:translateX(calc(var(--lxc-sr) * .2)) scaleX(.3)}35%{transform:translateX(calc(var(--lxc-sr) * var(--k) * .7)) scaleX(1)}100%{transform:translateX(calc(var(--lxc-sr) * var(--k))) scaleX(.4)}}
+@keyframes lxcBurst{0%{transform:scale(.2);opacity:0}30%{opacity:1}100%{transform:scale(1.5);opacity:0}}
+
+/* «In questo numero» (si tocca: si apre quel fumetto, da ospite) e il codice a barre */
+.lxc-blurb{position:absolute;left:calc(16px + var(--lxc-sl));bottom:calc(136px + var(--lxc-sb));max-width:min(236px,calc(100% - 128px));display:flex;align-items:center;gap:9px;margin:0;padding:6px 11px 7px 6px;border:0;border-radius:0;
+  background:#ece2c6;color:#1e1410;transform:rotate(-2deg);box-shadow:3px 3px 0 #0b0607;font:400 14px/1.25 'Crimson Pro',Georgia,serif;letter-spacing:0;text-align:left;text-transform:none;
+  transition:transform .2s ease,box-shadow .2s ease;}
+.lxc-blurb:hover{transform:rotate(-2deg) translateY(-2px);box-shadow:4px 6px 0 #0b0607;}
+.lxc-blurb:active{transform:rotate(-2deg) translateY(1px);box-shadow:2px 2px 0 #0b0607;}
+.lxc-blurb:focus-visible{outline:2px solid #e3c273;outline-offset:3px;}
+.lxc-blurb-img{flex:none;width:38px;height:54px;object-fit:cover;border:1px solid #1e1410;background:#2a1a14;}
+.lxc-blurb-txt{display:block;min-width:0;}
 .lxc-blurb small{display:block;font:400 9px/1.4 'Space Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#6e1423;}
 .lxc-blurb b{display:block;font:700 16px/1.2 'Cinzel',Georgia,serif;letter-spacing:.02em;overflow-wrap:anywhere;}
-.lxc-blurb span{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-.lxc-blurb span:empty{display:none;}
+.lxc-blurb-sub{display:inline-block;max-width:calc(100% - 64px);margin-right:8px;vertical-align:bottom;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.lxc-blurb-sub:empty{display:none;}
+.lxc-blurb-go{display:inline-block;vertical-align:bottom;font:700 10px/15px 'Space Mono',monospace;font-style:normal;letter-spacing:.1em;text-transform:uppercase;color:#6e1423;white-space:nowrap;border-bottom:1px solid currentColor;margin-bottom:1px;}
+.lxc-blurb-go::after{content:" \2192";}
+html.lux-rtl .lxc-blurb{text-align:right;}
+html.lux-rtl .lxc-blurb-go::after{content:" \2190";}
 .lxc-barcode{position:absolute;right:calc(16px + var(--lxc-se));bottom:calc(140px + var(--lxc-sb));width:78px;padding:5px 5px 3px;background:#f4ecdc;box-shadow:2px 2px 0 #0b0607;display:flex;flex-direction:column;gap:2px;pointer-events:none;}
 .lxc-bars{height:26px;background:repeating-linear-gradient(90deg,#111 0 2px,transparent 2px 3px,#111 3px 4px,transparent 4px 6px,#111 6px 9px,transparent 9px 10px);}
 .lxc-barcode span{font:400 6px/1 'Space Mono',monospace;color:#111;text-align:center;white-space:nowrap;}
@@ -4135,20 +4214,8 @@ html.lux-rtl .lxc-front::after{background:linear-gradient(270deg,rgba(0,0,0,0) 3
 .lxc-luxtify{position:absolute;left:calc(12px + var(--lxc-sl));bottom:calc(19px + var(--lxc-sb));display:inline-flex;align-items:center;gap:5px;min-height:34px;padding:0 10px;border-radius:17px;
   border:1px solid rgba(201,162,77,.45);background:rgba(11,6,7,.55);color:#e3c273;font:600 10.5px/1 'Cinzel',Georgia,serif;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;}
 .lxc-luxtify:hover{border-color:#c9a24d;color:#f3d58b;}
-@media (max-width:374px){.lxc-lx-t{display:none;}.lxc-guest{max-width:calc(100% - 150px);}}
-
-/* l'angolo da trascinare */
-.lxc-corner{position:absolute;right:0;bottom:0;width:58px;height:58px;touch-action:none;cursor:grab;
-  background:linear-gradient(135deg,rgba(0,0,0,0) 49%,#2b1a14 50%,#c9b48a 56%,#efe3c4 74%,#d9c79e 100%);filter:drop-shadow(-4px -4px 6px rgba(0,0,0,.55));animation:lxcCurl 3.2s ease-in-out infinite;}
-.lxc-corner:active{cursor:grabbing;}
-html.lux-rtl .lxc-corner{right:auto;left:0;background:linear-gradient(225deg,rgba(0,0,0,0) 49%,#2b1a14 50%,#c9b48a 56%,#efe3c4 74%,#d9c79e 100%);filter:drop-shadow(4px -4px 6px rgba(0,0,0,.55));}
 html.lux-rtl .lxc-luxtify{left:auto;right:calc(12px + var(--lxc-se));}
-@keyframes lxcCurl{0%,72%,100%{width:58px;height:58px}82%{width:70px;height:70px}}
-.lxc-dragging .lxc-corner,.lxc-turned .lxc-corner,.lxc-cracking .lxc-corner{animation:none;}
-
-/* il retro della copertina: il risguardo */
-.lxc-backseal{position:absolute;left:50%;top:44%;width:38%;max-width:170px;transform:translate(-50%,-50%);filter:drop-shadow(0 6px 18px rgba(0,0,0,.7));}
-.lxc-exlibris{position:absolute;left:24px;right:24px;top:59%;text-align:center;font:600 13px/1.5 'Cinzel',Georgia,serif;letter-spacing:.14em;text-transform:uppercase;color:#e3c273;text-shadow:0 1px 6px #000;}
+@media (max-width:374px){.lxc-lx-t{display:none;}.lxc-guest{max-width:calc(100% - 150px);}}
 
 /* la lingua (in alto a destra) */
 .lxc-lang{position:absolute;z-index:2;top:calc(14px + var(--lxc-st));right:calc(16px + var(--lxc-se));display:flex;align-items:center;gap:6px;height:34px;margin:0;padding:0 11px;border:1px solid rgba(201,162,77,.55);border-radius:17px;
@@ -4176,7 +4243,8 @@ html.lux-rtl .lxc-full.lxc-art-wide .lxc-luxtify{right:auto;left:calc(76px + var
   .lxc-full .lxc-lang{top:calc(10px + var(--lxc-st));}
 }
 
-/* computer: l'albo appoggiato sul tavolo */
+/* computer: l'albo appoggiato sul tavolo (aperto, la copertina sta a sinistra e l'albo si
+   sposta per restare al centro) */
 .lxc-book{--lxc-st:0px;--lxc-sb:0px;--lxc-sl:0px;--lxc-se:0px;--lxc-bh:min(80vh,760px);--lxc-bw:calc(var(--lxc-bh) * 2 / 3);}
 .lxc-book .lxc-brand{display:flex;position:absolute;left:30px;top:26px;align-items:center;gap:12px;font:600 15px 'Cinzel',Georgia,serif;letter-spacing:.12em;color:#b8ac8e;text-transform:uppercase;transition:opacity .4s ease;}
 .lxc-book .lxc-brand img{width:34px;height:34px;}
@@ -4191,6 +4259,7 @@ html.lux-rtl .lxc-book.lxc-turned .lxc-bookwrap{transform:translateX(calc(var(--
 .lxc-book.lxc-turned.lxc-zoom .lxc-bookwrap{transform:translateX(calc(var(--lxc-bw) / 2)) scale(3.1);opacity:0;transition:transform .8s cubic-bezier(.6,0,.2,1),opacity .8s ease;}
 html.lux-rtl .lxc-book.lxc-turned.lxc-zoom .lxc-bookwrap{transform:translateX(calc(var(--lxc-bw) / -2)) scale(3.1);}
 .lxc-book .lxc-tilt{transform:rotateX(var(--lxc-rx,0deg)) rotateY(var(--lxc-ry,0deg));transition:transform .25s ease-out;}
+.lxc-book.lxc-carded .lxc-tilt{transform:translateY(6px) scale(.965);transition:transform .5s ease;}
 .lxc-book .lxc-pages{display:block;position:absolute;inset:0;background:#150c0d;overflow:hidden;box-shadow:3px 3px 0 #e9dfc6,6px 6px 0 #d8cba9,8px 9px 0 #c9b98f,14px 20px 40px rgba(0,0,0,.7);}
 html.lux-rtl .lxc-book .lxc-pages{box-shadow:-3px 3px 0 #e9dfc6,-6px 6px 0 #d8cba9,-8px 9px 0 #c9b98f,-14px 20px 40px rgba(0,0,0,.7);}
 .lxc-pages-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:sepia(.35) brightness(.5);}
@@ -4206,22 +4275,62 @@ html.lux-rtl .lxc-book .lxc-front{box-shadow:inset -7px 0 10px -5px rgba(0,0,0,.
 .lxc-book .lxc-lux{font-size:calc(var(--lxc-bw) * .098);}
 .lxc-book .lxc-medusa{font-size:12px;letter-spacing:.44em;margin-right:-.44em;}
 .lxc-book .lxc-stamp{right:18px;top:calc(var(--lxc-bw) * .31);}
-.lxc-book .lxc-blurb{left:20px;bottom:190px;max-width:min(250px,calc(100% - 130px));font-size:15px;}
+.lxc-book .lxc-blurb{left:20px;bottom:190px;max-width:min(260px,calc(100% - 130px));font-size:15px;}
 .lxc-book .lxc-blurb b{font-size:17px;}
 .lxc-book .lxc-barcode{right:20px;bottom:196px;}
 .lxc-book .lxc-actions{width:calc(100% - 40px);bottom:84px;}
 .lxc-book .lxc-guest{bottom:30px;}
 .lxc-book .lxc-luxtify{left:16px;bottom:35px;}
 html.lux-rtl .lxc-book .lxc-luxtify{left:auto;right:16px;}
-.lxc-book .lxc-corner{width:62px;height:62px;transition:width .25s ease,height .25s ease;animation-name:lxcCurlB;}
-.lxc-book .lxc-corner:hover{width:80px;height:80px;animation:none;}
-@keyframes lxcCurlB{0%,72%,100%{width:62px;height:62px}82%{width:76px;height:76px}}
+.lxc-book .lxc-corner{width:76px;height:76px;}
 .lxc-book .lxc-exlibris{left:30px;right:30px;font-size:14px;}
 @media (max-height:760px){.lxc-book .lxc-blurb,.lxc-book .lxc-barcode{display:none;}}
 
-/* chi ha chiesto meno movimento: niente giri né inclinazioni, solo dissolvenze */
+/* la «Tessera dell'Archivio»: la finestra di accesso aperta dalla copertina ne prende l'aspetto
+   (carta del risguardo, cornice d'oro, il sigillo in cima) ed entra girandosi come una tessera */
+#authModal .lxc-card-label{display:none;}
+html.lux-cover-on #authModal{--void:#0b0607;--void-2:#150c0d;--wine:#6e1423;--wine-deep:#4a0d18;--gold:#c9a24d;--gold-bright:#e3c273;--parchment:#ece2c6;--parchment-dim:#b8ac8e;--verdigris:#6fd3c4;--ember:#ff9466;--line:rgba(201,162,77,.34);
+  background:rgba(5,3,3,.64);}
+html.lux-cover-on #authModal .modal{max-width:400px;padding:92px 26px 26px;border:1px solid #c9a24d;border-radius:16px;color:#ece2c6;
+  background:radial-gradient(rgba(227,194,115,.12) 1.1px,transparent 1.6px) 0 0/22px 22px,radial-gradient(rgba(227,194,115,.055) 1.1px,transparent 1.6px) 11px 11px/22px 22px,linear-gradient(165deg,#2c0c14 0%,#1d0a0f 52%,#130608 100%);
+  box-shadow:0 30px 80px rgba(0,0,0,.75),inset 0 0 0 6px #180709,inset 0 0 0 7px rgba(201,162,77,.42);
+  transform-origin:50% 50%;animation:lxcCardIn .62s cubic-bezier(.2,.8,.25,1) both;}
+html.lux-rtl.lux-cover-on #authModal .modal{animation-name:lxcCardInR;}
+html.lux-cover-on #authModal .modal::before{content:"";position:absolute;left:50%;top:16px;width:62px;height:62px;margin-left:-31px;background:url(logo-lm-seal.webp) center/contain no-repeat;filter:drop-shadow(0 4px 10px rgba(0,0,0,.7));pointer-events:none;}
+html.lux-cover-on #authModal .lxc-card-label{display:block;margin:0 0 14px;padding-left:.3em;text-align:center;font:400 10px/1.3 'Space Mono',monospace;letter-spacing:.3em;text-transform:uppercase;color:#c9a24d;}
+html.lux-cover-on #authModal .modal h3{font:600 21px/1.25 'Cinzel',Georgia,serif;letter-spacing:.05em;color:#e3c273;text-align:center;margin:0 0 6px;}
+html.lux-cover-on #authModal .modal .sub{text-align:center;color:#6fd3c4;opacity:.85;margin-bottom:18px;}
+html.lux-cover-on #authModal .auth-lang{justify-content:center;margin:-6px 0 18px;}
+html.lux-cover-on #authModal .auth-lang select{background:rgba(11,6,7,.6);border-color:rgba(201,162,77,.4);border-radius:8px;}
+html.lux-cover-on #authModal .field label{color:#c9a24d;}
+html.lux-cover-on #authModal .field input{background:rgba(11,6,7,.5);border:0;border-bottom:1px solid rgba(201,162,77,.55);border-radius:6px 6px 0 0;padding:11px 10px;font-size:16px;color:#ece2c6;}
+html.lux-cover-on #authModal .field input:focus{outline:none;border-bottom-color:#e3c273;box-shadow:0 1px 0 #e3c273;background:rgba(11,6,7,.75);}
+html.lux-cover-on #authModal .modal-actions .btn{flex:1 1 0;min-height:46px;border-radius:12px;}
+html.lux-cover-on #authModal .btn-primary{background:#6e1423;border-color:#c9a24d;color:#f6ead0;box-shadow:0 6px 18px rgba(110,20,35,.45);}
+html.lux-cover-on #authModal .btn-primary:hover{background:#8a1a2c;border-color:#e3c273;color:#fff;}
+html.lux-cover-on #authModal .btn-ghost{border-color:rgba(201,162,77,.5);color:#e3c273;}
+html.lux-cover-on #authModal .btn-ghost:hover{background:rgba(201,162,77,.08);border-color:#e3c273;color:#f3d58b;}
+html.lux-cover-on #authModal .modal-close{top:10px;right:12px;width:40px;height:40px;font-size:24px;color:#e3c273;}
+html.lux-cover-on #authModal .modal-switch{color:#b8ac8e;}
+html.lux-cover-on #authModal .modal-switch button{color:#e3c273;}
+html.lux-cover-on #authModal .form-note{color:#b8ac8e;text-align:center;}
+html.lux-cover-on #authModal .form-error{color:#ff9466;}
+@keyframes lxcCardIn{0%{opacity:0;transform:perspective(1100px) rotateY(-78deg) scale(.94)}55%{opacity:1}100%{opacity:1;transform:none}}
+@keyframes lxcCardInR{0%{opacity:0;transform:perspective(1100px) rotateY(78deg) scale(.94)}55%{opacity:1}100%{opacity:1;transform:none}}
+@keyframes lxcCardFade{from{opacity:0}to{opacity:1}}
+
+/* telefoni con poca memoria, rete lenta o risparmio dati: niente braci e la copertina non pulsa
+   (la pagina che gira e il sigillo che si spezza restano) */
+.lxc-lite .lxc-embers{display:none;}
+.lxc-lite .lxc-glow,.lxc-lite .lxc-lux{animation:none;}
+
+/* chi ha chiesto meno movimento: la copertina è ferma (niente riflesso, braci, inclinazioni);
+   si apre con una dissolvenza e la tessera compare senza girarsi */
 @media (prefers-reduced-motion:reduce){
-  .lxc-seal::before,.lxc-corner{animation:none;}
+  .lxc-seal::before,.lxc-lux,.lxc-glow{animation:none;}
+  .lxc-glow{opacity:.55;}
+  .lxc-embers{display:none;}
   .lxc-book.lxc-enter .lxc-bookwrap{transform:none;}
-  .lxc-book .lxc-tilt{transform:none;}
+  .lxc-book .lxc-tilt,.lxc-book.lxc-carded .lxc-tilt{transform:none;}
+  html.lux-cover-on #authModal .modal,html.lux-rtl.lux-cover-on #authModal .modal{animation:lxcCardFade .25s ease both;}
 }
