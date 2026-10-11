@@ -3987,3 +3987,22 @@ html.lux-rtl .dossier-biography-text{margin-left:auto;} /* in arabo e panjabi il
 .dossier-bio-more:hover{background:rgba(201,162,77,.1);}
 .acn-char-bio-link{display:inline-block;margin-top:8px;font-family:'Crimson Pro',Georgia,serif;font-size:15px;font-weight:700;color:var(--gold-bright);text-decoration:none;}
 .acn-char-bio-link:hover{text-decoration:underline;text-underline-offset:2px;}
+/* =====================================================================
+   v233: TRADUZIONI IN AMMINISTRA
+   - La barra «Traduci le sinossi mancanti» è un riquadro: quante sinossi
+     mancano e in che lingue, a che punto è la traduzione, «Ferma», com'è
+     andata e quanta quota DeepL resta questo mese.
+   - Nella lista dei titoli, sotto il titolo: com'è andata la sua traduzione.
+   ===================================================================== */
+.admin-translate-bar{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;margin:0 0 12px;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:rgba(201,162,77,0.06);font-size:12.5px;line-height:1.5;color:var(--parchment);}
+.admin-translate-bar.hidden{display:none;}
+.admin-translate-bar [hidden]{display:none !important;}
+.admin-translate-bar #adminTranslateInfo{flex:1 1 280px;min-width:0;}
+.admin-translate-bar .btn{white-space:normal;}
+.admin-translate-result,.admin-translate-usage{flex:1 1 100%;min-width:0;font-size:12px;}
+.admin-translate-result{padding:7px 10px;border-radius:6px;background:rgba(63,107,87,0.14);border:1px solid rgba(63,107,87,0.35);}
+.admin-translate-result.is-error{background:rgba(212,98,47,0.1);border-color:rgba(212,98,47,0.45);color:var(--ember);}
+.admin-translate-usage{color:var(--parchment-dim);}
+.admin-row-note{font-size:11px;line-height:1.4;margin-top:3px;color:var(--verdigris);}
+.admin-row-note.is-error{color:var(--ember);}
+body.theme-light .admin-translate-bar{background:rgba(138,106,31,0.06);}
