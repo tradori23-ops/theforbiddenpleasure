@@ -83,7 +83,7 @@
   // hai visto live sul sito prima di caricare — questo file parte da una
   // copia salvata in sessione e potrebbe non riflettere bump fatti nel
   // frattempo direttamente su GitHub.
-  var V = "236";
+  var V = "237";
 
   // style.css iniettato qui (non più con un <link> scritto a mano in ogni
   // pagina) così la sua versione segue sempre la stessa V di app.js,
@@ -163,6 +163,7 @@
     heroImg.src = small ? "hero-bg-m.webp" : "hero-bg.webp";
   }
   function afterApp() {
+    document.documentElement.classList.remove("lux-cover-wait"); // v237: rete di sicurezza (app.js la toglie già da sé)
     lateFonts.forEach(function (l) { l.media = "all"; });
     lateFonts = [];
     startHero();
@@ -195,6 +196,27 @@
     document.querySelectorAll('.seal-img[data-size="lg"]').forEach(function (img) { if (!img.getAttribute("src")) img.src = "logo-lg.webp"; });
   }
   function reveal() { document.documentElement.classList.add("lux-ready"); }
+
+  // v237: chi non ha fatto l'accesso trova la copertina (la disegna app.js). Finché app.js
+  // non arriva, al posto della pagina c'è già lo sfondo della copertina: così la home non
+  // compare per un attimo prima di sparire sotto. Stesse regole di luxCoverWanted in app.js.
+  function luxCoverWait() {
+    try {
+      if (sessionStorage.getItem("lux_cover_ok")) return;
+      var s = JSON.parse(localStorage.getItem("lux_session") || "null");
+      if (s && s.access_token) return;
+    } catch (e) { return; }
+    if (navigator.onLine === false) return;
+    if (/bot|crawl|spider|slurp|headless|lighthouse|bingpreview|facebookexternalhit|embedly/i.test(navigator.userAgent || "")) return;
+    if (document.getElementById("luxtifySection") || document.getElementById("legalSection") || document.getElementById("statusSection")) return;
+    document.documentElement.classList.add("lux-cover-wait");
+    // l'immagine della copertina parte subito (non su 2G: lì ha la precedenza app.js)
+    if (NET !== "slow") {
+      var w = window.innerWidth, h = window.innerHeight;
+      var tall = (w >= 900 && h >= 680) || w < h * 1.3;
+      new Image().src = tall ? "entry-bg-mobile.webp" : "entry-bg-desktop.webp";
+    }
+  }
 
   // Home: le sezioni sotto la copertina d'apertura restano coperte (con un
   // segnaposto discreto) finché catalogo, novità ed eventi non sono arrivati;
@@ -318,6 +340,7 @@
     // Non blocchiamo comunque il caricamento di app.js: meglio una pagina
     // con qualche pezzo mancante che una pagina completamente morta.
   }
+  luxCoverWait();
   applyEarlyLang();
   applyEarlyTheme();
   setLogos();
