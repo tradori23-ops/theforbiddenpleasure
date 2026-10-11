@@ -260,13 +260,30 @@ self.addEventListener('fetch', function(event){
 });
 
 
-/* ============ NOTIFICHE PUSH ============ */
+/* ============ NOTIFICHE PUSH ============
+   v235: Safari (iPhone, iPad, Mac) vuole che OGNI notifica push si veda: se una
+   non compare, toglie il permesso al sito. Quindi, se le opzioni della notifica
+   danno errore, si riprova con una notifica semplice, e poi con una semplicissima.
+   Il numero sull'icona dell'app (iPhone/iPad con l'app installata, iOS 16.4+)
+   segue le notifiche non ancora aperte. */
+function luxBadgeFromShown(){
+  var nav = self.navigator;
+  if(!nav || !('setAppBadge' in nav)) return Promise.resolve();
+  return self.registration.getNotifications().then(function(list){
+    return list.length ? nav.setAppBadge(list.length) : nav.clearAppBadge();
+  }).catch(function(){});
+}
 self.addEventListener('push', function(event){
   var data = {};
-  try { data = event.data ? event.data.json() : {}; } catch(e){}
+  if(event.data){
+    try { data = event.data.json(); }
+    catch(e){ try { data = { body: event.data.text() }; } catch(e2){ data = {}; } }
+  }
+  if(!data || typeof data !== 'object') data = { body: data == null ? '' : String(data) };
   var title = data.title || 'LUX COMICS';
+  var body = data.body || '';
   var options = {
-    body: data.body || '',
+    body: body,
     icon: data.icon || './icon-192.png', // avatar di chi ha fatto l'azione, quando c'è
     badge: './icon-192.png', // resta sempre il sigillo del sito: è la sagoma piccola in alto, un avatar lì sarebbe illeggibile
     image: data.image || undefined, // copertina del titolo, quando la notifica lo riguarda
@@ -275,7 +292,20 @@ self.addEventListener('push', function(event){
     actions: Array.isArray(data.actions) ? data.actions : undefined,
     data: { url: data.url || './', actionUrls: data.actionUrls || null }
   };
-  event.waitUntil(self.registration.showNotification(title, options));
+  var simple = { body: body, icon: './icon-192.png', tag: data.tag || undefined, data: options.data };
+  event.waitUntil(
+    self.registration.showNotification(title, options)
+      .catch(function(){ return self.registration.showNotification(title, simple); })
+      .catch(function(){ return self.registration.showNotification('LUX COMICS', { body: body }); })
+      .then(function(){
+        var nav = self.navigator;
+        // se il server manda il numero giusto (data.badge) si usa quello, altrimenti le notifiche ancora da aprire
+        if(typeof data.badge === 'number' && nav && 'setAppBadge' in nav){
+          return (data.badge > 0 ? nav.setAppBadge(data.badge) : nav.clearAppBadge()).catch(function(){});
+        }
+        return luxBadgeFromShown();
+      })
+  );
 });
 
 self.addEventListener('notificationclick', function(event){
@@ -284,20 +314,23 @@ self.addEventListener('notificationclick', function(event){
   var url = ndata.url || './';
   // un pulsante dell'azione (es. "Rispondi") può avere un indirizzo diverso da quello di base
   if(event.action && ndata.actionUrls && ndata.actionUrls[event.action]) url = ndata.actionUrls[event.action];
+  var target = url;
+  try { target = new URL(url, self.registration.scope).href; } catch(e){}
   event.waitUntil(
     clients.matchAll({ type: 'window', includeUncontrolled: true }).then(function(list){
       for (var i = 0; i < list.length; i++){
         var client = list[i];
         if('focus' in client){
-          // una scheda già aperta va portata proprio al punto giusto, non solo messa a fuoco
-          // ferma com'era — è esattamente il difetto che si voleva correggere
-          if('navigate' in client){
-            return client.navigate(url).then(function(c){ return c ? c.focus() : client.focus(); }, function(){ return client.focus(); });
-          }
-          return client.focus();
+          // una scheda già aperta va portata proprio al punto giusto, non solo messa a fuoco.
+          // v235: Safari non sempre sa «navigate»: allora lo si chiede alla pagina stessa
+          var ask = function(c){ try { c.postMessage({ type: 'lux-open', url: target }); } catch(e){} return c; };
+          var go = ('navigate' in client)
+            ? client.navigate(target).then(function(c){ return c || ask(client); }, function(){ return ask(client); })
+            : Promise.resolve(ask(client));
+          return go.then(function(c){ return (c && c.focus ? c : client).focus(); }).catch(function(){ return client.focus(); });
         }
       }
-      if (clients.openWindow) return clients.openWindow(url);
-    })
+      if (clients.openWindow) return clients.openWindow(target);
+    }).catch(function(){}).then(luxBadgeFromShown)
   );
 });
