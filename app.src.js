@@ -907,6 +907,20 @@ Object.assign(STR.hi, {"auth.note": "अकाउंट से आपके प�
 Object.assign(STR.bn, {"auth.note": "অ্যাকাউন্ট থাকলে প্রিয় তালিকা আর পড়ার অগ্রগতি সব ডিভাইসে পাবেন, কমিউনিটিতে লিখতে পারবেন আর নোটিফিকেশন পাবেন।", "auth.errExists": "এই ইমেইলে আগেই একটি অ্যাকাউন্ট আছে: নতুন করে না খুলে লগ ইন করুন।", "auth.errWeak": "পাসওয়ার্ড খুব ছোট: অন্তত {n}টি অক্ষর ব্যবহার করুন।", "auth.errWeakRules": "পাসওয়ার্ড খুব দুর্বল বা খুব সাধারণ: অক্ষর, সংখ্যা আর চিহ্ন দিয়ে আরও লম্বা একটি বেছে নিন।", "auth.errEmail": "এই ইমেইলটি সঠিক মনে হচ্ছে না: একবার দেখে নিন।", "auth.errRate": "অল্প সময়ে অনেক বেশি চেষ্টা: কয়েক মিনিট পরে আবার চেষ্টা করুন।", "auth.errClosed": "এই মুহূর্তে নতুন সাইন আপ বন্ধ আছে।", "auth.errNotConfirmed": "আগে ইমেইল নিশ্চিত করুন: আমাদের পাঠানো বার্তাটি খুলুন (স্প্যাম ফোল্ডারেও দেখুন)।", "auth.errNetwork": "সংযোগ নেই: ইন্টারনেট দেখে আবার চেষ্টা করুন।", "auth.errGeneric": "হলো না: একটু পরে আবার চেষ্টা করুন।", "quiz.q1": "LUX COMICS & MEDUSA COMICS-এর প্রতিষ্ঠাতা কে?", "quiz.q2": "আর্কাইভে মোট কয়টি প্রধান সিরিজ আছে?", "quiz.q2.o": "দুটি|তিনটি|চারটি|পাঁচটি", "quiz.q3": "এই জগতে Lucifer-এর বোন কে?", "quiz.q4": "LUX সিরিজের গল্প কোন শহরে?", "quiz.q4.o": "লন্ডন|লস অ্যাঞ্জেলেস|এডিনবরা|নিউ ইয়র্ক", "quiz.q5": "Lucio-র বাসভবনের নাম কী?", "quiz.q6": "The Black Manor-এর গল্প কোন শহরে?", "quiz.q6.o": "এডিনবরা|লস অ্যাঞ্জেলেস|লন্ডন|প্যারিস"});
 Object.assign(STR.ar, {"auth.note": "مع الحساب تجد مفضّلتك وتقدّم قراءتك على كل أجهزتك، وتكتب في المجتمع وتتلقّى الإشعارات.", "auth.errExists": "يوجد حساب بهذا البريد بالفعل: سجّل الدخول بدلًا من إنشاء حساب جديد.", "auth.errWeak": "كلمة المرور قصيرة جدًا: استخدم {n} أحرف على الأقل.", "auth.errWeakRules": "كلمة المرور ضعيفة أو شائعة جدًا: اختر كلمة أطول تضم حروفًا وأرقامًا ورموزًا.", "auth.errEmail": "يبدو أن هذا البريد غير صالح: تحقّق منه.", "auth.errRate": "محاولات كثيرة في وقت قصير: أعد المحاولة بعد بضع دقائق.", "auth.errClosed": "التسجيل الجديد مغلق حاليًا.", "auth.errNotConfirmed": "أكّد بريدك الإلكتروني أولًا: افتح الرسالة التي أرسلناها إليك (وتحقّق من مجلد البريد العشوائي أيضًا).", "auth.errNetwork": "لا يوجد اتصال: تحقّق من الإنترنت وأعد المحاولة.", "auth.errGeneric": "لم ينجح ذلك: أعد المحاولة بعد قليل.", "quiz.q1": "من هو مؤسس LUX COMICS & MEDUSA COMICS؟", "quiz.q2": "كم سلسلة رئيسية يتكوّن منها الأرشيف؟", "quiz.q2.o": "اثنتان|ثلاث|أربع|خمس", "quiz.q3": "من هي أخت Lucifer في هذا العالم؟", "quiz.q4": "في أي مدينة تدور أحداث سلسلة LUX؟", "quiz.q4.o": "لندن|لوس أنجلوس|إدنبرة|نيويورك", "quiz.q5": "ما اسم مسكن Lucio؟", "quiz.q6": "في أي مدينة تدور أحداث The Black Manor؟", "quiz.q6.o": "إدنبرة|لوس أنجلوس|لندن|باريس"});
 Object.assign(STR.pnb, {"auth.note": "اکاؤنٹ نال تہاڈے پسندیدہ تے پڑھائی ہر ڈیوائس تے ملدی اے، تسیں کمیونٹی وچ لکھ سکدے او تے نوٹیفکیشن لے سکدے او۔", "auth.errExists": "ایس ای میل نال پہلاں ای اک اکاؤنٹ اے: رجسٹر ہون دی تھاں لاگ ان کرو۔", "auth.errWeak": "پاس ورڈ بہت چھوٹا اے: گھٹو گھٹ {n} اکھر ورتو۔", "auth.errWeakRules": "پاس ورڈ بہت کمزور یا بہت عام اے: اکھراں، نمبراں تے نشاناں والا لما پاس ورڈ چُنو۔", "auth.errEmail": "ایہ ای میل ٹھیک نئیں لگدی: اک وار ویکھ لو۔", "auth.errRate": "تھوڑے ویلے وچ بہت زیادہ کوششاں: کجھ منٹاں بعد فیر کوشش کرو۔", "auth.errClosed": "ایس ویلے نویں رجسٹریشن بند اے۔", "auth.errNotConfirmed": "پہلاں اپنی ای میل دی تصدیق کرو: اساں جیہڑا سنیہا بھیجیا اے اوہ کھولو (سپیم وچ وی ویکھو)۔", "auth.errNetwork": "کنکشن نئیں: انٹرنیٹ ویکھو تے فیر کوشش کرو۔", "auth.errGeneric": "ایہ نئیں ہو سکیا: تھوڑی دیر بعد فیر کوشش کرو۔", "quiz.q1": "LUX COMICS & MEDUSA COMICS دا بانی کون اے؟", "quiz.q2": "آرکائیو وچ کنیاں وڈیاں سیریز نیں؟", "quiz.q2.o": "دو|تن|چار|پنج", "quiz.q3": "ایس دنیا وچ Lucifer دی بھین کون اے؟", "quiz.q4": "LUX سیریز کس شہر وچ ہوندی اے؟", "quiz.q4.o": "لندن|لاس اینجلس|ایڈنبرا|نیو یارک", "quiz.q5": "Lucio دے گھر دا ناں کی اے؟", "quiz.q6": "The Black Manor کس شہر وچ ہوندی اے؟", "quiz.q6.o": "ایڈنبرا|لاس اینجلس|لندن|پیرس"});
+// v237: la copertina
+Object.assign(STR.it, {"lxcover.issue": "N° {n}", "lxcover.stamp": "Edizione riservata", "lxcover.inIssue": "In questo numero", "lxcover.signup": "Crea account", "lxcover.guest": "Sfoglia senza account", "lxcover.sealTap": "Tocca il sigillo", "lxcover.sealClick": "Clicca il sigillo", "lxcover.sealAria": "Rompi il sigillo: accedi all'Archivio", "lxcover.drag": "Oppure trascina l'angolo e sfoglia come ospite", "lxcover.luxtify": "Luxtify: musica, playlist e podcast", "lxcover.open": "L'Archivio è aperto", "lxcover.hello": "Ciao {name}: l'Archivio è aperto", "lxcover.guestToast": "Stai sfogliando come ospite: accedi quando vuoi", "lxcover.aria": "Copertina del sito: accedi o sfoglia"});
+Object.assign(STR.en, {"lxcover.issue": "No. {n}", "lxcover.stamp": "Restricted edition", "lxcover.inIssue": "In this issue", "lxcover.signup": "Create account", "lxcover.guest": "Browse without an account", "lxcover.sealTap": "Tap the seal", "lxcover.sealClick": "Click the seal", "lxcover.sealAria": "Break the seal: sign in to the Archive", "lxcover.drag": "Or drag the corner to browse as a guest", "lxcover.luxtify": "Luxtify: music, playlists and podcasts", "lxcover.open": "The Archive is open", "lxcover.hello": "Hi {name}: the Archive is open", "lxcover.guestToast": "You're browsing as a guest: sign in whenever you like", "lxcover.aria": "Site cover: sign in or browse"});
+Object.assign(STR.es, {"lxcover.issue": "N.º {n}", "lxcover.stamp": "Edición restringida", "lxcover.inIssue": "En este número", "lxcover.signup": "Crear cuenta", "lxcover.guest": "Explorar sin cuenta", "lxcover.sealTap": "Toca el sello", "lxcover.sealClick": "Haz clic en el sello", "lxcover.sealAria": "Rompe el sello: accede al Archivo", "lxcover.drag": "O arrastra la esquina para explorar como invitado", "lxcover.luxtify": "Luxtify: música, listas y pódcasts", "lxcover.open": "El Archivo está abierto", "lxcover.hello": "Hola, {name}: el Archivo está abierto", "lxcover.guestToast": "Estás explorando como invitado: accede cuando quieras", "lxcover.aria": "Portada del sitio: accede o explora"});
+Object.assign(STR.fr, {"lxcover.issue": "N° {n}", "lxcover.stamp": "Édition réservée", "lxcover.inIssue": "Dans ce numéro", "lxcover.signup": "Créer un compte", "lxcover.guest": "Feuilleter sans compte", "lxcover.sealTap": "Touchez le sceau", "lxcover.sealClick": "Cliquez sur le sceau", "lxcover.sealAria": "Brisez le sceau : connectez-vous à l'Archive", "lxcover.drag": "Ou faites glisser le coin pour feuilleter en invité", "lxcover.luxtify": "Luxtify : musique, playlists et podcasts", "lxcover.open": "L'Archive est ouverte", "lxcover.hello": "Bonjour {name} : l'Archive est ouverte", "lxcover.guestToast": "Vous feuilletez en invité : connectez-vous quand vous voulez", "lxcover.aria": "Couverture du site : connectez-vous ou feuilletez"});
+Object.assign(STR.de, {"lxcover.issue": "Nr. {n}", "lxcover.stamp": "Exklusive Ausgabe", "lxcover.inIssue": "In dieser Ausgabe", "lxcover.signup": "Konto erstellen", "lxcover.guest": "Ohne Konto stöbern", "lxcover.sealTap": "Tippe auf das Siegel", "lxcover.sealClick": "Klicke auf das Siegel", "lxcover.sealAria": "Brich das Siegel: Im Archiv anmelden", "lxcover.drag": "Oder zieh an der Ecke und stöbere als Gast", "lxcover.luxtify": "Luxtify: Musik, Playlists und Podcasts", "lxcover.open": "Das Archiv ist offen", "lxcover.hello": "Hallo {name}: Das Archiv ist offen", "lxcover.guestToast": "Du stöberst als Gast: Melde dich an, wann du willst", "lxcover.aria": "Titelseite: anmelden oder stöbern"});
+Object.assign(STR.pt, {"lxcover.issue": "N.º {n}", "lxcover.stamp": "Edição restrita", "lxcover.inIssue": "Nesta edição", "lxcover.signup": "Criar conta", "lxcover.guest": "Folhear sem conta", "lxcover.sealTap": "Toque no selo", "lxcover.sealClick": "Clique no selo", "lxcover.sealAria": "Quebre o selo: entre no Acervo", "lxcover.drag": "Ou arraste o canto para folhear como visitante", "lxcover.luxtify": "Luxtify: música, playlists e podcasts", "lxcover.open": "O Acervo está aberto", "lxcover.hello": "Olá, {name}: o Acervo está aberto", "lxcover.guestToast": "Você está folheando como visitante: entre quando quiser", "lxcover.aria": "Capa do site: entre ou folheie"});
+Object.assign(STR.ru, {"lxcover.issue": "№ {n}", "lxcover.stamp": "Закрытое издание", "lxcover.inIssue": "В этом выпуске", "lxcover.signup": "Создать аккаунт", "lxcover.guest": "Смотреть без аккаунта", "lxcover.sealTap": "Коснитесь печати", "lxcover.sealClick": "Нажмите на печать", "lxcover.sealAria": "Сломайте печать: вход в архив", "lxcover.drag": "Или потяните за уголок, чтобы смотреть как гость", "lxcover.luxtify": "Luxtify: музыка, плейлисты и подкасты", "lxcover.open": "Архив открыт", "lxcover.hello": "Привет, {name}: архив открыт", "lxcover.guestToast": "Вы смотрите как гость: войти можно в любой момент", "lxcover.aria": "Обложка сайта: войдите или просто смотрите"});
+Object.assign(STR.zh, {"lxcover.issue": "第 {n} 期", "lxcover.stamp": "限定版", "lxcover.inIssue": "本期内容", "lxcover.signup": "创建账号", "lxcover.guest": "不登录，先随便看看", "lxcover.sealTap": "轻点印章", "lxcover.sealClick": "点击印章", "lxcover.sealAria": "打破印章：登录档案库", "lxcover.drag": "或拖动右下角，以访客身份浏览", "lxcover.luxtify": "Luxtify：音乐、歌单和播客", "lxcover.open": "档案库已开启", "lxcover.hello": "{name}，你好：档案库已开启", "lxcover.guestToast": "你正在以访客身份浏览，随时可以登录", "lxcover.aria": "网站封面：登录或随便看看"});
+Object.assign(STR.ja, {"lxcover.issue": "第{n}号", "lxcover.stamp": "限定 エディション", "lxcover.inIssue": "今号の内容", "lxcover.signup": "アカウント作成", "lxcover.guest": "アカウントなしで見る", "lxcover.sealTap": "封印をタップ", "lxcover.sealClick": "封印をクリック", "lxcover.sealAria": "封印を解いてアーカイブにログイン", "lxcover.drag": "または角をドラッグして、ゲストとして見る", "lxcover.luxtify": "Luxtify：音楽・プレイリスト・ポッドキャスト", "lxcover.open": "アーカイブが開きました", "lxcover.hello": "{name}さん、アーカイブが開きました", "lxcover.guestToast": "ゲストとして閲覧中です。いつでもログインできます", "lxcover.aria": "サイトの表紙：ログインまたは閲覧"});
+Object.assign(STR.hi, {"lxcover.issue": "अंक {n}", "lxcover.stamp": "सीमित संस्करण", "lxcover.inIssue": "इस अंक में", "lxcover.signup": "अकाउंट बनाएँ", "lxcover.guest": "बिना अकाउंट देखें", "lxcover.sealTap": "मुहर पर टैप करें", "lxcover.sealClick": "मुहर पर क्लिक करें", "lxcover.sealAria": "मुहर तोड़ें: आर्काइव में लॉग इन करें", "lxcover.drag": "या कोना खींचकर मेहमान की तरह देखें", "lxcover.luxtify": "Luxtify: संगीत, प्लेलिस्ट और पॉडकास्ट", "lxcover.open": "आर्काइव खुल गया है", "lxcover.hello": "नमस्ते {name}: आर्काइव खुल गया है", "lxcover.guestToast": "आप मेहमान के रूप में देख रहे हैं: जब चाहें लॉग इन करें", "lxcover.aria": "साइट का कवर: लॉग इन करें या देखें"});
+Object.assign(STR.bn, {"lxcover.issue": "সংখ্যা {n}", "lxcover.stamp": "সংরক্ষিত সংস্করণ", "lxcover.inIssue": "এই সংখ্যায়", "lxcover.signup": "অ্যাকাউন্ট খুলুন", "lxcover.guest": "অ্যাকাউন্ট ছাড়াই দেখুন", "lxcover.sealTap": "সিলমোহরে ট্যাপ করুন", "lxcover.sealClick": "সিলমোহরে ক্লিক করুন", "lxcover.sealAria": "সিলমোহর ভাঙুন: আর্কাইভে লগ ইন করুন", "lxcover.drag": "অথবা কোণটা টেনে অতিথি হিসেবে দেখুন", "lxcover.luxtify": "Luxtify: গান, প্লেলিস্ট আর পডকাস্ট", "lxcover.open": "আর্কাইভ খুলে গেছে", "lxcover.hello": "হ্যালো {name}: আর্কাইভ খুলে গেছে", "lxcover.guestToast": "আপনি অতিথি হিসেবে দেখছেন: যখন খুশি লগ ইন করুন", "lxcover.aria": "সাইটের প্রচ্ছদ: লগ ইন করুন বা ঘুরে দেখুন"});
+Object.assign(STR.ar, {"lxcover.issue": "العدد {n}", "lxcover.stamp": "إصدار مقيَّد", "lxcover.inIssue": "في هذا العدد", "lxcover.signup": "إنشاء حساب", "lxcover.guest": "تصفّح بدون حساب", "lxcover.sealTap": "المس الختم", "lxcover.sealClick": "انقر على الختم", "lxcover.sealAria": "اكسر الختم: سجّل الدخول إلى الأرشيف", "lxcover.drag": "أو اسحب الزاوية لتتصفّح كزائر", "lxcover.luxtify": "Luxtify: موسيقى وقوائم تشغيل وبودكاست", "lxcover.open": "الأرشيف مفتوح", "lxcover.hello": "مرحبًا {name}: الأرشيف مفتوح", "lxcover.guestToast": "أنت تتصفّح كزائر: سجّل الدخول متى شئت", "lxcover.aria": "غلاف الموقع: سجّل الدخول أو تصفّح"});
+Object.assign(STR.pnb, {"lxcover.issue": "شمارہ {n}", "lxcover.stamp": "مخصوص ایڈیشن", "lxcover.inIssue": "ایس شمارے وچ", "lxcover.signup": "اکاؤنٹ بناؤ", "lxcover.guest": "اکاؤنٹ بغیر ویکھو", "lxcover.sealTap": "مہر تے ٹیپ کرو", "lxcover.sealClick": "مہر تے کلک کرو", "lxcover.sealAria": "مہر توڑو: آرکائیو وچ لاگ ان کرو", "lxcover.drag": "یا کونا کھچ کے مہمان وانگوں ویکھو", "lxcover.luxtify": "Luxtify: موسیقی، پلے لسٹاں تے پوڈکاسٹ", "lxcover.open": "آرکائیو کھل گیا اے", "lxcover.hello": "سلام {name}: آرکائیو کھل گیا اے", "lxcover.guestToast": "تسیں مہمان وانگوں ویکھ رہے او: جدوں چاہو لاگ ان کرو", "lxcover.aria": "سائٹ دا کور: لاگ ان کرو یا ویکھو"});
 var CHAR_META = {
   Lucifer:{role:{it:"Il Portatore di Luce",en:"The Light-Bearer",es:"El Portador de Luz",fr:"Le Porteur de Lumière",de:"Der Lichtträger"},
     bio:{it:"Sovrano della collana ammiraglia: potere, caduta e desiderio raccontati su grande scala.",
@@ -1000,6 +1014,7 @@ function setLang(lang){
     try { openTitleModal(readerItem); } finally { titleModalRelang = false; }
   }
   try { luxAuthRelang(); } catch(e){} // v236: la finestra «Accedi / Registrati» nella lingua nuova
+  try { luxCoverRelang(); } catch(e){} // v237: la copertina nella lingua nuova
 }
 var titleModalRelang = false; // v227: la scheda si rifà per la lingua, non è una nuova apertura
 
@@ -1052,6 +1067,432 @@ function showEntryModeGate(){
     closeGate('offline');
   });
 }
+
+/* ============ v237: LA COPERTINA ============
+   Chi non ha fatto l'accesso trova il sito chiuso come un fumetto: la copertina con
+   l'arte della schermata d'ingresso e il sigillo LM. Si entra in tre modi:
+   - il sigillo, «Accedi» o «Crea account»: si apre la finestra di accesso; appena dentro
+     il sigillo si spacca con un lampo d'oro e la copertina gira come la pagina di un albo;
+   - «Sfoglia senza account»: la stessa apertura, da ospite;
+   - trascinando l'angolo in basso, come si sfoglia una pagina vera (da ospite).
+   Telefono e tablet: la copertina riempie lo schermo (girato in orizzontale: testata,
+   sigillo e pulsanti stanno su tre colonne). Computer: l'albo è appoggiato sul tavolo,
+   si inclina seguendo il mouse e, aperto, si avvicina fino a diventare il sito.
+   Uscendo dall'account la copertina si richiude sopra il sito, con il timbro del sigillo.
+   Torna a ogni visita: finché il browser o l'app restano aperti si passa una volta sola.
+   Non c'è per i motori di ricerca, su Luxtify, sulle pagine legali e sullo Stato del sito,
+   né senza rete (lì resta la scelta «versione offline»). In arabo e panjabi (da destra a
+   sinistra) l'albo si apre dall'altro lato, come i libri in quelle lingue. */
+var LUX_COVER_ART = {
+  // dove sta il sigillo nell'immagine: centro (ex, ey) e raggio (er) in proporzione
+  tall: { src: 'entry-bg-mobile.webp', w: 887, h: 1774, ex: .5, ey: .265, er: .276 },
+  wide: { src: 'entry-bg-desktop.webp', w: 1672, h: 941, ex: .5, ey: .266, er: .173 }
+};
+var luxCoverEl = null;        // la copertina, finché è sullo schermo
+var luxCoverInertList = [];   // le parti del sito rese «inerti» sotto la copertina
+var luxCoverTimers = [];
+var luxCoverScrollY = 0;
+var luxCoverResizeT = 0;
+
+function luxCoverBot(){ return /bot|crawl|spider|slurp|headless|lighthouse|bingpreview|facebookexternalhit|embedly/i.test(navigator.userAgent || ''); }
+function luxCoverSkipPage(){
+  return !!(document.getElementById('luxtifySection') || document.getElementById('legalSection') || document.getElementById('statusSection'));
+}
+function luxCoverWanted(){
+  if(isSignedIn() || luxCoverSkipPage() || luxCoverBot()) return false;
+  if(navigator.onLine === false) return false; // senza rete: la scelta «versione offline» (showEntryModeGate)
+  try { if(sessionStorage.getItem('lux_cover_ok')) return false; } catch(e){}
+  return true;
+}
+// computer (finestra abbastanza grande): l'albo sul tavolo; altrimenti a schermo intero
+function luxCoverMode(){ return (window.innerWidth >= 900 && window.innerHeight >= 680) ? 'book' : 'full'; }
+function luxCoverArtKey(mode){ return (mode === 'book' || window.innerWidth < window.innerHeight * 1.3) ? 'tall' : 'wide'; }
+function luxCoverReduced(){ try { return window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch(e){ return false; } }
+function luxCoverLater(ms, fn){ luxCoverTimers.push(setTimeout(fn, ms)); }
+function luxCoverClearTimers(){ luxCoverTimers.forEach(function(id){ clearTimeout(id); }); luxCoverTimers = []; }
+
+// all'avvio, al posto della scelta online/offline (e se all'avvio la sessione risulta scaduta)
+function luxCoverMaybeShow(){
+  var shown = false;
+  try {
+    if(!luxCoverEl && luxCoverWanted() && !document.getElementById('entryModeGate')){
+      luxCoverShow('enter');
+      shown = true;
+    }
+  } catch(e){ console.warn('[copertina]', e); }
+  if(!shown && !luxCoverEl) document.documentElement.classList.remove('lux-cover-wait');
+  if(!shown && isSignedIn()) luxCoverPrefetch();
+  return shown || !!luxCoverEl;
+}
+// chi ha fatto l'accesso: l'immagine della copertina si scarica con calma, così uscendo
+// dall'account la copertina si richiude già disegnata (non su 2G né con il risparmio dati)
+var luxCoverPrefetched = false;
+function luxCoverPrefetch(){
+  if(luxCoverPrefetched || window.LUX_NET === 'slow') return;
+  try { if(navigator.connection && navigator.connection.saveData) return; } catch(e){}
+  luxCoverPrefetched = true;
+  setTimeout(function(){ new Image().src = LUX_COVER_ART[luxCoverArtKey(luxCoverMode())].src; }, 6000);
+}
+
+function luxCoverBuild(){
+  var mode = luxCoverMode(), artKey = luxCoverArtKey(mode), art = LUX_COVER_ART[artKey];
+  var paper = window.innerWidth <= 700 ? 'hero-bg-m.webp' : 'hero-bg.webp';
+  var el = document.createElement('div');
+  el.id = 'luxCover';
+  el.className = 'lux-cover lxc-' + mode + ' lxc-art-' + artKey;
+  el.setAttribute('role', 'dialog');
+  el.setAttribute('aria-modal', 'true');
+  el.tabIndex = -1;
+  el._mode = mode;
+  el._art = artKey;
+  el.innerHTML =
+    '<div class="lxc-table" aria-hidden="true"></div>' +
+    '<div class="lxc-brand" aria-hidden="true"><img src="logo-sm.webp" alt=""><span>LUX COMICS · MEDUSA COMICS</span></div>' +
+    '<label class="lxc-lang"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM3 12h18M12 3c2.5 2.5 3.5 5.5 3.5 9s-1 6.5-3.5 9c-2.5-2.5-3.5-5.5-3.5-9s1-6.5 3.5-9z"/></svg><span class="lxc-lang-code"></span><select id="luxCoverLang"></select></label>' +
+    '<div class="lxc-bookwrap"><div class="lxc-tilt">' +
+      '<div class="lxc-pages" aria-hidden="true"><img class="lxc-pages-bg" src="' + paper + '" alt=""><img class="lxc-pages-logo" src="logo-lg.webp" alt=""><p class="lxc-pages-txt"></p></div>' +
+      '<div class="lxc-sheet">' +
+        '<div class="lxc-face lxc-front">' +
+          '<img class="lxc-art" src="' + art.src + '" alt="" decoding="async">' +
+          '<div class="lxc-veil-top"></div><div class="lxc-veil-bottom"></div>' +
+          '<div class="lxc-mast"><div class="lxc-issue"><span class="lxc-issue-n"></span><span class="lxc-issue-m"></span></div>' +
+            '<div class="lxc-lux">LUX COMICS</div><div class="lxc-medusa">&amp; MEDUSA COMICS</div></div>' +
+          '<div class="lxc-stamp" aria-hidden="true"></div>' +
+          '<div class="lxc-burst" aria-hidden="true"></div><div class="lxc-crack" aria-hidden="true"></div>' +
+          '<button type="button" class="lxc-seal" data-lxc="seal"></button>' +
+          '<div class="lxc-seal-label" aria-hidden="true"></div>' +
+          '<div class="lxc-blurb hidden"><small></small><b></b><span></span></div>' +
+          '<div class="lxc-barcode" aria-hidden="true"><div class="lxc-bars"></div><span>noxmorningstar.com</span></div>' +
+          '<div class="lxc-actions"><button type="button" class="lxc-btn lxc-primary" data-lxc="login"></button><button type="button" class="lxc-btn lxc-ghost" data-lxc="register"></button></div>' +
+          '<button type="button" class="lxc-guest" data-lxc="guest"></button>' +
+          '<a class="lxc-luxtify" href="luxtify.html" data-lxc="luxtify"><span aria-hidden="true">💿</span><span class="lxc-lx-t">Luxtify</span></a>' +
+          '<div class="lxc-corner" aria-hidden="true"></div>' +
+        '</div>' +
+        '<div class="lxc-face lxc-back" aria-hidden="true"><img class="lxc-backseal" src="logo-lg.webp" alt=""><div class="lxc-exlibris"></div></div>' +
+      '</div>' +
+    '</div></div>' +
+    '<p class="lxc-hint" aria-hidden="true"></p>';
+
+  var img = el.querySelector('.lxc-art');
+  var ready = function(){ img.classList.add('is-ready'); };
+  if(img.complete && img.naturalWidth) ready();
+  else { img.addEventListener('load', ready); img.addEventListener('error', ready); }
+
+  // la lingua: come il selettore principale (così si aggiornano anche quello di lato e quello in «Tu»)
+  var sel = el.querySelector('#luxCoverLang');
+  LUX_LANGS.forEach(function(l){ sel.appendChild(new Option(l.name, l.code)); });
+  sel.addEventListener('change', function(){
+    var main = document.getElementById('langSelect');
+    if(main){ main.value = sel.value; main.dispatchEvent(new Event('change', { bubbles: true })); }
+    else setLang(sel.value);
+  });
+
+  el.addEventListener('click', function(e){
+    var b = e.target.closest ? e.target.closest('[data-lxc]') : null;
+    if(!b || el !== luxCoverEl || el._opening) return;
+    var act = b.getAttribute('data-lxc');
+    if(act === 'luxtify'){ try { sessionStorage.setItem('lux_cover_ok', '1'); } catch(err){} return; } // il link porta a Luxtify
+    if(act === 'guest'){ luxCoverOpen(true, false); return; }
+    el._ret = act === 'register' ? 'register' : 'login';
+    openAuth(el._ret);
+  });
+
+  // l'angolo in basso: si trascina come una pagina vera (oltre metà strada si apre, da ospite)
+  var corner = el.querySelector('.lxc-corner'), sheet = el.querySelector('.lxc-sheet'), drag = null;
+  function dragEnd(open){
+    if(!drag) return;
+    drag = null;
+    el.classList.remove('lxc-dragging');
+    if(open) luxCoverOpen(true, true);
+    else sheet.style.transform = '';
+  }
+  corner.addEventListener('pointerdown', function(e){
+    if(el._opening || (e.pointerType === 'mouse' && e.button !== 0)) return;
+    drag = { x: e.clientX, id: e.pointerId, a: 0 };
+    try { corner.setPointerCapture(e.pointerId); } catch(err){}
+    el.classList.add('lxc-dragging');
+    luxCoverTilt(el, null);
+    e.preventDefault();
+  });
+  corner.addEventListener('pointermove', function(e){
+    if(!drag || e.pointerId !== drag.id) return;
+    var w = sheet.offsetWidth || window.innerWidth;
+    var a = (e.clientX - drag.x) / w * 210;
+    a = luxIsRtl() ? Math.max(0, Math.min(175, a)) : Math.max(-175, Math.min(0, a));
+    drag.a = a;
+    sheet.style.transform = 'rotateY(' + a.toFixed(1) + 'deg)';
+  });
+  corner.addEventListener('pointerup', function(e){ if(drag && e.pointerId === drag.id) dragEnd(Math.abs(drag.a) > 65); });
+  corner.addEventListener('pointercancel', function(){ dragEnd(false); });
+  corner.addEventListener('lostpointercapture', function(){ if(drag) dragEnd(Math.abs(drag.a) > 65); });
+
+  // computer: l'albo si inclina un poco seguendo il mouse
+  var wrap = el.querySelector('.lxc-bookwrap');
+  wrap.addEventListener('pointermove', function(e){
+    if(el._mode !== 'book' || e.pointerType !== 'mouse' || drag || el._opening || luxCoverReduced()) return;
+    var r = wrap.getBoundingClientRect();
+    if(!r.width || !r.height) return;
+    luxCoverTilt(el, { x: (e.clientX - r.left) / r.width - .5, y: (e.clientY - r.top) / r.height - .5 });
+  });
+  wrap.addEventListener('pointerleave', function(){ luxCoverTilt(el, null); });
+  return el;
+}
+function luxCoverTilt(el, p){
+  var tilt = el && el.querySelector('.lxc-tilt');
+  if(!tilt) return;
+  if(!p){ tilt.style.removeProperty('--lxc-rx'); tilt.style.removeProperty('--lxc-ry'); return; }
+  tilt.style.setProperty('--lxc-ry', (p.x * 10).toFixed(2) + 'deg');
+  tilt.style.setProperty('--lxc-rx', (-p.y * 8).toFixed(2) + 'deg');
+}
+
+// i testi nella lingua scelta (anche quando si cambia lingua con la copertina aperta)
+function luxCoverTexts(){
+  var el = luxCoverEl;
+  if(!el) return;
+  var q = function(s){ return el.querySelector(s); };
+  el.setAttribute('aria-label', t('lxcover.aria'));
+  var v = String(window.LUX_VERSION || '');
+  q('.lxc-issue-n').textContent = v ? t('lxcover.issue').replace('{n}', v) : '';
+  var month = '';
+  try { month = new Date().toLocaleDateString(luxLocale(), { month: 'long', year: 'numeric' }); }
+  catch(e){ try { month = new Date().toLocaleDateString(undefined, { month: 'long', year: 'numeric' }); } catch(e2){} }
+  q('.lxc-issue-m').textContent = month;
+  q('.lxc-stamp').textContent = t('lxcover.stamp');
+  var coarse = false;
+  try { coarse = window.matchMedia('(pointer: coarse)').matches; } catch(e){}
+  q('.lxc-seal-label').textContent = t(coarse ? 'lxcover.sealTap' : 'lxcover.sealClick');
+  q('.lxc-seal').setAttribute('aria-label', t('lxcover.sealAria'));
+  q('[data-lxc="login"]').textContent = t('nav.login');
+  q('[data-lxc="register"]').textContent = t('lxcover.signup');
+  q('[data-lxc="guest"]').textContent = t('lxcover.guest');
+  var lx = q('[data-lxc="luxtify"]');
+  lx.setAttribute('aria-label', t('lxcover.luxtify'));
+  lx.title = t('lxcover.luxtify');
+  q('.lxc-hint').textContent = t('lxcover.drag');
+  q('.lxc-pages-txt').textContent = t('lxcover.open');
+  q('.lxc-exlibris').textContent = 'Ex libris · ' + t('hero.title1') + ' ' + t('hero.title2');
+  var sel = q('#luxCoverLang');
+  sel.value = currentLang;
+  sel.setAttribute('aria-label', t('apptu.lang'));
+  q('.lxc-lang-code').textContent = currentLang.toUpperCase();
+  luxCoverBlurb();
+  luxCoverPlaceSeal();
+}
+// «In questo numero»: l'ultima uscita per tutti (mai un 18+), solo con il catalogo vero
+function luxCoverBlurb(){
+  var el = luxCoverEl;
+  if(!el) return;
+  var box = el.querySelector('.lxc-blurb'), item = null;
+  try {
+    if(catalogFreshLoaded){
+      getCatalog().forEach(function(x){
+        if(!x || x.mature || !x.title || /^c\d+$/.test(String(x.id || '')) || !characterVisible(x)) return; // (c1…c10: i titoli d'esempio)
+        if(!item || String(x.date || '') > String(item.date || '')) item = x;
+      });
+    }
+  } catch(e){ item = null; }
+  if(!item){ box.classList.add('hidden'); return; }
+  box.querySelector('small').textContent = t('lxcover.inIssue');
+  box.querySelector('b').textContent = item.title;
+  box.querySelector('span').textContent = [item.character === 'Collaboratori' ? '' : item.character, item.issue].filter(Boolean).join(' · ');
+  box.classList.remove('hidden');
+}
+// il pulsante del sigillo va sopra il sigillo disegnato nell'immagine (che si adatta allo schermo)
+function luxCoverPlaceSeal(){
+  var el = luxCoverEl;
+  if(!el) return;
+  var front = el.querySelector('.lxc-front');
+  var W = front.offsetWidth, H = front.offsetHeight;
+  if(!W || !H) return;
+  var A = LUX_COVER_ART[el._art];
+  var s = Math.max(W / A.w, H / A.h); // come object-fit: cover, appoggiata in alto (vedi .lxc-art)
+  var sx = (W - A.w * s) / 2 + A.ex * A.w * s, sy = A.ey * A.h * s, sr = A.er * A.w * s;
+  front.style.setProperty('--lxc-sx', sx.toFixed(1) + 'px');
+  front.style.setProperty('--lxc-sy', sy.toFixed(1) + 'px');
+  front.style.setProperty('--lxc-sr', sr.toFixed(1) + 'px');
+  // schermi bassi: si toglie quello che finirebbe sopra il sigillo o sotto i pulsanti
+  el.classList.remove('lxc-noblurb', 'lxc-nolabel');
+  if(el._art !== 'tall') return;
+  var label = front.querySelector('.lxc-seal-label'), actions = front.querySelector('.lxc-actions');
+  var blurb = front.querySelector('.lxc-blurb'), barcode = front.querySelector('.lxc-barcode');
+  var labelBottom = sy + sr + 10 + (label.offsetHeight || 26);
+  var lowTop = Infinity;
+  [blurb, barcode].forEach(function(x){ if(x.offsetParent) lowTop = Math.min(lowTop, x.offsetTop); });
+  if(labelBottom + 8 > lowTop) el.classList.add('lxc-noblurb');
+  if(labelBottom + 8 > actions.offsetTop) el.classList.add('lxc-nolabel');
+}
+
+// sotto la copertina il sito non si raggiunge (né col tasto Tab né coi lettori di schermo);
+// restano raggiungibili solo la finestra di accesso e gli avvisi
+function luxCoverSetInert(on){
+  luxCoverInertList.forEach(function(x){ x.inert = false; x.removeAttribute('inert'); });
+  luxCoverInertList = [];
+  if(!on || !luxCoverEl) return;
+  var keep = [luxCoverEl, document.getElementById('authModal'), document.getElementById('luxToast')].filter(Boolean);
+  (function walk(parent){
+    Array.prototype.forEach.call(parent.children, function(ch){
+      if(/^(SCRIPT|STYLE|LINK|NOSCRIPT|TEMPLATE)$/.test(ch.tagName)) return;
+      if(keep.indexOf(ch) !== -1) return;
+      if(keep.some(function(k){ return ch.contains(k); })){ walk(ch); return; }
+      if(/ninja/i.test(String(ch.id || '') + ' ' + String(ch.className || ''))) return; // la verifica dell'età (widget esterno) resta usabile
+      var cs = window.getComputedStyle ? getComputedStyle(ch) : null; // e così ogni finestra esterna messa apposta sopra a tutto
+      if(cs && (cs.position === 'fixed' || cs.position === 'absolute') && parseInt(cs.zIndex, 10) >= 9800) return;
+      if(ch.inert || ch.hasAttribute('inert')) return;
+      ch.inert = true;
+      ch.setAttribute('inert', '');
+      luxCoverInertList.push(ch);
+    });
+  })(document.body);
+}
+
+// how: 'enter' = appare (all'avvio); 'close' = si richiude sopra il sito (uscendo dall'account)
+function luxCoverShow(how){
+  if(luxCoverEl) return;
+  luxCoverClearTimers();
+  try { if(!sessionStorage.getItem('lux_entry_mode')) sessionStorage.setItem('lux_entry_mode', 'online'); } catch(e){} // niente scelta online/offline sopra
+  luxCoverScrollY = window.pageYOffset || 0;
+  var el = luxCoverBuild();
+  var book = el._mode === 'book';
+  var closing = how === 'close' && !luxCoverReduced();
+  el.classList.add('lxc-anim', 'lxc-instant');
+  el.classList.add(closing ? 'lxc-turned' : 'lxc-enter');
+  if(closing && book) el.classList.add('lxc-zoom');
+  document.body.appendChild(el);
+  luxCoverEl = el;
+  document.documentElement.classList.add('lux-cover-on');
+  luxCoverTexts();
+  luxCoverSetInert(true);
+  try { el.focus({ preventScroll: true }); } catch(e){}
+  var img = el.querySelector('.lxc-art');
+  var started = false;
+  function go(){
+    if(started || el !== luxCoverEl || el._opening) return; // (se intanto si sta già aprendo, ci pensa luxCoverOpen)
+    started = true;
+    requestAnimationFrame(function(){ requestAnimationFrame(function(){
+      if(el !== luxCoverEl) return;
+      el.classList.remove('lxc-instant');
+      if(!closing){
+        el.classList.remove('lxc-enter');
+        luxCoverLater(480, function(){
+          document.documentElement.classList.remove('lux-cover-wait');
+          el.classList.remove('lxc-anim');
+        });
+        return;
+      }
+      var unzoom = book ? 1150 : 0;
+      if(book) el.classList.remove('lxc-zoom');
+      luxCoverLater(unzoom, function(){
+        el.classList.remove('lxc-turned');
+        luxCoverLater(1180, function(){
+          el.classList.add('lxc-stamping');
+          luxCoverLater(650, function(){
+            el.classList.remove('lxc-stamping', 'lxc-anim');
+            var b = el.querySelector('[data-lxc="login"]');
+            try { if(b) b.focus({ preventScroll: true }); } catch(e){}
+          });
+        });
+      });
+    }); });
+  }
+  // si aspetta l'immagine (al massimo poco più di un secondo), così non compare una copertina vuota
+  if(img.classList.contains('is-ready')) go();
+  else { img.addEventListener('load', go); img.addEventListener('error', go); luxCoverLater(1200, go); }
+}
+
+// l'apertura: il sigillo si spacca, la copertina gira (dal computer poi ci si avvicina alla pagina)
+function luxCoverOpen(guest, fromDrag){
+  var el = luxCoverEl;
+  if(!el || el._opening) return;
+  el._opening = true;
+  luxCoverClearTimers();
+  luxCoverTilt(el, null);
+  el.classList.remove('lxc-enter', 'lxc-instant', 'lxc-stamping');
+  el.classList.add('lxc-anim');
+  document.documentElement.classList.remove('lux-cover-wait');
+  if(luxCoverReduced()){
+    el.classList.add('lxc-fade');
+    luxCoverLater(400, function(){ luxCoverFinish(guest); });
+    return;
+  }
+  var book = el._mode === 'book';
+  var crack = fromDrag ? 0 : 520;
+  if(crack) el.classList.add('lxc-cracking');
+  luxCoverLater(crack, function(){
+    el.classList.remove('lxc-dragging');
+    el.querySelector('.lxc-sheet').style.transform = ''; // dall'angolo trascinato la pagina finisce di girare da dov'è
+    el.classList.add('lxc-turned');
+    // telefono: a metà giro la pagina è già fuori dallo schermo; computer: un attimo sul libro aperto, poi dentro
+    luxCoverLater(book ? 1000 : 780, function(){
+      if(!book){ luxCoverFinish(guest); return; }
+      el.classList.add('lxc-zoom');
+      luxCoverLater(780, function(){ luxCoverFinish(guest); });
+    });
+  });
+}
+function luxCoverFinish(guest){
+  var el = luxCoverEl;
+  luxCoverClearTimers();
+  luxCoverSetInert(false);
+  if(el && el.parentNode) el.parentNode.removeChild(el);
+  luxCoverEl = null;
+  document.documentElement.classList.remove('lux-cover-on', 'lux-cover-wait');
+  try { sessionStorage.setItem('lux_cover_ok', '1'); } catch(e){}
+  try { if(luxCoverScrollY) window.scrollTo(0, luxCoverScrollY); } catch(e){}
+  var name = guest ? '' : luxCoverName();
+  luxToast(guest ? t('lxcover.guestToast') : (name ? t('lxcover.hello').replace('{name}', name) : t('lxcover.open')));
+}
+function luxCoverName(){
+  if(isAdmin()) return 'Nox Morningstar';
+  var p = currentProfile && currentProfile.display_name;
+  if(p && p !== t('notif.someone')) return p;
+  var span = document.querySelector('#acctChip > span:not([class])'); // il nome che mostra già l'intestazione
+  return span ? span.textContent.trim().replace(/^@/, '') : '';
+}
+
+// dopo l'accesso (anche da un'altra scheda): la copertina si apre
+function luxCoverAfterAuth(){
+  if(luxCoverEl && isSignedIn()) luxCoverOpen(false, false);
+}
+// uscendo dall'account: la copertina si richiude sopra il sito
+function luxCoverOnLogout(){
+  try { sessionStorage.removeItem('lux_cover_ok'); } catch(e){}
+  if(luxCoverEl || isSignedIn() || luxCoverSkipPage() || luxCoverBot()) return;
+  try { luxCoverShow('close'); } catch(e){ console.warn('[copertina]', e); }
+}
+// chiusa la finestra di accesso senza entrare: si torna al pulsante della copertina
+function luxCoverRefocus(){
+  var el = luxCoverEl;
+  if(!el || el._opening) return;
+  var b = el.querySelector('[data-lxc="' + (el._ret || 'login') + '"]');
+  try { if(b) b.focus({ preventScroll: true }); } catch(e){}
+}
+function luxCoverRelang(){
+  if(luxCoverEl) luxCoverTexts();
+}
+// telefono girato o finestra ridimensionata: il sigillo si risistema (o la copertina si rifà)
+function luxCoverOnResize(){
+  if(!luxCoverEl) return;
+  clearTimeout(luxCoverResizeT);
+  luxCoverResizeT = setTimeout(function(){
+    var el = luxCoverEl;
+    if(!el || el._opening) return;
+    if(el.classList.contains('lxc-anim')){ luxCoverOnResize(); return; } // si risistema appena finisce l'animazione
+    var mode = luxCoverMode(), art = luxCoverArtKey(mode);
+    if(mode === el._mode && art === el._art){ luxCoverPlaceSeal(); return; }
+    var had = el.contains(document.activeElement);
+    luxCoverSetInert(false);
+    var nel = luxCoverBuild();
+    el.parentNode.replaceChild(nel, el);
+    luxCoverEl = nel;
+    luxCoverTexts();
+    luxCoverSetInert(true);
+    if(had){ try { nel.focus({ preventScroll: true }); } catch(e){} }
+  }, 150);
+}
+window.addEventListener('resize', luxCoverOnResize);
+window.addEventListener('storage', function(e){
+  if(e.key === 'lux_session' && luxCoverEl && isSignedIn()){ try { afterAuthChange(); } catch(err){} }
+});
 
 /* ============ UNIFIED SUPABASE AUTH (regular visitors + admin, same accounts) ============ */
 // SUPABASE_URL and SUPABASE_ANON_KEY are meant to be public (Supabase's anon
@@ -1601,7 +2042,7 @@ function openAuth(mode){
   }
   document.getElementById('authModal').classList.remove('hidden');
 }
-function closeAuth(){ document.getElementById('authModal').classList.add('hidden'); }
+function closeAuth(){ document.getElementById('authModal').classList.add('hidden'); if(luxCoverEl) luxCoverRefocus(); }
 
 function handleAuthSubmit(){
   if(authMode === 'register' && !quizPassed) return; // difesa in più, i campi restano comunque nascosti finché non superi il quiz
@@ -1637,6 +2078,7 @@ function handleAuthSubmit(){
 }
 
 function afterAuthChange(){
+  try { luxCoverAfterAuth(); } catch(e){} // v237: appena dentro, il sigillo si spacca e la copertina gira
   refreshAuthUI();
   refreshAdminUI();
   renderCatalog();
@@ -3872,6 +4314,7 @@ function renderPixaiCommunity(pixaiItems){
 }
 
 function renderCatalog(){
+  if(luxCoverEl){ try { luxCoverBlurb(); luxCoverPlaceSeal(); } catch(e){} } // v237: «In questo numero» sulla copertina
   renderFilters();
   renderGenreBanner();
   updateMatureStateLabel();
@@ -8117,6 +8560,7 @@ function closeBottomCard(id){
 }
 function a2hsBlockedNow(){
   // mai sopra il lettore, la chat a schermo intero o una finestra aperta
+  if(luxCoverEl) return true; // v237: né sopra la copertina
   var reader = document.getElementById('pageReader');
   if(reader && !reader.classList.contains('hidden')) return true;
   if(document.body.classList.contains('chat-fullscreen')) return true;
@@ -20106,7 +20550,7 @@ function __appInit(){
   initInstallPrompts(); // avviso "Installa l'app" / invito alle notifiche nell'app installata
   fillCharacterSelect();
   fetchTaxonomy(); // personaggi e categorie dalle tabelle Supabase (se ci sono)
-  showEntryModeGate();
+  if(!luxCoverMaybeShow()) showEntryModeGate(); // v237: chi non ha fatto l'accesso trova la copertina
   renderDossiers();
   renderGenreChecks(); // se il form del catalogo è in questa pagina (Admin), popola i sigilli genere subito — non solo aprendo un titolo esistente in modifica
   refreshSupportSectionVisibility(); // mostra subito ai visitatori anonimi; ricontrollato sotto per chi ha fatto login
@@ -20123,6 +20567,7 @@ function __appInit(){
   // this is what keeps a login feeling continuous across visits/reloads.
   refreshSessionIfNeeded().then(function(){
     refreshAuthUI();
+    if(!isSignedIn()) luxCoverMaybeShow(); // v237: la sessione salvata non valeva più: copertina
     refreshAdminUI();
     Promise.all([loadFavorites(true), loadReadingProgress(true)]).then(renderCatalogIfReady);
     loadLikes();
@@ -20154,6 +20599,7 @@ function __appInit(){
     favoriteIds = new Set();
     verifiedSupporterCache = null;
     afterAuthChange();
+    luxCoverOnLogout(); // v237: la copertina si richiude sopra il sito
   });
   document.getElementById('authClose') && document.getElementById('authClose').addEventListener('click', closeAuth);
   document.getElementById('authCancel') && document.getElementById('authCancel').addEventListener('click', closeAuth);
