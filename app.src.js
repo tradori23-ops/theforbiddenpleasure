@@ -865,6 +865,20 @@ Object.assign(STR.hi, {"dossier.biography": "जीवनी", "dossier.readMore
 Object.assign(STR.bn, {"dossier.biography": "জীবনী", "dossier.readMore": "পুরো জীবনী পড়ুন", "dossier.readLess": "কম দেখান", "dossier.readBio": "জীবনী পড়ুন"});
 Object.assign(STR.ar, {"dossier.biography": "السيرة", "dossier.readMore": "اقرأ السيرة كاملة", "dossier.readLess": "عرض أقل", "dossier.readBio": "اقرأ السيرة"});
 Object.assign(STR.pnb, {"dossier.biography": "سوانح حیات", "dossier.readMore": "پوری سوانح حیات پڑھو", "dossier.readLess": "گھٹ وکھاؤ", "dossier.readBio": "سوانح حیات پڑھو"});
+// v234: traduzione dei messaggi non disponibile
+Object.assign(STR.it, {"chat.translateBusy": "Traduzione non disponibile ora · riprova più tardi", "chat.bgUpload": "Carica immagine…", "chat.bgReset": "Rimuovi sfondo", "channel.searchPh": "Cerca in questo canale…", "channel.searchEmpty": "Nessun messaggio corrisponde alla ricerca."});
+Object.assign(STR.en, {"chat.translateBusy": "Translation unavailable right now · try again later", "chat.bgUpload": "Upload image…", "chat.bgReset": "Remove background", "channel.searchPh": "Search this channel…", "channel.searchEmpty": "No messages match your search."});
+Object.assign(STR.es, {"chat.translateBusy": "Traducción no disponible ahora · inténtalo más tarde", "chat.bgUpload": "Subir imagen…", "chat.bgReset": "Quitar fondo", "channel.searchPh": "Buscar en este canal…", "channel.searchEmpty": "Ningún mensaje coincide con la búsqueda."});
+Object.assign(STR.fr, {"chat.translateBusy": "Traduction indisponible pour le moment · réessayez plus tard", "chat.bgUpload": "Importer une image…", "chat.bgReset": "Retirer le fond", "channel.searchPh": "Rechercher dans ce canal…", "channel.searchEmpty": "Aucun message ne correspond à la recherche."});
+Object.assign(STR.de, {"chat.translateBusy": "Übersetzung gerade nicht verfügbar · später erneut versuchen", "chat.bgUpload": "Bild hochladen…", "chat.bgReset": "Hintergrund entfernen", "channel.searchPh": "In diesem Kanal suchen…", "channel.searchEmpty": "Keine Nachricht entspricht der Suche."});
+Object.assign(STR.pt, {"chat.translateBusy": "Tradução indisponível no momento · tente mais tarde", "chat.bgUpload": "Carregar imagem…", "chat.bgReset": "Remover fundo", "channel.searchPh": "Pesquisar neste canal…", "channel.searchEmpty": "Nenhuma mensagem corresponde à pesquisa."});
+Object.assign(STR.ru, {"chat.translateBusy": "Перевод сейчас недоступен · попробуйте позже", "chat.bgUpload": "Загрузить изображение…", "chat.bgReset": "Убрать фон", "channel.searchPh": "Поиск в этом канале…", "channel.searchEmpty": "Нет сообщений, соответствующих поиску."});
+Object.assign(STR.zh, {"chat.translateBusy": "暂时无法翻译 · 请稍后再试", "chat.bgUpload": "上传图片…", "chat.bgReset": "移除背景", "channel.searchPh": "在此频道中搜索…", "channel.searchEmpty": "没有符合搜索的消息。"});
+Object.assign(STR.ja, {"chat.translateBusy": "現在は翻訳できません · 後でもう一度お試しください", "chat.bgUpload": "画像をアップロード…", "chat.bgReset": "背景を削除", "channel.searchPh": "このチャンネル内を検索…", "channel.searchEmpty": "検索に一致するメッセージはありません。"});
+Object.assign(STR.hi, {"chat.translateBusy": "अभी अनुवाद उपलब्ध नहीं है · बाद में फिर से कोशिश करें", "chat.bgUpload": "छवि अपलोड करें…", "chat.bgReset": "पृष्ठभूमि हटाएं", "channel.searchPh": "इस चैनल में खोजें…", "channel.searchEmpty": "खोज से मेल खाता कोई मैसेज नहीं है।"});
+Object.assign(STR.bn, {"chat.translateBusy": "এখন অনুবাদ পাওয়া যাচ্ছে না · পরে আবার চেষ্টা করুন", "chat.bgUpload": "ছবি আপলোড করুন…", "chat.bgReset": "পটভূমি সরান", "channel.searchPh": "এই চ্যানেলে খুঁজুন…", "channel.searchEmpty": "অনুসন্ধানের সাথে মেলে এমন কোনো বার্তা নেই।"});
+Object.assign(STR.ar, {"chat.translateBusy": "الترجمة غير متاحة الآن · حاول لاحقًا", "chat.bgUpload": "تحميل صورة…", "chat.bgReset": "إزالة الخلفية", "channel.searchPh": "ابحث في هذه القناة…", "channel.searchEmpty": "لا توجد رسائل تطابق البحث."});
+Object.assign(STR.pnb, {"chat.translateBusy": "ایس ویلے ترجمہ دستیاب نئیں · بعد وچ دوبارہ کوشش کرو", "chat.bgUpload": "تصویر اپلوڈ کرو…", "chat.bgReset": "پچھوکڑ ہٹاؤ", "channel.searchPh": "ایس چینل وچ لبھو…", "channel.searchEmpty": "تلاش نال کوئی پیغام نئیں ملدا۔"});
 var CHAR_META = {
   Lucifer:{role:{it:"Il Portatore di Luce",en:"The Light-Bearer",es:"El Portador de Luz",fr:"Le Porteur de Lumière",de:"Der Lichtträger"},
     bio:{it:"Sovrano della collana ammiraglia: potere, caduta e desiderio raccontati su grande scala.",
@@ -912,6 +926,13 @@ function t(key){
   return (STR[lang] && STR[lang][key]) || (STR.it[key]) || key;
 }
 function applyI18n(){
+  // v234: testi delle chat che erano solo in italiano
+  [['channelSearchInput', 'data-i18n-placeholder', 'channel.searchPh'], ['channelSearchEmpty', 'data-i18n', 'channel.searchEmpty'], ['btnChatBgReset', 'data-i18n', 'chat.bgReset']].forEach(function(x){
+    var el = document.getElementById(x[0]);
+    if(el && !el.hasAttribute(x[1])) el.setAttribute(x[1], x[2]);
+  });
+  var bgUp = document.querySelector('.chat-bg-upload-label');
+  if(bgUp && !bgUp.hasAttribute('data-i18n')) bgUp.setAttribute('data-i18n', 'chat.bgUpload');
   document.querySelectorAll('[data-i18n]').forEach(function(el){
     var key = el.getAttribute('data-i18n');
     el.textContent = t(key);
@@ -5711,12 +5732,17 @@ function luxTrErr(status, data){
     else if(status === 0) e.code = 'net';
     else if(e.deepl === 456) e.code = 'quota';
     else if(/DEEPL_API_KEY/.test((data && data.error) || '')) e.code = 'no_key';
+    else if(/DeepL (\d{3})/.test((data && data.error) || '')){ // v234: la risposta della funzione di prima
+      e.deepl = Number(/DeepL (\d{3})/.exec(data.error)[1]);
+      e.code = e.deepl === 456 ? 'quota' : e.deepl === 403 ? 'key' : e.deepl === 400 ? 'lang' : 'busy';
+    }
     else if(status === 502 || status === 503 || status === 504) e.code = 'busy';
   }
   return e;
 }
-function luxTrMessage(e){
+function luxTrMessage(e, fn){
   var c = e && e.code;
+  if(c === 'missing' && fn) return 'Su Supabase non c’è la funzione ' + fn + ': va pubblicata (file ' + fn + '.ts).'; // v234
   if(c === 'auth') return 'L’accesso è scaduto: esci, rientra e riprova.';
   if(c === 'quota') return 'La quota DeepL di questo mese è finita: le altre traduzioni si potranno fare quando si rinnova (oppure con un piano DeepL più grande).';
   if(c === 'key') return 'DeepL non accetta la chiave: controlla DEEPL_API_KEY nei Secrets delle Edge Functions di Supabase.';
@@ -5798,26 +5824,94 @@ function translateSynopsis(text, targets){
   });
 }
 
-/* Traduzione libera di un singolo messaggio di chat, verso la lingua che
-   l'utente ha impostato per l'interfaccia — a differenza di translateSynopsis
-   (che traduce SEMPRE dall'inglese verso le altre 4), qui il messaggio può
-   partire da una qualsiasi delle 5 lingue del sito: il rilevamento della
-   lingua di partenza lo fa DeepL stesso lato server. */
+/* v234: tradurre un messaggio (chat privata, canali della Community, server) nella lingua di chi
+   legge, con la funzione translate-message (DeepL). Il messaggio può essere in qualsiasi lingua:
+   quella di partenza la riconosce DeepL. L'accesso si rinnova prima di chiedere; se non va,
+   l'errore dice perché (quota DeepL finita, DeepL occupato, accesso scaduto, funzione mancante…). */
 function translateChatMessage(text){
-  if(!getSession()) return Promise.reject(new Error('not signed in'));
-  // v220: la funzione accetta solo un accesso valido: se sta per scadere, prima si rinnova
+  if(!getSession()) return Promise.reject(luxTrErr(401, { code: 'auth' }));
   return refreshSessionIfNeeded().then(function(){
     var session = getSession();
-    if(!session) throw new Error('not signed in');
+    if(!session || !session.access_token) throw luxTrErr(401, { code: 'auth' });
     return fetch(SUPABASE_URL + '/functions/v1/translate-message', {
       method:'POST',
       headers:{ 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
       body: JSON.stringify({ text: text, target: currentLang })
-    });
+    }).then(null, function(){ throw luxTrErr(0, null); });
   }).then(function(r){
-    if(!r.ok) throw new Error('translation failed: ' + r.status);
-    return r.json(); // {translated}
+    return r.json().catch(function(){ return null; }).then(function(data){
+      if(!r.ok) throw luxTrErr(r.status, data);
+      return data || {}; // { translated, detected_source_language } — dalla v234 anche same
+    });
   });
+}
+/* «Traduci» sotto il messaggio di un'altra persona. key: 'dm:<id>' o 'ch:<id>' (la traduzione resta
+   quando la chat si ridisegna); place(el): dove mettere il testo tradotto (di solito dopo il messaggio). */
+var msgTranslations = {};
+function luxMsgTranslateBtn(key, text, place){
+  var btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'chat-translate-btn';
+  btn.textContent = t('chat.translate');
+  btn.setAttribute('data-tr-key', key);
+  var shown = null;
+  function show(b, tr){
+    var d = document.createElement('div');
+    d.className = 'chat-translated-body';
+    d.setAttribute('lang', currentLang);
+    d.dir = 'auto';
+    d.textContent = tr;
+    if(b._luxPlace) b._luxPlace(d); else b.insertAdjacentElement('afterend', d);
+    b._luxShown = d;
+    b.dataset.done = '1';
+    b.textContent = t('chat.translateUndo');
+  }
+  btn._luxPlace = place || null;
+  // la chat può essersi ridisegnata mentre si traduceva: si aggiorna il pulsante che c'è adesso
+  function live(){
+    if(btn.isConnected) return btn;
+    var all = document.querySelectorAll('.chat-translate-btn');
+    for(var i = 0; i < all.length; i++){ if(all[i].getAttribute('data-tr-key') === key) return all[i]; }
+    return null;
+  }
+  btn.addEventListener('click', function(){
+    if(btn.dataset.done === '1'){
+      if(btn._luxShown) btn._luxShown.remove();
+      btn._luxShown = null;
+      delete msgTranslations[key]; // al prossimo aggiornamento resta l'originale
+      btn.dataset.done = '0';
+      btn.textContent = t('chat.translate');
+      return;
+    }
+    btn.disabled = true;
+    btn.classList.remove('is-error');
+    btn.textContent = '…';
+    translateChatMessage(text).then(function(res){
+      var b = live() || btn;
+      var out = (res && res.translated) || '';
+      var src = String(res && res.detected_source_language || '').slice(0, 2).toLowerCase();
+      if((res && res.same) || !out || out.trim() === String(text).trim() || src === currentLang){
+        // già nella lingua di chi legge: meglio dirlo che mostrare lo stesso testo
+        b.textContent = t('chat.translateSame');
+        setTimeout(function(){ if(b.dataset.done !== '1') b.textContent = t('chat.translate'); }, 3500);
+        return;
+      }
+      msgTranslations[key] = out;
+      if(b.dataset.done !== '1') show(b, out);
+    }).catch(function(err){
+      console.warn('Traduzione del messaggio non riuscita:', err);
+      var b = live() || btn;
+      var c = err && err.code;
+      b.classList.add('is-error');
+      b.textContent = c === 'net' && navigator.onLine === false ? t('del.offline')
+        : /^(quota|key|no_key|missing|busy)$/.test(c || '') ? t('chat.translateBusy') : t('chat.translateFail');
+      // l'amministratore vede anche perché (chi legge vede solo «non disponibile ora»)
+      if(isAdmin() && /^(quota|key|no_key|missing|auth)$/.test(c || '')) luxToast(luxTrMessage(err, 'translate-message'));
+    }).then(function(){ var b = live(); btn.disabled = false; if(b) b.disabled = false; });
+  });
+  // la traduzione già fatta torna quando la chat si ridisegna (da chiamare dopo aver messo il pulsante al suo posto)
+  btn._luxRestore = function(){ if(msgTranslations[key] && btn.dataset.done !== '1') show(btn, msgTranslations[key]); };
+  return btn;
 }
 
 /* Carica un file con XMLHttpRequest invece di fetch: è l'unico modo, su tutti i browser
@@ -11253,50 +11347,9 @@ function loadChatMessages(){
             var showTranslate = (m.sender_id !== uid) && m.body && !isGifUrl(m.body);
             div.innerHTML = attachHtml + bodyHtml + '<div class="chat-bubble-meta">' + notifTimeAgo(m.created_at) + tickHtml + '</div>';
             if(showTranslate){
-              var translateBtn = document.createElement('button');
-              translateBtn.type = 'button';
-              translateBtn.className = 'chat-translate-btn';
-              translateBtn.textContent = t('chat.translate') || 'Traduci';
-              var showTranslation = function(text){
-                var tDiv = document.createElement('div');
-                tDiv.className = 'chat-translated-body';
-                tDiv.textContent = text;
-                translateBtn.insertAdjacentElement('afterend', tDiv);
-                translateBtn.dataset.done = '1';
-                translateBtn.textContent = t('chat.translateUndo') || 'Mostra originale';
-              };
-              translateBtn.addEventListener('click', function(){
-                if(translateBtn.dataset.done === '1'){
-                  var existing = div.querySelector('.chat-translated-body');
-                  if(existing) existing.remove();
-                  delete chatTranslations[m.id]; // al prossimo aggiornamento resta l'originale
-                  translateBtn.dataset.done = '0';
-                  translateBtn.textContent = t('chat.translate') || 'Traduci';
-                  return;
-                }
-                translateBtn.disabled = true;
-                translateBtn.classList.remove('is-error');
-                translateBtn.textContent = '…';
-                translateChatMessage(m.body).then(function(res){
-                  var out = (res && res.translated) || '';
-                  var src = (res && res.detected_source_language || '').slice(0, 2).toLowerCase();
-                  if(!out || out.trim() === String(m.body).trim() || src === currentLang){
-                    // stessa lingua: DeepL restituisce il testo identico, meglio dirlo
-                    translateBtn.textContent = t('chat.translateSame');
-                    setTimeout(function(){ if(translateBtn.dataset.done !== '1') translateBtn.textContent = t('chat.translate') || 'Traduci'; }, 3500);
-                    return;
-                  }
-                  chatTranslations[m.id] = out;
-                  showTranslation(out);
-                }).catch(function(err){
-                  console.warn('Chat translate failed:', err);
-                  // prima tornava "Traduci" come se niente fosse: ora si vede, e un tocco riprova
-                  translateBtn.classList.add('is-error');
-                  translateBtn.textContent = navigator.onLine === false ? t('del.offline') : t('chat.translateFail');
-                }).then(function(){ translateBtn.disabled = false; });
-              });
-              div.appendChild(translateBtn);
-              if(chatTranslations[m.id]) showTranslation(chatTranslations[m.id]); // la chat si ridisegna a ogni messaggio nuovo: la traduzione resta
+              var trBtn = luxMsgTranslateBtn('dm:' + m.id, m.body); // v234: lo stesso «Traduci» dei canali
+              div.appendChild(trBtn);
+              trBtn._luxRestore(); // la chat si ridisegna a ogni messaggio nuovo: la traduzione resta
             }
             if(m.sender_id === uid && m.id){
               // i propri messaggi si possono eliminare (tocca il messaggio per vedere "Elimina")
@@ -11586,7 +11639,8 @@ function filterChannelMessages(query){
   var q = (query || '').trim().toLowerCase();
   var any = false;
   Array.prototype.forEach.call(wrap.querySelectorAll('.channel-msg'), function(msg){
-    var match = !q || msg.textContent.toLowerCase().indexOf(q) > -1;
+    var txt = Array.prototype.map.call(msg.querySelectorAll('.author, .body, .chat-translated-body'), function(e){ return e.textContent; }).join(' '); // v234
+    var match = !q || txt.toLowerCase().indexOf(q) > -1;
     msg.classList.toggle('hidden', !match);
     if(match) any = true;
   });
@@ -11620,6 +11674,13 @@ function renderChannelMessage(m){
       ((isOwn || isAdmin()) && m.id ? '<button type="button" class="lux-del-btn channel-del-btn">' + t('common.delete') + '</button>' : '') +
     '</div>';
   div.appendChild(main);
+  if(!isOwn && m.body && m.id && isSignedIn() && !isGifUrl(m.body)){ // v234: «Traduci» anche nei canali e nei server
+    var bodyEl = main.querySelector('.body');
+    var trBtn = luxMsgTranslateBtn('ch:' + m.id, m.body, function(d){ bodyEl.insertAdjacentElement('afterend', d); });
+    var actionsEl = main.querySelector('.msg-actions');
+    actionsEl.insertBefore(trBtn, actionsEl.querySelector('.report-btn'));
+    trBtn._luxRestore();
+  }
   var reportBtn = main.querySelector('.report-btn');
   if(reportBtn) reportBtn.addEventListener('click', function(){ reportContent('channel_message', m.id); });
   var chDel = main.querySelector('.channel-del-btn');
@@ -12590,7 +12651,7 @@ function translateUpdateTitles(titles){
   return Promise.all(toFetch.map(function(title){
     return translateChatMessage(title).then(function(res){
       langCache[title] = res.translated || title;
-    }).catch(function(){ langCache[title] = title; });
+    }).catch(function(){}); // v234: se non riesce (quota finita…) non si salva: la prossima volta si riprova
   })).then(function(){
     saveUpdatesTranslationCache(cache);
     return langCache;
