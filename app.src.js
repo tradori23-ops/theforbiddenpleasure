@@ -879,6 +879,20 @@ Object.assign(STR.hi, {"chat.translateBusy": "अभी अनुवाद उ�
 Object.assign(STR.bn, {"chat.translateBusy": "এখন অনুবাদ পাওয়া যাচ্ছে না · পরে আবার চেষ্টা করুন", "chat.bgUpload": "ছবি আপলোড করুন…", "chat.bgReset": "পটভূমি সরান", "channel.searchPh": "এই চ্যানেলে খুঁজুন…", "channel.searchEmpty": "অনুসন্ধানের সাথে মেলে এমন কোনো বার্তা নেই।"});
 Object.assign(STR.ar, {"chat.translateBusy": "الترجمة غير متاحة الآن · حاول لاحقًا", "chat.bgUpload": "تحميل صورة…", "chat.bgReset": "إزالة الخلفية", "channel.searchPh": "ابحث في هذه القناة…", "channel.searchEmpty": "لا توجد رسائل تطابق البحث."});
 Object.assign(STR.pnb, {"chat.translateBusy": "ایس ویلے ترجمہ دستیاب نئیں · بعد وچ دوبارہ کوشش کرو", "chat.bgUpload": "تصویر اپلوڈ کرو…", "chat.bgReset": "پچھوکڑ ہٹاؤ", "channel.searchPh": "ایس چینل وچ لبھو…", "channel.searchEmpty": "تلاش نال کوئی پیغام نئیں ملدا۔"});
+// v235: notifiche su iPhone e iPad
+Object.assign(STR.it, {"push.iosUpdate": "Su iPhone e iPad le notifiche arrivano solo con iOS 16.4 o più recente: aggiorna da Impostazioni › Generali › Aggiornamento software, poi riapri l’app e riprova.", "push.deniedIos": "Le notifiche di LUX COMICS sono bloccate su questo dispositivo: apri Impostazioni › Notifiche › LUX COMICS, attiva «Consenti notifiche» e torna qui."});
+Object.assign(STR.en, {"push.iosUpdate": "On iPhone and iPad, notifications need iOS 16.4 or later: update from Settings › General › Software Update, then reopen the app and try again.", "push.deniedIos": "LUX COMICS notifications are blocked on this device: open Settings › Notifications › LUX COMICS, turn on “Allow Notifications” and come back here."});
+Object.assign(STR.es, {"push.iosUpdate": "En iPhone y iPad las notificaciones necesitan iOS 16.4 o posterior: actualiza desde Ajustes › General › Actualización de software, luego vuelve a abrir la app e inténtalo de nuevo.", "push.deniedIos": "Las notificaciones de LUX COMICS están bloqueadas en este dispositivo: abre Ajustes › Notificaciones › LUX COMICS, activa «Permitir notificaciones» y vuelve aquí."});
+Object.assign(STR.fr, {"push.iosUpdate": "Sur iPhone et iPad, les notifications nécessitent iOS 16.4 ou plus récent : mets à jour dans Réglages › Général › Mise à jour logicielle, puis rouvre l’app et réessaie.", "push.deniedIos": "Les notifications de LUX COMICS sont bloquées sur cet appareil : ouvre Réglages › Notifications › LUX COMICS, active « Autoriser les notifications » et reviens ici."});
+Object.assign(STR.de, {"push.iosUpdate": "Auf iPhone und iPad brauchen Mitteilungen iOS 16.4 oder neuer: Aktualisiere unter Einstellungen › Allgemein › Softwareupdate, öffne dann die App erneut und versuche es noch einmal.", "push.deniedIos": "Mitteilungen von LUX COMICS sind auf diesem Gerät blockiert: Öffne Einstellungen › Mitteilungen › LUX COMICS, aktiviere „Mitteilungen erlauben“ und komm hierher zurück."});
+Object.assign(STR.pt, {"push.iosUpdate": "No iPhone e no iPad, as notificações precisam do iOS 16.4 ou mais recente: atualize em Ajustes › Geral › Atualização de Software, depois abra o app de novo e tente outra vez.", "push.deniedIos": "As notificações do LUX COMICS estão bloqueadas neste dispositivo: abra Ajustes › Notificações › LUX COMICS, ative «Permitir Notificações» e volte aqui."});
+Object.assign(STR.ru, {"push.iosUpdate": "На iPhone и iPad уведомления работают только с iOS 16.4 или новее: обновите систему в Настройки › Основные › Обновление ПО, затем снова откройте приложение и попробуйте ещё раз.", "push.deniedIos": "Уведомления LUX COMICS заблокированы на этом устройстве: откройте Настройки › Уведомления › LUX COMICS, включите «Допуск уведомлений» и вернитесь сюда."});
+Object.assign(STR.zh, {"push.iosUpdate": "在 iPhone 和 iPad 上，通知需要 iOS 16.4 或更高版本：请在 设置 › 通用 › 软件更新 中更新，然后重新打开应用再试一次。", "push.deniedIos": "此设备已屏蔽 LUX COMICS 的通知：请打开 设置 › 通知 › LUX COMICS，开启“允许通知”，然后回到这里。"});
+Object.assign(STR.ja, {"push.iosUpdate": "iPhone と iPad で通知を受け取るには iOS 16.4 以降が必要です。設定 › 一般 › ソフトウェアアップデート でアップデートしてから、アプリを開き直してもう一度お試しください。", "push.deniedIos": "このデバイスでは LUX COMICS の通知がオフになっています。設定 › 通知 › LUX COMICS を開き、「通知を許可」をオンにしてからここに戻ってください。"});
+Object.assign(STR.hi, {"push.iosUpdate": "iPhone और iPad पर नोटिफ़िकेशन के लिए iOS 16.4 या नया वर्ज़न चाहिए: सेटिंग्स › सामान्य › सॉफ़्टवेयर अपडेट से अपडेट करें, फिर ऐप दोबारा खोलकर फिर से कोशिश करें।", "push.deniedIos": "इस डिवाइस पर LUX COMICS के नोटिफ़िकेशन बंद हैं: सेटिंग्स › नोटिफ़िकेशन › LUX COMICS खोलें, «नोटिफ़िकेशन की अनुमति दें» चालू करें और यहाँ वापस आएँ।"});
+Object.assign(STR.bn, {"push.iosUpdate": "iPhone ও iPad-এ নোটিফিকেশনের জন্য iOS 16.4 বা নতুন সংস্করণ লাগে: সেটিংস › সাধারণ › সফটওয়্যার আপডেট থেকে আপডেট করুন, তারপর অ্যাপটি আবার খুলে চেষ্টা করুন।", "push.deniedIos": "এই ডিভাইসে LUX COMICS-এর নোটিফিকেশন বন্ধ আছে: সেটিংস › নোটিফিকেশন › LUX COMICS খুলুন, «নোটিফিকেশন অনুমোদন করুন» চালু করুন এবং এখানে ফিরে আসুন।"});
+Object.assign(STR.ar, {"push.iosUpdate": "على iPhone وiPad تحتاج الإشعارات إلى iOS 16.4 أو أحدث: حدّث النظام من الإعدادات › عام › تحديث البرامج، ثم افتح التطبيق من جديد وحاول مرة أخرى.", "push.deniedIos": "إشعارات LUX COMICS محظورة على هذا الجهاز: افتح الإعدادات › الإشعارات › LUX COMICS، وفعّل «السماح بالإشعارات» ثم عُد إلى هنا."});
+Object.assign(STR.pnb, {"push.iosUpdate": "iPhone تے iPad اُتے نوٹیفکیشن لئی iOS 16.4 یا نواں چاہیدا اے: سیٹنگز › جنرل › سافٹ ویئر اپڈیٹ توں اپڈیٹ کرو، فیر ایپ دوبارہ کھول کے کوشش کرو۔", "push.deniedIos": "ایس ڈیوائس اُتے LUX COMICS دے نوٹیفکیشن بند نیں: سیٹنگز › نوٹیفکیشنز › LUX COMICS کھولو، «نوٹیفکیشنز دی اجازت دیو» چالو کرو تے ایتھے واپس آؤ۔"});
 var CHAR_META = {
   Lucifer:{role:{it:"Il Portatore di Luce",en:"The Light-Bearer",es:"El Portador de Luz",fr:"Le Porteur de Lumière",de:"Der Lichtträger"},
     bio:{it:"Sovrano della collana ammiraglia: potere, caduta e desiderio raccontati su grande scala.",
@@ -1214,7 +1228,7 @@ function authSignUp(email, password){
     });
   });
 }
-function authSignOut(){ setSession(null); currentProfile = null; }
+function authSignOut(){ setSession(null); currentProfile = null; luxAppBadge(0); } // v235: uscendo, niente numero sull'icona
 
 /* ============ MATURE CONTENT TOGGLE ============ */
 // Site defaults to all-ages. The 18+ switch is additive, not exclusive: OFF
@@ -4177,6 +4191,16 @@ function renderBodyHtml(body){
 
 /* ============ PWA: SERVICE WORKER + CONDIVIDI L'APP ============ */
 if('serviceWorker' in navigator){
+  // v235: toccando una notifica il service worker chiede alla pagina già aperta di andare al punto giusto
+  navigator.serviceWorker.addEventListener('message', function(e){
+    var d = e.data || {};
+    if(d.type !== 'lux-open' || typeof d.url !== 'string') return;
+    try {
+      var u = new URL(d.url, window.location.href);
+      if(u.origin === window.location.origin && u.href !== window.location.href) window.location.href = u.href;
+    } catch(err){}
+  });
+  try { navigator.serviceWorker.startMessages(); } catch(e){}
   var swRegistered = false;
   var registerSW = function(){
     if(swRegistered) return;
@@ -4290,6 +4314,38 @@ function isStandaloneApp(){
   return window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
 }
 
+// v235: la versione di iOS (iPhone e iPad: «OS 17_4»); null se non si sa (computer, iPad in modalità computer)
+function luxIosVersion(){
+  var ua = navigator.userAgent || '';
+  var m = /OS (\d+)[_.](\d+)/.exec(ua);
+  return /iphone|ipad|ipod/i.test(ua) && m ? [Number(m[1]), Number(m[2])] : null;
+}
+// v235: il numero sull'icona dell'app (iPhone/iPad con l'app installata, iOS 16.4+; computer con l'app
+// installata): le notifiche non ancora aperte della campanella. Dove non si può, non fa niente.
+function luxAppBadge(n){
+  try {
+    if(!('setAppBadge' in navigator)) return;
+    var p = n > 0 ? navigator.setAppBadge(n) : navigator.clearAppBadge();
+    if(p && p.catch) p.catch(function(){});
+  } catch(e){}
+}
+// v235: per l'amministratore, dopo la prova sul dispositivo anche la prova dal server: si scrive una
+// notifica per sé stessi e la funzione che manda le notifiche push deve farla arrivare qui.
+// Se arriva solo la prima, il dispositivo è a posto e il problema è nell'invio.
+function luxServerPushTest(){
+  var s = getSession();
+  if(!s || !isAdmin()) return;
+  fetch(SUPABASE_URL + '/rest/v1/notifications', {
+    method: 'POST',
+    headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': 'Bearer ' + s.access_token, 'Content-Type': 'application/json' },
+    body: JSON.stringify({ user_id: currentUserId(), type: 'push_test', actor_name: 'SmallNox', message: 'Prova dal server: se ti arriva anche a sito chiuso, le notifiche funzionano.' })
+  }).then(function(r){
+    luxToast(r.ok
+      ? 'Ho chiesto anche al server una notifica di prova: deve arrivare tra pochi secondi. Se non arriva, il problema è nell’invio, non nel telefono.'
+      : 'Il server non ha accettato la notifica di prova (errore ' + r.status + ').');
+  }).catch(function(){ luxToast('Il server non risponde: riprova tra poco.'); });
+}
+
 // Distingue i motivi per cui le notifiche potrebbero non essere disponibili,
 // così ogni telefono/browser riceve un messaggio utile invece di uno generico:
 // - 'ios-not-installed': iPhone/iPad su Safari ma il sito non è ancora
@@ -4299,8 +4355,15 @@ function isStandaloneApp(){
 //   alcuni browser integrati in altre app, o versioni molto vecchie).
 // - null: tutto disponibile, si può procedere.
 function pushUnavailableReason(){
+  // v235: iPhone e iPad prima di tutto. In Safari le notifiche non esistono proprio (manca
+  // Notification): prima finiva come «non supportato» e il pulsante spariva, così nessuno
+  // sapeva di dover installare l'app.
+  if(isIOSDevice()){
+    if(!isStandaloneApp()) return 'ios-not-installed';
+    var v = luxIosVersion();
+    if((v && (v[0] < 16 || (v[0] === 16 && v[1] < 4))) || !('Notification' in window) || !('PushManager' in window)) return 'ios-old';
+  }
   if(!('Notification' in window)) return 'unsupported';
-  if(isIOSDevice() && !isStandaloneApp()) return 'ios-not-installed';
   if(!('serviceWorker' in navigator) || !('PushManager' in window)) return 'unsupported';
   return null;
 }
@@ -4376,7 +4439,7 @@ function testPushNotification(){
     return reg.showNotification('LUX COMICS', {
       body: t('push.testBody'), icon: './icon-192.png', badge: './icon-192.png', tag: 'lux-test', data: { url: './' }
     });
-  }).then(function(){ done(true); }, function(){ done(false); });
+  }).then(function(){ done(true); if(isAdmin()) setTimeout(luxServerPushTest, 1500); }, function(){ done(false); }); // v235
 }
 
 function refreshPushButtonUI(){
@@ -4398,6 +4461,13 @@ function refreshPushButtonUI(){
     // sparire e far pensare che la funzione non esista proprio
     btn.classList.remove('hidden');
     setPushBtnState(btn, 'idle', t('push.installFirst'));
+    btn.disabled = false;
+    return;
+  }
+  if(reason === 'ios-old' || (typeof Notification !== 'undefined' && Notification.permission === 'denied')){
+    // v235: prima, con le notifiche bloccate nelle Impostazioni, poteva restare «Notifiche attive»
+    btn.classList.remove('hidden');
+    setPushBtnState(btn, 'idle', t('push.enable'));
     btn.disabled = false;
     return;
   }
@@ -4494,6 +4564,7 @@ function enablePushNotifications(){
   if(pbtn && pbtn.classList.contains('push-btn-active')){ testPushNotification(); return; } // v221: già attive → prova
   var reason = pushUnavailableReason();
   if(reason === 'ios-not-installed'){ window.alert(t('push.installFirstLong')); return; }
+  if(reason === 'ios-old'){ window.alert(t('push.iosUpdate')); return; } // v235
   if(reason === 'unsupported'){ window.alert(t('push.unsupported')); return; }
   var session = getSession();
   if(!session) return;
@@ -4501,11 +4572,11 @@ function enablePushNotifications(){
     // niente da chiedere di nuovo: il browser non farà ricomparire il
     // popup di sistema finché l'utente non lo riattiva a mano dalle
     // impostazioni — meglio dirlo subito che far sembrare il pulsante rotto
-    window.alert(t('push.denied'));
+    window.alert(t(isIOSDevice() ? 'push.deniedIos' : 'push.denied')); // v235: su iPhone, dove riattivarle
     return;
   }
   Notification.requestPermission().then(function(perm){
-    if(perm !== 'granted'){ window.alert(t('push.denied')); return; }
+    if(perm !== 'granted'){ window.alert(t(isIOSDevice() ? 'push.deniedIos' : 'push.denied')); return; }
     return navigator.serviceWorker.ready.then(function(reg){
       return reg.pushManager.subscribe({
         userVisibleOnly: true,
@@ -7127,6 +7198,9 @@ function initAppShell(){
       if(pv && pv.textContent !== t('push.testSent')) pv.textContent = pst === 'on' ? t('push.test') : '';
       if(ph) ph.hidden = pst !== 'on' || pushRow.hidden;
     }
+    // v235: «su iPhone serve la schermata Home» solo dove serve davvero: iPhone/iPad con il sito in Safari
+    var iosNote = document.querySelector('.app-note[data-i18n="apptu.iosNote"]');
+    if(iosNote) iosNote.hidden = !(isIOSDevice() && !isStandaloneApp());
     var count = (typeof cart !== 'undefined' && cart && cart.length) ? String(cart.length) : '';
     if(byId('appTuCartCount')) byId('appTuCartCount').textContent = count;
     setSwitch('appTuTheme', !document.body.classList.contains('theme-light'));
@@ -8556,6 +8630,7 @@ function loadNotifications(){
     .then(function(rows){
       notifCache = rows;
       var unread = rows.filter(function(n){ return !n.read; }).length;
+      luxAppBadge(unread); // v235: anche sull'icona dell'app
       if(badge){
         if(unread > 0){ badge.textContent = unread > 99 ? '99+' : String(unread); badge.classList.remove('hidden'); }
         else { badge.classList.add('hidden'); }
@@ -8731,9 +8806,10 @@ function deleteAllNotifications(){
 }
 
 function updateNotifBadgeFromCache(){
+  var unread = notifCache.filter(function(n){ return !n.read; }).length;
+  luxAppBadge(unread); // v235: anche sull'icona dell'app
   var badge = document.getElementById('notifBadge');
   if(!badge) return;
-  var unread = notifCache.filter(function(n){ return !n.read; }).length;
   if(unread > 0){ badge.textContent = unread > 99 ? '99+' : String(unread); badge.classList.remove('hidden'); }
   else { badge.classList.add('hidden'); }
 }
