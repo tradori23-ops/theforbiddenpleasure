@@ -893,6 +893,20 @@ Object.assign(STR.hi, {"push.iosUpdate": "iPhone और iPad पर नोटि
 Object.assign(STR.bn, {"push.iosUpdate": "iPhone ও iPad-এ নোটিফিকেশনের জন্য iOS 16.4 বা নতুন সংস্করণ লাগে: সেটিংস › সাধারণ › সফটওয়্যার আপডেট থেকে আপডেট করুন, তারপর অ্যাপটি আবার খুলে চেষ্টা করুন।", "push.deniedIos": "এই ডিভাইসে LUX COMICS-এর নোটিফিকেশন বন্ধ আছে: সেটিংস › নোটিফিকেশন › LUX COMICS খুলুন, «নোটিফিকেশন অনুমোদন করুন» চালু করুন এবং এখানে ফিরে আসুন।"});
 Object.assign(STR.ar, {"push.iosUpdate": "على iPhone وiPad تحتاج الإشعارات إلى iOS 16.4 أو أحدث: حدّث النظام من الإعدادات › عام › تحديث البرامج، ثم افتح التطبيق من جديد وحاول مرة أخرى.", "push.deniedIos": "إشعارات LUX COMICS محظورة على هذا الجهاز: افتح الإعدادات › الإشعارات › LUX COMICS، وفعّل «السماح بالإشعارات» ثم عُد إلى هنا."});
 Object.assign(STR.pnb, {"push.iosUpdate": "iPhone تے iPad اُتے نوٹیفکیشن لئی iOS 16.4 یا نواں چاہیدا اے: سیٹنگز › جنرل › سافٹ ویئر اپڈیٹ توں اپڈیٹ کرو، فیر ایپ دوبارہ کھول کے کوشش کرو۔", "push.deniedIos": "ایس ڈیوائس اُتے LUX COMICS دے نوٹیفکیشن بند نیں: سیٹنگز › نوٹیفکیشنز › LUX COMICS کھولو، «نوٹیفکیشنز دی اجازت دیو» چالو کرو تے ایتھے واپس آؤ۔"});
+// v236: accedere e registrarsi nella propria lingua
+Object.assign(STR.it, {"auth.note": "Con l'account ritrovi preferiti e letture su ogni dispositivo, scrivi nella Community e ricevi le notifiche.", "auth.errExists": "Esiste già un account con questa email: accedi invece di registrarti.", "auth.errWeak": "Password troppo corta: usa almeno {n} caratteri.", "auth.errWeakRules": "Password troppo debole o troppo comune: scegline una più lunga, con lettere, numeri e simboli.", "auth.errEmail": "Questa email non sembra valida: controllala.", "auth.errRate": "Troppi tentativi in poco tempo: riprova tra qualche minuto.", "auth.errClosed": "Le nuove registrazioni sono chiuse in questo momento.", "auth.errNotConfirmed": "Prima conferma l'email: apri il messaggio che ti abbiamo mandato (guarda anche in Spam).", "auth.errNetwork": "Nessuna connessione: controlla internet e riprova.", "auth.errGeneric": "Non è stato possibile: riprova tra poco.", "quiz.q1": "Chi è il fondatore di LUX COMICS & MEDUSA COMICS?", "quiz.q2": "Quante collane principali compongono l'Archivio?", "quiz.q2.o": "Due|Tre|Quattro|Cinque", "quiz.q3": "Chi è la sorella di Lucifer in questo universo?", "quiz.q4": "In quale città è ambientata la collana LUX?", "quiz.q4.o": "Londra|Los Angeles|Edimburgo|New York", "quiz.q5": "Come si chiama la dimora di Lucio?", "quiz.q6": "In quale città è ambientata The Black Manor?", "quiz.q6.o": "Edimburgo|Los Angeles|Londra|Parigi"});
+Object.assign(STR.en, {"auth.note": "With an account you keep your favorites and reading progress on every device, write in the Community and get notifications.", "auth.errExists": "An account with this email already exists: sign in instead.", "auth.errWeak": "Password too short: use at least {n} characters.", "auth.errWeakRules": "Password too weak or too common: choose a longer one with letters, numbers and symbols.", "auth.errEmail": "This email doesn’t look valid: please check it.", "auth.errRate": "Too many attempts in a short time: try again in a few minutes.", "auth.errClosed": "New sign-ups are closed right now.", "auth.errNotConfirmed": "Confirm your email first: open the message we sent you (check Spam too).", "auth.errNetwork": "No connection: check your internet and try again.", "auth.errGeneric": "That didn’t work: please try again shortly.", "quiz.q1": "Who is the founder of LUX COMICS & MEDUSA COMICS?", "quiz.q2": "How many main series make up the Archive?", "quiz.q2.o": "Two|Three|Four|Five", "quiz.q3": "Who is Lucifer’s sister in this universe?", "quiz.q4": "In which city is the LUX series set?", "quiz.q4.o": "London|Los Angeles|Edinburgh|New York", "quiz.q5": "What is the name of Lucio’s home?", "quiz.q6": "In which city is The Black Manor set?", "quiz.q6.o": "Edinburgh|Los Angeles|London|Paris"});
+Object.assign(STR.es, {"auth.note": "Con una cuenta tienes tus favoritos y tus lecturas en todos tus dispositivos, escribes en la Comunidad y recibes notificaciones.", "auth.errExists": "Ya existe una cuenta con este correo: inicia sesión en lugar de registrarte.", "auth.errWeak": "Contraseña demasiado corta: usa al menos {n} caracteres.", "auth.errWeakRules": "Contraseña demasiado débil o común: elige una más larga, con letras, números y símbolos.", "auth.errEmail": "Este correo no parece válido: revísalo.", "auth.errRate": "Demasiados intentos en poco tiempo: vuelve a intentarlo en unos minutos.", "auth.errClosed": "Los nuevos registros están cerrados en este momento.", "auth.errNotConfirmed": "Primero confirma tu correo: abre el mensaje que te enviamos (mira también en Spam).", "auth.errNetwork": "Sin conexión: revisa internet y vuelve a intentarlo.", "auth.errGeneric": "No ha sido posible: inténtalo de nuevo en breve.", "quiz.q1": "¿Quién es el fundador de LUX COMICS & MEDUSA COMICS?", "quiz.q2": "¿Cuántas colecciones principales forman el Archivo?", "quiz.q2.o": "Dos|Tres|Cuatro|Cinco", "quiz.q3": "¿Quién es la hermana de Lucifer en este universo?", "quiz.q4": "¿En qué ciudad transcurre la colección LUX?", "quiz.q4.o": "Londres|Los Ángeles|Edimburgo|Nueva York", "quiz.q5": "¿Cómo se llama la residencia de Lucio?", "quiz.q6": "¿En qué ciudad transcurre The Black Manor?", "quiz.q6.o": "Edimburgo|Los Ángeles|Londres|París"});
+Object.assign(STR.fr, {"auth.note": "Avec un compte, vous retrouvez vos favoris et vos lectures sur tous vos appareils, vous écrivez dans la Communauté et vous recevez les notifications.", "auth.errExists": "Un compte existe déjà avec cet email : connectez-vous plutôt.", "auth.errWeak": "Mot de passe trop court : utilisez au moins {n} caractères.", "auth.errWeakRules": "Mot de passe trop faible ou trop courant : choisissez-en un plus long, avec des lettres, des chiffres et des symboles.", "auth.errEmail": "Cet email ne semble pas valide : vérifiez-le.", "auth.errRate": "Trop de tentatives en peu de temps : réessayez dans quelques minutes.", "auth.errClosed": "Les nouvelles inscriptions sont fermées pour le moment.", "auth.errNotConfirmed": "Confirmez d’abord votre email : ouvrez le message que nous vous avons envoyé (regardez aussi dans les spams).", "auth.errNetwork": "Pas de connexion : vérifiez internet et réessayez.", "auth.errGeneric": "Cela n’a pas fonctionné : réessayez dans un instant.", "quiz.q1": "Qui est le fondateur de LUX COMICS & MEDUSA COMICS ?", "quiz.q2": "Combien de collections principales composent l’Archive ?", "quiz.q2.o": "Deux|Trois|Quatre|Cinq", "quiz.q3": "Qui est la sœur de Lucifer dans cet univers ?", "quiz.q4": "Dans quelle ville se déroule la collection LUX ?", "quiz.q4.o": "Londres|Los Angeles|Édimbourg|New York", "quiz.q5": "Comment s’appelle la demeure de Lucio ?", "quiz.q6": "Dans quelle ville se déroule The Black Manor ?", "quiz.q6.o": "Édimbourg|Los Angeles|Londres|Paris"});
+Object.assign(STR.de, {"auth.note": "Mit einem Konto hast du deine Favoriten und deinen Lesestand auf jedem Gerät, schreibst in der Community und bekommst Benachrichtigungen.", "auth.errExists": "Mit dieser E-Mail gibt es schon ein Konto: Melde dich stattdessen an.", "auth.errWeak": "Passwort zu kurz: Verwende mindestens {n} Zeichen.", "auth.errWeakRules": "Passwort zu schwach oder zu verbreitet: Wähle ein längeres mit Buchstaben, Zahlen und Symbolen.", "auth.errEmail": "Diese E-Mail scheint nicht gültig zu sein: Prüfe sie bitte.", "auth.errRate": "Zu viele Versuche in kurzer Zeit: Versuch es in ein paar Minuten noch einmal.", "auth.errClosed": "Neue Registrierungen sind im Moment geschlossen.", "auth.errNotConfirmed": "Bestätige zuerst deine E-Mail: Öffne die Nachricht, die wir dir geschickt haben (schau auch im Spam nach).", "auth.errNetwork": "Keine Verbindung: Prüfe dein Internet und versuch es noch einmal.", "auth.errGeneric": "Das hat nicht geklappt: Versuch es gleich noch einmal.", "quiz.q1": "Wer ist der Gründer von LUX COMICS & MEDUSA COMICS?", "quiz.q2": "Aus wie vielen Hauptreihen besteht das Archiv?", "quiz.q2.o": "Zwei|Drei|Vier|Fünf", "quiz.q3": "Wer ist Lucifers Schwester in diesem Universum?", "quiz.q4": "In welcher Stadt spielt die Reihe LUX?", "quiz.q4.o": "London|Los Angeles|Edinburgh|New York", "quiz.q5": "Wie heißt Lucios Wohnsitz?", "quiz.q6": "In welcher Stadt spielt The Black Manor?", "quiz.q6.o": "Edinburgh|Los Angeles|London|Paris"});
+Object.assign(STR.pt, {"auth.note": "Com uma conta você encontra seus favoritos e suas leituras em todos os dispositivos, escreve na Comunidade e recebe notificações.", "auth.errExists": "Já existe uma conta com este e-mail: entre em vez de se cadastrar.", "auth.errWeak": "Senha curta demais: use pelo menos {n} caracteres.", "auth.errWeakRules": "Senha fraca ou comum demais: escolha uma mais longa, com letras, números e símbolos.", "auth.errEmail": "Este e-mail não parece válido: confira.", "auth.errRate": "Tentativas demais em pouco tempo: tente de novo em alguns minutos.", "auth.errClosed": "Novos cadastros estão fechados no momento.", "auth.errNotConfirmed": "Primeiro confirme seu e-mail: abra a mensagem que enviamos (veja também no Spam).", "auth.errNetwork": "Sem conexão: verifique a internet e tente de novo.", "auth.errGeneric": "Não foi possível: tente de novo daqui a pouco.", "quiz.q1": "Quem é o fundador da LUX COMICS & MEDUSA COMICS?", "quiz.q2": "Quantas coleções principais compõem o Acervo?", "quiz.q2.o": "Duas|Três|Quatro|Cinco", "quiz.q3": "Quem é a irmã de Lucifer neste universo?", "quiz.q4": "Em que cidade se passa a coleção LUX?", "quiz.q4.o": "Londres|Los Angeles|Edimburgo|Nova York", "quiz.q5": "Como se chama a residência de Lucio?", "quiz.q6": "Em que cidade se passa The Black Manor?", "quiz.q6.o": "Edimburgo|Los Angeles|Londres|Paris"});
+Object.assign(STR.ru, {"auth.note": "С аккаунтом избранное и прогресс чтения сохраняются на всех ваших устройствах, а ещё можно писать в Сообществе и получать уведомления.", "auth.errExists": "Аккаунт с этой почтой уже есть: просто войдите.", "auth.errWeak": "Слишком короткий пароль: используйте не меньше {n} символов.", "auth.errWeakRules": "Пароль слишком простой или распространённый: выберите более длинный, с буквами, цифрами и символами.", "auth.errEmail": "Похоже, адрес почты указан неверно: проверьте его.", "auth.errRate": "Слишком много попыток за короткое время: попробуйте через несколько минут.", "auth.errClosed": "Регистрация новых аккаунтов сейчас закрыта.", "auth.errNotConfirmed": "Сначала подтвердите почту: откройте письмо, которое мы вам отправили (загляните и в «Спам»).", "auth.errNetwork": "Нет соединения: проверьте интернет и попробуйте ещё раз.", "auth.errGeneric": "Не получилось: попробуйте ещё раз чуть позже.", "quiz.q1": "Кто основатель LUX COMICS & MEDUSA COMICS?", "quiz.q2": "Сколько основных серий входит в Архив?", "quiz.q2.o": "Две|Три|Четыре|Пять", "quiz.q3": "Кто сестра Lucifer в этой вселенной?", "quiz.q4": "В каком городе происходит действие серии LUX?", "quiz.q4.o": "Лондон|Лос-Анджелес|Эдинбург|Нью-Йорк", "quiz.q5": "Как называется резиденция Lucio?", "quiz.q6": "В каком городе происходит действие The Black Manor?", "quiz.q6.o": "Эдинбург|Лос-Анджелес|Лондон|Париж"});
+Object.assign(STR.zh, {"auth.note": "有了账号，收藏和阅读进度在所有设备上都能找到，还可以在社区发言并接收通知。", "auth.errExists": "该邮箱已经注册过账号，请直接登录。", "auth.errWeak": "密码太短：请至少使用 {n} 个字符。", "auth.errWeakRules": "密码太弱或太常见：请换一个更长的密码，包含字母、数字和符号。", "auth.errEmail": "这个邮箱地址似乎无效，请检查一下。", "auth.errRate": "短时间内尝试次数过多，请几分钟后再试。", "auth.errClosed": "目前暂停新用户注册。", "auth.errNotConfirmed": "请先确认邮箱：打开我们发给你的邮件（也看看垃圾邮件文件夹）。", "auth.errNetwork": "没有网络连接：请检查网络后重试。", "auth.errGeneric": "操作未成功，请稍后再试。", "quiz.q1": "LUX COMICS & MEDUSA COMICS 的创始人是谁？", "quiz.q2": "档案库由几个主要系列组成？", "quiz.q2.o": "两个|三个|四个|五个", "quiz.q3": "在这个宇宙中，谁是 Lucifer 的姐妹？", "quiz.q4": "LUX 系列的故事发生在哪座城市？", "quiz.q4.o": "伦敦|洛杉矶|爱丁堡|纽约", "quiz.q5": "Lucio 的居所叫什么名字？", "quiz.q6": "The Black Manor 的故事发生在哪座城市？", "quiz.q6.o": "爱丁堡|洛杉矶|伦敦|巴黎"});
+Object.assign(STR.ja, {"auth.note": "アカウントがあれば、お気に入りと読書の続きをどの端末でも使え、コミュニティへの投稿や通知の受け取りもできます。", "auth.errExists": "このメールアドレスのアカウントはすでにあります。ログインしてください。", "auth.errWeak": "パスワードが短すぎます。{n} 文字以上にしてください。", "auth.errWeakRules": "パスワードが弱いか、よく使われています。文字・数字・記号を含む、より長いものにしてください。", "auth.errEmail": "メールアドレスが正しくないようです。確認してください。", "auth.errRate": "短時間に試行が多すぎます。数分後にもう一度お試しください。", "auth.errClosed": "現在、新規登録は受け付けていません。", "auth.errNotConfirmed": "先にメールアドレスを確認してください。お送りしたメールを開いてください（迷惑メールフォルダもご確認ください）。", "auth.errNetwork": "接続できません。インターネットを確認して、もう一度お試しください。", "auth.errGeneric": "うまくいきませんでした。少し待ってから、もう一度お試しください。", "quiz.q1": "LUX COMICS & MEDUSA COMICS の創設者は誰？", "quiz.q2": "アーカイブの主なシリーズはいくつ？", "quiz.q2.o": "2つ|3つ|4つ|5つ", "quiz.q3": "この世界で Lucifer の姉妹は誰？", "quiz.q4": "LUX シリーズの舞台はどの都市？", "quiz.q4.o": "ロンドン|ロサンゼルス|エディンバラ|ニューヨーク", "quiz.q5": "Lucio の邸宅の名前は？", "quiz.q6": "The Black Manor の舞台はどの都市？", "quiz.q6.o": "エディンバラ|ロサンゼルス|ロンドン|パリ"});
+Object.assign(STR.hi, {"auth.note": "अकाउंट से आपके पसंदीदा और पढ़ने की प्रगति हर डिवाइस पर मिलती है, आप कम्युनिटी में लिख सकते हैं और सूचनाएँ पा सकते हैं।", "auth.errExists": "इस ईमेल से अकाउंट पहले से है: साइन अप के बजाय लॉग इन करें।", "auth.errWeak": "पासवर्ड बहुत छोटा है: कम से कम {n} अक्षर इस्तेमाल करें।", "auth.errWeakRules": "पासवर्ड बहुत कमज़ोर या बहुत आम है: अक्षरों, अंकों और चिह्नों वाला लंबा पासवर्ड चुनें।", "auth.errEmail": "यह ईमेल सही नहीं लगता: कृपया जाँच लें।", "auth.errRate": "कम समय में बहुत ज़्यादा कोशिशें: कुछ मिनट बाद फिर कोशिश करें।", "auth.errClosed": "अभी नए साइन अप बंद हैं।", "auth.errNotConfirmed": "पहले अपना ईमेल पक्का करें: हमारा भेजा संदेश खोलें (स्पैम में भी देखें)।", "auth.errNetwork": "कनेक्शन नहीं है: इंटरनेट जाँचें और फिर कोशिश करें।", "auth.errGeneric": "यह नहीं हो पाया: थोड़ी देर बाद फिर कोशिश करें।", "quiz.q1": "LUX COMICS & MEDUSA COMICS के संस्थापक कौन हैं?", "quiz.q2": "आर्काइव में कितनी मुख्य सीरीज़ हैं?", "quiz.q2.o": "दो|तीन|चार|पाँच", "quiz.q3": "इस ब्रह्मांड में Lucifer की बहन कौन है?", "quiz.q4": "LUX सीरीज़ किस शहर में घटती है?", "quiz.q4.o": "लंदन|लॉस एंजेलिस|एडिनबर्ग|न्यूयॉर्क", "quiz.q5": "Lucio के निवास का नाम क्या है?", "quiz.q6": "The Black Manor किस शहर में घटती है?", "quiz.q6.o": "एडिनबर्ग|लॉस एंजेलिस|लंदन|पेरिस"});
+Object.assign(STR.bn, {"auth.note": "অ্যাকাউন্ট থাকলে প্রিয় তালিকা আর পড়ার অগ্রগতি সব ডিভাইসে পাবেন, কমিউনিটিতে লিখতে পারবেন আর নোটিফিকেশন পাবেন।", "auth.errExists": "এই ইমেইলে আগেই একটি অ্যাকাউন্ট আছে: নতুন করে না খুলে লগ ইন করুন।", "auth.errWeak": "পাসওয়ার্ড খুব ছোট: অন্তত {n}টি অক্ষর ব্যবহার করুন।", "auth.errWeakRules": "পাসওয়ার্ড খুব দুর্বল বা খুব সাধারণ: অক্ষর, সংখ্যা আর চিহ্ন দিয়ে আরও লম্বা একটি বেছে নিন।", "auth.errEmail": "এই ইমেইলটি সঠিক মনে হচ্ছে না: একবার দেখে নিন।", "auth.errRate": "অল্প সময়ে অনেক বেশি চেষ্টা: কয়েক মিনিট পরে আবার চেষ্টা করুন।", "auth.errClosed": "এই মুহূর্তে নতুন সাইন আপ বন্ধ আছে।", "auth.errNotConfirmed": "আগে ইমেইল নিশ্চিত করুন: আমাদের পাঠানো বার্তাটি খুলুন (স্প্যাম ফোল্ডারেও দেখুন)।", "auth.errNetwork": "সংযোগ নেই: ইন্টারনেট দেখে আবার চেষ্টা করুন।", "auth.errGeneric": "হলো না: একটু পরে আবার চেষ্টা করুন।", "quiz.q1": "LUX COMICS & MEDUSA COMICS-এর প্রতিষ্ঠাতা কে?", "quiz.q2": "আর্কাইভে মোট কয়টি প্রধান সিরিজ আছে?", "quiz.q2.o": "দুটি|তিনটি|চারটি|পাঁচটি", "quiz.q3": "এই জগতে Lucifer-এর বোন কে?", "quiz.q4": "LUX সিরিজের গল্প কোন শহরে?", "quiz.q4.o": "লন্ডন|লস অ্যাঞ্জেলেস|এডিনবরা|নিউ ইয়র্ক", "quiz.q5": "Lucio-র বাসভবনের নাম কী?", "quiz.q6": "The Black Manor-এর গল্প কোন শহরে?", "quiz.q6.o": "এডিনবরা|লস অ্যাঞ্জেলেস|লন্ডন|প্যারিস"});
+Object.assign(STR.ar, {"auth.note": "مع الحساب تجد مفضّلتك وتقدّم قراءتك على كل أجهزتك، وتكتب في المجتمع وتتلقّى الإشعارات.", "auth.errExists": "يوجد حساب بهذا البريد بالفعل: سجّل الدخول بدلًا من إنشاء حساب جديد.", "auth.errWeak": "كلمة المرور قصيرة جدًا: استخدم {n} أحرف على الأقل.", "auth.errWeakRules": "كلمة المرور ضعيفة أو شائعة جدًا: اختر كلمة أطول تضم حروفًا وأرقامًا ورموزًا.", "auth.errEmail": "يبدو أن هذا البريد غير صالح: تحقّق منه.", "auth.errRate": "محاولات كثيرة في وقت قصير: أعد المحاولة بعد بضع دقائق.", "auth.errClosed": "التسجيل الجديد مغلق حاليًا.", "auth.errNotConfirmed": "أكّد بريدك الإلكتروني أولًا: افتح الرسالة التي أرسلناها إليك (وتحقّق من مجلد البريد العشوائي أيضًا).", "auth.errNetwork": "لا يوجد اتصال: تحقّق من الإنترنت وأعد المحاولة.", "auth.errGeneric": "لم ينجح ذلك: أعد المحاولة بعد قليل.", "quiz.q1": "من هو مؤسس LUX COMICS & MEDUSA COMICS؟", "quiz.q2": "كم سلسلة رئيسية يتكوّن منها الأرشيف؟", "quiz.q2.o": "اثنتان|ثلاث|أربع|خمس", "quiz.q3": "من هي أخت Lucifer في هذا العالم؟", "quiz.q4": "في أي مدينة تدور أحداث سلسلة LUX؟", "quiz.q4.o": "لندن|لوس أنجلوس|إدنبرة|نيويورك", "quiz.q5": "ما اسم مسكن Lucio؟", "quiz.q6": "في أي مدينة تدور أحداث The Black Manor؟", "quiz.q6.o": "إدنبرة|لوس أنجلوس|لندن|باريس"});
+Object.assign(STR.pnb, {"auth.note": "اکاؤنٹ نال تہاڈے پسندیدہ تے پڑھائی ہر ڈیوائس تے ملدی اے، تسیں کمیونٹی وچ لکھ سکدے او تے نوٹیفکیشن لے سکدے او۔", "auth.errExists": "ایس ای میل نال پہلاں ای اک اکاؤنٹ اے: رجسٹر ہون دی تھاں لاگ ان کرو۔", "auth.errWeak": "پاس ورڈ بہت چھوٹا اے: گھٹو گھٹ {n} اکھر ورتو۔", "auth.errWeakRules": "پاس ورڈ بہت کمزور یا بہت عام اے: اکھراں، نمبراں تے نشاناں والا لما پاس ورڈ چُنو۔", "auth.errEmail": "ایہ ای میل ٹھیک نئیں لگدی: اک وار ویکھ لو۔", "auth.errRate": "تھوڑے ویلے وچ بہت زیادہ کوششاں: کجھ منٹاں بعد فیر کوشش کرو۔", "auth.errClosed": "ایس ویلے نویں رجسٹریشن بند اے۔", "auth.errNotConfirmed": "پہلاں اپنی ای میل دی تصدیق کرو: اساں جیہڑا سنیہا بھیجیا اے اوہ کھولو (سپیم وچ وی ویکھو)۔", "auth.errNetwork": "کنکشن نئیں: انٹرنیٹ ویکھو تے فیر کوشش کرو۔", "auth.errGeneric": "ایہ نئیں ہو سکیا: تھوڑی دیر بعد فیر کوشش کرو۔", "quiz.q1": "LUX COMICS & MEDUSA COMICS دا بانی کون اے؟", "quiz.q2": "آرکائیو وچ کنیاں وڈیاں سیریز نیں؟", "quiz.q2.o": "دو|تن|چار|پنج", "quiz.q3": "ایس دنیا وچ Lucifer دی بھین کون اے؟", "quiz.q4": "LUX سیریز کس شہر وچ ہوندی اے؟", "quiz.q4.o": "لندن|لاس اینجلس|ایڈنبرا|نیو یارک", "quiz.q5": "Lucio دے گھر دا ناں کی اے؟", "quiz.q6": "The Black Manor کس شہر وچ ہوندی اے؟", "quiz.q6.o": "ایڈنبرا|لاس اینجلس|لندن|پیرس"});
 var CHAR_META = {
   Lucifer:{role:{it:"Il Portatore di Luce",en:"The Light-Bearer",es:"El Portador de Luz",fr:"Le Porteur de Lumière",de:"Der Lichtträger"},
     bio:{it:"Sovrano della collana ammiraglia: potere, caduta e desiderio raccontati su grande scala.",
@@ -941,7 +955,7 @@ function t(key){
 }
 function applyI18n(){
   // v234: testi delle chat che erano solo in italiano
-  [['channelSearchInput', 'data-i18n-placeholder', 'channel.searchPh'], ['channelSearchEmpty', 'data-i18n', 'channel.searchEmpty'], ['btnChatBgReset', 'data-i18n', 'chat.bgReset']].forEach(function(x){
+  [['channelSearchInput', 'data-i18n-placeholder', 'channel.searchPh'], ['channelSearchEmpty', 'data-i18n', 'channel.searchEmpty'], ['btnChatBgReset', 'data-i18n', 'chat.bgReset'], ['langSelect', 'data-i18n-aria', 'apptu.lang']].forEach(function(x){
     var el = document.getElementById(x[0]);
     if(el && !el.hasAttribute(x[1])) el.setAttribute(x[1], x[2]);
   });
@@ -985,6 +999,7 @@ function setLang(lang){
     titleModalRelang = true;
     try { openTitleModal(readerItem); } finally { titleModalRelang = false; }
   }
+  try { luxAuthRelang(); } catch(e){} // v236: la finestra «Accedi / Registrati» nella lingua nuova
 }
 var titleModalRelang = false; // v227: la scheda si rifà per la lingua, non è una nuova apertura
 
@@ -1205,28 +1220,11 @@ function refreshSessionIfNeeded(){
 }
 
 function authSignIn(email, password){
-  return fetch(SUPABASE_URL + '/auth/v1/token?grant_type=password', {
-    method:'POST',
-    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Content-Type':'application/json' },
-    body: JSON.stringify({email:email, password:password})
-  }).then(function(r){
-    return r.json().then(function(data){
-      if(!r.ok) throw new Error(data.error_description || data.msg || ('sign-in failed: ' + r.status));
-      return data;
-    });
-  });
+  return luxAuthRequest('/auth/v1/token?grant_type=password', {email:email, password:password});
 }
 function authSignUp(email, password){
-  return fetch(SUPABASE_URL + '/auth/v1/signup', {
-    method:'POST',
-    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Content-Type':'application/json' },
-    body: JSON.stringify({email:email, password:password})
-  }).then(function(r){
-    return r.json().then(function(data){
-      if(!r.ok) throw new Error(data.error_description || data.msg || ('sign-up failed: ' + r.status));
-      return data; // data.session is null if email confirmation is required
-    });
-  });
+  // v236: la lingua scelta resta nell'account (si può usare nell'email di conferma)
+  return luxAuthRequest('/auth/v1/signup', {email:email, password:password, data:{ lang: currentLang }}); // data.session è null se serve confermare l'email
 }
 function authSignOut(){ setSession(null); currentProfile = null; luxAppBadge(0); } // v235: uscendo, niente numero sull'icona
 
@@ -1366,13 +1364,13 @@ function initMatureToggle(){
 /* ============ REGISTRATION QUIZ (rallenta le registrazioni casuali — non
    è sicurezza vera, è un ostacolo: chi vuole aggirarlo cancellando i dati
    del browser può sempre farlo, ma scoraggia i tentativi automatici/pigri) ============ */
-var QUIZ_QUESTIONS = [
-  { q:"Chi è il fondatore di LUX COMICS & MEDUSA COMICS?", options:["Lucifer Morningstar","Nox Morningstar","Lucio Emerald","Nox Lucifera"], correct:1 },
-  { q:"Quante collane principali compongono l'Archivio?", options:["Due","Tre","Quattro","Cinque"], correct:2 },
-  { q:"Chi è la sorella di Lucifer in questo universo?", options:["Lilith","Medusa","Lucifera","Nox"], correct:2 },
-  { q:"In quale città è ambientata la collana LUX?", options:["Londra","Los Angeles","Edimburgo","New York"], correct:1 },
-  { q:"Come si chiama la dimora di Lucio?", options:["The Black Manor","LUX Noir","Emerald Palace","Silver City"], correct:2 },
-  { q:"In quale città è ambientata The Black Manor?", options:["Edimburgo","Los Angeles","Londra","Parigi"], correct:0 }
+var QUIZ_QUESTIONS = [ // v236: testi tradotti (STR quiz.q1…q6); le risposte che sono nomi restano uguali in tutte le lingue
+  { q:'quiz.q1', options:["Lucifer Morningstar","Nox Morningstar","Lucio Emerald","Nox Lucifera"], correct:1 },
+  { q:'quiz.q2', optKey:'quiz.q2.o', correct:2 },
+  { q:'quiz.q3', options:["Lilith","Medusa","Lucifera","Nox"], correct:2 },
+  { q:'quiz.q4', optKey:'quiz.q4.o', correct:1 },
+  { q:'quiz.q5', options:["The Black Manor","LUX Noir","Emerald Palace","Silver City"], correct:2 },
+  { q:'quiz.q6', optKey:'quiz.q6.o', correct:0 }
 ];
 var QUIZ_MAX_FAILS = 4;
 var QUIZ_LOCKOUT_MS = 10 * 60 * 1000;
@@ -1434,7 +1432,7 @@ function saveQuizState(state){
   try { localStorage.setItem('lux_quiz_state', JSON.stringify(state)); } catch(e){}
 }
 
-function renderQuizGate(){
+function renderQuizGate(keep){ // v236: keep = stessa domanda, solo nella lingua nuova
   var gate = document.getElementById('registerQuizGate');
   var fieldsWrap = document.getElementById('authFieldsWrap');
   if(quizPassed){
@@ -1460,10 +1458,10 @@ function renderQuizGate(){
   }
 
   qError.textContent = '';
-  currentQuizQuestion = QUIZ_QUESTIONS[Math.floor(Math.random() * QUIZ_QUESTIONS.length)];
-  qText.textContent = currentQuizQuestion.q;
+  if(!keep || !currentQuizQuestion) currentQuizQuestion = QUIZ_QUESTIONS[Math.floor(Math.random() * QUIZ_QUESTIONS.length)];
+  qText.textContent = t(currentQuizQuestion.q);
   qOptions.innerHTML = '';
-  currentQuizQuestion.options.forEach(function(opt, idx){
+  quizOptionsOf(currentQuizQuestion).forEach(function(opt, idx){
     var btn = document.createElement('button');
     btn.type = 'button';
     btn.className = 'btn btn-ghost btn-sm quiz-option-btn';
@@ -1491,24 +1489,108 @@ function answerQuiz(selectedIdx){
   }
 }
 
+// v236: la finestra «Accedi / Registrati» nella lingua di chi la usa.
+// - la lingua si cambia anche da qui (prima la finestra copriva il selettore);
+// - cambiando lingua, titolo e pulsanti restano quelli giusti (prima tornavano a «Accedi»);
+// - gli errori di Supabase (in inglese) diventano frasi chiare nella lingua scelta.
+function luxSetI18nKey(id, key){
+  var el = document.getElementById(id);
+  if(!el) return;
+  el.setAttribute('data-i18n', key);
+  el.textContent = t(key);
+}
+function luxAuthLangRow(){
+  var modal = document.querySelector('#authModal .modal');
+  if(!modal) return;
+  var sel = document.getElementById('authLang');
+  if(!sel){
+    var row = document.createElement('div');
+    row.className = 'auth-lang';
+    row.innerHTML = '<svg class="auth-lang-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM3 12h18M12 3c2.5 2.5 3.5 5.5 3.5 9s-1 6.5-3.5 9c-2.5-2.5-3.5-5.5-3.5-9s1-6.5 3.5-9z"/></svg><select id="authLang"></select>';
+    var sub = modal.querySelector('.sub');
+    if(sub && sub.parentNode === modal) modal.insertBefore(row, sub.nextSibling);
+    else modal.insertBefore(row, modal.firstChild);
+    sel = row.querySelector('select');
+    LUX_LANGS.forEach(function(l){ sel.appendChild(new Option(l.name, l.code)); });
+    sel.addEventListener('change', function(){
+      // come il selettore principale (così si aggiornano anche quello di lato e quello in «Tu»)
+      var main = document.getElementById('langSelect');
+      if(main){ main.value = sel.value; main.dispatchEvent(new Event('change', { bubbles: true })); }
+      else setLang(sel.value);
+    });
+  }
+  sel.setAttribute('aria-label', t('apptu.lang'));
+  sel.value = currentLang;
+}
+var luxAuthErrLast = null; // l'ultimo errore mostrato: cambiando lingua si riscrive
+function luxAuthErrInfo(e, mode){
+  var code = String((e && e.code) || ''), msg = String((e && e.message) || ''), st = e && e.status, m;
+  if(e && e.network) return { key: 'auth.errNetwork' };
+  if(/email_not_confirmed/.test(code) || /email not confirmed/i.test(msg)) return { key: 'auth.errNotConfirmed' };
+  if(/over_(email_send|request|sms_send)_rate_limit/.test(code) || st === 429 || /rate limit|too many requests/i.test(msg)) return { key: 'auth.errRate' };
+  if(mode === 'login') return { key: st >= 500 ? 'auth.errGeneric' : 'err.badLogin' };
+  if(/user_already_exists|email_exists/.test(code) || /already (been )?registered|already exists/i.test(msg)) return { key: 'auth.errExists' };
+  if((m = /at least (\d+) characters/i.exec(msg))) return { key: 'auth.errWeak', n: m[1] };
+  if(/weak_password/.test(code) || /password/i.test(msg)) return { key: 'auth.errWeakRules' };
+  if(/email_address_invalid|validation_failed/.test(code) || /email/i.test(msg) && /invalid|valid/i.test(msg)) return { key: 'auth.errEmail' };
+  if(/signup_disabled|email_provider_disabled/.test(code) || /signups? not allowed|signups? (are )?disabled/i.test(msg)) return { key: 'auth.errClosed' };
+  return { key: 'auth.errGeneric' };
+}
+function luxAuthMsg(info){
+  var s = t(info.key);
+  return info.n ? s.replace('{n}', info.n) : s;
+}
+function luxAuthShowErr(info){
+  luxAuthErrLast = info;
+  var err = document.getElementById('authError');
+  if(err) err.textContent = info ? luxAuthMsg(info) : '';
+}
+// la richiesta a Supabase: un errore porta con sé codice e stato, una rete assente lo dice
+function luxAuthRequest(path, body){
+  return fetch(SUPABASE_URL + path, {
+    method:'POST',
+    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Content-Type':'application/json' },
+    body: JSON.stringify(body)
+  }).catch(function(){
+    var e = new Error('network');
+    e.network = true;
+    throw e;
+  }).then(function(r){
+    return r.json().catch(function(){ return {}; }).then(function(data){
+      if(!r.ok){
+        var e = new Error(data.error_description || data.msg || data.message || ('auth failed: ' + r.status));
+        e.code = data.error_code || data.error || '';
+        e.status = r.status;
+        throw e;
+      }
+      return data;
+    });
+  });
+}
+// cambiando lingua con la finestra aperta: selettore, domanda del quiz ed errore nella lingua nuova
+function luxAuthRelang(){
+  var modal = document.getElementById('authModal');
+  if(!modal || modal.classList.contains('hidden')) return;
+  luxAuthLangRow();
+  if(authMode === 'register' && !quizPassed) renderQuizGate(true);
+  if(luxAuthErrLast) luxAuthShowErr(luxAuthErrLast);
+}
+function quizOptionsOf(q){ return q.optKey ? t(q.optKey).split('|') : q.options; }
+
 var authMode = 'login';
 function openAuth(mode){
   authMode = mode || 'login';
-  document.getElementById('authError').textContent = '';
+  luxAuthShowErr(null);
   document.getElementById('authUser').value = '';
   document.getElementById('authPass').value = '';
-  var titleKey = authMode === 'login' ? 'auth.loginTitle' : 'auth.registerTitle';
-  document.getElementById('authTitle').textContent = t(titleKey);
-  document.getElementById('authSubmit').textContent = t(authMode === 'login' ? 'auth.loginBtn' : 'auth.registerBtn');
-  var switchLabel = document.getElementById('authSwitch');
-  var switchText = document.getElementById('authSwitchText');
-  if(authMode === 'login'){
-    switchText.textContent = t('auth.switchToRegister');
-    switchLabel.textContent = t('auth.switchToRegisterBtn');
-  } else {
-    switchText.textContent = t('auth.switchToLogin');
-    switchLabel.textContent = t('auth.switchToLoginBtn');
-  }
+  // v236: le chiavi restano sugli elementi, così cambiando lingua il testo resta quello giusto
+  luxSetI18nKey('authTitle', authMode === 'login' ? 'auth.loginTitle' : 'auth.registerTitle');
+  luxSetI18nKey('authSubmit', authMode === 'login' ? 'auth.loginBtn' : 'auth.registerBtn');
+  luxSetI18nKey('authSwitchText', authMode === 'login' ? 'auth.switchToRegister' : 'auth.switchToLogin');
+  luxSetI18nKey('authSwitch', authMode === 'login' ? 'auth.switchToRegisterBtn' : 'auth.switchToLoginBtn');
+  var closeBtn = document.getElementById('authClose');
+  if(closeBtn){ closeBtn.setAttribute('data-i18n-aria', 'apptu.close'); closeBtn.setAttribute('aria-label', t('apptu.close')); }
+  luxAuthLangRow();
   if(authMode === 'register'){
     quizPassed = !registrationQuizEnabled; // domande spente dal gestionale: campi subito visibili
     renderQuizGate();
@@ -1525,10 +1607,9 @@ function handleAuthSubmit(){
   if(authMode === 'register' && !quizPassed) return; // difesa in più, i campi restano comunque nascosti finché non superi il quiz
   var email = document.getElementById('authUser').value.trim();
   var pass = document.getElementById('authPass').value;
-  var err = document.getElementById('authError');
-  err.textContent = '';
-  if(!email || !pass){ err.textContent = t('err.required'); return; }
-  if(!SUPABASE_URL){ err.textContent = t('sync.notConfigured'); return; }
+  luxAuthShowErr(null);
+  if(!email || !pass){ luxAuthShowErr({ key: 'err.required' }); return; }
+  if(!SUPABASE_URL){ luxAuthShowErr({ key: 'sync.notConfigured' }); return; }
 
 
   if(authMode === 'register'){
@@ -1542,7 +1623,7 @@ function handleAuthSubmit(){
         alert(t('auth.confirmEmailSent'));
       }
     }).catch(function(e){
-      err.textContent = e.message || t('err.badLogin');
+      luxAuthShowErr(luxAuthErrInfo(e, 'register')); // v236
     });
   } else {
     authSignIn(email, pass).then(function(data){
@@ -1550,7 +1631,7 @@ function handleAuthSubmit(){
       closeAuth();
       afterAuthChange();
     }).catch(function(e){
-      err.textContent = t('err.badLogin');
+      luxAuthShowErr(luxAuthErrInfo(e, 'login')); // v236: email da confermare, rete assente… non sono «credenziali non valide»
     });
   }
 }

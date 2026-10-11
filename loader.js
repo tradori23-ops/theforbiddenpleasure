@@ -17,6 +17,31 @@
     if (dbg === "1") localStorage.setItem("lux_debug", "1");
     else if (dbg === "0") localStorage.removeItem("lux_debug");
   } catch (err) {}
+  // v236: alla prima visita la lingua del telefono o del computer, se il sito la parla
+  // (prima si partiva sempre in italiano, anche chi non lo legge). Chi ha già scelto
+  // una lingua la ritrova com'era; i motori di ricerca continuano a vedere l'italiano.
+  // Se nessuna lingua del dispositivo è tra le 13 del sito: inglese.
+  (function luxDetectLang() {
+    try {
+      if (localStorage.getItem("lux_lang")) return;
+      if (/bot|crawl|spider|slurp|headless|lighthouse|bingpreview|facebookexternalhit|embedly/i.test(navigator.userAgent || "")) return;
+      var list = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || ""];
+      var known = false;
+      for (var i = 0; i < list.length; i++) {
+        var tag = String(list[i] || "").toLowerCase();
+        if (!tag) continue;
+        known = true;
+        var base = tag.split(/[-_]/)[0], code = null;
+        if (base === "pnb" || (base === "pa" && /arab|-pk/.test(tag))) code = "pnb"; // il panjabi del sito è quello del Pakistan
+        else if (/^(it|en|es|fr|de|pt|ru|zh|ja|hi|bn|ar)$/.test(base)) code = base;
+        if (code) {
+          if (code !== "it") localStorage.setItem("lux_lang", code);
+          return;
+        }
+      }
+      if (known) localStorage.setItem("lux_lang", "en");
+    } catch (e) {}
+  })();
   function luxShowErrors() {
     try { return localStorage.getItem("lux_is_admin") === "1" || localStorage.getItem("lux_debug") === "1"; }
     catch (err) { return false; }
@@ -58,7 +83,7 @@
   // hai visto live sul sito prima di caricare — questo file parte da una
   // copia salvata in sessione e potrebbe non riflettere bump fatti nel
   // frattempo direttamente su GitHub.
-  var V = "235";
+  var V = "236";
 
   // style.css iniettato qui (non più con un <link> scritto a mano in ogni
   // pagina) così la sua versione segue sempre la stessa V di app.js,
