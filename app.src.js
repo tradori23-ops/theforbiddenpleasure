@@ -4914,6 +4914,33 @@ function setPushBtnState(btn, state, label){
   btn.title = state === 'active' ? t('push.testTitle') : label; // v221: attive → si tocca per la prova
 }
 
+// v238: l'iscrizione di questo dispositivo. Apple risponde «ok» anche alle iscrizioni ormai
+// sostituite (quando l'iPhone ne crea una nuova), quindi il server non se ne accorge e prima
+// restavano nel database per sempre: ora, quando cambia, quella vecchia la toglie il sito,
+// e solo dopo aver salvato la nuova.
+function luxPushRemember(endpoint, session){
+  if(!endpoint) return;
+  var old = null;
+  try { old = localStorage.getItem('lux_push_ep'); localStorage.setItem('lux_push_ep', endpoint); } catch(e){}
+  if(!old || old === endpoint || !session || !session.access_token) return;
+  fetch(SUPABASE_URL + '/rest/v1/push_subscriptions?endpoint=eq.' + encodeURIComponent(old), {
+    method: 'DELETE',
+    headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': 'Bearer ' + session.access_token }
+  }).catch(function(){ /* ci si riprova al prossimo cambio */ });
+}
+// v238: uscendo dall'account il dispositivo smette di ricevere le notifiche di quell'account
+// (su un telefono o un tablet usato da più persone i messaggi privati restano privati).
+// Rientrando, l'iscrizione si risalva da sola (refreshPushButtonUI).
+function luxPushForgetDevice(){
+  var session = getSession(), ep = null;
+  try { ep = localStorage.getItem('lux_push_ep'); } catch(e){}
+  if(!ep || !session || !session.access_token) return;
+  fetch(SUPABASE_URL + '/rest/v1/push_subscriptions?endpoint=eq.' + encodeURIComponent(ep), {
+    method: 'DELETE', keepalive: true,
+    headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': 'Bearer ' + session.access_token }
+  }).catch(function(){});
+}
+
 // v221: salva (o aggiorna) nel database l'iscrizione di questo dispositivo
 function savePushSubscription(sub, session){
   var json = sub.toJSON();
@@ -4924,7 +4951,7 @@ function savePushSubscription(sub, session){
       'Content-Type': 'application/json', 'Prefer': 'resolution=merge-duplicates'
     },
     body: JSON.stringify({ user_id: currentUserId(), endpoint: json.endpoint, p256dh: json.keys.p256dh, auth: json.keys.auth })
-  });
+  }).then(function(r){ if(r && r.ok) luxPushRemember(json.endpoint, session); return r; }); // v238
 }
 
 // v221: il permesso c'è già ma il browser ha perso l'iscrizione (capita dopo
@@ -5040,6 +5067,7 @@ function refreshPushButtonUI(){
       headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': 'Bearer ' + session.access_token }
     }).then(function(r){ return r.ok ? r.json() : []; }).then(function(rows){
       if(rows && rows.length > 0){
+        luxPushRemember(sub.endpoint, session); // v238
         if(settled) return;
         settled = true;
         clearTimeout(safetyTimer);
@@ -5059,6 +5087,7 @@ function refreshPushButtonUI(){
         },
         body: JSON.stringify({ user_id: currentUserId(), endpoint: json.endpoint, p256dh: json.keys.p256dh, auth: json.keys.auth })
       }).then(function(r2){
+        if(r2.ok) luxPushRemember(json.endpoint, session); // v238
         if(settled) return;
         settled = true;
         clearTimeout(safetyTimer);
@@ -5099,6 +5128,7 @@ function enablePushNotifications(){
     window.alert(t(isIOSDevice() ? 'push.deniedIos' : 'push.denied')); // v235: su iPhone, dove riattivarle
     return;
   }
+  var savedEp = null; // v238
   Notification.requestPermission().then(function(perm){
     if(perm !== 'granted'){ window.alert(t(isIOSDevice() ? 'push.deniedIos' : 'push.denied')); return; }
     return navigator.serviceWorker.ready.then(function(reg){
@@ -5108,6 +5138,7 @@ function enablePushNotifications(){
       });
     }).then(function(sub){
       var json = sub.toJSON();
+      savedEp = json.endpoint; // v238
       return fetch(SUPABASE_URL + '/rest/v1/push_subscriptions?on_conflict=endpoint', {
         method: 'POST',
         headers: {
@@ -5118,6 +5149,7 @@ function enablePushNotifications(){
       });
     }).then(function(r){
       if(!r.ok) throw new Error('push subscription save failed');
+      luxPushRemember(savedEp, session); // v238
       refreshPushButtonUI();
     });
   }).catch(function(e){
@@ -20595,6 +20627,7 @@ function __appInit(){
 
   document.getElementById('btnLoginTop') && document.getElementById('btnLoginTop').addEventListener('click', function(){ openAuth('login'); });
   document.getElementById('btnLogoutTop') && document.getElementById('btnLogoutTop').addEventListener('click', function(){
+    luxPushForgetDevice(); // v238: prima di uscire (serve ancora l'accesso per toglierla)
     authSignOut();
     favoriteIds = new Set();
     verifiedSupporterCache = null;
