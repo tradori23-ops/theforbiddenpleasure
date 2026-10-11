@@ -4006,3 +4006,13 @@ html.lux-rtl .dossier-biography-text{margin-left:auto;} /* in arabo e panjabi il
 .admin-row-note{font-size:11px;line-height:1.4;margin-top:3px;color:var(--verdigris);}
 .admin-row-note.is-error{color:var(--ember);}
 body.theme-light .admin-translate-bar{background:rgba(138,106,31,0.06);}
+/* =====================================================================
+   v234: «TRADUCI» ANCHE NEI CANALI E NEI SERVER
+   - sotto i messaggi degli altri, nei canali della Community e nei
+     server, c'è «Traduci», come nelle chat private;
+   - il testo tradotto sta sotto il messaggio, in corsivo;
+   - nelle chat private il pulsante ha lo stesso aspetto anche da computer.
+   ===================================================================== */
+.chat-bubble .chat-translate-btn{display:inline-block;margin-top:4px;padding:2px 0;border:0;background:none;color:var(--gold-bright);font-family:'Crimson Pro',Georgia,serif;font-size:13px;font-style:normal;letter-spacing:0;text-transform:none;text-decoration:underline;text-underline-offset:2px;box-shadow:none;cursor:pointer;}
+.chat-translate-btn:disabled{opacity:.7;cursor:default;}
+.channel-msg .chat-translated-body{font-size:13.5px;line-height:1.6;white-space:pre-wrap;color:var(--parchment);}
