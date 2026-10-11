@@ -1793,7 +1793,7 @@ function getCatalog(){
   localStorage.setItem('lux_catalog', JSON.stringify(seed));
   return seed;
 }
-function saveCatalogLocal(items){ localStorage.setItem('lux_catalog', JSON.stringify(items)); }
+function saveCatalogLocal(items){ localStorage.setItem('lux_catalog', JSON.stringify(items)); synopsisDbLangsMemo = null; } // v233
 
 function updateSyncStatus(){
   var els = [document.getElementById('syncStatus2')];
@@ -3086,7 +3086,7 @@ function luxToast(msg){
   el.textContent = msg;
   el.classList.add('on');
   clearTimeout(el._t);
-  el._t = setTimeout(function(){ el.classList.remove('on'); }, 2600);
+  el._t = setTimeout(function(){ el.classList.remove('on'); }, Math.max(2600, Math.min(9000, String(msg).length * 60))); // v233: i messaggi lunghi restano di più
 }
 function luxSheet(html, mount){
   var wrap = document.getElementById('luxAdminSheet');
@@ -4793,10 +4793,14 @@ function ensureAdminToolbar(){
   trbar.id = 'adminTranslateBar';
   trbar.className = 'admin-translate-bar hidden';
   trbar.innerHTML = '<span id="adminTranslateInfo"></span> <button type="button" class="btn btn-sm btn-ghost" id="btnTranslateMissing">Traduci le sinossi mancanti</button>' +
-    ' <button type="button" class="btn btn-sm btn-ghost" id="btnTranslateContent">Traduci eventi e novità</button>'; // v227
+    ' <button type="button" class="btn btn-sm btn-ghost" id="btnTranslateContent">Traduci eventi e novità</button>' + // v227
+    ' <button type="button" class="btn btn-sm btn-ghost" id="btnTranslateStop" hidden>Ferma</button>' + // v233
+    '<div class="admin-translate-result" id="adminTranslateResult" role="status" aria-live="polite" hidden></div>' +
+    '<div class="admin-translate-usage" id="adminTranslateUsage" hidden></div>';
   list.parentNode.insertBefore(trbar, list);
   document.getElementById('btnTranslateMissing').addEventListener('click', translateMissingSynopses);
   document.getElementById('btnTranslateContent').addEventListener('click', translateExistingContent);
+  document.getElementById('btnTranslateStop').addEventListener('click', function(){ LUX_TR.stop = true; this.disabled = true; this.textContent = 'Mi fermo dopo questo…'; });
 
   document.getElementById('adminSearchInput').addEventListener('input', function(e){
     adminListSearch = e.target.value.trim().toLowerCase();
@@ -4938,6 +4942,8 @@ function renderAdminList(){
     var coverLabel = item.cover_url ? t('cover.change') : t('cover.addExisting');
     var hasAllTranslations = !synopsisMissingLangs(item).length; // v226: tutte le lingue del catalogo
     var translateLabel = hasAllTranslations ? t('synopsis.retranslate') : t('synopsis.translateExisting');
+    var rowNote = synopsisRowNotes[item.id]; // v233
+    if(rowNote && rowNote.busy) translateLabel = 'Traduco…';
     var hasPages = item.pages && item.pages.length > 0;
     var isPermanent = item.permanent !== false;
     var permanentTag = '<span class="' + (isPermanent ? 'permanent-tag' : 'temporary-tag') + '">' + (isPermanent ? t('catalog.permanent') : t('catalog.temporary')) + '</span>';
@@ -4951,14 +4957,15 @@ function renderAdminList(){
     row.innerHTML =
       '<input type="checkbox" data-select-row="'+item.id+'" '+(adminSelectedIds.has(item.id)?'checked':'')+'>' +
       '<div class="info"><div class="t">'+escapeHtml(item.title)+'</div>'+
-      '<div class="m">'+item.character+' · '+(item.issue||'')+' · '+(item.date||'')+' · '+ratingLabel+' · '+permanentTag+'</div></div>'+
+      '<div class="m">'+item.character+' · '+(item.issue||'')+' · '+(item.date||'')+' · '+ratingLabel+' · '+permanentTag+'</div>'+
+      (rowNote ? '<div class="admin-row-note'+(rowNote.err ? ' is-error' : '')+'">'+escapeHtml(rowNote.text)+'</div>' : '')+'</div>'+ // v233
       '<button type="button" class="admin-menu-btn" data-toggle-menu>Azioni ▾</button>'+
       '<div class="admin-dropdown" data-menu>'+
         '<label class="btn btn-sm btn-ghost cover-upload-btn">'+coverLabel+
           '<input type="file" accept="image/*" class="hidden" data-cover-for="'+item.id+'">'+
         '</label>'+
         '<span class="cover-upload-status mono" data-cover-status-for="'+item.id+'"></span>'+
-        '<button class="btn btn-sm btn-ghost" data-translate-for="'+item.id+'">'+translateLabel+'</button>'+
+        '<button class="btn btn-sm btn-ghost" data-translate-for="'+item.id+'"'+(rowNote && rowNote.busy ? ' disabled' : '')+'>'+translateLabel+'</button>'+
         (hasPages ? '<button class="btn btn-sm btn-ghost" data-rewatermark-for="'+item.id+'">'+t('rewatermark.button')+'</button>' : '') +
         (hasPages && item.pages_watermarked ? '<span class="watermark-done-tag">✓ '+t('rewatermark.done')+'</span>' : '') +
         '<button class="btn btn-sm btn-ghost" data-toggle-permanent="'+item.id+'">'+(isPermanent ? t('catalog.makeTemporary') : t('catalog.makePermanent'))+'</button>'+
@@ -5069,7 +5076,7 @@ function renderAdminList(){
       uploadCoverForExistingItem(item.id, e.target.files[0]);
     });
     row.querySelector('[data-translate-for]').addEventListener('click', function(){
-      translateSynopsisForExistingItem(item.id, item.synopsis);
+      translateSynopsisForExistingItem(item.id, item.synopsis, this, hasAllTranslations); // v233: «Ritraduci» = tutte le lingue
     });
     var rewatermarkBtn = row.querySelector('[data-rewatermark-for]');
     if(rewatermarkBtn){
@@ -5101,59 +5108,205 @@ function renderAdminList(){
   if(nextBtn) nextBtn.addEventListener('click', function(){ adminListPage++; renderAdminList(); });
 }
 
-/* v226: i titoli con la sinossi non ancora tradotta in tutte le lingue del
-   catalogo (es. dopo aver aggiunto le lingue nuove): un pulsante li traduce
-   tutti, uno dopo l'altro, con la stessa funzione DeepL di sempre. */
-var translatingMissing = false;
+/* v233: tradurre le sinossi che mancano. Si chiedono solo le lingue che mancano, prima i titoli
+   più recenti; si vede a che punto è, si può fermare, e se la quota DeepL finisce (o l'accesso è
+   scaduto, o la funzione sul server va aggiornata) ci si ferma e lo si dice. Prima ogni sinossi si
+   ritraduceva in tutte le 13 lingue, e qualunque errore diventava «riprova più tardi». */
+var LUX_TR = { server: 0, usage: null, usageErr: null, usageAt: 0, checking: false, running: false, stop: false };
+var LUX_TR_NAMES = { it:'italiano', en:'inglese', es:'spagnolo', fr:'francese', de:'tedesco', pt:'portoghese', ru:'russo', zh:'cinese', ja:'giapponese', hi:'hindi', bn:'bengalese', ar:'arabo', pnb:'panjabi' };
+var synopsisRowNotes = {}; // id del titolo -> com'è andata la sua traduzione (si legge sotto il titolo, in Amministra)
+var luxTrSaveNote = '';    // dopo il salvataggio di un titolo: se la sinossi non si è tradotta, perché
+function luxTrNames(langs){
+  return (langs || []).map(function(l){ return LUX_TR_NAMES[l] || l; }).join(', ');
+}
 function titlesMissingSynopses(){
-  return getCatalog().filter(function(i){ return i.synopsis && synopsisMissingLangs(i).length; });
+  var langs = synopsisDbLangs();
+  return getCatalog().filter(function(i){ return i.synopsis && synopsisMissingLangs(i, langs).length; });
+}
+// caratteri da mandare a DeepL (circa: la lingua in cui è scritta la sinossi non si paga)
+function luxTrNeededChars(items){
+  var langs = synopsisDbLangs();
+  return items.reduce(function(n, i){ return n + String(i.synopsis || '').length * synopsisMissingLangs(i, langs).length; }, 0);
+}
+function luxFmtInt(n){ try { return Number(n).toLocaleString('it-IT'); } catch(e){ return String(n); } }
+function luxTrSetResult(msg, isErr){
+  var el = document.getElementById('adminTranslateResult');
+  if(!el) return;
+  el.textContent = msg || '';
+  el.hidden = !msg;
+  el.classList.toggle('is-error', !!isErr);
+}
+function luxTrRenderUsage(){
+  var el = document.getElementById('adminTranslateUsage');
+  if(!el) return;
+  var u = LUX_TR.usage, txt = '';
+  if(u && u.character_limit != null){
+    var left = Math.max(0, u.character_limit - (u.character_count || 0));
+    txt = 'Quota DeepL di questo mese: usati ' + luxFmtInt(u.character_count || 0) + ' caratteri su ' + luxFmtInt(u.character_limit) + ', ne restano ' + luxFmtInt(left) + '.';
+  } else if(LUX_TR.usageErr) txt = luxTrMessage(LUX_TR.usageErr);
+  else if(LUX_TR.usageAt && !LUX_TR.server) txt = 'La funzione translate-synopsis su Supabase è ancora la versione di prima: traduce, ma consuma più quota DeepL e non dice cosa non va. Aggiornala con il file translate-synopsis.ts della v233.';
+  el.textContent = txt;
+  el.hidden = !txt;
+}
+// quanta quota DeepL resta: la funzione v233 lo chiede a DeepL senza tradurre niente
+function luxTrCheckUsage(){
+  if(!getSession()) return Promise.resolve(null);
+  return refreshSessionIfNeeded().then(function(){
+    var s = getSession();
+    if(!s || !s.access_token) throw luxTrErr(401, { code: 'auth' });
+    return fetch(SUPABASE_URL + '/functions/v1/translate-synopsis', {
+      method:'POST',
+      headers:{ 'Authorization':'Bearer ' + s.access_token, 'Content-Type':'application/json' },
+      body: JSON.stringify({ check: true })
+    }).then(null, function(){ throw luxTrErr(0, null); });
+  }).then(function(r){
+    return r.json().catch(function(){ return null; }).then(function(d){
+      LUX_TR.usageAt = Date.now();
+      LUX_TR.usage = null; LUX_TR.usageErr = null;
+      if(r.ok && d && d.ok){ LUX_TR.server = d.version || 233; LUX_TR.usage = d; return d; }
+      if(d && d.version) LUX_TR.server = d.version;
+      else if((r.status === 400 || r.status === 500) && !/DEEPL_API_KEY/.test((d && d.error) || '')){ LUX_TR.server = 0; return null; } // la funzione di prima non conosce il controllo
+      LUX_TR.usageErr = luxTrErr(r.status, d);
+      return null;
+    });
+  }).catch(function(e){ LUX_TR.usageAt = Date.now(); LUX_TR.usage = null; LUX_TR.usageErr = e && e.code ? e : null; return null; });
 }
 function updateAdminTranslateBar(){
   var bar = document.getElementById('adminTranslateBar');
-  if(!bar || translatingMissing) return;
-  var n = titlesMissingSynopses().length;
+  if(!bar) return;
   bar.classList.remove('hidden');
+  if(LUX_TR.running) return;
+  var langs = synopsisDbLangs();
+  var todo = titlesMissingSynopses(), n = todo.length;
   var sb = document.getElementById('btnTranslateMissing');
   if(sb) sb.hidden = !n;
   var info = document.getElementById('adminTranslateInfo');
-  if(info) info.textContent = !n ? 'Traduzioni:' : (n === 1 ? '1 titolo ha la sinossi da tradurre in qualche lingua.' : n + ' titoli hanno la sinossi da tradurre in qualche lingua.');
+  if(info){
+    if(!n) info.textContent = 'Sinossi: tutte tradotte nelle lingue del sito ✓';
+    else {
+      var miss = {};
+      todo.forEach(function(i){ synopsisMissingLangs(i, langs).forEach(function(l){ miss[l] = 1; }); });
+      info.textContent = (n === 1 ? '1 titolo ha' : n + ' titoli hanno') + ' la sinossi da tradurre in ' + luxTrNames(Object.keys(miss)) +
+        ' (circa ' + luxFmtInt(luxTrNeededChars(todo)) + ' caratteri DeepL).';
+    }
+  }
+  if(!LUX_TR.usageAt && !LUX_TR.checking){
+    LUX_TR.checking = true;
+    luxTrCheckUsage().then(function(){ LUX_TR.checking = false; luxTrRenderUsage(); });
+  } else luxTrRenderUsage();
+}
+// mentre si traduce «in blocco» i due pulsanti aspettano (uno alla volta)
+function luxTrBusy(on){
+  ['btnTranslateMissing', 'btnTranslateContent'].forEach(function(id){ var b = document.getElementById(id); if(b) b.disabled = !!on; });
+}
+// la fine di una traduzione «in blocco»: pulsanti di nuovo attivi, e com'è andata
+function luxTrFinish(btn, msg, isErr){
+  LUX_TR.running = false; LUX_TR.stop = false;
+  luxTrBusy(false);
+  var stopBtn = document.getElementById('btnTranslateStop');
+  if(stopBtn) stopBtn.hidden = true;
+  luxTrSetResult(msg, isErr);
+}
+function luxTrShowStop(){
+  var stopBtn = document.getElementById('btnTranslateStop');
+  if(stopBtn){ stopBtn.hidden = false; stopBtn.disabled = false; stopBtn.textContent = 'Ferma'; }
+}
+// salva le sinossi tradotte di un titolo (e se il database non le salva, lo dice)
+function luxSaveSynopsisPatch(id, patch){
+  var s = getSession();
+  if(!s) return Promise.reject(luxTrErr(401, { code: 'auth' }));
+  return fetch(SUPABASE_URL + '/rest/v1/catalog?id=eq.' + encodeURIComponent(id), {
+    method:'PATCH',
+    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + s.access_token, 'Content-Type':'application/json', 'Prefer':'return=representation' },
+    body: JSON.stringify(patch)
+  }).then(function(r){
+    if(r.status === 401) throw luxTrErr(401, { code: 'auth' });
+    if(!r.ok) return r.text().then(function(t){ throw luxTrErr(r.status, { code: 'save', error: 'save ' + r.status + ': ' + String(t).slice(0, 160) }); });
+    return r.json().catch(function(){ return null; });
+  }, function(){ throw luxTrErr(0, null); }).then(function(rows){
+    if(Array.isArray(rows) && !rows.length) throw luxTrErr(403, { code: 'save', error: 'nessuna riga salvata' });
+    var items = getCatalog(), it = items.find(function(x){ return x.id === id; });
+    if(it){ for(var k in patch) it[k] = patch[k]; saveCatalogLocal(items); }
+    return true;
+  });
 }
 function translateMissingSynopses(){
-  if(translatingMissing) return;
-  var todo = titlesMissingSynopses();
+  if(LUX_TR.running) return;
+  var langs = synopsisDbLangs();
+  // prima i titoli più recenti: sono quelli che si vedono subito nello Schedario
+  var todo = titlesMissingSynopses().sort(function(a, b){
+    return String(b.date || '').localeCompare(String(a.date || '')) || String(b.id).localeCompare(String(a.id));
+  });
   if(!todo.length) return;
-  translatingMissing = true;
   var btn = document.getElementById('btnTranslateMissing'), info = document.getElementById('adminTranslateInfo');
-  if(btn) btn.disabled = true;
-  var done = 0, failed = 0;
-  function next(){
-    if(!todo.length){
-      translatingMissing = false;
-      if(btn) btn.disabled = false;
-      if(info) info.textContent = failed ? 'Fatto: ' + done + ' tradotti, ' + failed + ' non riusciti (riprova più tardi).' : 'Fatto: ' + done + ' sinossi tradotte.';
-      renderCatalog();
-      setTimeout(updateAdminTranslateBar, 6000);
-      return;
+  var need = luxTrNeededChars(todo), total = todo.length;
+  var done = 0, partial = 0, failed = 0, inRow = 0, lost = {}, bad400 = {}, skip = {};
+  LUX_TR.running = true; LUX_TR.stop = false;
+  luxTrBusy(true);
+  luxTrSetResult('');
+  if(info) info.textContent = 'Controllo la quota DeepL…';
+  luxTrCheckUsage().then(function(u){
+    luxTrRenderUsage();
+    var e = LUX_TR.usageErr;
+    if(e && luxTrFatal(e)){ end(e); return; }
+    if(u && u.character_limit != null){
+      var left = u.character_limit - (u.character_count || 0);
+      if(left <= 0){ end(luxTrErr(502, { code: 'quota' })); return; }
+      if(left < need && !window.confirm('Per tradurre tutto servono circa ' + luxFmtInt(need) + ' caratteri, ma questo mese DeepL ne ha ancora ' + luxFmtInt(left) +
+        '.\n\nTraduco finché bastano, cominciando dai titoli più recenti? Gli altri li potrai tradurre quando la quota si rinnova.')){ end(null, true); return; }
     }
+    luxTrShowStop();
+    next();
+  });
+  function next(){
+    if(LUX_TR.stop){ end(null, true); return; }
     var item = todo.shift();
-    if(info) info.textContent = 'Traduco «' + (item.title || '') + '»… (' + (done + failed + 1) + ' di ' + (done + failed + todo.length + 1) + ')';
-    var session = getSession();
-    translateSynopsis(item.synopsis).then(function(result){
-      var body = synopsisPatchFrom(result);
-      return fetch(SUPABASE_URL + '/rest/v1/catalog?id=eq.' + encodeURIComponent(item.id), {
-        method:'PATCH',
-        headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
-        body: JSON.stringify(body)
-      }).then(function(r){
-        if(!r.ok) throw new Error('save ' + r.status);
-        var items = getCatalog();
-        var it = items.find(function(x){ return x.id === item.id; });
-        if(it){ applySynopsisTranslations(it, result); saveCatalogLocal(items); }
-        done++;
+    if(!item){ end(null); return; }
+    var cur = getCatalog().find(function(x){ return x.id === item.id; }) || item;
+    var wanted = synopsisMissingLangs(cur, langs);
+    var targets = wanted.filter(function(l){ return !skip[l]; });
+    if(!cur.synopsis || !targets.length){ next(); return; }
+    if(info) info.textContent = 'Traduco «' + (cur.title || '') + '» in ' + targets.length + (targets.length === 1 ? ' lingua' : ' lingue') + '… (' + (total - todo.length) + ' di ' + total + ')';
+    translateSynopsis(cur.synopsis, targets).then(function(result){
+      if(luxTrVeryOld(result)) throw luxTrErr(0, { code: 'old' });
+      var f = result._meta && result._meta.failed || {};
+      Object.keys(f).forEach(function(l){
+        lost[l] = f[l];
+        if(f[l] === 400 && (bad400[l] = (bad400[l] || 0) + 1) >= 2) skip[l] = true; // DeepL non la fa: non si richiede più
       });
-    }).catch(function(err){ failed++; console.warn('Traduzione sinossi non riuscita:', item.id, err); }).then(next);
+      var metaErr = luxTrMetaErr(result._meta);
+      var patch = synopsisPatchFrom(luxTrPick(result, targets));
+      if(!Object.keys(patch).length) throw metaErr || luxTrErr(502, { code: 'busy' });
+      return luxSaveSynopsisPatch(cur.id, patch).then(function(){
+        if(Object.keys(patch).length < wanted.length) partial++; else done++; // anche le lingue che non si chiedono più contano
+        inRow = 0;
+        return metaErr && luxTrFatal(metaErr) ? metaErr : null; // quota finita a metà: quello che è arrivato è salvato
+      });
+    }).then(function(stopErr){
+      if(stopErr){ end(stopErr); return; }
+      setTimeout(next, 120);
+    }, function(err){
+      failed++;
+      console.warn('Traduzione sinossi non riuscita:', cur.id, err);
+      if(luxTrFatal(err) || ++inRow >= 3){ end(err); return; }
+      setTimeout(next, 800);
+    });
   }
-  next();
+  function end(err, stopped){
+    var parts = [];
+    if(done) parts.push(done === 1 ? '1 titolo tradotto in tutte le lingue' : done + ' titoli tradotti in tutte le lingue');
+    if(partial) parts.push(partial === 1 ? '1 tradotto solo in parte' : partial + ' tradotti solo in parte');
+    if(failed) parts.push(failed === 1 ? '1 non riuscito' : failed + ' non riusciti');
+    var msg = parts.length ? 'Fatto: ' + parts.join(', ') + '.' : '';
+    if(stopped && msg) msg = 'Fermato. ' + msg;
+    var lostLangs = Object.keys(lost);
+    if(err) msg += (msg ? ' ' : '') + luxTrMessage(err);
+    else if(lostLangs.length && (partial || failed)) msg += ' Non sono arrivate in ' + luxTrNames(lostLangs) + ': ' + luxTrMessage(luxTrMetaErr({ failed: lost }));
+    luxTrFinish(btn, msg, !!err);
+    renderCatalog();
+    renderAdminList(); // la barra dice quanti titoli restano
+    if(done || partial){ LUX_TR.usageAt = 0; updateAdminTranslateBar(); } // e la quota aggiornata
+  }
 }
 
 /* v227: eventi e novità scritti dall'admin, nella lingua di chi legge.
@@ -5168,86 +5321,161 @@ function luxLocalized(row, fields){
   return out;
 }
 var LUX_I18N_FIELDS = { community_events: ['title', 'description'], announcements: ['title', 'body'] };
-function luxTranslateRow(table, row){
+function luxPatchRowI18n(table, id, i18n){
+  var s = getSession();
+  if(!s) return Promise.reject(luxTrErr(401, { code: 'auth' }));
+  return fetch(SUPABASE_URL + '/rest/v1/' + table + '?id=eq.' + encodeURIComponent(id), {
+    method:'PATCH',
+    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + s.access_token, 'Content-Type':'application/json', 'Prefer':'return=representation' },
+    body: JSON.stringify({ i18n: i18n })
+  }).then(function(r){
+    if(r.status === 401) throw luxTrErr(401, { code: 'auth' });
+    if(!r.ok) return r.text().then(function(t){
+      if(/PGRST204|i18n/.test(t)) throw luxTrErr(r.status, { code: 'sql', error: 'Per le traduzioni di eventi e novità lancia prima su Supabase lo SQL della v227 (colonna i18n).' });
+      throw luxTrErr(r.status, { code: 'save', error: 'save ' + r.status + ': ' + String(t).slice(0, 160) });
+    });
+    return r.json().catch(function(){ return null; });
+  }, function(){ throw luxTrErr(0, null); }).then(function(rows){
+    if(Array.isArray(rows) && !rows.length) throw luxTrErr(403, { code: 'save', error: 'nessuna riga salvata' });
+    return true;
+  });
+}
+/* v233: un campo cambiato (o nuovo) si traduce in tutte le lingue e le sue traduzioni vecchie si
+   tolgono; un campo uguale a prima (opts.prev) tiene le sue e si traduce solo nelle lingue che
+   mancano. Un campo alla volta: prima i due campi partivano insieme, 26 richieste a DeepL nello
+   stesso momento. Quello che arriva si salva anche se poi ci si deve fermare. */
+function luxTranslateRow(table, row, opts){
+  opts = opts || {};
   var fields = LUX_I18N_FIELDS[table];
   if(!row || !row.id || !fields || !getSession()) return Promise.resolve(false);
-  return Promise.all(fields.map(function(f){
-    return row[f] ? translateSynopsis(row[f]).catch(function(){ return null; }) : Promise.resolve(null);
-  })).then(function(res){
-    var i18n = {};
-    res.forEach(function(r, i){
-      if(!r) return;
-      Object.keys(r).forEach(function(l){ if(typeof r[l] === 'string' && r[l]) (i18n[l] = i18n[l] || {})[fields[i]] = r[l]; });
+  var all = LUX_LANGS.map(function(l){ return l.code; });
+  var prev = opts.prev || null;
+  var before = JSON.stringify(row.i18n || {});
+  var i18n = JSON.parse(before);
+  var jobs = [];
+  fields.forEach(function(f){
+    var same = !!prev && (prev[f] || '') === (row[f] || '');
+    if(!same) Object.keys(i18n).forEach(function(l){ if(i18n[l] && typeof i18n[l] === 'object') delete i18n[l][f]; });
+    if(!row[f]) return;
+    var targets = same ? all.filter(function(l){ return !(i18n[l] && i18n[l][f]); }) : all;
+    if(targets.length) jobs.push([f, targets]);
+  });
+  var n = 0, firstErr = null;
+  return jobs.reduce(function(p, job){
+    return p.then(function(){
+      return translateSynopsis(row[job[0]], job[1]).then(function(r){
+        job[1].forEach(function(l){ if(typeof r[l] === 'string' && r[l]){ (i18n[l] = i18n[l] || {})[job[0]] = r[l]; n++; } });
+        var me = luxTrMetaErr(r._meta);
+        if(me && !firstErr) firstErr = me;
+        if(me && luxTrFatal(me)) throw me;
+      }, function(e){ if(luxTrFatal(e)) throw e; if(!firstErr) firstErr = e; });
     });
-    if(!Object.keys(i18n).length) return false;
-    var session = getSession();
-    return fetch(SUPABASE_URL + '/rest/v1/' + table + '?id=eq.' + encodeURIComponent(row.id), {
-      method:'PATCH',
-      headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
-      body: JSON.stringify({ i18n: i18n })
-    }).then(function(r){ return r.ok; }, function(){ return false; });
+  }, Promise.resolve()).then(function(){ return null; }, function(fatal){ return fatal; }).then(function(fatal){
+    var save = JSON.stringify(i18n) !== before ? luxPatchRowI18n(table, row.id, i18n).then(function(){ row.i18n = i18n; }) : Promise.resolve();
+    return save.then(function(){
+      if(fatal) throw fatal;
+      if(!n && firstErr) throw firstErr;
+      return n > 0;
+    });
   });
 }
-// Amministra: traduce eventi e novità scritti prima (quelli senza traduzioni)
+// Amministra: traduce eventi e novità (solo le lingue che mancano)
 function translateExistingContent(){
+  if(LUX_TR.running) return;
   var btn = document.getElementById('btnTranslateContent'), info = document.getElementById('adminTranslateInfo');
-  var session = getSession();
-  if(!session) return;
-  if(btn) btn.disabled = true;
-  var hdr = { headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token } };
+  if(!getSession()) return;
+  LUX_TR.running = true; LUX_TR.stop = false;
+  luxTrBusy(true);
+  luxTrSetResult('');
+  if(info) info.textContent = 'Cerco eventi e novità da tradurre…';
   var langs = LUX_LANGS.map(function(l){ return l.code; });
-  var missing = function(row){ return !row.i18n || langs.some(function(l){ return l !== 'it' && !row.i18n[l]; }); };
-  Promise.all([
-    fetch(SUPABASE_URL + '/rest/v1/community_events?select=*', hdr).then(function(r){ return r.ok ? r.json() : []; }),
-    fetch(SUPABASE_URL + '/rest/v1/announcements?select=*', hdr).then(function(r){ return r.ok ? r.json() : []; })
-  ]).then(function(res){
+  var missing = function(table, row){
+    return LUX_I18N_FIELDS[table].some(function(f){
+      return row[f] && langs.some(function(l){ return !(row.i18n && row.i18n[l] && row.i18n[l][f]); });
+    });
+  };
+  function end(msg, isErr){
+    luxTrFinish(btn, msg, isErr);
+    updateAdminTranslateBar();
+  }
+  refreshSessionIfNeeded().then(function(){
+    var s = getSession();
+    if(!s) throw luxTrErr(401, { code: 'auth' });
+    var hdr = { headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + s.access_token } };
+    return Promise.all([
+      fetch(SUPABASE_URL + '/rest/v1/community_events?select=*', hdr).then(function(r){ return r.ok ? r.json() : []; }),
+      fetch(SUPABASE_URL + '/rest/v1/announcements?select=*', hdr).then(function(r){ return r.ok ? r.json() : []; })
+    ]);
+  }).then(function(res){
     if(res[0].length && !('i18n' in res[0][0]) || res[1].length && !('i18n' in res[1][0])){
-      if(info) info.textContent = 'Prima lancia lo SQL della v227 (colonna i18n) su Supabase.';
-      if(btn) btn.disabled = false;
+      end('Prima lancia lo SQL della v227 (colonna i18n) su Supabase.', true);
       return;
     }
-    var todo = res[0].filter(missing).map(function(r){ return ['community_events', r]; })
-      .concat(res[1].filter(missing).map(function(r){ return ['announcements', r]; }));
-    var done = 0, failed = 0, total = todo.length;
-    if(!total){ if(info) info.textContent = 'Eventi e novità sono già tradotti.'; if(btn) btn.disabled = false; return; }
+    var newest = function(a, b){ return String(b.created_at || '').localeCompare(String(a.created_at || '')); };
+    var todo = res[0].filter(function(r){ return missing('community_events', r); }).sort(newest).map(function(r){ return ['community_events', r]; })
+      .concat(res[1].filter(function(r){ return missing('announcements', r); }).sort(newest).map(function(r){ return ['announcements', r]; }));
+    var done = 0, failed = 0, inRow = 0, total = todo.length;
+    if(!total){ end('Eventi e novità sono già tradotti in tutte le lingue ✓'); return; }
+    luxTrShowStop();
     (function next(){
-      if(!todo.length){
-        if(info) info.textContent = failed ? 'Fatto: ' + done + ' tradotti, ' + failed + ' non riusciti (riprova più tardi).' : 'Fatto: ' + done + ' tra eventi e novità tradotti.';
-        if(btn) btn.disabled = false;
-        return;
-      }
+      if(LUX_TR.stop){ fin(null, true); return; }
       var job = todo.shift();
-      if(info) info.textContent = 'Traduco «' + (job[1].title || '') + '»… (' + (done + failed + 1) + ' di ' + total + ')';
-      luxTranslateRow(job[0], job[1]).then(function(ok){ if(ok) done++; else failed++; }, function(){ failed++; }).then(next);
+      if(!job){ fin(null); return; }
+      if(info) info.textContent = 'Traduco «' + String(job[1].title || '').replace(/\s+/g, ' ').slice(0, 70) + '»… (' + (total - todo.length) + ' di ' + total + ')';
+      luxTranslateRow(job[0], job[1], { prev: job[1] }).then(function(ok){
+        if(ok) done++;
+        inRow = 0;
+        setTimeout(next, 120);
+      }, function(err){
+        failed++;
+        console.warn('Traduzione evento/novità non riuscita:', job[1].id, err);
+        if(luxTrFatal(err) || ++inRow >= 3){ fin(err); return; }
+        setTimeout(next, 800);
+      });
     })();
-  });
+    function fin(err, stopped){
+      var msg = 'Fatto: ' + done + ' tra eventi e novità tradotti' + (failed ? ', ' + failed + ' non riusciti' : '') + '.';
+      if(stopped) msg = 'Fermato. ' + msg;
+      if(err) msg += ' ' + luxTrMessage(err);
+      end(msg, !!err);
+      if(done){ LUX_TR.usageAt = 0; updateAdminTranslateBar(); }
+    }
+  }).catch(function(e){ end(luxTrMessage(e && e.code ? e : luxTrErr(0, null)), true); });
 }
 
-function translateSynopsisForExistingItem(itemId, englishSynopsis){
-  var status = document.getElementById('pagesUploadStatus');
-  if(status) status.textContent = t('synopsis.translating');
-  translateSynopsis(englishSynopsis).then(function(result){
-    var session = getSession();
-    return fetch(SUPABASE_URL + '/rest/v1/catalog?id=eq.' + encodeURIComponent(itemId), {
-      method:'PATCH',
-      headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
-      body: JSON.stringify(synopsisPatchFrom(result)) // v226: tutte le lingue che il catalogo ha
-    }).then(function(r){
-      if(!r.ok) throw new Error('synopsis translation save failed');
-      var items = getCatalog();
-      var item = items.find(function(i){ return i.id === itemId; });
-      if(item){
-        applySynopsisTranslations(item, result);
-        saveCatalogLocal(items);
-      }
-      if(status) status.textContent = '';
-      renderCatalog();
-      renderAdminList();
+// la sinossi di un titolo (dal menu «Azioni» della lista): solo le lingue che mancano, o tutte per «Ritraduci»
+function translateSynopsisForExistingItem(itemId, synopsis, btn, all){
+  var item = getCatalog().find(function(i){ return i.id === itemId; });
+  if(!item || !item.synopsis){ luxToast('Questo titolo non ha una sinossi da tradurre.'); return; }
+  if(synopsisRowNotes[itemId] && synopsisRowNotes[itemId].busy) return;
+  var dbLangs = synopsisDbLangs();
+  var targets = all ? dbLangs : synopsisMissingLangs(item, dbLangs);
+  if(!targets.length) targets = dbLangs;
+  synopsisRowNotes[itemId] = { text: 'Traduco la sinossi in ' + targets.length + (targets.length === 1 ? ' lingua…' : ' lingue…'), busy: true };
+  renderAdminList();
+  translateSynopsis(item.synopsis, targets).then(function(result){
+    if(luxTrVeryOld(result)) throw luxTrErr(0, { code: 'old' });
+    var metaErr = luxTrMetaErr(result._meta);
+    var patch = synopsisPatchFrom(luxTrPick(result, targets));
+    if(!Object.keys(patch).length) throw metaErr || luxTrErr(502, { code: 'busy' });
+    return luxSaveSynopsisPatch(itemId, patch).then(function(){
+      var got = Object.keys(patch).map(function(k){ return k.slice(9); });
+      var miss = targets.filter(function(l){ return got.indexOf(l) === -1; });
+      var note = miss.length
+        ? 'Tradotta in ' + got.length + ' lingue su ' + targets.length + '; mancano ' + luxTrNames(miss) + '. ' + luxTrMessage(metaErr || luxTrErr(502, { code: 'busy' }))
+        : 'Sinossi tradotta ✓ (' + luxTrNames(got) + ')';
+      synopsisRowNotes[itemId] = { text: note, err: !!miss.length };
+      luxToast(miss.length ? 'Sinossi tradotta solo in parte: mancano ' + luxTrNames(miss) + '.' : 'Sinossi tradotta ✓');
     });
   }).catch(function(err){
-    console.warn('Synopsis translation for existing item failed:', err);
-    if(status) status.textContent = '';
-    alert(t('synopsis.translateError'));
+    console.warn('Traduzione sinossi:', itemId, err);
+    synopsisRowNotes[itemId] = { text: luxTrMessage(err), err: true };
+    luxToast(luxTrMessage(err));
+  }).then(function(){
+    renderCatalog();
+    renderAdminList();
+    LUX_TR.usageAt = 0;
+    updateAdminTranslateBar();
   });
 }
 
@@ -5390,38 +5618,49 @@ function clearPendingPdf(){
   document.getElementById('fPdf').value = '';
   document.getElementById('pdfSelectedNote').classList.add('hidden');
 }
-/* ============ SYNOPSIS AUTO-TRANSLATION (English source → IT/ES/FR/DE via DeepL,
-   routed through an Edge Function so the paid API key never reaches the browser) ============ */
+/* ============ SINOSSI NELLE LINGUE DEL SITO (DeepL, attraverso la funzione translate-synopsis:
+   la chiave DeepL non arriva mai nel browser) ============ */
+// v233: nella lingua di chi legge; se lì manca, meglio l'inglese (se c'è) che la lingua in cui è scritta
 function synopsisForCurrentLang(item){
-  var field = 'synopsis_' + currentLang;
-  if(currentLang !== 'en' && item[field]) return item[field];
-  return item.synopsis || ''; // English source, or fallback if that language isn't translated yet
+  var own = item['synopsis_' + currentLang];
+  if(own) return own;
+  if(currentLang !== 'it' && item.synopsis_en) return item.synopsis_en;
+  return item.synopsis || '';
 }
-/* v226: le sinossi tradotte vivono nelle colonne synopsis_xx del catalogo.
-   it/es/fr/de ci sono da sempre; le altre solo dopo lo script SQL della v226:
-   si usano solo se il catalogo le ha (altrimenti salvare darebbe errore). */
+/* le sinossi tradotte vivono nelle colonne synopsis_xx del catalogo: it/es/fr/de ci sono da sempre,
+   le altre dopo gli script SQL (v226; l'inglese, synopsis_en, con traduzioni_v233.sql). Si usano
+   solo le colonne che il catalogo ha (altrimenti salvare darebbe errore). */
 var SYNOPSIS_BASE = ['it', 'es', 'fr', 'de'];
-var SYNOPSIS_MORE = ["pt", "ru", "zh", "ja", "hi", "bn", "ar", "pnb"];
+var SYNOPSIS_MORE = ['en', 'pt', 'ru', 'zh', 'ja', 'hi', 'bn', 'ar', 'pnb'];
+var synopsisDbLangsMemo = null; // il catalogo si rilegge al massimo una volta ogni secondo e mezzo (prima: una volta per titolo)
 function synopsisDbLangs(){
+  var now = Date.now();
+  if(synopsisDbLangsMemo && now - synopsisDbLangsMemo.at < 1500) return synopsisDbLangsMemo.langs.slice();
   var items = getCatalog();
-  return SYNOPSIS_BASE.concat(SYNOPSIS_MORE.filter(function(l){
+  var langs = SYNOPSIS_BASE.concat(SYNOPSIS_MORE.filter(function(l){
     return items.some(function(i){ return Object.prototype.hasOwnProperty.call(i, 'synopsis_' + l); });
   }));
+  synopsisDbLangsMemo = { at: now, langs: langs };
+  return langs.slice();
 }
-// le traduzioni arrivate da translate-synopsis, solo per le colonne che il catalogo ha
-function synopsisPatchFrom(result){
+// v233: solo le lingue arrivate. Quelle che non sono arrivate restano com'erano, tranne quando la
+// sinossi è cambiata (clearMissing): allora si svuotano, perché erano la traduzione del testo di prima
+function synopsisPatchFrom(result, clearMissing){
   var out = {};
+  result = result || {};
   synopsisDbLangs().forEach(function(l){
-    if(SYNOPSIS_BASE.indexOf(l) !== -1 || Object.prototype.hasOwnProperty.call(result, l)) out['synopsis_' + l] = result[l] || null;
+    if(typeof result[l] === 'string' && result[l]) out['synopsis_' + l] = result[l];
+    else if(clearMissing) out['synopsis_' + l] = null;
   });
   return out;
 }
-function applySynopsisTranslations(item, result){
-  var p = synopsisPatchFrom(result || {});
+function applySynopsisTranslations(item, result, clearMissing){
+  var p = synopsisPatchFrom(result, clearMissing);
   for(var k in p) item[k] = p[k];
+  return p;
 }
-function synopsisMissingLangs(item){
-  return synopsisDbLangs().filter(function(l){ return !item['synopsis_' + l]; });
+function synopsisMissingLangs(item, langs){
+  return (langs || synopsisDbLangs()).filter(function(l){ return !item['synopsis_' + l]; });
 }
 
 /* ============ NEWSLETTER ============ */
@@ -5452,16 +5691,110 @@ function handleNewsletterSubmit(e){
   });
 }
 
-function translateSynopsis(englishText){
-  var session = getSession();
-  if(!session) return Promise.reject(new Error('not signed in'));
-  return fetch(SUPABASE_URL + '/functions/v1/translate-synopsis', {
-    method:'POST',
-    headers:{ 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
-    body: JSON.stringify({text: englishText})
+/* v233: la funzione di traduzione (translate-synopsis su Supabase, con DeepL), per sinossi,
+   eventi, novità e biografie.
+   - l'accesso si rinnova prima di chiedere, come per la chat (scaduto, ogni traduzione falliva);
+   - si possono chiedere solo alcune lingue (quelle che mancano): meno quota DeepL consumata;
+   - i testi lunghi vanno a pezzi (la funzione ne accetta 6000 caratteri alla volta);
+   - quando non va, l'errore dice perché: quota DeepL finita, accesso scaduto, chiave DeepL,
+     funzione da pubblicare o da aggiornare, DeepL occupato, connessione. */
+function luxTrErr(status, data){
+  var e = new Error((data && data.error) || ('translation failed: ' + status));
+  e.status = status;
+  // solo i codici di translate-synopsis (Supabase stessa risponde per esempio «NOT_FOUND»)
+  e.code = data && /^(auth|quota|key|no_key|too_long|busy|lang|deepl|save|sql|old|net)$/.test(data.code || '') ? data.code : '';
+  e.deepl = data && data.deepl_status;
+  if(!e.code){
+    if(status === 401) e.code = 'auth';
+    else if(status === 404) e.code = 'missing';
+    else if(status === 413) e.code = 'too_long';
+    else if(status === 0) e.code = 'net';
+    else if(e.deepl === 456) e.code = 'quota';
+    else if(/DEEPL_API_KEY/.test((data && data.error) || '')) e.code = 'no_key';
+    else if(status === 502 || status === 503 || status === 504) e.code = 'busy';
+  }
+  return e;
+}
+function luxTrMessage(e){
+  var c = e && e.code;
+  if(c === 'auth') return 'L’accesso è scaduto: esci, rientra e riprova.';
+  if(c === 'quota') return 'La quota DeepL di questo mese è finita: le altre traduzioni si potranno fare quando si rinnova (oppure con un piano DeepL più grande).';
+  if(c === 'key') return 'DeepL non accetta la chiave: controlla DEEPL_API_KEY nei Secrets delle Edge Functions di Supabase.';
+  if(c === 'no_key') return 'Manca la chiave DeepL: va aggiunta come DEEPL_API_KEY nei Secrets delle Edge Functions di Supabase.';
+  if(c === 'missing') return 'Su Supabase non c’è la funzione translate-synopsis: va pubblicata (file translate-synopsis.ts).';
+  if(c === 'old') return 'La funzione translate-synopsis su Supabase è una versione vecchia, che traduce solo in 4 lingue: aggiornala con il file translate-synopsis.ts della v233.';
+  if(c === 'too_long') return 'Il testo è troppo lungo per una sola traduzione.';
+  if(c === 'save') return 'Il database non ha salvato la traduzione: controlla di essere entrato con l’account dell’amministratore.';
+  if(c === 'sql') return e.message;
+  if(c === 'net') return navigator.onLine === false ? 'Sei offline: riprova quando torna la connessione.' : 'La funzione di traduzione non risponde: riprova tra poco.';
+  if(c === 'busy') return 'DeepL è occupato in questo momento: riprova tra qualche minuto.';
+  if(c === 'lang') return 'DeepL non ha tradotto in queste lingue.';
+  return 'Traduzione non riuscita' + (e && e.status ? ' (errore ' + e.status + ')' : '') + ': riprova tra poco.';
+}
+// gli errori per cui è inutile continuare con il titolo dopo
+function luxTrFatal(e){ return !!(e && /^(auth|quota|key|no_key|missing|old|save|sql)$/.test(e.code || '')); }
+// le lingue che non sono arrivate (_meta.failed della funzione v233): l'errore da dire
+function luxTrMetaErr(meta){
+  var f = meta && meta.failed || {};
+  var st = Object.keys(f).map(function(l){ return f[l]; });
+  if(!st.length) return null;
+  var code = st.indexOf(456) !== -1 ? 'quota' : st.indexOf(403) !== -1 ? 'key' :
+    st.some(function(s){ return s === 429 || s >= 500; }) ? 'busy' : st.indexOf(400) !== -1 ? 'lang' : 'deepl';
+  return luxTrErr(502, { code: code, error: 'lingue non arrivate: ' + Object.keys(f).join(', ') });
+}
+// solo le lingue chieste (la funzione di prima le manda sempre tutte)
+function luxTrPick(result, targets){
+  var out = {};
+  (targets || []).forEach(function(l){ if(result && typeof result[l] === 'string' && result[l]) out[l] = result[l]; });
+  return out;
+}
+// la funzione di prima della v226: solo italiano, spagnolo, francese e tedesco
+function luxTrVeryOld(result){
+  return !!result && !result._meta && !['pt', 'ru', 'zh', 'ja', 'ar'].some(function(l){ return typeof result[l] === 'string'; });
+}
+function luxTranslateOnce(text, targets){
+  if(!getSession()) return Promise.reject(luxTrErr(401, { code: 'auth' }));
+  return refreshSessionIfNeeded().then(function(){
+    var s = getSession();
+    if(!s || !s.access_token) throw luxTrErr(401, { code: 'auth' });
+    var body = { text: text };
+    if(targets && targets.length) body.targets = targets;
+    return fetch(SUPABASE_URL + '/functions/v1/translate-synopsis', {
+      method:'POST',
+      headers:{ 'Authorization':'Bearer ' + s.access_token, 'Content-Type':'application/json' },
+      body: JSON.stringify(body)
+    }).then(null, function(){ throw luxTrErr(0, null); });
   }).then(function(r){
-    if(!r.ok) throw new Error('translation failed: ' + r.status);
-    return r.json(); // {it, es, fr, de} — dalla v226 anche pt, ru, zh, ja, hi, bn, ar, pnb
+    return r.json().catch(function(){ return null; }).then(function(data){
+      if(!r.ok) throw luxTrErr(r.status, data);
+      if(!data || typeof data !== 'object') throw luxTrErr(502, { code: 'busy' });
+      LUX_TR.server = (data._meta && data._meta.version) || 0;
+      return data; // { it, en, es, ... } — e dalla v233 _meta: { version, source, failed }
+    });
+  });
+}
+function translateSynopsis(text, targets){
+  var chunks = luxTextChunks(text);
+  if(chunks.length <= 1) return luxTranslateOnce(String(text || ''), targets);
+  // testo lungo: a pezzi, uno dopo l'altro; poi si rimettono insieme lingua per lingua
+  return chunks.reduce(function(p, ch){
+    return p.then(function(acc){ return luxTranslateOnce(ch, targets).then(function(r){ acc.push(r); return acc; }); });
+  }, Promise.resolve([])).then(function(parts){
+    var out = {}, langs = {}, meta = null;
+    parts.forEach(function(r){
+      Object.keys(r).forEach(function(l){ if(typeof r[l] === 'string') langs[l] = 1; });
+      if(r._meta){
+        meta = meta || { version: r._meta.version, source: r._meta.source, failed: {} };
+        Object.keys(r._meta.failed || {}).forEach(function(l){ meta.failed[l] = r._meta.failed[l]; });
+      }
+    });
+    Object.keys(langs).forEach(function(l){
+      var segs = parts.map(function(r){ return r[l]; });
+      if(segs.every(function(s){ return typeof s === 'string' && s; })) out[l] = segs.join('\n\n');
+      else if(meta && !meta.failed[l]) meta.failed[l] = 502;
+    });
+    if(meta) out._meta = meta;
+    return out;
   });
 }
 
@@ -6290,9 +6623,11 @@ function publishSingleDraftNewItem(draftItem){
   };
   var steps = Promise.resolve();
   steps = steps.then(function(){
-    return translateSynopsis(draftItem.synopsis).then(function(result){
-      applySynopsisTranslations(newItem, result); // v226: tutte le lingue
-    }).catch(function(){});
+    if(!draftItem.synopsis) return;
+    var targets = synopsisDbLangs();
+    return translateSynopsis(draftItem.synopsis, targets).then(function(result){
+      applySynopsisTranslations(newItem, luxTrPick(result, targets)); // v233: solo quelle arrivate
+    }).catch(function(e){ console.warn('Traduzione sinossi (bozza):', e); });
   });
   if(draftItem.coverDataUrl){
     steps = steps.then(function(){
@@ -6463,15 +6798,25 @@ function runTitleUploadSequence(newItem, isEdit){
 
   var uploadSteps = Promise.resolve();
 
-  // translate the synopsis into IT/ES/FR/DE up front — best-effort: if DeepL
-  // isn't configured yet or the call fails, the title still saves fine and
-  // just falls back to the English synopsis until it's translated later
+  // v233: la sinossi si traduce solo se serve. Nuova o cambiata: in tutte le lingue (quelle che non
+  // arrivano si svuotano: erano la traduzione del testo di prima). Uguale a prima: solo le lingue che
+  // mancano. Se la traduzione non riesce il titolo si salva lo stesso, e alla fine si dice perché.
+  luxTrSaveNote = '';
   uploadSteps = uploadSteps.then(function(){
+    var before = isEdit ? getCatalog().find(function(x){ return x.id === newItem.id; }) : null;
+    var changed = !before || (before.synopsis || '') !== (newItem.synopsis || '');
+    if(!newItem.synopsis){ if(changed) applySynopsisTranslations(newItem, {}, true); return; }
+    var targets = changed ? synopsisDbLangs() : synopsisMissingLangs(newItem);
+    if(!targets.length) return;
     status.textContent = t('synopsis.translating');
-    return translateSynopsis(newItem.synopsis).then(function(result){
-      applySynopsisTranslations(newItem, result); // v226: tutte le lingue
+    return translateSynopsis(newItem.synopsis, targets).then(function(result){
+      applySynopsisTranslations(newItem, luxTrPick(result, targets), changed);
+      var miss = targets.filter(function(l){ return !newItem['synopsis_' + l]; });
+      if(miss.length) luxTrSaveNote = 'Titolo salvato. La sinossi non è arrivata in ' + luxTrNames(miss) + ': la trovi in «Traduci le sinossi mancanti».';
     }).catch(function(translateErr){
       console.warn('Synopsis translation failed, continuing without it:', translateErr);
+      if(changed) applySynopsisTranslations(newItem, {}, true);
+      luxTrSaveNote = 'Titolo salvato, ma la sinossi non si è tradotta. ' + luxTrMessage(translateErr);
     });
   });
 
@@ -6553,6 +6898,7 @@ function runTitleUploadSequence(newItem, isEdit){
     }
     btn.disabled = false;
     if(showsOverlay) snoFinish(true, t('sno.uploadDoneCaption'), t('sno.uploadDoneStatus'));
+    if(luxTrSaveNote){ var trNote = luxTrSaveNote; luxTrSaveNote = ''; setTimeout(function(){ luxToast(trNote); }, showsOverlay ? 1800 : 300); } // v233
   }).catch(function(e){
     status.textContent = '';
     err.textContent = t('pages.uploadError');
@@ -16455,7 +16801,10 @@ function addEvent(){
   }).then(function(res){
     if(btn) btn.disabled = false;
     var id = res.rows && res.rows[0] && res.rows[0].id;
-    if(res.rows && res.rows[0]) luxTranslateRow('community_events', res.rows[0]); // v227: in tutte le lingue
+    if(res.rows && res.rows[0]) luxTranslateRow('community_events', res.rows[0], { prev: res.edited ? editingEv : null }).catch(function(e){ // v233: solo i campi cambiati
+      console.warn('Traduzione evento:', e);
+      luxToast('Evento salvato; traduzione non riuscita. ' + luxTrMessage(e));
+    });
     resetEventForm();
     if(noteEl) noteEl.textContent = res.edited ? 'Modifiche salvate.' : 'Evento creato.';
     if(id){
@@ -18773,7 +19122,10 @@ function handleAddAnnouncement(){
       return r;
     });
   }).then(function(r){
-    r.json().then(function(rows){ if(rows && rows[0]) luxTranslateRow('announcements', rows[0]); }).catch(function(){}); // v227
+    r.json().then(function(rows){ if(rows && rows[0]) return luxTranslateRow('announcements', rows[0]); }).catch(function(e){ // v233
+      console.warn('Traduzione novità:', e);
+      if(e && e.code) luxToast('Novità pubblicata; traduzione non riuscita. ' + luxTrMessage(e));
+    });
     document.getElementById('fAnnTitle').value = '';
     document.getElementById('fAnnBody').value = '';
     document.getElementById('fAnnLink').value = '';
