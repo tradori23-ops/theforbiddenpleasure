@@ -935,6 +935,20 @@ Object.assign(STR.hi, {"lxcover.card": "आर्काइव सदस्यत
 Object.assign(STR.bn, {"lxcover.card": "আর্কাইভের সদস্য কার্ড", "lxcover.read": "পড়ুন", "lxcover.openTitle": "অ্যাকাউন্ট ছাড়াই “{title}” পড়ুন"});
 Object.assign(STR.ar, {"lxcover.card": "بطاقة الأرشيف", "lxcover.read": "اقرأ", "lxcover.openTitle": "اقرأ «{title}» بدون حساب"});
 Object.assign(STR.pnb, {"lxcover.card": "آرکائیو دا کارڈ", "lxcover.read": "پڑھو", "lxcover.openTitle": "اکاؤنٹ بغیر «{title}» پڑھو"});
+// v240: la copertina (il capitolo nuovo)
+Object.assign(STR.it, {"lxcover.newChapter": "Capitolo nuovo", "lxcover.lastChapter": "Ultimo capitolo"});
+Object.assign(STR.en, {"lxcover.newChapter": "New chapter", "lxcover.lastChapter": "Latest chapter"});
+Object.assign(STR.es, {"lxcover.newChapter": "Capítulo nuevo", "lxcover.lastChapter": "Último capítulo"});
+Object.assign(STR.fr, {"lxcover.newChapter": "Nouveau chapitre", "lxcover.lastChapter": "Dernier chapitre"});
+Object.assign(STR.de, {"lxcover.newChapter": "Neues Kapitel", "lxcover.lastChapter": "Neuestes Kapitel"});
+Object.assign(STR.pt, {"lxcover.newChapter": "Capítulo novo", "lxcover.lastChapter": "Último capítulo"});
+Object.assign(STR.ru, {"lxcover.newChapter": "Новая глава", "lxcover.lastChapter": "Последняя глава"});
+Object.assign(STR.zh, {"lxcover.newChapter": "新章节", "lxcover.lastChapter": "最新章节"});
+Object.assign(STR.ja, {"lxcover.newChapter": "新しい章", "lxcover.lastChapter": "最新の章"});
+Object.assign(STR.hi, {"lxcover.newChapter": "नया अध्याय", "lxcover.lastChapter": "नवीनतम अध्याय"});
+Object.assign(STR.bn, {"lxcover.newChapter": "নতুন অধ্যায়", "lxcover.lastChapter": "সর্বশেষ অধ্যায়"});
+Object.assign(STR.ar, {"lxcover.newChapter": "فصل جديد", "lxcover.lastChapter": "أحدث فصل"});
+Object.assign(STR.pnb, {"lxcover.newChapter": "نواں باب", "lxcover.lastChapter": "تازہ ترین باب"});
 var CHAR_META = {
   Lucifer:{role:{it:"Il Portatore di Luce",en:"The Light-Bearer",es:"El Portador de Luz",fr:"Le Porteur de Lumière",de:"Der Lichtträger"},
     bio:{it:"Sovrano della collana ammiraglia: potere, caduta e desiderio raccontati su grande scala.",
@@ -1082,7 +1096,7 @@ function showEntryModeGate(){
   });
 }
 
-/* ============ v237–v239: LA COPERTINA ============
+/* ============ v237–v240: LA COPERTINA ============
    Chi non ha fatto l'accesso trova il sito chiuso come un fumetto: la copertina con
    l'arte della schermata d'ingresso e il sigillo LM. Si entra in tre modi:
    - il sigillo, «Accedi» o «Crea account»: si apre la «Tessera dell'Archivio» (la finestra
@@ -1103,7 +1117,10 @@ function showEntryModeGate(){
    sigillo si spezza davvero (crepa, due metà, scintille; su Android una piccola vibrazione);
    l'accesso è la «Tessera dell'Archivio»; la copertina respira (riflesso sul titolo, portali,
    braci); «In questo numero» si tocca; il numero dell'uscita conta i fumetti dell'Archivio.
-   Chi ha chiesto al telefono meno movimento la vede ferma, e si apre con una dissolvenza. */
+   Chi ha chiesto al telefono meno movimento la vede ferma, e si apre con una dissolvenza.
+   v240: il riquadro del capitolo nuovo (mini copertina, «Capitolo nuovo», titolo, «Leggi ora» e la
+   data) compare davvero: prima i fumetti veri (codici come c1791819510678) venivano presi per
+   quelli d'esempio (c1…c10) e scartati, e con loro spariva anche il numero dell'uscita. */
 var LUX_COVER_ART = {
   // dove sta il sigillo nell'immagine: centro (ex, ey) e raggio (er) in proporzione;
   // i due portali (fuoco a sinistra, cosmo a destra): centro e misure in proporzione
@@ -1323,7 +1340,8 @@ function luxCoverBuild(){
           '<div class="lxc-burst" aria-hidden="true"></div>' +
           '<button type="button" class="lxc-seal" data-lxc="seal"></button>' +
           '<div class="lxc-seal-label" aria-hidden="true"></div>' +
-          '<button type="button" class="lxc-blurb hidden" data-lxc="title"><img class="lxc-blurb-img" alt="" loading="lazy"><span class="lxc-blurb-txt"><small></small><b></b><span class="lxc-blurb-sub"></span><em class="lxc-blurb-go"></em></span></button>' +
+          '<button type="button" class="lxc-blurb hidden" data-lxc="title"><span class="lxc-blurb-pic"><img class="lxc-blurb-img" alt="" decoding="async"></span>' +
+            '<span class="lxc-blurb-txt"><small class="lxc-blurb-tag"></small><b></b><span class="lxc-blurb-row"><em class="lxc-blurb-go"></em><span class="lxc-blurb-date"></span></span></span></button>' +
           '<div class="lxc-barcode" aria-hidden="true"><div class="lxc-bars"></div><span>noxmorningstar.com</span></div>' +
           '<div class="lxc-actions"><button type="button" class="lxc-btn lxc-primary" data-lxc="login"></button><button type="button" class="lxc-btn lxc-ghost" data-lxc="register"></button></div>' +
           '<button type="button" class="lxc-guest" data-lxc="guest"></button>' +
@@ -1358,7 +1376,7 @@ function luxCoverBuild(){
     var act = b.getAttribute('data-lxc');
     if(act === 'luxtify'){ try { sessionStorage.setItem('lux_cover_ok', '1'); } catch(err){} return; } // il link porta a Luxtify
     if(act === 'guest'){ luxCoverOpen(true, false); return; }
-    if(act === 'title'){ luxCoverOpen(true, false, el._item || null); return; } // v239: «In questo numero» apre quel fumetto
+    if(act === 'title'){ luxCoverOpen(true, false, el._item || null); return; } // v239–v240: il capitolo nuovo si apre subito
     el._ret = act === 'register' ? 'register' : 'login';
     luxCoverCard(true);
     openAuth(el._ret);
@@ -1458,11 +1476,34 @@ function luxCoverCard(on){
 }
 
 // il numero dell'uscita: quanti fumetti ci sono nell'Archivio (0 = non ancora noto)
-function luxCoverIssueN(){
+// i fumetti dell'Archivio: dal catalogo appena arrivato o da quello salvato sul telefono. Senza
+// nessuno dei due, getCatalog dà i titoli d'esempio (c1…c10), che qui non contano. I fumetti veri
+// hanno codici lunghi (c + data e ora, come c1791819510678): quelli vanno tutti bene.
+function luxCoverDemo(x){ return /^c([1-9]|10)$/.test(String((x && x.id) || '')); }
+function luxCoverCatalog(){
   try {
-    if(!catalogFreshLoaded && !localStorage.getItem('lux_catalog')) return 0;
-    return getCatalog().filter(function(x){ return x && !/^c\d+$/.test(String(x.id || '')); }).length;
-  } catch(e){ return 0; }
+    if(!catalogFreshLoaded && !localStorage.getItem('lux_catalog')) return [];
+    return getCatalog().filter(function(x){ return x && !luxCoverDemo(x); });
+  } catch(e){ return []; }
+}
+function luxCoverIssueN(){ return luxCoverCatalog().length; }
+// la data di un capitolo («2026-10-12»): quanti giorni fa, e come si scrive nella lingua scelta
+function luxCoverDay(s){
+  var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(String(s || ''));
+  return m ? new Date(+m[1], +m[2] - 1, +m[3]) : null;
+}
+function luxCoverDaysAgo(s){
+  var d = luxCoverDay(s);
+  if(!d) return null;
+  var today = new Date(); today.setHours(0, 0, 0, 0);
+  return Math.round((today - d) / 864e5);
+}
+function luxCoverDateText(s){
+  var d = luxCoverDay(s);
+  if(!d) return '';
+  var o = d.getFullYear() === new Date().getFullYear() ? { day: 'numeric', month: 'long' } : { day: 'numeric', month: 'short', year: 'numeric' };
+  try { return d.toLocaleDateString(luxLocale(), o); }
+  catch(e){ try { return d.toLocaleDateString(undefined, o); } catch(e2){ return String(s).slice(0, 10); } }
 }
 
 // i testi nella lingua scelta (anche quando si cambia lingua con la copertina aperta)
@@ -1501,33 +1542,32 @@ function luxCoverTexts(){
   luxCoverPlaceSeal();
 }
 // «In questo numero»: l'ultima uscita per tutti (mai un 18+), solo con il catalogo vero; si tocca e si legge
+// il capitolo nuovo: l'ultimo uscito che si può mostrare a tutti (i 18+ restano dietro il loro
+// interruttore, come nella home), con la sua mini copertina; si tocca e si apre (luxCoverOpen)
 function luxCoverBlurb(){
   var el = luxCoverEl;
   if(!el) return;
   var box = el.querySelector('.lxc-blurb'), item = null;
-  try {
-    if(catalogFreshLoaded){
-      getCatalog().forEach(function(x){
-        if(!x || x.mature || !x.title || /^c\d+$/.test(String(x.id || '')) || !characterVisible(x)) return; // (c1…c10: i titoli d'esempio)
-        if(!item || String(x.date || '') > String(item.date || '')) item = x;
-      });
-    }
-  } catch(e){ item = null; }
+  luxCoverCatalog().forEach(function(x){
+    try { if(!x.title || !matureOk(x)) return; } catch(e){ return; }
+    if(!item || String(x.date || '') > String(item.date || '')) item = x; // (a parità di data, il primo: come «Nuovo» nella home)
+  });
   el._item = item;
   var n = luxCoverIssueN(), ni = el.querySelector('.lxc-issue-n');
   if(ni) ni.textContent = n ? t('lxcover.issue').replace('{n}', String(n)) : '';
   if(!item){ box.classList.add('hidden'); return; }
-  box.querySelector('small').textContent = t('lxcover.inIssue');
+  var when = item.date || item.created_at, days = luxCoverDaysAgo(when);
+  box.querySelector('.lxc-blurb-tag').textContent = t(days !== null && days <= 30 ? 'lxcover.newChapter' : 'lxcover.lastChapter');
   box.querySelector('b').textContent = item.title;
-  box.querySelector('.lxc-blurb-sub').textContent = [item.character === 'Collaboratori' ? '' : item.character, item.issue].filter(Boolean).join(' · ');
-  box.querySelector('.lxc-blurb-go').textContent = t('lxcover.read');
+  box.querySelector('.lxc-blurb-go').textContent = t('rec.readNow');
+  box.querySelector('.lxc-blurb-date').textContent = luxCoverDateText(when);
   box.setAttribute('aria-label', t('lxcover.openTitle').replace('{title}', item.title));
-  var im = box.querySelector('.lxc-blurb-img');
+  var pic = box.querySelector('.lxc-blurb-pic'), im = box.querySelector('.lxc-blurb-img');
   if(item.cover_url){
-    var src = coverThumbUrl(item.cover_url, 120);
+    var src = coverThumbUrl(item.cover_url, 200);
     if(im.getAttribute('src') !== src){ im.setAttribute('data-fallback', item.cover_url); im.src = src; }
-    im.classList.remove('hidden');
-  } else im.classList.add('hidden');
+    pic.classList.remove('hidden');
+  } else pic.classList.add('hidden');
   box.classList.remove('hidden');
 }
 // il pulsante del sigillo va sopra il sigillo disegnato nell'immagine (che si adatta allo schermo);

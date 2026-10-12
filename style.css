@@ -4179,23 +4179,31 @@ html.lux-rtl .lxc-corner{right:auto;left:0;}
 @keyframes lxcSpark{0%{transform:translateX(calc(var(--lxc-sr) * .2)) scaleX(.3)}35%{transform:translateX(calc(var(--lxc-sr) * var(--k) * .7)) scaleX(1)}100%{transform:translateX(calc(var(--lxc-sr) * var(--k))) scaleX(.4)}}
 @keyframes lxcBurst{0%{transform:scale(.2);opacity:0}30%{opacity:1}100%{transform:scale(1.5);opacity:0}}
 
-/* «In questo numero» (si tocca: si apre quel fumetto, da ospite) e il codice a barre */
-.lxc-blurb{position:absolute;left:calc(16px + var(--lxc-sl));bottom:calc(136px + var(--lxc-sb));max-width:min(236px,calc(100% - 128px));display:flex;align-items:center;gap:9px;margin:0;padding:6px 11px 7px 6px;border:0;border-radius:0;
-  background:#ece2c6;color:#1e1410;transform:rotate(-2deg);box-shadow:3px 3px 0 #0b0607;font:400 14px/1.25 'Crimson Pro',Georgia,serif;letter-spacing:0;text-align:left;text-transform:none;
+/* il capitolo nuovo (v240): mini copertina, «Capitolo nuovo», titolo, «Leggi ora» e la data; si tocca
+   tutto il riquadro e si apre quel fumetto, da ospite. Accanto, il codice a barre */
+.lxc-blurb{position:absolute;left:calc(16px + var(--lxc-sl));bottom:calc(136px + var(--lxc-sb));width:min(272px,calc(100% - 124px));display:flex;align-items:center;gap:9px;margin:0;padding:6px 9px 6px 6px;border:0;border-radius:3px;
+  background:#ece2c6;color:#1e1410;transform:rotate(-2deg);box-shadow:3px 3px 0 #0b0607,0 8px 22px rgba(0,0,0,.45);font:400 14px/1.25 'Crimson Pro',Georgia,serif;letter-spacing:0;text-align:left;text-transform:none;
   transition:transform .2s ease,box-shadow .2s ease;}
-.lxc-blurb:hover{transform:rotate(-2deg) translateY(-2px);box-shadow:4px 6px 0 #0b0607;}
-.lxc-blurb:active{transform:rotate(-2deg) translateY(1px);box-shadow:2px 2px 0 #0b0607;}
+.lxc-blurb:hover{transform:rotate(-2deg) translateY(-2px);box-shadow:4px 6px 0 #0b0607,0 10px 24px rgba(0,0,0,.5);}
+.lxc-blurb:active{transform:rotate(-2deg) translateY(1px);box-shadow:2px 2px 0 #0b0607,0 6px 16px rgba(0,0,0,.4);}
 .lxc-blurb:focus-visible{outline:2px solid #e3c273;outline-offset:3px;}
-.lxc-blurb-img{flex:none;width:38px;height:54px;object-fit:cover;border:1px solid #1e1410;background:#2a1a14;}
-.lxc-blurb-txt{display:block;min-width:0;}
-.lxc-blurb small{display:block;font:400 9px/1.4 'Space Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#6e1423;}
-.lxc-blurb b{display:block;font:700 16px/1.2 'Cinzel',Georgia,serif;letter-spacing:.02em;overflow-wrap:anywhere;}
-.lxc-blurb-sub{display:inline-block;max-width:calc(100% - 64px);margin-right:8px;vertical-align:bottom;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-.lxc-blurb-sub:empty{display:none;}
-.lxc-blurb-go{display:inline-block;vertical-align:bottom;font:700 10px/15px 'Space Mono',monospace;font-style:normal;letter-spacing:.1em;text-transform:uppercase;color:#6e1423;white-space:nowrap;border-bottom:1px solid currentColor;margin-bottom:1px;}
-.lxc-blurb-go::after{content:" \2192";}
+.lxc-blurb-pic{flex:none;align-self:center;width:58px;height:58px;overflow:hidden;border:1px solid #1e1410;background:#2a1a14;box-shadow:1px 1px 0 rgba(0,0,0,.35);}
+.lxc-blurb-img{display:block;width:100%;height:100%;object-fit:cover;}
+.lxc-blurb-txt{display:flex;flex-direction:column;align-items:flex-start;flex:1 1 auto;min-width:0;}
+.lxc-blurb-tag{display:block;max-width:100%;font:700 9px/1.3 'Space Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#6e1423;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.lxc-blurb b{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;max-width:100%;overflow:hidden;margin-top:2px;font:700 13.5px/1.13 'Cinzel',Georgia,serif;letter-spacing:.01em;overflow-wrap:anywhere;}
+.lxc-blurb-row{display:flex;align-items:center;flex-wrap:wrap;gap:2px 8px;max-width:100%;margin-top:5px;}
+.lxc-blurb-go{display:inline-flex;align-items:center;min-height:23px;padding:0 9px;border-radius:7px;background:#6e1423;color:#f6ead0;box-shadow:0 2px 0 #4a0d18;
+  font:700 12.5px/1 'Crimson Pro',Georgia,serif;font-style:normal;letter-spacing:.02em;white-space:nowrap;transition:filter .2s ease;}
+.lxc-blurb-go::after{content:"\2192";margin-left:5px;}
+.lxc-blurb:hover .lxc-blurb-go{filter:brightness(1.18);}
+.lxc-blurb-date{font:italic 400 12.5px/1.2 'Crimson Pro',Georgia,serif;color:#5c4a38;white-space:nowrap;}
+.lxc-blurb-date:empty{display:none;}
 html.lux-rtl .lxc-blurb{text-align:right;}
-html.lux-rtl .lxc-blurb-go::after{content:" \2190";}
+html.lux-rtl .lxc-blurb-txt{align-items:flex-end;}
+html.lux-rtl .lxc-blurb-go::after{content:"\2190";margin-left:0;margin-right:5px;}
+/* telefoni bassi: il titolo su una riga, così il riquadro non copre il viso di SmallNox */
+@media (max-height:700px){.lxc-full .lxc-blurb b{-webkit-line-clamp:1;display:block;white-space:nowrap;text-overflow:ellipsis;}}
 .lxc-barcode{position:absolute;right:calc(16px + var(--lxc-se));bottom:calc(140px + var(--lxc-sb));width:78px;padding:5px 5px 3px;background:#f4ecdc;box-shadow:2px 2px 0 #0b0607;display:flex;flex-direction:column;gap:2px;pointer-events:none;}
 .lxc-bars{height:26px;background:repeating-linear-gradient(90deg,#111 0 2px,transparent 2px 3px,#111 3px 4px,transparent 4px 6px,#111 6px 9px,transparent 9px 10px);}
 .lxc-barcode span{font:400 6px/1 'Space Mono',monospace;color:#111;text-align:center;white-space:nowrap;}
@@ -4231,7 +4239,7 @@ html.lux-rtl .lxc-luxtify{left:auto;right:calc(12px + var(--lxc-se));}
 .lxc-full.lxc-art-wide .lxc-lux{font-size:clamp(20px,calc((var(--lxc-sx) - var(--lxc-sr) - 44px) / 7.4),52px);}
 .lxc-full.lxc-art-wide .lxc-medusa{letter-spacing:.3em;}
 .lxc-full.lxc-art-wide .lxc-stamp{top:calc(64px + var(--lxc-st));right:calc(28px + var(--lxc-se));}
-.lxc-full.lxc-art-wide .lxc-blurb{left:calc(22px + var(--lxc-sl));bottom:calc(76px + var(--lxc-sb));max-width:min(280px,calc(var(--lxc-sx) - var(--lxc-sr) - 44px));}
+.lxc-full.lxc-art-wide .lxc-blurb{left:calc(22px + var(--lxc-sl));bottom:calc(76px + var(--lxc-sb));width:min(290px,calc(var(--lxc-sx) - var(--lxc-sr) - 44px));}
 .lxc-full.lxc-art-wide .lxc-barcode{display:none;}
 .lxc-full.lxc-art-wide .lxc-actions{left:auto;right:calc(22px + var(--lxc-se));transform:none;bottom:calc(128px + var(--lxc-sb));width:min(300px,calc(100% - var(--lxc-sx) - var(--lxc-sr) - 44px));grid-template-columns:1fr;gap:8px;}
 .lxc-full.lxc-art-wide .lxc-guest{left:auto;right:calc(22px + var(--lxc-se));transform:none;bottom:calc(78px + var(--lxc-sb));width:min(300px,calc(100% - var(--lxc-sx) - var(--lxc-sr) - 44px));max-width:none;white-space:normal;text-align:center;}
@@ -4275,8 +4283,9 @@ html.lux-rtl .lxc-book .lxc-front{box-shadow:inset -7px 0 10px -5px rgba(0,0,0,.
 .lxc-book .lxc-lux{font-size:calc(var(--lxc-bw) * .098);}
 .lxc-book .lxc-medusa{font-size:12px;letter-spacing:.44em;margin-right:-.44em;}
 .lxc-book .lxc-stamp{right:18px;top:calc(var(--lxc-bw) * .31);}
-.lxc-book .lxc-blurb{left:20px;bottom:190px;max-width:min(260px,calc(100% - 130px));font-size:15px;}
-.lxc-book .lxc-blurb b{font-size:17px;}
+.lxc-book .lxc-blurb{left:20px;bottom:190px;width:min(300px,calc(100% - 130px));}
+.lxc-book .lxc-blurb-pic{width:66px;height:66px;}
+.lxc-book .lxc-blurb b{font-size:15px;}
 .lxc-book .lxc-barcode{right:20px;bottom:196px;}
 .lxc-book .lxc-actions{width:calc(100% - 40px);bottom:84px;}
 .lxc-book .lxc-guest{bottom:30px;}
