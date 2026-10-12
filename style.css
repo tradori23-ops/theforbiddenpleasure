@@ -4179,14 +4179,29 @@ html.lux-rtl .lxc-corner{right:auto;left:0;}
 @keyframes lxcSpark{0%{transform:translateX(calc(var(--lxc-sr) * .2)) scaleX(.3)}35%{transform:translateX(calc(var(--lxc-sr) * var(--k) * .7)) scaleX(1)}100%{transform:translateX(calc(var(--lxc-sr) * var(--k))) scaleX(.4)}}
 @keyframes lxcBurst{0%{transform:scale(.2);opacity:0}30%{opacity:1}100%{transform:scale(1.5);opacity:0}}
 
-/* il capitolo nuovo (v240): mini copertina, «Capitolo nuovo», titolo, «Leggi ora» e la data; si tocca
-   tutto il riquadro e si apre quel fumetto, da ospite. Accanto, il codice a barre */
-.lxc-blurb{position:absolute;left:calc(16px + var(--lxc-sl));bottom:calc(136px + var(--lxc-sb));width:min(272px,calc(100% - 124px));display:flex;align-items:center;gap:9px;margin:0;padding:6px 9px 6px 6px;border:0;border-radius:3px;
+/* il capitolo nuovo (v240–v241): mini copertina, «Capitolo nuovo» (con «1 di 3» se sono di più),
+   titolo, «Leggi ora» e la data; si tocca e si apre quel fumetto, da ospite. Con più capitoli si
+   sfoglia col dito o coi puntini (la linguetta appesa sotto). Accanto, il codice a barre */
+.lxc-blurb{position:absolute;left:calc(16px + var(--lxc-sl));bottom:calc(136px + var(--lxc-sb));width:min(272px,calc(100% - 124px));margin:0;padding:0;border-radius:3px;
   background:#ece2c6;color:#1e1410;transform:rotate(-2deg);box-shadow:3px 3px 0 #0b0607,0 8px 22px rgba(0,0,0,.45);font:400 14px/1.25 'Crimson Pro',Georgia,serif;letter-spacing:0;text-align:left;text-transform:none;
-  transition:transform .2s ease,box-shadow .2s ease;}
+  touch-action:pan-y;transition:transform .2s ease,box-shadow .2s ease;}
 .lxc-blurb:hover{transform:rotate(-2deg) translateY(-2px);box-shadow:4px 6px 0 #0b0607,0 10px 24px rgba(0,0,0,.5);}
 .lxc-blurb:active{transform:rotate(-2deg) translateY(1px);box-shadow:2px 2px 0 #0b0607,0 6px 16px rgba(0,0,0,.4);}
-.lxc-blurb:focus-visible{outline:2px solid #e3c273;outline-offset:3px;}
+.lxc-blurb-main{display:flex;align-items:center;gap:9px;width:100%;margin:0;padding:6px 9px 6px 6px;border:0;border-radius:3px;background:none;color:inherit;font:inherit;letter-spacing:0;text-align:inherit;text-transform:none;
+  transition:transform .15s ease,opacity .15s ease;}
+.lxc-blurb-main:focus-visible{outline:2px solid #e3c273;outline-offset:3px;}
+/* sfogliando: il capitolo esce da una parte ed entra dall'altra */
+.lxc-blurb-main.lxc-ch-out-l{transform:translateX(-16px);opacity:0;}
+.lxc-blurb-main.lxc-ch-out-r{transform:translateX(16px);opacity:0;}
+.lxc-blurb-main.lxc-ch-in-r{animation:lxcChInR .22s ease-out;}
+.lxc-blurb-main.lxc-ch-in-l{animation:lxcChInL .22s ease-out;}
+@keyframes lxcChInR{from{transform:translateX(16px);opacity:0}to{transform:none;opacity:1}}
+@keyframes lxcChInL{from{transform:translateX(-16px);opacity:0}to{transform:none;opacity:1}}
+.lxc-blurb-dots{position:absolute;left:50%;bottom:-11px;transform:translateX(-50%);display:flex;padding:0 4px;border-radius:9px;background:#ece2c6;box-shadow:2px 2px 0 #0b0607;}
+.lxc-blurb-dots button{display:flex;align-items:center;justify-content:center;width:15px;height:14px;margin:0;padding:0;border:0;background:none;}
+.lxc-blurb-dots button::before{content:"";width:6px;height:6px;border-radius:50%;background:rgba(110,20,35,.32);transition:background .2s ease,transform .2s ease;}
+.lxc-blurb-dots button.on::before{background:#6e1423;transform:scale(1.3);}
+html.lux-rtl .lxc-blurb-dots{flex-direction:row-reverse;}
 .lxc-blurb-pic{flex:none;align-self:center;width:58px;height:58px;overflow:hidden;border:1px solid #1e1410;background:#2a1a14;box-shadow:1px 1px 0 rgba(0,0,0,.35);}
 .lxc-blurb-img{display:block;width:100%;height:100%;object-fit:cover;}
 .lxc-blurb-txt{display:flex;flex-direction:column;align-items:flex-start;flex:1 1 auto;min-width:0;}
@@ -4202,8 +4217,10 @@ html.lux-rtl .lxc-corner{right:auto;left:0;}
 html.lux-rtl .lxc-blurb{text-align:right;}
 html.lux-rtl .lxc-blurb-txt{align-items:flex-end;}
 html.lux-rtl .lxc-blurb-go::after{content:"\2190";margin-left:0;margin-right:5px;}
+/* sfogliando, il riquadro resta della stessa altezza anche se un titolo sta su una riga sola */
+.lxc-blurb.lxc-multi b{min-height:2.26em;}
 /* telefoni bassi: il titolo su una riga, così il riquadro non copre il viso di SmallNox */
-@media (max-height:700px){.lxc-full .lxc-blurb b{-webkit-line-clamp:1;display:block;white-space:nowrap;text-overflow:ellipsis;}}
+@media (max-height:700px){.lxc-full .lxc-blurb b{-webkit-line-clamp:1;display:block;white-space:nowrap;text-overflow:ellipsis;}.lxc-full .lxc-blurb.lxc-multi b{min-height:0;}}
 .lxc-barcode{position:absolute;right:calc(16px + var(--lxc-se));bottom:calc(140px + var(--lxc-sb));width:78px;padding:5px 5px 3px;background:#f4ecdc;box-shadow:2px 2px 0 #0b0607;display:flex;flex-direction:column;gap:2px;pointer-events:none;}
 .lxc-bars{height:26px;background:repeating-linear-gradient(90deg,#111 0 2px,transparent 2px 3px,#111 3px 4px,transparent 4px 6px,#111 6px 9px,transparent 9px 10px);}
 .lxc-barcode span{font:400 6px/1 'Space Mono',monospace;color:#111;text-align:center;white-space:nowrap;}
