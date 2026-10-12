@@ -949,6 +949,20 @@ Object.assign(STR.hi, {"lxcover.newChapter": "नया अध्याय", "lx
 Object.assign(STR.bn, {"lxcover.newChapter": "নতুন অধ্যায়", "lxcover.lastChapter": "সর্বশেষ অধ্যায়"});
 Object.assign(STR.ar, {"lxcover.newChapter": "فصل جديد", "lxcover.lastChapter": "أحدث فصل"});
 Object.assign(STR.pnb, {"lxcover.newChapter": "نواں باب", "lxcover.lastChapter": "تازہ ترین باب"});
+// v241: la copertina (più capitoli nuovi)
+Object.assign(STR.it, {"lxcover.nOfM": "{i} di {n}"});
+Object.assign(STR.en, {"lxcover.nOfM": "{i} of {n}"});
+Object.assign(STR.es, {"lxcover.nOfM": "{i} de {n}"});
+Object.assign(STR.fr, {"lxcover.nOfM": "{i} sur {n}"});
+Object.assign(STR.de, {"lxcover.nOfM": "{i} von {n}"});
+Object.assign(STR.pt, {"lxcover.nOfM": "{i} de {n}"});
+Object.assign(STR.ru, {"lxcover.nOfM": "{i} из {n}"});
+Object.assign(STR.zh, {"lxcover.nOfM": "{i}/{n}"});
+Object.assign(STR.ja, {"lxcover.nOfM": "{i}/{n}"});
+Object.assign(STR.hi, {"lxcover.nOfM": "{n} में से {i}"});
+Object.assign(STR.bn, {"lxcover.nOfM": "{n}-এর মধ্যে {i}"});
+Object.assign(STR.ar, {"lxcover.nOfM": "{i} من {n}"});
+Object.assign(STR.pnb, {"lxcover.nOfM": "{n} وچوں {i}"});
 var CHAR_META = {
   Lucifer:{role:{it:"Il Portatore di Luce",en:"The Light-Bearer",es:"El Portador de Luz",fr:"Le Porteur de Lumière",de:"Der Lichtträger"},
     bio:{it:"Sovrano della collana ammiraglia: potere, caduta e desiderio raccontati su grande scala.",
@@ -1096,7 +1110,7 @@ function showEntryModeGate(){
   });
 }
 
-/* ============ v237–v240: LA COPERTINA ============
+/* ============ v237–v241: LA COPERTINA ============
    Chi non ha fatto l'accesso trova il sito chiuso come un fumetto: la copertina con
    l'arte della schermata d'ingresso e il sigillo LM. Si entra in tre modi:
    - il sigillo, «Accedi» o «Crea account»: si apre la «Tessera dell'Archivio» (la finestra
@@ -1120,7 +1134,11 @@ function showEntryModeGate(){
    Chi ha chiesto al telefono meno movimento la vede ferma, e si apre con una dissolvenza.
    v240: il riquadro del capitolo nuovo (mini copertina, «Capitolo nuovo», titolo, «Leggi ora» e la
    data) compare davvero: prima i fumetti veri (codici come c1791819510678) venivano presi per
-   quelli d'esempio (c1…c10) e scartati, e con loro spariva anche il numero dell'uscita. */
+   quelli d'esempio (c1…c10) e scartati, e con loro spariva anche il numero dell'uscita.
+   v241: con più capitoli nuovi (usciti negli ultimi 30 giorni, fino a 5) il riquadro si sfoglia:
+   «1 di 3», i puntini, col dito, con le frecce della tastiera, e da solo ogni 5 secondi (si ferma
+   sotto il dito o il mouse, con la tessera aperta, e per chi ha chiesto meno movimento). Il più
+   recente viene per primo; a parità di giorno, l'ultimo caricato. */
 var LUX_COVER_ART = {
   // dove sta il sigillo nell'immagine: centro (ex, ey) e raggio (er) in proporzione;
   // i due portali (fuoco a sinistra, cosmo a destra): centro e misure in proporzione
@@ -1340,8 +1358,9 @@ function luxCoverBuild(){
           '<div class="lxc-burst" aria-hidden="true"></div>' +
           '<button type="button" class="lxc-seal" data-lxc="seal"></button>' +
           '<div class="lxc-seal-label" aria-hidden="true"></div>' +
-          '<button type="button" class="lxc-blurb hidden" data-lxc="title"><span class="lxc-blurb-pic"><img class="lxc-blurb-img" alt="" decoding="async"></span>' +
+          '<div class="lxc-blurb hidden"><button type="button" class="lxc-blurb-main" data-lxc="title"><span class="lxc-blurb-pic"><img class="lxc-blurb-img" alt="" decoding="async"></span>' +
             '<span class="lxc-blurb-txt"><small class="lxc-blurb-tag"></small><b></b><span class="lxc-blurb-row"><em class="lxc-blurb-go"></em><span class="lxc-blurb-date"></span></span></span></button>' +
+            '<span class="lxc-blurb-dots hidden"></span></div>' +
           '<div class="lxc-barcode" aria-hidden="true"><div class="lxc-bars"></div><span>noxmorningstar.com</span></div>' +
           '<div class="lxc-actions"><button type="button" class="lxc-btn lxc-primary" data-lxc="login"></button><button type="button" class="lxc-btn lxc-ghost" data-lxc="register"></button></div>' +
           '<button type="button" class="lxc-guest" data-lxc="guest"></button>' +
@@ -1371,15 +1390,51 @@ function luxCoverBuild(){
   });
 
   el.addEventListener('click', function(e){
+    var dot = e.target.closest ? e.target.closest('[data-dot]') : null;
+    if(dot && el === luxCoverEl && !el._opening){ luxCoverChGo(el, +dot.getAttribute('data-dot')); return; } // v241: un puntino
     var b = e.target.closest ? e.target.closest('[data-lxc]') : null;
     if(!b || el !== luxCoverEl || el._opening) return;
     var act = b.getAttribute('data-lxc');
     if(act === 'luxtify'){ try { sessionStorage.setItem('lux_cover_ok', '1'); } catch(err){} return; } // il link porta a Luxtify
     if(act === 'guest'){ luxCoverOpen(true, false); return; }
-    if(act === 'title'){ luxCoverOpen(true, false, el._item || null); return; } // v239–v240: il capitolo nuovo si apre subito
+    if(act === 'title'){ // v239–v241: il capitolo nuovo si apre subito (ma non se il dito l'ha appena fatto scorrere)
+      if(el._chSwipeT && performance.now() - el._chSwipeT < 500) return;
+      luxCoverOpen(true, false, el._item || null);
+      return;
+    }
     el._ret = act === 'register' ? 'register' : 'login';
     luxCoverCard(true);
     openAuth(el._ret);
+  });
+
+  // v241: il riquadro dei capitoli nuovi si sfoglia col dito (e si ferma mentre lo si tocca o ci si
+  // passa col mouse); con la tastiera, le frecce
+  var blurb = el.querySelector('.lxc-blurb'), bmain = el.querySelector('.lxc-blurb-main');
+  blurb.addEventListener('pointerdown', function(e){
+    if((el._chapters || []).length < 2 || el._opening) return;
+    el._chSw = { id: e.pointerId, x: e.clientX, y: e.clientY };
+    el._chPress = true;
+  });
+  blurb.addEventListener('pointermove', function(e){
+    var w = el._chSw;
+    if(!w || e.pointerId !== w.id) return;
+    var dx = e.clientX - w.x, dy = e.clientY - w.y;
+    if(Math.abs(dx) < 30 || Math.abs(dx) < Math.abs(dy) * 1.3) return;
+    el._chSw = null;
+    el._chSwipeT = performance.now();
+    var dir = (dx < 0 ? 1 : -1) * (luxIsRtl() ? -1 : 1); // verso sinistra: il prossimo (in arabo e panjabi al contrario)
+    luxCoverChGo(el, el._chIdx + dir, dir);
+  });
+  ['pointerup', 'pointercancel'].forEach(function(n){ blurb.addEventListener(n, function(){ el._chSw = null; el._chPress = false; }); });
+  blurb.addEventListener('pointerenter', function(e){ if(e.pointerType === 'mouse') el._chHover = true; });
+  blurb.addEventListener('pointerleave', function(){ el._chHover = false; el._chSw = null; el._chPress = false; });
+  blurb.addEventListener('focusin', function(){ el._chFocus = true; });
+  blurb.addEventListener('focusout', function(){ el._chFocus = false; });
+  bmain.addEventListener('keydown', function(e){
+    if((el._chapters || []).length < 2 || (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight')) return;
+    e.preventDefault();
+    var dir = (e.key === 'ArrowRight' ? 1 : -1) * (luxIsRtl() ? -1 : 1);
+    luxCoverChGo(el, el._chIdx + dir, dir);
   });
 
   // l'orecchia in basso: la pagina segue il dito (oltre metà, o con uno strappo deciso, gira)
@@ -1542,33 +1597,121 @@ function luxCoverTexts(){
   luxCoverPlaceSeal();
 }
 // «In questo numero»: l'ultima uscita per tutti (mai un 18+), solo con il catalogo vero; si tocca e si legge
-// il capitolo nuovo: l'ultimo uscito che si può mostrare a tutti (i 18+ restano dietro il loro
-// interruttore, come nella home), con la sua mini copertina; si tocca e si apre (luxCoverOpen)
+// i capitoli da mostrare: quelli che si possono mostrare a tutti (i 18+ restano dietro il loro
+// interruttore, come nella home), il più recente per primo; a parità di giorno l'ultimo caricato
+// (il codice dei fumetti veri è «c» + data e ora del caricamento)
+function luxCoverStamp(x){
+  var m = /^c(\d{10,})$/.exec(String((x && x.id) || ''));
+  if(m) return +m[1];
+  var c = Date.parse((x && x.created_at) || '');
+  return isNaN(c) ? 0 : c;
+}
+function luxCoverChapters(){
+  var all = luxCoverCatalog().filter(function(x){ try { return !!x.title && matureOk(x); } catch(e){ return false; } });
+  var day = function(x){ return String(x.date || x.created_at || '').slice(0, 10); };
+  all.sort(function(a, b){ return day(b).localeCompare(day(a)) || (luxCoverStamp(b) - luxCoverStamp(a)); });
+  // nuovi: usciti negli ultimi 30 giorni (fino a 5); se non ce n'è, l'ultimo uscito
+  var fresh = all.filter(function(x){ var d = luxCoverDaysAgo(day(x)); return d !== null && d <= 30; }).slice(0, 5);
+  return { list: fresh.length ? fresh : all.slice(0, 1), fresh: fresh.length > 0 };
+}
+// il riquadro del capitolo nuovo: mini copertina, «Capitolo nuovo» (con «1 di 3» se sono di più),
+// titolo, «Leggi ora» e la data; si tocca e si apre quel capitolo (luxCoverOpen)
 function luxCoverBlurb(){
   var el = luxCoverEl;
   if(!el) return;
-  var box = el.querySelector('.lxc-blurb'), item = null;
-  luxCoverCatalog().forEach(function(x){
-    try { if(!x.title || !matureOk(x)) return; } catch(e){ return; }
-    if(!item || String(x.date || '') > String(item.date || '')) item = x; // (a parità di data, il primo: come «Nuovo» nella home)
-  });
-  el._item = item;
+  var box = el.querySelector('.lxc-blurb');
+  var r = luxCoverChapters(), keep = el._item && el._item.id, idx = 0;
+  r.list.forEach(function(x, i){ if(keep && x.id === keep) idx = i; }); // (arriva il catalogo aggiornato o si cambia lingua: resta quello che si stava guardando)
+  el._chapters = r.list;
+  el._chFresh = r.fresh;
   var n = luxCoverIssueN(), ni = el.querySelector('.lxc-issue-n');
   if(ni) ni.textContent = n ? t('lxcover.issue').replace('{n}', String(n)) : '';
-  if(!item){ box.classList.add('hidden'); return; }
-  var when = item.date || item.created_at, days = luxCoverDaysAgo(when);
-  box.querySelector('.lxc-blurb-tag').textContent = t(days !== null && days <= 30 ? 'lxcover.newChapter' : 'lxcover.lastChapter');
-  box.querySelector('b').textContent = item.title;
-  box.querySelector('.lxc-blurb-go').textContent = t('rec.readNow');
-  box.querySelector('.lxc-blurb-date').textContent = luxCoverDateText(when);
-  box.setAttribute('aria-label', t('lxcover.openTitle').replace('{title}', item.title));
-  var pic = box.querySelector('.lxc-blurb-pic'), im = box.querySelector('.lxc-blurb-img');
-  if(item.cover_url){
-    var src = coverThumbUrl(item.cover_url, 200);
-    if(im.getAttribute('src') !== src){ im.setAttribute('data-fallback', item.cover_url); im.src = src; }
-    pic.classList.remove('hidden');
-  } else pic.classList.add('hidden');
+  if(!r.list.length){ el._item = null; clearTimeout(el._chTimer); box.classList.add('hidden'); return; }
+  // i puntini (col mouse o col dito; dalla tastiera si usano le frecce)
+  var dots = box.querySelector('.lxc-blurb-dots'), m = r.list.length;
+  dots.innerHTML = '';
+  for(var k = 0; k < m && m > 1; k++){
+    var d = document.createElement('button');
+    d.type = 'button';
+    d.tabIndex = -1;
+    d.setAttribute('data-dot', String(k));
+    d.setAttribute('aria-label', t('lxcover.newChapter') + ' ' + t('lxcover.nOfM').replace('{i}', String(k + 1)).replace('{n}', String(m)));
+    dots.appendChild(d);
+  }
+  dots.classList.toggle('hidden', m < 2);
+  box.classList.toggle('lxc-multi', m > 1);
+  // le mini copertine degli altri, già pronte per quando si sfoglia
+  if(m > 1) r.list.forEach(function(x){ if(x.cover_url){ try { new Image().src = coverThumbUrl(x.cover_url, 200); } catch(e){} } });
   box.classList.remove('hidden');
+  luxCoverChShow(el, idx, 0);
+  luxCoverChNext(el, 5000);
+}
+// mostra il capitolo i (dir: 1 = il prossimo, -1 = il precedente, 0 = senza scorrere)
+function luxCoverChShow(el, i, dir){
+  var list = el._chapters || [], m = list.length;
+  if(!m) return;
+  i = ((i % m) + m) % m;
+  el._chIdx = i;
+  var item = list[i];
+  el._item = item;
+  var box = el.querySelector('.lxc-blurb'), main = box.querySelector('.lxc-blurb-main');
+  function fill(){
+    var when = item.date || item.created_at, pos = t('lxcover.nOfM').replace('{i}', String(i + 1)).replace('{n}', String(m));
+    var tag = box.querySelector('.lxc-blurb-tag'), label = t(el._chFresh ? 'lxcover.newChapter' : 'lxcover.lastChapter');
+    tag.textContent = label + (m > 1 ? ' · ' + pos : '');
+    if(m > 1 && tag.scrollWidth > tag.clientWidth + 1) tag.textContent = label + ' · ' + (i + 1) + '/' + m; // (se «1 di 3» non ci sta: «1/3»)
+    box.querySelector('b').textContent = item.title;
+    box.querySelector('.lxc-blurb-go').textContent = t('rec.readNow');
+    box.querySelector('.lxc-blurb-date').textContent = luxCoverDateText(when);
+    main.setAttribute('aria-label', t('lxcover.openTitle').replace('{title}', item.title) + (m > 1 ? ' · ' + pos : ''));
+    var pic = box.querySelector('.lxc-blurb-pic'), im = box.querySelector('.lxc-blurb-img');
+    if(item.cover_url){
+      var src = coverThumbUrl(item.cover_url, 200);
+      if(im.getAttribute('src') !== src){ im.setAttribute('data-fallback', item.cover_url); im.src = src; }
+      pic.classList.remove('hidden');
+    } else pic.classList.add('hidden');
+    Array.prototype.forEach.call(box.querySelectorAll('.lxc-blurb-dots [data-dot]'), function(d, k){
+      d.classList.toggle('on', k === i);
+      d.setAttribute('aria-current', k === i ? 'true' : 'false');
+    });
+  }
+  clearTimeout(el._chT);
+  main.classList.remove('lxc-ch-out-l', 'lxc-ch-out-r', 'lxc-ch-in-l', 'lxc-ch-in-r');
+  if(!dir || luxCoverReduced()){ fill(); return; }
+  // esce da una parte ed entra dall'altra (in arabo e panjabi al contrario)
+  var toLeft = (dir > 0) !== luxIsRtl();
+  main.classList.add(toLeft ? 'lxc-ch-out-l' : 'lxc-ch-out-r');
+  el._chT = setTimeout(function(){
+    if(!el.parentNode) return;
+    fill();
+    main.classList.remove('lxc-ch-out-l', 'lxc-ch-out-r');
+    void main.offsetWidth;
+    main.classList.add(toLeft ? 'lxc-ch-in-r' : 'lxc-ch-in-l');
+  }, 150);
+}
+// un gesto (dito, puntino, freccia): si va a quel capitolo e il giro automatico riparte da lì
+function luxCoverChGo(el, i, dir){
+  var m = (el._chapters || []).length;
+  if(m < 2) return;
+  var j = ((i % m) + m) % m;
+  if(!dir) dir = j === el._chIdx ? 0 : (j > el._chIdx ? 1 : -1);
+  luxCoverChShow(el, j, dir);
+  luxCoverChNext(el, 5000);
+}
+// il giro automatico: ogni 5 secondi il prossimo; aspetta se lo si sta toccando, guardando col mouse
+// o con la tastiera, se è aperta la tessera, se la copertina si muove o la pagina non si vede
+function luxCoverChNext(el, ms){
+  clearTimeout(el._chTimer);
+  if((el._chapters || []).length < 2 || luxCoverReduced()) return;
+  el._chTimer = setTimeout(function(){
+    if(el !== luxCoverEl || el._opening) return;
+    if(el._drag || el._chHover || el._chFocus || el._chPress || el.classList.contains('lxc-carded') || el.classList.contains('lxc-anim') || document.visibilityState === 'hidden'){
+      luxCoverChNext(el, 1500);
+      return;
+    }
+    luxCoverChShow(el, el._chIdx + 1, 1);
+    luxCoverChNext(el, 5000);
+  }, ms || 5000);
 }
 // il pulsante del sigillo va sopra il sigillo disegnato nell'immagine (che si adatta allo schermo);
 // lì vanno anche le due metà che si spezzano, i bagliori dei portali e le braci
@@ -1728,7 +1871,7 @@ function luxCoverOpen(guest, fromDrag, openItem){
 function luxCoverFinish(guest, openItem){
   var el = luxCoverEl;
   luxCoverClearTimers();
-  if(el){ clearTimeout(el._peekT); if(el._curl) cancelAnimationFrame(el._curl.raf); }
+  if(el){ clearTimeout(el._peekT); clearTimeout(el._chTimer); clearTimeout(el._chT); if(el._curl) cancelAnimationFrame(el._curl.raf); }
   luxCoverSetInert(false);
   if(el && el.parentNode) el.parentNode.removeChild(el);
   luxCoverEl = null;
@@ -1787,6 +1930,8 @@ function luxCoverOnResize(){
     luxCoverSetInert(false);
     var nel = luxCoverBuild();
     nel._ret = el._ret;
+    nel._item = el._item; // (il capitolo che si stava guardando)
+    clearTimeout(el._chTimer);
     el.parentNode.replaceChild(nel, el);
     luxCoverEl = nel;
     if(carded) nel.classList.add('lxc-carded');
