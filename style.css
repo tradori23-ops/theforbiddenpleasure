@@ -4300,17 +4300,17 @@ html.lux-rtl .lxc-book .lxc-front{box-shadow:inset -7px 0 10px -5px rgba(0,0,0,.
 .lxc-book .lxc-lux{font-size:calc(var(--lxc-bw) * .098);}
 .lxc-book .lxc-medusa{font-size:12px;letter-spacing:.44em;margin-right:-.44em;}
 .lxc-book .lxc-stamp{right:18px;top:calc(var(--lxc-bw) * .31);}
-.lxc-book .lxc-blurb{left:20px;bottom:190px;width:min(300px,calc(100% - 130px));}
+.lxc-book .lxc-blurb{left:20px;bottom:150px;width:min(300px,calc(100% - 130px));} /* v243: subito sopra «Accedi / Crea account» (prima 190px: sui portatili non ci stava) */
 .lxc-book .lxc-blurb-pic{width:66px;height:66px;}
 .lxc-book .lxc-blurb b{font-size:15px;}
-.lxc-book .lxc-barcode{right:20px;bottom:196px;}
+.lxc-book .lxc-barcode{right:20px;bottom:156px;}
 .lxc-book .lxc-actions{width:calc(100% - 40px);bottom:84px;}
 .lxc-book .lxc-guest{bottom:30px;}
 .lxc-book .lxc-luxtify{left:16px;bottom:35px;}
 html.lux-rtl .lxc-book .lxc-luxtify{left:auto;right:16px;}
 .lxc-book .lxc-corner{width:76px;height:76px;}
 .lxc-book .lxc-exlibris{left:30px;right:30px;font-size:14px;}
-@media (max-height:760px){.lxc-book .lxc-blurb,.lxc-book .lxc-barcode{display:none;}}
+@media (max-height:760px){.lxc-book .lxc-blurb-pic{width:58px;height:58px;}.lxc-book .lxc-blurb b{font-size:14px;}} /* v243: sugli albi piccoli il riquadro si stringe (prima spariva) */
 
 /* la «Tessera dell'Archivio»: la finestra di accesso aperta dalla copertina ne prende l'aspetto
    (carta del risguardo, cornice d'oro, il sigillo in cima) ed entra girandosi come una tessera */
@@ -4409,6 +4409,8 @@ html.lux-rtl .lxc-full.lxc-art-wide .lxc-me{padding:7px 7px 7px 12px;}
 .lxc-full.lxc-art-wide.lxc-profile .lxc-blurb{bottom:calc(76px + var(--lxc-sb));}
 /* computer (l'albo sul tavolo) */
 .lxc-book.lxc-profile .lxc-who{width:calc(100% - 40px);bottom:76px;}
+.lxc-book.lxc-profile .lxc-blurb{bottom:166px;}
+.lxc-book.lxc-profile .lxc-barcode{bottom:172px;}
 .lxc-book.lxc-profile .lxc-who-links{left:calc(16px + var(--lxc-lxw));right:84px;bottom:31px;}
 html.lux-rtl .lxc-book.lxc-profile .lxc-who-links{left:84px;right:calc(16px + var(--lxc-lxw));}
 /* «Chiudi l'albo»: nel pannello «Tu», sotto il proprio nome, accanto a «Il tuo profilo» (se non ci stanno, uno sotto l'altro) */
