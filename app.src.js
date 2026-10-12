@@ -963,6 +963,20 @@ Object.assign(STR.hi, {"lxcover.nOfM": "{n} में से {i}"});
 Object.assign(STR.bn, {"lxcover.nOfM": "{n}-এর মধ্যে {i}"});
 Object.assign(STR.ar, {"lxcover.nOfM": "{i} من {n}"});
 Object.assign(STR.pnb, {"lxcover.nOfM": "{n} وچوں {i}"});
+// v242: «Chiudi l'albo» e «Password dimenticata?»
+Object.assign(STR.it, {"lxcover.closeBtn": "Chiudi l'albo", "lxcover.closeHint": "Chiudi l'albo senza uscire: si riapre toccando il tuo profilo", "lxcover.who": "Chi sta leggendo?", "lxcover.enter": "Entra", "lxcover.enterAs": "Entra come {name}", "lxcover.dragMe": "Oppure trascina l'angolo e gira la pagina", "lxcover.switchAcc": "Cambia account", "auth.forgot": "Password dimenticata?", "auth.forgotTitle": "Recupera la password", "auth.forgotNote": "Scrivi l'email del tuo account: ti mandiamo un link per sceglierne una nuova.", "auth.forgotBtn": "Mandami il link", "auth.forgotSent": "Fatto! Se l'email è registrata, tra poco ti arriva un link per scegliere una nuova password. Guarda anche nello spam.", "auth.errMail": "In questo momento il sito non riesce a mandare l'email: riprova più tardi.", "auth.forgotBackText": "Te la sei ricordata?", "auth.backToLogin": "Torna all'accesso", "auth.resetTitle": "Scegli una nuova password", "auth.resetNew": "Nuova password", "auth.resetRepeat": "Ripeti la nuova password", "auth.resetBtn": "Salva la password", "auth.resetMismatch": "Le due password non sono uguali.", "auth.resetDone": "Password cambiata: sei dentro.", "auth.resetExpired": "Il link non vale più (si usa una volta sola e scade dopo poco): chiedine un altro.", "auth.resetSame": "È la stessa password di prima: scegline una diversa.", "auth.showPass": "Mostra la password", "auth.hidePass": "Nascondi la password"});
+Object.assign(STR.en, {"lxcover.closeBtn": "Close the book", "lxcover.closeHint": "Close the book without signing out: tap your profile to open it again", "lxcover.who": "Who's reading?", "lxcover.enter": "Enter", "lxcover.enterAs": "Enter as {name}", "lxcover.dragMe": "Or drag the corner to turn the page", "lxcover.switchAcc": "Switch account", "auth.forgot": "Forgot your password?", "auth.forgotTitle": "Reset your password", "auth.forgotNote": "Enter your account email: we'll send you a link to choose a new one.", "auth.forgotBtn": "Send me the link", "auth.forgotSent": "Done! If this email has an account, you'll get a link to choose a new password shortly. Check your spam folder too.", "auth.errMail": "The site can't send the email right now: please try again later.", "auth.forgotBackText": "Remembered it?", "auth.backToLogin": "Back to sign in", "auth.resetTitle": "Choose a new password", "auth.resetNew": "New password", "auth.resetRepeat": "Repeat the new password", "auth.resetBtn": "Save password", "auth.resetMismatch": "The two passwords don't match.", "auth.resetDone": "Password changed: you're in.", "auth.resetExpired": "This link no longer works (it can be used only once and expires soon): ask for a new one.", "auth.resetSame": "That's the same password as before: choose a different one.", "auth.showPass": "Show password", "auth.hidePass": "Hide password"});
+Object.assign(STR.es, {"lxcover.closeBtn": "Cerrar el cómic", "lxcover.closeHint": "Cierra el cómic sin salir: se vuelve a abrir tocando tu perfil", "lxcover.who": "¿Quién está leyendo?", "lxcover.enter": "Entrar", "lxcover.enterAs": "Entrar como {name}", "lxcover.dragMe": "O arrastra la esquina para pasar la página", "lxcover.switchAcc": "Cambiar de cuenta", "auth.forgot": "¿Olvidaste tu contraseña?", "auth.forgotTitle": "Recupera tu contraseña", "auth.forgotNote": "Escribe el correo de tu cuenta: te enviaremos un enlace para elegir una nueva.", "auth.forgotBtn": "Envíame el enlace", "auth.forgotSent": "¡Listo! Si el correo está registrado, en breve te llegará un enlace para elegir una nueva contraseña. Mira también en el spam.", "auth.errMail": "Ahora mismo el sitio no puede enviar el correo: inténtalo más tarde.", "auth.forgotBackText": "¿La recordaste?", "auth.backToLogin": "Volver a acceder", "auth.resetTitle": "Elige una contraseña nueva", "auth.resetNew": "Nueva contraseña", "auth.resetRepeat": "Repite la nueva contraseña", "auth.resetBtn": "Guardar contraseña", "auth.resetMismatch": "Las dos contraseñas no coinciden.", "auth.resetDone": "Contraseña cambiada: ya estás dentro.", "auth.resetExpired": "El enlace ya no es válido (solo se usa una vez y caduca pronto): pide otro.", "auth.resetSame": "Es la misma contraseña de antes: elige otra.", "auth.showPass": "Mostrar contraseña", "auth.hidePass": "Ocultar contraseña"});
+Object.assign(STR.fr, {"lxcover.closeBtn": "Refermer l'album", "lxcover.closeHint": "Refermez l'album sans vous déconnecter : il se rouvre en touchant votre profil", "lxcover.who": "Qui lit ?", "lxcover.enter": "Entrer", "lxcover.enterAs": "Entrer en tant que {name}", "lxcover.dragMe": "Ou faites glisser le coin pour tourner la page", "lxcover.switchAcc": "Changer de compte", "auth.forgot": "Mot de passe oublié ?", "auth.forgotTitle": "Réinitialiser le mot de passe", "auth.forgotNote": "Saisissez l'email de votre compte : nous vous enverrons un lien pour en choisir un nouveau.", "auth.forgotBtn": "Envoyez-moi le lien", "auth.forgotSent": "C'est fait ! Si cet email a un compte, vous allez recevoir un lien pour choisir un nouveau mot de passe. Regardez aussi dans les spams.", "auth.errMail": "Le site ne peut pas envoyer l'email pour le moment : réessayez plus tard.", "auth.forgotBackText": "Vous vous en souvenez ?", "auth.backToLogin": "Retour à la connexion", "auth.resetTitle": "Choisissez un nouveau mot de passe", "auth.resetNew": "Nouveau mot de passe", "auth.resetRepeat": "Répétez le nouveau mot de passe", "auth.resetBtn": "Enregistrer le mot de passe", "auth.resetMismatch": "Les deux mots de passe ne correspondent pas.", "auth.resetDone": "Mot de passe modifié : vous êtes connecté.", "auth.resetExpired": "Ce lien n'est plus valable (il ne sert qu'une fois et expire vite) : demandez-en un autre.", "auth.resetSame": "C'est le même mot de passe qu'avant : choisissez-en un autre.", "auth.showPass": "Afficher le mot de passe", "auth.hidePass": "Masquer le mot de passe"});
+Object.assign(STR.de, {"lxcover.closeBtn": "Heft schließen", "lxcover.closeHint": "Schließ das Heft, ohne dich abzumelden: Tipp auf dein Profil, um es wieder zu öffnen", "lxcover.who": "Wer liest?", "lxcover.enter": "Öffnen", "lxcover.enterAs": "Weiter als {name}", "lxcover.dragMe": "Oder zieh an der Ecke und blättere um", "lxcover.switchAcc": "Konto wechseln", "auth.forgot": "Passwort vergessen?", "auth.forgotTitle": "Passwort zurücksetzen", "auth.forgotNote": "Gib die E-Mail deines Kontos ein: Wir schicken dir einen Link, um ein neues zu wählen.", "auth.forgotBtn": "Link senden", "auth.forgotSent": "Erledigt! Wenn die E-Mail registriert ist, bekommst du gleich einen Link, um ein neues Passwort zu wählen. Schau auch im Spam-Ordner nach.", "auth.errMail": "Die Seite kann die E-Mail gerade nicht senden: Versuch es später noch einmal.", "auth.forgotBackText": "Doch wieder eingefallen?", "auth.backToLogin": "Zurück zur Anmeldung", "auth.resetTitle": "Wähle ein neues Passwort", "auth.resetNew": "Neues Passwort", "auth.resetRepeat": "Neues Passwort wiederholen", "auth.resetBtn": "Passwort speichern", "auth.resetMismatch": "Die beiden Passwörter stimmen nicht überein.", "auth.resetDone": "Passwort geändert: Du bist drin.", "auth.resetExpired": "Der Link gilt nicht mehr (er funktioniert nur einmal und läuft bald ab): Fordere einen neuen an.", "auth.resetSame": "Das ist dasselbe Passwort wie vorher: Wähle ein anderes.", "auth.showPass": "Passwort anzeigen", "auth.hidePass": "Passwort verbergen"});
+Object.assign(STR.pt, {"lxcover.closeBtn": "Fechar a revista", "lxcover.closeHint": "Feche a revista sem sair: ela se abre de novo quando você toca no seu perfil", "lxcover.who": "Quem está lendo?", "lxcover.enter": "Entrar", "lxcover.enterAs": "Entrar como {name}", "lxcover.dragMe": "Ou arraste o canto para virar a página", "lxcover.switchAcc": "Trocar de conta", "auth.forgot": "Esqueceu a senha?", "auth.forgotTitle": "Recuperar a senha", "auth.forgotNote": "Digite o e-mail da sua conta: enviaremos um link para você escolher uma nova.", "auth.forgotBtn": "Enviar o link", "auth.forgotSent": "Pronto! Se o e-mail estiver cadastrado, em breve você recebe um link para escolher uma nova senha. Veja também no spam.", "auth.errMail": "No momento o site não consegue enviar o e-mail: tente de novo mais tarde.", "auth.forgotBackText": "Lembrou?", "auth.backToLogin": "Voltar para entrar", "auth.resetTitle": "Escolha uma nova senha", "auth.resetNew": "Nova senha", "auth.resetRepeat": "Repita a nova senha", "auth.resetBtn": "Salvar senha", "auth.resetMismatch": "As duas senhas não são iguais.", "auth.resetDone": "Senha alterada: você já entrou.", "auth.resetExpired": "O link não vale mais (só pode ser usado uma vez e expira logo): peça outro.", "auth.resetSame": "É a mesma senha de antes: escolha outra.", "auth.showPass": "Mostrar senha", "auth.hidePass": "Ocultar senha"});
+Object.assign(STR.ru, {"lxcover.closeBtn": "Закрыть выпуск", "lxcover.closeHint": "Закройте выпуск, не выходя из аккаунта: чтобы открыть снова, коснитесь своего профиля", "lxcover.who": "Кто читает?", "lxcover.enter": "Открыть", "lxcover.enterAs": "Продолжить как {name}", "lxcover.dragMe": "Или потяните за уголок, чтобы перевернуть страницу", "lxcover.switchAcc": "Сменить аккаунт", "auth.forgot": "Забыли пароль?", "auth.forgotTitle": "Восстановление пароля", "auth.forgotNote": "Введите почту вашего аккаунта: мы пришлём ссылку, чтобы выбрать новый пароль.", "auth.forgotBtn": "Отправить ссылку", "auth.forgotSent": "Готово! Если эта почта зарегистрирована, скоро придёт ссылка для выбора нового пароля. Загляните и в папку «Спам».", "auth.errMail": "Сейчас сайт не может отправить письмо: попробуйте позже.", "auth.forgotBackText": "Вспомнили?", "auth.backToLogin": "Вернуться ко входу", "auth.resetTitle": "Придумайте новый пароль", "auth.resetNew": "Новый пароль", "auth.resetRepeat": "Повторите новый пароль", "auth.resetBtn": "Сохранить пароль", "auth.resetMismatch": "Пароли не совпадают.", "auth.resetDone": "Пароль изменён: вы вошли.", "auth.resetExpired": "Ссылка больше не действует (она одноразовая и быстро истекает): запросите новую.", "auth.resetSame": "Это тот же пароль, что и раньше: выберите другой.", "auth.showPass": "Показать пароль", "auth.hidePass": "Скрыть пароль"});
+Object.assign(STR.zh, {"lxcover.closeBtn": "合上漫画", "lxcover.closeHint": "合上漫画但不退出登录：轻点你的头像即可重新打开", "lxcover.who": "谁在阅读？", "lxcover.enter": "进入", "lxcover.enterAs": "以 {name} 的身份进入", "lxcover.dragMe": "或拖动右下角翻开这一页", "lxcover.switchAcc": "切换账号", "auth.forgot": "忘记密码？", "auth.forgotTitle": "找回密码", "auth.forgotNote": "输入你的账号邮箱，我们会发送一个链接，让你设置新密码。", "auth.forgotBtn": "发送链接", "auth.forgotSent": "已发送！如果该邮箱已注册，你很快会收到一个设置新密码的链接。也请查看垃圾邮件。", "auth.errMail": "网站暂时无法发送邮件，请稍后再试。", "auth.forgotBackText": "想起来了？", "auth.backToLogin": "返回登录", "auth.resetTitle": "设置新密码", "auth.resetNew": "新密码", "auth.resetRepeat": "再次输入新密码", "auth.resetBtn": "保存密码", "auth.resetMismatch": "两次输入的密码不一致。", "auth.resetDone": "密码已更改，你已登录。", "auth.resetExpired": "该链接已失效（只能使用一次，且很快过期），请重新获取。", "auth.resetSame": "与之前的密码相同，请换一个。", "auth.showPass": "显示密码", "auth.hidePass": "隐藏密码"});
+Object.assign(STR.ja, {"lxcover.closeBtn": "本を閉じる", "lxcover.closeHint": "ログアウトせずに本を閉じます。プロフィールをタップすると、また開きます", "lxcover.who": "読むのは誰？", "lxcover.enter": "開く", "lxcover.enterAs": "{name} として続ける", "lxcover.dragMe": "または角をドラッグしてページをめくる", "lxcover.switchAcc": "アカウントを切り替え", "auth.forgot": "パスワードをお忘れですか？", "auth.forgotTitle": "パスワードの再設定", "auth.forgotNote": "アカウントのメールアドレスを入力してください。新しいパスワードを設定するリンクをお送りします。", "auth.forgotBtn": "リンクを送信", "auth.forgotSent": "送信しました。登録済みのメールアドレスなら、まもなく新しいパスワードを設定するリンクが届きます。迷惑メールフォルダもご確認ください。", "auth.errMail": "現在、サイトからメールを送信できません。しばらくしてからもう一度お試しください。", "auth.forgotBackText": "思い出しましたか？", "auth.backToLogin": "ログインに戻る", "auth.resetTitle": "新しいパスワードを設定", "auth.resetNew": "新しいパスワード", "auth.resetRepeat": "新しいパスワード（確認）", "auth.resetBtn": "パスワードを保存", "auth.resetMismatch": "2つのパスワードが一致しません。", "auth.resetDone": "パスワードを変更しました。ログイン中です。", "auth.resetExpired": "このリンクは無効です（一度しか使えず、すぐに期限が切れます）。新しいリンクをリクエストしてください。", "auth.resetSame": "以前と同じパスワードです。別のものを選んでください。", "auth.showPass": "パスワードを表示", "auth.hidePass": "パスワードを隠す"});
+Object.assign(STR.hi, {"lxcover.closeBtn": "कॉमिक बंद करें", "lxcover.closeHint": "लॉग आउट किए बिना कॉमिक बंद करें: अपनी प्रोफ़ाइल पर टैप करते ही यह फिर खुल जाएगा", "lxcover.who": "कौन पढ़ रहा है?", "lxcover.enter": "खोलें", "lxcover.enterAs": "{name} के रूप में जारी रखें", "lxcover.dragMe": "या कोना खींचकर पन्ना पलटें", "lxcover.switchAcc": "अकाउंट बदलें", "auth.forgot": "पासवर्ड भूल गए?", "auth.forgotTitle": "पासवर्ड रीसेट करें", "auth.forgotNote": "अपने अकाउंट का ईमेल लिखें: हम नया पासवर्ड चुनने के लिए एक लिंक भेजेंगे।", "auth.forgotBtn": "लिंक भेजें", "auth.forgotSent": "हो गया! अगर यह ईमेल रजिस्टर्ड है, तो जल्द ही नया पासवर्ड चुनने का लिंक आएगा। स्पैम फ़ोल्डर भी देखें।", "auth.errMail": "अभी साइट ईमेल नहीं भेज पा रही है: बाद में फिर कोशिश करें।", "auth.forgotBackText": "याद आ गया?", "auth.backToLogin": "लॉग इन पर लौटें", "auth.resetTitle": "नया पासवर्ड चुनें", "auth.resetNew": "नया पासवर्ड", "auth.resetRepeat": "नया पासवर्ड दोबारा लिखें", "auth.resetBtn": "पासवर्ड सेव करें", "auth.resetMismatch": "दोनों पासवर्ड एक जैसे नहीं हैं।", "auth.resetDone": "पासवर्ड बदल गया: आप लॉग इन हैं।", "auth.resetExpired": "यह लिंक अब काम नहीं करता (यह एक ही बार चलता है और जल्दी खत्म हो जाता है): नया लिंक माँगें।", "auth.resetSame": "यह पहले वाला ही पासवर्ड है: कोई दूसरा चुनें।", "auth.showPass": "पासवर्ड दिखाएँ", "auth.hidePass": "पासवर्ड छिपाएँ"});
+Object.assign(STR.bn, {"lxcover.closeBtn": "কমিক বন্ধ করুন", "lxcover.closeHint": "লগ আউট না করেই কমিক বন্ধ করুন: আপনার প্রোফাইলে ট্যাপ করলেই আবার খুলবে", "lxcover.who": "কে পড়ছেন?", "lxcover.enter": "খুলুন", "lxcover.enterAs": "{name} হিসেবে চালিয়ে যান", "lxcover.dragMe": "অথবা কোণটা টেনে পাতা উল্টান", "lxcover.switchAcc": "অ্যাকাউন্ট বদলান", "auth.forgot": "পাসওয়ার্ড ভুলে গেছেন?", "auth.forgotTitle": "পাসওয়ার্ড রিসেট করুন", "auth.forgotNote": "আপনার অ্যাকাউন্টের ইমেইল লিখুন: নতুন পাসওয়ার্ড বেছে নেওয়ার জন্য আমরা একটি লিংক পাঠাব।", "auth.forgotBtn": "লিংক পাঠান", "auth.forgotSent": "হয়ে গেছে! ইমেইলটি নিবন্ধিত থাকলে শিগগিরই নতুন পাসওয়ার্ড বেছে নেওয়ার লিংক পাবেন। স্প্যাম ফোল্ডারও দেখে নিন।", "auth.errMail": "এই মুহূর্তে সাইট ইমেইল পাঠাতে পারছে না: পরে আবার চেষ্টা করুন।", "auth.forgotBackText": "মনে পড়েছে?", "auth.backToLogin": "লগ ইনে ফিরে যান", "auth.resetTitle": "নতুন পাসওয়ার্ড বেছে নিন", "auth.resetNew": "নতুন পাসওয়ার্ড", "auth.resetRepeat": "নতুন পাসওয়ার্ড আবার লিখুন", "auth.resetBtn": "পাসওয়ার্ড সেভ করুন", "auth.resetMismatch": "দুটি পাসওয়ার্ড মিলছে না।", "auth.resetDone": "পাসওয়ার্ড বদলানো হয়েছে: আপনি লগ ইন করা আছেন।", "auth.resetExpired": "লিংকটি আর কাজ করছে না (এটি একবারই ব্যবহার করা যায় আর তাড়াতাড়ি মেয়াদ শেষ হয়): নতুন একটি চেয়ে নিন।", "auth.resetSame": "এটা আগের পাসওয়ার্ডই: অন্য একটি বেছে নিন।", "auth.showPass": "পাসওয়ার্ড দেখান", "auth.hidePass": "পাসওয়ার্ড লুকান"});
+Object.assign(STR.ar, {"lxcover.closeBtn": "أغلق الغلاف", "lxcover.closeHint": "أغلق الغلاف دون تسجيل الخروج: المس ملفك الشخصي لتفتحه من جديد", "lxcover.who": "من يقرأ؟", "lxcover.enter": "ادخل", "lxcover.enterAs": "الدخول باسم {name}", "lxcover.dragMe": "أو اسحب الزاوية لتقلب الصفحة", "lxcover.switchAcc": "تبديل الحساب", "auth.forgot": "نسيت كلمة المرور؟", "auth.forgotTitle": "استعادة كلمة المرور", "auth.forgotNote": "اكتب البريد الإلكتروني لحسابك: سنرسل لك رابطًا لاختيار كلمة مرور جديدة.", "auth.forgotBtn": "أرسل لي الرابط", "auth.forgotSent": "تم! إذا كان هذا البريد مسجّلًا، فسيصلك قريبًا رابط لاختيار كلمة مرور جديدة. تحقّق أيضًا من مجلد الرسائل غير المرغوب فيها.", "auth.errMail": "لا يستطيع الموقع إرسال البريد الآن: أعد المحاولة لاحقًا.", "auth.forgotBackText": "تذكّرتها؟", "auth.backToLogin": "العودة إلى تسجيل الدخول", "auth.resetTitle": "اختر كلمة مرور جديدة", "auth.resetNew": "كلمة المرور الجديدة", "auth.resetRepeat": "أعد كتابة كلمة المرور الجديدة", "auth.resetBtn": "حفظ كلمة المرور", "auth.resetMismatch": "كلمتا المرور غير متطابقتين.", "auth.resetDone": "تم تغيير كلمة المرور: أنت مسجّل الدخول.", "auth.resetExpired": "هذا الرابط لم يعد صالحًا (يُستخدم مرة واحدة وتنتهي صلاحيته سريعًا): اطلب رابطًا جديدًا.", "auth.resetSame": "هذه كلمة المرور السابقة نفسها: اختر كلمة مختلفة.", "auth.showPass": "إظهار كلمة المرور", "auth.hidePass": "إخفاء كلمة المرور"});
+Object.assign(STR.pnb, {"lxcover.closeBtn": "کامک بند کرو", "lxcover.closeHint": "لاگ آؤٹ کیتے بغیر کامک بند کرو: اپنے پروفائل تے ٹیپ کرو تے ایہ فیر کھل جاوے گا", "lxcover.who": "کون پڑھ رہیا اے؟", "lxcover.enter": "کھولو", "lxcover.enterAs": "{name} وجوں جاری رکھو", "lxcover.dragMe": "یا کونا کھچ کے ورقہ پلٹو", "lxcover.switchAcc": "اکاؤنٹ بدلو", "auth.forgot": "پاس ورڈ بھل گئے او؟", "auth.forgotTitle": "پاس ورڈ ری سیٹ کرو", "auth.forgotNote": "اپنے اکاؤنٹ دی ای میل لکھو: اسیں نواں پاس ورڈ چُنن لئی اک لنک بھیجاں گے۔", "auth.forgotBtn": "لنک بھیجو", "auth.forgotSent": "ہو گیا! جے ایہ ای میل رجسٹرڈ اے تے چھیتی نواں پاس ورڈ چُنن دا لنک آ جاوے گا۔ سپیم فولڈر وی ویکھ لو۔", "auth.errMail": "ایس ویلے سائٹ ای میل نئیں بھیج سکدی: بعد وچ فیر کوشش کرو۔", "auth.forgotBackText": "یاد آ گیا؟", "auth.backToLogin": "لاگ ان تے واپس جاؤ", "auth.resetTitle": "نواں پاس ورڈ چُنو", "auth.resetNew": "نواں پاس ورڈ", "auth.resetRepeat": "نواں پاس ورڈ دوبارہ لکھو", "auth.resetBtn": "پاس ورڈ محفوظ کرو", "auth.resetMismatch": "دوویں پاس ورڈ اکو جیہے نئیں۔", "auth.resetDone": "پاس ورڈ بدل گیا: تسیں اندر او۔", "auth.resetExpired": "ایہ لنک ہن نئیں چلدا (ایہ اک واری ای چلدا اے تے چھیتی مُک جاندا اے): نواں لنک منگو۔", "auth.resetSame": "ایہ پہلاں والا ای پاس ورڈ اے: کوئی ہور چُنو۔", "auth.showPass": "پاس ورڈ وکھاؤ", "auth.hidePass": "پاس ورڈ لکاؤ"});
 var CHAR_META = {
   Lucifer:{role:{it:"Il Portatore di Luce",en:"The Light-Bearer",es:"El Portador de Luz",fr:"Le Porteur de Lumière",de:"Der Lichtträger"},
     bio:{it:"Sovrano della collana ammiraglia: potere, caduta e desiderio raccontati su grande scala.",
@@ -1057,6 +1071,7 @@ function setLang(lang){
   }
   try { luxAuthRelang(); } catch(e){} // v236: la finestra «Accedi / Registrati» nella lingua nuova
   try { luxCoverRelang(); } catch(e){} // v237: la copertina nella lingua nuova
+  try { luxResetRelang(); } catch(e){} // v242: la finestra «Scegli una nuova password»
 }
 var titleModalRelang = false; // v227: la scheda si rifà per la lingua, non è una nuova apertura
 
@@ -1110,7 +1125,7 @@ function showEntryModeGate(){
   });
 }
 
-/* ============ v237–v241: LA COPERTINA ============
+/* ============ v237–v242: LA COPERTINA ============
    Chi non ha fatto l'accesso trova il sito chiuso come un fumetto: la copertina con
    l'arte della schermata d'ingresso e il sigillo LM. Si entra in tre modi:
    - il sigillo, «Accedi» o «Crea account»: si apre la «Tessera dell'Archivio» (la finestra
@@ -1138,7 +1153,12 @@ function showEntryModeGate(){
    v241: con più capitoli nuovi (usciti negli ultimi 30 giorni, fino a 5) il riquadro si sfoglia:
    «1 di 3», i puntini, col dito, con le frecce della tastiera, e da solo ogni 5 secondi (si ferma
    sotto il dito o il mouse, con la tessera aperta, e per chi ha chiesto meno movimento). Il più
-   recente viene per primo; a parità di giorno, l'ultimo caricato. */
+   recente viene per primo; a parità di giorno, l'ultimo caricato.
+   v242: chi ha l'account può richiudere l'albo senza uscire («Chiudi l'albo», nel pannello «Tu» sotto il nome):
+   la copertina si richiude sopra il sito e in basso, come su Netflix, c'è «Chi sta leggendo?» con
+   la sua foto e il suo nome: lo si tocca (o il sigillo, o si gira la pagina) e si rientra senza
+   password. Resta chiusa cambiando pagina finché non si rientra (per tutta la visita, in questa
+   scheda). Da lì anche «Entra con un altro account» ed «Esci». */
 var LUX_COVER_ART = {
   // dove sta il sigillo nell'immagine: centro (ex, ey) e raggio (er) in proporzione;
   // i due portali (fuoco a sinistra, cosmo a destra): centro e misure in proporzione
@@ -1158,11 +1178,14 @@ function luxCoverSkipPage(){
   return !!(document.getElementById('luxtifySection') || document.getElementById('legalSection') || document.getElementById('statusSection'));
 }
 function luxCoverWanted(){
-  if(isSignedIn() || luxCoverSkipPage() || luxCoverBot()) return false;
+  if(luxCoverSkipPage() || luxCoverBot()) return false;
   if(navigator.onLine === false) return false; // senza rete: la scelta «versione offline» (showEntryModeGate)
+  if(isSignedIn()) return luxCoverLocked(); // v242: con l'account, solo se l'albo è stato richiuso («Chiudi l'albo»)
   try { if(sessionStorage.getItem('lux_cover_ok')) return false; } catch(e){}
   return true;
 }
+// v242: l'albo richiuso da chi ha l'account (resta così, in questa scheda, finché non rientra)
+function luxCoverLocked(){ try { return sessionStorage.getItem('lux_cover_lock') === '1'; } catch(e){ return false; } }
 // computer (finestra abbastanza grande): l'albo sul tavolo; altrimenti a schermo intero
 function luxCoverMode(){ return (window.innerWidth >= 900 && window.innerHeight >= 680) ? 'book' : 'full'; }
 function luxCoverArtKey(mode){ return (mode === 'book' || window.innerWidth < window.innerHeight * 1.3) ? 'tall' : 'wide'; }
@@ -1178,6 +1201,12 @@ function luxCoverClearTimers(){ luxCoverTimers.forEach(function(id){ clearTimeou
 // all'avvio, al posto della scelta online/offline (e se all'avvio la sessione risulta scaduta)
 function luxCoverMaybeShow(){
   var shown = false;
+  // v242: l'albo era chiuso col profilo ma la sessione non vale più: si passa a «Accedi»
+  if(luxCoverEl && luxCoverEl._profile && !luxCoverEl._opening && !isSignedIn()){
+    try { sessionStorage.removeItem('lux_cover_lock'); } catch(e){}
+    luxCoverMe = null;
+    luxCoverSetProfile(luxCoverEl, false);
+  }
   try {
     if(!luxCoverEl && luxCoverWanted() && !document.getElementById('entryModeGate')){
       luxCoverShow('enter');
@@ -1319,6 +1348,8 @@ function luxCoverBuild(){
   var el = document.createElement('div');
   el.id = 'luxCover';
   el.className = 'lux-cover lxc-' + mode + ' lxc-art-' + artKey + (luxCoverLite() ? ' lxc-lite' : '');
+  el._profile = isSignedIn(); // v242: chi ha l'account vede «Chi sta leggendo?» al posto di «Accedi»
+  if(el._profile) el.classList.add('lxc-profile');
   el.setAttribute('role', 'dialog');
   el.setAttribute('aria-modal', 'true');
   el.tabIndex = -1;
@@ -1364,6 +1395,9 @@ function luxCoverBuild(){
           '<div class="lxc-barcode" aria-hidden="true"><div class="lxc-bars"></div><span>noxmorningstar.com</span></div>' +
           '<div class="lxc-actions"><button type="button" class="lxc-btn lxc-primary" data-lxc="login"></button><button type="button" class="lxc-btn lxc-ghost" data-lxc="register"></button></div>' +
           '<button type="button" class="lxc-guest" data-lxc="guest"></button>' +
+          '<div class="lxc-who"><button type="button" class="lxc-me" data-lxc="me"><span class="lxc-me-pic"><img alt="" decoding="async"></span>' +
+            '<span class="lxc-me-txt"><small class="lxc-me-q"></small><b class="lxc-me-name"></b></span><span class="lxc-me-go"></span></button></div>' +
+          '<div class="lxc-who-links"><button type="button" data-lxc="switch"></button><span aria-hidden="true">·</span><button type="button" data-lxc="logout"></button></div>' +
           '<a class="lxc-luxtify" href="luxtify.html" data-lxc="luxtify"><span aria-hidden="true">💿</span><span class="lxc-lx-t">Luxtify</span></a>' +
           '<div class="lxc-fshade" aria-hidden="true"></div>' +
         '</div>' +
@@ -1396,6 +1430,14 @@ function luxCoverBuild(){
     if(!b || el !== luxCoverEl || el._opening) return;
     var act = b.getAttribute('data-lxc');
     if(act === 'luxtify'){ try { sessionStorage.setItem('lux_cover_ok', '1'); } catch(err){} return; } // il link porta a Luxtify
+    // v242: con l'account si rientra toccando il proprio profilo (o il sigillo); oppure si cambia account o si esce
+    if(el._profile && (act === 'me' || act === 'seal')){ luxCoverOpen(false, false); return; }
+    if(el._profile && act === 'title'){
+      if(el._chSwipeT && performance.now() - el._chSwipeT < 500) return;
+      luxCoverOpen(false, false, el._item || null);
+      return;
+    }
+    if(act === 'switch' || act === 'logout'){ luxCoverSignOut(el, act === 'switch'); return; }
     if(act === 'guest'){ luxCoverOpen(true, false); return; }
     if(act === 'title'){ // v239–v241: il capitolo nuovo si apre subito (ma non se il dito l'ha appena fatto scorrere)
       if(el._chSwipeT && performance.now() - el._chSwipeT < 500) return;
@@ -1452,7 +1494,7 @@ function luxCoverBuild(){
     var g = el._curl.g, P = el._curl.P || lxcRest(g), dt = Math.max(1, d.lt - d.pt);
     var vx = (d.lx - d.px) / dt * (g.rtl ? -1 : 1); // velocità verso il dorso (px/ms, negativa = verso il dorso)
     var past = g.rtl ? P.x > g.W * .55 : P.x < g.W * .45;
-    if(!cancel && (past || (vx < -.55 && Math.abs(d.lx - d.x0) > 40))) { luxCoverOpen(true, true); return; }
+    if(!cancel && (past || (vx < -.55 && Math.abs(d.lx - d.x0) > 40))) { luxCoverOpen(!el._profile, true); return; } // (con l'account si rientra come sé)
     if(!cancel && Math.abs(d.lx - d.x0) < 6 && Math.abs(d.ly - d.y0) < 6 && !luxCoverReduced()){
       // solo un tocco sull'orecchia: la pagina si solleva un poco e ricade (si capisce che va tirata)
       var up = { x: g.rtl ? g.W * .24 : g.W * .76, y: g.H - g.H * .09 };
@@ -1584,7 +1626,7 @@ function luxCoverTexts(){
   var lx = q('[data-lxc="luxtify"]');
   lx.setAttribute('aria-label', t('lxcover.luxtify'));
   lx.title = t('lxcover.luxtify');
-  q('.lxc-hint').textContent = t('lxcover.drag');
+  q('.lxc-hint').textContent = t(el._profile ? 'lxcover.dragMe' : 'lxcover.drag'); // (col profilo si rientra come sé, non come ospite)
   q('.lxc-pages-txt').textContent = t('lxcover.open');
   q('.lxc-exlibris').textContent = 'Ex libris · ' + t('hero.title1') + ' ' + t('hero.title2');
   var sel = q('#luxCoverLang');
@@ -1593,8 +1635,121 @@ function luxCoverTexts(){
   q('.lxc-lang-code').textContent = currentLang.toUpperCase();
   var lab = document.querySelector('#authModal .lxc-card-label');
   if(lab) lab.textContent = t('lxcover.card');
+  if(el._profile){ luxCoverMeLoad(); luxCoverMeFill(); }
   luxCoverBlurb();
   luxCoverPlaceSeal();
+  luxCoverFitLinks();
+}
+// v242: «Chi sta leggendo?» — il nome e la foto del profilo (arrivano da Supabase; nel frattempo
+// il nome che mostra già l'intestazione, o le iniziali al posto della foto)
+var luxCoverMe = null;
+function luxCoverMeLoad(){
+  var uid = currentUserId();
+  if(!uid || !SUPABASE_URL || (luxCoverMe && luxCoverMe.uid === uid)) return;
+  luxCoverMe = { uid: uid, name: '', avatar: '' };
+  fetch(SUPABASE_URL + '/rest/v1/profiles?id=eq.' + encodeURIComponent(uid) + '&select=display_name,avatar_url', { headers: communityHeaders() })
+    .then(function(r){ return r.ok ? r.json() : []; })
+    .then(function(rows){
+      var p = (rows && rows[0]) || {};
+      if(!luxCoverMe || luxCoverMe.uid !== uid) return;
+      luxCoverMe.name = p.display_name || '';
+      luxCoverMe.avatar = p.avatar_url || '';
+      luxCoverMeFill();
+    }).catch(function(){});
+}
+function luxCoverMeName(){
+  if(isAdmin()) return 'Nox Morningstar';
+  if(luxCoverMe && luxCoverMe.uid === currentUserId() && luxCoverMe.name) return luxCoverMe.name;
+  var n = luxCoverName();
+  if(n) return n;
+  return (currentUserEmail() || '').split('@')[0];
+}
+function luxCoverMeFill(){
+  var el = luxCoverEl;
+  if(!el || !el._profile) return;
+  var q = function(s){ return el.querySelector(s); };
+  var name = luxCoverMeName();
+  q('.lxc-me-q').textContent = t('lxcover.who');
+  q('.lxc-me-name').textContent = name;
+  q('.lxc-me-go').textContent = t('lxcover.enter');
+  q('[data-lxc="me"]').setAttribute('aria-label', t('lxcover.enterAs').replace('{name}', name));
+  var img = q('.lxc-me-pic img');
+  var src = avatarSrc((luxCoverMe && luxCoverMe.uid === currentUserId() && luxCoverMe.avatar) || null, name, currentUserId(), 120);
+  if(img.getAttribute('src') !== src) img.src = src;
+  q('[data-lxc="switch"]').textContent = t('lxcover.switchAcc');
+  q('[data-lxc="logout"]').textContent = t('nav.logout');
+}
+// «Cambia account · Esci» sta tra Luxtify e l'orecchia: se non ci sta (parole lunghe, telefono stretto)
+// Luxtify resta solo l'icona e, se non basta, le parole si stringono un poco
+function luxCoverFitLinks(){
+  var el = luxCoverEl;
+  if(!el) return;
+  el.classList.remove('lxc-lx-icon', 'lxc-links-small');
+  var row = el._profile && el.querySelector('.lxc-who-links');
+  var over = function(){ return !!(row && row.offsetParent && row.scrollWidth > row.clientWidth + 1); };
+  if(!over()) return;
+  el.classList.add('lxc-lx-icon');
+  if(over()) el.classList.add('lxc-links-small');
+}
+// v242: con l'account, chiudere l'albo senza uscire (pulsante «Chiudi l'albo»)
+function luxCoverLock(){
+  if(luxCoverEl || !isSignedIn() || luxCoverSkipPage() || luxCoverBot()) return;
+  try { sessionStorage.setItem('lux_cover_lock', '1'); } catch(e){}
+  luxCoverMeLoad();
+  try { luxCoverShow('close'); } catch(e){ console.warn('[copertina]', e); }
+}
+// dalla copertina col profilo: uscire (o entrare con un altro account). L'uscita è quella di sempre
+// (anche le notifiche di questo dispositivo); la copertina c'è già e passa a «Accedi / Crea account»
+function luxCoverSignOut(el, thenLogin){
+  try { sessionStorage.removeItem('lux_cover_lock'); } catch(e){}
+  var b = document.getElementById('btnLogoutTop');
+  if(b) b.click();
+  else { try { authSignOut(); afterAuthChange(); } catch(e){} }
+  if(luxCoverEl !== el) return;
+  luxCoverMe = null;
+  luxCoverSetProfile(el, false);
+  luxCoverSetInert(true); // (l'intestazione si è appena rifatta)
+  if(thenLogin){ el._ret = 'login'; luxCoverCard(true); openAuth('login'); return; }
+  var lg = el.querySelector('[data-lxc="login"]');
+  try { if(lg) lg.focus({ preventScroll: true }); } catch(e){}
+}
+function luxCoverSetProfile(el, on){
+  if(!el) return;
+  el._profile = !!on;
+  el.classList.toggle('lxc-profile', !!on);
+  if(on) luxCoverMeLoad();
+  luxCoverTexts();
+}
+// il pulsante «Chiudi l'albo»: nel pannello «Tu» (telefono e computer), sotto il proprio nome accanto a «Il tuo profilo»
+var LXC_BOOK_ICON = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4.5A1.5 1.5 0 0 1 6.5 3H19v15H6.5A1.5 1.5 0 0 0 5 19.5zM5 19.5A1.5 1.5 0 0 0 6.5 21H19M9 7.5h6M12 3v6l1.5-1.2L15 9"/></svg>';
+function luxCoverSyncButtons(){
+  var can = isSignedIn() && !luxCoverSkipPage() && !luxCoverBot();
+  var prof = document.getElementById('appTuProfile');
+  if(prof && prof.parentNode && !document.getElementById('appTuCover')){
+    var row = document.createElement('div');
+    row.className = 'app-tu-acts';
+    prof.parentNode.insertBefore(row, prof);
+    row.appendChild(prof);
+    var c = document.createElement('button');
+    c.type = 'button';
+    c.id = 'appTuCover';
+    c.className = 'btn btn-ghost btn-sm app-cover-btn';
+    c.hidden = true;
+    c.innerHTML = LXC_BOOK_ICON + '<span></span>';
+    c.addEventListener('click', function(){
+      var x = document.getElementById('appTuClose');
+      if(x) x.click(); // prima si chiude il pannello, poi si chiude l'albo
+      setTimeout(luxCoverLock, 260);
+    });
+    row.appendChild(c);
+  }
+  var ct = document.getElementById('appTuCover');
+  if(ct){
+    ct.hidden = !can;
+    ct.querySelector('span').textContent = t('lxcover.closeBtn');
+    ct.title = t('lxcover.closeHint');
+    ct.parentNode.hidden = !isSignedIn();
+  }
 }
 // «In questo numero»: l'ultima uscita per tutti (mai un 18+), solo con il catalogo vero; si tocca e si legge
 // i capitoli da mostrare: quelli che si possono mostrare a tutti (i 18+ restano dietro il loro
@@ -1742,13 +1897,15 @@ function luxCoverPlaceSeal(){
   // schermi bassi: si toglie quello che finirebbe sopra il sigillo o sotto i pulsanti
   el.classList.remove('lxc-noblurb', 'lxc-nolabel');
   if(el._art !== 'tall') return;
-  var label = front.querySelector('.lxc-seal-label'), actions = front.querySelector('.lxc-actions');
+  // (v242: con il profilo «Tocca il sigillo» non c'è — si entra dal profilo — e sotto ci sono «Chi sta leggendo?» e i link)
+  var prof = !!el._profile;
+  var label = front.querySelector('.lxc-seal-label'), actions = front.querySelector(prof ? '.lxc-who' : '.lxc-actions');
   var blurb = front.querySelector('.lxc-blurb'), barcode = front.querySelector('.lxc-barcode');
-  var labelBottom = sy + sr + 10 + (label.offsetHeight || 26);
+  var labelBottom = sy + sr + 10 + (prof ? 0 : (label.offsetHeight || 26));
   var lowTop = Infinity;
   [blurb, barcode].forEach(function(x){ if(x.offsetParent) lowTop = Math.min(lowTop, x.offsetTop); });
   if(labelBottom + 8 > lowTop) el.classList.add('lxc-noblurb');
-  if(labelBottom + 8 > actions.offsetTop) el.classList.add('lxc-nolabel');
+  if(!prof && labelBottom + 8 > actions.offsetTop) el.classList.add('lxc-nolabel');
 }
 
 // sotto la copertina il sito non si raggiunge (né col tasto Tab né coi lettori di schermo);
@@ -1757,7 +1914,7 @@ function luxCoverSetInert(on){
   luxCoverInertList.forEach(function(x){ x.inert = false; x.removeAttribute('inert'); });
   luxCoverInertList = [];
   if(!on || !luxCoverEl) return;
-  var keep = [luxCoverEl, document.getElementById('authModal'), document.getElementById('luxToast')].filter(Boolean);
+  var keep = [luxCoverEl, document.getElementById('authModal'), document.getElementById('luxToast'), document.getElementById('luxResetModal')].filter(Boolean);
   (function walk(parent){
     Array.prototype.forEach.call(parent.children, function(ch){
       if(/^(SCRIPT|STYLE|LINK|NOSCRIPT|TEMPLATE)$/.test(ch.tagName)) return;
@@ -1790,6 +1947,7 @@ function luxCoverShow(how){
   luxCoverEl = el;
   document.documentElement.classList.add('lux-cover-on');
   luxCoverTexts(); // (dentro: le misure e la piega a riposo)
+  try { if(document.fonts && document.fonts.ready) document.fonts.ready.then(function(){ if(el === luxCoverEl) luxCoverFitLinks(); }); } catch(e){} // (le misure vere arrivano con i caratteri)
   if(closing) lxcCurl(el, lxcEnd(el._curl.g)); // si parte dalla pagina girata
   luxCoverSetInert(true);
   try { el.focus({ preventScroll: true }); } catch(e){}
@@ -1819,7 +1977,7 @@ function luxCoverShow(how){
           el.classList.add('lxc-stamping');
           luxCoverLater(650, function(){
             el.classList.remove('lxc-stamping', 'lxc-anim');
-            var b = el.querySelector('[data-lxc="login"]');
+            var b = el.querySelector(el._profile ? '[data-lxc="me"]' : '[data-lxc="login"]');
             try { if(b) b.focus({ preventScroll: true }); } catch(e){}
             lxcPeekLater(el);
           });
@@ -1876,7 +2034,7 @@ function luxCoverFinish(guest, openItem){
   if(el && el.parentNode) el.parentNode.removeChild(el);
   luxCoverEl = null;
   document.documentElement.classList.remove('lux-cover-on', 'lux-cover-wait');
-  try { sessionStorage.setItem('lux_cover_ok', '1'); } catch(e){}
+  try { sessionStorage.setItem('lux_cover_ok', '1'); sessionStorage.removeItem('lux_cover_lock'); } catch(e){}
   try { if(luxCoverScrollY) window.scrollTo(0, luxCoverScrollY); } catch(e){}
   if(openItem){ // v239: dritti nel fumetto scelto da «In questo numero»
     setTimeout(function(){ try { openTitleModal(openItem); } catch(e){ console.warn('[copertina]', e); } }, 60);
@@ -1895,7 +2053,7 @@ function luxCoverName(){
 
 // dopo l'accesso (anche da un'altra scheda): la copertina si apre
 function luxCoverAfterAuth(){
-  if(luxCoverEl && isSignedIn()) luxCoverOpen(false, false);
+  if(luxCoverEl && isSignedIn() && !luxCoverEl._profile) luxCoverOpen(false, false); // (la copertina col profilo si apre solo toccandolo)
 }
 // uscendo dall'account: la copertina si richiude sopra il sito
 function luxCoverOnLogout(){
@@ -1908,10 +2066,11 @@ function luxCoverRefocus(){
   var el = luxCoverEl;
   if(!el || el._opening) return;
   luxCoverCard(false);
-  var b = el.querySelector('[data-lxc="' + (el._ret || 'login') + '"]');
+  var b = el.querySelector(el._profile ? '[data-lxc="me"]' : '[data-lxc="' + (el._ret || 'login') + '"]');
   try { if(b) b.focus({ preventScroll: true }); } catch(e){}
 }
 function luxCoverRelang(){
+  try { luxCoverSyncButtons(); } catch(e){}
   if(luxCoverEl) luxCoverTexts();
 }
 // telefono girato o finestra ridimensionata: il sigillo si risistema (o la copertina si rifà)
@@ -1923,7 +2082,7 @@ function luxCoverOnResize(){
     if(!el || el._opening || el._drag) return;
     if(el.classList.contains('lxc-anim')){ luxCoverOnResize(); return; } // si risistema appena finisce l'animazione
     var mode = luxCoverMode(), art = luxCoverArtKey(mode);
-    if(mode === el._mode && art === el._art){ luxCoverPlaceSeal(); return; }
+    if(mode === el._mode && art === el._art){ luxCoverPlaceSeal(); luxCoverFitLinks(); return; }
     var had = el.contains(document.activeElement), carded = el.classList.contains('lxc-carded');
     clearTimeout(el._peekT);
     if(el._curl) cancelAnimationFrame(el._curl.raf);
@@ -1943,8 +2102,390 @@ function luxCoverOnResize(){
 }
 window.addEventListener('resize', luxCoverOnResize);
 window.addEventListener('storage', function(e){
-  if(e.key === 'lux_session' && luxCoverEl && isSignedIn()){ try { afterAuthChange(); } catch(err){} }
+  if(e.key !== 'lux_session' || !luxCoverEl) return;
+  if(isSignedIn()){
+    // v242: l'albo chiuso col profilo: un'altra scheda ha solo rinnovato l'accesso, niente da fare;
+    // se invece lì si è entrati con un altro account, qui cambiano nome e foto (e il sito sotto)
+    if(luxCoverEl._profile){
+      if(luxCoverMe && luxCoverMe.uid === currentUserId()) return;
+      luxCoverMe = null;
+      try { afterAuthChange(); } catch(err){}
+      if(luxCoverEl && luxCoverEl._profile) luxCoverSetProfile(luxCoverEl, true);
+      return;
+    }
+    try { afterAuthChange(); } catch(err){}
+    return;
+  }
+  // v242: uscito da un'altra scheda mentre qui l'albo era chiuso col profilo: si passa a «Accedi»
+  if(luxCoverEl._profile && !luxCoverEl._opening){ try { sessionStorage.removeItem('lux_cover_lock'); } catch(err){} luxCoverMe = null; luxCoverSetProfile(luxCoverEl, false); }
 });
+
+/* ============ v242: PASSWORD DIMENTICATA ============
+   Nella finestra «Accedi», sotto la password, c'è «Password dimenticata?»: si scrive l'email
+   (resta quella già scritta) e Supabase manda un link. Il link riporta sul sito già dentro
+   l'account (luxAuthFromHash, prima ancora di decidere se mostrare la copertina) e si apre
+   «Scegli una nuova password» (due volte, con l'occhio per vederla): salvata, si resta dentro.
+   Se il link è scaduto o è già stato usato, si riapre «Recupera la password» e lo si spiega.
+   I codici del link spariscono subito dall'indirizzo (non restano nella cronologia).
+   Da sapere su Supabase: il link riporta al sito solo se l'indirizzo è tra quelli permessi
+   (Authentication → URL Configuration: Site URL e Redirect URLs).
+   In più: nella finestra «Accedi» il tasto Invio ora entra (o, dall'email, passa alla password). */
+
+// mette la tastiera su un campo appena si può (all'avvio la pagina resta invisibile finché non è pronta,
+// e lì un campo non prende la tastiera): riprova per qualche secondo
+function luxFocusSoon(id, inside){
+  var tries = 0;
+  (function go(){
+    var x = document.getElementById(id), box = inside && document.getElementById(inside);
+    if(!x || (box && box.classList.contains('hidden'))) return;
+    var a = document.activeElement;
+    if(a === x || (tries > 0 && a && a !== document.body && box && box.contains(a))) return; // (intanto si è già scelto un altro campo)
+    try { x.focus({ preventScroll: true }); } catch(e){}
+    if(document.activeElement !== x && ++tries < 40) setTimeout(go, 100);
+  })();
+}
+function luxAuthBackUrl(){
+  var o = window.location.origin;
+  if(!o || o === 'null') return window.location.href.replace(/[?#].*$/, '');
+  return o + '/';
+}
+
+// ---- la finestra «Accedi»: il link «Password dimenticata?», la spiegazione e il riquadro «Fatto!» ----
+function luxForgotEnsure(){
+  var modal = document.getElementById('authModal');
+  var user = document.getElementById('authUser'), pass = document.getElementById('authPass');
+  var wrap = document.getElementById('authFieldsWrap');
+  if(!modal || !user || !pass || !wrap) return null;
+  var pf = pass.closest ? pass.closest('.field') : null, uf = user.closest ? user.closest('.field') : null;
+  if(!pf || !uf) return null;
+  pf.classList.add('auth-pass-field');
+  uf.classList.add('auth-user-field');
+  if(!document.getElementById('authForgot')){
+    var row = document.createElement('div');
+    row.className = 'auth-forgot-row';
+    row.innerHTML = '<button type="button" id="authForgot" data-i18n="auth.forgot"></button>';
+    pf.parentNode.insertBefore(row, pf.nextSibling);
+    var fb = row.querySelector('button');
+    fb.textContent = t('auth.forgot');
+    fb.addEventListener('click', luxForgotOpen);
+    var note = document.createElement('p');
+    note.id = 'authForgotNote';
+    note.className = 'form-note auth-forgot-note';
+    note.setAttribute('data-i18n', 'auth.forgotNote');
+    note.textContent = t('auth.forgotNote');
+    wrap.insertBefore(note, wrap.firstChild);
+    var done = document.createElement('div');
+    done.id = 'authForgotDone';
+    done.className = 'auth-forgot-ok';
+    done.setAttribute('role', 'status');
+    done.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 6h17v12h-17zM4 6.5l8 6.5 8-6.5"/></svg><p data-i18n="auth.forgotSent"></p>';
+    wrap.insertBefore(done, note.nextSibling);
+    luxAuthKeys();
+  }
+  return modal;
+}
+// Invio: dall'email si passa alla password (o, per il link, si manda); dalla password si entra
+function luxAuthKeys(){
+  var u = document.getElementById('authUser'), p = document.getElementById('authPass');
+  if(!u || u._luxKeys) return;
+  u._luxKeys = true;
+  u.addEventListener('keydown', function(e){
+    if(e.key !== 'Enter' || e.isComposing) return;
+    e.preventDefault();
+    if(authMode !== 'forgot' && p && !p.value){ try { p.focus(); } catch(err){} return; }
+    handleAuthSubmit();
+  });
+  if(p) p.addEventListener('keydown', function(e){
+    if(e.key !== 'Enter' || e.isComposing) return;
+    e.preventDefault();
+    handleAuthSubmit();
+  });
+}
+// a ogni apertura della finestra (openAuth): campi vuoti, niente «Recupera»; tornando
+// all'accesso da «Recupera la password» resta l'email che si era scritta
+function luxForgotReset(){
+  var u = document.getElementById('authUser'), p = document.getElementById('authPass');
+  var modal = luxForgotEnsure();
+  var fromForgot = !!(modal && modal.classList.contains('auth-forgot') && !modal.classList.contains('hidden')); // (con la finestra aperta)
+  if(u) u.value = (fromForgot && authMode === 'login') ? u.value.trim() : '';
+  if(p) p.value = '';
+  if(!modal) return;
+  modal.classList.remove('auth-forgot', 'auth-forgot-done');
+  luxSetI18nKey('authCancel', 'auth.cancel');
+  var row = modal.querySelector('.auth-forgot-row');
+  if(row) row.hidden = authMode !== 'login';
+  var sub = document.getElementById('authSubmit');
+  if(sub) sub.disabled = false;
+  var done = document.getElementById('authForgotDone');
+  if(done) done.querySelector('p').textContent = '';
+}
+function luxForgotOpen(){
+  var u = document.getElementById('authUser');
+  var email = u ? u.value.trim() : '';
+  openAuth('login');
+  if(!luxForgotEnsure()) return;
+  authMode = 'forgot';
+  document.getElementById('authModal').classList.add('auth-forgot');
+  luxSetI18nKey('authTitle', 'auth.forgotTitle');
+  luxSetI18nKey('authSubmit', 'auth.forgotBtn');
+  luxSetI18nKey('authSwitchText', 'auth.forgotBackText');
+  luxSetI18nKey('authSwitch', 'auth.backToLogin');
+  if(u){
+    u.value = email;
+    setTimeout(function(){ luxFocusSoon('authUser', 'authModal'); }, 40);
+  }
+}
+function luxForgotSubmit(){
+  var u = document.getElementById('authUser'), btn = document.getElementById('authSubmit');
+  var email = u ? u.value.trim() : '';
+  luxAuthShowErr(null);
+  if(!email){ luxAuthShowErr({ key: 'err.required' }); return; }
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ luxAuthShowErr({ key: 'auth.errEmail' }); return; }
+  if(!SUPABASE_URL){ luxAuthShowErr({ key: 'sync.notConfigured' }); return; }
+  if(btn && btn.disabled) return;
+  if(btn) btn.disabled = true;
+  luxAuthRequest('/auth/v1/recover?redirect_to=' + encodeURIComponent(luxAuthBackUrl()), { email: email })
+    .then(function(){
+      if(authMode !== 'forgot') return; // (intanto si è tornati all'accesso)
+      luxForgotDone();
+    })
+    .catch(function(e){
+      if(authMode !== 'forgot') return;
+      luxAuthShowErr(luxForgotErrInfo(e));
+    })
+    .then(function(){ if(btn) btn.disabled = false; });
+}
+// gli errori della richiesta: in più, quando Supabase non riesce a mandare l'email (per esempio col servizio
+// di prova, che manda solo agli indirizzi del team del progetto), lo si dice così invece di «riprova tra poco»
+function luxForgotErrInfo(e){
+  var code = String((e && e.code) || ''), msg = String((e && e.message) || ''), st = (e && e.status) || 0;
+  if(e && !e.network && st !== 429 && (/email_address_not_authorized|unexpected_failure|smtp/i.test(code) || /not authorized|sending (recovery |the )?e-?mail|smtp/i.test(msg) || st >= 500)) return { key: 'auth.errMail' };
+  return luxAuthErrInfo(e, 'forgot');
+}
+// «Fatto!»: niente più campi, solo il messaggio, «Chiudi» e «Torna all'accesso»
+function luxForgotDone(){
+  var modal = document.getElementById('authModal');
+  if(!modal) return;
+  modal.classList.add('auth-forgot-done');
+  luxSetI18nKey('authCancel', 'apptu.close');
+  var p = document.querySelector('#authForgotDone p');
+  if(p) p.textContent = t('auth.forgotSent'); // (adesso: così i lettori di schermo lo leggono)
+  var c = document.getElementById('authCancel');
+  try { if(c) c.focus({ preventScroll: true }); } catch(e){}
+}
+
+// ---- il ritorno dal link dell'email ----
+// i dati del link: Supabase li mette dopo «#» (o, per gli errori, a volte dopo «?»)
+function luxAuthParams(){
+  var out = {};
+  [window.location.hash, window.location.search].forEach(function(s){
+    String(s || '').replace(/^[#?]/, '').split('&').forEach(function(kv){
+      if(!kv) return;
+      var i = kv.indexOf('='), k = i < 0 ? kv : kv.slice(0, i), v = i < 0 ? '' : kv.slice(i + 1);
+      try { k = decodeURIComponent(k.replace(/\+/g, ' ')); v = decodeURIComponent(v.replace(/\+/g, ' ')); } catch(e){}
+      if(!Object.prototype.hasOwnProperty.call(out, k)) out[k] = v;
+    });
+  });
+  return out;
+}
+var LUX_AUTH_URL_KEYS = ['access_token', 'refresh_token', 'expires_in', 'expires_at', 'token_type', 'type', 'provider_token', 'provider_refresh_token', 'error', 'error_code', 'error_description'];
+function luxAuthCleanUrl(){
+  try {
+    var keep = function(s, lead){
+      var parts = String(s || '').replace(/^[#?]/, '').split('&').filter(function(kv){
+        var k = kv.split('=')[0];
+        try { k = decodeURIComponent(k); } catch(e){}
+        return kv && LUX_AUTH_URL_KEYS.indexOf(k) === -1;
+      });
+      return parts.length ? lead + parts.join('&') : '';
+    };
+    history.replaceState(history.state, '', window.location.pathname + keep(window.location.search, '?') + keep(window.location.hash, '#'));
+  } catch(e){}
+}
+// il contenuto del codice d'accesso (chi è: id ed email), senza chiedere niente a Supabase
+function luxJwtPayload(tok){
+  try {
+    var p = String(tok).split('.')[1].replace(/-/g, '+').replace(/_/g, '/');
+    while(p.length % 4) p += '=';
+    var bin = atob(p), txt;
+    if(typeof TextDecoder !== 'undefined'){
+      var bytes = new Uint8Array(bin.length);
+      for(var i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+      txt = new TextDecoder().decode(bytes);
+    } else txt = decodeURIComponent(escape(bin));
+    return JSON.parse(txt);
+  } catch(e){ return null; }
+}
+// all'avvio (prima della copertina e della scelta online/offline)
+function luxAuthFromHash(){
+  var raw = String(window.location.hash || '') + '&' + String(window.location.search || '');
+  if(!/access_token=|error_code=|error_description=/.test(raw)) return;
+  var q = luxAuthParams();
+  if(q.type === 'recovery' && q.access_token){
+    luxAuthCleanUrl();
+    var pl = luxJwtPayload(q.access_token);
+    var session = {
+      access_token: q.access_token,
+      refresh_token: q.refresh_token || '',
+      token_type: q.token_type || 'bearer',
+      expires_in: +q.expires_in || 3600,
+      user: (pl && pl.sub) ? { id: pl.sub, email: pl.email || '' } : null
+    };
+    if(session.user) luxAuthLanded(session);
+    else luxAuthLoadUser(session);
+    return;
+  }
+  if(q.access_token) return; // (altri link di Supabase: restano come prima)
+  if(!q.error_code && !(q.error && q.error_description)) return;
+  luxAuthCleanUrl();
+  // link scaduto o già usato (succede anche quando il programma della posta lo apre prima di te):
+  // si riapre «Recupera la password» con la spiegazione, sopra la copertina se c'è
+  setTimeout(function(){
+    if(isSignedIn()){ luxToast(t('auth.resetExpired')); return; }
+    if(luxCoverEl && !luxCoverEl._opening){ luxCoverEl._ret = 'login'; luxCoverCard(true); }
+    luxForgotOpen();
+    luxAuthShowErr({ key: 'auth.resetExpired' });
+  }, 0);
+}
+function luxAuthLanded(session){
+  setSession(session);
+  try {
+    sessionStorage.setItem('lux_entry_mode', 'online'); // niente scelta online/offline sopra
+    sessionStorage.removeItem('lux_cover_lock');
+  } catch(e){}
+  luxResetOpen();
+}
+// (se il codice non si legge: si chiede a Supabase chi è)
+function luxAuthLoadUser(session){
+  if(!SUPABASE_URL) return;
+  fetch(SUPABASE_URL + '/auth/v1/user', { headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': 'Bearer ' + session.access_token } })
+    .then(function(r){ return r.ok ? r.json() : null; })
+    .then(function(u){
+      if(!u || !u.id){ luxToast(t('auth.resetExpired')); return; }
+      session.user = { id: u.id, email: u.email || '' };
+      luxAuthLanded(session);
+      try { afterAuthChange(); } catch(e){}
+    }).catch(function(){ luxToast(t('auth.errNetwork')); });
+}
+// una richiesta all'account (come luxAuthRequest, ma anche con il proprio accesso)
+function luxAuthCall(method, path, body, token){
+  var h = { 'apikey': SUPABASE_ANON_KEY, 'Content-Type': 'application/json' };
+  if(token) h.Authorization = 'Bearer ' + token;
+  return fetch(SUPABASE_URL + path, { method: method, headers: h, body: body ? JSON.stringify(body) : undefined })
+    .catch(function(){ var e = new Error('network'); e.network = true; throw e; })
+    .then(function(r){
+      return r.json().catch(function(){ return {}; }).then(function(data){
+        if(!r.ok){
+          var e = new Error(data.error_description || data.msg || data.message || ('auth failed: ' + r.status));
+          e.code = data.error_code || data.error || '';
+          e.status = r.status;
+          throw e;
+        }
+        return data;
+      });
+    });
+}
+
+// ---- «Scegli una nuova password» ----
+var LUX_EYE_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/><path class="lux-eye-slash" d="M4 4l16 16"/></svg>';
+var luxResetErrLast = null;
+function luxResetOpen(){
+  var m = document.getElementById('luxResetModal');
+  if(!m){
+    m = document.createElement('div');
+    m.id = 'luxResetModal';
+    m.className = 'modal-backdrop hidden';
+    m.innerHTML =
+      '<form class="modal lux-reset" role="dialog" aria-modal="true" aria-labelledby="luxResetTitle" novalidate>' +
+        '<button type="button" class="modal-close" id="luxResetClose" data-i18n-aria="apptu.close">×</button>' +
+        '<div class="lux-reset-key" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="8" cy="15.5" r="4.2"/><path d="M11 12.5l9-9M16.5 7l3 3M13.8 9.7l2.2 2.2"/></svg></div>' +
+        '<h3 id="luxResetTitle" data-i18n="auth.resetTitle"></h3>' +
+        '<input type="email" class="lux-reset-user" autocomplete="username" tabindex="-1" hidden>' +
+        '<div class="field"><label for="luxResetPass" data-i18n="auth.resetNew"></label>' +
+          '<div class="lux-pass"><input type="password" id="luxResetPass" autocomplete="new-password" dir="ltr" spellcheck="false">' +
+          '<button type="button" class="lux-pass-eye" id="luxResetEye" aria-pressed="false" data-i18n-aria="auth.showPass">' + LUX_EYE_SVG + '</button></div></div>' +
+        '<div class="field"><label for="luxResetPass2" data-i18n="auth.resetRepeat"></label>' +
+          '<input type="password" id="luxResetPass2" autocomplete="new-password" dir="ltr" spellcheck="false"></div>' +
+        '<div class="form-error" id="luxResetError" role="alert"></div>' +
+        '<div class="modal-actions"><button type="submit" class="btn btn-primary" id="luxResetSave" data-i18n="auth.resetBtn"></button></div>' +
+      '</form>';
+    document.body.appendChild(m);
+    m.querySelector('form').addEventListener('submit', function(e){ e.preventDefault(); luxResetSave(); });
+    m.querySelector('#luxResetClose').addEventListener('click', luxResetClose);
+    m.querySelector('#luxResetEye').addEventListener('click', function(){
+      var on = this.getAttribute('aria-pressed') !== 'true';
+      this.setAttribute('aria-pressed', on ? 'true' : 'false');
+      this.setAttribute('data-i18n-aria', on ? 'auth.hidePass' : 'auth.showPass');
+      this.setAttribute('aria-label', t(on ? 'auth.hidePass' : 'auth.showPass'));
+      ['luxResetPass', 'luxResetPass2'].forEach(function(id){ document.getElementById(id).type = on ? 'text' : 'password'; });
+    });
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape' && !m.classList.contains('hidden')) luxResetClose();
+    });
+  }
+  m.querySelector('.lux-reset-user').value = currentUserEmail() || ''; // (per chi salva le password: a quale account va)
+  ['luxResetPass', 'luxResetPass2'].forEach(function(id){ var x = document.getElementById(id); x.value = ''; x.type = 'password'; });
+  var eye = document.getElementById('luxResetEye');
+  eye.setAttribute('aria-pressed', 'false');
+  eye.setAttribute('data-i18n-aria', 'auth.showPass');
+  document.getElementById('luxResetSave').disabled = false;
+  luxResetErr(null);
+  luxResetRelang();
+  m.classList.remove('hidden');
+  setTimeout(function(){ luxFocusSoon('luxResetPass', 'luxResetModal'); }, 60);
+}
+function luxResetClose(){
+  var m = document.getElementById('luxResetModal');
+  if(!m) return;
+  m.classList.add('hidden');
+  ['luxResetPass', 'luxResetPass2'].forEach(function(id){ var x = document.getElementById(id); if(x) x.value = ''; });
+}
+// i testi nella lingua scelta (anche cambiandola con la finestra aperta)
+function luxResetRelang(){
+  var m = document.getElementById('luxResetModal');
+  if(!m) return;
+  Array.prototype.forEach.call(m.querySelectorAll('[data-i18n]'), function(x){ x.textContent = t(x.getAttribute('data-i18n')); });
+  Array.prototype.forEach.call(m.querySelectorAll('[data-i18n-aria]'), function(x){ x.setAttribute('aria-label', t(x.getAttribute('data-i18n-aria'))); });
+  if(luxResetErrLast) luxResetErr(luxResetErrLast);
+}
+function luxResetErr(info){
+  luxResetErrLast = info;
+  var el = document.getElementById('luxResetError');
+  if(el) el.textContent = info ? luxAuthMsg(info) : '';
+}
+function luxResetErrInfo(e){
+  var code = String((e && e.code) || ''), msg = String((e && e.message) || ''), st = e && e.status, m;
+  if(e && e.network) return { key: 'auth.errNetwork' };
+  if(/same_password/.test(code) || /different from the old/i.test(msg)) return { key: 'auth.resetSame' };
+  if(st === 429 || /rate_limit/.test(code)) return { key: 'auth.errRate' };
+  if((m = /at least (\d+) characters/i.exec(msg))) return { key: 'auth.errWeak', n: m[1] };
+  if(/weak_password/.test(code)) return { key: 'auth.errWeakRules' };
+  if(st === 401 || st === 403 || /bad_jwt|session_not_found|session_expired|user_not_found|no_authorization|reauthentication/.test(code)) return { key: 'auth.resetExpired' };
+  return { key: 'auth.errGeneric' };
+}
+function luxResetSave(){
+  var a = document.getElementById('luxResetPass').value, b = document.getElementById('luxResetPass2').value;
+  var btn = document.getElementById('luxResetSave');
+  luxResetErr(null);
+  if(!a || !b){ luxResetErr({ key: 'err.required' }); return; }
+  if(a.length < 6){ luxResetErr({ key: 'auth.errWeak', n: '6' }); return; }
+  if(a !== b){ luxResetErr({ key: 'auth.resetMismatch' }); return; }
+  if(btn.disabled) return;
+  btn.disabled = true;
+  refreshSessionIfNeeded().then(function(){
+    var s = getSession();
+    if(!s || !s.access_token){ var e = new Error('no session'); e.status = 401; throw e; }
+    return luxAuthCall('PUT', '/auth/v1/user', { password: a }, s.access_token);
+  }).then(function(){
+    btn.disabled = false;
+    luxResetClose();
+    luxToast(t('auth.resetDone'));
+  }).catch(function(e){
+    btn.disabled = false;
+    luxResetErr(luxResetErrInfo(e));
+    if(!isSignedIn()){ try { afterAuthChange(); } catch(err){} } // (l'accesso del link non vale più: l'intestazione lo mostra)
+  });
+}
 
 /* ============ UNIFIED SUPABASE AUTH (regular visitors + admin, same accounts) ============ */
 // SUPABASE_URL and SUPABASE_ANON_KEY are meant to be public (Supabase's anon
@@ -2474,8 +3015,8 @@ var authMode = 'login';
 function openAuth(mode){
   authMode = mode || 'login';
   luxAuthShowErr(null);
-  document.getElementById('authUser').value = '';
-  document.getElementById('authPass').value = '';
+  // v242: svuota i campi e prepara «Password dimenticata?» (tornando all'accesso resta l'email scritta)
+  try { luxForgotReset(); } catch(e){ document.getElementById('authUser').value = ''; document.getElementById('authPass').value = ''; }
   // v236: le chiavi restano sugli elementi, così cambiando lingua il testo resta quello giusto
   luxSetI18nKey('authTitle', authMode === 'login' ? 'auth.loginTitle' : 'auth.registerTitle');
   luxSetI18nKey('authSubmit', authMode === 'login' ? 'auth.loginBtn' : 'auth.registerBtn');
@@ -2497,6 +3038,7 @@ function openAuth(mode){
 function closeAuth(){ document.getElementById('authModal').classList.add('hidden'); if(luxCoverEl) luxCoverRefocus(); }
 
 function handleAuthSubmit(){
+  if(authMode === 'forgot'){ luxForgotSubmit(); return; } // v242: «Mandami il link»
   if(authMode === 'register' && !quizPassed) return; // difesa in più, i campi restano comunque nascosti finché non superi il quiz
   var email = document.getElementById('authUser').value.trim();
   var pass = document.getElementById('authPass').value;
@@ -2602,6 +3144,7 @@ function refreshCommunityDot(){
 }
 
 function refreshAuthUI(){
+  try { luxCoverSyncButtons(); } catch(e){} // v242: «Chiudi l'albo» accanto a «Esci»
   var chip = document.getElementById('acctChip');
   if(!chip) return; // pagina senza il menu principale (es. luxtify.html) — niente da aggiornare qui
   homeRailAuthCheck();
@@ -21020,6 +21563,7 @@ function ensureSectionHeadingStyle(){
 }
 
 function __appInit(){
+  try { luxAuthFromHash(); } catch(e){ console.warn('[accesso]', e); } // v242: dal link «nuova password» dell'email si entra già nell'account
   document.querySelectorAll('.seal-img[data-size="sm"]').forEach(function(img){ img.src = LOGO_SM; });
   document.querySelectorAll('.seal-img[data-size="lg"]').forEach(function(img){ img.src = LOGO_LG; });
   makeHeaderLogoClickable();

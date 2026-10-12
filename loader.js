@@ -83,7 +83,7 @@
   // hai visto live sul sito prima di caricare — questo file parte da una
   // copia salvata in sessione e potrebbe non riflettere bump fatti nel
   // frattempo direttamente su GitHub.
-  var V = "241";
+  var V = "242";
 
   // style.css iniettato qui (non più con un <link> scritto a mano in ogni
   // pagina) così la sua versione segue sempre la stessa V di app.js,
@@ -202,9 +202,10 @@
   // compare per un attimo prima di sparire sotto. Stesse regole di luxCoverWanted in app.js.
   function luxCoverWait() {
     try {
-      if (sessionStorage.getItem("lux_cover_ok")) return;
+      if (/access_token=/.test(location.hash || "")) return; // v242: dal link «nuova password»: si entra già nell'account
       var s = JSON.parse(localStorage.getItem("lux_session") || "null");
-      if (s && s.access_token) return;
+      if (s && s.access_token) { if (sessionStorage.getItem("lux_cover_lock") !== "1") return; } // v242: l'albo richiuso con «Chiudi l'albo»
+      else if (sessionStorage.getItem("lux_cover_ok")) return;
     } catch (e) { return; }
     if (navigator.onLine === false) return;
     if (/bot|crawl|spider|slurp|headless|lighthouse|bingpreview|facebookexternalhit|embedly/i.test(navigator.userAgent || "")) return;

@@ -4360,3 +4360,103 @@ html.lux-cover-on #authModal .form-error{color:#ff9466;}
   .lxc-book .lxc-tilt,.lxc-book.lxc-carded .lxc-tilt{transform:none;}
   html.lux-cover-on #authModal .modal,html.lux-rtl.lux-cover-on #authModal .modal{animation:lxcCardFade .25s ease both;}
 }
+
+/* v242: la copertina di chi ha l'account (l'albo richiuso senza uscire, «Chiudi l'albo»): al posto
+   di «Accedi / Crea account» c'è «Chi sta leggendo?» con la foto e il nome — si tocca e si rientra,
+   come i profili di Netflix — e sotto «Cambia account · Esci» */
+.lxc-who,.lxc-who-links{display:none;}
+.lxc-profile .lxc-actions,.lxc-profile .lxc-guest,.lxc-profile .lxc-seal-label{display:none;}
+.lxc-profile .lxc-who{display:block;position:absolute;left:50%;transform:translateX(-50%);width:min(520px,calc(100% - 32px - var(--lxc-sl) - var(--lxc-se)));bottom:calc(66px + var(--lxc-sb));}
+.lxc-me{display:flex;align-items:center;gap:12px;width:100%;min-height:64px;margin:0;padding:8px 16px 8px 8px;border-radius:16px;border:1px solid #c9a24d;
+  background:linear-gradient(180deg,rgba(110,20,35,.94),rgba(74,13,24,.94));color:#f6ead0;text-align:left;box-shadow:0 8px 24px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,230,180,.16);transition:transform .2s ease,filter .2s ease;}
+.lxc-me:hover{filter:brightness(1.1);transform:translateY(-1px);}
+.lxc-me:focus-visible{outline:2px solid #e3c273;outline-offset:3px;}
+.lxc-me-pic{flex:none;width:48px;height:48px;border-radius:10px;overflow:hidden;border:2px solid #e3c273;background:#2a1a14;box-shadow:0 2px 8px rgba(0,0,0,.5);}
+.lxc-me-pic img{display:block;width:100%;height:100%;object-fit:cover;}
+.lxc-me-txt{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:2px;}
+.lxc-me-q{font:700 9.5px/1.3 'Space Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#e3c273;}
+.lxc-me-name{font:700 19px/1.2 'Cinzel',Georgia,serif;letter-spacing:.02em;color:#f6ead0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.lxc-me-go{flex:none;display:inline-flex;align-items:center;gap:6px;font:600 16px/1 'Crimson Pro',Georgia,serif;color:#f3d58b;}
+.lxc-me-go::after{content:"\2192";font-size:18px;}
+html.lux-rtl .lxc-me{text-align:right;}
+html.lux-rtl .lxc-me-go::after{content:"\2190";}
+.lxc-profile{--lxc-lxw:104px;} /* (lo spazio di Luxtify, in basso a sinistra: i link stanno tra Luxtify e l'orecchia) */
+.lxc-profile .lxc-who-links{display:flex;align-items:center;justify-content:center;gap:8px;position:absolute;left:calc(12px + var(--lxc-sl) + var(--lxc-lxw));right:calc(68px + var(--lxc-se));
+  bottom:calc(16px + var(--lxc-sb));min-height:40px;color:#8f816b;white-space:nowrap;}
+html.lux-rtl .lxc-profile .lxc-who-links{left:calc(68px + var(--lxc-sl));right:calc(12px + var(--lxc-se) + var(--lxc-lxw));}
+/* se non ci stanno (lingue con parole lunghe, telefoni stretti): Luxtify resta solo l'icona, poi le parole si stringono (luxCoverFitLinks) */
+.lxc-profile.lxc-lx-icon{--lxc-lxw:48px;}
+.lxc-profile.lxc-lx-icon .lxc-lx-t{display:none;}
+.lxc-links-small .lxc-who-links{gap:5px;}
+.lxc-links-small .lxc-who-links button{font-size:13.5px;}
+@media (max-width:374px){.lxc-profile{--lxc-lxw:48px;}}
+.lxc-who-links button{margin:0;padding:0 2px;min-height:40px;background:none;border:0;color:#cbbf9f;font:400 15px/1.2 'Crimson Pro',Georgia,serif;text-decoration:underline;text-underline-offset:3px;white-space:nowrap;}
+.lxc-who-links button:hover{color:#ece2c6;}
+.lxc-who-links button:focus-visible{outline:2px solid #e3c273;outline-offset:2px;}
+/* il capitolo nuovo e il codice a barre un filo più su (il profilo è più alto dei due pulsanti) */
+.lxc-full.lxc-profile .lxc-blurb{bottom:calc(150px + var(--lxc-sb));}
+.lxc-full.lxc-profile .lxc-barcode{bottom:calc(154px + var(--lxc-sb));}
+/* telefono girato: come «Accedi / Crea account», nella colonna a destra del sigillo (il profilo più compatto: «Entra» è la freccia) */
+.lxc-full.lxc-art-wide.lxc-profile .lxc-who{left:auto;right:calc(22px + var(--lxc-se));transform:none;bottom:calc(128px + var(--lxc-sb));width:min(300px,calc(100% - var(--lxc-sx) - var(--lxc-sr) - 44px));}
+.lxc-full.lxc-art-wide.lxc-profile .lxc-who-links{left:auto;right:calc(22px + var(--lxc-se));bottom:calc(78px + var(--lxc-sb));width:min(300px,calc(100% - var(--lxc-sx) - var(--lxc-sr) - 44px));}
+html.lux-rtl .lxc-full.lxc-art-wide.lxc-profile .lxc-who,html.lux-rtl .lxc-full.lxc-art-wide.lxc-profile .lxc-who-links{left:auto;right:calc(22px + var(--lxc-se));}
+.lxc-full.lxc-art-wide .lxc-me{gap:10px;min-height:58px;padding:7px 12px 7px 7px;}
+html.lux-rtl .lxc-full.lxc-art-wide .lxc-me{padding:7px 7px 7px 12px;}
+.lxc-full.lxc-art-wide .lxc-me-pic{width:42px;height:42px;}
+.lxc-full.lxc-art-wide .lxc-me-name{font-size:17px;}
+.lxc-full.lxc-art-wide .lxc-me-go{font-size:0;gap:0;min-width:24px;justify-content:center;}
+.lxc-full.lxc-art-wide .lxc-me-go::after{font-size:20px;}
+.lxc-full.lxc-art-wide.lxc-profile .lxc-blurb{bottom:calc(76px + var(--lxc-sb));}
+/* computer (l'albo sul tavolo) */
+.lxc-book.lxc-profile .lxc-who{width:calc(100% - 40px);bottom:76px;}
+.lxc-book.lxc-profile .lxc-who-links{left:calc(16px + var(--lxc-lxw));right:84px;bottom:31px;}
+html.lux-rtl .lxc-book.lxc-profile .lxc-who-links{left:84px;right:calc(16px + var(--lxc-lxw));}
+/* «Chiudi l'albo»: nel pannello «Tu», sotto il proprio nome, accanto a «Il tuo profilo» (se non ci stanno, uno sotto l'altro) */
+.app-tu-acts{grid-column:1 / -1;display:flex;flex-wrap:wrap;gap:10px;}
+.app-tu-acts[hidden]{display:none;}
+.app-tu-acts > .btn{flex:1 1 auto;margin:0;}
+.app-tu-acts > .btn[hidden]{display:none;}
+.app-cover-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;white-space:nowrap;border-color:rgba(201,162,77,.55);color:var(--gold-bright);}
+.app-cover-btn svg{flex:none;width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;}
+body.theme-light .app-cover-btn{color:#6b5015;border-color:rgba(138,106,31,.45);}
+
+/* ============ v242: «Password dimenticata?» e «Scegli una nuova password» ============ */
+.auth-forgot-row{display:flex;justify-content:flex-end;margin:-10px 0 10px;}
+.auth-forgot-row[hidden]{display:none;}
+.auth-forgot-row button{margin:0;padding:6px 0;min-height:34px;background:none;border:0;color:var(--gold-bright);font-family:'Crimson Pro',Georgia,serif;font-size:14.5px;
+  text-decoration:underline;text-underline-offset:3px;cursor:pointer;}
+.auth-forgot-row button:hover{color:var(--parchment);}
+.auth-forgot-row button:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
+.auth-forgot-note,.auth-forgot-ok{display:none;}
+#authModal.auth-forgot .auth-forgot-note{display:block;margin:0 0 16px;font-size:15px;line-height:1.5;opacity:1;color:var(--parchment);}
+#authModal.auth-forgot .auth-pass-field,#authModal.auth-forgot .auth-forgot-row,#authModal.auth-forgot .modal > .form-note{display:none;}
+#authModal.auth-forgot:not(.auth-forgot-done) #authCancel{display:none;} /* (c'è la × e «Torna all'accesso»: il pulsante del link prende tutta la riga) */
+#authModal.auth-forgot #authSubmit{flex:1 1 auto;}
+#authModal.auth-forgot-done .auth-forgot-note,#authModal.auth-forgot-done .auth-user-field,#authModal.auth-forgot-done #authSubmit,
+#authModal.auth-forgot-done #authSwitchText,#authModal.auth-forgot-done #authError{display:none;}
+#authModal.auth-forgot-done .auth-forgot-ok{display:flex;align-items:flex-start;gap:12px;margin:0 0 4px;padding:14px;border:1px solid rgba(201,162,77,.45);border-radius:10px;background:rgba(201,162,77,.07);}
+.auth-forgot-ok svg{flex:none;width:28px;height:28px;margin-top:1px;fill:none;stroke:var(--gold-bright);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;}
+.auth-forgot-ok p{margin:0;font-size:15.5px;line-height:1.5;color:var(--parchment);}
+#authModal.auth-forgot-done .modal-actions{margin-top:16px;}
+html.lux-cover-on #authModal .auth-forgot-row button{color:#e3c273;}
+html.lux-cover-on #authModal.auth-forgot .auth-forgot-note{color:#ece2c6;}
+
+/* la finestra «Scegli una nuova password» (si apre tornando dal link dell'email) */
+#luxResetModal{z-index:9950;}
+#luxResetModal .modal{max-width:400px;border-radius:14px;}
+.lux-reset-key{display:flex;align-items:center;justify-content:center;width:56px;height:56px;margin:2px auto 12px;border-radius:50%;border:1px solid var(--gold);background:rgba(201,162,77,.08);}
+.lux-reset-key svg{width:28px;height:28px;fill:none;stroke:var(--gold-bright);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;}
+#luxResetModal h3{text-align:center;margin:0 0 20px;}
+.lux-pass{position:relative;}
+#luxResetModal .lux-pass input{padding-right:48px;}
+.lux-pass-eye{position:absolute;top:50%;right:2px;transform:translateY(-50%);display:flex;align-items:center;justify-content:center;width:44px;height:44px;margin:0;padding:0;
+  background:none;border:0;color:var(--parchment-dim);cursor:pointer;}
+.lux-pass-eye svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;}
+.lux-pass-eye .lux-eye-slash{display:none;}
+.lux-pass-eye[aria-pressed="true"]{color:var(--gold-bright);}
+.lux-pass-eye[aria-pressed="true"] .lux-eye-slash{display:inline;}
+.lux-pass-eye:focus-visible{outline:2px solid var(--gold);outline-offset:-4px;}
+html.lux-rtl #luxResetModal .lux-pass input{padding-right:12px;padding-left:48px;}
+html.lux-rtl .lux-pass-eye{right:auto;left:2px;}
+#luxResetModal .modal-actions .btn{flex:1 1 auto;min-height:46px;}
+#luxResetModal .modal-close{width:40px;height:40px;top:8px;right:10px;font-size:24px;}
