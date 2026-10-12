@@ -83,7 +83,7 @@
   // hai visto live sul sito prima di caricare — questo file parte da una
   // copia salvata in sessione e potrebbe non riflettere bump fatti nel
   // frattempo direttamente su GitHub.
-  var V = "243";
+  var V = "244";
 
   // style.css iniettato qui (non più con un <link> scritto a mano in ogni
   // pagina) così la sua versione segue sempre la stessa V di app.js,
@@ -214,8 +214,11 @@
     // l'immagine della copertina parte subito (non su 2G: lì ha la precedenza app.js)
     if (NET !== "slow") {
       var w = window.innerWidth, h = window.innerHeight;
-      var tall = (w >= 900 && h >= 680) || w < h * 1.3;
-      new Image().src = tall ? "entry-bg-mobile.webp" : "entry-bg-desktop.webp";
+      var cinema = w >= 1024 && h >= 560 && w >= h * 1.3; // v244: computer in orizzontale: a tutto schermo
+      var tall = !cinema && ((w >= 900 && h >= 680) || w < h * 1.3);
+      var hd = false; // v244: l'illustrazione in alta definizione dove serve (come luxCoverArtSrc in app.js)
+      try { hd = !tall && w * (window.devicePixelRatio || 1) > 1800 && !(navigator.connection && navigator.connection.saveData) && !(navigator.deviceMemory && navigator.deviceMemory <= 2); } catch (e) {}
+      new Image().src = tall ? "entry-bg-mobile.webp" : (hd ? "entry-bg-desktop-hd.webp" : "entry-bg-desktop.webp");
     }
   }
 
