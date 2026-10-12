@@ -1125,7 +1125,7 @@ function showEntryModeGate(){
   });
 }
 
-/* ============ v237–v242: LA COPERTINA ============
+/* ============ v237–v243: LA COPERTINA ============
    Chi non ha fatto l'accesso trova il sito chiuso come un fumetto: la copertina con
    l'arte della schermata d'ingresso e il sigillo LM. Si entra in tre modi:
    - il sigillo, «Accedi» o «Crea account»: si apre la «Tessera dell'Archivio» (la finestra
@@ -1158,7 +1158,11 @@ function showEntryModeGate(){
    la copertina si richiude sopra il sito e in basso, come su Netflix, c'è «Chi sta leggendo?» con
    la sua foto e il suo nome: lo si tocca (o il sigillo, o si gira la pagina) e si rientra senza
    password. Resta chiusa cambiando pagina finché non si rientra (per tutta la visita, in questa
-   scheda). Da lì anche «Entra con un altro account» ed «Esci». */
+   scheda). Da lì anche «Entra con un altro account» ed «Esci».
+   v243: il riquadro del capitolo nuovo si vede anche sui portatili. Prima, sull'albo appoggiato sul
+   tavolo, spariva se la finestra era alta meno di circa 880 punti (quasi tutti i portatili): per pochi
+   punti toccava «Clicca il sigillo». Ora sta subito sopra «Accedi / Crea account» e, se non c'è posto
+   per tutti e due, a sparire è la scritta sotto il sigillo (che si tocca lo stesso), non il capitolo. */
 var LUX_COVER_ART = {
   // dove sta il sigillo nell'immagine: centro (ex, ey) e raggio (er) in proporzione;
   // i due portali (fuoco a sinistra, cosmo a destra): centro e misure in proporzione
@@ -1901,10 +1905,13 @@ function luxCoverPlaceSeal(){
   var prof = !!el._profile;
   var label = front.querySelector('.lxc-seal-label'), actions = front.querySelector(prof ? '.lxc-who' : '.lxc-actions');
   var blurb = front.querySelector('.lxc-blurb'), barcode = front.querySelector('.lxc-barcode');
-  var labelBottom = sy + sr + 10 + (prof ? 0 : (label.offsetHeight || 26));
+  var sealBottom = sy + sr + 10;
+  var labelBottom = sealBottom + (prof ? 0 : (label.offsetHeight || 26));
   var lowTop = Infinity;
   [blurb, barcode].forEach(function(x){ if(x.offsetParent) lowTop = Math.min(lowTop, x.offsetTop); });
-  if(labelBottom + 8 > lowTop) el.classList.add('lxc-noblurb');
+  // v243: il capitolo nuovo ha la precedenza sulla scritta sotto il sigillo: se non ci stanno tutti e due
+  // sparisce la scritta; il riquadro sparisce solo se finirebbe sopra il sigillo
+  if(labelBottom + 8 > lowTop) el.classList.add(sealBottom + 8 <= lowTop ? 'lxc-nolabel' : 'lxc-noblurb');
   if(!prof && labelBottom + 8 > actions.offsetTop) el.classList.add('lxc-nolabel');
 }
 
