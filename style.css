@@ -4421,6 +4421,23 @@ html.lux-rtl .lxc-book.lxc-profile .lxc-who-links{left:84px;right:calc(16px + va
 .app-cover-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;white-space:nowrap;border-color:rgba(201,162,77,.55);color:var(--gold-bright);}
 .app-cover-btn svg{flex:none;width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;}
 body.theme-light .app-cover-btn{color:#6b5015;border-color:rgba(138,106,31,.45);}
+/* v244: sugli albi piccoli (finestre quasi quadrate e basse) Luxtify resta solo l'icona, così non tocca «Sfoglia senza account» */
+@media (max-height:787px){.lxc-book .lxc-lx-t{display:none;}}
+/* v244: sul computer con la finestra in orizzontale la copertina riempie lo schermo (come il telefono girato),
+   disegnata su una tela di 1280 punti e ingrandita intera da luxCoverFit: tutto cresce insieme all'immagine */
+.lux-cover.lxc-cinema{right:auto;bottom:auto;transform-origin:0 0;}
+.lxc-full.lxc-art-wide.lxc-cinema .lxc-blurb{width:min(380px,calc(var(--lxc-sx) - var(--lxc-sr) - 44px));}
+/* «Clicca il sigillo» in basso al centro, come il sottotitolo di una locandina (sotto il sigillo coprirebbe il viso del personaggio) */
+.lxc-full.lxc-art-wide.lxc-cinema .lxc-seal-label{top:auto;bottom:calc(22px + var(--lxc-sb));}
+/* il profilo («Chi sta leggendo?») intero, con «Entra»: qui c'è posto */
+.lxc-full.lxc-art-wide.lxc-cinema.lxc-profile .lxc-who{width:min(340px,calc(100% - var(--lxc-sx) - var(--lxc-sr) - 44px));}
+.lxc-full.lxc-art-wide.lxc-cinema.lxc-profile .lxc-who-links{width:min(340px,calc(100% - var(--lxc-sx) - var(--lxc-sr) - 44px));}
+.lxc-full.lxc-art-wide.lxc-cinema:not(.lxc-me-compact) .lxc-me{gap:12px;min-height:64px;padding:8px 16px 8px 8px;}
+html.lux-rtl .lxc-full.lxc-art-wide.lxc-cinema:not(.lxc-me-compact) .lxc-me{padding:8px 8px 8px 16px;}
+.lxc-full.lxc-art-wide.lxc-cinema:not(.lxc-me-compact) .lxc-me-pic{width:48px;height:48px;}
+.lxc-full.lxc-art-wide.lxc-cinema:not(.lxc-me-compact) .lxc-me-name{font-size:19px;}
+.lxc-full.lxc-art-wide.lxc-cinema:not(.lxc-me-compact) .lxc-me-go{font-size:16px;gap:6px;min-width:0;}
+.lxc-full.lxc-art-wide.lxc-cinema:not(.lxc-me-compact) .lxc-me-go::after{font-size:18px;}
 
 /* ============ v242: «Password dimenticata?» e «Scegli una nuova password» ============ */
 .auth-forgot-row{display:flex;justify-content:flex-end;margin:-10px 0 10px;}

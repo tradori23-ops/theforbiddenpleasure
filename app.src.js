@@ -1125,7 +1125,7 @@ function showEntryModeGate(){
   });
 }
 
-/* ============ v237–v243: LA COPERTINA ============
+/* ============ v237–v244: LA COPERTINA ============
    Chi non ha fatto l'accesso trova il sito chiuso come un fumetto: la copertina con
    l'arte della schermata d'ingresso e il sigillo LM. Si entra in tre modi:
    - il sigillo, «Accedi» o «Crea account»: si apre la «Tessera dell'Archivio» (la finestra
@@ -1162,13 +1162,20 @@ function showEntryModeGate(){
    v243: il riquadro del capitolo nuovo si vede anche sui portatili. Prima, sull'albo appoggiato sul
    tavolo, spariva se la finestra era alta meno di circa 880 punti (quasi tutti i portatili): per pochi
    punti toccava «Clicca il sigillo». Ora sta subito sopra «Accedi / Crea account» e, se non c'è posto
-   per tutti e due, a sparire è la scritta sotto il sigillo (che si tocca lo stesso), non il capitolo. */
+   per tutti e due, a sparire è la scritta sotto il sigillo (che si tocca lo stesso), non il capitolo.
+   v244: sui computer con la finestra in orizzontale (dai portatili ai monitor grandi, e i tablet girati)
+   la copertina riempie tutto lo schermo, come la locandina di un film: l'illustrazione larga, la testata
+   in alto a sinistra, il sigillo al centro, «Accedi / Crea account» a destra e il capitolo nuovo in basso.
+   Si disegna su una tela di 1280 punti e si ingrandisce intera (luxCoverFit), così testi, pulsanti e
+   sigillo crescono insieme all'immagine. Sugli schermi grandi o molto definiti l'illustrazione è quella
+   in alta definizione (entry-bg-desktop-hd.webp, 2880 punti). L'albo sul tavolo resta per le finestre
+   quasi quadrate o verticali. */
 var LUX_COVER_ART = {
   // dove sta il sigillo nell'immagine: centro (ex, ey) e raggio (er) in proporzione;
   // i due portali (fuoco a sinistra, cosmo a destra): centro e misure in proporzione
   tall: { src: 'entry-bg-mobile.webp', w: 887, h: 1774, ex: .502, ey: .254, er: .282,
           portals: [[.150, .452, .234, .476], [.848, .452, .245, .480]] },
-  wide: { src: 'entry-bg-desktop.webp', w: 1672, h: 941, ex: .5, ey: .372, er: .183,
+  wide: { src: 'entry-bg-desktop.webp', hd: 'entry-bg-desktop-hd.webp', w: 1672, h: 941, ex: .5, ey: .372, er: .183,
           portals: [[.166, .524, .179, .612], [.821, .531, .200, .625]] }
 };
 var luxCoverEl = null;        // la copertina, finché è sullo schermo
@@ -1191,7 +1198,31 @@ function luxCoverWanted(){
 // v242: l'albo richiuso da chi ha l'account (resta così, in questa scheda, finché non rientra)
 function luxCoverLocked(){ try { return sessionStorage.getItem('lux_cover_lock') === '1'; } catch(e){ return false; } }
 // computer (finestra abbastanza grande): l'albo sul tavolo; altrimenti a schermo intero
-function luxCoverMode(){ return (window.innerWidth >= 900 && window.innerHeight >= 680) ? 'book' : 'full'; }
+// v244: computer (o tablet) con la finestra in orizzontale: a tutto schermo, ingrandita (luxCoverCinema)
+function luxCoverCinema(){ var w = window.innerWidth, h = window.innerHeight; return w >= 1024 && h >= 560 && w >= h * 1.3; }
+function luxCoverMode(){
+  if(luxCoverCinema()) return 'full';
+  return (window.innerWidth >= 900 && window.innerHeight >= 680) ? 'book' : 'full';
+}
+// l'immagine da usare: quella in alta definizione dove serve (schermo largo o molto definito), se c'è
+// e se il telefono non chiede di risparmiare (rete lenta, risparmio dati, poca memoria)
+function luxCoverArtSrc(key){
+  var a = LUX_COVER_ART[key];
+  if(a.hd && !luxCoverLite() && window.innerWidth * (window.devicePixelRatio || 1) > 1800) return a.hd;
+  return a.src;
+}
+// v244: la copertina a tutto schermo si disegna su una tela di (almeno) 1280×720 punti e si ingrandisce intera
+var LXC_CANVAS_W = 1280, LXC_CANVAS_H = 720;
+function luxCoverFit(el){
+  if(!el) return;
+  if(!el._cinema){ el._k = 1; el.style.removeProperty('width'); el.style.removeProperty('height'); el.style.removeProperty('transform'); return; }
+  var w = window.innerWidth, h = window.innerHeight;
+  var k = Math.max(1, Math.min(w / LXC_CANVAS_W, h / LXC_CANVAS_H));
+  el._k = k;
+  el.style.width = (w / k).toFixed(3) + 'px';
+  el.style.height = (h / k).toFixed(3) + 'px';
+  if(k > 1) el.style.transform = 'scale(' + k.toFixed(5) + ')'; else el.style.removeProperty('transform');
+}
 function luxCoverArtKey(mode){ return (mode === 'book' || window.innerWidth < window.innerHeight * 1.3) ? 'tall' : 'wide'; }
 // telefoni con poca memoria, rete lenta o risparmio dati: la copertina resta più tranquilla
 function luxCoverLite(){
@@ -1228,7 +1259,7 @@ function luxCoverPrefetch(){
   if(luxCoverPrefetched || window.LUX_NET === 'slow') return;
   try { if(navigator.connection && navigator.connection.saveData) return; } catch(e){}
   luxCoverPrefetched = true;
-  setTimeout(function(){ new Image().src = LUX_COVER_ART[luxCoverArtKey(luxCoverMode())].src; }, 6000);
+  setTimeout(function(){ new Image().src = luxCoverArtSrc(luxCoverArtKey(luxCoverMode())); }, 6000);
 }
 
 /* ---- v239: la pagina che si piega come carta ----
@@ -1347,11 +1378,13 @@ function lxcPeekLater(el){
 }
 
 function luxCoverBuild(){
-  var mode = luxCoverMode(), artKey = luxCoverArtKey(mode), art = LUX_COVER_ART[artKey];
+  var mode = luxCoverMode(), artKey = luxCoverArtKey(mode), art = LUX_COVER_ART[artKey], artSrc = luxCoverArtSrc(artKey);
   var paper = window.innerWidth <= 700 ? 'hero-bg-m.webp' : 'hero-bg.webp';
   var el = document.createElement('div');
   el.id = 'luxCover';
   el.className = 'lux-cover lxc-' + mode + ' lxc-art-' + artKey + (luxCoverLite() ? ' lxc-lite' : '');
+  el._cinema = mode === 'full' && luxCoverCinema(); // v244: a tutto schermo sul computer
+  if(el._cinema) el.classList.add('lxc-cinema');
   el._profile = isSignedIn(); // v242: chi ha l'account vede «Chi sta leggendo?» al posto di «Accedi»
   if(el._profile) el.classList.add('lxc-profile');
   el.setAttribute('role', 'dialog');
@@ -1359,6 +1392,7 @@ function luxCoverBuild(){
   el.tabIndex = -1;
   el._mode = mode;
   el._art = artKey;
+  el._artSrc = artSrc;
   el._peekCount = 0;
   var sparks = '', embers = '';
   for(var i = 0; i < 16; i++){ // scintille: direzioni sparse a raggiera
@@ -1379,7 +1413,7 @@ function luxCoverBuild(){
       '<div class="lxc-sheet">' +
         '<div class="lxc-cast" aria-hidden="true"><i class="lxc-castg"></i></div>' +
         '<div class="lxc-face lxc-front">' +
-          '<img class="lxc-art" src="' + art.src + '" alt="" decoding="async">' +
+          '<img class="lxc-art" src="' + artSrc + '" alt="" decoding="async">' +
           // (sotto i veli, la testata e il timbro: a riposo le due metà coincidono con l'immagine)
           '<div class="lxc-sealfx" aria-hidden="true"><div class="lxc-core"></div><div class="lxc-half l"></div><div class="lxc-half r"></div>' +
             '<svg class="lxc-zig" viewBox="0 0 100 100" preserveAspectRatio="none"><path pathLength="100" d="M50 0 L46 11 L54 23 L47 36 L55 49 L46 62 L53 75 L47 88 L50 100"/></svg>' +
@@ -1416,7 +1450,7 @@ function luxCoverBuild(){
   if(img.complete && img.naturalWidth) ready();
   else { img.addEventListener('load', ready); img.addEventListener('error', ready); }
   // le due metà del sigillo sono ritagliate dalla stessa immagine, esattamente al loro posto
-  Array.prototype.forEach.call(el.querySelectorAll('.lxc-half'), function(h){ h.style.backgroundImage = 'url("' + art.src + '")'; });
+  Array.prototype.forEach.call(el.querySelectorAll('.lxc-half'), function(h){ h.style.backgroundImage = 'url("' + artSrc + '")'; });
 
   // la lingua: come il selettore principale (così si aggiornano anche quello di lato e quello in «Tu»)
   var sel = el.querySelector('#luxCoverLang');
@@ -1688,7 +1722,10 @@ function luxCoverMeFill(){
 function luxCoverFitLinks(){
   var el = luxCoverEl;
   if(!el) return;
-  el.classList.remove('lxc-lx-icon', 'lxc-links-small');
+  el.classList.remove('lxc-lx-icon', 'lxc-links-small', 'lxc-me-compact');
+  // v244: a tutto schermo, se la colonna a destra è stretta (finestre quasi quadrate) il profilo torna compatto
+  var who = el._profile && el._cinema && el.querySelector('.lxc-who');
+  if(who && who.offsetWidth && who.offsetWidth < 290) el.classList.add('lxc-me-compact');
   var row = el._profile && el.querySelector('.lxc-who-links');
   var over = function(){ return !!(row && row.offsetParent && row.scrollWidth > row.clientWidth + 1); };
   if(!over()) return;
@@ -1952,6 +1989,7 @@ function luxCoverShow(how){
   if(closing && book) el.classList.add('lxc-zoom');
   document.body.appendChild(el);
   luxCoverEl = el;
+  luxCoverFit(el); // v244: a tutto schermo sul computer, ingrandita (prima delle misure)
   document.documentElement.classList.add('lux-cover-on');
   luxCoverTexts(); // (dentro: le misure e la piega a riposo)
   try { if(document.fonts && document.fonts.ready) document.fonts.ready.then(function(){ if(el === luxCoverEl) luxCoverFitLinks(); }); } catch(e){} // (le misure vere arrivano con i caratteri)
@@ -2089,7 +2127,9 @@ function luxCoverOnResize(){
     if(!el || el._opening || el._drag) return;
     if(el.classList.contains('lxc-anim')){ luxCoverOnResize(); return; } // si risistema appena finisce l'animazione
     var mode = luxCoverMode(), art = luxCoverArtKey(mode);
-    if(mode === el._mode && art === el._art){ luxCoverPlaceSeal(); luxCoverFitLinks(); return; }
+    if(mode === el._mode && art === el._art && luxCoverCinema() === !!el._cinema && (!el._cinema || luxCoverArtSrc(art) === el._artSrc)){
+      luxCoverFit(el); luxCoverPlaceSeal(); luxCoverFitLinks(); return;
+    }
     var had = el.contains(document.activeElement), carded = el.classList.contains('lxc-carded');
     clearTimeout(el._peekT);
     if(el._curl) cancelAnimationFrame(el._curl.raf);
@@ -2100,6 +2140,7 @@ function luxCoverOnResize(){
     clearTimeout(el._chTimer);
     el.parentNode.replaceChild(nel, el);
     luxCoverEl = nel;
+    luxCoverFit(nel);
     if(carded) nel.classList.add('lxc-carded');
     luxCoverTexts();
     luxCoverSetInert(true);
