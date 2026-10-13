@@ -977,6 +977,20 @@ Object.assign(STR.hi, {"lxcover.closeBtn": "कॉमिक बंद करे�
 Object.assign(STR.bn, {"lxcover.closeBtn": "কমিক বন্ধ করুন", "lxcover.closeHint": "লগ আউট না করেই কমিক বন্ধ করুন: আপনার প্রোফাইলে ট্যাপ করলেই আবার খুলবে", "lxcover.who": "কে পড়ছেন?", "lxcover.enter": "খুলুন", "lxcover.enterAs": "{name} হিসেবে চালিয়ে যান", "lxcover.dragMe": "অথবা কোণটা টেনে পাতা উল্টান", "lxcover.switchAcc": "অ্যাকাউন্ট বদলান", "auth.forgot": "পাসওয়ার্ড ভুলে গেছেন?", "auth.forgotTitle": "পাসওয়ার্ড রিসেট করুন", "auth.forgotNote": "আপনার অ্যাকাউন্টের ইমেইল লিখুন: নতুন পাসওয়ার্ড বেছে নেওয়ার জন্য আমরা একটি লিংক পাঠাব।", "auth.forgotBtn": "লিংক পাঠান", "auth.forgotSent": "হয়ে গেছে! ইমেইলটি নিবন্ধিত থাকলে শিগগিরই নতুন পাসওয়ার্ড বেছে নেওয়ার লিংক পাবেন। স্প্যাম ফোল্ডারও দেখে নিন।", "auth.errMail": "এই মুহূর্তে সাইট ইমেইল পাঠাতে পারছে না: পরে আবার চেষ্টা করুন।", "auth.forgotBackText": "মনে পড়েছে?", "auth.backToLogin": "লগ ইনে ফিরে যান", "auth.resetTitle": "নতুন পাসওয়ার্ড বেছে নিন", "auth.resetNew": "নতুন পাসওয়ার্ড", "auth.resetRepeat": "নতুন পাসওয়ার্ড আবার লিখুন", "auth.resetBtn": "পাসওয়ার্ড সেভ করুন", "auth.resetMismatch": "দুটি পাসওয়ার্ড মিলছে না।", "auth.resetDone": "পাসওয়ার্ড বদলানো হয়েছে: আপনি লগ ইন করা আছেন।", "auth.resetExpired": "লিংকটি আর কাজ করছে না (এটি একবারই ব্যবহার করা যায় আর তাড়াতাড়ি মেয়াদ শেষ হয়): নতুন একটি চেয়ে নিন।", "auth.resetSame": "এটা আগের পাসওয়ার্ডই: অন্য একটি বেছে নিন।", "auth.showPass": "পাসওয়ার্ড দেখান", "auth.hidePass": "পাসওয়ার্ড লুকান"});
 Object.assign(STR.ar, {"lxcover.closeBtn": "أغلق الغلاف", "lxcover.closeHint": "أغلق الغلاف دون تسجيل الخروج: المس ملفك الشخصي لتفتحه من جديد", "lxcover.who": "من يقرأ؟", "lxcover.enter": "ادخل", "lxcover.enterAs": "الدخول باسم {name}", "lxcover.dragMe": "أو اسحب الزاوية لتقلب الصفحة", "lxcover.switchAcc": "تبديل الحساب", "auth.forgot": "نسيت كلمة المرور؟", "auth.forgotTitle": "استعادة كلمة المرور", "auth.forgotNote": "اكتب البريد الإلكتروني لحسابك: سنرسل لك رابطًا لاختيار كلمة مرور جديدة.", "auth.forgotBtn": "أرسل لي الرابط", "auth.forgotSent": "تم! إذا كان هذا البريد مسجّلًا، فسيصلك قريبًا رابط لاختيار كلمة مرور جديدة. تحقّق أيضًا من مجلد الرسائل غير المرغوب فيها.", "auth.errMail": "لا يستطيع الموقع إرسال البريد الآن: أعد المحاولة لاحقًا.", "auth.forgotBackText": "تذكّرتها؟", "auth.backToLogin": "العودة إلى تسجيل الدخول", "auth.resetTitle": "اختر كلمة مرور جديدة", "auth.resetNew": "كلمة المرور الجديدة", "auth.resetRepeat": "أعد كتابة كلمة المرور الجديدة", "auth.resetBtn": "حفظ كلمة المرور", "auth.resetMismatch": "كلمتا المرور غير متطابقتين.", "auth.resetDone": "تم تغيير كلمة المرور: أنت مسجّل الدخول.", "auth.resetExpired": "هذا الرابط لم يعد صالحًا (يُستخدم مرة واحدة وتنتهي صلاحيته سريعًا): اطلب رابطًا جديدًا.", "auth.resetSame": "هذه كلمة المرور السابقة نفسها: اختر كلمة مختلفة.", "auth.showPass": "إظهار كلمة المرور", "auth.hidePass": "إخفاء كلمة المرور"});
 Object.assign(STR.pnb, {"lxcover.closeBtn": "کامک بند کرو", "lxcover.closeHint": "لاگ آؤٹ کیتے بغیر کامک بند کرو: اپنے پروفائل تے ٹیپ کرو تے ایہ فیر کھل جاوے گا", "lxcover.who": "کون پڑھ رہیا اے؟", "lxcover.enter": "کھولو", "lxcover.enterAs": "{name} وجوں جاری رکھو", "lxcover.dragMe": "یا کونا کھچ کے ورقہ پلٹو", "lxcover.switchAcc": "اکاؤنٹ بدلو", "auth.forgot": "پاس ورڈ بھل گئے او؟", "auth.forgotTitle": "پاس ورڈ ری سیٹ کرو", "auth.forgotNote": "اپنے اکاؤنٹ دی ای میل لکھو: اسیں نواں پاس ورڈ چُنن لئی اک لنک بھیجاں گے۔", "auth.forgotBtn": "لنک بھیجو", "auth.forgotSent": "ہو گیا! جے ایہ ای میل رجسٹرڈ اے تے چھیتی نواں پاس ورڈ چُنن دا لنک آ جاوے گا۔ سپیم فولڈر وی ویکھ لو۔", "auth.errMail": "ایس ویلے سائٹ ای میل نئیں بھیج سکدی: بعد وچ فیر کوشش کرو۔", "auth.forgotBackText": "یاد آ گیا؟", "auth.backToLogin": "لاگ ان تے واپس جاؤ", "auth.resetTitle": "نواں پاس ورڈ چُنو", "auth.resetNew": "نواں پاس ورڈ", "auth.resetRepeat": "نواں پاس ورڈ دوبارہ لکھو", "auth.resetBtn": "پاس ورڈ محفوظ کرو", "auth.resetMismatch": "دوویں پاس ورڈ اکو جیہے نئیں۔", "auth.resetDone": "پاس ورڈ بدل گیا: تسیں اندر او۔", "auth.resetExpired": "ایہ لنک ہن نئیں چلدا (ایہ اک واری ای چلدا اے تے چھیتی مُک جاندا اے): نواں لنک منگو۔", "auth.resetSame": "ایہ پہلاں والا ای پاس ورڈ اے: کوئی ہور چُنو۔", "auth.showPass": "پاس ورڈ وکھاؤ", "auth.hidePass": "پاس ورڈ لکاؤ"});
+// v245: la chiusura notturna nell'ora di chi visita
+Object.assign(STR.it, {"night.hint": "Il sito si blocca da solo ogni notte in questa fascia oraria, secondo l'ora di chi lo visita (in Italia, in America o in Giappone, per ognuno è la sua notte), e si riapre da solo al mattino."});
+Object.assign(STR.en, {"night.hint": "The site locks itself every night during this time window, in each visitor's own local time (in Italy, America or Japan, everyone gets their own night), and reopens on its own in the morning."});
+Object.assign(STR.es, {"night.hint": "El sitio se bloquea solo cada noche en esta franja horaria, según la hora local de cada visitante (en Italia, América o Japón, cada uno tiene su noche), y se reabre solo por la mañana."});
+Object.assign(STR.fr, {"night.hint": "Le site se verrouille automatiquement chaque nuit pendant cette plage horaire, à l'heure locale de chaque visiteur (en Italie, en Amérique ou au Japon, chacun a sa nuit), et se rouvre seul le matin."});
+Object.assign(STR.de, {"night.hint": "Die Seite sperrt sich jede Nacht in diesem Zeitfenster automatisch, nach der Ortszeit der Besucher (in Italien, Amerika oder Japan hat jeder seine eigene Nacht), und öffnet sich morgens von selbst wieder."});
+Object.assign(STR.pt, {"night.hint": "O site se bloqueia sozinho toda noite nesta faixa de horário, no horário local de quem o visita (na Itália, na América ou no Japão, cada um tem a sua noite), e reabre sozinho de manhã."});
+Object.assign(STR.ru, {"night.hint": "Сайт сам закрывается каждую ночь в этот промежуток времени — по местному времени посетителя (в Италии, Америке или Японии у каждого своя ночь) — и сам открывается утром."});
+Object.assign(STR.zh, {"night.hint": "网站每晚会在此时段自动锁定，按照访客当地的时间计算（无论在意大利、美洲还是日本，都是各自的夜晚），并在早晨自动重新开放。"});
+Object.assign(STR.ja, {"night.hint": "サイトは毎晩この時間帯に自動でロックされます。時間は訪問者それぞれの現地時刻で数えます（イタリアでもアメリカでも日本でも、それぞれの夜に）。朝になると自動で再開します。"});
+Object.assign(STR.hi, {"night.hint": "साइट हर रात इस समय-सीमा में अपने-आप लॉक हो जाती है, देखने वाले के अपने स्थानीय समय के अनुसार (इटली, अमेरिका या जापान में, हर किसी की अपनी रात), और सुबह अपने-आप फिर खुल जाती है।"});
+Object.assign(STR.bn, {"night.hint": "প্রতি রাতে এই সময়সীমায় সাইট নিজে থেকেই লক হয়ে যায়, যিনি দেখছেন তাঁর স্থানীয় সময় অনুযায়ী (ইতালি, আমেরিকা বা জাপানে, প্রত্যেকের নিজের রাত), আর সকালে নিজে থেকেই আবার খুলে যায়।"});
+Object.assign(STR.ar, {"night.hint": "يُقفل الموقع من تلقاء نفسه كل ليلة في هذه الفترة، بحسب التوقيت المحلي لكل زائر (في إيطاليا أو أمريكا أو اليابان، لكلٍّ ليله)، ثم يُعاد فتحه تلقائيًا في الصباح."});
+Object.assign(STR.pnb, {"night.hint": "سائٹ ہر رات ایس وقت دے دوران آپ ای بند ہو جاندی اے، ویکھن والے دے اپنے مقامی ویلے مطابق (اٹلی، امریکہ یا جاپان وچ، ہر اک دی اپنی رات)، تے سویرے آپ ای مڑ کھل جاندی اے۔"});
 var CHAR_META = {
   Lucifer:{role:{it:"Il Portatore di Luce",en:"The Light-Bearer",es:"El Portador de Luz",fr:"Le Porteur de Lumière",de:"Der Lichtträger"},
     bio:{it:"Sovrano della collana ammiraglia: potere, caduta e desiderio raccontati su grande scala.",
@@ -3636,7 +3650,9 @@ function saveMaintenanceSchedule(){
   });
 }
 
-/* ---- Chiusura notturna automatica (fascia oraria ricorrente, fuso Europe/Rome) ---- */
+/* ---- Chiusura notturna automatica (fascia oraria ricorrente) ----
+   v245: nell'ora di chi visita (quella del suo telefono o computer): in Italia, in America o in Giappone
+   ognuno trova il sito chiuso nella sua notte. Prima valeva per tutti l'ora italiana (fuso Europe/Rome). */
 var nightClosureEnabled = false;
 var nightStartTime = ''; // 'HH:MM'
 var nightEndTime = '';   // 'HH:MM'
@@ -3654,9 +3670,12 @@ function currentRomeMinutes(){
   return (parseInt(p[0],10) * 60) + parseInt(p[1],10);
 }
 
+// v245: l'ora (in minuti) dove si trova chi visita
+function currentLocalMinutes(){ var d = new Date(); return d.getHours() * 60 + d.getMinutes(); }
+
 function isWithinNightWindow(){
   if(!nightClosureEnabled || !nightStartTime || !nightEndTime) return false;
-  var s = timeStringToMinutes(nightStartTime), e = timeStringToMinutes(nightEndTime), now = currentRomeMinutes();
+  var s = timeStringToMinutes(nightStartTime), e = timeStringToMinutes(nightEndTime), now = currentLocalMinutes();
   if(s === null || e === null || s === e) return false;
   if(s < e) return now >= s && now < e;       // fascia nello stesso giorno
   return now >= s || now < e;                  // fascia che attraversa la mezzanotte
