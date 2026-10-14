@@ -991,6 +991,20 @@ Object.assign(STR.hi, {"night.hint": "साइट हर रात इस स�
 Object.assign(STR.bn, {"night.hint": "প্রতি রাতে এই সময়সীমায় সাইট নিজে থেকেই লক হয়ে যায়, যিনি দেখছেন তাঁর স্থানীয় সময় অনুযায়ী (ইতালি, আমেরিকা বা জাপানে, প্রত্যেকের নিজের রাত), আর সকালে নিজে থেকেই আবার খুলে যায়।"});
 Object.assign(STR.ar, {"night.hint": "يُقفل الموقع من تلقاء نفسه كل ليلة في هذه الفترة، بحسب التوقيت المحلي لكل زائر (في إيطاليا أو أمريكا أو اليابان، لكلٍّ ليله)، ثم يُعاد فتحه تلقائيًا في الصباح."});
 Object.assign(STR.pnb, {"night.hint": "سائٹ ہر رات ایس وقت دے دوران آپ ای بند ہو جاندی اے، ویکھن والے دے اپنے مقامی ویلے مطابق (اٹلی، امریکہ یا جاپان وچ، ہر اک دی اپنی رات)، تے سویرے آپ ای مڑ کھل جاندی اے۔"});
+// v246: il carrello che arriva fino in fondo, «Scarica tutto per offline» che chiede prima
+Object.assign(STR.it, {"cart.sub": "Tutto insieme, con un solo pagamento", "cart.total": "Totale", "cart.step1": "Paga il totale", "cart.step2Buy": "Poi mandaci la richiesta", "cart.step2Don": "Poi registra la donazione", "cart.payWith": "Paga con {m}", "cart.satispayHint": "Con Satispay l'importo lo scrivi tu: {total}.", "cart.noteCode": "Nella nota del pagamento scrivi:", "cart.copy": "Copia", "cart.copied": "Codice copiato", "cart.emailLabel": "Email per ricevere i fumetti", "cart.sent": "Richiesta inviata. Appena il pagamento è confermato, ricevi tutto all'email che hai scritto.", "cart.donLogin": "Accedi per registrare la donazione e avere la ricevuta in PDF.", "cart.added": "Aggiunto al carrello", "cart.inCartOpen": "Nel carrello · Apri", "cart.remove": "Togli dal carrello", "offline.allConfirm": "Scarichi tutti i titoli (in tutto: {n}, pagine: {p}) per leggerli anche senza connessione. Sono molti dati: meglio col Wi-Fi. Restano sul telefono 3 giorni. Vuoi continuare?"});
+Object.assign(STR.en, {"cart.sub": "All together, in a single payment", "cart.total": "Total", "cart.step1": "Pay the total", "cart.step2Buy": "Then send us your request", "cart.step2Don": "Then register your donation", "cart.payWith": "Pay with {m}", "cart.satispayHint": "With Satispay you type the amount yourself: {total}.", "cart.noteCode": "In the payment note, write:", "cart.copy": "Copy", "cart.copied": "Code copied", "cart.emailLabel": "Email to receive the comics", "cart.sent": "Request sent. As soon as the payment is confirmed, you'll receive everything at the email you entered.", "cart.donLogin": "Sign in to register your donation and get a PDF receipt.", "cart.added": "Added to cart", "cart.inCartOpen": "In your cart · Open", "cart.remove": "Remove from cart", "offline.allConfirm": "You're about to download every title (total: {n}, pages: {p}) to read offline. That's a lot of data: better on Wi-Fi. They stay on your phone for 3 days. Continue?"});
+Object.assign(STR.es, {"cart.sub": "Todo junto, en un solo pago", "cart.total": "Total", "cart.step1": "Paga el total", "cart.step2Buy": "Luego envíanos la solicitud", "cart.step2Don": "Luego registra la donación", "cart.payWith": "Pagar con {m}", "cart.satispayHint": "Con Satispay el importe lo escribes tú: {total}.", "cart.noteCode": "En la nota del pago escribe:", "cart.copy": "Copiar", "cart.copied": "Código copiado", "cart.emailLabel": "Email para recibir los cómics", "cart.sent": "Solicitud enviada. En cuanto se confirme el pago, recibirás todo en el email que escribiste.", "cart.donLogin": "Inicia sesión para registrar la donación y obtener el recibo en PDF.", "cart.added": "Añadido al carrito", "cart.inCartOpen": "En el carrito · Abrir", "cart.remove": "Quitar del carrito", "offline.allConfirm": "Vas a descargar todos los títulos (en total: {n}, páginas: {p}) para leerlos sin conexión. Son muchos datos: mejor con Wi-Fi. Se quedan en el teléfono 3 días. ¿Continuar?"});
+Object.assign(STR.fr, {"cart.sub": "Tout ensemble, en un seul paiement", "cart.total": "Total", "cart.step1": "Payez le total", "cart.step2Buy": "Puis envoyez-nous la demande", "cart.step2Don": "Puis enregistrez votre don", "cart.payWith": "Payer avec {m}", "cart.satispayHint": "Avec Satispay, vous saisissez vous-même le montant : {total}.", "cart.noteCode": "Dans la note du paiement, écrivez :", "cart.copy": "Copier", "cart.copied": "Code copié", "cart.emailLabel": "Email pour recevoir les bandes dessinées", "cart.sent": "Demande envoyée. Dès que le paiement est confirmé, vous recevez tout à l'email indiqué.", "cart.donLogin": "Connectez-vous pour enregistrer votre don et obtenir le reçu en PDF.", "cart.added": "Ajouté au panier", "cart.inCartOpen": "Dans le panier · Ouvrir", "cart.remove": "Retirer du panier", "offline.allConfirm": "Vous allez télécharger tous les titres (au total : {n}, pages : {p}) pour les lire hors ligne. Cela fait beaucoup de données : mieux vaut le Wi-Fi. Ils restent sur votre téléphone 3 jours. Continuer ?"});
+Object.assign(STR.de, {"cart.sub": "Alles zusammen, mit einer einzigen Zahlung", "cart.total": "Gesamt", "cart.step1": "Gesamtbetrag zahlen", "cart.step2Buy": "Dann die Anfrage senden", "cart.step2Don": "Dann die Spende registrieren", "cart.payWith": "Mit {m} zahlen", "cart.satispayHint": "Bei Satispay den Betrag selbst eingeben: {total}.", "cart.noteCode": "In die Zahlungsnotiz schreiben:", "cart.copy": "Kopieren", "cart.copied": "Code kopiert", "cart.emailLabel": "E-Mail für den Comic-Versand", "cart.sent": "Anfrage gesendet. Sobald die Zahlung bestätigt ist, kommt alles an die angegebene E-Mail.", "cart.donLogin": "Anmelden, um die Spende zu registrieren und die PDF-Quittung zu erhalten.", "cart.added": "Zum Warenkorb hinzugefügt", "cart.inCartOpen": "Im Warenkorb · Öffnen", "cart.remove": "Aus dem Warenkorb entfernen", "offline.allConfirm": "Damit werden alle Titel heruntergeladen (insgesamt: {n}, Seiten: {p}), um sie offline zu lesen. Das sind viele Daten: besser im WLAN. Sie bleiben 3 Tage auf dem Handy. Fortfahren?"});
+Object.assign(STR.pt, {"cart.sub": "Tudo junto, em um único pagamento", "cart.total": "Total", "cart.step1": "Pague o total", "cart.step2Buy": "Depois envie a solicitação", "cart.step2Don": "Depois registre a doação", "cart.payWith": "Pagar com {m}", "cart.satispayHint": "No Satispay, você digita o valor: {total}.", "cart.noteCode": "Na observação do pagamento, escreva:", "cart.copy": "Copiar", "cart.copied": "Código copiado", "cart.emailLabel": "E-mail para receber os quadrinhos", "cart.sent": "Solicitação enviada. Assim que o pagamento for confirmado, você recebe tudo no e-mail informado.", "cart.donLogin": "Entre para registrar a doação e receber o recibo em PDF.", "cart.added": "Adicionado ao carrinho", "cart.inCartOpen": "No carrinho · Abrir", "cart.remove": "Remover do carrinho", "offline.allConfirm": "Você vai baixar todos os títulos (no total: {n}, páginas: {p}) para ler sem conexão. São muitos dados: melhor no Wi-Fi. Eles ficam no celular por 3 dias. Continuar?"});
+Object.assign(STR.ru, {"cart.sub": "Всё вместе, одним платежом", "cart.total": "Итого", "cart.step1": "Оплатите итоговую сумму", "cart.step2Buy": "Затем отправьте нам заявку", "cart.step2Don": "Затем зарегистрируйте пожертвование", "cart.payWith": "Оплатить через {m}", "cart.satispayHint": "В Satispay сумму нужно ввести самостоятельно: {total}.", "cart.noteCode": "В комментарии к платежу напишите:", "cart.copy": "Копировать", "cart.copied": "Код скопирован", "cart.emailLabel": "Email для получения комиксов", "cart.sent": "Заявка отправлена. Как только оплата будет подтверждена, вы получите всё на указанный email.", "cart.donLogin": "Войдите, чтобы зарегистрировать пожертвование и получить PDF-квитанцию.", "cart.added": "Добавлено в корзину", "cart.inCartOpen": "В корзине · Открыть", "cart.remove": "Убрать из корзины", "offline.allConfirm": "Будут скачаны все издания (всего: {n}, страниц: {p}), чтобы читать их без интернета. Это много данных: лучше через Wi-Fi. На телефоне они хранятся 3 дня. Продолжить?"});
+Object.assign(STR.zh, {"cart.sub": "全部一起，一次付款", "cart.total": "合计", "cart.step1": "支付总额", "cart.step2Buy": "然后把请求发给我们", "cart.step2Don": "然后登记你的捐赠", "cart.payWith": "用 {m} 支付", "cart.satispayHint": "使用 Satispay 时需要自己填写金额：{total}。", "cart.noteCode": "请在付款备注中写上：", "cart.copy": "复制", "cart.copied": "代码已复制", "cart.emailLabel": "接收漫画的邮箱", "cart.sent": "请求已发送。付款确认后，你会在填写的邮箱里收到全部内容。", "cart.donLogin": "登录后即可登记捐赠并获得 PDF 收据。", "cart.added": "已加入购物车", "cart.inCartOpen": "已在购物车 · 打开", "cart.remove": "从购物车移除", "offline.allConfirm": "将下载全部作品（共 {n} 部，{p} 页）以便离线阅读。数据量很大，建议使用 Wi-Fi。内容会在手机上保留 3 天。要继续吗？"});
+Object.assign(STR.ja, {"cart.sub": "まとめて、1回の支払いで", "cart.total": "合計", "cart.step1": "合計金額を支払う", "cart.step2Buy": "そのあとリクエストを送信", "cart.step2Don": "そのあと寄付を登録", "cart.payWith": "{m}で支払う", "cart.satispayHint": "Satispay の場合は金額をご自身で入力してください：{total}", "cart.noteCode": "支払いのメモ欄に次のように書いてください：", "cart.copy": "コピー", "cart.copied": "コードをコピーしました", "cart.emailLabel": "コミックを受け取るメールアドレス", "cart.sent": "リクエストを送信しました。お支払いの確認が取れ次第、入力したメールアドレスにすべてお届けします。", "cart.donLogin": "ログインすると寄付を登録して PDF の領収書を受け取れます。", "cart.added": "カートに追加しました", "cart.inCartOpen": "カートに入っています · 開く", "cart.remove": "カートから削除", "offline.allConfirm": "すべての作品（全 {n} 作品・{p} ページ）をオフラインで読めるようにダウンロードします。データ量が多いので Wi-Fi をおすすめします。端末には3日間保存されます。続けますか？"});
+Object.assign(STR.hi, {"cart.sub": "सब एक साथ, एक ही भुगतान में", "cart.total": "कुल", "cart.step1": "कुल राशि का भुगतान करें", "cart.step2Buy": "फिर हमें अनुरोध भेजें", "cart.step2Don": "फिर अपना दान दर्ज करें", "cart.payWith": "{m} से भुगतान करें", "cart.satispayHint": "Satispay में राशि आपको खुद लिखनी होगी: {total}।", "cart.noteCode": "भुगतान के नोट में यह लिखें:", "cart.copy": "कॉपी करें", "cart.copied": "कोड कॉपी हो गया", "cart.emailLabel": "कॉमिक्स पाने के लिए ईमेल", "cart.sent": "अनुरोध भेज दिया गया। भुगतान की पुष्टि होते ही आपको सब कुछ आपके लिखे ईमेल पर मिल जाएगा।", "cart.donLogin": "दान दर्ज करने और PDF रसीद पाने के लिए साइन इन करें।", "cart.added": "कार्ट में जोड़ दिया गया", "cart.inCartOpen": "कार्ट में है · खोलें", "cart.remove": "कार्ट से हटाएँ", "offline.allConfirm": "आप ऑफ़लाइन पढ़ने के लिए सभी टाइटल डाउनलोड कर रहे हैं (कुल: {n}, पेज: {p})। यह बहुत सारा डेटा है: Wi-Fi पर करना बेहतर है। ये फ़ोन पर 3 दिन रहते हैं। जारी रखें?"});
+Object.assign(STR.bn, {"cart.sub": "সব একসাথে, একটি পেমেন্টে", "cart.total": "মোট", "cart.step1": "মোট টাকা পরিশোধ করুন", "cart.step2Buy": "তারপর আমাদের অনুরোধ পাঠান", "cart.step2Don": "তারপর আপনার দান নথিভুক্ত করুন", "cart.payWith": "{m} দিয়ে পেমেন্ট করুন", "cart.satispayHint": "Satispay-এ টাকার পরিমাণ আপনাকে নিজে লিখতে হবে: {total}।", "cart.noteCode": "পেমেন্টের নোটে লিখুন:", "cart.copy": "কপি করুন", "cart.copied": "কোড কপি হয়েছে", "cart.emailLabel": "কমিকস পাওয়ার ইমেইল", "cart.sent": "অনুরোধ পাঠানো হয়েছে। পেমেন্ট নিশ্চিত হলেই আপনার লেখা ইমেইলে সবকিছু পেয়ে যাবেন।", "cart.donLogin": "দান নথিভুক্ত করতে আর PDF রসিদ পেতে সাইন ইন করুন।", "cart.added": "কার্টে যোগ করা হয়েছে", "cart.inCartOpen": "কার্টে আছে · খুলুন", "cart.remove": "কার্ট থেকে সরান", "offline.allConfirm": "অফলাইনে পড়ার জন্য আপনি সব টাইটেল ডাউনলোড করছেন (মোট: {n}, পৃষ্ঠা: {p})। এটি অনেক ডেটা: Wi-Fi-তে করাই ভালো। এগুলো ফোনে 3 দিন থাকে। চালিয়ে যাবেন?"});
+Object.assign(STR.ar, {"cart.sub": "كل شيء معًا، بدفعة واحدة", "cart.total": "المجموع", "cart.step1": "ادفع المجموع", "cart.step2Buy": "ثم أرسل إلينا الطلب", "cart.step2Don": "ثم سجّل تبرّعك", "cart.payWith": "ادفع عبر {m}", "cart.satispayHint": "في Satispay تكتب المبلغ بنفسك: {total}.", "cart.noteCode": "اكتب في ملاحظة الدفع:", "cart.copy": "نسخ", "cart.copied": "تم نسخ الرمز", "cart.emailLabel": "البريد الإلكتروني لاستلام القصص المصوّرة", "cart.sent": "تم إرسال الطلب. فور تأكيد الدفع يصلك كل شيء على البريد الإلكتروني الذي كتبته.", "cart.donLogin": "سجّل الدخول لتسجيل تبرّعك والحصول على إيصال PDF.", "cart.added": "أُضيف إلى السلة", "cart.inCartOpen": "في السلة · فتح", "cart.remove": "إزالة من السلة", "offline.allConfirm": "ستنزّل كل العناوين (العدد: {n}، الصفحات: {p}) لقراءتها دون اتصال. إنها بيانات كثيرة: الأفضل عبر Wi-Fi. تبقى على هاتفك 3 أيام. هل تريد المتابعة؟"});
+Object.assign(STR.pnb, {"cart.sub": "سب کجھ اکٹھا، اک ای ادائیگی وچ", "cart.total": "کل", "cart.step1": "کل رقم ادا کرو", "cart.step2Buy": "فیر سانوں درخواست بھیجو", "cart.step2Don": "فیر اپنا عطیہ درج کرو", "cart.payWith": "{m} نال ادائیگی کرو", "cart.satispayHint": "Satispay وچ رقم تہانوں آپ لکھنی پوے گی: {total}۔", "cart.noteCode": "ادائیگی دے نوٹ وچ ایہہ لکھو:", "cart.copy": "کاپی کرو", "cart.copied": "کوڈ کاپی ہو گیا", "cart.emailLabel": "کامکس لین لئی ای میل", "cart.sent": "درخواست بھیج دتی گئی۔ جیویں ای ادائیگی دی تصدیق ہووے گی، تہانوں سب کجھ تہاڈی لکھی ای میل تے مل جاوے گا۔", "cart.donLogin": "عطیہ درج کرن تے PDF رسید لین لئی سائن اِن کرو۔", "cart.added": "کارٹ وچ پا دتا گیا", "cart.inCartOpen": "کارٹ وچ اے · کھولو", "cart.remove": "کارٹ وچوں کڈھو", "offline.allConfirm": "تسیں آف لائن پڑھن لئی سارے ٹائٹل ڈاؤن لوڈ کر رہے او (کل: {n}، صفحے: {p})۔ ایہہ بہت سارا ڈیٹا اے: Wi-Fi تے کرنا چنگا اے۔ ایہہ فون تے 3 دن رہندے نیں۔ جاری رکھنا اے؟"});
 var CHAR_META = {
   Lucifer:{role:{it:"Il Portatore di Luce",en:"The Light-Bearer",es:"El Portador de Luz",fr:"Le Porteur de Lumière",de:"Der Lichtträger"},
     bio:{it:"Sovrano della collana ammiraglia: potere, caduta e desiderio raccontati su grande scala.",
@@ -1086,6 +1100,7 @@ function setLang(lang){
   try { luxAuthRelang(); } catch(e){} // v236: la finestra «Accedi / Registrati» nella lingua nuova
   try { luxCoverRelang(); } catch(e){} // v237: la copertina nella lingua nuova
   try { luxResetRelang(); } catch(e){} // v242: la finestra «Scegli una nuova password»
+  try { var cm = document.getElementById('cartModal'); if(cm && !cm.classList.contains('hidden')) renderCartModal(); } catch(e){} // v246: il carrello aperto
 }
 var titleModalRelang = false; // v227: la scheda si rifà per la lingua, non è una nuova apertura
 
@@ -2560,21 +2575,16 @@ function coverImgAttrs(){ return ' loading="lazy" onerror="this.onerror=null;thi
 var SUPABASE_ANON_KEY = 'sb_publishable_-jO_WGzMVo-3Xp5J75RwiA__u49YnPr';
 var ADMIN_EMAIL = 'sergio.tradori@outlook.it'; // UI-gating only; real enforcement is server-side RLS
 
-/* Le copertine caricate sono spesso file a piena risoluzione (pensati per
-   la lettura), ma nelle griglie servono solo come miniatura — scaricare
-   l'originale intero lì è lo spreco più grande di banda del sito. Supabase
-   (piano Pro) sa ridimensionare/comprimere l'immagine al volo: basta
-   chiedere l'endpoint "render/image" invece di "object" con una larghezza
-   target. Se l'URL non è uno Storage Supabase riconoscibile (es. servizio
-   esterno), lo lasciamo intatto invece di romperlo. */
+/* v246: le miniature delle copertine sono file veri, fatti quando la copertina si carica (e da
+   «Spazio su Supabase» per quelle già caricate): cover-123-lx.jpg → cover-123-lx-sm.jpg, 480 px.
+   Il ridimensionamento al volo di Supabase (render/image) non si usa più: sul piano gratuito non
+   c'è (l'immagine restava rotta, o arrivava l'originale intero dopo un tentativo a vuoto) e sul
+   Pro consuma la quota delle trasformazioni. Tutto il resto si usa così com'è: ora parte già
+   leggero, e «Spazio su Supabase» alleggerisce quello che c'era già. */
 function coverThumbUrl(url, width){
   if(!url) return url;
-  var marker = '/storage/v1/object/public/';
-  var idx = url.indexOf(marker);
-  if(idx === -1) return url;
-  // v219: su 2G / risparmio dati miniature più piccole (circa un terzo dei byte)
-  if(window.LUX_NET === 'slow') width = Math.round(width * 0.6);
-  return url.slice(0, idx) + '/storage/v1/render/image/public/' + url.slice(idx + marker.length) + '?width=' + width + '&quality=70';
+  var m = /^(.*\/storage\/v1\/object\/public\/comic-pages\/[^/?#]+\/cover-\d+)-lx\.jpg((?:[?#].*)?)$/i.exec(url);
+  return m ? m[1] + '-lx-sm.jpg' + m[2] : url;
 }
 
 /* ============ AVATAR CON INIZIALI DI RISERVA ============
@@ -4027,7 +4037,11 @@ function refreshMyComicsCodex(){
   fetch(SUPABASE_URL + '/rest/v1/requests?user_id=eq.' + encodeURIComponent(currentUserId()) + '&select=body', {
     headers: communityHeaders()
   }).then(function(r){ return r.ok ? r.json() : []; }).then(function(rows){
-    var ownedCount = (rows || []).filter(function(r){ return (r.body||'').indexOf('[ACQUISTO]') === 0; }).length;
+    // v246: un acquisto dal carrello può contenere più titoli (id separati da virgole)
+    var ownedCount = (rows || []).filter(function(r){ return (r.body||'').indexOf('[ACQUISTO]') === 0; }).reduce(function(n, r){
+      var ids = String(luxParsePurchase(r.body).titleId || '').split(',').filter(function(x){ return x.trim(); });
+      return n + Math.max(1, ids.length);
+    }, 0);
     codexEl.innerHTML =
       '<span>' + t('mycomics.codex.owned').replace('{n}', '<b>'+ownedCount+'</b>') + '</span>' +
       '<span>' + t('mycomics.codex.inProgress').replace('{n}', '<b>'+inProgressCount+'</b>') + '</span>';
@@ -5192,7 +5206,7 @@ function renderCatalogHeroBento(){
   box.classList.remove('hidden');
   box.innerHTML = picks.map(function(item, i){
     return '<div class="bento-tile' + (i === 0 ? ' bento-big' : '') + '" data-bento-open="' + item.id + '">' +
-      (item.cover_url ? '<img src="' + coverThumbUrl(item.cover_url, 700) + '" alt="" loading="lazy">' : '') +
+      (item.cover_url ? '<img src="' + coverThumbUrl(item.cover_url, 700) + '" data-fallback="' + escapeHtml(item.cover_url) + '" alt="" loading="lazy">' : '') +
       '<div class="bento-tile-label">' + (i === 0 ? '<span class="bento-eyebrow">Ultima uscita</span>' : '') + escapeHtml(item.title) + '</div>' +
     '</div>';
   }).join('');
@@ -5217,7 +5231,7 @@ function renderCatalogStories(){
       .sort(function(a, b){ return new Date(b.date || 0) - new Date(a.date || 0); })[0];
     return '<div class="story-item" data-story-jump="' + escapeHtml(name) + '">' +
       '<div class="story-ring"><div class="story-inner">' +
-        (latest && latest.cover_url ? '<img src="' + coverThumbUrl(latest.cover_url, 200) + '" alt="" loading="lazy">' : '') +
+        (latest && latest.cover_url ? '<img src="' + coverThumbUrl(latest.cover_url, 200) + '" data-fallback="' + escapeHtml(latest.cover_url) + '" alt="" loading="lazy">' : '') +
       '</div></div>' +
       '<div class="story-label">' + escapeHtml(name) + '</div>' +
     '</div>';
@@ -5270,7 +5284,7 @@ function initCmdSearch(){
     if(matches.length === 0){ results.innerHTML = '<p class="form-note">Nessun risultato.</p>'; return; }
     results.innerHTML = matches.map(function(item, i){
       return '<div class="cmdk-result-row" data-cmdk-result="' + i + '">' +
-        (item.cover_url ? '<img src="' + coverThumbUrl(item.cover_url, 100) + '" alt="" loading="lazy">' : '<span class="cmdk-noimg"></span>') +
+        (item.cover_url ? '<img src="' + coverThumbUrl(item.cover_url, 100) + '" data-fallback="' + escapeHtml(item.cover_url) + '" alt="" loading="lazy">' : '<span class="cmdk-noimg"></span>') +
         '<div><div class="cmdk-result-title">' + escapeHtml(item.title) + '</div><div class="cmdk-result-sub">' + escapeHtml(item.character || '') + '</div></div>' +
       '</div>';
     }).join('');
@@ -6374,7 +6388,7 @@ function rescanCatalogForMaturity(){
   items.forEach(function(item){
     chain = chain.then(function(){
       if(status) status.textContent = 'Controllo ' + (checked + 1) + ' di ' + total + '… (' + flagged + ' marcate finora)';
-      return classifyImageMaturity(coverThumbUrl(item.cover_url, 500)).then(function(isMature){
+      return classifyImageMaturity(item.cover_url).then(function(isMature){ // v246: la copertina vera (la miniatura potrebbe non esserci ancora)
         checked++;
         if(!isMature) return;
         flagged++;
@@ -7257,9 +7271,9 @@ function uploadCoverForExistingItem(itemId, file, ratioW, ratioH, forceReal){
   // sempre, qualunque formato scelga chi carica.
   var status = document.querySelector('[data-cover-status-for="'+itemId+'"]');
   if(status) status.textContent = t('cover.uploading');
-  return compressImageFile(file, 2600, 0.92).then(function(compressed){
+  return compressImageFile(file, LUX_COVER_MAX, 0.86).then(function(compressed){
     return classifyFileMaturity(compressed).then(function(isMature){
-      return uploadCatalogAsset(compressed, itemId + '/cover-' + Date.now() + '.jpg').then(function(url){
+      return luxUploadCover(compressed, itemId).then(function(url){ // v246: 1600 px + miniatura
         return {url: url, isMature: isMature};
       });
     });
@@ -7607,7 +7621,7 @@ function luxMsgTranslateBtn(key, text, place){
    (Safari/iPhone incluso), di sapere quanti byte sono già arrivati DURANTE l'invio — fetch
    non lo garantisce in modo affidabile. onProgress(byteInviati, byteTotali) viene richiamata
    più volte durante l'invio, non solo alla fine. */
-function xhrUpload(url, file, session, onProgress){
+function xhrUpload(url, file, session, onProgress, cacheControl){
   return new Promise(function(resolve, reject){
     var xhr = new XMLHttpRequest();
     xhr.open('POST', url, true);
@@ -7615,6 +7629,7 @@ function xhrUpload(url, file, session, onProgress){
     xhr.setRequestHeader('Authorization', 'Bearer ' + session.access_token);
     xhr.setRequestHeader('Content-Type', file.type || 'application/octet-stream');
     xhr.setRequestHeader('x-upsert', 'true');
+    if(cacheControl) xhr.setRequestHeader('cache-control', cacheControl); // v246: i file «-lx» restano in memoria 7 giorni
     if(xhr.upload && onProgress){
       xhr.upload.onprogress = function(e){
         if(e.lengthComputable) onProgress(e.loaded, e.total);
@@ -7628,9 +7643,9 @@ function xhrUpload(url, file, session, onProgress){
     xhr.send(file);
   });
 }
-function uploadCatalogAsset(file, path, onProgress){
+function uploadCatalogAsset(file, path, onProgress, cacheControl){
   var session = getSession();
-  return xhrUpload(SUPABASE_URL + '/storage/v1/object/comic-pages/' + path, file, session, onProgress)
+  return xhrUpload(SUPABASE_URL + '/storage/v1/object/comic-pages/' + path, file, session, onProgress, cacheControl)
     .then(function(){ return SUPABASE_URL + '/storage/v1/object/public/comic-pages/' + path; });
 }
 
@@ -7712,6 +7727,803 @@ function renderPagesPreview(){
     });
     box.appendChild(thumb);
   });
+}
+
+/* ============ v246: FILE LEGGERI SU SUPABASE ============
+   Perché: il piano gratuito di Supabase dà 1 GB per i file e 5 GB di traffico al mese, e il
+   sito li superava. Ogni pagina si salvava due volte a piena grandezza (con filigrana, fino a
+   1 MB e oltre, e l'originale così com'era), le copertine delle canzoni erano PNG da 3 MB
+   mostrati a 40 pixel, aprire un titolo scaricava subito tutte le sue tavole (e per chi è
+   dentro anche tutti gli originali), e chi era dentro col Wi-Fi riscaricava da solo l'intero
+   catalogo ogni 3 giorni.
+   Da qui in poi:
+   - pagina nuova: filigranata a 2000 px (qualità 85%), una miniatura da 240 px per la
+     striscia sotto la pagina, e l'originale leggero (2600 px al 90%, o il file così com'è se è
+     già un JPEG leggero);
+   - copertina nuova: 1600 px e una miniatura da 480 px per le griglie;
+   - i nomi di questi file finiscono in «-lx» e sono nuovi a ogni caricamento: per questo si
+     possono tenere in memoria 7 giorni (sul telefono e nella rete di Supabase) senza il rischio
+     di vedere una versione vecchia;
+   - foto profilo, copertine di canzoni, playlist e podcast, immagini degli eventi: si
+     rimpiccioliscono prima di partire.
+   I file già caricati li sistema «Spazio su Supabase» in Amministra › Manutenzione. */
+var LUX_LX_CACHE = 'max-age=604800';
+var LUX_PAGE_PUBLIC = 2000, LUX_PAGE_THUMB = 240, LUX_PAGE_CLEAN = 2600, LUX_COVER_MAX = 1600, LUX_COVER_SM = 480;
+var LUX_BLANK_IMG = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+
+// un'immagine (File o Blob) pronta da disegnare: { img, w, h, done() }
+function luxLoadImg(blob){
+  return new Promise(function(resolve, reject){
+    var url = URL.createObjectURL(blob), img = new Image();
+    img.onload = function(){
+      if(!img.naturalWidth || !img.naturalHeight){ URL.revokeObjectURL(url); reject(new Error('immagine vuota')); return; }
+      resolve({ img: img, w: img.naturalWidth, h: img.naturalHeight, done: function(){ URL.revokeObjectURL(url); } });
+    };
+    img.onerror = function(){ URL.revokeObjectURL(url); reject(new Error('immagine non leggibile')); };
+    img.src = url;
+  });
+}
+// disegna l'immagine a w×h: se va rimpicciolita molto lo fa a metà per volta (in un colpo solo i tratti sottili si rovinano)
+function luxDrawScaled(src, w, h, bg){
+  var cur = src.img, cw = src.w, ch = src.h, tmp = null;
+  while(cw >= w * 2.2 && ch >= h * 2.2){
+    var nw = Math.round(cw / 2), nh = Math.round(ch / 2);
+    var c = document.createElement('canvas'); c.width = nw; c.height = nh;
+    var cg = c.getContext('2d'); cg.imageSmoothingEnabled = true; cg.imageSmoothingQuality = 'high';
+    cg.drawImage(cur, 0, 0, nw, nh);
+    if(tmp){ tmp.width = 0; tmp.height = 0; }
+    tmp = c; cur = c; cw = nw; ch = nh;
+  }
+  var out = document.createElement('canvas'); out.width = w; out.height = h;
+  var g = out.getContext('2d'); g.imageSmoothingEnabled = true; g.imageSmoothingQuality = 'high';
+  if(bg){ g.fillStyle = bg; g.fillRect(0, 0, w, h); }
+  g.drawImage(cur, 0, 0, w, h);
+  if(tmp){ tmp.width = 0; tmp.height = 0; }
+  return out;
+}
+function luxEncode(canvas, type, quality){
+  return new Promise(function(resolve, reject){
+    canvas.toBlob(function(b){ canvas.width = 0; canvas.height = 0; if(b && b.size) resolve(b); else reject(new Error('immagine non salvata')); }, type, quality);
+  });
+}
+// al massimo maxDim px sul lato lungo, in JPEG (o PNG se deve restare trasparente)
+function luxRenderImage(src, maxDim, quality, opts){
+  opts = opts || {};
+  var k = Math.min(1, maxDim / Math.max(src.w, src.h));
+  var w = Math.max(1, Math.round(src.w * k)), h = Math.max(1, Math.round(src.h * k));
+  var c = luxDrawScaled(src, w, h, opts.keepAlpha ? null : (opts.bg || '#000'));
+  if(opts.watermark) luxDrawWatermark(c.getContext('2d'), w, h);
+  return luxEncode(c, opts.keepAlpha ? 'image/png' : 'image/jpeg', quality);
+}
+// ha delle parti trasparenti? (una foto profilo rotonda in PNG, per esempio)
+function luxHasAlpha(src){
+  try {
+    var s = 64, c = document.createElement('canvas'); c.width = s; c.height = s;
+    var g = c.getContext('2d', { willReadFrequently: true });
+    g.drawImage(src.img, 0, 0, s, s);
+    var d = g.getImageData(0, 0, s, s).data;
+    c.width = 0; c.height = 0;
+    for(var i = 3; i < d.length; i += 4){ if(d[i] < 250) return true; }
+    return false;
+  } catch(e){ return false; }
+}
+// la filigrana, uguale a quella di sempre (watermarkImageFile)
+function luxDrawWatermark(ctx, w, h){
+  var text = 'LUX COMICS & MEDUSA COMICS';
+  var fontSize = Math.max(16, Math.round(w / 22));
+  ctx.font = fontSize + 'px "Space Mono", monospace';
+  ctx.fillStyle = 'rgba(255,255,255,0.16)';
+  ctx.strokeStyle = 'rgba(0,0,0,0.10)';
+  ctx.lineWidth = 1;
+  ctx.textBaseline = 'middle';
+  var textWidth = ctx.measureText(text).width;
+  var stepX = textWidth + fontSize * 3, stepY = fontSize * 5;
+  ctx.save();
+  ctx.translate(w / 2, h / 2);
+  ctx.rotate(-Math.PI / 8);
+  ctx.translate(-w / 2, -h / 2);
+  var diag = Math.sqrt(w * w + h * h);
+  for(var y = -diag; y < diag; y += stepY){
+    for(var x = -diag; x < diag; x += stepX){ ctx.fillText(text, x, y); ctx.strokeText(text, x, y); }
+  }
+  ctx.restore();
+}
+function luxIsJpeg(blob){ return /^image\/jpe?g$/i.test((blob && blob.type) || ''); }
+function luxExtOf(file){
+  var t2 = (file && file.type) || '';
+  if(/jpe?g/i.test(t2)) return 'jpg';
+  if(/png/i.test(t2)) return 'png';
+  if(/webp/i.test(t2)) return 'webp';
+  if(/gif/i.test(t2)) return 'gif';
+  var m = /\.([a-zA-Z0-9]+)$/.exec((file && file.name) || '');
+  return m ? m[1].toLowerCase() : 'jpg';
+}
+/* Rimpicciolisce un'immagine prima di caricarla: al massimo maxDim px, in JPEG (resta PNG solo se
+   ha delle trasparenze). Se è già piccola e leggera la lascia com'è; GIF (anche animate) e SVG
+   partono così come sono; se il telefono non riesce a leggerla, parte l'originale. */
+function luxShrinkImage(file, maxDim, quality, okBytes){
+  if(!file || !file.type || file.type.indexOf('image/') !== 0 || /gif|svg/i.test(file.type)) return Promise.resolve(file);
+  okBytes = okBytes || 400000;
+  return luxLoadImg(file).then(function(src){
+    var big = Math.max(src.w, src.h) > maxDim, jpeg = luxIsJpeg(file);
+    if(!big && jpeg && file.size <= okBytes){ src.done(); return file; }
+    var alpha = !jpeg && luxHasAlpha(src);
+    if(alpha && !big && file.size <= okBytes * 2){ src.done(); return file; }
+    return luxRenderImage(src, maxDim, quality, { keepAlpha: alpha }).then(function(blob){
+      src.done();
+      if(!big && blob.size >= file.size) return file;
+      var name = String(file.name || 'immagine').replace(/\.[a-zA-Z0-9]+$/, '') + (alpha ? '.png' : '.jpg');
+      return new File([blob], name, { type: alpha ? 'image/png' : 'image/jpeg' });
+    }, function(e){ src.done(); throw e; });
+  }).catch(function(e){ console.warn('Immagine non rimpicciolita, parte com\'è:', e); return file; });
+}
+// toglie dei file da un archivio di Supabase (a gruppi di 100): risponde con quanti ne ha tolti davvero
+function luxStorageRemove(bucket, paths){
+  var list = (paths || []).slice(), removed = 0;
+  function next(){
+    if(!list.length) return Promise.resolve(removed);
+    var part = list.splice(0, 100), s = getSession();
+    return fetch(SUPABASE_URL + '/storage/v1/object/' + bucket, {
+      method: 'DELETE',
+      headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': 'Bearer ' + (s ? s.access_token : SUPABASE_ANON_KEY), 'Content-Type': 'application/json' },
+      body: JSON.stringify({ prefixes: part })
+    }).then(function(r){
+      if(!r.ok) throw new Error('eliminazione non riuscita (' + r.status + ')');
+      return r.json().catch(function(){ return []; });
+    }).then(function(rows){ removed += Array.isArray(rows) ? rows.length : 0; return next(); });
+  }
+  return next();
+}
+function luxPublicUrl(bucket, path){ return SUPABASE_URL + '/storage/v1/object/public/' + bucket + '/' + path; }
+// il percorso dentro comic-pages di un indirizzo pubblico (null se il file non sta lì)
+function luxPubPath(url, bucket){
+  if(!url) return null;
+  var mk = '/storage/v1/object/public/' + (bucket || 'comic-pages') + '/', i = String(url).indexOf(mk);
+  if(i === -1) return null;
+  try { return decodeURIComponent(String(url).slice(i + mk.length).split(/[?#]/)[0]); } catch(e){ return String(url).slice(i + mk.length).split(/[?#]/)[0]; }
+}
+// la miniatura di una pagina «-lx» (le pagine vecchie non ce l'hanno: null)
+function luxPageThumbUrl(url){
+  var m = /^(.*\/storage\/v1\/object\/public\/comic-pages\/[^?#]+)-lx\.jpg((?:[?#].*)?)$/i.exec(url || '');
+  return m ? m[1] + '-lx-t.jpg' + m[2] : null;
+}
+function luxThumbPath(path){ return String(path).replace(/-lx\.jpg$/i, '-lx-t.jpg'); }
+
+// ---------- caricamenti nuovi ----------
+// una pagina nuova → filigranata (2000 px), miniatura (240 px, dalla filigranata) e originale leggero
+function luxPreparePage(file){
+  return luxLoadImg(file).then(function(src){
+    var k = Math.min(1, LUX_PAGE_PUBLIC / Math.max(src.w, src.h));
+    var w = Math.max(1, Math.round(src.w * k)), h = Math.max(1, Math.round(src.h * k));
+    var pub = luxDrawScaled(src, w, h, '#000');
+    luxDrawWatermark(pub.getContext('2d'), w, h);
+    var kt = Math.min(1, LUX_PAGE_THUMB / Math.max(w, h));
+    var thumb = luxDrawScaled({ img: pub, w: w, h: h }, Math.max(1, Math.round(w * kt)), Math.max(1, Math.round(h * kt)), '#000');
+    var out = {};
+    return luxEncode(thumb, 'image/jpeg', 0.72).then(function(tb){
+      out.thumb = tb;
+      return luxEncode(pub, 'image/jpeg', 0.85);
+    }).then(function(pb){
+      out.pub = pb;
+      return luxCleanCopy(file, src);
+    }).then(function(cb){ out.clean = cb; src.done(); return out; }, function(e){ src.done(); throw e; });
+  });
+}
+// l'originale per chi è dentro: così com'è se è già un JPEG leggero, altrimenti 2600 px al 90%
+function luxCleanCopy(file, src){
+  var jpeg = luxIsJpeg(file);
+  if(jpeg && Math.max(src.w, src.h) <= LUX_PAGE_CLEAN && file.size <= 1600000) return Promise.resolve(file);
+  return luxRenderImage(src, LUX_PAGE_CLEAN, 0.9, {}).then(function(b){ return (b.size < file.size || !jpeg) ? b : file; });
+}
+// la copertina: 1600 px + la miniatura da 480 px (prima la miniatura: se manca lei, niente copertina a metà)
+function luxUploadCover(file, itemId, onProgress){
+  var base = itemId + '/cover-' + Date.now() + '-lx';
+  return luxLoadImg(file).then(function(src){
+    var keep = luxIsJpeg(file) && Math.max(src.w, src.h) <= LUX_COVER_MAX && file.size <= 700000;
+    return (keep ? Promise.resolve(file) : luxRenderImage(src, LUX_COVER_MAX, 0.86, {})).then(function(big){
+      return luxRenderImage(src, LUX_COVER_SM, 0.8, {}).then(function(sm){ src.done(); return { big: big, sm: sm }; });
+    }).catch(function(e){ src.done(); throw e; });
+  }, function(){ return null; }).then(function(r){
+    if(!r){
+      // il browser non sa leggere questo formato: parte l'originale, come prima (senza miniatura)
+      return uploadCatalogAsset(file, itemId + '/cover-' + Date.now() + '.' + luxExtOf(file), onProgress);
+    }
+    var session = getSession();
+    function putSm(n){
+      return xhrUpload(SUPABASE_URL + '/storage/v1/object/comic-pages/' + base + '-sm.jpg', r.sm, session, null, LUX_LX_CACHE)
+        .catch(function(e){ if(n < 1) return putSm(n + 1); throw e; });
+    }
+    return putSm(0).then(function(){ return uploadCatalogAsset(r.big, base + '.jpg', onProgress, LUX_LX_CACHE); });
+  });
+}
+
+// ---------- la striscia delle miniature sotto la pagina ----------
+/* Prima: tutte le tavole intere, subito (e per chi è dentro anche tutti gli originali), solo
+   per disegnare quadratini da 48 px. Ora: la miniatura vera (pochi KB) per le pagine «-lx»,
+   e solo quando la striscia la mostra davvero; per le pagine vecchie la tavola, ma sempre solo
+   quando ci si arriva scorrendo. */
+var luxThumbObs = null;
+function luxReaderThumbs(box, pages, onPick){
+  if(luxThumbObs){ luxThumbObs.disconnect(); luxThumbObs = null; }
+  var imgs = pages.map(function(url, idx){
+    var img = document.createElement('img');
+    img.alt = t('reader.pageN').replace('{n}', idx + 1);
+    img.decoding = 'async';
+    img.draggable = false;
+    var th = luxPageThumbUrl(url);
+    img.setAttribute('data-lazy-src', th || url);
+    if(th) img.setAttribute('data-fallback', url); // se la miniatura mancasse, la tavola (vedi il gestore degli errori delle immagini)
+    img.addEventListener('click', function(){ onPick(idx); });
+    box.appendChild(img);
+    return img;
+  });
+  function show(img){
+    var s = img.getAttribute('data-lazy-src');
+    if(s){ img.removeAttribute('data-lazy-src'); img.src = s; }
+  }
+  if(!('IntersectionObserver' in window)){ imgs.forEach(show); return; }
+  luxThumbObs = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if(en.isIntersecting){ luxThumbObs.unobserve(en.target); show(en.target); } });
+  }, { root: box, rootMargin: '0px 160px' });
+  imgs.forEach(function(img){ luxThumbObs.observe(img); });
+}
+// mentre arriva la pagina pulita: la miniatura sfocata (o niente), non più la tavola filigranata intera
+function luxShowPreview(imgEl, url){
+  var th = luxPageThumbUrl(url);
+  imgEl.classList.add('lux-pv');
+  imgEl.onerror = function(){ imgEl.onerror = null; imgEl.src = LUX_BLANK_IMG; };
+  imgEl.src = th || LUX_BLANK_IMG;
+}
+function luxShowFinal(imgEl, url){
+  imgEl.onerror = null;
+  imgEl.classList.remove('lux-pv');
+  imgEl.src = url;
+}
+// il riquadro che scorre davvero (la scheda del titolo): così «carica un po' prima» funziona anche lì dentro
+function luxScrollRoot(el){
+  for(var p = el && el.parentElement; p && p !== document.body && p !== document.documentElement; p = p.parentElement){
+    var oy = getComputedStyle(p).overflowY;
+    if(oy === 'auto' || oy === 'scroll') return p;
+  }
+  return null;
+}
+
+/* ============ v246: SPAZIO SU SUPABASE (Amministra › Manutenzione) ============
+   1) «Analizza lo spazio» legge l'elenco dei file di ogni archivio (bucket) e dice cosa occupa
+      spazio: pagine, miniature, copertine, originali, PDF, canzoni, foto, file non più usati.
+   2) Poi, a scelta:
+      - «Alleggerisci pagine e copertine»: ogni pagina pubblica diventa «-lx» (2000 px, 85%,
+        o il file così com'è se è già leggero) con la sua miniatura; ogni copertina 1600 px con la
+        miniatura da 480 px. Titolo per titolo: prima si caricano i file nuovi, poi si aggiorna il
+        titolo (e si controlla che sia aggiornato davvero), e solo dopo si tolgono le pagine
+        vecchie. Se qualcosa va storto a metà, il titolo resta com'era.
+      - «Alleggerisci le altre immagini»: copertine di canzoni, playlist e podcast, foto profilo,
+        immagini degli eventi, sovrascritte con una versione più piccola (stesso indirizzo).
+      - «Elimina i file non più usati»: cartelle di titoli eliminati, pagine sostituite.
+        Le copertine vecchie restano (i link condivisi possono ancora mostrarle).
+      - «Alleggerisci gli originali»: le pagine senza filigrana di chi è dentro (2600 px, 90%).
+        Si possono rifare solo dai file sul tuo computer: per questo è l'ultima e chiede due volte.
+   Si può fermare quando vuoi e riprendere: ripartendo salta quello che è già leggero. */
+var LUX_SPACE = { busy: false, stop: false, data: null, wake: null };
+var LUX_SPACE_BUCKETS = ['comic-pages', 'comic-pages-clean', 'songs', 'songs-private', 'avatars', 'profile-gallery', 'event-photos', 'events', 'playlists', 'podcasts'];
+var LUX_FREE_GB = 1;
+
+function luxBytes(n){
+  n = Math.max(0, n || 0);
+  if(n < 1e6) return Math.round(n / 1e3) + ' KB';
+  if(n < 1e9) return (n / 1e6).toFixed(n < 1e7 ? 1 : 0).replace('.', ',') + ' MB';
+  return (n / 1e9).toFixed(2).replace('.', ',') + ' GB';
+}
+function luxSpaceH(json){
+  var s = getSession(), h = { 'apikey': SUPABASE_ANON_KEY, 'Authorization': 'Bearer ' + (s ? s.access_token : SUPABASE_ANON_KEY) };
+  if(json) h['Content-Type'] = 'application/json';
+  return h;
+}
+function luxEncPath(p){ return String(p).split('/').map(encodeURIComponent).join('/'); }
+// i file già alleggeriti (o che non si potevano alleggerire di più), con la grandezza di dopo: non si ripropongono
+function luxSpaceDone(){ try { var m = JSON.parse(localStorage.getItem('lux_space_done') || '{}'); return m && typeof m === 'object' ? m : {}; } catch(e){ return {}; } }
+function luxSpaceMarkDone(key, size){
+  try {
+    var m = luxSpaceDone(); m[key] = size;
+    var ks = Object.keys(m); if(ks.length > 6000) ks.slice(0, ks.length - 6000).forEach(function(k){ delete m[k]; });
+    localStorage.setItem('lux_space_done', JSON.stringify(m));
+  } catch(e){}
+}
+
+function luxSpaceMount(){
+  var panel = document.querySelector('[data-tab-panel="maintenance"]');
+  if(!panel || document.getElementById('luxSpace') || !isAdmin()) return;
+  var box = document.createElement('div');
+  box.className = 'notice lux-space';
+  box.id = 'luxSpace';
+  box.innerHTML =
+    '<div class="lux-space-h">Spazio su Supabase</div>' +
+    '<p class="form-note">Il piano gratuito di Supabase dà <b>1 GB</b> per i file e <b>5 GB</b> di traffico al mese. Qui vedi cosa occupa lo spazio e puoi alleggerire i file già caricati (quelli nuovi partono già leggeri). Per chi legge non cambia niente: solo immagini più piccole, che si aprono prima.</p>' +
+    '<button type="button" class="btn btn-primary btn-sm" id="luxSpaceScan">Analizza lo spazio</button>' +
+    '<div class="lux-space-status" id="luxSpaceStatus" role="status" aria-live="polite"></div>' +
+    '<div class="lux-space-bar hidden" id="luxSpaceBar"><span></span></div>' +
+    '<div id="luxSpaceOut"></div>';
+  panel.insertBefore(box, panel.querySelector('.notice'));
+  document.getElementById('luxSpaceScan').addEventListener('click', function(){ if(!LUX_SPACE.busy) luxSpaceScan(); });
+}
+function luxSpaceSay(msg){ var el = document.getElementById('luxSpaceStatus'); if(el) el.textContent = msg || ''; }
+function luxSpaceBar(done, total){
+  var b = document.getElementById('luxSpaceBar');
+  if(!b) return;
+  if(total == null){ b.classList.add('hidden'); return; }
+  b.classList.remove('hidden');
+  b.firstChild.style.width = Math.min(100, Math.round(done / Math.max(total, 1) * 100)) + '%';
+}
+
+// ---------- 1) l'analisi ----------
+function luxListBucket(bucket, onCount){
+  var out = [], dirs = [''], MAX = 30000;
+  function page(prefix, offset){
+    return fetch(SUPABASE_URL + '/storage/v1/object/list/' + bucket, { method: 'POST', headers: luxSpaceH(true),
+      body: JSON.stringify({ prefix: prefix, limit: 1000, offset: offset, sortBy: { column: 'name', order: 'asc' } }) })
+      .then(function(r){ if(!r.ok){ var e = new Error('elenco ' + bucket + ': ' + r.status); e.status = r.status; throw e; } return r.json(); })
+      .then(function(rows){
+        (rows || []).forEach(function(o){
+          if(!o || !o.name || o.name === '.emptyFolderPlaceholder') return;
+          var p = prefix + o.name;
+          if(o.id == null && !o.metadata) dirs.push(p + '/');
+          else out.push({ path: p, size: (o.metadata && +(o.metadata.size || o.metadata.contentLength)) || 0,
+            type: (o.metadata && o.metadata.mimetype) || '', at: o.updated_at || o.created_at || '' });
+        });
+        if(onCount) onCount(out.length);
+        if((rows || []).length === 1000 && out.length < MAX) return page(prefix, offset + 1000);
+      });
+  }
+  function next(){ return (!dirs.length || out.length >= MAX) ? Promise.resolve(out) : page(dirs.shift(), 0).then(next); }
+  return next();
+}
+// la grandezza di un file anche senza elenco (Supabase non lo dà a tutti): HEAD sull'indirizzo
+function luxHeadSize(url, auth){
+  return fetch(url, { method: 'HEAD', headers: auth ? luxSpaceH(false) : {} }).then(function(r){
+    if(!r.ok) return null;
+    var n = +(r.headers.get('content-length') || 0);
+    return n > 0 ? { size: n, type: r.headers.get('content-type') || '' } : null;
+  }).catch(function(){ return null; });
+}
+function luxPool(jobs, n, onDone){
+  var i = 0, active = 0, failed = 0, errors = [];
+  return new Promise(function(resolve){
+    function pump(){
+      if(LUX_SPACE.stop && active === 0){ resolve({ failed: failed, errors: errors, stopped: true }); return; }
+      if(i >= jobs.length && active === 0){ resolve({ failed: failed, errors: errors }); return; }
+      while(active < n && i < jobs.length && !LUX_SPACE.stop){
+        var job = jobs[i++];
+        active++;
+        Promise.resolve().then(job).catch(function(e){ failed++; if(errors.length < 30) errors.push(String((e && e.message) || e)); })
+          .then(function(){ active--; if(onDone) onDone(); pump(); });
+      }
+    }
+    pump();
+  });
+}
+function luxSpaceScan(){
+  LUX_SPACE.busy = true; LUX_SPACE.stop = false;
+  var btn = document.getElementById('luxSpaceScan'), out = document.getElementById('luxSpaceOut');
+  if(btn) btn.disabled = true;
+  if(out) out.innerHTML = '';
+  luxSpaceSay('Leggo il catalogo…');
+  var d = { rows: [], files: {}, denied: {}, cat: {}, now: Date.now() };
+  refreshSessionIfNeeded().then(function(){
+    return fetch(SUPABASE_URL + '/rest/v1/catalog?select=id,title,cover_url,pages,pages_clean,pdf_url&order=created_at.desc', { headers: luxSpaceH(false) })
+      .then(function(r){ if(!r.ok) throw new Error('catalogo: ' + r.status); return r.json(); });
+  }).then(function(rows){
+    d.rows = rows || [];
+    var k = 0;
+    function nextBucket(){
+      if(k >= LUX_SPACE_BUCKETS.length) return Promise.resolve();
+      var b = LUX_SPACE_BUCKETS[k++];
+      luxSpaceSay('Leggo i file: ' + b + '…');
+      return luxListBucket(b, function(n){ luxSpaceSay('Leggo i file: ' + b + ' (' + n + ')…'); }).then(function(list){ d.files[b] = list; },
+        function(e){ d.files[b] = []; d.denied[b] = (e && e.status) || true; }).then(nextBucket);
+    }
+    return nextBucket();
+  }).then(function(){
+    return luxSpaceFillMissing(d);
+  }).then(function(){
+    LUX_SPACE.data = luxSpaceClassify(d);
+    luxSpaceSay('');
+    luxSpaceRender();
+  }).catch(function(e){
+    console.warn('Spazio su Supabase:', e);
+    luxSpaceSay('Analisi non riuscita: ' + ((e && e.message) || e) + '. Riprova tra poco.');
+  }).then(function(){ LUX_SPACE.busy = false; if(btn) btn.disabled = false; luxSpaceBar(0, null); });
+}
+/* Se Supabase non dà l'elenco dei file dei fumetti (succede con certe regole), le grandezze dei
+   file usati dai titoli si chiedono una per una. I file non più usati, così, non si vedono. */
+function luxSpaceFillMissing(d){
+  var jobs = [];
+  [['comic-pages', false], ['comic-pages-clean', true]].forEach(function(pair){
+    var b = pair[0];
+    if((d.files[b] || []).length) return;
+    d.noList = d.noList || {};
+    d.noList[b] = true;
+    var seen = {};
+    d.rows.forEach(function(r){
+      var paths = b === 'comic-pages'
+        ? (r.pages || []).concat([r.cover_url]).map(function(u){ return luxPubPath(u); })
+        : (r.pages_clean || []).slice();
+      if(r.pdf_url){
+        if(/^https?:/i.test(r.pdf_url)){ if(b === 'comic-pages') paths.push(luxPubPath(r.pdf_url)); }
+        else if(b === 'comic-pages-clean') paths.push(r.pdf_url);
+      }
+      paths.forEach(function(p){
+        if(!p || seen[p]) return;
+        seen[p] = 1;
+        jobs.push(function(){
+          var url = pair[1] ? SUPABASE_URL + '/storage/v1/object/authenticated/' + b + '/' + luxEncPath(p) : luxPublicUrl(b, luxEncPath(p));
+          return luxHeadSize(url, pair[1]).then(function(info){ if(info) (d.files[b] = d.files[b] || []).push({ path: p, size: info.size, type: info.type, at: '' }); });
+        });
+      });
+    });
+  });
+  if(!jobs.length) return Promise.resolve();
+  var done = 0;
+  luxSpaceSay('Misuro i file uno per uno (' + jobs.length + ')…');
+  return luxPool(jobs, 6, function(){ done++; luxSpaceBar(done, jobs.length); });
+}
+function luxIsImagePath(f){ return /^image\//i.test(f.type || '') || /\.(jpe?g|png|webp|gif|heic|avif)$/i.test(f.path); }
+function luxIsAudioPath(f){ return /^audio\//i.test(f.type || '') || /\.(mp3|m4a|aac|wav|ogg|opus|flac)$/i.test(f.path); }
+function luxSpaceClassify(d){
+  var byId = {}, refPub = {}, refClean = {}, pdfs = {};
+  d.rows.forEach(function(r){
+    byId[r.id] = r;
+    (r.pages || []).forEach(function(u){ var p = luxPubPath(u); if(p) refPub[p] = 'page'; });
+    var cp = luxPubPath(r.cover_url); if(cp) refPub[cp] = 'cover';
+    (r.pages_clean || []).forEach(function(p){ if(p) refClean[p] = 'clean'; });
+    if(r.pdf_url){
+      if(/^https?:/i.test(r.pdf_url)){ var pp = luxPubPath(r.pdf_url); if(pp) pdfs['comic-pages/' + pp] = 1; }
+      else pdfs['comic-pages-clean/' + r.pdf_url] = 1;
+    }
+  });
+  var G = {}; // gruppo → { n, size }
+  function add(g, f){ var x = G[g] = G[g] || { n: 0, size: 0 }; x.n++; x.size += f.size || 0; }
+  var orphans = { 'comic-pages': [], 'comic-pages-clean': [] }, orphanSize = 0, cleanInfo = {}, others = [], done = luxSpaceDone();
+  var recent = d.now - 24 * 3600 * 1000;
+  ['comic-pages', 'comic-pages-clean'].forEach(function(b){
+    (d.files[b] || []).forEach(function(f){
+      var folder = f.path.split('/')[0], isTitle = /^c\d{6,}$/.test(folder) && f.path.indexOf('/') > 0;
+      var fresh = f.at && Date.parse(f.at) > recent;
+      if(pdfs[b + '/' + f.path] || (isTitle && /\.pdf$/i.test(f.path) && byId[folder])){ add('pdf', f); return; }
+      if(!isTitle){ add('other', f); return; }
+      if(!byId[folder]){ if(fresh) add('other', f); else { add('orphan', f); orphans[b].push(f.path); orphanSize += f.size || 0; } return; }
+      if(b === 'comic-pages'){
+        if(refPub[f.path] === 'page'){ add('pages', f); return; }
+        if(refPub[f.path] === 'cover'){ add('covers', f); return; }
+        var parent = f.path.replace(/-lx-(?:t|sm)\.jpg$/i, '-lx.jpg');
+        if(parent !== f.path && refPub[parent]){ add('thumbs', f); return; }
+        if(/\/cover-[^/]*$/i.test(f.path)){ add('oldCovers', f); return; }
+      } else {
+        if(refClean[f.path]){ add('clean', f); cleanInfo[f.path] = f; return; }
+      }
+      if(fresh){ add('other', f); return; }
+      add('orphan', f); orphans[b].push(f.path); orphanSize += f.size || 0;
+    });
+  });
+  var OTHER = {
+    'songs': function(f){ return luxIsAudioPath(f) ? 'songsAudio' : 'songsImg'; },
+    'songs-private': function(f){ return luxIsAudioPath(f) ? 'songsAudio' : 'songsImg'; },
+    'avatars': function(){ return 'people'; }, 'profile-gallery': function(){ return 'people'; },
+    'event-photos': function(){ return 'events'; }, 'events': function(){ return 'events'; },
+    'playlists': function(f){ return luxIsAudioPath(f) ? 'songsAudio' : 'lists'; }, 'podcasts': function(f){ return luxIsAudioPath(f) ? 'songsAudio' : 'lists'; }
+  };
+  Object.keys(OTHER).forEach(function(b){
+    (d.files[b] || []).forEach(function(f){
+      var g = OTHER[b](f);
+      add(g, f);
+      if(g === 'songsAudio' || !luxIsImagePath(f) || /\.(gif|svg)$/i.test(f.path) || b === 'songs-private') return;
+      var name = f.path.split('/').pop(), spec;
+      if(b === 'avatars') spec = /^avatar-hd\./i.test(name) ? [1200, 400000] : /^banner\./i.test(name) ? [1600, 500000] : [512, 200000];
+      else if(b === 'songs' || b === 'playlists' || b === 'podcasts') spec = [1000, 300000];
+      else spec = [1600, 500000];
+      if((f.size || 0) > spec[1] && done[b + '/' + f.path] !== f.size) others.push({ bucket: b, path: f.path, size: f.size, type: f.type, max: spec[0], ok: spec[1] });
+    });
+  });
+  // da alleggerire: pagine e copertine non ancora «-lx», originali pesanti
+  var pubTitles = [], pubN = 0, pubSize = 0, pubAfter = 0, sizeOf = {};
+  (d.files['comic-pages'] || []).forEach(function(f){ sizeOf[f.path] = f.size; });
+  d.rows.forEach(function(r){
+    var n = 0;
+    (r.pages || []).forEach(function(u){
+      var p = luxPubPath(u);
+      if(!p || /-lx\.jpg$/i.test(p)) return;
+      n++; pubN++; var s = sizeOf[p] || 0; pubSize += s; pubAfter += Math.min(s || 420000, 420000) + 12000;
+    });
+    var cp = luxPubPath(r.cover_url);
+    if(cp && !/-lx\.jpg$/i.test(cp)){ n++; pubN++; var cs = sizeOf[cp] || 0; pubSize += cs; pubAfter += Math.min(cs || 320000, 320000) + 45000; }
+    if(n) pubTitles.push(r.id);
+  });
+  var cleanTodo = [], cleanSize = 0, cleanAfter = 0;
+  d.rows.forEach(function(r){
+    (r.pages_clean || []).forEach(function(p){
+      var f = cleanInfo[p];
+      if(f && f.size && f.size <= 1600000 && !/png|webp/i.test(f.type || '')) return;
+      if(f && f.size && done['comic-pages-clean/' + p] === f.size) return;
+      cleanTodo.push({ id: r.id, path: p, size: f ? f.size : 0 });
+      cleanSize += f ? f.size : 0; cleanAfter += Math.min(f && f.size ? f.size : 1000000, 1000000);
+    });
+  });
+  var otherSize = 0, otherAfter = 0;
+  others.forEach(function(o){ otherSize += o.size; otherAfter += Math.min(o.size, o.max >= 1600 ? 250000 : o.max >= 1000 ? 150000 : 70000); });
+  var total = 0;
+  Object.keys(G).forEach(function(g){ total += G[g].size; });
+  return { rows: d.rows, byId: byId, G: G, total: total, orphans: orphans, orphanSize: orphanSize, orphanN: orphans['comic-pages'].length + orphans['comic-pages-clean'].length,
+    pubTitles: pubTitles, pubN: pubN, pubSize: pubSize, pubAfter: pubAfter, cleanTodo: cleanTodo, cleanSize: cleanSize, cleanAfter: cleanAfter,
+    others: others, otherSize: otherSize, otherAfter: otherAfter, denied: d.denied, noList: d.noList || {} };
+}
+var LUX_SPACE_LABELS = [
+  ['pages', 'Pagine dei fumetti (con filigrana)'], ['thumbs', 'Miniature'], ['covers', 'Copertine'], ['oldCovers', 'Copertine sostituite'],
+  ['clean', 'Pagine originali (senza filigrana)'], ['pdf', 'PDF'], ['songsAudio', 'Canzoni e podcast (audio)'], ['songsImg', 'Copertine delle canzoni'],
+  ['lists', 'Copertine di playlist e podcast'], ['people', 'Foto profilo e gallerie'], ['events', 'Eventi'], ['other', 'Novità e altro'],
+  ['orphan', 'File non più usati']
+];
+function luxSpaceRender(){
+  var d = LUX_SPACE.data, out = document.getElementById('luxSpaceOut');
+  if(!d || !out) return;
+  var pct = Math.round(d.total / (LUX_FREE_GB * 1e9) * 100);
+  var rows = LUX_SPACE_LABELS.filter(function(l){ return d.G[l[0]] && d.G[l[0]].n; }).map(function(l){
+    var g = d.G[l[0]];
+    return '<tr' + (l[0] === 'orphan' ? ' class="is-orphan"' : '') + '><td>' + l[1] + '</td><td class="n">' + g.n + '</td><td class="n">' + luxBytes(g.size) + '</td></tr>';
+  }).join('');
+  var notes = [];
+  var denied = Object.keys(d.denied || {});
+  if(denied.length) notes.push('Non ho potuto leggere: ' + denied.join(', ') + '.');
+  if(d.noList['comic-pages'] || d.noList['comic-pages-clean']) notes.push('Supabase non mi dà l\'elenco dei file dei fumetti: ho misurato solo quelli usati dai titoli, quindi i file non più usati qui non si vedono.');
+  var acts = [];
+  if(d.pubN) acts.push(luxSpaceAct('pub', 'Alleggerisci pagine e copertine',
+    d.pubN + ' file in ' + d.pubTitles.length + ' titoli' + (d.pubSize ? ': ' + luxBytes(d.pubSize) + ' → circa ' + luxBytes(d.pubAfter) : '') + '. Arrivano anche le miniature: aprire un titolo scarica pochi KB invece delle tavole intere.', true));
+  if(d.others.length) acts.push(luxSpaceAct('other', 'Alleggerisci le altre immagini',
+    d.others.length + ' immagini (copertine delle canzoni, foto profilo, eventi): ' + luxBytes(d.otherSize) + ' → circa ' + luxBytes(d.otherAfter) + '.'));
+  if(d.orphanN) acts.push(luxSpaceAct('orphan', 'Elimina i file non più usati',
+    d.orphanN + ' file (' + luxBytes(d.orphanSize) + '): titoli eliminati e pagine sostituite. Le copertine vecchie restano.'));
+  if(d.cleanTodo.length) acts.push(luxSpaceAct('clean', 'Alleggerisci gli originali',
+    d.cleanTodo.length + ' pagine senza filigrana' + (d.cleanSize ? ': ' + luxBytes(d.cleanSize) + ' → circa ' + luxBytes(d.cleanAfter) : '') + '. A occhio non cambia niente, ma gli originali sul server non tornano più com\'erano: fallo solo se le pagine le hai anche sul tuo computer.'));
+  var last = LUX_SPACE.lastMsg;
+  LUX_SPACE.lastMsg = null;
+  var lastHtml = last ? '<div class="lux-space-done" role="status"><p>' + escapeHtml(last.text) + '</p>' +
+    (last.errors.length ? '<ul>' + last.errors.map(function(e){ return '<li>' + escapeHtml(e) + '</li>'; }).join('') + '</ul>' : '') + '</div>' : '';
+  out.innerHTML = lastHtml +
+    '<div class="lux-space-total"><b>' + luxBytes(d.total) + '</b> su ' + LUX_FREE_GB + ' GB del piano gratuito' + (pct > 100 ? ' · <span class="over">' + pct + '%</span>' : ' · ' + pct + '%') + '</div>' +
+    '<div class="lux-space-meter' + (pct > 100 ? ' over' : '') + '"><span style="width:' + Math.min(100, pct) + '%"></span></div>' +
+    '<table class="lux-space-table"><thead><tr><th>Cosa</th><th class="n">File</th><th class="n">Spazio</th></tr></thead><tbody>' + rows + '</tbody></table>' +
+    (notes.length ? '<p class="form-note">' + notes.join(' ') + '</p>' : '') +
+    (acts.length ? '<div class="lux-space-acts">' + acts.join('') + '</div>' : '<p class="form-note lux-space-ok">Tutto già leggero: non c\'è niente da alleggerire.</p>') +
+    (d.G.songsAudio && d.G.songsAudio.size > 50e6 ? '<p class="form-note">Le canzoni restano come sono: l\'audio dal sito non si può rimpicciolire.</p>' : '');
+  Array.prototype.forEach.call(out.querySelectorAll('[data-space-act]'), function(b){
+    b.addEventListener('click', function(){ luxSpaceStart(b.getAttribute('data-space-act')); });
+  });
+}
+function luxSpaceAct(id, title, text, primary){
+  return '<div class="lux-space-act"><div><b>' + title + '</b><p>' + text + '</p></div>' +
+    '<button type="button" class="btn ' + (primary ? 'btn-primary' : 'btn-ghost') + ' btn-sm" data-space-act="' + id + '">' + title + '</button></div>';
+}
+
+// ---------- 2) le azioni ----------
+function luxSpaceStart(what){
+  var d = LUX_SPACE.data;
+  if(!d || LUX_SPACE.busy) return;
+  if(what === 'orphan' && !window.confirm('Elimino ' + d.orphanN + ' file non più usati (' + luxBytes(d.orphanSize) + ')? Non servono a nessun titolo e non tornano indietro.')) return;
+  if(what === 'clean'){
+    if(!window.confirm('Gli originali senza filigrana vengono sostituiti da copie più leggere (2600 pixel, qualità 90%). A occhio non cambia niente, ma i file sul server non tornano più com\'erano. Continuare?')) return;
+    if(!window.confirm('Ultima conferma: le pagine originali le hai anche sul tuo computer?')) return;
+  }
+  if(what === 'pub' && !window.confirm('Alleggerisco ' + d.pubN + ' pagine e copertine. Per farlo il sito le scarica una volta (circa ' + luxBytes(d.pubSize) + ' di traffico). Tieni aperta questa pagina finché non finisce: se la chiudi, riparti da dove eri. Iniziare?')) return;
+  if(what === 'other' && !window.confirm('Alleggerisco ' + d.others.length + ' immagini (stesso indirizzo, file più piccolo). Iniziare?')) return;
+  LUX_SPACE.busy = true; LUX_SPACE.stop = false;
+  var out = document.getElementById('luxSpaceOut');
+  Array.prototype.forEach.call(out.querySelectorAll('[data-space-act]'), function(b){ b.disabled = true; });
+  var scan = document.getElementById('luxSpaceScan'); if(scan) scan.disabled = true;
+  var stop = document.createElement('button');
+  stop.type = 'button'; stop.className = 'btn btn-ghost btn-sm lux-space-stop'; stop.textContent = 'Ferma';
+  stop.addEventListener('click', function(){ LUX_SPACE.stop = true; stop.disabled = true; luxSpaceSay('Mi fermo appena finisce il file in corso…'); });
+  var st = document.getElementById('luxSpaceStatus'); st.parentNode.insertBefore(stop, st);
+  var saved = { bytes: 0 };
+  window.addEventListener('beforeunload', luxSpaceUnload);
+  // lo schermo resta acceso finché lavora (dove il browser lo permette)
+  try {
+    var fp = document.featurePolicy || document.permissionsPolicy;
+    if(navigator.wakeLock && !(fp && fp.allowsFeature && !fp.allowsFeature('screen-wake-lock'))) navigator.wakeLock.request('screen').then(function(w){ LUX_SPACE.wake = w; }, function(){});
+  } catch(e){}
+  var summary = { text: '', errors: [] };
+  refreshSessionIfNeeded().then(function(){
+    return what === 'pub' ? luxSpaceRunPub(d, saved) : what === 'other' ? luxSpaceRunOther(d, saved) : what === 'orphan' ? luxSpaceRunOrphans(d, saved) : luxSpaceRunClean(d, saved);
+  }).then(function(res){
+    summary.text = (res && res.stopped ? 'Fermato. ' : 'Fatto. ') + (saved.bytes > 0 ? 'Spazio liberato: circa ' + luxBytes(saved.bytes) + '. ' : '') +
+      (res && res.failed ? 'Non riusciti: ' + res.failed + ' (qui sotto il perché). Riprovando, il sito riparte da lì.' : '');
+    summary.errors = (res && res.errors || []).slice(0, 8);
+  }).catch(function(e){
+    summary.text = 'Interrotto: ' + ((e && e.message) || e) + (saved.bytes > 0 ? ' (spazio liberato fin qui: circa ' + luxBytes(saved.bytes) + ')' : '');
+  }).then(function(){
+    window.removeEventListener('beforeunload', luxSpaceUnload);
+    try { if(LUX_SPACE.wake) LUX_SPACE.wake.release(); } catch(e){}
+    LUX_SPACE.wake = null;
+    stop.remove();
+    LUX_SPACE.busy = false;
+    luxSpaceBar(0, null);
+    if(scan) scan.disabled = false;
+    try { renderAdminList(); } catch(e){}
+    // i numeri sono cambiati: si rifà da sola l'analisi, e sopra resta com'è andata
+    LUX_SPACE.lastMsg = summary;
+    luxSpaceScan();
+  });
+}
+function luxSpaceUnload(e){ if(LUX_SPACE.busy){ e.preventDefault(); e.returnValue = 'Sto ancora alleggerendo i file.'; return e.returnValue; } }
+function luxSpaceFetch(url, auth){
+  return fetch(url, { headers: auth ? luxSpaceH(false) : {}, cache: 'no-store' }).then(function(r){
+    if(!r.ok) throw new Error('lettura non riuscita (' + r.status + '): ' + url.split('/').slice(-2).join('/'));
+    return r.blob();
+  });
+}
+function luxSpacePut(bucket, path, blob, cache){
+  var s = getSession();
+  var h = { 'apikey': SUPABASE_ANON_KEY, 'Authorization': 'Bearer ' + (s ? s.access_token : ''), 'x-upsert': 'true', 'Content-Type': blob.type || 'image/jpeg' };
+  if(cache) h['cache-control'] = cache;
+  return fetch(SUPABASE_URL + '/storage/v1/object/' + bucket + '/' + luxEncPath(path), { method: 'POST', headers: h, body: blob }).then(function(r){
+    if(!r.ok) return r.text().then(function(tx){ throw new Error('salvataggio non riuscito (' + r.status + '): ' + path + (tx ? ' — ' + tx.slice(0, 120) : '')); });
+  });
+}
+// una pagina già caricata → la versione «-lx» (se è già leggera, gli stessi byte) e la sua miniatura
+function luxSpaceMakePage(blob){
+  return luxLoadImg(blob).then(function(src){
+    var keep = luxIsJpeg(blob) && blob.size <= 450000 && Math.max(src.w, src.h) <= LUX_PAGE_PUBLIC;
+    var o = {};
+    return (keep ? Promise.resolve(blob) : luxRenderImage(src, LUX_PAGE_PUBLIC, 0.85, {})).then(function(pub){
+      // già della misura giusta e la versione nuova non pesa meno: restano i byte di prima
+      o.pub = (pub !== blob && pub.size >= blob.size && luxIsJpeg(blob) && Math.max(src.w, src.h) <= LUX_PAGE_PUBLIC) ? blob : pub;
+      return luxRenderImage(src, LUX_PAGE_THUMB, 0.72, {});
+    }).then(function(th){ o.thumb = th; src.done(); return o; }, function(e){ src.done(); throw e; });
+  });
+}
+function luxSpaceMakeCover(blob){
+  return luxLoadImg(blob).then(function(src){
+    var keep = luxIsJpeg(blob) && blob.size <= 700000 && Math.max(src.w, src.h) <= LUX_COVER_MAX;
+    var o = {};
+    return (keep ? Promise.resolve(blob) : luxRenderImage(src, LUX_COVER_MAX, 0.86, {})).then(function(big){
+      o.big = (big !== blob && big.size >= blob.size && luxIsJpeg(blob) && Math.max(src.w, src.h) <= LUX_COVER_MAX) ? blob : big;
+      return luxRenderImage(src, LUX_COVER_SM, 0.8, {});
+    }).then(function(sm){ o.sm = sm; src.done(); return o; }, function(e){ src.done(); throw e; });
+  });
+}
+function luxSpaceRunPub(d, saved){
+  var ids = d.pubTitles.slice(), k = 0, total = d.pubN, done = 0, failed = 0, errors = [];
+  function nextTitle(){
+    if(LUX_SPACE.stop) return Promise.resolve({ stopped: true, failed: failed, errors: errors });
+    if(k >= ids.length) return Promise.resolve({ failed: failed, errors: errors });
+    var id = ids[k++];
+    return refreshSessionIfNeeded().then(function(){
+      return luxSpaceOneTitle(id, k, ids.length, function(){ done++; luxSpaceBar(done, total); }, saved);
+    }).then(function(r){ failed += r.failed; errors = errors.concat(r.errors).slice(0, 30); }, function(e){
+      failed++; errors.push(((d.byId[id] && d.byId[id].title) || id) + ': ' + ((e && e.message) || e));
+    }).then(nextTitle);
+  }
+  return nextTitle();
+}
+function luxSpaceRow(id){
+  return fetch(SUPABASE_URL + '/rest/v1/catalog?id=eq.' + encodeURIComponent(id) + '&select=id,title,cover_url,pages', { headers: luxSpaceH(false) })
+    .then(function(r){ if(!r.ok) throw new Error('titolo non letto (' + r.status + ')'); return r.json(); })
+    .then(function(rows){ if(!rows || !rows[0]) throw new Error('titolo non trovato'); return rows[0]; });
+}
+function luxSpaceOneTitle(id, k, n, tick, saved){
+  var row, stamp = Date.now().toString(36), uploaded = [], oldPaths = [], newPages, newCover = null, gain = 0, res = { failed: 0, errors: [] };
+  return luxSpaceRow(id).then(function(r){
+    row = r;
+    var label = String(row.title || id).slice(0, 60);
+    newPages = (row.pages || []).slice();
+    var jobs = [];
+    newPages.forEach(function(u, i){
+      var p = luxPubPath(u);
+      if(!p || /-lx\.jpg$/i.test(p)) return;
+      jobs.push(function(){
+        if(LUX_SPACE.stop) return;
+        luxSpaceSay('Titolo ' + k + ' di ' + n + ' · «' + label + '» · pagina ' + (i + 1) + ' di ' + newPages.length);
+        var num = String(i + 1); while(num.length < 3) num = '0' + num;
+        var np = id + '/' + num + '-' + stamp + '-lx.jpg', before = 0;
+        return luxSpaceFetch(u).then(function(b){ before = b.size; return luxSpaceMakePage(b); }).then(function(o){
+          return luxSpacePut('comic-pages', luxThumbPath(np), o.thumb, LUX_LX_CACHE).then(function(){
+            uploaded.push(luxThumbPath(np));
+            return luxSpacePut('comic-pages', np, o.pub, LUX_LX_CACHE);
+          }).then(function(){
+            uploaded.push(np); newPages[i] = luxPublicUrl('comic-pages', np); oldPaths.push(p);
+            gain += before - o.pub.size - o.thumb.size;
+          });
+        }).then(tick, function(e){ tick(); throw new Error('«' + label + '» pagina ' + (i + 1) + ': ' + ((e && e.message) || e)); });
+      });
+    });
+    var cp = luxPubPath(row.cover_url);
+    if(cp && !/-lx\.jpg$/i.test(cp)){
+      jobs.push(function(){
+        if(LUX_SPACE.stop) return;
+        luxSpaceSay('Titolo ' + k + ' di ' + n + ' · «' + label + '» · copertina');
+        var base = id + '/cover-' + Date.now() + '-lx', before = 0;
+        return luxSpaceFetch(row.cover_url).then(function(b){ before = b.size; return luxSpaceMakeCover(b); }).then(function(o){
+          return luxSpacePut('comic-pages', base + '-sm.jpg', o.sm, LUX_LX_CACHE).then(function(){
+            uploaded.push(base + '-sm.jpg');
+            return luxSpacePut('comic-pages', base + '.jpg', o.big, LUX_LX_CACHE);
+          }).then(function(){ uploaded.push(base + '.jpg'); newCover = luxPublicUrl('comic-pages', base + '.jpg'); }); // la vecchia resta: niente spazio liberato qui, ma le griglie scaricano la miniatura
+        }).then(tick, function(e){ tick(); throw new Error('«' + label + '» copertina: ' + ((e && e.message) || e)); });
+      });
+    }
+    return luxPool(jobs, 2);
+  }).then(function(r){
+    res.failed = r.failed; res.errors = r.errors;
+    var changedPages = JSON.stringify(newPages) !== JSON.stringify(row.pages || []);
+    if(!changedPages && !newCover) return;
+    // il titolo è cambiato nel frattempo (modificato da qui o da un altro telefono)? allora non tocco niente
+    return luxSpaceRow(id).then(function(now){
+      if(JSON.stringify(now.pages || []) !== JSON.stringify(row.pages || []) || now.cover_url !== row.cover_url) throw new Error('il titolo è stato modificato nel frattempo: lo lascio com\'era');
+      var patch = {};
+      if(changedPages) patch.pages = newPages;
+      if(newCover) patch.cover_url = newCover;
+      return fetch(SUPABASE_URL + '/rest/v1/catalog?id=eq.' + encodeURIComponent(id), {
+        method: 'PATCH', headers: Object.assign(luxSpaceH(true), { 'Prefer': 'return=representation' }), body: JSON.stringify(patch)
+      }).then(function(pr){ if(!pr.ok) throw new Error('titolo non aggiornato (' + pr.status + ')'); return pr.json(); }).then(function(back){
+        var b = back && back[0];
+        if(!b || (patch.pages && JSON.stringify(b.pages) !== JSON.stringify(patch.pages)) || (patch.cover_url && b.cover_url !== patch.cover_url)) throw new Error('il database non ha salvato il titolo');
+        // anche la copia sul telefono/computer
+        try {
+          var items = getCatalog(), it = items.find(function(x){ return x.id === id; });
+          if(it){ if(patch.pages) it.pages = patch.pages; if(patch.cover_url) it.cover_url = patch.cover_url; saveCatalogLocal(items); }
+        } catch(e){}
+        // solo adesso via le pagine vecchie (la copertina vecchia resta: i link condivisi la mostrano ancora)
+        return luxStorageRemove('comic-pages', oldPaths).then(function(nDel){
+          saved.bytes += Math.max(0, gain);
+          if(nDel < oldPaths.length) res.errors.push('«' + (row.title || id) + '»: ' + (oldPaths.length - nDel) + ' pagine vecchie non eliminate (Supabase non lo permette).');
+        }, function(e){ res.errors.push('«' + (row.title || id) + '»: pagine vecchie non eliminate (' + e.message + ').'); });
+      });
+    }).catch(function(e){
+      // il titolo resta com'era: tolgo i file nuovi appena caricati
+      return luxStorageRemove('comic-pages', uploaded).catch(function(){}).then(function(){ throw e; });
+    });
+  }).then(function(){ return res; });
+}
+function luxSpaceRunOther(d, saved){
+  var list = d.others.slice(), done = 0;
+  var jobs = list.map(function(f){ return function(){
+    luxSpaceSay('Immagine ' + (done + 1) + ' di ' + list.length + ' · ' + f.bucket + '/' + f.path.split('/').pop());
+    return luxSpaceFetch(luxPublicUrl(f.bucket, luxEncPath(f.path))).then(function(blob){
+      var file = new File([blob], f.path.split('/').pop(), { type: blob.type || f.type || 'image/jpeg' });
+      return luxShrinkImage(file, f.max, 0.86, f.ok).then(function(nf){
+        if(nf === file || nf.size > blob.size * 0.85){ luxSpaceMarkDone(f.bucket + '/' + f.path, blob.size); return; }
+        return luxSpacePut(f.bucket, f.path, nf, null).then(function(){ saved.bytes += blob.size - nf.size; luxSpaceMarkDone(f.bucket + '/' + f.path, nf.size); });
+      });
+    }).then(function(){ done++; luxSpaceBar(done, list.length); }, function(e){ done++; luxSpaceBar(done, list.length); throw e; });
+  }; });
+  return luxPool(jobs, 2);
+}
+function luxSpaceRunOrphans(d, saved){
+  var groups = [['comic-pages', d.orphans['comic-pages']], ['comic-pages-clean', d.orphans['comic-pages-clean']]];
+  var asked = d.orphanN, removed = 0, i = 0;
+  luxSpaceSay('Elimino i file non più usati…');
+  function next(){
+    if(i >= groups.length) return Promise.resolve();
+    var g = groups[i++];
+    return luxStorageRemove(g[0], g[1]).then(function(n){ removed += n; luxSpaceBar(removed, asked); }).then(next);
+  }
+  return next().then(function(){
+    if(removed) saved.bytes += Math.round(d.orphanSize * removed / Math.max(asked, 1));
+    return { failed: asked - removed, errors: asked > removed ? [(asked - removed) + ' file non eliminati: Supabase non lo permette con le regole attuali.'] : [] };
+  });
+}
+function luxSpaceRunClean(d, saved){
+  var list = d.cleanTodo.slice(), done = 0;
+  var jobs = list.map(function(f){ return function(){
+    luxSpaceSay('Originale ' + (done + 1) + ' di ' + list.length);
+    var key = 'comic-pages-clean/' + f.path;
+    return luxSpaceFetch(SUPABASE_URL + '/storage/v1/object/comic-pages-clean/' + luxEncPath(f.path), true).then(function(blob){
+      if(blob.size <= 1600000 && luxIsJpeg(blob)){ luxSpaceMarkDone(key, blob.size); return; }
+      return luxLoadImg(blob).then(function(src){
+        return luxRenderImage(src, LUX_PAGE_CLEAN, 0.9, {}).then(function(nb){ src.done(); return nb; }, function(e){ src.done(); throw e; });
+      }).then(function(nb){
+        if(nb.size > blob.size * 0.85){ luxSpaceMarkDone(key, blob.size); return; }
+        return luxSpacePut('comic-pages-clean', f.path, nb, null).then(function(){ saved.bytes += blob.size - nb.size; luxSpaceMarkDone(key, nb.size); });
+      });
+    }).then(function(){ done++; luxSpaceBar(done, list.length); }, function(e){ done++; luxSpaceBar(done, list.length); throw e; });
+  }; });
+  return luxPool(jobs, 2);
 }
 
 /* ============ WATERMARK (baked into the actual image pixels, not a removable CSS
@@ -7827,9 +8639,9 @@ function watermarkImageFile(file){
   });
 }
 
-function uploadComicPage(file, path, onProgress){
+function uploadComicPage(file, path, onProgress, cacheControl){
   var session = getSession();
-  return xhrUpload(SUPABASE_URL + '/storage/v1/object/comic-pages/' + path, file, session, onProgress)
+  return xhrUpload(SUPABASE_URL + '/storage/v1/object/comic-pages/' + path, file, session, onProgress, cacheControl)
     .then(function(){ return SUPABASE_URL + '/storage/v1/object/public/comic-pages/' + path; });
 }
 
@@ -7845,6 +8657,7 @@ function uploadAllPendingPages(comicId, onProgress){
   var urls = [];
   var cleanPaths = [];
   var i = 0;
+  var stamp = Date.now().toString(36); // v246
   function next(){
     if(i >= pendingPages.length) return Promise.resolve({urls:urls, cleanPaths:cleanPaths});
     var label = t('pages.uploading').replace('{n}', i + 1).replace('{total}', pendingPages.length);
@@ -7853,18 +8666,25 @@ function uploadAllPendingPages(comicId, onProgress){
     var file = pendingPages[i].file;
     var pageNum = String(i + 1);
     while(pageNum.length < 3) pageNum = '0' + pageNum;
-    var path = comicId + '/' + pageNum + '.jpg'; // watermarking always re-encodes to JPEG
-    return watermarkImageFile(file).then(function(watermarkedBlob){
-      var lastLoaded = 0;
-      return uploadComicPage(watermarkedBlob, path, function(loaded){
-        if(onProgress) onProgress(loaded - lastLoaded); lastLoaded = loaded;
-      });
+    // v246: nome nuovo a ogni caricamento («-lx»): filigranata 2000 px, miniatura 240 px, originale leggero
+    var path = comicId + '/' + pageNum + '-' + stamp + '-lx.jpg';
+    // la barra avanza come prima: ogni pagina vale due volte il file scelto (filigranata + pulita)
+    function part(){ var last = 0; return function(loaded, total){ var v = total ? loaded / total * file.size : 0; if(onProgress) onProgress(v - last); last = v; }; }
+    var prep = null;
+    return luxPreparePage(file).catch(function(e){
+      // il browser non sa leggere questo formato: come prima, filigrana a grandezza piena e originale così com'è
+      console.warn('Pagina non alleggerita:', e);
+      return watermarkImageFile(file).then(function(wb){ return { pub: wb, thumb: null, clean: file }; });
+    }).then(function(p){
+      prep = p;
+      if(!p.thumb) return null;
+      return xhrUpload(SUPABASE_URL + '/storage/v1/object/comic-pages/' + luxThumbPath(path), p.thumb, getSession(), null, LUX_LX_CACHE)
+        .catch(function(e){ console.warn('Miniatura non caricata (la striscia userà la pagina):', e); });
+    }).then(function(){
+      return uploadComicPage(prep.pub, path, part(), LUX_LX_CACHE);
     }).then(function(url){
       urls.push(url);
-      var lastLoaded2 = 0;
-      return uploadCleanPage(file, path, function(loaded){ // stesso nome file, bucket diverso (privato)
-        if(onProgress) onProgress(loaded - lastLoaded2); lastLoaded2 = loaded;
-      });
+      return uploadCleanPage(prep.clean, path, part()); // stesso nome file, bucket diverso (privato)
     }).then(function(cleanPath){
       cleanPaths.push(cleanPath);
       i++;
@@ -8075,7 +8895,10 @@ function removeCollabBlock(idx){
   if(!btn) return;
   function attach(){
     btn.addEventListener('click', function(){
-      if(isOnWifi() === false && !window.confirm(t('entry.wifiHint'))) return; // su dati mobili confermati, non blocchiamo: è solo un consiglio
+      // v246: prima di scaricare tutto dice quanto è (titoli e pagine) e consiglia il Wi-Fi
+      var items = getCatalog(), pages = 0;
+      items.forEach(function(i){ pages += Math.max((i.pages_clean || []).length, (i.pages || []).length); });
+      if(!window.confirm(t('offline.allConfirm').replace('{n}', items.length).replace('{p}', pages))) return;
       syncCatalogForOffline(true);
     });
   }
@@ -8415,9 +9238,9 @@ function publishSingleDraftNewItem(draftItem){
   if(draftItem.coverDataUrl){
     steps = steps.then(function(){
       return dataUrlToBlob(draftItem.coverDataUrl).then(function(blob){
-        return compressImageFile(blob, 2600, 0.92);
+        return compressImageFile(blob, LUX_COVER_MAX, 0.86);
       }).then(function(compressed){
-        return uploadCatalogAsset(compressed, newItem.id + '/cover-' + Date.now() + '.jpg');
+        return luxUploadCover(compressed, newItem.id); // v246
       });
     }).then(function(url){ newItem.cover_url = url; });
   }
@@ -8609,12 +9432,12 @@ function runTitleUploadSequence(newItem, isEdit){
     uploadSteps = uploadSteps.then(function(){
       status.textContent = t('cover.uploading');
       setLabel(t('cover.uploading'));
-      return compressImageFile(pendingCover.file, 2600, 0.92).then(function(compressed){
+      return compressImageFile(pendingCover.file, LUX_COVER_MAX, 0.86).then(function(compressed){
         return classifyFileMaturity(compressed).then(function(isMature){
           if(isMature) newItem.mature = true;
-          var lastLoaded = 0;
-          return uploadCatalogAsset(compressed, newItem.id + '/cover-' + Date.now() + '.' + coverExt, function(loaded){
-            bumpBytes(loaded - lastLoaded); lastLoaded = loaded;
+          var lastLoaded = 0, coverSize = pendingCover.file.size;
+          return luxUploadCover(compressed, newItem.id, function(loaded, total){ // v246: 1600 px + miniatura
+            var v = total ? loaded / total * coverSize : 0; bumpBytes(v - lastLoaded); lastLoaded = v;
           });
         });
       });
@@ -9989,48 +10812,54 @@ function saveProfile(){
   var avatarStep = Promise.resolve(currentProfile ? currentProfile.avatar_url : null);
   var avatarFile = document.getElementById('fProfileAvatar').files[0];
   if(avatarFile){
-    var extMatch = /\.([a-zA-Z0-9]+)$/.exec(avatarFile.name || '');
-    var ext = extMatch ? extMatch[1].toLowerCase() : 'jpg';
-    var path = currentUserId() + '/avatar.' + ext;
-    avatarStep = fetch(SUPABASE_URL + '/storage/v1/object/avatars/' + path, {
-      method:'POST',
-      headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'x-upsert':'true', 'Content-Type': avatarFile.type || 'image/jpeg' },
-      body: avatarFile
-    }).then(function(r){
-      if(!r.ok) return httpFailure('avatar', r);
-      return pickAvatarPublicUrl(currentUserId(), ext);
+    // v246: rimpicciolita prima di partire (al massimo 512 px)
+    avatarStep = luxShrinkImage(avatarFile, 512, 0.86, 200000).then(function(f){
+      var ext = luxExtOf(f);
+      var path = currentUserId() + '/avatar.' + ext;
+      return fetch(SUPABASE_URL + '/storage/v1/object/avatars/' + path, {
+        method:'POST',
+        headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'x-upsert':'true', 'Content-Type': f.type || 'image/jpeg' },
+        body: f
+      }).then(function(r){
+        if(!r.ok) return httpFailure('avatar', r);
+        return pickAvatarPublicUrl(currentUserId(), ext);
+      });
     });
   }
 
   var avatarHdStep = Promise.resolve(currentProfile ? currentProfile.avatar_hd_url : null);
   var avatarHdFile = document.getElementById('fProfileAvatarHd').files[0];
   if(avatarHdFile){
-    var extMatchHd = /\.([a-zA-Z0-9]+)$/.exec(avatarHdFile.name || '');
-    var extHd = extMatchHd ? extMatchHd[1].toLowerCase() : 'jpg';
-    var pathHd = currentUserId() + '/avatar-hd.' + extHd;
-    avatarHdStep = fetch(SUPABASE_URL + '/storage/v1/object/avatars/' + pathHd, {
-      method:'POST',
-      headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'x-upsert':'true', 'Content-Type': avatarHdFile.type || 'image/jpeg' },
-      body: avatarHdFile
-    }).then(function(r){
-      if(!r.ok) return httpFailure('avatar-hd', r);
-      return pickAvatarHdPublicUrl(currentUserId(), extHd);
+    // v246: rimpicciolita prima di partire (al massimo 1200 px)
+    avatarHdStep = luxShrinkImage(avatarHdFile, 1200, 0.86, 400000).then(function(f){
+      var extHd = luxExtOf(f);
+      var pathHd = currentUserId() + '/avatar-hd.' + extHd;
+      return fetch(SUPABASE_URL + '/storage/v1/object/avatars/' + pathHd, {
+        method:'POST',
+        headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'x-upsert':'true', 'Content-Type': f.type || 'image/jpeg' },
+        body: f
+      }).then(function(r){
+        if(!r.ok) return httpFailure('avatar-hd', r);
+        return pickAvatarHdPublicUrl(currentUserId(), extHd);
+      });
     });
   }
 
   var bannerStep = Promise.resolve(currentProfile ? currentProfile.banner_url : null);
   var bannerFile = document.getElementById('fProfileBanner').files[0];
   if(bannerFile){
-    var extMatchBn = /\.([a-zA-Z0-9]+)$/.exec(bannerFile.name || '');
-    var extBn = extMatchBn ? extMatchBn[1].toLowerCase() : 'jpg';
-    var pathBn = currentUserId() + '/banner.' + extBn;
-    bannerStep = fetch(SUPABASE_URL + '/storage/v1/object/avatars/' + pathBn, {
-      method:'POST',
-      headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'x-upsert':'true', 'Content-Type': bannerFile.type || 'image/jpeg' },
-      body: bannerFile
-    }).then(function(r){
-      if(!r.ok) return httpFailure('banner', r);
-      return pickBannerPublicUrl(currentUserId(), extBn);
+    // v246: rimpicciolita prima di partire (al massimo 1600 px)
+    bannerStep = luxShrinkImage(bannerFile, 1600, 0.86, 500000).then(function(f){
+      var extBn = luxExtOf(f);
+      var pathBn = currentUserId() + '/banner.' + extBn;
+      return fetch(SUPABASE_URL + '/storage/v1/object/avatars/' + pathBn, {
+        method:'POST',
+        headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'x-upsert':'true', 'Content-Type': f.type || 'image/jpeg' },
+        body: f
+      }).then(function(r){
+        if(!r.ok) return httpFailure('banner', r);
+        return pickBannerPublicUrl(currentUserId(), extBn);
+      });
     });
   }
 
@@ -11668,10 +12497,12 @@ function uploadEventPhoto(eventId, fileInput, galleryEl){
   var file = fileInput.files[0];
   if(!session || !file) return;
   var path = Date.now() + '-' + file.name.replace(/[^a-zA-Z0-9.\-]/g, '_');
-  fetch(SUPABASE_URL + '/storage/v1/object/event-photos/' + path, {
-    method:'POST',
-    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type': file.type || 'image/jpeg' },
-    body: file
+  luxShrinkImage(file, 1600, 0.85, 500000).then(function(f){ // v246: rimpicciolita prima di partire
+    return fetch(SUPABASE_URL + '/storage/v1/object/event-photos/' + path, {
+      method:'POST',
+      headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type': f.type || 'image/jpeg' },
+      body: f
+    });
   }).then(function(r){
     if(!r.ok) throw new Error('upload foto evento fallito: ' + r.status);
     var url = SUPABASE_URL + '/storage/v1/object/public/event-photos/' + path;
@@ -15128,12 +15959,27 @@ function toggleFavorite(catalogId){
   }).catch(function(err){ console.warn('Favorite toggle failed:', err); luxToast(t('net.actionFailed')); });
 }
 
-/* ============ CART (client-side only — no payment processor connected yet) ============ */
+/* ============ CART · v246: il carrello arriva fino in fondo ============
+   Prima finiva con «il pagamento non è ancora collegato»: ora porta allo stesso
+   percorso del pulsante «Sostieni», ma per tutti i titoli insieme e con un solo
+   pagamento:
+   1) il totale, già scritto in PayPal e Revolut (con Satispay lo si scrive a mano);
+   2) per i titoli in vendita l'email e la richiesta ([ACQUISTO]), per gli altri la
+      donazione registrata ([DONAZIONE]) — con un solo numero di ricevuta per tutto
+      il carrello, lo stesso da scrivere nella nota del pagamento: così in
+      Amministra › Richieste lo ritrovi subito accanto al pagamento.
+   La richiesta ha lo stesso formato di quella del singolo titolo (i titoli uniti
+   da « + », gli id da virgole): la leggono già I Miei Acquisti, le ricevute PDF e
+   Amministra › Richieste. */
 var cart = [];
 try{ cart = JSON.parse(localStorage.getItem('lux_cart') || '[]'); }catch(e){ cart = []; }
+if(!Array.isArray(cart)) cart = [];
+cart = cart.filter(function(i){ return i && i.id != null; });
+var cartOrderCode = null; // il numero dell'ordine: resta lo stesso finché non lo invii
+var cartDone = null;      // dopo l'invio la finestra mostra «fatto» e la ricevuta
 
-function saveCart(){ localStorage.setItem('lux_cart', JSON.stringify(cart)); renderCartCount(); }
-function openCartModal(){ renderCartModal(); document.getElementById('cartModal').classList.remove('hidden'); }
+function saveCart(){ try{ localStorage.setItem('lux_cart', JSON.stringify(cart)); }catch(e){} renderCartCount(); }
+function openCartModal(){ cartDone = null; renderCartModal(); document.getElementById('cartModal').classList.remove('hidden'); }
 function closeCartModal(){ document.getElementById('cartModal').classList.add('hidden'); }
 function renderCartCount(){
   var el = document.getElementById('cartCount');
@@ -15141,35 +15987,224 @@ function renderCartCount(){
   if(cart.length > 0){ el.textContent = cart.length; el.classList.remove('hidden'); }
   else { el.classList.add('hidden'); }
 }
+function luxInCart(id){ return cart.some(function(i){ return i.id === id; }); }
+// il pulsante della scheda del titolo: «Aggiungi al carrello» oppure «Nel carrello · Apri»
+function luxCartSyncAddBtn(item){
+  var btn = document.getElementById('titleModalAddCart');
+  if(!btn || !item) return;
+  if(!item.price){ btn.classList.add('hidden'); return; }
+  btn.classList.remove('hidden');
+  var inCart = luxInCart(item.id);
+  btn.setAttribute('data-i18n', inCart ? 'cart.inCartOpen' : 'cart.add');
+  btn.textContent = t(inCart ? 'cart.inCartOpen' : 'cart.add');
+  btn.classList.toggle('is-in-cart', inCart);
+  btn.onclick = inCart ? function(){ openCartModal(); } : function(){ addToCart(item); };
+}
 function addToCart(item){
-  if(cart.some(function(i){ return i.id === item.id; })) return;
-  cart.push({id:item.id, title:item.title, price:item.price});
-  saveCart();
+  if(!luxInCart(item.id)){
+    cart.push({id:item.id, title:item.title, price:item.price});
+    saveCart();
+    trackCartAdd(item.id); // interesse, non un acquisto
+    bumpLocalCount(item.id, 'cart_add_count', 1);
+    luxToast(t('cart.added'));
+  }
   renderCartModal();
-  trackCartAdd(item.id); // interest signal only — not a real purchase until a payment processor is connected
-  bumpLocalCount(item.id, 'cart_add_count', 1);
+  luxCartSyncAddBtn(item);
 }
 function removeFromCart(id){
   cart = cart.filter(function(i){ return i.id !== id; });
   saveCart();
   renderCartModal();
+  luxCartSyncOpenTitle();
 }
+function luxCartSyncOpenTitle(){
+  if(!currentModalCatalogId) return;
+  var it = getCatalog().find(function(i){ return i.id === currentModalCatalogId; });
+  if(it) luxCartSyncAddBtn(it);
+}
+// le righe del carrello con titolo e prezzo di oggi (se il catalogo li ha cambiati nel frattempo)
+function luxCartLines(){
+  var cat = getCatalog();
+  return cart.map(function(c){
+    var it = null;
+    for(var k = 0; k < cat.length; k++){ if(cat[k].id === c.id){ it = cat[k]; break; } }
+    var price = it ? (it.price ? Number(it.price) : null) : (c.price ? Number(c.price) : null);
+    return { id: c.id, title: (it && it.title) || c.title || '', price: (price && !isNaN(price)) ? price : null, forSale: !!(it && it.stock != null) };
+  });
+}
+function luxCartTotal(lines){
+  var cents = 0;
+  lines.forEach(function(l){ if(l.price) cents += Math.round(l.price * 100); });
+  return cents / 100;
+}
+// i tre pagamenti, con l'importo già scritto dove il servizio lo permette (lo stesso del pulsante «Sostieni»)
+function luxPayLinks(amount){
+  var a = amount ? Math.round(amount * 100) / 100 : null;
+  return {
+    PayPal: 'https://www.paypal.me/SergioTradori335' + (a ? '/' + a : ''),
+    Satispay: 'https://web.satispay.com/download/qrcode/S6Y-CON--511524A6-1080-460A-AD28-7FFE827A6AAB',
+    Revolut: 'https://revolut.me/sergiov5cx' + (a ? '/' + a + 'EUR' : '')
+  };
+}
+var LUX_CART_CHECK = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M7.6 12.4l3 3 5.8-6.6"/></svg>';
+
 function renderCartModal(){
+  var modal = document.getElementById('cartModal');
   var box = document.getElementById('cartItems');
-  if(cart.length === 0){
-    box.innerHTML = '<p class="form-note">' + t('cart.empty') + '</p>';
+  if(!modal || !box) return;
+  var mbox = modal.querySelector('.modal') || modal;
+  var sub = mbox.querySelector('.sub');
+  if(sub){ sub.setAttribute('data-i18n', 'cart.sub'); sub.textContent = t('cart.sub'); }
+  var oldNotice = mbox.querySelector('.notice');
+  if(oldNotice) oldNotice.hidden = true; // «il pagamento non è ancora collegato»: non serve più
+  var co = document.getElementById('cartCheckout');
+  if(!co){
+    co = document.createElement('div');
+    co.id = 'cartCheckout';
+    co.className = 'cart-co';
+    box.parentNode.insertBefore(co, box.nextSibling);
+  }
+  var clearBtn = document.getElementById('btnClearCart');
+
+  if(cartDone){
+    box.innerHTML = '';
+    if(sub) sub.hidden = true;
+    if(clearBtn) clearBtn.hidden = true;
+    co.innerHTML = '<div class="cart-done" role="status">' + LUX_CART_CHECK +
+      '<div><p>' + escapeHtml(t(cartDone.kind === 'buy' ? 'cart.sent' : 'support.donationSaved')) + '</p>' +
+      '<p class="cart-done-code mono">' + escapeHtml(cartDone.rec.code) + '</p>' +
+      '<button type="button" class="btn btn-primary btn-sm" id="cartReceiptBtn">' + escapeHtml(t('support.receiptBtn')) + '</button></div></div>';
+    var rb = document.getElementById('cartReceiptBtn');
+    if(rb) rb.addEventListener('click', function(){ openReceiptModal(cartDone.rec); });
     return;
   }
+
+  var lines = luxCartLines();
+  if(lines.length === 0){
+    box.innerHTML = '<p class="form-note">' + t('cart.empty') + '</p>';
+    co.innerHTML = '';
+    if(sub) sub.hidden = true;
+    if(clearBtn) clearBtn.hidden = true;
+    return;
+  }
+  if(sub) sub.hidden = false;
+  if(clearBtn) clearBtn.hidden = false;
   box.innerHTML = '';
-  cart.forEach(function(item){
+  lines.forEach(function(item){
     var row = document.createElement('div');
-    row.className = 'admin-row';
-    var priceTxt = item.price ? '€' + Number(item.price).toFixed(2) : '—';
+    row.className = 'admin-row cart-row';
+    var priceTxt = item.price ? luxMoney(item.price, currentLang) : '—';
     row.innerHTML =
-      '<div class="info"><div class="t">' + escapeHtml(item.title) + '</div><div class="m">' + priceTxt + '</div></div>' +
-      '<div class="admin-actions"><button class="btn btn-sm btn-ghost" data-rm="' + item.id + '">×</button></div>';
+      '<div class="info"><div class="t">' + escapeHtml(item.title) + '</div><div class="m">' + escapeHtml(priceTxt) + '</div></div>' +
+      '<div class="admin-actions"><button type="button" class="btn btn-sm btn-ghost" data-rm="1" aria-label="' + escapeHtml(t('cart.remove')) + '">×</button></div>';
     row.querySelector('[data-rm]').addEventListener('click', function(){ removeFromCart(item.id); });
     box.appendChild(row);
+  });
+
+  var total = luxCartTotal(lines);
+  var kind = lines.some(function(l){ return l.forSale; }) ? 'buy' : 'don';
+  if(!cartOrderCode) cartOrderCode = luxReceiptCode(new Date());
+  var links = luxPayLinks(total);
+  var signed = isSignedIn();
+  var payBtns = LUX_RECEIPT_METHODS.map(function(m, i){
+    var label = kind === 'buy' ? t('cart.payWith').replace('{m}', m) : t('support.' + m.toLowerCase());
+    return '<a href="' + links[m] + '" target="_blank" rel="noopener" class="btn ' + (i === 0 ? 'btn-primary' : 'btn-ghost') + '" data-pay="' + m + '">' + escapeHtml(label) + '</a>';
+  }).join('');
+  var form;
+  if(kind === 'buy'){
+    form = '<div class="lux-don lux-buy cart-form">' +
+      '<label class="lux-don-field lux-don-email"><span>' + escapeHtml(t('cart.emailLabel')) + '</span>' +
+        '<input type="email" id="cartBuyerEmail" autocomplete="email" placeholder="' + escapeHtml(t('support.emailPlaceholder')) + '" value="' + escapeHtml(currentUserEmail() || '') + '"></label>' +
+      luxPayFieldsHtml(total, 'support.amountPaidLabel', 'cartPayAmount', 'cartPayMethod') +
+      '<div id="cartPayError" class="lux-don-err" role="alert"></div>' +
+      '<button type="button" id="cartPaySubmit" class="btn btn-primary cart-submit">' + escapeHtml(t('support.emailSubmit')) + '</button>' +
+      '<div class="lux-don-hint">' + escapeHtml(t('support.registerHint')) + '</div>' +
+    '</div>';
+  } else if(signed){
+    form = '<div class="lux-don cart-form">' +
+      luxPayFieldsHtml(total, 'support.amountLabel', 'cartPayAmount', 'cartPayMethod') +
+      '<div id="cartPayError" class="lux-don-err" role="alert"></div>' +
+      '<button type="button" id="cartPaySubmit" class="btn btn-primary cart-submit">' + escapeHtml(t('support.registerDonation')) + '</button>' +
+      '<div class="lux-don-hint">' + escapeHtml(t('support.registerHint')) + '</div>' +
+    '</div>';
+  } else {
+    form = '<div class="cart-form cart-login"><p class="lux-don-hint">' + escapeHtml(t('cart.donLogin')) + '</p>' +
+      '<button type="button" class="btn btn-ghost" id="cartLogin">' + escapeHtml(t('auth.loginBtn')) + '</button></div>';
+  }
+  co.innerHTML =
+    '<div class="cart-total"><span>' + escapeHtml(t('cart.total')) + '</span><b>' + escapeHtml(luxMoney(total, currentLang)) + '</b></div>' +
+    '<div class="cart-step"><span class="cart-step-n">1</span><span>' + escapeHtml(t('cart.step1')) + '</span></div>' +
+    '<div class="cart-pay">' + payBtns + '</div>' +
+    '<p class="cart-sat-hint">' + escapeHtml(t('cart.satispayHint').replace('{total}', luxMoney(total, currentLang))) + '</p>' +
+    '<div class="cart-code"><span>' + escapeHtml(t('cart.noteCode')) + '</span><b>' + escapeHtml(cartOrderCode) + '</b>' +
+      '<button type="button" class="cart-copy" id="cartCopyCode">' + escapeHtml(t('cart.copy')) + '</button></div>' +
+    '<div class="cart-step"><span class="cart-step-n">2</span><span>' + escapeHtml(t(kind === 'buy' ? 'cart.step2Buy' : 'cart.step2Don')) + '</span></div>' +
+    form;
+
+  var methodEl = document.getElementById('cartPayMethod');
+  Array.prototype.forEach.call(co.querySelectorAll('a[data-pay]'), function(a){
+    a.addEventListener('click', function(){ if(methodEl) methodEl.value = a.getAttribute('data-pay'); });
+  });
+  var copyBtn = document.getElementById('cartCopyCode');
+  if(copyBtn) copyBtn.addEventListener('click', function(){
+    var code = cartOrderCode;
+    var done = function(){ luxToast(t('cart.copied')); };
+    if(navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(code).then(done, function(){ window.prompt(t('cart.noteCode'), code); });
+    else window.prompt(t('cart.noteCode'), code);
+  });
+  var loginBtn = document.getElementById('cartLogin');
+  if(loginBtn) loginBtn.addEventListener('click', function(){ closeCartModal(); openAuth('login'); });
+  var submit = document.getElementById('cartPaySubmit');
+  if(submit) submit.addEventListener('click', function(){ luxCartSubmit(kind, lines, total); });
+}
+
+function luxCartSubmit(kind, lines, total){
+  var btn = document.getElementById('cartPaySubmit');
+  var err = document.getElementById('cartPayError');
+  var amountEl = document.getElementById('cartPayAmount'), methodEl = document.getElementById('cartPayMethod');
+  var emailEl = document.getElementById('cartBuyerEmail');
+  if(!btn || btn.disabled) return;
+  if(err) err.textContent = '';
+  var email = emailEl ? emailEl.value.trim() : (currentUserEmail() || '');
+  if(kind === 'buy' && (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))){ if(err) err.textContent = t('support.emailRequired'); if(emailEl) emailEl.focus(); return; }
+  var amount = luxParseAmount(amountEl ? amountEl.value : '');
+  if(amount !== null && isNaN(amount)){ if(err) err.textContent = t('support.amountInvalid'); if(amountEl) amountEl.focus(); return; }
+  var method = methodEl && methodEl.value ? methodEl.value : null;
+  var session = getSession();
+  if(kind === 'don' && !session){ closeCartModal(); openAuth('login'); return; }
+  btn.disabled = true;
+  var now = new Date(), code = cartOrderCode || luxReceiptCode(now);
+  var titles = lines.map(function(l){ return l.title; }).join(' + ');
+  var ids = lines.map(function(l){ return l.id; }).join(',');
+  var nameStep = !session ? Promise.resolve(null)
+    : (currentProfile !== null ? Promise.resolve(currentProfile) : loadOwnProfile().then(function(){ return currentProfile; }));
+  nameStep.then(function(profile){
+    var nick = session ? publicDisplayName(profile) : null;
+    var tail = (amount !== null ? ' · ' + luxAmountIt(amount) + ' €' : '') + (method ? ' · ' + method : '') + ' · ricevuta ' + code + (nick ? ' · nickname: ' + nick : '');
+    var payload = kind === 'buy'
+      ? { author_email: email, body: '[ACQUISTO] "' + titles + '" (id ' + ids + ') — spedire a: ' + email + tail }
+      : { author_email: currentUserEmail(), body: '[DONAZIONE] "' + titles + '" — supporto libero registrato' + tail };
+    if(session) payload.user_id = currentUserId();
+    var headers = { 'apikey':SUPABASE_ANON_KEY, 'Content-Type':'application/json' };
+    if(session) headers.Authorization = 'Bearer ' + session.access_token;
+    return fetch(SUPABASE_URL + '/rest/v1/requests', { method:'POST', headers: headers, body: JSON.stringify(payload) }).then(function(r){
+      if(!r.ok) throw new Error('cart request failed: ' + r.status);
+      var rec = { code: code, at: now.toISOString(), name: nick, email: kind === 'buy' ? email : currentUserEmail(), title: titles, titleId: ids,
+        amount: amount, method: method, uid: currentUserId() };
+      if(kind === 'buy') rec.kind = 'purchase';
+      luxKeepReceipt(rec);
+      cart = [];
+      saveCart();
+      cartOrderCode = null;
+      cartDone = { rec: rec, kind: kind };
+      renderCartModal();
+      luxCartSyncOpenTitle();
+      try { if(document.getElementById('mycomics') && isSignedIn()) renderMyComics(); } catch(e){}
+    });
+  }).catch(function(e){
+    console.warn('Carrello: richiesta non inviata', e);
+    btn.disabled = false;
+    if(err) err.textContent = t('net.actionFailed');
   });
 }
 
@@ -15447,13 +16482,7 @@ function openTitleModal(item){
     offlineBtn.classList.add('hidden');
   }
 
-  var addCartBtn = document.getElementById('titleModalAddCart');
-  if(item.price){
-    addCartBtn.classList.remove('hidden');
-    addCartBtn.onclick = function(){ addToCart(item); };
-  } else {
-    addCartBtn.classList.add('hidden');
-  }
+  luxCartSyncAddBtn(item); // v246: «Aggiungi al carrello» oppure «Nel carrello · Apri»
 
   var loginPrompt = document.getElementById('commentLoginPrompt');
   var formBox = document.getElementById('commentFormBox');
@@ -16807,12 +17836,12 @@ function runLuxSongUpload(session, titleEl, artistEl, genreEl, coverFile, audioF
   if(coverFile){
     var coverPath = Date.now() + '-cover-' + coverFile.name.replace(/[^a-zA-Z0-9.\-]/g, '_');
     uploads.push(
-      (function(){
-        var lastLoaded = 0;
-        return xhrUpload(SUPABASE_URL + '/storage/v1/object/songs/' + coverPath, coverFile, session, function(loaded){
-          bumpBytes(loaded - lastLoaded); lastLoaded = loaded;
+      luxShrinkImage(coverFile, 1000, 0.86, 300000).then(function(cf){ // v246: niente più PNG da 3 MB per un riquadro da 40 px
+        var lastLoaded = 0, k = coverFile.size / Math.max(cf.size, 1);
+        return xhrUpload(SUPABASE_URL + '/storage/v1/object/songs/' + coverPath, cf, session, function(loaded){
+          var v = loaded * k; bumpBytes(v - lastLoaded); lastLoaded = v;
         });
-      })().then(function(){
+      }).then(function(){
         return SUPABASE_URL + '/storage/v1/object/public/songs/' + coverPath;
       })
     );
@@ -18170,12 +19199,12 @@ function runCatalogSongUpload(catalogId, session, titleEl, artistEl, genreEl, co
   if(coverFile){
     var coverPath = catalogId + '/' + Date.now() + '-cover-' + coverFile.name.replace(/[^a-zA-Z0-9.\-]/g, '_');
     uploads.push(
-      (function(){
-        var lastLoaded = 0;
-        return xhrUpload(SUPABASE_URL + '/storage/v1/object/songs/' + coverPath, coverFile, session, function(loaded){
-          bumpBytes(loaded - lastLoaded); lastLoaded = loaded;
+      luxShrinkImage(coverFile, 1000, 0.86, 300000).then(function(cf){ // v246: niente più PNG da 3 MB per un riquadro da 40 px
+        var lastLoaded = 0, k = coverFile.size / Math.max(cf.size, 1);
+        return xhrUpload(SUPABASE_URL + '/storage/v1/object/songs/' + coverPath, cf, session, function(loaded){
+          var v = loaded * k; bumpBytes(v - lastLoaded); lastLoaded = v;
         });
-      })().then(function(){
+      }).then(function(){
         return SUPABASE_URL + '/storage/v1/object/public/songs/' + coverPath;
       })
     );
@@ -18512,10 +19541,12 @@ function addEvent(){
   var imgPromise = Promise.resolve(undefined); // undefined = non toccare l'immagine (in modifica)
   if(imgFile){
     var imgPath = Date.now() + '-' + imgFile.name.replace(/[^a-zA-Z0-9.\-]/g, '_');
-    imgPromise = fetch(SUPABASE_URL + '/storage/v1/object/events/' + imgPath, {
-      method:'POST',
-      headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type': imgFile.type || 'image/jpeg' },
-      body: imgFile
+    imgPromise = luxShrinkImage(imgFile, 1600, 0.86, 500000).then(function(f){ // v246: rimpicciolita prima di partire
+      return fetch(SUPABASE_URL + '/storage/v1/object/events/' + imgPath, {
+        method:'POST',
+        headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type': f.type || 'image/jpeg' },
+        body: f
+      });
     }).then(function(r){
       if(!r.ok) throw new Error('upload immagine evento fallito: ' + r.status);
       return SUPABASE_URL + '/storage/v1/object/public/events/' + imgPath;
@@ -18675,10 +19706,12 @@ function addPlaylist(){
   var coverPromise = Promise.resolve(null);
   if(coverFile){
     var coverPath = Date.now() + '-' + coverFile.name.replace(/[^a-zA-Z0-9.\-]/g, '_');
-    coverPromise = fetch(SUPABASE_URL + '/storage/v1/object/playlists/' + coverPath, {
-      method:'POST',
-      headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type': coverFile.type || 'image/jpeg' },
-      body: coverFile
+    coverPromise = luxShrinkImage(coverFile, 1000, 0.86, 300000).then(function(f){ // v246: rimpicciolita prima di partire
+      return fetch(SUPABASE_URL + '/storage/v1/object/playlists/' + coverPath, {
+        method:'POST',
+        headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type': f.type || 'image/jpeg' },
+        body: f
+      });
     }).then(function(r){
       if(!r.ok) throw new Error('upload copertina playlist fallito: ' + r.status);
       return SUPABASE_URL + '/storage/v1/object/public/playlists/' + coverPath;
@@ -18808,10 +19841,12 @@ function addPodcast(){
   var coverPromise = Promise.resolve(null);
   if(coverFile){
     var coverPath = Date.now() + '-' + coverFile.name.replace(/[^a-zA-Z0-9.\-]/g, '_');
-    coverPromise = fetch(SUPABASE_URL + '/storage/v1/object/podcasts/' + coverPath, {
-      method:'POST',
-      headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type': coverFile.type || 'image/jpeg' },
-      body: coverFile
+    coverPromise = luxShrinkImage(coverFile, 1000, 0.86, 300000).then(function(f){ // v246: rimpicciolita prima di partire
+      return fetch(SUPABASE_URL + '/storage/v1/object/podcasts/' + coverPath, {
+        method:'POST',
+        headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type': f.type || 'image/jpeg' },
+        body: f
+      });
     }).then(function(r){
       if(!r.ok) throw new Error('upload copertina podcast fallito: ' + r.status);
       return SUPABASE_URL + '/storage/v1/object/public/podcasts/' + coverPath;
@@ -19519,9 +20554,8 @@ function openSupportTitlePanel(item){
 
   var price = item.price ? Number(item.price) : null;
   var isForSale = item.stock != null; // solo i titoli con scorta impostata sono "in vendita" per davvero
-  var paypalUrl = 'https://www.paypal.me/SergioTradori335' + (price ? '/' + price : '');
-  var revolutUrl = 'https://revolut.me/sergiov5cx' + (price ? '/' + price + 'EUR' : '');
-  var satispayUrl = 'https://web.satispay.com/download/qrcode/S6Y-CON--511524A6-1080-460A-AD28-7FFE827A6AAB';
+  var payLinks = luxPayLinks(price); // v246: gli stessi tre indirizzi del carrello
+  var paypalUrl = payLinks.PayPal, revolutUrl = payLinks.Revolut, satispayUrl = payLinks.Satispay;
 
   var overlay = document.createElement('div');
   overlay.id = 'supportTitlePanel';
@@ -19618,27 +20652,7 @@ function openPageReader(item){
   reader.classList.remove('hidden');
   var thumbs = document.getElementById('pageReaderThumbs');
   thumbs.innerHTML = '';
-  readerPages.forEach(function(url, idx){
-    var img = document.createElement('img');
-    img.src = url; // versione filigranata come anteprima immediata, sostituita sotto se c'è di meglio
-    img.alt = 'Pagina ' + (idx + 1);
-    img.addEventListener('click', function(){ showReaderPage(idx); });
-    thumbs.appendChild(img);
-    // Stessa logica del visualizzatore grande: se la pagina è già in cache
-    // (offline o già aperta in questa sessione), la usiamo — altrimenti la
-    // miniatura resta quella pubblica live, niente di rotto se offline.
-    var cleanPath = (item.pages_clean || [])[idx];
-    if(isSignedIn() && cleanPath){
-      if(readerBlobUrlCache[cleanPath]){
-        img.src = readerBlobUrlCache[cleanPath];
-      } else {
-        fetchAuthenticatedCleanPage(cleanPath).then(function(blobUrl){
-          readerBlobUrlCache[cleanPath] = blobUrl;
-          img.src = blobUrl;
-        }).catch(function(){}); // resta la versione filigranata live, va bene così
-      }
-    }
-  });
+  luxReaderThumbs(thumbs, readerPages, function(idx){ showReaderPage(idx); }); // v246: miniature leggere, solo quando la striscia le mostra
   var resume = readingProgressMap[item.id];
   var startIdx = (typeof resume === 'number' && resume > 0 && resume < readerPages.length) ? resume : 0;
   initReaderControls();
@@ -19679,13 +20693,15 @@ function renderReaderFlow(){
     img.dataset.pageIdx = String(idx);
     img.addEventListener('contextmenu', function(e){ e.preventDefault(); });
     img.addEventListener('load', function(){
+      if(img.src === LUX_BLANK_IMG) return; // v246: il segnaposto vuoto non conta
       img.classList.add('is-loaded');
       // la prima tavola arrivata dà la proporzione ai segnaposto delle altre
       if(!box.style.getPropertyValue('--page-ratio') && img.naturalWidth && img.naturalHeight){
         box.style.setProperty('--page-ratio', img.naturalWidth + ' / ' + img.naturalHeight);
       }
     });
-    img.src = url;
+    // v246: per chi è dentro arriva direttamente la pagina pulita, quando ci si avvicina (non anche quella filigranata)
+    if(!(isSignedIn() && readerItem && readerItem.pages_clean && readerItem.pages_clean[idx])) img.src = url;
     box.appendChild(img);
   });
   var imgs = box.querySelectorAll('img');
@@ -19697,7 +20713,7 @@ function renderReaderFlow(){
           readerLazyObserver.unobserve(en.target);
           loadReaderImage(en.target, +en.target.dataset.pageIdx);
         });
-      }, { rootMargin: '900px 0px' });
+      }, { root: luxScrollRoot(box), rootMargin: '900px 0px' }); // v246: dentro la scheda che scorre, le pagine pulite arrivano un po' prima
       imgs.forEach(function(img){ readerLazyObserver.observe(img); });
     }
     readerScrollObserver = new IntersectionObserver(function(){
@@ -19934,14 +20950,12 @@ function maybeStartOfflineSync(){
     if(!isVerified){ if(row) row.classList.add('hidden'); return; }
     if(row) row.classList.remove('hidden');
     var wifi = isOnWifi();
-    if(wifi === true){
-      syncCatalogForOffline(true); // rilevabile e siamo su WiFi: parte da sola
-    }
-    // wifi === false: su dati mobili, non partiamo, rispettiamo la scelta di sicurezza
-    // wifi === null: non rilevabile (Safari/iOS) — mostriamo il bottone manuale, non partiamo da soli
+    /* v246: niente più download automatico. Prima, a chi era dentro col Wi-Fi (sui telefoni Android) il
+       sito scaricava da solo TUTTO il catalogo, originali compresi, e lo riscaricava ogni 3 giorni: era la
+       voce più pesante del traffico su Supabase. Ora si scarica solo quando lo chiedi tu, con il pulsante. */
     var manualBtn = document.getElementById('btnOfflineSyncManual');
     if(manualBtn){
-      manualBtn.classList.toggle('hidden', wifi !== null);
+      manualBtn.classList.remove('hidden');
       var hintEl = document.getElementById('offlineSyncWifiHint');
       if(wifi !== true){
         if(!hintEl){
@@ -20077,19 +21091,21 @@ function initReaderSwipe(){
 }
 function loadReaderImage(imgEl, idx){
   var cleanPath = (readerItem && readerItem.pages_clean) ? readerItem.pages_clean[idx] : null;
+  imgEl.dataset.pageIdx = String(idx);
   if(isSignedIn() && cleanPath){
-    if(readerBlobUrlCache[cleanPath]){ imgEl.src = readerBlobUrlCache[cleanPath]; return; }
-    imgEl.src = readerPages[idx]; // versione filigranata come anteprima immediata mentre quella pulita si scarica
+    if(readerBlobUrlCache[cleanPath]){ luxShowFinal(imgEl, readerBlobUrlCache[cleanPath]); return; }
+    // v246: mentre arriva la pagina pulita, la miniatura sfocata (pochi KB): non più la tavola filigranata intera in più
+    luxShowPreview(imgEl, readerPages[idx]);
     fetchAuthenticatedCleanPage(cleanPath).then(function(blobUrl){
       readerBlobUrlCache[cleanPath] = blobUrl;
-      if(imgEl.dataset.pageIdx === String(idx)){ imgEl.src = blobUrl; } // solo se l'immagine mostra ancora questa pagina
+      if(imgEl.dataset.pageIdx === String(idx)) luxShowFinal(imgEl, blobUrl); // solo se l'immagine mostra ancora questa pagina
     }).catch(function(err){
       console.warn('Clean page fetch failed, showing watermarked version instead:', err);
+      if(imgEl.dataset.pageIdx === String(idx)) luxShowFinal(imgEl, readerPages[idx]);
     });
   } else {
-    imgEl.src = readerPages[idx];
+    luxShowFinal(imgEl, readerPages[idx]);
   }
-  imgEl.dataset.pageIdx = String(idx);
 }
 function showReaderPage(idx){
   if(idx < 0 || idx >= readerPages.length) return;
@@ -20723,7 +21739,7 @@ function switchAdminTab(tabName){
   if(tabName === 'artists') renderAdminArtistsList();
   if(tabName === 'servers') loadServersAdminList();
   if(tabName === 'events') loadEventsAdminList();
-  if(tabName === 'maintenance') renderAdminStatusPanel();
+  if(tabName === 'maintenance'){ renderAdminStatusPanel(); try { luxSpaceMount(); } catch(e){ console.warn('Spazio su Supabase:', e); } } // v246
 }
 
 function renderAdminArtistsList(){
@@ -22000,7 +23016,7 @@ function __appInit(){
     if(e.target.id === 'imageLightboxModal') closeImageLightbox();
   });
   document.getElementById('btnClearCart') && document.getElementById('btnClearCart').addEventListener('click', function(){
-    cart = []; saveCart(); renderCartModal();
+    cart = []; saveCart(); cartOrderCode = null; renderCartModal(); luxCartSyncOpenTitle();
   });
 
   updateSyncStatus();
