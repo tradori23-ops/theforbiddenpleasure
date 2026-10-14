@@ -2577,10 +2577,10 @@ var ADMIN_EMAIL = 'sergio.tradori@outlook.it'; // UI-gating only; real enforceme
 
 /* v246: le miniature delle copertine sono file veri, fatti quando la copertina si carica (e da
    «Spazio su Supabase» per quelle già caricate): cover-123-lx.jpg → cover-123-lx-sm.jpg, 480 px.
-   Il ridimensionamento al volo di Supabase (render/image) non si usa più: sul piano gratuito non
-   c'è (l'immagine restava rotta, o arrivava l'originale intero dopo un tentativo a vuoto) e sul
-   Pro consuma la quota delle trasformazioni. Tutto il resto si usa così com'è: ora parte già
-   leggero, e «Spazio su Supabase» alleggerisce quello che c'era già. */
+   Il ridimensionamento al volo di Supabase (render/image) non si usa più: sul piano Pro ne
+   comprende 100 immagini al mese, e il sito ne usava 142 (era il limite superato su Usage); sul
+   piano gratuito non c'è proprio. Tutto il resto si usa così com'è: ora parte già leggero, e
+   «Spazio su Supabase» alleggerisce quello che c'era già. */
 function coverThumbUrl(url, width){
   if(!url) return url;
   var m = /^(.*\/storage\/v1\/object\/public\/comic-pages\/[^/?#]+\/cover-\d+)-lx\.jpg((?:[?#].*)?)$/i.exec(url);
@@ -7730,8 +7730,9 @@ function renderPagesPreview(){
 }
 
 /* ============ v246: FILE LEGGERI SU SUPABASE ============
-   Perché: il piano gratuito di Supabase dà 1 GB per i file e 5 GB di traffico al mese, e il
-   sito li superava. Ogni pagina si salvava due volte a piena grandezza (con filigrana, fino a
+   Perché (v247: il progetto è sul piano Pro, che comprende 100 GB per i file, 250 GB di traffico e
+   100 immagini ridimensionate al mese; il limite superato erano le 142 immagini ridimensionate):
+   il sito chiedeva a Supabase molto più del necessario. Ogni pagina si salvava due volte a piena grandezza (con filigrana, fino a
    1 MB e oltre, e l'originale così com'era), le copertine delle canzoni erano PNG da 3 MB
    mostrati a 40 pixel, aprire un titolo scaricava subito tutte le sue tavole (e per chi è
    dentro anche tutti gli originali), e chi era dentro col Wi-Fi riscaricava da solo l'intero
@@ -8006,7 +8007,6 @@ function luxScrollRoot(el){
    Si può fermare quando vuoi e riprendere: ripartendo salta quello che è già leggero. */
 var LUX_SPACE = { busy: false, stop: false, data: null, wake: null };
 var LUX_SPACE_BUCKETS = ['comic-pages', 'comic-pages-clean', 'songs', 'songs-private', 'avatars', 'profile-gallery', 'event-photos', 'events', 'playlists', 'podcasts'];
-var LUX_FREE_GB = 1;
 
 function luxBytes(n){
   n = Math.max(0, n || 0);
@@ -8038,7 +8038,7 @@ function luxSpaceMount(){
   box.id = 'luxSpace';
   box.innerHTML =
     '<div class="lux-space-h">Spazio su Supabase</div>' +
-    '<p class="form-note">Il piano gratuito di Supabase dà <b>1 GB</b> per i file e <b>5 GB</b> di traffico al mese. Qui vedi cosa occupa lo spazio e puoi alleggerire i file già caricati (quelli nuovi partono già leggeri). Per chi legge non cambia niente: solo immagini più piccole, che si aprono prima.</p>' +
+    '<p class="form-note">Qui vedi cosa occupa lo spazio su Supabase e puoi alleggerire i file già caricati (quelli nuovi partono già leggeri). Per chi legge non cambia niente: solo immagini più piccole, che si aprono prima. I limiti del tuo piano li trovi su Supabase, nella pagina «Usage».</p>' +
     '<button type="button" class="btn btn-primary btn-sm" id="luxSpaceScan">Analizza lo spazio</button>' +
     '<div class="lux-space-status" id="luxSpaceStatus" role="status" aria-live="polite"></div>' +
     '<div class="lux-space-bar hidden" id="luxSpaceBar"><span></span></div>' +
@@ -8189,7 +8189,13 @@ function luxSpaceClassify(d){
       var folder = f.path.split('/')[0], isTitle = /^c\d{6,}$/.test(folder) && f.path.indexOf('/') > 0;
       var fresh = f.at && Date.parse(f.at) > recent;
       if(pdfs[b + '/' + f.path] || (isTitle && /\.pdf$/i.test(f.path) && byId[folder])){ add('pdf', f); return; }
-      if(!isTitle){ add('other', f); return; }
+      if(!isTitle){
+        add('other', f);
+        // v247: foto del Diario, della chat e delle Novità (stanno nello stesso archivio dei fumetti)
+        if(b === 'comic-pages' && /^(posts|dm-attachments|announcements)\//.test(f.path) && luxIsImagePath(f) && !/\.(gif|svg)$/i.test(f.path)
+           && (f.size || 0) > 500000 && done[b + '/' + f.path] !== f.size) others.push({ bucket: b, path: f.path, size: f.size, type: f.type, max: 1600, ok: 500000 });
+        return;
+      }
       if(!byId[folder]){ if(fresh) add('other', f); else { add('orphan', f); orphans[b].push(f.path); orphanSize += f.size || 0; } return; }
       if(b === 'comic-pages'){
         if(refPub[f.path] === 'page'){ add('pages', f); return; }
@@ -8264,7 +8270,6 @@ var LUX_SPACE_LABELS = [
 function luxSpaceRender(){
   var d = LUX_SPACE.data, out = document.getElementById('luxSpaceOut');
   if(!d || !out) return;
-  var pct = Math.round(d.total / (LUX_FREE_GB * 1e9) * 100);
   var rows = LUX_SPACE_LABELS.filter(function(l){ return d.G[l[0]] && d.G[l[0]].n; }).map(function(l){
     var g = d.G[l[0]];
     return '<tr' + (l[0] === 'orphan' ? ' class="is-orphan"' : '') + '><td>' + l[1] + '</td><td class="n">' + g.n + '</td><td class="n">' + luxBytes(g.size) + '</td></tr>';
@@ -8277,7 +8282,7 @@ function luxSpaceRender(){
   if(d.pubN) acts.push(luxSpaceAct('pub', 'Alleggerisci pagine e copertine',
     d.pubN + ' file in ' + d.pubTitles.length + ' titoli' + (d.pubSize ? ': ' + luxBytes(d.pubSize) + ' → circa ' + luxBytes(d.pubAfter) : '') + '. Arrivano anche le miniature: aprire un titolo scarica pochi KB invece delle tavole intere.', true));
   if(d.others.length) acts.push(luxSpaceAct('other', 'Alleggerisci le altre immagini',
-    d.others.length + ' immagini (copertine delle canzoni, foto profilo, eventi): ' + luxBytes(d.otherSize) + ' → circa ' + luxBytes(d.otherAfter) + '.'));
+    d.others.length + ' immagini (copertine delle canzoni, foto profilo, eventi, foto del Diario e della chat): ' + luxBytes(d.otherSize) + ' → circa ' + luxBytes(d.otherAfter) + '. Le miniature non le fa più Supabase: così si aprono subito anche queste.'));
   if(d.orphanN) acts.push(luxSpaceAct('orphan', 'Elimina i file non più usati',
     d.orphanN + ' file (' + luxBytes(d.orphanSize) + '): titoli eliminati e pagine sostituite. Le copertine vecchie restano.'));
   if(d.cleanTodo.length) acts.push(luxSpaceAct('clean', 'Alleggerisci gli originali',
@@ -8287,8 +8292,7 @@ function luxSpaceRender(){
   var lastHtml = last ? '<div class="lux-space-done" role="status"><p>' + escapeHtml(last.text) + '</p>' +
     (last.errors.length ? '<ul>' + last.errors.map(function(e){ return '<li>' + escapeHtml(e) + '</li>'; }).join('') + '</ul>' : '') + '</div>' : '';
   out.innerHTML = lastHtml +
-    '<div class="lux-space-total"><b>' + luxBytes(d.total) + '</b> su ' + LUX_FREE_GB + ' GB del piano gratuito' + (pct > 100 ? ' · <span class="over">' + pct + '%</span>' : ' · ' + pct + '%') + '</div>' +
-    '<div class="lux-space-meter' + (pct > 100 ? ' over' : '') + '"><span style="width:' + Math.min(100, pct) + '%"></span></div>' +
+    '<div class="lux-space-total"><b>' + luxBytes(d.total) + '</b> di file su Supabase</div>' +
     '<table class="lux-space-table"><thead><tr><th>Cosa</th><th class="n">File</th><th class="n">Spazio</th></tr></thead><tbody>' + rows + '</tbody></table>' +
     (notes.length ? '<p class="form-note">' + notes.join(' ') + '</p>' : '') +
     (acts.length ? '<div class="lux-space-acts">' + acts.join('') + '</div>' : '<p class="form-note lux-space-ok">Tutto già leggero: non c\'è niente da alleggerire.</p>') +
@@ -12615,10 +12619,12 @@ function uploadDiaryPhoto(file){
   var extMatch = /\.([a-zA-Z0-9]+)$/.exec(file.name || '');
   var ext = extMatch ? extMatch[1].toLowerCase() : 'jpg';
   var path = 'posts/' + currentUserId() + '/' + Date.now() + '_' + Math.random().toString(36).slice(2,8) + '.' + ext;
-  return fetch(SUPABASE_URL + '/storage/v1/object/comic-pages/' + path, {
-    method:'POST',
-    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type': file.type || 'image/jpeg' },
-    body: file
+  return luxShrinkImage(file, 1600, 0.85, 500000).then(function(f){ // v247: rimpicciolita prima di partire
+    return fetch(SUPABASE_URL + '/storage/v1/object/comic-pages/' + path, {
+      method:'POST',
+      headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type': f.type || 'image/jpeg' },
+      body: f
+    });
   }).then(function(r){
     if(!r.ok) throw new Error('diary photo upload failed: ' + r.status);
     return SUPABASE_URL + '/storage/v1/object/public/comic-pages/' + path;
@@ -13285,10 +13291,12 @@ function uploadChatAttachment(file){
   var extMatch = /\.([a-zA-Z0-9]+)$/.exec(file.name || '');
   var ext = extMatch ? extMatch[1].toLowerCase() : 'bin';
   var path = 'dm-attachments/' + currentChatThreadId + '/' + Date.now() + '_' + Math.random().toString(36).slice(2,8) + '.' + ext;
-  return fetch(SUPABASE_URL + '/storage/v1/object/comic-pages/' + path, {
-    method:'POST',
-    headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type': file.type || 'application/octet-stream' },
-    body: file
+  return luxShrinkImage(file, 1600, 0.85, 500000).then(function(f){ // v247: le foto partono rimpicciolite (gli altri file così come sono)
+    return fetch(SUPABASE_URL + '/storage/v1/object/comic-pages/' + path, {
+      method:'POST',
+      headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type': f.type || 'application/octet-stream' },
+      body: f
+    });
   }).then(function(r){
     if(!r.ok) throw new Error('chat attachment upload failed: ' + r.status);
     return SUPABASE_URL + '/storage/v1/object/public/comic-pages/' + path;
@@ -21849,10 +21857,12 @@ function handleAddAnnouncement(){
     var extMatch = /\.([a-zA-Z0-9]+)$/.exec(imageFile.name || '');
     var ext = extMatch ? extMatch[1].toLowerCase() : 'jpg';
     var path = 'announcements/' + Date.now() + '_' + Math.random().toString(36).slice(2, 8) + '.' + ext;
-    imageStep = fetch(SUPABASE_URL + '/storage/v1/object/comic-pages/' + path, {
-      method:'POST',
-      headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type': imageFile.type || 'image/jpeg' },
-      body: imageFile
+    imageStep = luxShrinkImage(imageFile, 1600, 0.85, 500000).then(function(f){ // v247: rimpicciolita prima di partire
+      return fetch(SUPABASE_URL + '/storage/v1/object/comic-pages/' + path, {
+        method:'POST',
+        headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type': f.type || 'image/jpeg' },
+        body: f
+      });
     }).then(function(r){
       if(!r.ok){
         return r.text().then(function(bodyText){
