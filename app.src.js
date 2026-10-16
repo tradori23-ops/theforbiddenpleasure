@@ -1005,6 +1005,20 @@ Object.assign(STR.hi, {"cart.sub": "सब एक साथ, एक ही भ�
 Object.assign(STR.bn, {"cart.sub": "সব একসাথে, একটি পেমেন্টে", "cart.total": "মোট", "cart.step1": "মোট টাকা পরিশোধ করুন", "cart.step2Buy": "তারপর আমাদের অনুরোধ পাঠান", "cart.step2Don": "তারপর আপনার দান নথিভুক্ত করুন", "cart.payWith": "{m} দিয়ে পেমেন্ট করুন", "cart.satispayHint": "Satispay-এ টাকার পরিমাণ আপনাকে নিজে লিখতে হবে: {total}।", "cart.noteCode": "পেমেন্টের নোটে লিখুন:", "cart.copy": "কপি করুন", "cart.copied": "কোড কপি হয়েছে", "cart.emailLabel": "কমিকস পাওয়ার ইমেইল", "cart.sent": "অনুরোধ পাঠানো হয়েছে। পেমেন্ট নিশ্চিত হলেই আপনার লেখা ইমেইলে সবকিছু পেয়ে যাবেন।", "cart.donLogin": "দান নথিভুক্ত করতে আর PDF রসিদ পেতে সাইন ইন করুন।", "cart.added": "কার্টে যোগ করা হয়েছে", "cart.inCartOpen": "কার্টে আছে · খুলুন", "cart.remove": "কার্ট থেকে সরান", "offline.allConfirm": "অফলাইনে পড়ার জন্য আপনি সব টাইটেল ডাউনলোড করছেন (মোট: {n}, পৃষ্ঠা: {p})। এটি অনেক ডেটা: Wi-Fi-তে করাই ভালো। এগুলো ফোনে 3 দিন থাকে। চালিয়ে যাবেন?"});
 Object.assign(STR.ar, {"cart.sub": "كل شيء معًا، بدفعة واحدة", "cart.total": "المجموع", "cart.step1": "ادفع المجموع", "cart.step2Buy": "ثم أرسل إلينا الطلب", "cart.step2Don": "ثم سجّل تبرّعك", "cart.payWith": "ادفع عبر {m}", "cart.satispayHint": "في Satispay تكتب المبلغ بنفسك: {total}.", "cart.noteCode": "اكتب في ملاحظة الدفع:", "cart.copy": "نسخ", "cart.copied": "تم نسخ الرمز", "cart.emailLabel": "البريد الإلكتروني لاستلام القصص المصوّرة", "cart.sent": "تم إرسال الطلب. فور تأكيد الدفع يصلك كل شيء على البريد الإلكتروني الذي كتبته.", "cart.donLogin": "سجّل الدخول لتسجيل تبرّعك والحصول على إيصال PDF.", "cart.added": "أُضيف إلى السلة", "cart.inCartOpen": "في السلة · فتح", "cart.remove": "إزالة من السلة", "offline.allConfirm": "ستنزّل كل العناوين (العدد: {n}، الصفحات: {p}) لقراءتها دون اتصال. إنها بيانات كثيرة: الأفضل عبر Wi-Fi. تبقى على هاتفك 3 أيام. هل تريد المتابعة؟"});
 Object.assign(STR.pnb, {"cart.sub": "سب کجھ اکٹھا، اک ای ادائیگی وچ", "cart.total": "کل", "cart.step1": "کل رقم ادا کرو", "cart.step2Buy": "فیر سانوں درخواست بھیجو", "cart.step2Don": "فیر اپنا عطیہ درج کرو", "cart.payWith": "{m} نال ادائیگی کرو", "cart.satispayHint": "Satispay وچ رقم تہانوں آپ لکھنی پوے گی: {total}۔", "cart.noteCode": "ادائیگی دے نوٹ وچ ایہہ لکھو:", "cart.copy": "کاپی کرو", "cart.copied": "کوڈ کاپی ہو گیا", "cart.emailLabel": "کامکس لین لئی ای میل", "cart.sent": "درخواست بھیج دتی گئی۔ جیویں ای ادائیگی دی تصدیق ہووے گی، تہانوں سب کجھ تہاڈی لکھی ای میل تے مل جاوے گا۔", "cart.donLogin": "عطیہ درج کرن تے PDF رسید لین لئی سائن اِن کرو۔", "cart.added": "کارٹ وچ پا دتا گیا", "cart.inCartOpen": "کارٹ وچ اے · کھولو", "cart.remove": "کارٹ وچوں کڈھو", "offline.allConfirm": "تسیں آف لائن پڑھن لئی سارے ٹائٹل ڈاؤن لوڈ کر رہے او (کل: {n}، صفحے: {p})۔ ایہہ بہت سارا ڈیٹا اے: Wi-Fi تے کرنا چنگا اے۔ ایہہ فون تے 3 دن رہندے نیں۔ جاری رکھنا اے؟"});
+// v248: la seconda pagina dopo la copertina, l'ospite che chiude l'albo, i 45 minuti e l'invito a creare l'account
+Object.assign(STR.it, {"entry.luxtifySub": "Solo musica, playlist e podcast", "lxguest.closeHint": "Chiudi il sito come un albo: lo riapri quando vuoi, anche senza account", "lxguest.again": "Riapri da ospite", "lxguest.noteTag": "L'albo si è chiuso", "lxguest.noteTxt": "Da ospite si legge {min} minuti alla volta. Con un account gratuito leggi senza interruzioni e ritrovi ogni fumetto dove l'avevi lasciato.", "lxguest.tag": "Account gratuito", "lxguest.n1Title": "Ti piace l'Archivio?", "lxguest.n1Txt": "Con un account gratuito salvi letture e preferiti e riprendi ogni fumetto dalla pagina in cui l'avevi lasciato, anche da un altro dispositivo.", "lxguest.n2Title": "Entra nella Community", "lxguest.n2Txt": "Con un account gratuito scrivi nella Community, chatti con gli altri lettori e ricevi le notifiche dell'Archivio.", "lxguest.n3Title": "Alle {time} l'albo si chiude", "lxguest.n3Txt": "Da ospite si legge {min} minuti alla volta. Crea un account gratuito e continua a leggere senza interruzioni."});
+Object.assign(STR.en, {"entry.luxtifySub": "Music, playlists and podcasts only", "lxguest.closeHint": "Close the site like a book: open it again whenever you like, even without an account", "lxguest.again": "Reopen as a guest", "lxguest.noteTag": "The book has closed", "lxguest.noteTxt": "Guests can read for {min} minutes at a time. With a free account you read without interruptions and pick up every comic where you left off.", "lxguest.tag": "Free account", "lxguest.n1Title": "Enjoying the Archive?", "lxguest.n1Txt": "With a free account you save your reading and favorites, and pick up every comic on the page where you left off — even on another device.", "lxguest.n2Title": "Join the Community", "lxguest.n2Txt": "With a free account you can write in the Community, chat with other readers and get the Archive's notifications.", "lxguest.n3Title": "The book closes at {time}", "lxguest.n3Txt": "Guests can read for {min} minutes at a time. Create a free account and keep reading without interruptions."});
+Object.assign(STR.es, {"entry.luxtifySub": "Solo música, listas y pódcasts", "lxguest.closeHint": "Cierra el sitio como un cómic: vuelve a abrirlo cuando quieras, incluso sin cuenta", "lxguest.again": "Volver a abrir como invitado", "lxguest.noteTag": "El cómic se ha cerrado", "lxguest.noteTxt": "Como invitado puedes leer {min} minutos seguidos. Con una cuenta gratuita lees sin interrupciones y retomas cada cómic donde lo dejaste.", "lxguest.tag": "Cuenta gratuita", "lxguest.n1Title": "¿Te gusta el Archivo?", "lxguest.n1Txt": "Con una cuenta gratuita guardas tus lecturas y favoritos y retomas cada cómic en la página donde lo dejaste, incluso desde otro dispositivo.", "lxguest.n2Title": "Únete a la Comunidad", "lxguest.n2Txt": "Con una cuenta gratuita escribes en la Comunidad, chateas con otros lectores y recibes las notificaciones del Archivo.", "lxguest.n3Title": "El cómic se cierra a las {time}", "lxguest.n3Txt": "Como invitado puedes leer {min} minutos seguidos. Crea una cuenta gratuita y sigue leyendo sin interrupciones."});
+Object.assign(STR.fr, {"entry.luxtifySub": "Uniquement musique, playlists et podcasts", "lxguest.closeHint": "Refermez le site comme un album : vous le rouvrez quand vous voulez, même sans compte", "lxguest.again": "Rouvrir en tant qu'invité", "lxguest.noteTag": "L'album s'est refermé", "lxguest.noteTxt": "En tant qu'invité, vous lisez {min} minutes d'affilée. Avec un compte gratuit, vous lisez sans interruption et reprenez chaque BD là où vous l'aviez laissée.", "lxguest.tag": "Compte gratuit", "lxguest.n1Title": "L'Archive vous plaît ?", "lxguest.n1Txt": "Avec un compte gratuit, vous enregistrez vos lectures et vos favoris, et vous reprenez chaque BD à la page où vous l'aviez laissée, même sur un autre appareil.", "lxguest.n2Title": "Rejoignez la Communauté", "lxguest.n2Txt": "Avec un compte gratuit, vous écrivez dans la Communauté, discutez avec les autres lecteurs et recevez les notifications de l'Archive.", "lxguest.n3Title": "L'album se referme à {time}", "lxguest.n3Txt": "En tant qu'invité, vous lisez {min} minutes d'affilée. Créez un compte gratuit et continuez à lire sans interruption."});
+Object.assign(STR.de, {"entry.luxtifySub": "Nur Musik, Playlists und Podcasts", "lxguest.closeHint": "Schließ die Seite wie ein Heft: Du kannst sie jederzeit wieder öffnen, auch ohne Konto", "lxguest.again": "Als Gast wieder öffnen", "lxguest.noteTag": "Das Heft hat sich geschlossen", "lxguest.noteTxt": "Als Gast liest du jeweils {min} Minuten am Stück. Mit einem kostenlosen Konto liest du ohne Unterbrechung und machst bei jedem Comic dort weiter, wo du aufgehört hast.", "lxguest.tag": "Kostenloses Konto", "lxguest.n1Title": "Gefällt dir das Archiv?", "lxguest.n1Txt": "Mit einem kostenlosen Konto speicherst du Lesestand und Favoriten und machst bei jedem Comic auf der Seite weiter, auf der du aufgehört hast – auch auf einem anderen Gerät.", "lxguest.n2Title": "Mach mit in der Community", "lxguest.n2Txt": "Mit einem kostenlosen Konto schreibst du in der Community, chattest mit anderen Lesern und bekommst die Benachrichtigungen des Archivs.", "lxguest.n3Title": "Um {time} schließt sich das Heft", "lxguest.n3Txt": "Als Gast liest du jeweils {min} Minuten am Stück. Erstelle ein kostenloses Konto und lies ohne Unterbrechung weiter."});
+Object.assign(STR.pt, {"entry.luxtifySub": "Só música, playlists e podcasts", "lxguest.closeHint": "Feche o site como uma revista: abra de novo quando quiser, mesmo sem conta", "lxguest.again": "Reabrir como visitante", "lxguest.noteTag": "A revista se fechou", "lxguest.noteTxt": "Como visitante, você lê {min} minutos de cada vez. Com uma conta gratuita, você lê sem interrupções e retoma cada quadrinho de onde parou.", "lxguest.tag": "Conta gratuita", "lxguest.n1Title": "Está gostando do Acervo?", "lxguest.n1Txt": "Com uma conta gratuita, você salva suas leituras e favoritos e retoma cada quadrinho na página onde parou, até em outro dispositivo.", "lxguest.n2Title": "Entre na Comunidade", "lxguest.n2Txt": "Com uma conta gratuita, você escreve na Comunidade, conversa com outros leitores e recebe as notificações do Acervo.", "lxguest.n3Title": "A revista se fecha às {time}", "lxguest.n3Txt": "Como visitante, você lê {min} minutos de cada vez. Crie uma conta gratuita e continue lendo sem interrupções."});
+Object.assign(STR.ru, {"entry.luxtifySub": "Только музыка, плейлисты и подкасты", "lxguest.closeHint": "Закройте сайт, как выпуск комикса: открыть его снова можно в любой момент, даже без аккаунта", "lxguest.again": "Открыть снова как гость", "lxguest.noteTag": "Выпуск закрылся", "lxguest.noteTxt": "Гости читают по {min} минут за раз. С бесплатным аккаунтом вы читаете без перерывов и продолжаете каждый комикс с того места, где остановились.", "lxguest.tag": "Бесплатный аккаунт", "lxguest.n1Title": "Нравится Архив?", "lxguest.n1Txt": "С бесплатным аккаунтом вы сохраняете прогресс чтения и избранное и продолжаете каждый комикс с той страницы, где остановились, — даже на другом устройстве.", "lxguest.n2Title": "Присоединяйтесь к Сообществу", "lxguest.n2Txt": "С бесплатным аккаунтом вы пишете в Сообществе, переписываетесь с другими читателями и получаете уведомления Архива.", "lxguest.n3Title": "В {time} выпуск закроется", "lxguest.n3Txt": "Гости читают по {min} минут за раз. Создайте бесплатный аккаунт и читайте дальше без перерывов."});
+Object.assign(STR.zh, {"entry.luxtifySub": "只有音乐、歌单和播客", "lxguest.closeHint": "像合上一本漫画一样关闭网站：随时可以再打开，不需要账号", "lxguest.again": "以访客身份重新打开", "lxguest.noteTag": "漫画已经合上了", "lxguest.noteTxt": "访客每次可以阅读 {min} 分钟。有了免费账号，阅读不再中断，每部漫画都能从上次停下的地方继续。", "lxguest.tag": "免费账号", "lxguest.n1Title": "喜欢这个档案库吗？", "lxguest.n1Txt": "有了免费账号，就能保存阅读记录和收藏，每部漫画都能从上次停下的那一页继续，换一台设备也可以。", "lxguest.n2Title": "加入社区", "lxguest.n2Txt": "有了免费账号，你可以在社区发言、和其他读者聊天，还能收到档案库的通知。", "lxguest.n3Title": "漫画将在 {time} 合上", "lxguest.n3Txt": "访客每次可以阅读 {min} 分钟。注册一个免费账号，继续阅读不再中断。"});
+Object.assign(STR.ja, {"entry.luxtifySub": "音楽・プレイリスト・ポッドキャストのみ", "lxguest.closeHint": "本を閉じるようにサイトを閉じます。アカウントがなくても、いつでもまた開けます", "lxguest.again": "ゲストとしてもう一度開く", "lxguest.noteTag": "本が閉じました", "lxguest.noteTxt": "ゲストは一度に{min}分まで読めます。無料アカウントがあれば、中断せずに読めて、どのコミックも前回の続きから読めます。", "lxguest.tag": "無料アカウント", "lxguest.n1Title": "アーカイブを楽しんでいますか？", "lxguest.n1Txt": "無料アカウントを作ると、読書の記録とお気に入りを保存でき、どのコミックも前回読んだページから再開できます。別の端末からでも大丈夫です。", "lxguest.n2Title": "コミュニティに参加しよう", "lxguest.n2Txt": "無料アカウントがあれば、コミュニティへの投稿、ほかの読者とのチャット、アーカイブからの通知の受け取りができます。", "lxguest.n3Title": "{time}に本が閉じます", "lxguest.n3Txt": "ゲストは一度に{min}分まで読めます。無料アカウントを作って、中断せずに読み続けましょう。"});
+Object.assign(STR.hi, {"entry.luxtifySub": "सिर्फ़ संगीत, प्लेलिस्ट और पॉडकास्ट", "lxguest.closeHint": "साइट को कॉमिक की तरह बंद करें: जब चाहें फिर से खोलें, बिना अकाउंट के भी", "lxguest.again": "मेहमान के रूप में फिर से खोलें", "lxguest.noteTag": "कॉमिक बंद हो गया", "lxguest.noteTxt": "मेहमान एक बार में {min} मिनट तक पढ़ सकते हैं। मुफ़्त अकाउंट से आप बिना रुकावट पढ़ते हैं और हर कॉमिक वहीं से आगे पढ़ते हैं जहाँ छोड़ा था।", "lxguest.tag": "मुफ़्त अकाउंट", "lxguest.n1Title": "आर्काइव पसंद आ रहा है?", "lxguest.n1Txt": "मुफ़्त अकाउंट से आप अपनी पढ़ाई और पसंदीदा सेव कर सकते हैं और हर कॉमिक उसी पेज से फिर शुरू कर सकते हैं जहाँ छोड़ा था — दूसरे डिवाइस पर भी।", "lxguest.n2Title": "कम्युनिटी से जुड़ें", "lxguest.n2Txt": "मुफ़्त अकाउंट से आप कम्युनिटी में लिख सकते हैं, दूसरे पाठकों से चैट कर सकते हैं और आर्काइव की सूचनाएँ पा सकते हैं।", "lxguest.n3Title": "{time} पर कॉमिक बंद हो जाएगा", "lxguest.n3Txt": "मेहमान एक बार में {min} मिनट तक पढ़ सकते हैं। मुफ़्त अकाउंट बनाएँ और बिना रुकावट पढ़ते रहें।"});
+Object.assign(STR.bn, {"entry.luxtifySub": "শুধু গান, প্লেলিস্ট আর পডকাস্ট", "lxguest.closeHint": "কমিকের মতো করে সাইটটা বন্ধ করুন: যখন খুশি আবার খুলুন, অ্যাকাউন্ট ছাড়াই", "lxguest.again": "অতিথি হিসেবে আবার খুলুন", "lxguest.noteTag": "কমিকটা বন্ধ হয়ে গেছে", "lxguest.noteTxt": "অতিথিরা একবারে {min} মিনিট পড়তে পারেন। বিনামূল্যের অ্যাকাউন্ট থাকলে বিরতি ছাড়াই পড়বেন, আর প্রতিটি কমিক যেখানে থেমেছিলেন সেখান থেকেই চালিয়ে যাবেন।", "lxguest.tag": "বিনামূল্যের অ্যাকাউন্ট", "lxguest.n1Title": "আর্কাইভ ভালো লাগছে?", "lxguest.n1Txt": "বিনামূল্যের অ্যাকাউন্টে আপনার পড়া আর প্রিয় তালিকা সেভ থাকে, আর প্রতিটি কমিক যে পাতায় থেমেছিলেন সেখান থেকেই আবার শুরু করতে পারেন — অন্য ডিভাইস থেকেও।", "lxguest.n2Title": "কমিউনিটিতে যোগ দিন", "lxguest.n2Txt": "বিনামূল্যের অ্যাকাউন্টে কমিউনিটিতে লিখতে পারবেন, অন্য পাঠকদের সঙ্গে চ্যাট করতে পারবেন আর আর্কাইভের নোটিফিকেশন পাবেন।", "lxguest.n3Title": "{time}-এ কমিকটা বন্ধ হয়ে যাবে", "lxguest.n3Txt": "অতিথিরা একবারে {min} মিনিট পড়তে পারেন। বিনামূল্যের একটা অ্যাকাউন্ট খুলুন আর বিরতি ছাড়াই পড়তে থাকুন।"});
+Object.assign(STR.ar, {"entry.luxtifySub": "موسيقى وقوائم تشغيل وبودكاست فقط", "lxguest.closeHint": "أغلق الموقع كما تُغلق غلاف قصة مصوّرة: افتحه من جديد متى شئت، حتى من دون حساب", "lxguest.again": "أعد الفتح كزائر", "lxguest.noteTag": "أُغلق الغلاف", "lxguest.noteTxt": "يقرأ الزوّار {min} دقيقة في كل مرة. مع حساب مجاني تقرأ بلا انقطاع وتكمل كل قصة مصوّرة من حيث توقفت.", "lxguest.tag": "حساب مجاني", "lxguest.n1Title": "هل يعجبك الأرشيف؟", "lxguest.n1Txt": "مع حساب مجاني تحفظ قراءاتك ومفضّلتك، وتكمل كل قصة مصوّرة من الصفحة التي توقفت عندها، حتى من جهاز آخر.", "lxguest.n2Title": "انضم إلى المجتمع", "lxguest.n2Txt": "مع حساب مجاني تكتب في المجتمع وتدردش مع القرّاء الآخرين وتتلقّى إشعارات الأرشيف.", "lxguest.n3Title": "يُغلق الغلاف عند الساعة {time}", "lxguest.n3Txt": "يقرأ الزوّار {min} دقيقة في كل مرة. أنشئ حسابًا مجانيًا وتابع القراءة بلا انقطاع."});
+Object.assign(STR.pnb, {"entry.luxtifySub": "صرف موسیقی، پلے لسٹاں تے پوڈکاسٹ", "lxguest.closeHint": "سائٹ نوں کامک وانگوں بند کرو: جدوں جی کرے فیر کھولو، اکاؤنٹ توں بغیر وی", "lxguest.again": "مہمان بن کے فیر کھولو", "lxguest.noteTag": "کامک بند ہو گیا اے", "lxguest.noteTxt": "مہمان اک واری وچ {min} منٹ تک پڑھ سکدے نیں۔ مفت اکاؤنٹ نال تسیں بغیر رکاوٹ پڑھدے او تے ہر کامک اوتھوں ای اگے پڑھدے او جتھے چھڈیا سی۔", "lxguest.tag": "مفت اکاؤنٹ", "lxguest.n1Title": "آرکائیو چنگا لگ رہیا اے؟", "lxguest.n1Txt": "مفت اکاؤنٹ نال تسیں اپنی پڑھائی تے پسندیدہ محفوظ کر سکدے او، تے ہر کامک اوسے صفحے توں فیر شروع کر سکدے او جتھے چھڈیا سی — کسے ہور ڈیوائس توں وی۔", "lxguest.n2Title": "کمیونٹی وچ شامل ہوو", "lxguest.n2Txt": "مفت اکاؤنٹ نال تسیں کمیونٹی وچ لکھ سکدے او، دوجے پڑھن والیاں نال گل بات کر سکدے او تے آرکائیو دیاں نوٹیفکیشناں لے سکدے او۔", "lxguest.n3Title": "{time} وجے کامک بند ہو جاوے گا", "lxguest.n3Txt": "مہمان اک واری وچ {min} منٹ تک پڑھ سکدے نیں۔ مفت اکاؤنٹ بناؤ تے بغیر رکاوٹ پڑھدے رہو۔"});
 var CHAR_META = {
   Lucifer:{role:{it:"Il Portatore di Luce",en:"The Light-Bearer",es:"El Portador de Luz",fr:"Le Porteur de Lumière",de:"Der Lichtträger"},
     bio:{it:"Sovrano della collana ammiraglia: potere, caduta e desiderio raccontati su grande scala.",
@@ -1109,45 +1123,65 @@ var titleModalRelang = false; // v227: la scheda si rifà per la lingua, non è 
    quando la PWA viene chiusa e riaperta), sempre prima di ogni altra
    interazione. Se il dispositivo risulta senza connessione, il pulsante
    "Usa la versione offline" viene evidenziato — ma resta comunque un tap
-   esplicito dell'utente, mai una scelta automatica. */
-function showEntryModeGate(){
+   esplicito dell'utente, mai una scelta automatica.
+   v248: è la seconda pagina dell'albo: c'è prima la copertina, per tutti, e questa domanda sta sotto
+   di lei (si intravede sotto l'orecchia) e si vede quando l'albo si apre. Da sola solo senza rete,
+   o dove la copertina non c'è. */
+function showEntryModeGate(opts){
+  opts = opts || {};
   if(document.getElementById('luxtifySection')) return; // siamo già su Luxtify: nessuna scelta da fare, è già la destinazione
-  if(sessionStorage.getItem('lux_entry_mode')) return; // già scelto in questa apertura
+  if(luxCoverBot() || document.getElementById('entryModeGate')) return; // v248: i motori di ricerca non scelgono; e ce n'è una sola
+  try { if(sessionStorage.getItem('lux_entry_mode')) return; } catch(e){ return; } // già scelto in questa apertura
+  // v248: con la copertina sopra è la seconda pagina dell'albo: sta sotto di lei. L'illustrazione è quella
+  // verticale sui telefoni e sugli schermi più alti che larghi, l'orizzontale sugli altri: se è la stessa
+  // della copertina (anche in alta definizione) si usa quella, già scaricata
+  var under = !!opts.under && !!luxCoverEl;
+  var tall = window.innerWidth <= 640 || window.innerWidth < window.innerHeight;
+  var art = tall ? 'entry-bg-mobile.webp' : 'entry-bg-desktop.webp';
+  if(under && luxCoverEl._art === (tall ? 'tall' : 'wide') && luxCoverEl._artSrc) art = luxCoverEl._artSrc;
   var overlay = document.createElement('div');
   overlay.id = 'entryModeGate';
-  overlay.style.cssText = 'position:fixed;inset:0;z-index:100000;display:flex;align-items:center;justify-content:center;padding:20px;background-color:#0b0607;background-image:linear-gradient(rgba(11,6,7,0.72),rgba(11,6,7,0.72)),' +
-    'url(' + (window.innerWidth <= 640 ? 'entry-bg-mobile.webp' : 'entry-bg-desktop.webp') + ');background-size:cover;background-position:center;';
+  overlay.setAttribute('role', 'dialog');
+  overlay.setAttribute('aria-modal', 'true');
+  overlay.setAttribute('aria-labelledby', 'entryGateQ');
+  if(under) overlay.className = 'entry-gate-under';
+  overlay.style.cssText = 'position:fixed;inset:0;z-index:' + (under ? 9790 : 100000) + ';display:flex;align-items:center;justify-content:center;padding:20px;background-color:#0b0607;background-image:linear-gradient(rgba(11,6,7,0.72),rgba(11,6,7,0.72)),' +
+    'url(' + art + ');background-size:cover;background-position:center;';
   var offlineHint = !navigator.onLine ? ' entry-gate-suggested' : '';
   overlay.innerHTML =
-    '<div style="max-width:400px;width:100%;background:rgba(26,17,19,0.92);border:1px solid rgba(201,162,77,0.35);border-radius:10px;padding:28px 24px;text-align:center;">' +
-      '<p style="font-family:\'Cinzel Decorative\',serif;font-weight:700;text-transform:uppercase;letter-spacing:0.02em;color:#f0e4cd;font-size:16px;line-height:1.5;margin:0 0 20px;">' + escapeHtml(t('entry.question')) + '</p>' +
-      '<button type="button" id="entryGateOnline" class="btn btn-primary" style="width:100%;margin-bottom:10px;font-family:\'Cinzel\',serif;text-transform:uppercase;letter-spacing:0.06em;font-size:14px;">' + escapeHtml(t('entry.online')) + '</button>' +
-      '<button type="button" id="entryGateOffline" class="btn btn-ghost' + offlineHint + '" style="width:100%;font-family:\'Cinzel\',serif;text-transform:uppercase;letter-spacing:0.06em;font-size:14px;">' + escapeHtml(t('entry.offline')) + '</button>' +
+    '<div class="entry-gate-card" style="max-width:400px;width:100%;background:rgba(26,17,19,0.92);border:1px solid rgba(201,162,77,0.35);border-radius:10px;padding:28px 24px;text-align:center;">' +
+      '<p id="entryGateQ" style="font-family:\'Cinzel Decorative\',serif;font-weight:700;text-transform:uppercase;letter-spacing:0.02em;color:#f0e4cd;font-size:16px;line-height:1.5;margin:0 0 20px;"></p>' +
+      '<button type="button" id="entryGateOnline" class="btn btn-primary" style="width:100%;margin-bottom:10px;font-family:\'Cinzel\',serif;text-transform:uppercase;letter-spacing:0.06em;font-size:14px;"></button>' +
+      '<button type="button" id="entryGateOffline" class="btn btn-ghost' + offlineHint + '" style="width:100%;font-family:\'Cinzel\',serif;text-transform:uppercase;letter-spacing:0.06em;font-size:14px;"></button>' +
       '<div style="height:1px;background:rgba(201,162,77,0.25);margin:16px 0;"></div>' +
       '<button type="button" id="entryGateLuxtify" style="width:100%;background:transparent;border:1px solid #c9a24d;color:#c9a24d;border-radius:6px;padding:12px;font-family:\'Cinzel Decorative\',serif;letter-spacing:0.08em;font-size:14px;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;">💿 LUXTIFY</button>' +
-      '<p style="color:#8a7a5e;font-size:11px;font-style:italic;margin:6px 0 0;">Solo musica, playlist e podcast</p>' +
-      '<p style="color:#b09c80;font-size:13px;font-style:italic;margin:16px 0 0;">' + escapeHtml(t('entry.wifiHint')) + '</p>' +
+      '<p id="entryGateLxSub" style="color:#8a7a5e;font-size:11px;font-style:italic;margin:6px 0 0;"></p>' +
+      '<p id="entryGateHint" style="color:#b09c80;font-size:13px;font-style:italic;margin:16px 0 0;"></p>' +
       '<div id="entryGateStale" class="hidden" style="margin-top:14px;padding:10px;border:1px solid rgba(216,90,48,0.5);border-radius:6px;color:#e2a98a;font-size:12px;"></div>' +
     '</div>';
   document.body.appendChild(overlay);
+  luxGateTexts(overlay); // v248: i testi nella lingua scelta (anche cambiandola dalla copertina: luxGateRelang)
   function closeGate(mode){
-    sessionStorage.setItem('lux_entry_mode', mode);
+    try { sessionStorage.setItem('lux_entry_mode', mode); } catch(e){}
+    var after = overlay._after; // v248: dopo la copertina, il saluto o il fumetto scelto in «In questo numero»
+    overlay._after = null;
     overlay.remove();
+    if(after){ try { after(); } catch(e){ console.warn('[ingresso]', e); } }
   }
   document.getElementById('entryGateOnline').addEventListener('click', function(){ closeGate('online'); });
   document.getElementById('entryGateLuxtify').addEventListener('click', function(){
-    sessionStorage.setItem('lux_entry_mode', 'online'); // Luxtify richiede comunque la connessione
+    try { sessionStorage.setItem('lux_entry_mode', 'online'); } catch(e){} // Luxtify richiede comunque la connessione
     window.location.href = 'luxtify.html';
   });
   document.getElementById('entryGateOffline').addEventListener('click', function(){
-    var syncedAt = Number(localStorage.getItem('lux_offline_synced_at') || 0);
+    var syncedAt = 0;
+    try { syncedAt = Number(localStorage.getItem('lux_offline_synced_at') || 0); } catch(e){}
     var stale = !syncedAt || (Date.now() - syncedAt) > OFFLINE_TTL_MS;
-    if(stale){
+    if(stale && !overlay._staleShown){ // la prima volta l'avviso; toccandolo di nuovo si prosegue comunque
+      overlay._staleShown = true;
       var staleBox = document.getElementById('entryGateStale');
       staleBox.textContent = t('offline.staleWarning');
       staleBox.classList.remove('hidden');
-      document.getElementById('entryGateOffline').textContent = t('entry.offline'); // resta cliccabile una seconda volta per proseguire comunque
-      document.getElementById('entryGateOffline').onclick = function(){ closeGate('offline'); };
       return;
     }
     closeGate('offline');
@@ -1198,7 +1232,10 @@ function showEntryModeGate(){
    Si disegna su una tela di 1280 punti e si ingrandisce intera (luxCoverFit), così testi, pulsanti e
    sigillo crescono insieme all'immagine. Sugli schermi grandi o molto definiti l'illustrazione è quella
    in alta definizione (entry-bg-desktop-hd.webp, 2880 punti). L'albo sul tavolo resta per le finestre
-   quasi quadrate o verticali. */
+   quasi quadrate o verticali.
+   v248: la copertina c'è a ogni visita per tutti (con l'account: «Chi sta leggendo?»), e sotto di lei la
+   seconda pagina, «online o versione offline?». Anche chi non ha l'account può chiudere l'albo; da ospite
+   si legge 45 minuti alla volta, poi l'albo si richiude con un biglietto (vedi luxGuestTick). */
 var LUX_COVER_ART = {
   // dove sta il sigillo nell'immagine: centro (ex, ey) e raggio (er) in proporzione;
   // i due portali (fuoco a sinistra, cosmo a destra): centro e misure in proporzione
@@ -1220,8 +1257,10 @@ function luxCoverSkipPage(){
 function luxCoverWanted(){
   if(luxCoverSkipPage() || luxCoverBot()) return false;
   if(navigator.onLine === false) return false; // senza rete: la scelta «versione offline» (showEntryModeGate)
-  if(isSignedIn()) return luxCoverLocked(); // v242: con l'account, solo se l'albo è stato richiuso («Chiudi l'albo»)
-  try { if(sessionStorage.getItem('lux_cover_ok')) return false; } catch(e){}
+  if(luxCoverLocked()) return true; // v242/v248: l'albo richiuso («Chiudi l'albo», o finiti i 45 minuti da ospite)
+  // v248: a ogni visita, per tutti (con l'account: «Chi sta leggendo?»); già aperto in questa visita: no
+  // (da ospite di nuovo sì se intanto sono passati i 45 minuti, per esempio con la scheda in background)
+  try { if(sessionStorage.getItem('lux_cover_ok')) return !isSignedIn() && luxGuestExpired(); } catch(e){ return false; }
   return true;
 }
 // v242: l'albo richiuso da chi ha l'account (resta così, in questa scheda, finché non rientra)
@@ -1416,6 +1455,8 @@ function luxCoverBuild(){
   if(el._cinema) el.classList.add('lxc-cinema');
   el._profile = isSignedIn(); // v242: chi ha l'account vede «Chi sta leggendo?» al posto di «Accedi»
   if(el._profile) el.classList.add('lxc-profile');
+  el._timeout = !el._profile && luxGuestOut(); // v248: finiti i 45 minuti da ospite: il biglietto al posto del capitolo nuovo
+  if(el._timeout) el.classList.add('lxc-timeout');
   el.setAttribute('role', 'dialog');
   el.setAttribute('aria-modal', 'true');
   el.tabIndex = -1;
@@ -1459,6 +1500,7 @@ function luxCoverBuild(){
           '<div class="lxc-blurb hidden"><button type="button" class="lxc-blurb-main" data-lxc="title"><span class="lxc-blurb-pic"><img class="lxc-blurb-img" alt="" decoding="async"></span>' +
             '<span class="lxc-blurb-txt"><small class="lxc-blurb-tag"></small><b></b><span class="lxc-blurb-row"><em class="lxc-blurb-go"></em><span class="lxc-blurb-date"></span></span></span></button>' +
             '<span class="lxc-blurb-dots hidden"></span></div>' +
+          '<div class="lxc-note" role="note"><small class="lxc-note-tag"></small><p class="lxc-note-txt"></p></div>' +
           '<div class="lxc-barcode" aria-hidden="true"><div class="lxc-bars"></div><span>noxmorningstar.com</span></div>' +
           '<div class="lxc-actions"><button type="button" class="lxc-btn lxc-primary" data-lxc="login"></button><button type="button" class="lxc-btn lxc-ghost" data-lxc="register"></button></div>' +
           '<button type="button" class="lxc-guest" data-lxc="guest"></button>' +
@@ -1689,7 +1731,9 @@ function luxCoverTexts(){
   q('.lxc-seal').setAttribute('aria-label', t('lxcover.sealAria'));
   q('[data-lxc="login"]').textContent = t('nav.login');
   q('[data-lxc="register"]').textContent = t('lxcover.signup');
-  q('[data-lxc="guest"]').textContent = t('lxcover.guest');
+  q('[data-lxc="guest"]').textContent = t(el._timeout ? 'lxguest.again' : 'lxcover.guest'); // v248: dopo i 45 minuti, «Riapri da ospite»
+  q('.lxc-note-tag').textContent = t('lxguest.noteTag');
+  q('.lxc-note-txt').textContent = t('lxguest.noteTxt').replace('{min}', String(LUX_GUEST_MIN));
   var lx = q('[data-lxc="luxtify"]');
   lx.setAttribute('aria-label', t('lxcover.luxtify'));
   lx.title = t('lxcover.luxtify');
@@ -1763,9 +1807,9 @@ function luxCoverFitLinks(){
 }
 // v242: con l'account, chiudere l'albo senza uscire (pulsante «Chiudi l'albo»)
 function luxCoverLock(){
-  if(luxCoverEl || !isSignedIn() || luxCoverSkipPage() || luxCoverBot()) return;
+  if(luxCoverEl || luxCoverSkipPage() || luxCoverBot()) return; // v248: anche senza account (si riapre da ospite, o entrando)
   try { sessionStorage.setItem('lux_cover_lock', '1'); } catch(e){}
-  luxCoverMeLoad();
+  if(isSignedIn()) luxCoverMeLoad();
   try { luxCoverShow('close'); } catch(e){ console.warn('[copertina]', e); }
 }
 // dalla copertina col profilo: uscire (o entrare con un altro account). L'uscita è quella di sempre
@@ -1787,13 +1831,16 @@ function luxCoverSetProfile(el, on){
   if(!el) return;
   el._profile = !!on;
   el.classList.toggle('lxc-profile', !!on);
+  el._timeout = !on && luxGuestOut(); // v248
+  el.classList.toggle('lxc-timeout', el._timeout);
   if(on) luxCoverMeLoad();
   luxCoverTexts();
 }
 // il pulsante «Chiudi l'albo»: nel pannello «Tu» (telefono e computer), sotto il proprio nome accanto a «Il tuo profilo»
 var LXC_BOOK_ICON = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4.5A1.5 1.5 0 0 1 6.5 3H19v15H6.5A1.5 1.5 0 0 0 5 19.5zM5 19.5A1.5 1.5 0 0 0 6.5 21H19M9 7.5h6M12 3v6l1.5-1.2L15 9"/></svg>';
 function luxCoverSyncButtons(){
-  var can = isSignedIn() && !luxCoverSkipPage() && !luxCoverBot();
+  var can = !luxCoverSkipPage() && !luxCoverBot(); // v248: anche chi non ha l'account chiude l'albo
+  var hint = t(isSignedIn() ? 'lxcover.closeHint' : 'lxguest.closeHint');
   var prof = document.getElementById('appTuProfile');
   if(prof && prof.parentNode && !document.getElementById('appTuCover')){
     var row = document.createElement('div');
@@ -1817,8 +1864,25 @@ function luxCoverSyncButtons(){
   if(ct){
     ct.hidden = !can;
     ct.querySelector('span').textContent = t('lxcover.closeBtn');
-    ct.title = t('lxcover.closeHint');
-    ct.parentNode.hidden = !isSignedIn();
+    ct.title = hint;
+    ct.parentNode.hidden = !can && !isSignedIn(); // (da ospite c'è solo «Chiudi l'albo», sotto «Accedi»)
+  }
+  // v248: e in fondo a ogni pagina, come l'ultima pagina di un fumetto
+  var fbrand = document.querySelector('footer .fbrand'), foot = fbrand && fbrand.parentNode;
+  if(foot && !document.getElementById('footCloseBook')){
+    var fb = document.createElement('button');
+    fb.type = 'button';
+    fb.id = 'footCloseBook';
+    fb.className = 'lux-foot-close';
+    fb.innerHTML = LXC_BOOK_ICON + '<span></span>';
+    fb.addEventListener('click', function(){ luxCoverLock(); });
+    foot.insertBefore(fb, foot.querySelector('.fline'));
+  }
+  var fbt = document.getElementById('footCloseBook');
+  if(fbt){
+    fbt.hidden = !can;
+    fbt.querySelector('span').textContent = t('lxcover.closeBtn');
+    fbt.title = hint;
   }
 }
 // «In questo numero»: l'ultima uscita per tutti (mai un 18+), solo con il catalogo vero; si tocca e si legge
@@ -1966,15 +2030,16 @@ function luxCoverPlaceSeal(){
   }
   // schermi bassi: si toglie quello che finirebbe sopra il sigillo o sotto i pulsanti
   el.classList.remove('lxc-noblurb', 'lxc-nolabel');
+  luxCoverFitNote(el); // v248: il biglietto dei 45 minuti sul telefono girato
   if(el._art !== 'tall') return;
   // (v242: con il profilo «Tocca il sigillo» non c'è — si entra dal profilo — e sotto ci sono «Chi sta leggendo?» e i link)
   var prof = !!el._profile;
   var label = front.querySelector('.lxc-seal-label'), actions = front.querySelector(prof ? '.lxc-who' : '.lxc-actions');
-  var blurb = front.querySelector('.lxc-blurb'), barcode = front.querySelector('.lxc-barcode');
+  var blurb = front.querySelector('.lxc-blurb'), barcode = front.querySelector('.lxc-barcode'), note = front.querySelector('.lxc-note');
   var sealBottom = sy + sr + 10;
   var labelBottom = sealBottom + (prof ? 0 : (label.offsetHeight || 26));
   var lowTop = Infinity;
-  [blurb, barcode].forEach(function(x){ if(x.offsetParent) lowTop = Math.min(lowTop, x.offsetTop); });
+  [blurb, barcode, note].forEach(function(x){ if(x && x.offsetParent) lowTop = Math.min(lowTop, x.offsetTop); }); // (v248: anche il biglietto)
   // v243: il capitolo nuovo ha la precedenza sulla scritta sotto il sigillo: se non ci stanno tutti e due
   // sparisce la scritta; il riquadro sparisce solo se finirebbe sopra il sigillo
   if(labelBottom + 8 > lowTop) el.classList.add(sealBottom + 8 <= lowTop ? 'lxc-nolabel' : 'lxc-noblurb');
@@ -2008,7 +2073,7 @@ function luxCoverSetInert(on){
 function luxCoverShow(how){
   if(luxCoverEl) return;
   luxCoverClearTimers();
-  try { if(!sessionStorage.getItem('lux_entry_mode')) sessionStorage.setItem('lux_entry_mode', 'online'); } catch(e){} // niente scelta online/offline sopra
+  try { luxGuestOnClose(); } catch(e){} // v248: da ospite il tempo si ferma (e, se sono passati i 45 minuti, l'albo resta chiuso col biglietto)
   luxCoverScrollY = window.pageYOffset || 0;
   var el = luxCoverBuild();
   var book = el._mode === 'book';
@@ -2020,8 +2085,9 @@ function luxCoverShow(how){
   luxCoverEl = el;
   luxCoverFit(el); // v244: a tutto schermo sul computer, ingrandita (prima delle misure)
   document.documentElement.classList.add('lux-cover-on');
+  try { showEntryModeGate({ under: true }); } catch(e){ console.warn('[ingresso]', e); } // v248: la seconda pagina, sotto la copertina (se non è già stata scelta)
   luxCoverTexts(); // (dentro: le misure e la piega a riposo)
-  try { if(document.fonts && document.fonts.ready) document.fonts.ready.then(function(){ if(el === luxCoverEl) luxCoverFitLinks(); }); } catch(e){} // (le misure vere arrivano con i caratteri)
+  try { if(document.fonts && document.fonts.ready) document.fonts.ready.then(function(){ if(el === luxCoverEl){ luxCoverFitLinks(); luxCoverFitNote(el); } }); } catch(e){} // (le misure vere arrivano con i caratteri)
   if(closing) lxcCurl(el, lxcEnd(el._curl.g)); // si parte dalla pagina girata
   luxCoverSetInert(true);
   try { el.focus({ preventScroll: true }); } catch(e){}
@@ -2109,13 +2175,18 @@ function luxCoverFinish(guest, openItem){
   luxCoverEl = null;
   document.documentElement.classList.remove('lux-cover-on', 'lux-cover-wait');
   try { sessionStorage.setItem('lux_cover_ok', '1'); sessionStorage.removeItem('lux_cover_lock'); } catch(e){}
+  try { luxGuestAfterOpen(guest); } catch(e){} // v248: da ospite parte (o riparte) il tempo; con l'account non c'è
   try { if(luxCoverScrollY) window.scrollTo(0, luxCoverScrollY); } catch(e){}
-  if(openItem){ // v239: dritti nel fumetto scelto da «In questo numero»
-    setTimeout(function(){ try { openTitleModal(openItem); } catch(e){ console.warn('[copertina]', e); } }, 60);
-    return;
-  }
-  var name = guest ? '' : luxCoverName();
-  luxToast(guest ? t('lxcover.guestToast') : (name ? t('lxcover.hello').replace('{name}', name) : t('lxcover.open')));
+  var after = function(){
+    if(openItem){ // v239: dritti nel fumetto scelto da «In questo numero»
+      setTimeout(function(){ try { openTitleModal(openItem); } catch(e){ console.warn('[copertina]', e); } }, 60);
+      return;
+    }
+    var name = guest ? '' : luxCoverName();
+    luxToast(guest ? t('lxcover.guestToast') : (name ? t('lxcover.hello').replace('{name}', name) : t('lxcover.open')));
+  };
+  if(luxGateRaise(after)) return; // v248: sotto la copertina c'era la seconda pagina («online o versione offline?»): prima quella
+  after();
 }
 function luxCoverName(){
   if(isAdmin()) return 'Nox Morningstar';
@@ -2132,6 +2203,7 @@ function luxCoverAfterAuth(){
 // uscendo dall'account: la copertina si richiude sopra il sito
 function luxCoverOnLogout(){
   try { sessionStorage.removeItem('lux_cover_ok'); } catch(e){}
+  try { luxGuestClear(); } catch(e){} // v248: da ospite si riparte da capo
   if(luxCoverEl || isSignedIn() || luxCoverSkipPage() || luxCoverBot()) return;
   try { luxCoverShow('close'); } catch(e){ console.warn('[copertina]', e); }
 }
@@ -2146,6 +2218,7 @@ function luxCoverRefocus(){
 function luxCoverRelang(){
   try { luxCoverSyncButtons(); } catch(e){}
   if(luxCoverEl) luxCoverTexts();
+  try { luxGateRelang(); luxNudgeTexts(); } catch(e){} // v248: la seconda pagina e l'invito nella lingua nuova
 }
 // telefono girato o finestra ridimensionata: il sigillo si risistema (o la copertina si rifà)
 function luxCoverOnResize(){
@@ -2196,6 +2269,215 @@ window.addEventListener('storage', function(e){
   // v242: uscito da un'altra scheda mentre qui l'albo era chiuso col profilo: si passa a «Accedi»
   if(luxCoverEl._profile && !luxCoverEl._opening){ try { sessionStorage.removeItem('lux_cover_lock'); } catch(err){} luxCoverMe = null; luxCoverSetProfile(luxCoverEl, false); }
 });
+
+/* ============ v248: PRIMA LA COPERTINA, POI LA SECONDA PAGINA — E L'OSPITE CHE CHIUDE L'ALBO ============
+   - A ogni visita c'è prima la copertina, per tutti: chi non ha l'account trova «Accedi / Crea account /
+     Sfoglia senza account», chi ce l'ha «Chi sta leggendo?» con la sua foto. La domanda «online o versione
+     offline?» è la seconda pagina: sta sotto la copertina (si intravede sotto l'orecchia) e si vede quando
+     l'albo si apre. Prima, a chi aveva l'account, compariva da sola e la copertina non c'era. Una volta per
+     visita, come prima; senza rete resta la domanda da sola.
+   - Anche chi non ha l'account può richiudere l'albo: «Chiudi l'albo» nel pannello «Tu» e in fondo a ogni
+     pagina. Niente account, niente link: si chiude come un fumetto e si riapre quando si vuole.
+   - Da ospite si legge 45 minuti alla volta (il tempo conta solo con l'albo aperto, anche cambiando pagina):
+     poi l'albo si richiude da solo, con un biglietto al posto del capitolo nuovo che spiega perché e invita
+     a creare l'account. Si può riaprire da ospite («Riapri da ospite»: altri 45 minuti). Chi entra, o si
+     registra (anche se deve ancora confermare l'email), non ha più il limite.
+   - Un po' di pubblicità, nelle 13 lingue: a 10 e a 25 minuti un invito discreto a creare l'account
+     (aspetta che si chiuda il fumetto o la finestra aperta), a 40 minuti l'avviso «Alle 18:45 l'albo si
+     chiude». Ognuno compare una volta sola e si chiude con la ×. */
+var LUX_GUEST_MIN = 45;           // minuti da ospite, ogni volta che si apre l'albo
+var LUX_NUDGE_AT = [10, 25, 40];  // i due inviti e l'avviso (5 minuti prima)
+// (solo per le prove e per l'anteprima: tempi più brevi; nel sito vero nessuno lo imposta)
+function luxGuestScale(){ var k = +(window.LUX_GUEST_TEST_SCALE || 0); return k > 0 && k < 1 ? k : 1; }
+function luxGuestLimit(){ return LUX_GUEST_MIN * 60000 * luxGuestScale(); }
+// la memoria di questa visita (se il browser la blocca, semplicemente non conta niente)
+function luxSS(k, v){
+  try {
+    if(v === undefined) return sessionStorage.getItem(k);
+    if(v === null) sessionStorage.removeItem(k); else sessionStorage.setItem(k, String(v));
+  } catch(e){}
+  return null;
+}
+// chi ha il limite: chi sfoglia senza account (non chi si è appena registrato, non su Luxtify né sulle pagine senza copertina)
+function luxGuestActive(){
+  if(isSignedIn() || luxCoverSkipPage() || luxCoverBot()) return false;
+  return !luxSS('lux_guest_reg');
+}
+// il tempo da ospite: quello già passato con l'albo aperto, più quello da quando è aperto adesso
+function luxGuestElapsed(){
+  var used = +(luxSS('lux_guest_used') || 0), since = +(luxSS('lux_guest_since') || 0);
+  return Math.max(0, used + (since ? Date.now() - since : 0));
+}
+function luxGuestResume(){ if(!luxSS('lux_guest_since')) luxSS('lux_guest_since', Date.now()); }
+function luxGuestPause(){
+  if(!luxSS('lux_guest_since')) return;
+  luxSS('lux_guest_used', luxGuestElapsed());
+  luxSS('lux_guest_since', null);
+}
+function luxGuestReset(){ luxSS('lux_guest_used', 0); luxSS('lux_guest_since', Date.now()); luxSS('lux_nudge_seen', null); }
+function luxGuestClear(){ ['lux_guest_used', 'lux_guest_since', 'lux_guest_out', 'lux_nudge_seen'].forEach(function(k){ luxSS(k, null); }); }
+function luxGuestExpired(){ return luxGuestActive() && luxGuestElapsed() >= luxGuestLimit(); }
+function luxGuestOut(){ return !isSignedIn() && luxSS('lux_guest_out') === '1'; }
+
+// l'albo si è appena aperto: da ospite il tempo riparte (dopo i 45 minuti: da capo); con l'account non conta
+function luxGuestAfterOpen(guest){
+  if(!guest || isSignedIn()){ luxGuestClear(); return; }
+  if(luxSS('lux_guest_out')){ luxSS('lux_guest_out', null); luxGuestReset(); return; }
+  luxGuestResume();
+}
+// l'albo si chiude (a mano, uscendo dall'account o perché il tempo è finito): il tempo si ferma, l'invito sparisce;
+// se i 45 minuti sono finiti resta chiuso, anche cambiando pagina, finché non lo si riapre
+function luxGuestOnClose(){
+  luxNudgeHide();
+  if(luxGuestExpired()){ luxSS('lux_guest_out', '1'); luxSS('lux_cover_lock', '1'); }
+  luxGuestPause();
+}
+var luxGuestTimer = 0;
+function luxGuestInit(){
+  if(luxGuestTimer || luxCoverSkipPage() || luxCoverBot()) return;
+  luxGuestTimer = setInterval(luxGuestTick, Math.max(1000, Math.round(15000 * luxGuestScale())));
+  // il telefono ferma gli orologi delle schede in background: al ritorno si controlla subito
+  document.addEventListener('visibilitychange', function(){ if(document.visibilityState === 'visible') luxGuestTick(); });
+  window.addEventListener('focus', luxGuestTick);
+  setTimeout(luxGuestTick, 1200);
+}
+function luxGuestTick(){
+  if(isSignedIn()){ if(luxSS('lux_guest_since') || luxSS('lux_guest_used') || luxSS('lux_guest_out')) luxGuestClear(); luxNudgeHide(); return; }
+  if(!luxGuestActive()){ luxNudgeHide(); return; }
+  if(luxCoverEl) return;               // l'albo è chiuso: il tempo è fermo
+  if(!luxSS('lux_cover_ok')) return;   // (non è ancora entrato)
+  luxGuestResume();                    // (arrivato da Luxtify o dal link della copertina: il tempo parte adesso)
+  var used = luxGuestElapsed();
+  if(used >= luxGuestLimit()){ luxGuestTimeUp(); return; }
+  var k = luxGuestScale(), seen = luxNudgeSeen(), box = document.getElementById('luxNudge');
+  for(var i = LUX_NUDGE_AT.length - 1; i >= 0; i--){
+    if(used < LUX_NUDGE_AT[i] * 60000 * k) continue;
+    if(seen.indexOf(i) === -1){ if(!luxNudgeBlocked(i)) luxNudgeShow(i); }
+    else if(box && box._i === i && box.classList.contains('on')) luxNudgeTexts(); // (l'ora dell'avviso resta giusta)
+    break;
+  }
+}
+// i 45 minuti sono finiti: l'albo si richiude sopra il sito (non mentre si sta entrando o creando l'account)
+function luxGuestTimeUp(){
+  if(luxCoverEl || !luxGuestActive()) return;
+  var am = document.getElementById('authModal');
+  if(am && !am.classList.contains('hidden')) return;
+  try { luxCoverShow('close'); } catch(e){ console.warn('[copertina]', e); }
+}
+
+// il biglietto sul telefono girato (e sulle finestre basse): se non sta sotto la testata, prima il testo
+// si stringe, poi resta solo il titolo («L'albo si è chiuso»); in verticale ci pensa luxCoverPlaceSeal
+function luxCoverFitNote(el){
+  if(!el) return;
+  el.classList.remove('lxc-note-sm', 'lxc-note-tag-only');
+  if(!el._timeout || el._art === 'tall') return;
+  var note = el.querySelector('.lxc-note'), mast = el.querySelector('.lxc-mast');
+  if(!note || !note.offsetParent || !mast) return;
+  var clash = function(){ return note.offsetTop < mast.offsetTop + mast.offsetHeight + 8; };
+  if(!clash()) return;
+  el.classList.add('lxc-note-sm');
+  if(clash()) el.classList.add('lxc-note-tag-only');
+}
+
+/* ---- l'invito a creare l'account ---- */
+function luxNudgeSeen(){ return String(luxSS('lux_nudge_seen') || '').split(',').filter(Boolean).map(Number); }
+function luxNudgeMark(i){
+  var s = luxNudgeSeen();
+  for(var k = 0; k <= i; k++) if(s.indexOf(k) === -1) s.push(k); // (chi torna dopo un'ora vede solo l'ultimo)
+  luxSS('lux_nudge_seen', s.join(','));
+}
+function luxNudgeOpen(id){ var x = document.getElementById(id); return !!(x && !x.classList.contains('hidden')); }
+// non copre la copertina, la seconda pagina, l'accesso, la conferma dei 18 anni, le chiusure né il pannello «Tu»;
+// i due inviti aspettano anche che si chiuda il fumetto o la finestra aperta (l'avviso dei 5 minuti no)
+function luxNudgeBlocked(i){
+  if(luxCoverEl || document.getElementById('entryModeGate')) return true;
+  if(['authModal', 'matureModal', 'maintenanceLock', 'nightClosureLock', 'luxResetModal'].some(luxNudgeOpen)) return true;
+  var tu = document.getElementById('appTuSheet');
+  if(tu && tu.classList.contains('open')) return true;
+  if(i < LUX_NUDGE_AT.length - 1 && ['titleModal', 'profileModal', 'cartModal', 'imageLightboxModal', 'smallnoxModal', 'smallnoxUpdatesModal', 'avatarInfoModal'].some(luxNudgeOpen)) return true;
+  return false;
+}
+function luxNudgeShow(i){
+  luxNudgeMark(i);
+  var el = document.getElementById('luxNudge');
+  if(!el){
+    el = document.createElement('aside');
+    el.id = 'luxNudge';
+    el.className = 'lux-nudge';
+    el.hidden = true;
+    el.setAttribute('aria-live', 'polite');
+    el.setAttribute('aria-labelledby', 'luxNudgeTitle');
+    el.innerHTML = '<img class="lux-nudge-seal" src="' + LOGO_SM + '" alt="" aria-hidden="true">' +
+      '<div class="lux-nudge-body"><small class="lux-nudge-tag"></small><b class="lux-nudge-title" id="luxNudgeTitle"></b><p class="lux-nudge-txt"></p>' +
+        '<div class="lux-nudge-acts"><button type="button" class="btn btn-primary btn-sm" data-nudge="register"></button><button type="button" class="btn btn-ghost btn-sm" data-nudge="login"></button></div></div>' +
+      '<button type="button" class="lux-nudge-x" data-nudge="x"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>';
+    el.addEventListener('click', function(e){
+      var b = e.target.closest ? e.target.closest('[data-nudge]') : null;
+      if(!b) return;
+      var a = b.getAttribute('data-nudge');
+      luxNudgeHide();
+      if(a === 'register' || a === 'login') openAuth(a);
+    });
+    document.body.appendChild(el);
+  }
+  el._i = i;
+  el.classList.toggle('is-warn', i === LUX_NUDGE_AT.length - 1);
+  luxNudgeTexts();
+  clearTimeout(el._hideT);
+  el.hidden = false;
+  void el.offsetWidth; // (così entra scorrendo)
+  el.classList.add('on');
+}
+function luxNudgeHide(){
+  var el = document.getElementById('luxNudge');
+  if(!el || el.hidden) return;
+  el.classList.remove('on');
+  clearTimeout(el._hideT);
+  el._hideT = setTimeout(function(){ if(!el.classList.contains('on')) el.hidden = true; }, 400);
+}
+function luxNudgeTexts(){
+  var el = document.getElementById('luxNudge');
+  if(!el) return;
+  var n = (el._i || 0) + 1, q = function(s){ return el.querySelector(s); };
+  var title = t('lxguest.n' + n + 'Title'), txt = t('lxguest.n' + n + 'Txt').replace('{min}', String(LUX_GUEST_MIN));
+  if(title.indexOf('{time}') !== -1){ // l'ora in cui l'albo si chiude, scritta come si usa nella lingua scelta
+    var at = new Date(Date.now() + Math.max(0, luxGuestLimit() - luxGuestElapsed())), hm = '';
+    try { hm = at.toLocaleTimeString(luxLocale(), { hour: '2-digit', minute: '2-digit' }); }
+    catch(e){ hm = ('0' + at.getHours()).slice(-2) + ':' + ('0' + at.getMinutes()).slice(-2); }
+    title = title.replace('{time}', hm);
+  }
+  q('.lux-nudge-tag').textContent = t('lxguest.tag');
+  q('.lux-nudge-title').textContent = title;
+  q('.lux-nudge-txt').textContent = txt;
+  q('[data-nudge="register"]').textContent = t('lxcover.signup');
+  q('[data-nudge="login"]').textContent = t('nav.login');
+  q('[data-nudge="x"]').setAttribute('aria-label', t('apptu.close'));
+}
+
+/* ---- la seconda pagina: «online o versione offline?» ---- */
+function luxGateTexts(g){
+  if(!g) return;
+  var set = function(id, key){ var x = document.getElementById(id); if(x) x.textContent = t(key); };
+  set('entryGateQ', 'entry.question');
+  set('entryGateOnline', 'entry.online');
+  set('entryGateOffline', 'entry.offline');
+  set('entryGateLxSub', 'entry.luxtifySub');
+  set('entryGateHint', 'entry.wifiHint');
+  var st = document.getElementById('entryGateStale');
+  if(st && !st.classList.contains('hidden')) st.textContent = t('offline.staleWarning');
+}
+function luxGateRelang(){ luxGateTexts(document.getElementById('entryModeGate')); }
+// la copertina si è aperta: la seconda pagina viene in primo piano; scelto, segue il resto (il saluto, il fumetto scelto)
+function luxGateRaise(after){
+  var g = document.getElementById('entryModeGate');
+  if(!g) return false;
+  g.style.zIndex = '100000';
+  g.classList.remove('entry-gate-under');
+  g._after = after || null;
+  var b = document.getElementById('entryGateOnline');
+  try { if(b) b.focus({ preventScroll: true }); } catch(e){}
+  return true;
+}
 
 /* ============ v242: PASSWORD DIMENTICATA ============
    Nella finestra «Accedi», sotto la password, c'è «Password dimenticata?»: si scrive l'email
@@ -2429,7 +2711,9 @@ function luxAuthLanded(session){
   try {
     sessionStorage.setItem('lux_entry_mode', 'online'); // niente scelta online/offline sopra
     sessionStorage.removeItem('lux_cover_lock');
+    sessionStorage.setItem('lux_cover_ok', '1'); // v248: né la copertina (ora c'è a ogni visita anche con l'account)
   } catch(e){}
+  var eg = document.getElementById('entryModeGate'); if(eg && eg.parentNode) eg.parentNode.removeChild(eg);
   luxResetOpen();
 }
 // (se il codice non si legge: si chiede a Supabase chi è)
@@ -3121,11 +3405,16 @@ function handleAuthSubmit(){
 
   if(authMode === 'register'){
     authSignUp(email, pass).then(function(data){
-      if(data.session){
-        setSession(data.session);
+      // v248: se l'account è subito attivo Supabase risponde con la sessione stessa (access_token in cima),
+      // se serve confermare l'email con il solo utente (prima si cercava data.session, che lì non c'è mai)
+      var sess = data && (data.session || (data.access_token ? data : null));
+      if(sess){
+        setSession(sess);
         closeAuth();
         afterAuthChange();
       } else {
+        try { sessionStorage.setItem('lux_guest_reg', '1'); } catch(e){} // v248: si è registrato (manca solo la conferma dell'email): niente limite da ospite
+        try { luxNudgeHide(); } catch(e){}
         closeAuth();
         alert(t('auth.confirmEmailSent'));
       }
@@ -3145,6 +3434,7 @@ function handleAuthSubmit(){
 
 function afterAuthChange(){
   try { luxCoverAfterAuth(); } catch(e){} // v237: appena dentro, il sigillo si spacca e la copertina gira
+  try { luxGuestTick(); } catch(e){} // v248: dentro: niente più tempo da ospite né inviti
   refreshAuthUI();
   refreshAdminUI();
   renderCatalog();
@@ -22671,7 +22961,8 @@ function __appInit(){
   initInstallPrompts(); // avviso "Installa l'app" / invito alle notifiche nell'app installata
   fillCharacterSelect();
   fetchTaxonomy(); // personaggi e categorie dalle tabelle Supabase (se ci sono)
-  if(!luxCoverMaybeShow()) showEntryModeGate(); // v237: chi non ha fatto l'accesso trova la copertina
+  if(!luxCoverMaybeShow()) showEntryModeGate(); // v237: chi non ha fatto l'accesso trova la copertina (v248: tutti; sotto, la seconda pagina)
+  luxGuestInit(); // v248: da ospite, 45 minuti alla volta e l'invito a creare l'account
   renderDossiers();
   renderGenreChecks(); // se il form del catalogo è in questa pagina (Admin), popola i sigilli genere subito — non solo aprendo un titolo esistente in modifica
   refreshSupportSectionVisibility(); // mostra subito ai visitatori anonimi; ricontrollato sotto per chi ha fatto login

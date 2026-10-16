@@ -4552,3 +4552,68 @@ body.theme-light .cart-code{border-color:rgba(140,104,30,.55);}
 .lux-space-done p{margin:0;}
 .lux-space-done ul{margin:6px 0 0;padding-inline-start:18px;font-size:12px;color:var(--parchment-dim);}
 @media (max-width:520px){ .lux-space-act .btn{width:100%;} }
+
+/* ============ v248: l'ospite che chiude l'albo, il biglietto dei 45 minuti e l'invito a creare l'account ============ */
+/* in fondo a ogni pagina, come l'ultima pagina di un fumetto: «Chiudi l'albo» (anche senza account) */
+.lux-foot-close{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:40px;margin:16px auto 6px;padding:0 18px;border:1px solid rgba(201,162,77,.45);border-radius:999px;background:transparent;
+  color:var(--gold-bright);font:600 12px/1 'Cinzel',Georgia,serif;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:border-color .2s ease,background-color .2s ease;}
+.lux-foot-close svg{flex:none;width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;}
+.lux-foot-close:hover{border-color:var(--gold-bright);background:rgba(201,162,77,.08);}
+.lux-foot-close:focus-visible{outline:2px solid var(--gold-bright);outline-offset:3px;}
+.lux-foot-close[hidden]{display:none;}
+body.theme-light .lux-foot-close{color:#6b5015;border-color:rgba(138,106,31,.45);}
+
+/* il biglietto sulla copertina quando i 45 minuti da ospite sono finiti (al posto del capitolo nuovo) */
+.lxc-note{display:none;}
+.lxc-timeout .lxc-blurb,.lxc-timeout .lxc-barcode{display:none;}
+.lxc-timeout .lxc-note{display:block;position:absolute;left:calc(16px + var(--lxc-sl));right:calc(16px + var(--lxc-se));bottom:calc(136px + var(--lxc-sb));max-width:430px;margin:0 auto;padding:9px 13px 11px;border-radius:3px;
+  background:#ece2c6;color:#1e1410;transform:rotate(-1.5deg);box-shadow:3px 3px 0 #0b0607,0 8px 22px rgba(0,0,0,.45);text-align:left;pointer-events:none;}
+.lxc-note-tag{display:block;font:700 9.5px/1.3 'Space Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#6e1423;}
+.lxc-note-txt{margin:3px 0 0;font:400 15px/1.3 'Crimson Pro',Georgia,serif;letter-spacing:0;text-transform:none;color:#2a1d12;}
+html.lux-rtl .lxc-timeout .lxc-note{text-align:right;transform:rotate(1.5deg);}
+.lxc-full.lxc-art-wide.lxc-timeout .lxc-note{left:calc(22px + var(--lxc-sl));right:auto;bottom:calc(76px + var(--lxc-sb));width:min(330px,calc(var(--lxc-sx) - var(--lxc-sr) - 44px));max-width:none;margin:0;}
+.lxc-full.lxc-art-wide.lxc-cinema.lxc-timeout .lxc-note{width:min(380px,calc(var(--lxc-sx) - var(--lxc-sr) - 44px));}
+.lxc-book.lxc-timeout .lxc-note{left:20px;right:20px;bottom:150px;max-width:none;}
+.lxc-noblurb .lxc-note{display:none!important;}
+/* telefono girato, finestre basse: il testo più piccolo, o solo il titolo (luxCoverFitNote) */
+.lxc-note-sm .lxc-note{padding:7px 10px 8px;}
+.lxc-note-sm .lxc-note-txt{font-size:13.5px;line-height:1.25;}
+.lxc-note-tag-only .lxc-note-txt{display:none;}
+.lxc-timeout .lxc-guest{color:#e3c273;} /* «Riapri da ospite» */
+
+/* l'invito a creare l'account: una tessera che sale dal basso (sopra la barra dell'app), si chiude con la × */
+.lux-nudge{position:fixed;z-index:9700;left:50%;bottom:calc(80px + env(safe-area-inset-bottom,0px));box-sizing:border-box;width:min(440px,calc(100vw - 24px));
+  display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:12px;align-items:start;padding:14px 10px 14px 14px;border:1px solid rgba(201,162,77,.55);border-radius:16px;
+  background:radial-gradient(rgba(227,194,115,.10) 1.1px,transparent 1.6px) 0 0/20px 20px,linear-gradient(165deg,#2c0c14 0%,#1d0a0f 55%,#130608 100%);
+  box-shadow:0 18px 50px rgba(0,0,0,.6),inset 0 0 0 4px #180709,inset 0 0 0 5px rgba(201,162,77,.3);color:#ece2c6;text-align:left;
+  transform:translate(-50%,18px);opacity:0;transition:opacity .35s ease,transform .4s cubic-bezier(.2,.8,.25,1);pointer-events:none;}
+.lux-nudge.on{opacity:1;transform:translate(-50%,0);pointer-events:auto;}
+.lux-nudge[hidden]{display:none;}
+body:not(.has-app-tabbar) .lux-nudge{bottom:calc(16px + env(safe-area-inset-bottom,0px));}
+.lux-nudge-seal{width:40px;height:40px;margin-top:2px;filter:drop-shadow(0 3px 8px rgba(0,0,0,.6));}
+.lux-nudge-body{min-width:0;}
+.lux-nudge-tag{display:block;font:400 9.5px/1.3 'Space Mono',monospace;letter-spacing:.2em;text-transform:uppercase;color:#6fd3c4;}
+.lux-nudge-title{display:block;margin-top:3px;font:600 17px/1.25 'Cinzel',Georgia,serif;letter-spacing:.03em;color:#e3c273;}
+.lux-nudge-txt{margin:5px 0 0;font:400 15.5px/1.4 'Crimson Pro',Georgia,serif;color:#d8ccb0;}
+.lux-nudge-acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:11px;}
+.lux-nudge-acts .btn{min-height:40px;margin:0;padding:6px 14px;border-radius:10px;font-family:'Crimson Pro',Georgia,serif;font-size:16px;font-weight:700;letter-spacing:0;text-transform:none;}
+.lux-nudge .btn-primary{background:#6e1423;border:1px solid #c9a24d;color:#f6ead0;box-shadow:0 6px 18px rgba(110,20,35,.45);}
+.lux-nudge .btn-primary:hover{background:#8a1a2c;color:#fff;}
+.lux-nudge .btn-ghost{background:transparent;border:1px solid rgba(201,162,77,.5);color:#e3c273;}
+.lux-nudge .btn-ghost:hover{background:rgba(201,162,77,.08);border-color:#e3c273;}
+.lux-nudge-x{width:36px;height:36px;margin:-6px 0 0;padding:0;display:flex;align-items:center;justify-content:center;border:0;border-radius:50%;background:none;color:#b8ac8e;cursor:pointer;}
+.lux-nudge-x svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;}
+.lux-nudge-x:hover{color:#ece2c6;background:rgba(236,226,198,.08);}
+.lux-nudge-x:focus-visible,.lux-nudge .btn:focus-visible{outline:2px solid #e3c273;outline-offset:2px;}
+.lux-nudge.is-warn{border-color:#c9a24d;}
+.lux-nudge.is-warn .lux-nudge-tag{color:#ff9466;}
+/* arabo e panjabi: il testo da destra a sinistra, allineato a destra (la tessera resta com'è, come il resto del sito) */
+html.lux-rtl .lux-nudge{text-align:right;}
+html.lux-rtl .lux-nudge :is(.lux-nudge-tag,.lux-nudge-title,.lux-nudge-txt){unicode-bidi:plaintext;}
+html.lux-rtl .lux-nudge-acts{justify-content:flex-end;}
+@media (min-width:1320px){
+  body.has-app-tabbar .lux-nudge{left:auto;right:96px;bottom:24px;transform:translateY(18px);}
+  body.has-app-tabbar .lux-nudge.on{transform:none;}
+}
+@media (prefers-reduced-motion:reduce){ .lux-nudge{transition:opacity .2s ease;transform:translate(-50%,0);} }
+@media (prefers-reduced-motion:reduce) and (min-width:1320px){ body.has-app-tabbar .lux-nudge{transform:none;} }
