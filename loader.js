@@ -83,7 +83,7 @@
   // hai visto live sul sito prima di caricare — questo file parte da una
   // copia salvata in sessione e potrebbe non riflettere bump fatti nel
   // frattempo direttamente su GitHub.
-  var V = "247";
+  var V = "248";
 
   // style.css iniettato qui (non più con un <link> scritto a mano in ogni
   // pagina) così la sua versione segue sempre la stessa V di app.js,
@@ -200,12 +200,17 @@
   // v237: chi non ha fatto l'accesso trova la copertina (la disegna app.js). Finché app.js
   // non arriva, al posto della pagina c'è già lo sfondo della copertina: così la home non
   // compare per un attimo prima di sparire sotto. Stesse regole di luxCoverWanted in app.js.
+  // v248: la copertina c'è a ogni visita per tutti (con l'account: «Chi sta leggendo?»); già aperta in
+  // questa visita, no — tranne l'albo richiuso e, da ospite, dopo 45 minuti con l'albo aperto.
   function luxCoverWait() {
     try {
       if (/access_token=/.test(location.hash || "")) return; // v242: dal link «nuova password»: si entra già nell'account
       var s = JSON.parse(localStorage.getItem("lux_session") || "null");
-      if (s && s.access_token) { if (sessionStorage.getItem("lux_cover_lock") !== "1") return; } // v242: l'albo richiuso con «Chiudi l'albo»
-      else if (sessionStorage.getItem("lux_cover_ok")) return;
+      if (sessionStorage.getItem("lux_cover_ok") && sessionStorage.getItem("lux_cover_lock") !== "1") {
+        if (s && s.access_token) return;
+        var used = +(sessionStorage.getItem("lux_guest_used") || 0), since = +(sessionStorage.getItem("lux_guest_since") || 0);
+        if (sessionStorage.getItem("lux_guest_reg") || used + (since ? Date.now() - since : 0) < 45 * 60 * 1000) return;
+      }
     } catch (e) { return; }
     if (navigator.onLine === false) return;
     if (/bot|crawl|spider|slurp|headless|lighthouse|bingpreview|facebookexternalhit|embedly/i.test(navigator.userAgent || "")) return;
