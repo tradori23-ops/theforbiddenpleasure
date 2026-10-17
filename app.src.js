@@ -1019,6 +1019,20 @@ Object.assign(STR.hi, {"entry.luxtifySub": "सिर्फ़ संगीत, 
 Object.assign(STR.bn, {"entry.luxtifySub": "শুধু গান, প্লেলিস্ট আর পডকাস্ট", "lxguest.closeHint": "কমিকের মতো করে সাইটটা বন্ধ করুন: যখন খুশি আবার খুলুন, অ্যাকাউন্ট ছাড়াই", "lxguest.again": "অতিথি হিসেবে আবার খুলুন", "lxguest.noteTag": "কমিকটা বন্ধ হয়ে গেছে", "lxguest.noteTxt": "অতিথিরা একবারে {min} মিনিট পড়তে পারেন। বিনামূল্যের অ্যাকাউন্ট থাকলে বিরতি ছাড়াই পড়বেন, আর প্রতিটি কমিক যেখানে থেমেছিলেন সেখান থেকেই চালিয়ে যাবেন।", "lxguest.tag": "বিনামূল্যের অ্যাকাউন্ট", "lxguest.n1Title": "আর্কাইভ ভালো লাগছে?", "lxguest.n1Txt": "বিনামূল্যের অ্যাকাউন্টে আপনার পড়া আর প্রিয় তালিকা সেভ থাকে, আর প্রতিটি কমিক যে পাতায় থেমেছিলেন সেখান থেকেই আবার শুরু করতে পারেন — অন্য ডিভাইস থেকেও।", "lxguest.n2Title": "কমিউনিটিতে যোগ দিন", "lxguest.n2Txt": "বিনামূল্যের অ্যাকাউন্টে কমিউনিটিতে লিখতে পারবেন, অন্য পাঠকদের সঙ্গে চ্যাট করতে পারবেন আর আর্কাইভের নোটিফিকেশন পাবেন।", "lxguest.n3Title": "{time}-এ কমিকটা বন্ধ হয়ে যাবে", "lxguest.n3Txt": "অতিথিরা একবারে {min} মিনিট পড়তে পারেন। বিনামূল্যের একটা অ্যাকাউন্ট খুলুন আর বিরতি ছাড়াই পড়তে থাকুন।"});
 Object.assign(STR.ar, {"entry.luxtifySub": "موسيقى وقوائم تشغيل وبودكاست فقط", "lxguest.closeHint": "أغلق الموقع كما تُغلق غلاف قصة مصوّرة: افتحه من جديد متى شئت، حتى من دون حساب", "lxguest.again": "أعد الفتح كزائر", "lxguest.noteTag": "أُغلق الغلاف", "lxguest.noteTxt": "يقرأ الزوّار {min} دقيقة في كل مرة. مع حساب مجاني تقرأ بلا انقطاع وتكمل كل قصة مصوّرة من حيث توقفت.", "lxguest.tag": "حساب مجاني", "lxguest.n1Title": "هل يعجبك الأرشيف؟", "lxguest.n1Txt": "مع حساب مجاني تحفظ قراءاتك ومفضّلتك، وتكمل كل قصة مصوّرة من الصفحة التي توقفت عندها، حتى من جهاز آخر.", "lxguest.n2Title": "انضم إلى المجتمع", "lxguest.n2Txt": "مع حساب مجاني تكتب في المجتمع وتدردش مع القرّاء الآخرين وتتلقّى إشعارات الأرشيف.", "lxguest.n3Title": "يُغلق الغلاف عند الساعة {time}", "lxguest.n3Txt": "يقرأ الزوّار {min} دقيقة في كل مرة. أنشئ حسابًا مجانيًا وتابع القراءة بلا انقطاع."});
 Object.assign(STR.pnb, {"entry.luxtifySub": "صرف موسیقی، پلے لسٹاں تے پوڈکاسٹ", "lxguest.closeHint": "سائٹ نوں کامک وانگوں بند کرو: جدوں جی کرے فیر کھولو، اکاؤنٹ توں بغیر وی", "lxguest.again": "مہمان بن کے فیر کھولو", "lxguest.noteTag": "کامک بند ہو گیا اے", "lxguest.noteTxt": "مہمان اک واری وچ {min} منٹ تک پڑھ سکدے نیں۔ مفت اکاؤنٹ نال تسیں بغیر رکاوٹ پڑھدے او تے ہر کامک اوتھوں ای اگے پڑھدے او جتھے چھڈیا سی۔", "lxguest.tag": "مفت اکاؤنٹ", "lxguest.n1Title": "آرکائیو چنگا لگ رہیا اے؟", "lxguest.n1Txt": "مفت اکاؤنٹ نال تسیں اپنی پڑھائی تے پسندیدہ محفوظ کر سکدے او، تے ہر کامک اوسے صفحے توں فیر شروع کر سکدے او جتھے چھڈیا سی — کسے ہور ڈیوائس توں وی۔", "lxguest.n2Title": "کمیونٹی وچ شامل ہوو", "lxguest.n2Txt": "مفت اکاؤنٹ نال تسیں کمیونٹی وچ لکھ سکدے او، دوجے پڑھن والیاں نال گل بات کر سکدے او تے آرکائیو دیاں نوٹیفکیشناں لے سکدے او۔", "lxguest.n3Title": "{time} وجے کامک بند ہو جاوے گا", "lxguest.n3Txt": "مہمان اک واری وچ {min} منٹ تک پڑھ سکدے نیں۔ مفت اکاؤنٹ بناؤ تے بغیر رکاوٹ پڑھدے رہو۔"});
+// v250: la ricerca per i lettori (la lente in alto)
+Object.assign(STR.it, {"search.btn": "Cerca", "search.ph": "Cerca fumetti, personaggi, serie…", "search.close": "Chiudi", "search.chars": "Personaggi", "search.recent": "Cercati di recente", "search.clear": "Cancella", "search.latest": "Ultimi usciti", "search.results": "Fumetti", "search.none": "Nessun fumetto per «{q}».", "search.noneHint": "Prova con meno parole, o con il nome di un personaggio.", "search.more": "Mostra altri {n}", "search.mature1": "C'è anche un risultato per adulti: lo vedi accendendo «{toggle}».", "search.matureN": "Ci sono anche {n} risultati per adulti: li vedi accendendo «{toggle}».", "search.keys": "↑ ↓ per scegliere · Invio per aprire · Esc per chiudere", "search.count1": "1 fumetto", "search.countN": "{n} fumetti", "search.wait": "Il catalogo sta arrivando…", "stats.title": "Statistiche per capitolo"});
+Object.assign(STR.en, {"search.btn": "Search", "search.ph": "Search comics, characters, series…", "search.close": "Close", "search.chars": "Characters", "search.recent": "Recent searches", "search.clear": "Clear", "search.latest": "Latest releases", "search.results": "Comics", "search.none": "No comics for “{q}”.", "search.noneHint": "Try fewer words, or a character's name.", "search.more": "Show {n} more", "search.mature1": "There's also one result for adults: turn on “{toggle}” to see it.", "search.matureN": "There are also {n} results for adults: turn on “{toggle}” to see them.", "search.keys": "↑ ↓ to choose · Enter to open · Esc to close", "search.count1": "1 comic", "search.countN": "{n} comics", "search.wait": "The catalogue is on its way…"});
+Object.assign(STR.es, {"search.btn": "Buscar", "search.ph": "Busca cómics, personajes, series…", "search.close": "Cerrar", "search.chars": "Personajes", "search.recent": "Búsquedas recientes", "search.clear": "Borrar", "search.latest": "Últimos lanzamientos", "search.results": "Cómics", "search.none": "Ningún cómic para «{q}».", "search.noneHint": "Prueba con menos palabras o con el nombre de un personaje.", "search.more": "Mostrar {n} más", "search.mature1": "También hay un resultado para adultos: lo verás activando «{toggle}».", "search.matureN": "También hay {n} resultados para adultos: los verás activando «{toggle}».", "search.keys": "↑ ↓ para elegir · Intro para abrir · Esc para cerrar", "search.count1": "1 cómic", "search.countN": "{n} cómics", "search.wait": "El catálogo está llegando…"});
+Object.assign(STR.fr, {"search.btn": "Rechercher", "search.ph": "Cherchez BD, personnages, séries…", "search.close": "Fermer", "search.chars": "Personnages", "search.recent": "Recherches récentes", "search.clear": "Effacer", "search.latest": "Dernières sorties", "search.results": "BD", "search.none": "Aucune BD pour « {q} ».", "search.noneHint": "Essayez avec moins de mots, ou avec le nom d'un personnage.", "search.more": "Afficher {n} de plus", "search.mature1": "Il y a aussi un résultat pour adultes : activez « {toggle} » pour le voir.", "search.matureN": "Il y a aussi {n} résultats pour adultes : activez « {toggle} » pour les voir.", "search.keys": "↑ ↓ pour choisir · Entrée pour ouvrir · Échap pour fermer", "search.count1": "1 BD", "search.countN": "{n} BD", "search.wait": "Le catalogue arrive…"});
+Object.assign(STR.de, {"search.btn": "Suchen", "search.ph": "Comics, Figuren, Reihen suchen …", "search.close": "Schließen", "search.chars": "Figuren", "search.recent": "Zuletzt gesucht", "search.clear": "Löschen", "search.latest": "Neu erschienen", "search.results": "Comics", "search.none": "Keine Comics für „{q}“.", "search.noneHint": "Versuche es mit weniger Wörtern oder mit dem Namen einer Figur.", "search.more": "{n} weitere anzeigen", "search.mature1": "Es gibt noch ein Ergebnis für Erwachsene: Schalte „{toggle}“ ein, um es zu sehen.", "search.matureN": "Es gibt noch {n} Ergebnisse für Erwachsene: Schalte „{toggle}“ ein, um sie zu sehen.", "search.keys": "↑ ↓ zum Auswählen · Enter zum Öffnen · Esc zum Schließen", "search.count1": "1 Comic", "search.countN": "{n} Comics", "search.wait": "Der Katalog wird geladen …"});
+Object.assign(STR.pt, {"search.btn": "Buscar", "search.ph": "Busque quadrinhos, personagens, séries…", "search.close": "Fechar", "search.chars": "Personagens", "search.recent": "Buscas recentes", "search.clear": "Limpar", "search.latest": "Últimos lançamentos", "search.results": "Quadrinhos", "search.none": "Nenhum quadrinho para “{q}”.", "search.noneHint": "Tente com menos palavras ou com o nome de um personagem.", "search.more": "Mostrar mais {n}", "search.mature1": "Também há um resultado para adultos: ative “{toggle}” para vê-lo.", "search.matureN": "Também há {n} resultados para adultos: ative “{toggle}” para vê-los.", "search.keys": "↑ ↓ para escolher · Enter para abrir · Esc para fechar", "search.count1": "1 quadrinho", "search.countN": "{n} quadrinhos", "search.wait": "O catálogo está chegando…"});
+Object.assign(STR.ru, {"search.btn": "Поиск", "search.ph": "Комиксы, персонажи, серии…", "search.close": "Закрыть", "search.chars": "Персонажи", "search.recent": "Недавние поиски", "search.clear": "Очистить", "search.latest": "Новые выпуски", "search.results": "Комиксы", "search.none": "Нет комиксов по запросу «{q}».", "search.noneHint": "Попробуйте меньше слов или имя персонажа.", "search.more": "Показать ещё {n}", "search.mature1": "Есть ещё один результат для взрослых: включите «{toggle}», чтобы увидеть его.", "search.matureN": "Есть ещё результаты для взрослых ({n}): включите «{toggle}», чтобы увидеть их.", "search.keys": "↑ ↓ — выбрать · Enter — открыть · Esc — закрыть", "search.count1": "1 комикс", "search.countN": "Комиксов: {n}", "search.wait": "Каталог загружается…"});
+Object.assign(STR.zh, {"search.btn": "搜索", "search.ph": "搜索漫画、角色、系列…", "search.close": "关闭", "search.chars": "角色", "search.recent": "最近搜索", "search.clear": "清除", "search.latest": "最新发布", "search.results": "漫画", "search.none": "没有找到与“{q}”相关的漫画。", "search.noneHint": "试试少用几个词，或输入角色的名字。", "search.more": "再显示 {n} 部", "search.mature1": "还有 1 个成人向结果：开启“{toggle}”即可查看。", "search.matureN": "还有 {n} 个成人向结果：开启“{toggle}”即可查看。", "search.keys": "↑ ↓ 选择 · Enter 打开 · Esc 关闭", "search.count1": "1 部漫画", "search.countN": "{n} 部漫画", "search.wait": "目录正在加载…"});
+Object.assign(STR.ja, {"search.btn": "検索", "search.ph": "コミック・キャラクター・シリーズを検索…", "search.close": "閉じる", "search.chars": "キャラクター", "search.recent": "最近の検索", "search.clear": "消去", "search.latest": "最新の公開", "search.results": "コミック", "search.none": "「{q}」に一致するコミックはありません。", "search.noneHint": "言葉を減らすか、キャラクターの名前で探してみてください。", "search.more": "さらに {n} 件を表示", "search.mature1": "成人向けの結果がほかに 1 件あります。「{toggle}」をオンにすると表示されます。", "search.matureN": "成人向けの結果がほかに {n} 件あります。「{toggle}」をオンにすると表示されます。", "search.keys": "↑ ↓ で選択 · Enter で開く · Esc で閉じる", "search.count1": "1 件のコミック", "search.countN": "{n} 件のコミック", "search.wait": "カタログを読み込んでいます…"});
+Object.assign(STR.hi, {"search.btn": "खोजें", "search.ph": "कॉमिक्स, किरदार, सीरीज़ खोजें…", "search.close": "बंद करें", "search.chars": "किरदार", "search.recent": "हाल की खोजें", "search.clear": "मिटाएँ", "search.latest": "नई रिलीज़", "search.results": "कॉमिक्स", "search.none": "“{q}” के लिए कोई कॉमिक नहीं मिली।", "search.noneHint": "कम शब्दों से, या किसी किरदार के नाम से खोजकर देखें।", "search.more": "{n} और दिखाएँ", "search.mature1": "वयस्कों के लिए एक और नतीजा है: उसे देखने के लिए “{toggle}” चालू करें।", "search.matureN": "वयस्कों के लिए {n} और नतीजे हैं: उन्हें देखने के लिए “{toggle}” चालू करें।", "search.keys": "↑ ↓ चुनने के लिए · Enter खोलने के लिए · Esc बंद करने के लिए", "search.count1": "1 कॉमिक", "search.countN": "{n} कॉमिक्स", "search.wait": "कैटलॉग आ रहा है…"});
+Object.assign(STR.bn, {"search.btn": "খুঁজুন", "search.ph": "কমিকস, চরিত্র, সিরিজ খুঁজুন…", "search.close": "বন্ধ করুন", "search.chars": "চরিত্র", "search.recent": "সাম্প্রতিক খোঁজ", "search.clear": "মুছুন", "search.latest": "নতুন প্রকাশ", "search.results": "কমিকস", "search.none": "“{q}”-এর জন্য কোনো কমিক পাওয়া যায়নি।", "search.noneHint": "কম শব্দ দিয়ে, বা কোনো চরিত্রের নাম দিয়ে খুঁজে দেখুন।", "search.more": "আরও {n}টি দেখান", "search.mature1": "প্রাপ্তবয়স্কদের জন্য আরও একটি ফল আছে: দেখতে “{toggle}” চালু করুন।", "search.matureN": "প্রাপ্তবয়স্কদের জন্য আরও {n}টি ফল আছে: দেখতে “{toggle}” চালু করুন।", "search.keys": "↑ ↓ বেছে নিতে · Enter খুলতে · Esc বন্ধ করতে", "search.count1": "1টি কমিক", "search.countN": "{n}টি কমিক", "search.wait": "ক্যাটালগ আসছে…"});
+Object.assign(STR.ar, {"search.btn": "بحث", "search.ph": "ابحث عن قصص وشخصيات وسلاسل…", "search.close": "إغلاق", "search.chars": "الشخصيات", "search.recent": "عمليات البحث الأخيرة", "search.clear": "مسح", "search.latest": "أحدث الإصدارات", "search.results": "القصص المصوّرة", "search.none": "لا توجد قصص مصوّرة لـ «{q}».", "search.noneHint": "جرّب كلمات أقل، أو اسم إحدى الشخصيات.", "search.more": "عرض المزيد ({n})", "search.mature1": "هناك أيضًا نتيجة واحدة للبالغين: فعّل «{toggle}» لرؤيتها.", "search.matureN": "هناك أيضًا نتائج أخرى للبالغين ({n}): فعّل «{toggle}» لرؤيتها.", "search.keys": "↑ ↓ للاختيار · Enter للفتح · Esc للإغلاق", "search.count1": "قصة مصوّرة واحدة", "search.countN": "عدد القصص: {n}", "search.wait": "الفهرس في الطريق…"});
+Object.assign(STR.pnb, {"search.btn": "لبھو", "search.ph": "کامکس، کردار، سیریز لبھو…", "search.close": "بند کرو", "search.chars": "کردار", "search.recent": "حالیہ کھوجاں", "search.clear": "مٹاؤ", "search.latest": "نویاں ریلیزاں", "search.results": "کامکس", "search.none": "«{q}» لئی کوئی کامک نئیں لبھی۔", "search.noneHint": "گھٹ لفظاں نال، یا کسے کردار دے ناں نال لبھ کے ویکھو۔", "search.more": "{n} ہور وکھاؤ", "search.mature1": "بالغاں لئی اک ہور نتیجہ وی اے: ویکھن لئی «{toggle}» چالو کرو۔", "search.matureN": "بالغاں لئی {n} ہور نتیجے وی نیں: ویکھن لئی «{toggle}» چالو کرو۔", "search.keys": "↑ ↓ چُنن لئی · Enter کھولن لئی · Esc بند کرن لئی", "search.count1": "1 کامک", "search.countN": "{n} کامکس", "search.wait": "کیٹلاگ آ رہیا اے…"});
 var CHAR_META = {
   Lucifer:{role:{it:"Il Portatore di Luce",en:"The Light-Bearer",es:"El Portador de Luz",fr:"Le Porteur de Lumière",de:"Der Lichtträger"},
     bio:{it:"Sovrano della collana ammiraglia: potere, caduta e desiderio raccontati su grande scala.",
@@ -1101,6 +1115,7 @@ function setLang(lang){
   renderFaqPage();
   renderGuidePage(); // rifà anche l'indice e la sezione aperta, nella lingua nuova
   refreshHomeRailLang(); // v220
+  try { luxSearchButtonTexts(); } catch(e){} // v250
   // v227: anche eventi, novità e la scheda del fumetto aperta passano alla lingua nuova
   try { renderHomeEvents(); } catch(e){}
   try { if(document.getElementById('announcementsGrid')) fetchAnnouncements(); } catch(e){}
@@ -3678,10 +3693,10 @@ function refreshAdminUI(){
 /* ============ CATALOG (local cache + Supabase sync) ============ */
 var syncState = 'idle'; // idle | syncing | error
 
-function getCatalog(){
+function getCatalog(all){
   try{
     var raw = localStorage.getItem('lux_catalog');
-    if(raw) return JSON.parse(raw);
+    if(raw){ var arr = JSON.parse(raw); return all ? arr : arr.filter(function(i){ return !luxIsScheduled(i); }); } // v250: i capitoli in programma solo in Amministra (getCatalog(true))
   }catch(e){}
   var seed = [
     {id:'c1', character:'Lucifer', title:'Midnight Cathedral', issue:'Vol. 1 — Ch. 1', date:'2026-02-14', mature:true,
@@ -3708,7 +3723,16 @@ function getCatalog(){
   localStorage.setItem('lux_catalog', JSON.stringify(seed));
   return seed;
 }
-function saveCatalogLocal(items){ localStorage.setItem('lux_catalog', JSON.stringify(items)); synopsisDbLangsMemo = null; } // v233
+function saveCatalogLocal(items){ // v233
+  // v250: i capitoli in programma (li ha solo l'admin) restano anche quando chi salva ha in mano getCatalog(), che non li dà
+  var keep = [];
+  try {
+    var ids = {};
+    items.forEach(function(i){ if(i) ids[i.id] = true; });
+    keep = JSON.parse(localStorage.getItem('lux_catalog') || '[]').filter(function(p){ return p && !ids[p.id] && luxIsScheduled(p); });
+  } catch(e){}
+  luxCatalogWrite(keep.length ? items.concat(keep) : items);
+}
 
 function updateSyncStatus(){
   var els = [document.getElementById('syncStatus2')];
@@ -3730,6 +3754,7 @@ function fetchCatalogFromSupabase(){
   var countsReq = fetch(SUPABASE_URL + '/rest/v1/comment_counts?select=*', hdr)
     .then(function(r2){ return r2.ok ? r2.json() : []; })
     .catch(function(){ return []; });
+  var schedReq = luxSchedLoad(); // v250: (solo per l'admin) i capitoli in programma
   return fetch(SUPABASE_URL + '/rest/v1/catalog?select=*&order=date.desc', hdr)
     .then(function(r){ if(!r.ok) throw new Error('read failed: ' + r.status); return r.json(); })
     .then(function(items){
@@ -3741,9 +3766,15 @@ function fetchCatalogFromSupabase(){
       });
     })
     .then(function(items){
-      saveCatalogLocal(items);
-      syncState = 'idle'; updateSyncStatus();
-      return items;
+      // v250: un capitolo in programma non entra mai nella copia di tutti (di solito il server non lo manda nemmeno)
+      items = items.filter(function(i){ return !luxIsScheduled(i); });
+      return schedReq.then(function(sched){
+        saveCatalogLocal(items);
+        luxCatalogSetScheduled(isAdmin() ? sched : []);
+        syncState = 'idle'; updateSyncStatus();
+        if(isAdmin()) luxSchedWatch();
+        return items;
+      });
     })
     .catch(function(err){
       syncState = 'error'; updateSyncStatus();
@@ -5534,59 +5565,311 @@ function renderCatalogStories(){
   });
 }
 
-function initCmdSearch(){
-  var trigger = document.getElementById('btnCmdSearch');
-  var overlay = document.getElementById('cmdkOverlay');
-  var input = document.getElementById('cmdkInput');
-  var results = document.getElementById('cmdkResults');
-  if(!trigger || !overlay || trigger.dataset.wired) return;
-  trigger.dataset.wired = '1';
-
-  // su desktop mostra la scorciatoia da tastiera, su mobile "Cerca" e basta (nessuna tastiera fisica)
-  var isMobile = 'ontouchstart' in window;
-  var hintEl = document.getElementById('cmdkHint');
-  if(isMobile && hintEl) hintEl.remove();
-
-  function open(){
-    overlay.classList.remove('hidden');
-    input.value = '';
-    results.innerHTML = '';
-    setTimeout(function(){ input.focus(); }, 50);
+/* ============ v250: LA RICERCA PER I LETTORI ============
+   La lente in alto (accanto alla campanella) apre la ricerca: si scrive e i fumetti compaiono mentre si
+   scrive, per titolo, personaggio, serie, volume, genere, collaboratori e, più in basso, sinossi. Niente
+   accenti né maiuscole da azzeccare («lucifera» trova «Lucifera», «citta» trova «Città»); più parole
+   insieme restringono. Vale il 18+ come nel resto del sito (e i personaggi nascosti restano nascosti):
+   se qualcosa resta fuori per il 18+, lo dice. Funziona anche senza rete: cerca nella copia del catalogo
+   già in questo telefono o computer. Da tastiera: / oppure Ctrl+K per aprirla, frecce, Invio, Esc. */
+var LUX_SEARCH = { el: null, open: false, q: '', idx: [], active: -1, shown: 30, lastFocus: null, waitBound: false };
+var LUX_SEARCH_ICON = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg>';
+function luxFold(s){ return String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase(); }
+// la stessa stringa «piegata» e, per ogni sua lettera, la posizione nell'originale (per evidenziare)
+function luxFoldMap(s){
+  s = String(s || '');
+  var out = '', map = [];
+  for(var i = 0; i < s.length; i++){
+    var f = s[i].normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+    for(var k = 0; k < f.length; k++){ out += f[k]; map.push(i); }
   }
-  function close(){ overlay.classList.add('hidden'); }
-
-  trigger.addEventListener('click', open);
-  overlay.addEventListener('click', function(e){ if(e.target === overlay) close(); });
-  document.addEventListener('keydown', function(e){
-    if((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k'){ e.preventDefault(); open(); }
-    if(e.key === 'Escape' && !overlay.classList.contains('hidden')) close();
-  });
-
-  input.addEventListener('input', function(){
-    var q = input.value.trim().toLowerCase();
-    if(!q){ results.innerHTML = ''; return; }
-    var items = getCatalog().filter(matureOk);
-    var matches = items.filter(function(i){
-      return (i.title || '').toLowerCase().indexOf(q) !== -1 ||
-             (i.character || '').toLowerCase().indexOf(q) !== -1 ||
-             (i.genres || []).join(' ').toLowerCase().indexOf(q) !== -1;
-    }).slice(0, 20);
-    if(matches.length === 0){ results.innerHTML = '<p class="form-note">Nessun risultato.</p>'; return; }
-    results.innerHTML = matches.map(function(item, i){
-      return '<div class="cmdk-result-row" data-cmdk-result="' + i + '">' +
-        (item.cover_url ? '<img src="' + coverThumbUrl(item.cover_url, 100) + '" data-fallback="' + escapeHtml(item.cover_url) + '" alt="" loading="lazy">' : '<span class="cmdk-noimg"></span>') +
-        '<div><div class="cmdk-result-title">' + escapeHtml(item.title) + '</div><div class="cmdk-result-sub">' + escapeHtml(item.character || '') + '</div></div>' +
-      '</div>';
-    }).join('');
-    Array.prototype.forEach.call(results.querySelectorAll('[data-cmdk-result]'), function(rowEl){
-      rowEl.addEventListener('click', function(){
-        var item = matches[Number(rowEl.dataset.cmdkResult)];
-        close();
-        openTitleModal(item);
-      });
-    });
+  return { s: out, map: map };
+}
+function luxSearchTokens(q){ return luxFold(q).split(/\s+/).filter(Boolean); }
+function luxSearchReady(){ return !!(catalogFreshLoaded || localStorage.getItem('lux_catalog')); }
+function luxSearchBuild(){
+  LUX_SEARCH.idx = getCatalog().map(function(item){
+    var col = (item.collaborators || []).map(function(c){ return c && c.name; }).concat([item.collaborator_name]).filter(Boolean).join(' ');
+    var syn = ''; try { syn = synopsisForCurrentLang(item) || item.synopsis || ''; } catch(e){ syn = item.synopsis || ''; }
+    return { item: item, title: luxFold(item.title), char: luxFold(charDisplayName(item.character) + ' ' + (item.character || '')), series: luxFold(item.series_key),
+      issue: luxFold(item.issue), genres: luxFold((item.genres || []).map(function(g){ try { return catDisplayName(g) + ' ' + g; } catch(e){ return g; } }).join(' ')),
+      collab: luxFold(col), syn: luxFold(syn), when: String(item.date || item.created_at || '') };
   });
 }
+function luxSearchScore(e, toks, qf){
+  var score = 0;
+  for(var n = 0; n < toks.length; n++){
+    var t = toks[n], i = e.title.indexOf(t), best = 0;
+    if(i !== -1) best = 10 + (i === 0 || /[\s\-—:,.'"«(]/.test(e.title.charAt(i - 1)) ? 3 : 0);
+    else if(e.char.indexOf(t) !== -1) best = 7;
+    else if(e.series.indexOf(t) !== -1) best = 6;
+    else if(e.issue.indexOf(t) !== -1) best = 4;
+    else if(e.genres.indexOf(t) !== -1 || e.collab.indexOf(t) !== -1) best = 3;
+    else if(e.syn.indexOf(t) !== -1) best = 1;
+    if(!best) return 0;
+    score += best;
+  }
+  if(toks.length > 1){ var p = e.title.indexOf(qf); if(p === 0) score += 8; else if(p !== -1) score += 4; }
+  else if(e.title.indexOf(qf) === 0) score += 4;
+  return score;
+}
+function luxSearchRun(q){
+  var toks = luxSearchTokens(q), qf = toks.join(' '), hits = [], hidden = 0;
+  if(!toks.length) return { hits: [], hidden: 0 };
+  LUX_SEARCH.idx.forEach(function(e){
+    var s = luxSearchScore(e, toks, qf);
+    if(!s) return;
+    if(matureOk(e.item)) hits.push({ e: e, s: s });
+    else if(e.item.mature && characterVisible(e.item)) hidden++;
+  });
+  hits.sort(function(a, b){ return (b.s - a.s) || b.e.when.localeCompare(a.e.when); });
+  return { hits: hits.map(function(h){ return h.e.item; }), hidden: hidden };
+}
+function luxSearchMark(text, toks){
+  text = String(text || '');
+  if(!toks.length) return escapeHtml(text);
+  var fm = luxFoldMap(text), on = [];
+  toks.forEach(function(t){
+    var from = 0, i;
+    while(t && (i = fm.s.indexOf(t, from)) !== -1){
+      var a = fm.map[i], b = fm.map[i + t.length - 1] + 1;
+      for(var k = a; k < b; k++) on[k] = true;
+      from = i + t.length;
+    }
+  });
+  var out = '', inMark = false;
+  for(var c = 0; c < text.length; c++){
+    if(on[c] && !inMark){ out += '<mark>'; inMark = true; }
+    if(!on[c] && inMark){ out += '</mark>'; inMark = false; }
+    out += escapeHtml(text[c]);
+  }
+  return out + (inMark ? '</mark>' : '');
+}
+function luxSearchRecent(){ try { var a = JSON.parse(localStorage.getItem('lux_search_recent') || '[]'); return Array.isArray(a) ? a.filter(function(x){ return typeof x === 'string' && x.trim(); }).slice(0, 6) : []; } catch(e){ return []; } }
+function luxSearchRemember(q){
+  q = String(q || '').trim();
+  if(q.length < 2) return;
+  var a = luxSearchRecent().filter(function(x){ return luxFold(x) !== luxFold(q); });
+  a.unshift(q.slice(0, 60));
+  try { localStorage.setItem('lux_search_recent', JSON.stringify(a.slice(0, 6))); } catch(e){}
+}
+function luxSearchDate(item){
+  var d = String(item.date || '').slice(0, 10);
+  if(!/^\d{4}-\d{2}-\d{2}$/.test(d)) return '';
+  try { return new Date(+d.slice(0, 4), +d.slice(5, 7) - 1, +d.slice(8, 10)).toLocaleDateString(luxLocale(), { day: 'numeric', month: 'short', year: 'numeric' }); } catch(e){ return d; }
+}
+function luxSearchItemHtml(item, k, toks){
+  var meta = [charDisplayName(item.character), item.issue, luxSearchDate(item)].filter(Boolean).map(function(x){ return escapeHtml(String(x)); }).join(' · ');
+  var src = item.cover_url ? coverThumbUrl(item.cover_url, 120) : '';
+  return '<button type="button" class="lsr-item" role="option" id="lsr-o-' + k + '" aria-selected="false" data-lsr-id="' + escapeHtml(item.id) + '">' +
+    '<span class="lsr-thumb">' + (src ? '<img alt="" loading="lazy" decoding="async" src="' + escapeHtml(src) + '" data-full="' + escapeHtml(item.cover_url) + '">' : '') + '</span>' +
+    '<span class="lsr-txt"><b class="lsr-title" dir="auto">' + luxSearchMark(item.title || '—', toks) + '</b><span class="lsr-meta" dir="auto">' + meta + '</span></span>' +
+    (item.mature ? '<span class="lsr-badge">18+</span>' : '') +
+  '</button>';
+}
+function luxSearchCharsHtml(toks){
+  var all = getCatalog().filter(matureOk), count = {};
+  all.forEach(function(i){ if(i.character) count[i.character] = (count[i.character] || 0) + 1; });
+  var chars = charList().filter(function(c){
+    if(!count[c.id]) return false;
+    if(!toks.length) return true;
+    var f = luxFold(c.name + ' ' + c.id);
+    return toks.every(function(t){ return f.indexOf(t) !== -1; });
+  });
+  if(!chars.length) return '';
+  return '<div class="lsr-sec"><div class="lsr-h">' + escapeHtml(t('search.chars')) + '</div><div class="lsr-chips">' + chars.map(function(c){
+    return '<button type="button" class="lsr-chip lsr-char" data-lsr-q="' + escapeHtml(c.name) + '">' + charSealHtml(c, 26) + '<span>' + escapeHtml(c.name) + '</span><small>' + count[c.id] + '</small></button>';
+  }).join('') + '</div></div>';
+}
+function luxSearchRender(){
+  var body = LUX_SEARCH.el && LUX_SEARCH.el.querySelector('.lsr-body');
+  if(!body) return;
+  var q = LUX_SEARCH.q, toks = luxSearchTokens(q), html = '';
+  LUX_SEARCH.active = -1;
+  var input = LUX_SEARCH.el.querySelector('.lsr-input');
+  if(input) input.removeAttribute('aria-activedescendant');
+  LUX_SEARCH.el.querySelector('[data-lsr-clear]').hidden = !q;
+  if(!luxSearchReady()){
+    body.innerHTML = '<p class="lsr-wait">' + escapeHtml(t('search.wait')) + '</p>';
+    if(!LUX_SEARCH.waitBound && typeof luxCatalogLoad !== 'undefined' && luxCatalogLoad && luxCatalogLoad.then){
+      LUX_SEARCH.waitBound = true;
+      luxCatalogLoad.then(function(){ LUX_SEARCH.waitBound = false; if(LUX_SEARCH.open){ luxSearchBuild(); luxSearchRender(); } });
+    }
+    return;
+  }
+  if(!toks.length){
+    html += luxSearchCharsHtml([]);
+    var rec = luxSearchRecent();
+    if(rec.length) html += '<div class="lsr-sec"><div class="lsr-h">' + escapeHtml(t('search.recent')) +
+      '<button type="button" class="lsr-link" data-lsr-forget>' + escapeHtml(t('search.clear')) + '</button></div><div class="lsr-chips">' +
+      rec.map(function(r){ return '<button type="button" class="lsr-chip" data-lsr-q="' + escapeHtml(r) + '" dir="auto">' + escapeHtml(r) + '</button>'; }).join('') + '</div></div>';
+    var latest = getCatalog().filter(matureOk).sort(function(a, b){ return String(b.date || '').localeCompare(String(a.date || '')); }).slice(0, 8);
+    if(latest.length) html += '<div class="lsr-sec"><div class="lsr-h">' + escapeHtml(t('search.latest')) + '</div><div class="lsr-list" id="luxSearchList" role="listbox">' +
+      latest.map(function(item, k){ return luxSearchItemHtml(item, k, []); }).join('') + '</div></div>';
+    body.innerHTML = html;
+    return;
+  }
+  var res = luxSearchRun(q), n = res.hits.length;
+  html += luxSearchCharsHtml(toks);
+  if(n){
+    var list = res.hits.slice(0, LUX_SEARCH.shown);
+    html += '<div class="lsr-sec"><div class="lsr-h">' + escapeHtml(t('search.results')) + '<span class="lsr-n">' + escapeHtml(n === 1 ? t('search.count1') : t('search.countN').replace('{n}', n)) + '</span></div>' +
+      '<div class="lsr-list" id="luxSearchList" role="listbox">' + list.map(function(item, k){ return luxSearchItemHtml(item, k, toks); }).join('') + '</div>' +
+      (n > list.length ? '<button type="button" class="lsr-more" data-lsr-more>' + escapeHtml(t('search.more').replace('{n}', n - list.length)) + '</button>' : '') + '</div>';
+  } else {
+    html += '<div class="lsr-none"><b dir="auto">' + escapeHtml(t('search.none').replace('{q}', q.trim())) + '</b><span>' + escapeHtml(t('search.noneHint')) + '</span></div>';
+  }
+  if(res.hidden) html += '<p class="lsr-adult">' + escapeHtml((res.hidden === 1 ? t('search.mature1') : t('search.matureN').replace('{n}', res.hidden)).replace('{toggle}', t('toggle.mature'))) + '</p>';
+  body.innerHTML = html;
+}
+function luxSearchEl(){
+  if(LUX_SEARCH.el) return LUX_SEARCH.el;
+  var w = document.createElement('div');
+  w.id = 'luxSearch';
+  w.className = 'lsr';
+  w.hidden = true;
+  w.innerHTML = '<div class="lsr-backdrop" data-lsr-close></div>' +
+    '<div class="lsr-panel" role="dialog" aria-modal="true">' +
+      '<div class="lsr-bar"><div class="lsr-field"><span class="lsr-ic">' + LUX_SEARCH_ICON + '</span>' +
+        '<input class="lsr-input" type="search" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" enterkeyhint="search" dir="auto" role="combobox" aria-expanded="true" aria-controls="luxSearchList" aria-autocomplete="list">' +
+        '<button type="button" class="lsr-x" data-lsr-clear hidden>×</button></div>' +
+        '<button type="button" class="lsr-close" data-lsr-close></button></div>' +
+      '<div class="lsr-body"></div>' +
+      '<div class="lsr-keys"></div>' +
+    '</div>';
+  document.body.appendChild(w);
+  var input = w.querySelector('.lsr-input');
+  input.addEventListener('input', function(){ LUX_SEARCH.q = input.value; LUX_SEARCH.shown = 30; luxSearchRender(); });
+  input.addEventListener('keydown', function(e){
+    var items = w.querySelectorAll('.lsr-item');
+    if(e.key === 'ArrowDown' || e.key === 'ArrowUp'){
+      if(!items.length) return;
+      e.preventDefault();
+      var k = LUX_SEARCH.active + (e.key === 'ArrowDown' ? 1 : -1);
+      if(k < 0) k = items.length - 1;
+      if(k >= items.length) k = 0;
+      luxSearchSetActive(k);
+    } else if(e.key === 'Enter'){
+      e.preventDefault();
+      var it = items[LUX_SEARCH.active >= 0 ? LUX_SEARCH.active : 0];
+      if(it) luxSearchOpenItem(it.getAttribute('data-lsr-id'));
+      else input.blur(); // (sul telefono chiude la tastiera)
+    } else if(e.key === 'Escape'){ e.preventDefault(); luxSearchClose(); }
+  });
+  w.addEventListener('click', function(e){
+    var el = e.target.closest ? e.target.closest('[data-lsr-close],[data-lsr-clear],[data-lsr-q],[data-lsr-id],[data-lsr-more],[data-lsr-forget]') : null;
+    if(!el) return;
+    if(el.hasAttribute('data-lsr-close')){ luxSearchClose(); return; }
+    if(el.hasAttribute('data-lsr-clear')){ input.value = LUX_SEARCH.q = ''; luxSearchRender(); input.focus(); return; }
+    if(el.hasAttribute('data-lsr-q')){ input.value = LUX_SEARCH.q = el.getAttribute('data-lsr-q'); LUX_SEARCH.shown = 30; luxSearchRender(); return; }
+    if(el.hasAttribute('data-lsr-id')){ luxSearchOpenItem(el.getAttribute('data-lsr-id')); return; }
+    if(el.hasAttribute('data-lsr-more')){ LUX_SEARCH.shown = 1e9; luxSearchRender(); return; }
+    if(el.hasAttribute('data-lsr-forget')){ try { localStorage.removeItem('lux_search_recent'); } catch(e2){} luxSearchRender(); input.focus(); }
+  });
+  w.addEventListener('error', function(e){ // (copertine vecchie senza miniatura: l'originale)
+    var im = e.target;
+    if(!im || im.tagName !== 'IMG' || !im.getAttribute('data-full')) return;
+    var full = im.getAttribute('data-full');
+    im.removeAttribute('data-full');
+    if(im.getAttribute('src') !== full) im.src = full;
+  }, true);
+  w.addEventListener('keydown', function(e){
+    if(e.key !== 'Tab') return; // la tastiera resta nella ricerca finché è aperta
+    var f = w.querySelectorAll('.lsr-panel button:not([hidden]), .lsr-panel input');
+    if(!f.length) return;
+    var first = f[0], last = f[f.length - 1];
+    if(e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+    else if(!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+  });
+  LUX_SEARCH.el = w;
+  return w;
+}
+function luxSearchTexts(){
+  var w = luxSearchEl();
+  w.querySelector('.lsr-panel').setAttribute('aria-label', t('search.btn'));
+  w.querySelector('.lsr-input').placeholder = t('search.ph');
+  w.querySelector('.lsr-input').setAttribute('aria-label', t('search.ph'));
+  w.querySelector('.lsr-close').textContent = t('search.close');
+  w.querySelector('[data-lsr-clear]').setAttribute('aria-label', t('search.clear'));
+  w.querySelector('.lsr-keys').textContent = t('search.keys');
+}
+function luxSearchSetActive(k){
+  var w = LUX_SEARCH.el, items = w.querySelectorAll('.lsr-item');
+  Array.prototype.forEach.call(items, function(it, i){ it.classList.toggle('is-active', i === k); it.setAttribute('aria-selected', i === k ? 'true' : 'false'); });
+  LUX_SEARCH.active = k;
+  var it = items[k], input = w.querySelector('.lsr-input');
+  if(it){ input.setAttribute('aria-activedescendant', it.id); try { it.scrollIntoView({ block: 'nearest' }); } catch(e){} }
+}
+function luxSearchOpen(){
+  if(luxCoverEl) return; // (con la copertina sullo schermo no: prima si entra)
+  var w = luxSearchEl();
+  luxSearchTexts();
+  luxSearchBuild();
+  LUX_SEARCH.lastFocus = document.activeElement;
+  LUX_SEARCH.open = true;
+  LUX_SEARCH.shown = 30;
+  var input = w.querySelector('.lsr-input');
+  input.value = LUX_SEARCH.q = '';
+  luxSearchRender();
+  w.hidden = false;
+  document.documentElement.classList.add('lsr-on');
+  try { input.focus({ preventScroll: true }); } catch(e){ input.focus(); } // (subito, nel tocco stesso: così su iPhone si apre la tastiera)
+  void w.offsetWidth;
+  w.classList.add('on');
+  luxSearchExpanded(true);
+}
+function luxSearchExpanded(on){ // la lente in alto e, da computer, la voce «Cerca» nella navigazione a sinistra
+  ['btnSearch', 'appTabSearch'].forEach(function(id){ var b = document.getElementById(id); if(b) b.setAttribute('aria-expanded', on ? 'true' : 'false'); });
+}
+function luxSearchClose(){
+  var w = LUX_SEARCH.el;
+  if(!w || !LUX_SEARCH.open) return;
+  LUX_SEARCH.open = false;
+  w.classList.remove('on');
+  document.documentElement.classList.remove('lsr-on');
+  w.hidden = true;
+  luxSearchExpanded(false);
+  var back = LUX_SEARCH.lastFocus;
+  LUX_SEARCH.lastFocus = null;
+  try { if(back && back.focus && document.contains(back)) back.focus({ preventScroll: true }); } catch(e){}
+}
+function luxSearchOpenItem(id){
+  var item = getCatalog().find(function(x){ return x.id === id; });
+  if(!item) return;
+  luxSearchRemember(LUX_SEARCH.q);
+  luxSearchClose();
+  if(document.getElementById('titleModal') && typeof openTitleModal === 'function'){
+    try { openTitleModal(item); return; } catch(e){ console.warn('[ricerca]', e); }
+  }
+  window.location.href = 'schedario.html?title=' + encodeURIComponent(item.id) + '#library';
+}
+function luxSearchInit(){
+  var b = document.getElementById('btnSearch');
+  ['btnSearch', 'appTabSearch'].forEach(function(id){
+    var x = document.getElementById(id);
+    if(x && !x.dataset.wired){ x.dataset.wired = '1'; x.addEventListener('click', function(){ luxSearchOpen(); }); }
+  });
+  if(b) luxSearchButtonTexts();
+  if(document.documentElement.dataset.lsrKeys) return;
+  document.documentElement.dataset.lsrKeys = '1';
+  document.addEventListener('keydown', function(e){
+    if(LUX_SEARCH.open || e.defaultPrevented || !document.getElementById('btnSearch')) return;
+    var tg = e.target, typing = tg && (tg.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(tg.tagName));
+    if(((e.metaKey || e.ctrlKey) && !e.altKey && (e.key === 'k' || e.key === 'K')) || (e.key === '/' && !typing && !e.metaKey && !e.ctrlKey && !e.altKey)){
+      if(document.querySelector('.modal-backdrop:not(.hidden)')) return;
+      e.preventDefault();
+      luxSearchOpen();
+    }
+  });
+}
+function luxSearchButtonTexts(){
+  var b = document.getElementById('btnSearch');
+  if(!b) return;
+  b.setAttribute('aria-label', t('search.btn'));
+  b.title = t('search.btn');
+  if(LUX_SEARCH.el && LUX_SEARCH.open){ luxSearchTexts(); luxSearchBuild(); luxSearchRender(); }
+}
+function initCmdSearch(){ luxSearchInit(); } // v250: la vecchia ricerca (mai collegata a niente) lascia il posto alla lente in alto
 
 function renderPixaiCarousel(){
   var wrap = document.getElementById('pixaiCarousel');
@@ -6871,7 +7154,7 @@ function bulkMakePermanent(){
       body: JSON.stringify({permanent: true})
     });
   })).then(function(){
-    var all = getCatalog();
+    var all = getCatalog(true); // v250
     ids.forEach(function(id){
       var target = all.find(function(x){ return x.id === id; });
       if(target) target.permanent = true;
@@ -6892,7 +7175,7 @@ function bulkDeleteSelected(){
   Promise.all(ids.map(function(id){ return supabaseDelete(id).then(function(res){ return { id: id, res: res }; }); })).then(function(out){
     var gone = {}, firstErr = null, failed = 0;
     out.forEach(function(o){ if(o.res === true) gone[o.id] = true; else { failed++; firstErr = firstErr || o.res; } });
-    saveCatalogLocal(getCatalog().filter(function(x){ return !gone[x.id]; }));
+    luxCatalogRemove(Object.keys(gone)); // v250: anche quelli in programma
     adminSelectedIds.clear();
     renderCatalog();
     renderAdminList();
@@ -6918,9 +7201,11 @@ function bulkDeleteSelected(){
      si ordina per più recenti, meno recenti o A–Z;
    - con dei titoli selezionati la barra «Rendi permanenti / Elimina selezionati» resta in vista mentre
      si scorre, con «Deseleziona».
-   Niente più pagine: i gruppi chiusi tengono l'elenco corto. */
+   Niente più pagine: i gruppi chiusi tengono l'elenco corto.
+   v250: in cima, «In programma»: i capitoli con giorno e ora di uscita (vedi LUX_SCHED), in ordine di uscita;
+   nel loro pannello si cambia l'ora o si pubblicano subito. */
 var ADM_PREFS_KEY = 'lux_admin_list';
-var ADM_FILTERS = [['all', 'Tutti'], ['mine', 'Miei'], ['mature', '18+'], ['temporary', 'A tempo'], ['stock', 'In vendita'], ['permanent', 'Permanenti']];
+var ADM_FILTERS = [['all', 'Tutti'], ['scheduled', 'In programma'], ['mine', 'Miei'], ['mature', '18+'], ['temporary', 'A tempo'], ['stock', 'In vendita'], ['permanent', 'Permanenti']];
 var admPrefs = null;
 function admLoadPrefs(){
   if(admPrefs) return admPrefs;
@@ -6974,6 +7259,7 @@ function admSortItems(items, sort){
   return items;
 }
 function admFilterFn(f){
+  if(f === 'scheduled') return luxIsScheduled; // v250
   if(f === 'mine') return function(i){ return i.created_by === currentUserId(); };
   if(f === 'mature') return function(i){ return !!i.mature; };
   if(f === 'permanent') return function(i){ return i.permanent !== false; };
@@ -7018,6 +7304,9 @@ function admGroupOpen(mode, key, idx, force){
 function admRowHtml(item){
   var id = escapeHtml(item.id), sel = adminSelectedIds.has(item.id), tags = [];
   var draftCover = isDraftModeOn() ? (getDraft().coverEdits || {})[item.id] : null;
+  var pms = luxSchedMs(item), nowMs = Date.now(); // v250: quando esce, o che è appena uscito
+  if(luxIsScheduled(item)) tags.push('<span class="adm-tag adm-tag-sched">Esce ' + escapeHtml(luxSchedShort(pms)) + '</span>');
+  else if(pms && nowMs >= pms && nowMs - pms < 6 * 3600e3) tags.push('<span class="adm-tag adm-tag-out">Uscito ' + escapeHtml(luxSchedDay(pms) === 'oggi' ? 'alle ' + luxSchedTime(pms) : luxSchedShort(pms)) + '</span>');
   if(item.mature) tags.push('<span class="adm-tag adm-tag-18">18+</span>');
   if(item.permanent === false) tags.push('<span class="adm-tag adm-tag-temp">A tempo</span>'); // (nel pannello per intero: «A tempo determinato»)
   if(item.stock != null) tags.push('<span class="adm-tag adm-tag-stock">' + (item.stock > 0 ? 'In vendita · ' + item.stock : escapeHtml(t('stock.soldOut'))) + '</span>');
@@ -7043,6 +7332,7 @@ function admUpdateChips(all){
     var f = b.getAttribute('data-admin-filter'), n = all.filter(admFilterFn(f)).length;
     var c = b.querySelector('.adm-n');
     if(c) c.textContent = f === 'mine' && !n ? '' : String(n);
+    if(f === 'scheduled') b.hidden = !n && adminListFilter !== 'scheduled'; // v250: solo se ce ne sono
     b.classList.toggle('active', f === adminListFilter);
     b.setAttribute('aria-pressed', f === adminListFilter ? 'true' : 'false');
   });
@@ -7106,7 +7396,7 @@ function renderAdminList(){
   ensureAdminListStyle();
   ensureAdminToolbar();
   var prefs = admLoadPrefs();
-  var all = getCatalog().slice();
+  var all = getCatalog(true).slice(); // v250: anche i capitoli in programma
   var known = {};
   all.forEach(function(i){ known[i.id] = true; });
   adminSelectedIds.forEach(function(id){ if(!known[id]) adminSelectedIds.delete(id); }); // (titoli eliminati intanto)
@@ -7120,8 +7410,15 @@ function renderAdminList(){
   updateAdminTranslateBar(); // v226
   admSyncBulkbar();
 
+  // v250: in cima i capitoli in programma, nell'ordine in cui escono
+  var sched = items.filter(luxIsScheduled).sort(function(a, b){ return luxSchedMs(a) - luxSchedMs(b); });
+  items = items.filter(function(i){ return !luxIsScheduled(i); });
+  var schedHtml = sched.length ? '<section class="adm-group is-open adm-group-sched" data-adm-sched>' +
+      '<div class="adm-shead"><span class="adm-gname">' + ADM_I.clock + 'In programma</span>' +
+        '<span class="adm-gcount">' + sched.length + (sched.length === 1 ? ' titolo' : ' titoli') + ' · escono da soli all\'ora scelta</span></div>' +
+      '<div class="adm-gbody">' + sched.map(admRowHtml).join('') + '</div></section>' : '';
   var drafts = getDraft().coverEdits || {};
-  var html = admGroups(items, prefs.group, prefs.sort).map(function(g, idx){
+  var html = schedHtml + admGroups(items, prefs.group, prefs.sort).map(function(g, idx){
     var open = admGroupOpen(prefs.group, g.key, idx, force), n = g.items.length;
     var rows = g.items.map(function(item){
       var pv = isDraftModeOn() && drafts[item.id]
@@ -7186,7 +7483,7 @@ function admSheetEl(){
   return w;
 }
 function admSheetOpen(id){
-  if(!getCatalog().some(function(x){ return x.id === id; })) return;
+  if(!getCatalog(true).some(function(x){ return x.id === id; })) return;
   admSheetId = id;
   var w = admSheetEl();
   w.querySelector('.adm-sheet-panel').scrollTop = 0;
@@ -7214,8 +7511,9 @@ function admSheetClose(){
 function admSheetRender(){
   var w = document.getElementById('luxAdmSheet');
   if(!w || admSheetId === null) return;
-  var item = getCatalog().find(function(x){ return x.id === admSheetId; });
+  var item = getCatalog(true).find(function(x){ return x.id === admSheetId; });
   if(!item){ admSheetClose(); return; }
+  var isSched = luxIsScheduled(item), pms = luxSchedMs(item); // v250
   var body = w.querySelector('.adm-sheet-body'), I = ADM_I, id = escapeHtml(item.id);
   var oldSt = body.querySelector('[data-cover-status-for]'), keepSt = oldSt ? oldSt.textContent : '';
   var hasPages = !!(item.pages && item.pages.length), isPermanent = item.permanent !== false;
@@ -7224,7 +7522,7 @@ function admSheetRender(){
   var draftCover = isDraftModeOn() ? (getDraft().coverEdits || {})[item.id] : null;
   var cover = draftCover || (item.cover_url ? coverThumbUrl(item.cover_url, 200) : '');
   var meta = [item.character, item.issue, admDayLabel(item)].filter(Boolean).map(function(x){ return escapeHtml(String(x)); }).join(' · ');
-  var tags = '<span class="adm-tag ' + (isPermanent ? 'adm-tag-perm' : 'adm-tag-temp') + '">' + escapeHtml(isPermanent ? t('catalog.permanent') : t('catalog.temporary')) + '</span>' +
+  var tags = (isSched ? '<span class="adm-tag adm-tag-sched">In programma</span>' : '') + '<span class="adm-tag ' + (isPermanent ? 'adm-tag-perm' : 'adm-tag-temp') + '">' + escapeHtml(isPermanent ? t('catalog.permanent') : t('catalog.temporary')) + '</span>' +
     (item.mature ? '<span class="adm-tag adm-tag-18">18+</span>' : '') + (item.series_key ? '<span class="adm-tag">' + escapeHtml(item.series_key) + (item.chapter_number != null ? ' · ' + escapeHtml(String(item.chapter_number)) : '') + '</span>' : '');
   var trSmall = !item.synopsis ? 'Questo titolo non ha una sinossi' : busy ? escapeHtml(note.text) : hasAll ? 'Ci sono tutte le lingue' : 'Mancano: ' + escapeHtml(luxTrNames(missing));
   body.innerHTML =
@@ -7235,6 +7533,7 @@ function admSheetRender(){
       '<button type="button" class="adm-sheet-x" data-adm-close aria-label="' + escapeHtml(t('apptu.close')) + '">' + I.x + '</button>' +
     '</div>' +
     (note && !busy ? '<p class="adm-sheet-note' + (note.err ? ' is-error' : '') + '">' + escapeHtml(note.text) + '</p>' : '') +
+    (isSched ? admSchedBoxHtml(item, pms) : '') +
     '<div class="adm-acts">' +
       '<button type="button" class="adm-act" data-edit="' + id + '">' + I.edit + '<span>' + escapeHtml(t('admin.edit')) + '<small>Titolo, sinossi, pagine, prezzo, serie…</small></span></button>' +
       '<label class="adm-act">' + I.image + '<span>' + escapeHtml(item.cover_url ? t('cover.change') : t('cover.addExisting')) +
@@ -7248,7 +7547,7 @@ function admSheetRender(){
       (item.stock != null ? '<div class="adm-act adm-stock">' + I.box + '<span>' + item.stock + ' ' + escapeHtml(t('stock.left')) + '<small>In vendita</small></span>' +
         '<span class="adm-stock-btns"><button type="button" class="btn btn-sm btn-ghost" data-sell-one="' + id + '"' + (item.stock <= 0 ? ' disabled' : '') + '>' + escapeHtml(t('admin.stock.sell')) + '</button>' +
         '<button type="button" class="btn btn-sm btn-ghost" data-restock="' + id + '">' + escapeHtml(t('admin.stock.restore')) + '</button></span></div>' : '') +
-      '<button type="button" class="adm-act" data-adm-view="' + id + '">' + I.eye + '<span>Apri la scheda<small>Come la vede chi legge</small></span></button>' +
+      '<button type="button" class="adm-act" data-adm-view="' + id + '">' + I.eye + '<span>' + (isSched ? 'Anteprima della scheda<small>Come la vedrà chi legge (adesso la vedi solo tu)</small>' : 'Apri la scheda<small>Come la vede chi legge</small>') + '</span></button>' +
     '</div>' +
     '<button type="button" class="adm-del" data-del="' + id + '">' + I.trash + '<span>Elimina questo titolo</span></button>';
   admSheetWire(body, item);
@@ -7277,10 +7576,7 @@ function admSheetWire(body, item){
     btn.disabled = true;
     admPatchCatalog(item.id, { permanent: newValue }).then(function(r){
       if(!r.ok) throw new Error('permanent update failed: ' + r.status);
-      var all = getCatalog();
-      var target = all.find(function(x){ return x.id === item.id; });
-      if(target) target.permanent = newValue;
-      saveCatalogLocal(all);
+      luxCatalogLocalPatch(item.id, { permanent: newValue }); // v250 (anche se è in programma)
       renderAdminList();
     }).catch(function(err){ console.warn('Permanente:', err); btn.disabled = false; luxToast('Non salvato: riprova.'); });
   });
@@ -7288,9 +7584,7 @@ function admSheetWire(body, item){
     var newStock = Math.max(0, item.stock - 1);
     admPatchCatalog(item.id, { stock: newStock }, true).then(function(r){
       if(!r.ok) throw new Error('stock update failed: ' + r.status);
-      var all = getCatalog(), target = all.find(function(x){ return x.id === item.id; });
-      if(target) target.stock = newStock;
-      saveCatalogLocal(all);
+      luxCatalogLocalPatch(item.id, { stock: newStock }); // v250
       renderCatalog(); renderAdminList();
     }).catch(function(err){ console.warn('Sell-one failed:', err); });
   });
@@ -7301,9 +7595,7 @@ function admSheetWire(body, item){
     if(isNaN(n) || n < 0) return;
     admPatchCatalog(item.id, { stock: n }, true).then(function(r){
       if(!r.ok) throw new Error('stock update failed: ' + r.status);
-      var all = getCatalog(), target = all.find(function(x){ return x.id === item.id; });
-      if(target) target.stock = n;
-      saveCatalogLocal(all);
+      luxCatalogLocalPatch(item.id, { stock: n }); // v250
       renderCatalog(); renderAdminList();
     }).catch(function(err){ console.warn('Restock failed:', err); });
   });
@@ -7321,12 +7613,364 @@ function admSheetWire(body, item){
       }
       admSheetClose();
       adminSelectedIds.delete(item.id);
-      saveCatalogLocal(getCatalog().filter(function(x){ return x.id !== item.id; }));
+      luxCatalogRemove(item.id); // v250: anche se era in programma
       renderCatalog();
       renderAdminList();
       luxToast('Eliminato: «' + (item.title || '') + '»');
     });
   });
+  admSchedWire(body, item); // v250
+}
+
+/* ---- v250: nel pannello di un capitolo in programma ---- */
+function admSchedBoxHtml(item, pms){
+  var I = ADM_I;
+  return '<div class="adm-sched" role="group" aria-label="Uscita programmata">' +
+    '<div class="adm-sched-top">' + I.clock + '<div><b>Esce ' + escapeHtml(luxSchedWhen(pms)) + '</b><small>' + escapeHtml(luxSchedIn(pms)) + ' · fino ad allora lo vedi solo tu</small></div></div>' +
+    '<label class="adm-sched-edit"><span>Cambia giorno e ora</span><input type="datetime-local" step="60" data-sched-input value="' + escapeHtml(luxDtLocal(pms)) + '"></label>' +
+    '<p class="adm-sched-msg" data-sched-msg hidden></p>' +
+    '<div class="adm-sched-btns">' +
+      '<button type="button" class="btn btn-sm btn-ghost" data-sched-save disabled>Salva la nuova ora</button>' +
+      '<button type="button" class="btn btn-sm btn-primary" data-sched-now>Pubblica adesso</button>' +
+    '</div>' +
+    '<p class="adm-sched-note">' + escapeHtml(luxSchedWho(item)) + '</p>' +
+    (LUX_SCHED.server === 'ok' && LUX_SCHED.auto === false
+      ? '<p class="adm-sched-note is-warn">Su Supabase l\'uscita automatica non è accesa: rilancia il file uscite_e_letture_v250.sql. Finché non lo fai, esce quando apri Amministra dopo l\'ora scelta, oppure con «Pubblica adesso».</p>' : '') +
+  '</div>';
+}
+function admSchedWire(body, item){
+  var box = body.querySelector('.adm-sched');
+  if(!box) return;
+  var inp = box.querySelector('[data-sched-input]'), save = box.querySelector('[data-sched-save]'), now = box.querySelector('[data-sched-now]'), msg = box.querySelector('[data-sched-msg]');
+  var cur = luxDtLocal(luxSchedMs(item));
+  var say = function(text, bad){ msg.hidden = !text; msg.textContent = text || ''; msg.classList.toggle('is-error', !!bad); };
+  inp.min = luxDtLocal(Date.now() + 120000);
+  var check = function(){
+    var ms = luxDtParse(inp.value);
+    save.disabled = !ms || inp.value === cur;
+    if(!ms || inp.value === cur){ say(''); return; }
+    if(ms <= Date.now() + 60000){ save.disabled = true; say('Quest\'ora è già passata: scegline una più avanti, oppure «Pubblica adesso».', true); return; }
+    say('Nuova uscita: ' + luxSchedWhen(ms) + ' — ' + luxSchedIn(ms) + '.');
+  };
+  inp.addEventListener('input', check);
+  inp.addEventListener('change', check);
+  save.addEventListener('click', function(){
+    var ms = luxDtParse(inp.value);
+    if(!ms || ms <= Date.now() + 60000){ check(); return; }
+    var patch = { publish_at: new Date(ms).toISOString(), date: luxLocalDate(ms) };
+    save.disabled = now.disabled = true;
+    save.textContent = 'Salvo…';
+    admPatchCatalog(item.id, patch, true).then(function(r){
+      if(!r.ok) throw new Error('HTTP ' + r.status);
+      return r.json();
+    }).then(function(rows){
+      if(!rows || !rows.length) throw new Error('nessuna riga');
+      luxCatalogLocalPatch(item.id, patch);
+      LUX_SCHED.seen[item.id] = ms;
+      renderAdminList();
+      luxToast('Nuova ora: «' + (item.title || '') + '» esce ' + luxSchedWhen(ms) + '.');
+    }).catch(function(e){
+      console.warn('[uscite] nuova ora:', e);
+      save.textContent = 'Salva la nuova ora'; now.disabled = false; check();
+      say('Non salvato: controlla la connessione e riprova.', true);
+    });
+  });
+  now.addEventListener('click', function(){
+    if(!confirm('Pubblicare adesso «' + (item.title || '') + '»?\n\nLo vedranno subito tutti e partono gli avvisi.')) return;
+    var t0 = Date.now(), patch = { publish_at: new Date(t0).toISOString(), date: luxLocalDate(t0) };
+    save.disabled = now.disabled = true;
+    now.textContent = 'Pubblico…';
+    admPatchCatalog(item.id, patch, true).then(function(r){
+      if(!r.ok) throw new Error('HTTP ' + r.status);
+      return r.json();
+    }).then(function(rows){
+      if(!rows || !rows.length) throw new Error('nessuna riga');
+      luxCatalogLocalPatch(item.id, patch);
+      delete LUX_SCHED.seen[item.id];
+      return luxSchedRpc('lux_uscite_pubblica_ora', { p_id: item.id });
+    }).then(function(res){
+      if(res.ok) luxCatalogLocalPatch(item.id, { release_announced_at: new Date().toISOString() });
+      admSheetClose();
+      renderCatalog(); renderAdminList();
+      luxToast(res.ok ? 'Pubblicato: «' + (item.title || '') + '». Gli avvisi sono partiti.' : 'Pubblicato: «' + (item.title || '') + '». Gli avvisi partono entro un minuto.');
+    }).catch(function(e){
+      console.warn('[uscite] pubblica adesso:', e);
+      now.textContent = 'Pubblica adesso'; now.disabled = false; check();
+      say('Non pubblicato: controlla la connessione e riprova.', true);
+    });
+  });
+}
+
+/* ============ v250: USCITE PROGRAMMATE ============
+   Un capitolo può avere giorno e ora di uscita (publish_at). Fino ad allora lo vede solo l'amministratore:
+   il server non lo manda a nessun altro (uscite_e_letture_v250.sql) e anche qui getCatalog() non lo
+   restituisce, così nel sito non compare da nessuna parte, nemmeno sul telefono dell'admin, prima dell'ora.
+   In Amministra sta in cima all'elenco, «In programma», con il pannello per cambiare l'ora o pubblicarlo
+   subito. All'ora scelta esce da solo: il server lo mostra a tutti e manda i suoi avvisi (a chi segue il
+   personaggio e, se è collegata, l'email agli iscritti), gli stessi di una pubblicazione normale. */
+var LUX_SCHED = { server: null, auto: null, every: null, statusAt: 0, statusReq: null, timer: null, seen: {}, after: null, refetchT: null };
+function luxSchedMs(i){ var t = i && i.publish_at ? Date.parse(i.publish_at) : NaN; return isNaN(t) ? null : t; }
+function luxIsScheduled(i){ var t = luxSchedMs(i); return t !== null && t > Date.now(); }
+
+/* ---- la copia del catalogo in questo browser ----
+   getCatalog() (tutto il sito) non dà i capitoli in programma; getCatalog(true) (Amministra) sì.
+   saveCatalogLocal() non li perde quando chi salva ha in mano l'elenco senza di loro; per toglierli
+   davvero: luxCatalogRemove(). */
+function luxCatalogWrite(items){ localStorage.setItem('lux_catalog', JSON.stringify(items)); synopsisDbLangsMemo = null; }
+function luxCatalogRemove(ids){
+  var gone = {};
+  (Array.isArray(ids) ? ids : [ids]).forEach(function(id){ gone[id] = true; });
+  luxCatalogWrite(getCatalog(true).filter(function(x){ return !gone[x.id]; }));
+}
+function luxCatalogFind(id){ return getCatalog(true).find(function(x){ return x.id === id; }) || null; }
+function luxCatalogLocalPatch(id, patch){
+  var all = getCatalog(true), t = all.find(function(x){ return x.id === id; });
+  if(!t) return null;
+  for(var k in patch){ if(Object.prototype.hasOwnProperty.call(patch, k)) t[k] = patch[k]; }
+  luxCatalogWrite(all);
+  return t;
+}
+// i capitoli in programma arrivati dal server prendono il posto di quelli di prima (null: non si sa, restano)
+function luxCatalogSetScheduled(list){
+  if(!list) return;
+  var all = getCatalog(true).filter(function(i){ return !luxIsScheduled(i); }), at = {};
+  all.forEach(function(i, k){ at[i.id] = k; });
+  list.forEach(function(i){
+    if(!i || !i.id) return;
+    if(at[i.id] === undefined){ at[i.id] = all.length; all.push(i); }
+    else if(luxIsScheduled(i)) all[at[i.id]] = i;
+  });
+  luxCatalogWrite(all);
+}
+
+/* ---- dal server ---- */
+function luxSchedHeaders(){
+  var s = getSession();
+  return { 'apikey': SUPABASE_ANON_KEY, 'Authorization': 'Bearer ' + (s && s.access_token), 'Content-Type': 'application/json' };
+}
+// (per l'admin) i capitoli in programma o appena arrivati alla loro ora; null se non si è potuto chiedere
+function luxSchedLoad(){
+  if(!SUPABASE_URL || !isAdmin()) return Promise.resolve(null);
+  return refreshSessionIfNeeded().then(function(){
+    if(!isAdmin()) return null;
+    return fetch(SUPABASE_URL + '/rest/v1/catalog?select=*&publish_at=not.is.null&release_announced_at=is.null&order=publish_at.asc', { headers: luxSchedHeaders() })
+      .then(function(r){
+        if(r.status === 400 || r.status === 404){ LUX_SCHED.server = 'missing'; return []; } // il file SQL non è ancora stato lanciato
+        if(!r.ok) throw new Error('HTTP ' + r.status);
+        LUX_SCHED.server = 'ok';
+        return r.json();
+      });
+  }).catch(function(e){ console.warn('[uscite] elenco non arrivato:', e); return null; });
+}
+function luxSchedRpc(name, body){
+  return refreshSessionIfNeeded().then(function(){
+    return fetch(SUPABASE_URL + '/rest/v1/rpc/' + name, { method: 'POST', headers: luxSchedHeaders(), body: JSON.stringify(body || {}) });
+  }).then(function(r){
+    return r.text().then(function(tx){ var d = null; try { d = tx ? JSON.parse(tx) : null; } catch(e){} return { ok: r.ok, status: r.status, data: d }; });
+  }).catch(function(){ return { ok: false, status: 0, data: null }; });
+}
+// è tutto acceso su Supabase? (una volta ogni 5 minuti al massimo)
+function luxSchedStatus(force){
+  if(!SUPABASE_URL || !isAdmin()) return Promise.resolve(LUX_SCHED);
+  if(LUX_SCHED.statusReq) return LUX_SCHED.statusReq;
+  if(!force && LUX_SCHED.statusAt && Date.now() - LUX_SCHED.statusAt < 300000) return Promise.resolve(LUX_SCHED);
+  LUX_SCHED.statusReq = luxSchedRpc('lux_uscite_stato').then(function(res){
+    LUX_SCHED.statusReq = null;
+    if(res.ok && res.data && res.data.pronto){
+      LUX_SCHED.server = 'ok'; LUX_SCHED.auto = !!res.data.automatico; LUX_SCHED.every = res.data.ogni || null; LUX_SCHED.statusAt = Date.now();
+    } else if(res.status === 404){
+      LUX_SCHED.server = 'missing'; LUX_SCHED.statusAt = Date.now();
+    }
+    luxWhenNote();
+    return LUX_SCHED;
+  });
+  return LUX_SCHED.statusReq;
+}
+
+/* ---- parole e date ---- */
+function luxPad2(n){ return (n < 10 ? '0' : '') + n; }
+function luxLocalDate(ms){ var d = new Date(ms); return d.getFullYear() + '-' + luxPad2(d.getMonth() + 1) + '-' + luxPad2(d.getDate()); }
+function luxDtLocal(ms){ var d = new Date(ms); return luxLocalDate(ms) + 'T' + luxPad2(d.getHours()) + ':' + luxPad2(d.getMinutes()); }
+function luxDtParse(v){ // «2026-10-18T18:00» (ora di questo telefono o computer) → millisecondi
+  var m = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/.exec(String(v || ''));
+  if(!m) return null;
+  var d = new Date(+m[1], +m[2] - 1, +m[3], +m[4], +m[5], 0, 0);
+  return isNaN(d.getTime()) ? null : d.getTime();
+}
+function luxSchedTime(ms){ try { return new Date(ms).toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit' }); } catch(e){ return ''; } }
+function luxSchedDay(ms, long){
+  var d = new Date(ms), now = new Date(), o = long ? { weekday: 'long', day: 'numeric', month: 'long' } : { weekday: 'short', day: 'numeric', month: 'short' };
+  if(d.getFullYear() !== now.getFullYear()) o.year = 'numeric';
+  var today = luxLocalDate(now.getTime()), dd = luxLocalDate(ms), tom = luxLocalDate(now.getTime() + 864e5);
+  if(dd === today) return 'oggi';
+  if(dd === tom) return 'domani';
+  try { return d.toLocaleDateString('it-IT', o).replace(/\.$/, ''); } catch(e){ return dd; }
+}
+function luxSchedWhen(ms){ return luxSchedDay(ms, true) + ' alle ' + luxSchedTime(ms); }        // «sabato 18 ottobre alle 18:00»
+function luxSchedShort(ms){ return luxSchedDay(ms, false) + ', ' + luxSchedTime(ms); }          // «sab 18 ott, 18:00»
+function luxSchedIn(ms){
+  var s = Math.round((ms - Date.now()) / 60000);
+  if(s < 1) return 'tra meno di un minuto';
+  if(s < 60) return s === 1 ? 'tra un minuto' : 'tra ' + s + ' minuti';
+  var h = Math.floor(s / 60), m = s % 60;
+  if(h < 24) return 'tra ' + (h === 1 ? 'un\'ora' : h + ' ore') + (m && h < 6 ? ' e ' + m + (m === 1 ? ' minuto' : ' minuti') : '');
+  var g = Math.floor(h / 24), hh = h % 24;
+  return 'tra ' + (g === 1 ? 'un giorno' : g + ' giorni') + (hh && g < 4 ? ' e ' + (hh === 1 ? 'un\'ora' : hh + ' ore') : '');
+}
+function luxSchedWho(item){
+  var c = item && item.character && item.character !== 'Collaboratori' ? charDisplayName(item.character) : '';
+  return 'All\'uscita partono gli avvisi: ' + (c ? 'a chi segue ' + c + ' (campanella e notifica sul telefono)' : 'a chi segue il personaggio') + ' e l\'email agli iscritti, se è collegata.';
+}
+
+/* ---- quando arriva l'ora (con Amministra aperta) ---- */
+function luxSchedWatch(){
+  var pend = getCatalog(true).filter(luxIsScheduled);
+  pend.forEach(function(i){ LUX_SCHED.seen[i.id] = luxSchedMs(i); });
+  // c'è qualcosa in programma: è acceso il controllo automatico su Supabase? (lo dice il pannello)
+  if(pend.length && isAdmin() && LUX_SCHED.server !== 'missing' && !LUX_SCHED.statusAt && !LUX_SCHED.statusReq){
+    luxSchedStatus().then(function(){ if(admSheetId !== null) admSheetRender(); });
+  }
+  if(!pend.length && !Object.keys(LUX_SCHED.seen).length){ if(LUX_SCHED.timer){ clearInterval(LUX_SCHED.timer); LUX_SCHED.timer = null; } return; }
+  if(!LUX_SCHED.timer) LUX_SCHED.timer = setInterval(luxSchedTick, 15000);
+}
+function luxSchedTick(){
+  var now = Date.now(), out = [];
+  Object.keys(LUX_SCHED.seen).forEach(function(id){
+    if(LUX_SCHED.seen[id] <= now){ delete LUX_SCHED.seen[id]; var it = luxCatalogFind(id); if(it && !luxIsScheduled(it)) out.push(it); }
+  });
+  if(!out.length){ luxSchedWatch(); return; }
+  luxToast(out.length === 1 ? 'È uscito «' + (out[0].title || '') + '»: adesso lo vedono tutti.' : 'Sono usciti ' + out.length + ' capitoli: adesso li vedono tutti.');
+  renderCatalog(); renderAdminList();
+  // riserva: se su Supabase il controllo automatico non è acceso (o non si sa), li fa uscire questa pagina
+  if(LUX_SCHED.auto !== true && LUX_SCHED.server !== 'missing') luxSchedRpc('lux_uscite_controlla');
+  clearTimeout(LUX_SCHED.refetchT);
+  LUX_SCHED.refetchT = setTimeout(function(){ fetchCatalogFromSupabase().then(function(){ renderCatalog(); renderAdminList(); }); }, 45000);
+  luxSchedWatch();
+}
+
+/* ---- nel modulo del titolo: «Quando esce» ---- */
+function luxWhenEnsure(){
+  var box = document.getElementById('luxWhen');
+  if(box) return box;
+  var anchor = document.getElementById('adminError');
+  if(!anchor || !anchor.parentNode) return null;
+  box = document.createElement('div');
+  box.id = 'luxWhen';
+  box.className = 'lux-when';
+  box.hidden = true;
+  box.innerHTML =
+    '<div class="lux-when-h">Quando esce</div>' +
+    '<div class="lux-when-opts" role="radiogroup" aria-label="Quando esce">' +
+      '<label class="lux-when-opt"><input type="radio" name="luxWhen" value="now" checked><span><b data-when-now>Subito</b><small data-when-now-sub>Appena lo aggiungi</small></span></label>' +
+      '<label class="lux-when-opt"><input type="radio" name="luxWhen" value="later"><span><b>Giorno e ora</b><small>Esce da solo, con il suo avviso</small></span></label>' +
+    '</div>' +
+    '<div class="lux-when-later" hidden>' +
+      '<label class="lux-when-dt"><span>Giorno e ora di uscita</span><input type="datetime-local" id="fPublishAt" step="60"></label>' +
+      '<p class="lux-when-in" id="luxWhenIn"></p>' +
+      '<p class="lux-when-note" id="luxWhenNote"></p>' +
+    '</div>';
+  anchor.parentNode.insertBefore(box, anchor);
+  Array.prototype.forEach.call(box.querySelectorAll('input[name="luxWhen"]'), function(r){ r.addEventListener('change', luxWhenChanged); });
+  var dt = box.querySelector('#fPublishAt');
+  dt.addEventListener('input', luxWhenChanged);
+  dt.addEventListener('change', luxWhenChanged);
+  return box;
+}
+var luxWhenItem = null; // il titolo in modifica (se è in programma), oppure null per uno nuovo
+function luxWhenMode(){ var r = document.querySelector('#luxWhen input[name="luxWhen"]:checked'); return r ? r.value : 'now'; }
+function luxWhenSync(item){
+  var box = luxWhenEnsure();
+  if(!box) return;
+  luxWhenItem = item && luxIsScheduled(item) ? item : null;
+  var show = isAdmin() && !isDraftModeOn() && (!item || !!luxWhenItem);
+  box.hidden = !show;
+  var later = !!luxWhenItem;
+  box.querySelector('input[value="now"]').checked = !later;
+  box.querySelector('input[value="later"]').checked = later;
+  box.querySelector('[data-when-now]').textContent = luxWhenItem ? 'Pubblica adesso' : 'Subito';
+  box.querySelector('[data-when-now-sub]').textContent = luxWhenItem ? 'Esce appena salvi, con il suo avviso' : 'Appena lo aggiungi';
+  box.querySelector('#fPublishAt').value = luxWhenItem ? luxDtLocal(luxSchedMs(luxWhenItem)) : '';
+  luxWhenChanged();
+  if(show) luxSchedStatus();
+}
+function luxWhenChanged(){
+  var box = document.getElementById('luxWhen');
+  if(!box) return;
+  var later = luxWhenMode() === 'later', dt = box.querySelector('#fPublishAt');
+  box.classList.toggle('is-later', later);
+  box.querySelector('.lux-when-later').hidden = !later;
+  if(later && !dt.value){
+    var d = new Date(); d.setDate(d.getDate() + 1); d.setHours(18, 0, 0, 0); // domani alle 18:00, da cambiare a piacere
+    dt.value = luxDtLocal(d.getTime());
+  }
+  dt.min = luxDtLocal(Date.now() + 120000);
+  var ms = later ? luxDtParse(dt.value) : null, inEl = box.querySelector('#luxWhenIn');
+  if(inEl) inEl.textContent = ms ? (ms > Date.now() + 60000 ? 'Esce ' + luxSchedWhen(ms) + ' — ' + luxSchedIn(ms) + '.' : 'Quest\'ora è già passata: scegline una più avanti.') : '';
+  if(inEl) inEl.classList.toggle('is-error', !!ms && ms <= Date.now() + 60000);
+  if(later && ms){ var fd = document.getElementById('fDate'); if(fd) fd.value = luxLocalDate(ms); }
+  var btn = document.getElementById('btnAddEntry');
+  if(btn && !box.hidden) btn.textContent = editingItemId ? t('admin.saveChanges') : (later ? 'Programma l\'uscita' : t('admin.add'));
+  luxWhenNote();
+}
+function luxWhenNote(){
+  var el = document.getElementById('luxWhenNote');
+  if(!el) return;
+  var later = document.querySelector('#luxWhen input[value="later"]');
+  if(LUX_SCHED.server === 'missing'){
+    el.className = 'lux-when-note is-warn';
+    el.textContent = 'Per programmare le uscite serve prima un passaggio su Supabase, una volta sola: il file uscite_e_letture_v250.sql (le istruzioni sono nel file). Intanto puoi pubblicare subito.';
+  } else if(LUX_SCHED.server === 'ok' && LUX_SCHED.auto === false){
+    el.className = 'lux-when-note is-warn';
+    el.textContent = 'Su Supabase l\'uscita automatica non è accesa: rilancia il file uscite_e_letture_v250.sql. Finché non lo fai, esce quando apri Amministra dopo l\'ora scelta, oppure con «Pubblica adesso».';
+  } else {
+    el.className = 'lux-when-note';
+    el.textContent = 'Fino ad allora lo vedi solo tu, qui in Amministra. All\'ora scelta compare nel sito e partono gli avvisi: a chi segue il personaggio (campanella e notifica sul telefono) e l\'email agli iscritti, se è collegata.';
+  }
+  if(later) later.disabled = LUX_SCHED.server === 'missing' && !luxWhenItem;
+}
+// al salvataggio: { error } oppure che cosa scrivere nel titolo
+function luxWhenRead(existing){
+  var box = document.getElementById('luxWhen');
+  var sched = existing && luxIsScheduled(existing);
+  if(!box || box.hidden){
+    return sched ? { publish_at: existing.publish_at, scheduled: true, keep: true } : {}; // (niente da cambiare)
+  }
+  if(luxWhenMode() !== 'later'){
+    if(!sched) return {};
+    var now = Date.now();
+    return { publish_at: new Date(now).toISOString(), date: luxLocalDate(now), publishNow: true };
+  }
+  var ms = luxDtParse(box.querySelector('#fPublishAt').value);
+  if(!ms) return { error: 'Scegli il giorno e l\'ora dell\'uscita (oppure «' + (sched ? 'Pubblica adesso' : 'Subito') + '»).' };
+  if(ms <= Date.now() + 60000) return { error: 'L\'ora scelta è già passata o manca meno di un minuto: scegline una più avanti, oppure «' + (sched ? 'Pubblica adesso' : 'Subito') + '».' };
+  if(!sched && LUX_SCHED.server !== 'ok'){
+    luxSchedStatus(true);
+    return { error: LUX_SCHED.server === 'missing'
+      ? 'Per programmare le uscite serve prima il file uscite_e_letture_v250.sql su Supabase. Intanto puoi pubblicare subito.'
+      : 'Non riesco a controllare Supabase in questo momento: riprova tra poco.' };
+  }
+  return { publish_at: new Date(ms).toISOString(), date: luxLocalDate(ms), scheduled: true };
+}
+function luxWhenApply(newItem, w){
+  if(w.publish_at !== undefined) newItem.publish_at = w.publish_at;
+  if(w.date) newItem.date = w.date;
+  LUX_SCHED.after = (w.scheduled && !w.keep) || w.publishNow ? { id: newItem.id, w: w } : null;
+}
+function luxWhenTake(id){ var a = LUX_SCHED.after; LUX_SCHED.after = null; return a && a.id === id ? a.w : null; }
+function luxWhenAfterSave(item, saved, w){
+  if(!w) return;
+  if(!saved){ luxToast('Non salvato su Supabase: controlla la connessione e riprova.'); return; }
+  if(w.publishNow){
+    luxSchedRpc('lux_uscite_pubblica_ora', { p_id: item.id }).then(function(res){
+      luxCatalogLocalPatch(item.id, { release_announced_at: new Date().toISOString() });
+      renderCatalog(); renderAdminList();
+      luxToast(res.ok ? 'Pubblicato adesso: «' + (item.title || '') + '». Gli avvisi sono partiti.' : 'Pubblicato: «' + (item.title || '') + '». Gli avvisi partono entro un minuto.');
+    });
+    return;
+  }
+  var ms = luxSchedMs(item);
+  if(ms) setTimeout(function(){ luxToast('Programmato: «' + (item.title || '') + '» esce ' + luxSchedWhen(ms) + '. Fino ad allora lo vedi solo tu.'); }, 400);
+  luxSchedWatch();
 }
 
 /* v233: tradurre le sinossi che mancano. Si chiedono solo le lingue che mancano, prima i titoli
@@ -7446,7 +8090,7 @@ function luxSaveSynopsisPatch(id, patch){
     return r.json().catch(function(){ return null; });
   }, function(){ throw luxTrErr(0, null); }).then(function(rows){
     if(Array.isArray(rows) && !rows.length) throw luxTrErr(403, { code: 'save', error: 'nessuna riga salvata' });
-    var items = getCatalog(), it = items.find(function(x){ return x.id === id; });
+    var items = getCatalog(true), it = items.find(function(x){ return x.id === id; }); // v250
     if(it){ for(var k in patch) it[k] = patch[k]; saveCatalogLocal(items); }
     return true;
   });
@@ -7666,7 +8310,7 @@ function translateExistingContent(){
 
 // la sinossi di un titolo (dal menu «Azioni» della lista): solo le lingue che mancano, o tutte per «Ritraduci»
 function translateSynopsisForExistingItem(itemId, synopsis, btn, all){
-  var item = getCatalog().find(function(i){ return i.id === itemId; });
+  var item = getCatalog(true).find(function(i){ return i.id === itemId; }); // v250
   if(!item || !item.synopsis){ luxToast('Questo titolo non ha una sinossi da tradurre.'); return; }
   if(synopsisRowNotes[itemId] && synopsisRowNotes[itemId].busy) return;
   var dbLangs = synopsisDbLangs();
@@ -7793,7 +8437,7 @@ function uploadCoverForExistingItem(itemId, file, ratioW, ratioH, forceReal){
         if(!rows || rows.length === 0){
           throw new Error('nessuna riga aggiornata nel database (id non trovato: ' + itemId + ')');
         }
-        var items = getCatalog();
+        var items = getCatalog(true); // v250
         var item = items.find(function(i){ return i.id === itemId; });
         if(item){ item.cover_url = result.url; if(result.isMature) item.mature = true; }
         saveCatalogLocal(items);
@@ -9076,7 +9720,7 @@ function rewatermarkExistingItem(itemId, pages, btnEl){
     if(btnEl) btnEl.disabled = false;
     // mark as done — both on Supabase and in the local cached copy, so the
     // "Filigranato" tag shows immediately without needing a page reload
-    var items = getCatalog();
+    var items = getCatalog(true); // v250
     var target = items.find(function(x){ return x.id === itemId; });
     if(target) target.pages_watermarked = true;
     saveCatalogLocal(items);
@@ -9549,7 +10193,7 @@ function setSelectedGenres(arr){
 }
 
 function openEditTitle(id){
-  var item = getCatalog().find(function(x){ return x.id === id; });
+  var item = getCatalog(true).find(function(x){ return x.id === id; }); // v250: anche se è in programma
   if(!item) return;
   editingItemId = id;
   document.getElementById('fTitle').value = item.title || '';
@@ -9590,6 +10234,7 @@ function openEditTitle(id){
   document.getElementById('fTitle').scrollIntoView({behavior:'smooth', block:'center'});
   openTitleFormDrawer();
   showMusicSectionForEdit(id);
+  luxWhenSync(item); // v250
 }
 
 function cancelEditTitle(){
@@ -9615,6 +10260,7 @@ function cancelEditTitle(){
   if(cancelBtn) cancelBtn.classList.add('hidden');
   closeTitleFormDrawer();
   hideMusicSectionForNew();
+  luxWhenSync(null); // v250
 }
 
 /* ============ MODALITÀ BOZZA (anteprima locale prima di pubblicare) ============
@@ -9833,7 +10479,7 @@ function handleAddEntry(){
     return;
   }
 
-  var existing = isEdit ? getCatalog().find(function(x){ return x.id === editingItemId; }) : null;
+  var existing = isEdit ? getCatalog(true).find(function(x){ return x.id === editingItemId; }) : null; // v250: anche in programma
   if(isEdit && !existing){ isEdit = false; editingItemId = null; } // la voce originale non c'è più — meglio ripartire da zero che salvare nel vuoto
 
   var newItem = isEdit ? {
@@ -9875,6 +10521,11 @@ function handleAddEntry(){
     if(!(k in newItem)) newItem[k] = isEdit && existing ? (existing[k] || null) : null;
   });
 
+  // v250: quando esce (subito, o giorno e ora)
+  var luxW = luxWhenRead(isEdit ? existing : null);
+  if(luxW.error){ err.textContent = luxW.error; return; }
+  luxWhenApply(newItem, luxW);
+
   var btn = document.getElementById('btnAddEntry');
   btn.disabled = true;
   runTitleUploadSequence(newItem, isEdit);
@@ -9910,7 +10561,7 @@ function runTitleUploadSequence(newItem, isEdit){
   // mancano. Se la traduzione non riesce il titolo si salva lo stesso, e alla fine si dice perché.
   luxTrSaveNote = '';
   uploadSteps = uploadSteps.then(function(){
-    var before = isEdit ? getCatalog().find(function(x){ return x.id === newItem.id; }) : null;
+    var before = isEdit ? getCatalog(true).find(function(x){ return x.id === newItem.id; }) : null;
     var changed = !before || (before.synopsis || '') !== (newItem.synopsis || '');
     if(!newItem.synopsis){ if(changed) applySynopsisTranslations(newItem, {}, true); return; }
     var targets = changed ? synopsisDbLangs() : synopsisMissingLangs(newItem);
@@ -9970,7 +10621,7 @@ function runTitleUploadSequence(newItem, isEdit){
       newItem.pages_watermarked = true; // new uploads always go through the watermark step
     }
     status.textContent = '';
-    var items = getCatalog();
+    var items = getCatalog(true); // v250
     if(isEdit){
       var idx = items.findIndex(function(x){ return x.id === newItem.id; });
       if(idx >= 0) items[idx] = newItem;
@@ -9995,13 +10646,15 @@ function runTitleUploadSequence(newItem, isEdit){
     renderCatalog();
     renderAdminList();
     renderMyTitles();
+    var luxAfter = luxWhenTake(newItem.id); // v250: programmato, o «Pubblica adesso»
     if(isEdit){
       var savedId = newItem.id;
       var patch = {}; for(var k in newItem){ if(k !== 'id') patch[k] = newItem[k]; }
-      supabaseUpdate(savedId, patch);
+      supabaseUpdate(savedId, patch).then(function(okSaved){ luxWhenAfterSave(newItem, okSaved, luxAfter); });
       cancelEditTitle();
     } else {
-      supabaseInsert(newItem);
+      supabaseInsert(newItem).then(function(okSaved){ luxWhenAfterSave(newItem, okSaved, luxAfter); });
+      luxWhenSync(null); // (il prossimo titolo riparte da «Subito»)
     }
     btn.disabled = false;
     if(showsOverlay) snoFinish(true, t('sno.uploadDoneCaption'), t('sno.uploadDoneStatus'));
@@ -11691,16 +12344,20 @@ function openNotification(n){
     return;
   }
   if(n.catalog_id){
-    var items = getCatalog();
-    var item = items.find(function(i){ return i.id === n.catalog_id; });
-    if(item){
+    var openIt = function(item){
       if(item.mature && !matureVisible){
         pendingDeepLinkItem = item;
         openMatureModal();
       } else {
         openTitleModal(item);
       }
-    }
+    };
+    var item = getCatalog().find(function(i){ return i.id === n.catalog_id; });
+    if(item) openIt(item);
+    else fetchCatalogFromSupabase().then(function(){ // v250: un capitolo uscito da poco (per esempio a un'ora programmata)
+      var it2 = getCatalog().find(function(i){ return i.id === n.catalog_id; });
+      if(it2){ renderCatalog(); openIt(it2); }
+    });
   }
 }
 
@@ -16839,7 +17496,7 @@ function openTitleModal(item){
     saveCatalogLocal(catItems);
     item.view_count = freshItem.view_count;
   }
-  trackView(item.id);
+  if(!luxIsScheduled(item)) trackView(item.id); // v250: le anteprime dei capitoli in programma non contano
   }
   updateEngagementCountsLabel(item.id);
   if(isSignedIn() && !titleModalRelang){
@@ -21153,8 +21810,10 @@ function openPageReader(item){
   readerPages = item.pages || [];
   readerIndex = 0;
   var reader = document.getElementById('pageReader');
+  luxReadLeftEnd(); // v250
   if(readerPages.length === 0){ reader.classList.add('hidden'); return; }
   reader.classList.remove('hidden');
+  luxReadCount(item, false); // v250: aperto (una volta per telefono o computer)
   var thumbs = document.getElementById('pageReaderThumbs');
   thumbs.innerHTML = '';
   luxReaderThumbs(thumbs, readerPages, function(idx){ showReaderPage(idx); }); // v246: miniature leggere, solo quando la striscia le mostra
@@ -21177,6 +21836,7 @@ function renderReaderFlow(){
   if(!reader) return;
   if(readerScrollObserver){ readerScrollObserver.disconnect(); readerScrollObserver = null; }
   if(readerLazyObserver){ readerLazyObserver.disconnect(); readerLazyObserver = null; }
+  if(luxReadEndObs){ luxReadEndObs.disconnect(); luxReadEndObs = null; } // v250
   var box = document.getElementById('pageReaderScroll');
   if(!readerScrollOn()){ if(box) box.innerHTML = ''; return; }
   if(!box){
@@ -21238,6 +21898,21 @@ function renderReaderFlow(){
       saveReadingProgress(readerItem, idx);
     }, { threshold: [0.35, 0.6, 0.85] });
     imgs.forEach(function(img){ readerScrollObserver.observe(img); });
+    // v250: arrivati in fondo all'ultima tavola (anche se non sale fino in cima allo schermo)
+    var endMark = document.createElement('div');
+    endMark.className = 'page-reader-end';
+    endMark.setAttribute('aria-hidden', 'true');
+    endMark.style.cssText = 'height:1px;margin-top:-1px;';
+    box.appendChild(endMark);
+    var endItem = readerItem, endVisible = false;
+    luxReadEndObs = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        endVisible = en.isIntersecting;
+        if(!endVisible){ luxReadLeftEnd(); return; }
+        setTimeout(function(){ if(endVisible && document.contains(endMark)) luxReadAtEnd(endItem); }, readerFlowSettling ? 800 : 0); // (dopo il salto alla tavola dove eri rimasto)
+      });
+    }, { threshold: 0 });
+    luxReadEndObs.observe(endMark);
   }
   var cnt = document.getElementById('pageReaderCount');
   if(cnt) cnt.textContent = (readerIndex + 1) + ' / ' + readerPages.length;
@@ -21623,6 +22298,7 @@ function showReaderPage(idx){
   var hasSecond = readerDouble() && (idx + 1) < readerPages.length;
   var countText = hasSecond ? (idx + 1) + '–' + (idx + 2) + ' / ' + readerPages.length : (idx + 1) + ' / ' + readerPages.length;
   document.getElementById('pageReaderCount').textContent = countText;
+  if((hasSecond ? idx + 1 : idx) >= readerPages.length - 1) luxReadAtEnd(readerItem); else luxReadLeftEnd(); // v250: l'ultima pagina
   document.getElementById('pageReaderPrev').disabled = idx === 0;
   document.getElementById('pageReaderNext').disabled = hasSecond ? (idx + 2) >= readerPages.length : idx === readerPages.length - 1;
   document.querySelectorAll('#pageReaderThumbs img').forEach(function(img, i){
@@ -22240,7 +22916,7 @@ function switchAdminTab(tabName){
     panel.classList.toggle('hidden', panel.dataset.tabPanel !== tabName);
   });
   if(tabName === 'moderation') renderCommunityModeration();
-  if(tabName === 'stats') renderSongStatsLeaderboard();
+  if(tabName === 'stats'){ renderSongStatsLeaderboard(); renderStatsPanel(); } // v250: con i numeri freschi
   if(tabName === 'artists') renderAdminArtistsList();
   if(tabName === 'servers') loadServersAdminList();
   if(tabName === 'events') loadEventsAdminList();
@@ -22311,31 +22987,147 @@ function renderSongStatsLeaderboard(){
   }).catch(function(){ box.innerHTML = '<p class="form-note">Errore nel caricamento.</p>'; });
 }
 
+/* ============ v250: STATISTICHE PER CAPITOLO ============
+   Per ogni capitolo, in Amministra › Statistiche: le letture (ogni apertura, come prima), i «mi piace» e
+   quanti arrivano fino all'ultima pagina, su quanti l'hanno aperto. Questi ultimi due numeri li conta
+   il sito una volta sola per telefono o computer (uscite_e_letture_v250.sql, count_chapter_read):
+   aperto = la scheda con le pagine; finito = l'ultima pagina rimasta sullo schermo un momento (a tavole
+   o a scorrimento). Le letture dell'amministratore non contano, e nemmeno le anteprime dei capitoli in
+   programma. I capitoli solo in PDF non hanno pagine da seguire: per loro niente «fino alla fine». */
+var LUX_READS_KEY = 'lux_read_marks', LUX_READS_MEM = {}, luxReadEndT = null, luxReadEndObs = null;
+function luxReadMarks(){
+  try { var m = JSON.parse(localStorage.getItem(LUX_READS_KEY) || '{}'); if(m && typeof m === 'object') return m; } catch(e){}
+  return LUX_READS_MEM;
+}
+function luxReadCount(item, finished){
+  if(!item || !item.id || !SUPABASE_URL || isAdmin() || luxIsScheduled(item) || !(item.pages && item.pages.length)) return;
+  var m = luxReadMarks(), cur = m[item.id] || 0;
+  if(finished ? cur >= 2 : cur >= 1) return;
+  if(finished && cur < 1) callCounterRpc('count_chapter_read', { cid: item.id, finished: false }); // (chi finisce l'ha anche aperto)
+  m[item.id] = finished ? 2 : 1;
+  var keys = Object.keys(m);
+  if(keys.length > 600) keys.slice(0, keys.length - 600).forEach(function(k){ delete m[k]; }); // (le più vecchie)
+  LUX_READS_MEM = m;
+  try { localStorage.setItem(LUX_READS_KEY, JSON.stringify(m)); } catch(e){}
+  callCounterRpc('count_chapter_read', { cid: item.id, finished: !!finished });
+}
+// l'ultima pagina è sullo schermo: se ci resta un momento, il capitolo conta come finito
+function luxReadAtEnd(item){
+  clearTimeout(luxReadEndT);
+  if(!item) return;
+  luxReadEndT = setTimeout(function(){
+    var tm = document.getElementById('titleModal');
+    if(readerItem === item && !document.hidden && (!tm || !tm.classList.contains('hidden'))) luxReadCount(item, true);
+  }, 1500);
+}
+function luxReadLeftEnd(){ clearTimeout(luxReadEndT); luxReadEndT = null; }
+
+/* ---- Amministra › Statistiche ---- */
+var LUX_STATS = { rows: null, err: null, at: 0, req: null, sort: 'reads', q: '', all: false };
+function luxStatsLoad(force){
+  if(!isAdmin() || !SUPABASE_URL) return Promise.resolve();
+  if(LUX_STATS.req) return LUX_STATS.req;
+  if(!force && LUX_STATS.rows && Date.now() - LUX_STATS.at < 60000) return Promise.resolve();
+  LUX_STATS.req = refreshSessionIfNeeded().then(function(){
+    var s = getSession();
+    return fetch(SUPABASE_URL + '/rest/v1/catalog_read_stats?select=catalog_id,readers,finishers', {
+      headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': 'Bearer ' + (s && s.access_token) }
+    });
+  }).then(function(r){
+    if(r.status === 404 || r.status === 400){ LUX_STATS.err = 'missing'; LUX_STATS.rows = {}; return; }
+    if(!r.ok) throw new Error('HTTP ' + r.status);
+    return r.json().then(function(rows){
+      var m = {};
+      (rows || []).forEach(function(x){ m[x.catalog_id] = { readers: +x.readers || 0, finishers: +x.finishers || 0 }; });
+      LUX_STATS.rows = m; LUX_STATS.err = null; LUX_STATS.at = Date.now();
+    });
+  }).catch(function(e){ console.warn('[statistiche]', e); if(!LUX_STATS.rows) LUX_STATS.err = 'net'; }).then(function(){ LUX_STATS.req = null; });
+  return LUX_STATS.req;
+}
+function luxStatsNum(n){ try { return Number(n || 0).toLocaleString('it-IT'); } catch(e){ return String(n || 0); } }
+function luxStatsOf(item){
+  var r = LUX_STATS.rows && LUX_STATS.rows[item.id], fin = r ? r.finishers : 0, readers = r ? Math.max(r.readers, fin) : 0;
+  return { reads: +item.view_count || 0, likes: +item.like_count || 0, readers: readers, fin: fin,
+           pct: readers > 0 ? Math.round(fin / readers * 100) : null, pages: !!(item.pages && item.pages.length) };
+}
 function renderStatsPanel(){
   if(!isAdmin()) return;
   var box = document.getElementById('statsPanel');
   if(!box) return;
-  var items = getCatalog().slice();
-  if(items.length === 0){ box.innerHTML = '<p class="form-note">' + t('stats.empty') + '</p>'; return; }
-  items.sort(function(a,b){ return (b.view_count||0) - (a.view_count||0); });
-  var maxViews = Math.max.apply(null, items.map(function(i){ return i.view_count || 0; })) || 1;
-  box.innerHTML = '';
-  items.forEach(function(item){
-    var row = document.createElement('div');
-    row.className = 'stats-row';
-    var pct = Math.round(((item.view_count || 0) / maxViews) * 100);
-    row.innerHTML =
-      '<div class="stats-title">' + escapeHtml(item.title) + '</div>' +
-      '<div class="stats-numbers">' +
-        (item.view_count||0) + ' ' + t('stats.views') + ' · ' +
-        (item.like_count||0) + ' ' + t('stats.likes') + ' · ' +
-        (item.save_count||0) + ' ' + t('stats.saves') + ' · ' +
-        (item.share_count||0) + ' ' + t('stats.shares') + ' · ' +
-        (item.cart_add_count||0) + ' ' + t('stats.cartAdds') +
-      '</div>' +
-      '<div class="stats-bar-track"><div class="stats-bar-fill" style="width:' + pct + '%"></div></div>';
-    box.appendChild(row);
+  if(!box.dataset.lst){
+    box.dataset.lst = '1';
+    box.innerHTML = '<div class="lst-tot" data-lst-tot></div>' +
+      '<div class="lst-bar"><input type="search" class="lst-q" placeholder="Cerca un capitolo…" autocomplete="off" enterkeyhint="search" aria-label="Cerca un capitolo">' +
+        '<label class="lst-sort"><span>Ordina</span><select data-lst-sort>' +
+          '<option value="reads">Più letti</option><option value="likes">Più «mi piace»</option><option value="finish">Più arrivano alla fine</option><option value="new">Più recenti</option>' +
+        '</select></label></div>' +
+      '<div class="lst-list" data-lst-list></div>' +
+      '<p class="lst-note" data-lst-note></p>';
+    var q = box.querySelector('.lst-q'), so = box.querySelector('[data-lst-sort]');
+    so.value = LUX_STATS.sort;
+    q.addEventListener('input', function(){ LUX_STATS.q = q.value; luxStatsRender(); });
+    so.addEventListener('change', function(){ LUX_STATS.sort = so.value; LUX_STATS.all = false; luxStatsRender(); });
+    box.addEventListener('click', function(e){ var m = e.target.closest ? e.target.closest('[data-lst-more]') : null; if(m){ LUX_STATS.all = true; luxStatsRender(); } });
+    box.addEventListener('error', function(e){
+      var im = e.target;
+      if(!im || im.tagName !== 'IMG' || !im.getAttribute('data-full')) return;
+      var full = im.getAttribute('data-full'); im.removeAttribute('data-full'); if(im.getAttribute('src') !== full) im.src = full;
+    }, true);
+  }
+  luxStatsRender();
+  luxStatsLoad().then(luxStatsRender);
+}
+function luxStatsRender(){
+  var box = document.getElementById('statsPanel');
+  if(!box || !box.dataset.lst) return;
+  var items = getCatalog().slice(), list = box.querySelector('[data-lst-list]');
+  if(!items.length){ list.innerHTML = '<p class="form-note">' + escapeHtml(t('stats.empty')) + '</p>'; box.querySelector('[data-lst-tot]').innerHTML = ''; return; }
+  var tot = { reads: 0, likes: 0, readers: 0, fin: 0 };
+  var rows = items.map(function(i){ var s = luxStatsOf(i); tot.reads += s.reads; tot.likes += s.likes; if(s.pages){ tot.readers += s.readers; tot.fin += s.fin; } return { item: i, s: s }; });
+  var known = !LUX_STATS.err && LUX_STATS.rows;
+  var totPct = known && tot.readers ? Math.round(tot.fin / tot.readers * 100) + '%' : '—';
+  box.querySelector('[data-lst-tot]').innerHTML =
+    '<div><b>' + luxStatsNum(tot.reads) + '</b><span>letture</span></div>' +
+    '<div><b>' + luxStatsNum(tot.likes) + '</b><span>«mi piace»</span></div>' +
+    '<div><b>' + totPct + '</b><span>arrivano alla fine</span></div>';
+  var q = luxFold(LUX_STATS.q).trim();
+  if(q) rows = rows.filter(function(r){ return luxFold([r.item.title, charDisplayName(r.item.character), r.item.series_key, r.item.issue].join(' ')).indexOf(q) !== -1; });
+  var by = LUX_STATS.sort, date = function(r){ return String(r.item.date || r.item.created_at || ''); };
+  rows.sort(function(a, b){
+    if(by === 'likes') return (b.s.likes - a.s.likes) || (b.s.reads - a.s.reads);
+    if(by === 'finish'){ var pa = a.s.readers >= 3 && a.s.pct !== null ? a.s.pct : -1, pb = b.s.readers >= 3 && b.s.pct !== null ? b.s.pct : -1; return (pb - pa) || (b.s.fin - a.s.fin) || (b.s.reads - a.s.reads); }
+    if(by === 'new') return date(b).localeCompare(date(a));
+    return (b.s.reads - a.s.reads) || (b.s.likes - a.s.likes);
   });
+  var n = rows.length, shown = LUX_STATS.all || q ? rows : rows.slice(0, 25);
+  list.innerHTML = shown.length ? shown.map(function(r){
+    var i = r.item, s = r.s, src = i.cover_url ? coverThumbUrl(i.cover_url, 120) : '';
+    var meta = [charDisplayName(i.character), i.issue, admDayLabel(i)].filter(Boolean).map(function(x){ return escapeHtml(String(x)); }).join(' · ');
+    var finHtml = !s.pages ? '<span class="lst-m lst-fin is-na" title="Solo PDF: le pagine non si possono seguire">—</span>'
+      : !known ? '<span class="lst-m lst-fin is-na">—</span>'
+      : !s.readers ? '<span class="lst-m lst-fin is-na">ancora nessuno</span>'
+      : '<span class="lst-m lst-fin"><b>' + luxStatsNum(s.fin) + '</b> su ' + luxStatsNum(s.readers) + ' <em>' + s.pct + '%</em></span>';
+    var extra = [];
+    if(i.save_count) extra.push(luxStatsNum(i.save_count) + ' salvati');
+    if(i.share_count) extra.push(luxStatsNum(i.share_count) + ' condivisi');
+    if(i.cart_add_count) extra.push(luxStatsNum(i.cart_add_count) + ' nel carrello');
+    if(i.comment_count) extra.push(luxStatsNum(i.comment_count) + ' commenti');
+    return '<div class="lst-row">' +
+      '<span class="lst-thumb">' + (src ? '<img alt="" loading="lazy" decoding="async" src="' + escapeHtml(src) + '" data-full="' + escapeHtml(i.cover_url) + '">' : '') + '</span>' +
+      '<div class="lst-txt"><b class="lst-title">' + escapeHtml(i.title || '—') + '</b><span class="lst-meta">' + meta + '</span>' +
+        '<div class="lst-ms">' +
+          '<span class="lst-m"><b>' + luxStatsNum(s.reads) + '</b> letture</span>' +
+          '<span class="lst-m"><b>' + luxStatsNum(s.likes) + '</b> «mi piace»</span>' + finHtml +
+        '</div>' +
+        (s.pct !== null && known && s.pages ? '<div class="lst-bars" aria-hidden="true"><span class="lst-b-fin" style="width:' + s.pct + '%"></span></div>' : '') +
+        (extra.length ? '<span class="lst-extra">' + extra.join(' · ') + '</span>' : '') +
+      '</div></div>';
+  }).join('') + (n > shown.length ? '<button type="button" class="btn btn-ghost btn-sm lst-more" data-lst-more>Mostra tutti (' + n + ')</button>' : '')
+    : '<p class="form-note">Nessun capitolo trovato.</p>';
+  box.querySelector('[data-lst-note]').textContent = LUX_STATS.err === 'missing'
+    ? 'Per contare chi arriva all\'ultima pagina serve il file uscite_e_letture_v250.sql su Supabase (una volta sola). Letture e «mi piace» ci sono già.'
+    : LUX_STATS.err === 'net' ? 'Non riesco a leggere chi arriva alla fine: riprova tra poco.'
+    : '«Arrivano alla fine»: quante persone, tra quelle che hanno aperto il capitolo, sono arrivate all\'ultima pagina (una volta per telefono o computer, da quando c\'è la v250); la barra dorata è la stessa percentuale. Le tue letture non contano.';
 }
 
 function handleAddAnnouncement(){
@@ -23181,6 +23973,7 @@ function __appInit(){
   applyI18n();
   ensureSectionHeadingStyle();
   initAppShell(); // barra in basso e foglio "Tu" (solo telefono)
+  luxSearchInit(); // v250: la lente in alto
   syncAdminErrorFlag(); // riquadro rosso degli errori: solo per l'admin (vedi loader.js)
   initSmallnoxAutoHide(); // SmallNox non copre i contenuti mentre scorri
   loadCharacterFollows(); // personaggi che segui (pulsante "Segui")
@@ -23550,6 +24343,7 @@ function __appInit(){
   checkDeepLinkOnLoad(); // try immediately in case the title is already in local cache
   luxCatalogLoad = fetchCatalogFromSupabase().then(function(items){
     catalogFreshLoaded = true;
+    try { luxStatsRender(); } catch(e){} // v250: le statistiche con il catalogo appena arrivato
     renderCatalog(); renderAdminList(); // disegna sempre — con i dati freschi se la sincronizzazione è riuscita, altrimenti con l'ultima copia salvata, mai col vuoto
     if(!deepLinkChecked) checkDeepLinkOnLoad(); // retry once fresh data has arrived
     renderPublicProfilePage(); // no-op sulle pagine diverse da profile.html
