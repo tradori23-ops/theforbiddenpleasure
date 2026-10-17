@@ -4617,3 +4617,143 @@ html.lux-rtl .lux-nudge-acts{justify-content:flex-end;}
 }
 @media (prefers-reduced-motion:reduce){ .lux-nudge{transition:opacity .2s ease;transform:translate(-50%,0);} }
 @media (prefers-reduced-motion:reduce) and (min-width:1320px){ body.has-app-tabbar .lux-nudge{transform:none;} }
+
+/* ============ v249: il catalogo in Amministra, riordinato (vedi renderAdminList in app.js) ============ */
+/* in alto: «+ Nuovo titolo» e la ricerca, i filtri con quanti sono (scorrono di lato), raggruppa e ordina */
+#adminSection #adminToolbar.admin-toolbar{display:grid;grid-template-columns:auto minmax(0,1fr);gap:10px 10px;align-items:center;margin:6px 0 14px;padding:0;border:0;}
+#adminSection #adminToolbar #btnNewTitle{grid-column:1;margin:0;white-space:nowrap;}
+#adminSection #adminToolbar #adminSearchInput{grid-column:2;width:100%;min-width:0;min-height:44px;margin:0;}
+#adminSection .adm-chips{grid-column:1 / -1;display:flex;gap:8px;overflow-x:auto;margin:0 -2px;padding:2px 2px 4px;scrollbar-width:none;-webkit-overflow-scrolling:touch;}
+#adminSection .adm-chips::-webkit-scrollbar{display:none;}
+#adminSection .adm-chips .admin-chip{flex:none;display:inline-flex;align-items:center;gap:6px;height:36px;white-space:nowrap;}
+#adminSection .admin-chip .adm-n{font-family:'Space Mono',monospace;font-size:11.5px;opacity:.75;}
+#adminSection .admin-chip .adm-n:empty{display:none;}
+#adminSection .adm-view{grid-column:1 / -1;display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;font:italic 400 15px/1.2 'Crimson Pro',Georgia,serif;color:var(--parchment-dim);}
+#adminSection .adm-view label{display:inline-flex;align-items:center;gap:8px;margin:0;}
+body.has-app-tabbar #adminSection #adminToolbar .adm-view select,#adminSection #adminToolbar .adm-view select{width:auto;max-width:100%;min-height:40px;padding:4px 10px;font-style:normal;font-size:15.5px;}
+#adminSection .adm-link{margin-left:auto;min-height:38px;padding:0 4px;border:0;background:none;color:var(--gold-bright);font:600 15px/1 'Crimson Pro',Georgia,serif;text-decoration:underline;text-underline-offset:3px;cursor:pointer;}
+#adminSection .adm-link[hidden]{display:none;}
+@media (max-width:560px){
+  #adminSection #adminToolbar.admin-toolbar{grid-template-columns:minmax(0,1fr);}
+  #adminSection #adminToolbar #btnNewTitle,#adminSection #adminToolbar #adminSearchInput{grid-column:1;width:100%;}
+  /* sul telefono «Raggruppa» e «Ordina» non si scrivono (restano per i lettori di schermo): i due menu stanno su una riga */
+  #adminSection .adm-view{flex-wrap:nowrap;gap:8px;}
+  #adminSection .adm-view label{flex:1 1 0;min-width:0;}
+  body.has-app-tabbar #adminSection #adminToolbar .adm-view select,#adminSection #adminToolbar .adm-view select{width:100%;}
+  #adminSection .adm-vl{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;}
+  #adminSection .adm-link{flex:none;}
+}
+/* con dei titoli selezionati la barra resta in vista mentre si scorre */
+#adminSection #adminBulkbar.admin-bulkbar.show{position:sticky;top:calc(8px + env(safe-area-inset-top,0px));z-index:30;display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;
+  padding:10px 12px;margin:0 0 12px;border:1px solid rgba(227,194,115,.5);border-radius:14px;background:#2a1a12;box-shadow:0 10px 26px rgba(0,0,0,.45);font:600 15px/1.2 'Crimson Pro',Georgia,serif;color:var(--parchment);}
+#adminSection #adminBulkbar #adminBulkCount{flex:1 1 100%;}
+@media (min-width:561px){ #adminSection #adminBulkbar #adminBulkCount{flex:1 1 auto;} }
+
+/* l'elenco: un riquadro per gruppo, con il nome del mese (o del personaggio, della serie) che si apre e si chiude */
+#adminSection #adminList.admin-list{background:none;border:0;border-radius:0;overflow:visible;margin:0;padding:0;}
+#adminSection .adm-group{margin:0 0 12px;border:1px solid rgba(201,162,77,.16);border-radius:14px;background:#150c0d;overflow:hidden;}
+#adminSection .adm-ghead{display:flex;align-items:center;gap:12px;width:100%;min-height:50px;margin:0;padding:10px 16px;border:0;background:rgba(201,162,77,.05);color:var(--parchment);text-align:left;cursor:pointer;}
+#adminSection .adm-ghead:focus-visible{outline:2px solid var(--gold-bright);outline-offset:-2px;}
+#adminSection .adm-gname{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font:600 14px/1.2 'Cinzel',Georgia,serif;letter-spacing:.06em;color:var(--gold-bright);}
+#adminSection .adm-gcount{flex:none;font:400 14px/1 'Crimson Pro',Georgia,serif;color:var(--parchment-dim);}
+#adminSection .adm-gchev{flex:none;width:9px;height:9px;margin:0 2px 3px 0;border-right:2px solid var(--gold);border-bottom:2px solid var(--gold);transform:rotate(-45deg);transition:transform .2s ease;}
+#adminSection .adm-group.is-open .adm-gchev{transform:rotate(45deg);}
+#adminSection .adm-gbody[hidden]{display:none;}
+#adminSection .adm-group-flat .adm-row:first-child{border-top:0;}
+#adminSection .adm-row{display:flex;align-items:stretch;border-top:1px solid rgba(201,162,77,.1);transition:background-color .15s ease;}
+#adminSection .adm-row.is-selected{background:rgba(201,162,77,.08);}
+#adminSection .adm-check{flex:none;display:flex;align-items:center;justify-content:center;width:44px;margin:0;cursor:pointer;}
+#adminSection .adm-check input{width:21px;height:21px;margin:0;accent-color:#c9a24d;}
+#adminSection .adm-open{flex:1;min-width:0;display:flex;align-items:center;gap:12px;margin:0;padding:10px 10px 10px 0;border:0;background:none;color:inherit;font:inherit;text-align:left;cursor:pointer;}
+#adminSection .adm-open:focus-visible{outline:2px solid var(--gold-bright);outline-offset:-2px;border-radius:10px;}
+#adminSection .adm-thumb{flex:none;width:48px;height:48px;border-radius:9px;overflow:hidden;background:#26161a;}
+#adminSection .adm-thumb img{display:block;width:100%;height:100%;object-fit:cover;}
+#adminSection .adm-txt{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px;}
+#adminSection .adm-title{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;font:700 16px/1.25 'Crimson Pro',Georgia,serif;letter-spacing:0;color:var(--parchment);overflow-wrap:anywhere;}
+#adminSection .adm-meta{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font:400 14px/1.3 'Crimson Pro',Georgia,serif;color:var(--parchment-dim);}
+#adminSection .adm-tags,.adm-sheet .adm-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:3px;}
+#adminSection .adm-tag,.adm-sheet .adm-tag{display:inline-block;padding:1px 6px;border-radius:8px;border:1px solid rgba(227,194,115,.4);font:400 10.5px/1.5 'Space Mono',monospace;letter-spacing:0;color:var(--gold-bright);white-space:nowrap;}
+#adminSection .adm-tag-18,.adm-sheet .adm-tag-18{border-color:rgba(226,75,74,.6);color:#f08a7f;}
+#adminSection .adm-tag-temp,.adm-sheet .adm-tag-temp{border-color:rgba(236,226,198,.28);color:var(--parchment-dim);}
+#adminSection .adm-tag-warn{border-color:rgba(216,90,48,.55);color:#e2a98a;}
+#adminSection .adm-tag-draft{border-color:rgba(111,211,196,.5);color:var(--verdigris);}
+#adminSection .adm-note{font:italic 400 13px/1.3 'Crimson Pro',Georgia,serif;color:var(--verdigris);}
+#adminSection .adm-note.is-error{color:#ff9466;}
+#adminSection .adm-more{flex:none;display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;border:1px solid rgba(227,194,115,.4);color:var(--gold-bright);font-size:20px;line-height:1;}
+#adminSection .adm-open:hover .adm-more{background:rgba(201,162,77,.1);}
+#adminSection .adm-preview{padding:10px 12px 0;border-top:1px solid rgba(201,162,77,.1);}
+#adminSection .adm-empty{margin:8px 0;padding:22px 16px;border:1px dashed rgba(201,162,77,.3);border-radius:14px;text-align:center;font:italic 400 16px/1.4 'Crimson Pro',Georgia,serif;color:var(--parchment-dim);}
+#adminSection #adminList .admin-row-draft{margin:0 0 12px;}
+@media (min-width:761px){
+  #adminSection .adm-thumb{width:52px;height:52px;}
+  #adminSection .adm-open{padding:12px 14px 12px 0;}
+}
+
+/* il pannello del titolo: dal basso sul telefono, al centro sul computer; sopra a tutto (non si taglia mai) */
+.adm-sheet{position:fixed;inset:0;z-index:9650;display:flex;align-items:flex-end;justify-content:center;}
+.adm-sheet[hidden]{display:none;}
+.adm-sheet-backdrop{position:absolute;inset:0;background:rgba(5,3,3,.62);opacity:0;transition:opacity .25s ease;}
+.adm-sheet.on .adm-sheet-backdrop{opacity:1;}
+.adm-sheet-panel{position:relative;box-sizing:border-box;width:100%;max-width:560px;max-height:min(88vh,780px);overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;
+  padding:4px 16px calc(18px + env(safe-area-inset-bottom,0px));border:1px solid rgba(201,162,77,.35);border-bottom:0;border-radius:20px 20px 0 0;background:#170d0f;color:var(--parchment);
+  box-shadow:0 -14px 44px rgba(0,0,0,.55);transform:translateY(28px);opacity:0;transition:transform .3s cubic-bezier(.2,.8,.25,1),opacity .2s ease;}
+.adm-sheet.on .adm-sheet-panel{transform:none;opacity:1;}
+.adm-sheet-grab{width:42px;height:4px;margin:6px auto 10px;border-radius:2px;background:rgba(236,226,198,.25);}
+.adm-sheet-head{display:flex;align-items:flex-start;gap:12px;padding:2px 0 14px;border-bottom:1px solid rgba(201,162,77,.14);}
+.adm-sheet-cover{flex:none;width:64px;height:64px;border-radius:10px;overflow:hidden;background:#26161a;}
+.adm-sheet-cover img{display:block;width:100%;height:100%;object-fit:cover;}
+.adm-sheet-ttl{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px;}
+.adm-sheet-ttl b{font:700 17.5px/1.25 'Crimson Pro',Georgia,serif;color:var(--parchment);overflow-wrap:anywhere;}
+.adm-sheet-ttl > span:not(.adm-tags){font:400 14.5px/1.3 'Crimson Pro',Georgia,serif;color:var(--parchment-dim);}
+.adm-sheet-x{flex:none;display:flex;align-items:center;justify-content:center;width:40px;height:40px;margin:0;padding:0;border:1px solid rgba(227,194,115,.35);border-radius:50%;background:none;color:var(--gold-bright);cursor:pointer;}
+.adm-sheet-x svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;}
+.adm-sheet-note{margin:10px 2px 0;font:italic 400 14px/1.35 'Crimson Pro',Georgia,serif;color:var(--verdigris);}
+.adm-sheet-note.is-error{color:#ff9466;}
+.adm-acts{display:flex;flex-direction:column;gap:2px;margin:10px 0 14px;}
+.adm-act{display:flex;align-items:center;gap:14px;box-sizing:border-box;width:100%;min-height:56px;margin:0;padding:8px 10px;border:0;border-radius:12px;background:none;color:var(--parchment);
+  font:600 16.5px/1.2 'Crimson Pro',Georgia,serif;letter-spacing:0;text-transform:none;text-align:left;cursor:pointer;}
+.adm-act:hover,.adm-act:focus-visible{background:rgba(201,162,77,.08);outline:none;}
+.adm-act:focus-visible{box-shadow:inset 0 0 0 2px rgba(227,194,115,.6);}
+.adm-act > svg{flex:none;width:22px;height:22px;fill:none;stroke:var(--gold-bright);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;}
+.adm-act > span{display:flex;flex-direction:column;gap:2px;min-width:0;}
+.adm-act small{font:italic 400 14px/1.25 'Crimson Pro',Georgia,serif;color:var(--parchment-dim);overflow-wrap:anywhere;}
+.adm-act small:empty{display:none;}
+.adm-act:disabled{opacity:.55;cursor:default;}
+.adm-act .hidden{display:none;}
+.adm-stock{flex-wrap:wrap;cursor:default;}
+.adm-stock:hover{background:none;}
+.adm-stock-btns{display:flex;flex-wrap:wrap;gap:8px;margin-left:auto;}
+.adm-sheet .adm-stock-btns .btn{min-height:38px;margin:0;padding:6px 12px;border-radius:12px;border:1px solid rgba(227,194,115,.45);background:transparent;color:var(--gold-bright);
+  font:700 15px/1.2 'Crimson Pro',Georgia,serif;letter-spacing:0;text-transform:none;cursor:pointer;}
+.adm-sheet .adm-stock-btns .btn:disabled{opacity:.45;}
+.adm-del{display:flex;align-items:center;justify-content:center;gap:10px;box-sizing:border-box;width:100%;min-height:52px;margin:0;padding:8px 14px;border:1px solid rgba(226,75,74,.7);border-radius:14px;
+  background:rgba(226,75,74,.08);color:#f08a7f;font:700 16.5px/1.2 'Crimson Pro',Georgia,serif;letter-spacing:0;text-transform:none;cursor:pointer;}
+.adm-del:hover{background:rgba(226,75,74,.16);}
+.adm-del:disabled{opacity:.6;cursor:default;}
+.adm-del svg{flex:none;width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;}
+html.adm-sheet-on,html.adm-sheet-on body{overflow:hidden;}
+@media (min-width:761px){
+  .adm-sheet{align-items:center;padding:24px;}
+  .adm-sheet-panel{max-width:520px;max-height:min(86vh,760px);padding:16px 18px 18px;border-bottom:1px solid rgba(201,162,77,.35);border-radius:18px;transform:translateY(14px) scale(.98);}
+  .adm-sheet-grab{display:none;}
+}
+@media (prefers-reduced-motion:reduce){ .adm-sheet-panel,.adm-sheet-backdrop{transition:none;} .adm-sheet-panel{transform:none;} }
+/* tema chiaro */
+body.theme-light #adminSection .adm-group{background:#fffdf7;border-color:rgba(138,106,31,.25);}
+body.theme-light #adminSection .adm-ghead{background:rgba(138,106,31,.06);}
+body.theme-light #adminSection .adm-gname{color:#6b5015;}
+body.theme-light #adminSection .adm-title,body.theme-light .adm-sheet-ttl b{color:#2a1d12;}
+body.theme-light #adminSection .adm-row.is-selected{background:rgba(138,106,31,.1);}
+body.theme-light #adminSection .adm-more,body.theme-light .adm-sheet-x{color:#6b5015;border-color:rgba(138,106,31,.45);}
+body.theme-light #adminSection #adminBulkbar.admin-bulkbar.show{background:#fff4dc;color:#2a1d12;border-color:rgba(138,106,31,.5);}
+body.theme-light .adm-sheet-panel{background:#fffdf7;color:#2a1d12;border-color:rgba(138,106,31,.35);}
+body.theme-light .adm-act{color:#2a1d12;}
+body.theme-light .adm-act > svg{stroke:#8a6a1f;}
+body.theme-light .adm-tag{color:#6b5015;border-color:rgba(138,106,31,.45);}
+body.theme-light .adm-del{color:#b3261e;border-color:rgba(179,38,30,.6);background:rgba(179,38,30,.05);}
+
+/* ============ v249: le immagini che aspettano di essere caricate (es. «Sostieni il progetto» in home) ============
+   al posto del testo alternativo e dell'icona dell'immagine rotta, un'anteprima sfocata (o il colore di fondo) */
+img.lux-lqip{filter:blur(14px);transform:scale(1.08);background:#1e1215;}
+.support-banner-img{transition:filter .45s ease,transform .45s ease;}
+@media (prefers-reduced-motion:reduce){ .support-banner-img{transition:none;} }

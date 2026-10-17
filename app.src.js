@@ -6721,7 +6721,8 @@ function injectNsfwRescanButton(){
    copertina, ritraduci, ri-filigrana, rendi a tempo, scorte, modifica,
    elimina) sono le stesse di sempre — solo raccolte in un menu invece di
    stare sempre visibili, perché con più pubblico che pubblica la lista
-   piatta con 7 bottoni a riga diventava ingestibile. ============ */
+   piatta con 7 bottoni a riga diventava ingestibile.
+   v249: il menu è diventato il pannello del titolo e l'elenco è raggruppato (vedi renderAdminList). ============ */
 var adminListFilter = 'all'; // all | mine | mature | permanent
 var adminListSearch = '';
 var adminListPage = 1;
@@ -6789,18 +6790,23 @@ function ensureAdminToolbar(){
   toolbar.className = 'admin-toolbar';
   toolbar.innerHTML =
     '<button type="button" class="btn btn-primary btn-sm" id="btnNewTitle">+ Nuovo titolo</button>' +
-    '<input type="text" id="adminSearchInput" placeholder="Cerca per titolo o personaggio...">' +
-    '<button type="button" class="admin-chip active" data-admin-filter="all">Tutti</button>' +
-    '<button type="button" class="admin-chip" data-admin-filter="mine">Miei</button>' +
-    '<button type="button" class="admin-chip" data-admin-filter="mature">18+</button>' +
-    '<button type="button" class="admin-chip" data-admin-filter="permanent">Permanenti</button>';
+    '<input type="search" id="adminSearchInput" placeholder="Cerca titolo, personaggio, serie o volume…" autocomplete="off" enterkeyhint="search">' +
+    // v249: i filtri dicono quanti titoli ci sono, e si scorrono di lato
+    '<div class="adm-chips" role="group" aria-label="Filtri">' + ADM_FILTERS.map(function(f){
+      return '<button type="button" class="admin-chip' + (f[0] === adminListFilter ? ' active' : '') + '" data-admin-filter="' + f[0] + '" aria-pressed="' + (f[0] === adminListFilter ? 'true' : 'false') + '">' + f[1] + '<span class="adm-n"></span></button>';
+    }).join('') + '</div>' +
+    '<div class="adm-view"><label><span class="adm-vl">Raggruppa</span><select id="admGroupSel"><option value="month">Per mese</option><option value="character">Per personaggio</option>' +
+      '<option value="series">Per serie</option><option value="none">Tutti insieme</option></select></label>' +
+      '<label><span class="adm-vl">Ordina</span><select id="admSortSel"><option value="new">Più recenti</option><option value="old">Meno recenti</option><option value="az">A–Z</option></select></label>' +
+      '<button type="button" class="adm-link" id="admToggleAll" hidden>Apri tutti</button></div>';
   var bulkbar = document.createElement('div');
   bulkbar.id = 'adminBulkbar';
   bulkbar.className = 'admin-bulkbar';
   bulkbar.innerHTML =
     '<span id="adminBulkCount"></span>' +
     '<button type="button" class="btn btn-sm btn-ghost" id="btnBulkPermanent">Rendi permanenti</button>' +
-    '<button type="button" class="btn btn-sm btn-ghost" id="btnBulkDelete" style="border-color:#e24b4a;color:#e24b4a;">Elimina selezionati</button>';
+    '<button type="button" class="btn btn-sm btn-ghost" id="btnBulkDelete" style="border-color:#e24b4a;color:#e24b4a;">Elimina selezionati</button>' +
+    '<button type="button" class="btn btn-sm btn-ghost" id="btnBulkClear">Deseleziona</button>'; // v249
   list.parentNode.insertBefore(toolbar, list);
   list.parentNode.insertBefore(bulkbar, list);
   var trbar = document.createElement('div'); // v226
@@ -6833,6 +6839,16 @@ function ensureAdminToolbar(){
   document.getElementById('btnBulkPermanent').addEventListener('click', bulkMakePermanent);
   document.getElementById('btnBulkDelete').addEventListener('click', bulkDeleteSelected);
   document.getElementById('btnNewTitle').addEventListener('click', startNewTitleFlow);
+  // v249: raggruppa, ordina, apri o chiudi tutti i gruppi, deseleziona
+  var admGs = document.getElementById('admGroupSel'), admSs = document.getElementById('admSortSel'), admTa = document.getElementById('admToggleAll'), admBc = document.getElementById('btnBulkClear');
+  if(admGs) admGs.addEventListener('change', function(){ admLoadPrefs().group = admGs.value; admSavePrefs(); renderAdminList(); });
+  if(admSs) admSs.addEventListener('change', function(){ admLoadPrefs().sort = admSs.value; admSavePrefs(); renderAdminList(); });
+  if(admTa) admTa.addEventListener('click', function(){
+    var open = !!admTa._open;
+    Array.prototype.forEach.call(document.querySelectorAll('#adminList .adm-group[data-adm-group]'), function(s){ admSetGroup(s, open, true); });
+    admSyncToggleAll();
+  });
+  if(admBc) admBc.addEventListener('click', function(){ adminSelectedIds.clear(); renderAdminList(); });
 
   var drawer = document.getElementById('titleFormDrawer');
   var closeBtn = document.getElementById('btnCloseTitleDrawer');
@@ -6846,7 +6862,8 @@ function ensureAdminToolbar(){
 
 function bulkMakePermanent(){
   var session = getSession();
-  var ids = Array.prototype.slice.call(adminSelectedIds);
+  var ids = Array.from(adminSelectedIds); // v249: prima risultava sempre vuoto (la selezione è un Set) e il pulsante non faceva niente
+  if(!ids.length) return;
   Promise.all(ids.map(function(id){
     return fetch(SUPABASE_URL + '/rest/v1/catalog?id=eq.' + encodeURIComponent(id), {
       method:'PATCH',
@@ -6862,13 +6879,16 @@ function bulkMakePermanent(){
     saveCatalogLocal(all);
     adminSelectedIds.clear();
     renderAdminList();
+    luxToast(ids.length === 1 ? 'Reso permanente 1 titolo' : 'Resi permanenti ' + ids.length + ' titoli');
   });
 }
 
 function bulkDeleteSelected(){
-  var ids = Array.prototype.slice.call(adminSelectedIds);
+  var ids = Array.from(adminSelectedIds); // v249: come sopra
   if(ids.length === 0) return;
-  if(!confirm(ids.length + ' titoli selezionati — eliminarli tutti?')) return;
+  if(!confirm(ids.length === 1 ? 'Eliminare il titolo selezionato dallo schedario?' : 'Eliminare i ' + ids.length + ' titoli selezionati dallo schedario?')) return;
+  var bulkBtn = document.getElementById('btnBulkDelete');
+  if(bulkBtn) bulkBtn.disabled = true;
   Promise.all(ids.map(function(id){ return supabaseDelete(id).then(function(res){ return { id: id, res: res }; }); })).then(function(out){
     var gone = {}, firstErr = null, failed = 0;
     out.forEach(function(o){ if(o.res === true) gone[o.id] = true; else { failed++; firstErr = firstErr || o.res; } });
@@ -6876,8 +6896,207 @@ function bulkDeleteSelected(){
     adminSelectedIds.clear();
     renderCatalog();
     renderAdminList();
+    if(bulkBtn) bulkBtn.disabled = false;
+    var doneN = ids.length - failed;
+    if(doneN) luxToast(doneN === 1 ? 'Eliminato 1 titolo' : 'Eliminati ' + doneN + ' titoli');
     if(failed) window.alert(failed + ' su ' + ids.length + ' non eliminati. ' + luxDeleteMsg(firstErr));
   });
+}
+
+/* ============ v249: IL CATALOGO IN AMMINISTRA, RIORDINATO ============
+   Con tanti capitoli l'elenco era lunghissimo (titoli su quattro o cinque righe, 20 per pagina) e sul
+   telefono il menu «Azioni» delle ultime righe restava tagliato dal riquadro dell'elenco: non si
+   arrivava a «×» per eliminare. Ora:
+   - i titoli sono raggruppati per mese di uscita (o per personaggio, o per serie, o tutti insieme): i
+     due mesi più recenti aperti, gli altri chiusi; si aprono toccandoli e la scelta resta;
+   - righe compatte: copertina, titolo su due righe al massimo, personaggio · volume · giorno, e solo i
+     segni che servono (18+, a tempo, in vendita, senza copertina, copertina in bozza);
+   - toccando una riga si apre il pannello del titolo (dal basso sul telefono, al centro sul computer):
+     tutte le azioni scritte per intero, con una riga che dice com'è adesso, e in fondo, in rosso,
+     «Elimina questo titolo». Sta sopra a tutto: non si taglia mai, e se serve si scorre;
+   - la ricerca guarda titolo, personaggio, serie, volume e data; i filtri dicono quanti titoli ci sono;
+     si ordina per più recenti, meno recenti o A–Z;
+   - con dei titoli selezionati la barra «Rendi permanenti / Elimina selezionati» resta in vista mentre
+     si scorre, con «Deseleziona».
+   Niente più pagine: i gruppi chiusi tengono l'elenco corto. */
+var ADM_PREFS_KEY = 'lux_admin_list';
+var ADM_FILTERS = [['all', 'Tutti'], ['mine', 'Miei'], ['mature', '18+'], ['temporary', 'A tempo'], ['stock', 'In vendita'], ['permanent', 'Permanenti']];
+var admPrefs = null;
+function admLoadPrefs(){
+  if(admPrefs) return admPrefs;
+  admPrefs = { group: 'month', sort: 'new', open: {} };
+  try {
+    var p = JSON.parse(localStorage.getItem(ADM_PREFS_KEY) || 'null');
+    if(p && typeof p === 'object'){
+      if(/^(month|character|series|none)$/.test(p.group)) admPrefs.group = p.group;
+      if(/^(new|old|az)$/.test(p.sort)) admPrefs.sort = p.sort;
+      if(p.open && typeof p.open === 'object') admPrefs.open = p.open;
+    }
+  } catch(e){}
+  return admPrefs;
+}
+function admSavePrefs(){ try { localStorage.setItem(ADM_PREFS_KEY, JSON.stringify(admPrefs)); } catch(e){} }
+var ADM_I = (function(){
+  var s = function(d){ return '<svg viewBox="0 0 24 24" aria-hidden="true">' + d + '</svg>'; };
+  return {
+    edit: s('<path d="M4 20h4L18.5 9.5a2.1 2.1 0 0 0-3-3L5 17v3zM13.5 8.5l3 3"/>'),
+    image: s('<path d="M4 5h16v14H4zM4 15.5l4.5-4.5 4 4 3-3L20 16.5M15.5 9h.01"/>'),
+    globe: s('<path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM3 12h18M12 3c2.5 2.5 3.5 5.5 3.5 9s-1 6.5-3.5 9c-2.5-2.5-3.5-5.5-3.5-9s1-6.5 3.5-9z"/>'),
+    drop: s('<path d="M12 3.5c3 4 6 7 6 10.5a6 6 0 0 1-12 0c0-3.5 3-6.5 6-10.5z"/>'),
+    clock: s('<path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM12 7v5l3.2 2"/>'),
+    box: s('<path d="M3.5 7.5L12 3.5l8.5 4v9L12 20.5l-8.5-4zM3.5 7.5L12 11.5l8.5-4M12 11.5v9"/>'),
+    eye: s('<path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/>'),
+    trash: s('<path d="M4 7h16M10 11v6M14 11v6M5.5 7l1 13h11l1-13M9 7V4h6v3"/>'),
+    x: s('<path d="M6 6l12 12M18 6L6 18"/>')
+  };
+})();
+function admDateOf(i){ return String((i && (i.date || i.created_at)) || '').slice(0, 10); }
+function admMonthKey(i){ var d = admDateOf(i); return /^\d{4}-\d{2}/.test(d) ? d.slice(0, 7) : ''; }
+function admMonthLabel(key){
+  if(!key) return 'Senza data';
+  var s = key;
+  try { s = new Date(+key.slice(0, 4), +key.slice(5, 7) - 1, 1).toLocaleDateString('it-IT', { month: 'long', year: 'numeric' }); } catch(e){}
+  return s.charAt(0).toUpperCase() + s.slice(1);
+}
+function admDayLabel(i){
+  var d = admDateOf(i);
+  if(!/^\d{4}-\d{2}-\d{2}$/.test(d)) return '';
+  var x = new Date(+d.slice(0, 4), +d.slice(5, 7) - 1, +d.slice(8, 10)), o = { day: 'numeric', month: 'short' };
+  if(x.getFullYear() !== new Date().getFullYear()) o.year = 'numeric';
+  try { return x.toLocaleDateString('it-IT', o); } catch(e){ return d; }
+}
+function admPlain(s){ return String(s || '').replace(/[^0-9A-Za-zÀ-ÖØ-öø-ÿ\s]/g, '').replace(/\s+/g, ' ').trim(); } // (in ordine A–Z senza 🔥 né virgolette)
+function admSortItems(items, sort){
+  var byDate = function(a, b){ return admDateOf(b).localeCompare(admDateOf(a)) || (luxCoverStamp(b) - luxCoverStamp(a)); };
+  if(sort === 'old') items.sort(function(a, b){ return byDate(b, a); });
+  else if(sort === 'az') items.sort(function(a, b){ return admPlain(a.title).localeCompare(admPlain(b.title), 'it', { sensitivity: 'base' }) || byDate(a, b); });
+  else items.sort(byDate);
+  return items;
+}
+function admFilterFn(f){
+  if(f === 'mine') return function(i){ return i.created_by === currentUserId(); };
+  if(f === 'mature') return function(i){ return !!i.mature; };
+  if(f === 'permanent') return function(i){ return i.permanent !== false; };
+  if(f === 'temporary') return function(i){ return i.permanent === false; };
+  if(f === 'stock') return function(i){ return i.stock != null; };
+  return function(){ return true; };
+}
+function admMatches(i, q){
+  if(!q) return true;
+  return [i.title, i.character, i.series_key, i.issue, i.date].some(function(v){ return String(v || '').toLowerCase().indexOf(q) !== -1; });
+}
+// i gruppi: per mese (i più recenti prima), per personaggio, per serie (i capitoli in ordine), o uno solo
+function admGroups(items, mode, sort){
+  var map = {}, order = [];
+  items.forEach(function(i){
+    var key, label;
+    if(mode === 'month'){ key = admMonthKey(i); label = admMonthLabel(key); }
+    else if(mode === 'character'){ key = String(i.character || '').trim(); label = key || 'Senza personaggio'; }
+    else if(mode === 'series'){ key = String(i.series_key || '').trim(); label = key || 'Fuori serie'; }
+    else { key = '*'; label = ''; }
+    if(!map[key]){ map[key] = { key: key, label: label, items: [] }; order.push(map[key]); }
+    map[key].items.push(i);
+  });
+  var last = function(a, b){ return !a.key ? 1 : !b.key ? -1 : 0; };
+  if(mode === 'month') order.sort(function(a, b){ return last(a, b) || (sort === 'old' ? a.key.localeCompare(b.key) : b.key.localeCompare(a.key)); });
+  else if(mode !== 'none') order.sort(function(a, b){ return last(a, b) || a.label.localeCompare(b.label, 'it', { sensitivity: 'base' }); });
+  if(mode === 'series') order.forEach(function(g){
+    if(g.key && sort !== 'az') g.items.sort(function(a, b){
+      var ca = a.chapter_number, cb = b.chapter_number;
+      if(ca != null && cb != null && ca !== cb) return sort === 'old' ? ca - cb : cb - ca;
+      return sort === 'old' ? admDateOf(a).localeCompare(admDateOf(b)) : admDateOf(b).localeCompare(admDateOf(a));
+    });
+  });
+  return order;
+}
+function admGroupOpen(mode, key, idx, force){
+  if(force || mode === 'none') return true;
+  var o = admLoadPrefs().open, k = mode + ':' + key;
+  if(Object.prototype.hasOwnProperty.call(o, k)) return !!o[k];
+  return idx < (mode === 'month' ? 2 : 1);
+}
+function admRowHtml(item){
+  var id = escapeHtml(item.id), sel = adminSelectedIds.has(item.id), tags = [];
+  var draftCover = isDraftModeOn() ? (getDraft().coverEdits || {})[item.id] : null;
+  if(item.mature) tags.push('<span class="adm-tag adm-tag-18">18+</span>');
+  if(item.permanent === false) tags.push('<span class="adm-tag adm-tag-temp">A tempo</span>'); // (nel pannello per intero: «A tempo determinato»)
+  if(item.stock != null) tags.push('<span class="adm-tag adm-tag-stock">' + (item.stock > 0 ? 'In vendita · ' + item.stock : escapeHtml(t('stock.soldOut'))) + '</span>');
+  if(draftCover) tags.push('<span class="adm-tag adm-tag-draft">Copertina in bozza</span>');
+  else if(!item.cover_url) tags.push('<span class="adm-tag adm-tag-warn">Senza copertina</span>');
+  var note = synopsisRowNotes[item.id];
+  var meta = [item.character, item.issue, admDayLabel(item)].filter(Boolean).map(function(x){ return escapeHtml(String(x)); }).join(' · ');
+  var src = draftCover || (item.cover_url ? coverThumbUrl(item.cover_url, 120) : '');
+  return '<div class="adm-row' + (sel ? ' is-selected' : '') + '">' +
+    '<label class="adm-check"><input type="checkbox" data-select-row="' + id + '"' + (sel ? ' checked' : '') + ' aria-label="Seleziona «' + escapeHtml(item.title || '') + '»"></label>' +
+    '<button type="button" class="adm-open" data-adm-open="' + id + '" aria-haspopup="dialog">' +
+      '<span class="adm-thumb">' + (src ? '<img alt="" loading="lazy" decoding="async" src="' + escapeHtml(src) + '"' + (item.cover_url && !draftCover ? ' data-full="' + escapeHtml(item.cover_url) + '"' : '') + '>' : '') + '</span>' +
+      '<span class="adm-txt"><b class="adm-title">' + escapeHtml(item.title || '—') + '</b>' +
+        '<span class="adm-meta">' + meta + '</span>' +
+        (tags.length ? '<span class="adm-tags">' + tags.join('') + '</span>' : '') +
+        (note ? '<span class="adm-note' + (note.err ? ' is-error' : '') + '">' + escapeHtml(note.text) + '</span>' : '') +
+      '</span>' +
+      '<span class="adm-more" aria-hidden="true">⋯</span>' +
+    '</button></div>';
+}
+function admUpdateChips(all){
+  Array.prototype.forEach.call(document.querySelectorAll('#adminToolbar [data-admin-filter]'), function(b){
+    var f = b.getAttribute('data-admin-filter'), n = all.filter(admFilterFn(f)).length;
+    var c = b.querySelector('.adm-n');
+    if(c) c.textContent = f === 'mine' && !n ? '' : String(n);
+    b.classList.toggle('active', f === adminListFilter);
+    b.setAttribute('aria-pressed', f === adminListFilter ? 'true' : 'false');
+  });
+}
+function admSyncBulkbar(){
+  var bb = document.getElementById('adminBulkbar');
+  if(!bb) return;
+  bb.classList.toggle('show', adminSelectedIds.size > 0);
+  var c = document.getElementById('adminBulkCount');
+  if(c) c.textContent = adminSelectedIds.size === 1 ? '1 selezionato' : adminSelectedIds.size + ' selezionati';
+}
+function admSyncToggleAll(){
+  var b = document.getElementById('admToggleAll');
+  if(!b) return;
+  var secs = document.querySelectorAll('#adminList .adm-group[data-adm-group]');
+  var anyClosed = Array.prototype.some.call(secs, function(s){ return !s.classList.contains('is-open'); });
+  b.hidden = secs.length < 2;
+  b.textContent = anyClosed ? 'Apri tutti' : 'Chiudi tutti';
+  b._open = anyClosed;
+}
+function admSetGroup(sec, open, save){
+  var body = sec.querySelector('.adm-gbody'), head = sec.querySelector('.adm-ghead');
+  if(!body || !head) return;
+  body.hidden = !open;
+  sec.classList.toggle('is-open', open);
+  head.setAttribute('aria-expanded', open ? 'true' : 'false');
+  if(save && !(adminListSearch || adminListFilter !== 'all')){ admLoadPrefs().open[admPrefs.group + ':' + sec.getAttribute('data-adm-group')] = open; admSavePrefs(); }
+}
+function admBindList(list){
+  if(list.dataset.admBound) return;
+  list.dataset.admBound = '1';
+  list.addEventListener('click', function(e){
+    var op = e.target.closest ? e.target.closest('[data-adm-open]') : null;
+    if(op && list.contains(op)){ admSheetOpen(op.getAttribute('data-adm-open')); return; }
+    var gh = e.target.closest ? e.target.closest('.adm-ghead') : null;
+    if(gh && list.contains(gh)){ admSetGroup(gh.parentNode, !gh.parentNode.classList.contains('is-open'), true); admSyncToggleAll(); }
+  });
+  list.addEventListener('change', function(e){
+    var cb = e.target.closest ? e.target.closest('[data-select-row]') : null;
+    if(!cb) return;
+    var id = cb.getAttribute('data-select-row');
+    if(cb.checked) adminSelectedIds.add(id); else adminSelectedIds.delete(id);
+    var row = cb.closest('.adm-row');
+    if(row) row.classList.toggle('is-selected', cb.checked);
+    admSyncBulkbar();
+  });
+  // le copertine vecchie (senza miniatura): se la miniatura non c'è, l'originale
+  list.addEventListener('error', function(e){
+    var im = e.target;
+    if(!im || im.tagName !== 'IMG' || !im.getAttribute('data-full')) return;
+    var full = im.getAttribute('data-full');
+    im.removeAttribute('data-full');
+    if(im.getAttribute('src') !== full) im.src = full;
+  }, true);
 }
 
 function renderAdminList(){
@@ -6886,31 +7105,46 @@ function renderAdminList(){
   if(!list) return;
   ensureAdminListStyle();
   ensureAdminToolbar();
-
-  var items = getCatalog().slice();
-  items.sort(function(a,b){ return (b.date||'').localeCompare(a.date||''); });
-
-  // Filtri + ricerca
-  if(adminListFilter === 'mine') items = items.filter(function(i){ return i.created_by === currentUserId(); });
-  else if(adminListFilter === 'mature') items = items.filter(function(i){ return !!i.mature; });
-  else if(adminListFilter === 'permanent') items = items.filter(function(i){ return i.permanent !== false; });
-  if(adminListSearch){
-    items = items.filter(function(i){
-      return (i.title||'').toLowerCase().indexOf(adminListSearch) !== -1 ||
-        (i.character||'').toLowerCase().indexOf(adminListSearch) !== -1;
-    });
-  }
+  var prefs = admLoadPrefs();
+  var all = getCatalog().slice();
+  var known = {};
+  all.forEach(function(i){ known[i.id] = true; });
+  adminSelectedIds.forEach(function(id){ if(!known[id]) adminSelectedIds.delete(id); }); // (titoli eliminati intanto)
+  admUpdateChips(all);
+  var q = adminListSearch, force = !!q || adminListFilter !== 'all';
+  var items = admSortItems(all.filter(admFilterFn(adminListFilter)).filter(function(i){ return admMatches(i, q); }), prefs.sort);
+  var gs = document.getElementById('admGroupSel'), ss = document.getElementById('admSortSel');
+  if(gs) gs.value = prefs.group;
+  if(ss) ss.value = prefs.sort;
 
   updateAdminTranslateBar(); // v226
-  var bulkbar = document.getElementById('adminBulkbar');
-  if(bulkbar){
-    bulkbar.classList.toggle('show', adminSelectedIds.size > 0);
-    var countEl = document.getElementById('adminBulkCount');
-    if(countEl) countEl.textContent = adminSelectedIds.size + ' selezionati';
-  }
+  admSyncBulkbar();
 
-  list.innerHTML = '';
+  var drafts = getDraft().coverEdits || {};
+  var html = admGroups(items, prefs.group, prefs.sort).map(function(g, idx){
+    var open = admGroupOpen(prefs.group, g.key, idx, force), n = g.items.length;
+    var rows = g.items.map(function(item){
+      var pv = isDraftModeOn() && drafts[item.id]
+        ? '<div class="adm-preview" data-adm-preview="' + escapeHtml(item.id) + '">' + buildSitePreviewCardHtml({
+            title: item.title, character: item.character, issue: item.issue, date: item.date, price: item.price, mature: item.mature,
+            synopsis: synopsisForCurrentLang(item), coverSrc: drafts[item.id] }) + '</div>'
+        : '';
+      return pv + admRowHtml(item);
+    }).join('');
+    if(prefs.group === 'none') return '<section class="adm-group is-open adm-group-flat"><div class="adm-gbody">' + rows + '</div></section>';
+    return '<section class="adm-group' + (open ? ' is-open' : '') + '" data-adm-group="' + escapeHtml(g.key) + '">' +
+      '<button type="button" class="adm-ghead" aria-expanded="' + (open ? 'true' : 'false') + '"><span class="adm-gname">' + escapeHtml(g.label) + '</span>' +
+        '<span class="adm-gcount">' + n + (n === 1 ? ' titolo' : ' titoli') + '</span><span class="adm-gchev" aria-hidden="true"></span></button>' +
+      '<div class="adm-gbody"' + (open ? '' : ' hidden') + '>' + rows + '</div></section>';
+  }).join('');
+  if(!html) html = '<p class="adm-empty">' + (force ? 'Nessun titolo trovato.' : 'Ancora nessun titolo: tocca «+ Nuovo titolo» per cominciare.') + '</p>';
+  list.innerHTML = html;
+  Array.prototype.forEach.call(list.querySelectorAll('[data-adm-preview]'), function(box){
+    var item = all.find(function(x){ return x.id === box.getAttribute('data-adm-preview'); });
+    if(item) attachCoverSignature(box.querySelector('.card-idx-cover'), item);
+  });
 
+  // modalità bozza: i titoli nuovi ancora in bozza, in cima
   if(isDraftModeOn()){
     getDraft().newItems.forEach(function(draftItem, idx){
       var draftRow = document.createElement('div');
@@ -6928,198 +7162,171 @@ function renderAdminList(){
         saveDraft(d);
         renderAdminList(); renderDraftBar();
       });
-      list.appendChild(draftRow);
+      list.insertBefore(draftRow, list.children[idx] || null);
     });
   }
+  admBindList(list);
+  admSyncToggleAll();
+  admSheetRender(); // (il pannello aperto si aggiorna: copertina nuova, «Traduco…», permanente o a tempo)
+}
 
-  // Paginazione lato client — il catalogo è già tutto caricato in memoria
-  var totalPages = Math.max(1, Math.ceil(items.length / ADMIN_LIST_PAGE_SIZE));
-  if(adminListPage > totalPages) adminListPage = totalPages;
-  var pageStart = (adminListPage - 1) * ADMIN_LIST_PAGE_SIZE;
-  var pageItems = items.slice(pageStart, pageStart + ADMIN_LIST_PAGE_SIZE);
-
-  pageItems.forEach(function(item){
-    var draftCoverUrl = isDraftModeOn() ? getDraft().coverEdits[item.id] : null;
-    if(draftCoverUrl){
-      var previewWrap = document.createElement('div');
-      previewWrap.innerHTML = buildSitePreviewCardHtml({
-        title: item.title, character: item.character, issue: item.issue, date: item.date,
-        price: item.price, mature: item.mature, synopsis: synopsisForCurrentLang(item),
-        coverSrc: draftCoverUrl
-      });
-      list.appendChild(previewWrap.firstChild);
-      attachCoverSignature(list.lastChild.querySelector('.card-idx-cover'), item);
-    }
-    var row = document.createElement('div');
-    row.className = 'admin-row-compact';
-    var ratingLabel = item.mature ? '18+' : t('badge.allages');
-    var coverLabel = item.cover_url ? t('cover.change') : t('cover.addExisting');
-    var hasAllTranslations = !synopsisMissingLangs(item).length; // v226: tutte le lingue del catalogo
-    var translateLabel = hasAllTranslations ? t('synopsis.retranslate') : t('synopsis.translateExisting');
-    var rowNote = synopsisRowNotes[item.id]; // v233
-    if(rowNote && rowNote.busy) translateLabel = 'Traduco…';
-    var hasPages = item.pages && item.pages.length > 0;
-    var isPermanent = item.permanent !== false;
-    var permanentTag = '<span class="' + (isPermanent ? 'permanent-tag' : 'temporary-tag') + '">' + (isPermanent ? t('catalog.permanent') : t('catalog.temporary')) + '</span>';
-    var hasStock = item.stock != null;
-    var stockControls = hasStock
-      ? '<span class="mono stock-admin-tag">'+item.stock+' '+t('stock.left')+'</span>'+
-        '<button class="btn btn-sm btn-ghost" data-sell-one="'+item.id+'" '+(item.stock<=0?'disabled':'')+'>'+t('admin.stock.sell')+'</button>'+
-        '<button class="btn btn-sm btn-ghost" data-restock="'+item.id+'">'+t('admin.stock.restore')+'</button>'
-      : '';
-
-    row.innerHTML =
-      '<input type="checkbox" data-select-row="'+item.id+'" '+(adminSelectedIds.has(item.id)?'checked':'')+'>' +
-      '<div class="info"><div class="t">'+escapeHtml(item.title)+'</div>'+
-      '<div class="m">'+item.character+' · '+(item.issue||'')+' · '+(item.date||'')+' · '+ratingLabel+' · '+permanentTag+'</div>'+
-      (rowNote ? '<div class="admin-row-note'+(rowNote.err ? ' is-error' : '')+'">'+escapeHtml(rowNote.text)+'</div>' : '')+'</div>'+ // v233
-      '<button type="button" class="admin-menu-btn" data-toggle-menu>Azioni ▾</button>'+
-      '<div class="admin-dropdown" data-menu>'+
-        '<label class="btn btn-sm btn-ghost cover-upload-btn">'+coverLabel+
-          '<input type="file" accept="image/*" class="hidden" data-cover-for="'+item.id+'">'+
-        '</label>'+
-        '<span class="cover-upload-status mono" data-cover-status-for="'+item.id+'"></span>'+
-        '<button class="btn btn-sm btn-ghost" data-translate-for="'+item.id+'"'+(rowNote && rowNote.busy ? ' disabled' : '')+'>'+translateLabel+'</button>'+
-        (hasPages ? '<button class="btn btn-sm btn-ghost" data-rewatermark-for="'+item.id+'">'+t('rewatermark.button')+'</button>' : '') +
-        (hasPages && item.pages_watermarked ? '<span class="watermark-done-tag">✓ '+t('rewatermark.done')+'</span>' : '') +
-        '<button class="btn btn-sm btn-ghost" data-toggle-permanent="'+item.id+'">'+(isPermanent ? t('catalog.makeTemporary') : t('catalog.makePermanent'))+'</button>'+
-        stockControls +
-        '<button class="btn btn-sm btn-ghost" data-edit="'+item.id+'">'+t('admin.edit')+'</button>'+
-        '<button class="btn btn-sm btn-ghost" data-del="'+item.id+'" style="border-color:#e24b4a;color:#e24b4a;">×</button>'+
-      '</div>';
-
-    // miniatura della copertina a sinistra del titolo; senza copertina resta uno spazio vuoto, così i titoli restano allineati
-    var rowThumb;
-    if(item.cover_url){
-      rowThumb = document.createElement('img');
-      rowThumb.alt = '';
-      rowThumb.loading = 'lazy';
-      rowThumb.decoding = 'async';
-      rowThumb.onerror = function(){ rowThumb.onerror = null; rowThumb.src = item.cover_url; }; // se la trasformazione immagini non c'è, si ripiega sull'originale
-      rowThumb.src = coverThumbUrl(item.cover_url, 120);
-    } else {
-      rowThumb = document.createElement('span');
-    }
-    rowThumb.className = 'admin-row-thumb';
-    var rowInfo = row.querySelector('.info');
-    if(rowInfo) row.insertBefore(rowThumb, rowInfo);
-
-    row.querySelector('[data-select-row]').addEventListener('change', function(e){
-      if(e.target.checked) adminSelectedIds.add(item.id); else adminSelectedIds.delete(item.id);
-      var bb = document.getElementById('adminBulkbar');
-      if(bb){
-        bb.classList.toggle('show', adminSelectedIds.size > 0);
-        var c = document.getElementById('adminBulkCount');
-        if(c) c.textContent = adminSelectedIds.size + ' selezionati';
-      }
-    });
-    var menuBtn = row.querySelector('[data-toggle-menu]');
-    var menu = row.querySelector('[data-menu]');
-    menuBtn.addEventListener('click', function(ev){
-      ev.stopPropagation();
-      var alreadyOpen = menu.classList.contains('show');
-      document.querySelectorAll('.admin-dropdown.show').forEach(function(m){ m.classList.remove('show'); });
-      if(!alreadyOpen) menu.classList.add('show');
-    });
-
-    if(hasStock){
-      row.querySelector('[data-sell-one]').addEventListener('click', function(){
-        var session = getSession();
-        var newStock = Math.max(0, item.stock - 1);
-        fetch(SUPABASE_URL + '/rest/v1/catalog?id=eq.' + encodeURIComponent(item.id), {
-          method:'PATCH',
-          headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json', 'Prefer':'return=representation' },
-          body: JSON.stringify({stock: newStock})
-        }).then(function(r){
-          if(!r.ok) throw new Error('stock update failed: ' + r.status);
-          item.stock = newStock;
-          saveCatalogLocal(getCatalog());
-          renderCatalog(); renderAdminList();
-        }).catch(function(err){ console.warn('Sell-one failed:', err); });
-      });
-      row.querySelector('[data-restock]').addEventListener('click', function(){
-        var input = window.prompt(t('admin.f.stock'), String(item.stock));
-        if(input === null) return;
-        var n = parseInt(input, 10);
-        if(isNaN(n) || n < 0) return;
-        var session = getSession();
-        fetch(SUPABASE_URL + '/rest/v1/catalog?id=eq.' + encodeURIComponent(item.id), {
-          method:'PATCH',
-          headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json', 'Prefer':'return=representation' },
-          body: JSON.stringify({stock: n})
-        }).then(function(r){
-          if(!r.ok) throw new Error('stock update failed: ' + r.status);
-          item.stock = n;
-          saveCatalogLocal(getCatalog());
-          renderCatalog(); renderAdminList();
-        }).catch(function(err){ console.warn('Restock failed:', err); });
-      });
-    }
-    row.querySelector('[data-edit]').addEventListener('click', function(){
-      openEditTitle(item.id);
-    });
-    row.querySelector('[data-toggle-permanent]').addEventListener('click', function(){
-      var session = getSession();
-      var newValue = !isPermanent;
-      fetch(SUPABASE_URL + '/rest/v1/catalog?id=eq.' + encodeURIComponent(item.id), {
-        method:'PATCH',
-        headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
-        body: JSON.stringify({permanent: newValue})
-      }).then(function(r){
-        if(!r.ok) return;
-        var all = getCatalog();
-        var target = all.find(function(x){ return x.id === item.id; });
-        if(target) target.permanent = newValue;
-        saveCatalogLocal(all);
-        renderAdminList();
-      });
-    });
-    row.querySelector('[data-del]').addEventListener('click', function(){
-      if(!confirm(t('admin.confirmDelete'))) return;
-      var delBtn = this;
-      delBtn.disabled = true;
-      supabaseDelete(item.id).then(function(res){
-        if(res !== true){ delBtn.disabled = false; window.alert(luxDeleteMsg(res)); return; }
-        saveCatalogLocal(getCatalog().filter(function(x){ return x.id !== item.id; }));
-        renderCatalog();
-        renderAdminList();
-      });
-    });
-    row.querySelector('[data-cover-for]').addEventListener('change', function(e){
-      if(!e.target.files[0]) return;
-      uploadCoverForExistingItem(item.id, e.target.files[0]);
-    });
-    row.querySelector('[data-translate-for]').addEventListener('click', function(){
-      translateSynopsisForExistingItem(item.id, item.synopsis, this, hasAllTranslations); // v233: «Ritraduci» = tutte le lingue
-    });
-    var rewatermarkBtn = row.querySelector('[data-rewatermark-for]');
-    if(rewatermarkBtn){
-      rewatermarkBtn.addEventListener('click', function(){
-        rewatermarkExistingItem(item.id, item.pages, rewatermarkBtn);
-      });
-    }
-    list.appendChild(row);
+/* ---- il pannello del titolo ---- */
+var admSheetId = null;
+function admSheetEl(){
+  var w = document.getElementById('luxAdmSheet');
+  if(w) return w;
+  w = document.createElement('div');
+  w.id = 'luxAdmSheet';
+  w.className = 'adm-sheet';
+  w.hidden = true;
+  w.innerHTML = '<div class="adm-sheet-backdrop" data-adm-close></div><div class="adm-sheet-panel" role="dialog" aria-modal="true" aria-labelledby="admSheetTitle"><div class="adm-sheet-body"></div></div>';
+  w.addEventListener('click', function(e){ if(e.target.closest && e.target.closest('[data-adm-close]')) admSheetClose(); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && !w.hidden && !document.querySelector('.modal-backdrop:not(.hidden)')) admSheetClose(); });
+  document.body.appendChild(w);
+  return w;
+}
+function admSheetOpen(id){
+  if(!getCatalog().some(function(x){ return x.id === id; })) return;
+  admSheetId = id;
+  var w = admSheetEl();
+  w.querySelector('.adm-sheet-panel').scrollTop = 0;
+  admSheetRender();
+  clearTimeout(w._hideT);
+  w.hidden = false;
+  document.documentElement.classList.add('adm-sheet-on');
+  void w.offsetWidth;
+  w.classList.add('on');
+  var x = w.querySelector('.adm-sheet-x');
+  try { if(x) x.focus({ preventScroll: true }); } catch(e){}
+}
+function admSheetClose(){
+  var w = document.getElementById('luxAdmSheet');
+  if(!w || w.hidden) return;
+  var id = admSheetId;
+  admSheetId = null;
+  w.classList.remove('on');
+  document.documentElement.classList.remove('adm-sheet-on');
+  clearTimeout(w._hideT);
+  w._hideT = setTimeout(function(){ if(!w.classList.contains('on')) w.hidden = true; }, 260);
+  var back = id && document.querySelector('#adminList [data-adm-open="' + String(id).replace(/"/g, '') + '"]');
+  try { if(back) back.focus({ preventScroll: true }); } catch(e){}
+}
+function admSheetRender(){
+  var w = document.getElementById('luxAdmSheet');
+  if(!w || admSheetId === null) return;
+  var item = getCatalog().find(function(x){ return x.id === admSheetId; });
+  if(!item){ admSheetClose(); return; }
+  var body = w.querySelector('.adm-sheet-body'), I = ADM_I, id = escapeHtml(item.id);
+  var oldSt = body.querySelector('[data-cover-status-for]'), keepSt = oldSt ? oldSt.textContent : '';
+  var hasPages = !!(item.pages && item.pages.length), isPermanent = item.permanent !== false;
+  var missing = item.synopsis ? synopsisMissingLangs(item) : [], hasAll = !missing.length;
+  var note = synopsisRowNotes[item.id], busy = !!(note && note.busy);
+  var draftCover = isDraftModeOn() ? (getDraft().coverEdits || {})[item.id] : null;
+  var cover = draftCover || (item.cover_url ? coverThumbUrl(item.cover_url, 200) : '');
+  var meta = [item.character, item.issue, admDayLabel(item)].filter(Boolean).map(function(x){ return escapeHtml(String(x)); }).join(' · ');
+  var tags = '<span class="adm-tag ' + (isPermanent ? 'adm-tag-perm' : 'adm-tag-temp') + '">' + escapeHtml(isPermanent ? t('catalog.permanent') : t('catalog.temporary')) + '</span>' +
+    (item.mature ? '<span class="adm-tag adm-tag-18">18+</span>' : '') + (item.series_key ? '<span class="adm-tag">' + escapeHtml(item.series_key) + (item.chapter_number != null ? ' · ' + escapeHtml(String(item.chapter_number)) : '') + '</span>' : '');
+  var trSmall = !item.synopsis ? 'Questo titolo non ha una sinossi' : busy ? escapeHtml(note.text) : hasAll ? 'Ci sono tutte le lingue' : 'Mancano: ' + escapeHtml(luxTrNames(missing));
+  body.innerHTML =
+    '<div class="adm-sheet-grab" aria-hidden="true"></div>' +
+    '<div class="adm-sheet-head">' +
+      '<span class="adm-sheet-cover">' + (cover ? '<img alt="" src="' + escapeHtml(cover) + '"' + (item.cover_url && !draftCover ? ' data-full="' + escapeHtml(item.cover_url) + '"' : '') + '>' : '') + '</span>' +
+      '<div class="adm-sheet-ttl"><b id="admSheetTitle">' + escapeHtml(item.title || '—') + '</b><span>' + meta + '</span><span class="adm-tags">' + tags + '</span></div>' +
+      '<button type="button" class="adm-sheet-x" data-adm-close aria-label="' + escapeHtml(t('apptu.close')) + '">' + I.x + '</button>' +
+    '</div>' +
+    (note && !busy ? '<p class="adm-sheet-note' + (note.err ? ' is-error' : '') + '">' + escapeHtml(note.text) + '</p>' : '') +
+    '<div class="adm-acts">' +
+      '<button type="button" class="adm-act" data-edit="' + id + '">' + I.edit + '<span>' + escapeHtml(t('admin.edit')) + '<small>Titolo, sinossi, pagine, prezzo, serie…</small></span></button>' +
+      '<label class="adm-act">' + I.image + '<span>' + escapeHtml(item.cover_url ? t('cover.change') : t('cover.addExisting')) +
+        '<small data-cover-status-for="' + id + '">' + escapeHtml(keepSt) + '</small></span><input type="file" accept="image/*" class="hidden" data-cover-for="' + id + '"></label>' +
+      '<button type="button" class="adm-act" data-translate-for="' + id + '"' + (busy || !item.synopsis ? ' disabled' : '') + '>' + I.globe + '<span>' +
+        escapeHtml(busy ? 'Traduco…' : hasAll ? t('synopsis.retranslate') : t('synopsis.translateExisting')) + '<small>' + trSmall + '</small></span></button>' +
+      (hasPages ? '<button type="button" class="adm-act" data-rewatermark-for="' + id + '">' + I.drop + '<span>' + escapeHtml(t('rewatermark.button')) +
+        '<small>' + (item.pages_watermarked ? '✓ ' + escapeHtml(t('rewatermark.done')) : item.pages.length + (item.pages.length === 1 ? ' pagina' : ' pagine')) + '</small></span></button>' : '') +
+      '<button type="button" class="adm-act" data-toggle-permanent="' + id + '">' + I.clock + '<span>' + escapeHtml(isPermanent ? t('catalog.makeTemporary') : t('catalog.makePermanent')) +
+        '<small>Ora: ' + escapeHtml(isPermanent ? t('catalog.permanent') : t('catalog.temporary')).toLowerCase() + '</small></span></button>' +
+      (item.stock != null ? '<div class="adm-act adm-stock">' + I.box + '<span>' + item.stock + ' ' + escapeHtml(t('stock.left')) + '<small>In vendita</small></span>' +
+        '<span class="adm-stock-btns"><button type="button" class="btn btn-sm btn-ghost" data-sell-one="' + id + '"' + (item.stock <= 0 ? ' disabled' : '') + '>' + escapeHtml(t('admin.stock.sell')) + '</button>' +
+        '<button type="button" class="btn btn-sm btn-ghost" data-restock="' + id + '">' + escapeHtml(t('admin.stock.restore')) + '</button></span></div>' : '') +
+      '<button type="button" class="adm-act" data-adm-view="' + id + '">' + I.eye + '<span>Apri la scheda<small>Come la vede chi legge</small></span></button>' +
+    '</div>' +
+    '<button type="button" class="adm-del" data-del="' + id + '">' + I.trash + '<span>Elimina questo titolo</span></button>';
+  admSheetWire(body, item);
+}
+function admPatchCatalog(id, patch, prefer){
+  var session = getSession();
+  var h = { 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + (session && session.access_token), 'Content-Type':'application/json' };
+  if(prefer) h.Prefer = 'return=representation';
+  return fetch(SUPABASE_URL + '/rest/v1/catalog?id=eq.' + encodeURIComponent(id), { method:'PATCH', headers:h, body: JSON.stringify(patch) });
+}
+function admSheetWire(body, item){
+  var on = function(sel, ev, fn){ var x = body.querySelector(sel); if(x) x.addEventListener(ev, fn); };
+  var img = body.querySelector('.adm-sheet-cover img[data-full]');
+  if(img) img.addEventListener('error', function(){ var f = img.getAttribute('data-full'); img.removeAttribute('data-full'); if(f && img.getAttribute('src') !== f) img.src = f; });
+  on('[data-edit]', 'click', function(){ admSheetClose(); openEditTitle(item.id); });
+  on('[data-adm-view]', 'click', function(){ admSheetClose(); try { openTitleModal(item); } catch(e){ console.warn('[catalogo]', e); } });
+  on('[data-cover-for]', 'change', function(e){ if(e.target.files && e.target.files[0]) uploadCoverForExistingItem(item.id, e.target.files[0]); });
+  on('[data-translate-for]', 'click', function(){ translateSynopsisForExistingItem(item.id, item.synopsis, this, !(item.synopsis ? synopsisMissingLangs(item) : []).length); });
+  on('[data-rewatermark-for]', 'click', function(){
+    var sm = this.querySelector('small');
+    if(sm) sm.textContent = 'Filigrana in corso…';
+    rewatermarkExistingItem(item.id, item.pages, this);
   });
-
-  // Chiude i menu aperti se clicchi fuori — una sola volta per pagina, non per riga
-  if(!document.body.dataset.adminMenuOutsideBound){
-    document.body.dataset.adminMenuOutsideBound = '1';
-    document.addEventListener('click', function(){
-      document.querySelectorAll('.admin-dropdown.show').forEach(function(m){ m.classList.remove('show'); });
+  on('[data-toggle-permanent]', 'click', function(){
+    var btn = this, newValue = item.permanent === false;
+    btn.disabled = true;
+    admPatchCatalog(item.id, { permanent: newValue }).then(function(r){
+      if(!r.ok) throw new Error('permanent update failed: ' + r.status);
+      var all = getCatalog();
+      var target = all.find(function(x){ return x.id === item.id; });
+      if(target) target.permanent = newValue;
+      saveCatalogLocal(all);
+      renderAdminList();
+    }).catch(function(err){ console.warn('Permanente:', err); btn.disabled = false; luxToast('Non salvato: riprova.'); });
+  });
+  on('[data-sell-one]', 'click', function(){
+    var newStock = Math.max(0, item.stock - 1);
+    admPatchCatalog(item.id, { stock: newStock }, true).then(function(r){
+      if(!r.ok) throw new Error('stock update failed: ' + r.status);
+      var all = getCatalog(), target = all.find(function(x){ return x.id === item.id; });
+      if(target) target.stock = newStock;
+      saveCatalogLocal(all);
+      renderCatalog(); renderAdminList();
+    }).catch(function(err){ console.warn('Sell-one failed:', err); });
+  });
+  on('[data-restock]', 'click', function(){
+    var input = window.prompt(t('admin.f.stock'), String(item.stock));
+    if(input === null) return;
+    var n = parseInt(input, 10);
+    if(isNaN(n) || n < 0) return;
+    admPatchCatalog(item.id, { stock: n }, true).then(function(r){
+      if(!r.ok) throw new Error('stock update failed: ' + r.status);
+      var all = getCatalog(), target = all.find(function(x){ return x.id === item.id; });
+      if(target) target.stock = n;
+      saveCatalogLocal(all);
+      renderCatalog(); renderAdminList();
+    }).catch(function(err){ console.warn('Restock failed:', err); });
+  });
+  on('[data-del]', 'click', function(){
+    if(!confirm(t('admin.confirmDelete') + '\n\n«' + (item.title || '') + '»')) return;
+    var delBtn = this;
+    delBtn.disabled = true;
+    delBtn.querySelector('span').textContent = 'Elimino…';
+    supabaseDelete(item.id).then(function(res){
+      if(res !== true){
+        delBtn.disabled = false;
+        delBtn.querySelector('span').textContent = 'Elimina questo titolo';
+        window.alert(luxDeleteMsg(res));
+        return;
+      }
+      admSheetClose();
+      adminSelectedIds.delete(item.id);
+      saveCatalogLocal(getCatalog().filter(function(x){ return x.id !== item.id; }));
+      renderCatalog();
+      renderAdminList();
+      luxToast('Eliminato: «' + (item.title || '') + '»');
     });
-  }
-
-  var pager = document.createElement('div');
-  pager.className = 'admin-pager';
-  pager.innerHTML =
-    '<button type="button" id="adminPagerPrev" '+(adminListPage<=1?'disabled':'')+'>← Precedente</button>' +
-    '<span>Pagina '+adminListPage+' di '+totalPages+' ('+items.length+' titoli)</span>' +
-    '<button type="button" id="adminPagerNext" '+(adminListPage>=totalPages?'disabled':'')+'>Successiva →</button>';
-  list.appendChild(pager);
-  var prevBtn = document.getElementById('adminPagerPrev');
-  var nextBtn = document.getElementById('adminPagerNext');
-  if(prevBtn) prevBtn.addEventListener('click', function(){ adminListPage--; renderAdminList(); });
-  if(nextBtn) nextBtn.addEventListener('click', function(){ adminListPage++; renderAdminList(); });
+  });
 }
 
 /* v233: tradurre le sinossi che mancano. Si chiedono solo le lingue che mancano, prima i titoli
@@ -22602,10 +22809,29 @@ function renderHeroBg(){
 /* v219: immagini decorative sotto la piega (data-lazy-src) solo quando ci si
    avvicina. Il loading="lazy" del browser su 2G/3G scarica tutto ciò che sta
    nei primi 2500px — sulla home anche il banner del sostegno, 127 KB. */
+// v249: mentre aspettano, al posto del testo alternativo e dell'icona dell'immagine rotta: un'anteprima
+// sfocata di pochi byte (o niente, solo il colore di fondo); arrivata l'immagine vera, si mette a fuoco
+var LUX_LQIP = { 'support-banner.webp': 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAASABgDASIAAhEBAxEB/8QAGQABAAMBAQAAAAAAAAAAAAAAAAEEBgMH/8QAJBAAAgEDAwQDAQAAAAAAAAAAAQIRAAMEBSExBhIUQRZhcSL/xAAYAQADAQEAAAAAAAAAAAAAAAAAAgQBA//EABcRAQEBAQAAAAAAAAAAAAAAAAABETH/2gAMAwEAAhEDEQA/ANffvnHRrrsSi8gbnmvO8zUepMnU83It5d+y2Hc/myphe2dtvfrnmtO2hkYnhZ+rkm+5mSAVXfiTJ9CqHwjG84Wm1y414QQrIpOxmI7p+6nmqLJiw3VF3Gx8PyU7si4At1RtDbT+c0rkej8TJIS1qYuPYaYVVhhMk7GRvtSmuOc2dbVVBEkAn7FRAmYEzzSlK1LKoEgAfgpSlAf/2Q==' };
+var LUX_BLANK_GIF = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
 function luxLazyImages(){
   var imgs = document.querySelectorAll('img[data-lazy-src]');
   if(!imgs.length) return;
-  var load = function(img){ var u = img.getAttribute('data-lazy-src'); if(!u) return; img.removeAttribute('data-lazy-src'); img.src = u; };
+  Array.prototype.forEach.call(imgs, function(img){
+    if(img.getAttribute('src')) return;
+    img.classList.add('lux-lqip');
+    img.src = LUX_LQIP[img.getAttribute('data-lazy-src')] || LUX_BLANK_GIF;
+  });
+  var load = function(img){
+    var u = img.getAttribute('data-lazy-src');
+    if(!u) return;
+    img.removeAttribute('data-lazy-src');
+    var ok = function(){ off(); img.classList.remove('lux-lqip'); };
+    var bad = function(){ off(); img.src = LUX_LQIP[u] || LUX_BLANK_GIF; }; // (se non arriva resta l'anteprima, non l'icona rotta)
+    var off = function(){ img.removeEventListener('load', ok); img.removeEventListener('error', bad); };
+    img.addEventListener('load', ok);
+    img.addEventListener('error', bad);
+    img.src = u;
+  };
   if(!('IntersectionObserver' in window)){ Array.prototype.forEach.call(imgs, load); return; }
   var io = new IntersectionObserver(function(entries){
     entries.forEach(function(en){
