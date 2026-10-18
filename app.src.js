@@ -1061,6 +1061,20 @@ Object.assign(STR.hi, {"lxguest.noteTxt": "मेहमान के तौर �
 Object.assign(STR.bn, {"lxguest.noteTxt": "অতিথি হিসেবে আপনার {min} মিনিট শেষ। পড়া চালিয়ে যেতে বিনামূল্যের একটা অ্যাকাউন্ট খুলুন: প্রতিটি কমিক যেখানে থেমেছিলেন সেখান থেকেই শুরু হবে।", "lxguest.n3Txt": "অতিথিরা মোট {min} মিনিট পড়তে পারেন, তারপর বিনামূল্যের অ্যাকাউন্ট লাগবে। এখনই খুলুন আর বিরতি ছাড়াই পড়তে থাকুন।"});
 Object.assign(STR.ar, {"lxguest.noteTxt": "انتهت الدقائق المتاحة للزوّار ({min} دقيقة). لمتابعة القراءة أنشئ حسابًا مجانيًا: ستكمل كل قصة مصوّرة من حيث توقفت.", "lxguest.n3Txt": "يقرأ الزوّار {min} دقيقة إجمالًا، وبعدها تحتاج إلى حساب مجاني. أنشئه الآن وتابع القراءة بلا انقطاع."});
 Object.assign(STR.pnb, {"lxguest.noteTxt": "مہمان دے {min} منٹ پورے ہو گئے نیں۔ اگے پڑھن لئی مفت اکاؤنٹ بناؤ: ہر کامک اوتھوں ای اگے پڑھو گے جتھے چھڈیا سی۔", "lxguest.n3Txt": "مہمان کل {min} منٹ تک پڑھ سکدے نیں، اوہدے مگروں مفت اکاؤنٹ چاہیدا اے۔ ہنے بناؤ تے بغیر رکاوٹ پڑھدے رہو۔"});
+// v253: lo zoom sulle tavole
+Object.assign(STR.it, {"zoom.hint": "Due dita o doppio tocco su una tavola per ingrandirla", "zoom.help": "Due dita per ingrandire · doppio tocco · scorri di lato per cambiare tavola", "zoom.helpMouse": "Rotellina o doppio clic per ingrandire · frecce per cambiare tavola", "zoom.aria": "Tavola {n} di {total}, ingrandita", "zoom.open": "Ingrandisci", "zoom.in": "Ingrandisci", "zoom.out": "Rimpicciolisci", "zoom.fit": "Adatta allo schermo", "zoom.prev": "Tavola precedente", "zoom.next": "Tavola successiva"});
+Object.assign(STR.en, {"zoom.hint": "Pinch with two fingers or double-tap a page to zoom in", "zoom.help": "Pinch to zoom · double-tap · swipe sideways to change page", "zoom.helpMouse": "Scroll wheel or double-click to zoom · arrow keys to change page", "zoom.aria": "Page {n} of {total}, zoomed", "zoom.open": "Zoom in", "zoom.in": "Zoom in", "zoom.out": "Zoom out", "zoom.fit": "Fit to screen", "zoom.prev": "Previous page", "zoom.next": "Next page"});
+Object.assign(STR.es, {"zoom.hint": "Usa dos dedos o toca dos veces una página para ampliarla", "zoom.help": "Dos dedos para ampliar · doble toque · desliza de lado para cambiar de página", "zoom.helpMouse": "Rueda o doble clic para ampliar · flechas para cambiar de página", "zoom.aria": "Página {n} de {total}, ampliada", "zoom.open": "Ampliar", "zoom.in": "Ampliar", "zoom.out": "Reducir", "zoom.fit": "Ajustar a la pantalla", "zoom.prev": "Página anterior", "zoom.next": "Página siguiente"});
+Object.assign(STR.fr, {"zoom.hint": "Deux doigts ou double appui sur une planche pour l'agrandir", "zoom.help": "Deux doigts pour agrandir · double appui · glissez sur le côté pour changer de planche", "zoom.helpMouse": "Molette ou double-clic pour agrandir · flèches pour changer de planche", "zoom.aria": "Planche {n} sur {total}, agrandie", "zoom.open": "Agrandir", "zoom.in": "Agrandir", "zoom.out": "Réduire", "zoom.fit": "Ajuster à l'écran", "zoom.prev": "Planche précédente", "zoom.next": "Planche suivante"});
+Object.assign(STR.de, {"zoom.hint": "Mit zwei Fingern oder Doppeltippen eine Seite vergrößern", "zoom.help": "Zwei Finger zum Vergrößern · Doppeltippen · zur Seite wischen zum Blättern", "zoom.helpMouse": "Mausrad oder Doppelklick zum Vergrößern · Pfeiltasten zum Blättern", "zoom.aria": "Seite {n} von {total}, vergrößert", "zoom.open": "Vergrößern", "zoom.in": "Vergrößern", "zoom.out": "Verkleinern", "zoom.fit": "An den Bildschirm anpassen", "zoom.prev": "Vorherige Seite", "zoom.next": "Nächste Seite"});
+Object.assign(STR.pt, {"zoom.hint": "Use dois dedos ou toque duas vezes numa página para ampliá-la", "zoom.help": "Dois dedos para ampliar · toque duplo · deslize para o lado para mudar de página", "zoom.helpMouse": "Roda do mouse ou clique duplo para ampliar · setas para mudar de página", "zoom.aria": "Página {n} de {total}, ampliada", "zoom.open": "Ampliar", "zoom.in": "Ampliar", "zoom.out": "Reduzir", "zoom.fit": "Ajustar à tela", "zoom.prev": "Página anterior", "zoom.next": "Próxima página"});
+Object.assign(STR.ru, {"zoom.hint": "Двумя пальцами или двойным касанием страницу можно увеличить", "zoom.help": "Двумя пальцами — увеличить · двойное касание · смахните вбок, чтобы листать", "zoom.helpMouse": "Колёсико или двойной щелчок — увеличить · стрелки — листать", "zoom.aria": "Страница {n} из {total}, увеличена", "zoom.open": "Увеличить", "zoom.in": "Увеличить", "zoom.out": "Уменьшить", "zoom.fit": "По размеру экрана", "zoom.prev": "Предыдущая страница", "zoom.next": "Следующая страница"});
+Object.assign(STR.zh, {"zoom.hint": "双指捏合或双击页面即可放大", "zoom.help": "双指放大 · 双击 · 左右滑动切换页面", "zoom.helpMouse": "滚轮或双击放大 · 方向键切换页面", "zoom.aria": "第 {n} 页，共 {total} 页，已放大", "zoom.open": "放大", "zoom.in": "放大", "zoom.out": "缩小", "zoom.fit": "适应屏幕", "zoom.prev": "上一页", "zoom.next": "下一页"});
+Object.assign(STR.ja, {"zoom.hint": "2本の指でピンチするか、ページをダブルタップすると拡大できます", "zoom.help": "2本指で拡大 · ダブルタップ · 横にスワイプでページ移動", "zoom.helpMouse": "ホイールまたはダブルクリックで拡大 · 矢印キーでページ移動", "zoom.aria": "{total}ページ中{n}ページ目（拡大表示）", "zoom.open": "拡大", "zoom.in": "拡大", "zoom.out": "縮小", "zoom.fit": "画面に合わせる", "zoom.prev": "前のページ", "zoom.next": "次のページ"});
+Object.assign(STR.hi, {"zoom.hint": "किसी पेज को बड़ा करने के लिए दो उंगलियों से फैलाएँ या दो बार टैप करें", "zoom.help": "बड़ा करने के लिए दो उंगलियाँ · दो बार टैप · पेज बदलने के लिए बगल में स्वाइप करें", "zoom.helpMouse": "बड़ा करने के लिए व्हील या डबल-क्लिक · पेज बदलने के लिए तीर कुंजियाँ", "zoom.aria": "पेज {n} / {total}, बड़ा किया गया", "zoom.open": "बड़ा करें", "zoom.in": "बड़ा करें", "zoom.out": "छोटा करें", "zoom.fit": "स्क्रीन के अनुसार", "zoom.prev": "पिछला पेज", "zoom.next": "अगला पेज"});
+Object.assign(STR.bn, {"zoom.hint": "পৃষ্ঠা বড় করতে দুই আঙুলে ছড়িয়ে দিন বা দুবার ট্যাপ করুন", "zoom.help": "বড় করতে দুই আঙুল · দুবার ট্যাপ · পৃষ্ঠা বদলাতে পাশে সোয়াইপ করুন", "zoom.helpMouse": "বড় করতে মাউসের চাকা বা ডাবল-ক্লিক · পৃষ্ঠা বদলাতে তীর কী", "zoom.aria": "পৃষ্ঠা {n} / {total}, বড় করা", "zoom.open": "বড় করুন", "zoom.in": "বড় করুন", "zoom.out": "ছোট করুন", "zoom.fit": "স্ক্রিনে মানানসই", "zoom.prev": "আগের পৃষ্ঠা", "zoom.next": "পরের পৃষ্ঠা"});
+Object.assign(STR.ar, {"zoom.hint": "استخدم إصبعين أو انقر مرتين على الصفحة لتكبيرها", "zoom.help": "إصبعان للتكبير · نقرتان · اسحب جانبًا لتغيير الصفحة", "zoom.helpMouse": "عجلة الفأرة أو النقر المزدوج للتكبير · الأسهم لتغيير الصفحة", "zoom.aria": "الصفحة {n} من {total}، مكبَّرة", "zoom.open": "تكبير", "zoom.in": "تكبير", "zoom.out": "تصغير", "zoom.fit": "ملاءمة الشاشة", "zoom.prev": "الصفحة السابقة", "zoom.next": "الصفحة التالية"});
+Object.assign(STR.pnb, {"zoom.hint": "صفحہ وڈا کرن لئی دو انگلاں نال کھولو یا دو واری ٹیپ کرو", "zoom.help": "وڈا کرن لئی دو انگلاں · دو واری ٹیپ · صفحہ بدلن لئی پاسے ول سوائپ کرو", "zoom.helpMouse": "وڈا کرن لئی وہیل یا ڈبل کلک · صفحہ بدلن لئی تیر والیاں کنجیاں", "zoom.aria": "صفحہ {n} / {total}، وڈا کیتا ہویا", "zoom.open": "وڈا کرو", "zoom.in": "وڈا کرو", "zoom.out": "نکا کرو", "zoom.fit": "سکرین جنا", "zoom.prev": "پچھلا صفحہ", "zoom.next": "اگلا صفحہ"});
 var CHAR_META = {
   Lucifer:{role:{it:"Il Portatore di Luce",en:"The Light-Bearer",es:"El Portador de Luz",fr:"Le Porteur de Lumière",de:"Der Lichtträger"},
     bio:{it:"Sovrano della collana ammiraglia: potere, caduta e desiderio raccontati su grande scala.",
@@ -2147,6 +2161,7 @@ function luxCoverSetInert(on){
 // how: 'enter' = appare (all'avvio); 'close' = si richiude sopra il sito (uscendo dall'account)
 function luxCoverShow(how){
   if(luxCoverEl) return;
+  try { luxZoomClose(); } catch(e){} // v253: lo zoom sulla tavola si chiude
   luxCoverClearTimers();
   try { luxGuestOnClose(); } catch(e){} // v248: da ospite il tempo si ferma (e, se sono passati i 45 minuti, l'albo resta chiuso col biglietto)
   luxCoverScrollY = window.pageYOffset || 0;
@@ -2295,6 +2310,7 @@ function luxCoverRelang(){
   try { luxCoverSyncButtons(); } catch(e){}
   if(luxCoverEl) luxCoverTexts();
   try { luxGateRelang(); luxNudgeTexts(); } catch(e){} // v248: la seconda pagina e l'invito nella lingua nuova
+  try { luxZoomRelang(); } catch(e){} // v253: «Ingrandisci» e lo zoom nella lingua nuova
 }
 // telefono girato o finestra ridimensionata: il sigillo si risistema (o la copertina si rifà)
 function luxCoverOnResize(){
@@ -3784,7 +3800,7 @@ var syncState = 'idle'; // idle | syncing | error
 function getCatalog(all){
   try{
     var raw = localStorage.getItem('lux_catalog');
-    if(raw){ var arr = JSON.parse(raw); return all ? arr : arr.filter(function(i){ return !luxIsScheduled(i); }); } // v250: i capitoli in programma solo in Amministra (getCatalog(true))
+    if(raw){ var arr = JSON.parse(raw); return all ? arr : arr.filter(function(i){ return !luxIsScheduled(i) && !i.deleted_at; }); } // v250: i capitoli in programma solo in Amministra (getCatalog(true)); v253: anche quelli nel cestino
   }catch(e){}
   var seed = [
     {id:'c1', character:'Lucifer', title:'Midnight Cathedral', issue:'Vol. 1 — Ch. 1', date:'2026-02-14', mature:true,
@@ -3817,7 +3833,7 @@ function saveCatalogLocal(items){ // v233
   try {
     var ids = {};
     items.forEach(function(i){ if(i) ids[i.id] = true; });
-    keep = JSON.parse(localStorage.getItem('lux_catalog') || '[]').filter(function(p){ return p && !ids[p.id] && luxIsScheduled(p); });
+    keep = JSON.parse(localStorage.getItem('lux_catalog') || '[]').filter(function(p){ return p && !ids[p.id] && (luxIsScheduled(p) || luxTrashed(p)); }); // v253: anche quelli nel cestino
   } catch(e){}
   luxCatalogWrite(keep.length ? items.concat(keep) : items);
 }
@@ -3843,6 +3859,7 @@ function fetchCatalogFromSupabase(){
     .then(function(r2){ return r2.ok ? r2.json() : []; })
     .catch(function(){ return []; });
   var schedReq = luxSchedLoad(); // v250: (solo per l'admin) i capitoli in programma
+  var trashReq = luxTrashLoad(); // v253: (solo per l'admin) il cestino
   return fetch(SUPABASE_URL + '/rest/v1/catalog?select=*&order=date.desc', hdr)
     .then(function(r){ if(!r.ok) throw new Error('read failed: ' + r.status); return r.json(); })
     .then(function(items){
@@ -3856,9 +3873,11 @@ function fetchCatalogFromSupabase(){
     .then(function(items){
       // v250: un capitolo in programma non entra mai nella copia di tutti (di solito il server non lo manda nemmeno)
       items = items.filter(function(i){ return !luxIsScheduled(i); });
-      return schedReq.then(function(sched){
+      return Promise.all([schedReq, trashReq]).then(function(rq){
+        var sched = rq[0];
         saveCatalogLocal(items);
         luxCatalogSetScheduled(isAdmin() ? sched : []);
+        luxCatalogSetTrashed(isAdmin() ? rq[1] : []); // v253
         syncState = 'idle'; updateSyncStatus();
         if(isAdmin()) luxSchedWatch();
         return items;
@@ -7257,6 +7276,7 @@ function bulkMakePermanent(){
 function bulkDeleteSelected(){
   var ids = Array.from(adminSelectedIds); // v249: come sopra
   if(ids.length === 0) return;
+  if(luxTrashOn()){ luxTrashBulk(ids); return; } // v253: nel cestino
   if(!confirm(ids.length === 1 ? 'Eliminare il titolo selezionato dallo schedario?' : 'Eliminare i ' + ids.length + ' titoli selezionati dallo schedario?')) return;
   var bulkBtn = document.getElementById('btnBulkDelete');
   if(bulkBtn) bulkBtn.disabled = true;
@@ -7293,7 +7313,7 @@ function bulkDeleteSelected(){
    v250: in cima, «In programma»: i capitoli con giorno e ora di uscita (vedi LUX_SCHED), in ordine di uscita;
    nel loro pannello si cambia l'ora o si pubblicano subito. */
 var ADM_PREFS_KEY = 'lux_admin_list';
-var ADM_FILTERS = [['all', 'Tutti'], ['scheduled', 'In programma'], ['mine', 'Miei'], ['mature', '18+'], ['temporary', 'A tempo'], ['stock', 'In vendita'], ['permanent', 'Permanenti']];
+var ADM_FILTERS = [['all', 'Tutti'], ['scheduled', 'In programma'], ['trash', 'Cestino'], ['mine', 'Miei'], ['mature', '18+'], ['temporary', 'A tempo'], ['stock', 'In vendita'], ['permanent', 'Permanenti']];
 var admPrefs = null;
 function admLoadPrefs(){
   if(admPrefs) return admPrefs;
@@ -7322,7 +7342,8 @@ var ADM_I = (function(){
     trash: s('<path d="M4 7h16M10 11v6M14 11v6M5.5 7l1 13h11l1-13M9 7V4h6v3"/>'),
     x: s('<path d="M6 6l12 12M18 6L6 18"/>'),
     insta: s('<rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.2 6.8h.01"/>'), // v251
-    qr: s('<path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h2.5v2.5H14zM17.5 17.5H20V20h-2.5zM14 19.5h1.5M19.5 14v1.5"/>')
+    qr: s('<path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h2.5v2.5H14zM17.5 17.5H20V20h-2.5zM14 19.5h1.5M19.5 14v1.5"/>'),
+    undo: s('<path d="M9 14L4 9l5-5M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/>') // v253
   };
 })();
 function admDateOf(i){ return String((i && (i.date || i.created_at)) || '').slice(0, 10); }
@@ -7348,7 +7369,13 @@ function admSortItems(items, sort){
   else items.sort(byDate);
   return items;
 }
+// v253: il cestino è un filtro a parte; negli altri i capitoli nel cestino non ci sono
 function admFilterFn(f){
+  if(f === 'trash') return luxTrashed;
+  var base = admFilterFn0(f);
+  return function(i){ return !luxTrashed(i) && base(i); };
+}
+function admFilterFn0(f){
   if(f === 'scheduled') return luxIsScheduled; // v250
   if(f === 'mine') return function(i){ return i.created_by === currentUserId(); };
   if(f === 'mature') return function(i){ return !!i.mature; };
@@ -7395,7 +7422,7 @@ function admRowHtml(item){
   var id = escapeHtml(item.id), sel = adminSelectedIds.has(item.id), tags = [];
   var draftCover = isDraftModeOn() ? (getDraft().coverEdits || {})[item.id] : null;
   var pms = luxSchedMs(item), nowMs = Date.now(); // v250: quando esce, o che è appena uscito
-  if(luxIsScheduled(item)) tags.push('<span class="adm-tag adm-tag-sched">Esce ' + escapeHtml(luxSchedShort(pms)) + '</span>');
+  if(luxIsScheduled(item) && !luxTrashed(item)) tags.push('<span class="adm-tag adm-tag-sched">Esce ' + escapeHtml(luxSchedShort(pms)) + '</span>');
   else if(pms && nowMs >= pms && nowMs - pms < 6 * 3600e3) tags.push('<span class="adm-tag adm-tag-out">Uscito ' + escapeHtml(luxSchedDay(pms) === 'oggi' ? 'alle ' + luxSchedTime(pms) : luxSchedShort(pms)) + '</span>');
   if(item.mature) tags.push('<span class="adm-tag adm-tag-18">18+</span>');
   if(item.permanent === false) tags.push('<span class="adm-tag adm-tag-temp">A tempo</span>'); // (nel pannello per intero: «A tempo determinato»)
@@ -7423,6 +7450,7 @@ function admUpdateChips(all){
     var c = b.querySelector('.adm-n');
     if(c) c.textContent = f === 'mine' && !n ? '' : String(n);
     if(f === 'scheduled') b.hidden = !n && adminListFilter !== 'scheduled'; // v250: solo se ce ne sono
+    if(f === 'trash') b.hidden = !n && adminListFilter !== 'trash'; // v253: solo se c'è qualcosa nel cestino
     b.classList.toggle('active', f === adminListFilter);
     b.setAttribute('aria-pressed', f === adminListFilter ? 'true' : 'false');
   });
@@ -7433,6 +7461,8 @@ function admSyncBulkbar(){
   bb.classList.toggle('show', adminSelectedIds.size > 0);
   var c = document.getElementById('adminBulkCount');
   if(c) c.textContent = adminSelectedIds.size === 1 ? '1 selezionato' : adminSelectedIds.size + ' selezionati';
+  var bd = document.getElementById('btnBulkDelete'); // v253
+  if(bd && adminSelectedIds.size) bd.textContent = luxTrashOn() ? 'Sposta nel cestino' : 'Elimina selezionati';
 }
 function admSyncToggleAll(){
   var b = document.getElementById('admToggleAll');
@@ -7499,6 +7529,15 @@ function renderAdminList(){
 
   updateAdminTranslateBar(); // v226
   admSyncBulkbar();
+  luxTrashPurge(); // v253: nel cestino da più di 30 giorni: per sempre
+  if(adminListFilter === 'trash'){ // v253: il cestino
+    list.innerHTML = luxTrashListHtml(items);
+    admBindList(list);
+    luxTrashWire(list);
+    admSyncToggleAll();
+    admSheetRender();
+    return;
+  }
 
   // v250: in cima i capitoli in programma, nell'ordine in cui escono
   var sched = items.filter(luxIsScheduled).sort(function(a, b){ return luxSchedMs(a) - luxSchedMs(b); });
@@ -7603,6 +7642,7 @@ function admSheetRender(){
   if(!w || admSheetId === null) return;
   var item = getCatalog(true).find(function(x){ return x.id === admSheetId; });
   if(!item){ admSheetClose(); return; }
+  if(luxTrashed(item)){ luxTrashSheet(w, item); return; } // v253: nel cestino: «Ripristina» o «Elimina per sempre»
   var isSched = luxIsScheduled(item), pms = luxSchedMs(item); // v250
   var body = w.querySelector('.adm-sheet-body'), I = ADM_I, id = escapeHtml(item.id);
   var oldSt = body.querySelector('[data-cover-status-for]'), keepSt = oldSt ? oldSt.textContent : '';
@@ -7643,7 +7683,7 @@ function admSheetRender(){
       '</div>' +
       '<button type="button" class="adm-act" data-adm-view="' + id + '">' + I.eye + '<span>' + (isSched ? 'Anteprima della scheda<small>Come la vedrà chi legge (adesso la vedi solo tu)</small>' : 'Apri la scheda<small>Come la vede chi legge</small>') + '</span></button>' +
     '</div>' +
-    '<button type="button" class="adm-del" data-del="' + id + '">' + I.trash + '<span>Elimina questo titolo</span></button>';
+    '<button type="button" class="adm-del" data-del="' + id + '">' + I.trash + '<span>' + (luxTrashOn() ? 'Sposta nel cestino' : 'Elimina questo titolo') + '</span></button>'; // v253
   admSheetWire(body, item);
 }
 function admPatchCatalog(id, patch, prefer){
@@ -7696,8 +7736,11 @@ function admSheetWire(body, item){
     }).catch(function(err){ console.warn('Restock failed:', err); });
   });
   on('[data-del]', 'click', function(){
-    if(!confirm(t('admin.confirmDelete') + '\n\n«' + (item.title || '') + '»')) return;
     var delBtn = this;
+    if(luxTrashOn()){ luxTrashAsk(item, delBtn, luxDelNow); return; } // v253: nel cestino (senza il file SQL: come prima)
+    if(!confirm(t('admin.confirmDelete') + '\n\n«' + (item.title || '') + '»')) return;
+    luxDelNow();
+    function luxDelNow(){
     delBtn.disabled = true;
     delBtn.querySelector('span').textContent = 'Elimino…';
     supabaseDelete(item.id).then(function(res){
@@ -7714,6 +7757,7 @@ function admSheetWire(body, item){
       renderAdminList();
       luxToast('Eliminato: «' + (item.title || '') + '»');
     });
+    }
   });
   admSchedWire(body, item); // v250
 }
@@ -7829,7 +7873,7 @@ function luxCatalogLocalPatch(id, patch){
 // i capitoli in programma arrivati dal server prendono il posto di quelli di prima (null: non si sa, restano)
 function luxCatalogSetScheduled(list){
   if(!list) return;
-  var all = getCatalog(true).filter(function(i){ return !luxIsScheduled(i); }), at = {};
+  var all = getCatalog(true).filter(function(i){ return !luxIsScheduled(i) || luxTrashed(i); }), at = {}; // v253: quelli nel cestino li sistema luxCatalogSetTrashed
   all.forEach(function(i, k){ at[i.id] = k; });
   list.forEach(function(i){
     if(!i || !i.id) return;
@@ -7920,7 +7964,7 @@ function luxSchedWho(item){
 
 /* ---- quando arriva l'ora (con Amministra aperta) ---- */
 function luxSchedWatch(){
-  var pend = getCatalog(true).filter(luxIsScheduled);
+  var pend = getCatalog(true).filter(function(i){ return luxIsScheduled(i) && !luxTrashed(i); }); // v253: nel cestino non esce
   pend.forEach(function(i){ LUX_SCHED.seen[i.id] = luxSchedMs(i); });
   // c'è qualcosa in programma: è acceso il controllo automatico su Supabase? (lo dice il pannello)
   if(pend.length && isAdmin() && LUX_SCHED.server !== 'missing' && !LUX_SCHED.statusAt && !LUX_SCHED.statusReq){
@@ -7932,7 +7976,7 @@ function luxSchedWatch(){
 function luxSchedTick(){
   var now = Date.now(), out = [];
   Object.keys(LUX_SCHED.seen).forEach(function(id){
-    if(LUX_SCHED.seen[id] <= now){ delete LUX_SCHED.seen[id]; var it = luxCatalogFind(id); if(it && !luxIsScheduled(it)) out.push(it); }
+    if(LUX_SCHED.seen[id] <= now){ delete LUX_SCHED.seen[id]; var it = luxCatalogFind(id); if(it && !luxIsScheduled(it) && !luxTrashed(it)) out.push(it); }
   });
   if(!out.length){ luxSchedWatch(); return; }
   luxToast(out.length === 1 ? 'È uscito «' + (out[0].title || '') + '»: adesso lo vedono tutti.' : 'Sono usciti ' + out.length + ' capitoli: adesso li vedono tutti.');
@@ -17759,7 +17803,7 @@ function openTitleModal(item){
   loadComments(item.id);
   document.getElementById('titleModal').classList.remove('hidden');
 }
-function closeTitleModal(){ document.getElementById('titleModal').classList.add('hidden'); currentModalCatalogId = null; }
+function closeTitleModal(){ try { luxZoomClose(); } catch(e){} /* v253 */ document.getElementById('titleModal').classList.add('hidden'); currentModalCatalogId = null; }
 
 /* ============ SHARE (native share sheet on mobile — Instagram appears there
    as one of the OS-level options, same as any app; no website can post to
@@ -21925,6 +21969,7 @@ function openPageReader(item){
   var startIdx = (typeof resume === 'number' && resume > 0 && resume < readerPages.length) ? resume : 0;
   initReaderControls();
   applyReaderPrefs();
+  luxZoomInit(); luxZoomHint(); // v253: due dita o doppio tocco su una tavola (dal computer: doppio clic, «Ingrandisci»)
   if(readerScrollOn()){ readerIndex = startIdx; renderReaderFlow(); }
   else { renderReaderFlow(); showReaderPage(startIdx - (startIdx % readerStep())); }
 }
@@ -23704,7 +23749,7 @@ function luxPromoGo(catalogId){
   setTimeout(function(){ var n = document.querySelector('#luxPromoPanel [data-lpr-name]'); try { if(n) n.focus({ preventScroll: true }); } catch(e){} }, 350);
 }
 function luxPromoChapters(){
-  return admSortItems(getCatalog(true).filter(function(x){ return x && x.id && x.title; }), 'new');
+  return admSortItems(getCatalog(true).filter(function(x){ return x && x.id && x.title && !x.deleted_at; }), 'new'); // v253: non quelli nel cestino
 }
 function luxPromoRender(load){
   var box = document.getElementById('luxPromoPanel');
@@ -24569,6 +24614,658 @@ function luxIgPaint(cv, o){
     ligTicket(x, o, m, tkTop2, W - m * 2, tkH2);
   }
   x.restore();
+}
+
+/* ============ v253: LO ZOOM SULLE TAVOLE ============
+   Una tavola si ingrandisce con due dita o con un doppio tocco; dal computer col doppio clic, la rotellina o
+   «Ingrandisci» (nei comandi del lettore). Si apre a tutto schermo, a piena risoluzione (per chi è dentro: la
+   pagina pulita), si sposta col dito e, a tavola intera, scorrendo di lato si passa alla tavola dopo o prima.
+   «×», Esc, «indietro» del telefono o un trascinamento in giù la chiudono: il lettore resta sulla tavola dove
+   si era arrivati. */
+var LZ = null;                 // lo zoom aperto (null: chiuso)
+var LZ_MAX = 5;                // fino a 5 volte la tavola intera
+var luxZoomSkipPop = false;
+function luxZoomDist(a, b){ var dx = a.x - b.x, dy = a.y - b.y; return Math.sqrt(dx * dx + dy * dy); }
+function luxZoomFine(){ return !!(window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches); }
+// la tavola a piena risoluzione: per chi è dentro la pagina pulita (intanto quella pubblica); se no quella pubblica.
+// done(url, best): best = è la versione migliore (non ne arriva un'altra)
+function luxZoomSrc(idx, done){
+  var clean = readerItem && readerItem.pages_clean ? readerItem.pages_clean[idx] : null;
+  if(isSignedIn() && clean){
+    if(readerBlobUrlCache[clean]){ done(readerBlobUrlCache[clean], true); return; }
+    done(readerPages[idx], false);
+    fetchAuthenticatedCleanPage(clean).then(function(u){
+      if(readerBlobUrlCache[clean] && readerBlobUrlCache[clean] !== u){ try { URL.revokeObjectURL(u); } catch(e){} u = readerBlobUrlCache[clean]; } // (l'ha già presa il lettore)
+      else readerBlobUrlCache[clean] = u;
+      done(u, true);
+    }).catch(function(){ done(readerPages[idx], true); });
+    return;
+  }
+  done(readerPages[idx], true);
+}
+function luxZoomEl(){
+  var el = document.getElementById('luxZoom');
+  if(el) return el;
+  el = document.createElement('div');
+  el.id = 'luxZoom';
+  el.className = 'lux-zoom';
+  el.hidden = true;
+  el.setAttribute('role', 'dialog');
+  el.setAttribute('aria-modal', 'true');
+  el.innerHTML =
+    '<div class="lzm-stage"><img class="lzm-img" alt="" draggable="false"></div>' +
+    '<div class="lzm-top"><span class="lzm-count" aria-hidden="true"></span>' +
+      '<button type="button" class="lzm-x" data-lzm="close"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>' +
+    '<button type="button" class="lzm-nav lzm-prev" data-lzm="prev"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>' +
+    '<button type="button" class="lzm-nav lzm-next" data-lzm="next"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>' +
+    '<div class="lzm-tools"><button type="button" data-lzm="out"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 12h12"/></svg></button>' +
+      '<button type="button" data-lzm="fit"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>' +
+      '<button type="button" data-lzm="in"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 12h12M12 6v12"/></svg></button></div>' +
+    '<p class="lzm-help" aria-hidden="true"></p>';
+  var stage = el.querySelector('.lzm-stage'), img = el.querySelector('.lzm-img');
+  img.addEventListener('contextmenu', function(e){ e.preventDefault(); });
+  el.addEventListener('click', function(e){
+    var b = e.target.closest ? e.target.closest('[data-lzm]') : null;
+    if(!b || !LZ) return;
+    var a = b.getAttribute('data-lzm'), r = stage.getBoundingClientRect();
+    if(a === 'close') luxZoomClose();
+    else if(a === 'prev') luxZoomGo(LZ.idx - 1);
+    else if(a === 'next') luxZoomGo(LZ.idx + 1);
+    else if(a === 'in') luxZoomAt(r.width / 2, r.height / 2, LZ.s * 1.6, true);
+    else if(a === 'out') luxZoomAt(r.width / 2, r.height / 2, LZ.s / 1.6, true);
+    else if(a === 'fit') luxZoomAt(r.width / 2, r.height / 2, 1, true);
+  });
+  stage.addEventListener('pointerdown', function(e){
+    if(!LZ || (e.pointerType === 'mouse' && e.button !== 0)) return;
+    e.preventDefault();
+    LZ.lastType = e.pointerType;
+    LZ.ptrs[e.pointerId] = { x: e.clientX, y: e.clientY };
+    try { stage.setPointerCapture(e.pointerId); } catch(err){}
+    luxZoomStart();
+  });
+  stage.addEventListener('dblclick', function(e){ // (dal computer; col dito ci pensa luxZoomTap)
+    if(!LZ || LZ.lastType === 'touch') return;
+    var r = stage.getBoundingClientRect();
+    luxZoomAt(e.clientX - r.left, e.clientY - r.top, LZ.s > 1.05 ? 1 : 2.5, true);
+  });
+  stage.addEventListener('wheel', function(e){
+    if(!LZ) return;
+    e.preventDefault();
+    var r = stage.getBoundingClientRect(), dy = e.deltaMode === 1 ? e.deltaY * 33 : e.deltaY;
+    luxZoomAt(e.clientX - r.left, e.clientY - r.top, LZ.s * Math.exp(-dy * (e.ctrlKey ? 0.01 : 0.0018)), false);
+  }, { passive: false });
+  document.body.appendChild(el);
+  return el;
+}
+// le misure: la tavola intera al centro (come object-fit: contain); lo zoom e lo spostamento sopra (translate + scale)
+function luxZoomLayout(){
+  if(!LZ) return;
+  var st = LZ.stage.getBoundingClientRect(), nw = LZ.img.naturalWidth || 1000, nh = LZ.img.naturalHeight || 1400;
+  var k = Math.min(st.width / nw, st.height / nh);
+  LZ.base = { w: nw * k, h: nh * k, x: (st.width - nw * k) / 2, y: (st.height - nh * k) / 2, sw: st.width, sh: st.height };
+  var s = LZ.img.style;
+  s.width = LZ.base.w + 'px'; s.height = LZ.base.h + 'px'; s.left = LZ.base.x + 'px'; s.top = LZ.base.y + 'px';
+}
+function luxZoomClamp(){
+  var b = LZ.base;
+  if(!b) return;
+  var w = b.w * LZ.s, h = b.h * LZ.s;
+  LZ.tx = w <= b.sw ? (b.sw - w) / 2 - b.x : Math.min(-b.x, Math.max(b.sw - b.x - w, LZ.tx));
+  LZ.ty = h <= b.sh ? (b.sh - h) / 2 - b.y : Math.min(-b.y, Math.max(b.sh - b.y - h, LZ.ty));
+}
+function luxZoomApply(anim, dx, dy){
+  if(!LZ) return;
+  LZ.img.classList.toggle('lzm-anim', !!anim);
+  LZ.img.style.transform = 'translate(' + (LZ.tx + (dx || 0)).toFixed(1) + 'px,' + (LZ.ty + (dy || 0)).toFixed(1) + 'px) scale(' + LZ.s.toFixed(4) + ')';
+  LZ.el.classList.toggle('is-zoomed', LZ.s > 1.02);
+  LZ.el.setAttribute('data-zoom', LZ.s.toFixed(2));
+  var o = LZ.el.querySelector('[data-lzm="out"]'), i = LZ.el.querySelector('[data-lzm="in"]'), f = LZ.el.querySelector('[data-lzm="fit"]');
+  if(o) o.disabled = LZ.s <= 1.001;
+  if(f) f.disabled = LZ.s <= 1.001;
+  if(i) i.disabled = LZ.s >= LZ_MAX - .001;
+}
+// ingrandisce (o rimpicciolisce) tenendo fermo il punto (px, py) della tavola sotto il dito o il mouse
+function luxZoomAt(px, py, ns, anim){
+  if(!LZ) return;
+  if(!LZ.base){ LZ.pend = { x: px, y: py, s: ns }; return; } // (la tavola sta ancora arrivando)
+  ns = Math.max(1, Math.min(LZ_MAX, ns));
+  var u = (px - LZ.base.x - LZ.tx) / LZ.s, v = (py - LZ.base.y - LZ.ty) / LZ.s;
+  LZ.s = ns;
+  LZ.tx = px - LZ.base.x - u * ns;
+  LZ.ty = py - LZ.base.y - v * ns;
+  luxZoomClamp();
+  luxZoomApply(anim);
+}
+// un dito o due: che gesto comincia
+function luxZoomStart(){
+  if(!LZ) return;
+  var ids = Object.keys(LZ.ptrs), r = LZ.stage.getBoundingClientRect();
+  LZ.img.classList.remove('lzm-anim');
+  if(ids.length >= 2){
+    var a = LZ.ptrs[ids[0]], b = LZ.ptrs[ids[1]];
+    LZ.g = { mode: 'pinch', d: luxZoomDist(a, b), mx: (a.x + b.x) / 2 - r.left, my: (a.y + b.y) / 2 - r.top };
+  } else if(ids.length === 1){
+    var p = LZ.ptrs[ids[0]];
+    LZ.g = { mode: LZ.s > 1.02 ? 'pan' : 'swipe', x0: p.x, y0: p.y, x: p.x, y: p.y, t0: Date.now(), moved: false, after: !!(LZ.g && LZ.g.mode === 'pinch') };
+  } else LZ.g = null;
+}
+function luxZoomMove(e){
+  if(!LZ || !LZ.ptrs[e.pointerId]) return;
+  LZ.ptrs[e.pointerId] = { x: e.clientX, y: e.clientY };
+  var g = LZ.g;
+  if(!g || !LZ.base) return;
+  var r = LZ.stage.getBoundingClientRect(), ids = Object.keys(LZ.ptrs);
+  if(g.mode === 'pinch' && ids.length >= 2){
+    var a = LZ.ptrs[ids[0]], b = LZ.ptrs[ids[1]], d = luxZoomDist(a, b), mx = (a.x + b.x) / 2 - r.left, my = (a.y + b.y) / 2 - r.top;
+    LZ.tx += mx - g.mx; LZ.ty += my - g.my; // (le dita che si spostano insieme portano la tavola)
+    var ns = Math.max(.85, Math.min(LZ_MAX * 1.15, LZ.s * (g.d ? d / g.d : 1)));
+    var u = (mx - LZ.base.x - LZ.tx) / LZ.s, v = (my - LZ.base.y - LZ.ty) / LZ.s;
+    LZ.s = ns; LZ.tx = mx - LZ.base.x - u * ns; LZ.ty = my - LZ.base.y - v * ns;
+    g.d = d; g.mx = mx; g.my = my;
+    if(LZ.s >= 1) luxZoomClamp();
+    luxZoomApply(false);
+  } else if(g.mode === 'pan'){
+    LZ.tx += e.clientX - g.x; LZ.ty += e.clientY - g.y;
+    g.x = e.clientX; g.y = e.clientY;
+    if(Math.abs(e.clientX - g.x0) + Math.abs(e.clientY - g.y0) > 10) g.moved = true;
+    luxZoomClamp();
+    luxZoomApply(false);
+  } else if(g.mode === 'swipe'){
+    var dx = e.clientX - g.x0, dy = e.clientY - g.y0;
+    if(Math.abs(dx) + Math.abs(dy) > 10) g.moved = true;
+    if(Math.abs(dx) >= Math.abs(dy)){ luxZoomApply(false, dx, 0); LZ.el.style.removeProperty('--lzm-bg'); } // la tavola segue il dito di lato…
+    else if(dy > 0){ luxZoomApply(false, 0, dy); LZ.el.style.setProperty('--lzm-bg', String(Math.max(.35, 1 - dy / 480))); } // …o in giù, per chiudere
+  }
+}
+function luxZoomUp(e){
+  if(!LZ || !LZ.ptrs[e.pointerId]) return;
+  var g = LZ.g;
+  delete LZ.ptrs[e.pointerId];
+  var left = Object.keys(LZ.ptrs).length;
+  if(g && g.mode === 'pinch'){
+    if(left < 2){
+      if(LZ.s < 1.06) LZ.s = 1;
+      LZ.s = Math.min(LZ_MAX, LZ.s);
+      luxZoomClamp();
+      luxZoomApply(true);
+      luxZoomStart(); // (resta un dito: sposta)
+    }
+    return;
+  }
+  if(g && e.type === 'pointerup'){
+    var dx = e.clientX - g.x0, dy = e.clientY - g.y0;
+    if(g.mode === 'swipe' && g.moved){
+      LZ.el.style.removeProperty('--lzm-bg');
+      if(Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.3){ LZ.g = null; luxZoomGo(LZ.idx + (dx < 0 ? 1 : -1)); return; }
+      if(dy > 110 && dy > Math.abs(dx) * 1.3){ luxZoomClose(); return; }
+      luxZoomApply(true); // (ricade al suo posto)
+    }
+    if(!g.moved && !g.after && Date.now() - g.t0 < 350 && e.pointerType !== 'mouse') luxZoomTap(e.clientX, e.clientY);
+  } else if(g && g.mode === 'swipe'){ LZ.el.style.removeProperty('--lzm-bg'); luxZoomApply(true); }
+  LZ.g = null;
+  if(left) luxZoomStart();
+}
+// doppio tocco: ingrandisce lì (o torna alla tavola intera)
+function luxZoomTap(x, y){
+  var now = Date.now(), last = LZ.tap;
+  if(last && now - last.t < 320 && Math.abs(x - last.x) < 34 && Math.abs(y - last.y) < 34){
+    LZ.tap = null;
+    var r = LZ.stage.getBoundingClientRect();
+    luxZoomAt(x - r.left, y - r.top, LZ.s > 1.05 ? 1 : 2.5, true);
+    return;
+  }
+  LZ.tap = { t: now, x: x, y: y };
+}
+function luxZoomTexts(){
+  if(!LZ) return;
+  var el = LZ.el, n = readerPages.length, i = LZ.idx;
+  el.querySelector('.lzm-count').textContent = (i + 1) + ' / ' + n;
+  el.setAttribute('aria-label', t('zoom.aria').replace('{n}', String(i + 1)).replace('{total}', String(n)));
+  var set = function(sel, key){ var b = el.querySelector(sel); if(b){ b.setAttribute('aria-label', t(key)); b.title = t(key); } };
+  set('[data-lzm="close"]', 'apptu.close'); set('[data-lzm="prev"]', 'zoom.prev'); set('[data-lzm="next"]', 'zoom.next');
+  set('[data-lzm="in"]', 'zoom.in'); set('[data-lzm="out"]', 'zoom.out'); set('[data-lzm="fit"]', 'zoom.fit');
+  el.querySelector('[data-lzm="prev"]').disabled = i <= 0;
+  el.querySelector('[data-lzm="next"]').disabled = i >= n - 1;
+  el.querySelector('.lzm-img').alt = t('reader.pageN').replace('{n}', String(i + 1));
+}
+// la tavola LZ.idx nello zoom (a tavola intera; o ingrandita dove si è toccato, con LZ.pend)
+function luxZoomLoad(){
+  if(!LZ) return;
+  var idx = LZ.idx, img = LZ.img, token = {}, best = false;
+  LZ.load = token;
+  luxZoomTexts();
+  LZ.base = null;
+  img.classList.remove('is-ready');
+  img.removeAttribute('src');
+  LZ.el.classList.add('is-loading');
+  var show = function(url, isBest){
+    if(!LZ || LZ.load !== token || !url || best) return;
+    if(isBest) best = true;
+    if(img.classList.contains('is-ready')){ img.src = url; return; } // (arriva la pagina pulita: stessa tavola, stesso zoom)
+    var probe = new Image();
+    probe.onload = function(){
+      if(!LZ || LZ.load !== token) return;
+      if(!isBest && best) return; // (intanto è arrivata la versione migliore: si mostra lei)
+      img.src = url;
+      if(img.classList.contains('is-ready')) return;
+      luxZoomLayout();
+      LZ.s = 1; LZ.tx = 0; LZ.ty = 0;
+      luxZoomClamp();
+      luxZoomApply(false);
+      img.classList.add('is-ready');
+      LZ.el.classList.remove('is-loading');
+      if(LZ.pend){ var p = LZ.pend; LZ.pend = null; luxZoomAt(p.x, p.y, p.s, true); }
+      if(LZ.g) luxZoomStart(); // (il pizzico cominciato nel lettore continua qui)
+    };
+    probe.onerror = function(){
+      if(!LZ || LZ.load !== token) return;
+      if(url !== readerPages[idx]){ best = false; show(readerPages[idx], true); } // (la pulita non arriva: quella pubblica)
+      else if(!img.classList.contains('is-ready')) LZ.el.classList.remove('is-loading');
+    };
+    probe.src = url;
+  };
+  luxZoomSrc(idx, show);
+  [idx + 1, idx - 1].forEach(function(j){ if(j >= 0 && j < readerPages.length) luxZoomSrc(j, function(u, b){ if(b) new Image().src = u; }); }); // (le vicine, pronte)
+}
+function luxZoomGo(idx){
+  if(!LZ) return;
+  if(idx < 0 || idx >= readerPages.length){ luxZoomApply(true); return; } // (non c'è: la tavola ricade)
+  LZ.idx = idx;
+  LZ.s = 1; LZ.tx = 0; LZ.ty = 0; LZ.tap = null; LZ.pend = null;
+  readerIndex = idx;
+  try { saveReadingProgress(readerItem, idx); } catch(e){}
+  luxZoomLoad();
+}
+function luxZoomOpen(idx, opt){
+  if(LZ || !readerItem || !readerPages.length) return;
+  opt = opt || {};
+  idx = Math.max(0, Math.min(readerPages.length - 1, idx | 0));
+  var el = luxZoomEl();
+  LZ = { el: el, stage: el.querySelector('.lzm-stage'), img: el.querySelector('.lzm-img'), idx: idx, idx0: idx, s: 1, tx: 0, ty: 0, base: null, ptrs: {}, g: null, tap: null, pend: null,
+         back: document.activeElement, hist: !document.getElementById('chatSection') };
+  el.style.removeProperty('--lzm-bg');
+  el.classList.remove('is-zoomed');
+  el.hidden = false;
+  document.documentElement.classList.add('lzm-on');
+  document.addEventListener('touchmove', luxZoomNoScroll, { passive: false }); // (il pizzico cominciato nel lettore non fa scorrere la pagina sotto)
+  if(LZ.hist) try { history.pushState({ luxZoom: 1 }, ''); } catch(e){} // («indietro» del telefono chiude lo zoom, non la pagina)
+  if(opt.ptrs){ LZ.ptrs = opt.ptrs; luxZoomStart(); } // due dita nel lettore: il pizzico continua qui
+  if(opt.s){ var r = LZ.stage.getBoundingClientRect(); LZ.pend = { x: opt.x - r.left, y: opt.y - r.top, s: opt.s }; }
+  luxZoomLoad();
+  // le prime due volte, come si usa
+  var help = el.querySelector('.lzm-help'), seen = 0;
+  try { seen = +(localStorage.getItem('lux_zoom_help') || 0); localStorage.setItem('lux_zoom_help', String(seen + 1)); } catch(e){}
+  help.textContent = t(luxZoomFine() ? 'zoom.helpMouse' : 'zoom.help');
+  help.classList.toggle('is-off', seen >= 2);
+  clearTimeout(luxZoomOpen._t);
+  if(seen < 2) luxZoomOpen._t = setTimeout(function(){ help.classList.add('is-off'); }, 3800);
+  if(!opt.ptrs){ var x = el.querySelector('.lzm-x'); try { x.focus({ preventScroll: true }); } catch(e){} }
+}
+function luxZoomClose(fromPop){
+  if(!LZ) return;
+  var idx = LZ.idx, moved = LZ.idx !== LZ.idx0, el = LZ.el, back = LZ.back, hist = LZ.hist;
+  LZ = null;
+  el.hidden = true;
+  el.classList.remove('is-loading');
+  document.documentElement.classList.remove('lzm-on');
+  document.removeEventListener('touchmove', luxZoomNoScroll, { passive: false });
+  if(hist && !fromPop && history.state && history.state.luxZoom){ luxZoomSkipPop = true; try { history.back(); } catch(e){ luxZoomSkipPop = false; } }
+  // il lettore sulla tavola dove si era arrivati (se si è cambiata tavola nello zoom)
+  if(moved) try {
+    if(readerScrollOn()){
+      var strip = document.querySelectorAll('#pageReaderScroll img')[idx];
+      if(strip) strip.scrollIntoView({ block: 'start' });
+    } else if(readerPages.length) showReaderPage(idx - (idx % readerStep()));
+  } catch(e){}
+  try { if(back && back.focus && back !== document.body && document.contains(back)) back.focus({ preventScroll: true }); } catch(e){}
+}
+// nel lettore: due dita o doppio tocco su una tavola (dal computer: doppio clic, o «Ingrandisci»)
+function luxZoomInit(){
+  var rd = document.getElementById('pageReader');
+  if(!rd || rd.dataset.lzm) return;
+  rd.dataset.lzm = '1';
+  var pageOf = function(tg){
+    var im = tg && tg.closest ? tg.closest('#pageReaderImg, #pageReaderImg2, .page-reader-strip') : null;
+    if(!im || im.classList.contains('hidden') || !im.getAttribute('src')) return -1;
+    var i = +im.dataset.pageIdx;
+    return isNaN(i) ? -1 : i;
+  };
+  rd.addEventListener('dblclick', function(e){
+    var i = pageOf(e.target);
+    if(i < 0 || LZ) return;
+    e.preventDefault();
+    luxZoomOpen(i, { x: e.clientX, y: e.clientY, s: 2.5 });
+  });
+  var touch = {}, taps = null;
+  rd.addEventListener('pointerdown', function(e){
+    if(e.pointerType !== 'touch' || LZ) return;
+    var i = pageOf(e.target);
+    if(i < 0){ touch = {}; return; }
+    touch[e.pointerId] = { x: e.clientX, y: e.clientY, x0: e.clientX, y0: e.clientY, i: i, t: Date.now() };
+    var ids = Object.keys(touch);
+    if(ids.length >= 2){ // due dita su una tavola: si apre lo zoom e il pizzico continua lì
+      var p = {};
+      ids.slice(0, 2).forEach(function(id){ p[id] = { x: touch[id].x, y: touch[id].y }; });
+      touch = {}; taps = null;
+      luxZoomOpen(i, { ptrs: p });
+    }
+  });
+  rd.addEventListener('gesturestart', function(e){ if(pageOf(e.target) >= 0 && e.cancelable) e.preventDefault(); }, { passive: false }); // (Safari: il pizzico su una tavola apre lo zoom, non ingrandisce la pagina)
+  rd.addEventListener('pointermove', function(e){ var p = touch[e.pointerId]; if(p){ p.x = e.clientX; p.y = e.clientY; } });
+  rd.addEventListener('pointercancel', function(e){ delete touch[e.pointerId]; taps = null; });
+  rd.addEventListener('pointerup', function(e){
+    var p = touch[e.pointerId];
+    delete touch[e.pointerId];
+    if(!p || LZ) return;
+    if(Math.abs(e.clientX - p.x0) > 12 || Math.abs(e.clientY - p.y0) > 12 || Date.now() - p.t > 350){ taps = null; return; }
+    var now = Date.now();
+    if(taps && now - taps.t < 320 && taps.i === p.i && Math.abs(e.clientX - taps.x) < 34 && Math.abs(e.clientY - taps.y) < 34){
+      taps = null;
+      luxZoomOpen(p.i, { x: e.clientX, y: e.clientY, s: 2.5 });
+      return;
+    }
+    taps = { t: now, x: e.clientX, y: e.clientY, i: p.i };
+  });
+  // nei comandi del lettore: «Ingrandisci» (la tavola che si sta leggendo)
+  var ctl = document.getElementById('readerCtl');
+  if(ctl && !document.getElementById('readerZoomOpen')){
+    var g = document.createElement('span');
+    g.className = 'reader-ctl-grp reader-grp-lzm';
+    g.innerHTML = '<button type="button" id="readerZoomOpen" class="reader-zoom-open"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/>' +
+      '<path d="M15.5 15.5L20 20M10.5 7.5v6M7.5 10.5h6"/></svg><span></span></button>';
+    g.firstChild.addEventListener('click', function(){ luxZoomOpen(readerIndex); });
+    ctl.appendChild(g);
+  }
+  luxZoomRelang();
+}
+function luxZoomRelang(){
+  var b = document.getElementById('readerZoomOpen');
+  if(b){ b.querySelector('span').textContent = t('zoom.open'); b.title = t(luxZoomFine() ? 'zoom.helpMouse' : 'zoom.hint'); }
+  if(LZ){
+    luxZoomTexts();
+    var h = LZ.el.querySelector('.lzm-help');
+    if(h) h.textContent = t(luxZoomFine() ? 'zoom.helpMouse' : 'zoom.help');
+  }
+}
+// la prima volta che si legge dal telefono: come si ingrandisce (una volta sola)
+function luxZoomHint(){
+  try {
+    if(localStorage.getItem('lux_zoom_hint') || !(window.matchMedia && window.matchMedia('(pointer: coarse)').matches)) return;
+    localStorage.setItem('lux_zoom_hint', '1');
+  } catch(e){ return; }
+  setTimeout(function(){ if(readerItem && !LZ) luxToast(t('zoom.hint')); }, 1600);
+}
+document.addEventListener('pointermove', luxZoomMove, { passive: true });
+document.addEventListener('pointerup', luxZoomUp, { passive: true });
+document.addEventListener('pointercancel', luxZoomUp, { passive: true });
+document.addEventListener('keydown', function(e){
+  if(!LZ) return;
+  var r = LZ.stage.getBoundingClientRect(), k = e.key;
+  if(k === 'Escape'){ e.preventDefault(); e.stopImmediatePropagation(); luxZoomClose(); }
+  else if(k === 'ArrowRight' || k === 'PageDown'){ e.preventDefault(); e.stopImmediatePropagation(); luxZoomGo(LZ.idx + 1); }
+  else if(k === 'ArrowLeft' || k === 'PageUp'){ e.preventDefault(); e.stopImmediatePropagation(); luxZoomGo(LZ.idx - 1); }
+  else if(k === '+' || k === '='){ e.preventDefault(); luxZoomAt(r.width / 2, r.height / 2, LZ.s * 1.6, true); }
+  else if(k === '-' || k === '_'){ e.preventDefault(); luxZoomAt(r.width / 2, r.height / 2, LZ.s / 1.6, true); }
+  else if(k === '0'){ e.preventDefault(); luxZoomAt(r.width / 2, r.height / 2, 1, true); }
+  else if(k === 'Tab'){ // (il tasto Tab resta dentro lo zoom)
+    var f = Array.prototype.filter.call(LZ.el.querySelectorAll('button'), function(b){ return !b.disabled && b.offsetParent; });
+    if(!f.length) return;
+    e.preventDefault();
+    var i = f.indexOf(document.activeElement);
+    f[(i < 0 ? 0 : i + (e.shiftKey ? -1 : 1) + f.length) % f.length].focus();
+  }
+}, true);
+window.addEventListener('popstate', function(){
+  if(luxZoomSkipPop){ luxZoomSkipPop = false; return; }
+  if(LZ) luxZoomClose(true);
+});
+function luxZoomNoScroll(e){ if(LZ && e.cancelable) e.preventDefault(); }
+['gesturestart', 'gesturechange'].forEach(function(n){ document.addEventListener(n, function(e){ if(LZ && e.cancelable) e.preventDefault(); }, { passive: false }); }); // (Safari: il pizzico non ingrandisce la pagina sotto)
+window.addEventListener('resize', function(){ // (telefono girato: la tavola intera, nelle misure nuove)
+  if(!LZ || !LZ.base) return;
+  var st = LZ.stage.getBoundingClientRect();
+  if(Math.abs(st.width - LZ.base.sw) < 40 && Math.abs(st.height - LZ.base.sh) < 80) return;
+  luxZoomLayout(); LZ.s = 1; LZ.tx = 0; LZ.ty = 0; luxZoomClamp(); luxZoomApply(false);
+});
+
+/* ============ v253: IL CESTINO ============
+   «Elimina» non cancella più subito: il capitolo va nel cestino (deleted_at). Sparisce dal sito per tutti (lo
+   nasconde il database, col file cestino_v253.sql) e per 30 giorni si rimette con un tocco da Amministra › Cestino.
+   Passati i 30 giorni, la prima volta che si apre Amministra si elimina per sempre (o prima, a mano: «Elimina per
+   sempre», «Svuota il cestino»). Finché il file SQL non c'è (la colonna manca), «Elimina» è quello di prima.
+   Il catalogo di tutti arriva senza i capitoli nel cestino (il server non li manda): l'admin li chiede a parte
+   (luxTrashLoad) e in questa copia restano con deleted_at; getCatalog() non li dà, getCatalog(true) sì. */
+var LUX_TRASH_DAYS = 30;
+var LUX_TRASH = { purged: false, err: null, server: null }; // server: 'ok' | 'missing' (il file SQL non c'è) | null (non si sa)
+function luxTrashed(i){ return !!(i && i.deleted_at); }
+// il cestino c'è se il database ha la colonna (i capitoli arrivano con deleted_at, anche vuoto)
+function luxTrashOn(){
+  if(LUX_TRASH.server === 'ok') return true;
+  if(LUX_TRASH.server === 'missing') return false;
+  return getCatalog(true).some(function(i){ return i && Object.prototype.hasOwnProperty.call(i, 'deleted_at'); });
+}
+function luxTrashSince(i){ var t = Date.parse(i && i.deleted_at); return isNaN(t) ? null : t; }
+function luxTrashUntil(i){ var t = luxTrashSince(i); return t === null ? null : t + LUX_TRASH_DAYS * 864e5; }
+function luxTrashDay(ms){
+  try { return new Date(ms).toLocaleDateString('it-IT', { day: 'numeric', month: 'long' }); }
+  catch(e){ return new Date(ms).toISOString().slice(0, 10); }
+}
+function luxTrashHeaders(){
+  var s = getSession();
+  return { 'apikey': SUPABASE_ANON_KEY, 'Authorization': 'Bearer ' + (s && s.access_token), 'Content-Type': 'application/json', 'Prefer': 'return=representation' };
+}
+// (per l'admin) i capitoli nel cestino; null se non si è potuto chiedere, [] se il file SQL non c'è ancora
+function luxTrashLoad(){
+  if(!SUPABASE_URL || !isAdmin()) return Promise.resolve(null);
+  return refreshSessionIfNeeded().then(function(){
+    if(!isAdmin()) return null;
+    return fetch(SUPABASE_URL + '/rest/v1/catalog?select=*&deleted_at=not.is.null&order=deleted_at.desc', { headers: luxTrashHeaders() })
+      .then(function(r){
+        if(r.status === 400 || r.status === 404){ LUX_TRASH.server = 'missing'; return []; }
+        if(!r.ok) throw new Error('HTTP ' + r.status);
+        LUX_TRASH.server = 'ok';
+        return r.json();
+      });
+  }).catch(function(e){ console.warn('[cestino] elenco non arrivato:', e); return null; });
+}
+// i capitoli nel cestino arrivati dal server prendono il posto di quelli di prima (null: non si sa, restano)
+function luxCatalogSetTrashed(list){
+  if(!list) return;
+  var all = getCatalog(true).filter(function(i){ return !luxTrashed(i); }), at = {};
+  all.forEach(function(i, k){ at[i.id] = k; });
+  list.forEach(function(i){
+    if(!i || !i.id || !i.deleted_at) return;
+    if(at[i.id] === undefined){ at[i.id] = all.length; all.push(i); }
+    else all[at[i.id]] = i;
+  });
+  luxCatalogWrite(all);
+}
+function luxTrashPatch(ids, val){
+  return refreshSessionIfNeeded().then(function(){
+    return fetch(SUPABASE_URL + '/rest/v1/catalog?id=in.(' + ids.map(encodeURIComponent).join(',') + ')', { method: 'PATCH', headers: luxTrashHeaders(), body: JSON.stringify({ deleted_at: val }) });
+  }).then(function(r){
+    if(r.ok) return r.json().catch(function(){ return []; });
+    return r.text().then(function(tx){
+      var e = new Error('HTTP ' + r.status + ' ' + tx);
+      e.missing = r.status === 400 && /PGRST204|deleted_at/.test(tx); // (il file SQL non c'è ancora)
+      if(e.missing) LUX_TRASH.server = 'missing';
+      throw e;
+    });
+  }).then(function(rows){
+    var done = [];
+    (Array.isArray(rows) ? rows : []).forEach(function(x){
+      if(!x || !x.id) return;
+      done.push(x.id);
+      var patch = {};
+      for(var k in x){ if(Object.prototype.hasOwnProperty.call(x, k) && k !== 'comment_count') patch[k] = x[k]; } // (anche l'uscita: il database la sistema)
+      if(!Object.prototype.hasOwnProperty.call(patch, 'deleted_at')) patch.deleted_at = val;
+      luxCatalogLocalPatch(x.id, patch);
+      if(val && LUX_SCHED.seen) delete LUX_SCHED.seen[x.id]; // (nel cestino non esce)
+    });
+    if(done.length) LUX_TRASH.server = 'ok';
+    return done;
+  });
+}
+function luxTrashMove(ids){ return luxTrashPatch(ids, new Date().toISOString()); }
+function luxTrashRestore(ids){ return luxTrashPatch(ids, null); }
+function luxTrashAfter(){
+  renderCatalog(); renderAdminList();
+  try { luxSchedWatch(); } catch(e){} // (un capitolo in programma ripristinato torna ad aspettare la sua ora)
+}
+// dal pannello del capitolo: nel cestino (senza il file SQL: eliminato per sempre, come prima, chiedendolo)
+function luxTrashAsk(item, btn, oldDelete){
+  if(!confirm('Spostare nel cestino «' + (item.title || '') + '»?\n\nNessuno lo vedrà più; per 30 giorni lo ritrovi in Amministra › Cestino.')) return;
+  btn.disabled = true;
+  btn.querySelector('span').textContent = 'Sposto nel cestino…';
+  luxTrashMove([item.id]).then(function(done){
+    if(!done.length) throw new Error('nessuna riga');
+    admSheetClose();
+    adminSelectedIds.delete(item.id);
+    luxTrashAfter();
+    luxToast('Nel cestino: «' + (item.title || '') + '». Lo ritrovi lì per 30 giorni.');
+  }).catch(function(e){
+    console.warn('[cestino]', e);
+    btn.disabled = false;
+    btn.querySelector('span').textContent = 'Sposta nel cestino';
+    if(e && e.missing){
+      if(confirm('Il cestino non è ancora attivo: su Supabase manca il file cestino_v253.sql.\n\nEliminare «' + (item.title || '') + '» per sempre, come prima?')) oldDelete();
+      return;
+    }
+    window.alert('Non è stato possibile spostarlo nel cestino: controlla la connessione e riprova.');
+  });
+}
+// «Sposta nel cestino» per i titoli selezionati
+function luxTrashBulk(ids){
+  if(!confirm(ids.length === 1 ? 'Spostare nel cestino il titolo selezionato?' : 'Spostare nel cestino i ' + ids.length + ' titoli selezionati?')) return;
+  var bulkBtn = document.getElementById('btnBulkDelete');
+  if(bulkBtn) bulkBtn.disabled = true;
+  luxTrashMove(ids).then(function(done){
+    done.forEach(function(id){ adminSelectedIds.delete(id); });
+    if(bulkBtn) bulkBtn.disabled = false;
+    luxTrashAfter();
+    if(done.length) luxToast(done.length === 1 ? 'Nel cestino 1 titolo: lo ritrovi lì per 30 giorni' : 'Nel cestino ' + done.length + ' titoli: li ritrovi lì per 30 giorni');
+    if(done.length < ids.length) window.alert((ids.length - done.length) + ' su ' + ids.length + ' non spostati nel cestino: riprova.');
+  }).catch(function(e){
+    console.warn('[cestino]', e);
+    if(bulkBtn) bulkBtn.disabled = false;
+    window.alert(e && e.missing ? 'Il cestino non è ancora attivo: su Supabase manca il file cestino_v253.sql.' : 'Non è stato possibile spostarli nel cestino: controlla la connessione e riprova.');
+  });
+}
+function luxTrashForever(item, done){
+  supabaseDelete(item.id).then(function(res){
+    if(res !== true){ window.alert(luxDeleteMsg(res)); if(done) done(false); return; }
+    luxCatalogRemove(item.id);
+    LUX_TRASH.err = null;
+    luxTrashAfter();
+    luxToast('Eliminato per sempre: «' + (item.title || '') + '»');
+    if(done) done(true);
+  });
+}
+// elimina per sempre, uno dopo l'altro; alla fine fine(quanti non si sono potuti eliminare)
+function luxTrashDeleteAll(list, fine){
+  var bad = 0;
+  (function next(k){
+    if(k >= list.length){ fine(bad); return; }
+    supabaseDelete(list[k].id).then(function(res){
+      if(res === true) luxCatalogRemove(list[k].id); else { bad++; LUX_TRASH.err = res; }
+      next(k + 1);
+    });
+  })(0);
+}
+// passati i 30 giorni: per sempre (la prima volta che si apre Amministra, col cestino appena arrivato dal server)
+function luxTrashPurge(){
+  if(LUX_TRASH.purged || !isAdmin() || !catalogFreshLoaded || LUX_TRASH.server !== 'ok') return;
+  LUX_TRASH.purged = true;
+  var now = Date.now();
+  var old = getCatalog(true).filter(function(i){ var u = luxTrashUntil(i); return luxTrashed(i) && u !== null && u <= now; });
+  if(!old.length) return;
+  luxTrashDeleteAll(old, function(){ renderAdminList(); });
+}
+function luxTrashListHtml(items){
+  items = items.slice().sort(function(a, b){ return (luxTrashSince(b) || 0) - (luxTrashSince(a) || 0); });
+  if(!items.length) return '<p class="adm-empty">' + (adminListSearch && getCatalog(true).some(luxTrashed) ? 'Nel cestino non c\'è niente con questa ricerca.' : 'Il cestino è vuoto.') + '</p>';
+  var now = Date.now();
+  var rows = items.map(function(it){
+    var since = luxTrashSince(it), until = luxTrashUntil(it);
+    return '<div class="lxt-item">' + admRowHtml(it) +
+      '<div class="lxt-meta"><span>' + (since !== null ? 'Nel cestino dal ' + escapeHtml(luxTrashDay(since)) + ' · ' : '') +
+        (until !== null && until > now ? 'si elimina per sempre il ' + escapeHtml(luxTrashDay(until)) : 'si elimina per sempre') + '</span>' +
+        '<button type="button" class="btn btn-sm btn-ghost lxt-restore" data-lxt-restore="' + escapeHtml(it.id) + '">' + ADM_I.undo + '<span>Ripristina</span></button></div></div>';
+  }).join('');
+  return '<section class="adm-group is-open lxt-group" data-lxt-list>' +
+    '<div class="adm-shead"><span class="adm-gname">' + ADM_I.trash + 'Cestino</span><span class="adm-gcount">' + items.length + (items.length === 1 ? ' titolo' : ' titoli') +
+      ' · nessuno li vede; dopo 30 giorni si eliminano per sempre</span></div>' +
+    (LUX_TRASH.err ? '<p class="lxt-err">Alcuni non si possono eliminare per sempre. ' + escapeHtml(luxDeleteMsg(LUX_TRASH.err)) + '</p>' : '') +
+    '<div class="adm-gbody">' + rows + '</div>' +
+    '<div class="lxt-foot"><button type="button" class="btn btn-sm btn-ghost lxt-empty-btn" data-lxt-empty>' + ADM_I.trash + '<span>Svuota il cestino</span></button></div></section>';
+}
+function luxTrashWire(list){
+  if(list.dataset.lxtBound) return;
+  list.dataset.lxtBound = '1';
+  list.addEventListener('click', function(e){
+    var rs = e.target.closest ? e.target.closest('[data-lxt-restore]') : null;
+    if(rs && list.contains(rs)){
+      var id = rs.getAttribute('data-lxt-restore'), it = luxCatalogFind(id);
+      rs.disabled = true;
+      luxTrashRestore([id]).then(function(done){
+        if(!done.length) throw new Error('nessuna riga');
+        luxTrashAfter();
+        luxToast('Ripristinato: «' + ((it && it.title) || '') + '»');
+      }).catch(function(err){ console.warn('[cestino]', err); rs.disabled = false; window.alert('Non è stato possibile ripristinarlo: riprova.'); });
+      return;
+    }
+    var em = e.target.closest ? e.target.closest('[data-lxt-empty]') : null;
+    if(em && list.contains(em)){
+      var all = getCatalog(true).filter(luxTrashed);
+      if(!all.length || !confirm('Eliminare per sempre ' + (all.length === 1 ? 'il titolo' : 'i ' + all.length + ' titoli') + ' nel cestino?\n\nNon si potranno più recuperare.')) return;
+      em.disabled = true;
+      LUX_TRASH.err = null;
+      luxTrashDeleteAll(all, function(bad){
+        luxTrashAfter();
+        if(!bad) luxToast('Cestino svuotato');
+        else window.alert(bad + ' su ' + all.length + ' non eliminati. ' + luxDeleteMsg(LUX_TRASH.err));
+      });
+    }
+  });
+}
+// il pannello di un capitolo nel cestino: «Ripristina» o «Elimina per sempre»
+function luxTrashSheet(w, item){
+  var body = w.querySelector('.adm-sheet-body'), I = ADM_I;
+  var cover = item.cover_url ? coverThumbUrl(item.cover_url, 200) : '';
+  var since = luxTrashSince(item), until = luxTrashUntil(item);
+  var meta = [item.character, item.issue, admDayLabel(item)].filter(Boolean).map(function(x){ return escapeHtml(String(x)); }).join(' · ');
+  body.innerHTML =
+    '<div class="adm-sheet-grab" aria-hidden="true"></div>' +
+    '<div class="adm-sheet-head">' +
+      '<span class="adm-sheet-cover">' + (cover ? '<img alt="" src="' + escapeHtml(cover) + '">' : '') + '</span>' +
+      '<div class="adm-sheet-ttl"><b id="admSheetTitle">' + escapeHtml(item.title || '—') + '</b><span>' + meta + '</span><span class="adm-tags"><span class="adm-tag adm-tag-trash">Nel cestino</span></span></div>' +
+      '<button type="button" class="adm-sheet-x" data-adm-close aria-label="' + escapeHtml(t('apptu.close')) + '">' + I.x + '</button>' +
+    '</div>' +
+    '<p class="lxt-sheet-note">' + (since !== null ? 'Nel cestino dal ' + escapeHtml(luxTrashDay(since)) + '. ' : '') + 'Nessuno lo vede. ' +
+      (until !== null && until > Date.now() ? 'Se non lo ripristini, si elimina per sempre il ' + escapeHtml(luxTrashDay(until)) + '.' : 'Si elimina per sempre alla prossima apertura di Amministra.') + '</p>' +
+    '<div class="lxt-sheet-acts"><button type="button" class="btn btn-primary" data-lxt-s="restore">' + I.undo + '<span>Ripristina</span></button></div>' +
+    '<button type="button" class="adm-del" data-lxt-s="forever">' + I.trash + '<span>Elimina per sempre</span></button>';
+  body.querySelector('[data-lxt-s="restore"]').addEventListener('click', function(){
+    var b = this;
+    b.disabled = true;
+    luxTrashRestore([item.id]).then(function(done){
+      if(!done.length) throw new Error('nessuna riga');
+      admSheetClose();
+      luxTrashAfter();
+      luxToast('Ripristinato: «' + (item.title || '') + '»');
+    }).catch(function(e){ console.warn('[cestino]', e); b.disabled = false; window.alert('Non è stato possibile ripristinarlo: riprova.'); });
+  });
+  body.querySelector('[data-lxt-s="forever"]').addEventListener('click', function(){
+    if(!confirm('Eliminare per sempre «' + (item.title || '') + '»?\n\nNon si potrà più recuperare.')) return;
+    var b = this;
+    b.disabled = true;
+    b.querySelector('span').textContent = 'Elimino…';
+    luxTrashForever(item, function(ok){
+      if(ok){ admSheetClose(); return; }
+      b.disabled = false;
+      b.querySelector('span').textContent = 'Elimina per sempre';
+    });
+  });
 }
 
 function handleAddAnnouncement(){

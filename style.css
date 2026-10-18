@@ -5146,3 +5146,75 @@ html.lux-arrive-wait body::after{content:"";position:fixed;inset:0;z-index:9799;
 html.lux-arrive-wait body::before{content:"";position:fixed;left:50%;top:46%;width:88px;height:88px;margin:-44px 0 0 -44px;z-index:9800;background:url("logo-lg.webp") center/contain no-repeat;animation:luxArrivePulse 1.3s ease-in-out infinite;pointer-events:none;}
 @keyframes luxArrivePulse{0%,100%{opacity:.4;transform:scale(.94);}50%{opacity:1;transform:scale(1);}}
 @media (prefers-reduced-motion:reduce){ html.lux-arrive-wait body::before{animation:none;opacity:.85;} }
+/* ============ v253: lo zoom sulle tavole ============
+   a tutto schermo, sopra a tutto (anche al pannello di Amministra), sotto ai messaggi (luxToast) */
+.lux-zoom{position:fixed;inset:0;z-index:9690;background:rgba(6,4,5,var(--lzm-bg,1));color:#efe3c4;touch-action:none;-webkit-user-select:none;user-select:none;
+  overscroll-behavior:contain;-webkit-tap-highlight-color:transparent;}
+.lux-zoom[hidden]{display:none !important;}
+.lzm-stage{position:absolute;inset:0;overflow:hidden;touch-action:none;cursor:zoom-in;}
+.lux-zoom.is-zoomed .lzm-stage{cursor:grab;}
+.lux-zoom.is-zoomed .lzm-stage:active{cursor:grabbing;}
+.lzm-img{position:absolute;left:0;top:0;max-width:none;max-height:none;margin:0;transform-origin:0 0;opacity:0;will-change:transform;pointer-events:none;
+  -webkit-user-drag:none;-webkit-touch-callout:none;}
+.lzm-img.is-ready{opacity:1;transition:opacity .18s ease;}
+.lzm-img.lzm-anim{transition:transform .26s cubic-bezier(.2,.7,.2,1),opacity .18s ease;}
+.lux-zoom.is-loading .lzm-stage::after{content:'';position:absolute;left:50%;top:50%;width:34px;height:34px;margin:-17px 0 0 -17px;box-sizing:border-box;border-radius:50%;
+  border:2px solid rgba(227,194,115,.22);border-top-color:#e3c273;animation:lzmSpin .8s linear infinite;}
+@keyframes lzmSpin{to{transform:rotate(360deg);}}
+.lzm-top{position:absolute;left:0;right:0;top:0;display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:calc(10px + env(safe-area-inset-top,0px)) calc(12px + env(safe-area-inset-right,0px)) 18px calc(14px + env(safe-area-inset-left,0px));
+  background:linear-gradient(180deg,rgba(6,4,5,.7),rgba(6,4,5,0));pointer-events:none;}
+.lzm-top > *{pointer-events:auto;}
+.lzm-count{padding:6px 11px;border-radius:999px;background:rgba(22,13,15,.72);font:400 12px/1 'Space Mono',monospace;letter-spacing:.06em;color:rgba(239,227,196,.9);}
+.lzm-x,.lzm-nav,.lzm-tools button{display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;margin:0;padding:0;color:#efe3c4;cursor:pointer;
+  -webkit-tap-highlight-color:transparent;}
+.lzm-x{width:46px;height:46px;border:1px solid rgba(227,194,115,.38);border-radius:50%;background:rgba(22,13,15,.78);}
+.lzm-x svg,.lzm-nav svg,.lzm-tools svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.lzm-nav{position:absolute;top:50%;width:50px;height:68px;margin-top:-34px;border:1px solid rgba(227,194,115,.28);border-radius:14px;background:rgba(22,13,15,.66);}
+.lzm-prev{left:calc(14px + env(safe-area-inset-left,0px));}
+.lzm-next{right:calc(14px + env(safe-area-inset-right,0px));}
+.lzm-nav:disabled{opacity:.22;cursor:default;}
+.lzm-tools{position:absolute;left:50%;bottom:calc(16px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);display:flex;gap:4px;padding:4px;
+  border:1px solid rgba(227,194,115,.3);border-radius:999px;background:rgba(22,13,15,.82);}
+.lzm-tools button{width:48px;height:42px;border:0;border-radius:999px;background:transparent;}
+.lzm-tools button:disabled{opacity:.3;cursor:default;}
+.lzm-x:focus-visible,.lzm-nav:focus-visible,.lzm-tools button:focus-visible{outline:2px solid #e3c273;outline-offset:2px;}
+@media (hover:hover){ .lzm-x:hover,.lzm-nav:not(:disabled):hover,.lzm-tools button:not(:disabled):hover{background:rgba(64,38,42,.92);} }
+.lzm-help{position:absolute;left:50%;bottom:calc(76px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);box-sizing:border-box;width:max-content;max-width:min(92vw,470px);
+  margin:0;padding:8px 14px;border-radius:12px;background:rgba(22,13,15,.86);font:400 15px/1.35 'Crimson Pro',Georgia,serif;text-align:center;color:#efe3c4;
+  pointer-events:none;transition:opacity .4s ease;}
+.lzm-help.is-off{opacity:0;}
+@media (pointer:coarse){ .lzm-nav{display:none;} } /* (col dito: si scorre di lato) */
+html.lzm-on{overflow:hidden;}
+@media (prefers-reduced-motion:reduce){ .lzm-img.lzm-anim,.lzm-img.is-ready,.lzm-help{transition:none;} .lux-zoom.is-loading .lzm-stage::after{animation-duration:2.4s;} }
+/* nel lettore: due dita su una tavola aprono lo zoom (la pagina del sito non si ingrandisce); dal computer il cursore lo dice */
+#pageReaderImg,#pageReaderImg2,.page-reader-strip{touch-action:pan-x pan-y;}
+@media (hover:hover) and (pointer:fine){ #pageReaderImg,#pageReaderImg2,.page-reader-strip{cursor:zoom-in;} }
+.reader-zoom-open{display:inline-flex;align-items:center;gap:6px;}
+.reader-zoom-open svg{flex:none;width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+
+/* ============ v253: il cestino in Amministra ============ */
+#adminSection .lxt-group{border-color:rgba(226,75,74,.38);}
+#adminSection .lxt-group .adm-shead .adm-gname svg{stroke:#f08a7f;}
+#adminSection .lxt-group .adm-check{display:none;}
+#adminSection .lxt-group .adm-open{padding-left:12px;}
+#adminSection .lxt-item{border-top:1px solid rgba(201,162,77,.1);}
+#adminSection .lxt-item .adm-row{border-top:0;}
+#adminSection .lxt-item .adm-thumb img{filter:grayscale(.75) brightness(.8);}
+#adminSection .lxt-meta{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px 12px;padding:0 12px 12px;
+  font:italic 400 14px/1.35 'Crimson Pro',Georgia,serif;color:var(--parchment-dim);}
+#adminSection .lxt-meta .btn,#adminSection .lxt-foot .btn{display:inline-flex;align-items:center;gap:7px;min-height:40px;margin:0;}
+#adminSection .lxt-meta svg,#adminSection .lxt-foot svg,.adm-sheet .lxt-sheet-acts svg{flex:none;width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
+#adminSection .lxt-foot{display:flex;justify-content:flex-end;padding:10px 12px 12px;border-top:1px solid rgba(201,162,77,.1);}
+#adminSection .lxt-empty-btn{border-color:rgba(226,75,74,.6);color:#f08a7f;}
+#adminSection .lxt-err{margin:0;padding:10px 16px;background:rgba(226,75,74,.08);font:400 15px/1.4 'Crimson Pro',Georgia,serif;color:#f4a596;}
+#adminSection .adm-tag-trash,.adm-sheet .adm-tag-trash{border-color:rgba(226,75,74,.6);color:#f08a7f;}
+.adm-sheet .lxt-sheet-note{margin:12px 2px 14px;font:400 16px/1.45 'Crimson Pro',Georgia,serif;color:var(--parchment-dim);}
+.adm-sheet .lxt-sheet-acts{display:flex;margin:0 0 10px;}
+.adm-sheet .lxt-sheet-acts .btn{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:52px;margin:0;border-radius:14px;
+  font:700 16.5px/1.2 'Crimson Pro',Georgia,serif;letter-spacing:0;text-transform:none;}
+body.theme-light #adminSection .lxt-group{border-color:rgba(179,38,30,.35);}
+body.theme-light #adminSection .lxt-group .adm-shead .adm-gname svg{stroke:#b3261e;}
+body.theme-light #adminSection .lxt-empty-btn,body.theme-light #adminSection .adm-tag-trash,body.theme-light .adm-sheet .adm-tag-trash{color:#b3261e;border-color:rgba(179,38,30,.55);}
+body.theme-light #adminSection .lxt-err{color:#8f1d16;background:rgba(179,38,30,.07);}
+body.theme-light .adm-sheet .lxt-sheet-note,body.theme-light #adminSection .lxt-meta{color:#5a4a33;}
