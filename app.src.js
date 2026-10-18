@@ -1033,6 +1033,20 @@ Object.assign(STR.hi, {"search.btn": "खोजें", "search.ph": "कॉम�
 Object.assign(STR.bn, {"search.btn": "খুঁজুন", "search.ph": "কমিকস, চরিত্র, সিরিজ খুঁজুন…", "search.close": "বন্ধ করুন", "search.chars": "চরিত্র", "search.recent": "সাম্প্রতিক খোঁজ", "search.clear": "মুছুন", "search.latest": "নতুন প্রকাশ", "search.results": "কমিকস", "search.none": "“{q}”-এর জন্য কোনো কমিক পাওয়া যায়নি।", "search.noneHint": "কম শব্দ দিয়ে, বা কোনো চরিত্রের নাম দিয়ে খুঁজে দেখুন।", "search.more": "আরও {n}টি দেখান", "search.mature1": "প্রাপ্তবয়স্কদের জন্য আরও একটি ফল আছে: দেখতে “{toggle}” চালু করুন।", "search.matureN": "প্রাপ্তবয়স্কদের জন্য আরও {n}টি ফল আছে: দেখতে “{toggle}” চালু করুন।", "search.keys": "↑ ↓ বেছে নিতে · Enter খুলতে · Esc বন্ধ করতে", "search.count1": "1টি কমিক", "search.countN": "{n}টি কমিক", "search.wait": "ক্যাটালগ আসছে…"});
 Object.assign(STR.ar, {"search.btn": "بحث", "search.ph": "ابحث عن قصص وشخصيات وسلاسل…", "search.close": "إغلاق", "search.chars": "الشخصيات", "search.recent": "عمليات البحث الأخيرة", "search.clear": "مسح", "search.latest": "أحدث الإصدارات", "search.results": "القصص المصوّرة", "search.none": "لا توجد قصص مصوّرة لـ «{q}».", "search.noneHint": "جرّب كلمات أقل، أو اسم إحدى الشخصيات.", "search.more": "عرض المزيد ({n})", "search.mature1": "هناك أيضًا نتيجة واحدة للبالغين: فعّل «{toggle}» لرؤيتها.", "search.matureN": "هناك أيضًا نتائج أخرى للبالغين ({n}): فعّل «{toggle}» لرؤيتها.", "search.keys": "↑ ↓ للاختيار · Enter للفتح · Esc للإغلاق", "search.count1": "قصة مصوّرة واحدة", "search.countN": "عدد القصص: {n}", "search.wait": "الفهرس في الطريق…"});
 Object.assign(STR.pnb, {"search.btn": "لبھو", "search.ph": "کامکس، کردار، سیریز لبھو…", "search.close": "بند کرو", "search.chars": "کردار", "search.recent": "حالیہ کھوجاں", "search.clear": "مٹاؤ", "search.latest": "نویاں ریلیزاں", "search.results": "کامکس", "search.none": "«{q}» لئی کوئی کامک نئیں لبھی۔", "search.noneHint": "گھٹ لفظاں نال، یا کسے کردار دے ناں نال لبھ کے ویکھو۔", "search.more": "{n} ہور وکھاؤ", "search.mature1": "بالغاں لئی اک ہور نتیجہ وی اے: ویکھن لئی «{toggle}» چالو کرو۔", "search.matureN": "بالغاں لئی {n} ہور نتیجے وی نیں: ویکھن لئی «{toggle}» چالو کرو۔", "search.keys": "↑ ↓ چُنن لئی · Enter کھولن لئی · Esc بند کرن لئی", "search.count1": "1 کامک", "search.countN": "{n} کامکس", "search.wait": "کیٹلاگ آ رہیا اے…"});
+// v251: dal link dritti al capitolo, la fine del capitolo, le immagini per Instagram
+Object.assign(STR.it, {"lxarrive.tag": "Ti aspetta", "lxarrive.aria": "Leggi subito «{title}»", "lxarrive.adult": "per adulti: prima ti chiediamo l'età", "lxend.tag": "Fine del capitolo", "lxend.follow": "Segui {name}: ti avvisiamo quando esce il prossimo capitolo.", "lxend.following": "Segui già {name}: ti avvisiamo quando esce il prossimo capitolo.", "lxend.guestFollow": "Crea l'account gratis e segui {name}: ti avvisiamo quando esce il prossimo capitolo, e leggi senza limiti di tempo.", "lxend.guest": "Con un account gratuito ritrovi ogni fumetto dove l'hai lasciato e leggi senza limiti di tempo.", "lxend.followBtn": "Segui {name}", "lxend.followingBtn": "Segui già {name}", "promo.scan": "Inquadra e leggi"});
+Object.assign(STR.en, {"lxarrive.tag": "Waiting for you", "lxarrive.aria": "Read “{title}” now", "lxarrive.adult": "for adults: we’ll ask your age first", "lxend.tag": "End of chapter", "lxend.follow": "Follow {name}: we’ll let you know when the next chapter comes out.", "lxend.following": "You follow {name}: we’ll let you know when the next chapter comes out.", "lxend.guestFollow": "Create a free account and follow {name}: we’ll let you know when the next chapter comes out, and you can read with no time limit.", "lxend.guest": "With a free account you pick up every comic where you left off and read with no time limit.", "lxend.followBtn": "Follow {name}", "lxend.followingBtn": "Following {name}", "promo.scan": "Scan to read"});
+Object.assign(STR.es, {"lxarrive.tag": "Te espera", "lxarrive.aria": "Lee «{title}» ahora", "lxarrive.adult": "para adultos: antes te preguntaremos la edad", "lxend.tag": "Fin del capítulo", "lxend.follow": "Sigue a {name}: te avisaremos cuando salga el próximo capítulo.", "lxend.following": "Ya sigues a {name}: te avisaremos cuando salga el próximo capítulo.", "lxend.guestFollow": "Crea una cuenta gratis y sigue a {name}: te avisaremos cuando salga el próximo capítulo, y leerás sin límite de tiempo.", "lxend.guest": "Con una cuenta gratuita retomas cada cómic donde lo dejaste y lees sin límite de tiempo.", "lxend.followBtn": "Seguir a {name}", "lxend.followingBtn": "Sigues a {name}", "promo.scan": "Escanea y lee"});
+Object.assign(STR.fr, {"lxarrive.tag": "Il vous attend", "lxarrive.aria": "Lire « {title} » maintenant", "lxarrive.adult": "pour adultes : nous vous demanderons d’abord votre âge", "lxend.tag": "Fin du chapitre", "lxend.follow": "Suivez {name} : nous vous préviendrons à la sortie du prochain chapitre.", "lxend.following": "Vous suivez {name} : nous vous préviendrons à la sortie du prochain chapitre.", "lxend.guestFollow": "Créez un compte gratuit et suivez {name} : nous vous préviendrons à la sortie du prochain chapitre, et vous lirez sans limite de temps.", "lxend.guest": "Avec un compte gratuit, vous reprenez chaque BD là où vous l’aviez laissée et lisez sans limite de temps.", "lxend.followBtn": "Suivre {name}", "lxend.followingBtn": "Vous suivez {name}", "promo.scan": "Scannez pour lire"});
+Object.assign(STR.de, {"lxarrive.tag": "Wartet auf dich", "lxarrive.aria": "„{title}“ jetzt lesen", "lxarrive.adult": "für Erwachsene: Wir fragen dich zuerst nach deinem Alter", "lxend.tag": "Ende des Kapitels", "lxend.follow": "Folge {name}: Wir sagen dir Bescheid, wenn das nächste Kapitel erscheint.", "lxend.following": "Du folgst {name}: Wir sagen dir Bescheid, wenn das nächste Kapitel erscheint.", "lxend.guestFollow": "Erstelle ein kostenloses Konto und folge {name}: Wir sagen dir Bescheid, wenn das nächste Kapitel erscheint, und du liest ohne Zeitlimit.", "lxend.guest": "Mit einem kostenlosen Konto machst du bei jedem Comic dort weiter, wo du aufgehört hast, und liest ohne Zeitlimit.", "lxend.followBtn": "{name} folgen", "lxend.followingBtn": "Du folgst {name}", "promo.scan": "Scannen und lesen"});
+Object.assign(STR.pt, {"lxarrive.tag": "Está esperando por você", "lxarrive.aria": "Ler “{title}” agora", "lxarrive.adult": "para adultos: antes vamos perguntar sua idade", "lxend.tag": "Fim do capítulo", "lxend.follow": "Siga {name}: avisaremos você quando sair o próximo capítulo.", "lxend.following": "Você já segue {name}: avisaremos você quando sair o próximo capítulo.", "lxend.guestFollow": "Crie uma conta grátis e siga {name}: avisaremos você quando sair o próximo capítulo, e você lê sem limite de tempo.", "lxend.guest": "Com uma conta gratuita, você retoma cada quadrinho de onde parou e lê sem limite de tempo.", "lxend.followBtn": "Seguir {name}", "lxend.followingBtn": "Seguindo {name}", "promo.scan": "Escaneie e leia"});
+Object.assign(STR.ru, {"lxarrive.tag": "Ждёт вас", "lxarrive.aria": "Читать «{title}» сейчас", "lxarrive.adult": "для взрослых: сначала спросим ваш возраст", "lxend.tag": "Конец главы", "lxend.follow": "Подпишитесь на {name}: мы сообщим, когда выйдет следующая глава.", "lxend.following": "Вы подписаны на {name}: мы сообщим, когда выйдет следующая глава.", "lxend.guestFollow": "Создайте бесплатный аккаунт и подпишитесь на {name}: мы сообщим, когда выйдет следующая глава, а читать можно без ограничений по времени.", "lxend.guest": "С бесплатным аккаунтом вы продолжаете каждый комикс с того места, где остановились, и читаете без ограничений по времени.", "lxend.followBtn": "Подписаться на {name}", "lxend.followingBtn": "Вы подписаны на {name}", "promo.scan": "Сканируйте и читайте"});
+Object.assign(STR.zh, {"lxarrive.tag": "等你来读", "lxarrive.aria": "立即阅读《{title}》", "lxarrive.adult": "成人内容：我们会先确认你的年龄", "lxend.tag": "本章完", "lxend.follow": "关注{name}：下一章发布时我们会通知你。", "lxend.following": "你已关注{name}：下一章发布时我们会通知你。", "lxend.guestFollow": "创建免费账号并关注{name}：下一章发布时我们会通知你，阅读也不再有时间限制。", "lxend.guest": "有了免费账号，每部漫画都能从上次停下的地方继续，阅读不受时间限制。", "lxend.followBtn": "关注{name}", "lxend.followingBtn": "已关注{name}", "promo.scan": "扫码阅读"});
+Object.assign(STR.ja, {"lxarrive.tag": "あなたを待っています", "lxarrive.aria": "「{title}」を今すぐ読む", "lxarrive.adult": "成人向け：最初に年齢を確認します", "lxend.tag": "この章はここまで", "lxend.follow": "{name}をフォローすると、次の章が公開されたときにお知らせします。", "lxend.following": "{name}をフォロー中：次の章が公開されたらお知らせします。", "lxend.guestFollow": "無料アカウントを作って{name}をフォローすると、次の章の公開をお知らせします。時間制限なしで読めます。", "lxend.guest": "無料アカウントがあれば、どのコミックも前回の続きから、時間制限なしで読めます。", "lxend.followBtn": "{name}をフォロー", "lxend.followingBtn": "{name}をフォロー中", "promo.scan": "スキャンして読む"});
+Object.assign(STR.hi, {"lxarrive.tag": "आपका इंतज़ार है", "lxarrive.aria": "“{title}” अभी पढ़ें", "lxarrive.adult": "वयस्कों के लिए: पहले हम आपकी उम्र पूछेंगे", "lxend.tag": "अध्याय समाप्त", "lxend.follow": "{name} को फ़ॉलो करें: अगला चैप्टर आने पर हम आपको बता देंगे।", "lxend.following": "आप {name} को फ़ॉलो करते हैं: अगला चैप्टर आने पर हम आपको बता देंगे।", "lxend.guestFollow": "मुफ़्त अकाउंट बनाएँ और {name} को फ़ॉलो करें: अगला चैप्टर आने पर हम आपको बता देंगे, और आप बिना समय-सीमा के पढ़ सकेंगे।", "lxend.guest": "मुफ़्त अकाउंट से आप हर कॉमिक वहीं से आगे पढ़ते हैं जहाँ छोड़ा था, बिना समय-सीमा के।", "lxend.followBtn": "{name} को फ़ॉलो करें", "lxend.followingBtn": "{name} को फ़ॉलो कर रहे हैं", "promo.scan": "स्कैन करें और पढ़ें"});
+Object.assign(STR.bn, {"lxarrive.tag": "আপনার অপেক্ষায়", "lxarrive.aria": "“{title}” এখনই পড়ুন", "lxarrive.adult": "প্রাপ্তবয়স্কদের জন্য: আগে আপনার বয়স জিজ্ঞেস করব", "lxend.tag": "অধ্যায় শেষ", "lxend.follow": "{name}-কে ফলো করুন: পরের অধ্যায় এলে আমরা আপনাকে জানিয়ে দেব।", "lxend.following": "আপনি {name}-কে ফলো করছেন: পরের অধ্যায় এলে আমরা আপনাকে জানিয়ে দেব।", "lxend.guestFollow": "বিনামূল্যে অ্যাকাউন্ট খুলে {name}-কে ফলো করুন: পরের অধ্যায় এলে আমরা জানিয়ে দেব, আর সময়ের সীমা ছাড়াই পড়বেন।", "lxend.guest": "বিনামূল্যের অ্যাকাউন্টে প্রতিটি কমিক যেখানে থেমেছিলেন সেখান থেকে চালিয়ে যাবেন, সময়ের সীমা ছাড়াই।", "lxend.followBtn": "{name}-কে ফলো করুন", "lxend.followingBtn": "{name}-কে ফলো করছেন", "promo.scan": "স্ক্যান করে পড়ুন"});
+Object.assign(STR.ar, {"lxarrive.tag": "بانتظارك", "lxarrive.aria": "اقرأ «{title}» الآن", "lxarrive.adult": "للبالغين: سنسألك عن عمرك أولًا", "lxend.tag": "نهاية الفصل", "lxend.follow": "تابِع {name}: سنُعلمك عند صدور الفصل التالي.", "lxend.following": "أنت تتابع {name}: سنُعلمك عند صدور الفصل التالي.", "lxend.guestFollow": "أنشئ حسابًا مجانيًا وتابِع {name}: سنُعلمك عند صدور الفصل التالي، وتقرأ بلا حدّ زمني.", "lxend.guest": "مع حساب مجاني تكمل كل قصة مصوّرة من حيث توقفت وتقرأ بلا حدّ زمني.", "lxend.followBtn": "تابِع {name}", "lxend.followingBtn": "تتابع {name}", "promo.scan": "امسح الرمز واقرأ"});
+Object.assign(STR.pnb, {"lxarrive.tag": "تہاڈی اڈیک وچ", "lxarrive.aria": "«{title}» ہُن پڑھو", "lxarrive.adult": "وڈیاں لئی: پہلاں تہاڈی عمر پچھاں گے", "lxend.tag": "باب ختم", "lxend.follow": "{name} نوں فالو کرو: اگلا باب آؤن تے اسیں تہانوں دساں گے۔", "lxend.following": "تسیں {name} نوں فالو کردے او: اگلا باب آؤن تے اسیں تہانوں دساں گے۔", "lxend.guestFollow": "مفت اکاؤنٹ بناؤ تے {name} نوں فالو کرو: اگلا باب آؤن تے اسیں دساں گے، تے تسیں بغیر وقت دی حد دے پڑھ سکو گے۔", "lxend.guest": "مفت اکاؤنٹ نال تسیں ہر کامک اوتھوں ای اگے پڑھدے او جتھے چھڈیا سی، بغیر وقت دی حد دے۔", "lxend.followBtn": "{name} نوں فالو کرو", "lxend.followingBtn": "{name} نوں فالو کر رہے او", "promo.scan": "سکین کرو تے پڑھو"});
 var CHAR_META = {
   Lucifer:{role:{it:"Il Portatore di Luce",en:"The Light-Bearer",es:"El Portador de Luz",fr:"Le Porteur de Lumière",de:"Der Lichtträger"},
     bio:{it:"Sovrano della collana ammiraglia: potere, caduta e desiderio raccontati su grande scala.",
@@ -1147,6 +1161,7 @@ function showEntryModeGate(opts){
   if(document.getElementById('luxtifySection')) return; // siamo già su Luxtify: nessuna scelta da fare, è già la destinazione
   if(luxCoverBot() || document.getElementById('entryModeGate')) return; // v248: i motori di ricerca non scelgono; e ce n'è una sola
   try { if(sessionStorage.getItem('lux_entry_mode')) return; } catch(e){ return; } // già scelto in questa apertura
+  if(luxArriveSkipGate()){ try { sessionStorage.setItem('lux_entry_mode', 'online'); } catch(e){} return; } // v251: chi arriva da un link (un capitolo, un QR) è online
   // v248: con la copertina sopra è la seconda pagina dell'albo: sta sotto di lei. L'illustrazione è quella
   // verticale sui telefoni e sugli schermi più alti che larghi, l'orizzontale sugli altri: se è la stessa
   // della copertina (anche in alta definizione) si usa quella, già scaricata
@@ -1512,7 +1527,7 @@ function luxCoverBuild(){
           '<div class="lxc-burst" aria-hidden="true"></div>' +
           '<button type="button" class="lxc-seal" data-lxc="seal"></button>' +
           '<div class="lxc-seal-label" aria-hidden="true"></div>' +
-          '<div class="lxc-blurb hidden"><button type="button" class="lxc-blurb-main" data-lxc="title"><span class="lxc-blurb-pic"><img class="lxc-blurb-img" alt="" decoding="async"></span>' +
+          '<div class="lxc-blurb hidden"><button type="button" class="lxc-blurb-main" data-lxc="title"><span class="lxc-blurb-pic"><img class="lxc-blurb-img" alt="" decoding="async"><i class="lxc-blurb-18" aria-hidden="true">18+</i></span>' +
             '<span class="lxc-blurb-txt"><small class="lxc-blurb-tag"></small><b></b><span class="lxc-blurb-row"><em class="lxc-blurb-go"></em><span class="lxc-blurb-date"></span></span></span></button>' +
             '<span class="lxc-blurb-dots hidden"></span></div>' +
           '<div class="lxc-note" role="note"><small class="lxc-note-tag"></small><p class="lxc-note-txt"></p></div>' +
@@ -1911,6 +1926,8 @@ function luxCoverStamp(x){
   return isNaN(c) ? 0 : c;
 }
 function luxCoverChapters(){
+  var arr = luxArriveItem(); // v251: arrivati dal link di un capitolo: c'è solo lui («Ti aspetta», «Leggi ora»)
+  if(arr) return { list: [arr], fresh: false, arrive: true };
   var all = luxCoverCatalog().filter(function(x){ try { return !!x.title && matureOk(x); } catch(e){ return false; } });
   var day = function(x){ return String(x.date || x.created_at || '').slice(0, 10); };
   all.sort(function(a, b){ return day(b).localeCompare(day(a)) || (luxCoverStamp(b) - luxCoverStamp(a)); });
@@ -1928,6 +1945,9 @@ function luxCoverBlurb(){
   r.list.forEach(function(x, i){ if(keep && x.id === keep) idx = i; }); // (arriva il catalogo aggiornato o si cambia lingua: resta quello che si stava guardando)
   el._chapters = r.list;
   el._chFresh = r.fresh;
+  el._arrive = !!r.arrive; // v251
+  el.classList.toggle('lxc-arrive', el._arrive);
+  box.classList.toggle('lxc-blurb-arrive', el._arrive);
   var n = luxCoverIssueN(), ni = el.querySelector('.lxc-issue-n');
   if(ni) ni.textContent = n ? t('lxcover.issue').replace('{n}', String(n)) : '';
   if(!r.list.length){ el._item = null; clearTimeout(el._chTimer); box.classList.add('hidden'); return; }
@@ -1961,19 +1981,21 @@ function luxCoverChShow(el, i, dir){
   var box = el.querySelector('.lxc-blurb'), main = box.querySelector('.lxc-blurb-main');
   function fill(){
     var when = item.date || item.created_at, pos = t('lxcover.nOfM').replace('{i}', String(i + 1)).replace('{n}', String(m));
-    var tag = box.querySelector('.lxc-blurb-tag'), label = t(el._chFresh ? 'lxcover.newChapter' : 'lxcover.lastChapter');
+    var tag = box.querySelector('.lxc-blurb-tag'), label = el._arrive ? t('lxarrive.tag') : t(el._chFresh ? 'lxcover.newChapter' : 'lxcover.lastChapter'); // v251
     tag.textContent = label + (m > 1 ? ' · ' + pos : '');
     if(m > 1 && tag.scrollWidth > tag.clientWidth + 1) tag.textContent = label + ' · ' + (i + 1) + '/' + m; // (se «1 di 3» non ci sta: «1/3»)
     box.querySelector('b').textContent = item.title;
     box.querySelector('.lxc-blurb-go').textContent = t('rec.readNow');
-    box.querySelector('.lxc-blurb-date').textContent = luxCoverDateText(when);
-    main.setAttribute('aria-label', t('lxcover.openTitle').replace('{title}', item.title) + (m > 1 ? ' · ' + pos : ''));
+    box.querySelector('.lxc-blurb-date').textContent = el._arrive ? luxArriveSub(item) : luxCoverDateText(when); // v251: il personaggio e il numero del capitolo
+    main.setAttribute('aria-label', el._arrive ? t('lxarrive.aria').replace('{title}', item.title) + (item.mature ? ' · 18+, ' + t('lxarrive.adult') : '')
+      : t('lxcover.openTitle').replace('{title}', item.title) + (m > 1 ? ' · ' + pos : ''));
     var pic = box.querySelector('.lxc-blurb-pic'), im = box.querySelector('.lxc-blurb-img');
     if(item.cover_url){
       var src = coverThumbUrl(item.cover_url, 200);
       if(im.getAttribute('src') !== src){ im.setAttribute('data-fallback', item.cover_url); im.src = src; }
       pic.classList.remove('hidden');
     } else pic.classList.add('hidden');
+    pic.classList.toggle('is-18', !!(el._arrive && item.mature)); // v251: il 18+ sfocato, col suo segno
     Array.prototype.forEach.call(box.querySelectorAll('.lxc-blurb-dots [data-dot]'), function(d, k){
       d.classList.toggle('on', k === i);
       d.setAttribute('aria-current', k === i ? 'true' : 'false');
@@ -2057,7 +2079,7 @@ function luxCoverPlaceSeal(){
   [blurb, barcode, note].forEach(function(x){ if(x && x.offsetParent) lowTop = Math.min(lowTop, x.offsetTop); }); // (v248: anche il biglietto)
   // v243: il capitolo nuovo ha la precedenza sulla scritta sotto il sigillo: se non ci stanno tutti e due
   // sparisce la scritta; il riquadro sparisce solo se finirebbe sopra il sigillo
-  if(labelBottom + 8 > lowTop) el.classList.add(sealBottom + 8 <= lowTop ? 'lxc-nolabel' : 'lxc-noblurb');
+  if(labelBottom + 8 > lowTop) el.classList.add(sealBottom + 8 <= lowTop || el._arrive ? 'lxc-nolabel' : 'lxc-noblurb'); // v251: il capitolo del link non sparisce mai
   if(!prof && labelBottom + 8 > actions.offsetTop) el.classList.add('lxc-nolabel');
 }
 
@@ -2192,9 +2214,10 @@ function luxCoverFinish(guest, openItem){
   try { sessionStorage.setItem('lux_cover_ok', '1'); sessionStorage.removeItem('lux_cover_lock'); } catch(e){}
   try { luxGuestAfterOpen(guest); } catch(e){} // v248: da ospite parte (o riparte) il tempo; con l'account non c'è
   try { if(luxCoverScrollY) window.scrollTo(0, luxCoverScrollY); } catch(e){}
+  if(!openItem){ try { openItem = luxArriveTake(); } catch(e){} } // v251: arrivati dal link di un capitolo: qualunque sia il modo di aprire l'albo, si va lì
   var after = function(){
-    if(openItem){ // v239: dritti nel fumetto scelto da «In questo numero»
-      setTimeout(function(){ try { openTitleModal(openItem); } catch(e){ console.warn('[copertina]', e); } }, 60);
+    if(openItem){ // v239: dritti nel fumetto scelto da «In questo numero» (v251: già alle pagine; i 18+ prima l'età)
+      setTimeout(function(){ try { luxArriveOpen(openItem); } catch(e){ console.warn('[copertina]', e); } }, 60);
       return;
     }
     var name = guest ? '' : luxCoverName();
@@ -3151,6 +3174,7 @@ function initMatureToggle(){
       var toOpen = pendingDeepLinkItem;
       pendingDeepLinkItem = null;
       openTitleModal(toOpen);
+      if(luxArrive.pages){ luxArrive.pages = false; luxArriveToPages(); } // v251
     }
     runPendingMatureAction();
   });
@@ -3420,6 +3444,7 @@ function handleAuthSubmit(){
 
   if(authMode === 'register'){
     authSignUp(email, pass).then(function(data){
+      try { luxPromoCount('signup'); } catch(e){} // v251: per il link da cui si è arrivati
       // v248: se l'account è subito attivo Supabase risponde con la sessione stessa (access_token in cima),
       // se serve confermare l'email con il solo utente (prima si cercava data.session, che lì non c'è mai)
       var sess = data && (data.session || (data.access_token ? data : null));
@@ -3464,7 +3489,8 @@ function afterAuthChange(){
   renderMaintenanceBanner(); // se chi si è appena autenticato è l'admin, il blocco manutenzione deve sparire subito
   renderNightClosureLock(); // idem per la chiusura notturna
   var reader = document.getElementById('pageReader');
-  if(reader && !reader.classList.contains('hidden')){ showReaderPage(readerIndex); } // aggiorna subito alla versione pulita se stava già leggendo
+  if(reader && !reader.classList.contains('hidden') && !(luxEndItem && readerScrollOn())){ showReaderPage(readerIndex); } // aggiorna subito alla versione pulita se stava già leggendo (v251: non se è al «Fine del capitolo»)
+  try { luxPromoAdminDevice(); luxEndAfterAuth(); luxEndRender(); } catch(e){} // v251: entrato dall'invito in fondo al capitolo: il personaggio si segue da solo
 }
 
 function acctChipAvatarHtml(avatarUrl, name){
@@ -7232,7 +7258,9 @@ var ADM_I = (function(){
     box: s('<path d="M3.5 7.5L12 3.5l8.5 4v9L12 20.5l-8.5-4zM3.5 7.5L12 11.5l8.5-4M12 11.5v9"/>'),
     eye: s('<path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/>'),
     trash: s('<path d="M4 7h16M10 11v6M14 11v6M5.5 7l1 13h11l1-13M9 7V4h6v3"/>'),
-    x: s('<path d="M6 6l12 12M18 6L6 18"/>')
+    x: s('<path d="M6 6l12 12M18 6L6 18"/>'),
+    insta: s('<rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.2 6.8h.01"/>'), // v251
+    qr: s('<path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h2.5v2.5H14zM17.5 17.5H20V20h-2.5zM14 19.5h1.5M19.5 14v1.5"/>')
   };
 })();
 function admDateOf(i){ return String((i && (i.date || i.created_at)) || '').slice(0, 10); }
@@ -7547,6 +7575,10 @@ function admSheetRender(){
       (item.stock != null ? '<div class="adm-act adm-stock">' + I.box + '<span>' + item.stock + ' ' + escapeHtml(t('stock.left')) + '<small>In vendita</small></span>' +
         '<span class="adm-stock-btns"><button type="button" class="btn btn-sm btn-ghost" data-sell-one="' + id + '"' + (item.stock <= 0 ? ' disabled' : '') + '>' + escapeHtml(t('admin.stock.sell')) + '</button>' +
         '<button type="button" class="btn btn-sm btn-ghost" data-restock="' + id + '">' + escapeHtml(t('admin.stock.restore')) + '</button></span></div>' : '') +
+      '<div class="adm-act-duo">' + // v251: due in una riga (il pannello resta corto: «Elimina» sta nello schermo)
+        '<button type="button" class="adm-act" data-adm-ig="' + id + '">' + I.insta + '<span>Per Instagram<small>storia e post</small></span></button>' +
+        '<button type="button" class="adm-act" data-adm-promo="' + id + '">' + I.qr + '<span>Link e QR<small>che si contano</small></span></button>' +
+      '</div>' +
       '<button type="button" class="adm-act" data-adm-view="' + id + '">' + I.eye + '<span>' + (isSched ? 'Anteprima della scheda<small>Come la vedrà chi legge (adesso la vedi solo tu)</small>' : 'Apri la scheda<small>Come la vede chi legge</small>') + '</span></button>' +
     '</div>' +
     '<button type="button" class="adm-del" data-del="' + id + '">' + I.trash + '<span>Elimina questo titolo</span></button>';
@@ -7564,6 +7596,8 @@ function admSheetWire(body, item){
   if(img) img.addEventListener('error', function(){ var f = img.getAttribute('data-full'); img.removeAttribute('data-full'); if(f && img.getAttribute('src') !== f) img.src = f; });
   on('[data-edit]', 'click', function(){ admSheetClose(); openEditTitle(item.id); });
   on('[data-adm-view]', 'click', function(){ admSheetClose(); try { openTitleModal(item); } catch(e){ console.warn('[catalogo]', e); } });
+  on('[data-adm-ig]', 'click', function(){ admSheetClose(); luxIgOpen({ item: item }); }); // v251
+  on('[data-adm-promo]', 'click', function(){ admSheetClose(); luxPromoGo(item.id); }); // v251
   on('[data-cover-for]', 'change', function(e){ if(e.target.files && e.target.files[0]) uploadCoverForExistingItem(item.id, e.target.files[0]); });
   on('[data-translate-for]', 'click', function(){ translateSynopsisForExistingItem(item.id, item.synopsis, this, !(item.synopsis ? synopsisMissingLangs(item) : []).length); });
   on('[data-rewatermark-for]', 'click', function(){
@@ -11725,6 +11759,7 @@ function refreshFollowButtons(){
     var l = b.querySelector('.follow-label');
     if(l) l.textContent = on ? t('follow.on') : t('follow.off');
   });
+  try { luxEndRender(); } catch(e){} // v251: «Segui già…» in fondo al capitolo
 }
 function toggleFollowCharacter(id){
   if(!isSignedIn()){ openAuth('login'); return; }
@@ -17383,6 +17418,9 @@ function checkDeepLinkOnLoad(){
   var item = items.find(function(i){ return i.id === titleId; });
   if(!item) return; // not loaded yet — will retry once Supabase data arrives
   deepLinkChecked = true;
+  // v251: c'è la copertina: il capitolo lo mostra lei («Ti aspetta», «Leggi ora») e si apre con l'albo, già alle pagine
+  if(luxCoverEl && !luxCoverEl._opening && luxArriveItem()){ try { luxCoverBlurb(); luxCoverPlaceSeal(); } catch(e){} return; }
+  luxArrive.done = true;
   if(item.mature && !matureVisible){
     pendingDeepLinkItem = item;
     openMatureModal();
@@ -17497,6 +17535,7 @@ function openTitleModal(item){
     item.view_count = freshItem.view_count;
   }
   if(!luxIsScheduled(item)) trackView(item.id); // v250: le anteprime dei capitoli in programma non contano
+  if(!luxIsScheduled(item)) luxPromoCount('read'); // v251: per il link da cui si è arrivati
   }
   updateEngagementCountsLabel(item.id);
   if(isSignedIn() && !titleModalRelang){
@@ -21811,6 +21850,7 @@ function openPageReader(item){
   readerIndex = 0;
   var reader = document.getElementById('pageReader');
   luxReadLeftEnd(); // v250
+  luxEndHide(); // v251: «Fine del capitolo» torna quando si arriva in fondo
   if(readerPages.length === 0){ reader.classList.add('hidden'); return; }
   reader.classList.remove('hidden');
   luxReadCount(item, false); // v250: aperto (una volta per telefono o computer)
@@ -22916,7 +22956,8 @@ function switchAdminTab(tabName){
     panel.classList.toggle('hidden', panel.dataset.tabPanel !== tabName);
   });
   if(tabName === 'moderation') renderCommunityModeration();
-  if(tabName === 'stats'){ renderSongStatsLeaderboard(); renderStatsPanel(); } // v250: con i numeri freschi
+  if(tabName === 'stats'){ renderSongStatsLeaderboard(); renderStatsPanel(); luxPromoStatsBox(); } // v250: con i numeri freschi (v251: e «Da Instagram»)
+  if(tabName === 'promo') luxPromoRender(true); // v251: Link e QR
   if(tabName === 'artists') renderAdminArtistsList();
   if(tabName === 'servers') loadServersAdminList();
   if(tabName === 'events') loadEventsAdminList();
@@ -23015,9 +23056,13 @@ function luxReadCount(item, finished){
 function luxReadAtEnd(item){
   clearTimeout(luxReadEndT);
   if(!item) return;
+  try { luxEndShow(item); } catch(e){ console.warn('[fine del capitolo]', e); } // v251: «Fine del capitolo», «Segui…», l'invito
   luxReadEndT = setTimeout(function(){
     var tm = document.getElementById('titleModal');
-    if(readerItem === item && !document.hidden && (!tm || !tm.classList.contains('hidden'))) luxReadCount(item, true);
+    if(readerItem === item && !document.hidden && (!tm || !tm.classList.contains('hidden'))){
+      luxReadCount(item, true);
+      if(!luxIsScheduled(item)) luxPromoCount('finish'); // v251: per il link da cui si è arrivati
+    }
   }, 1500);
 }
 function luxReadLeftEnd(){ clearTimeout(luxReadEndT); luxReadEndT = null; }
@@ -23128,6 +23173,1279 @@ function luxStatsRender(){
     ? 'Per contare chi arriva all\'ultima pagina serve il file uscite_e_letture_v250.sql su Supabase (una volta sola). Letture e «mi piace» ci sono già.'
     : LUX_STATS.err === 'net' ? 'Non riesco a leggere chi arriva alla fine: riprova tra poco.'
     : '«Arrivano alla fine»: quante persone, tra quelle che hanno aperto il capitolo, sono arrivate all\'ultima pagina (una volta per telefono o computer, da quando c\'è la v250); la barra dorata è la stessa percentuale. Le tue letture non contano.';
+}
+
+/* ============ v251: DA INSTAGRAM — DAL LINK DRITTI AL CAPITOLO, E I LINK CHE SI CONTANO ============
+   - Chi apre il link di un capitolo (…/?title=c17…, anche dal QR di una storia o di un post) trova la copertina con
+     quel capitolo in primo piano, al posto dei capitoli nuovi: «Ti aspetta», la mini copertina, il titolo, il
+     personaggio e «Leggi ora». Un tocco e si legge: qualunque sia il modo di aprire l'albo (il riquadro, il sigillo,
+     «Sfoglia senza account», l'accesso, l'orecchia) si va dritti alle pagine di quel capitolo, senza la domanda
+     «online o versione offline?» (chi arriva da un link è online). I capitoli 18+ chiedono l'età, come sempre.
+   - In fondo al capitolo: «Fine del capitolo», «Segui [personaggio]» (ti avvisiamo quando esce il prossimo) e, a chi
+     non ha l'account, l'invito a crearlo: appena dentro, il personaggio è già seguito. Se la serie continua, il
+     capitolo successivo.
+   - I link di Amministra › Link e QR finiscono con «da=codice»: il sito conta chi li apre, chi poi apre un capitolo,
+     chi arriva in fondo e chi crea l'account nei 7 giorni dopo (una volta per telefono o computer; mai l'amministratore,
+     né i telefoni dove è entrato). Poi il codice sparisce dall'indirizzo. Vedi link_e_qr_v251.sql. */
+var LUX_PROMO_KEY = 'lux_promo', LUX_PROMO_MARKS = 'lux_promo_marks', LUX_PROMO_DAYS = 7;
+var LUX_PROMO_BITS = { open: 1, read: 2, finish: 4, signup: 8 };
+function luxPromoOk(c){ return /^[a-z0-9][a-z0-9-]{1,39}$/.test(String(c || '')); }
+function luxLSJ(k, v){
+  try {
+    if(v === undefined) return JSON.parse(localStorage.getItem(k) || 'null');
+    if(v === null) localStorage.removeItem(k); else localStorage.setItem(k, JSON.stringify(v));
+  } catch(e){}
+  return null;
+}
+// i telefoni e i computer dove l'amministratore è entrato non contano (neanche dopo che è uscito)
+function luxPromoAdminDevice(){
+  var a = false;
+  try { a = isAdmin(); } catch(e){}
+  try {
+    if(a){ localStorage.setItem('lux_admin_device', '1'); return true; }
+    return localStorage.getItem('lux_admin_device') === '1';
+  } catch(e){ return a; }
+}
+function luxPromoActive(){
+  var a = luxLSJ(LUX_PROMO_KEY);
+  if(!a || !luxPromoOk(a.c) || !(Date.now() - (+a.t || 0) < LUX_PROMO_DAYS * 864e5)) return null;
+  return a;
+}
+// conta una cosa per il link con cui si è arrivati (una volta sola per telefono o computer)
+function luxPromoCount(what, code){
+  var bit = LUX_PROMO_BITS[what];
+  if(!bit || !SUPABASE_URL || luxCoverBot() || luxPromoAdminDevice()) return false;
+  var c = code || (luxPromoActive() || {}).c;
+  if(!luxPromoOk(c)) return false;
+  var m = luxLSJ(LUX_PROMO_MARKS) || {};
+  if((m[c] || 0) & bit) return false;
+  m[c] = (m[c] || 0) | bit;
+  var keys = Object.keys(m);
+  if(keys.length > 200) keys.slice(0, keys.length - 200).forEach(function(k){ delete m[k]; });
+  luxLSJ(LUX_PROMO_MARKS, m);
+  callCounterRpc('count_promo_link', { p_code: c, p_what: what });
+  return true;
+}
+// all'avvio (prima della copertina): arrivato da un link di Amministra › Link e QR?
+var luxArrive = { id: null, done: false, viaLink: false, pages: false };
+function luxPromoInit(){
+  luxPromoAdminDevice();
+  var p = null, c = '';
+  try { p = new URLSearchParams(window.location.search); c = String(p.get('da') || '').trim().toLowerCase(); } catch(e){ return; }
+  if(p.get('title') || c) luxArrive.viaLink = true;
+  if(!c) return;
+  if(luxPromoOk(c)){ luxLSJ(LUX_PROMO_KEY, { c: c, t: Date.now() }); luxPromoCount('open', c); }
+  // il codice sparisce dall'indirizzo (resta il capitolo): ricaricando o ricondividendo l'indirizzo non si conta di nuovo
+  try {
+    p.delete('da');
+    var q = p.toString();
+    history.replaceState(history.state, '', window.location.pathname + (q ? '?' + q : '') + window.location.hash);
+  } catch(e){}
+}
+// chi arriva da un link è online: niente «online o versione offline?» (senza rete sì, come sempre)
+function luxArriveSkipGate(){ return luxArrive.viaLink && navigator.onLine !== false; }
+
+/* ---- il capitolo del link, sulla copertina ---- */
+function luxArriveId(){
+  if(luxArrive.done) return null;
+  if(luxArrive.id === null){ try { luxArrive.id = new URLSearchParams(window.location.search).get('title') || ''; } catch(e){ luxArrive.id = ''; } }
+  return luxArrive.id || null;
+}
+function luxArriveItem(){
+  var id = luxArriveId();
+  if(!id) return null;
+  var it = null;
+  luxCoverCatalog().some(function(x){ if(x && x.id === id){ it = x; return true; } return false; });
+  if(!it || !it.title) return null;
+  try { if(!characterVisible(it)) return null; } catch(e){}
+  return it;
+}
+// sotto il titolo: il personaggio e il numero del capitolo (o, senza personaggio, la data)
+function luxArriveSub(item){
+  var who = item.character && item.character !== 'Collaboratori' ? charDisplayName(item.character) : '';
+  var n = item.chapter_number != null && item.chapter_number !== '' ? t('series.chapterLabel') + ' ' + item.chapter_number : '';
+  var s = [who, n].filter(Boolean).join(' · ');
+  return s || luxCoverDateText(item.date || item.created_at);
+}
+// la copertina si apre: il capitolo del link (una volta sola)
+function luxArriveTake(){
+  var it = luxArriveItem();
+  if(it) luxArrive.done = true;
+  return it;
+}
+// apre un capitolo e porta alle sue pagine (i 18+: prima l'età)
+function luxArriveOpen(item){
+  if(!item) return;
+  if(item.id === luxArrive.id) luxArrive.done = true;
+  if(item.mature && !matureVisible){ pendingDeepLinkItem = item; luxArrive.pages = true; openMatureModal(); return; } // (confermata l'età: alle pagine)
+  openTitleModal(item);
+  luxArriveToPages();
+}
+function luxArriveToPages(){
+  setTimeout(function(){
+    var rd = document.getElementById('pageReader'), tm = document.getElementById('titleModal');
+    if(!rd || rd.classList.contains('hidden') || !tm || tm.classList.contains('hidden')) return;
+    try { rd.scrollIntoView({ block: 'start', behavior: luxCoverReduced() ? 'auto' : 'smooth' }); } catch(e){ try { rd.scrollIntoView(); } catch(e2){} }
+  }, 260);
+}
+
+/* ---- in fondo al capitolo ---- */
+var luxEndItem = null;
+var LUX_END_ARROW = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>';
+function luxEndEl(){
+  var el = document.getElementById('luxEndCard');
+  if(el) return el;
+  var rd = document.getElementById('pageReader');
+  if(!rd || !rd.parentNode) return null;
+  el = document.createElement('section');
+  el.id = 'luxEndCard';
+  el.className = 'lux-end';
+  el.hidden = true;
+  el.setAttribute('aria-labelledby', 'luxEndTag');
+  rd.parentNode.insertBefore(el, rd.nextSibling);
+  el.addEventListener('click', function(e){
+    var b = e.target.closest ? e.target.closest('[data-end]') : null;
+    if(!b || !luxEndItem) return;
+    var a = b.getAttribute('data-end'), item = luxEndItem;
+    if(a === 'next'){ var n = luxEndNext(item); if(n) luxArriveOpen(n); return; }
+    if(a === 'register' || a === 'login'){
+      var ch = luxEndChar(item);
+      if(ch) luxLSJ('lux_follow_after', { c: ch, t: Date.now() }); // appena dentro, il personaggio è già seguito
+      openAuth(a);
+    }
+  });
+  return el;
+}
+function luxEndChar(item){ return item && item.character && item.character !== 'Collaboratori' ? String(item.character) : ''; }
+// il capitolo successivo della stessa serie (se c'è)
+function luxEndNext(item){
+  if(!item || !item.series_key) return null;
+  var sib = getCatalog().filter(function(i){ return i.series_key === item.series_key; })
+    .sort(function(a, b){ return (a.chapter_number || 0) - (b.chapter_number || 0); });
+  var idx = -1;
+  sib.forEach(function(s, i){ if(s.id === item.id) idx = i; });
+  var n = idx >= 0 ? sib[idx + 1] : null;
+  if(!n) return null;
+  try { if(!characterVisible(n)) return null; } catch(e){}
+  return n;
+}
+function luxEndShow(item){
+  if(!item) return;
+  var el = luxEndEl();
+  if(!el) return;
+  luxEndItem = item;
+  luxEndRender();
+}
+function luxEndHide(){
+  luxEndItem = null;
+  var el = document.getElementById('luxEndCard');
+  if(el){ el.hidden = true; el.innerHTML = ''; }
+}
+function luxEndRender(){
+  var el = document.getElementById('luxEndCard'), item = luxEndItem;
+  if(!el || !item) return;
+  var ch = luxEndChar(item), name = ch ? charDisplayName(ch) : '', signed = isSignedIn();
+  var on = !!(ch && followedChars.has(ch)), next = luxEndNext(item);
+  if(signed && !ch && !next){ el.hidden = true; el.innerHTML = ''; return; } // (niente da proporre)
+  var txt = ch ? t(signed ? (on ? 'lxend.following' : 'lxend.follow') : 'lxend.guestFollow').replace('{name}', name) : (signed ? '' : t('lxend.guest'));
+  var h = '<div class="lux-end-head"><img class="lux-end-seal" src="' + LOGO_SM + '" alt="" aria-hidden="true"><span id="luxEndTag" class="lux-end-tag">' + escapeHtml(t('lxend.tag')) + '</span></div>';
+  if(txt) h += '<p class="lux-end-txt">' + escapeHtml(txt) + '</p>';
+  var acts = '';
+  if(ch && signed) acts += '<button type="button" class="btn btn-primary lux-end-follow' + (on ? ' is-on' : '') + '" data-follow="' + escapeHtml(ch) + '" aria-pressed="' + on + '">' +
+    A2HS_BELL_SVG + '<span>' + escapeHtml(t(on ? 'lxend.followingBtn' : 'lxend.followBtn').replace('{name}', name)) + '</span></button>';
+  if(!signed) acts += '<button type="button" class="btn btn-primary" data-end="register">' + escapeHtml(t('lxcover.signup')) + '</button>' +
+    '<button type="button" class="btn btn-ghost" data-end="login">' + escapeHtml(t('nav.login')) + '</button>';
+  if(acts) h += '<div class="lux-end-acts">' + acts + '</div>';
+  if(next) h += '<button type="button" class="lux-end-next" data-end="next"><span><small>' + escapeHtml(t('series.nextChapter')) + '</small><b>' + escapeHtml(next.title || '') + '</b></span>' + LUX_END_ARROW + '</button>';
+  el.innerHTML = h;
+  el.hidden = false;
+}
+// entrato (o registrato) dall'invito in fondo al capitolo: il personaggio si segue da solo
+function luxEndAfterAuth(){
+  if(!isSignedIn()) return;
+  var p = luxLSJ('lux_follow_after');
+  if(!p) return;
+  luxLSJ('lux_follow_after', null);
+  if(!p.c || !(Date.now() - (+p.t || 0) < 3 * 864e5)) return;
+  loadCharacterFollows().then(function(){
+    if(isSignedIn() && !followedChars.has(p.c)) toggleFollowCharacter(p.c);
+  });
+}
+
+/* ============ v251: AMMINISTRA › LINK E QR, E LE IMMAGINI PER INSTAGRAM ============
+   Prima i QR si facevano a parte (con ChatGPT). Ora si fanno qui, e si contano:
+   - Amministra › Link e QR: un link per ogni post, storia, reel (o per la bio), con il suo QR. Si sceglie dove porta
+     (un capitolo o la home), dove lo si mette e un nome per ritrovarlo. Per ogni link: quante persone l'hanno aperto,
+     quante hanno poi aperto un capitolo, quante sono arrivate in fondo e quante hanno creato l'account (luxPromoCount).
+     Il QR si scarica grande (nero su bianco, si legge anche stampato), il link si copia o si condivide.
+   - «Per Instagram» (dal pannello di un capitolo o da un link): la storia (1080×1920), il post (1080×1350) o il
+     quadrato (1080×1080) con la copertina, il titolo, il logo e il QR già dentro, da scaricare o da condividere.
+     Dal pannello del capitolo il QR è un link nuovo (uno per formato), che si salva in Link e QR quando lo si scarica.
+   - In Statistiche, in cima, il riassunto «Da Instagram». Senza il file link_e_qr_v251.sql su Supabase QR e immagini
+     si fanno lo stesso (portano al capitolo), ma non si contano. */
+var LUX_PROMO = { rows: null, err: null, at: 0, req: null, sort: 'new', arch: false, fresh: null, form: { dest: null, place: 'storia', name: '', dirty: false } };
+var LPR_PLACES = [['storia', 'Storia'], ['post', 'Post'], ['reel', 'Reel'], ['bio', 'Bio'], ['altro', 'Altro']];
+var LPR_I = (function(){
+  var s = function(d){ return '<svg viewBox="0 0 24 24" aria-hidden="true">' + d + '</svg>'; };
+  return {
+    qr: s('<path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h2.5v2.5H14zM17.5 17.5H20V20h-2.5zM14 19.5h1.5M19.5 14v1.5"/>'),
+    copy: s('<path d="M9 9h10v11H9zM5 15V4h10"/>'),
+    insta: s('<rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.2 6.8h.01"/>'),
+    arch: s('<path d="M3.5 6h17v3.5h-17zM5 9.5V19h14V9.5M10 13h4"/>'),
+    back: s('<path d="M9 14L4 9l5-5M4 9h10a6 6 0 0 1 0 12h-3"/>'),
+    dl: s('<path d="M12 4v11M7 10l5 5 5-5M5 20h14"/>'),
+    share: s('<path d="M12 15V4M8 8l4-4 4 4M6 12v8h12v-8"/>'),
+    link: s('<path d="M10 14a4 4 0 0 0 5.66 0l3-3a4 4 0 0 0-5.66-5.66l-1 1M14 10a4 4 0 0 0-5.66 0l-3 3a4 4 0 0 0 5.66 5.66l1-1"/>'),
+    trash: ADM_I.trash, x: ADM_I.x
+  };
+})();
+
+/* ---- i link: indirizzo, codice, lettura e scrittura su Supabase ---- */
+// (l'indirizzo del sito da cui si crea il link; fuori dal web, per esempio nell'anteprima, quello vero)
+function luxPromoBase(){ var o = window.location.origin; return /^https?:\/\//.test(o || '') ? o + '/' : 'https://noxmorningstar.com/'; }
+function luxPromoHost(){ var h = window.location.host; return /^https?:$/.test(window.location.protocol || '') && h ? h : 'noxmorningstar.com'; }
+// row: { code, catalog_id } (senza code: il link semplice del capitolo, che non si conta)
+function luxPromoUrl(row){
+  var p = [];
+  if(row && row.catalog_id) p.push('title=' + encodeURIComponent(row.catalog_id));
+  if(row && row.code) p.push('da=' + encodeURIComponent(row.code));
+  return luxPromoBase() + (p.length ? '?' + p.join('&') : '');
+}
+function luxPromoNewCode(){
+  var a = 'abcdefghjkmnpqrstuvwxyz23456789', out = '', buf = new Uint8Array(5);
+  try { crypto.getRandomValues(buf); } catch(e){ for(var i = 0; i < 5; i++) buf[i] = Math.floor(Math.random() * 256); }
+  for(var j = 0; j < 5; j++) out += a.charAt(buf[j] % a.length);
+  return out;
+}
+function luxPromoHeaders(){
+  var s = getSession();
+  return { 'apikey': SUPABASE_ANON_KEY, 'Authorization': 'Bearer ' + (s && s.access_token), 'Content-Type': 'application/json' };
+}
+function luxPromoLoad(force){
+  if(!isAdmin() || !SUPABASE_URL) return Promise.resolve();
+  if(LUX_PROMO.req) return LUX_PROMO.req;
+  if(!force && LUX_PROMO.rows && Date.now() - LUX_PROMO.at < 30000) return Promise.resolve();
+  LUX_PROMO.req = refreshSessionIfNeeded().then(function(){
+    return fetch(SUPABASE_URL + '/rest/v1/promo_links?select=*&order=created_at.desc', { headers: luxPromoHeaders() });
+  }).then(function(r){
+    if(r.status === 404 || r.status === 400){ LUX_PROMO.err = 'missing'; LUX_PROMO.rows = []; LUX_PROMO.at = Date.now(); return; }
+    if(!r.ok) throw new Error('HTTP ' + r.status);
+    return r.json().then(function(rows){ LUX_PROMO.rows = Array.isArray(rows) ? rows : []; LUX_PROMO.err = null; LUX_PROMO.at = Date.now(); });
+  }).catch(function(e){ console.warn('[link e qr]', e); if(!LUX_PROMO.rows) LUX_PROMO.err = 'net'; })
+    .then(function(){ LUX_PROMO.req = null; });
+  return LUX_PROMO.req;
+}
+function luxPromoInsert(row, tries){
+  tries = tries || 0;
+  return refreshSessionIfNeeded().then(function(){
+    var h = luxPromoHeaders();
+    h.Prefer = 'return=representation';
+    return fetch(SUPABASE_URL + '/rest/v1/promo_links', { method: 'POST', headers: h, body: JSON.stringify(row) });
+  }).then(function(r){
+    if(r.status === 409 && tries < 4){ row.code = luxPromoNewCode(); return luxPromoInsert(row, tries + 1); } // (codice già usato: un altro)
+    if(r.status === 404){ LUX_PROMO.err = 'missing'; throw new Error('missing'); }
+    if(!r.ok) throw new Error('HTTP ' + r.status);
+    return r.json().then(function(rows){
+      var saved = (Array.isArray(rows) && rows[0]) || row;
+      LUX_PROMO.rows = [saved].concat((LUX_PROMO.rows || []).filter(function(x){ return x.code !== saved.code; }));
+      LUX_PROMO.err = null;
+      return saved;
+    });
+  });
+}
+function luxPromoPatch(code, patch){
+  return refreshSessionIfNeeded().then(function(){
+    var h = luxPromoHeaders();
+    h.Prefer = 'return=representation';
+    return fetch(SUPABASE_URL + '/rest/v1/promo_links?code=eq.' + encodeURIComponent(code), { method: 'PATCH', headers: h, body: JSON.stringify(patch) });
+  }).then(function(r){
+    if(!r.ok) throw new Error('HTTP ' + r.status);
+    return r.json().then(function(rows){
+      if(!rows || !rows.length) throw new Error('nessuna riga');
+      (LUX_PROMO.rows || []).forEach(function(x){ if(x.code === code) Object.keys(patch).forEach(function(k){ x[k] = patch[k]; }); });
+    });
+  });
+}
+function luxPromoDelete(code){
+  return refreshSessionIfNeeded().then(function(){
+    var h = luxPromoHeaders();
+    h.Prefer = 'return=representation';
+    return fetch(SUPABASE_URL + '/rest/v1/promo_links?code=eq.' + encodeURIComponent(code), { method: 'DELETE', headers: h });
+  }).then(function(r){
+    if(!r.ok) throw new Error('HTTP ' + r.status);
+    LUX_PROMO.rows = (LUX_PROMO.rows || []).filter(function(x){ return x.code !== code; });
+  });
+}
+function luxPromoItem(id){
+  var it = null;
+  getCatalog(true).some(function(x){ if(x && x.id === id){ it = x; return true; } return false; });
+  return it;
+}
+function luxPromoDay(ms){
+  var d = new Date(ms || Date.now());
+  try { return d.toLocaleDateString('it-IT', { day: 'numeric', month: 'short' }); } catch(e){ return d.getDate() + '/' + (d.getMonth() + 1); }
+}
+function luxPromoPlaceName(p){ var n = ''; LPR_PLACES.forEach(function(x){ if(x[0] === p) n = x[1]; }); return n; }
+function luxPromoAutoName(placeLabel, item){
+  return luxPromoUniqueName([placeLabel, item ? (item.title || '') : 'Home del sito', luxPromoDay()].filter(Boolean).join(' · '));
+}
+// due link con lo stesso nome non si distinguerebbero: al secondo «· 2», e così via
+function luxPromoUniqueName(name){
+  var used = {};
+  (LUX_PROMO.rows || []).forEach(function(x){ used[String(x.name || '').toLowerCase()] = 1; });
+  if(!used[String(name).toLowerCase()]) return name;
+  for(var i = 2; i < 100; i++){ var c = name + ' · ' + i; if(!used[c.toLowerCase()]) return c; }
+  return name;
+}
+function luxPromoNum(n){ try { return Number(n || 0).toLocaleString('it-IT'); } catch(e){ return String(n || 0); } }
+function luxCopyText(text){
+  var fallback = function(){
+    try {
+      var ta = document.createElement('textarea');
+      ta.value = text; ta.setAttribute('readonly', ''); ta.style.cssText = 'position:fixed;left:-9999px;top:0;opacity:0;';
+      document.body.appendChild(ta); ta.select();
+      var ok = document.execCommand('copy');
+      ta.remove();
+      return ok;
+    } catch(e){ return false; }
+  };
+  if(navigator.clipboard && navigator.clipboard.writeText) return navigator.clipboard.writeText(text).then(function(){ return true; }, function(){ return fallback(); });
+  return Promise.resolve(fallback());
+}
+function luxDownloadBlob(blob, name){
+  var u = URL.createObjectURL(blob), a = document.createElement('a');
+  a.href = u; a.download = name; a.rel = 'noopener'; a.style.display = 'none';
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(function(){ URL.revokeObjectURL(u); a.remove(); }, 4000);
+}
+function luxSlug(s){
+  return String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 40) || 'lux';
+}
+
+/* ---- il QR (qrcode-lib.js), disegnato quadratino per quadratino: nitido a ogni misura ---- */
+function luxQrMake(text){
+  if(typeof qrcode === 'undefined') return null;
+  try { var q = qrcode(0, 'M'); q.addData(text); q.make(); return q; } catch(e){ console.warn('[qr]', e); return null; }
+}
+// il QR in un quadrato di lato size (bianco, con il margine di quiet moduli), in (x, y)
+function luxQrDraw(ctx, q, x, y, size, quiet, fg, bg){
+  if(!q) return;
+  quiet = quiet == null ? 4 : quiet;
+  var n = q.getModuleCount(), tot = n + quiet * 2, m = Math.max(1, Math.floor(size / tot)), used = m * tot;
+  var ox = Math.round(x + (size - used) / 2), oy = Math.round(y + (size - used) / 2);
+  ctx.fillStyle = bg || '#ffffff';
+  ctx.fillRect(x, y, size, size);
+  ctx.fillStyle = fg || '#111111';
+  for(var r = 0; r < n; r++) for(var c = 0; c < n; c++) if(q.isDark(r, c)) ctx.fillRect(ox + (c + quiet) * m, oy + (r + quiet) * m, m, m);
+}
+function luxQrCanvas(text, px){
+  var cv = document.createElement('canvas');
+  cv.width = cv.height = px;
+  luxQrDraw(cv.getContext('2d'), luxQrMake(text), 0, 0, px, 4);
+  return cv;
+}
+function luxQrPaint(cv, text){ // nelle schede: il QR piccolo
+  if(!cv) return;
+  var q = luxQrMake(text), x = cv.getContext('2d');
+  x.clearRect(0, 0, cv.width, cv.height);
+  luxQrDraw(x, q, 0, 0, cv.width, 2);
+}
+
+/* ---- Amministra › Link e QR ---- */
+// la scheda in più, accanto a «Statistiche» (prima che le schede si colleghino ai clic)
+function luxPromoTabInit(){
+  var tabs = document.getElementById('adminTabs');
+  if(!tabs || tabs.querySelector('.admin-tab[data-tab="promo"]')) return;
+  var st = tabs.querySelector('.admin-tab[data-tab="stats"]');
+  var b = document.createElement('button');
+  b.type = 'button';
+  b.className = 'admin-tab';
+  b.setAttribute('data-tab', 'promo');
+  b.textContent = 'Link e QR';
+  tabs.insertBefore(b, st ? st.nextSibling : null);
+  var sp = document.querySelector('.admin-tab-panel[data-tab-panel="stats"]');
+  var p = document.createElement('div');
+  p.className = 'admin-tab-panel hidden';
+  p.setAttribute('data-tab-panel', 'promo');
+  p.innerHTML = '<div class="lpr" id="luxPromoPanel"></div>';
+  if(sp && sp.parentNode) sp.parentNode.insertBefore(p, sp.nextSibling);
+}
+// dal pannello di un capitolo: la scheda Link e QR con quel capitolo già scelto
+function luxPromoGo(catalogId){
+  LUX_PROMO.form.dest = catalogId || '';
+  LUX_PROMO.form.dirty = false;
+  switchAdminTab('promo');
+  var box = document.getElementById('luxPromoPanel');
+  if(box) try { box.scrollIntoView({ block: 'start', behavior: 'smooth' }); } catch(e){}
+  setTimeout(function(){ var n = document.querySelector('#luxPromoPanel [data-lpr-name]'); try { if(n) n.focus({ preventScroll: true }); } catch(e){} }, 350);
+}
+function luxPromoChapters(){
+  return admSortItems(getCatalog(true).filter(function(x){ return x && x.id && x.title; }), 'new');
+}
+function luxPromoRender(load){
+  var box = document.getElementById('luxPromoPanel');
+  if(!box || !isAdmin()) return;
+  if(!box.dataset.ready){
+    box.dataset.ready = '1';
+    box.innerHTML =
+      '<div class="lpr-intro"><h3>Link e QR</h3><p>Per ogni post, storia o reel crea il suo link: qui vedi quante persone arrivano da ognuno, quante leggono e quante creano l\'account. Il QR lo scarichi già pronto, e «Per Instagram» fa anche l\'immagine.</p></div>' +
+      '<p class="lpr-warn" data-lpr-warn hidden></p>' +
+      '<div class="lpr-new" role="group" aria-labelledby="lprNewH">' +
+        '<div class="lpr-new-h" id="lprNewH">Nuovo link</div>' +
+        '<label class="lpr-f"><span>Porta a</span><select data-lpr-dest></select></label>' +
+        '<div class="lpr-f"><span id="lprPlaceL">Dove lo metti</span><div class="lpr-places" role="radiogroup" aria-labelledby="lprPlaceL">' +
+          LPR_PLACES.map(function(p){ return '<button type="button" class="lpr-place" role="radio" data-lpr-place="' + p[0] + '">' + p[1] + '</button>'; }).join('') + '</div></div>' +
+        '<label class="lpr-f"><span>Nome <small>(per ritrovarlo: lo vedi solo tu)</small></span><input type="text" data-lpr-name maxlength="120" autocomplete="off" enterkeyhint="done"></label>' +
+        '<div class="lpr-new-acts"><button type="button" class="btn btn-primary" data-lpr-create>Crea link e QR</button></div>' +
+        '<p class="lpr-msg" data-lpr-msg hidden></p>' +
+      '</div>' +
+      '<div class="lpr-sum" data-lpr-sum></div>' +
+      '<div class="lpr-bar"><label class="lpr-sort"><span>Ordina</span><select data-lpr-sort>' +
+        '<option value="new">Più recenti</option><option value="opens">Più aperti</option><option value="reads">Più letture</option><option value="signups">Più account</option>' +
+      '</select></label><button type="button" class="lpr-archbtn" data-lpr-arch hidden></button></div>' +
+      '<div class="lpr-list" data-lpr-list></div>' +
+      '<p class="lpr-note">Ogni persona conta una volta sola per telefono o computer, nei 7 giorni dopo che ha aperto il link. Le tue visite non contano (neanche dai telefoni dove sei entrato come amministratore).</p>';
+    luxPromoWire(box);
+  }
+  luxPromoFormFill();
+  luxPromoListRender();
+  if(load) luxPromoLoad(true).then(function(){ luxPromoFormFill(); luxPromoListRender(); });
+}
+function luxPromoWire(box){
+  var q = function(s){ return box.querySelector(s); };
+  var F = LUX_PROMO.form;
+  q('[data-lpr-dest]').addEventListener('change', function(){ F.dest = this.value; luxPromoFormName(); });
+  box.querySelector('.lpr-places').addEventListener('click', function(e){
+    var b = e.target.closest ? e.target.closest('[data-lpr-place]') : null;
+    if(!b) return;
+    F.place = b.getAttribute('data-lpr-place');
+    luxPromoFormFill();
+  });
+  q('[data-lpr-name]').addEventListener('input', function(){ F.name = this.value; F.dirty = !!this.value.trim(); });
+  q('[data-lpr-name]').addEventListener('keydown', function(e){ if(e.key === 'Enter'){ e.preventDefault(); luxPromoCreate(); } });
+  q('[data-lpr-create]').addEventListener('click', luxPromoCreate);
+  q('[data-lpr-sort]').addEventListener('change', function(){ LUX_PROMO.sort = this.value; luxPromoListRender(); });
+  q('[data-lpr-arch]').addEventListener('click', function(){ LUX_PROMO.arch = !LUX_PROMO.arch; luxPromoListRender(); });
+  q('[data-lpr-list]').addEventListener('error', function(e){ // la miniatura che non c'è: l'immagine intera
+    var im = e.target;
+    if(!im || im.tagName !== 'IMG' || !im.getAttribute('data-full')) return;
+    var full = im.getAttribute('data-full'); im.removeAttribute('data-full'); if(im.getAttribute('src') !== full) im.src = full;
+  }, true);
+  q('[data-lpr-list]').addEventListener('click', function(e){
+    var b = e.target.closest ? e.target.closest('[data-lpr-act]') : null;
+    if(!b) return;
+    var card = b.closest('[data-lpr-code]'), code = card && card.getAttribute('data-lpr-code');
+    var row = (LUX_PROMO.rows || []).filter(function(x){ return x.code === code; })[0];
+    if(!row) return;
+    luxPromoAct(b.getAttribute('data-lpr-act'), row, b);
+  });
+}
+function luxPromoFormFill(){
+  var box = document.getElementById('luxPromoPanel');
+  if(!box || !box.dataset.ready) return;
+  var F = LUX_PROMO.form, sel = box.querySelector('[data-lpr-dest]'), items = luxPromoChapters();
+  var latest = items.filter(function(i){ return !luxIsScheduled(i); })[0] || items[0]; // di solito si promuove l'ultimo capitolo uscito
+  if(F.dest === null) F.dest = latest ? latest.id : '';
+  if(F.dest && !items.some(function(i){ return i.id === F.dest; })) F.dest = latest ? latest.id : '';
+  var h = '<option value="">La home del sito</option>';
+  if(items.length) h += '<optgroup label="Un capitolo">' + items.map(function(i){
+    var s = luxIsScheduled(i) ? ' (esce ' + luxSchedShort(luxSchedMs(i)) + ')' : '';
+    return '<option value="' + escapeHtml(i.id) + '">' + escapeHtml((i.title || '—') + s) + '</option>';
+  }).join('') + '</optgroup>';
+  if(sel.innerHTML !== h) sel.innerHTML = h;
+  sel.value = F.dest || '';
+  Array.prototype.forEach.call(box.querySelectorAll('[data-lpr-place]'), function(b){
+    var on = b.getAttribute('data-lpr-place') === F.place;
+    b.classList.toggle('on', on);
+    b.setAttribute('aria-checked', on ? 'true' : 'false');
+  });
+  luxPromoFormName();
+  var warn = box.querySelector('[data-lpr-warn]'), miss = LUX_PROMO.err === 'missing';
+  warn.hidden = !miss && LUX_PROMO.err !== 'net';
+  warn.textContent = miss ? 'Per contare chi arriva serve il file link_e_qr_v251.sql su Supabase (una volta sola). Intanto QR e immagini per Instagram si fanno lo stesso: portano al capitolo, ma non si contano.'
+    : LUX_PROMO.err === 'net' ? 'Non riesco a leggere i tuoi link: controlla la connessione e riprova tra poco.' : '';
+  box.querySelector('[data-lpr-create]').textContent = miss ? 'Crea il QR' : 'Crea link e QR';
+}
+function luxPromoFormName(){
+  var box = document.getElementById('luxPromoPanel');
+  if(!box) return;
+  var F = LUX_PROMO.form, inp = box.querySelector('[data-lpr-name]');
+  if(!F.dirty){
+    F.name = luxPromoAutoName(luxPromoPlaceName(F.place), F.dest ? luxPromoItem(F.dest) : null);
+    if(inp.value !== F.name) inp.value = F.name;
+  }
+}
+function luxPromoCreate(){
+  var box = document.getElementById('luxPromoPanel');
+  if(!box) return;
+  var F = LUX_PROMO.form, btn = box.querySelector('[data-lpr-create]'), msg = box.querySelector('[data-lpr-msg]');
+  var say = function(t, bad){ msg.hidden = !t; msg.textContent = t || ''; msg.classList.toggle('is-error', !!bad); };
+  var name = luxPromoUniqueName(String(box.querySelector('[data-lpr-name]').value || '').trim().slice(0, 120) || luxPromoAutoName(luxPromoPlaceName(F.place), F.dest ? luxPromoItem(F.dest) : null));
+  var row = { code: luxPromoNewCode(), name: name, catalog_id: F.dest || null, place: F.place || null };
+  if(LUX_PROMO.err === 'missing'){ // senza il file SQL: il QR del link semplice, che non si salva
+    luxPromoSheetOpen({ code: null, name: name, catalog_id: row.catalog_id, place: row.place });
+    return;
+  }
+  btn.disabled = true;
+  say('Creo il link…');
+  luxPromoInsert(row).then(function(saved){
+    btn.disabled = false;
+    say('');
+    F.dirty = false;
+    LUX_PROMO.fresh = saved.code;
+    LUX_PROMO.arch = false;
+    luxPromoFormName();
+    luxPromoListRender();
+    luxPromoSheetOpen(saved);
+  }).catch(function(e){
+    btn.disabled = false;
+    if(LUX_PROMO.err === 'missing'){ luxPromoFormFill(); say(''); luxPromoSheetOpen({ code: null, name: name, catalog_id: row.catalog_id, place: row.place }); return; }
+    console.warn('[link e qr] nuovo link:', e);
+    say('Non creato: controlla la connessione e riprova.', true);
+  });
+}
+function luxPromoSorted(){
+  var rows = (LUX_PROMO.rows || []).filter(function(x){ return !!x.archived === LUX_PROMO.arch; });
+  var by = LUX_PROMO.sort, n = function(x, k){ return +x[k] || 0; }, d = function(x){ return String(x.created_at || ''); };
+  rows.sort(function(a, b){
+    if(by === 'opens') return (n(b, 'opens') - n(a, 'opens')) || d(b).localeCompare(d(a));
+    if(by === 'reads') return (n(b, 'readers') - n(a, 'readers')) || (n(b, 'opens') - n(a, 'opens'));
+    if(by === 'signups') return (n(b, 'signups') - n(a, 'signups')) || (n(b, 'opens') - n(a, 'opens'));
+    return d(b).localeCompare(d(a));
+  });
+  return rows;
+}
+function luxPromoTotals(rows){
+  var t0 = { opens: 0, readers: 0, finishers: 0, signups: 0, n: 0 };
+  rows.forEach(function(x){ t0.n++; t0.opens += +x.opens || 0; t0.readers += +x.readers || 0; t0.finishers += +x.finishers || 0; t0.signups += +x.signups || 0; });
+  return t0;
+}
+function luxPromoListRender(){
+  var box = document.getElementById('luxPromoPanel');
+  if(!box || !box.dataset.ready) return;
+  var list = box.querySelector('[data-lpr-list]'), sum = box.querySelector('[data-lpr-sum]'), arch = box.querySelector('[data-lpr-arch]');
+  var all = LUX_PROMO.rows || [], live = all.filter(function(x){ return !x.archived; }), nArch = all.length - live.length;
+  if(nArch === 0) LUX_PROMO.arch = false;
+  arch.hidden = !nArch && !LUX_PROMO.arch;
+  arch.textContent = LUX_PROMO.arch ? '← I link in uso' : 'Archiviati (' + nArch + ')';
+  var tot = luxPromoTotals(live);
+  sum.innerHTML = LUX_PROMO.rows === null ? '' : live.length ?
+    '<div><b>' + luxPromoNum(tot.opens) + '</b><span>persone arrivate</span></div><div><b>' + luxPromoNum(tot.readers) + '</b><span>hanno letto</span></div>' +
+    '<div><b>' + luxPromoNum(tot.signups) + '</b><span>account creati</span></div>' : '';
+  if(LUX_PROMO.rows === null){ list.innerHTML = '<p class="lpr-empty">…</p>'; return; }
+  var rows = luxPromoSorted();
+  if(!rows.length){
+    list.innerHTML = LUX_PROMO.err === 'missing' ? '' : '<p class="lpr-empty">' + (LUX_PROMO.arch ? 'Nessun link archiviato.' : 'Ancora nessun link: creane uno qui sopra, uno per ogni post o storia.') + '</p>';
+    return;
+  }
+  list.innerHTML = rows.map(luxPromoCardHtml).join('');
+  Array.prototype.forEach.call(list.querySelectorAll('[data-lpr-code]'), function(card){
+    var row = rows.filter(function(x){ return x.code === card.getAttribute('data-lpr-code'); })[0];
+    luxQrPaint(card.querySelector('.lpr-qr canvas'), luxPromoUrl(row));
+  });
+  if(LUX_PROMO.fresh){
+    var f = list.querySelector('[data-lpr-code="' + String(LUX_PROMO.fresh).replace(/"/g, '') + '"]');
+    LUX_PROMO.fresh = null;
+    if(f) setTimeout(function(){ f.classList.remove('is-fresh'); }, 2600);
+  }
+}
+function luxPromoCardHtml(row){
+  var item = row.catalog_id ? luxPromoItem(row.catalog_id) : null, I = LPR_I;
+  var dest = row.catalog_id ? (item ? item.title : 'un capitolo che non è più nel sito') : 'la home del sito';
+  var src = item && item.cover_url ? coverThumbUrl(item.cover_url, 80) : '';
+  var opens = +row.opens || 0, pct = function(v){ return opens ? Math.max(v ? 3 : 0, Math.round(v / opens * 100)) : 0; };
+  var bars = [['Aperto', opens], ['Hanno letto', +row.readers || 0], ['Fino in fondo', +row.finishers || 0], ['Account creati', +row.signups || 0]].map(function(b, i){
+    return '<div class="lpr-b"><span>' + b[0] + '</span><i><em style="width:' + (i === 0 ? (opens ? 100 : 0) : pct(b[1])) + '%"></em></i><b>' + luxPromoNum(b[1]) + '</b></div>';
+  }).join('');
+  var when = row.created_at ? luxPromoDay(Date.parse(row.created_at)) : '', last = row.last_open_at ? relativeTimeShort(row.last_open_at) : '';
+  var acts = row.archived
+    ? '<button type="button" data-lpr-act="unarch">' + I.back + '<span>Rimetti in uso</span></button><button type="button" class="is-danger" data-lpr-act="del">' + I.trash + '<span>Elimina</span></button>'
+    : '<button type="button" data-lpr-act="qr">' + I.qr + '<span>QR e link</span></button><button type="button" data-lpr-act="copy">' + I.copy + '<span>Copia link</span></button>' +
+      (item ? '<button type="button" data-lpr-act="ig">' + I.insta + '<span>Per Instagram</span></button>' : '') +
+      '<button type="button" data-lpr-act="arch">' + I.arch + '<span>Archivia</span></button>';
+  return '<article class="lpr-card' + (row.code === LUX_PROMO.fresh ? ' is-fresh' : '') + '" data-lpr-code="' + escapeHtml(row.code) + '">' +
+    '<button type="button" class="lpr-qr" data-lpr-act="qr" aria-label="Il QR di «' + escapeHtml(row.name || row.code) + '»"><canvas width="168" height="168"></canvas></button>' +
+    '<div class="lpr-head">' +
+      '<b class="lpr-name">' + escapeHtml(row.name || row.code) + '</b>' +
+      '<span class="lpr-meta">' + (row.place ? '<span class="lpr-tag">' + escapeHtml(luxPromoPlaceName(row.place) || row.place) + '</span>' : '') +
+        (src ? '<img alt="" src="' + escapeHtml(src) + '" data-full="' + escapeHtml(item.cover_url) + '">' : '') + '<span>→ ' + escapeHtml(dest) + (when ? ' · ' + escapeHtml(when) : '') + '</span></span>' +
+      (last ? '<span class="lpr-last">Ultimo arrivo: ' + escapeHtml(last) + '</span>' : '') +
+    '</div>' +
+    '<div class="lpr-bars">' + bars + '</div>' +
+    '<div class="lpr-acts">' + acts + '</div>' +
+  '</article>';
+}
+function luxPromoAct(act, row, btn){
+  if(act === 'qr'){ luxPromoSheetOpen(row); return; }
+  if(act === 'copy'){ luxCopyText(luxPromoUrl(row)).then(function(ok){ luxToast(ok ? 'Link copiato: incollalo nel post o nella storia' : 'Non riesco a copiarlo: aprilo con «QR e link»'); }); return; }
+  if(act === 'ig'){ var it = luxPromoItem(row.catalog_id); if(it) luxIgOpen({ item: it, row: row }); return; }
+  if(act === 'arch' || act === 'unarch'){
+    btn.disabled = true;
+    luxPromoPatch(row.code, { archived: act === 'arch' }).then(function(){
+      luxPromoListRender();
+      luxToast(act === 'arch' ? 'Archiviato: «' + (row.name || row.code) + '» (continua a contare)' : 'Di nuovo in uso: «' + (row.name || row.code) + '»');
+    }).catch(function(e){ console.warn('[link e qr]', e); btn.disabled = false; luxToast('Non salvato: riprova.'); });
+    return;
+  }
+  if(act === 'del'){
+    if(!confirm('Eliminare per sempre «' + (row.name || row.code) + '» e i suoi numeri?\n\nChi ha ancora quel QR arriva lo stesso al sito, ma non si conta più.')) return;
+    btn.disabled = true;
+    luxPromoDelete(row.code).then(function(){ luxPromoListRender(); luxToast('Eliminato: «' + (row.name || row.code) + '»'); })
+      .catch(function(e){ console.warn('[link e qr]', e); btn.disabled = false; luxToast('Non eliminato: riprova.'); });
+  }
+}
+
+/* ---- il pannello del QR: grande, da scaricare; il link da copiare o condividere ---- */
+var luxPromoSheetRow = null;
+function luxPromoSheetEl(){
+  var w = document.getElementById('luxPromoSheet');
+  if(w) return w;
+  w = document.createElement('div');
+  w.id = 'luxPromoSheet';
+  w.className = 'adm-sheet lpr-sheet';
+  w.hidden = true;
+  w.innerHTML = '<div class="adm-sheet-backdrop" data-lpr-close></div><div class="adm-sheet-panel" role="dialog" aria-modal="true" aria-labelledby="lprSheetTitle"><div class="adm-sheet-body"></div></div>';
+  w.addEventListener('click', function(e){
+    if(e.target.closest && e.target.closest('[data-lpr-close]')){ luxPromoSheetClose(); return; }
+    var b = e.target.closest ? e.target.closest('[data-lpr-s]') : null;
+    if(b && luxPromoSheetRow) luxPromoSheetAct(b.getAttribute('data-lpr-s'), luxPromoSheetRow, b);
+  });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && !w.hidden && !document.getElementById('luxIgStudio')) luxPromoSheetClose(); });
+  document.body.appendChild(w);
+  return w;
+}
+function luxPromoSheetAct(a, row, b){
+  var w = document.getElementById('luxPromoSheet'), body = w.querySelector('.adm-sheet-body');
+  var url = luxPromoUrl(row), item = row.catalog_id ? luxPromoItem(row.catalog_id) : null;
+  if(a === 'dl'){
+    var cv = luxQrCanvas(url, 1200);
+    cv.toBlob(function(blob){ if(blob){ luxDownloadBlob(blob, 'qr-' + luxSlug(row.name || (item && item.title) || 'lux') + '.png'); luxToast('QR scaricato'); } }, 'image/png');
+  } else if(a === 'copy'){
+    luxCopyText(url).then(function(ok){ luxToast(ok ? 'Link copiato' : 'Non riesco a copiarlo: tienilo premuto e copialo da qui'); });
+  } else if(a === 'share'){
+    try { navigator.share({ title: item ? item.title : 'LUX COMICS', url: url }).catch(function(){}); } catch(err){}
+  } else if(a === 'ig'){
+    luxPromoSheetClose();
+    if(item) luxIgOpen({ item: item, row: row.code ? row : null });
+  } else if(a === 'rename'){
+    var rn = body.querySelector('[data-lpr-rn]');
+    if(!rn) return;
+    var nv = rn.value.trim().slice(0, 120);
+    if(!nv) return;
+    b.disabled = true;
+    luxPromoPatch(row.code, { name: nv }).then(function(){
+      row.name = nv;
+      var tt = body.querySelector('#lprSheetTitle');
+      if(tt) tt.textContent = nv;
+      luxPromoListRender();
+      luxToast('Nome salvato');
+    }).catch(function(err){ console.warn('[link e qr]', err); b.disabled = false; luxToast('Non salvato: riprova.'); });
+  }
+}
+function luxPromoSheetOpen(row){
+  var w = luxPromoSheetEl(), body = w.querySelector('.adm-sheet-body'), url = luxPromoUrl(row), item = row.catalog_id ? luxPromoItem(row.catalog_id) : null, I = LPR_I;
+  luxPromoSheetRow = row;
+  var canShare = !!navigator.share;
+  body.innerHTML =
+    '<div class="adm-sheet-grab" aria-hidden="true"></div>' +
+    '<div class="adm-sheet-head"><div class="adm-sheet-ttl"><b id="lprSheetTitle">' + escapeHtml(row.name || 'Il QR') + '</b>' +
+      '<span>' + (item ? '→ ' + escapeHtml(item.title) : row.catalog_id ? '→ un capitolo che non è più nel sito' : '→ la home del sito') + '</span></div>' +
+      '<button type="button" class="adm-sheet-x" data-lpr-close aria-label="Chiudi">' + I.x + '</button></div>' +
+    '<div class="lpr-big"><canvas width="560" height="560" aria-label="QR del link"></canvas></div>' +
+    '<label class="lpr-url"><span>Il link</span><input type="text" readonly value="' + escapeHtml(url) + '"></label>' +
+    (row.code ? '' : '<p class="lpr-sheet-note">Link semplice: porta al ' + (row.catalog_id ? 'capitolo' : 'sito') + ', ma non si conta (manca il file link_e_qr_v251.sql su Supabase).</p>') +
+    '<div class="lpr-sheet-acts">' +
+      '<button type="button" class="btn btn-primary" data-lpr-s="dl">' + I.dl + '<span>Scarica il QR</span></button>' +
+      '<button type="button" class="btn btn-ghost" data-lpr-s="copy">' + I.copy + '<span>Copia il link</span></button>' +
+      (canShare ? '<button type="button" class="btn btn-ghost" data-lpr-s="share">' + I.share + '<span>Condividi</span></button>' : '') +
+      (item ? '<button type="button" class="btn btn-ghost" data-lpr-s="ig">' + I.insta + '<span>Per Instagram</span></button>' : '') +
+    '</div>' +
+    (row.code ? '<label class="lpr-rename"><span>Nome</span><span class="lpr-rename-row"><input type="text" maxlength="120" data-lpr-rn value="' + escapeHtml(row.name || '') + '">' +
+      '<button type="button" class="btn btn-ghost btn-sm" data-lpr-s="rename" disabled>Salva</button></span></label>' : '') +
+    '<p class="lpr-sheet-tip">Il QR si legge con la fotocamera del telefono. Scaricato è nero su bianco, grande: va bene anche stampato.</p>';
+  luxQrDraw(body.querySelector('.lpr-big canvas').getContext('2d'), luxQrMake(url), 0, 0, 560, 3);
+  body.querySelector('.lpr-big canvas').setAttribute('data-url', url);
+  body.querySelector('.lpr-url input').addEventListener('focus', function(){ this.select(); });
+  var rn = body.querySelector('[data-lpr-rn]'), rb = body.querySelector('[data-lpr-s="rename"]');
+  if(rn) rn.addEventListener('input', function(){ rb.disabled = !rn.value.trim() || rn.value.trim() === (row.name || ''); });
+  if(rn) rn.addEventListener('keydown', function(e){ if(e.key === 'Enter' && !rb.disabled){ e.preventDefault(); rb.click(); } });
+  clearTimeout(w._hideT);
+  w.querySelector('.adm-sheet-panel').scrollTop = 0;
+  w.hidden = false;
+  document.documentElement.classList.add('adm-sheet-on');
+  void w.offsetWidth;
+  w.classList.add('on');
+  var x = w.querySelector('.adm-sheet-x');
+  try { if(x) x.focus({ preventScroll: true }); } catch(e){}
+}
+function luxPromoSheetClose(){
+  var w = document.getElementById('luxPromoSheet');
+  if(!w || w.hidden) return;
+  luxPromoSheetRow = null;
+  w.classList.remove('on');
+  if(!document.querySelector('#luxAdmSheet.on')) document.documentElement.classList.remove('adm-sheet-on');
+  clearTimeout(w._hideT);
+  w._hideT = setTimeout(function(){ if(!w.classList.contains('on')) w.hidden = true; }, 260);
+}
+
+/* ---- Amministra › Statistiche: in cima, il riassunto «Da Instagram» ---- */
+function luxPromoStatsBox(){
+  if(!isAdmin()) return;
+  var anchor = document.getElementById('siteViewsNotice');
+  if(!anchor || !anchor.parentNode) return;
+  var box = document.getElementById('luxPromoStats');
+  if(!box){
+    box = document.createElement('div');
+    box.id = 'luxPromoStats';
+    box.className = 'lpr-stats';
+    anchor.parentNode.insertBefore(box, anchor);
+    box.addEventListener('click', function(e){ if(e.target.closest && e.target.closest('[data-lpr-go]')) switchAdminTab('promo'); });
+  }
+  var draw = function(){
+    var rows = (LUX_PROMO.rows || []).filter(function(x){ return !x.archived; }), tot = luxPromoTotals(rows);
+    var head = '<div class="lpr-stats-h">Da Instagram · link e QR</div>';
+    if(LUX_PROMO.rows === null){ box.innerHTML = head + '<p class="lpr-stats-p">…</p>'; return; }
+    if(LUX_PROMO.err === 'missing'){ box.innerHTML = head + '<p class="lpr-stats-p">Per contare chi arriva dai tuoi post serve il file link_e_qr_v251.sql su Supabase (una volta sola).</p><button type="button" class="btn btn-ghost btn-sm" data-lpr-go>Apri Link e QR</button>'; return; }
+    if(!rows.length){ box.innerHTML = head + '<p class="lpr-stats-p">Crea un link (e il suo QR) per ogni post o storia: qui vedrai quali funzionano di più.</p><button type="button" class="btn btn-ghost btn-sm" data-lpr-go>Crea il primo link</button>'; return; }
+    var top = rows.slice().sort(function(a, b){ return (+b.opens || 0) - (+a.opens || 0) || (+b.readers || 0) - (+a.readers || 0); }).slice(0, 3);
+    box.innerHTML = head +
+      '<div class="lpr-sum"><div><b>' + luxPromoNum(tot.opens) + '</b><span>persone arrivate</span></div><div><b>' + luxPromoNum(tot.readers) + '</b><span>hanno letto</span></div><div><b>' + luxPromoNum(tot.signups) + '</b><span>account creati</span></div></div>' +
+      '<ol class="lpr-top">' + top.map(function(x){
+        return '<li><b>' + escapeHtml(x.name || x.code) + '</b><span>' + luxPromoNum(x.opens) + ' arrivati · ' + luxPromoNum(x.readers) + ' letto · ' + luxPromoNum(x.signups) + ' account</span></li>';
+      }).join('') + '</ol>' +
+      '<button type="button" class="btn btn-ghost btn-sm" data-lpr-go>Tutti i link e i QR</button>';
+  };
+  draw();
+  luxPromoLoad().then(draw);
+}
+
+/* ---- «Per Instagram»: la storia, il post e il quadrato, con il QR già dentro ---- */
+var LIG_FMT = {
+  story: { w: 1080, h: 1920, label: 'Storia', tab: 'Storia 9:16', place: 'storia' },
+  post: { w: 1080, h: 1350, label: 'Post', tab: 'Post 4:5', place: 'post' },
+  square: { w: 1080, h: 1080, label: 'Quadrato', tab: 'Quadrato 1:1', place: 'post' }
+};
+var LIG = { item: null, row: null, fmt: 'story', tag: 'new', lang: 'it', qr: true, adult: false, codes: {}, saved: {}, covers: {}, logo: null, seq: 0, busy: false };
+function luxIgT(key){ var d = STR[LIG.lang] || STR.it; return (d && d[key]) || STR.it[key] || ''; }
+function luxIgRtl(){ return LIG.lang === 'ar' || LIG.lang === 'pnb'; }
+// il link del QR: quello scelto (da Link e QR), un link nuovo per questo formato (si salva quando si scarica), o quello semplice
+function luxIgLinkRow(){
+  if(LIG.row) return LIG.row;
+  var base = { catalog_id: LIG.item.id };
+  if(LUX_PROMO.err === 'missing') return base;
+  if(LIG.saved[LIG.fmt]) return LIG.saved[LIG.fmt];
+  if(!LIG.codes[LIG.fmt]) LIG.codes[LIG.fmt] = luxPromoNewCode();
+  base.code = LIG.codes[LIG.fmt];
+  return base;
+}
+function luxIgAutoName(){ return luxPromoAutoName(LIG_FMT[LIG.fmt].label, LIG.item); }
+function luxIgOpen(o){
+  var item = o && o.item;
+  if(!item) return;
+  LIG.item = item;
+  LIG.row = o.row || null;
+  LIG.fmt = 'story';
+  LIG.codes = {}; LIG.saved = {};
+  LIG.lang = STR[currentLang] ? currentLang : 'it';
+  var days = luxCoverDaysAgo(String(item.date || item.created_at || '').slice(0, 10));
+  LIG.tag = luxIsScheduled(item) || (days !== null && days <= 30) ? 'new' : 'read';
+  LIG.qr = true;
+  LIG.adult = !!item.mature;
+  if(!LIG.row && LUX_PROMO.rows === null) luxPromoLoad().then(function(){ if(document.getElementById('luxIgStudio')){ luxIgControls(); luxIgDraw(); } });
+  var w = document.getElementById('luxIgStudio');
+  if(w) w.remove();
+  w = document.createElement('div');
+  w.id = 'luxIgStudio';
+  w.className = 'lig';
+  w.innerHTML = '<div class="lig-backdrop" data-lig-close></div>' +
+    '<div class="lig-panel" role="dialog" aria-modal="true" aria-labelledby="ligTitle">' +
+      '<div class="lig-head"><div><small>Per Instagram</small><b id="ligTitle">' + escapeHtml(item.title || '') + '</b></div>' +
+        '<button type="button" class="adm-sheet-x" data-lig-close aria-label="Chiudi">' + LPR_I.x + '</button></div>' +
+      '<div class="lig-fmts" role="tablist" aria-label="Formato">' + Object.keys(LIG_FMT).map(function(k){
+        return '<button type="button" role="tab" class="lig-fmt" data-lig-fmt="' + k + '">' + LIG_FMT[k].tab + '</button>';
+      }).join('') + '</div>' +
+      '<div class="lig-body">' +
+        '<div class="lig-stage"><canvas class="lig-canvas" width="1080" height="1920" aria-label="Anteprima dell\'immagine"></canvas><p class="lig-wait" hidden>Preparo l\'immagine…</p></div>' +
+        '<div class="lig-side">' +
+          '<label class="lig-f"><span>Scritta in alto</span><select data-lig-tag><option value="new">Capitolo nuovo</option><option value="last">Ultimo capitolo</option><option value="read">Leggi ora</option><option value="none">Nessuna</option></select></label>' +
+          '<label class="lig-f"><span>Lingua delle scritte</span><select data-lig-lang>' + LUX_LANGS.map(function(l){ return '<option value="' + l.code + '">' + escapeHtml(l.name) + '</option>'; }).join('') + '</select></label>' +
+          '<label class="lig-c"><input type="checkbox" data-lig-qr> <span>Con il QR</span></label>' +
+          (item.mature ? '<label class="lig-c"><input type="checkbox" data-lig-adult> <span>Segno 18+</span></label>' : '') +
+          '<p class="lig-link" data-lig-link></p>' +
+          '<div class="lig-acts"><button type="button" class="btn btn-primary" data-lig-dl>' + LPR_I.dl + '<span>Scarica</span></button>' +
+            '<button type="button" class="btn btn-ghost" data-lig-share hidden>' + LPR_I.share + '<span>Condividi</span></button></div>' +
+          '<p class="lig-msg" data-lig-msg hidden></p>' +
+          '<p class="lig-tip">Sul telefono «Condividi» apre il menu per condividere: lì scegli Instagram (storia o post). La storia lascia libero lo spazio in alto e in basso, dove Instagram mette i suoi pulsanti.</p>' +
+        '</div>' +
+      '</div>' +
+    '</div>';
+  document.body.appendChild(w);
+  document.documentElement.classList.add('lig-on');
+  var q = function(s){ return w.querySelector(s); };
+  w.addEventListener('click', function(e){
+    var c = e.target.closest ? e.target.closest('[data-lig-close]') : null;
+    if(c){ luxIgClose(); return; }
+    var f = e.target.closest ? e.target.closest('[data-lig-fmt]') : null;
+    if(f){ LIG.fmt = f.getAttribute('data-lig-fmt'); luxIgControls(); luxIgDraw(); }
+  });
+  q('[data-lig-tag]').addEventListener('change', function(){ LIG.tag = this.value; luxIgDraw(); });
+  q('[data-lig-lang]').addEventListener('change', function(){
+    var l = this.value;
+    var go = function(){ LIG.lang = STR[l] ? l : 'it'; luxIgDraw(); };
+    if(!STR[l] && typeof luxLoadLang === 'function') luxLoadLang(l).then(go, go); else go();
+  });
+  q('[data-lig-qr]').addEventListener('change', function(){ LIG.qr = this.checked; luxIgControls(); luxIgDraw(); });
+  var ad = q('[data-lig-adult]');
+  if(ad) ad.addEventListener('change', function(){ LIG.adult = this.checked; luxIgDraw(); });
+  q('[data-lig-dl]').addEventListener('click', function(){ luxIgExport(false); });
+  q('[data-lig-share]').addEventListener('click', function(){ luxIgExport(true); });
+  w._key = function(e){ if(e.key === 'Escape') luxIgClose(); };
+  document.addEventListener('keydown', w._key);
+  luxIgControls();
+  luxIgDraw();
+  var x = w.querySelector('.adm-sheet-x');
+  try { if(x) x.focus({ preventScroll: true }); } catch(e){}
+}
+function luxIgClose(){
+  var w = document.getElementById('luxIgStudio');
+  if(!w) return;
+  if(w._key) document.removeEventListener('keydown', w._key);
+  w.remove();
+  document.documentElement.classList.remove('lig-on');
+}
+function luxIgControls(){
+  var w = document.getElementById('luxIgStudio');
+  if(!w) return;
+  var q = function(s){ return w.querySelector(s); };
+  Array.prototype.forEach.call(w.querySelectorAll('[data-lig-fmt]'), function(b){
+    var on = b.getAttribute('data-lig-fmt') === LIG.fmt;
+    b.classList.toggle('on', on);
+    b.setAttribute('aria-selected', on ? 'true' : 'false');
+  });
+  q('[data-lig-tag]').value = LIG.tag;
+  q('[data-lig-lang]').value = LIG.lang;
+  q('[data-lig-qr]').checked = LIG.qr;
+  var ad = q('[data-lig-adult]');
+  if(ad) ad.checked = LIG.adult;
+  var link = q('[data-lig-link]'), row = luxIgLinkRow();
+  if(!LIG.qr) link.textContent = 'Senza QR: sotto il titolo resta l\'indirizzo del sito.';
+  else if(LIG.row) link.textContent = 'Il QR porta al link «' + (LIG.row.name || LIG.row.code) + '»: chi arriva da qui si conta lì.';
+  else if(!row.code) link.textContent = 'Il QR porta al capitolo (link semplice: non si conta, manca il file link_e_qr_v251.sql su Supabase).';
+  else if(LIG.saved[LIG.fmt]) link.textContent = 'Il QR porta al link «' + LIG.saved[LIG.fmt].name + '», già in Link e QR con i suoi numeri.';
+  else link.textContent = 'Il QR porta a un link nuovo, «' + luxIgAutoName() + '»: quando scarichi l\'immagine lo trovi in Link e QR, con i suoi numeri.';
+  if(luxIsScheduled(LIG.item)) link.textContent += ' Il capitolo esce ' + luxSchedWhen(luxSchedMs(LIG.item)) + ': fino ad allora il link porta alla home.';
+  var sh = q('[data-lig-share]');
+  sh.hidden = !(navigator.canShare && navigator.share);
+}
+function luxIgLogo(){
+  if(!LIG.logo) LIG.logo = luxIgImg('logo-lg.webp', false);
+  return LIG.logo;
+}
+function luxIgImg(src, cors){
+  return new Promise(function(res){
+    if(!src){ res(null); return; }
+    var im = new Image();
+    if(cors) im.crossOrigin = 'anonymous';
+    im.onload = function(){ res(im.naturalWidth ? im : null); };
+    im.onerror = function(){ res(null); };
+    im.src = src;
+  });
+}
+function luxIgClean(im){
+  try { var c = document.createElement('canvas'); c.width = c.height = 2; var x = c.getContext('2d'); x.drawImage(im, 0, 0, 2, 2); x.getImageData(0, 0, 1, 1); return true; } catch(e){ return false; }
+}
+// la copertina vera (così l'immagine si può scaricare): dal file; se non si può, con crossOrigin; se no, senza
+function luxIgCover(url){
+  if(!url) return Promise.resolve(null);
+  if(!LIG.covers[url]) LIG.covers[url] = fetch(url, { mode: 'cors' })
+    .then(function(r){ if(!r.ok) throw new Error('HTTP ' + r.status); return r.blob(); })
+    .then(function(b){ return luxIgImg(URL.createObjectURL(b), false); })
+    .catch(function(){ return luxIgImg(url, true); })
+    .then(function(im){ return im && luxIgClean(im) ? im : null; });
+  return LIG.covers[url];
+}
+function luxIgFonts(){
+  if(!document.fonts || !document.fonts.load) return Promise.resolve();
+  var list = ['900 80px "Cinzel Decorative"', '700 40px "Cinzel"', '600 30px "Cinzel"', '700 30px "Space Mono"', 'italic 400 40px "Crimson Pro"'];
+  return Promise.all(list.map(function(f){ return document.fonts.load(f).catch(function(){}); })).catch(function(){});
+}
+function luxIgDraw(){
+  var w = document.getElementById('luxIgStudio');
+  if(!w || !LIG.item) return Promise.resolve(false);
+  var seq = ++LIG.seq, cv = w.querySelector('.lig-canvas'), wait = w.querySelector('.lig-wait');
+  var F = LIG_FMT[LIG.fmt];
+  cv.width = F.w; cv.height = F.h;
+  w.querySelector('.lig-stage').setAttribute('data-fmt', LIG.fmt);
+  wait.hidden = false;
+  return Promise.all([luxIgCover(LIG.item.cover_url), luxIgLogo(), luxIgFonts()]).then(function(res){
+    if(seq !== LIG.seq || !document.getElementById('luxIgStudio')) return false;
+    var row = luxIgLinkRow();
+    luxIgPaint(cv, { fmt: LIG.fmt, item: LIG.item, cover: res[0], logo: res[1], url: luxPromoUrl(row), qr: LIG.qr, adult: LIG.adult && !!LIG.item.mature, tag: LIG.tag });
+    cv.setAttribute('data-url', LIG.qr ? luxPromoUrl(row) : '');   // (per le prove: cosa c'è nell'immagine)
+    cv.setAttribute('data-cover', res[0] ? '1' : '0');
+    cv.setAttribute('data-tag', ligTagText({ tag: LIG.tag }));
+    cv.setAttribute('data-sub', ligSubText(LIG.item));
+    cv.setAttribute('data-drawn', LIG.fmt + ':' + seq);
+    wait.hidden = true;
+    luxIgControls();
+    setTimeout(function(){ if(seq === LIG.seq) luxIgBlob(); }, 0); // il PNG pronto in anticipo: «Condividi» parte dentro il tocco (Safari lo vuole)
+    return true;
+  });
+}
+function luxIgFileName(){ return 'lux-' + LIG_FMT[LIG.fmt].label.toLowerCase() + '-' + luxSlug(LIG.item.title) + '.png'; }
+// il PNG dell'immagine sullo schermo (uno per disegno)
+function luxIgBlob(){
+  var w = document.getElementById('luxIgStudio'), seq = LIG.seq;
+  if(!w) return Promise.resolve(null);
+  if(LIG.file && LIG.fileSeq === seq) return Promise.resolve(LIG.file);
+  var cv = w.querySelector('.lig-canvas'), name = luxIgFileName();
+  return new Promise(function(res){
+    try {
+      cv.toBlob(function(b){
+        if(!b){ res(null); return; }
+        var f = b;
+        try { f = new File([b], name, { type: 'image/png' }); } catch(e){ f.name = name; }
+        if(seq === LIG.seq){ LIG.file = f; LIG.fileSeq = seq; }
+        res(f);
+      }, 'image/png');
+    } catch(e){ console.warn('[per instagram]', e); res(null); }
+  });
+}
+// scaricare, o (dal telefono) condividere: si apre il menu del telefono, con Instagram
+function luxIgDeliver(file, share, say){
+  if(share && navigator.canShare && navigator.share){
+    var ok = false;
+    try { ok = navigator.canShare({ files: [file] }); } catch(e){}
+    if(ok){
+      try {
+        navigator.share({ files: [file], title: LIG.item.title || 'LUX COMICS' }).catch(function(err){
+          if(err && err.name === 'NotAllowedError') say('Pronta: tocca di nuovo «Condividi».');
+        });
+      } catch(e){ say('Pronta: tocca di nuovo «Condividi».'); }
+      return;
+    }
+  }
+  luxDownloadBlob(file, file.name || luxIgFileName());
+  say('Scaricata: ' + (file.name || luxIgFileName()));
+}
+function luxIgExport(share){
+  var w = document.getElementById('luxIgStudio');
+  if(!w || LIG.busy) return;
+  var msg = w.querySelector('[data-lig-msg]'), btns = w.querySelectorAll('[data-lig-dl],[data-lig-share]');
+  var say = function(t, bad){ msg.hidden = !t; msg.textContent = t || ''; msg.classList.toggle('is-error', !!bad); };
+  var busy = function(on){ LIG.busy = on; Array.prototype.forEach.call(btns, function(b){ b.disabled = on; }); };
+  say('');
+  var fmt = LIG.fmt;
+  var need = LIG.qr && !LIG.row && LUX_PROMO.err !== 'missing' && !LIG.saved[fmt];
+  // già pronta (il link c'è, l'immagine è quella sullo schermo): subito, dentro il tocco
+  if(!need && LIG.file && LIG.fileSeq === LIG.seq && w.querySelector('.lig-wait').hidden){ luxIgDeliver(LIG.file, share, say); return; }
+  busy(true);
+  var step = need ? luxPromoInsert({ code: LIG.codes[fmt] || luxPromoNewCode(), name: luxIgAutoName(), catalog_id: LIG.item.id, place: LIG_FMT[fmt].place })
+      .then(function(saved){ LIG.saved[fmt] = saved; LIG.codes[fmt] = saved.code; luxPromoListRender(); return true; })
+      .catch(function(e){ console.warn('[per instagram] link:', e); return LUX_PROMO.err === 'missing'; })
+    : Promise.resolve(true);
+  step.then(function(ok){
+    if(!ok){ busy(false); say('Non riesco a salvare il link del QR: controlla la connessione e riprova.', true); return; }
+    return luxIgDraw().then(luxIgBlob).then(function(file){
+      busy(false);
+      if(!file){ say('Non riesco a creare l\'immagine: riprova.', true); return; }
+      luxIgDeliver(file, share, say);
+      luxIgControls();
+    });
+  });
+}
+
+/* ---- il disegno ---- */
+function ligRound(x, l, t, w, h, r){
+  x.beginPath();
+  x.moveTo(l + r, t); x.lineTo(l + w - r, t); x.quadraticCurveTo(l + w, t, l + w, t + r);
+  x.lineTo(l + w, t + h - r); x.quadraticCurveTo(l + w, t + h, l + w - r, t + h);
+  x.lineTo(l + r, t + h); x.quadraticCurveTo(l, t + h, l, t + h - r);
+  x.lineTo(l, t + r); x.quadraticCurveTo(l, t, l + r, t);
+  x.closePath();
+}
+var LIG_SCRIPT_RE = /[֐-ࣿऀ-෿฀-໿က-႟]/; // scritture che non si spaziano lettera per lettera
+var LIG_CJK_RE = /[぀-ヿ㐀-鿿豈-﫿가-힯]/;
+function ligWrap(x, text, maxW){
+  text = String(text || '').trim();
+  if(!text) return [];
+  var cjk = LIG_CJK_RE.test(text);
+  // (la lineetta resta attaccata alla parola prima: «Il Re Geloso —» / «Capitolo 3», non «— Capitolo 3»)
+  var words = cjk ? text.replace(/\s+/g, ' ').split('') : text.replace(/[ \t\r\n]+([—–])[ \t\r\n]+/g, ' $1 ').split(/[ \t\r\n]+/);
+  var lines = [], cur = '';
+  var join = function(a, b){ return a ? a + (cjk ? '' : ' ') + b : b; };
+  words.forEach(function(wd){
+    var tryLine = join(cur, wd);
+    if(!cur || x.measureText(tryLine).width <= maxW){ cur = tryLine; }
+    else { lines.push(cur); cur = wd; }
+    while(x.measureText(cur).width > maxW && cur.length > 1){ // una parola sola più lunga della riga: si spezza
+      var k = cur.length - 1;
+      while(k > 1 && x.measureText(cur.slice(0, k)).width > maxW) k--;
+      lines.push(cur.slice(0, k));
+      cur = cur.slice(k);
+    }
+  });
+  if(cur) lines.push(cur);
+  return lines.map(function(l){ return l.trim(); }).filter(Boolean);
+}
+// il titolo: la misura più grande che sta in maxLines righe, senza una parolina sola sull'ultima riga
+// (se si può, rimpicciolendo poco), e con le righe di lunghezza simile
+function ligFit(x, text, font, maxW, maxLines, big, small){
+  var widest = function(ls){ return Math.max.apply(null, ls.map(function(l){ return x.measureText(l).width; })); };
+  var orphan = function(ls){ return ls.length > 1 && x.measureText(ls[ls.length - 1]).width < widest(ls) * .34; };
+  var best = null, size, lines;
+  for(size = big; size >= small; size -= 2){
+    x.font = font.replace('{s}', size);
+    lines = ligWrap(x, text, maxW);
+    if(lines.length > maxLines) continue;
+    if(!best) best = { size: size, lines: lines };
+    if(!orphan(lines)){ best = { size: size, lines: lines }; break; }
+    if(size < big * .78) break; // (non troppo più piccolo solo per una parola)
+  }
+  if(!best){
+    size = small;
+    x.font = font.replace('{s}', size);
+    lines = ligWrap(x, text, maxW);
+    if(lines.length > maxLines){
+      lines = lines.slice(0, maxLines);
+      var last = lines[maxLines - 1];
+      while(last.length > 1 && x.measureText(last + '…').width > maxW) last = last.slice(0, -1);
+      lines[maxLines - 1] = last.replace(/\s+$/, '') + '…';
+    }
+    return { size: size, lines: lines };
+  }
+  // righe equilibrate: la larghezza più stretta che dà lo stesso numero di righe
+  x.font = font.replace('{s}', best.size);
+  var n = best.lines.length;
+  if(n > 1 && best.lines[n - 1].slice(-1) !== '…'){
+    var lo = maxW * .45, hi = maxW;
+    for(var k = 0; k < 14; k++){ var mid = (lo + hi) / 2; if(ligWrap(x, text, mid).length <= n) hi = mid; else lo = mid; }
+    var bal = ligWrap(x, text, hi);
+    if(bal.length === n) best.lines = bal;
+  }
+  return best;
+}
+// scritte maiuscole spaziate (ma non per arabo, panjabi, hindi e bengalese, che si legano)
+function ligSpaced(x, text, px, y, sp, align){
+  text = String(text || '');
+  var plain = LIG_SCRIPT_RE.test(text) || LIG_CJK_RE.test(text) || !sp;
+  if(plain){ x.textAlign = align; x.fillText(text, px, y); return x.measureText(text).width; }
+  var chars = text.split(''), widths = chars.map(function(c){ return x.measureText(c).width; });
+  var tot = widths.reduce(function(a, b){ return a + b; }, 0) + sp * (chars.length - 1);
+  var start = align === 'center' ? px - tot / 2 : align === 'right' ? px - tot : px;
+  x.textAlign = 'left';
+  chars.forEach(function(c, i){ x.fillText(c, start, y); start += widths[i] + sp; });
+  return tot;
+}
+function ligUpper(s){ try { return String(s || '').toLocaleUpperCase(LIG.lang); } catch(e){ return String(s || '').toUpperCase(); } }
+function ligBg(x, o, W, H){
+  x.fillStyle = '#0b0607';
+  x.fillRect(0, 0, W, H);
+  var im = o.cover;
+  if(im){
+    var s = Math.max(W / im.naturalWidth, H / im.naturalHeight) * 1.12, dw = im.naturalWidth * s, dh = im.naturalHeight * s;
+    x.save();
+    if('filter' in x){
+      x.filter = 'blur(42px) saturate(1.15)';
+      x.drawImage(im, (W - dw) / 2, (H - dh) / 2, dw, dh);
+      x.filter = 'none';
+    } else { // (senza filtri: rimpicciolita e ringrandita, che la sfoca)
+      var k = 1 / 24, a = document.createElement('canvas'), b = document.createElement('canvas');
+      a.width = Math.max(4, Math.round(W * k)); a.height = Math.max(4, Math.round(H * k));
+      a.getContext('2d').drawImage(im, (W - dw) / 2 * k, (H - dh) / 2 * k, dw * k, dh * k);
+      b.width = Math.round(W / 6); b.height = Math.round(H / 6);
+      var bx = b.getContext('2d'); bx.imageSmoothingQuality = 'high'; bx.drawImage(a, 0, 0, b.width, b.height);
+      x.imageSmoothingQuality = 'high';
+      x.drawImage(b, 0, 0, W, H);
+    }
+    x.restore();
+  } else {
+    var g0 = x.createLinearGradient(0, 0, W, H);
+    g0.addColorStop(0, '#3a0c16'); g0.addColorStop(.55, '#150a0c'); g0.addColorStop(1, '#2a1a0c');
+    x.fillStyle = g0; x.fillRect(0, 0, W, H);
+  }
+  var g = x.createLinearGradient(0, 0, 0, H);
+  g.addColorStop(0, 'rgba(11,6,7,.80)'); g.addColorStop(.42, 'rgba(11,6,7,.50)'); g.addColorStop(1, 'rgba(11,6,7,.90)');
+  x.fillStyle = g; x.fillRect(0, 0, W, H);
+  var rg = x.createRadialGradient(W / 2, H * .45, Math.min(W, H) * .25, W / 2, H * .45, Math.max(W, H) * .78);
+  rg.addColorStop(0, 'rgba(0,0,0,0)'); rg.addColorStop(1, 'rgba(0,0,0,.55)');
+  x.fillStyle = rg; x.fillRect(0, 0, W, H);
+  x.strokeStyle = 'rgba(201,162,77,.6)'; x.lineWidth = 3; x.strokeRect(34.5, 34.5, W - 69, H - 69);
+  x.strokeStyle = 'rgba(201,162,77,.24)'; x.lineWidth = 1.5; x.strokeRect(47, 47, W - 94, H - 94);
+}
+function ligBadge18(x, cx, cy, r){
+  x.save();
+  x.shadowColor = 'rgba(0,0,0,.5)'; x.shadowBlur = 14;
+  x.beginPath(); x.arc(cx, cy, r, 0, Math.PI * 2); x.fillStyle = '#b3261e'; x.fill();
+  x.shadowBlur = 0;
+  x.lineWidth = r * .1; x.strokeStyle = '#f6ead0'; x.stroke();
+  x.fillStyle = '#ffffff'; x.font = '700 ' + Math.round(r * .82) + 'px "Space Mono", system-ui, sans-serif'; x.textAlign = 'center'; x.textBaseline = 'middle';
+  x.fillText('18+', cx, cy + 1);
+  x.restore();
+}
+function ligCoverDims(o, maxW, maxH){
+  var im = o.cover, ar = im ? im.naturalWidth / im.naturalHeight : 2 / 3;
+  var w = maxW, h = w / ar;
+  if(h > maxH){ h = maxH; w = h * ar; }
+  return { w: Math.round(w), h: Math.round(h) };
+}
+// la copertina con la cornice d'oro, larga al massimo maxW e alta al massimo maxH, con il centro in cx e la cima in top
+function ligCover(x, o, cx, top, maxW, maxH){
+  var im = o.cover, d = ligCoverDims(o, maxW, maxH), w = d.w, h = d.h;
+  var l = Math.round(cx - w / 2);
+  x.save();
+  x.shadowColor = 'rgba(0,0,0,.7)'; x.shadowBlur = 56; x.shadowOffsetY = 20;
+  x.fillStyle = '#c9a24d'; x.fillRect(l - 9, top - 9, w + 18, h + 18);
+  x.restore();
+  x.fillStyle = '#e3c273'; x.fillRect(l - 9, top - 9, w + 18, 3);
+  x.fillStyle = '#140b0c'; x.fillRect(l - 2, top - 2, w + 4, h + 4);
+  if(im) x.drawImage(im, l, top, w, h);
+  else {
+    var g = x.createLinearGradient(l, top, l, top + h);
+    g.addColorStop(0, '#4a0d18'); g.addColorStop(1, '#150a0c');
+    x.fillStyle = g; x.fillRect(l, top, w, h);
+    if(o.logo){ var s = Math.min(w, h) * .5; x.globalAlpha = .85; x.drawImage(o.logo, cx - s / 2, top + h / 2 - s / 2, s, s); x.globalAlpha = 1; }
+  }
+  if(o.adult) ligBadge18(x, l + w - Math.round(Math.min(w, h) * .11) - 6, top + Math.round(Math.min(w, h) * .11) + 6, Math.max(34, Math.round(Math.min(w, h) * .11)));
+  return { l: l, t: top, w: w, h: h };
+}
+// il biglietto in basso: il QR e «Inquadra e leggi» con l'indirizzo del sito (senza QR: «Leggi ora» e l'indirizzo)
+function ligTicket(x, o, l, t, w, h){
+  x.save();
+  x.shadowColor = 'rgba(0,0,0,.55)'; x.shadowBlur = 34; x.shadowOffsetY = 12;
+  ligRound(x, l, t, w, h, 26); x.fillStyle = '#f4ecdc'; x.fill();
+  x.restore();
+  ligRound(x, l + 8, t + 8, w - 16, h - 16, 20); x.lineWidth = 2; x.strokeStyle = 'rgba(110,20,35,.35)'; x.stroke();
+  var rtl = luxIgRtl(), pad = 20, tx, tw;
+  if(o.qr){
+    var qs = h - pad * 2, ql = rtl ? l + w - pad - qs : l + pad;
+    luxQrDraw(x, luxQrMake(o.url), ql, t + pad, qs, 3, '#111111', '#ffffff');
+    tx = rtl ? l + 30 : ql + qs + 30; tw = w - qs - pad - 30 - 30;
+  } else { tx = l + 36; tw = w - 72; }
+  var label = ligUpper(o.qr ? luxIgT('promo.scan') : luxIgT('rec.readNow')), host = luxPromoHost();
+  var big = Math.round(Math.min(46, h * .2)), lab = Math.round(Math.min(34, h * .15));
+  x.textBaseline = 'alphabetic';
+  x.fillStyle = '#6e1423';
+  x.font = '700 ' + lab + 'px "Space Mono", system-ui, sans-serif';
+  var lines = ligWrap(x, label, tw).slice(0, 2);
+  var hostSize = big;
+  x.font = '700 ' + hostSize + 'px "Cinzel", Georgia, serif';
+  while(hostSize > 18 && x.measureText(host).width > tw){ hostSize -= 2; x.font = '700 ' + hostSize + 'px "Cinzel", Georgia, serif'; }
+  var blockH = lines.length * lab * 1.25 + 14 + hostSize, y = t + (h - blockH) / 2 + lab;
+  var ax = !o.qr ? l + w / 2 : rtl ? tx + tw : tx, align = !o.qr ? 'center' : rtl ? 'right' : 'left';
+  x.font = '700 ' + lab + 'px "Space Mono", system-ui, sans-serif';
+  x.fillStyle = '#6e1423';
+  if(rtl) x.direction = 'rtl';
+  lines.forEach(function(s){ ligSpaced(x, s, ax, y, lab * .14, align); y += lab * 1.25; });
+  x.direction = 'ltr';
+  y += 14 - lab * .25 + hostSize * .8;
+  x.font = '700 ' + hostSize + 'px "Cinzel", Georgia, serif';
+  x.fillStyle = '#1e1410';
+  x.textAlign = align;
+  x.fillText(host, ax, y);
+}
+function ligTagText(o){
+  var k = { new: 'lxcover.newChapter', last: 'lxcover.lastChapter', read: 'rec.readNow' }[o.tag];
+  return k ? ligUpper(luxIgT(k)) : '';
+}
+function ligSubText(item){
+  var who = item.character && item.character !== 'Collaboratori' ? charDisplayName(item.character) : '';
+  var n = item.chapter_number != null && item.chapter_number !== '' ? luxIgT('series.chapterLabel') + ' ' + item.chapter_number : '';
+  return [who, n].filter(Boolean).join(' · ');
+}
+function ligTag(x, text, cx, y, align){
+  if(!text) return;
+  x.font = '700 30px "Space Mono", system-ui, sans-serif';
+  x.fillStyle = '#e3c273';
+  x.textBaseline = 'alphabetic';
+  if(luxIgRtl()) x.direction = 'rtl';
+  var w = ligSpaced(x, text, cx, y, 5, align);
+  x.direction = 'ltr';
+  x.strokeStyle = 'rgba(227,194,115,.6)'; x.lineWidth = 2;
+  if(align === 'center'){
+    x.beginPath(); x.moveTo(cx - w / 2 - 70, y - 10); x.lineTo(cx - w / 2 - 22, y - 10); x.moveTo(cx + w / 2 + 22, y - 10); x.lineTo(cx + w / 2 + 70, y - 10); x.stroke();
+  }
+}
+function ligTitle(x, fit, px, y, align, lh){
+  x.font = '900 ' + fit.size + 'px "Cinzel Decorative", "Cinzel", Georgia, serif';
+  x.fillStyle = '#f6ead0';
+  x.textAlign = align;
+  x.textBaseline = 'alphabetic';
+  x.save();
+  x.shadowColor = 'rgba(0,0,0,.75)'; x.shadowBlur = 18; x.shadowOffsetY = 4;
+  fit.lines.forEach(function(s, i){ x.fillText(s, px, y + i * fit.size * lh); });
+  x.restore();
+}
+function ligBrand(x, o, cx, top, size){
+  if(o.logo) x.drawImage(o.logo, cx - size / 2, top, size, size);
+  x.font = '600 26px "Cinzel", Georgia, serif';
+  x.fillStyle = '#d9c38e';
+  x.textBaseline = 'alphabetic';
+  ligSpaced(x, 'LUX COMICS · MEDUSA COMICS', cx, top + size + 46, 6, 'center');
+}
+function luxIgPaint(cv, o){
+  var F = LIG_FMT[o.fmt], W = F.w, H = F.h, x = cv.getContext('2d');
+  x.save();
+  x.textBaseline = 'alphabetic';
+  ligBg(x, o, W, H);
+  var tag = ligTagText(o), sub = ligSubText(o.item), title = String(o.item.title || '').trim();
+  if(o.fmt === 'story'){
+    // la storia: in alto e in basso Instagram mette i suoi pulsanti; tutto sta tra 230 e 1680
+    ligBrand(x, o, W / 2, 228, 92);
+    var tkH = o.qr ? 290 : 120, tkTop = 1680 - tkH;
+    var fit = ligFit(x, title, '900 {s}px "Cinzel Decorative", "Cinzel", Georgia, serif', 900, 4, 78, 42); // (i titoli lunghissimi: fino a quattro righe)
+    var titleH = fit.lines.length * fit.size * 1.12;
+    var block = (tag ? 62 : 0) + titleH + (sub ? 58 : 0);
+    var cTop = 404, cMaxH = Math.max(380, Math.min(800, tkTop - 50 - block - 46 - cTop));
+    var c = ligCover(x, o, W / 2, cTop, 680, cMaxH);
+    var y = c.t + c.h + 46;
+    // (copertine molto larghe: il blocco del testo si centra nello spazio che resta)
+    var free = tkTop - 50 - y - block;
+    if(free > 0) y += Math.round(free / 2);
+    if(tag){ ligTag(x, tag, W / 2, y + 30, 'center'); y += 62; }
+    ligTitle(x, fit, W / 2, y + fit.size * .82, 'center', 1.12);
+    y += titleH;
+    if(sub){ x.font = 'italic 400 44px "Crimson Pro", Georgia, serif'; x.fillStyle = '#d8ccad'; x.textAlign = 'center'; x.fillText(sub, W / 2, y + 44); }
+    ligTicket(x, o, (W - 820) / 2, tkTop, 820, tkH);
+  } else {
+    // il post e il quadrato: la copertina a sinistra, le scritte a destra, il biglietto in basso
+    var sq = o.fmt === 'square', m = 82, tkH2 = o.qr ? (sq ? 226 : 262) : 110, tkTop2 = H - m - tkH2;
+    var colL = sq ? 548 : 576, colR = W - m, colW = colR - colL;
+    var cAreaTop = m + 18, cAreaH = tkTop2 - 46 - cAreaTop, cW = colL - 48 - m - 10;
+    var cd = ligCoverDims(o, cW, cAreaH); // (centrata in altezza nello spazio che ha)
+    ligCover(x, o, m + 10 + cW / 2, cAreaTop + Math.max(0, Math.round((cAreaH - cd.h) / 2)), cW, cAreaH);
+    var rtl = luxIgRtl(), ax = rtl ? colR : colL, al = rtl ? 'right' : 'left';
+    var yy = cAreaTop + 4;
+    var ls = sq ? 68 : 80;
+    if(o.logo) x.drawImage(o.logo, rtl ? colR - ls : colL, yy, ls, ls);
+    x.font = '600 21px "Cinzel", Georgia, serif'; x.fillStyle = '#d9c38e'; x.textBaseline = 'alphabetic';
+    var bx = rtl ? colR - ls - 18 : colL + ls + 18;
+    ligSpaced(x, 'LUX COMICS', bx, yy + ls / 2 - 4, 4, al);
+    ligSpaced(x, '& MEDUSA COMICS', bx, yy + ls / 2 + 24, 3, al);
+    yy += ls + (sq ? 50 : 72);
+    if(tag){
+      x.font = '700 26px "Space Mono", system-ui, sans-serif'; x.fillStyle = '#e3c273';
+      if(rtl) x.direction = 'rtl';
+      var tl = ligWrap(x, tag, colW).slice(0, 2);
+      tl.forEach(function(s){ ligSpaced(x, s, ax, yy + 22, 4, al); yy += 34; });
+      x.direction = 'ltr';
+      x.fillStyle = 'rgba(227,194,115,.7)'; x.fillRect(rtl ? colR - 56 : colL, yy + 2, 56, 3);
+      yy += 30;
+    }
+    var maxTitleH = tkTop2 - 40 - yy - (sub ? 70 : 0);
+    var fit2 = ligFit(x, title, '900 {s}px "Cinzel Decorative", "Cinzel", Georgia, serif', colW, Math.max(1, Math.min(sq ? 4 : 5, Math.floor(maxTitleH / 40))), sq ? 60 : 68, 32);
+    while(fit2.lines.length * fit2.size * 1.12 > maxTitleH && fit2.size > 28){ fit2 = ligFit(x, title, '900 {s}px "Cinzel Decorative", "Cinzel", Georgia, serif', colW, fit2.lines.length, fit2.size - 2, 28); }
+    ligTitle(x, fit2, ax, yy + fit2.size * .86, al, 1.12);
+    yy += fit2.lines.length * fit2.size * 1.12;
+    if(sub){
+      x.font = 'italic 400 36px "Crimson Pro", Georgia, serif'; x.fillStyle = '#d8ccad'; x.textAlign = al;
+      var sl = ligWrap(x, sub, colW).slice(0, 2);
+      sl.forEach(function(s, i){ x.fillText(s, ax, yy + 40 + i * 40); });
+    }
+    ligTicket(x, o, m, tkTop2, W - m * 2, tkH2);
+  }
+  x.restore();
 }
 
 function handleAddAnnouncement(){
@@ -23965,6 +25283,7 @@ function ensureSectionHeadingStyle(){
 
 function __appInit(){
   try { luxAuthFromHash(); } catch(e){ console.warn('[accesso]', e); } // v242: dal link «nuova password» dell'email si entra già nell'account
+  try { luxPromoInit(); } catch(e){ console.warn('[link]', e); } // v251: arrivati da un link (un capitolo, un QR di Instagram)?
   document.querySelectorAll('.seal-img[data-size="sm"]').forEach(function(img){ img.src = LOGO_SM; });
   document.querySelectorAll('.seal-img[data-size="lg"]').forEach(function(img){ img.src = LOGO_LG; });
   makeHeaderLogoClickable();
@@ -24077,6 +25396,7 @@ function __appInit(){
     if(e.target.files[0]) handleImport(e.target.files[0]);
   });
 
+  luxPromoTabInit(); // v251: Amministra › Link e QR
   document.querySelectorAll('.admin-tab').forEach(function(btn){
     btn.addEventListener('click', function(){ switchAdminTab(btn.dataset.tab); });
   });
