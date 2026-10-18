@@ -1075,6 +1075,20 @@ Object.assign(STR.hi, {"zoom.hint": "किसी पेज को बड़ा 
 Object.assign(STR.bn, {"zoom.hint": "পৃষ্ঠা বড় করতে দুই আঙুলে ছড়িয়ে দিন বা দুবার ট্যাপ করুন", "zoom.help": "বড় করতে দুই আঙুল · দুবার ট্যাপ · পৃষ্ঠা বদলাতে পাশে সোয়াইপ করুন", "zoom.helpMouse": "বড় করতে মাউসের চাকা বা ডাবল-ক্লিক · পৃষ্ঠা বদলাতে তীর কী", "zoom.aria": "পৃষ্ঠা {n} / {total}, বড় করা", "zoom.open": "বড় করুন", "zoom.in": "বড় করুন", "zoom.out": "ছোট করুন", "zoom.fit": "স্ক্রিনে মানানসই", "zoom.prev": "আগের পৃষ্ঠা", "zoom.next": "পরের পৃষ্ঠা"});
 Object.assign(STR.ar, {"zoom.hint": "استخدم إصبعين أو انقر مرتين على الصفحة لتكبيرها", "zoom.help": "إصبعان للتكبير · نقرتان · اسحب جانبًا لتغيير الصفحة", "zoom.helpMouse": "عجلة الفأرة أو النقر المزدوج للتكبير · الأسهم لتغيير الصفحة", "zoom.aria": "الصفحة {n} من {total}، مكبَّرة", "zoom.open": "تكبير", "zoom.in": "تكبير", "zoom.out": "تصغير", "zoom.fit": "ملاءمة الشاشة", "zoom.prev": "الصفحة السابقة", "zoom.next": "الصفحة التالية"});
 Object.assign(STR.pnb, {"zoom.hint": "صفحہ وڈا کرن لئی دو انگلاں نال کھولو یا دو واری ٹیپ کرو", "zoom.help": "وڈا کرن لئی دو انگلاں · دو واری ٹیپ · صفحہ بدلن لئی پاسے ول سوائپ کرو", "zoom.helpMouse": "وڈا کرن لئی وہیل یا ڈبل کلک · صفحہ بدلن لئی تیر والیاں کنجیاں", "zoom.aria": "صفحہ {n} / {total}، وڈا کیتا ہویا", "zoom.open": "وڈا کرو", "zoom.in": "وڈا کرو", "zoom.out": "نکا کرو", "zoom.fit": "سکرین جنا", "zoom.prev": "پچھلا صفحہ", "zoom.next": "اگلا صفحہ"});
+// v254: l'app rinnovata (l'invito e la guida per installarla)
+Object.assign(STR.it, {"lxapp.cardSub": "L'app dell'Archivio · gratis", "lxapp.cardPitch": "A tutto schermo, con gli avvisi dei capitoli nuovi; si riapre dove eri rimasto.", "lxapp.guideSub": "Gratis, senza passare dallo store", "lxapp.b1": "A tutto schermo", "lxapp.b2": "Avvisi dei capitoli nuovi", "lxapp.b3": "Riprende dove eri", "lxapp.s26a": "Tocca ⋯ accanto all'indirizzo, in basso.", "lxapp.s26b": "Tocca «Condividi».", "lxapp.s26c": "Scorri e tocca «Aggiungi alla schermata Home».", "lxapp.s26d": "Lascia attivo «Apri come app web» e tocca «Aggiungi».", "lxapp.done": "Installata: trovi LUX COMICS tra le tue app."});
+Object.assign(STR.en, {"lxapp.cardSub": "The Archive's app · free", "lxapp.cardPitch": "Full screen, with alerts for new chapters; it reopens where you left off.", "lxapp.guideSub": "Free, no app store needed", "lxapp.b1": "Full screen", "lxapp.b2": "New-chapter alerts", "lxapp.b3": "Picks up where you were", "lxapp.s26a": "Tap ⋯ next to the address, at the bottom.", "lxapp.s26b": "Tap “Share”.", "lxapp.s26c": "Scroll down and tap “Add to Home Screen”.", "lxapp.s26d": "Leave “Open as Web App” on and tap “Add”.", "lxapp.done": "Installed: you'll find LUX COMICS among your apps."});
+Object.assign(STR.es, {"lxapp.cardSub": "La app del Archivo · gratis", "lxapp.cardPitch": "A pantalla completa, con avisos de capítulos nuevos; se vuelve a abrir donde lo dejaste.", "lxapp.guideSub": "Gratis, sin pasar por la tienda", "lxapp.b1": "Pantalla completa", "lxapp.b2": "Avisos de capítulos nuevos", "lxapp.b3": "Sigue donde lo dejaste", "lxapp.s26a": "Toca ⋯ junto a la dirección, abajo.", "lxapp.s26b": "Toca «Compartir».", "lxapp.s26c": "Desliza y toca «Añadir a pantalla de inicio».", "lxapp.s26d": "Deja activado «Abrir como app web» y toca «Añadir».", "lxapp.done": "Instalada: encontrarás LUX COMICS entre tus apps."});
+Object.assign(STR.fr, {"lxapp.cardSub": "L'app de l'Archive · gratuite", "lxapp.cardPitch": "En plein écran, avec les alertes des nouveaux chapitres ; elle se rouvre là où vous en étiez.", "lxapp.guideSub": "Gratuite, sans passer par le store", "lxapp.b1": "Plein écran", "lxapp.b2": "Alertes des nouveaux chapitres", "lxapp.b3": "Reprend là où vous étiez", "lxapp.s26a": "Touchez ⋯ à côté de l'adresse, en bas.", "lxapp.s26b": "Touchez « Partager ».", "lxapp.s26c": "Faites défiler et touchez « Sur l'écran d'accueil ».", "lxapp.s26d": "Laissez « Ouvrir comme app web » activé et touchez « Ajouter ».", "lxapp.done": "Installée : LUX COMICS est parmi vos apps."});
+Object.assign(STR.de, {"lxapp.cardSub": "Die App des Archivs · kostenlos", "lxapp.cardPitch": "Im Vollbild, mit Hinweisen auf neue Kapitel; sie öffnet sich dort, wo du aufgehört hast.", "lxapp.guideSub": "Kostenlos, ohne App Store", "lxapp.b1": "Vollbild", "lxapp.b2": "Hinweise auf neue Kapitel", "lxapp.b3": "Macht dort weiter, wo du warst", "lxapp.s26a": "Tippe unten neben der Adresse auf ⋯.", "lxapp.s26b": "Tippe auf „Teilen“.", "lxapp.s26c": "Scrolle und tippe auf „Zum Home-Bildschirm“.", "lxapp.s26d": "Lass „Als Web-App öffnen“ aktiviert und tippe auf „Hinzufügen“.", "lxapp.done": "Installiert: LUX COMICS ist jetzt bei deinen Apps."});
+Object.assign(STR.pt, {"lxapp.cardSub": "O app do Acervo · grátis", "lxapp.cardPitch": "Em tela cheia, com avisos de capítulos novos; reabre onde você parou.", "lxapp.guideSub": "Grátis, sem passar pela loja", "lxapp.b1": "Tela cheia", "lxapp.b2": "Avisos de capítulos novos", "lxapp.b3": "Continua de onde você parou", "lxapp.s26a": "Toque em ⋯ ao lado do endereço, embaixo.", "lxapp.s26b": "Toque em «Compartilhar».", "lxapp.s26c": "Role e toque em «Adicionar à Tela de Início».", "lxapp.s26d": "Deixe «Abrir como App Web» ativado e toque em «Adicionar».", "lxapp.done": "Instalado: o LUX COMICS está entre seus apps."});
+Object.assign(STR.ru, {"lxapp.cardSub": "Приложение Архива · бесплатно", "lxapp.cardPitch": "На весь экран, с уведомлениями о новых главах; открывается там, где вы остановились.", "lxapp.guideSub": "Бесплатно, без магазина приложений", "lxapp.b1": "На весь экран", "lxapp.b2": "Уведомления о новых главах", "lxapp.b3": "Продолжает с того же места", "lxapp.s26a": "Нажмите ⋯ рядом с адресом внизу.", "lxapp.s26b": "Нажмите «Поделиться».", "lxapp.s26c": "Прокрутите и нажмите «На экран „Домой“».", "lxapp.s26d": "Оставьте включённым «Открыть как веб-приложение» и нажмите «Добавить».", "lxapp.done": "Установлено: LUX COMICS теперь среди ваших приложений."});
+Object.assign(STR.zh, {"lxapp.cardSub": "档案馆的应用 · 免费", "lxapp.cardPitch": "全屏阅读，新章节发布时提醒你；再次打开时回到你离开的地方。", "lxapp.guideSub": "免费，无需应用商店", "lxapp.b1": "全屏", "lxapp.b2": "新章节提醒", "lxapp.b3": "从上次的位置继续", "lxapp.s26a": "轻点底部地址旁边的 ⋯。", "lxapp.s26b": "轻点“分享”。", "lxapp.s26c": "向下滚动并轻点“添加到主屏幕”。", "lxapp.s26d": "保持“作为 Web App 打开”开启，然后轻点“添加”。", "lxapp.done": "已安装：在你的应用中可以找到 LUX COMICS。"});
+Object.assign(STR.ja, {"lxapp.cardSub": "アーカイブのアプリ · 無料", "lxapp.cardPitch": "全画面で読めて、新しい章のお知らせも届きます。前回の続きから開きます。", "lxapp.guideSub": "無料、ストアは不要", "lxapp.b1": "全画面", "lxapp.b2": "新しい章のお知らせ", "lxapp.b3": "前回の続きから", "lxapp.s26a": "下部のアドレスの横にある ⋯ をタップします。", "lxapp.s26b": "「共有」をタップします。", "lxapp.s26c": "スクロールして「ホーム画面に追加」をタップします。", "lxapp.s26d": "「Webアプリとして開く」をオンのままにして「追加」をタップします。", "lxapp.done": "インストールしました：アプリの中に LUX COMICS があります。"});
+Object.assign(STR.hi, {"lxapp.cardSub": "आर्काइव का ऐप · मुफ़्त", "lxapp.cardPitch": "पूरी स्क्रीन पर, नए अध्यायों की सूचना के साथ; वहीं से खुलता है जहाँ आपने छोड़ा था।", "lxapp.guideSub": "मुफ़्त, बिना ऐप स्टोर के", "lxapp.b1": "पूरी स्क्रीन", "lxapp.b2": "नए अध्यायों की सूचना", "lxapp.b3": "वहीं से आगे जहाँ थे", "lxapp.s26a": "नीचे पते के पास ⋯ पर टैप करें।", "lxapp.s26b": "«शेयर करें» पर टैप करें।", "lxapp.s26c": "स्क्रॉल करके «होम स्क्रीन में जोड़ें» पर टैप करें।", "lxapp.s26d": "«वेब ऐप के रूप में खोलें» चालू रहने दें और «जोड़ें» पर टैप करें।", "lxapp.done": "इंस्टॉल हो गया: LUX COMICS आपके ऐप्स में है।"});
+Object.assign(STR.bn, {"lxapp.cardSub": "আর্কাইভের অ্যাপ · বিনামূল্যে", "lxapp.cardPitch": "পুরো স্ক্রিনে, নতুন অধ্যায়ের খবরসহ; যেখানে ছেড়েছিলেন সেখান থেকেই খোলে।", "lxapp.guideSub": "বিনামূল্যে, অ্যাপ স্টোর ছাড়াই", "lxapp.b1": "পুরো স্ক্রিন", "lxapp.b2": "নতুন অধ্যায়ের খবর", "lxapp.b3": "যেখানে ছিলেন সেখান থেকে", "lxapp.s26a": "নিচে ঠিকানার পাশে ⋯ ট্যাপ করুন।", "lxapp.s26b": "«শেয়ার» ট্যাপ করুন।", "lxapp.s26c": "স্ক্রল করে «হোম স্ক্রিনে যোগ করুন» ট্যাপ করুন।", "lxapp.s26d": "«ওয়েব অ্যাপ হিসেবে খুলুন» চালু রেখে «যোগ করুন» ট্যাপ করুন।", "lxapp.done": "ইনস্টল হয়েছে: আপনার অ্যাপগুলোর মধ্যে LUX COMICS আছে।"});
+Object.assign(STR.ar, {"lxapp.cardSub": "تطبيق الأرشيف · مجانًا", "lxapp.cardPitch": "بملء الشاشة، مع تنبيهات الفصول الجديدة؛ ويُفتح من حيث توقفت.", "lxapp.guideSub": "مجانًا، دون متجر التطبيقات", "lxapp.b1": "ملء الشاشة", "lxapp.b2": "تنبيهات الفصول الجديدة", "lxapp.b3": "يكمل من حيث كنت", "lxapp.s26a": "اضغط على ⋯ بجانب العنوان في الأسفل.", "lxapp.s26b": "اضغط على «مشاركة».", "lxapp.s26c": "مرّر واضغط على «إضافة إلى الشاشة الرئيسية».", "lxapp.s26d": "اترك «فتح كتطبيق ويب» مفعّلًا واضغط على «إضافة».", "lxapp.done": "تم التثبيت: ستجد LUX COMICS بين تطبيقاتك."});
+Object.assign(STR.pnb, {"lxapp.cardSub": "آرکائیو دی ایپ · مفت", "lxapp.cardPitch": "پوری سکرین تے، نویں باباں دیاں اطلاعاں نال؛ اوتھوں ای کھلدی اے جتھے چھڈیا سی۔", "lxapp.guideSub": "مفت، ایپ سٹور توں بغیر", "lxapp.b1": "پوری سکرین", "lxapp.b2": "نویں باباں دیاں اطلاعاں", "lxapp.b3": "اوتھوں ای اگے جتھے سی", "lxapp.s26a": "تھلے پتے دے کول ⋯ تے ٹیپ کرو۔", "lxapp.s26b": "«شیئر» تے ٹیپ کرو۔", "lxapp.s26c": "سکرول کر کے «ہوم سکرین تے شامل کرو» تے ٹیپ کرو۔", "lxapp.s26d": "«ویب ایپ وانگ کھولو» چالو رہن دیو تے «شامل کرو» تے ٹیپ کرو۔", "lxapp.done": "انسٹال ہو گئی: LUX COMICS تہاڈیاں ایپاں وچ اے۔"});
 var CHAR_META = {
   Lucifer:{role:{it:"Il Portatore di Luce",en:"The Light-Bearer",es:"El Portador de Luz",fr:"Le Porteur de Lumière",de:"Der Lichtträger"},
     bio:{it:"Sovrano della collana ammiraglia: potere, caduta e desiderio raccontati su grande scala.",
@@ -2173,6 +2187,7 @@ function luxCoverShow(how){
   if(closing && book) el.classList.add('lxc-zoom');
   document.body.appendChild(el);
   luxCoverEl = el;
+  try { luxThemeColor(); } catch(e){} // v254
   luxCoverFit(el); // v244: a tutto schermo sul computer, ingrandita (prima delle misure)
   document.documentElement.classList.add('lux-cover-on');
   try { showEntryModeGate({ under: true }); } catch(e){ console.warn('[ingresso]', e); } // v248: la seconda pagina, sotto la copertina (se non è già stata scelta)
@@ -2263,6 +2278,7 @@ function luxCoverFinish(guest, openItem){
   luxCoverSetInert(false);
   if(el && el.parentNode) el.parentNode.removeChild(el);
   luxCoverEl = null;
+  try { luxThemeColor(); } catch(e){} // v254
   document.documentElement.classList.remove('lux-cover-on', 'lux-cover-wait');
   try { sessionStorage.setItem('lux_cover_ok', '1'); sessionStorage.removeItem('lux_cover_lock'); } catch(e){}
   try { luxGuestAfterOpen(guest); } catch(e){} // v248: da ospite parte (o riparte) il tempo; con l'account non c'è
@@ -3198,8 +3214,7 @@ function applyTheme(theme){
   var sunIcon = document.getElementById('themeIconSun');
   if(moonIcon) moonIcon.classList.toggle('hidden', theme === 'light');
   if(sunIcon) sunIcon.classList.toggle('hidden', theme !== 'light');
-  var themeColorMeta = document.querySelector('meta[name="theme-color"]');
-  if(themeColorMeta) themeColorMeta.setAttribute('content', theme === 'light' ? '#f4efe2' : '#6e1423');
+  luxThemeColor(); // v254: la barra del telefono come l'intestazione (prima: rosso vino)
   localStorage.setItem('lux_theme', theme);
 }
 function initTheme(){
@@ -6744,7 +6759,7 @@ function testPushNotification(){
   if(!('serviceWorker' in navigator) || typeof Notification === 'undefined' || Notification.permission !== 'granted'){ done(false); return; }
   navigator.serviceWorker.ready.then(function(reg){
     return reg.showNotification('LUX COMICS', {
-      body: t('push.testBody'), icon: './icon-192.png', badge: './icon-192.png', tag: 'lux-test', data: { url: './' }
+      body: t('push.testBody'), icon: './app-icon-192.png', badge: './badge-96.png', tag: 'lux-test', data: { url: './' }
     });
   }).then(function(){ done(true); if(isAdmin()) setTimeout(luxServerPushTest, 1500); }, function(){ done(false); }); // v235
 }
@@ -11720,6 +11735,7 @@ window.addEventListener('beforeinstallprompt', function(e){
 });
 window.addEventListener('appinstalled', function(){
   a2hsDeferredPrompt = null;
+  try { luxToast(t('lxapp.done')); } catch(e){} // v254
   var b = document.getElementById('a2hsBanner');
   if(b && b.parentNode) b.parentNode.removeChild(b);
 });
@@ -11778,7 +11794,7 @@ function a2hsBlockedNow(){
   if(document.querySelector('.modal-backdrop:not(.hidden)')) return true;
   return false;
 }
-function maybeShowInstallBanner(){
+function maybeShowInstallBanner0(){ // (v254: sostituita, vedi «installare l'app»)
   if(!a2hsCanInstall() || a2hsSnoozed('lux_a2hs_until') || document.getElementById('a2hsBanner')) return;
   if(a2hsBlockedNow()) return;
   // solo dopo un segno di interesse: chi ha fatto l'accesso, o chi torna sul sito
@@ -11801,7 +11817,7 @@ function maybeShowInstallBanner(){
     },
     function(){ a2hsSnooze('lux_a2hs_until', 30); });
 }
-function openInstallGuide(){
+function openInstallGuide0(){ // (v254: sostituita)
   if(!isIOSDevice() && a2hsDeferredPrompt){
     var p = a2hsDeferredPrompt;
     a2hsDeferredPrompt = null;
@@ -17088,6 +17104,7 @@ function loadReadingProgress(deferRender){
    lettura veloce. Chiamata da showReaderPage ad ogni cambio pagina. */
 var _readingProgressSaveTimer = null;
 function saveReadingProgress(item, pageIdx){
+  luxRememberRead(item, pageIdx); // v254: anche senza account, su questo telefono o computer
   if(!isSignedIn() || !item) return;
   clearTimeout(_readingProgressSaveTimer);
   _readingProgressSaveTimer = setTimeout(function(){
@@ -17520,6 +17537,7 @@ function checkDeepLinkOnLoad(){
   var params = new URLSearchParams(window.location.search);
   var titleId = params.get('title');
   if(!titleId) return;
+  if(LUX_APP.nextOf){ if(!catalogFreshLoaded) return; titleId = luxAppNextOf(titleId); } // v254: «Continua a leggere», capitolo finito: il successivo, col catalogo appena arrivato
   var items = getCatalog();
   var item = items.find(function(i){ return i.id === titleId; });
   if(!item && luxArrive.fetched && luxArrive.fetched.id === titleId) item = luxArrive.fetched; // v252: il capitolo arrivato da solo
@@ -21966,7 +21984,9 @@ function openPageReader(item){
   thumbs.innerHTML = '';
   luxReaderThumbs(thumbs, readerPages, function(idx){ showReaderPage(idx); }); // v246: miniature leggere, solo quando la striscia le mostra
   var resume = readingProgressMap[item.id];
+  if(LUX_APP.resume && LUX_APP.resume.id === item.id){ if(typeof LUX_APP.resume.p === 'number') resume = LUX_APP.resume.p; LUX_APP.resume = null; } // v254: l'app si riapre alla tavola dove eri
   var startIdx = (typeof resume === 'number' && resume > 0 && resume < readerPages.length) ? resume : 0;
+  luxRememberRead(item, startIdx); // v254: per «Continua a leggere», anche senza account
   initReaderControls();
   applyReaderPrefs();
   luxZoomInit(); luxZoomHint(); // v253: due dita o doppio tocco su una tavola (dal computer: doppio clic, «Ingrandisci»)
@@ -23438,11 +23458,13 @@ function luxArriveOpen(item){
 }
 function luxArriveToPages(){
   var veiled = document.documentElement.classList.contains('lux-arrive-wait'); // v252: dal QR, ancora col velo: alle tavole di colpo, poi via il velo
+  var lxIdx = readerIndex; // v254: la tavola da cui si riparte (a scorrimento non si torna alla prima)
   var touched = false, mark = function(){ touched = true; };
   ['wheel', 'touchstart', 'pointerdown', 'keydown'].forEach(function(n){ window.addEventListener(n, mark, { capture: true, passive: true, once: true }); });
   var align = function(first){
     var rd = document.getElementById('pageReader'), tm = document.getElementById('titleModal');
     if(!rd || rd.classList.contains('hidden') || !tm || tm.classList.contains('hidden')) return;
+    rd = luxArrivePageEl(rd, lxIdx); // v254
     if(first){ try { rd.scrollIntoView({ block: 'start', behavior: (!veiled && !luxCoverReduced()) ? 'smooth' : 'auto' }); } catch(e){ try { rd.scrollIntoView(); } catch(e2){} } return; }
     // (dopo: si riallinea solo se nessuno ha toccato e la pagina è ferma, cioè non sta ancora scorrendo)
     var t1 = rd.getBoundingClientRect().top;
@@ -24887,6 +24909,7 @@ function luxZoomOpen(idx, opt){
   el.classList.remove('is-zoomed');
   el.hidden = false;
   document.documentElement.classList.add('lzm-on');
+  luxThemeColor(); // v254
   document.addEventListener('touchmove', luxZoomNoScroll, { passive: false }); // (il pizzico cominciato nel lettore non fa scorrere la pagina sotto)
   if(LZ.hist) try { history.pushState({ luxZoom: 1 }, ''); } catch(e){} // («indietro» del telefono chiude lo zoom, non la pagina)
   if(opt.ptrs){ LZ.ptrs = opt.ptrs; luxZoomStart(); } // due dita nel lettore: il pizzico continua qui
@@ -24908,6 +24931,7 @@ function luxZoomClose(fromPop){
   el.hidden = true;
   el.classList.remove('is-loading');
   document.documentElement.classList.remove('lzm-on');
+  luxThemeColor(); // v254
   document.removeEventListener('touchmove', luxZoomNoScroll, { passive: false });
   if(hist && !fromPop && history.state && history.state.luxZoom){ luxZoomSkipPop = true; try { history.back(); } catch(e){ luxZoomSkipPop = false; } }
   // il lettore sulla tavola dove si era arrivati (se si è cambiata tavola nello zoom)
@@ -25267,6 +25291,344 @@ function luxTrashSheet(w, item){
     });
   });
 }
+
+/* ============ v254: L'APP RINNOVATA ============
+   - Le scorciatoie dell'icona (tenendola premuta: Android e computer): «Continua a leggere», «Ultimi capitoli»,
+     «Cerca» (?app=continua|novita|cerca nel manifest). Si entra dritti, senza copertina (come dal QR); da ospite,
+     finiti i 45 minuti, l'albo resta chiuso come sempre.
+   - L'app installata si riapre dove eri: aperta dall'icona entro 12 ore, torna al capitolo (alla tavola dove eri
+     arrivato) o alla pagina. Da una notifica o da un link, invece, si va lì.
+   - «Continua a leggere» anche senza account: l'ultimo capitolo aperto su questo telefono o computer.
+   - L'invito e la guida per installare l'app, rinnovati (iPhone con iOS 26 e prima, Android e computer).
+   - Il colore della barra del telefono segue il sito (scuro, chiaro, la copertina, lo zoom).
+   - Su iPhone, la schermata d'avvio dell'app (disegnata per quel telefono, quando la si installa).
+   - Tra una pagina e l'altra, una dissolvenza al posto del salto (non con «riduci movimento»). */
+var LUX_APP = { launch: false, resume: null, nextOf: null, wantSearch: false, wantLatest: false };
+var LUX_APP_FRESH_MS = 12 * 3600e3;
+function luxAppGet(k){ try { var v = JSON.parse(localStorage.getItem(k) || 'null'); return v && typeof v === 'object' ? v : null; } catch(e){ return null; } }
+function luxAppPage(){ return String(window.location.pathname || '').split('/').pop() || 'index.html'; }
+// la query di questa pagina senza i parametri dell'app (e del link)
+function luxAppQuery(drop){
+  try {
+    var p = new URLSearchParams(window.location.search);
+    (drop || ['app', 'da', 'title']).forEach(function(k){ p.delete(k); });
+    var q = p.toString();
+    return q ? '?' + q : '';
+  } catch(e){ return ''; }
+}
+function luxAppSetUrl(url){ try { history.replaceState(history.state, '', url); } catch(e){} }
+// un'altra pagina al posto di questa (senza lasciarla nella cronologia), col velo scuro intanto
+function luxAppGo(url){
+  document.documentElement.classList.add('lux-arrive-wait');
+  try { window.location.replace(url); } catch(e){ window.location.href = url; }
+}
+// l'ultimo capitolo aperto su questo telefono o computer, alla sua tavola (anche senza account)
+function luxRememberRead(item, idx){
+  if(!item || !item.id) return;
+  try { localStorage.setItem('lux_last_read', JSON.stringify({ c: item.id, p: Math.max(0, idx | 0), n: (item.pages || []).length, t: Date.now() })); } catch(e){}
+}
+// nell'app installata, uscendo: dove si era (la pagina, il capitolo aperto, la tavola)
+function luxAppRemember(){
+  if(!isStandaloneApp()) return;
+  var tm = document.getElementById('titleModal');
+  var st = { u: luxAppPage() + luxAppQuery(), t: Date.now() };
+  if(tm && !tm.classList.contains('hidden') && currentModalCatalogId){
+    st.c = currentModalCatalogId;
+    if(readerItem && readerItem.id === currentModalCatalogId && readerPages && readerPages.length) st.p = readerIndex | 0;
+  }
+  try { localStorage.setItem('lux_app_last', JSON.stringify(st)); } catch(e){}
+}
+document.addEventListener('visibilitychange', function(){ if(document.visibilityState === 'hidden') luxAppRemember(); });
+window.addEventListener('pagehide', luxAppRemember);
+
+// all'avvio (prima del link e della copertina): le scorciatoie, l'avvio dall'icona e «si riapre dove eri»
+function luxAppInit(){
+  var q = null;
+  try { q = new URLSearchParams(window.location.search); } catch(e){ return; }
+  var mode = String(q.get('app') || '');
+  var first = false;
+  try { first = !sessionStorage.getItem('lux_app_seen'); sessionStorage.setItem('lux_app_seen', '1'); } catch(e){}
+  // aperta dall'icona: all'avvio (la prima pagina della visita) o, sul computer, con la finestra già aperta
+  // (l'icona ricarica la finestra con ?app=1: si torna dov'era, salvato un attimo prima uscendo dalla pagina)
+  LUX_APP.launch = (first || mode === '1') && isStandaloneApp();
+  if(mode) luxAppSetUrl(luxAppPage() + luxAppQuery(['app']) + window.location.hash); // (l'indirizzo resta pulito)
+  if(mode === 'continua'){ luxAppContinue(); return; }
+  if(mode === 'novita' || mode === 'cerca'){
+    luxAppDirect();
+    if(mode === 'novita') LUX_APP.wantLatest = true; else LUX_APP.wantSearch = true;
+    return;
+  }
+  // aperta dall'icona (la home, senza link): dove eri, se è passato poco
+  if(!LUX_APP.launch || luxAppPage() !== 'index.html' || q.get('title') || q.get('da')) return;
+  var st = luxAppGet('lux_app_last');
+  if(!st || !st.t || Date.now() - st.t > LUX_APP_FRESH_MS || Date.now() < st.t - 60000) return;
+  if(st.c){ luxAppOpenChapter(String(st.c), st.p); return; }
+  var u = String(st.u || ''), page = u.split('?')[0];
+  if(page && page !== 'index.html' && /^[a-z0-9_-]+\.html(\?[^#\s]*)?$/i.test(u)){ luxAppDirect(); luxAppGo(u); } // (come col capitolo: senza copertina)
+  else if(page === 'index.html') luxAppDirect(); // (eri nella home: ci si torna, senza copertina)
+}
+// dalle scorciatoie: in questa visita niente copertina (come dal QR) e niente «online o offline?»
+function luxAppDirect(){
+  try {
+    sessionStorage.setItem('lux_cover_ok', '1');
+    sessionStorage.removeItem('lux_cover_lock');
+    if(navigator.onLine !== false && !sessionStorage.getItem('lux_entry_mode')) sessionStorage.setItem('lux_entry_mode', 'online');
+  } catch(e){}
+}
+// un capitolo, dritti alle pagine (lo apre il percorso del QR: ?title=), alla tavola indicata
+function luxAppOpenChapter(id, page){
+  LUX_APP.resume = { id: id, p: typeof page === 'number' && page > 0 ? page : null };
+  luxAppSetUrl(luxAppPage() + '?title=' + encodeURIComponent(id));
+}
+// «Continua a leggere»: l'ultimo capitolo aperto (finito: il capitolo dopo della serie, se c'è); se non ce n'è, i tuoi fumetti
+function luxAppContinue(){
+  var lr = luxAppGet('lux_last_read');
+  if(lr && lr.c){
+    var id = String(lr.c), page = typeof lr.p === 'number' ? lr.p : 0;
+    if(lr.n && page >= lr.n - 1) LUX_APP.nextOf = id; // (finito: il capitolo dopo si sceglie col catalogo appena arrivato, vedi luxAppNextOf)
+    luxAppOpenChapter(id, page);
+    return;
+  }
+  luxAppDirect();
+  luxAppGo(isSignedIn() ? 'mycomics.html' : 'schedario.html');
+}
+// «Continua a leggere» con il capitolo finito: il capitolo dopo della serie, cercato nel catalogo appena arrivato
+// (quello salvato sul telefono può non avere il capitolo uscito da poco). Se non c'è: il capitolo finito, all'ultima tavola.
+function luxAppNextOf(id){
+  var from = LUX_APP.nextOf;
+  LUX_APP.nextOf = null;
+  if(from !== id) return id;
+  var cur = null, nx = null;
+  try { getCatalog().some(function(x){ if(x && x.id === id){ cur = x; return true; } return false; }); } catch(e){}
+  try { nx = cur ? luxEndNext(cur) : null; } catch(e){}
+  if(!nx || !nx.id) return id;
+  LUX_APP.resume = { id: nx.id, p: null };
+  luxArrive.id = nx.id;
+  luxAppSetUrl(luxAppPage() + '?title=' + encodeURIComponent(nx.id));
+  return nx.id;
+}
+// dopo l'avvio: «Cerca» apre la ricerca, «Ultimi capitoli» porta lì; su iPhone, la schermata d'avvio
+function luxAppAfterInit(){
+  if(LUX_APP.wantSearch){
+    var n = 0;
+    (function tryOpen(){
+      if(luxCoverEl) return; // (l'albo è chiuso: prima si entra)
+      if(document.documentElement.classList.contains('lux-ready')){ setTimeout(function(){ try { if(!luxCoverEl) luxSearchOpen(); } catch(e){} }, 300); return; }
+      if(++n < 60) setTimeout(tryOpen, 150);
+    })();
+  }
+  if(LUX_APP.wantLatest){
+    var k = 0, touched = false, mark = function(){ touched = true; };
+    ['wheel', 'touchstart', 'pointerdown', 'keydown'].forEach(function(n){ window.addEventListener(n, mark, { capture: true, passive: true, once: true }); });
+    var goTo = function(smooth){
+      var s = document.getElementById('latestSection');
+      if(!s) return;
+      var h = document.querySelector('header.topbar'), r = h ? h.getBoundingClientRect() : null;
+      var off = r && r.top <= 1 && r.width > window.innerWidth * 0.6 ? r.height : 0;
+      var y = Math.max(0, s.getBoundingClientRect().top + window.pageYOffset - off - 10);
+      if(Math.abs(y - window.pageYOffset) < 4) return;
+      try { window.scrollTo({ top: y, behavior: smooth ? 'smooth' : 'auto' }); } catch(e){ s.scrollIntoView(); }
+    };
+    (function look(){
+      if(luxCoverEl) return;
+      var s = document.getElementById('latestSection');
+      if(s && !s.classList.contains('hidden') && !document.body.classList.contains('home-loading') && document.documentElement.classList.contains('lux-ready')){
+        goTo(!luxCoverReduced());
+        // (le immagini più in alto, arrivando, possono spingerla giù: si riallinea finché nessuno tocca lo schermo)
+        [900, 1800, 3000, 4500].forEach(function(ms){ setTimeout(function(){ if(!touched && !luxCoverEl) goTo(false); }, ms); });
+        return;
+      }
+      if(++k < 90) setTimeout(look, 200);
+    })();
+  }
+  setTimeout(function(){ try { luxIosSplash(); } catch(e){} }, 2500);
+}
+
+// dal link (o dall'app che si riapre): a scorrimento si arriva alla tavola dove eri, non alla prima
+function luxArrivePageEl(rd, idx){
+  if(!(idx > 0) || !readerScrollOn()) return rd;
+  var st = document.querySelectorAll('#pageReaderScroll img.page-reader-strip')[idx];
+  return st || rd;
+}
+
+/* ---- il colore della barra del telefono (e della finestra dell'app) ---- */
+function luxThemeColor(){
+  var m = document.querySelector('meta[name="theme-color"]');
+  if(!m) return;
+  var c = LZ ? '#060405' : luxCoverEl ? '#0b0607' : document.body.classList.contains('theme-light') ? '#fdfbf7' : '#0b0607';
+  if(m.getAttribute('content') !== c) m.setAttribute('content', c);
+}
+
+/* ---- installare l'app: l'invito (come la scheda di un'app) e la guida ---- */
+var LUX_APP_X = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>';
+var LUX_APP_TOGGLE_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="7" width="19" height="10" rx="5"/><circle cx="16.5" cy="12" r="3"/></svg>';
+var LUX_APP_BENEFITS = [
+  ['<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>', 'lxapp.b1'],
+  [A2HS_BELL_SVG, 'lxapp.b2'],
+  ['<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3.5h10v17l-5-3.6-5 3.6z"/></svg>', 'lxapp.b3']
+];
+// come si installa qui: «prompt» (Android, computer: la finestra del browser), iPhone con iOS 26 o prima, altri browser su iPhone, app come Instagram
+function luxInstallKind(){
+  if(isStandaloneApp()) return 'installed';
+  if(!isIOSDevice()) return a2hsDeferredPrompt ? 'prompt' : 'none';
+  if(a2hsInAppBrowser()) return 'inapp';
+  var ua = navigator.userAgent || '';
+  if(/CriOS|FxiOS|EdgiOS/i.test(ua)) return 'ios-other';
+  // iOS 26: Safari scrive ancora «iPhone OS 18_6» (il numero è bloccato), la versione vera è in «Version/26.0».
+  // Solo iPhone: su iPad l'indirizzo è in alto e valgono i passaggi di sempre.
+  var v = luxIosVersion(), sv = /Version\/(\d+)/.exec(ua);
+  var major = Math.max(v ? v[0] : 0, sv ? +sv[1] : 0);
+  return major >= 26 && /iphone/i.test(ua) ? 'ios26' : 'ios';
+}
+function luxInstallPrompt(){
+  var p = a2hsDeferredPrompt;
+  if(!p) return false;
+  a2hsDeferredPrompt = null;
+  try { p.prompt(); } catch(e){ return false; }
+  Promise.resolve(p.userChoice).then(function(ch){
+    closeBottomCard('a2hsBanner');
+    if(ch && ch.outcome === 'dismissed') a2hsSnooze('lux_a2hs_until', 30);
+  }).catch(function(){});
+  return true;
+}
+function maybeShowInstallBanner(){
+  if(!a2hsCanInstall() || a2hsSnoozed('lux_a2hs_until') || document.getElementById('a2hsBanner')) return;
+  if(a2hsBlockedNow()) return;
+  // solo dopo un segno di interesse: chi ha fatto l'accesso, o chi torna sul sito
+  var visits = +(localStorage.getItem('lux_pv') || 0);
+  if(!isSignedIn() && visits < 2) return;
+  luxInstallCard();
+}
+function luxInstallCard(){
+  var kind = luxInstallKind();
+  if(kind === 'installed' || kind === 'none') return;
+  var old = document.getElementById('a2hsBanner');
+  if(old && old.parentNode) old.parentNode.removeChild(old);
+  var el = document.createElement('div');
+  el.id = 'a2hsBanner';
+  el.className = 'lux-bottom-card lxi-card';
+  el.setAttribute('role', 'dialog');
+  el.setAttribute('aria-labelledby', 'a2hsBannerTitle');
+  el.innerHTML = '<img class="lxi-icon" src="app-icon-192.png" alt="" width="56" height="56">' +
+    '<div class="lxi-txt"><div class="lxi-name" id="a2hsBannerTitle">LUX COMICS</div>' +
+      '<div class="lxi-meta">' + escapeHtml(t('lxapp.cardSub')) + '</div>' +
+      '<div class="lxi-pitch">' + escapeHtml(kind === 'inapp' ? t('a2hs.subInApp') : t('lxapp.cardPitch')) + '</div></div>' +
+    '<div class="lxi-acts"><button type="button" class="lxi-x" aria-label="' + escapeHtml(t('a2hs.later')) + '">' + LUX_APP_X + '</button>' +
+      '<button type="button" class="lxi-go">' + escapeHtml(kind === 'prompt' ? t('a2hs.install') : t('a2hs.how')) + '</button></div>';
+  document.body.appendChild(el);
+  el.querySelector('.lxi-go').addEventListener('click', function(){ if(!(kind === 'prompt' && luxInstallPrompt())) openInstallGuide(); });
+  el.querySelector('.lxi-x').addEventListener('click', function(){ if(el.parentNode) el.parentNode.removeChild(el); a2hsSnooze('lux_a2hs_until', 30); });
+  requestAnimationFrame(function(){ el.classList.add('on'); });
+}
+function openInstallGuide(){
+  var kind = luxInstallKind();
+  if(kind === 'prompt' && luxInstallPrompt()) return;
+  var S = function(svg, key, cls){ return [svg, t(key), cls || '']; };
+  var steps = kind === 'inapp' ? [S(A2HS_DOTS_SVG, 'a2hs.inapp1'), S('', 'a2hs.inapp2'), S('', 'a2hs.inapp3')]
+    : kind === 'ios26' ? [S(A2HS_DOTS_SVG, 'lxapp.s26a'), S(A2HS_SHARE_SVG, 'lxapp.s26b'), S(A2HS_ADD_SVG, 'lxapp.s26c'), S(LUX_APP_TOGGLE_SVG, 'lxapp.s26d', ' lxi-ico-on')]
+    : [S(A2HS_SHARE_SVG, 'a2hs.step1'), S(A2HS_ADD_SVG, 'a2hs.step2'), S('', 'a2hs.step3')];
+  var ios = kind === 'ios' || kind === 'ios26' || kind === 'ios-other';
+  luxSheet('<div class="lxi-head"><img class="lxi-icon lxi-icon-lg" src="app-icon-192.png" alt="" width="64" height="64">' +
+      '<div><h2 class="las-title">' + escapeHtml(t('a2hs.guideTitle')) + '</h2><p class="lxi-meta">' + escapeHtml(t('lxapp.guideSub')) + '</p></div></div>' +
+    (kind === 'inapp' ? '' : '<ul class="lxi-benefits">' + LUX_APP_BENEFITS.map(function(b){ return '<li>' + b[0] + '<span>' + escapeHtml(t(b[1])) + '</span></li>'; }).join('') + '</ul>') +
+    '<ol class="a2hs-steps lxi-steps">' + steps.map(function(st, i){
+      return '<li><span class="a2hs-num">' + (i + 1) + '</span><span class="a2hs-step-text">' + escapeHtml(st[1]) + '</span>' + (st[0] ? '<span class="a2hs-step-ico' + st[2] + '">' + st[0] + '</span>' : '') + '</li>';
+    }).join('') + '</ol>' +
+    (ios ? '<p class="lxi-tip">' + A2HS_BELL_SVG + '<span>' + escapeHtml(t('a2hs.step4')) + '</span></p>' : '') +
+    '<button type="button" class="las-primary" data-las-close>' + escapeHtml(t('a2hs.ok')) + '</button>');
+  closeBottomCard('a2hsBanner');
+  a2hsSnooze('lux_a2hs_until', 7); // l'ha vista: l'invito torna tra una settimana
+}
+
+/* ---- su iPhone: la schermata d'avvio dell'app installata ----
+   Safari la prende dalla pagina quando si tocca «Aggiungi alla schermata Home»: si disegna qui, per questo
+   telefono (in verticale e in orizzontale), con il sigillo e il nome sul fondo scuro del sito. In JPEG (leggera,
+   e si disegna in fretta), una alla volta, quando il telefono non ha altro da fare. */
+function luxIosSplash(){
+  if(!isIOSDevice() || isStandaloneApp() || luxCoverBot() || a2hsInAppBrowser()) return; // (da Instagram e simili non si installa)
+  if(document.querySelector('link[rel="apple-touch-startup-image"]')) return;
+  var head = document.head;
+  var meta = function(n, c){ if(!document.querySelector('meta[name="' + n + '"]')){ var m = document.createElement('meta'); m.name = n; m.content = c; head.appendChild(m); } };
+  meta('apple-mobile-web-app-capable', 'yes');
+  meta('apple-mobile-web-app-title', 'LUX COMICS');
+  var W = screen.width, H = screen.height, D = window.devicePixelRatio || 1;
+  if(!W || !H) return;
+  var pw = Math.min(W, H), ph = Math.max(W, H);
+  var idle = function(fn){ if(window.requestIdleCallback) window.requestIdleCallback(fn, { timeout: 4000 }); else setTimeout(fn, 80); };
+  var seal = new Image();
+  seal.onload = function(){
+    var fonts = Promise.resolve();
+    try { if(document.fonts && document.fonts.load) fonts = Promise.all([document.fonts.load('700 40px "Cinzel Decorative"'), document.fonts.load('600 20px "Cinzel"')]); } catch(e){}
+    Promise.race([fonts.catch(function(){}), new Promise(function(r){ setTimeout(r, 1500); })]).then(function(){
+      var todo = [['portrait', pw, ph], ['landscape', ph, pw]];
+      (function next(){
+        var o = todo.shift();
+        if(!o) return;
+        idle(function(){
+          try {
+            var url = luxSplashDraw(seal, o[1] * D, o[2] * D);
+            if(url){
+              var l = document.createElement('link');
+              l.rel = 'apple-touch-startup-image';
+              l.media = '(device-width: ' + pw + 'px) and (device-height: ' + ph + 'px) and (-webkit-device-pixel-ratio: ' + D + ') and (orientation: ' + o[0] + ')';
+              l.href = url;
+              head.appendChild(l);
+            }
+          } catch(e){}
+          next();
+        });
+      })();
+    });
+  };
+  seal.src = 'logo-lg.webp';
+}
+function luxSplashDraw(seal, w, h){
+  var c = document.createElement('canvas');
+  c.width = Math.round(w); c.height = Math.round(h);
+  var g = c.getContext('2d');
+  if(!g) return null;
+  g.fillStyle = '#0b0607';
+  g.fillRect(0, 0, c.width, c.height);
+  var m = Math.min(c.width, c.height), s = m * (c.height > c.width ? 0.42 : 0.3), cx = c.width / 2, cy = c.height * (c.height > c.width ? 0.44 : 0.42);
+  var gr = g.createRadialGradient(cx, cy, s * .1, cx, cy, s * .95); // (un bagliore caldo dietro il sigillo)
+  gr.addColorStop(0, 'rgba(120,22,36,.55)');
+  gr.addColorStop(1, 'rgba(11,6,7,0)');
+  g.fillStyle = gr;
+  g.fillRect(cx - s, cy - s, s * 2, s * 2);
+  g.drawImage(seal, cx - s / 2, cy - s / 2, s, s);
+  g.textAlign = 'center';
+  g.fillStyle = '#e3c273';
+  g.font = '700 ' + Math.round(s * .16) + 'px "Cinzel Decorative", "Cinzel", Georgia, serif';
+  g.fillText('LUX COMICS', cx, cy + s * .76);
+  g.fillStyle = 'rgba(236,226,198,.62)';
+  g.font = '600 ' + Math.round(s * .068) + 'px "Cinzel", Georgia, serif';
+  g.fillText('&  M E D U S A   C O M I C S', cx, cy + s * .92);
+  return c.toDataURL('image/jpeg', 0.9);
+}
+
+/* ---- tra una pagina e l'altra: la pagina che si lascia svanisce (quella nuova appare in dissolvenza: style.css) ---- */
+function luxPageLeave(e){
+  if(e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+  var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
+  if(!a || (a.target && a.target !== '_self') || a.hasAttribute('download')) return;
+  var href = a.getAttribute('href') || '';
+  if(!href || href.charAt(0) === '#' || /^[a-z][a-z0-9+.-]*:/i.test(href) && !/^https?:/i.test(href)) return;
+  var u;
+  try { u = new URL(a.href, window.location.href); } catch(err){ return; }
+  if(u.origin !== window.location.origin || !/(\.html|\/)$/i.test(u.pathname)) return;
+  if(u.pathname === window.location.pathname && u.search === window.location.search) return; // (la stessa pagina, magari con #)
+  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var h = document.documentElement;
+  // si decide dopo il tocco, quando tutti hanno detto la loro: se qualcuno ha fermato il link, la pagina non cambia
+  setTimeout(function(){
+    if(e.defaultPrevented) return;
+    h.classList.add('lux-leaving');
+    clearTimeout(luxPageLeave._t);
+    luxPageLeave._t = setTimeout(function(){ h.classList.remove('lux-leaving'); }, 8000); // (se la pagina non cambia, si torna visibili; con la rete lenta la nuova arriva prima)
+  }, 0);
+}
+document.addEventListener('click', luxPageLeave);
+window.addEventListener('pageshow', function(){ document.documentElement.classList.remove('lux-leaving'); });
 
 function handleAddAnnouncement(){
   var title = document.getElementById('fAnnTitle').value.trim();
@@ -26103,6 +26465,7 @@ function ensureSectionHeadingStyle(){
 
 function __appInit(){
   try { luxAuthFromHash(); } catch(e){ console.warn('[accesso]', e); } // v242: dal link «nuova password» dell'email si entra già nell'account
+  try { luxAppInit(); } catch(e){ console.warn('[app]', e); } // v254: le scorciatoie dell'icona e l'app che si riapre dove eri
   try { luxPromoInit(); } catch(e){ console.warn('[link]', e); } // v251: arrivati da un link (un capitolo, un QR di Instagram)?
   try { luxArriveDirectInit(); } catch(e){ console.warn('[link]', e); } // v252: dal QR dritti alle pagine, senza copertina
   document.querySelectorAll('.seal-img[data-size="sm"]').forEach(function(img){ img.src = LOGO_SM; });
@@ -26122,6 +26485,7 @@ function __appInit(){
   fetchTaxonomy(); // personaggi e categorie dalle tabelle Supabase (se ci sono)
   if(!luxCoverMaybeShow()) showEntryModeGate(); // v237: chi non ha fatto l'accesso trova la copertina (v248: tutti; sotto, la seconda pagina)
   luxGuestInit(); // v248: da ospite, 45 minuti alla volta e l'invito a creare l'account
+  try { luxAppAfterInit(); } catch(e){ console.warn('[app]', e); } // v254: «Cerca», «Ultimi capitoli», la schermata d'avvio su iPhone
   renderDossiers();
   renderGenreChecks(); // se il form del catalogo è in questa pagina (Admin), popola i sigilli genere subito — non solo aprendo un titolo esistente in modifica
   refreshSupportSectionVisibility(); // mostra subito ai visitatori anonimi; ricontrollato sotto per chi ha fatto login
