@@ -83,7 +83,7 @@
   // hai visto live sul sito prima di caricare — questo file parte da una
   // copia salvata in sessione e potrebbe non riflettere bump fatti nel
   // frattempo direttamente su GitHub.
-  var V = "251";
+  var V = "252";
 
   // style.css iniettato qui (non più con un <link> scritto a mano in ogni
   // pagina) così la sua versione segue sempre la stessa V di app.js,
@@ -201,15 +201,15 @@
   // non arriva, al posto della pagina c'è già lo sfondo della copertina: così la home non
   // compare per un attimo prima di sparire sotto. Stesse regole di luxCoverWanted in app.js.
   // v248: la copertina c'è a ogni visita per tutti (con l'account: «Chi sta leggendo?»); già aperta in
-  // questa visita, no — tranne l'albo richiuso e, da ospite, dopo 45 minuti con l'albo aperto.
+  // questa visita, no — tranne l'albo richiuso e, da ospite, dopo 45 minuti con l'albo aperto (v252: in tutto).
   function luxCoverWait() {
     try {
       if (/access_token=/.test(location.hash || "")) return; // v242: dal link «nuova password»: si entra già nell'account
       var s = JSON.parse(localStorage.getItem("lux_session") || "null");
       if (sessionStorage.getItem("lux_cover_ok") && sessionStorage.getItem("lux_cover_lock") !== "1") {
         if (s && s.access_token) return;
-        var used = +(sessionStorage.getItem("lux_guest_used") || 0), since = +(sessionStorage.getItem("lux_guest_since") || 0);
-        if (sessionStorage.getItem("lux_guest_reg") || used + (since ? Date.now() - since : 0) < 45 * 60 * 1000) return;
+        var used = +(localStorage.getItem("lux_guest_ms") || 0); // v252: il tempo da ospite, in tutto, su questo dispositivo
+        if (sessionStorage.getItem("lux_guest_reg") || used < 45 * 60 * 1000) return;
       }
     } catch (e) { return; }
     if (navigator.onLine === false) return;
@@ -217,7 +217,7 @@
     if (document.getElementById("luxtifySection") || document.getElementById("legalSection") || document.getElementById("statusSection")) return;
     document.documentElement.classList.add("lux-cover-wait");
     // l'immagine della copertina parte subito (non su 2G: lì ha la precedenza app.js)
-    if (NET !== "slow") {
+    if (NET !== "slow" && !/[?&]title=/.test(location.search || "")) { // v252: dal link di un capitolo si va dritti alle pagine (la copertina, di solito, non c'è)
       var w = window.innerWidth, h = window.innerHeight;
       var cinema = w >= 1024 && h >= 560 && w >= h * 1.3; // v244: computer in orizzontale: a tutto schermo
       var tall = !cinema && ((w >= 900 && h >= 680) || w < h * 1.3);

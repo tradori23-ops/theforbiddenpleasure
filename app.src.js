@@ -1047,6 +1047,20 @@ Object.assign(STR.hi, {"lxarrive.tag": "आपका इंतज़ार ह�
 Object.assign(STR.bn, {"lxarrive.tag": "আপনার অপেক্ষায়", "lxarrive.aria": "“{title}” এখনই পড়ুন", "lxarrive.adult": "প্রাপ্তবয়স্কদের জন্য: আগে আপনার বয়স জিজ্ঞেস করব", "lxend.tag": "অধ্যায় শেষ", "lxend.follow": "{name}-কে ফলো করুন: পরের অধ্যায় এলে আমরা আপনাকে জানিয়ে দেব।", "lxend.following": "আপনি {name}-কে ফলো করছেন: পরের অধ্যায় এলে আমরা আপনাকে জানিয়ে দেব।", "lxend.guestFollow": "বিনামূল্যে অ্যাকাউন্ট খুলে {name}-কে ফলো করুন: পরের অধ্যায় এলে আমরা জানিয়ে দেব, আর সময়ের সীমা ছাড়াই পড়বেন।", "lxend.guest": "বিনামূল্যের অ্যাকাউন্টে প্রতিটি কমিক যেখানে থেমেছিলেন সেখান থেকে চালিয়ে যাবেন, সময়ের সীমা ছাড়াই।", "lxend.followBtn": "{name}-কে ফলো করুন", "lxend.followingBtn": "{name}-কে ফলো করছেন", "promo.scan": "স্ক্যান করে পড়ুন"});
 Object.assign(STR.ar, {"lxarrive.tag": "بانتظارك", "lxarrive.aria": "اقرأ «{title}» الآن", "lxarrive.adult": "للبالغين: سنسألك عن عمرك أولًا", "lxend.tag": "نهاية الفصل", "lxend.follow": "تابِع {name}: سنُعلمك عند صدور الفصل التالي.", "lxend.following": "أنت تتابع {name}: سنُعلمك عند صدور الفصل التالي.", "lxend.guestFollow": "أنشئ حسابًا مجانيًا وتابِع {name}: سنُعلمك عند صدور الفصل التالي، وتقرأ بلا حدّ زمني.", "lxend.guest": "مع حساب مجاني تكمل كل قصة مصوّرة من حيث توقفت وتقرأ بلا حدّ زمني.", "lxend.followBtn": "تابِع {name}", "lxend.followingBtn": "تتابع {name}", "promo.scan": "امسح الرمز واقرأ"});
 Object.assign(STR.pnb, {"lxarrive.tag": "تہاڈی اڈیک وچ", "lxarrive.aria": "«{title}» ہُن پڑھو", "lxarrive.adult": "وڈیاں لئی: پہلاں تہاڈی عمر پچھاں گے", "lxend.tag": "باب ختم", "lxend.follow": "{name} نوں فالو کرو: اگلا باب آؤن تے اسیں تہانوں دساں گے۔", "lxend.following": "تسیں {name} نوں فالو کردے او: اگلا باب آؤن تے اسیں تہانوں دساں گے۔", "lxend.guestFollow": "مفت اکاؤنٹ بناؤ تے {name} نوں فالو کرو: اگلا باب آؤن تے اسیں دساں گے، تے تسیں بغیر وقت دی حد دے پڑھ سکو گے۔", "lxend.guest": "مفت اکاؤنٹ نال تسیں ہر کامک اوتھوں ای اگے پڑھدے او جتھے چھڈیا سی، بغیر وقت دی حد دے۔", "lxend.followBtn": "{name} نوں فالو کرو", "lxend.followingBtn": "{name} نوں فالو کر رہے او", "promo.scan": "سکین کرو تے پڑھو"});
+// v252: i 45 minuti da ospite sono in tutto; finiti, serve l'account
+Object.assign(STR.it, {"lxguest.noteTxt": "I {min} minuti da ospite sono finiti. Per continuare a leggere crea un account gratuito: ritrovi ogni fumetto dove l'avevi lasciato.", "lxguest.n3Txt": "Da ospite si leggono {min} minuti in tutto: poi serve un account gratuito. Crealo adesso e continua a leggere senza interruzioni."});
+Object.assign(STR.en, {"lxguest.noteTxt": "Your {min} minutes as a guest are up. To keep reading, create a free account: you'll pick up every comic where you left off.", "lxguest.n3Txt": "Guests can read for {min} minutes in total; after that you need a free account. Create one now and keep reading without interruptions."});
+Object.assign(STR.es, {"lxguest.noteTxt": "Se acabaron tus {min} minutos como invitado. Para seguir leyendo, crea una cuenta gratuita: retomarás cada cómic donde lo dejaste.", "lxguest.n3Txt": "Como invitado puedes leer {min} minutos en total; después necesitas una cuenta gratuita. Créala ahora y sigue leyendo sin interrupciones."});
+Object.assign(STR.fr, {"lxguest.noteTxt": "Vos {min} minutes en tant qu'invité sont écoulées. Pour continuer à lire, créez un compte gratuit : vous reprendrez chaque BD là où vous l'aviez laissée.", "lxguest.n3Txt": "En tant qu'invité, vous lisez {min} minutes au total ; ensuite, il faut un compte gratuit. Créez-le maintenant et continuez à lire sans interruption."});
+Object.assign(STR.de, {"lxguest.noteTxt": "Deine {min} Minuten als Gast sind vorbei. Um weiterzulesen, erstelle ein kostenloses Konto: Du machst bei jedem Comic dort weiter, wo du aufgehört hast.", "lxguest.n3Txt": "Als Gast liest du insgesamt {min} Minuten, danach brauchst du ein kostenloses Konto. Erstelle es jetzt und lies ohne Unterbrechung weiter."});
+Object.assign(STR.pt, {"lxguest.noteTxt": "Seus {min} minutos como visitante acabaram. Para continuar lendo, crie uma conta gratuita: você retoma cada quadrinho de onde parou.", "lxguest.n3Txt": "Como visitante, você lê {min} minutos no total; depois precisa de uma conta gratuita. Crie agora e continue lendo sem interrupções."});
+Object.assign(STR.ru, {"lxguest.noteTxt": "Ваши {min} минут в гостевом режиме закончились. Чтобы читать дальше, создайте бесплатный аккаунт: каждый комикс продолжится с того места, где вы остановились.", "lxguest.n3Txt": "Гости могут читать {min} минут в общей сложности, дальше нужен бесплатный аккаунт. Создайте его сейчас и читайте без перерывов."});
+Object.assign(STR.zh, {"lxguest.noteTxt": "访客的 {min} 分钟已经用完。想继续阅读，请注册一个免费账号：每部漫画都能从上次停下的地方继续。", "lxguest.n3Txt": "访客总共可以阅读 {min} 分钟，之后需要一个免费账号。现在就注册，继续阅读不再中断。"});
+Object.assign(STR.ja, {"lxguest.noteTxt": "ゲストの{min}分が終わりました。続きを読むには無料アカウントを作成してください。どのコミックも前回の続きから読めます。", "lxguest.n3Txt": "ゲストが読めるのは合計{min}分までで、その後は無料アカウントが必要です。今すぐ作って、中断せずに読み続けましょう。"});
+Object.assign(STR.hi, {"lxguest.noteTxt": "मेहमान के तौर पर आपके {min} मिनट पूरे हो गए। आगे पढ़ने के लिए मुफ़्त अकाउंट बनाएँ: हर कॉमिक वहीं से आगे पढ़ेंगे जहाँ छोड़ा था।", "lxguest.n3Txt": "मेहमान कुल {min} मिनट तक पढ़ सकते हैं, उसके बाद मुफ़्त अकाउंट चाहिए। अभी बनाएँ और बिना रुकावट पढ़ते रहें।"});
+Object.assign(STR.bn, {"lxguest.noteTxt": "অতিথি হিসেবে আপনার {min} মিনিট শেষ। পড়া চালিয়ে যেতে বিনামূল্যের একটা অ্যাকাউন্ট খুলুন: প্রতিটি কমিক যেখানে থেমেছিলেন সেখান থেকেই শুরু হবে।", "lxguest.n3Txt": "অতিথিরা মোট {min} মিনিট পড়তে পারেন, তারপর বিনামূল্যের অ্যাকাউন্ট লাগবে। এখনই খুলুন আর বিরতি ছাড়াই পড়তে থাকুন।"});
+Object.assign(STR.ar, {"lxguest.noteTxt": "انتهت الدقائق المتاحة للزوّار ({min} دقيقة). لمتابعة القراءة أنشئ حسابًا مجانيًا: ستكمل كل قصة مصوّرة من حيث توقفت.", "lxguest.n3Txt": "يقرأ الزوّار {min} دقيقة إجمالًا، وبعدها تحتاج إلى حساب مجاني. أنشئه الآن وتابع القراءة بلا انقطاع."});
+Object.assign(STR.pnb, {"lxguest.noteTxt": "مہمان دے {min} منٹ پورے ہو گئے نیں۔ اگے پڑھن لئی مفت اکاؤنٹ بناؤ: ہر کامک اوتھوں ای اگے پڑھو گے جتھے چھڈیا سی۔", "lxguest.n3Txt": "مہمان کل {min} منٹ تک پڑھ سکدے نیں، اوہدے مگروں مفت اکاؤنٹ چاہیدا اے۔ ہنے بناؤ تے بغیر رکاوٹ پڑھدے رہو۔"});
 var CHAR_META = {
   Lucifer:{role:{it:"Il Portatore di Luce",en:"The Light-Bearer",es:"El Portador de Luz",fr:"Le Porteur de Lumière",de:"Der Lichtträger"},
     bio:{it:"Sovrano della collana ammiraglia: potere, caduta e desiderio raccontati su grande scala.",
@@ -1464,7 +1478,7 @@ function lxcAnimate(el, from, to, ms, lift, done){
 // ogni tanto l'orecchia si solleva un poco: si capisce che la pagina si può girare
 function lxcPeekLater(el){
   clearTimeout(el._peekT);
-  if(luxCoverReduced()) return;
+  if(luxCoverReduced() || el._timeout) return; // v252: l'albo chiuso dopo i 45 minuti non invita a girare la pagina
   el._peekT = setTimeout(function(){
     if(el !== luxCoverEl) return;
     if(el._opening || el._drag || el._hover || el.classList.contains('lxc-anim') || el.classList.contains('lxc-carded') || document.visibilityState === 'hidden'){ lxcPeekLater(el); return; }
@@ -1577,6 +1591,7 @@ function luxCoverBuild(){
       return;
     }
     if(act === 'switch' || act === 'logout'){ luxCoverSignOut(el, act === 'switch'); return; }
+    if(el._timeout && (act === 'guest' || act === 'title')){ luxCoverWall(el); return; } // v252: finiti i 45 minuti, solo con l'account
     if(act === 'guest'){ luxCoverOpen(true, false); return; }
     if(act === 'title'){ // v239–v241: il capitolo nuovo si apre subito (ma non se il dito l'ha appena fatto scorrere)
       if(el._chSwipeT && performance.now() - el._chSwipeT < 500) return;
@@ -1633,7 +1648,10 @@ function luxCoverBuild(){
     var g = el._curl.g, P = el._curl.P || lxcRest(g), dt = Math.max(1, d.lt - d.pt);
     var vx = (d.lx - d.px) / dt * (g.rtl ? -1 : 1); // velocità verso il dorso (px/ms, negativa = verso il dorso)
     var past = g.rtl ? P.x > g.W * .55 : P.x < g.W * .45;
-    if(!cancel && (past || (vx < -.55 && Math.abs(d.lx - d.x0) > 40))) { luxCoverOpen(!el._profile, true); return; } // (con l'account si rientra come sé)
+    if(!cancel && (past || (vx < -.55 && Math.abs(d.lx - d.x0) > 40))) {
+      if(el._timeout && !el._profile){ lxcAnimate(el, P, lxcRest(g), 360, 0); luxCoverWall(el); return; } // v252: da ospite non si apre più: la pagina ricade e c'è «Crea account»
+      luxCoverOpen(!el._profile, true); return; // (con l'account si rientra come sé)
+    }
     if(!cancel && Math.abs(d.lx - d.x0) < 6 && Math.abs(d.ly - d.y0) < 6 && !luxCoverReduced()){
       // solo un tocco sull'orecchia: la pagina si solleva un poco e ricade (si capisce che va tirata)
       var up = { x: g.rtl ? g.W * .24 : g.W * .76, y: g.H - g.H * .09 };
@@ -1661,7 +1679,7 @@ function luxCoverBuild(){
     lxcCurl(el, lxcConstrain(el._curl.g, { x: d.P0.x + p.x - d.start.x, y: d.P0.y + p.y - d.start.y }));
   });
   corner.addEventListener('pointerenter', function(e){
-    if(e.pointerType !== 'mouse' || el._drag || el._opening || el.classList.contains('lxc-anim') || luxCoverReduced()) return;
+    if(e.pointerType !== 'mouse' || el._drag || el._opening || el.classList.contains('lxc-anim') || luxCoverReduced() || el._timeout) return;
     el._hover = true;
     clearTimeout(el._peekT);
     lxcAnimate(el, el._curl.P || lxcRest(el._curl.g), lxcPeek(el._curl.g), 240, 0);
@@ -1709,6 +1727,22 @@ function luxCoverCard(on){
     modal.insertBefore(lab, modal.firstChild);
   }
   lab.textContent = t('lxcover.card');
+}
+
+// v252: finiti i 45 minuti da ospite l'albo si riapre solo con l'account: la tessera per crearlo (da lì anche «Accedi»)
+function luxCoverWall(el){
+  if(!el || el !== luxCoverEl || el._opening) return;
+  el._ret = 'register';
+  luxCoverCard(true);
+  openAuth('register');
+}
+// v252: appena registrato (manca solo la conferma dell'email) l'albo si apre: in questa visita si legge senza limite,
+// anche dopo i 45 minuti (e chi era arrivato da un link va dritto al suo capitolo)
+function luxCoverAfterSignup(){
+  var el = luxCoverEl;
+  if(!el || el._opening || el._profile) return;
+  luxCoverSetProfile(el, false);
+  luxCoverOpen(true, false);
 }
 
 // il numero dell'uscita: quanti fumetti ci sono nell'Archivio (0 = non ancora noto)
@@ -1761,13 +1795,17 @@ function luxCoverTexts(){
   q('.lxc-seal').setAttribute('aria-label', t('lxcover.sealAria'));
   q('[data-lxc="login"]').textContent = t('nav.login');
   q('[data-lxc="register"]').textContent = t('lxcover.signup');
-  q('[data-lxc="guest"]').textContent = t(el._timeout ? 'lxguest.again' : 'lxcover.guest'); // v248: dopo i 45 minuti, «Riapri da ospite»
+  // v252: finiti i 45 minuti, in evidenza «Crea account» (è quello che chiede il biglietto)
+  var lgb = q('[data-lxc="login"]'), rgb = q('[data-lxc="register"]'), wall = !!el._timeout;
+  lgb.classList.toggle('lxc-primary', !wall); lgb.classList.toggle('lxc-ghost', wall);
+  rgb.classList.toggle('lxc-primary', wall); rgb.classList.toggle('lxc-ghost', !wall);
+  q('[data-lxc="guest"]').textContent = t('lxcover.guest'); // v252: dopo i 45 minuti non c'è (l'albo si riapre solo con l'account)
   q('.lxc-note-tag').textContent = t('lxguest.noteTag');
   q('.lxc-note-txt').textContent = t('lxguest.noteTxt').replace('{min}', String(LUX_GUEST_MIN));
   var lx = q('[data-lxc="luxtify"]');
   lx.setAttribute('aria-label', t('lxcover.luxtify'));
   lx.title = t('lxcover.luxtify');
-  q('.lxc-hint').textContent = t(el._profile ? 'lxcover.dragMe' : 'lxcover.drag'); // (col profilo si rientra come sé, non come ospite)
+  q('.lxc-hint').textContent = el._timeout ? '' : t(el._profile ? 'lxcover.dragMe' : 'lxcover.drag'); // (col profilo si rientra come sé, non come ospite; v252: finito il tempo, niente)
   q('.lxc-pages-txt').textContent = t('lxcover.open');
   q('.lxc-exlibris').textContent = 'Ex libris · ' + t('hero.title1') + ' ' + t('hero.title2');
   var sel = q('#luxCoverLang');
@@ -2079,7 +2117,7 @@ function luxCoverPlaceSeal(){
   [blurb, barcode, note].forEach(function(x){ if(x && x.offsetParent) lowTop = Math.min(lowTop, x.offsetTop); }); // (v248: anche il biglietto)
   // v243: il capitolo nuovo ha la precedenza sulla scritta sotto il sigillo: se non ci stanno tutti e due
   // sparisce la scritta; il riquadro sparisce solo se finirebbe sopra il sigillo
-  if(labelBottom + 8 > lowTop) el.classList.add(sealBottom + 8 <= lowTop || el._arrive ? 'lxc-nolabel' : 'lxc-noblurb'); // v251: il capitolo del link non sparisce mai
+  if(labelBottom + 8 > lowTop) el.classList.add(sealBottom + 8 <= lowTop || el._arrive || el._timeout ? 'lxc-nolabel' : 'lxc-noblurb'); // v251: il capitolo del link non sparisce mai (v252: e neanche il biglietto dei 45 minuti)
   if(!prof && labelBottom + 8 > actions.offsetTop) el.classList.add('lxc-nolabel');
 }
 
@@ -2154,7 +2192,7 @@ function luxCoverShow(how){
           el.classList.add('lxc-stamping');
           luxCoverLater(650, function(){
             el.classList.remove('lxc-stamping', 'lxc-anim');
-            var b = el.querySelector(el._profile ? '[data-lxc="me"]' : '[data-lxc="login"]');
+            var b = el.querySelector(el._profile ? '[data-lxc="me"]' : '[data-lxc="' + (el._timeout ? 'register' : 'login') + '"]'); // (v252: dopo i 45 minuti, «Crea account»)
             try { if(b) b.focus({ preventScroll: true }); } catch(e){}
             lxcPeekLater(el);
           });
@@ -2323,7 +2361,11 @@ window.addEventListener('storage', function(e){
    - Un po' di pubblicità, nelle 13 lingue: a 10 e a 25 minuti un invito discreto a creare l'account
      (aspetta che si chiuda il fumetto o la finestra aperta), a 40 minuti l'avviso «Alle 18:45 l'albo si
      chiude». Ognuno compare una volta sola e si chiude con la ×. */
-var LUX_GUEST_MIN = 45;           // minuti da ospite, ogni volta che si apre l'albo
+/* v252: i 45 minuti da ospite sono IN TUTTO, su quel telefono o computer (restano anche chiudendo il sito) e
+   contano solo con l'albo aperto e la pagina davanti. Finiti, l'albo resta chiuso: niente più «Riapri da ospite»;
+   per continuare serve l'account (anche l'angolo e il capitolo portano lì). Chi si è appena registrato e deve
+   ancora confermare l'email legge senza limite fino alla fine della visita; chi entra non ha limiti. */
+var LUX_GUEST_MIN = 45;           // minuti da ospite, in tutto (v252; prima: ogni volta che si apriva l'albo)
 var LUX_NUDGE_AT = [10, 25, 40];  // i due inviti e l'avviso (5 minuti prima)
 // (solo per le prove e per l'anteprima: tempi più brevi; nel sito vero nessuno lo imposta)
 function luxGuestScale(){ var k = +(window.LUX_GUEST_TEST_SCALE || 0); return k > 0 && k < 1 ? k : 1; }
@@ -2341,51 +2383,70 @@ function luxGuestActive(){
   if(isSignedIn() || luxCoverSkipPage() || luxCoverBot()) return false;
   return !luxSS('lux_guest_reg');
 }
-// il tempo da ospite: quello già passato con l'albo aperto, più quello da quando è aperto adesso
-function luxGuestElapsed(){
-  var used = +(luxSS('lux_guest_used') || 0), since = +(luxSS('lux_guest_since') || 0);
-  return Math.max(0, used + (since ? Date.now() - since : 0));
+// v252: il tempo da ospite resta sul telefono o computer (localStorage): chiudere il sito non lo fa ripartire
+function luxLSg(k, v){
+  try {
+    if(v === undefined) return localStorage.getItem(k);
+    if(v === null) localStorage.removeItem(k); else localStorage.setItem(k, String(v));
+  } catch(e){}
+  return null;
 }
-function luxGuestResume(){ if(!luxSS('lux_guest_since')) luxSS('lux_guest_since', Date.now()); }
-function luxGuestPause(){
-  if(!luxSS('lux_guest_since')) return;
-  luxSS('lux_guest_used', luxGuestElapsed());
-  luxSS('lux_guest_since', null);
+function luxGuestTickMs(){ return Math.max(1000, Math.round(15000 * luxGuestScale())); }
+// l'ultimo momento contato, in questa scheda (0 = il tempo è fermo: albo chiuso, pagina nascosta o appena aperta)
+var luxGuestBeat = 0;
+// (al massimo due giri d'orologio: il tempo di una scheda addormentata o di un computer in pausa non conta)
+function luxGuestGap(now){ return luxGuestBeat && now > luxGuestBeat ? Math.min(now - luxGuestBeat, 2 * luxGuestTickMs()) : 0; }
+// il tempo da ospite: quello già contato, più quello da quando la pagina è davanti
+function luxGuestElapsed(){ return Math.max(0, +(luxLSg('lux_guest_ms') || 0) || 0) + luxGuestGap(Date.now()); }
+function luxGuestCount(){
+  var used = luxGuestElapsed();
+  luxGuestBeat = Date.now();
+  luxLSg('lux_guest_ms', Math.round(used));
+  return used;
 }
-function luxGuestReset(){ luxSS('lux_guest_used', 0); luxSS('lux_guest_since', Date.now()); luxSS('lux_nudge_seen', null); }
-function luxGuestClear(){ ['lux_guest_used', 'lux_guest_since', 'lux_guest_out', 'lux_nudge_seen'].forEach(function(k){ luxSS(k, null); }); }
+function luxGuestResume(){ luxGuestBeat = Date.now(); }
+function luxGuestPause(){ if(luxGuestBeat){ luxGuestCount(); luxGuestBeat = 0; } }
+function luxGuestHas(){ return !!(luxLSg('lux_guest_ms') || luxSS('lux_nudge_seen') || luxSS('lux_guest_used') || luxSS('lux_guest_since') || luxSS('lux_guest_out')); }
+function luxGuestClear(){
+  luxGuestBeat = 0;
+  luxLSg('lux_guest_ms', null);
+  ['lux_guest_used', 'lux_guest_since', 'lux_guest_out', 'lux_nudge_seen'].forEach(function(k){ luxSS(k, null); }); // (anche quelli della v248)
+}
 function luxGuestExpired(){ return luxGuestActive() && luxGuestElapsed() >= luxGuestLimit(); }
-function luxGuestOut(){ return !isSignedIn() && luxSS('lux_guest_out') === '1'; }
+// v252: finiti i 45 minuti l'albo resta chiuso, a ogni visita, finché non si entra (o ci si registra)
+function luxGuestOut(){ return luxGuestExpired(); }
 
-// l'albo si è appena aperto: da ospite il tempo riparte (dopo i 45 minuti: da capo); con l'account non conta
+// l'albo si è appena aperto: da ospite il tempo riparte da dove era (v252: mai da capo); con l'account non conta
 function luxGuestAfterOpen(guest){
   if(!guest || isSignedIn()){ luxGuestClear(); return; }
-  if(luxSS('lux_guest_out')){ luxSS('lux_guest_out', null); luxGuestReset(); return; }
   luxGuestResume();
+  if(luxGuestExpired()) setTimeout(luxGuestTick, 400); // (rete di sicurezza: finiti i 45 minuti, l'albo si richiude)
 }
 // l'albo si chiude (a mano, uscendo dall'account o perché il tempo è finito): il tempo si ferma, l'invito sparisce;
-// se i 45 minuti sono finiti resta chiuso, anche cambiando pagina, finché non lo si riapre
+// se i 45 minuti sono finiti resta chiuso (v252: da ospite non si riapre più)
 function luxGuestOnClose(){
   luxNudgeHide();
-  if(luxGuestExpired()){ luxSS('lux_guest_out', '1'); luxSS('lux_cover_lock', '1'); }
   luxGuestPause();
+  if(luxGuestExpired()) luxSS('lux_cover_lock', '1');
 }
 var luxGuestTimer = 0;
 function luxGuestInit(){
   if(luxGuestTimer || luxCoverSkipPage() || luxCoverBot()) return;
   luxGuestTimer = setInterval(luxGuestTick, Math.max(1000, Math.round(15000 * luxGuestScale())));
   // il telefono ferma gli orologi delle schede in background: al ritorno si controlla subito
-  document.addEventListener('visibilitychange', function(){ if(document.visibilityState === 'visible') luxGuestTick(); });
+  // (v252: con la pagina nascosta il tempo non conta; cambiando pagina o chiudendo, quello contato resta)
+  document.addEventListener('visibilitychange', function(){ if(document.visibilityState === 'visible') luxGuestTick(); else luxGuestPause(); });
+  window.addEventListener('pagehide', luxGuestPause);
   window.addEventListener('focus', luxGuestTick);
   setTimeout(luxGuestTick, 1200);
 }
 function luxGuestTick(){
-  if(isSignedIn()){ if(luxSS('lux_guest_since') || luxSS('lux_guest_used') || luxSS('lux_guest_out')) luxGuestClear(); luxNudgeHide(); return; }
-  if(!luxGuestActive()){ luxNudgeHide(); return; }
-  if(luxCoverEl) return;               // l'albo è chiuso: il tempo è fermo
+  if(isSignedIn()){ if(luxGuestHas()) luxGuestClear(); luxNudgeHide(); return; }
+  if(!luxGuestActive()){ luxGuestPause(); luxNudgeHide(); return; }
+  if(luxCoverEl){ luxGuestBeat = 0; return; } // l'albo è chiuso: il tempo è fermo
   if(!luxSS('lux_cover_ok')) return;   // (non è ancora entrato)
-  luxGuestResume();                    // (arrivato da Luxtify o dal link della copertina: il tempo parte adesso)
-  var used = luxGuestElapsed();
+  if(document.visibilityState === 'hidden'){ luxGuestPause(); return; } // v252: conta solo con la pagina davanti
+  var used = luxGuestCount();          // (arrivato da Luxtify o dal link della copertina: il tempo parte adesso)
   if(used >= luxGuestLimit()){ luxGuestTimeUp(); return; }
   var k = luxGuestScale(), seen = luxNudgeSeen(), box = document.getElementById('luxNudge');
   for(var i = LUX_NUDGE_AT.length - 1; i >= 0; i--){
@@ -3457,6 +3518,7 @@ function handleAuthSubmit(){
         try { luxNudgeHide(); } catch(e){}
         closeAuth();
         alert(t('auth.confirmEmailSent'));
+        try { luxCoverAfterSignup(); } catch(e){ console.warn('[copertina]', e); } // v252: e l'albo si apre
       }
     }).catch(function(e){
       luxAuthShowErr(luxAuthErrInfo(e, 'register')); // v236
@@ -17416,10 +17478,12 @@ function checkDeepLinkOnLoad(){
   if(!titleId) return;
   var items = getCatalog();
   var item = items.find(function(i){ return i.id === titleId; });
+  if(!item && luxArrive.fetched && luxArrive.fetched.id === titleId) item = luxArrive.fetched; // v252: il capitolo arrivato da solo
   if(!item) return; // not loaded yet — will retry once Supabase data arrives
   deepLinkChecked = true;
   // v251: c'è la copertina: il capitolo lo mostra lei («Ti aspetta», «Leggi ora») e si apre con l'albo, già alle pagine
   if(luxCoverEl && !luxCoverEl._opening && luxArriveItem()){ try { luxCoverBlurb(); luxCoverPlaceSeal(); } catch(e){} return; }
+  if(luxArrive.viaLink && !luxArrive.done && !luxCoverBot()){ try { luxArriveOpen(item); } catch(e){ console.warn('[link]', e); luxArriveUnveil(); } return; } // v252: dal link (il QR) dritti alle pagine
   luxArrive.done = true;
   if(item.mature && !matureVisible){
     pendingDeepLinkItem = item;
@@ -23227,7 +23291,7 @@ function luxPromoCount(what, code){
   return true;
 }
 // all'avvio (prima della copertina): arrivato da un link di Amministra › Link e QR?
-var luxArrive = { id: null, done: false, viaLink: false, pages: false };
+var luxArrive = { id: null, done: false, viaLink: false, pages: false, direct: false, fetched: null, fetchDone: false, waitT: 0 }; // (v252: direct, fetched)
 function luxPromoInit(){
   luxPromoAdminDevice();
   var p = null, c = '';
@@ -23244,6 +23308,51 @@ function luxPromoInit(){
 }
 // chi arriva da un link è online: niente «online o versione offline?» (senza rete sì, come sempre)
 function luxArriveSkipGate(){ return luxArrive.viaLink && navigator.onLine !== false; }
+/* v252: dal link di un capitolo (il QR) dritti alle pagine, SENZA la copertina: finché il capitolo non è aperto
+   c'è un velo scuro col sigillo (niente lampo della home). Il capitolo arriva anche da solo (pochi KB), senza
+   aspettare tutto il catalogo e anche se la copia sul telefono è vecchia. Se non c'è (tolto, non ancora uscito,
+   link sbagliato) la visita è come le altre, con la copertina. Da ospite, finiti i 45 minuti: l'albo chiuso col
+   biglietto, e appena dentro (o registrati) il capitolo. */
+function luxArriveDirectWanted(){
+  if(!luxArriveId() || luxCoverSkipPage() || luxCoverBot() || navigator.onLine === false) return false;
+  if(/access_token=/.test(window.location.hash || '')) return false;
+  return !luxGuestExpired();
+}
+function luxArriveDirectInit(){
+  if(!luxArriveDirectWanted()) return;
+  luxArrive.direct = true;
+  try { sessionStorage.setItem('lux_cover_ok', '1'); sessionStorage.removeItem('lux_cover_lock'); } catch(e){} // (in questa visita la copertina non c'è)
+  document.documentElement.classList.add('lux-arrive-wait');
+  luxArrive.waitT = setTimeout(luxArriveUnveil, 12000); // (rete di sicurezza: rete lentissima)
+  luxArriveFetch();
+}
+function luxArriveUnveil(){
+  clearTimeout(luxArrive.waitT);
+  document.documentElement.classList.remove('lux-arrive-wait');
+}
+function luxArriveFetch(){
+  var id = luxArriveId();
+  if(!id || !SUPABASE_URL){ luxArrive.fetchDone = true; return; }
+  fetch(SUPABASE_URL + '/rest/v1/catalog?id=eq.' + encodeURIComponent(id) + '&select=*', { headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': 'Bearer ' + SUPABASE_ANON_KEY } })
+    .then(function(r){ return r.ok ? r.json() : []; })
+    .then(function(rows){ var it = Array.isArray(rows) && rows[0]; if(it && it.id === id && it.title && !luxIsScheduled(it)) luxArrive.fetched = it; })
+    .catch(function(){})
+    .then(function(){
+      luxArrive.fetchDone = true;
+      try { if(!deepLinkChecked) checkDeepLinkOnLoad(); } catch(e){ console.warn('[link]', e); }
+      luxArriveMaybeGiveUp();
+    });
+}
+// il capitolo non c'è: una visita come le altre, con la copertina (e i capitoli nuovi)
+function luxArriveMaybeGiveUp(){
+  if(!luxArrive.direct || deepLinkChecked || luxArrive.done) return;
+  if(!catalogFreshLoaded || !luxArrive.fetchDone) return;
+  luxArrive.direct = false;
+  luxArrive.done = true;
+  try { sessionStorage.removeItem('lux_cover_ok'); } catch(e){}
+  luxArriveUnveil();
+  try { luxCoverMaybeShow(); } catch(e){ console.warn('[copertina]', e); }
+}
 
 /* ---- il capitolo del link, sulla copertina ---- */
 function luxArriveId(){
@@ -23256,6 +23365,7 @@ function luxArriveItem(){
   if(!id) return null;
   var it = null;
   luxCoverCatalog().some(function(x){ if(x && x.id === id){ it = x; return true; } return false; });
+  if(!it && luxArrive.fetched && luxArrive.fetched.id === id) it = luxArrive.fetched; // v252: arrivato da solo, prima del catalogo
   if(!it || !it.title) return null;
   try { if(!characterVisible(it)) return null; } catch(e){}
   return it;
@@ -23277,16 +23387,29 @@ function luxArriveTake(){
 function luxArriveOpen(item){
   if(!item) return;
   if(item.id === luxArrive.id) luxArrive.done = true;
-  if(item.mature && !matureVisible){ pendingDeepLinkItem = item; luxArrive.pages = true; openMatureModal(); return; } // (confermata l'età: alle pagine)
+  if(item.mature && !matureVisible){ pendingDeepLinkItem = item; luxArrive.pages = true; openMatureModal(); luxArriveUnveil(); return; } // (confermata l'età: alle pagine)
   openTitleModal(item);
   luxArriveToPages();
 }
 function luxArriveToPages(){
-  setTimeout(function(){
+  var veiled = document.documentElement.classList.contains('lux-arrive-wait'); // v252: dal QR, ancora col velo: alle tavole di colpo, poi via il velo
+  var touched = false, mark = function(){ touched = true; };
+  ['wheel', 'touchstart', 'pointerdown', 'keydown'].forEach(function(n){ window.addEventListener(n, mark, { capture: true, passive: true, once: true }); });
+  var align = function(first){
     var rd = document.getElementById('pageReader'), tm = document.getElementById('titleModal');
     if(!rd || rd.classList.contains('hidden') || !tm || tm.classList.contains('hidden')) return;
-    try { rd.scrollIntoView({ block: 'start', behavior: luxCoverReduced() ? 'auto' : 'smooth' }); } catch(e){ try { rd.scrollIntoView(); } catch(e2){} }
-  }, 260);
+    if(first){ try { rd.scrollIntoView({ block: 'start', behavior: (!veiled && !luxCoverReduced()) ? 'smooth' : 'auto' }); } catch(e){ try { rd.scrollIntoView(); } catch(e2){} } return; }
+    // (dopo: si riallinea solo se nessuno ha toccato e la pagina è ferma, cioè non sta ancora scorrendo)
+    var t1 = rd.getBoundingClientRect().top;
+    if(touched || Math.abs(t1) <= 6) return;
+    requestAnimationFrame(function(){ requestAnimationFrame(function(){
+      var t2 = rd.getBoundingClientRect().top;
+      if(touched || Math.abs(t2) <= 6 || Math.abs(t2 - t1) > 1) return;
+      try { rd.scrollIntoView({ block: 'start', behavior: 'auto' }); } catch(e){}
+    }); });
+  };
+  setTimeout(function(){ align(true); if(veiled) setTimeout(luxArriveUnveil, 80); }, veiled ? 140 : 260);
+  [1100, 1900, 3000].forEach(function(ms){ setTimeout(function(){ align(false); }, ms); }); // (le immagini sopra le tavole, arrivando, possono spostarle: si riallinea finché nessuno tocca)
 }
 
 /* ---- in fondo al capitolo ---- */
@@ -25284,6 +25407,7 @@ function ensureSectionHeadingStyle(){
 function __appInit(){
   try { luxAuthFromHash(); } catch(e){ console.warn('[accesso]', e); } // v242: dal link «nuova password» dell'email si entra già nell'account
   try { luxPromoInit(); } catch(e){ console.warn('[link]', e); } // v251: arrivati da un link (un capitolo, un QR di Instagram)?
+  try { luxArriveDirectInit(); } catch(e){ console.warn('[link]', e); } // v252: dal QR dritti alle pagine, senza copertina
   document.querySelectorAll('.seal-img[data-size="sm"]').forEach(function(img){ img.src = LOGO_SM; });
   document.querySelectorAll('.seal-img[data-size="lg"]').forEach(function(img){ img.src = LOGO_LG; });
   makeHeaderLogoClickable();
@@ -25666,6 +25790,7 @@ function __appInit(){
     try { luxStatsRender(); } catch(e){} // v250: le statistiche con il catalogo appena arrivato
     renderCatalog(); renderAdminList(); // disegna sempre — con i dati freschi se la sincronizzazione è riuscita, altrimenti con l'ultima copia salvata, mai col vuoto
     if(!deepLinkChecked) checkDeepLinkOnLoad(); // retry once fresh data has arrived
+    try { luxArriveMaybeGiveUp(); } catch(e){} // v252: il capitolo del link non c'è: la copertina
     renderPublicProfilePage(); // no-op sulle pagine diverse da profile.html
     renderLuxtifyHome(); // no-op sulle pagine diverse da luxtify.html
     renderStatusPage(); // no-op fuori da status.html
