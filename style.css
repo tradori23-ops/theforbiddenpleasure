@@ -5218,3 +5218,46 @@ body.theme-light #adminSection .lxt-group .adm-shead .adm-gname svg{stroke:#b326
 body.theme-light #adminSection .lxt-empty-btn,body.theme-light #adminSection .adm-tag-trash,body.theme-light .adm-sheet .adm-tag-trash{color:#b3261e;border-color:rgba(179,38,30,.55);}
 body.theme-light #adminSection .lxt-err{color:#8f1d16;background:rgba(179,38,30,.07);}
 body.theme-light .adm-sheet .lxt-sheet-note,body.theme-light #adminSection .lxt-meta{color:#5a4a33;}
+/* ============ v254: l'app rinnovata ============ */
+/* tra una pagina e l'altra: quella nuova appare in dissolvenza, quella che si lascia svanisce (non con «riduci movimento») */
+@keyframes luxPageIn{from{opacity:0}to{opacity:1}}
+@media (prefers-reduced-motion:no-preference){
+  html.lux-ready body{animation:luxPageIn .26s ease-out;}
+  html.lux-leaving body{opacity:0;transition:opacity .16s ease-in;}
+}
+/* l'invito a installare: come la scheda di un'app */
+.lux-bottom-card.lxi-card{align-items:flex-start;gap:14px;padding:14px 12px 14px 14px;border-radius:22px;border-color:rgba(227,194,115,.5);
+  background:radial-gradient(120% 140% at 0% 0%,rgba(140,26,44,.34),rgba(140,26,44,0) 60%),radial-gradient(120% 140% at 100% 100%,rgba(16,110,124,.22),rgba(16,110,124,0) 60%),#1a0f12;}
+.lxi-icon{flex:none;width:56px;height:56px;border-radius:14px;box-shadow:0 4px 14px rgba(0,0,0,.45);}
+.lxi-icon-lg{width:64px;height:64px;border-radius:16px;}
+.lxi-txt{flex:1;min-width:0;padding-top:1px;}
+.lxi-name{font:600 17px/1.2 'Cinzel',serif;letter-spacing:.05em;color:var(--parchment);}
+.lxi-meta{margin:2px 0 0;font:400 13.5px/1.3 'Crimson Pro',Georgia,serif;color:#cdb98a;}
+.lxi-pitch{margin-top:6px;font:400 15px/1.35 'Crimson Pro',Georgia,serif;color:var(--parchment-dim);}
+.lxi-acts{flex:none;align-self:stretch;display:flex;flex-direction:column;align-items:flex-end;justify-content:space-between;gap:8px;}
+.lxi-go{height:40px;padding:0 18px;border-radius:20px;border:0;background:linear-gradient(180deg,#f2d78f,#c9a24d);color:#1a0f08;
+  font:700 15.5px/1 'Crimson Pro',Georgia,serif;cursor:pointer;box-shadow:0 4px 14px rgba(201,162,77,.28);white-space:nowrap;}
+.lxi-go:focus-visible,.lxi-x:focus-visible{outline:2px solid #e3c273;outline-offset:2px;}
+.lxi-x{width:32px;height:32px;margin:-4px -2px 0 0;padding:0;border:0;border-radius:16px;background:rgba(236,226,198,.07);color:var(--parchment-dim);
+  display:flex;align-items:center;justify-content:center;cursor:pointer;}
+.lxi-x svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;}
+/* la guida */
+.lxi-head{display:flex;align-items:center;gap:14px;margin:0 44px 16px 0;}
+.lxi-head .las-title{margin:0;font-size:19.5px;line-height:1.25;}
+.lxi-benefits{list-style:none;display:flex;gap:8px;margin:0 0 12px;padding:0;}
+.lxi-benefits li{flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;gap:7px;padding:12px 6px;border-radius:14px;
+  background:rgba(201,162,77,.07);border:1px solid rgba(201,162,77,.18);text-align:center;font:600 14px/1.25 'Crimson Pro',Georgia,serif;color:var(--parchment);}
+.lxi-benefits svg{width:24px;height:24px;fill:none;stroke:#e3c273;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;}
+.lxi-steps .a2hs-step-ico.lxi-ico-on{color:#34c759;}
+.lxi-tip{display:flex;gap:10px;align-items:flex-start;margin:6px 0 4px;padding:10px 12px;border-radius:12px;background:rgba(63,107,87,.16);
+  font:400 15px/1.4 'Crimson Pro',Georgia,serif;color:var(--parchment-dim);}
+.lxi-tip svg{flex:none;width:20px;height:20px;margin-top:1px;fill:none;stroke:#7fbf9f;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
+body.theme-light .lux-bottom-card.lxi-card{background:radial-gradient(120% 140% at 0% 0%,rgba(140,26,44,.10),rgba(140,26,44,0) 60%),#fffdf7;}
+body.theme-light .lxi-name{color:#2a1d12;}
+body.theme-light .lxi-meta{color:#7a5b1e;}
+body.theme-light .lxi-pitch,body.theme-light .lxi-x{color:#6a5b44;}
+body.theme-light .lxi-go{background:linear-gradient(180deg,#8a6a1f,#6b5015);color:#fff8ea;}
+body.theme-light .lxi-benefits li{background:rgba(138,106,31,.07);border-color:rgba(138,106,31,.22);color:#2a1d12;}
+body.theme-light .lxi-benefits svg{stroke:#8a6a1f;}
+body.theme-light .lxi-tip{background:rgba(63,107,87,.1);color:#4a5a4f;}
+@media (prefers-reduced-motion:reduce){ .lux-bottom-card.lxi-card{transition:none;} }

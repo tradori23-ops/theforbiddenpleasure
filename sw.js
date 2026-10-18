@@ -26,6 +26,8 @@
    arriva sempre live da Supabase, quindi resta sempre aggiornato
    indipendentemente da questa cache. */
 
+/* v254: le pagine arrivano prima (navigation preload: la rete parte mentre il service worker si sveglia) e
+   le notifiche hanno l'icona nuova dell'app e, su Android, il distintivo del sigillo (sagoma bianca). */
 var CACHE_NAME = 'lux-comics-v5';
 var CORE_ASSETS = [
   './',
@@ -33,7 +35,7 @@ var CORE_ASSETS = [
 ];
 
 var SHELL_PAGES = ['./schedario.html', './community.html', './contatti.html', './chat.html'];
-var SHELL_FILES = ['./logo-sm.webp', './smallnox-calm.webp', './qrcode-lib.js', './manifest.json'];
+var SHELL_FILES = ['./logo-sm.webp', './smallnox-calm.webp', './qrcode-lib.js', './manifest.json', './app-icon-192.png']; // (v254: l'icona dell'app)
 var VERSIONED_FILES = ['app.js', 'style.css', 'chrome-top.html', 'chrome-footer.html', 'chrome-modals.html'];
 
 // si salva solo una risposta buona e "diretta": una risposta arrivata dopo un
@@ -100,7 +102,8 @@ var OBSOLETE_PATHS = ['/app.js', '/support-banner.png', '/hero-bg.jpg'];
 
 self.addEventListener('activate', function(event){
   event.waitUntil(
-    caches.keys().then(function(keys){
+    (self.registration.navigationPreload ? self.registration.navigationPreload.enable().catch(function(){}) : Promise.resolve()) // v254
+    .then(function(){ return caches.keys(); }).then(function(keys){
       return Promise.all(keys.filter(function(k){ return k !== CACHE_NAME && k !== OFFLINE_CATALOG_CACHE; }).map(function(k){ return caches.delete(k); }));
     }).then(function(){
       return caches.open(CACHE_NAME).then(function(cache){
@@ -212,7 +215,8 @@ self.addEventListener('fetch', function(event){
     var isNav = req.mode === 'navigate';
     // le pagine si salvano senza "?..." (chat.html?user=X e chat.html sono la stessa pagina)
     var key = isNav ? url.origin + url.pathname : req.url;
-    var net = fetch(req);
+    // v254: la pagina già partita mentre il service worker si svegliava (navigation preload), se c'è
+    var net = (isNav && event.preloadResponse) ? Promise.resolve(event.preloadResponse).then(function(r){ return r || fetch(req); }, function(){ return fetch(req); }) : fetch(req);
     event.waitUntil(net.then(function(response){
       if(!okToSave(response)) return;
       var copy = response.clone();
@@ -284,15 +288,15 @@ self.addEventListener('push', function(event){
   var body = data.body || '';
   var options = {
     body: body,
-    icon: data.icon || './icon-192.png', // avatar di chi ha fatto l'azione, quando c'è
-    badge: './icon-192.png', // resta sempre il sigillo del sito: è la sagoma piccola in alto, un avatar lì sarebbe illeggibile
+    icon: data.icon || './app-icon-192.png', // avatar di chi ha fatto l'azione, quando c'è
+    badge: './badge-96.png', // resta sempre il sigillo del sito: è la sagoma piccola in alto, un avatar lì sarebbe illeggibile (v254: la sua sagoma bianca, come vuole Android)
     image: data.image || undefined, // copertina del titolo, quando la notifica lo riguarda
     tag: data.tag || undefined, // stesso tag = si sostituiscono invece di accumularsi (es. più "mi piace" sullo stesso titolo)
     renotify: !!data.tag, // ...ma avvisano comunque di nuovo, non restano mute alla seconda volta
     actions: Array.isArray(data.actions) ? data.actions : undefined,
     data: { url: data.url || './', actionUrls: data.actionUrls || null }
   };
-  var simple = { body: body, icon: './icon-192.png', tag: data.tag || undefined, data: options.data };
+  var simple = { body: body, icon: './app-icon-192.png', tag: data.tag || undefined, data: options.data };
   event.waitUntil(
     self.registration.showNotification(title, options)
       .catch(function(){ return self.registration.showNotification(title, simple); })

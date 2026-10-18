@@ -5,6 +5,14 @@
 // se li modifichi, li modifichi in un punto solo e tutte le pagine si aggiornano.
 (async function () {
   "use strict";
+  // v254: la barra del telefono subito del colore del sito (scura, o chiara col tema chiaro), non rosso vino come
+  // scritto nelle pagine: così nell'app installata non cambia colore a ogni pagina (poi la segue app.js)
+  try {
+    var tcm = document.querySelector('meta[name="theme-color"]');
+    var tcl = localStorage.getItem("lux_theme");
+    if (!tcl && window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches) tcl = "light";
+    if (tcm) tcm.setAttribute("content", tcl === "light" ? "#fdfbf7" : "#0b0607");
+  } catch (err) {}
 
   // Riquadro rosso con gli errori: v212, SOLO per l'admin (app.js scrive
   // "lux_is_admin" quando entri con l'account admin) o con lux_debug=1 per una
@@ -83,7 +91,7 @@
   // hai visto live sul sito prima di caricare — questo file parte da una
   // copia salvata in sessione e potrebbe non riflettere bump fatti nel
   // frattempo direttamente su GitHub.
-  var V = "253";
+  var V = "254";
 
   // style.css iniettato qui (non più con un <link> scritto a mano in ogni
   // pagina) così la sua versione segue sempre la stessa V di app.js,
@@ -206,7 +214,8 @@
     try {
       if (/access_token=/.test(location.hash || "")) return; // v242: dal link «nuova password»: si entra già nell'account
       var s = JSON.parse(localStorage.getItem("lux_session") || "null");
-      if (sessionStorage.getItem("lux_cover_ok") && sessionStorage.getItem("lux_cover_lock") !== "1") {
+      // v254: dalle scorciatoie dell'icona (Continua a leggere, Ultimi capitoli, Cerca) si entra dritti, come dal QR
+      if ((sessionStorage.getItem("lux_cover_ok") && sessionStorage.getItem("lux_cover_lock") !== "1") || /[?&]app=(continua|novita|cerca)(&|$)/.test(location.search || "")) {
         if (s && s.access_token) return;
         var used = +(localStorage.getItem("lux_guest_ms") || 0); // v252: il tempo da ospite, in tutto, su questo dispositivo
         if (sessionStorage.getItem("lux_guest_reg") || used < 45 * 60 * 1000) return;
