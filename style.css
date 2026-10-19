@@ -5261,3 +5261,142 @@ body.theme-light .lxi-benefits li{background:rgba(138,106,31,.07);border-color:r
 body.theme-light .lxi-benefits svg{stroke:#8a6a1f;}
 body.theme-light .lxi-tip{background:rgba(63,107,87,.1);color:#4a5a4f;}
 @media (prefers-reduced-motion:reduce){ .lux-bottom-card.lxi-card{transition:none;} }
+/* ============ v255: profili dal nickname, registrazione con i dati, menzioni, gruppi chat ============ */
+/* i nomi che portano al profilo e le @menzioni */
+a.lux-person{color:inherit;text-decoration:none;cursor:pointer;}
+a.lux-person:hover,a.lux-person:focus-visible{text-decoration:underline;text-underline-offset:3px;}
+a.lux-mention{color:var(--gold-bright);font-weight:600;text-decoration:none;overflow-wrap:anywhere;}
+a.lux-mention:hover,a.lux-mention:focus-visible{text-decoration:underline;text-underline-offset:3px;}
+.chat-bubble a.lux-mention{color:inherit;text-decoration:underline;text-decoration-color:rgba(227,194,115,.7);text-underline-offset:3px;}
+body.theme-light a.lux-mention{color:#7a1a2a;}
+.msg-av.lux-person-av{cursor:pointer;}
+a.friend-contact-avatar-wrap{display:block;}
+.friend-contact-nick{color:var(--parchment-dim);}
+
+/* registrazione: i dati del profilo sopra email e password */
+.lux-reg{margin:0 0 4px;}
+.lux-reg-intro{margin:0 0 16px;font-family:'Crimson Pro',Georgia,serif;font-size:15.5px;line-height:1.45;color:var(--parchment);}
+.lux-reg-account{margin:6px 0 12px;padding-top:14px;border-top:1px solid rgba(201,162,77,.25);font-family:'Crimson Pro',Georgia,serif;font-size:15px;font-style:italic;color:var(--parchment-dim);}
+.lux-reg-row{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:12px;}
+.lux-nick-wrap{position:relative;}
+.lux-nick-at{position:absolute;inset-inline-start:12px;top:50%;transform:translateY(-50%);font-family:'Crimson Pro',Georgia,serif;font-size:17px;font-weight:700;color:var(--gold-bright);pointer-events:none;}
+.field .lux-nick-wrap input{padding-inline-start:30px;}
+.lux-nick-state{min-height:18px;margin-top:5px;font-family:'Crimson Pro',Georgia,serif;font-size:13.5px;line-height:1.35;color:var(--parchment-dim);}
+.lux-nick-state.is-ok{color:#6fcf8f;}
+.lux-nick-state.is-bad{color:var(--ember);}
+.lux-nick-state.is-wait{opacity:.8;}
+.field input[type="date"]{min-height:44px;}
+.lux-reg select,.lux-ask select{min-height:44px;}
+html.lux-cover-on #authModal .lux-reg select{background:rgba(11,6,7,.5);border:0;border-bottom:1px solid rgba(201,162,77,.55);border-radius:6px 6px 0 0;padding:11px 10px;font-size:16px;color:#ece2c6;}
+html.lux-cover-on #authModal .lux-reg select option{background:#1d0a0f;color:#ece2c6;}
+html.lux-cover-on #authModal .lux-reg-intro{text-align:center;color:#ece2c6;}
+html.lux-cover-on #authModal .lux-reg-account{color:#b8ac8e;}
+html.lux-cover-on #authModal .lux-nick-state.is-ok{color:#7fe0a0;}
+@media (max-width:380px){ .lux-reg-row{grid-template-columns:minmax(0,1fr);gap:0;} }
+@media (max-width:640px){ .lux-reg input,.lux-reg select,.lux-ask input,.lux-ask select{font-size:16px;} }
+
+/* «Completa il tuo profilo» */
+.lux-ask .las-title{margin-bottom:4px;}
+.lux-ask-sub{margin:0 0 18px;font-size:16px;line-height:1.45;color:var(--parchment-dim);}
+.lux-ask .field label{font-size:10.5px;}
+.lux-ask .field input,.lux-ask .field select{border-radius:10px;background:#1e1215;border-color:rgba(201,162,77,.25);font-size:16.5px;}
+.lux-ask .field input:focus,.lux-ask .field select:focus{border-color:var(--gold);outline:none;}
+.lux-ask .form-error{margin:0 0 4px;font-size:14px;}
+.lux-ask-actions{display:grid;gap:0;}
+body.theme-light .lux-ask .field input,body.theme-light .lux-ask .field select{background:#fffaf0;color:#2a1d12;border-color:rgba(138,106,31,.35);}
+
+/* il profilo: @nickname e nazionalità sotto il nome */
+.lux-pub-id{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;margin:10px 0 4px;padding:0 16px;font-family:'Crimson Pro',Georgia,serif;font-size:16.5px;color:var(--parchment-dim);}
+.lux-pub-id[hidden]{display:none;}
+body.has-app-tabbar #profileSection .lux-pub-id{padding:0 2px;}
+.lux-pub-nation{white-space:nowrap;}
+.lux-pub-nick{font-weight:700;color:var(--gold-bright);letter-spacing:.01em;}
+.lux-pub-sep{opacity:.6;}
+body.theme-light .lux-pub-nick{color:#7a5a12;}
+.diary-post.lux-post-hit{box-shadow:0 0 0 2px var(--gold-bright),0 0 26px rgba(227,194,115,.35);transition:box-shadow .4s;}
+.lux-collab-hint{margin:0 0 10px;font-size:13.5px;opacity:.9;}
+
+/* ---------- i gruppi chat ---------- */
+.lux-groups{flex-shrink:0;padding:8px 8px 2px;border-bottom:1px solid rgba(201,162,77,.18);max-height:46%;overflow-y:auto;}
+.lux-groups[hidden]{display:none;}
+.lux-groups-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:4px 6px 8px;}
+.lux-groups-title{font-family:'Cinzel',serif;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-bright);}
+.lux-groups-new{display:inline-flex;align-items:center;gap:6px;min-height:34px;padding:0 12px;border:1px solid rgba(201,162,77,.4);border-radius:17px;background:transparent;
+  color:var(--gold-bright);font-family:'Crimson Pro',Georgia,serif;font-size:15px;font-weight:700;cursor:pointer;}
+.lux-groups-new:hover,.lux-groups-new:focus-visible{background:rgba(201,162,77,.1);border-color:var(--gold);}
+.lux-groups-new svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
+.lux-groups-empty{margin:0 6px 10px;font-family:'Crimson Pro',Georgia,serif;font-size:14.5px;line-height:1.4;color:var(--parchment-dim);}
+.lux-group-badge{position:absolute;right:-3px;bottom:-3px;display:flex;align-items:center;justify-content:center;width:19px;height:19px;border-radius:50%;
+  background:var(--void-2);border:1px solid rgba(201,162,77,.55);color:var(--gold-bright);}
+.lux-group-badge svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.lux-group-muted{font-size:12px;line-height:1;opacity:.75;}
+.lux-group-row.is-muted .chat-sidebar-unread-dot{background:var(--parchment-dim);}
+.lux-group-row .chat-sidebar-row-main:focus-visible{outline:2px solid var(--gold);outline-offset:-2px;border-radius:4px;}
+#chatBox.lux-group-on .chat-header-dot{display:none;}
+.lux-head-tap{cursor:pointer;}
+#chatBox .chat-page-composer[hidden]{display:none !important;}
+.lux-group-hello,.lux-group-gone{margin:auto;max-width:340px;text-align:center;font-family:'Crimson Pro',Georgia,serif;font-size:16px;line-height:1.45;}
+/* le bolle del gruppo: il nome di chi scrive, ogni persona col suo colore */
+.chat-bubble .lux-gsender{display:block;margin:0 0 2px;font-family:'Crimson Pro',Georgia,serif;font-size:14px;font-weight:700;font-style:normal;color:hsl(var(--h,40),62%,72%);}
+body.theme-light .chat-bubble .lux-gsender{color:hsl(var(--h,40),58%,32%);}
+body:not(.has-app-tabbar) .chat-bubble .lux-gsender{color:hsl(var(--h,40),58%,32%);}
+.chat-bubble.lux-gcont{margin-top:-3px;}
+.chat-bubble .lux-gimg{cursor:zoom-in;}
+/* scegliere gli amici */
+.lux-gsheet-label{margin:2px 0 8px;font-size:15px;font-weight:600;color:var(--parchment-dim);}
+.lux-gpick{margin:0 0 6px;}
+.lux-gpick-search{display:block;width:100%;height:42px;margin:0 0 8px;padding:0 14px;border-radius:21px;border:1px solid rgba(201,162,77,.25);background:#1e1215;color:var(--parchment);
+  font-family:'Crimson Pro',Georgia,serif;font-size:16px;box-sizing:border-box;}
+.lux-gpick-search:focus{outline:none;border-color:var(--gold);}
+.lux-gpick-list{max-height:min(46vh,380px);overflow-y:auto;border-radius:14px;background:#150c0d;border:1px solid rgba(201,162,77,.14);}
+.lux-gpick-row{display:flex;align-items:center;gap:12px;min-height:56px;padding:6px 12px;border-top:1px solid rgba(201,162,77,.1);cursor:pointer;}
+.lux-gpick-row:first-child{border-top:0;}
+.lux-gpick-row[hidden]{display:none;}
+.lux-gpick-row input{flex:none;width:22px;height:22px;margin:0;accent-color:#c9a24d;}
+.lux-gpick-av{flex:none;width:38px;height:38px;border-radius:50%;object-fit:cover;border:1px solid rgba(201,162,77,.35);}
+.lux-gpick-name{flex:1;min-width:0;display:flex;flex-direction:column;font-size:17px;font-weight:600;line-height:1.2;color:var(--parchment);overflow-wrap:anywhere;}
+.lux-gpick-name small{font-size:14px;font-weight:400;color:var(--parchment-dim);}
+.lux-gpick-row:has(input:checked){background:rgba(201,162,77,.08);}
+.lux-gpick-count{margin:6px 2px 0;font-size:14.5px;color:var(--parchment-dim);}
+a.lux-gbtn-link{display:flex;align-items:center;justify-content:center;text-decoration:none;}
+/* le informazioni del gruppo */
+.lux-ginfo-id{display:flex;flex-direction:column;align-items:center;text-align:center;padding:4px 0 6px;}
+.lux-ginfo-av{width:84px;height:84px;border-radius:50%;object-fit:cover;border:2px solid rgba(227,194,115,.55);}
+.lux-ginfo-name{margin-top:10px;font-family:'Cinzel',serif;font-size:20px;font-weight:700;letter-spacing:.03em;color:var(--parchment);overflow-wrap:anywhere;}
+.lux-ginfo-sub{margin-top:2px;font-size:15.5px;color:var(--parchment-dim);}
+.lux-ginfo-actions{margin:6px 0 4px;}
+.lux-ginfo-note{margin:8px 2px 4px;font-size:14px;line-height:1.4;color:var(--parchment-dim);}
+.lux-ginfo-sec{margin-top:14px;}
+.lux-ginfo-sec h4,.chat-info-sec h4{margin:0 0 8px;}
+.lux-ginfo .lux-ginfo-sec h4{font-family:'Crimson Pro',Georgia,serif;font-size:15px;font-style:italic;font-weight:600;color:var(--gold-bright);}
+.lux-ginfo-sec h4 span{font-style:normal;color:var(--parchment-dim);}
+.lux-gmems{display:flex;flex-direction:column;border-radius:14px;background:#150c0d;border:1px solid rgba(201,162,77,.14);overflow:hidden;}
+.chat-info .lux-gmems{background:none;border:0;border-radius:0;}
+.lux-gmem{display:flex;align-items:center;gap:8px;min-height:56px;padding:4px 8px 4px 12px;border-top:1px solid rgba(201,162,77,.1);}
+.lux-gmem:first-child{border-top:0;}
+.chat-info .lux-gmem{padding-inline:0;}
+.lux-gmem-main{flex:1;min-width:0;display:flex;align-items:center;gap:10px;color:inherit;text-decoration:none;}
+.lux-gmem-main:hover .lux-gmem-name,.lux-gmem-main:focus-visible .lux-gmem-name{text-decoration:underline;text-underline-offset:3px;}
+.lux-gmem-av{flex:none;width:38px;height:38px;border-radius:50%;object-fit:cover;border:1px solid rgba(201,162,77,.35);}
+.lux-gmem-txt{flex:1;min-width:0;display:flex;flex-direction:column;line-height:1.2;}
+.lux-gmem-name{font-family:'Crimson Pro',Georgia,serif;font-size:16.5px;font-weight:700;color:var(--parchment);overflow-wrap:anywhere;}
+.lux-gmem-nick{font-family:'Crimson Pro',Georgia,serif;font-size:14px;color:var(--parchment-dim);}
+.lux-gmem-on{display:inline-block;width:8px;height:8px;margin-inline-start:4px;border-radius:50%;background:#5fbf86;vertical-align:middle;}
+.lux-gmem-tag{flex:none;padding:1px 8px;border-radius:9px;border:1px solid rgba(201,162,77,.45);font-family:'Crimson Pro',Georgia,serif;font-size:12.5px;color:var(--gold-bright);white-space:nowrap;}
+.lux-gmem-del{flex:none;width:36px;height:36px;border:0;border-radius:18px;background:rgba(236,226,198,.06);color:#e78c80;font-size:20px;line-height:1;cursor:pointer;}
+.lux-gmem-del:hover,.lux-gmem-del:focus-visible{background:rgba(224,100,90,.16);}
+.lux-ginfo-leave{text-align:center;}
+.chat-info .lux-ginfo-id{margin-top:-46px;position:relative;padding:0 18px;}
+.chat-info .lux-ginfo-av{border-width:3px;border-color:var(--void-2);background:#2a1a1d;}
+.chat-info .lux-ginfo-note{margin:4px 18px 0;text-align:center;font-size:13.5px;}
+.lux-ginfo-banner{background:radial-gradient(circle at 70% 30%, #3a2a12, #150c0d 72%);}
+.chat-info .lux-gleave{color:#e78c80;border-color:rgba(224,100,90,.45);}
+body.theme-light .lux-gpick-search{background:#fffaf0;color:#2a1d12;border-color:rgba(138,106,31,.35);}
+body.theme-light .lux-gpick-list,body.theme-light .lux-gmems{background:#fbf5e8;border-color:rgba(138,106,31,.2);}
+body.theme-light .lux-gpick-name{color:#2a1d12;}
+body.theme-light .lux-gmem-name{color:#2a1d12;}
+body.theme-light .lux-group-badge{background:#fffdf7;color:#7a5a12;border-color:rgba(138,106,31,.45);}
+body.theme-light .lux-groups-new{color:#7a5a12;border-color:rgba(138,106,31,.45);}
+body.theme-light .lux-groups-title{color:#7a5a12;}
+body.theme-light .lux-gmem-tag{color:#7a5a12;border-color:rgba(138,106,31,.45);}
+body.theme-light .lux-ginfo-banner{background:radial-gradient(circle at 70% 30%, #f3e3c2, #e2cfa8 72%);}

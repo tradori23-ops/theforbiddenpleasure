@@ -1089,6 +1089,20 @@ Object.assign(STR.hi, {"lxapp.cardSub": "आर्काइव का ऐप · 
 Object.assign(STR.bn, {"lxapp.cardSub": "আর্কাইভের অ্যাপ · বিনামূল্যে", "lxapp.cardPitch": "পুরো স্ক্রিনে, নতুন অধ্যায়ের খবরসহ; যেখানে ছেড়েছিলেন সেখান থেকেই খোলে।", "lxapp.guideSub": "বিনামূল্যে, অ্যাপ স্টোর ছাড়াই", "lxapp.b1": "পুরো স্ক্রিন", "lxapp.b2": "নতুন অধ্যায়ের খবর", "lxapp.b3": "যেখানে ছিলেন সেখান থেকে", "lxapp.s26a": "নিচে ঠিকানার পাশে ⋯ ট্যাপ করুন।", "lxapp.s26b": "«শেয়ার» ট্যাপ করুন।", "lxapp.s26c": "স্ক্রল করে «হোম স্ক্রিনে যোগ করুন» ট্যাপ করুন।", "lxapp.s26d": "«ওয়েব অ্যাপ হিসেবে খুলুন» চালু রেখে «যোগ করুন» ট্যাপ করুন।", "lxapp.done": "ইনস্টল হয়েছে: আপনার অ্যাপগুলোর মধ্যে LUX COMICS আছে।"});
 Object.assign(STR.ar, {"lxapp.cardSub": "تطبيق الأرشيف · مجانًا", "lxapp.cardPitch": "بملء الشاشة، مع تنبيهات الفصول الجديدة؛ ويُفتح من حيث توقفت.", "lxapp.guideSub": "مجانًا، دون متجر التطبيقات", "lxapp.b1": "ملء الشاشة", "lxapp.b2": "تنبيهات الفصول الجديدة", "lxapp.b3": "يكمل من حيث كنت", "lxapp.s26a": "اضغط على ⋯ بجانب العنوان في الأسفل.", "lxapp.s26b": "اضغط على «مشاركة».", "lxapp.s26c": "مرّر واضغط على «إضافة إلى الشاشة الرئيسية».", "lxapp.s26d": "اترك «فتح كتطبيق ويب» مفعّلًا واضغط على «إضافة».", "lxapp.done": "تم التثبيت: ستجد LUX COMICS بين تطبيقاتك."});
 Object.assign(STR.pnb, {"lxapp.cardSub": "آرکائیو دی ایپ · مفت", "lxapp.cardPitch": "پوری سکرین تے، نویں باباں دیاں اطلاعاں نال؛ اوتھوں ای کھلدی اے جتھے چھڈیا سی۔", "lxapp.guideSub": "مفت، ایپ سٹور توں بغیر", "lxapp.b1": "پوری سکرین", "lxapp.b2": "نویں باباں دیاں اطلاعاں", "lxapp.b3": "اوتھوں ای اگے جتھے سی", "lxapp.s26a": "تھلے پتے دے کول ⋯ تے ٹیپ کرو۔", "lxapp.s26b": "«شیئر» تے ٹیپ کرو۔", "lxapp.s26c": "سکرول کر کے «ہوم سکرین تے شامل کرو» تے ٹیپ کرو۔", "lxapp.s26d": "«ویب ایپ وانگ کھولو» چالو رہن دیو تے «شامل کرو» تے ٹیپ کرو۔", "lxapp.done": "انسٹال ہو گئی: LUX COMICS تہاڈیاں ایپاں وچ اے۔"});
+// v255: profili dal nickname, registrazione con i dati, menzioni e gruppi chat
+Object.assign(STR.it, {"reg.intro": "Ancora pochi dati e sei dei nostri: così gli amici ti trovano e ti possono menzionare.", "reg.account": "E ora l'accesso: email e password.", "reg.nick": "Nickname", "reg.nickHint": "Da 3 a 20 tra lettere, numeri, _ e . — gli altri ti menzionano con @nickname.", "reg.nickBad": "Solo lettere, numeri, _ e . (da 3 a 20, senza spazi).", "reg.nickChecking": "Controllo se è libero…", "reg.nickFree": "Libero ✓", "reg.nickTaken": "Già preso: provane un altro.", "reg.nickYours": "È il tuo ✓", "reg.name": "Nome", "reg.namePh": "Come vuoi essere chiamato/a", "reg.birth": "Data di nascita", "reg.gender": "Sesso", "reg.nation": "Nazionalità", "reg.nationPick": "— Scegli il paese —", "reg.errNick": "Scegli un nickname: da 3 a 20 tra lettere, numeri, _ e .", "reg.errNickTaken": "Questo nickname è già preso: provane un altro.", "reg.errName": "Scrivi il tuo nome.", "reg.errBirth": "Scrivi la tua data di nascita.", "reg.errNation": "Scegli la tua nazionalità.", "reg.completeTitle": "Completa il tuo profilo", "reg.completeSub": "Bastano pochi secondi: così gli amici ti trovano e ti possono menzionare con @nickname.", "reg.save": "Salva", "reg.later": "Più tardi", "reg.saved": "Profilo salvato ✓", "reg.saveError": "Non è stato salvato: riprova tra poco.", "collab.mentionHint": "Scrivi il nickname del sito con la @ (per esempio @selene_88): quando il capitolo esce, ricevono l'avviso.", "notif.mention": "ti ha menzionato", "notif.mentionDiary": "ti ha menzionato nel diario", "notif.mentionDiaryComment": "ti ha menzionato in un commento del diario", "notif.mentionChannel": "ti ha menzionato nel canale {name}", "notif.mentionServer": "ti ha menzionato nel server «{name}»", "notif.mentionComments": "ti ha menzionato nei commenti di «{title}»", "notif.mentionCollab": "ti ha messo tra i collaboratori di «{title}»", "notif.groupAdded": "ti ha aggiunto al gruppo «{name}»", "group.title": "Gruppi", "group.new": "Nuovo gruppo", "group.empty": "Crea un gruppo con i tuoi amici: ogni messaggio arriva a tutti.", "group.newTitle": "Nuovo gruppo", "group.name": "Nome del gruppo", "group.namePh": "Per esempio: Lettori del giovedì", "group.pick": "Scegli gli amici", "group.search": "Cerca tra gli amici…", "group.picked": "Scelti: {n}", "group.noFriends": "Per creare un gruppo servono amici: aggiungili da Contatti.", "group.findFriends": "Trova amici", "group.create": "Crea il gruppo", "group.created": "Gruppo creato ✓", "group.members": "Partecipanti: {n}", "group.noMsgs": "Ancora nessun messaggio", "group.admin": "Gestisce", "group.add": "Aggiungi amici", "group.addDo": "Aggiungi", "group.added": "Aggiunti al gruppo ✓", "group.noneToAdd": "I tuoi amici sono già tutti nel gruppo.", "group.rename": "Cambia nome", "group.renamed": "Nome cambiato ✓", "group.mute": "Silenzia", "group.unmute": "Riattiva gli avvisi", "group.mutedOn": "Avvisi di questo gruppo silenziati", "group.mutedOff": "Avvisi riattivati", "group.mutedTag": "silenziato", "group.muteNote": "Con «Silenzia» non ti arrivano gli avvisi di questo gruppo: i messaggi li trovi lo stesso qui.", "group.leave": "Esci dal gruppo", "group.leaveConfirm": "Uscire dal gruppo «{name}»?", "group.left": "Hai lasciato il gruppo", "group.remove": "Togli dal gruppo", "group.removeConfirm": "Togliere {name} dal gruppo?", "group.removed": "{name} non è più nel gruppo", "group.gone": "Non fai più parte di questo gruppo.", "group.hello": "Il gruppo è pronto: scrivi il primo messaggio, arriva a tutti.", "group.errName": "Dai un nome al gruppo.", "group.errPick": "Scegli almeno un amico.", "group.errGeneric": "Non è riuscito: riprova tra poco.", "group.participants": "Partecipanti"});
+Object.assign(STR.en, {"reg.intro": "Just a few details and you're in: this way your friends can find you and mention you.", "reg.account": "Now your sign-in: email and password.", "reg.nick": "Nickname", "reg.nickHint": "3 to 20 letters, numbers, _ and . — others mention you with @nickname.", "reg.nickBad": "Only letters, numbers, _ and . (3 to 20, no spaces).", "reg.nickChecking": "Checking if it's free…", "reg.nickFree": "Available ✓", "reg.nickTaken": "Already taken: try another one.", "reg.nickYours": "It's yours ✓", "reg.name": "Name", "reg.namePh": "What should we call you?", "reg.birth": "Date of birth", "reg.gender": "Gender", "reg.nation": "Nationality", "reg.nationPick": "— Choose your country —", "reg.errNick": "Choose a nickname: 3 to 20 letters, numbers, _ and .", "reg.errNickTaken": "This nickname is already taken: try another one.", "reg.errName": "Enter your name.", "reg.errBirth": "Enter your date of birth.", "reg.errNation": "Choose your nationality.", "reg.completeTitle": "Complete your profile", "reg.completeSub": "It only takes a few seconds: this way your friends can find you and mention you with @nickname.", "reg.save": "Save", "reg.later": "Later", "reg.saved": "Profile saved ✓", "reg.saveError": "It wasn't saved: try again in a moment.", "collab.mentionHint": "Write their site nickname with the @ (for example @selene_88): when the chapter comes out, they get a notification.", "notif.mention": "mentioned you", "notif.mentionDiary": "mentioned you in the diary", "notif.mentionDiaryComment": "mentioned you in a diary comment", "notif.mentionChannel": "mentioned you in the channel {name}", "notif.mentionServer": "mentioned you in the server “{name}”", "notif.mentionComments": "mentioned you in the comments on “{title}”", "notif.mentionCollab": "added you as a collaborator on “{title}”", "notif.groupAdded": "added you to the group “{name}”", "group.title": "Groups", "group.new": "New group", "group.empty": "Create a group with your friends: every message reaches everyone.", "group.newTitle": "New group", "group.name": "Group name", "group.namePh": "For example: Thursday readers", "group.pick": "Choose your friends", "group.search": "Search your friends…", "group.picked": "Selected: {n}", "group.noFriends": "To create a group you need friends: add them from Contacts.", "group.findFriends": "Find friends", "group.create": "Create group", "group.created": "Group created ✓", "group.members": "Members: {n}", "group.noMsgs": "No messages yet", "group.admin": "Admin", "group.add": "Add friends", "group.addDo": "Add", "group.added": "Added to the group ✓", "group.noneToAdd": "All your friends are already in the group.", "group.rename": "Rename", "group.renamed": "Name changed ✓", "group.mute": "Mute", "group.unmute": "Turn notifications back on", "group.mutedOn": "Notifications from this group muted", "group.mutedOff": "Notifications back on", "group.mutedTag": "muted", "group.muteNote": "With “Mute” you won't get notifications from this group: the messages are still here.", "group.leave": "Leave group", "group.leaveConfirm": "Leave the group “{name}”?", "group.left": "You left the group", "group.remove": "Remove from group", "group.removeConfirm": "Remove {name} from the group?", "group.removed": "{name} is no longer in the group", "group.gone": "You're no longer in this group.", "group.hello": "The group is ready: write the first message, it reaches everyone.", "group.errName": "Give the group a name.", "group.errPick": "Choose at least one friend.", "group.errGeneric": "That didn't work: try again in a moment.", "group.participants": "Members"});
+Object.assign(STR.es, {"reg.intro": "Solo unos datos más y ya eres de los nuestros: así tus amigos te encuentran y te pueden mencionar.", "reg.account": "Y ahora el acceso: correo y contraseña.", "reg.nick": "Nickname", "reg.nickHint": "De 3 a 20 entre letras, números, _ y . — los demás te mencionan con @nickname.", "reg.nickBad": "Solo letras, números, _ y . (de 3 a 20, sin espacios).", "reg.nickChecking": "Comprobando si está libre…", "reg.nickFree": "Disponible ✓", "reg.nickTaken": "Ya está en uso: prueba otro.", "reg.nickYours": "Es el tuyo ✓", "reg.name": "Nombre", "reg.namePh": "Cómo quieres que te llamen", "reg.birth": "Fecha de nacimiento", "reg.gender": "Sexo", "reg.nation": "Nacionalidad", "reg.nationPick": "— Elige el país —", "reg.errNick": "Elige un nickname: de 3 a 20 entre letras, números, _ y .", "reg.errNickTaken": "Este nickname ya está en uso: prueba otro.", "reg.errName": "Escribe tu nombre.", "reg.errBirth": "Escribe tu fecha de nacimiento.", "reg.errNation": "Elige tu nacionalidad.", "reg.completeTitle": "Completa tu perfil", "reg.completeSub": "Solo unos segundos: así tus amigos te encuentran y te pueden mencionar con @nickname.", "reg.save": "Guardar", "reg.later": "Más tarde", "reg.saved": "Perfil guardado ✓", "reg.saveError": "No se ha guardado: inténtalo de nuevo en un momento.", "collab.mentionHint": "Escribe su nickname del sitio con la @ (por ejemplo @selene_88): cuando salga el capítulo, recibirán el aviso.", "notif.mention": "te mencionó", "notif.mentionDiary": "te mencionó en el diario", "notif.mentionDiaryComment": "te mencionó en un comentario del diario", "notif.mentionChannel": "te mencionó en el canal {name}", "notif.mentionServer": "te mencionó en el servidor «{name}»", "notif.mentionComments": "te mencionó en los comentarios de «{title}»", "notif.mentionCollab": "te añadió como colaborador de «{title}»", "notif.groupAdded": "te añadió al grupo «{name}»", "group.title": "Grupos", "group.new": "Nuevo grupo", "group.empty": "Crea un grupo con tus amigos: cada mensaje llega a todos.", "group.newTitle": "Nuevo grupo", "group.name": "Nombre del grupo", "group.namePh": "Por ejemplo: Lectores del jueves", "group.pick": "Elige a tus amigos", "group.search": "Busca entre tus amigos…", "group.picked": "Elegidos: {n}", "group.noFriends": "Para crear un grupo necesitas amigos: añádelos desde Contactos.", "group.findFriends": "Buscar amigos", "group.create": "Crear el grupo", "group.created": "Grupo creado ✓", "group.members": "Participantes: {n}", "group.noMsgs": "Aún no hay mensajes", "group.admin": "Administra", "group.add": "Añadir amigos", "group.addDo": "Añadir", "group.added": "Añadidos al grupo ✓", "group.noneToAdd": "Todos tus amigos ya están en el grupo.", "group.rename": "Cambiar nombre", "group.renamed": "Nombre cambiado ✓", "group.mute": "Silenciar", "group.unmute": "Reactivar los avisos", "group.mutedOn": "Avisos de este grupo silenciados", "group.mutedOff": "Avisos reactivados", "group.mutedTag": "silenciado", "group.muteNote": "Con «Silenciar» no recibes los avisos de este grupo: los mensajes siguen aquí.", "group.leave": "Salir del grupo", "group.leaveConfirm": "¿Salir del grupo «{name}»?", "group.left": "Has salido del grupo", "group.remove": "Quitar del grupo", "group.removeConfirm": "¿Quitar a {name} del grupo?", "group.removed": "{name} ya no está en el grupo", "group.gone": "Ya no formas parte de este grupo.", "group.hello": "El grupo está listo: escribe el primer mensaje, llega a todos.", "group.errName": "Ponle un nombre al grupo.", "group.errPick": "Elige al menos un amigo.", "group.errGeneric": "No ha funcionado: inténtalo de nuevo en un momento.", "group.participants": "Participantes"});
+Object.assign(STR.fr, {"reg.intro": "Encore quelques informations et vous êtes des nôtres : ainsi vos amis vous trouvent et peuvent vous mentionner.", "reg.account": "Et maintenant la connexion : e-mail et mot de passe.", "reg.nick": "Pseudo", "reg.nickHint": "De 3 à 20 lettres, chiffres, _ et . — les autres vous mentionnent avec @pseudo.", "reg.nickBad": "Uniquement des lettres, des chiffres, _ et . (de 3 à 20, sans espaces).", "reg.nickChecking": "Vérification de la disponibilité…", "reg.nickFree": "Disponible ✓", "reg.nickTaken": "Déjà pris : essayez-en un autre.", "reg.nickYours": "C'est le vôtre ✓", "reg.name": "Nom", "reg.namePh": "Comment voulez-vous qu'on vous appelle ?", "reg.birth": "Date de naissance", "reg.gender": "Sexe", "reg.nation": "Nationalité", "reg.nationPick": "— Choisissez le pays —", "reg.errNick": "Choisissez un pseudo : de 3 à 20 lettres, chiffres, _ et .", "reg.errNickTaken": "Ce pseudo est déjà pris : essayez-en un autre.", "reg.errName": "Indiquez votre nom.", "reg.errBirth": "Indiquez votre date de naissance.", "reg.errNation": "Choisissez votre nationalité.", "reg.completeTitle": "Complétez votre profil", "reg.completeSub": "Quelques secondes suffisent : ainsi vos amis vous trouvent et peuvent vous mentionner avec @pseudo.", "reg.save": "Enregistrer", "reg.later": "Plus tard", "reg.saved": "Profil enregistré ✓", "reg.saveError": "Rien n'a été enregistré : réessayez dans un instant.", "collab.mentionHint": "Écrivez leur pseudo du site avec le @ (par exemple @selene_88) : à la sortie du chapitre, ils reçoivent une notification.", "notif.mention": "vous a mentionné", "notif.mentionDiary": "vous a mentionné dans le journal", "notif.mentionDiaryComment": "vous a mentionné dans un commentaire du journal", "notif.mentionChannel": "vous a mentionné dans le canal {name}", "notif.mentionServer": "vous a mentionné dans le serveur « {name} »", "notif.mentionComments": "vous a mentionné dans les commentaires de « {title} »", "notif.mentionCollab": "vous a ajouté aux collaborateurs de « {title} »", "notif.groupAdded": "vous a ajouté au groupe « {name} »", "group.title": "Groupes", "group.new": "Nouveau groupe", "group.empty": "Créez un groupe avec vos amis : chaque message arrive à tout le monde.", "group.newTitle": "Nouveau groupe", "group.name": "Nom du groupe", "group.namePh": "Par exemple : Lecteurs du jeudi", "group.pick": "Choisissez vos amis", "group.search": "Rechercher parmi vos amis…", "group.picked": "Sélectionnés : {n}", "group.noFriends": "Pour créer un groupe, il faut des amis : ajoutez-les depuis Contacts.", "group.findFriends": "Trouver des amis", "group.create": "Créer le groupe", "group.created": "Groupe créé ✓", "group.members": "Participants : {n}", "group.noMsgs": "Pas encore de messages", "group.admin": "Gère le groupe", "group.add": "Ajouter des amis", "group.addDo": "Ajouter", "group.added": "Ajoutés au groupe ✓", "group.noneToAdd": "Tous vos amis sont déjà dans le groupe.", "group.rename": "Renommer", "group.renamed": "Nom modifié ✓", "group.mute": "Mettre en sourdine", "group.unmute": "Réactiver les notifications", "group.mutedOn": "Notifications de ce groupe en sourdine", "group.mutedOff": "Notifications réactivées", "group.mutedTag": "en sourdine", "group.muteNote": "En sourdine, vous ne recevez plus les notifications de ce groupe : les messages restent ici.", "group.leave": "Quitter le groupe", "group.leaveConfirm": "Quitter le groupe « {name} » ?", "group.left": "Vous avez quitté le groupe", "group.remove": "Retirer du groupe", "group.removeConfirm": "Retirer {name} du groupe ?", "group.removed": "{name} ne fait plus partie du groupe", "group.gone": "Vous ne faites plus partie de ce groupe.", "group.hello": "Le groupe est prêt : écrivez le premier message, il arrive à tout le monde.", "group.errName": "Donnez un nom au groupe.", "group.errPick": "Choisissez au moins un ami.", "group.errGeneric": "Cela n'a pas fonctionné : réessayez dans un instant.", "group.participants": "Participants"});
+Object.assign(STR.de, {"reg.intro": "Nur noch ein paar Angaben und du bist dabei: So finden dich deine Freunde und können dich erwähnen.", "reg.account": "Und jetzt die Anmeldung: E-Mail und Passwort.", "reg.nick": "Nickname", "reg.nickHint": "3 bis 20 Buchstaben, Zahlen, _ und . — andere erwähnen dich mit @nickname.", "reg.nickBad": "Nur Buchstaben, Zahlen, _ und . (3 bis 20, ohne Leerzeichen).", "reg.nickChecking": "Prüfe, ob er frei ist…", "reg.nickFree": "Frei ✓", "reg.nickTaken": "Schon vergeben: probier einen anderen.", "reg.nickYours": "Das ist deiner ✓", "reg.name": "Name", "reg.namePh": "Wie möchtest du genannt werden?", "reg.birth": "Geburtsdatum", "reg.gender": "Geschlecht", "reg.nation": "Nationalität", "reg.nationPick": "— Land wählen —", "reg.errNick": "Wähle einen Nickname: 3 bis 20 Buchstaben, Zahlen, _ und .", "reg.errNickTaken": "Dieser Nickname ist schon vergeben: probier einen anderen.", "reg.errName": "Gib deinen Namen ein.", "reg.errBirth": "Gib dein Geburtsdatum ein.", "reg.errNation": "Wähle deine Nationalität.", "reg.completeTitle": "Vervollständige dein Profil", "reg.completeSub": "Dauert nur ein paar Sekunden: So finden dich deine Freunde und können dich mit @nickname erwähnen.", "reg.save": "Speichern", "reg.later": "Später", "reg.saved": "Profil gespeichert ✓", "reg.saveError": "Nicht gespeichert: versuch es gleich noch einmal.", "collab.mentionHint": "Schreib ihren Nickname auf der Seite mit @ (zum Beispiel @selene_88): Wenn das Kapitel erscheint, bekommen sie eine Benachrichtigung.", "notif.mention": "hat dich erwähnt", "notif.mentionDiary": "hat dich im Tagebuch erwähnt", "notif.mentionDiaryComment": "hat dich in einem Tagebuch-Kommentar erwähnt", "notif.mentionChannel": "hat dich im Kanal {name} erwähnt", "notif.mentionServer": "hat dich im Server „{name}“ erwähnt", "notif.mentionComments": "hat dich in den Kommentaren zu „{title}“ erwähnt", "notif.mentionCollab": "hat dich als Mitwirkende/n bei „{title}“ eingetragen", "notif.groupAdded": "hat dich zur Gruppe „{name}“ hinzugefügt", "group.title": "Gruppen", "group.new": "Neue Gruppe", "group.empty": "Erstelle eine Gruppe mit deinen Freunden: Jede Nachricht erreicht alle.", "group.newTitle": "Neue Gruppe", "group.name": "Name der Gruppe", "group.namePh": "Zum Beispiel: Donnerstagsleser", "group.pick": "Wähle deine Freunde", "group.search": "Unter deinen Freunden suchen…", "group.picked": "Ausgewählt: {n}", "group.noFriends": "Für eine Gruppe brauchst du Freunde: Füge sie über Kontakte hinzu.", "group.findFriends": "Freunde finden", "group.create": "Gruppe erstellen", "group.created": "Gruppe erstellt ✓", "group.members": "Mitglieder: {n}", "group.noMsgs": "Noch keine Nachrichten", "group.admin": "Verwaltet", "group.add": "Freunde hinzufügen", "group.addDo": "Hinzufügen", "group.added": "Zur Gruppe hinzugefügt ✓", "group.noneToAdd": "Alle deine Freunde sind schon in der Gruppe.", "group.rename": "Umbenennen", "group.renamed": "Name geändert ✓", "group.mute": "Stummschalten", "group.unmute": "Benachrichtigungen wieder an", "group.mutedOn": "Benachrichtigungen dieser Gruppe stummgeschaltet", "group.mutedOff": "Benachrichtigungen wieder an", "group.mutedTag": "stumm", "group.muteNote": "Stummgeschaltet bekommst du keine Benachrichtigungen dieser Gruppe: Die Nachrichten findest du trotzdem hier.", "group.leave": "Gruppe verlassen", "group.leaveConfirm": "Die Gruppe „{name}“ verlassen?", "group.left": "Du hast die Gruppe verlassen", "group.remove": "Aus der Gruppe entfernen", "group.removeConfirm": "{name} aus der Gruppe entfernen?", "group.removed": "{name} ist nicht mehr in der Gruppe", "group.gone": "Du bist nicht mehr in dieser Gruppe.", "group.hello": "Die Gruppe ist bereit: Schreib die erste Nachricht, sie erreicht alle.", "group.errName": "Gib der Gruppe einen Namen.", "group.errPick": "Wähle mindestens einen Freund.", "group.errGeneric": "Das hat nicht geklappt: versuch es gleich noch einmal.", "group.participants": "Mitglieder"});
+Object.assign(STR.pt, {"reg.intro": "Só mais alguns dados e você é dos nossos: assim seus amigos te encontram e podem te mencionar.", "reg.account": "E agora o acesso: e-mail e senha.", "reg.nick": "Nickname", "reg.nickHint": "De 3 a 20 entre letras, números, _ e . — os outros te mencionam com @nickname.", "reg.nickBad": "Só letras, números, _ e . (de 3 a 20, sem espaços).", "reg.nickChecking": "Verificando se está livre…", "reg.nickFree": "Disponível ✓", "reg.nickTaken": "Já está em uso: tente outro.", "reg.nickYours": "É o seu ✓", "reg.name": "Nome", "reg.namePh": "Como você quer ser chamado/a", "reg.birth": "Data de nascimento", "reg.gender": "Sexo", "reg.nation": "Nacionalidade", "reg.nationPick": "— Escolha o país —", "reg.errNick": "Escolha um nickname: de 3 a 20 entre letras, números, _ e .", "reg.errNickTaken": "Este nickname já está em uso: tente outro.", "reg.errName": "Escreva seu nome.", "reg.errBirth": "Escreva sua data de nascimento.", "reg.errNation": "Escolha sua nacionalidade.", "reg.completeTitle": "Complete seu perfil", "reg.completeSub": "Leva só alguns segundos: assim seus amigos te encontram e podem te mencionar com @nickname.", "reg.save": "Salvar", "reg.later": "Mais tarde", "reg.saved": "Perfil salvo ✓", "reg.saveError": "Não foi salvo: tente de novo daqui a pouco.", "collab.mentionHint": "Escreva o nickname do site com a @ (por exemplo @selene_88): quando o capítulo sair, eles recebem o aviso.", "notif.mention": "mencionou você", "notif.mentionDiary": "mencionou você no diário", "notif.mentionDiaryComment": "mencionou você em um comentário do diário", "notif.mentionChannel": "mencionou você no canal {name}", "notif.mentionServer": "mencionou você no servidor «{name}»", "notif.mentionComments": "mencionou você nos comentários de «{title}»", "notif.mentionCollab": "colocou você entre os colaboradores de «{title}»", "notif.groupAdded": "adicionou você ao grupo «{name}»", "group.title": "Grupos", "group.new": "Novo grupo", "group.empty": "Crie um grupo com seus amigos: cada mensagem chega a todos.", "group.newTitle": "Novo grupo", "group.name": "Nome do grupo", "group.namePh": "Por exemplo: Leitores de quinta", "group.pick": "Escolha os amigos", "group.search": "Procure entre os amigos…", "group.picked": "Escolhidos: {n}", "group.noFriends": "Para criar um grupo você precisa de amigos: adicione-os em Contatos.", "group.findFriends": "Encontrar amigos", "group.create": "Criar o grupo", "group.created": "Grupo criado ✓", "group.members": "Participantes: {n}", "group.noMsgs": "Ainda nenhuma mensagem", "group.admin": "Administra", "group.add": "Adicionar amigos", "group.addDo": "Adicionar", "group.added": "Adicionados ao grupo ✓", "group.noneToAdd": "Todos os seus amigos já estão no grupo.", "group.rename": "Mudar nome", "group.renamed": "Nome alterado ✓", "group.mute": "Silenciar", "group.unmute": "Reativar os avisos", "group.mutedOn": "Avisos deste grupo silenciados", "group.mutedOff": "Avisos reativados", "group.mutedTag": "silenciado", "group.muteNote": "Com «Silenciar» você não recebe os avisos deste grupo: as mensagens continuam aqui.", "group.leave": "Sair do grupo", "group.leaveConfirm": "Sair do grupo «{name}»?", "group.left": "Você saiu do grupo", "group.remove": "Remover do grupo", "group.removeConfirm": "Remover {name} do grupo?", "group.removed": "{name} não está mais no grupo", "group.gone": "Você não faz mais parte deste grupo.", "group.hello": "O grupo está pronto: escreva a primeira mensagem, ela chega a todos.", "group.errName": "Dê um nome ao grupo.", "group.errPick": "Escolha pelo menos um amigo.", "group.errGeneric": "Não deu certo: tente de novo daqui a pouco.", "group.participants": "Participantes"});
+Object.assign(STR.ru, {"reg.intro": "Ещё пара данных — и вы с нами: так друзья найдут вас и смогут упоминать.", "reg.account": "А теперь вход: email и пароль.", "reg.nick": "Никнейм", "reg.nickHint": "От 3 до 20 символов: буквы, цифры, _ и . — другие упоминают вас через @никнейм.", "reg.nickBad": "Только латинские буквы, цифры, _ и . (от 3 до 20, без пробелов).", "reg.nickChecking": "Проверяем, свободен ли…", "reg.nickFree": "Свободен ✓", "reg.nickTaken": "Уже занят: попробуйте другой.", "reg.nickYours": "Это ваш ✓", "reg.name": "Имя", "reg.namePh": "Как к вам обращаться", "reg.birth": "Дата рождения", "reg.gender": "Пол", "reg.nation": "Гражданство", "reg.nationPick": "— Выберите страну —", "reg.errNick": "Выберите никнейм: от 3 до 20 символов — буквы, цифры, _ и .", "reg.errNickTaken": "Этот никнейм уже занят: попробуйте другой.", "reg.errName": "Укажите своё имя.", "reg.errBirth": "Укажите дату рождения.", "reg.errNation": "Выберите гражданство.", "reg.completeTitle": "Заполните профиль", "reg.completeSub": "Это займёт пару секунд: так друзья найдут вас и смогут упоминать через @никнейм.", "reg.save": "Сохранить", "reg.later": "Позже", "reg.saved": "Профиль сохранён ✓", "reg.saveError": "Не сохранилось: попробуйте ещё раз чуть позже.", "collab.mentionHint": "Укажите никнейм на сайте с @ (например, @selene_88): когда глава выйдет, они получат уведомление.", "notif.mention": "упомянул(а) вас", "notif.mentionDiary": "упомянул(а) вас в дневнике", "notif.mentionDiaryComment": "упомянул(а) вас в комментарии в дневнике", "notif.mentionChannel": "упомянул(а) вас в канале {name}", "notif.mentionServer": "упомянул(а) вас на сервере «{name}»", "notif.mentionComments": "упомянул(а) вас в комментариях к «{title}»", "notif.mentionCollab": "добавил(а) вас в соавторы «{title}»", "notif.groupAdded": "добавил(а) вас в группу «{name}»", "group.title": "Группы", "group.new": "Новая группа", "group.empty": "Создайте группу с друзьями: каждое сообщение получат все.", "group.newTitle": "Новая группа", "group.name": "Название группы", "group.namePh": "Например: Читатели по четвергам", "group.pick": "Выберите друзей", "group.search": "Поиск среди друзей…", "group.picked": "Выбрано: {n}", "group.noFriends": "Чтобы создать группу, нужны друзья: добавьте их в разделе «Контакты».", "group.findFriends": "Найти друзей", "group.create": "Создать группу", "group.created": "Группа создана ✓", "group.members": "Участники: {n}", "group.noMsgs": "Пока нет сообщений", "group.admin": "Управляет", "group.add": "Добавить друзей", "group.addDo": "Добавить", "group.added": "Добавлены в группу ✓", "group.noneToAdd": "Все ваши друзья уже в группе.", "group.rename": "Переименовать", "group.renamed": "Название изменено ✓", "group.mute": "Без звука", "group.unmute": "Включить уведомления", "group.mutedOn": "Уведомления этой группы отключены", "group.mutedOff": "Уведомления снова включены", "group.mutedTag": "без звука", "group.muteNote": "В режиме «Без звука» уведомления этой группы не приходят: сообщения по-прежнему здесь.", "group.leave": "Выйти из группы", "group.leaveConfirm": "Выйти из группы «{name}»?", "group.left": "Вы вышли из группы", "group.remove": "Удалить из группы", "group.removeConfirm": "Удалить {name} из группы?", "group.removed": "{name} больше не в группе", "group.gone": "Вы больше не состоите в этой группе.", "group.hello": "Группа готова: напишите первое сообщение — его получат все.", "group.errName": "Дайте группе название.", "group.errPick": "Выберите хотя бы одного друга.", "group.errGeneric": "Не получилось: попробуйте ещё раз чуть позже.", "group.participants": "Участники"});
+Object.assign(STR.zh, {"reg.intro": "再填几项就好：这样朋友能找到你，也能提到你。", "reg.account": "现在设置登录：邮箱和密码。", "reg.nick": "昵称", "reg.nickHint": "3 到 20 个字母、数字、_ 或 .，别人用 @昵称 提到你。", "reg.nickBad": "只能用字母、数字、_ 和 .（3 到 20 个，不含空格）。", "reg.nickChecking": "正在检查是否可用…", "reg.nickFree": "可用 ✓", "reg.nickTaken": "已被占用：换一个试试。", "reg.nickYours": "这是你的 ✓", "reg.name": "名字", "reg.namePh": "希望大家怎么称呼你", "reg.birth": "出生日期", "reg.gender": "性别", "reg.nation": "国籍", "reg.nationPick": "— 选择国家 —", "reg.errNick": "请选择昵称：3 到 20 个字母、数字、_ 或 .", "reg.errNickTaken": "这个昵称已被占用：换一个试试。", "reg.errName": "请填写你的名字。", "reg.errBirth": "请填写你的出生日期。", "reg.errNation": "请选择你的国籍。", "reg.completeTitle": "完善你的资料", "reg.completeSub": "只需几秒钟：这样朋友能找到你，也能用 @昵称 提到你。", "reg.save": "保存", "reg.later": "以后再说", "reg.saved": "资料已保存 ✓", "reg.saveError": "没有保存成功：请稍后再试。", "collab.mentionHint": "请写上他们在本站的昵称并加 @（例如 @selene_88）：章节发布时，他们会收到通知。", "notif.mention": "提到了你", "notif.mentionDiary": "在日记中提到了你", "notif.mentionDiaryComment": "在日记评论中提到了你", "notif.mentionChannel": "在频道 {name} 中提到了你", "notif.mentionServer": "在服务器“{name}”中提到了你", "notif.mentionComments": "在《{title}》的评论中提到了你", "notif.mentionCollab": "将你列为《{title}》的合作者", "notif.groupAdded": "把你加入了群组“{name}”", "group.title": "群组", "group.new": "新建群组", "group.empty": "和朋友建一个群组：每条消息所有人都会收到。", "group.newTitle": "新建群组", "group.name": "群组名称", "group.namePh": "例如：周四读书会", "group.pick": "选择朋友", "group.search": "在朋友中搜索…", "group.picked": "已选：{n}", "group.noFriends": "建群组需要先有朋友：去“联系人”添加吧。", "group.findFriends": "寻找朋友", "group.create": "创建群组", "group.created": "群组已创建 ✓", "group.members": "成员：{n}", "group.noMsgs": "还没有消息", "group.admin": "管理员", "group.add": "添加朋友", "group.addDo": "添加", "group.added": "已加入群组 ✓", "group.noneToAdd": "你的朋友都已经在群组里了。", "group.rename": "修改名称", "group.renamed": "名称已修改 ✓", "group.mute": "静音", "group.unmute": "恢复通知", "group.mutedOn": "已将此群组静音", "group.mutedOff": "通知已恢复", "group.mutedTag": "已静音", "group.muteNote": "静音后不会再收到此群组的通知：消息仍然在这里。", "group.leave": "退出群组", "group.leaveConfirm": "退出群组“{name}”？", "group.left": "你已退出群组", "group.remove": "移出群组", "group.removeConfirm": "将 {name} 移出群组？", "group.removed": "{name} 已不在群组中", "group.gone": "你已不在这个群组中。", "group.hello": "群组已就绪：发出第一条消息吧，所有人都会收到。", "group.errName": "请给群组起个名字。", "group.errPick": "请至少选择一位朋友。", "group.errGeneric": "没有成功：请稍后再试。", "group.participants": "成员"});
+Object.assign(STR.ja, {"reg.intro": "あと少しの入力で完了です。友達があなたを見つけて、メンションできるようになります。", "reg.account": "次にログイン情報：メールアドレスとパスワード。", "reg.nick": "ニックネーム", "reg.nickHint": "英字・数字・_・. の3〜20文字。ほかの人は @ニックネーム であなたをメンションします。", "reg.nickBad": "英字・数字・_・. のみ（3〜20文字、スペースなし）。", "reg.nickChecking": "使えるか確認中…", "reg.nickFree": "使えます ✓", "reg.nickTaken": "使用済みです。別のものをお試しください。", "reg.nickYours": "あなたのものです ✓", "reg.name": "名前", "reg.namePh": "呼ばれたい名前", "reg.birth": "生年月日", "reg.gender": "性別", "reg.nation": "国籍", "reg.nationPick": "— 国を選択 —", "reg.errNick": "ニックネームを決めてください：英字・数字・_・. の3〜20文字。", "reg.errNickTaken": "このニックネームは使用済みです。別のものをお試しください。", "reg.errName": "名前を入力してください。", "reg.errBirth": "生年月日を入力してください。", "reg.errNation": "国籍を選んでください。", "reg.completeTitle": "プロフィールを完成させましょう", "reg.completeSub": "数秒で終わります。友達があなたを見つけて、@ニックネーム でメンションできるようになります。", "reg.save": "保存", "reg.later": "あとで", "reg.saved": "プロフィールを保存しました ✓", "reg.saveError": "保存できませんでした。少ししてからもう一度お試しください。", "collab.mentionHint": "サイトのニックネームを @ 付きで書いてください（例：@selene_88）。章が公開されると通知が届きます。", "notif.mention": "さんがあなたをメンションしました", "notif.mentionDiary": "さんが日記であなたをメンションしました", "notif.mentionDiaryComment": "さんが日記のコメントであなたをメンションしました", "notif.mentionChannel": "さんがチャンネル {name} であなたをメンションしました", "notif.mentionServer": "さんがサーバー「{name}」であなたをメンションしました", "notif.mentionComments": "さんが「{title}」のコメントであなたをメンションしました", "notif.mentionCollab": "さんがあなたを「{title}」のコラボレーターに追加しました", "notif.groupAdded": "さんがあなたをグループ「{name}」に追加しました", "group.title": "グループ", "group.new": "新しいグループ", "group.empty": "友達とグループを作りましょう。メッセージは全員に届きます。", "group.newTitle": "新しいグループ", "group.name": "グループ名", "group.namePh": "例：木曜日の読書会", "group.pick": "友達を選ぶ", "group.search": "友達を検索…", "group.picked": "選択中：{n}", "group.noFriends": "グループを作るには友達が必要です。「連絡先」から追加しましょう。", "group.findFriends": "友達を探す", "group.create": "グループを作成", "group.created": "グループを作成しました ✓", "group.members": "メンバー：{n}", "group.noMsgs": "まだメッセージはありません", "group.admin": "管理者", "group.add": "友達を追加", "group.addDo": "追加", "group.added": "グループに追加しました ✓", "group.noneToAdd": "友達はすでに全員グループにいます。", "group.rename": "名前を変更", "group.renamed": "名前を変更しました ✓", "group.mute": "ミュート", "group.unmute": "通知を再開", "group.mutedOn": "このグループの通知をミュートしました", "group.mutedOff": "通知を再開しました", "group.mutedTag": "ミュート中", "group.muteNote": "ミュート中はこのグループの通知が届きません。メッセージはここで読めます。", "group.leave": "グループを退出", "group.leaveConfirm": "グループ「{name}」を退出しますか？", "group.left": "グループを退出しました", "group.remove": "グループから外す", "group.removeConfirm": "{name} をグループから外しますか？", "group.removed": "{name} はグループから外れました", "group.gone": "このグループのメンバーではなくなりました。", "group.hello": "グループの準備ができました。最初のメッセージを書きましょう。全員に届きます。", "group.errName": "グループに名前を付けてください。", "group.errPick": "友達を1人以上選んでください。", "group.errGeneric": "うまくいきませんでした。少ししてからもう一度お試しください。", "group.participants": "メンバー"});
+Object.assign(STR.hi, {"reg.intro": "बस थोड़ी-सी जानकारी और आप हमारे साथ हैं: इससे दोस्त आपको ढूँढ सकेंगे और मेंशन कर सकेंगे।", "reg.account": "अब लॉगिन: ईमेल और पासवर्ड।", "reg.nick": "निकनेम", "reg.nickHint": "3 से 20 अक्षर, अंक, _ और . — दूसरे आपको @निकनेम से मेंशन करते हैं।", "reg.nickBad": "सिर्फ़ अंग्रेज़ी अक्षर, अंक, _ और . (3 से 20, बिना स्पेस)।", "reg.nickChecking": "देख रहे हैं कि खाली है या नहीं…", "reg.nickFree": "उपलब्ध ✓", "reg.nickTaken": "पहले से लिया हुआ है: कोई और आज़माएँ।", "reg.nickYours": "यह आपका है ✓", "reg.name": "नाम", "reg.namePh": "आपको किस नाम से बुलाया जाए", "reg.birth": "जन्म तिथि", "reg.gender": "लिंग", "reg.nation": "राष्ट्रीयता", "reg.nationPick": "— देश चुनें —", "reg.errNick": "एक निकनेम चुनें: 3 से 20 अक्षर, अंक, _ और .", "reg.errNickTaken": "यह निकनेम पहले से लिया हुआ है: कोई और आज़माएँ।", "reg.errName": "अपना नाम लिखें।", "reg.errBirth": "अपनी जन्म तिथि लिखें।", "reg.errNation": "अपनी राष्ट्रीयता चुनें।", "reg.completeTitle": "अपनी प्रोफ़ाइल पूरी करें", "reg.completeSub": "बस कुछ सेकंड: इससे दोस्त आपको ढूँढ सकेंगे और @निकनेम से मेंशन कर सकेंगे।", "reg.save": "सेव करें", "reg.later": "बाद में", "reg.saved": "प्रोफ़ाइल सेव हो गई ✓", "reg.saveError": "सेव नहीं हुआ: थोड़ी देर में फिर से कोशिश करें।", "collab.mentionHint": "साइट का निकनेम @ के साथ लिखें (जैसे @selene_88): चैप्टर आने पर उन्हें सूचना मिलेगी।", "notif.mention": "ने आपको मेंशन किया", "notif.mentionDiary": "ने डायरी में आपको मेंशन किया", "notif.mentionDiaryComment": "ने डायरी की एक टिप्पणी में आपको मेंशन किया", "notif.mentionChannel": "ने चैनल {name} में आपको मेंशन किया", "notif.mentionServer": "ने सर्वर “{name}” में आपको मेंशन किया", "notif.mentionComments": "ने “{title}” की टिप्पणियों में आपको मेंशन किया", "notif.mentionCollab": "ने आपको “{title}” के सहयोगियों में जोड़ा", "notif.groupAdded": "ने आपको ग्रुप “{name}” में जोड़ा", "group.title": "ग्रुप", "group.new": "नया ग्रुप", "group.empty": "दोस्तों के साथ एक ग्रुप बनाएँ: हर मैसेज सबको पहुँचता है।", "group.newTitle": "नया ग्रुप", "group.name": "ग्रुप का नाम", "group.namePh": "जैसे: गुरुवार के पाठक", "group.pick": "दोस्त चुनें", "group.search": "दोस्तों में खोजें…", "group.picked": "चुने गए: {n}", "group.noFriends": "ग्रुप बनाने के लिए दोस्त चाहिए: उन्हें संपर्क से जोड़ें।", "group.findFriends": "दोस्त ढूँढें", "group.create": "ग्रुप बनाएँ", "group.created": "ग्रुप बन गया ✓", "group.members": "सदस्य: {n}", "group.noMsgs": "अभी कोई मैसेज नहीं", "group.admin": "एडमिन", "group.add": "दोस्त जोड़ें", "group.addDo": "जोड़ें", "group.added": "ग्रुप में जोड़ दिए गए ✓", "group.noneToAdd": "आपके सभी दोस्त पहले से ग्रुप में हैं।", "group.rename": "नाम बदलें", "group.renamed": "नाम बदल गया ✓", "group.mute": "म्यूट करें", "group.unmute": "सूचनाएँ फिर चालू करें", "group.mutedOn": "इस ग्रुप की सूचनाएँ म्यूट हो गईं", "group.mutedOff": "सूचनाएँ फिर चालू", "group.mutedTag": "म्यूट", "group.muteNote": "म्यूट करने पर इस ग्रुप की सूचनाएँ नहीं आएँगी: मैसेज यहीं मिलते रहेंगे।", "group.leave": "ग्रुप छोड़ें", "group.leaveConfirm": "ग्रुप “{name}” छोड़ें?", "group.left": "आपने ग्रुप छोड़ दिया", "group.remove": "ग्रुप से हटाएँ", "group.removeConfirm": "{name} को ग्रुप से हटाएँ?", "group.removed": "{name} अब ग्रुप में नहीं है", "group.gone": "अब आप इस ग्रुप के सदस्य नहीं हैं।", "group.hello": "ग्रुप तैयार है: पहला मैसेज लिखें, यह सबको पहुँचेगा।", "group.errName": "ग्रुप का नाम रखें।", "group.errPick": "कम से कम एक दोस्त चुनें।", "group.errGeneric": "नहीं हो पाया: थोड़ी देर में फिर से कोशिश करें।", "group.participants": "सदस्य"});
+Object.assign(STR.bn, {"reg.intro": "আর অল্প কিছু তথ্য দিলেই আপনি আমাদের একজন: এতে বন্ধুরা আপনাকে খুঁজে পাবে আর উল্লেখ করতে পারবে।", "reg.account": "এবার লগইন: ইমেল আর পাসওয়ার্ড।", "reg.nick": "নিকনেম", "reg.nickHint": "৩ থেকে ২০টি অক্ষর, সংখ্যা, _ আর . — অন্যরা @নিকনেম দিয়ে আপনাকে উল্লেখ করবে।", "reg.nickBad": "শুধু ইংরেজি অক্ষর, সংখ্যা, _ আর . (৩ থেকে ২০টি, স্পেস ছাড়া)।", "reg.nickChecking": "ফাঁকা আছে কি না দেখা হচ্ছে…", "reg.nickFree": "পাওয়া যাচ্ছে ✓", "reg.nickTaken": "আগেই নেওয়া হয়েছে: অন্য একটা চেষ্টা করুন।", "reg.nickYours": "এটা আপনার ✓", "reg.name": "নাম", "reg.namePh": "আপনাকে কী নামে ডাকা হবে", "reg.birth": "জন্মতারিখ", "reg.gender": "লিঙ্গ", "reg.nation": "জাতীয়তা", "reg.nationPick": "— দেশ বেছে নিন —", "reg.errNick": "একটা নিকনেম বেছে নিন: ৩ থেকে ২০টি অক্ষর, সংখ্যা, _ আর .", "reg.errNickTaken": "এই নিকনেম আগেই নেওয়া হয়েছে: অন্য একটা চেষ্টা করুন।", "reg.errName": "আপনার নাম লিখুন।", "reg.errBirth": "আপনার জন্মতারিখ লিখুন।", "reg.errNation": "আপনার জাতীয়তা বেছে নিন।", "reg.completeTitle": "আপনার প্রোফাইল সম্পূর্ণ করুন", "reg.completeSub": "মাত্র কয়েক সেকেন্ড: এতে বন্ধুরা আপনাকে খুঁজে পাবে আর @নিকনেম দিয়ে উল্লেখ করতে পারবে।", "reg.save": "সেভ করুন", "reg.later": "পরে", "reg.saved": "প্রোফাইল সেভ হয়েছে ✓", "reg.saveError": "সেভ হয়নি: একটু পরে আবার চেষ্টা করুন।", "collab.mentionHint": "সাইটের নিকনেম @ দিয়ে লিখুন (যেমন @selene_88): অধ্যায় প্রকাশ হলে তাঁরা বিজ্ঞপ্তি পাবেন।", "notif.mention": "আপনাকে উল্লেখ করেছেন", "notif.mentionDiary": "ডায়েরিতে আপনাকে উল্লেখ করেছেন", "notif.mentionDiaryComment": "ডায়েরির একটি মন্তব্যে আপনাকে উল্লেখ করেছেন", "notif.mentionChannel": "চ্যানেল {name}-এ আপনাকে উল্লেখ করেছেন", "notif.mentionServer": "সার্ভার “{name}”-এ আপনাকে উল্লেখ করেছেন", "notif.mentionComments": "“{title}”-এর মন্তব্যে আপনাকে উল্লেখ করেছেন", "notif.mentionCollab": "আপনাকে “{title}”-এর সহযোগীদের মধ্যে যোগ করেছেন", "notif.groupAdded": "আপনাকে গ্রুপ “{name}”-এ যোগ করেছেন", "group.title": "গ্রুপ", "group.new": "নতুন গ্রুপ", "group.empty": "বন্ধুদের নিয়ে একটা গ্রুপ খুলুন: প্রতিটি বার্তা সবার কাছে যায়।", "group.newTitle": "নতুন গ্রুপ", "group.name": "গ্রুপের নাম", "group.namePh": "যেমন: বৃহস্পতিবারের পাঠক", "group.pick": "বন্ধু বেছে নিন", "group.search": "বন্ধুদের মধ্যে খুঁজুন…", "group.picked": "বাছাই: {n}", "group.noFriends": "গ্রুপ খুলতে বন্ধু লাগবে: পরিচিতি থেকে তাদের যোগ করুন।", "group.findFriends": "বন্ধু খুঁজুন", "group.create": "গ্রুপ তৈরি করুন", "group.created": "গ্রুপ তৈরি হয়েছে ✓", "group.members": "সদস্য: {n}", "group.noMsgs": "এখনও কোনো বার্তা নেই", "group.admin": "অ্যাডমিন", "group.add": "বন্ধু যোগ করুন", "group.addDo": "যোগ করুন", "group.added": "গ্রুপে যোগ করা হয়েছে ✓", "group.noneToAdd": "আপনার সব বন্ধু আগেই গ্রুপে আছে।", "group.rename": "নাম বদলান", "group.renamed": "নাম বদলানো হয়েছে ✓", "group.mute": "মিউট করুন", "group.unmute": "বিজ্ঞপ্তি আবার চালু করুন", "group.mutedOn": "এই গ্রুপের বিজ্ঞপ্তি মিউট করা হয়েছে", "group.mutedOff": "বিজ্ঞপ্তি আবার চালু", "group.mutedTag": "মিউট", "group.muteNote": "মিউট করলে এই গ্রুপের বিজ্ঞপ্তি আসবে না: বার্তাগুলো এখানেই থাকবে।", "group.leave": "গ্রুপ ছাড়ুন", "group.leaveConfirm": "গ্রুপ “{name}” ছাড়বেন?", "group.left": "আপনি গ্রুপ ছেড়েছেন", "group.remove": "গ্রুপ থেকে সরান", "group.removeConfirm": "{name}-কে গ্রুপ থেকে সরাবেন?", "group.removed": "{name} আর গ্রুপে নেই", "group.gone": "আপনি আর এই গ্রুপের সদস্য নন।", "group.hello": "গ্রুপ তৈরি: প্রথম বার্তা লিখুন, সবার কাছে যাবে।", "group.errName": "গ্রুপের একটা নাম দিন।", "group.errPick": "অন্তত একজন বন্ধু বেছে নিন।", "group.errGeneric": "হয়নি: একটু পরে আবার চেষ্টা করুন।", "group.participants": "সদস্য"});
+Object.assign(STR.ar, {"reg.intro": "بقيت بعض البيانات فقط وتصبح واحدًا منّا: هكذا يجدك أصدقاؤك ويمكنهم الإشارة إليك.", "reg.account": "والآن تسجيل الدخول: البريد الإلكتروني وكلمة المرور.", "reg.nick": "اسم المستخدم", "reg.nickHint": "من 3 إلى 20 من الحروف اللاتينية والأرقام و_ و. — يشير إليك الآخرون بـ ‎@اسم_المستخدم.", "reg.nickBad": "حروف لاتينية وأرقام و_ و. فقط (من 3 إلى 20، بلا مسافات).", "reg.nickChecking": "جارٍ التحقق من توفره…", "reg.nickFree": "متاح ✓", "reg.nickTaken": "مستخدم بالفعل: جرّب اسمًا آخر.", "reg.nickYours": "إنه اسمك ✓", "reg.name": "الاسم", "reg.namePh": "بماذا تحب أن نناديك", "reg.birth": "تاريخ الميلاد", "reg.gender": "الجنس", "reg.nation": "الجنسية", "reg.nationPick": "— اختر البلد —", "reg.errNick": "اختر اسم مستخدم: من 3 إلى 20 من الحروف اللاتينية والأرقام و_ و.", "reg.errNickTaken": "اسم المستخدم هذا مستخدم بالفعل: جرّب اسمًا آخر.", "reg.errName": "اكتب اسمك.", "reg.errBirth": "اكتب تاريخ ميلادك.", "reg.errNation": "اختر جنسيتك.", "reg.completeTitle": "أكمل ملفك الشخصي", "reg.completeSub": "يكفي بضع ثوانٍ: هكذا يجدك أصدقاؤك ويمكنهم الإشارة إليك بـ ‎@اسم_المستخدم.", "reg.save": "حفظ", "reg.later": "لاحقًا", "reg.saved": "تم حفظ الملف الشخصي ✓", "reg.saveError": "لم يُحفظ: حاول مرة أخرى بعد قليل.", "collab.mentionHint": "اكتب اسم المستخدم في الموقع مع ‎@ (مثلًا ‎@selene_88): عند صدور الفصل يصلهم إشعار.", "notif.mention": "أشار إليك", "notif.mentionDiary": "أشار إليك في اليوميات", "notif.mentionDiaryComment": "أشار إليك في تعليق على اليوميات", "notif.mentionChannel": "أشار إليك في القناة {name}", "notif.mentionServer": "أشار إليك في الخادم «{name}»", "notif.mentionComments": "أشار إليك في تعليقات «{title}»", "notif.mentionCollab": "أضافك إلى المتعاونين في «{title}»", "notif.groupAdded": "أضافك إلى المجموعة «{name}»", "group.title": "المجموعات", "group.new": "مجموعة جديدة", "group.empty": "أنشئ مجموعة مع أصدقائك: كل رسالة تصل إلى الجميع.", "group.newTitle": "مجموعة جديدة", "group.name": "اسم المجموعة", "group.namePh": "مثلًا: قرّاء الخميس", "group.pick": "اختر الأصدقاء", "group.search": "ابحث بين أصدقائك…", "group.picked": "المختارون: {n}", "group.noFriends": "لإنشاء مجموعة تحتاج إلى أصدقاء: أضفهم من جهات الاتصال.", "group.findFriends": "ابحث عن أصدقاء", "group.create": "إنشاء المجموعة", "group.created": "تم إنشاء المجموعة ✓", "group.members": "الأعضاء: {n}", "group.noMsgs": "لا توجد رسائل بعد", "group.admin": "المشرف", "group.add": "إضافة أصدقاء", "group.addDo": "إضافة", "group.added": "تمت الإضافة إلى المجموعة ✓", "group.noneToAdd": "كل أصدقائك موجودون في المجموعة بالفعل.", "group.rename": "تغيير الاسم", "group.renamed": "تم تغيير الاسم ✓", "group.mute": "كتم", "group.unmute": "إعادة تشغيل الإشعارات", "group.mutedOn": "تم كتم إشعارات هذه المجموعة", "group.mutedOff": "عادت الإشعارات", "group.mutedTag": "مكتومة", "group.muteNote": "مع «كتم» لن تصلك إشعارات هذه المجموعة: تبقى الرسائل هنا.", "group.leave": "مغادرة المجموعة", "group.leaveConfirm": "مغادرة المجموعة «{name}»؟", "group.left": "غادرت المجموعة", "group.remove": "إزالة من المجموعة", "group.removeConfirm": "إزالة {name} من المجموعة؟", "group.removed": "لم يعد {name} في المجموعة", "group.gone": "لم تعد عضوًا في هذه المجموعة.", "group.hello": "المجموعة جاهزة: اكتب الرسالة الأولى، ستصل إلى الجميع.", "group.errName": "أعطِ المجموعة اسمًا.", "group.errPick": "اختر صديقًا واحدًا على الأقل.", "group.errGeneric": "لم ينجح ذلك: حاول مرة أخرى بعد قليل.", "group.participants": "الأعضاء"});
+Object.assign(STR.pnb, {"reg.intro": "بس تھوڑی جیہی جانکاری تے تسیں ساڈے نال او: اینج دوست تہانوں لبھ سکن گے تے تہاڈا ذکر کر سکن گے۔", "reg.account": "ہُن لاگ اِن: ای میل تے پاس ورڈ۔", "reg.nick": "نک نیم", "reg.nickHint": "3 توں 20 انگریزی اکھر، نمبر، _ تے . — دوجے تہانوں ‎@نک_نیم نال یاد کردے نیں۔", "reg.nickBad": "صرف انگریزی اکھر، نمبر، _ تے . (3 توں 20، بغیر سپیس)۔", "reg.nickChecking": "ویکھ رہے آں کہ خالی اے یا نئیں…", "reg.nickFree": "خالی اے ✓", "reg.nickTaken": "پہلاں ای لیا ہویا اے: کوئی ہور ویکھو۔", "reg.nickYours": "ایہہ تہاڈا اے ✓", "reg.name": "ناں", "reg.namePh": "تہانوں کس ناں نال بلائیے", "reg.birth": "جمن دی تاریخ", "reg.gender": "جنس", "reg.nation": "قومیت", "reg.nationPick": "— ملک چنو —", "reg.errNick": "اک نک نیم چنو: 3 توں 20 انگریزی اکھر، نمبر، _ تے .", "reg.errNickTaken": "ایہہ نک نیم پہلاں ای لیا ہویا اے: کوئی ہور ویکھو۔", "reg.errName": "اپنا ناں لکھو۔", "reg.errBirth": "اپنی جمن دی تاریخ لکھو۔", "reg.errNation": "اپنی قومیت چنو۔", "reg.completeTitle": "اپنا پروفائل پورا کرو", "reg.completeSub": "بس کجھ سیکنڈ: اینج دوست تہانوں لبھ سکن گے تے ‎@نک_نیم نال تہاڈا ذکر کر سکن گے۔", "reg.save": "سیو کرو", "reg.later": "بعد وچ", "reg.saved": "پروفائل سیو ہو گیا ✓", "reg.saveError": "سیو نئیں ہویا: تھوڑی دیر بعد فیر کوشش کرو۔", "collab.mentionHint": "سائٹ والا نک نیم ‎@ نال لکھو (جیویں ‎@selene_88): باب آؤن تے اوہناں نوں اطلاع ملے گی۔", "notif.mention": "نے تہاڈا ذکر کیتا", "notif.mentionDiary": "نے ڈائری وچ تہاڈا ذکر کیتا", "notif.mentionDiaryComment": "نے ڈائری دے اک تبصرے وچ تہاڈا ذکر کیتا", "notif.mentionChannel": "نے چینل {name} وچ تہاڈا ذکر کیتا", "notif.mentionServer": "نے سرور «{name}» وچ تہاڈا ذکر کیتا", "notif.mentionComments": "نے «{title}» دے تبصریاں وچ تہاڈا ذکر کیتا", "notif.mentionCollab": "نے تہانوں «{title}» دے ساتھیاں وچ شامل کیتا", "notif.groupAdded": "نے تہانوں گروپ «{name}» وچ شامل کیتا", "group.title": "گروپ", "group.new": "نواں گروپ", "group.empty": "دوستاں نال اک گروپ بناؤ: ہر سنیہا ساریاں تک اپڑدا اے۔", "group.newTitle": "نواں گروپ", "group.name": "گروپ دا ناں", "group.namePh": "جیویں: جمعرات دے پڑھن والے", "group.pick": "دوست چنو", "group.search": "دوستاں وچ لبھو…", "group.picked": "چنے گئے: {n}", "group.noFriends": "گروپ بناؤن لئی دوست چاہیدے نیں: اوہناں نوں رابطے توں شامل کرو۔", "group.findFriends": "دوست لبھو", "group.create": "گروپ بناؤ", "group.created": "گروپ بن گیا ✓", "group.members": "ممبر: {n}", "group.noMsgs": "ہلے کوئی سنیہا نئیں", "group.admin": "منتظم", "group.add": "دوست شامل کرو", "group.addDo": "شامل کرو", "group.added": "گروپ وچ شامل ہو گئے ✓", "group.noneToAdd": "تہاڈے سارے دوست پہلاں ای گروپ وچ نیں۔", "group.rename": "ناں بدلو", "group.renamed": "ناں بدل گیا ✓", "group.mute": "خاموش کرو", "group.unmute": "اطلاعاں فیر چالو کرو", "group.mutedOn": "ایس گروپ دیاں اطلاعاں خاموش", "group.mutedOff": "اطلاعاں فیر چالو", "group.mutedTag": "خاموش", "group.muteNote": "خاموش کرن نال ایس گروپ دیاں اطلاعاں نئیں آؤن گیاں: سنیہے ایتھے ای رہن گے۔", "group.leave": "گروپ چھڈو", "group.leaveConfirm": "گروپ «{name}» چھڈنا اے؟", "group.left": "تسیں گروپ چھڈ دتا", "group.remove": "گروپ وچوں کڈھو", "group.removeConfirm": "{name} نوں گروپ وچوں کڈھنا اے؟", "group.removed": "{name} ہُن گروپ وچ نئیں", "group.gone": "تسیں ہُن ایس گروپ دے ممبر نئیں او۔", "group.hello": "گروپ تیار اے: پہلا سنیہا لکھو، ساریاں تک اپڑے گا۔", "group.errName": "گروپ دا ناں رکھو۔", "group.errPick": "گھٹو گھٹ اک دوست چنو۔", "group.errGeneric": "نئیں ہو سکیا: تھوڑی دیر بعد فیر کوشش کرو۔", "group.participants": "ممبر"});
 var CHAR_META = {
   Lucifer:{role:{it:"Il Portatore di Luce",en:"The Light-Bearer",es:"El Portador de Luz",fr:"Le Porteur de Lumière",de:"Der Lichtträger"},
     bio:{it:"Sovrano della collana ammiraglia: potere, caduta e desiderio raccontati su grande scala.",
@@ -3145,7 +3159,8 @@ function authSignIn(email, password){
 }
 function authSignUp(email, password){
   // v236: la lingua scelta resta nell'account (si può usare nell'email di conferma)
-  return luxAuthRequest('/auth/v1/signup', {email:email, password:password, data:{ lang: currentLang }}); // data.session è null se serve confermare l'email
+  // v255: con i dati del profilo (nickname, nome, nascita, sesso, nazionalità): il database li copia nel profilo
+  return luxAuthRequest('/auth/v1/signup', {email:email, password:password, data: Object.assign({ lang: currentLang }, luxRegData(email))}); // data.session è null se serve confermare l'email
 }
 function authSignOut(){ setSession(null); currentProfile = null; luxAppBadge(0); } // v235: uscendo, niente numero sull'icona
 
@@ -3493,6 +3508,7 @@ function luxAuthRelang(){
   var modal = document.getElementById('authModal');
   if(!modal || modal.classList.contains('hidden')) return;
   luxAuthLangRow();
+  if(authMode === 'register') try { luxRegFields(true); } catch(e){} // v255: nella lingua nuova (i valori restano)
   if(authMode === 'register' && !quizPassed) renderQuizGate(true);
   if(luxAuthErrLast) luxAuthShowErr(luxAuthErrLast);
 }
@@ -3512,6 +3528,7 @@ function openAuth(mode){
   var closeBtn = document.getElementById('authClose');
   if(closeBtn){ closeBtn.setAttribute('data-i18n-aria', 'apptu.close'); closeBtn.setAttribute('aria-label', t('apptu.close')); }
   luxAuthLangRow();
+  try { luxRegFields(authMode === 'register'); } catch(e){ console.warn('[registrazione]', e); } // v255: i dati del profilo
   if(authMode === 'register'){
     quizPassed = !registrationQuizEnabled; // domande spente dal gestionale: campi subito visibili
     renderQuizGate();
@@ -3535,7 +3552,10 @@ function handleAuthSubmit(){
 
 
   if(authMode === 'register'){
-    authSignUp(email, pass).then(function(data){
+    var luxRegBtn = document.getElementById('authSubmit'); // v255: prima i dati del profilo (e il nickname libero)
+    if(luxRegBtn && luxRegBtn.disabled) return;
+    if(luxRegBtn) luxRegBtn.disabled = true;
+    luxRegReady().then(function(){ return authSignUp(email, pass); }).then(function(data){
       try { luxPromoCount('signup'); } catch(e){} // v251: per il link da cui si è arrivati
       // v248: se l'account è subito attivo Supabase risponde con la sessione stessa (access_token in cima),
       // se serve confermare l'email con il solo utente (prima si cercava data.session, che lì non c'è mai)
@@ -3552,8 +3572,9 @@ function handleAuthSubmit(){
         try { luxCoverAfterSignup(); } catch(e){ console.warn('[copertina]', e); } // v252: e l'albo si apre
       }
     }).catch(function(e){
+      if(e && e.luxReg){ luxAuthShowErr({ key: e.luxReg }); var lf = document.getElementById(e.luxField); if(lf) try { lf.focus(); } catch(er){} return; } // v255
       luxAuthShowErr(luxAuthErrInfo(e, 'register')); // v236
-    });
+    }).then(function(){ if(luxRegBtn) luxRegBtn.disabled = false; });
   } else {
     authSignIn(email, pass).then(function(data){
       setSession(data);
@@ -3584,6 +3605,7 @@ function afterAuthChange(){
   var reader = document.getElementById('pageReader');
   if(reader && !reader.classList.contains('hidden') && !(luxEndItem && readerScrollOn())){ showReaderPage(readerIndex); } // aggiorna subito alla versione pulita se stava già leggendo (v251: non se è al «Fine del capitolo»)
   try { luxPromoAdminDevice(); luxEndAfterAuth(); luxEndRender(); } catch(e){} // v251: entrato dall'invito in fondo al capitolo: il personaggio si segue da solo
+  try { luxRegSaveNow(); luxPeopleAfterSession(); } catch(e){ console.warn('[persone]', e); } // v255: i dati della registrazione nel profilo; «Completa il tuo profilo»
 }
 
 function acctChipAvatarHtml(avatarUrl, name){
@@ -3628,14 +3650,15 @@ function refreshCommunityDot(){
   var pendingReq = fetch(SUPABASE_URL + '/rest/v1/friendships?addressee_id=eq.' + encodeURIComponent(uid) + '&status=eq.pending&select=id&limit=1', { headers: communityHeaders() })
     .then(function(r){ return r.ok ? r.json() : null; }).catch(function(){ return null; });
   var threads = fetchMyDmThreads(uid);
-  Promise.all([pendingReq, threads]).then(function(res){
+  var luxGrp = luxGroupUnreadCount(); // v255: anche i gruppi
+  Promise.all([pendingReq, threads, luxGrp]).then(function(res){
     if(res[0] === null && res[1] === null) return; // entrambe fallite: non cambiamo quello che si vede
     var hasReq = !!(res[0] && res[0].length);
     var hasUnread = !!(res[1] && res[1].some(function(th){
       var s = dmThreadState(th, uid);
       return !s.read && !s.archived;
     }));
-    setCommunityDot(hasReq || hasUnread);
+    setCommunityDot(hasReq || hasUnread || res[2] > 0);
   });
 }
 
@@ -6481,7 +6504,7 @@ function renderBodyHtml(body){
   if(isGifUrl(body)){
     return '<img class="chat-gif" src="' + escapeHtml(body.trim()) + '" alt="GIF" loading="lazy">';
   }
-  return escapeHtml(body);
+  return luxMentionLinks(escapeHtml(body)); // v255: @nickname porta al profilo
 }
 
 /* ============ PWA: SERVICE WORKER + CONDIVIDI L'APP ============ */
@@ -12024,6 +12047,7 @@ function populateProfileForm(){
   document.querySelectorAll('.fav-char-cb').forEach(function(cb){
     cb.checked = favs.indexOf(cb.value) !== -1;
   });
+  try { luxProfileEditorFill(currentProfile || {}); } catch(e){ console.warn('[profilo]', e); } // v255: nickname e nazionalità
   renderProfileCreateBox();
 }
 
@@ -12118,6 +12142,9 @@ function saveProfile(){
   var isPrivateCb = document.getElementById('fPrivateProfile');
   var isPrivate = isPrivateCb ? isPrivateCb.checked : (currentProfile ? !!currentProfile.is_private : false);
   var btn = document.getElementById('btnSaveProfile');
+  var luxExtra = {}; // v255: nickname e nazionalità (il nickname controllato prima di salvare)
+  try { luxExtra = luxProfileEditorExtra(); } catch(e){ luxExtra = {}; }
+  if(luxExtra.err){ if(err) err.textContent = t(luxExtra.err); return; }
   btn.disabled = true;
 
   var avatarStep = Promise.resolve(currentProfile ? currentProfile.avatar_url : null);
@@ -12189,6 +12216,7 @@ function saveProfile(){
     };
     // "profilo privato" si manda solo se questa schermata ha davvero l'interruttore: sulla pagina profilo non c'è, e così non si tocca una colonna che potrebbe non esistere
     if(isPrivateCb) fields.is_private = isPrivate;
+    Object.keys(luxExtra).forEach(function(k){ fields[k] = luxExtra[k]; }); // v255
     var writeHeaders = {
       'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token,
       'Content-Type':'application/json', 'Prefer':'return=representation'
@@ -12220,7 +12248,8 @@ function saveProfile(){
     if(document.getElementById('profileSection')){ window.location.reload(); return; } // sulla pagina profilo: si rivedono subito nome e immagini nuovi
   }).catch(function(e){
     console.warn('Profile save failed:', e);
-    err.textContent = t('profile.saveError') + (e && e.detail ? ' (' + e.detail + ')' : '');
+    var luxK = luxProfileSaveErrKey({ body: e && e.detail }); // v255: il nickname già preso, detto chiaro
+    err.textContent = luxK !== 'reg.saveError' ? t(luxK) : t('profile.saveError') + (e && e.detail ? ' (' + e.detail + ')' : '');
   }).then(function(){
     btn.disabled = false;
   });
@@ -12436,11 +12465,11 @@ function renderNotifPanel(){
     var noxState = smallNoxState(n);
     var noxImg = noxState ? '<img src="smallnox-' + noxState + '.png" alt="SmallNox" class="notif-nox-avatar">' : '';
     var refHtml = '';
-    if(n.catalog_id){
+    if(n.catalog_id && n.type !== 'mention' && n.type !== 'mention_collab'){ // v255: (il titolo è già nel testo)
       var refItem = getCatalog().find(function(i){ return i.id === n.catalog_id; });
       if(refItem) refHtml = ' <span class="notif-ref" style="color:var(--gold, #c9a24d);font-style:italic;">«' + escapeHtml(refItem.title) + '»</span>';
     }
-    btn.innerHTML = noxImg + '<span class="actor">' + escapeHtml(n.actor_name || t('notif.someone')) + '</span> ' + escapeHtml(n.type === 'verified' ? t('notif.verified') : (n.message || '')) + refHtml +
+    btn.innerHTML = noxImg + '<span class="actor">' + escapeHtml(n.actor_name || t('notif.someone')) + '</span> ' + escapeHtml(n.type === 'verified' ? t('notif.verified') : luxNotifText(n)) + refHtml +
       '<span class="when">' + notifTimeAgo(n.created_at) + '</span>';
     btn.addEventListener('click', function(){ openNotification(n); });
     list.appendChild(btn);
@@ -12450,6 +12479,7 @@ function renderNotifPanel(){
 function openNotification(n){
   deleteNotification(n.id);
   document.getElementById('notifPanel').classList.add('hidden');
+  if(n.link && /^(mention|mention_collab|group_message|group_added)$/.test(n.type || '') && luxNotifOpenLink(n)) return; // v255: il gruppo, il post, il canale
   if(n.type === 'dm_message' && n.source_id){
     if(document.getElementById('chatSection')){
       openChatWithUser(n.source_id, true);
@@ -13351,6 +13381,7 @@ function renderRichBody(body){
   s = s.replace(/\|\|([^|\n]+)\|\|/g, '<span class="sp" tabindex="0" role="button" aria-label="' + t('fmt.spoilerHint') + '">$1</span>');
   s = s.replace(/(^|\n)&gt; ?([^\n]*)/g, function(_, p, l){ return p + '<blockquote>' + l + '</blockquote>'; });
   s = s.replace(/<\/blockquote>\n/g, '</blockquote>');
+  s = luxMentionLinks(s); // v255: @nickname porta al profilo (non dentro il codice)
   s = s.replace(/\uE002(\d+)\uE003/g, function(_, i){ return '<code>' + inl[+i] + '</code>'; });
   s = s.replace(/\uE000(\d+)\uE001/g, function(_, i){ return '<pre>' + escapeHtml(blocks[+i]) + '</pre>'; });
   return s;
@@ -14150,7 +14181,7 @@ function loadDiaryComments(postId, box){
         rows.forEach(function(c){
           var div = document.createElement('div');
           div.className = 'comment-item';
-          div.innerHTML = '<span class="author">'+escapeHtml(c.author_name || t('notif.someone'))+'</span><div class="body">'+renderBodyHtml(c.body)+'</div>';
+          div.innerHTML = luxPersonLink(c.author_name || t('notif.someone'), c.user_id, 'author') + '<div class="body">'+renderBodyHtml(c.body)+'</div>'; // v255
           if(isSignedIn() && c.id && (c.user_id === uidNow || ownsPost || isAdmin())){
             var delC = document.createElement('button');
             delC.type = 'button';
@@ -14215,7 +14246,10 @@ function renderPublicProfilePage(){
   var section = document.getElementById('profileSection');
   if(!section) return; // non siamo su profile.html
   var params = new URLSearchParams(window.location.search);
-  var userId = params.get('user');
+  var userId = params.get('user') || luxNickResolved || null; // v255: (o quello trovato dal nickname)
+  if(!userId && params.get('u') && luxNickResolved === null){ // v255: da una @menzione (profile.html?u=nickname)
+    if(luxProfileFromNick(function(id){ if(id) renderPublicProfilePage(); else { var nf0 = document.getElementById('profileNotFound'); if(nf0) nf0.classList.remove('hidden'); } })) return;
+  }
   var notFoundBox = document.getElementById('profileNotFound');
   var layoutBox = document.getElementById('profileLayout');
   var titlesBox = document.getElementById('profileTitlesBox');
@@ -14230,6 +14264,7 @@ function renderPublicProfilePage(){
 
       var isOwnPage = isSignedIn() && currentUserId() === userId;
       document.getElementById('pubProfileName').textContent = p.display_name || (isOwnPage ? t('profile.noNameYet') : t('notif.someone'));
+      try { luxPubIdentity(p); } catch(e){} // v255: @nickname e nazionalità
       var bannerImg = document.getElementById('pubProfileBanner');
       bannerImg.src = p.banner_url || '';
       bannerImg.style.opacity = p.banner_url ? '1' : '0';
@@ -14342,6 +14377,7 @@ function showProfileContent(userId, p){
   renderProfileTitles(userId);
   renderProfileFavorites(userId);
   loadDiaryFeed('profileDiaryFeed', userId);
+  try { luxPostFromHash(); } catch(e){} // v255: arrivati da una menzione: il post in vista
   renderProfilePhotos(userId);
   renderProfileVideos(userId);
   var isOwn = isSignedIn() && currentUserId() === userId;
@@ -14601,7 +14637,7 @@ function uploadChatAttachment(file){
   var session = getSession();
   var extMatch = /\.([a-zA-Z0-9]+)$/.exec(file.name || '');
   var ext = extMatch ? extMatch[1].toLowerCase() : 'bin';
-  var path = 'dm-attachments/' + currentChatThreadId + '/' + Date.now() + '_' + Math.random().toString(36).slice(2,8) + '.' + ext;
+  var path = 'dm-attachments/' + (luxGroupCur ? 'g-' + luxGroupCur.id : currentChatThreadId) + '/' + Date.now() + '_' + Math.random().toString(36).slice(2,8) + '.' + ext;
   return luxShrinkImage(file, 1600, 0.85, 500000).then(function(f){ // v247: le foto partono rimpicciolite (gli altri file così come sono)
     return fetch(SUPABASE_URL + '/storage/v1/object/comic-pages/' + path, {
       method:'POST',
@@ -14734,6 +14770,9 @@ function initChatPage(){
   if(!isSignedIn()){ openAuth('login'); return; }
   loadChatSidebar();
   var params = new URLSearchParams(window.location.search);
+  var luxGroupId = params.get('group'); // v255: un gruppo (dall'elenco, da un avviso o dal telefono)
+  if(luxGroupId){ luxGroupOpen(luxGroupId, false); return; }
+  try { luxGroupLeave(); } catch(e){}
   var otherUserId = params.get('user');
   if(!otherUserId){
     document.getElementById('chatBox').classList.remove('hidden');
@@ -14749,11 +14788,13 @@ function setChatMobileView(mode){
   // quale dei due è visibile quando lo spazio non basta per entrambi
   var box = document.getElementById('chatBox');
   if(!box) return;
+  if(mode === 'list') try { luxGroupLeave(); } catch(e){} // v255: tornando all'elenco il gruppo si chiude (non si segna letto da solo)
   box.classList.toggle('showing-list', mode === 'list');
   box.classList.toggle('showing-conversation', mode === 'conversation');
 }
 
 function openChatWithUser(otherUserId, updateHistory){
+  try { luxGroupLeave(); luxGroupWireHeader(); } catch(e){} // v255: (era aperto un gruppo); il nome in alto porta al profilo
   var uid = currentUserId();
   chatInfoPhotoList = []; // v223: le foto sono della conversazione che si apre
   if(otherUserId === uid){ document.getElementById('chatNotFound').classList.remove('hidden'); return; }
@@ -14764,6 +14805,7 @@ function openChatWithUser(otherUserId, updateHistory){
 
   if(updateHistory !== false){
     var url = new URL(window.location.href);
+    url.searchParams.delete('group'); // v255
     url.searchParams.set('user', otherUserId);
     window.history.pushState({}, '', url);
   }
@@ -14894,6 +14936,7 @@ function renderNewMessageList(query){
 function loadChatSidebar(){
   var list = document.getElementById('chatSidebarList');
   if(!list || !isSignedIn()) return;
+  try { luxGroupsLoad(); } catch(e){ console.warn('[gruppi]', e); } // v255: i gruppi, sopra
   var uid = currentUserId();
 
   var threadsStep = fetch(SUPABASE_URL + '/rest/v1/dm_threads?select=*&or=(user_a.eq.' + encodeURIComponent(uid) + ',user_b.eq.' + encodeURIComponent(uid) + ')', { headers: communityHeaders() })
@@ -15299,6 +15342,7 @@ document.addEventListener('input', function(e){
 });
 
 function sendChatMessage(){
+  if(luxGroupCur){ luxGroupSend(); return; } // v255: nel gruppo aperto
   var box = document.getElementById('fChatMessage');
   var fileInput = document.getElementById('fChatAttachment');
   var err = document.getElementById('chatMessageError');
@@ -15510,15 +15554,17 @@ function renderChannelMessage(m){
     av.textContent = (name || '?').charAt(0).toUpperCase();
   }
   div.appendChild(av);
+  if(m.user_id){ av.classList.add('lux-person-av'); av.addEventListener('click', function(){ window.location.href = luxProfileHref(m.user_id); }); } // v255
   var main = document.createElement('div');
   main.className = 'msg-main';
-  main.innerHTML = '<div class="msg-head"><span class="author">' + escapeHtml(name) + '</span>' + chatRoleBadge(m.user_id) + '<span class="msg-time">' + escapeHtml(chatMsgTime(m.created_at)) + '</span></div>' +
+  main.innerHTML = '<div class="msg-head">' + luxPersonLink(name, m.user_id, 'author') + chatRoleBadge(m.user_id) + '<span class="msg-time">' + escapeHtml(chatMsgTime(m.created_at)) + '</span></div>' +
     '<div class="body">' + renderRichBody(m.body) + '</div>' +
     '<div class="msg-actions"><span class="friend-action-slot"></span>' +
       (isOwn ? '' : '<button type="button" class="report-btn">' + t('community.report') + '</button>') +
       ((isOwn || isAdmin()) && m.id ? '<button type="button" class="lux-del-btn channel-del-btn">' + t('common.delete') + '</button>' : '') +
     '</div>';
   div.appendChild(main);
+  if(!name && m.user_id) getDisplayName(m.user_id).then(function(n){ var a = main.querySelector('.msg-head .author'); if(a) a.textContent = n; }); // v255: (messaggi senza nome salvato)
   if(!isOwn && m.body && m.id && isSignedIn() && !isGifUrl(m.body)){ // v234: «Traduci» anche nei canali e nei server
     var bodyEl = main.querySelector('.body');
     var trBtn = luxMsgTranslateBtn('ch:' + m.id, m.body, function(d){ bodyEl.insertAdjacentElement('afterend', d); });
@@ -15826,7 +15872,7 @@ function loadFriendsPanel(){
         getDisplayName(f.requester_id).then(function(name){
           var row = document.createElement('div');
           row.className = 'admin-row';
-          row.innerHTML = '<div class="info"><div class="t">' + escapeHtml(name) + '</div></div>' +
+          row.innerHTML = '<div class="info"><div class="t">' + luxPersonLink(name, f.requester_id) + '</div></div>' + // v255
             '<div class="admin-actions">' +
               '<button class="btn btn-sm btn-ghost" data-accept>' + t('community.acceptFriend') + '</button>' +
               '<button class="btn btn-sm btn-ghost" data-decline>' + t('community.declineFriend') + '</button>' +
@@ -15842,7 +15888,7 @@ function loadFriendsPanel(){
         getDisplayName(f.addressee_id).then(function(name){
           var row = document.createElement('div');
           row.className = 'admin-row';
-          row.innerHTML = '<div class="info"><div class="t">' + escapeHtml(name) + '</div><div class="m">' + t('community.requestSent') + '</div></div>';
+          row.innerHTML = '<div class="info"><div class="t">' + luxPersonLink(name, f.addressee_id) + '</div><div class="m">' + t('community.requestSent') + '</div></div>'; // v255
           sentBox.appendChild(row);
         });
       });
@@ -15877,7 +15923,7 @@ function renderFriendContactList(friendsBox, accepted, uid){
     friendshipByOtherId[oid] = f.id;
   });
   friendsBox.innerHTML = '<p class="form-note">…</p>';
-  fetch(SUPABASE_URL + '/rest/v1/profiles?id=in.(' + otherIds.map(encodeURIComponent).join(',') + ')&select=id,display_name,avatar_url,last_seen', { headers: communityHeaders() })
+  fetch(SUPABASE_URL + '/rest/v1/profiles?id=in.(' + otherIds.map(encodeURIComponent).join(',') + ')&select=*', { headers: communityHeaders() }) // v255: anche il nickname
     .then(function(r){ return r.ok ? r.json() : []; })
     .then(function(profiles){
       profiles.sort(function(a,b){
@@ -15891,13 +15937,13 @@ function renderFriendContactList(friendsBox, accepted, uid){
         var row = document.createElement('div');
         row.className = 'friend-contact-row';
         row.innerHTML =
-          '<span class="friend-contact-avatar-wrap">' +
+          '<a class="friend-contact-avatar-wrap" data-profile href="' + luxProfileHref(p.id) + '" aria-label="' + escapeHtml(name) + '">' + // v255: la foto e il nome aprono il profilo
             avatarHtml(p.avatar_url, name, p.id, 'friend-contact-avatar') +
             '<span class="friend-contact-dot ' + (online ? 'online' : 'offline') + '"></span>' +
-          '</span>' +
+          '</a>' +
           '<span class="friend-contact-info">' +
-            '<span class="friend-contact-name">' + escapeHtml(name) + '</span>' +
-            '<span class="friend-contact-status">' + (online ? t('userDir.online') : t('userDir.offline')) + '</span>' +
+            '<a class="friend-contact-name lux-person" data-profile href="' + luxProfileHref(p.id) + '">' + escapeHtml(name) + '</a>' +
+            '<span class="friend-contact-status">' + (p.username ? '<span class="friend-contact-nick">@' + escapeHtml(p.username) + '</span> · ' : '') + (online ? t('userDir.online') : t('userDir.offline')) + '</span>' +
           '</span>' +
           '<span class="friend-contact-actions">' +
             '<button type="button" class="friend-contact-msg" data-msg aria-label="' + t('community.privateMessage') + '" title="' + t('community.privateMessage') + '">💬</button>' +
@@ -15905,7 +15951,7 @@ function renderFriendContactList(friendsBox, accepted, uid){
             '<button type="button" class="friend-contact-remove" data-remove aria-label="' + t('community.removeFriend') + '" title="' + t('community.removeFriend') + '">✕</button>' +
           '</span>';
         row.addEventListener('click', function(e){
-          if(e.target.closest('[data-invite]') || e.target.closest('[data-remove]') || e.target.closest('[data-msg]')) return;
+          if(e.target.closest('[data-invite]') || e.target.closest('[data-remove]') || e.target.closest('[data-msg]') || e.target.closest('[data-profile]')) return; // v255
           window.location.href = 'chat.html?user=' + encodeURIComponent(p.id);
         });
         var msgBtn = row.querySelector('[data-msg]');
@@ -15986,10 +16032,11 @@ function loadUnreadDmCount(){
   if(!isSignedIn()){ if(btn) btn.classList.add('hidden'); if(dmCountPollTimer){ clearInterval(dmCountPollTimer); dmCountPollTimer = null; } return Promise.resolve(); }
   if(btn) btn.classList.remove('hidden');
   var uid = currentUserId();
-  return fetchMyDmThreads(uid)
-    .then(function(rows){
+  return Promise.all([fetchMyDmThreads(uid), luxGroupUnreadCount()]) // v255: anche i gruppi
+    .then(function(res){
+      var rows = res[0];
       if(rows === null) return; // richiesta fallita: il contatore resta com'era
-      var unread = rows.filter(function(th){ return !dmThreadState(th, uid).read; }).length;
+      var unread = rows.filter(function(th){ return !dmThreadState(th, uid).read; }).length + (res[1] || 0);
       if(badge){
         if(unread > 0){ badge.textContent = unread > 99 ? '99+' : String(unread); badge.classList.remove('hidden'); }
         else { badge.classList.add('hidden'); }
@@ -16315,7 +16362,7 @@ function renderContattiRichieste(){
         getDisplayName(f.requester_id).then(function(name){
           var row = document.createElement('div');
           row.className = 'admin-row';
-          row.innerHTML = '<div class="info"><div class="t">' + escapeHtml(name) + '</div></div>' +
+          row.innerHTML = '<div class="info"><div class="t">' + luxPersonLink(name, f.requester_id) + '</div></div>' + // v255
             '<div class="admin-actions">' +
               '<button class="btn btn-sm btn-primary" data-accept>' + t('community.acceptFriend') + '</button>' +
               '<button class="btn btn-sm btn-ghost" data-decline>' + t('community.declineFriend') + '</button>' +
@@ -16335,7 +16382,7 @@ function renderContattiRichieste(){
         getDisplayName(f.addressee_id).then(function(name){
           var row = document.createElement('div');
           row.className = 'admin-row';
-          row.innerHTML = '<div class="info"><div class="t">' + escapeHtml(name) + '</div><div class="m">' + t('community.requestSent') + '</div></div>';
+          row.innerHTML = '<div class="info"><div class="t">' + luxPersonLink(name, f.addressee_id) + '</div><div class="m">' + t('community.requestSent') + '</div></div>'; // v255
           box.appendChild(row);
         });
       });
@@ -16899,7 +16946,7 @@ function loadDmMessages(){
             var tickHtml = (m.sender_id === uid)
               ? '<span class="dm-tick ' + (readByOther ? 'read">✓✓' : 'sent">✓') + '</span>'
               : '';
-            div.innerHTML = '<span class="author">' + escapeHtml(m.sender_id === uid ? t('community.you') : name) + '</span>' +
+            div.innerHTML = (m.sender_id === uid ? '<span class="author">' + escapeHtml(t('community.you')) + '</span>' : luxPersonLink(name, m.sender_id, 'author')) + // v255
               '<div class="body">' + renderBodyHtml(m.body) + '</div>' +
               '<div class="msg-actions"><button type="button" class="report-btn">' + t('community.report') + '</button>' + tickHtml + '</div>';
             div.querySelector('.report-btn').addEventListener('click', function(){ reportContent('dm_message', m.id); });
@@ -22549,7 +22596,7 @@ function loadComments(catalogId){
           '<div class="body">' + renderBodyHtml(c.body) + '</div>' + replyBtnHtml;
         var replyBtn = div.querySelector('.comment-reply-btn');
         if(replyBtn){
-          replyBtn.addEventListener('click', function(){ replyToComment(c.author_name); });
+          replyBtn.addEventListener('click', function(){ replyToComment(c.author_name, c.user_id); }); // v255
         }
         if(isSignedIn() && c.id && (c.user_id === currentUserId() || isAdmin())){
           var delC = document.createElement('button');
@@ -22573,9 +22620,13 @@ function loadComments(catalogId){
     .catch(function(err){ list.innerHTML = ''; console.warn('Comments load failed:', err); });
 }
 
-function replyToComment(authorName){
+function replyToComment(authorName, userId){
+  if(userId && !replyToComment._nick){ // v255: col nickname del sito
+    luxNickOf(userId).then(function(n){ replyToComment._nick = n || String(authorName || '').replace(/\s+/g, '_'); try { replyToComment(authorName); } finally { replyToComment._nick = null; } });
+    return;
+  }
   var box = document.getElementById('fCommentBody');
-  var mention = '@' + authorName + ' ';
+  var mention = '@' + (replyToComment._nick || authorName) + ' ';
   if(box.value.indexOf(mention) !== 0){
     box.value = mention + box.value;
   }
@@ -22660,7 +22711,7 @@ function positionMentionBox(field){
 function currentMentionQuery(field){
   var pos = field.selectionStart;
   var before = field.value.slice(0, pos);
-  var m = before.match(/(^|\s)@([a-zA-Z0-9_]{1,30})$/);
+  var m = before.match(/(^|\s)@([a-zA-Z0-9_.]{1,20})$/); // v255: anche col punto
   return m ? m[2] : null;
 }
 
@@ -22671,12 +22722,15 @@ function showMentionSuggestions(field, query){
     if(mentionActiveField !== field) return;
     if(!rows || !rows.length){ hideMentionBox(); return; }
     var box = ensureMentionBox();
+    rows = rows.filter(function(u){ return u && u.username; }); // v255: niente righe vuote, e i nomi ripuliti
+    if(!rows.length){ hideMentionBox(); return; }
     box.innerHTML = rows.map(function(u){
-      return '<div class="mention-suggest-item" data-username="' + u.username + '">@' + u.username +
-        (u.display_name ? ' <span class="mention-suggest-name">' + u.display_name + '</span>' : '') + '</div>';
+      return '<div class="mention-suggest-item" data-username="' + escapeHtml(u.username) + '">@' + escapeHtml(u.username) +
+        (u.display_name ? ' <span class="mention-suggest-name">' + escapeHtml(u.display_name) + '</span>' : '') + '</div>';
     }).join('');
     positionMentionBox(field);
     box.classList.remove('hidden');
+    luxMentionPlace(field); // v255: sopra il campo se sotto non c'è posto
   }).catch(function(){ hideMentionBox(); });
 }
 
@@ -22684,7 +22738,7 @@ function insertMention(field, username){
   var pos = field.selectionStart;
   var before = field.value.slice(0, pos);
   var after = field.value.slice(pos);
-  var replaced = before.replace(/(^|\s)@([a-zA-Z0-9_]{1,30})$/, function(full, lead){
+  var replaced = before.replace(/(^|\s)@([a-zA-Z0-9_.]{1,20})$/, function(full, lead){ // v255
     return lead + '@' + username + ' ';
   });
   field.value = replaced + after;
@@ -22696,7 +22750,7 @@ function insertMention(field, username){
 }
 
 document.addEventListener('input', function(e){
-  if(MENTION_FIELDS.indexOf(e.target.id) === -1) return;
+  if(!luxMentionField(e.target)) return; // v255: anche nel diario, nei suoi commenti e tra i collaboratori
   var field = e.target;
   var query = currentMentionQuery(field);
   if(query === null){ hideMentionBox(); return; }
@@ -22708,7 +22762,7 @@ document.addEventListener('click', function(e){
   var item = e.target.closest ? e.target.closest('.mention-suggest-item') : null;
   if(item && mentionActiveField){
     insertMention(mentionActiveField, item.getAttribute('data-username'));
-  } else if(mentionBox && !mentionBox.contains(e.target) && MENTION_FIELDS.indexOf(e.target.id) === -1){
+  } else if(mentionBox && !mentionBox.contains(e.target) && !luxMentionField(e.target)){ // v255
     hideMentionBox();
   }
 });
@@ -25630,6 +25684,1308 @@ function luxPageLeave(e){
 document.addEventListener('click', luxPageLeave);
 window.addEventListener('pageshow', function(){ document.documentElement.classList.remove('lux-leaving'); });
 
+/* ============ v255: PERSONE ============
+   - Toccando il nickname (o la foto) di qualcuno si apre il suo profilo: amici, richieste, canali e server,
+     commenti del diario, intestazione della chat, gruppi.
+   - Le @menzioni nei testi portano al profilo (profile.html?u=nickname).
+   - La registrazione chiede i dati del profilo (nickname, nome, nascita, sesso, nazionalità; la lingua c'era già);
+     chi è già iscritto e li ha lasciati vuoti li completa al prossimo accesso (una volta per visita, finché non li salva).
+   - Nel profilo: il nickname e la nazionalità (con la bandiera). */
+var LUX_NICK_RE = /^[A-Za-z0-9][A-Za-z0-9_.]{2,19}$/;
+function luxNickOk(s){ return LUX_NICK_RE.test(s || '') && !/\.\./.test(s) && !/\.$/.test(s); }
+function luxProfileHref(id){ return 'profile.html?user=' + encodeURIComponent(id); }
+// un nome che porta al profilo (se si sa di chi è)
+function luxPersonLink(name, userId, cls){
+  var safe = escapeHtml(name || t('notif.someone'));
+  if(!userId) return '<span class="' + escapeHtml(cls || '') + '">' + safe + '</span>';
+  return '<a class="lux-person ' + escapeHtml(cls || '') + '" href="' + luxProfileHref(userId) + '">' + safe + '</a>';
+}
+// le @menzioni in un testo già «ripulito» (HTML sicuro): @nickname porta al profilo
+function luxMentionLinks(html){
+  return String(html == null ? '' : html).split(/(<[^>]*>)/).map(function(seg, i){
+    if(i % 2) return seg; // (un tag: così com'è)
+    return seg.replace(/(^|[^A-Za-z0-9_@.&;\/=])@([A-Za-z0-9][A-Za-z0-9_.]{1,19})/g, function(all, lead, nick){
+      var tail = '';
+      var m = /\.+$/.exec(nick);
+      if(m){ tail = m[0]; nick = nick.slice(0, -tail.length); }
+      if(nick.length < 3 || /\.\./.test(nick)) return all;
+      return lead + '<a class="lux-mention" href="profile.html?u=' + encodeURIComponent(nick) + '">@' + nick + '</a>' + tail;
+    });
+  }).join('');
+}
+// il nickname di qualcuno (per «Rispondi» nei commenti: @nickname, così riceve l'avviso)
+var luxNickCache = {};
+function luxNickOf(userId){
+  if(!userId || !SUPABASE_URL) return Promise.resolve('');
+  if(luxNickCache[userId] != null) return Promise.resolve(luxNickCache[userId]);
+  return fetch(SUPABASE_URL + '/rest/v1/profiles?id=eq.' + encodeURIComponent(userId) + '&select=*', { headers: communityHeaders() })
+    .then(function(r){ return r.ok ? r.json() : []; })
+    .then(function(rows){ var n = (rows[0] && rows[0].username) || ''; luxNickCache[userId] = n; return n; })
+    .catch(function(){ return ''; });
+}
+// il profilo di qualcuno dal suo nickname (le maiuscole non contano)
+function luxFindByNick(nick){
+  if(!luxNickOk(nick) || !SUPABASE_URL) return Promise.resolve(null);
+  return fetch(SUPABASE_URL + '/rest/v1/profiles?username=ilike.' + encodeURIComponent(nick) + '&select=id,username&limit=5', { headers: communityHeaders() })
+    .then(function(r){ return r.ok ? r.json() : []; })
+    .then(function(rows){
+      var low = nick.toLowerCase(), hit = null;
+      (rows || []).some(function(p){ if(p && String(p.username || '').toLowerCase() === low){ hit = p.id; return true; } return false; });
+      return hit;
+    })
+    .catch(function(){ return null; });
+}
+
+/* ---- paesi e bandiere (i nomi nella lingua del sito, dal browser) ---- */
+var LUX_COUNTRIES = ('AD AE AF AG AI AL AM AO AR AS AT AU AW AX AZ BA BB BD BE BF BG BH BI BJ BL BM BN BO BQ BR BS BT BW BY BZ CA CC CD CF CG CH CI CK CL CM CN CO CR CU CV CW CX CY CZ ' +
+  'DE DJ DK DM DO DZ EC EE EG EH ER ES ET FI FJ FK FM FO FR GA GB GD GE GF GG GH GI GL GM GN GP GQ GR GT GU GW GY HK HN HR HT HU ID IE IL IM IN IO IQ IR IS IT JE JM JO JP ' +
+  'KE KG KH KI KM KN KP KR KW KY KZ LA LB LC LI LK LR LS LT LU LV LY MA MC MD ME MF MG MH MK ML MM MN MO MP MQ MR MS MT MU MV MW MX MY MZ NA NC NE NF NG NI NL NO NP NR NU NZ ' +
+  'OM PA PE PF PG PH PK PL PM PN PR PS PT PW PY QA RE RO RS RU RW SA SB SC SD SE SG SH SI SJ SK SL SM SN SO SR SS ST SV SX SY SZ TC TD TG TH TJ TK TL TM TN TO TR TT TV TW TZ ' +
+  'UA UG US UY UZ VA VC VE VG VI VN VU WF WS XK YE YT ZA ZM ZW').split(' ');
+var luxCountryCache = {};
+function luxCountryNamer(){
+  var lang = currentLang || 'it';
+  if(luxCountryCache[lang]) return luxCountryCache[lang];
+  var tags = lang === 'pnb' ? ['pa-Arab', 'ur', 'en'] : [lang, 'en'], dn = null;
+  try { if(window.Intl && Intl.DisplayNames) dn = new Intl.DisplayNames(tags, { type: 'region' }); } catch(e){ dn = null; }
+  var f = function(code){
+    if(code === 'XK') return { it: 'Kosovo' }[lang] || (dn ? (function(){ try { return dn.of('XK'); } catch(e){ return 'Kosovo'; } })() : 'Kosovo');
+    try { return dn ? dn.of(code) : code; } catch(e){ return code; }
+  };
+  luxCountryCache[lang] = f;
+  return f;
+}
+function luxCountryName(code){ return code ? luxCountryNamer()(String(code).toUpperCase()) : ''; }
+function luxFlag(code){
+  code = String(code || '').toUpperCase();
+  if(!/^[A-Z]{2}$/.test(code)) return '';
+  return String.fromCodePoint(0x1F1E6 + code.charCodeAt(0) - 65, 0x1F1E6 + code.charCodeAt(1) - 65);
+}
+// il paese del browser (it-IT → IT), per proporlo già scelto
+function luxGuessCountry(){
+  var list = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || ''];
+  for(var i = 0; i < list.length; i++){
+    var m = /[-_]([A-Za-z]{2})\b/.exec(String(list[i] || ''));
+    if(m && LUX_COUNTRIES.indexOf(m[1].toUpperCase()) !== -1) return m[1].toUpperCase();
+  }
+  return '';
+}
+function luxCountryOptions(selected){
+  var name = luxCountryNamer();
+  var rows = LUX_COUNTRIES.map(function(c){ return [c, name(c)]; });
+  try { rows.sort(function(a, b){ return a[1].localeCompare(b[1], currentLang || 'it', { sensitivity: 'base' }); }); } catch(e){ rows.sort(function(a, b){ return a[1] < b[1] ? -1 : 1; }); }
+  return '<option value="">' + escapeHtml(t('reg.nationPick')) + '</option>' + rows.map(function(r){
+    return '<option value="' + r[0] + '"' + (r[0] === selected ? ' selected' : '') + '>' + escapeHtml(luxFlag(r[0]) + ' ' + r[1]) + '</option>';
+  }).join('');
+}
+
+/* ---- i campi del profilo (registrazione, «Completa il tuo profilo», modifica del profilo) ---- */
+function luxGenderOptions(sel){
+  return [['', 'profile.genderUnset'], ['M', 'profile.genderM'], ['F', 'profile.genderF'], ['X', 'profile.genderX']].map(function(o){
+    return '<option value="' + o[0] + '"' + (o[0] === (sel || '') ? ' selected' : '') + '>' + escapeHtml(t(o[1])) + '</option>';
+  }).join('');
+}
+function luxTodayIso(){ var d = new Date(); return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2); }
+// prefix: 'fReg' (registrazione) o 'fAsk' (completa il profilo)
+function luxProfileFieldsHtml(prefix, p){
+  p = p || {};
+  return '<div class="field lux-nick-field"><label for="' + prefix + 'Nick">' + escapeHtml(t('reg.nick')) + '</label>' +
+      '<div class="lux-nick-wrap"><span class="lux-nick-at" aria-hidden="true">@</span><input type="text" id="' + prefix + 'Nick" maxlength="20" autocomplete="nickname" spellcheck="false" autocapitalize="off" autocorrect="off" value="' + escapeHtml(p.username || '') + '" aria-describedby="' + prefix + 'NickState"></div>' +
+      '<div class="lux-nick-state" id="' + prefix + 'NickState" aria-live="polite">' + escapeHtml(t('reg.nickHint')) + '</div></div>' +
+    '<div class="field"><label for="' + prefix + 'Name">' + escapeHtml(t('reg.name')) + '</label><input type="text" id="' + prefix + 'Name" maxlength="40" autocomplete="name" value="' + escapeHtml(p.display_name || '') + '" placeholder="' + escapeHtml(t('reg.namePh')) + '"></div>' +
+    '<div class="lux-reg-row"><div class="field"><label for="' + prefix + 'Birth">' + escapeHtml(t('reg.birth')) + '</label><input type="date" id="' + prefix + 'Birth" autocomplete="bday" min="1900-01-01" max="' + luxTodayIso() + '" value="' + escapeHtml(String(p.birth_date || '').slice(0, 10)) + '"></div>' +
+      '<div class="field"><label for="' + prefix + 'Gender">' + escapeHtml(t('reg.gender')) + '</label><select id="' + prefix + 'Gender">' + luxGenderOptions(p.gender) + '</select></div></div>' +
+    '<div class="field"><label for="' + prefix + 'Nation">' + escapeHtml(t('reg.nation')) + '</label><select id="' + prefix + 'Nation" autocomplete="country">' + luxCountryOptions(p.nationality || luxGuessCountry()) + '</select></div>';
+}
+// il nickname: si controlla mentre lo si scrive (formato e, dopo una pausa, se è libero)
+var luxNickChecks = {};
+function luxWireNick(prefix, ownNick){
+  var input = document.getElementById(prefix + 'Nick'), state = document.getElementById(prefix + 'NickState');
+  if(!input || input.dataset.luxNick) return;
+  input.dataset.luxNick = '1';
+  var timer = null;
+  var show = function(kind, key){ state.className = 'lux-nick-state' + (kind ? ' is-' + kind : ''); state.textContent = t(key); };
+  input.addEventListener('input', function(){
+    var v = input.value.replace(/^@+/, '').replace(/\s+/g, '_');
+    if(v !== input.value) input.value = v;
+    clearTimeout(timer);
+    luxNickChecks[prefix] = null;
+    if(!v){ show('', 'reg.nickHint'); return; }
+    if(!luxNickOk(v)){ show('bad', 'reg.nickBad'); return; }
+    if(ownNick && v.toLowerCase() === String(ownNick).toLowerCase()){ show('ok', 'reg.nickFree'); luxNickChecks[prefix] = { nick: v, free: true }; return; }
+    show('wait', 'reg.nickChecking');
+    timer = setTimeout(function(){
+      luxNickFree(v).then(function(free){
+        if(input.value !== v) return;
+        luxNickChecks[prefix] = { nick: v, free: free };
+        if(free === null) show('', 'reg.nickHint');
+        else show(free ? 'ok' : 'bad', free ? 'reg.nickFree' : 'reg.nickTaken');
+      });
+    }, 450);
+  });
+}
+// libero? (true / false; null se non si sa: allora decide il database)
+function luxNickFree(nick){
+  if(!SUPABASE_URL) return Promise.resolve(null);
+  return fetch(SUPABASE_URL + '/rest/v1/rpc/lux_nick_libero_per_me', { method: 'POST', headers: Object.assign({ 'Content-Type': 'application/json' }, communityHeaders()), body: JSON.stringify({ p_nick: nick }) })
+    .then(function(r){ if(!r.ok) throw new Error('rpc ' + r.status); return r.json(); })
+    .then(function(v){ if(typeof v !== 'boolean') throw new Error('rpc'); return v; })
+    .catch(function(){ // (file SQL non ancora lanciato: si guarda tra i profili)
+      return fetch(SUPABASE_URL + '/rest/v1/profiles?username=ilike.' + encodeURIComponent(nick) + '&select=id,username&limit=5', { headers: communityHeaders() })
+        .then(function(r){ if(!r.ok) return null; return r.json().then(function(rows){
+          var me = currentUserId(), low = nick.toLowerCase();
+          return !(rows || []).some(function(p){ return String(p.username || '').toLowerCase() === low && p.id !== me; });
+        }); })
+        .catch(function(){ return null; });
+    });
+}
+// i valori scritti nei campi; err = la chiave dell'errore (e il campo da sistemare)
+function luxProfileFieldsRead(prefix){
+  var g = function(id){ var el = document.getElementById(prefix + id); return el ? String(el.value || '').trim() : ''; };
+  var v = { username: g('Nick').replace(/^@+/, ''), display_name: g('Name'), birth_date: g('Birth'), gender: g('Gender'), nationality: g('Nation').toUpperCase() };
+  var bad = function(key, field){ v.err = key; v.field = prefix + field; return v; };
+  if(!luxNickOk(v.username)) return bad('reg.errNick', 'Nick');
+  var chk = luxNickChecks[prefix];
+  if(chk && chk.nick === v.username && chk.free === false) return bad('reg.errNickTaken', 'Nick');
+  if(!v.display_name) return bad('reg.errName', 'Name');
+  if(!/^\d{4}-\d{2}-\d{2}$/.test(v.birth_date) || v.birth_date < '1900-01-01' || v.birth_date > luxTodayIso()) return bad('reg.errBirth', 'Birth');
+  if(['', 'M', 'F', 'X'].indexOf(v.gender) === -1) v.gender = '';
+  if(!/^[A-Z]{2}$/.test(v.nationality)) return bad('reg.errNation', 'Nation');
+  return v;
+}
+// salva i dati nel proprio profilo (se il profilo non c'è ancora, lo crea)
+function luxProfileWrite(fields){
+  var session = getSession();
+  if(!session || !SUPABASE_URL) return Promise.reject(new Error('auth'));
+  var uid = currentUserId();
+  var h = { 'apikey': SUPABASE_ANON_KEY, 'Authorization': 'Bearer ' + session.access_token, 'Content-Type': 'application/json', 'Prefer': 'return=representation' };
+  var fail = function(r){ return r.text().then(function(tx){ var e = new Error('profile ' + r.status); e.status = r.status; e.body = tx; throw e; }); };
+  return fetch(SUPABASE_URL + '/rest/v1/profiles?id=eq.' + encodeURIComponent(uid), { method: 'PATCH', headers: h, body: JSON.stringify(fields) })
+    .then(function(r){ return r.ok ? r.json() : fail(r); })
+    .then(function(rows){
+      if(rows && rows.length) return rows[0];
+      return fetch(SUPABASE_URL + '/rest/v1/profiles', { method: 'POST', headers: Object.assign({}, h, { 'Prefer': 'resolution=merge-duplicates,return=representation' }), body: JSON.stringify(Object.assign({ id: uid }, fields)) })
+        .then(function(r){ return r.ok ? r.json() : fail(r); })
+        .then(function(rows2){ return rows2 && rows2[0]; });
+    })
+    .then(function(p){ if(p) currentProfile = p; if(p && p.display_name) displayNameCache[uid] = p.display_name; return p; });
+}
+// il messaggio giusto per un salvataggio non riuscito (nickname preso o non valido, altro)
+function luxProfileSaveErrKey(e){
+  var b = String((e && e.body) || '');
+  if(/lux_nick_preso|23505|already exists|duplicate key|già preso/i.test(b)) return 'reg.errNickTaken';
+  if(/lux_nick_formato|23514|nickname non valido/i.test(b)) return 'reg.errNick';
+  return 'reg.saveError';
+}
+
+/* ---- la registrazione ---- */
+var luxRegMeta = null; // i dati della registrazione in corso (vanno con l'account e poi nel profilo)
+var luxRegFor = '';    // …e l'email dell'account che si sta creando (solo a quello vanno i dati)
+function luxRegData(email){
+  luxRegFor = String(email || '').trim().toLowerCase();
+  return Object.assign({}, luxRegMeta || {});
+}
+function luxRegFields(show){
+  var wrap = document.getElementById('authFieldsWrap');
+  if(!wrap) return;
+  var box = document.getElementById('luxRegFields');
+  if(show && !box){
+    box = document.createElement('div');
+    box.id = 'luxRegFields';
+    box.className = 'lux-reg';
+    wrap.insertBefore(box, wrap.firstChild);
+  }
+  if(!box) return;
+  if(show){
+    var keep = luxProfileFieldsRead('fReg'); // (cambiando lingua i campi si ridisegnano: i valori restano)
+    var had = document.getElementById('fRegNick');
+    box.innerHTML = '<p class="lux-reg-intro">' + escapeHtml(t('reg.intro')) + '</p>' +
+      luxProfileFieldsHtml('fReg', had ? { username: keep.username, display_name: keep.display_name, birth_date: keep.birth_date, gender: keep.gender, nationality: keep.nationality } : {}) +
+      '<p class="lux-reg-account">' + escapeHtml(t('reg.account')) + '</p>';
+    luxWireNick('fReg');
+    if(had && keep.username){ var ni = document.getElementById('fRegNick'); ni.dispatchEvent(new Event('input')); }
+  }
+  box.hidden = !show;
+  wrap.classList.toggle('lux-reg-on', !!show);
+}
+// prima di creare l'account: i dati del profilo ci sono tutti? (e il nickname è libero)
+function luxRegReady(){
+  var box = document.getElementById('luxRegFields');
+  if(!box || box.hidden){ luxRegMeta = null; return Promise.resolve(); }
+  var v = luxProfileFieldsRead('fReg');
+  var stop = function(key, field){ var e = new Error('reg'); e.luxReg = key; e.luxField = field; return Promise.reject(e); };
+  if(v.err) return stop(v.err, v.field);
+  return luxNickFree(v.username).then(function(free){
+    if(free === false) return stop('reg.errNickTaken', 'fRegNick');
+    luxRegMeta = { username: v.username, display_name: v.display_name, birth_date: v.birth_date, gender: v.gender || null, nationality: v.nationality };
+  });
+}
+// appena dentro (senza conferma dell'email): i dati anche nel profilo (se il database non l'ha già fatto da solo)
+function luxRegSaveNow(){
+  var m = luxRegMeta, s0 = getSession();
+  luxRegMeta = null;
+  if(!m || !isSignedIn()) return;
+  if(!s0 || !s0.user || String(s0.user.email || '').toLowerCase() !== luxRegFor) return; // (entrato con un altro account: i dati non sono suoi)
+  setTimeout(function(){
+    loadOwnProfile().then(function(){
+      var p = currentProfile || {};
+      var s = getSession(), mail = s && s.user && s.user.email ? String(s.user.email).split('@')[0] : '';
+      var full = 'nationality' in p; // (senza il file SQL della v255 nickname e nazionalità restano nell'account)
+      var f = {};
+      if(!p.display_name || p.display_name === mail) f.display_name = m.display_name;
+      if(!p.birth_date) f.birth_date = m.birth_date;
+      if(!p.gender && m.gender) f.gender = m.gender;
+      if(full && !p.nationality) f.nationality = m.nationality;
+      if(full && 'username' in p && m.username && String(p.username || '').toLowerCase() !== m.username.toLowerCase() && luxNickLooksAuto(p.username)) f.username = m.username;
+      if(Object.keys(f).length) luxProfileWrite(f).catch(function(e){ console.warn('[registrazione]', e); });
+    });
+  }, 600);
+}
+// un nickname fatto dal sito (non scelto): «lettore…» o vuoto
+function luxNickLooksAuto(n){ return !n || /^lettore\d*$/i.test(n); }
+
+/* ---- chi è già iscritto: «Completa il tuo profilo» (una volta per visita, finché non lo salva) ---- */
+function luxProfileMissing(p){
+  if(!p || !('nationality' in p) || !('username' in p)) return false; // (file SQL non ancora lanciato: non si chiede)
+  return !p.display_name || !p.birth_date || !p.nationality || !p.username;
+}
+function luxProfileAsk(delay){
+  if(!isSignedIn() || !SUPABASE_URL || isAdmin()) return; // (l'amministratore il suo profilo lo cambia da «Modifica profilo»)
+  try { if(sessionStorage.getItem('lux_profile_ask')) return; } catch(e){ return; }
+  var tries = 0;
+  setTimeout(function look(){
+    if(!isSignedIn()) return;
+    // non sopra la copertina, il lettore, un'altra finestra aperta o l'installazione dell'app
+    var busy = luxCoverEl || document.getElementById('entryModeGate') || document.querySelector('.modal-backdrop:not(.hidden)') || (document.getElementById('luxAdminSheet') && document.getElementById('luxAdminSheet').classList.contains('open')) ||
+      (document.getElementById('profileEditPanel') && !document.getElementById('profileEditPanel').classList.contains('hidden')) ||
+      (document.getElementById('pageReader') && !document.getElementById('pageReader').classList.contains('hidden'));
+    if(busy){ if(++tries < 40) setTimeout(look, 1500); return; }
+    loadOwnProfile().then(function(){
+      if(!luxProfileMissing(currentProfile)) return;
+      try { if(sessionStorage.getItem('lux_profile_ask')) return; sessionStorage.setItem('lux_profile_ask', '1'); } catch(e){ return; }
+      luxProfileAskOpen(currentProfile);
+    });
+  }, delay || 1500);
+}
+function luxProfileAskOpen(p){
+  var own = p.username || '';
+  luxSheet('<div class="lux-ask">' +
+      '<h2 class="las-title">' + escapeHtml(t('reg.completeTitle')) + '</h2>' +
+      '<p class="lux-ask-sub">' + escapeHtml(t('reg.completeSub')) + '</p>' +
+      luxProfileFieldsHtml('fAsk', p) +
+      '<div class="form-error" id="fAskError" aria-live="polite"></div>' +
+      '<div class="lux-ask-actions"><button type="button" class="las-primary" data-ask-save>' + escapeHtml(t('reg.save')) + '</button>' +
+      '<button type="button" class="las-secondary" data-las-close>' + escapeHtml(t('reg.later')) + '</button></div></div>',
+    function(body){
+      luxWireNick('fAsk', own);
+      setTimeout(function(){ if(luxTouchTyping() && body.contains(document.activeElement)) try { document.activeElement.blur(); } catch(e){} }, 90); // (sul telefono la tastiera non salta su da sola)
+      if(own){ var st = document.getElementById('fAskNickState'); if(st){ st.className = 'lux-nick-state is-ok'; st.textContent = t('reg.nickYours'); } }
+      var btn = body.querySelector('[data-ask-save]'), err = body.querySelector('#fAskError');
+      btn.addEventListener('click', function(){
+        var v = luxProfileFieldsRead('fAsk');
+        if(v.err && !(v.err === 'reg.errNickTaken' && own && v.username.toLowerCase() === own.toLowerCase())){
+          err.textContent = t(v.err);
+          var f = document.getElementById(v.field); if(f) try { f.focus(); } catch(e){}
+          return;
+        }
+        err.textContent = '';
+        btn.disabled = true;
+        var fields = { display_name: v.display_name, birth_date: v.birth_date, gender: v.gender || null, nationality: v.nationality };
+        if(v.username.toLowerCase() !== own.toLowerCase() || v.username !== own) fields.username = v.username;
+        luxProfileWrite(fields).then(function(){
+          closeLuxSheet();
+          luxToast(t('reg.saved'));
+          if(document.getElementById('profileSection')) setTimeout(function(){ window.location.reload(); }, 900);
+        }).catch(function(e){
+          err.textContent = t(luxProfileSaveErrKey(e));
+          btn.disabled = false;
+        });
+      });
+    });
+}
+
+/* ---- la modifica del profilo: anche nickname e nazionalità ---- */
+function luxProfileEditorFields(){
+  var nameEl = document.getElementById('fDisplayName');
+  if(!nameEl) return;
+  var field = nameEl.closest('.field');
+  if(field && !document.getElementById('fProfNick')){
+    var nf = document.createElement('div');
+    nf.className = 'field lux-nick-field';
+    nf.innerHTML = '<label for="fProfNick" data-i18n="reg.nick">' + escapeHtml(t('reg.nick')) + '</label>' +
+      '<div class="lux-nick-wrap"><span class="lux-nick-at" aria-hidden="true">@</span><input type="text" id="fProfNick" maxlength="20" autocomplete="nickname" spellcheck="false" autocapitalize="off" autocorrect="off" aria-describedby="fProfNickState"></div>' +
+      '<div class="lux-nick-state" id="fProfNickState" aria-live="polite"></div>';
+    field.parentNode.insertBefore(nf, field.nextSibling);
+  }
+  var gEl = document.getElementById('fGender');
+  var gField = gEl && gEl.closest('.field');
+  if(gField && !document.getElementById('fProfNation')){
+    var cf = document.createElement('div');
+    cf.className = 'field';
+    cf.innerHTML = '<label for="fProfNation" data-i18n="reg.nation">' + escapeHtml(t('reg.nation')) + '</label><select id="fProfNation" autocomplete="country"></select>';
+    gField.parentNode.insertBefore(cf, gField.nextSibling);
+  }
+}
+function luxProfileEditorFill(p){
+  luxProfileEditorFields();
+  p = p || {};
+  var supported = 'nationality' in p;
+  var nick = document.getElementById('fProfNick'), nat = document.getElementById('fProfNation');
+  if(nick){
+    nick.closest('.field').hidden = !('username' in p);
+    nick.value = p.username || '';
+    delete nick.dataset.luxNick;
+    var st = document.getElementById('fProfNickState');
+    if(st){ st.className = 'lux-nick-state'; st.textContent = t('reg.nickHint'); }
+    luxWireNick('fProf', p.username || '');
+  }
+  if(nat){
+    nat.closest('.field').hidden = !supported;
+    nat.innerHTML = luxCountryOptions(p.nationality || '');
+  }
+}
+// i campi in più da salvare con «Salva profilo» (o un errore da mostrare)
+function luxProfileEditorExtra(){
+  var out = {}, nick = document.getElementById('fProfNick'), nat = document.getElementById('fProfNation');
+  var p = currentProfile || {};
+  if(nick && !nick.closest('.field').hidden){
+    var v = nick.value.trim().replace(/^@+/, '');
+    if(v && v !== (p.username || '')){
+      if(!luxNickOk(v)) return { err: 'reg.errNick' };
+      var chk = luxNickChecks.fProf;
+      if(chk && chk.nick === v && chk.free === false) return { err: 'reg.errNickTaken' };
+      out.username = v;
+    }
+  }
+  if(nat && !nat.closest('.field').hidden) out.nationality = nat.value || null;
+  return out;
+}
+
+/* ---- nel profilo pubblico: @nickname e nazionalità ---- */
+function luxPubIdentity(p){
+  var nameEl = document.getElementById('pubProfileName');
+  if(!nameEl || !p) return;
+  var el = document.getElementById('luxPubIdentity');
+  if(!el){
+    el = document.createElement('div');
+    el.id = 'luxPubIdentity';
+    el.className = 'lux-pub-id';
+    // una riga intera sotto la foto e il nome (accanto al nome, sul telefono, lo spazio è poco)
+    var row = nameEl.closest('.profile-fb-headrow');
+    if(row && row.parentNode) row.parentNode.insertBefore(el, row.nextSibling);
+    else nameEl.parentNode.insertBefore(el, nameEl.nextSibling);
+  }
+  var parts = [];
+  if(p.username) parts.push('<span class="lux-pub-nick">@' + escapeHtml(p.username) + '</span>');
+  if(p.nationality) parts.push('<span class="lux-pub-nation" title="' + escapeHtml(t('reg.nation')) + '">' + escapeHtml(luxFlag(p.nationality) + ' ' + luxCountryName(p.nationality)) + '</span>');
+  el.innerHTML = parts.join('<span class="lux-pub-sep" aria-hidden="true">·</span>');
+  el.hidden = !parts.length;
+}
+// dal link di una menzione (profile.html?u=nickname): il profilo giusto (una volta sola per pagina)
+var luxNickResolved = null; // l'id trovato dal nickname ('' = nessuno)
+function luxProfileFromNick(next){
+  var params = new URLSearchParams(window.location.search);
+  var nick = params.get('u');
+  if(params.get('user') || !nick || luxNickResolved !== null) return false;
+  luxNickResolved = '';
+  luxFindByNick(nick).then(function(id){
+    luxNickResolved = id || '';
+    if(id) luxAppSetUrl('profile.html?user=' + encodeURIComponent(id) + (window.location.hash || '')); // (l'indirizzo vero del profilo)
+    next(id || '');
+  });
+  return true;
+}
+// arrivati da una menzione o da un avviso: il post del diario, in vista
+function luxPostFromHash(){
+  var m = /^#(post|comm)-([A-Za-z0-9_-]+)$/.exec(window.location.hash || '');
+  if(!m || !document.getElementById('profileDiaryFeed')) return;
+  var tries = 0;
+  (function look(){
+    var card = document.querySelector('.diary-post[data-post-id="' + m[2] + '"]');
+    if(card){
+      if(m[1] === 'comm'){ var box = document.getElementById('diaryComments_' + m[2]); if(box && box.classList.contains('hidden')) toggleDiaryComments(m[2]); }
+      try { card.scrollIntoView({ block: 'center', behavior: luxCoverReduced() ? 'auto' : 'smooth' }); } catch(e){ card.scrollIntoView(); }
+      card.classList.add('lux-post-hit');
+      setTimeout(function(){ card.classList.remove('lux-post-hit'); }, 2600);
+      return;
+    }
+    if(++tries < 40) setTimeout(look, 300);
+  })();
+}
+window.addEventListener('hashchange', function(){ try { luxPostFromHash(); } catch(e){} });
+
+/* ---- i canali e i server dal link di un avviso (community.html?canale=…) ---- */
+function luxChannelFromUrl(id){
+  id = id || new URLSearchParams(window.location.search).get('canale');
+  if(!id || !document.getElementById('communitySection') || !isSignedIn() || !SUPABASE_URL) return;
+  fetch(SUPABASE_URL + '/rest/v1/channels?id=eq.' + encodeURIComponent(id) + '&select=*', { headers: communityHeaders() })
+    .then(function(r){ return r.ok ? r.json() : []; })
+    .then(function(rows){
+      var ch = rows && rows[0];
+      if(!ch) return;
+      var sec = document.getElementById('communitySection');
+      if(ch.community_id){
+        try { sessionStorage.setItem('lux_pending_server_id', ch.community_id); } catch(e){}
+        switchCommunityTab('servers');
+        var n = 0;
+        (function open(){
+          var row = document.querySelector('.srv-ch[data-chid="' + String(ch.id).replace(/"/g, '') + '"]');
+          if(row){ row.click(); return; }
+          if(++n < 40) setTimeout(open, 250);
+        })();
+      } else {
+        switchCommunityTab('channels');
+        setTimeout(function(){ openChannel(ch.id, ch.name || ''); }, 150);
+      }
+      if(sec) try { sec.scrollIntoView({ block: 'start' }); } catch(e){}
+    })
+    .catch(function(){});
+}
+
+/* ---- gli avvisi nuovi (menzioni, gruppi) nella campanella, nella lingua del sito ---- */
+function luxNotifText(n){
+  var msg = String(n.message || ''), m;
+  var ex = function(s){ return s ? ': «' + s + '»' : ''; };
+  if(n.type === 'mention'){
+    if((m = /^ti ha menzionato nel diario: «([\s\S]*)»$/.exec(msg))) return t('notif.mentionDiary') + ex(m[1]);
+    if((m = /^ti ha menzionato in un commento del diario: «([\s\S]*)»$/.exec(msg))) return t('notif.mentionDiaryComment') + ex(m[1]);
+    if((m = /^ti ha menzionato nel canale (#.*?): «([\s\S]*)»$/.exec(msg))) return t('notif.mentionChannel').replace('{name}', m[1]) + ex(m[2]);
+    if((m = /^ti ha menzionato nel server «(.*?)»: «([\s\S]*)»$/.exec(msg))) return t('notif.mentionServer').replace('{name}', m[1]) + ex(m[2]);
+    if((m = /^ti ha menzionato nei commenti di «(.*?)»: «([\s\S]*)»$/.exec(msg))) return t('notif.mentionComments').replace('{title}', m[1]) + ex(m[2]);
+    return t('notif.mention');
+  }
+  if(n.type === 'mention_collab' && (m = /^ti ha messo tra i collaboratori di «([\s\S]*)»$/.exec(msg))) return t('notif.mentionCollab').replace('{title}', m[1]);
+  if(n.type === 'group_added' && (m = /^ti ha aggiunto al gruppo «([\s\S]*)»$/.exec(msg))) return t('notif.groupAdded').replace('{name}', m[1]);
+  if(n.type === 'group_message') return '— ' + msg.replace(/: 📷 Foto$/, ': 📷 ' + t('chat.photo')).replace(/: 📎 File$/, ': 📎 ' + t('chat.file'));
+  return msg;
+}
+// toccando un avviso con il suo link: la pagina giusta (true = fatto)
+function luxNotifOpenLink(n){
+  var link = String(n.link || '');
+  if(!/^[a-z0-9_-]+\.html(\?[^\s#]*)?(#[A-Za-z0-9_-]*)?$/i.test(link)) return false;
+  var m;
+  if((m = /^chat\.html\?group=([0-9a-f-]{36})$/i.exec(link))){
+    if(document.getElementById('chatBox') && typeof luxGroupOpen === 'function'){ luxGroupOpen(m[1], true); return true; }
+    window.location.href = link; return true;
+  }
+  if((m = /^community\.html\?canale=([^&#]+)$/i.exec(link)) && document.getElementById('communitySection')){
+    luxChannelFromUrl(decodeURIComponent(m[1])); return true;
+  }
+  if(n.catalog_id && /^schedario\.html\?title=/i.test(link)) return false; // (il capitolo si apre sul posto, come prima)
+  window.location.href = link;
+  return true;
+}
+
+/* ---- le menzioni: i suggerimenti (@…) anche nel diario, nei commenti del diario e tra i collaboratori ---- */
+var LUX_MENTION_EXTRA = ['fDiaryNote', 'fDiaryMoodText', 'fDiaryPhotoCaption', 'fCollabName1', 'fCollabName2', 'fCollabName3', 'fCollabName4', 'fCollabName5', 'fCollabName6'];
+function luxMentionField(el){
+  if(!el || !el.id && !el.classList) return false;
+  if(MENTION_FIELDS.indexOf(el.id) !== -1 || LUX_MENTION_EXTRA.indexOf(el.id) !== -1) return true;
+  return !!(el.classList && el.classList.contains('diary-comment-input')) || !!(el.dataset && el.dataset.mention === '1');
+}
+// il riquadro dei suggerimenti sopra il campo, quando sotto non c'è posto (per esempio la chat, in basso)
+function luxMentionPlace(field){
+  var box = mentionBox;
+  if(!box || box.classList.contains('hidden')) return;
+  var r = field.getBoundingClientRect(), h = box.offsetHeight || 150;
+  if(r.bottom + h + 8 > window.innerHeight && r.top - h - 4 > 0){
+    box.style.top = (r.top + window.scrollY - h - 4) + 'px';
+  }
+}
+function luxCollabHint(){
+  var first = document.getElementById('fCollabName1');
+  if(!first || document.getElementById('luxCollabHint')) return;
+  var host = document.getElementById('collabBlock1') || first;
+  var p = document.createElement('p');
+  p.id = 'luxCollabHint';
+  p.className = 'form-note lux-collab-hint';
+  p.setAttribute('data-i18n', 'collab.mentionHint');
+  p.textContent = t('collab.mentionHint');
+  host.parentNode.insertBefore(p, host);
+}
+
+/* ---- all'avvio ---- */
+function luxPeopleAfterSession(){
+  if(!isSignedIn()) return;
+  luxProfileAsk(2500);
+  if(document.getElementById('communitySection') && new URLSearchParams(window.location.search).get('canale')) setTimeout(function(){ luxChannelFromUrl(); }, 900);
+  luxCollabHint();
+}
+
+/* ============ v255: I GRUPPI CHAT ============
+   Nei Messaggi, sopra le chat private: i gruppi. Chi crea un gruppo sceglie i suoi amici e lo gestisce
+   (aggiunge altri amici, toglie qualcuno, cambia il nome); tutti possono uscire. Ogni messaggio arriva
+   come avviso a tutti gli altri (nella campanella e sul telefono), tranne a chi ha scelto «Silenzia».
+   Le tabelle e gli avvisi sono nel file SQL della v255: finché non c'è, il blocco Gruppi non compare. */
+var luxGroupCur = null;       // il gruppo aperto: { id, name, role, muted, members: [...] }
+var luxGroupPoll = null;
+var luxGroupLastAt = null;    // l'ora dell'ultimo messaggio a schermo
+var luxGroupsCache = null;    // i miei gruppi (con ruolo, silenzio e ultimo letto)
+var luxGroupsOk = null;       // false: le tabelle dei gruppi non ci sono ancora
+var luxGroupsShared = { at: 0, uid: null, promise: null };
+var luxGroupsTimer = null;
+var LUX_UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
+// una funzione del database (RPC); l'errore porta con sé il messaggio e il codice
+function luxRpc(name, args){
+  return fetch(SUPABASE_URL + '/rest/v1/rpc/' + name, {
+    method: 'POST', headers: Object.assign({ 'Content-Type': 'application/json' }, communityHeaders()), body: JSON.stringify(args || {})
+  }).then(function(r){
+    return r.text().then(function(tx){
+      var d = null;
+      try { d = tx ? JSON.parse(tx) : null; } catch(e){ d = tx; }
+      if(!r.ok){ var e = new Error((d && d.message) || ('rpc ' + r.status)); e.status = r.status; e.body = d; throw e; }
+      return d;
+    });
+  });
+}
+function luxGroupErrKey(e){
+  var m = String((e && e.body && (e.body.message || e.body.hint)) || (e && e.message) || '');
+  if(/bisogno di un nome/i.test(m)) return 'group.errName';
+  if(/almeno un amico/i.test(m)) return 'group.errPick';
+  if(e && e.network) return 'del.offline';
+  return 'group.errGeneric';
+}
+// i miei gruppi, dal più recente (null se la richiesta non riesce)
+function luxGroupsFetch(force){
+  if(!isSignedIn() || !SUPABASE_URL) return Promise.resolve([]);
+  var uid = currentUserId(), now = Date.now();
+  if(!force && luxGroupsShared.promise && luxGroupsShared.uid === uid && now - luxGroupsShared.at < 4000) return luxGroupsShared.promise;
+  var p = fetch(SUPABASE_URL + '/rest/v1/chat_group_members?user_id=eq.' + encodeURIComponent(uid) + '&select=group_id,role,muted,last_read_at', { headers: communityHeaders() })
+    .then(function(r){
+      if(!r.ok){ var e = new Error('gruppi ' + r.status); e.status = r.status; throw e; }
+      return r.json();
+    })
+    .then(function(mem){
+      luxGroupsOk = true;
+      if(!mem.length) return [];
+      var byId = {};
+      mem.forEach(function(m){ byId[m.group_id] = m; });
+      return fetch(SUPABASE_URL + '/rest/v1/chat_groups?id=in.(' + mem.map(function(m){ return encodeURIComponent(m.group_id); }).join(',') + ')&select=*', { headers: communityHeaders() })
+        .then(function(r){ if(!r.ok) throw new Error('gruppi ' + r.status); return r.json(); })
+        .then(function(groups){
+          return groups.map(function(g){
+            var m = byId[g.id] || {};
+            return Object.assign({}, g, { role: m.role || 'member', muted: !!m.muted, last_read_at: m.last_read_at || null });
+          }).sort(function(a, b){
+            return String(b.last_message_at || b.created_at || '').localeCompare(String(a.last_message_at || a.created_at || ''));
+          });
+        });
+    })
+    .then(function(list){ luxGroupsCache = list; return list; })
+    .catch(function(e){
+      if(e && e.status >= 400 && e.status < 500 && e.status !== 401) luxGroupsOk = false; // (la tabella non c'è: file SQL non ancora lanciato)
+      return null;
+    });
+  luxGroupsShared = { at: now, uid: uid, promise: p };
+  return p;
+}
+function luxGroupUnread(g){
+  if(!g || !g.last_message_at || g.last_sender_id === currentUserId()) return false;
+  return !g.last_read_at || new Date(g.last_message_at) > new Date(g.last_read_at);
+}
+// quanti gruppi hanno messaggi da leggere (quelli silenziati non contano, come su WhatsApp)
+function luxGroupUnreadCount(){
+  if(!isSignedIn() || luxGroupsOk === false) return Promise.resolve(0);
+  return luxGroupsFetch().then(function(list){
+    return (list || []).filter(function(g){ return !g.muted && luxGroupUnread(g); }).length;
+  }).catch(function(){ return 0; });
+}
+function luxGroupPreview(g){
+  var p = String(g.last_message_preview || '');
+  if(!p) return '';
+  if(p === '📷 Foto') p = '📷 ' + t('chat.photo');
+  else if(p === '📎 File') p = '📎 ' + t('chat.file');
+  else if(isGifUrl(p)) p = 'GIF';
+  return p;
+}
+function luxGroupAvatar(name, id){ return avatarInitialsDataUri(name || '?', 'g' + id); }
+var LUX_GROUP_ICON = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8.5" r="3.2"/><path d="M3.2 19c.6-3.3 2.9-5.1 5.8-5.1s5.2 1.8 5.8 5.1"/><circle cx="16.8" cy="9.4" r="2.6"/><path d="M15.9 14.2c2.6-.2 4.4 1.3 4.9 4.8"/></svg>';
+
+/* ---- il blocco «Gruppi» sopra l'elenco delle chat ---- */
+function luxGroupsBlock(){
+  var list = document.getElementById('chatSidebarList');
+  if(!list || !list.parentNode) return null;
+  var box = document.getElementById('luxGroups');
+  if(!box){
+    box = document.createElement('div');
+    box.id = 'luxGroups';
+    box.className = 'lux-groups';
+    box.hidden = true;
+    list.parentNode.insertBefore(box, list);
+  }
+  return box;
+}
+function luxGroupsLoad(){
+  var box = luxGroupsBlock();
+  if(!box) return;
+  if(!isSignedIn()){ box.hidden = true; return; }
+  luxGroupsFetch(true).then(function(list){
+    if(list === null){ if(luxGroupsOk === false) box.hidden = true; return; }
+    luxGroupsRender();
+  });
+  if(!luxGroupsTimer && document.getElementById('chatBox')){
+    luxGroupsTimer = setInterval(function(){ if(!document.hidden && isSignedIn()) luxGroupsFetch(true).then(function(l){ if(l) luxGroupsRender(); }); }, 30000);
+  }
+}
+function luxGroupsRender(){
+  var box = luxGroupsBlock();
+  if(!box) return;
+  var groups = luxGroupsCache || [];
+  var uid = currentUserId();
+  box.hidden = false;
+  box.innerHTML = '<div class="lux-groups-head"><span class="lux-groups-title">' + escapeHtml(t('group.title')) + '</span>' +
+      '<button type="button" class="lux-groups-new" data-g-new>' + LUX_GROUP_ICON + '<span>' + escapeHtml(t('group.new')) + '</span></button></div>' +
+    (groups.length ? '' : '<p class="lux-groups-empty">' + escapeHtml(t('group.empty')) + '</p>') +
+    groups.map(function(g){
+      var unread = luxGroupUnread(g);
+      var mine = g.last_sender_id && g.last_sender_id === uid;
+      var prev = luxGroupPreview(g);
+      return '<div class="chat-sidebar-row lux-group-row' + (unread ? ' unread' : '') + (g.muted ? ' is-muted' : '') + (luxGroupCur && luxGroupCur.id === g.id ? ' active' : '') + '" data-group-id="' + escapeHtml(g.id) + '">' +
+        '<div class="chat-sidebar-row-main" role="button" tabindex="0">' +
+          '<span class="chat-sidebar-avatar-wrap"><img class="chat-sidebar-avatar" src="' + escapeHtml(luxGroupAvatar(g.name, g.id)) + '" alt=""><span class="lux-group-badge">' + LUX_GROUP_ICON + '</span></span>' +
+          '<span class="chat-sidebar-info"><span class="chat-sidebar-name">' + escapeHtml(g.name) + '</span>' +
+            '<span class="chat-sidebar-preview">' + (prev ? '<span class="lux-gprev-who" data-who="' + escapeHtml(mine ? '' : (g.last_sender_id || '')) + '">' + (mine ? escapeHtml(t('community.you')) + ': ' : '') + '</span>' + escapeHtml(prev) : escapeHtml(t('group.noMsgs'))) + '</span></span>' +
+          '<span class="chat-sidebar-meta">' + (g.last_message_at ? '<span class="chat-sidebar-time">' + escapeHtml(notifTimeAgo(g.last_message_at)) + '</span>' : '') +
+            (g.muted ? '<span class="lux-group-muted" title="' + escapeHtml(t('group.mutedTag')) + '" aria-label="' + escapeHtml(t('group.mutedTag')) + '">🔕</span>' : '') +
+            (unread ? '<span class="chat-sidebar-unread-dot"></span>' : '') + '</span>' +
+        '</div></div>';
+    }).join('');
+  // chi ha scritto l'ultimo messaggio (il nome davanti all'anteprima)
+  Array.prototype.forEach.call(box.querySelectorAll('.lux-gprev-who[data-who]'), function(el){
+    var who = el.getAttribute('data-who');
+    if(who) getDisplayName(who).then(function(n){ el.textContent = String(n).split(' ')[0] + ': '; });
+  });
+  if(!box.dataset.wired){
+    box.dataset.wired = '1';
+    box.addEventListener('click', function(e){
+      if(e.target.closest('[data-g-new]')){ luxGroupNewSheet(); return; }
+      var row = e.target.closest('.lux-group-row');
+      if(row) luxGroupGo(row.dataset.groupId);
+    });
+    box.addEventListener('keydown', function(e){
+      if(e.key !== 'Enter' && e.key !== ' ') return;
+      var row = e.target.closest('.lux-group-row');
+      if(row){ e.preventDefault(); luxGroupGo(row.dataset.groupId); }
+    });
+  }
+}
+function luxGroupGo(id){
+  if(!id) return;
+  if(document.getElementById('chatBox')) luxGroupOpen(id, true);
+  else window.location.href = 'chat.html?group=' + encodeURIComponent(id);
+}
+
+/* ---- gli amici (per creare un gruppo o aggiungere qualcuno) ---- */
+function luxGroupFriends(){
+  var uid = currentUserId();
+  return fetch(SUPABASE_URL + '/rest/v1/friendships?select=requester_id,addressee_id&status=eq.accepted&or=(requester_id.eq.' + encodeURIComponent(uid) + ',addressee_id.eq.' + encodeURIComponent(uid) + ')', { headers: communityHeaders() })
+    .then(function(r){ return r.ok ? r.json() : []; })
+    .then(function(rows){
+      var ids = [];
+      rows.forEach(function(f){ var o = f.requester_id === uid ? f.addressee_id : f.requester_id; if(o && o !== uid && ids.indexOf(o) === -1) ids.push(o); });
+      if(!ids.length) return [];
+      return fetch(SUPABASE_URL + '/rest/v1/profiles?id=in.(' + ids.map(encodeURIComponent).join(',') + ')&select=*', { headers: communityHeaders() })
+        .then(function(r){ return r.ok ? r.json() : []; })
+        .then(function(list){
+          return list.sort(function(a, b){ return (a.display_name || '').localeCompare(b.display_name || '', luxLocale(), { sensitivity: 'base' }); });
+        });
+    });
+}
+function luxGroupPickHtml(friends, exclude){
+  exclude = exclude || [];
+  var rows = friends.filter(function(p){ return exclude.indexOf(p.id) === -1; });
+  if(!rows.length) return '';
+  return '<div class="lux-gpick"><input type="search" class="lux-gpick-search" placeholder="' + escapeHtml(t('group.search')) + '" aria-label="' + escapeHtml(t('group.search')) + '">' +
+    '<div class="lux-gpick-list">' + rows.map(function(p){
+      var name = p.display_name || t('notif.someone');
+      return '<label class="lux-gpick-row" data-q="' + escapeHtml((name + ' ' + (p.username || '')).toLowerCase()) + '"><input type="checkbox" value="' + escapeHtml(p.id) + '">' +
+        avatarHtml(p.avatar_url, name, p.id, 'lux-gpick-av', 64) +
+        '<span class="lux-gpick-name">' + escapeHtml(name) + (p.username ? '<small>@' + escapeHtml(p.username) + '</small>' : '') + '</span></label>';
+    }).join('') + '</div><p class="lux-gpick-count" aria-live="polite"></p></div>';
+}
+function luxGroupPickWire(body, onChange){
+  var search = body.querySelector('.lux-gpick-search'), count = body.querySelector('.lux-gpick-count');
+  var picked = function(){ return Array.prototype.map.call(body.querySelectorAll('.lux-gpick-list input:checked'), function(c){ return c.value; }); };
+  var update = function(){
+    var n = picked().length;
+    if(count) count.textContent = t('group.picked').replace('{n}', n);
+    if(onChange) onChange(n);
+  };
+  if(search) search.addEventListener('input', function(){
+    var q = search.value.trim().toLowerCase().replace(/^@/, '');
+    Array.prototype.forEach.call(body.querySelectorAll('.lux-gpick-row'), function(row){ row.hidden = !!q && row.getAttribute('data-q').indexOf(q) === -1; });
+  });
+  (body.querySelector('.lux-gpick') || body).addEventListener('change', function(e){ if(e.target.closest('.lux-gpick-list')) update(); }); // (sul riquadro nuovo: il foglio resta lo stesso)
+  update();
+  return picked;
+}
+// «Nuovo gruppo»: il nome e gli amici
+function luxGroupNewSheet(){
+  if(!isSignedIn()){ openAuth('login'); return; }
+  luxSheet('<h2 class="las-title">' + escapeHtml(t('group.newTitle')) + '</h2><p class="las-note">…</p>');
+  luxGroupFriends().then(function(friends){
+    if(!friends.length){
+      luxSheet('<h2 class="las-title">' + escapeHtml(t('group.newTitle')) + '</h2><p class="las-note">' + escapeHtml(t('group.noFriends')) + '</p>' +
+        '<a class="las-primary lux-gbtn-link" href="contatti.html">' + escapeHtml(t('group.findFriends')) + '</a>');
+      return;
+    }
+    luxSheet('<div class="lux-gsheet"><h2 class="las-title">' + escapeHtml(t('group.newTitle')) + '</h2>' +
+        '<label class="las-field">' + escapeHtml(t('group.name')) + '<input type="text" id="luxGroupName" maxlength="60" placeholder="' + escapeHtml(t('group.namePh')) + '" autocomplete="off"></label>' +
+        '<p class="lux-gsheet-label">' + escapeHtml(t('group.pick')) + '</p>' + luxGroupPickHtml(friends) +
+        '<div class="form-error" id="luxGroupErr" aria-live="polite"></div>' +
+        '<button type="button" class="las-primary" data-g-create disabled>' + escapeHtml(t('group.create')) + '</button></div>',
+      function(body){
+        var nameEl = body.querySelector('#luxGroupName'), btn = body.querySelector('[data-g-create]'), err = body.querySelector('#luxGroupErr');
+        var n = 0;
+        var ready = function(){ btn.disabled = !nameEl.value.trim() || n === 0; };
+        var picked = luxGroupPickWire(body, function(k){ n = k; ready(); });
+        nameEl.addEventListener('input', ready);
+        btn.addEventListener('click', function(){
+          var name = nameEl.value.trim(), ids = picked();
+          if(!name){ err.textContent = t('group.errName'); return; }
+          if(!ids.length){ err.textContent = t('group.errPick'); return; }
+          err.textContent = '';
+          btn.disabled = true;
+          luxRpc('lux_gruppo_crea', { p_nome: name, p_membri: ids }).then(function(id){
+            closeLuxSheet();
+            luxToast(t('group.created'));
+            luxGroupsShared.at = 0;
+            if(document.getElementById('chatBox')){ luxGroupsLoad(); luxGroupOpen(id, true); }
+            else window.location.href = 'chat.html?group=' + encodeURIComponent(id);
+          }).catch(function(e){
+            console.warn('[gruppi] creazione', e);
+            err.textContent = t(luxGroupErrKey(e));
+            btn.disabled = false;
+          });
+        });
+        setTimeout(function(){ try { nameEl.focus(); } catch(e){} }, 80);
+      });
+  }).catch(function(){ luxSheet('<h2 class="las-title">' + escapeHtml(t('group.newTitle')) + '</h2><p class="las-note">' + escapeHtml(t('community.loadError')) + '</p>'); });
+}
+
+/* ---- la conversazione di gruppo (nella stessa pagina dei Messaggi) ---- */
+function luxGroupLeave(){
+  if(luxGroupPoll){ clearInterval(luxGroupPoll); luxGroupPoll = null; }
+  if(!luxGroupCur) return;
+  luxGroupCur = null;
+  luxGroupLastAt = null;
+  luxGroupComposer(true);
+  var box = document.getElementById('chatBox');
+  if(box) box.classList.remove('lux-group-on');
+  document.querySelectorAll('.lux-group-row.active').forEach(function(r){ r.classList.remove('active'); });
+  var info = document.getElementById('chatInfo');
+  if(info && /^g:/.test(info.getAttribute('data-user') || '')){ info.innerHTML = ''; info.removeAttribute('data-user'); }
+}
+function luxGroupMember(uid){
+  var g = luxGroupCur;
+  if(!g || !g.members) return null;
+  for(var i = 0; i < g.members.length; i++) if(g.members[i].id === uid) return g.members[i];
+  return null;
+}
+// un colore per nome (sempre lo stesso per la stessa persona)
+function luxNameHue(id){
+  var h = 0, s = String(id || '');
+  for(var i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) % 360;
+  return h;
+}
+function luxGroupOpen(id, updateHistory){
+  var box = document.getElementById('chatBox');
+  if(!box){ window.location.href = 'chat.html?group=' + encodeURIComponent(id); return; }
+  if(!LUX_UUID_RE.test(String(id || ''))) return;
+  luxGroupLeave();
+  if(chatPollTimer){ clearInterval(chatPollTimer); chatPollTimer = null; }
+  currentChatThreadId = null;
+  currentChatOtherId = null;
+  chatInfoPhotoList = [];
+  var g = luxGroupCur = { id: id, name: '', role: 'member', muted: false, members: [] };
+  if(updateHistory !== false){
+    try {
+      var url = new URL(window.location.href);
+      url.searchParams.delete('user');
+      url.searchParams.set('group', id);
+      window.history.pushState({}, '', url);
+    } catch(e){}
+  }
+  var nf = document.getElementById('chatNotFound'); if(nf) nf.classList.add('hidden');
+  box.classList.remove('hidden');
+  box.classList.add('lux-group-on');
+  document.body.classList.add('chat-fullscreen');
+  setChatMobileView('conversation');
+  document.querySelectorAll('.chat-sidebar-row').forEach(function(row){ row.classList.toggle('active', row.dataset.groupId === id); });
+  var cached = (luxGroupsCache || []).filter(function(x){ return x.id === id; })[0];
+  luxGroupHeader(cached ? cached.name : '…', '');
+  var wrap = document.getElementById('chatMessages');
+  if(wrap) wrap.innerHTML = '<p class="form-note">…</p>';
+  luxGroupComposer(true);
+  applyChatBackground();
+  luxGroupRefresh().then(function(ok){
+    if(luxGroupCur !== g || !ok) return;
+    luxGroupLoadMessages();
+    luxGroupStartPoll();
+    luxGroupMarkRead();
+  });
+}
+function luxGroupHeader(name, status){
+  var nameEl = document.getElementById('chatOtherName'), stEl = document.getElementById('chatOtherStatus'), av = document.getElementById('chatOtherAvatar');
+  if(nameEl) nameEl.textContent = name;
+  if(stEl) stEl.textContent = status || '';
+  if(av && luxGroupCur){
+    av.src = luxGroupAvatar(name, luxGroupCur.id);
+    av.classList.add('avatar-clickable');
+    av.onclick = function(){ luxGroupInfoOpen(); };
+  }
+  luxGroupWireHeader();
+}
+function luxGroupComposer(on){
+  var comp = document.querySelector('#chatBox .chat-page-composer');
+  if(comp) comp.hidden = !on;
+}
+// toccando il nome in alto: il gruppo (o, in una chat privata, il profilo dell'altra persona)
+function luxGroupWireHeader(){
+  var info = document.querySelector('#chatBox .chat-header-info');
+  if(!info || info.dataset.luxHead) return;
+  info.dataset.luxHead = '1';
+  info.classList.add('lux-head-tap');
+  info.setAttribute('role', 'button');
+  info.tabIndex = 0;
+  var go = function(){
+    var wide = chatInfoMode() && chatInfoWide();
+    if(luxGroupCur){ if(!wide) luxGroupInfoOpen(); return; }
+    if(currentChatOtherId && !wide) window.location.href = luxProfileHref(currentChatOtherId);
+  };
+  info.addEventListener('click', go);
+  info.addEventListener('keydown', function(e){ if(e.key === 'Enter'){ e.preventDefault(); go(); } });
+}
+// il gruppo, chi c'è e il mio ruolo (false: non ne faccio più parte)
+function luxGroupRefresh(){
+  var g = luxGroupCur;
+  if(!g) return Promise.resolve(false);
+  var enc = encodeURIComponent(g.id);
+  var groupStep = fetch(SUPABASE_URL + '/rest/v1/chat_groups?id=eq.' + enc + '&select=*', { headers: communityHeaders() }).then(function(r){ return r.ok ? r.json() : null; });
+  var memStep = fetch(SUPABASE_URL + '/rest/v1/chat_group_members?group_id=eq.' + enc + '&select=user_id,role,muted,joined_at', { headers: communityHeaders() }).then(function(r){ return r.ok ? r.json() : null; });
+  return Promise.all([groupStep, memStep]).then(function(res){
+    if(luxGroupCur !== g) return false;
+    var row = res[0] && res[0][0], mem = res[1] || [];
+    var me = mem.filter(function(m){ return m.user_id === currentUserId(); })[0];
+    if(!row || !me){ luxGroupGone(res[0] === null || res[1] === null); return false; }
+    g.name = row.name;
+    g.created_by = row.created_by;
+    g.role = me.role;
+    g.muted = !!me.muted;
+    var ids = mem.map(function(m){ return m.user_id; });
+    return fetch(SUPABASE_URL + '/rest/v1/profiles?id=in.(' + ids.map(encodeURIComponent).join(',') + ')&select=*', { headers: communityHeaders() })
+      .then(function(r){ return r.ok ? r.json() : []; })
+      .catch(function(){ return []; })
+      .then(function(profiles){
+        if(luxGroupCur !== g) return false;
+        var byId = {};
+        profiles.forEach(function(p){ byId[p.id] = p; if(p.display_name) displayNameCache[p.id] = p.display_name; });
+        g.members = mem.map(function(m){
+          var p = byId[m.user_id] || {};
+          return { id: m.user_id, role: m.role, name: p.display_name || t('notif.someone'), username: p.username || '', avatar_url: p.avatar_url || '', last_seen: p.last_seen || null, joined_at: m.joined_at };
+        }).sort(function(a, b){
+          if(a.role !== b.role) return a.role === 'admin' ? -1 : 1;
+          return a.name.localeCompare(b.name, luxLocale(), { sensitivity: 'base' });
+        });
+        luxGroupHeader(g.name, luxGroupStatus(g));
+        luxGroupInfoPanel();
+        // nel blocco Gruppi: il nome (se nel frattempo è cambiato) e «letto»
+        var cached = (luxGroupsCache || []).filter(function(x){ return x.id === g.id; })[0];
+        if(cached){ cached.name = g.name; cached.muted = g.muted; }
+        return true;
+      });
+  }).catch(function(e){
+    console.warn('[gruppi] apertura', e);
+    if(luxGroupCur === g){
+      var wrap = document.getElementById('chatMessages');
+      if(wrap) wrap.innerHTML = '<p class="form-note">' + escapeHtml(navigator.onLine === false ? t('del.offline') : t('chat.openError')) + '</p>';
+    }
+    return false;
+  });
+}
+function luxGroupStatus(g){
+  var uid = currentUserId();
+  var others = g.members.filter(function(m){ return m.id !== uid; }).map(function(m){ return String(m.name).split(' ')[0]; });
+  var s = others.slice(0, 4).join(', ');
+  if(others.length > 4) s += ' +' + (others.length - 4);
+  s = s ? s + ', ' + t('community.you').toLowerCase() : t('group.members').replace('{n}', g.members.length);
+  return (g.muted ? '🔕 ' : '') + s;
+}
+function luxGroupGone(failed){
+  var wrap = document.getElementById('chatMessages');
+  if(wrap) wrap.innerHTML = '<p class="form-note lux-group-gone">' + escapeHtml(failed ? t('chat.openError') : t('group.gone')) + '</p>';
+  luxGroupComposer(false);
+  luxGroupHeader('—', '');
+  if(luxGroupPoll){ clearInterval(luxGroupPoll); luxGroupPoll = null; }
+  if(!failed){ luxGroupsShared.at = 0; luxGroupsLoad(); }
+}
+function luxGroupLoadMessages(){
+  var g = luxGroupCur;
+  var wrap = document.getElementById('chatMessages');
+  if(!g || !wrap) return;
+  fetch(SUPABASE_URL + '/rest/v1/chat_group_messages?group_id=eq.' + encodeURIComponent(g.id) + '&select=*&order=created_at.desc&limit=120', { headers: communityHeaders() })
+    .then(function(r){ if(!r.ok) throw new Error('messaggi ' + r.status); return r.json(); })
+    .then(function(rows){
+      if(luxGroupCur !== g) return;
+      rows.reverse();
+      updateChatInfoPhotos(rows);
+      wrap.innerHTML = '';
+      if(!rows.length){
+        luxGroupLastAt = null;
+        wrap.innerHTML = '<p class="form-note lux-group-hello">' + escapeHtml(t('group.hello')) + '</p>';
+        return;
+      }
+      var prev = null;
+      rows.forEach(function(m){ var b = luxGroupBubble(m, prev); b._luxMsg = m; wrap.appendChild(b); prev = m; });
+      luxGroupLastAt = rows[rows.length - 1].created_at;
+      wrap.scrollTop = wrap.scrollHeight;
+    })
+    .catch(function(e){
+      if(luxGroupCur !== g) return;
+      wrap.innerHTML = '<p class="form-note">' + escapeHtml(t('community.loadError')) + '</p>';
+      console.warn('[gruppi] messaggi', e);
+    });
+}
+function luxGroupBubble(m, prev){
+  var uid = currentUserId(), mine = m.sender_id === uid;
+  var div = document.createElement('div');
+  div.className = 'chat-bubble lux-gbubble ' + (mine ? 'mine' : 'theirs');
+  if(m.id) div.dataset.msgId = m.id;
+  var same = prev && prev.sender_id === m.sender_id && (new Date(m.created_at) - new Date(prev.created_at)) < 5 * 60000;
+  var who = luxGroupMember(m.sender_id);
+  var name = who ? who.name : (displayNameCache[m.sender_id] || t('notif.someone'));
+  var head = (mine || same) ? '' : '<a class="lux-gsender lux-person" href="' + escapeHtml(luxProfileHref(m.sender_id || '')) + '" style="--h:' + luxNameHue(m.sender_id) + '">' + escapeHtml(name) + '</a>';
+  if(same) div.classList.add('lux-gcont');
+  var attachHtml = '';
+  if(m.attachment_url){
+    if(m.attachment_type === 'image') attachHtml = '<img class="chat-attachment-img lux-gimg" src="' + escapeHtml(coverThumbUrl(m.attachment_url, 500)) + '" data-full="' + escapeHtml(m.attachment_url) + '" alt="" loading="lazy">';
+    else attachHtml = '<a class="chat-attachment-file" href="' + escapeHtml(m.attachment_url) + '" target="_blank" rel="noopener">📎 ' + escapeHtml(m.attachment_name || t('chat.file')) + '</a>';
+  }
+  var bodyHtml = m.body ? '<div class="body">' + renderBodyHtml(m.body) + '</div>' : '';
+  div.innerHTML = head + attachHtml + bodyHtml + '<div class="chat-bubble-meta">' + escapeHtml(notifTimeAgo(m.created_at)) + '</div>';
+  if(!who && !mine && !same && m.sender_id){
+    getDisplayName(m.sender_id).then(function(n){ var a = div.querySelector('.lux-gsender'); if(a) a.textContent = n; });
+  }
+  var img = div.querySelector('.lux-gimg');
+  if(img) img.addEventListener('click', function(){ openImageLightbox(img.getAttribute('data-full')); });
+  if(!mine && m.body && m.id && !isGifUrl(m.body)){
+    var trBtn = luxMsgTranslateBtn('grp:' + m.id, m.body);
+    div.appendChild(trBtn);
+    trBtn._luxRestore();
+  }
+  var canDel = m.id && (mine || (luxGroupCur && luxGroupCur.role === 'admin'));
+  if(canDel){
+    var delBtn = document.createElement('button');
+    delBtn.type = 'button';
+    delBtn.className = 'lux-del-btn chat-del-btn';
+    delBtn.textContent = t('common.delete');
+    delBtn.addEventListener('click', function(e){
+      e.stopPropagation();
+      if(!window.confirm(t('del.confirmMessage'))) return;
+      delBtn.disabled = true;
+      luxDelete('chat_group_messages?id=eq.' + encodeURIComponent(m.id)).then(function(){ div.remove(); })
+        .catch(function(err){ delBtn.disabled = false; luxDeleteFail(err); });
+    });
+    var metaEl = div.querySelector('.chat-bubble-meta');
+    (metaEl || div).appendChild(delBtn);
+    div.addEventListener('click', function(e){
+      if(e.target.closest('a, button, img')) return;
+      div.classList.toggle('show-actions');
+    });
+  }
+  return div;
+}
+function luxGroupStartPoll(){
+  if(luxGroupPoll) clearInterval(luxGroupPoll);
+  luxGroupPoll = setInterval(function(){
+    var g = luxGroupCur;
+    if(!g || document.hidden) return;
+    var q = SUPABASE_URL + '/rest/v1/chat_group_messages?group_id=eq.' + encodeURIComponent(g.id) + '&select=*&order=created_at.asc&limit=80';
+    // (un margine di 15 secondi: un messaggio scritto nello stesso istante di un altro non si perde; i doppioni si saltano)
+    if(luxGroupLastAt) q += '&created_at=gt.' + encodeURIComponent(new Date(new Date(luxGroupLastAt).getTime() - 15000).toISOString());
+    fetch(q, { headers: communityHeaders() })
+      .then(function(r){
+        if(r.ok) return r.json();
+        return null;
+      })
+      .then(function(rows){
+        if(luxGroupCur !== g || !rows) return;
+        var wrap = document.getElementById('chatMessages');
+        if(!wrap) return;
+        rows = rows.filter(function(m){ return !wrap.querySelector('[data-msg-id="' + String(m.id).replace(/"/g, '') + '"]'); });
+        if(!rows.length){
+          // ogni tanto: ci sono ancora? (se mi hanno tolto dal gruppo lo si vede qui)
+          if(Math.random() < 0.15) luxGroupRefresh();
+          return;
+        }
+        var hello = wrap.querySelector('.lux-group-hello'); if(hello) hello.remove();
+        var nearBottom = wrap.scrollHeight - wrap.scrollTop - wrap.clientHeight < 140;
+        var last = wrap.lastElementChild && wrap.lastElementChild._luxMsg;
+        var incoming = false;
+        rows.forEach(function(m){
+          var b = luxGroupBubble(m, last);
+          b._luxMsg = m;
+          wrap.appendChild(b);
+          last = m;
+          if(m.sender_id !== currentUserId()) incoming = true;
+          if(m.attachment_type === 'image' && m.attachment_url) chatInfoPhotoList.push(m.attachment_url);
+        });
+        if(!luxGroupLastAt || rows[rows.length - 1].created_at > luxGroupLastAt) luxGroupLastAt = rows[rows.length - 1].created_at;
+        if(nearBottom || !incoming) wrap.scrollTop = wrap.scrollHeight;
+        if(incoming){ playChatSound('received'); luxGroupMarkRead(); }
+      })
+      .catch(function(){});
+  }, 5000);
+}
+// letto: niente più «da leggere» e niente avvisi di questo gruppo nella campanella
+function luxGroupMarkRead(){
+  var g = luxGroupCur;
+  if(!g || document.hidden) return;
+  luxRpc('lux_gruppo_letto', { p_gruppo: g.id }).then(function(){
+    var cached = (luxGroupsCache || []).filter(function(x){ return x.id === g.id; })[0];
+    if(cached){ cached.last_read_at = new Date().toISOString(); }
+    var row = document.querySelector('.lux-group-row[data-group-id="' + String(g.id).replace(/"/g, '') + '"]');
+    if(row){ row.classList.remove('unread'); var dot = row.querySelector('.chat-sidebar-unread-dot'); if(dot) dot.remove(); }
+    luxGroupsShared.at = 0;
+    try { loadUnreadDmCount(); } catch(e){}
+    try { if(notifCache.some(function(n){ return n.type === 'group_message' && n.link === 'chat.html?group=' + g.id; })) loadNotifications(); } catch(e){}
+  }).catch(function(){});
+}
+document.addEventListener('visibilitychange', function(){ if(!document.hidden && luxGroupCur) luxGroupMarkRead(); });
+
+// mandare un messaggio nel gruppo (stesso campo e stesso allegato delle chat private)
+function luxGroupSend(){
+  var g = luxGroupCur;
+  var box = document.getElementById('fChatMessage');
+  var fileInput = document.getElementById('fChatAttachment');
+  var err = document.getElementById('chatMessageError');
+  var sendBtn = document.getElementById('btnSendChat');
+  if(!g || !box) return;
+  var body = box.value.trim();
+  var file = fileInput && fileInput.files[0];
+  if(err) err.textContent = '';
+  if(!body && !file){ if(err) err.textContent = t('err.required'); return; }
+  if(!isSignedIn()){ openAuth('login'); return; }
+  if(sendBtn) sendBtn.disabled = true;
+  var attachStep = file
+    ? uploadChatAttachment(file).then(function(url){
+        return { attachment_url: url, attachment_type: (file.type && file.type.indexOf('image/') === 0) ? 'image' : 'file', attachment_name: file.name };
+      })
+    : Promise.resolve({});
+  attachStep.then(function(attach){
+    var payload = Object.assign({ group_id: g.id, sender_id: currentUserId(), body: body || null }, attach);
+    var s = getSession();
+    return fetch(SUPABASE_URL + '/rest/v1/chat_group_messages', {
+      method: 'POST',
+      headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': 'Bearer ' + s.access_token, 'Content-Type': 'application/json', 'Prefer': 'return=representation' },
+      body: JSON.stringify(payload)
+    });
+  }).then(function(r){
+    if(!r.ok) return r.text().then(function(tx){ throw new Error('invio ' + r.status + ' ' + tx); });
+    return r.json().catch(function(){ return []; });
+  }).then(function(rows){
+    box.value = '';
+    luxAutoGrow(box);
+    if(fileInput) fileInput.value = '';
+    var pv = document.getElementById('chatAttachPreview'); if(pv) pv.classList.add('hidden');
+    playChatSound('sent');
+    var m = rows && rows[0];
+    var wrap = document.getElementById('chatMessages');
+    if(m && wrap && luxGroupCur === g){
+      var hello = wrap.querySelector('.lux-group-hello'); if(hello) hello.remove();
+      var lastEl = wrap.lastElementChild;
+      var b = luxGroupBubble(m, lastEl && lastEl._luxMsg);
+      b._luxMsg = m;
+      wrap.appendChild(b);
+      if(!luxGroupLastAt || m.created_at > luxGroupLastAt) luxGroupLastAt = m.created_at;
+      wrap.scrollTop = wrap.scrollHeight;
+      if(m.attachment_type === 'image' && m.attachment_url) chatInfoPhotoList.push(m.attachment_url);
+    } else if(luxGroupCur === g) luxGroupLoadMessages();
+    var cached = (luxGroupsCache || []).filter(function(x){ return x.id === g.id; })[0];
+    if(cached && m){ cached.last_message_at = m.created_at; cached.last_sender_id = m.sender_id; cached.last_message_preview = m.body || (m.attachment_type === 'image' ? '📷 Foto' : '📎 File'); cached.last_read_at = m.created_at; luxGroupsCache.sort(function(a, b){ return String(b.last_message_at || b.created_at || '').localeCompare(String(a.last_message_at || a.created_at || '')); }); luxGroupsRender(); }
+  }).catch(function(e){
+    if(err) err.textContent = t('chat.sendError');
+    console.warn('[gruppi] invio', e);
+    if(luxGroupCur === g) luxGroupRefresh();
+  }).then(function(){ if(sendBtn) sendBtn.disabled = false; });
+}
+
+/* ---- le informazioni del gruppo: partecipanti, aggiungi, togli, nome, «Silenzia», esci ---- */
+function luxGroupInfoHtml(g, panel){
+  var uid = currentUserId(), admin = g.role === 'admin';
+  var members = g.members.map(function(m){
+    var me = m.id === uid;
+    var online = isOnlineSince(m.last_seen);
+    return '<div class="lux-gmem" data-uid="' + escapeHtml(m.id) + '">' +
+      '<a class="lux-gmem-main" href="' + escapeHtml(luxProfileHref(m.id)) + '">' + avatarHtml(m.avatar_url, m.name, m.id, 'lux-gmem-av', 64) +
+        '<span class="lux-gmem-txt"><span class="lux-gmem-name">' + escapeHtml(me ? m.name + ' (' + t('community.you').toLowerCase() + ')' : m.name) + (online && !me ? ' <i class="lux-gmem-on" aria-label="' + escapeHtml(t('userDir.online')) + '"></i>' : '') + '</span>' +
+        (m.username ? '<span class="lux-gmem-nick">@' + escapeHtml(m.username) + '</span>' : '') + '</span></a>' +
+      (m.role === 'admin' ? '<span class="lux-gmem-tag">' + escapeHtml(t('group.admin')) + '</span>' : '') +
+      (admin && !me ? '<button type="button" class="lux-gmem-del" data-g-remove="' + escapeHtml(m.id) + '" aria-label="' + escapeHtml(t('group.remove') + ': ' + m.name) + '" title="' + escapeHtml(t('group.remove')) + '">×</button>' : '') +
+    '</div>';
+  }).join('');
+  var btn = function(cls, attr, label){ return '<button type="button" class="' + cls + '" ' + attr + '>' + escapeHtml(label) + '</button>'; };
+  var actions = (admin ? btn(panel ? 'btn btn-ghost btn-sm' : 'las-secondary', 'data-g-add', t('group.add')) + btn(panel ? 'btn btn-ghost btn-sm' : 'las-secondary', 'data-g-rename', t('group.rename')) : '') +
+    btn(panel ? 'btn btn-ghost btn-sm' : 'las-secondary', 'data-g-mute', g.muted ? t('group.unmute') : t('group.mute'));
+  var head = '<div class="lux-ginfo-id"><img class="lux-ginfo-av" src="' + escapeHtml(luxGroupAvatar(g.name, g.id)) + '" alt="">' +
+    '<div class="lux-ginfo-name">' + escapeHtml(g.name) + '</div>' +
+    '<div class="lux-ginfo-sub">' + escapeHtml(t('group.members').replace('{n}', g.members.length)) + (g.muted ? ' · 🔕 ' + escapeHtml(t('group.mutedTag')) : '') + '</div></div>';
+  return (panel ? '<div class="chat-info-banner lux-ginfo-banner"><button type="button" class="chat-info-close" aria-label="' + escapeHtml(t('share.close')) + '">×</button></div>' : '') +
+    head +
+    '<div class="' + (panel ? 'chat-info-actions' : 'lux-ginfo-actions') + '">' + actions + '</div>' +
+    '<p class="lux-ginfo-note">' + escapeHtml(t('group.muteNote')) + '</p>' +
+    '<div class="' + (panel ? 'chat-info-sec' : 'lux-ginfo-sec') + '"><h4>' + escapeHtml(t('group.participants')) + ' <span>(' + g.members.length + ')</span></h4><div class="lux-gmems">' + members + '</div></div>' +
+    (panel ? '<div class="chat-info-sec" id="chatInfoPhotos"><h4>' + escapeHtml(t('chatInfo.photos')) + ' <span>(' + chatInfoPhotoList.length + ')</span></h4><div class="chat-info-photos-body">' + chatInfoPhotosHtml() + '</div></div>' : '') +
+    '<div class="' + (panel ? 'chat-info-sec' : 'lux-ginfo-sec') + ' lux-ginfo-leave">' + btn(panel ? 'btn btn-ghost btn-sm lux-gleave' : 'las-danger', 'data-g-leave', t('group.leave')) + '</div>';
+}
+function luxGroupInfoWire(root, g, panel){
+  root.addEventListener('click', function(e){
+    var b = e.target.closest('button');
+    if(!b) return;
+    if(b.hasAttribute('data-g-add')) luxGroupAddSheet();
+    else if(b.hasAttribute('data-g-rename')) luxGroupRenameSheet();
+    else if(b.hasAttribute('data-g-mute')) luxGroupMute(!g.muted);
+    else if(b.hasAttribute('data-g-leave')) luxGroupExit();
+    else if(b.getAttribute('data-g-remove')) luxGroupRemove(b.getAttribute('data-g-remove'));
+    else if(b.classList.contains('chat-info-close')) toggleChatInfo(false);
+  });
+}
+// da computer (dai 1320 px): la colonna a destra; altrimenti un foglio
+function luxGroupInfoOpen(){
+  if(!luxGroupCur) return;
+  if(chatInfoMode() && chatInfoWide()){ luxGroupInfoPanel(); toggleChatInfo(true); return; }
+  luxGroupInfoSheet();
+}
+function luxGroupInfoPanel(){
+  var g = luxGroupCur;
+  if(!g || !chatInfoMode() || !chatInfoWide()) return;
+  ensureChatInfoButton();
+  var el = chatInfoEl();
+  if(!el) return;
+  var open = el.classList.contains('open');
+  el.setAttribute('data-user', 'g:' + g.id);
+  el.innerHTML = luxGroupInfoHtml(g, true);
+  wireChatInfoPhotos(el);
+  if(open) el.classList.add('open');
+  if(!el.dataset.luxGroupWired){
+    el.dataset.luxGroupWired = '1';
+    luxGroupInfoWire(el, { get muted(){ return luxGroupCur ? luxGroupCur.muted : false; } }, true);
+  }
+}
+function luxGroupInfoSheet(){
+  var g = luxGroupCur;
+  if(!g) return;
+  luxSheet('<div class="lux-ginfo">' + luxGroupInfoHtml(g, false) + '</div>', function(body){
+    luxGroupInfoWire(body.querySelector('.lux-ginfo'), g, false);
+  });
+}
+function luxGroupAfterChange(msg){
+  if(msg) luxToast(msg);
+  luxGroupsShared.at = 0;
+  var wasSheet = document.getElementById('luxAdminSheet') && document.getElementById('luxAdminSheet').classList.contains('open') && document.querySelector('#luxAdminSheet .lux-ginfo');
+  return luxGroupRefresh().then(function(ok){
+    luxGroupsLoad();
+    if(ok && wasSheet) luxGroupInfoSheet();
+    return ok;
+  });
+}
+function luxGroupAddSheet(){
+  var g = luxGroupCur;
+  if(!g) return;
+  luxSheet('<h2 class="las-title">' + escapeHtml(t('group.add')) + '</h2><p class="las-note">…</p>');
+  luxGroupFriends().then(function(friends){
+    var inside = g.members.map(function(m){ return m.id; });
+    var pick = luxGroupPickHtml(friends, inside);
+    if(!pick){
+      luxSheet('<h2 class="las-title">' + escapeHtml(t('group.add')) + '</h2><p class="las-note">' + escapeHtml(friends.length ? t('group.noneToAdd') : t('group.noFriends')) + '</p>' +
+        '<button type="button" class="las-secondary" data-las-close>' + escapeHtml(t('share.close')) + '</button>');
+      return;
+    }
+    luxSheet('<div class="lux-gsheet"><h2 class="las-title">' + escapeHtml(t('group.add')) + '</h2><p class="las-note">' + escapeHtml(g.name) + '</p>' + pick +
+        '<div class="form-error" id="luxGroupErr" aria-live="polite"></div>' +
+        '<button type="button" class="las-primary" data-g-adddo disabled>' + escapeHtml(t('group.addDo')) + '</button></div>',
+      function(body){
+        var btn = body.querySelector('[data-g-adddo]'), err = body.querySelector('#luxGroupErr');
+        var picked = luxGroupPickWire(body, function(n){ btn.disabled = n === 0; });
+        btn.addEventListener('click', function(){
+          var ids = picked();
+          if(!ids.length){ err.textContent = t('group.errPick'); return; }
+          btn.disabled = true;
+          luxRpc('lux_gruppo_aggiungi', { p_gruppo: g.id, p_membri: ids }).then(function(){
+            closeLuxSheet();
+            luxGroupAfterChange(t('group.added'));
+          }).catch(function(e){
+            console.warn('[gruppi] aggiunta', e);
+            err.textContent = t(luxGroupErrKey(e));
+            btn.disabled = false;
+          });
+        });
+      });
+  }).catch(function(){ luxSheet('<p class="las-note">' + escapeHtml(t('community.loadError')) + '</p>'); });
+}
+function luxGroupRenameSheet(){
+  var g = luxGroupCur;
+  if(!g) return;
+  luxSheet('<div class="lux-gsheet"><h2 class="las-title">' + escapeHtml(t('group.rename')) + '</h2>' +
+      '<label class="las-field">' + escapeHtml(t('group.name')) + '<input type="text" id="luxGroupNewName" maxlength="60" value="' + escapeHtml(g.name) + '" autocomplete="off"></label>' +
+      '<div class="form-error" id="luxGroupErr" aria-live="polite"></div>' +
+      '<button type="button" class="las-primary" data-g-ren>' + escapeHtml(t('reg.save')) + '</button></div>',
+    function(body){
+      var input = body.querySelector('#luxGroupNewName'), btn = body.querySelector('[data-g-ren]'), err = body.querySelector('#luxGroupErr');
+      var go = function(){
+        var name = input.value.trim();
+        if(!name){ err.textContent = t('group.errName'); return; }
+        if(name === g.name){ closeLuxSheet(); return; }
+        btn.disabled = true;
+        luxRpc('lux_gruppo_rinomina', { p_gruppo: g.id, p_nome: name }).then(function(){
+          closeLuxSheet();
+          luxGroupAfterChange(t('group.renamed'));
+        }).catch(function(e){ err.textContent = t(luxGroupErrKey(e)); btn.disabled = false; });
+      };
+      btn.addEventListener('click', go);
+      input.addEventListener('keydown', function(e){ if(e.key === 'Enter'){ e.preventDefault(); go(); } });
+      setTimeout(function(){ try { input.focus(); input.select(); } catch(e){} }, 80);
+    });
+}
+function luxGroupMute(on){
+  var g = luxGroupCur;
+  if(!g) return;
+  luxRpc('lux_gruppo_silenzia', { p_gruppo: g.id, p_muto: !!on }).then(function(){
+    g.muted = !!on;
+    luxGroupAfterChange(on ? t('group.mutedOn') : t('group.mutedOff'));
+  }).catch(function(e){ luxToast(t(luxGroupErrKey(e))); });
+}
+function luxGroupRemove(userId){
+  var g = luxGroupCur;
+  if(!g || !userId) return;
+  var m = luxGroupMember(userId);
+  var name = m ? m.name : t('notif.someone');
+  if(!window.confirm(t('group.removeConfirm').replace('{name}', name))) return;
+  luxRpc('lux_gruppo_togli', { p_gruppo: g.id, p_utente: userId }).then(function(){
+    luxGroupAfterChange(t('group.removed').replace('{name}', name));
+  }).catch(function(e){ luxToast(t(luxGroupErrKey(e))); });
+}
+function luxGroupExit(){
+  var g = luxGroupCur;
+  if(!g) return;
+  if(!window.confirm(t('group.leaveConfirm').replace('{name}', g.name))) return;
+  luxRpc('lux_gruppo_esci', { p_gruppo: g.id }).then(function(){
+    closeLuxSheet();
+    toggleChatInfo(false);
+    luxToast(t('group.left'));
+    luxGroupLeave();
+    luxGroupsShared.at = 0;
+    luxGroupsLoad();
+    luxAppSetUrl('chat.html');
+    var wrap = document.getElementById('chatMessages'); if(wrap) wrap.innerHTML = '';
+    var nameEl = document.getElementById('chatOtherName'); if(nameEl) nameEl.textContent = '—';
+    var stEl = document.getElementById('chatOtherStatus'); if(stEl) stEl.textContent = '';
+    setChatMobileView('list');
+    try { loadNotifications(); loadUnreadDmCount(); } catch(e){}
+  }).catch(function(e){ luxToast(t(luxGroupErrKey(e))); });
+}
+
 function handleAddAnnouncement(){
   var title = document.getElementById('fAnnTitle').value.trim();
   var body = document.getElementById('fAnnBody').value.trim();
@@ -26512,6 +27868,7 @@ function __appInit(){
     initChatPage(); // deve aspettare che la sessione sia confermata, non solo che il catalogo sia caricato
     setupHomeRail(); // v220: il Taccuino della home, solo sugli schermi larghi
     scheduleSiteViewCount(); // v220: una visualizzazione per pagina aperta
+    try { luxPeopleAfterSession(); } catch(e){ console.warn('[persone]', e); } // v255: «Completa il tuo profilo», il canale dall'avviso
   });
   setInterval(refreshSessionIfNeeded, 4 * 60 * 1000); // keep the token fresh while the tab stays open
   window.addEventListener('online', function(){ refreshSessionIfNeeded(); }); // v219: rinnovo saltato per la rete? si riprova appena torna
@@ -26676,7 +28033,7 @@ function __appInit(){
     // su schermi larghi la lista è già affiancata (bottone nascosto via CSS);
     // su schermi stretti, se c'è una lista da mostrare torniamo lì invece di
     // uscire del tutto dalla pagina — proprio come in qualunque app di chat
-    if(box && document.getElementById('chatSidebarList') && document.getElementById('chatSidebarList').children.length > 0){
+    if(box && document.getElementById('chatSidebarList') && (document.getElementById('chatSidebarList').children.length > 0 || document.querySelector('#luxGroups:not([hidden])'))){ // v255
       setChatMobileView('list');
     } else {
       history.back();
