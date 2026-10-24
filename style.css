@@ -5400,3 +5400,78 @@ body.theme-light .lux-groups-new{color:#7a5a12;border-color:rgba(138,106,31,.45)
 body.theme-light .lux-groups-title{color:#7a5a12;}
 body.theme-light .lux-gmem-tag{color:#7a5a12;border-color:rgba(138,106,31,.45);}
 body.theme-light .lux-ginfo-banner{background:radial-gradient(circle at 70% 30%, #f3e3c2, #e2cfa8 72%);}
+/* ============ v256: le foto (registrazione, «Completa il tuo profilo», gruppi chat) ============ */
+.lux-photo{position:relative;display:flex;align-items:center;gap:16px;margin:0 0 18px;}
+.lux-photo-ring{position:relative;flex:none;display:flex;align-items:center;justify-content:center;width:84px;height:84px;padding:0;border-radius:50%;
+  border:1.5px dashed rgba(201,162,77,.7);background:rgba(11,6,7,.45);color:var(--gold-bright);cursor:pointer;transition:border-color .2s,background-color .2s;}
+.lux-photo-ring:hover{border-color:var(--gold-bright);background-color:rgba(201,162,77,.08);}
+.lux-photo-ring:focus-visible{outline:2px solid var(--gold-bright);outline-offset:3px;}
+.lux-photo-img{position:absolute;inset:0;width:100%;height:100%;border-radius:50%;object-fit:cover;}
+.lux-photo-img[hidden]{display:none;}
+.lux-photo-cam{display:flex;align-items:center;justify-content:center;}
+.lux-photo-cam svg{width:30px;height:30px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linejoin:round;}
+.lux-photo.has-photo .lux-photo-ring,.lux-photo.has-fallback .lux-photo-ring{border-style:solid;border-color:rgba(227,194,115,.7);}
+.lux-photo.has-photo .lux-photo-cam,.lux-photo.has-fallback .lux-photo-cam{position:absolute;right:-3px;bottom:-3px;width:30px;height:30px;border-radius:50%;
+  background:#1d0a0f;border:1px solid rgba(227,194,115,.75);box-shadow:0 2px 6px rgba(0,0,0,.45);}
+.lux-photo.has-photo .lux-photo-cam svg,.lux-photo.has-fallback .lux-photo-cam svg{width:16px;height:16px;stroke-width:1.8;}
+.lux-photo.is-busy .lux-photo-ring{cursor:progress;}
+.lux-photo.is-busy .lux-photo-ring::after{content:"";position:absolute;inset:-5px;border-radius:50%;border:2px solid transparent;border-top-color:var(--gold-bright);animation:luxPhotoSpin .8s linear infinite;}
+@keyframes luxPhotoSpin{to{transform:rotate(360deg);}}
+@media (prefers-reduced-motion:reduce){ .lux-photo.is-busy .lux-photo-ring::after{animation:none;border-color:rgba(227,194,115,.6);} }
+.lux-photo-side{flex:1;min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:3px;}
+.lux-photo-label{font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--parchment-dim);}
+.lux-photo-hint{font-family:'Crimson Pro',Georgia,serif;font-size:14.5px;line-height:1.35;color:var(--parchment-dim);}
+.lux-photo-acts{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px;}
+.lux-photo-btn{min-height:36px;padding:0 14px;border-radius:18px;border:1px solid rgba(201,162,77,.5);background:transparent;color:var(--gold-bright);
+  font-family:'Crimson Pro',Georgia,serif;font-size:15.5px;font-weight:700;line-height:1;cursor:pointer;}
+.lux-photo-btn:hover,.lux-photo-btn:focus-visible{background:rgba(201,162,77,.1);border-color:var(--gold-bright);}
+.lux-photo-btn[hidden]{display:none;}
+.lux-photo-del{color:var(--parchment-dim);border-color:rgba(236,226,198,.22);}
+.lux-photo-err{font-family:'Crimson Pro',Georgia,serif;font-size:14px;line-height:1.35;color:var(--ember);}
+.lux-photo-err:empty{display:none;}
+.lux-photo-file{position:absolute;left:0;top:0;width:1px;height:1px;margin:0;padding:0;border:0;opacity:0;overflow:hidden;clip:rect(0 0 0 0);pointer-events:none;}
+/* nei fogli («Nuovo gruppo», la foto del gruppo) */
+.lux-photo-sheet{padding:12px;border-radius:16px;background:#150c0d;border:1px solid rgba(201,162,77,.14);}
+.lux-photo-sheet .lux-photo-label{font-family:'Crimson Pro',Georgia,serif;font-size:15.5px;font-weight:600;letter-spacing:0;text-transform:none;color:var(--parchment);}
+/* nel cartoncino della registrazione: sempre i colori scuri */
+html.lux-cover-on #authModal .lux-photo-ring{background:rgba(11,6,7,.5);border-color:rgba(201,162,77,.7);color:#e3c273;}
+html.lux-cover-on #authModal .lux-photo.has-photo .lux-photo-ring{border-color:rgba(227,194,115,.75);}
+html.lux-cover-on #authModal .lux-photo.has-photo .lux-photo-cam{background:#1d0a0f;color:#e3c273;border-color:rgba(227,194,115,.75);}
+html.lux-cover-on #authModal .lux-photo-label{color:#c9a24d;}
+html.lux-cover-on #authModal .lux-photo-hint{color:#b8ac8e;}
+html.lux-cover-on #authModal .lux-photo-btn{color:#e3c273;border-color:rgba(201,162,77,.5);}
+html.lux-cover-on #authModal .lux-photo-del{color:#b8ac8e;border-color:rgba(236,226,198,.22);}
+html.lux-cover-on #authModal .lux-photo-err{color:#ff9466;}
+
+/* la registrazione e «Completa il tuo profilo»: data di nascita e sesso uno sotto l'altro (affiancati, sul telefono «Preferisco non dirlo» si tagliava) */
+.lux-reg-row{grid-template-columns:minmax(0,1fr);gap:0;}
+#authModal .field input:not([type="checkbox"]):not([type="radio"]):not([type="file"]),#authModal .lux-reg select,
+.lux-ask .field input:not([type="checkbox"]):not([type="radio"]):not([type="file"]),.lux-ask .field select{height:48px;min-height:0;box-sizing:border-box;}
+.lux-date-wrap{position:relative;display:block;}
+.lux-date-ph{display:none;}
+@supports (-webkit-touch-callout:none){
+  .lux-date-wrap input[type="date"]{-webkit-appearance:none;appearance:none;display:block;width:100%;text-align:left;}
+  .lux-date-wrap input[type="date"]::-webkit-date-and-time-value{text-align:left;}
+  .lux-date-wrap.is-empty .lux-date-ph{display:block;position:absolute;left:12px;right:12px;top:50%;transform:translateY(-50%);pointer-events:none;
+    font-family:'Crimson Pro',Georgia,serif;font-size:16px;color:var(--parchment-dim);opacity:.8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  html.lux-cover-on #authModal .lux-date-wrap.is-empty .lux-date-ph{color:#b8ac8e;}
+}
+
+/* le informazioni del gruppo: la foto (chi lo gestisce la tocca per cambiarla) */
+.lux-ginfo-avbtn{position:relative;display:block;padding:0;border:0;border-radius:50%;background:none;cursor:pointer;}
+.lux-ginfo-avbtn .lux-ginfo-av{display:block;}
+.lux-ginfo-avbtn:focus-visible{outline:2px solid var(--gold-bright);outline-offset:3px;}
+.lux-ginfo-avbtn[data-g-photo-view]{cursor:zoom-in;}
+.lux-ginfo-cam{position:absolute;right:-2px;bottom:-2px;display:flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;
+  background:#1d0a0f;border:1px solid rgba(227,194,115,.75);color:var(--gold-bright);box-shadow:0 2px 6px rgba(0,0,0,.45);}
+.lux-ginfo-cam svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linejoin:round;}
+.lux-ginfo-photo-link{margin-top:4px;min-height:36px;padding:0 12px;border:0;border-radius:18px;background:none;color:var(--gold-bright);
+  font-family:'Crimson Pro',Georgia,serif;font-size:15.5px;font-weight:700;text-decoration:underline;text-underline-offset:3px;cursor:pointer;}
+.lux-ginfo-photo-link:hover,.lux-ginfo-photo-link:focus-visible{background:rgba(201,162,77,.08);}
+
+body.theme-light .lux-photo-ring{background:#fbf5e8;border-color:rgba(138,106,31,.55);color:#7a5a12;}
+body.theme-light .lux-photo.has-photo .lux-photo-cam,body.theme-light .lux-photo.has-fallback .lux-photo-cam,body.theme-light .lux-ginfo-cam{background:#fffdf7;color:#7a5a12;border-color:rgba(138,106,31,.55);}
+body.theme-light .lux-photo-btn{color:#7a5a12;border-color:rgba(138,106,31,.45);}
+body.theme-light .lux-photo-sheet{background:#fbf5e8;border-color:rgba(138,106,31,.2);}
+body.theme-light .lux-photo-sheet .lux-photo-label{color:#2a1d12;}
+body.theme-light .lux-ginfo-photo-link{color:#7a5a12;}
