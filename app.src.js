@@ -1117,6 +1117,20 @@ Object.assign(STR.hi, {"photo.label": "प्रोफ़ाइल फ़ोट�
 Object.assign(STR.bn, {"photo.label": "প্রোফাইল ছবি", "photo.hint": "ঐচ্ছিক: এতে বন্ধুরা আপনাকে সঙ্গে সঙ্গে চিনে নেবে।", "photo.choose": "একটি ছবি বেছে নিন", "photo.change": "বদলান", "photo.remove": "সরান", "photo.bad": "এই ছবিটি খোলা যাচ্ছে না: অন্য একটি বেছে নিন (JPG বা PNG)।", "photo.tooBig": "এই ছবিটি খুব ভারী: অন্য একটি বেছে নিন।", "photo.saveFail": "ছবিটি আপলোড হয়নি: আবার চেষ্টা করুন, অথবা ছবিটি সরিয়ে বাকিটা সেভ করুন।", "reg.birthPh": "তারিখ বেছে নিতে ট্যাপ করুন", "group.photo": "গ্রুপের ছবি", "group.photoHint": "ঐচ্ছিক: সব সদস্য এটি দেখতে পাবে।", "group.photoAdd": "ছবি যোগ করুন", "group.photoChange": "ছবি বদলান", "group.photoSaved": "গ্রুপের ছবি সেভ হয়েছে ✓", "group.photoRemoved": "গ্রুপের ছবি সরানো হয়েছে", "group.photoErr": "ছবিটি সেভ হয়নি: একটু পরে আবার চেষ্টা করুন।", "group.createdNoPhoto": "গ্রুপ তৈরি হয়েছে। ছবিটি সেভ হয়নি: গ্রুপের তথ্য থেকে যোগ করতে পারবেন।", "group.errAdmin": "এটি শুধু গ্রুপের অ্যাডমিন করতে পারেন।"});
 Object.assign(STR.ar, {"photo.label": "صورة الملف الشخصي", "photo.hint": "اختيارية: هكذا يتعرّف عليك أصدقاؤك فورًا.", "photo.choose": "اختر صورة", "photo.change": "تغيير", "photo.remove": "إزالة", "photo.bad": "تعذّر فتح هذه الصورة: اختر صورة أخرى (JPG أو PNG).", "photo.tooBig": "هذه الصورة كبيرة جدًا: اختر صورة أخرى.", "photo.saveFail": "لم يتم رفع الصورة: حاول مرة أخرى، أو أزلها واحفظ الباقي.", "reg.birthPh": "اضغط لاختيار التاريخ", "group.photo": "صورة المجموعة", "group.photoHint": "اختيارية: سيراها جميع الأعضاء.", "group.photoAdd": "إضافة صورة", "group.photoChange": "تغيير الصورة", "group.photoSaved": "تم حفظ صورة المجموعة ✓", "group.photoRemoved": "تمت إزالة صورة المجموعة", "group.photoErr": "لم يتم حفظ الصورة: حاول مرة أخرى بعد قليل.", "group.createdNoPhoto": "تم إنشاء المجموعة. لم يتم حفظ الصورة: يمكنك إضافتها من معلومات المجموعة.", "group.errAdmin": "لا يستطيع ذلك إلا مشرف المجموعة."});
 Object.assign(STR.pnb, {"photo.label": "پروفائل فوٹو", "photo.hint": "مرضی دی: اینج دوست تہانوں فوراً پچھان لین گے۔", "photo.choose": "فوٹو چنو", "photo.change": "بدلو", "photo.remove": "ہٹاؤ", "photo.bad": "ایہ تصویر کھل نہیں رہی: کوئی ہور چنو (JPG یا PNG)۔", "photo.tooBig": "ایہ تصویر بہت بھاری اے: کوئی ہور چنو۔", "photo.saveFail": "فوٹو اپلوڈ نہیں ہوئی: فیر کوشش کرو، یا فوٹو ہٹا کے باقی سیو کرو۔", "reg.birthPh": "تاریخ چنن لئی ٹیپ کرو", "group.photo": "گروپ دی فوٹو", "group.photoHint": "مرضی دی: سارے ممبر ایہنوں ویکھن گے۔", "group.photoAdd": "فوٹو شامل کرو", "group.photoChange": "فوٹو بدلو", "group.photoSaved": "گروپ دی فوٹو سیو ہو گئی ✓", "group.photoRemoved": "گروپ دی فوٹو ہٹا دتی گئی", "group.photoErr": "فوٹو سیو نہیں ہوئی: تھوڑی دیر بعد فیر کوشش کرو۔", "group.createdNoPhoto": "گروپ بن گیا۔ فوٹو سیو نہیں ہوئی: تسیں ایہنوں گروپ دی جانکاری توں شامل کر سکدے او۔", "group.errAdmin": "ایہ صرف گروپ دا منتظم کر سکدا اے۔"});
+// v257: i titoli «Solo per chi dona»
+Object.assign(STR.it, {"lock.badge": "Solo per chi dona", "lock.badgeOpen": "Sbloccato per te", "lock.title": "Solo per chi dona", "lock.text": "«{title}» si legge con una donazione: quando la confermiamo, si sblocca per te per 48 ore.", "lock.donate": "Dona per leggerlo", "lock.login": "Accedi per donare", "lock.pending": "La tua donazione è registrata: si sblocca appena la confermiamo.", "lock.expired": "Le tue 48 ore sono finite ({date}). Con un'altra donazione si riapre.", "lock.openFor": "Sbloccato per te: {left} (fino a {date})", "lock.leftH": "ancora {n} ore", "lock.leftH1": "ancora 1 ora", "lock.leftM": "ancora {n} minuti", "lock.leftM1": "ancora 1 minuto", "lock.admin": "Solo per chi dona — tu lo leggi sempre (sei l'amministratore).", "lock.creator": "Solo per chi dona — tu lo leggi sempre (l'hai pubblicato tu).", "lock.supportNote": "Questo titolo è «Solo per chi dona»: registra qui la tua donazione. Quando la confermiamo, si sblocca per te per 48 ore.", "lock.supportLogin": "Questo titolo è «Solo per chi dona»: per sbloccarlo con una donazione serve l'account.", "lock.donationSaved": "Donazione registrata. Grazie! Quando la confermiamo, «{title}» si sblocca per te per 48 ore.", "lock.notif": "ha confermato la tua donazione: «{title}» è sbloccato per te per 48 ore", "lock.ended": "Le 48 ore per «{title}» sono finite. Grazie per averlo sostenuto!"});
+Object.assign(STR.en, {"lock.badge": "Donors only", "lock.badgeOpen": "Unlocked for you", "lock.title": "Donors only", "lock.text": "“{title}” opens with a donation: once we confirm it, it's unlocked for you for 48 hours.", "lock.donate": "Donate to read it", "lock.login": "Log in to donate", "lock.pending": "Your donation is registered: it unlocks as soon as we confirm it.", "lock.expired": "Your 48 hours are over ({date}). Another donation opens it again.", "lock.openFor": "Unlocked for you: {left} (until {date})", "lock.leftH": "{n} hours left", "lock.leftH1": "1 hour left", "lock.leftM": "{n} minutes left", "lock.leftM1": "1 minute left", "lock.admin": "Donors only — you can always read it (you're the admin).", "lock.creator": "Donors only — you can always read it (you published it).", "lock.supportNote": "This title is “Donors only”: register your donation here. Once we confirm it, it's unlocked for you for 48 hours.", "lock.supportLogin": "This title is “Donors only”: you need an account to unlock it with a donation.", "lock.donationSaved": "Donation registered. Thank you! Once we confirm it, “{title}” is unlocked for you for 48 hours.", "lock.notif": "confirmed your donation: “{title}” is unlocked for you for 48 hours", "lock.ended": "Your 48 hours for “{title}” are over. Thank you for supporting it!"});
+Object.assign(STR.es, {"lock.badge": "Solo para quien dona", "lock.badgeOpen": "Desbloqueado para ti", "lock.title": "Solo para quien dona", "lock.text": "«{title}» se lee con una donación: cuando la confirmemos, se desbloquea para ti durante 48 horas.", "lock.donate": "Dona para leerlo", "lock.login": "Inicia sesión para donar", "lock.pending": "Tu donación está registrada: se desbloquea en cuanto la confirmemos.", "lock.expired": "Tus 48 horas han terminado ({date}). Con otra donación se vuelve a abrir.", "lock.openFor": "Desbloqueado para ti: {left} (hasta {date})", "lock.leftH": "quedan {n} horas", "lock.leftH1": "queda 1 hora", "lock.leftM": "quedan {n} minutos", "lock.leftM1": "queda 1 minuto", "lock.admin": "Solo para quien dona — tú siempre puedes leerlo (eres el administrador).", "lock.creator": "Solo para quien dona — tú siempre puedes leerlo (lo publicaste tú).", "lock.supportNote": "Este título es «Solo para quien dona»: registra aquí tu donación. Cuando la confirmemos, se desbloquea para ti durante 48 horas.", "lock.supportLogin": "Este título es «Solo para quien dona»: para desbloquearlo con una donación necesitas una cuenta.", "lock.donationSaved": "Donación registrada. ¡Gracias! Cuando la confirmemos, «{title}» se desbloquea para ti durante 48 horas.", "lock.notif": "confirmó tu donación: «{title}» está desbloqueado para ti durante 48 horas", "lock.ended": "Tus 48 horas para «{title}» han terminado. ¡Gracias por apoyarlo!"});
+Object.assign(STR.fr, {"lock.badge": "Réservé aux donateurs", "lock.badgeOpen": "Débloqué pour vous", "lock.title": "Réservé aux donateurs", "lock.text": "« {title} » se lit grâce à un don : dès que nous le confirmons, il est débloqué pour vous pendant 48 heures.", "lock.donate": "Faire un don pour le lire", "lock.login": "Connectez-vous pour faire un don", "lock.pending": "Votre don est enregistré : le titre se débloque dès que nous le confirmons.", "lock.expired": "Vos 48 heures sont terminées ({date}). Un nouveau don le rouvre.", "lock.openFor": "Débloqué pour vous : {left} (jusqu'au {date})", "lock.leftH": "encore {n} heures", "lock.leftH1": "encore 1 heure", "lock.leftM": "encore {n} minutes", "lock.leftM1": "encore 1 minute", "lock.admin": "Réservé aux donateurs — vous pouvez toujours le lire (vous êtes l'administrateur).", "lock.creator": "Réservé aux donateurs — vous pouvez toujours le lire (vous l'avez publié).", "lock.supportNote": "Ce titre est « Réservé aux donateurs » : enregistrez votre don ici. Dès que nous le confirmons, il est débloqué pour vous pendant 48 heures.", "lock.supportLogin": "Ce titre est « Réservé aux donateurs » : il faut un compte pour le débloquer avec un don.", "lock.donationSaved": "Don enregistré. Merci ! Dès que nous le confirmons, « {title} » est débloqué pour vous pendant 48 heures.", "lock.notif": "a confirmé votre don : « {title} » est débloqué pour vous pendant 48 heures", "lock.ended": "Vos 48 heures pour « {title} » sont terminées. Merci de l'avoir soutenu !"});
+Object.assign(STR.de, {"lock.badge": "Nur für Spender", "lock.badgeOpen": "Für dich freigeschaltet", "lock.title": "Nur für Spender", "lock.text": "„{title}“ wird mit einer Spende freigeschaltet: Sobald wir sie bestätigen, kannst du ihn 48 Stunden lang lesen.", "lock.donate": "Spenden, um ihn zu lesen", "lock.login": "Anmelden, um zu spenden", "lock.pending": "Deine Spende ist registriert: Der Titel wird freigeschaltet, sobald wir sie bestätigen.", "lock.expired": "Deine 48 Stunden sind vorbei ({date}). Mit einer weiteren Spende öffnet er sich wieder.", "lock.openFor": "Für dich freigeschaltet: {left} (bis {date})", "lock.leftH": "noch {n} Stunden", "lock.leftH1": "noch 1 Stunde", "lock.leftM": "noch {n} Minuten", "lock.leftM1": "noch 1 Minute", "lock.admin": "Nur für Spender — du kannst ihn immer lesen (du bist der Admin).", "lock.creator": "Nur für Spender — du kannst ihn immer lesen (du hast ihn veröffentlicht).", "lock.supportNote": "Dieser Titel ist „Nur für Spender“: Registriere hier deine Spende. Sobald wir sie bestätigen, ist er 48 Stunden lang für dich freigeschaltet.", "lock.supportLogin": "Dieser Titel ist „Nur für Spender“: Um ihn mit einer Spende freizuschalten, brauchst du ein Konto.", "lock.donationSaved": "Spende registriert. Danke! Sobald wir sie bestätigen, ist „{title}“ 48 Stunden lang für dich freigeschaltet.", "lock.notif": "hat deine Spende bestätigt: „{title}“ ist 48 Stunden lang für dich freigeschaltet", "lock.ended": "Deine 48 Stunden für „{title}“ sind vorbei. Danke für deine Unterstützung!"});
+Object.assign(STR.pt, {"lock.badge": "Só para quem doa", "lock.badgeOpen": "Desbloqueado para você", "lock.title": "Só para quem doa", "lock.text": "«{title}» se lê com uma doação: quando a confirmarmos, ele é desbloqueado para você por 48 horas.", "lock.donate": "Doe para ler", "lock.login": "Entre para doar", "lock.pending": "Sua doação está registrada: o título é desbloqueado assim que a confirmarmos.", "lock.expired": "Suas 48 horas terminaram ({date}). Com outra doação ele abre de novo.", "lock.openFor": "Desbloqueado para você: {left} (até {date})", "lock.leftH": "faltam {n} horas", "lock.leftH1": "falta 1 hora", "lock.leftM": "faltam {n} minutos", "lock.leftM1": "falta 1 minuto", "lock.admin": "Só para quem doa — você sempre pode ler (você é o administrador).", "lock.creator": "Só para quem doa — você sempre pode ler (foi você que publicou).", "lock.supportNote": "Este título é «Só para quem doa»: registre aqui sua doação. Quando a confirmarmos, ele é desbloqueado para você por 48 horas.", "lock.supportLogin": "Este título é «Só para quem doa»: para desbloqueá-lo com uma doação, você precisa de uma conta.", "lock.donationSaved": "Doação registrada. Obrigado! Quando a confirmarmos, «{title}» é desbloqueado para você por 48 horas.", "lock.notif": "confirmou sua doação: «{title}» está desbloqueado para você por 48 horas", "lock.ended": "Suas 48 horas para «{title}» terminaram. Obrigado pelo apoio!"});
+Object.assign(STR.ru, {"lock.badge": "Только для поддержавших", "lock.badgeOpen": "Открыто для вас", "lock.title": "Только для поддержавших", "lock.text": "«{title}» открывается за пожертвование: когда мы его подтвердим, выпуск будет открыт для вас на 48 часов.", "lock.donate": "Поддержать, чтобы прочитать", "lock.login": "Войдите, чтобы поддержать", "lock.pending": "Ваше пожертвование зарегистрировано: выпуск откроется, как только мы его подтвердим.", "lock.expired": "Ваши 48 часов закончились ({date}). Новое пожертвование откроет выпуск снова.", "lock.openFor": "Открыто для вас: {left} (до {date})", "lock.leftH": "осталось {n} ч", "lock.leftH1": "остался 1 час", "lock.leftM": "осталось {n} мин", "lock.leftM1": "осталась 1 минута", "lock.admin": "Только для поддержавших — вы можете читать его всегда (вы администратор).", "lock.creator": "Только для поддержавших — вы можете читать его всегда (вы его опубликовали).", "lock.supportNote": "Этот выпуск — «Только для поддержавших»: зарегистрируйте здесь своё пожертвование. Когда мы его подтвердим, выпуск откроется для вас на 48 часов.", "lock.supportLogin": "Этот выпуск — «Только для поддержавших»: чтобы открыть его пожертвованием, нужен аккаунт.", "lock.donationSaved": "Пожертвование зарегистрировано. Спасибо! Когда мы его подтвердим, «{title}» откроется для вас на 48 часов.", "lock.notif": "— ваше пожертвование подтверждено: «{title}» открыт для вас на 48 часов", "lock.ended": "Ваши 48 часов для «{title}» закончились. Спасибо за поддержку!"});
+Object.assign(STR.zh, {"lock.badge": "仅限捐赠者", "lock.badgeOpen": "已为你解锁", "lock.title": "仅限捐赠者", "lock.text": "《{title}》需要捐赠才能阅读：我们确认后，将为你解锁 48 小时。", "lock.donate": "捐赠后阅读", "lock.login": "登录后捐赠", "lock.pending": "你的捐赠已登记：我们确认后即可解锁。", "lock.expired": "你的 48 小时已结束（{date}）。再次捐赠即可重新打开。", "lock.openFor": "已为你解锁：{left}（截至 {date}）", "lock.leftH": "还剩 {n} 小时", "lock.leftH1": "还剩 1 小时", "lock.leftM": "还剩 {n} 分钟", "lock.leftM1": "还剩 1 分钟", "lock.admin": "仅限捐赠者——你随时都可以阅读（你是管理员）。", "lock.creator": "仅限捐赠者——你随时都可以阅读（这是你发布的）。", "lock.supportNote": "这部作品“仅限捐赠者”：请在这里登记你的捐赠。我们确认后，将为你解锁 48 小时。", "lock.supportLogin": "这部作品“仅限捐赠者”：需要登录账号才能通过捐赠解锁。", "lock.donationSaved": "捐赠已登记，谢谢！我们确认后，《{title}》将为你解锁 48 小时。", "lock.notif": "确认了你的捐赠：《{title}》已为你解锁 48 小时", "lock.ended": "你阅读《{title}》的 48 小时已结束。感谢你的支持！"});
+Object.assign(STR.ja, {"lock.badge": "寄付者限定", "lock.badgeOpen": "あなたに公開中", "lock.title": "寄付者限定", "lock.text": "「{title}」は寄付で読めるようになります。寄付を確認すると、48時間あなたに公開されます。", "lock.donate": "寄付して読む", "lock.login": "ログインして寄付する", "lock.pending": "寄付は登録済みです。確認でき次第、公開されます。", "lock.expired": "48時間の公開期間が終了しました（{date}）。もう一度寄付すると再び読めます。", "lock.openFor": "あなたに公開中：{left}（{date} まで）", "lock.leftH": "残り {n} 時間", "lock.leftH1": "残り 1 時間", "lock.leftM": "残り {n} 分", "lock.leftM1": "残り 1 分", "lock.admin": "寄付者限定 — あなたはいつでも読めます（管理者です）。", "lock.creator": "寄付者限定 — あなたはいつでも読めます（あなたが公開した作品です）。", "lock.supportNote": "この作品は「寄付者限定」です。ここで寄付を登録してください。確認後、48時間あなたに公開されます。", "lock.supportLogin": "この作品は「寄付者限定」です。寄付で読むにはアカウントが必要です。", "lock.donationSaved": "寄付を登録しました。ありがとうございます！確認後、「{title}」が48時間あなたに公開されます。", "lock.notif": "があなたの寄付を確認しました：「{title}」が48時間あなたに公開されました", "lock.ended": "「{title}」の48時間の公開期間が終了しました。ご支援ありがとうございました！"});
+Object.assign(STR.hi, {"lock.badge": "सिर्फ़ दान करने वालों के लिए", "lock.badgeOpen": "आपके लिए खुला", "lock.title": "सिर्फ़ दान करने वालों के लिए", "lock.text": "“{title}” दान से खुलता है: हमारे कन्फ़र्म करते ही यह आपके लिए 48 घंटे तक खुला रहेगा।", "lock.donate": "पढ़ने के लिए दान करें", "lock.login": "दान करने के लिए लॉग इन करें", "lock.pending": "आपका दान दर्ज हो गया है: हमारे कन्फ़र्म करते ही यह खुल जाएगा।", "lock.expired": "आपके 48 घंटे पूरे हो गए ({date})। एक और दान से यह फिर खुल जाएगा।", "lock.openFor": "आपके लिए खुला: {left} ({date} तक)", "lock.leftH": "{n} घंटे बाकी", "lock.leftH1": "1 घंटा बाकी", "lock.leftM": "{n} मिनट बाकी", "lock.leftM1": "1 मिनट बाकी", "lock.admin": "सिर्फ़ दान करने वालों के लिए — आप इसे हमेशा पढ़ सकते हैं (आप एडमिन हैं)।", "lock.creator": "सिर्फ़ दान करने वालों के लिए — आप इसे हमेशा पढ़ सकते हैं (इसे आपने प्रकाशित किया है)।", "lock.supportNote": "यह टाइटल “सिर्फ़ दान करने वालों के लिए” है: अपना दान यहाँ दर्ज करें। हमारे कन्फ़र्म करते ही यह आपके लिए 48 घंटे तक खुला रहेगा।", "lock.supportLogin": "यह टाइटल “सिर्फ़ दान करने वालों के लिए” है: दान से इसे खोलने के लिए अकाउंट ज़रूरी है।", "lock.donationSaved": "दान दर्ज हो गया। धन्यवाद! हमारे कन्फ़र्म करते ही “{title}” आपके लिए 48 घंटे तक खुला रहेगा।", "lock.notif": "ने आपका दान कन्फ़र्म किया: “{title}” अब 48 घंटे तक आपके लिए खुला है", "lock.ended": "“{title}” के लिए आपके 48 घंटे पूरे हो गए। समर्थन के लिए धन्यवाद!"});
+Object.assign(STR.bn, {"lock.badge": "শুধু দাতাদের জন্য", "lock.badgeOpen": "আপনার জন্য খোলা", "lock.title": "শুধু দাতাদের জন্য", "lock.text": "“{title}” দানের মাধ্যমে খোলে: আমরা নিশ্চিত করলেই এটি আপনার জন্য 48 ঘণ্টা খোলা থাকবে।", "lock.donate": "পড়তে দান করুন", "lock.login": "দান করতে লগ ইন করুন", "lock.pending": "আপনার দান নথিভুক্ত হয়েছে: আমরা নিশ্চিত করলেই এটি খুলে যাবে।", "lock.expired": "আপনার 48 ঘণ্টা শেষ হয়েছে ({date})। আরেকটি দানে এটি আবার খুলবে।", "lock.openFor": "আপনার জন্য খোলা: {left} ({date} পর্যন্ত)", "lock.leftH": "আরও {n} ঘণ্টা", "lock.leftH1": "আরও 1 ঘণ্টা", "lock.leftM": "আরও {n} মিনিট", "lock.leftM1": "আরও 1 মিনিট", "lock.admin": "শুধু দাতাদের জন্য — আপনি এটি সবসময় পড়তে পারবেন (আপনি অ্যাডমিন)।", "lock.creator": "শুধু দাতাদের জন্য — আপনি এটি সবসময় পড়তে পারবেন (এটি আপনি প্রকাশ করেছেন)।", "lock.supportNote": "এই টাইটেলটি “শুধু দাতাদের জন্য”: এখানে আপনার দান নথিভুক্ত করুন। আমরা নিশ্চিত করলেই এটি আপনার জন্য 48 ঘণ্টা খোলা থাকবে।", "lock.supportLogin": "এই টাইটেলটি “শুধু দাতাদের জন্য”: দান দিয়ে খুলতে একটি অ্যাকাউন্ট লাগবে।", "lock.donationSaved": "দান নথিভুক্ত হয়েছে। ধন্যবাদ! আমরা নিশ্চিত করলেই “{title}” আপনার জন্য 48 ঘণ্টা খোলা থাকবে।", "lock.notif": "আপনার দান নিশ্চিত করেছে: “{title}” এখন 48 ঘণ্টা আপনার জন্য খোলা", "lock.ended": "“{title}”-এর জন্য আপনার 48 ঘণ্টা শেষ হয়েছে। সমর্থনের জন্য ধন্যবাদ!"});
+Object.assign(STR.ar, {"lock.badge": "للمتبرعين فقط", "lock.badgeOpen": "مفتوح لك", "lock.title": "للمتبرعين فقط", "lock.text": "«{title}» يُفتح بالتبرّع: عندما نؤكّد تبرّعك، يصبح مفتوحًا لك لمدة 48 ساعة.", "lock.donate": "تبرّع لتقرأه", "lock.login": "سجّل الدخول للتبرّع", "lock.pending": "تبرّعك مسجّل: يُفتح فور تأكيدنا له.", "lock.expired": "انتهت ساعاتك الـ48 ({date}). يُفتح من جديد بتبرّع آخر.", "lock.openFor": "مفتوح لك: {left} (حتى {date})", "lock.leftH": "{n} ساعة متبقية", "lock.leftH1": "ساعة واحدة متبقية", "lock.leftM": "{n} دقيقة متبقية", "lock.leftM1": "دقيقة واحدة متبقية", "lock.admin": "للمتبرعين فقط — يمكنك قراءته دائمًا (أنت المشرف).", "lock.creator": "للمتبرعين فقط — يمكنك قراءته دائمًا (أنت من نشره).", "lock.supportNote": "هذا العمل «للمتبرعين فقط»: سجّل تبرّعك هنا. عندما نؤكّده، يصبح مفتوحًا لك لمدة 48 ساعة.", "lock.supportLogin": "هذا العمل «للمتبرعين فقط»: تحتاج إلى حساب لفتحه بالتبرّع.", "lock.donationSaved": "تم تسجيل التبرّع. شكرًا لك! عندما نؤكّده، يصبح «{title}» مفتوحًا لك لمدة 48 ساعة.", "lock.notif": "أكّد تبرّعك: «{title}» مفتوح لك لمدة 48 ساعة", "lock.ended": "انتهت ساعاتك الـ48 لـ«{title}». شكرًا لدعمك!"});
+Object.assign(STR.pnb, {"lock.badge": "صرف دان کرن والیاں لئی", "lock.badgeOpen": "تہاڈے لئی کھلا", "lock.title": "صرف دان کرن والیاں لئی", "lock.text": "«{title}» دان نال کھلدا اے: جدوں اسی پکا کر دیاں گے، ایہہ تہاڈے لئی 48 گھنٹے کھلا رہے گا۔", "lock.donate": "پڑھن لئی دان کرو", "lock.login": "دان کرن لئی لاگ ان کرو", "lock.pending": "تہاڈا دان درج ہو گیا اے: جیویں ای اسی پکا کراں گے، ایہہ کھل جاوے گا۔", "lock.expired": "تہاڈے 48 گھنٹے پورے ہو گئے ({date})۔ اک ہور دان نال ایہہ فیر کھل جاوے گا۔", "lock.openFor": "تہاڈے لئی کھلا: {left} ({date} تک)", "lock.leftH": "{n} گھنٹے باقی", "lock.leftH1": "1 گھنٹا باقی", "lock.leftM": "{n} منٹ باقی", "lock.leftM1": "1 منٹ باقی", "lock.admin": "صرف دان کرن والیاں لئی — تسی ایہنوں ہمیشہ پڑھ سکدے او (تسی ایڈمن او)۔", "lock.creator": "صرف دان کرن والیاں لئی — تسی ایہنوں ہمیشہ پڑھ سکدے او (ایہہ تسی شائع کیتا اے)۔", "lock.supportNote": "ایہہ ٹائٹل «صرف دان کرن والیاں لئی» اے: اپنا دان ایتھے درج کرو۔ جدوں اسی پکا کر دیاں گے، ایہہ تہاڈے لئی 48 گھنٹے کھلا رہے گا۔", "lock.supportLogin": "ایہہ ٹائٹل «صرف دان کرن والیاں لئی» اے: دان نال کھولن لئی اکاؤنٹ چاہیدا اے۔", "lock.donationSaved": "دان درج ہو گیا۔ شکریہ! جدوں اسی پکا کر دیاں گے، «{title}» تہاڈے لئی 48 گھنٹے کھلا رہے گا۔", "lock.notif": "نے تہاڈا دان پکا کر دتا: «{title}» تہاڈے لئی 48 گھنٹے کھلا اے", "lock.ended": "«{title}» لئی تہاڈے 48 گھنٹے پورے ہو گئے۔ ساتھ دین دا شکریہ!"});
 var CHAR_META = {
   Lucifer:{role:{it:"Il Portatore di Luce",en:"The Light-Bearer",es:"El Portador de Luz",fr:"Le Porteur de Lumière",de:"Der Lichtträger"},
     bio:{it:"Sovrano della collana ammiraglia: potere, caduta e desiderio raccontati su grande scala.",
@@ -3176,7 +3190,7 @@ function authSignUp(email, password){
   // v255: con i dati del profilo (nickname, nome, nascita, sesso, nazionalità): il database li copia nel profilo
   return luxAuthRequest('/auth/v1/signup', {email:email, password:password, data: Object.assign({ lang: currentLang }, luxRegData(email))}); // data.session è null se serve confermare l'email
 }
-function authSignOut(){ setSession(null); currentProfile = null; luxAppBadge(0); } // v235: uscendo, niente numero sull'icona
+function authSignOut(){ setSession(null); currentProfile = null; luxAppBadge(0); luxLockReset(); } // v257: uscendo, via le pagine sbloccate // v235: uscendo, niente numero sull'icona
 
 /* ============ MATURE CONTENT TOGGLE ============ */
 // Site defaults to all-ages. The 18+ switch is additive, not exclusive: OFF
@@ -3621,6 +3635,7 @@ function afterAuthChange(){
   if(reader && !reader.classList.contains('hidden') && !(luxEndItem && readerScrollOn())){ showReaderPage(readerIndex); } // aggiorna subito alla versione pulita se stava già leggendo (v251: non se è al «Fine del capitolo»)
   try { luxPromoAdminDevice(); luxEndAfterAuth(); luxEndRender(); } catch(e){} // v251: entrato dall'invito in fondo al capitolo: il personaggio si segue da solo
   try { luxRegSaveNow(); luxPeopleAfterSession(); } catch(e){ console.warn('[persone]', e); } // v255: i dati della registrazione nel profilo; «Completa il tuo profilo»
+  try { luxLockAfterAuth(); } catch(e){ console.warn('[bloccati]', e); } // v257: i titoli «Solo per chi dona» che posso leggere
 }
 
 function acctChipAvatarHtml(avatarUrl, name){
@@ -3853,7 +3868,7 @@ var syncState = 'idle'; // idle | syncing | error
 function getCatalog(all){
   try{
     var raw = localStorage.getItem('lux_catalog');
-    if(raw){ var arr = JSON.parse(raw); return all ? arr : arr.filter(function(i){ return !luxIsScheduled(i) && !i.deleted_at; }); } // v250: i capitoli in programma solo in Amministra (getCatalog(true)); v253: anche quelli nel cestino
+    if(raw){ var arr = luxLockOverlay(JSON.parse(raw)); return all ? arr : arr.filter(function(i){ return !luxIsScheduled(i) && !i.deleted_at; }); } // v250: i capitoli in programma solo in Amministra (getCatalog(true)); v253: anche quelli nel cestino
   }catch(e){}
   var seed = [
     {id:'c1', character:'Lucifer', title:'Midnight Cathedral', issue:'Vol. 1 — Ch. 1', date:'2026-02-14', mature:true,
@@ -3913,6 +3928,7 @@ function fetchCatalogFromSupabase(){
     .catch(function(){ return []; });
   var schedReq = luxSchedLoad(); // v250: (solo per l'admin) i capitoli in programma
   var trashReq = luxTrashLoad(); // v253: (solo per l'admin) il cestino
+  var lockReq = luxLockLoad(); // v257: le pagine dei titoli «Solo per chi dona» che posso leggere, e i miei sblocchi
   return fetch(SUPABASE_URL + '/rest/v1/catalog?select=*&order=date.desc', hdr)
     .then(function(r){ if(!r.ok) throw new Error('read failed: ' + r.status); return r.json(); })
     .then(function(items){
@@ -3926,11 +3942,12 @@ function fetchCatalogFromSupabase(){
     .then(function(items){
       // v250: un capitolo in programma non entra mai nella copia di tutti (di solito il server non lo manda nemmeno)
       items = items.filter(function(i){ return !luxIsScheduled(i); });
-      return Promise.all([schedReq, trashReq]).then(function(rq){
+      return Promise.all([schedReq, trashReq, lockReq]).then(function(rq){
         var sched = rq[0];
         saveCatalogLocal(items);
         luxCatalogSetScheduled(isAdmin() ? sched : []);
         luxCatalogSetTrashed(isAdmin() ? rq[1] : []); // v253
+        try { luxLockAfterCatalog(); } catch(e){ console.warn('[bloccati]', e); } // v257: offline, Amministra (modulo e Richieste)
         syncState = 'idle'; updateSyncStatus();
         if(isAdmin()) luxSchedWatch();
         return items;
@@ -4372,6 +4389,7 @@ function exportEverythingOffline(){
     return fetchCatalogFromSupabase();
   }).then(function(items){
     items = items || getCatalog();
+    if(isAdmin()) items = luxLockOverlay(items.map(function(i){ return Object.assign({}, i); })); // v257: anche le pagine dei titoli «Solo per chi dona» (la copia è tua)
     var zip = new JSZip();
     var totalSteps = items.reduce(function(sum, it){ return sum + 1 + (it.cover_url ? 1 : 0) + (it.pages ? it.pages.length : 0); }, 0);
     var done = 0;
@@ -4483,7 +4501,7 @@ function renderTopRanked(){
       ? '<img src="' + coverThumbUrl(item.cover_url, 400) + '" data-fallback="' + escapeHtml(item.cover_url) + '" alt="" loading="lazy" decoding="async">'
       : '<span class="init">' + item.character.charAt(0) + '</span>';
     rank.innerHTML =
-      '<div class="rank-card-cover">' + coverInner + '</div>' +
+      '<div class="rank-card-cover">' + coverInner + luxLockBadge(item, 'is-rank') + '</div>' +
       '<div class="rank-num mono">' + (idx+1) + '</div>' +
       '<div class="rank-card-body"><h5>' + escapeHtml(item.title) + '</h5>' +
         '<span class="rank-meta">' + escapeHtml(charDisplayName(item.character)) + ' · ' + Number(item.view_count || 0).toLocaleString(luxLocale()) + ' ' + escapeHtml(t('rank.reads')) + '</span></div>';
@@ -4675,7 +4693,7 @@ function renderLatestChapters(){
       : '<span class="init">' + item.character.charAt(0) + '</span>';
     var newTag = item.date === newestDate ? '<span class="new-tag">' + t('latest.newTag') + '</span>' : '';
     card.innerHTML =
-      '<div class="latest-card-cover">' + coverInner + newTag +
+      '<div class="latest-card-cover">' + coverInner + newTag + luxLockBadge(item, 'is-latest') +
         '<div class="tome-strap"><div class="tome-seal"><img src="logo-lm-seal.webp" alt=""></div></div>' +
       '</div>' +
       '<div class="latest-card-body"><h5>' + escapeHtml(item.title) + '</h5><div class="character">' + item.character + '</div></div>';
@@ -5572,7 +5590,7 @@ function buildTomeCardHtml(item){
 
   return (
     '<div class="card-idx tome-card" data-character="'+escapeHtml(item.character||'')+'">'+
-      '<div class="card-idx-cover'+(soldOut?' sold-out':'')+'">'+coverInner+badge+soldOutBadge+
+      '<div class="card-idx-cover'+(soldOut?' sold-out':'')+'">'+coverInner+badge+luxLockBadge(item)+soldOutBadge+
         stripHtml+
         '<span class="card-idx-fav'+(isFav?' active':'')+'" data-fav="'+item.id+'">'+(isFav?'♥':'♡')+'</span>'+
       '</div>'+
@@ -5688,7 +5706,7 @@ function renderCatalogHeroBento(){
   box.innerHTML = picks.map(function(item, i){
     return '<div class="bento-tile' + (i === 0 ? ' bento-big' : '') + '" data-bento-open="' + item.id + '">' +
       (item.cover_url ? '<img src="' + coverThumbUrl(item.cover_url, 700) + '" data-fallback="' + escapeHtml(item.cover_url) + '" alt="" loading="lazy">' : '') +
-      '<div class="bento-tile-label">' + (i === 0 ? '<span class="bento-eyebrow">Ultima uscita</span>' : '') + escapeHtml(item.title) + '</div>' +
+      '<div class="bento-tile-label">' + (i === 0 ? '<span class="bento-eyebrow">Ultima uscita</span>' : '') + luxLockBadge(item, 'is-inline') + escapeHtml(item.title) + '</div>' +
     '</div>';
   }).join('');
   Array.prototype.forEach.call(box.querySelectorAll('[data-bento-open]'), function(tile){
@@ -5824,7 +5842,7 @@ function luxSearchItemHtml(item, k, toks){
   return '<button type="button" class="lsr-item" role="option" id="lsr-o-' + k + '" aria-selected="false" data-lsr-id="' + escapeHtml(item.id) + '">' +
     '<span class="lsr-thumb">' + (src ? '<img alt="" loading="lazy" decoding="async" src="' + escapeHtml(src) + '" data-full="' + escapeHtml(item.cover_url) + '">' : '') + '</span>' +
     '<span class="lsr-txt"><b class="lsr-title" dir="auto">' + luxSearchMark(item.title || '—', toks) + '</b><span class="lsr-meta" dir="auto">' + meta + '</span></span>' +
-    (item.mature ? '<span class="lsr-badge">18+</span>' : '') +
+    luxLockBadge(item, 'is-inline') + (item.mature ? '<span class="lsr-badge">18+</span>' : '') +
   '</button>';
 }
 function luxSearchCharsHtml(toks){
@@ -7478,6 +7496,7 @@ function admRowHtml(item){
   if(luxIsScheduled(item) && !luxTrashed(item)) tags.push('<span class="adm-tag adm-tag-sched">Esce ' + escapeHtml(luxSchedShort(pms)) + '</span>');
   else if(pms && nowMs >= pms && nowMs - pms < 6 * 3600e3) tags.push('<span class="adm-tag adm-tag-out">Uscito ' + escapeHtml(luxSchedDay(pms) === 'oggi' ? 'alle ' + luxSchedTime(pms) : luxSchedShort(pms)) + '</span>');
   if(item.mature) tags.push('<span class="adm-tag adm-tag-18">18+</span>');
+  if(item.donor_lock) tags.push(luxLockAdmTag(item)); // v257
   if(item.permanent === false) tags.push('<span class="adm-tag adm-tag-temp">A tempo</span>'); // (nel pannello per intero: «A tempo determinato»)
   if(item.stock != null) tags.push('<span class="adm-tag adm-tag-stock">' + (item.stock > 0 ? 'In vendita · ' + item.stock : escapeHtml(t('stock.soldOut'))) + '</span>');
   if(draftCover) tags.push('<span class="adm-tag adm-tag-draft">Copertina in bozza</span>');
@@ -7706,7 +7725,7 @@ function admSheetRender(){
   var cover = draftCover || (item.cover_url ? coverThumbUrl(item.cover_url, 200) : '');
   var meta = [item.character, item.issue, admDayLabel(item)].filter(Boolean).map(function(x){ return escapeHtml(String(x)); }).join(' · ');
   var tags = (isSched ? '<span class="adm-tag adm-tag-sched">In programma</span>' : '') + '<span class="adm-tag ' + (isPermanent ? 'adm-tag-perm' : 'adm-tag-temp') + '">' + escapeHtml(isPermanent ? t('catalog.permanent') : t('catalog.temporary')) + '</span>' +
-    (item.mature ? '<span class="adm-tag adm-tag-18">18+</span>' : '') + (item.series_key ? '<span class="adm-tag">' + escapeHtml(item.series_key) + (item.chapter_number != null ? ' · ' + escapeHtml(String(item.chapter_number)) : '') + '</span>' : '');
+    (item.mature ? '<span class="adm-tag adm-tag-18">18+</span>' : '') + luxLockAdmTag(item) + (item.series_key ? '<span class="adm-tag">' + escapeHtml(item.series_key) + (item.chapter_number != null ? ' · ' + escapeHtml(String(item.chapter_number)) : '') + '</span>' : '');
   var trSmall = !item.synopsis ? 'Questo titolo non ha una sinossi' : busy ? escapeHtml(note.text) : hasAll ? 'Ci sono tutte le lingue' : 'Mancano: ' + escapeHtml(luxTrNames(missing));
   body.innerHTML =
     '<div class="adm-sheet-grab" aria-hidden="true"></div>' +
@@ -7727,6 +7746,7 @@ function admSheetRender(){
         '<small>' + (item.pages_watermarked ? '✓ ' + escapeHtml(t('rewatermark.done')) : item.pages.length + (item.pages.length === 1 ? ' pagina' : ' pagine')) + '</small></span></button>' : '') +
       '<button type="button" class="adm-act" data-toggle-permanent="' + id + '">' + I.clock + '<span>' + escapeHtml(isPermanent ? t('catalog.makeTemporary') : t('catalog.makePermanent')) +
         '<small>Ora: ' + escapeHtml(isPermanent ? t('catalog.permanent') : t('catalog.temporary')).toLowerCase() + '</small></span></button>' +
+      luxLockSheetHtml(item) + // v257: «Solo per chi dona»
       (item.stock != null ? '<div class="adm-act adm-stock">' + I.box + '<span>' + item.stock + ' ' + escapeHtml(t('stock.left')) + '<small>In vendita</small></span>' +
         '<span class="adm-stock-btns"><button type="button" class="btn btn-sm btn-ghost" data-sell-one="' + id + '"' + (item.stock <= 0 ? ' disabled' : '') + '>' + escapeHtml(t('admin.stock.sell')) + '</button>' +
         '<button type="button" class="btn btn-sm btn-ghost" data-restock="' + id + '">' + escapeHtml(t('admin.stock.restore')) + '</button></span></div>' : '') +
@@ -7738,6 +7758,7 @@ function admSheetRender(){
     '</div>' +
     '<button type="button" class="adm-del" data-del="' + id + '">' + I.trash + '<span>' + (luxTrashOn() ? 'Sposta nel cestino' : 'Elimina questo titolo') + '</span></button>'; // v253
   admSheetWire(body, item);
+  luxLockSheetWire(body, item); // v257
 }
 function admPatchCatalog(id, patch, prefer){
   var session = getSession();
@@ -7909,7 +7930,7 @@ function luxIsScheduled(i){ var t = luxSchedMs(i); return t !== null && t > Date
    getCatalog() (tutto il sito) non dà i capitoli in programma; getCatalog(true) (Amministra) sì.
    saveCatalogLocal() non li perde quando chi salva ha in mano l'elenco senza di loro; per toglierli
    davvero: luxCatalogRemove(). */
-function luxCatalogWrite(items){ localStorage.setItem('lux_catalog', JSON.stringify(items)); synopsisDbLangsMemo = null; }
+function luxCatalogWrite(items){ localStorage.setItem('lux_catalog', JSON.stringify(luxLockStrip(items))); synopsisDbLangsMemo = null; } // v257: le pagine dei titoli «Solo per chi dona» non si salvano sul telefono
 function luxCatalogRemove(ids){
   var gone = {};
   (Array.isArray(ids) ? ids : [ids]).forEach(function(id){ gone[id] = true; });
@@ -9444,7 +9465,8 @@ function luxSpaceScan(){
   var d = { rows: [], files: {}, denied: {}, cat: {}, now: Date.now() };
   refreshSessionIfNeeded().then(function(){
     return fetch(SUPABASE_URL + '/rest/v1/catalog?select=id,title,cover_url,pages,pages_clean,pdf_url&order=created_at.desc', { headers: luxSpaceH(false) })
-      .then(function(r){ if(!r.ok) throw new Error('catalogo: ' + r.status); return r.json(); });
+      .then(function(r){ if(!r.ok) throw new Error('catalogo: ' + r.status); return r.json(); })
+      .then(luxLockSpaceMerge); // v257: le pagine dei titoli «Solo per chi dona» (nella tabella protetta) non sono file inutili
   }).then(function(rows){
     d.rows = rows || [];
     var k = 0;
@@ -9568,7 +9590,7 @@ function luxSpaceClassify(d){
   (d.files['comic-pages'] || []).forEach(function(f){ sizeOf[f.path] = f.size; });
   d.rows.forEach(function(r){
     var n = 0;
-    (r.pages || []).forEach(function(u){
+    (r._luxLocked ? [] : r.pages || []).forEach(function(u){ // v257: (le pagine di un titolo «Solo per chi dona» restano com'erano)
       var p = luxPubPath(u);
       if(!p || /-lx\.jpg$/i.test(p)) return;
       n++; pubN++; var s = sizeOf[p] || 0; pubSize += s; pubAfter += Math.min(s || 420000, 420000) + 12000;
@@ -10399,6 +10421,7 @@ function openEditTitle(id){
   document.getElementById('fStock').value = item.stock != null ? item.stock : '';
   document.getElementById('fSynopsis').value = item.synopsis || '';
   document.getElementById('fMature').checked = !!item.mature;
+  luxLockFormFill(item); // v257
   renderGenreChecks();
   setSelectedGenres(item.genres);
   resetCollabBlocks();
@@ -10442,6 +10465,7 @@ function cancelEditTitle(){
   resetCollabBlocks();
   document.getElementById('fSynopsis').value = '';
   document.getElementById('fMature').checked = false;
+  luxLockFormFill(null); // v257
   renderGenreChecks();
   setSelectedGenres([]);
   var btn = document.getElementById('btnAddEntry');
@@ -10652,6 +10676,7 @@ function handleAddEntry(){
       document.getElementById('fStock').value = '';
       document.getElementById('fSynopsis').value = '';
       document.getElementById('fMature').checked = false;
+      luxLockFormFill(null); // v257
       setSelectedGenres([]);
       status.textContent = 'Titolo salvato in bozza — non ancora online.';
       renderDraftBar();
@@ -10718,6 +10743,7 @@ function handleAddEntry(){
   var luxW = luxWhenRead(isEdit ? existing : null);
   if(luxW.error){ err.textContent = luxW.error; return; }
   luxWhenApply(newItem, luxW);
+  luxLockApply(newItem, existing); // v257: «Solo per chi dona» (l'interruttore lo tocca solo l'amministratore)
 
   var btn = document.getElementById('btnAddEntry');
   btn.disabled = true;
@@ -10832,6 +10858,7 @@ function runTitleUploadSequence(newItem, isEdit){
     resetCollabBlocks();
     document.getElementById('fSynopsis').value = '';
     document.getElementById('fMature').checked = false;
+    luxLockFormFill(null); // v257
     setSelectedGenres([]);
     clearPendingPages();
     clearPendingCover();
@@ -12432,6 +12459,7 @@ function loadNotifications(){
     .then(function(r){ if(!r.ok) throw new Error('notifications read failed'); return r.json(); })
     .then(function(rows){
       notifCache = rows;
+      luxLockNotifSeen(rows); // v257: arrivato uno sblocco: si vede subito
       var unread = rows.filter(function(n){ return !n.read; }).length;
       luxAppBadge(unread); // v235: anche sull'icona dell'app
       if(badge){
@@ -12480,7 +12508,7 @@ function renderNotifPanel(){
     var noxState = smallNoxState(n);
     var noxImg = noxState ? '<img src="smallnox-' + noxState + '.png" alt="SmallNox" class="notif-nox-avatar">' : '';
     var refHtml = '';
-    if(n.catalog_id && n.type !== 'mention' && n.type !== 'mention_collab'){ // v255: (il titolo è già nel testo)
+    if(n.catalog_id && n.type !== 'mention' && n.type !== 'mention_collab' && n.type !== 'donor_unlock'){ // v257: (anche nello sblocco il titolo è nel testo) // v255: (il titolo è già nel testo)
       var refItem = getCatalog().find(function(i){ return i.id === n.catalog_id; });
       if(refItem) refHtml = ' <span class="notif-ref" style="color:var(--gold, #c9a24d);font-style:italic;">«' + escapeHtml(refItem.title) + '»</span>';
     }
@@ -12545,6 +12573,7 @@ function openNotification(n){
     }
     return;
   }
+  if(n.type === 'donor_unlock' && n.catalog_id && !n._lockFresh){ n._lockFresh = true; luxLockLoad(true).then(function(){ openNotification(n); }); return; } // v257: lo sblocco appena confermato
   if(n.catalog_id){
     var openIt = function(item){
       if(item.mature && !matureVisible){
@@ -17702,6 +17731,7 @@ function voteRating(catalogId, stars){
 }
 
 function openTitleModal(item){
+  item = luxLockFresh(item); // v257: con le pagine, se le può leggere
   currentModalCatalogId = item.id;
   document.getElementById('titleModalTitle').textContent = item.title;
   document.getElementById('titleModalMeta').textContent = item.character + ' · ' + (item.issue || '') + ' · ' + (item.date || '');
@@ -17880,6 +17910,7 @@ function openTitleModal(item){
   document.getElementById('fCommentBody').value = '';
   document.getElementById('commentError').textContent = '';
 
+  luxLockTitleModal(item); // v257: il lucchetto (o «sbloccato per te: ancora …»)
   loadComments(item.id);
   document.getElementById('titleModal').classList.remove('hidden');
 }
@@ -21749,18 +21780,15 @@ function setupDonationRegister(item, overlay){
       var body = '[DONAZIONE] "' + item.title + '" — supporto libero registrato' +
         (amount !== null ? ' · ' + luxAmountIt(amount) + ' €' : '') + (method ? ' · ' + method : '') +
         ' · ricevuta ' + code + ' · nickname: ' + nick;
-      return fetch(SUPABASE_URL + '/rest/v1/requests', {
-        method:'POST',
-        headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token, 'Content-Type':'application/json' },
-        body: JSON.stringify({ user_id: currentUserId(), author_email: currentUserEmail(), body: body })
-      }).then(function(r){
+      return luxLockPostRequest({ user_id: currentUserId(), author_email: currentUserEmail(), body: body }, item, session.access_token).then(function(r){ // v257: (per un titolo «Solo per chi dona», anche quale)
         if(!r.ok) throw new Error('donation register failed: ' + r.status);
         var rec = { code: code, at: now.toISOString(), name: nick, email: currentUserEmail(), title: item.title, titleId: item.id, amount: amount, method: method, uid: currentUserId() };
         luxKeepReceipt(rec);
-        sent.innerHTML = '✓ ' + escapeHtml(t('support.donationSaved')) +
+        sent.innerHTML = '✓ ' + escapeHtml(item.donor_lock && (!luxLockWhy(item) || luxLockWhy(item) === 'donor') ? t('lock.donationSaved').replace('{title}', item.title) : t('support.donationSaved')) + // v257
           '<br><button type="button" class="btn btn-primary btn-sm lux-don-rc">' + escapeHtml(t('support.receiptBtn')) + '</button>';
         sent.querySelector('.lux-don-rc').addEventListener('click', function(){ openReceiptModal(rec); });
         luxRenderPrevReceipts(item, code);
+        if(item.donor_lock) luxLockReopen(item.id); // v257: sotto il lucchetto, «in attesa di conferma»
       });
     }).catch(function(e){
       console.warn('Donation register failed:', e);
@@ -21966,6 +21994,7 @@ function openSupportTitlePanel(item){
     '</div>';
   document.body.appendChild(overlay);
   document.getElementById('supportTitleClose').onclick = function(){ overlay.remove(); };
+  luxLockSupportNote(item, overlay); // v257: «Solo per chi dona»: cosa succede donando
   overlay.addEventListener('click', function(e){ if(e.target === overlay) overlay.remove(); });
 
   if(isForSale){
@@ -22035,6 +22064,7 @@ function openPageReader(item){
   readerBlobUrlCache = {};
   readerItem = item;
   readerPages = item.pages || [];
+  if(luxLockGate(item)){ readerPages = []; luxLockClearReader(); } // v257: «Solo per chi dona»: si legge con la donazione confermata (48 ore)
   readerIndex = 0;
   var reader = document.getElementById('pageReader');
   luxReadLeftEnd(); // v250
@@ -22232,6 +22262,7 @@ var offlineSyncRunning = false;
 // e aggiorna la sua voce in lux_offline_meta. Usata sia dal bottone "Scarica
 // tutto per offline" sia dal bottone di download sul singolo titolo.
 function syncSingleItemForOffline(item, cache, meta, onProgress){
+  if(item && item.donor_lock && !isAdmin() && !(item.created_by && item.created_by === currentUserId())){ if(onProgress) onProgress(1, 1); return Promise.resolve(); } // v257: non si scarica (si leggerebbe anche dopo le 48 ore)
   var cleanPages = item.pages_clean || [];
   var publicPages = item.pages || [];
   var itemKeys = cleanPages.map(function(path){ return 'https://offline-cache.local/clean/' + path; });
@@ -26180,6 +26211,7 @@ function luxNotifText(n){
   }
   if(n.type === 'mention_collab' && (m = /^ti ha messo tra i collaboratori di «([\s\S]*)»$/.exec(msg))) return t('notif.mentionCollab').replace('{title}', m[1]);
   if(n.type === 'group_added' && (m = /^ti ha aggiunto al gruppo «([\s\S]*)»$/.exec(msg))) return t('notif.groupAdded').replace('{name}', m[1]);
+  if(n.type === 'donor_unlock') return luxLockNotifText(n); // v257
   if(n.type === 'group_message') return '— ' + msg.replace(/: 📷 Foto$/, ': 📷 ' + t('chat.photo')).replace(/: 📎 File$/, ': 📎 ' + t('chat.file'));
   return msg;
 }
@@ -27282,6 +27314,500 @@ function luxGroupPhotoSheet(){
     });
 }
 
+/* ============ v257: I TITOLI «SOLO PER CHI DONA» ============
+   In Amministra, su un titolo, l'interruttore «Solo per chi dona»: chi non ha donato vede la copertina e la sinossi, non le
+   pagine (il database non gliele manda nemmeno: stanno in una tabella che legge solo chi può). In Richieste, «Verifica e
+   sblocca 48 ore» su una donazione per quel titolo: chi l'ha fatta lo legge per 48 ore, poi si richiude anche per lui.
+   L'amministratore e chi ha creato il titolo lo leggono sempre. PDF e «Scarica per offline» restano chiusi a chi dona (si
+   potrebbe leggere anche dopo le 48 ore). Le tabelle e le regole sono nel file SQL della v257: senza, non cambia niente. */
+var luxLock = { pages: {}, until: {}, last: {}, reqs: {}, loaded: false, ok: false, busy: false, at: 0, uid: null, promise: null };
+var luxLockTimer = null, luxLockNotifIds = null;
+var LUX_LOCK_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10.5" width="14" height="10" rx="2.2"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/><circle cx="12" cy="15.4" r="1.3"/></svg>';
+function luxLockMs(s){ var x = Date.parse(s || ''); return isNaN(x) ? 0 : x; }
+var LUX_UNLOCK_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10.5" width="14" height="10" rx="2.2"/><path d="M8 10.5V8a4 4 0 0 1 7.7-1.6"/><circle cx="12" cy="15.4" r="1.3"/></svg>';
+
+// le pagine dei titoli bloccati che posso leggere (l'amministratore tutte) e i miei sblocchi: dal database, con l'accesso
+function luxLockLoad(force){
+  if(!SUPABASE_URL || !isSignedIn()){ luxLockReset(); return Promise.resolve(); }
+  var uid = currentUserId(), now = Date.now();
+  if(luxLock.uid !== null && luxLock.uid !== uid) luxLockReset(); // (un altro account su questo telefono)
+  if(luxLock.promise && luxLock.uid === uid && (luxLock.busy || (!force && luxLock.ok && now - luxLock.at < 15000))) return luxLock.promise;
+  luxLock.uid = uid; luxLock.busy = true; luxLock.at = now;
+  // (404/400: il file SQL della v257 non c'è ancora, quindi niente di bloccato; null: non è arrivato, si riprova la prossima volta)
+  var get = function(path){
+    return fetch(SUPABASE_URL + '/rest/v1/' + path, { headers: communityHeaders() })
+      .then(function(r){ return r.ok ? r.json() : (r.status === 404 || r.status === 400 ? [] : null); })
+      .catch(function(){ return null; });
+  };
+  var p = refreshSessionIfNeeded().catch(function(){}).then(function(){
+    return Promise.all([
+      get('catalog_locked?select=catalog_id,pages,pages_clean,pdf_url'),
+      get('donor_unlocks?select=catalog_id,request_id,starts_at,expires_at&user_id=eq.' + encodeURIComponent(uid) + '&order=expires_at.desc&limit=200')
+    ]);
+  }).then(function(res){
+    if(luxLock.uid !== uid) return;
+    if(res[0]){
+      var pg = {};
+      res[0].forEach(function(row){ if(row && row.catalog_id) pg[row.catalog_id] = row; });
+      luxLock.pages = pg;
+    }
+    if(res[1]){
+      var until = {}, last = {}, reqs = {};
+      res[1].forEach(function(u){
+        if(!u || !u.catalog_id) return;
+        if(!until[u.catalog_id] || luxLockMs(u.expires_at) > luxLockMs(until[u.catalog_id])) until[u.catalog_id] = u.expires_at;
+        if(u.starts_at && (!last[u.catalog_id] || luxLockMs(u.starts_at) > luxLockMs(last[u.catalog_id]))) last[u.catalog_id] = u.starts_at;
+        if(u.request_id) reqs[String(u.request_id)] = u;
+      });
+      luxLock.until = until; luxLock.last = last; luxLock.reqs = reqs;
+    }
+    luxLock.ok = !!(res[0] && res[1]);
+  }).catch(function(e){ console.warn('[bloccati]', e); luxLock.ok = false; }).then(function(){
+    if(luxLock.uid === uid){ luxLock.loaded = true; luxLock.busy = false; }
+  });
+  luxLock.promise = p;
+  return p;
+}
+function luxLockReset(){
+  luxLock.pages = {}; luxLock.until = {}; luxLock.last = {}; luxLock.reqs = {};
+  luxLock.uid = null; luxLock.loaded = false; luxLock.ok = false; luxLock.busy = false; luxLock.promise = null;
+  luxLockNotifIds = null;
+}
+// lo posso leggere adesso? (l'amministratore, chi l'ha creato, chi ha donato durante le sue 48 ore)
+function luxLockCanRead(item){
+  if(!item || !item.donor_lock) return true;
+  if(!isSignedIn()) return false;
+  if(isAdmin()) return true;
+  if(item.created_by && item.created_by === currentUserId()) return true;
+  var u = luxLock.until[item.id];
+  return !!u && luxLockMs(u) > Date.now();
+}
+function luxLockWhy(item){
+  if(!item || !item.donor_lock || !isSignedIn()) return null;
+  if(isAdmin()) return 'admin';
+  if(item.created_by && item.created_by === currentUserId()) return 'creator';
+  return luxLockCanRead(item) ? 'donor' : null;
+}
+// nel catalogo di questo telefono le pagine dei titoli bloccati non ci sono: si aggiungono qui (in memoria), solo per chi può
+function luxLockOverlay(arr){
+  if(!Array.isArray(arr)) return arr;
+  arr.forEach(function(i){
+    if(!i || !i.donor_lock) return;
+    var lk = luxLock.pages[i.id];
+    if(lk && luxLockCanRead(i)){ i.pages = lk.pages || []; i.pages_clean = lk.pages_clean || []; i.pdf_url = lk.pdf_url || null; }
+  });
+  return arr;
+}
+// …e sul telefono non si salvano (passate le 48 ore non devono restare lì)
+function luxLockStrip(items){
+  if(!Array.isArray(items)) return items;
+  return items.map(function(i){
+    if(!i || !i.donor_lock) return i;
+    var full = (i.pages && i.pages.length) || (i.pages_clean && i.pages_clean.length) || i.pdf_url;
+    if(!full) return i;
+    if(luxLockCanRead(i)){ // (l'amministratore ha appena cambiato le pagine: restano in memoria, fresche)
+      var lk = luxLock.pages[i.id] || (luxLock.pages[i.id] = { catalog_id: i.id });
+      if(i.pages && i.pages.length) lk.pages = i.pages;
+      if(i.pages_clean && i.pages_clean.length) lk.pages_clean = i.pages_clean;
+      if(i.pdf_url) lk.pdf_url = i.pdf_url;
+    }
+    var c = Object.assign({}, i);
+    c.pages = []; c.pages_clean = []; c.pdf_url = null;
+    return c;
+  });
+}
+function luxLockFresh(item){
+  if(!item || !item.donor_lock) return item;
+  var f = getCatalog(true).find(function(x){ return x.id === item.id; });
+  return f || item;
+}
+// il database conosce l'interruttore? (dopo il file SQL della v257 ogni titolo arriva con «donor_lock»)
+function luxLockSupported(){
+  try { return getCatalog(true).some(function(i){ return i && Object.prototype.hasOwnProperty.call(i, 'donor_lock'); }); } catch(e){ return false; }
+}
+function luxLockDate(iso){
+  var d = new Date(iso);
+  if(isNaN(d.getTime())) return '';
+  try { return d.toLocaleString(luxLocale(), { weekday: 'short', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' }); } catch(e){ return d.toLocaleString(); }
+}
+function luxLockLeft(iso){
+  var ms = luxLockMs(iso) - Date.now();
+  if(!(ms > 0)) return '';
+  var h = Math.floor(ms / 3600000);
+  if(h >= 2) return t('lock.leftH').replace('{n}', h);
+  if(h === 1) return t('lock.leftH1');
+  var m = Math.max(1, Math.ceil(ms / 60000));
+  return m === 1 ? t('lock.leftM1') : t('lock.leftM').replace('{n}', m);
+}
+// sulla copertina: il lucchetto (o il lucchetto aperto con le ore che restano, per chi ha donato)
+function luxLockBadge(item, cls){
+  if(!item || !item.donor_lock) return '';
+  var why = luxLockWhy(item), c = 'lux-lock-badge' + (cls ? ' ' + cls : '');
+  if(why === 'donor'){
+    var h = Math.max(1, Math.ceil((luxLockMs(luxLock.until[item.id]) - Date.now()) / 3600000));
+    return '<span class="' + c + ' is-open" title="' + escapeHtml(t('lock.badgeOpen')) + '" role="img" aria-label="' + escapeHtml(t('lock.badgeOpen')) + '">' + LUX_UNLOCK_SVG + '<b>' + h + ' h</b></span>';
+  }
+  return '<span class="' + c + '" title="' + escapeHtml(t('lock.badge')) + '" role="img" aria-label="' + escapeHtml(t('lock.badge')) + '">' + LUX_LOCK_SVG + '</span>';
+}
+
+/* ---- nella scheda del titolo: il lucchetto al posto delle pagine (o «sbloccato per te: ancora …») ---- */
+// (da openPageReader) true = non si legge: le pagine restano chiuse
+function luxLockGate(item){
+  if(!item || !item.donor_lock) return false;
+  return !(luxLockCanRead(item) && item.pages && item.pages.length);
+}
+// (da openPageReader, quando non si legge) via anche le tavole già mostrate
+function luxLockClearReader(){
+  ['pageReaderImg', 'pageReaderImg2'].forEach(function(id){ var im = document.getElementById(id); if(im) im.removeAttribute('src'); });
+  ['pageReaderThumbs', 'pageReaderScroll'].forEach(function(id){ var b = document.getElementById(id); if(b) b.innerHTML = ''; });
+}
+function luxLockPanelEl(){
+  var el = document.getElementById('luxLockPanel');
+  if(el) return el;
+  var reader = document.getElementById('pageReader');
+  if(!reader || !reader.parentNode) return null;
+  el = document.createElement('div');
+  el.id = 'luxLockPanel';
+  el.className = 'lux-lock-panel';
+  el.hidden = true;
+  reader.parentNode.insertBefore(el, reader);
+  return el;
+}
+// (alla fine di openTitleModal) il riquadro; e niente PDF né offline per chi dona (si leggerebbero anche dopo le 48 ore)
+function luxLockTitleModal(item){
+  var el = luxLockPanelEl();
+  if(luxLockTimer){ clearInterval(luxLockTimer); luxLockTimer = null; }
+  if(!el) return;
+  if(!item || !item.donor_lock){ el.hidden = true; el.innerHTML = ''; return; }
+  var why = luxLockWhy(item);
+  if(why !== 'admin' && why !== 'creator'){
+    var pdf = document.getElementById('titleModalPdf'); if(pdf) pdf.classList.add('hidden');
+    var off = document.getElementById('titleModalOffline'); if(off) off.classList.add('hidden');
+  }
+  el.hidden = false;
+  if(isSignedIn() && !luxLock.loaded){
+    // le pagine e gli sblocchi non sono ancora arrivati: un attimo
+    el.className = 'lux-lock-panel is-wait';
+    el.innerHTML = '<p class="lux-lock-wait"><span class="lux-lock-ico">' + LUX_LOCK_SVG + '</span><span>…</span></p>';
+    luxLockLoad().then(function(){ luxLockReopen(item.id); });
+    return;
+  }
+  if(why){
+    el.className = 'lux-lock-panel is-bar' + (why === 'donor' ? ' is-donor' : '');
+    var txt = function(){
+      return why === 'admin' ? t('lock.admin') : why === 'creator' ? t('lock.creator')
+        : t('lock.openFor').replace('{left}', luxLockLeft(luxLock.until[item.id])).replace('{date}', luxLockDate(luxLock.until[item.id]));
+    };
+    el.innerHTML = '<span class="lux-lock-ico">' + (why === 'donor' ? LUX_UNLOCK_SVG : LUX_LOCK_SVG) + '</span><span class="lux-lock-bar-txt">' + escapeHtml(txt()) + '</span>';
+    if(why === 'donor'){
+      luxLockTimer = setInterval(function(){
+        var modal = document.getElementById('titleModal');
+        if(currentModalCatalogId !== item.id || !modal || modal.classList.contains('hidden')){ clearInterval(luxLockTimer); luxLockTimer = null; return; }
+        if(!luxLockCanRead(item)){ // finite le 48 ore mentre leggeva: si richiude
+          clearInterval(luxLockTimer); luxLockTimer = null;
+          luxToast(t('lock.ended').replace('{title}', item.title || ''));
+          luxLockReopen(item.id);
+          return;
+        }
+        var b = el.querySelector('.lux-lock-bar-txt');
+        if(b) b.textContent = txt();
+      }, 20000);
+    }
+    return;
+  }
+  // chiuso
+  el.className = 'lux-lock-panel is-locked';
+  el.innerHTML = '<div class="lux-lock-head"><span class="lux-lock-ico">' + LUX_LOCK_SVG + '</span><span class="lux-lock-title">' + escapeHtml(t('lock.title')) + '</span></div>' +
+    '<p class="lux-lock-text">' + escapeHtml(t('lock.text').replace('{title}', item.title || '')) + '</p>' +
+    '<p class="lux-lock-status" aria-live="polite"></p>' +
+    '<button type="button" class="btn btn-primary lux-lock-cta">' + escapeHtml(isSignedIn() ? t('lock.donate') : t('lock.login')) + '</button>';
+  el.querySelector('.lux-lock-cta').addEventListener('click', function(){
+    if(!isSignedIn()){ openAuth('login'); return; }
+    openSupportTitlePanel(luxLockFresh(item));
+  });
+  if(isSignedIn()) luxLockStatus(item, el.querySelector('.lux-lock-status'));
+}
+// arrivate (o finite) le 48 ore: la scheda aperta si rifà (pagine, lucchetto, PDF)
+function luxLockReopen(id){
+  if(!id || currentModalCatalogId !== id) return;
+  var modal = document.getElementById('titleModal');
+  if(!modal || modal.classList.contains('hidden')) return;
+  var fresh = getCatalog(true).find(function(x){ return x.id === id; });
+  if(!fresh) return;
+  if(luxLockGate(fresh)){ try { luxZoomClose(); } catch(e){} }
+  var was = titleModalRelang;
+  titleModalRelang = true; // (come quando cambia la lingua: la scheda si rifà, non è una nuova apertura)
+  try { openTitleModal(fresh); } finally { titleModalRelang = was; }
+}
+// sotto il lucchetto: la donazione registrata che aspetta la conferma, o le 48 ore già finite
+function luxLockStatus(item, out){
+  if(!out) return;
+  var uid = currentUserId(), past = luxLock.until[item.id], last = luxLock.last[item.id];
+  fetch(SUPABASE_URL + '/rest/v1/requests?select=id,catalog_id,body,created_at&user_id=eq.' + encodeURIComponent(uid) + '&order=created_at.desc&limit=30', { headers: communityHeaders() })
+    .then(function(r){ return r.ok ? r.json() : []; }).catch(function(){ return []; })
+    .then(function(rows){
+      if(currentModalCatalogId !== item.id || !out.isConnected) return;
+      var pend = (rows || []).filter(function(q){
+        if(!q || String(q.body || '').indexOf('[DONAZIONE]') !== 0) return false;
+        var same = q.catalog_id ? q.catalog_id === item.id : luxLockTitlesOf(q.body).indexOf(item.title) >= 0;
+        return same && !luxLock.reqs[String(q.id)] && (!last || luxLockMs(q.created_at) > luxLockMs(last));
+      })[0];
+      if(pend) out.textContent = t('lock.pending');
+      else if(past) out.textContent = t('lock.expired').replace('{date}', luxLockDate(past));
+    });
+}
+
+/* ---- «Sostieni»: per un titolo bloccato, cosa succede donando (e la donazione sa per quale titolo è) ---- */
+function luxLockSupportNote(item, overlay){
+  if(!item || !item.donor_lock || !overlay || item.stock != null || luxLockWhy(item) === 'admin' || luxLockWhy(item) === 'creator') return;
+  var box = overlay.firstElementChild;
+  if(!box) return;
+  var note = document.createElement('div');
+  note.className = 'lux-lock-support';
+  note.innerHTML = '<span class="lux-lock-ico">' + LUX_LOCK_SVG + '</span><span class="lux-lock-support-txt">' + escapeHtml(isSignedIn() ? t('lock.supportNote') : t('lock.supportLogin')) + '</span>' +
+    (isSignedIn() ? '' : '<button type="button" class="btn btn-primary btn-sm lux-lock-support-login">' + escapeHtml(t('lock.login')) + '</button>');
+  var anchor = box.querySelector('.lux-don') || box.querySelector('a[data-pay]');
+  if(anchor && anchor.matches('a[data-pay]')) anchor = anchor.parentNode;
+  if(anchor && anchor.parentNode === box) box.insertBefore(note, anchor); else box.appendChild(note);
+  var lg = note.querySelector('.lux-lock-support-login');
+  if(lg) lg.addEventListener('click', function(){ overlay.remove(); openAuth('login'); });
+}
+// la donazione registrata, col titolo (se il database non ha ancora la colonna, senza)
+function luxLockPostRequest(payload, item, token){
+  var post = function(p){
+    return fetch(SUPABASE_URL + '/rest/v1/requests', {
+      method: 'POST',
+      headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json' },
+      body: JSON.stringify(p)
+    });
+  };
+  if(!item || !item.id || !item.donor_lock) return post(payload);
+  return post(Object.assign({}, payload, { catalog_id: item.id })).then(function(r){
+    if(r.status !== 400 && r.status !== 404) return r;
+    return r.text().then(function(tx){ return /catalog_id/.test(tx) ? post(payload) : new Response(tx, { status: r.status }); });
+  });
+}
+
+/* ---- Amministra › Richieste: «Verifica e sblocca 48 ore» ---- */
+function luxLockAdminUnlocks(){
+  if(!isAdmin() || !SUPABASE_URL) return Promise.resolve({});
+  luxLock.reqStale = !luxLock.catFresh; // (il catalogo non è ancora arrivato: appena arriva, le Richieste si rifanno)
+  return fetch(SUPABASE_URL + '/rest/v1/donor_unlocks?select=request_id,user_id,catalog_id,expires_at&order=created_at.desc&limit=1000', { headers: communityHeaders() })
+    .then(function(r){ return r.ok ? r.json() : []; })
+    .then(function(rows){ var m = {}; (rows || []).forEach(function(u){ if(u && u.request_id) m[String(u.request_id)] = u; }); return m; })
+    .catch(function(){ return {}; });
+}
+// il titolo bloccato di una donazione (quello salvato con la donazione, o quello scritto nel testo)
+function luxLockReqItem(req){
+  if(!req || String(req.body || '').indexOf('[DONAZIONE]') !== 0) return null;
+  var all = getCatalog(true);
+  var it = req.catalog_id ? all.find(function(x){ return x.id === req.catalog_id; }) : null;
+  if(!it){
+    var titles = luxLockTitlesOf(req.body);
+    var same = all.filter(function(x){ return titles.indexOf(x.title) >= 0 && !luxTrashed(x); });
+    it = same.filter(function(x){ return x.donor_lock; })[0] || same[0] || null;
+  }
+  return it && it.donor_lock ? it : null;
+}
+// i titoli scritti in una donazione (dal carrello possono essere più d'uno: «A + B»)
+function luxLockTitlesOf(body){
+  var t = luxParseDonation(body).title || '';
+  return t.indexOf(' + ') >= 0 ? [t].concat(t.split(' + ')) : [t];
+}
+function luxLockReqHtml(req, unl){
+  var u = unl[String(req.id)];
+  if(u) return '<span class="req-done-tag lux-lock-done">🔓 Sbloccato fino a ' + escapeHtml(luxLockDate(u.expires_at)) + '</span>';
+  return '<button class="btn btn-primary btn-sm" data-lock-unlock="' + escapeHtml(String(req.id)) + '">Verifica e sblocca 48 ore</button>';
+}
+function luxLockWireReq(row, req, unl, verified){
+  var b = row.querySelector('[data-lock-unlock]');
+  if(!b) return;
+  b.addEventListener('click', function(){
+    var item = luxLockReqItem(req);
+    if(!item) return;
+    b.disabled = true;
+    var was = b.textContent;
+    b.textContent = '…';
+    luxRpc('lux_sblocca_donazione', { p_richiesta: String(req.id), p_titolo: item.id }).then(function(res){
+      var until = res && res.expires_at;
+      unl[String(req.id)] = { request_id: String(req.id), expires_at: until, catalog_id: item.id, user_id: req.user_id };
+      if(verified && req.user_id) verified[req.user_id] = true;
+      var tag = document.createElement('span');
+      tag.className = 'req-done-tag lux-lock-done';
+      tag.textContent = '🔓 Sbloccato fino a ' + luxLockDate(until);
+      b.replaceWith(tag);
+      luxToast(res && res.already ? 'Era già sbloccato (fino a ' + luxLockDate(until) + ').' : '«' + item.title + '» sbloccato per 48 ore: gli arriva l\'avviso.');
+      var read = row.querySelector('[data-mark-read]');
+      if(read){ var rt = document.createElement('span'); rt.className = 'req-done-tag'; rt.textContent = '✓ Letta'; read.replaceWith(rt); }
+      var who = row.querySelector('.who b');
+      if(who && who.previousSibling && / · $/.test(who.previousSibling.textContent || '')){ who.previousSibling.textContent = who.previousSibling.textContent.replace(/ · $/, ''); who.remove(); }
+    }).catch(function(e){
+      console.warn('[bloccati] sblocco', e);
+      b.disabled = false;
+      b.textContent = was;
+      var m = String((e && e.body && e.body.message) || (e && e.message) || '');
+      window.alert('Sblocco non riuscito' + (m ? ': ' + m : '') + (e && e.status === 404 ? ' (manca il file SQL della v257: titoli_per_chi_dona_v257.sql)' : ''));
+    });
+  });
+}
+
+/* ---- Amministra: l'interruttore «Solo per chi dona» (nel modulo del titolo e nel suo pannello) ---- */
+function luxLockFormField(){
+  var cur = document.getElementById('fDonorLock');
+  if(cur) return cur;
+  var m = document.getElementById('fMature');
+  var field = m && m.closest('.field');
+  if(!field || !field.parentNode) return null;
+  var f = document.createElement('div');
+  f.className = 'field lux-lock-field';
+  f.style.gridColumn = '1/-1';
+  f.hidden = !isAdmin();
+  f.innerHTML = '<label class="mature-toggle" style="cursor:pointer;"><span>🔒 Solo per chi dona (48 ore a donazione)</span>' +
+      '<span class="switch"><input type="checkbox" id="fDonorLock"><span class="slider"></span></span></label>' +
+    '<p class="form-note lux-lock-field-note" id="fDonorLockNote"></p>';
+  field.parentNode.insertBefore(f, field.nextSibling);
+  return document.getElementById('fDonorLock');
+}
+// (aprendo un titolo da modificare, o ripartendo da zero) acceso com'è quel titolo
+function luxLockFormFill(item){
+  var cb = luxLockFormSync();
+  if(cb) cb.checked = !!(item && item.donor_lock);
+}
+// chi lo vede (solo l'amministratore) e se si può usare (serve il file SQL della v257); non tocca la scelta
+function luxLockFormSync(){
+  var cb = luxLockFormField();
+  if(!cb) return null;
+  var box = cb.closest('.lux-lock-field'), note = document.getElementById('fDonorLockNote');
+  var ok = luxLockSupported();
+  if(box) box.hidden = !isAdmin();
+  cb.disabled = !ok;
+  if(!ok) cb.checked = false;
+  if(note) note.textContent = ok
+    ? 'Chi non ha donato vede la copertina e la sinossi, non le pagine. Lo sblocchi da Richieste, sulla sua donazione: «Verifica e sblocca 48 ore».'
+    : 'Per usarlo serve il file SQL della v257 (titoli_per_chi_dona_v257.sql) su Supabase.';
+  return cb;
+}
+// salvando il titolo: l'interruttore (solo l'amministratore, e solo se il database lo conosce); per gli altri resta com'era
+function luxLockApply(newItem, existing){
+  var cb = document.getElementById('fDonorLock');
+  if(cb && !cb.disabled && isAdmin() && luxLockSupported()){ newItem.donor_lock = !!cb.checked; return; }
+  if(existing && existing.donor_lock) newItem.donor_lock = true;
+}
+// nel pannello del titolo (Amministra › ⋯): acceso o spento con un tocco
+function luxLockSheetHtml(item){
+  if(!isAdmin() || !luxLockSupported()) return '';
+  var on = !!item.donor_lock;
+  return '<button type="button" class="adm-act" data-adm-lock="' + escapeHtml(item.id) + '">' + (on ? LUX_LOCK_SVG : LUX_UNLOCK_SVG) + '<span>' +
+    (on ? 'Rendilo libero per tutti' : 'Solo per chi dona') +
+    '<small>' + (on ? 'Ora: solo per chi dona (48 ore a donazione)' : 'Ora: libero per tutti') + '</small></span></button>';
+}
+function luxLockSheetWire(body, item){
+  var b = body.querySelector('[data-adm-lock]');
+  if(!b) return;
+  b.addEventListener('click', function(){
+    var on = !item.donor_lock;
+    if(on && !confirm('«' + (item.title || '') + '» diventa «Solo per chi dona»: chi non ha donato vede la copertina e la sinossi, non le pagine.\n\nLo sblocchi da Richieste, sulla donazione («Verifica e sblocca 48 ore»).')) return;
+    if(!on && !confirm('«' + (item.title || '') + '» torna libero: le pagine si vedono di nuovo per tutti.')) return;
+    b.disabled = true;
+    var sm = b.querySelector('small');
+    if(sm) sm.textContent = 'Salvo…';
+    admPatchCatalog(item.id, { donor_lock: on }, true).then(function(r){
+      if(!r.ok) return r.text().then(function(tx){ throw new Error(r.status + ' ' + tx); });
+      return r.json();
+    }).then(function(rows){
+      var row = rows && rows[0];
+      if(!row || !!row.donor_lock !== on) throw new Error('il database non l\'ha salvato');
+      var patch = { donor_lock: on };
+      if(!on){ patch.pages = row.pages || []; patch.pages_clean = row.pages_clean || []; patch.pdf_url = row.pdf_url || null; } // (tornate nel catalogo)
+      luxCatalogLocalPatch(item.id, patch);
+      return luxLockLoad(true);
+    }).then(function(){
+      renderCatalog(); renderAdminList();
+      try { admSheetRender(); } catch(e){}
+      luxLockReqRefresh(true);
+      luxToast(on ? '🔒 «' + item.title + '» adesso è solo per chi dona.' : '🔓 «' + item.title + '» adesso è libero per tutti.');
+    }).catch(function(e){
+      console.warn('[bloccati] interruttore', e);
+      b.disabled = false;
+      if(sm) sm.textContent = 'Non salvato: riprova.';
+    });
+  });
+}
+// arrivato il catalogo (o cambiato un interruttore): le Richieste sanno quali titoli sono bloccati
+function luxLockReqRefresh(force){
+  if(!(force || luxLock.reqStale) || !isAdmin() || !document.getElementById('adminRequestsList')) return;
+  luxLock.reqStale = false;
+  try { renderAdminRequests(); } catch(e){ console.warn('[bloccati] richieste', e); }
+}
+// (da fetchCatalogFromSupabase, col catalogo appena salvato)
+function luxLockAfterCatalog(){
+  luxLock.catFresh = true;
+  luxLockPurgeOffline();
+  luxLockFormSync();
+  luxLockReqRefresh(false);
+}
+// tra i titoli in Amministra
+function luxLockAdmTag(item){ return item && item.donor_lock ? '<span class="adm-tag adm-tag-lock">🔒 Per chi dona</span>' : ''; }
+
+/* ---- lo spazio su Supabase: le pagine dei titoli bloccati stanno nella tabella protetta (non sono file inutili) ---- */
+function luxLockSpaceMerge(rows){
+  return fetch(SUPABASE_URL + '/rest/v1/catalog_locked?select=catalog_id,pages,pages_clean,pdf_url', { headers: luxSpaceH(false) }).then(function(r){
+    if(r.ok) return r.json();
+    return r.text().then(function(tx){
+      if(r.status === 404 || /catalog_locked|PGRST205|42P01/.test(tx)) return []; // (senza il file SQL della v257 non ce ne sono)
+      throw new Error('pagine protette: ' + r.status);
+    });
+  }).then(function(locked){
+    var at = {};
+    (rows || []).forEach(function(x){ if(x) at[x.id] = x; });
+    (locked || []).forEach(function(k){
+      var x = k && at[k.catalog_id];
+      if(!x) return;
+      x._luxLocked = true; // (le sue pagine non si alleggeriscono da qui: il titolo è bloccato)
+      if(k.pages && k.pages.length) x.pages = (x.pages || []).concat(k.pages);
+      if(k.pages_clean && k.pages_clean.length) x.pages_clean = (x.pages_clean || []).concat(k.pages_clean);
+      if(k.pdf_url && !x.pdf_url) x.pdf_url = k.pdf_url;
+    });
+    return rows;
+  });
+}
+
+/* ---- gli avvisi: «ha confermato la tua donazione…» ---- */
+function luxLockNotifText(n){
+  var m = /«([\s\S]*)»/.exec(String(n.message || ''));
+  return t('lock.notif').replace('{title}', m ? m[1] : '');
+}
+// un avviso di sblocco nuovo, arrivato col sito aperto: gli sblocchi si rileggono subito
+function luxLockNotifSeen(rows){
+  var ids = (rows || []).filter(function(n){ return n && n.type === 'donor_unlock'; }).map(function(n){ return String(n.id); });
+  var fresh = luxLockNotifIds !== null && ids.some(function(id){ return luxLockNotifIds.indexOf(id) < 0; });
+  luxLockNotifIds = ids;
+  if(fresh) luxLockRefresh();
+}
+function luxLockRefresh(){
+  return luxLockLoad(true).then(function(){
+    try { renderCatalogIfReady(); } catch(e){}
+    if(currentModalCatalogId) luxLockReopen(currentModalCatalogId);
+  });
+}
+// un titolo bloccato scaricato per offline prima che si bloccasse: via dal telefono
+function luxLockPurgeOffline(){
+  if(isAdmin()) return;
+  try {
+    var meta = getOfflineMeta(), me = currentUserId();
+    getCatalog(true).forEach(function(i){
+      if(i && i.donor_lock && meta[i.id] && !(me && i.created_by === me)) removeItemFromOffline(i.id);
+    });
+  } catch(e){}
+}
+
+/* ---- l'accesso ---- */
+function luxLockAfterAuth(){
+  luxLockFormSync();
+  if(!isSignedIn()){ luxLockReset(); return; }
+  luxLockRefresh();
+}
+
 function handleAddAnnouncement(){
   var title = document.getElementById('fAnnTitle').value.trim();
   var body = document.getElementById('fAnnBody').value.trim();
@@ -27563,9 +28089,10 @@ function renderAdminRequests(){
     .then(function(r){ return r.ok ? r.json() : []; }).catch(function(){ return []; });
   var requestsReq = fetch(SUPABASE_URL + '/rest/v1/requests?select=*&order=created_at.desc', { headers: authH })
     .then(function(r){ if(!r.ok) throw new Error('admin requests read failed'); return r.json(); });
-  Promise.all([requestsReq, verifiedReq])
+  Promise.all([requestsReq, verifiedReq, luxLockAdminUnlocks()]) // v257: e gli sblocchi già fatti
     .then(function(res){
       var rows = res[0];
+      var unl = res[2] || {};
       var verified = {};
       (res[1] || []).forEach(function(v){ if(v && v.user_id) verified[v.user_id] = true; });
       list.innerHTML = '';
@@ -27583,7 +28110,8 @@ function renderAdminRequests(){
           '</div>' +
           '<div class="admin-actions">' +
           (isSupport ? '<button class="btn btn-ghost btn-sm" data-receipt="' + req.id + '">Ricevuta PDF</button>' : '') + // v229 · v230: anche gli acquisti
-          (isSupport && req.user_id ? (verified[req.user_id]
+          (isSupport && req.user_id ? (isDonation && luxLockReqItem(req) ? luxLockReqHtml(req, unl) // v257: un titolo «Solo per chi dona»: 48 ore
+            : verified[req.user_id]
             ? '<span class="req-done-tag">✓ Pagamento verificato</span>'
             : '<button class="btn btn-primary btn-sm" data-verify-supporter="' + req.id + '">Verifica pagamento (sblocca pagine pulite)</button>') : '') +
           (isSupport && !req.user_id ? '<span class="mono" style="font-size:11px;color:var(--parchment-dim);">non collegato a un account — non verificabile</span>' : '') +
@@ -27653,6 +28181,7 @@ function renderAdminRequests(){
             });
           });
         }
+        luxLockWireReq(row, req, unl, verified); // v257
         list.appendChild(row);
       });
     })
@@ -28817,7 +29346,7 @@ function renderRecommended(){
       ? '<img src="' + coverThumbUrl(item.cover_url, 400) + '" data-fallback="' + escapeHtml(item.cover_url) + '" alt="" loading="lazy" decoding="async">'
       : '<span class="init">' + item.character.charAt(0) + '</span>';
     card.innerHTML =
-      '<div class="latest-card-cover">' + coverInner +
+      '<div class="latest-card-cover">' + coverInner + luxLockBadge(item, 'is-latest') +
         '<div class="tome-strap"><div class="tome-seal"><img src="logo-lm-seal.webp" alt=""></div></div>' +
       '</div>' +
       '<div class="latest-card-body"><h5>' + escapeHtml(item.title) + '</h5><div class="character">' + escapeHtml(item.character) + '</div>' +
