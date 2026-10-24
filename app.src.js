@@ -1103,6 +1103,20 @@ Object.assign(STR.hi, {"reg.intro": "बस थोड़ी-सी जानक�
 Object.assign(STR.bn, {"reg.intro": "আর অল্প কিছু তথ্য দিলেই আপনি আমাদের একজন: এতে বন্ধুরা আপনাকে খুঁজে পাবে আর উল্লেখ করতে পারবে।", "reg.account": "এবার লগইন: ইমেল আর পাসওয়ার্ড।", "reg.nick": "নিকনেম", "reg.nickHint": "৩ থেকে ২০টি অক্ষর, সংখ্যা, _ আর . — অন্যরা @নিকনেম দিয়ে আপনাকে উল্লেখ করবে।", "reg.nickBad": "শুধু ইংরেজি অক্ষর, সংখ্যা, _ আর . (৩ থেকে ২০টি, স্পেস ছাড়া)।", "reg.nickChecking": "ফাঁকা আছে কি না দেখা হচ্ছে…", "reg.nickFree": "পাওয়া যাচ্ছে ✓", "reg.nickTaken": "আগেই নেওয়া হয়েছে: অন্য একটা চেষ্টা করুন।", "reg.nickYours": "এটা আপনার ✓", "reg.name": "নাম", "reg.namePh": "আপনাকে কী নামে ডাকা হবে", "reg.birth": "জন্মতারিখ", "reg.gender": "লিঙ্গ", "reg.nation": "জাতীয়তা", "reg.nationPick": "— দেশ বেছে নিন —", "reg.errNick": "একটা নিকনেম বেছে নিন: ৩ থেকে ২০টি অক্ষর, সংখ্যা, _ আর .", "reg.errNickTaken": "এই নিকনেম আগেই নেওয়া হয়েছে: অন্য একটা চেষ্টা করুন।", "reg.errName": "আপনার নাম লিখুন।", "reg.errBirth": "আপনার জন্মতারিখ লিখুন।", "reg.errNation": "আপনার জাতীয়তা বেছে নিন।", "reg.completeTitle": "আপনার প্রোফাইল সম্পূর্ণ করুন", "reg.completeSub": "মাত্র কয়েক সেকেন্ড: এতে বন্ধুরা আপনাকে খুঁজে পাবে আর @নিকনেম দিয়ে উল্লেখ করতে পারবে।", "reg.save": "সেভ করুন", "reg.later": "পরে", "reg.saved": "প্রোফাইল সেভ হয়েছে ✓", "reg.saveError": "সেভ হয়নি: একটু পরে আবার চেষ্টা করুন।", "collab.mentionHint": "সাইটের নিকনেম @ দিয়ে লিখুন (যেমন @selene_88): অধ্যায় প্রকাশ হলে তাঁরা বিজ্ঞপ্তি পাবেন।", "notif.mention": "আপনাকে উল্লেখ করেছেন", "notif.mentionDiary": "ডায়েরিতে আপনাকে উল্লেখ করেছেন", "notif.mentionDiaryComment": "ডায়েরির একটি মন্তব্যে আপনাকে উল্লেখ করেছেন", "notif.mentionChannel": "চ্যানেল {name}-এ আপনাকে উল্লেখ করেছেন", "notif.mentionServer": "সার্ভার “{name}”-এ আপনাকে উল্লেখ করেছেন", "notif.mentionComments": "“{title}”-এর মন্তব্যে আপনাকে উল্লেখ করেছেন", "notif.mentionCollab": "আপনাকে “{title}”-এর সহযোগীদের মধ্যে যোগ করেছেন", "notif.groupAdded": "আপনাকে গ্রুপ “{name}”-এ যোগ করেছেন", "group.title": "গ্রুপ", "group.new": "নতুন গ্রুপ", "group.empty": "বন্ধুদের নিয়ে একটা গ্রুপ খুলুন: প্রতিটি বার্তা সবার কাছে যায়।", "group.newTitle": "নতুন গ্রুপ", "group.name": "গ্রুপের নাম", "group.namePh": "যেমন: বৃহস্পতিবারের পাঠক", "group.pick": "বন্ধু বেছে নিন", "group.search": "বন্ধুদের মধ্যে খুঁজুন…", "group.picked": "বাছাই: {n}", "group.noFriends": "গ্রুপ খুলতে বন্ধু লাগবে: পরিচিতি থেকে তাদের যোগ করুন।", "group.findFriends": "বন্ধু খুঁজুন", "group.create": "গ্রুপ তৈরি করুন", "group.created": "গ্রুপ তৈরি হয়েছে ✓", "group.members": "সদস্য: {n}", "group.noMsgs": "এখনও কোনো বার্তা নেই", "group.admin": "অ্যাডমিন", "group.add": "বন্ধু যোগ করুন", "group.addDo": "যোগ করুন", "group.added": "গ্রুপে যোগ করা হয়েছে ✓", "group.noneToAdd": "আপনার সব বন্ধু আগেই গ্রুপে আছে।", "group.rename": "নাম বদলান", "group.renamed": "নাম বদলানো হয়েছে ✓", "group.mute": "মিউট করুন", "group.unmute": "বিজ্ঞপ্তি আবার চালু করুন", "group.mutedOn": "এই গ্রুপের বিজ্ঞপ্তি মিউট করা হয়েছে", "group.mutedOff": "বিজ্ঞপ্তি আবার চালু", "group.mutedTag": "মিউট", "group.muteNote": "মিউট করলে এই গ্রুপের বিজ্ঞপ্তি আসবে না: বার্তাগুলো এখানেই থাকবে।", "group.leave": "গ্রুপ ছাড়ুন", "group.leaveConfirm": "গ্রুপ “{name}” ছাড়বেন?", "group.left": "আপনি গ্রুপ ছেড়েছেন", "group.remove": "গ্রুপ থেকে সরান", "group.removeConfirm": "{name}-কে গ্রুপ থেকে সরাবেন?", "group.removed": "{name} আর গ্রুপে নেই", "group.gone": "আপনি আর এই গ্রুপের সদস্য নন।", "group.hello": "গ্রুপ তৈরি: প্রথম বার্তা লিখুন, সবার কাছে যাবে।", "group.errName": "গ্রুপের একটা নাম দিন।", "group.errPick": "অন্তত একজন বন্ধু বেছে নিন।", "group.errGeneric": "হয়নি: একটু পরে আবার চেষ্টা করুন।", "group.participants": "সদস্য"});
 Object.assign(STR.ar, {"reg.intro": "بقيت بعض البيانات فقط وتصبح واحدًا منّا: هكذا يجدك أصدقاؤك ويمكنهم الإشارة إليك.", "reg.account": "والآن تسجيل الدخول: البريد الإلكتروني وكلمة المرور.", "reg.nick": "اسم المستخدم", "reg.nickHint": "من 3 إلى 20 من الحروف اللاتينية والأرقام و_ و. — يشير إليك الآخرون بـ ‎@اسم_المستخدم.", "reg.nickBad": "حروف لاتينية وأرقام و_ و. فقط (من 3 إلى 20، بلا مسافات).", "reg.nickChecking": "جارٍ التحقق من توفره…", "reg.nickFree": "متاح ✓", "reg.nickTaken": "مستخدم بالفعل: جرّب اسمًا آخر.", "reg.nickYours": "إنه اسمك ✓", "reg.name": "الاسم", "reg.namePh": "بماذا تحب أن نناديك", "reg.birth": "تاريخ الميلاد", "reg.gender": "الجنس", "reg.nation": "الجنسية", "reg.nationPick": "— اختر البلد —", "reg.errNick": "اختر اسم مستخدم: من 3 إلى 20 من الحروف اللاتينية والأرقام و_ و.", "reg.errNickTaken": "اسم المستخدم هذا مستخدم بالفعل: جرّب اسمًا آخر.", "reg.errName": "اكتب اسمك.", "reg.errBirth": "اكتب تاريخ ميلادك.", "reg.errNation": "اختر جنسيتك.", "reg.completeTitle": "أكمل ملفك الشخصي", "reg.completeSub": "يكفي بضع ثوانٍ: هكذا يجدك أصدقاؤك ويمكنهم الإشارة إليك بـ ‎@اسم_المستخدم.", "reg.save": "حفظ", "reg.later": "لاحقًا", "reg.saved": "تم حفظ الملف الشخصي ✓", "reg.saveError": "لم يُحفظ: حاول مرة أخرى بعد قليل.", "collab.mentionHint": "اكتب اسم المستخدم في الموقع مع ‎@ (مثلًا ‎@selene_88): عند صدور الفصل يصلهم إشعار.", "notif.mention": "أشار إليك", "notif.mentionDiary": "أشار إليك في اليوميات", "notif.mentionDiaryComment": "أشار إليك في تعليق على اليوميات", "notif.mentionChannel": "أشار إليك في القناة {name}", "notif.mentionServer": "أشار إليك في الخادم «{name}»", "notif.mentionComments": "أشار إليك في تعليقات «{title}»", "notif.mentionCollab": "أضافك إلى المتعاونين في «{title}»", "notif.groupAdded": "أضافك إلى المجموعة «{name}»", "group.title": "المجموعات", "group.new": "مجموعة جديدة", "group.empty": "أنشئ مجموعة مع أصدقائك: كل رسالة تصل إلى الجميع.", "group.newTitle": "مجموعة جديدة", "group.name": "اسم المجموعة", "group.namePh": "مثلًا: قرّاء الخميس", "group.pick": "اختر الأصدقاء", "group.search": "ابحث بين أصدقائك…", "group.picked": "المختارون: {n}", "group.noFriends": "لإنشاء مجموعة تحتاج إلى أصدقاء: أضفهم من جهات الاتصال.", "group.findFriends": "ابحث عن أصدقاء", "group.create": "إنشاء المجموعة", "group.created": "تم إنشاء المجموعة ✓", "group.members": "الأعضاء: {n}", "group.noMsgs": "لا توجد رسائل بعد", "group.admin": "المشرف", "group.add": "إضافة أصدقاء", "group.addDo": "إضافة", "group.added": "تمت الإضافة إلى المجموعة ✓", "group.noneToAdd": "كل أصدقائك موجودون في المجموعة بالفعل.", "group.rename": "تغيير الاسم", "group.renamed": "تم تغيير الاسم ✓", "group.mute": "كتم", "group.unmute": "إعادة تشغيل الإشعارات", "group.mutedOn": "تم كتم إشعارات هذه المجموعة", "group.mutedOff": "عادت الإشعارات", "group.mutedTag": "مكتومة", "group.muteNote": "مع «كتم» لن تصلك إشعارات هذه المجموعة: تبقى الرسائل هنا.", "group.leave": "مغادرة المجموعة", "group.leaveConfirm": "مغادرة المجموعة «{name}»؟", "group.left": "غادرت المجموعة", "group.remove": "إزالة من المجموعة", "group.removeConfirm": "إزالة {name} من المجموعة؟", "group.removed": "لم يعد {name} في المجموعة", "group.gone": "لم تعد عضوًا في هذه المجموعة.", "group.hello": "المجموعة جاهزة: اكتب الرسالة الأولى، ستصل إلى الجميع.", "group.errName": "أعطِ المجموعة اسمًا.", "group.errPick": "اختر صديقًا واحدًا على الأقل.", "group.errGeneric": "لم ينجح ذلك: حاول مرة أخرى بعد قليل.", "group.participants": "الأعضاء"});
 Object.assign(STR.pnb, {"reg.intro": "بس تھوڑی جیہی جانکاری تے تسیں ساڈے نال او: اینج دوست تہانوں لبھ سکن گے تے تہاڈا ذکر کر سکن گے۔", "reg.account": "ہُن لاگ اِن: ای میل تے پاس ورڈ۔", "reg.nick": "نک نیم", "reg.nickHint": "3 توں 20 انگریزی اکھر، نمبر، _ تے . — دوجے تہانوں ‎@نک_نیم نال یاد کردے نیں۔", "reg.nickBad": "صرف انگریزی اکھر، نمبر، _ تے . (3 توں 20، بغیر سپیس)۔", "reg.nickChecking": "ویکھ رہے آں کہ خالی اے یا نئیں…", "reg.nickFree": "خالی اے ✓", "reg.nickTaken": "پہلاں ای لیا ہویا اے: کوئی ہور ویکھو۔", "reg.nickYours": "ایہہ تہاڈا اے ✓", "reg.name": "ناں", "reg.namePh": "تہانوں کس ناں نال بلائیے", "reg.birth": "جمن دی تاریخ", "reg.gender": "جنس", "reg.nation": "قومیت", "reg.nationPick": "— ملک چنو —", "reg.errNick": "اک نک نیم چنو: 3 توں 20 انگریزی اکھر، نمبر، _ تے .", "reg.errNickTaken": "ایہہ نک نیم پہلاں ای لیا ہویا اے: کوئی ہور ویکھو۔", "reg.errName": "اپنا ناں لکھو۔", "reg.errBirth": "اپنی جمن دی تاریخ لکھو۔", "reg.errNation": "اپنی قومیت چنو۔", "reg.completeTitle": "اپنا پروفائل پورا کرو", "reg.completeSub": "بس کجھ سیکنڈ: اینج دوست تہانوں لبھ سکن گے تے ‎@نک_نیم نال تہاڈا ذکر کر سکن گے۔", "reg.save": "سیو کرو", "reg.later": "بعد وچ", "reg.saved": "پروفائل سیو ہو گیا ✓", "reg.saveError": "سیو نئیں ہویا: تھوڑی دیر بعد فیر کوشش کرو۔", "collab.mentionHint": "سائٹ والا نک نیم ‎@ نال لکھو (جیویں ‎@selene_88): باب آؤن تے اوہناں نوں اطلاع ملے گی۔", "notif.mention": "نے تہاڈا ذکر کیتا", "notif.mentionDiary": "نے ڈائری وچ تہاڈا ذکر کیتا", "notif.mentionDiaryComment": "نے ڈائری دے اک تبصرے وچ تہاڈا ذکر کیتا", "notif.mentionChannel": "نے چینل {name} وچ تہاڈا ذکر کیتا", "notif.mentionServer": "نے سرور «{name}» وچ تہاڈا ذکر کیتا", "notif.mentionComments": "نے «{title}» دے تبصریاں وچ تہاڈا ذکر کیتا", "notif.mentionCollab": "نے تہانوں «{title}» دے ساتھیاں وچ شامل کیتا", "notif.groupAdded": "نے تہانوں گروپ «{name}» وچ شامل کیتا", "group.title": "گروپ", "group.new": "نواں گروپ", "group.empty": "دوستاں نال اک گروپ بناؤ: ہر سنیہا ساریاں تک اپڑدا اے۔", "group.newTitle": "نواں گروپ", "group.name": "گروپ دا ناں", "group.namePh": "جیویں: جمعرات دے پڑھن والے", "group.pick": "دوست چنو", "group.search": "دوستاں وچ لبھو…", "group.picked": "چنے گئے: {n}", "group.noFriends": "گروپ بناؤن لئی دوست چاہیدے نیں: اوہناں نوں رابطے توں شامل کرو۔", "group.findFriends": "دوست لبھو", "group.create": "گروپ بناؤ", "group.created": "گروپ بن گیا ✓", "group.members": "ممبر: {n}", "group.noMsgs": "ہلے کوئی سنیہا نئیں", "group.admin": "منتظم", "group.add": "دوست شامل کرو", "group.addDo": "شامل کرو", "group.added": "گروپ وچ شامل ہو گئے ✓", "group.noneToAdd": "تہاڈے سارے دوست پہلاں ای گروپ وچ نیں۔", "group.rename": "ناں بدلو", "group.renamed": "ناں بدل گیا ✓", "group.mute": "خاموش کرو", "group.unmute": "اطلاعاں فیر چالو کرو", "group.mutedOn": "ایس گروپ دیاں اطلاعاں خاموش", "group.mutedOff": "اطلاعاں فیر چالو", "group.mutedTag": "خاموش", "group.muteNote": "خاموش کرن نال ایس گروپ دیاں اطلاعاں نئیں آؤن گیاں: سنیہے ایتھے ای رہن گے۔", "group.leave": "گروپ چھڈو", "group.leaveConfirm": "گروپ «{name}» چھڈنا اے؟", "group.left": "تسیں گروپ چھڈ دتا", "group.remove": "گروپ وچوں کڈھو", "group.removeConfirm": "{name} نوں گروپ وچوں کڈھنا اے؟", "group.removed": "{name} ہُن گروپ وچ نئیں", "group.gone": "تسیں ہُن ایس گروپ دے ممبر نئیں او۔", "group.hello": "گروپ تیار اے: پہلا سنیہا لکھو، ساریاں تک اپڑے گا۔", "group.errName": "گروپ دا ناں رکھو۔", "group.errPick": "گھٹو گھٹ اک دوست چنو۔", "group.errGeneric": "نئیں ہو سکیا: تھوڑی دیر بعد فیر کوشش کرو۔", "group.participants": "ممبر"});
+// v256: le foto (registrazione, «Completa il tuo profilo», gruppi chat)
+Object.assign(STR.it, {"photo.label": "Foto profilo", "photo.hint": "Facoltativa: così gli amici ti riconoscono subito.", "photo.choose": "Scegli una foto", "photo.change": "Cambia", "photo.remove": "Togli", "photo.bad": "Non riesco ad aprire questa immagine: scegline un'altra (JPG o PNG).", "photo.tooBig": "Questa immagine è troppo pesante: scegline un'altra.", "photo.saveFail": "La foto non è stata caricata: riprova, oppure toglila e salva il resto.", "reg.birthPh": "Tocca per scegliere la data", "group.photo": "Foto del gruppo", "group.photoHint": "Facoltativa: la vedono tutti i partecipanti.", "group.photoAdd": "Aggiungi una foto", "group.photoChange": "Cambia foto", "group.photoSaved": "Foto del gruppo salvata ✓", "group.photoRemoved": "Foto del gruppo tolta", "group.photoErr": "La foto non è stata salvata: riprova tra poco.", "group.createdNoPhoto": "Gruppo creato. La foto non è stata salvata: puoi metterla dalle informazioni del gruppo.", "group.errAdmin": "Solo chi gestisce il gruppo può farlo."});
+Object.assign(STR.en, {"photo.label": "Profile photo", "photo.hint": "Optional: it helps your friends recognize you right away.", "photo.choose": "Choose a photo", "photo.change": "Change", "photo.remove": "Remove", "photo.bad": "I can't open this image: please pick another one (JPG or PNG).", "photo.tooBig": "This image is too large: please pick another one.", "photo.saveFail": "The photo wasn't uploaded: try again, or remove it and save the rest.", "reg.birthPh": "Tap to choose the date", "group.photo": "Group photo", "group.photoHint": "Optional: everyone in the group will see it.", "group.photoAdd": "Add a photo", "group.photoChange": "Change photo", "group.photoSaved": "Group photo saved ✓", "group.photoRemoved": "Group photo removed", "group.photoErr": "The photo wasn't saved: please try again shortly.", "group.createdNoPhoto": "Group created. The photo wasn't saved: you can add it from the group info.", "group.errAdmin": "Only the person who manages the group can do that."});
+Object.assign(STR.es, {"photo.label": "Foto de perfil", "photo.hint": "Opcional: así tus amigos te reconocen enseguida.", "photo.choose": "Elige una foto", "photo.change": "Cambiar", "photo.remove": "Quitar", "photo.bad": "No puedo abrir esta imagen: elige otra (JPG o PNG).", "photo.tooBig": "Esta imagen pesa demasiado: elige otra.", "photo.saveFail": "La foto no se ha subido: inténtalo de nuevo, o quítala y guarda el resto.", "reg.birthPh": "Toca para elegir la fecha", "group.photo": "Foto del grupo", "group.photoHint": "Opcional: la verán todos los participantes.", "group.photoAdd": "Añadir una foto", "group.photoChange": "Cambiar foto", "group.photoSaved": "Foto del grupo guardada ✓", "group.photoRemoved": "Foto del grupo quitada", "group.photoErr": "La foto no se ha guardado: inténtalo de nuevo en un momento.", "group.createdNoPhoto": "Grupo creado. La foto no se ha guardado: puedes ponerla desde la información del grupo.", "group.errAdmin": "Solo quien administra el grupo puede hacerlo."});
+Object.assign(STR.fr, {"photo.label": "Photo de profil", "photo.hint": "Facultative : vos amis vous reconnaîtront tout de suite.", "photo.choose": "Choisir une photo", "photo.change": "Changer", "photo.remove": "Retirer", "photo.bad": "Impossible d'ouvrir cette image : choisissez-en une autre (JPG ou PNG).", "photo.tooBig": "Cette image est trop lourde : choisissez-en une autre.", "photo.saveFail": "La photo n'a pas été envoyée : réessayez, ou retirez-la et enregistrez le reste.", "reg.birthPh": "Touchez pour choisir la date", "group.photo": "Photo du groupe", "group.photoHint": "Facultative : tous les participants la verront.", "group.photoAdd": "Ajouter une photo", "group.photoChange": "Changer la photo", "group.photoSaved": "Photo du groupe enregistrée ✓", "group.photoRemoved": "Photo du groupe retirée", "group.photoErr": "La photo n'a pas été enregistrée : réessayez dans un instant.", "group.createdNoPhoto": "Groupe créé. La photo n'a pas été enregistrée : vous pouvez l'ajouter depuis les infos du groupe.", "group.errAdmin": "Seule la personne qui gère le groupe peut le faire."});
+Object.assign(STR.de, {"photo.label": "Profilbild", "photo.hint": "Optional: So erkennen dich deine Freunde sofort.", "photo.choose": "Foto auswählen", "photo.change": "Ändern", "photo.remove": "Entfernen", "photo.bad": "Dieses Bild lässt sich nicht öffnen: Wähle bitte ein anderes (JPG oder PNG).", "photo.tooBig": "Dieses Bild ist zu groß: Wähle bitte ein anderes.", "photo.saveFail": "Das Foto wurde nicht hochgeladen: Versuch es noch einmal oder entferne es und speichere den Rest.", "reg.birthPh": "Tippen, um das Datum zu wählen", "group.photo": "Gruppenbild", "group.photoHint": "Optional: Alle Mitglieder sehen es.", "group.photoAdd": "Foto hinzufügen", "group.photoChange": "Foto ändern", "group.photoSaved": "Gruppenbild gespeichert ✓", "group.photoRemoved": "Gruppenbild entfernt", "group.photoErr": "Das Foto wurde nicht gespeichert: Versuch es gleich noch einmal.", "group.createdNoPhoto": "Gruppe erstellt. Das Foto wurde nicht gespeichert: Du kannst es in den Gruppeninfos hinzufügen.", "group.errAdmin": "Das kann nur, wer die Gruppe verwaltet."});
+Object.assign(STR.pt, {"photo.label": "Foto de perfil", "photo.hint": "Opcional: assim seus amigos te reconhecem na hora.", "photo.choose": "Escolher uma foto", "photo.change": "Trocar", "photo.remove": "Remover", "photo.bad": "Não consigo abrir esta imagem: escolha outra (JPG ou PNG).", "photo.tooBig": "Esta imagem é pesada demais: escolha outra.", "photo.saveFail": "A foto não foi enviada: tente de novo, ou remova-a e salve o resto.", "reg.birthPh": "Toque para escolher a data", "group.photo": "Foto do grupo", "group.photoHint": "Opcional: todos os participantes vão vê-la.", "group.photoAdd": "Adicionar uma foto", "group.photoChange": "Trocar foto", "group.photoSaved": "Foto do grupo salva ✓", "group.photoRemoved": "Foto do grupo removida", "group.photoErr": "A foto não foi salva: tente de novo daqui a pouco.", "group.createdNoPhoto": "Grupo criado. A foto não foi salva: você pode colocá-la nas informações do grupo.", "group.errAdmin": "Só quem administra o grupo pode fazer isso."});
+Object.assign(STR.ru, {"photo.label": "Фото профиля", "photo.hint": "Необязательно: так друзья сразу вас узнают.", "photo.choose": "Выбрать фото", "photo.change": "Сменить", "photo.remove": "Убрать", "photo.bad": "Не удаётся открыть это изображение: выберите другое (JPG или PNG).", "photo.tooBig": "Это изображение слишком большое: выберите другое.", "photo.saveFail": "Фото не загрузилось: попробуйте ещё раз или уберите его и сохраните остальное.", "reg.birthPh": "Нажмите, чтобы выбрать дату", "group.photo": "Фото группы", "group.photoHint": "Необязательно: его увидят все участники.", "group.photoAdd": "Добавить фото", "group.photoChange": "Сменить фото", "group.photoSaved": "Фото группы сохранено ✓", "group.photoRemoved": "Фото группы убрано", "group.photoErr": "Фото не сохранилось: попробуйте ещё раз чуть позже.", "group.createdNoPhoto": "Группа создана. Фото не сохранилось: его можно добавить в сведениях о группе.", "group.errAdmin": "Это может сделать только тот, кто управляет группой."});
+Object.assign(STR.zh, {"photo.label": "头像", "photo.hint": "可选：这样朋友一眼就能认出你。", "photo.choose": "选择照片", "photo.change": "更换", "photo.remove": "移除", "photo.bad": "无法打开这张图片：请换一张（JPG 或 PNG）。", "photo.tooBig": "这张图片太大了：请换一张。", "photo.saveFail": "照片没有上传成功：请重试，或者移除照片后保存其他内容。", "reg.birthPh": "点按选择日期", "group.photo": "群组头像", "group.photoHint": "可选：所有成员都能看到。", "group.photoAdd": "添加照片", "group.photoChange": "更换照片", "group.photoSaved": "群组头像已保存 ✓", "group.photoRemoved": "群组头像已移除", "group.photoErr": "照片没有保存成功：请稍后再试。", "group.createdNoPhoto": "群组已创建。照片没有保存成功：可以在群组信息里添加。", "group.errAdmin": "只有群组管理员可以这样做。"});
+Object.assign(STR.ja, {"photo.label": "プロフィール写真", "photo.hint": "任意：友達がすぐにあなたに気づけます。", "photo.choose": "写真を選ぶ", "photo.change": "変更", "photo.remove": "削除", "photo.bad": "この画像を開けません。別の画像（JPG または PNG）を選んでください。", "photo.tooBig": "この画像は大きすぎます。別の画像を選んでください。", "photo.saveFail": "写真をアップロードできませんでした。もう一度試すか、写真を削除してほかの内容を保存してください。", "reg.birthPh": "タップして日付を選択", "group.photo": "グループの写真", "group.photoHint": "任意：メンバー全員に表示されます。", "group.photoAdd": "写真を追加", "group.photoChange": "写真を変更", "group.photoSaved": "グループの写真を保存しました ✓", "group.photoRemoved": "グループの写真を削除しました", "group.photoErr": "写真を保存できませんでした。しばらくしてからもう一度お試しください。", "group.createdNoPhoto": "グループを作成しました。写真は保存できませんでした。グループ情報から追加できます。", "group.errAdmin": "グループの管理者だけが行えます。"});
+Object.assign(STR.hi, {"photo.label": "प्रोफ़ाइल फ़ोटो", "photo.hint": "वैकल्पिक: इससे दोस्त आपको तुरंत पहचान लेंगे।", "photo.choose": "फ़ोटो चुनें", "photo.change": "बदलें", "photo.remove": "हटाएँ", "photo.bad": "यह तस्वीर खुल नहीं रही: कोई दूसरी चुनें (JPG या PNG)।", "photo.tooBig": "यह तस्वीर बहुत भारी है: कोई दूसरी चुनें।", "photo.saveFail": "फ़ोटो अपलोड नहीं हुई: फिर से कोशिश करें, या फ़ोटो हटाकर बाकी सेव करें।", "reg.birthPh": "तारीख चुनने के लिए टैप करें", "group.photo": "ग्रुप फ़ोटो", "group.photoHint": "वैकल्पिक: इसे सभी सदस्य देखेंगे।", "group.photoAdd": "फ़ोटो जोड़ें", "group.photoChange": "फ़ोटो बदलें", "group.photoSaved": "ग्रुप फ़ोटो सेव हो गई ✓", "group.photoRemoved": "ग्रुप फ़ोटो हटा दी गई", "group.photoErr": "फ़ोटो सेव नहीं हुई: थोड़ी देर बाद फिर कोशिश करें।", "group.createdNoPhoto": "ग्रुप बन गया। फ़ोटो सेव नहीं हुई: आप इसे ग्रुप की जानकारी से जोड़ सकते हैं।", "group.errAdmin": "यह सिर्फ़ ग्रुप का एडमिन कर सकता है।"});
+Object.assign(STR.bn, {"photo.label": "প্রোফাইল ছবি", "photo.hint": "ঐচ্ছিক: এতে বন্ধুরা আপনাকে সঙ্গে সঙ্গে চিনে নেবে।", "photo.choose": "একটি ছবি বেছে নিন", "photo.change": "বদলান", "photo.remove": "সরান", "photo.bad": "এই ছবিটি খোলা যাচ্ছে না: অন্য একটি বেছে নিন (JPG বা PNG)।", "photo.tooBig": "এই ছবিটি খুব ভারী: অন্য একটি বেছে নিন।", "photo.saveFail": "ছবিটি আপলোড হয়নি: আবার চেষ্টা করুন, অথবা ছবিটি সরিয়ে বাকিটা সেভ করুন।", "reg.birthPh": "তারিখ বেছে নিতে ট্যাপ করুন", "group.photo": "গ্রুপের ছবি", "group.photoHint": "ঐচ্ছিক: সব সদস্য এটি দেখতে পাবে।", "group.photoAdd": "ছবি যোগ করুন", "group.photoChange": "ছবি বদলান", "group.photoSaved": "গ্রুপের ছবি সেভ হয়েছে ✓", "group.photoRemoved": "গ্রুপের ছবি সরানো হয়েছে", "group.photoErr": "ছবিটি সেভ হয়নি: একটু পরে আবার চেষ্টা করুন।", "group.createdNoPhoto": "গ্রুপ তৈরি হয়েছে। ছবিটি সেভ হয়নি: গ্রুপের তথ্য থেকে যোগ করতে পারবেন।", "group.errAdmin": "এটি শুধু গ্রুপের অ্যাডমিন করতে পারেন।"});
+Object.assign(STR.ar, {"photo.label": "صورة الملف الشخصي", "photo.hint": "اختيارية: هكذا يتعرّف عليك أصدقاؤك فورًا.", "photo.choose": "اختر صورة", "photo.change": "تغيير", "photo.remove": "إزالة", "photo.bad": "تعذّر فتح هذه الصورة: اختر صورة أخرى (JPG أو PNG).", "photo.tooBig": "هذه الصورة كبيرة جدًا: اختر صورة أخرى.", "photo.saveFail": "لم يتم رفع الصورة: حاول مرة أخرى، أو أزلها واحفظ الباقي.", "reg.birthPh": "اضغط لاختيار التاريخ", "group.photo": "صورة المجموعة", "group.photoHint": "اختيارية: سيراها جميع الأعضاء.", "group.photoAdd": "إضافة صورة", "group.photoChange": "تغيير الصورة", "group.photoSaved": "تم حفظ صورة المجموعة ✓", "group.photoRemoved": "تمت إزالة صورة المجموعة", "group.photoErr": "لم يتم حفظ الصورة: حاول مرة أخرى بعد قليل.", "group.createdNoPhoto": "تم إنشاء المجموعة. لم يتم حفظ الصورة: يمكنك إضافتها من معلومات المجموعة.", "group.errAdmin": "لا يستطيع ذلك إلا مشرف المجموعة."});
+Object.assign(STR.pnb, {"photo.label": "پروفائل فوٹو", "photo.hint": "مرضی دی: اینج دوست تہانوں فوراً پچھان لین گے۔", "photo.choose": "فوٹو چنو", "photo.change": "بدلو", "photo.remove": "ہٹاؤ", "photo.bad": "ایہ تصویر کھل نہیں رہی: کوئی ہور چنو (JPG یا PNG)۔", "photo.tooBig": "ایہ تصویر بہت بھاری اے: کوئی ہور چنو۔", "photo.saveFail": "فوٹو اپلوڈ نہیں ہوئی: فیر کوشش کرو، یا فوٹو ہٹا کے باقی سیو کرو۔", "reg.birthPh": "تاریخ چنن لئی ٹیپ کرو", "group.photo": "گروپ دی فوٹو", "group.photoHint": "مرضی دی: سارے ممبر ایہنوں ویکھن گے۔", "group.photoAdd": "فوٹو شامل کرو", "group.photoChange": "فوٹو بدلو", "group.photoSaved": "گروپ دی فوٹو سیو ہو گئی ✓", "group.photoRemoved": "گروپ دی فوٹو ہٹا دتی گئی", "group.photoErr": "فوٹو سیو نہیں ہوئی: تھوڑی دیر بعد فیر کوشش کرو۔", "group.createdNoPhoto": "گروپ بن گیا۔ فوٹو سیو نہیں ہوئی: تسیں ایہنوں گروپ دی جانکاری توں شامل کر سکدے او۔", "group.errAdmin": "ایہ صرف گروپ دا منتظم کر سکدا اے۔"});
 var CHAR_META = {
   Lucifer:{role:{it:"Il Portatore di Luce",en:"The Light-Bearer",es:"El Portador de Luz",fr:"Le Porteur de Lumière",de:"Der Lichtträger"},
     bio:{it:"Sovrano della collana ammiraglia: potere, caduta e desiderio raccontati su grande scala.",
@@ -3557,6 +3571,7 @@ function handleAuthSubmit(){
     if(luxRegBtn) luxRegBtn.disabled = true;
     luxRegReady().then(function(){ return authSignUp(email, pass); }).then(function(data){
       try { luxPromoCount('signup'); } catch(e){} // v251: per il link da cui si è arrivati
+      try { luxRegPhotoKeep(email); } catch(e){ console.warn('[registrazione] foto', e); } // v256: la foto parte appena c'è l'accesso
       // v248: se l'account è subito attivo Supabase risponde con la sessione stessa (access_token in cima),
       // se serve confermare l'email con il solo utente (prima si cercava data.session, che lì non c'è mai)
       var sess = data && (data.session || (data.access_token ? data : null));
@@ -25793,7 +25808,8 @@ function luxProfileFieldsHtml(prefix, p){
       '<div class="lux-nick-wrap"><span class="lux-nick-at" aria-hidden="true">@</span><input type="text" id="' + prefix + 'Nick" maxlength="20" autocomplete="nickname" spellcheck="false" autocapitalize="off" autocorrect="off" value="' + escapeHtml(p.username || '') + '" aria-describedby="' + prefix + 'NickState"></div>' +
       '<div class="lux-nick-state" id="' + prefix + 'NickState" aria-live="polite">' + escapeHtml(t('reg.nickHint')) + '</div></div>' +
     '<div class="field"><label for="' + prefix + 'Name">' + escapeHtml(t('reg.name')) + '</label><input type="text" id="' + prefix + 'Name" maxlength="40" autocomplete="name" value="' + escapeHtml(p.display_name || '') + '" placeholder="' + escapeHtml(t('reg.namePh')) + '"></div>' +
-    '<div class="lux-reg-row"><div class="field"><label for="' + prefix + 'Birth">' + escapeHtml(t('reg.birth')) + '</label><input type="date" id="' + prefix + 'Birth" autocomplete="bday" min="1900-01-01" max="' + luxTodayIso() + '" value="' + escapeHtml(String(p.birth_date || '').slice(0, 10)) + '"></div>' +
+    '<div class="lux-reg-row"><div class="field"><label for="' + prefix + 'Birth">' + escapeHtml(t('reg.birth')) + '</label><span class="lux-date-wrap' + (p.birth_date ? '' : ' is-empty') + '"><input type="date" id="' + prefix + 'Birth" autocomplete="bday" min="1900-01-01" max="' + luxTodayIso() + '" value="' + escapeHtml(String(p.birth_date || '').slice(0, 10)) + '">' +
+        '<span class="lux-date-ph" aria-hidden="true">' + escapeHtml(t('reg.birthPh')) + '</span></span></div>' + // v256
       '<div class="field"><label for="' + prefix + 'Gender">' + escapeHtml(t('reg.gender')) + '</label><select id="' + prefix + 'Gender">' + luxGenderOptions(p.gender) + '</select></div></div>' +
     '<div class="field"><label for="' + prefix + 'Nation">' + escapeHtml(t('reg.nation')) + '</label><select id="' + prefix + 'Nation" autocomplete="country">' + luxCountryOptions(p.nationality || luxGuessCountry()) + '</select></div>';
 }
@@ -25900,9 +25916,11 @@ function luxRegFields(show){
     var keep = luxProfileFieldsRead('fReg'); // (cambiando lingua i campi si ridisegnano: i valori restano)
     var had = document.getElementById('fRegNick');
     box.innerHTML = '<p class="lux-reg-intro">' + escapeHtml(t('reg.intro')) + '</p>' +
+      luxPhotoPickHtml('fRegPhoto', { label: t('photo.label'), hint: t('photo.hint'), cls: 'lux-photo-reg' }) + // v256: la foto profilo
       luxProfileFieldsHtml('fReg', had ? { username: keep.username, display_name: keep.display_name, birth_date: keep.birth_date, gender: keep.gender, nationality: keep.nationality } : {}) +
       '<p class="lux-reg-account">' + escapeHtml(t('reg.account')) + '</p>';
     luxWireNick('fReg');
+    luxRegPhotoWire(); // v256
     if(had && keep.username){ var ni = document.getElementById('fRegNick'); ni.dispatchEvent(new Event('input')); }
   }
   box.hidden = !show;
@@ -25912,6 +25930,7 @@ function luxRegFields(show){
 function luxRegReady(){
   var box = document.getElementById('luxRegFields');
   if(!box || box.hidden){ luxRegMeta = null; return Promise.resolve(); }
+  if(luxRegPhotoCtl && luxRegPhotoCtl.busy) return luxRegPhotoCtl.ready().then(luxRegReady); // v256: (la foto si sta ancora preparando)
   var v = luxProfileFieldsRead('fReg');
   var stop = function(key, field){ var e = new Error('reg'); e.luxReg = key; e.luxField = field; return Promise.reject(e); };
   if(v.err) return stop(v.err, v.field);
@@ -25972,12 +25991,14 @@ function luxProfileAskOpen(p){
   luxSheet('<div class="lux-ask">' +
       '<h2 class="las-title">' + escapeHtml(t('reg.completeTitle')) + '</h2>' +
       '<p class="lux-ask-sub">' + escapeHtml(t('reg.completeSub')) + '</p>' +
+      luxPhotoPickHtml('fAskPhoto', { url: p.avatar_url || '', label: t('photo.label'), hint: t('photo.hint'), cls: 'lux-photo-ask' }) + // v256
       luxProfileFieldsHtml('fAsk', p) +
       '<div class="form-error" id="fAskError" aria-live="polite"></div>' +
       '<div class="lux-ask-actions"><button type="button" class="las-primary" data-ask-save>' + escapeHtml(t('reg.save')) + '</button>' +
       '<button type="button" class="las-secondary" data-las-close>' + escapeHtml(t('reg.later')) + '</button></div></div>',
     function(body){
       luxWireNick('fAsk', own);
+      var luxPh = luxPhotoPickWire('fAskPhoto', { url: p.avatar_url || '' }); // v256
       setTimeout(function(){ if(luxTouchTyping() && body.contains(document.activeElement)) try { document.activeElement.blur(); } catch(e){} }, 90); // (sul telefono la tastiera non salta su da sola)
       if(own){ var st = document.getElementById('fAskNickState'); if(st){ st.className = 'lux-nick-state is-ok'; st.textContent = t('reg.nickYours'); } }
       var btn = body.querySelector('[data-ask-save]'), err = body.querySelector('#fAskError');
@@ -25992,12 +26013,15 @@ function luxProfileAskOpen(p){
         btn.disabled = true;
         var fields = { display_name: v.display_name, birth_date: v.birth_date, gender: v.gender || null, nationality: v.nationality };
         if(v.username.toLowerCase() !== own.toLowerCase() || v.username !== own) fields.username = v.username;
-        luxProfileWrite(fields).then(function(){
+        luxPh.ready().then(function(){ // v256: prima la foto (se è nuova)
+          return luxPh.file ? luxAvatarPut(luxPh.file, 'avatar').then(function(url){ fields.avatar_url = url; }) : null;
+        }).then(function(){ return luxProfileWrite(fields); }).then(function(){
           closeLuxSheet();
           luxToast(t('reg.saved'));
+          if(fields.avatar_url) try { refreshAuthUI(); } catch(e){}
           if(document.getElementById('profileSection')) setTimeout(function(){ window.location.reload(); }, 900);
         }).catch(function(e){
-          err.textContent = t(luxProfileSaveErrKey(e));
+          err.textContent = t(e && e.luxPhoto ? 'photo.saveFail' : luxProfileSaveErrKey(e)); // v256
           btn.disabled = false;
         });
       });
@@ -26208,6 +26232,7 @@ function luxCollabHint(){
 function luxPeopleAfterSession(){
   if(!isSignedIn()) return;
   luxProfileAsk(2500);
+  setTimeout(function(){ luxRegPhotoUpload(); }, 1200); // v256: la foto scelta registrandosi
   if(document.getElementById('communitySection') && new URLSearchParams(window.location.search).get('canale')) setTimeout(function(){ luxChannelFromUrl(); }, 900);
   luxCollabHint();
 }
@@ -26243,6 +26268,8 @@ function luxGroupErrKey(e){
   var m = String((e && e.body && (e.body.message || e.body.hint)) || (e && e.message) || '');
   if(/bisogno di un nome/i.test(m)) return 'group.errName';
   if(/almeno un amico/i.test(m)) return 'group.errPick';
+  if(/foto non valida/i.test(m)) return 'group.photoErr'; // v256
+  if(/solo chi gestisce/i.test(m)) return 'group.errAdmin';
   if(e && e.network) return 'del.offline';
   return 'group.errGeneric';
 }
@@ -26299,7 +26326,7 @@ function luxGroupPreview(g){
   else if(isGifUrl(p)) p = 'GIF';
   return p;
 }
-function luxGroupAvatar(name, id){ return avatarInitialsDataUri(name || '?', 'g' + id); }
+function luxGroupAvatar(name, id, photo){ return photo || avatarInitialsDataUri(name || '?', 'g' + id); } // v256: la foto del gruppo, se c'è
 var LUX_GROUP_ICON = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8.5" r="3.2"/><path d="M3.2 19c.6-3.3 2.9-5.1 5.8-5.1s5.2 1.8 5.8 5.1"/><circle cx="16.8" cy="9.4" r="2.6"/><path d="M15.9 14.2c2.6-.2 4.4 1.3 4.9 4.8"/></svg>';
 
 /* ---- il blocco «Gruppi» sopra l'elenco delle chat ---- */
@@ -26343,7 +26370,7 @@ function luxGroupsRender(){
       var prev = luxGroupPreview(g);
       return '<div class="chat-sidebar-row lux-group-row' + (unread ? ' unread' : '') + (g.muted ? ' is-muted' : '') + (luxGroupCur && luxGroupCur.id === g.id ? ' active' : '') + '" data-group-id="' + escapeHtml(g.id) + '">' +
         '<div class="chat-sidebar-row-main" role="button" tabindex="0">' +
-          '<span class="chat-sidebar-avatar-wrap"><img class="chat-sidebar-avatar" src="' + escapeHtml(luxGroupAvatar(g.name, g.id)) + '" alt=""><span class="lux-group-badge">' + LUX_GROUP_ICON + '</span></span>' +
+          '<span class="chat-sidebar-avatar-wrap"><img class="chat-sidebar-avatar" src="' + escapeHtml(luxGroupAvatar(g.name, g.id, g.photo_url)) + '" data-fallback="' + escapeHtml(luxGroupAvatar(g.name, g.id)) + '" alt=""><span class="lux-group-badge">' + LUX_GROUP_ICON + '</span></span>' +
           '<span class="chat-sidebar-info"><span class="chat-sidebar-name">' + escapeHtml(g.name) + '</span>' +
             '<span class="chat-sidebar-preview">' + (prev ? '<span class="lux-gprev-who" data-who="' + escapeHtml(mine ? '' : (g.last_sender_id || '')) + '">' + (mine ? escapeHtml(t('community.you')) + ': ' : '') + '</span>' + escapeHtml(prev) : escapeHtml(t('group.noMsgs'))) + '</span></span>' +
           '<span class="chat-sidebar-meta">' + (g.last_message_at ? '<span class="chat-sidebar-time">' + escapeHtml(notifTimeAgo(g.last_message_at)) + '</span>' : '') +
@@ -26431,6 +26458,7 @@ function luxGroupNewSheet(){
       return;
     }
     luxSheet('<div class="lux-gsheet"><h2 class="las-title">' + escapeHtml(t('group.newTitle')) + '</h2>' +
+        luxPhotoPickHtml('luxGroupPhoto', { label: t('group.photo'), hint: t('group.photoHint'), cls: 'lux-photo-sheet' }) + // v256
         '<label class="las-field">' + escapeHtml(t('group.name')) + '<input type="text" id="luxGroupName" maxlength="60" placeholder="' + escapeHtml(t('group.namePh')) + '" autocomplete="off"></label>' +
         '<p class="lux-gsheet-label">' + escapeHtml(t('group.pick')) + '</p>' + luxGroupPickHtml(friends) +
         '<div class="form-error" id="luxGroupErr" aria-live="polite"></div>' +
@@ -26440,6 +26468,7 @@ function luxGroupNewSheet(){
         var n = 0;
         var ready = function(){ btn.disabled = !nameEl.value.trim() || n === 0; };
         var picked = luxGroupPickWire(body, function(k){ n = k; ready(); });
+        var photoCtl = luxPhotoPickWire(body.querySelector('#luxGroupPhoto')); // v256
         nameEl.addEventListener('input', ready);
         btn.addEventListener('click', function(){
           var name = nameEl.value.trim(), ids = picked();
@@ -26448,8 +26477,15 @@ function luxGroupNewSheet(){
           err.textContent = '';
           btn.disabled = true;
           luxRpc('lux_gruppo_crea', { p_nome: name, p_membri: ids }).then(function(id){
+            // v256: la foto (se c'è) parte subito dopo; se non riesce, il gruppo c'è comunque
+            return photoCtl.ready().then(function(){
+              if(!photoCtl.file) return { id: id, ok: true };
+              return luxGroupPhotoPut(id, photoCtl.file).then(function(){ return { id: id, ok: true }; }, function(e){ console.warn('[gruppi] foto', e); return { id: id, ok: false }; });
+            });
+          }).then(function(res){
+            var id = res.id;
             closeLuxSheet();
-            luxToast(t('group.created'));
+            luxToast(t(res.ok ? 'group.created' : 'group.createdNoPhoto'));
             luxGroupsShared.at = 0;
             if(document.getElementById('chatBox')){ luxGroupsLoad(); luxGroupOpen(id, true); }
             else window.location.href = 'chat.html?group=' + encodeURIComponent(id);
@@ -26514,6 +26550,7 @@ function luxGroupOpen(id, updateHistory){
   setChatMobileView('conversation');
   document.querySelectorAll('.chat-sidebar-row').forEach(function(row){ row.classList.toggle('active', row.dataset.groupId === id); });
   var cached = (luxGroupsCache || []).filter(function(x){ return x.id === id; })[0];
+  if(cached) g.photo_url = cached.photo_url || null; // v256
   luxGroupHeader(cached ? cached.name : '…', '');
   var wrap = document.getElementById('chatMessages');
   if(wrap) wrap.innerHTML = '<p class="form-note">…</p>';
@@ -26531,7 +26568,8 @@ function luxGroupHeader(name, status){
   if(nameEl) nameEl.textContent = name;
   if(stEl) stEl.textContent = status || '';
   if(av && luxGroupCur){
-    av.src = luxGroupAvatar(name, luxGroupCur.id);
+    av.src = luxGroupAvatar(name, luxGroupCur.id, luxGroupCur.photo_url); // v256
+    av.dataset.fallback = luxGroupAvatar(name, luxGroupCur.id);
     av.classList.add('avatar-clickable');
     av.onclick = function(){ luxGroupInfoOpen(); };
   }
@@ -26570,6 +26608,7 @@ function luxGroupRefresh(){
     var me = mem.filter(function(m){ return m.user_id === currentUserId(); })[0];
     if(!row || !me){ luxGroupGone(res[0] === null || res[1] === null); return false; }
     g.name = row.name;
+    g.photo_url = row.photo_url || null; // v256
     g.created_by = row.created_by;
     g.role = me.role;
     g.muted = !!me.muted;
@@ -26592,7 +26631,7 @@ function luxGroupRefresh(){
         luxGroupInfoPanel();
         // nel blocco Gruppi: il nome (se nel frattempo è cambiato) e «letto»
         var cached = (luxGroupsCache || []).filter(function(x){ return x.id === g.id; })[0];
-        if(cached){ cached.name = g.name; cached.muted = g.muted; }
+        if(cached){ cached.name = g.name; cached.muted = g.muted; cached.photo_url = g.photo_url; }
         return true;
       });
   }).catch(function(e){
@@ -26616,6 +26655,7 @@ function luxGroupGone(failed){
   var wrap = document.getElementById('chatMessages');
   if(wrap) wrap.innerHTML = '<p class="form-note lux-group-gone">' + escapeHtml(failed ? t('chat.openError') : t('group.gone')) + '</p>';
   luxGroupComposer(false);
+  if(luxGroupCur) luxGroupCur.photo_url = null; // v256
   luxGroupHeader('—', '');
   if(luxGroupPoll){ clearInterval(luxGroupPoll); luxGroupPoll = null; }
   if(!failed){ luxGroupsShared.at = 0; luxGroupsLoad(); }
@@ -26828,9 +26868,12 @@ function luxGroupInfoHtml(g, panel){
   var btn = function(cls, attr, label){ return '<button type="button" class="' + cls + '" ' + attr + '>' + escapeHtml(label) + '</button>'; };
   var actions = (admin ? btn(panel ? 'btn btn-ghost btn-sm' : 'las-secondary', 'data-g-add', t('group.add')) + btn(panel ? 'btn btn-ghost btn-sm' : 'las-secondary', 'data-g-rename', t('group.rename')) : '') +
     btn(panel ? 'btn btn-ghost btn-sm' : 'las-secondary', 'data-g-mute', g.muted ? t('group.unmute') : t('group.mute'));
-  var head = '<div class="lux-ginfo-id"><img class="lux-ginfo-av" src="' + escapeHtml(luxGroupAvatar(g.name, g.id)) + '" alt="">' +
+  var gAv = '<img class="lux-ginfo-av" src="' + escapeHtml(luxGroupAvatar(g.name, g.id, g.photo_url)) + '" data-fallback="' + escapeHtml(luxGroupAvatar(g.name, g.id)) + '" alt="">'; // v256
+  var head = '<div class="lux-ginfo-id">' + (admin ? '<button type="button" class="lux-ginfo-avbtn" data-g-photo aria-label="' + escapeHtml(t(g.photo_url ? 'group.photoChange' : 'group.photoAdd')) + '">' + gAv + '<span class="lux-ginfo-cam" aria-hidden="true">' + LUX_CAM_ICON + '</span></button>'
+      : g.photo_url ? '<button type="button" class="lux-ginfo-avbtn" data-g-photo-view aria-label="' + escapeHtml(t('group.photo')) + '">' + gAv + '</button>' : gAv) +
     '<div class="lux-ginfo-name">' + escapeHtml(g.name) + '</div>' +
-    '<div class="lux-ginfo-sub">' + escapeHtml(t('group.members').replace('{n}', g.members.length)) + (g.muted ? ' · 🔕 ' + escapeHtml(t('group.mutedTag')) : '') + '</div></div>';
+    '<div class="lux-ginfo-sub">' + escapeHtml(t('group.members').replace('{n}', g.members.length)) + (g.muted ? ' · 🔕 ' + escapeHtml(t('group.mutedTag')) : '') + '</div>' +
+    (admin ? '<button type="button" class="lux-ginfo-photo-link" data-g-photo>' + escapeHtml(t(g.photo_url ? 'group.photoChange' : 'group.photoAdd')) + '</button>' : '') + '</div>'; // v256
   return (panel ? '<div class="chat-info-banner lux-ginfo-banner"><button type="button" class="chat-info-close" aria-label="' + escapeHtml(t('share.close')) + '">×</button></div>' : '') +
     head +
     '<div class="' + (panel ? 'chat-info-actions' : 'lux-ginfo-actions') + '">' + actions + '</div>' +
@@ -26848,6 +26891,8 @@ function luxGroupInfoWire(root, g, panel){
     else if(b.hasAttribute('data-g-mute')) luxGroupMute(!g.muted);
     else if(b.hasAttribute('data-g-leave')) luxGroupExit();
     else if(b.getAttribute('data-g-remove')) luxGroupRemove(b.getAttribute('data-g-remove'));
+    else if(b.hasAttribute('data-g-photo')) luxGroupPhotoSheet(); // v256
+    else if(b.hasAttribute('data-g-photo-view')){ if(luxGroupCur && luxGroupCur.photo_url) openImageLightbox(luxGroupCur.photo_url); }
     else if(b.classList.contains('chat-info-close')) toggleChatInfo(false);
   });
 }
@@ -26984,6 +27029,257 @@ function luxGroupExit(){
     setChatMobileView('list');
     try { loadNotifications(); loadUnreadDmCount(); } catch(e){}
   }).catch(function(e){ luxToast(t(luxGroupErrKey(e))); });
+}
+
+/* ============ v256: LE FOTO (registrazione, «Completa il tuo profilo», gruppi chat) ============
+   La foto profilo si sceglie già registrandosi (facoltativa): si rimpicciolisce sul telefono, come in
+   «Modifica profilo» (al massimo 512 px), e parte appena c'è l'accesso. Se l'account va confermato
+   dall'email resta in questo browser (al massimo 14 giorni) e parte al primo accesso con quell'email.
+   I gruppi chat hanno la loro foto: la sceglie chi crea il gruppo, chi lo gestisce la cambia o la toglie,
+   la vedono tutti i partecipanti. Le foto stanno nell'archivio «avatars», nella cartella di chi le carica. */
+var LUX_CAM_ICON = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.8 8.6A2.4 2.4 0 0 1 6.2 6.2h1.7l1.2-1.7c.3-.4.8-.7 1.3-.7h3.2c.5 0 1 .3 1.3.7l1.2 1.7h1.7a2.4 2.4 0 0 1 2.4 2.4v8a2.4 2.4 0 0 1-2.4 2.4H6.2a2.4 2.4 0 0 1-2.4-2.4z"/><circle cx="12" cy="12.4" r="3.5"/></svg>';
+var LUX_REG_PHOTO_KEY = 'lux_reg_photo';
+var luxRegPhotoFile = null;   // la foto scelta nel modulo di registrazione (resta anche cambiando lingua)
+var luxRegPhotoData = null;   // …la stessa, pronta da conservare nel browser: { file, url }
+var luxRegPhotoCtl = null;
+var luxRegPhotoMem = null;    // { email, file }: la foto dell'account appena creato, finché non parte
+var luxRegPhotoBusy = false;
+
+function luxPhotoErr(key){ var e = new Error(key); e.luxKey = key; return e; }
+function luxBlobToDataUrl(blob){
+  return new Promise(function(resolve, reject){
+    var fr = new FileReader();
+    fr.onload = function(){ resolve(String(fr.result || '')); };
+    fr.onerror = function(){ reject(fr.error || new Error('lettura')); };
+    fr.readAsDataURL(blob);
+  });
+}
+function luxDataUrlToFile(data, name){
+  var m = /^data:([^;,]+)?;base64,(.*)$/.exec(String(data || ''));
+  if(!m) return null;
+  var bin = atob(m[2]), n = bin.length, u8 = new Uint8Array(n);
+  for(var i = 0; i < n; i++) u8[i] = bin.charCodeAt(i);
+  var type = m[1] || 'image/jpeg';
+  try { return new File([u8], name + '.' + luxExtOf({ type: type }), { type: type }); }
+  catch(e){ return new Blob([u8], { type: type }); }
+}
+// una foto scelta dal telefono o dal computer: si controlla che si apra e si rimpicciolisce
+function luxPhotoPrepare(file){
+  if(!file) return Promise.reject(luxPhotoErr('photo.bad'));
+  var type = String(file.type || '').toLowerCase();
+  if((type && type.indexOf('image/') !== 0) || /svg/.test(type)) return Promise.reject(luxPhotoErr('photo.bad'));
+  if(file.size > 25e6) return Promise.reject(luxPhotoErr('photo.tooBig'));
+  if(/gif/.test(type)) return file.size <= 2e6 ? Promise.resolve(file) : Promise.reject(luxPhotoErr('photo.tooBig')); // (le GIF partono così come sono)
+  return luxLoadImg(file).then(function(src){
+    if(/^image\/(jpe?g|png|webp)$/.test(type)){ src.done(); return luxShrinkImage(file, 512, 0.86, 200000); }
+    // un tipo che non si sa (o una foto HEIC che il browser riesce ad aprire): si ridisegna in JPEG
+    return luxRenderImage(src, 512, 0.86, {}).then(function(blob){ src.done(); return new File([blob], 'foto.jpg', { type: 'image/jpeg' }); },
+      function(e){ src.done(); throw e; });
+  }, function(){ throw luxPhotoErr('photo.bad'); })
+    .then(function(out){ if(!out || out.size > 3e6) throw luxPhotoErr('photo.tooBig'); return out; });
+}
+
+/* ---- il riquadro della foto: il cerchio (si tocca per sceglierla), «Scegli una foto» / «Cambia», «Togli» ----
+   o: { url (la foto che c'è), fallback (le iniziali, se non c'è), label (noLabel: solo per chi legge con la voce), hint, cls,
+        clearable (si può togliere quella che c'è), file (una foto nuova già scelta) } */
+function luxPhotoPickHtml(id, o){
+  o = o || {};
+  var label = o.label || t('photo.label');
+  var src = o.url || o.fallback || '';
+  return '<div class="lux-photo' + (o.cls ? ' ' + o.cls : '') + (o.url ? ' has-photo' : (o.fallback ? ' has-fallback' : '')) + '" id="' + escapeHtml(id) + '">' +
+      '<button type="button" class="lux-photo-ring" data-ph-choose aria-label="' + escapeHtml(label) + '">' +
+        '<img class="lux-photo-img" alt=""' + (src ? ' src="' + escapeHtml(src) + '"' : ' hidden') + '>' +
+        '<span class="lux-photo-cam" aria-hidden="true">' + LUX_CAM_ICON + '</span></button>' +
+      '<div class="lux-photo-side">' +
+        (o.noLabel ? '' : '<span class="lux-photo-label">' + escapeHtml(label) + '</span>') +
+        (o.hint ? '<span class="lux-photo-hint">' + escapeHtml(o.hint) + '</span>' : '') +
+        '<span class="lux-photo-acts"><button type="button" class="lux-photo-btn" data-ph-choose data-ph-main>' + escapeHtml(t(o.url ? 'photo.change' : 'photo.choose')) + '</button>' +
+          '<button type="button" class="lux-photo-btn lux-photo-del" data-ph-remove hidden>' + escapeHtml(t('photo.remove')) + '</button></span>' +
+        '<span class="lux-photo-err" aria-live="polite"></span>' +
+      '</div>' +
+      '<input type="file" class="lux-photo-file" accept="image/*" tabindex="-1" aria-hidden="true">' +
+    '</div>';
+}
+function luxPhotoPickWire(el, o){
+  o = o || {};
+  if(typeof el === 'string') el = document.getElementById(el);
+  var ctl = { file: null, removed: false, busy: null };
+  ctl.ready = function(){ return ctl.busy || Promise.resolve(); };
+  ctl.changed = function(){ return !!ctl.file || ctl.removed; };
+  if(!el) return ctl;
+  var input = el.querySelector('.lux-photo-file'), img = el.querySelector('.lux-photo-img'), err = el.querySelector('.lux-photo-err');
+  var main = el.querySelector('[data-ph-main]'), del = el.querySelector('[data-ph-remove]');
+  var shown = null; // l'indirizzo provvisorio della foto nuova (solo per vederla)
+  var paint = function(){
+    var has = !!ctl.file || (!!o.url && !ctl.removed);
+    var src = ctl.file ? shown : (has ? o.url : (o.fallback || ''));
+    if(src){ img.src = src; img.hidden = false; } else { img.removeAttribute('src'); img.hidden = true; }
+    el.classList.toggle('has-photo', has);
+    el.classList.toggle('has-fallback', !has && !!o.fallback);
+    if(main) main.textContent = t(has ? 'photo.change' : 'photo.choose');
+    if(del) del.hidden = !(ctl.file || (o.clearable && o.url && !ctl.removed));
+  };
+  var take = function(f){
+    if(shown) try { URL.revokeObjectURL(shown); } catch(e){}
+    ctl.file = f || null;
+    if(f) ctl.removed = false;
+    shown = f ? URL.createObjectURL(f) : null;
+    paint();
+  };
+  if(o.file) take(o.file); else paint();
+  Array.prototype.forEach.call(el.querySelectorAll('[data-ph-choose]'), function(b){
+    b.addEventListener('click', function(e){ e.preventDefault(); if(!ctl.busy) input.click(); });
+  });
+  input.addEventListener('change', function(){
+    var f = input.files && input.files[0];
+    if(!f) return;
+    err.textContent = '';
+    el.classList.add('is-busy');
+    var job = ctl.busy = luxPhotoPrepare(f).then(function(out){
+      take(out);
+      if(o.onChange) o.onChange(ctl);
+    }, function(e){
+      err.textContent = t((e && e.luxKey) || 'photo.bad');
+    }).then(function(){
+      try { input.value = ''; } catch(e){}
+      if(ctl.busy === job) ctl.busy = null;
+      el.classList.remove('is-busy');
+    });
+  });
+  if(del) del.addEventListener('click', function(e){
+    e.preventDefault();
+    err.textContent = '';
+    if(ctl.file) take(null);
+    else if(o.clearable && o.url){ ctl.removed = true; paint(); }
+    if(o.onChange) o.onChange(ctl);
+  });
+  return ctl;
+}
+
+// una foto nella cartella del proprio account (archivio «avatars», come la foto profilo): risponde con l'indirizzo pubblico
+function luxAvatarPut(file, base){
+  var s = getSession(), uid = currentUserId();
+  if(!s || !uid || !SUPABASE_URL) return Promise.reject(new Error('auth'));
+  var ext = luxExtOf(file), path = uid + '/' + base + '.' + ext;
+  return fetch(SUPABASE_URL + '/storage/v1/object/avatars/' + path, {
+    method: 'POST',
+    headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': 'Bearer ' + s.access_token, 'x-upsert': 'true', 'Content-Type': file.type || 'image/jpeg' },
+    body: file
+  }).then(function(r){
+    if(!r.ok) return r.text().then(function(tx){ var e = new Error('foto ' + r.status); e.status = r.status; e.body = tx; e.luxPhoto = true; throw e; });
+    return SUPABASE_URL + '/storage/v1/object/public/avatars/' + path + '?t=' + Date.now();
+  }, function(){ var x = new Error('rete'); x.network = true; x.luxPhoto = true; throw x; });
+}
+
+/* ---- la foto scelta registrandosi ---- */
+function luxRegPhotoWire(){
+  luxRegPhotoCtl = luxPhotoPickWire('fRegPhoto', { file: luxRegPhotoFile, onChange: function(c){
+    luxRegPhotoFile = c.file;
+    luxRegPhotoData = null;
+    var f = c.file;
+    if(f) luxBlobToDataUrl(f).then(function(u){ if(luxRegPhotoFile === f) luxRegPhotoData = { file: f, url: u }; }, function(){});
+  } });
+}
+// l'account è stato creato: la foto aspetta l'accesso (in memoria e, se va confermata l'email, nel browser)
+function luxRegPhotoKeep(email){
+  var em = String(email || '').trim().toLowerCase();
+  luxRegPhotoDrop();
+  var file = luxRegPhotoFile;
+  if(!file || !em) return;
+  luxRegPhotoMem = { email: em, file: file };
+  var save = function(data){
+    if(!data || !luxRegPhotoMem || luxRegPhotoMem.file !== file) return;
+    try { localStorage.setItem(LUX_REG_PHOTO_KEY, JSON.stringify({ email: em, data: data, at: Date.now(), tries: 0 })); } catch(e){}
+  };
+  if(luxRegPhotoData && luxRegPhotoData.file === file) save(luxRegPhotoData.url);
+  else luxBlobToDataUrl(file).then(save, function(){});
+  luxRegPhotoFile = null; luxRegPhotoData = null; // (un'altra registrazione da qui riparte senza foto)
+}
+function luxRegPhotoDrop(){
+  luxRegPhotoMem = null;
+  try { localStorage.removeItem(LUX_REG_PHOTO_KEY); } catch(e){}
+}
+function luxRegPhotoPending(){
+  if(luxRegPhotoMem) return luxRegPhotoMem;
+  var raw = null;
+  try { raw = JSON.parse(localStorage.getItem(LUX_REG_PHOTO_KEY) || 'null'); } catch(e){ raw = null; }
+  if(!raw || !raw.email || !raw.data) return null;
+  if(!(Date.now() - (raw.at || 0) < 14 * 864e5) || (raw.tries || 0) >= 3){ luxRegPhotoDrop(); return null; } // (vecchia, o non parte: si lascia stare)
+  var f = null;
+  try { f = luxDataUrlToFile(raw.data, 'avatar'); } catch(e){ f = null; }
+  if(!f){ luxRegPhotoDrop(); return null; }
+  return { email: raw.email, file: f, stored: true };
+}
+// appena c'è l'accesso con quell'email: la foto nel profilo (se nel frattempo non ne ha già messa una)
+function luxRegPhotoUpload(){
+  if(luxRegPhotoBusy || !isSignedIn() || !SUPABASE_URL) return Promise.resolve(false);
+  var pend = luxRegPhotoPending();
+  if(!pend) return Promise.resolve(false);
+  var s = getSession(), mail = s && s.user && s.user.email ? String(s.user.email).trim().toLowerCase() : '';
+  if(!mail || mail !== pend.email) return Promise.resolve(false); // (entrato con un altro account: la foto aspetta il suo)
+  luxRegPhotoBusy = true;
+  var uid = currentUserId();
+  return fetch(SUPABASE_URL + '/rest/v1/profiles?id=eq.' + encodeURIComponent(uid) + '&select=avatar_url', { headers: communityHeaders() })
+    .then(function(r){ if(!r.ok) throw new Error('profilo ' + r.status); return r.json(); })
+    .then(function(rows){
+      if(rows && rows[0] && rows[0].avatar_url){ luxRegPhotoDrop(); return false; } // (una foto ce l'ha già: resta quella)
+      return luxAvatarPut(pend.file, 'avatar').then(function(url){ return luxProfileWrite({ avatar_url: url }); }).then(function(){
+        luxRegPhotoDrop();
+        try { refreshAuthUI(); } catch(e){}
+        return true;
+      });
+    })
+    .catch(function(e){
+      console.warn('[registrazione] foto', e);
+      if(pend.stored) try { var raw = JSON.parse(localStorage.getItem(LUX_REG_PHOTO_KEY) || 'null'); if(raw){ raw.tries = (raw.tries || 0) + 1; localStorage.setItem(LUX_REG_PHOTO_KEY, JSON.stringify(raw)); } } catch(er){}
+      return false;
+    })
+    .then(function(ok){ luxRegPhotoBusy = false; return ok; });
+}
+
+// la data di nascita ancora vuota: sull'iPhone il campo non dice niente, così compare «Tocca per scegliere la data»
+function luxDateEmpty(e){
+  var w = e.target && e.target.closest ? e.target.closest('.lux-date-wrap') : null;
+  if(w) w.classList.toggle('is-empty', !e.target.value);
+}
+document.addEventListener('input', luxDateEmpty, true);
+document.addEventListener('change', luxDateEmpty, true);
+
+/* ---- la foto dei gruppi chat ---- */
+function luxGroupPhotoPut(gid, file){
+  return luxAvatarPut(file, 'group-' + gid).then(function(url){
+    return luxRpc('lux_gruppo_foto', { p_gruppo: gid, p_url: url }).then(function(){ return url; });
+  });
+}
+function luxGroupPhotoSheet(){
+  var g = luxGroupCur;
+  if(!g || g.role !== 'admin') return;
+  var fb = luxGroupAvatar(g.name, g.id);
+  luxSheet('<div class="lux-gsheet"><h2 class="las-title">' + escapeHtml(t('group.photo')) + '</h2><p class="las-note">' + escapeHtml(g.name) + '</p>' +
+      luxPhotoPickHtml('luxGroupPhotoEdit', { url: g.photo_url || '', fallback: fb, label: t('group.photo'), noLabel: true, hint: t('group.photoHint'), cls: 'lux-photo-sheet' }) + // (il titolo dice già «Foto del gruppo»)
+      '<div class="form-error" id="luxGroupErr" aria-live="polite"></div>' +
+      '<button type="button" class="las-primary" data-g-photo-save disabled>' + escapeHtml(t('reg.save')) + '</button></div>',
+    function(body){
+      var btn = body.querySelector('[data-g-photo-save]'), err = body.querySelector('#luxGroupErr');
+      var ctl = luxPhotoPickWire(body.querySelector('#luxGroupPhotoEdit'), { url: g.photo_url || '', fallback: fb, clearable: true, onChange: function(c){ btn.disabled = !c.changed(); err.textContent = ''; } });
+      btn.addEventListener('click', function(){
+        btn.disabled = true;
+        err.textContent = '';
+        var gone = false;
+        ctl.ready().then(function(){
+          if(ctl.file) return luxGroupPhotoPut(g.id, ctl.file);
+          if(ctl.removed){ gone = true; return luxRpc('lux_gruppo_foto', { p_gruppo: g.id, p_url: null }); }
+        }).then(function(){
+          closeLuxSheet();
+          luxGroupAfterChange(t(gone ? 'group.photoRemoved' : 'group.photoSaved'));
+        }).catch(function(e){
+          console.warn('[gruppi] foto', e);
+          var k = luxGroupErrKey(e);
+          err.textContent = t(k === 'group.errGeneric' ? 'group.photoErr' : k);
+          btn.disabled = false;
+        });
+      });
+    });
 }
 
 function handleAddAnnouncement(){
