@@ -5475,3 +5475,68 @@ body.theme-light .lux-photo-btn{color:#7a5a12;border-color:rgba(138,106,31,.45);
 body.theme-light .lux-photo-sheet{background:#fbf5e8;border-color:rgba(138,106,31,.2);}
 body.theme-light .lux-photo-sheet .lux-photo-label{color:#2a1d12;}
 body.theme-light .lux-ginfo-photo-link{color:#7a5a12;}
+/* ============ v257: i titoli «Solo per chi dona» ============ */
+/* il lucchetto sulle copertine (sotto l'etichetta 18+ / Per tutti) */
+.lux-lock-badge{position:absolute;top:34px;right:8px;z-index:3;display:inline-flex;align-items:center;justify-content:center;gap:3px;box-sizing:border-box;
+  min-width:24px;height:24px;padding:0 5px;border-radius:999px;border:1px solid var(--gold);background:rgba(11,6,7,.8);color:var(--gold-bright);
+  -webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);pointer-events:none;line-height:1;}
+.lux-lock-badge svg{flex:none;width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.lux-lock-badge b{font:700 9.5px/1 'Space Mono',monospace;letter-spacing:.02em;white-space:nowrap;}
+.lux-lock-badge.is-open{border-color:#5fa585;background:rgba(14,38,29,.86);color:#bfe8d3;}
+body.theme-light .lux-lock-badge{border-color:#c9a24d;color:#e3c273;}
+body.theme-light .lux-lock-badge.is-open{border-color:#5fa585;color:#bfe8d3;}
+.lux-lock-badge.is-latest{top:8px;}
+.lux-lock-badge.is-rank{top:4px;right:4px;min-width:20px;height:20px;padding:0 3px;}
+.lux-lock-badge.is-rank svg{width:11px;height:11px;}
+.lux-lock-badge.is-rank b{font-size:8.5px;}
+.lux-lock-badge.is-inline{position:static;vertical-align:-5px;height:20px;min-width:20px;margin-inline-end:6px;-webkit-backdrop-filter:none;backdrop-filter:none;}
+.lux-lock-badge.is-inline svg{width:11px;height:11px;}
+.lsr-item .lux-lock-badge.is-inline{flex:none;margin:0 2px;}
+#catalogGrid.view-list .card-idx-cover .lux-lock-badge,
+body.has-app-tabbar #mycomics[data-tab="continue"] .card-idx-cover .lux-lock-badge{top:auto;bottom:4px;right:4px;min-width:20px;height:20px;padding:0 3px;}
+#catalogGrid.view-list .card-idx-cover .lux-lock-badge b,
+body.has-app-tabbar #mycomics[data-tab="continue"] .card-idx-cover .lux-lock-badge b{display:none;}
+
+/* nella scheda del titolo, al posto delle pagine */
+.lux-lock-panel{margin:18px 0 8px;border:1px solid var(--line);border-radius:14px;box-sizing:border-box;}
+.lux-lock-panel[hidden]{display:none !important;}
+.lux-lock-ico{display:inline-flex;align-items:center;justify-content:center;flex:none;}
+.lux-lock-ico svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
+.lux-lock-panel.is-locked{padding:22px 18px 20px;text-align:center;border-color:rgba(201,162,77,.5);
+  background:radial-gradient(120% 90% at 50% 0%, rgba(110,20,35,.42), rgba(11,6,7,.55) 70%);box-shadow:inset 0 0 0 1px rgba(201,162,77,.07);}
+.lux-lock-head{display:flex;flex-direction:column;align-items:center;gap:10px;}
+.lux-lock-panel.is-locked .lux-lock-ico{width:52px;height:52px;border-radius:50%;border:1px solid var(--gold);background:rgba(11,6,7,.6);color:var(--gold-bright);
+  box-shadow:0 0 0 6px rgba(201,162,77,.07);}
+.lux-lock-panel.is-locked .lux-lock-ico svg{width:24px;height:24px;}
+.lux-lock-title{font-family:'Cinzel',serif;font-size:17px;letter-spacing:.08em;color:var(--gold-bright);}
+.lux-lock-text{margin:10px auto 12px;max-width:440px;color:var(--parchment);font-size:15.5px;line-height:1.6;}
+.lux-lock-status{margin:-2px auto 14px;max-width:440px;padding:7px 10px;border-radius:8px;background:rgba(201,162,77,.1);color:var(--gold-bright);font:400 12px/1.55 'Space Mono',monospace;}
+.lux-lock-status:empty{display:none;}
+.lux-lock-cta{min-width:min(240px,100%);}
+.lux-lock-panel.is-bar{display:flex;align-items:center;gap:10px;padding:10px 14px;background:rgba(201,162,77,.06);color:var(--parchment-dim);font:400 12px/1.5 'Space Mono',monospace;}
+.lux-lock-panel.is-bar .lux-lock-ico{color:var(--gold);}
+.lux-lock-panel.is-bar .lux-lock-ico svg{width:18px;height:18px;}
+.lux-lock-panel.is-donor{border-color:rgba(95,165,133,.55);background:rgba(63,107,87,.16);color:var(--parchment);}
+.lux-lock-panel.is-donor .lux-lock-ico{color:#8fd1b0;}
+.lux-lock-panel.is-wait{padding:14px;color:var(--parchment-dim);}
+.lux-lock-wait{margin:0;display:flex;align-items:center;justify-content:center;gap:8px;}
+.lux-lock-wait .lux-lock-ico svg{width:16px;height:16px;}
+body.theme-light .lux-lock-panel.is-locked{background:radial-gradient(120% 90% at 50% 0%, rgba(138,26,44,.1), rgba(255,255,255,.7) 70%);}
+body.theme-light .lux-lock-panel.is-locked .lux-lock-ico{background:#fff;}
+body.theme-light .lux-lock-panel.is-donor{background:rgba(47,84,67,.08);}
+body.theme-light .lux-lock-panel.is-donor .lux-lock-ico{color:#2f5443;}
+
+/* nel pannello «Sostieni questo titolo» */
+.lux-lock-support{display:flex;align-items:flex-start;flex-wrap:wrap;gap:10px;margin:0 0 14px;padding:10px 12px;border:1px solid rgba(201,162,77,.45);border-radius:10px;
+  background:rgba(110,20,35,.28);color:var(--parchment);font-size:14px;line-height:1.5;text-align:start;}
+.lux-lock-support .lux-lock-ico{color:var(--gold-bright);margin-top:1px;}
+.lux-lock-support .lux-lock-ico svg{width:18px;height:18px;}
+.lux-lock-support-txt{flex:1;min-width:0;}
+.lux-lock-support-login{margin-inline-start:28px;}
+body.theme-light .lux-lock-support{background:rgba(138,26,44,.06);}
+
+/* Amministra */
+#adminSection .adm-tag-lock,.adm-sheet .adm-tag-lock{border-color:rgba(201,162,77,.7);color:var(--gold-bright);background:rgba(201,162,77,.1);}
+.lux-lock-done{color:#8fd1b0;}
+body.theme-light .lux-lock-done{color:#2f5443;}
+.lux-lock-field-note{margin:6px 0 0;}
