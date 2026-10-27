@@ -91,7 +91,7 @@
   // hai visto live sul sito prima di caricare — questo file parte da una
   // copia salvata in sessione e potrebbe non riflettere bump fatti nel
   // frattempo direttamente su GitHub.
-  var V = "257";
+  var V = "258";
 
   // style.css iniettato qui (non più con un <link> scritto a mano in ogni
   // pagina) così la sua versione segue sempre la stessa V di app.js,
@@ -121,12 +121,12 @@
   })();
   window.LUX_NET = NET;
   document.documentElement.setAttribute("data-net", NET);
-  // Su rete lenta i caratteri del sito aspettano app.js: il testo si legge
+  // Su rete lenta i caratteri del sito (v258: ospitati sul sito, fonts/) aspettano app.js: il testo si legge
   // subito coi caratteri del telefono e cambia aspetto un attimo dopo,
   // invece di rubare banda proprio a ciò che rende la pagina utilizzabile.
   var lateFonts = [];
   if (NET === "slow") {
-    document.querySelectorAll('link[rel="stylesheet"][href*="fonts.googleapis.com"]').forEach(function (l) {
+    document.querySelectorAll('link[rel="stylesheet"][href*="fonts/fonts.css"]').forEach(function (l) {
       l.onload = null;
       l.media = "print";
       lateFonts.push(l);

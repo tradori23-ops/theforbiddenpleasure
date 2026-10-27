@@ -21,10 +21,8 @@
 <link rel="manifest" href="luxtify-manifest.json">
 <meta name="theme-color" content="#0b0607">
 <meta name="description" content="LUXTIFY — musica, playlist e podcast di LUX COMICS &amp; MEDUSA COMICS.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cinzel+Decorative:wght@700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Space+Mono:wght@400;700&display=swap" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cinzel+Decorative:wght@700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Space+Mono:wght@400;700&display=swap"></noscript>
+<link rel="stylesheet" href="fonts/fonts.css?v=258" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="fonts/fonts.css?v=258"></noscript>
 <!-- style.css è iniettato da loader.js con la versione sempre aggiornata -->
 <style>
   /* ============ LUXTIFY — layout "vetrina" ============
@@ -308,9 +306,9 @@
       <input type="text" id="fLuxTitle" placeholder="Titolo canzone">
       <input type="text" id="fLuxArtist" placeholder="Artista (opzionale)">
       <input type="text" id="fLuxGenre" placeholder="Generi, separati da virgola (opzionale)">
-      <label class="lx-popup-label">Copertina (opzionale)</label>
+      <label for="fLuxCover" class="lx-popup-label">Copertina (opzionale)</label>
       <input type="file" id="fLuxCover" accept="image/*">
-      <label class="lx-popup-label">File audio (mp3) o video (mp4)</label>
+      <label for="fLuxAudio" class="lx-popup-label">File audio (mp3) o video (mp4)</label>
       <input type="file" id="fLuxAudio" accept="audio/*,video/mp4">
       <label class="lx-explicit-check"><input type="checkbox" id="fLuxExplicit"> Brano esplicito (18+): visibile solo con l'interruttore 18+ acceso</label>
       <label class="lx-popup-label" style="margin-top:4px;">Collaboratori (fino a 3 — con ruolo, es. Voce, Testo, Produzione)</label>

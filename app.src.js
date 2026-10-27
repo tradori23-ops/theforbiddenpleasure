@@ -1131,6 +1131,20 @@ Object.assign(STR.hi, {"lock.badge": "सिर्फ़ दान करने 
 Object.assign(STR.bn, {"lock.badge": "শুধু দাতাদের জন্য", "lock.badgeOpen": "আপনার জন্য খোলা", "lock.title": "শুধু দাতাদের জন্য", "lock.text": "“{title}” দানের মাধ্যমে খোলে: আমরা নিশ্চিত করলেই এটি আপনার জন্য 48 ঘণ্টা খোলা থাকবে।", "lock.donate": "পড়তে দান করুন", "lock.login": "দান করতে লগ ইন করুন", "lock.pending": "আপনার দান নথিভুক্ত হয়েছে: আমরা নিশ্চিত করলেই এটি খুলে যাবে।", "lock.expired": "আপনার 48 ঘণ্টা শেষ হয়েছে ({date})। আরেকটি দানে এটি আবার খুলবে।", "lock.openFor": "আপনার জন্য খোলা: {left} ({date} পর্যন্ত)", "lock.leftH": "আরও {n} ঘণ্টা", "lock.leftH1": "আরও 1 ঘণ্টা", "lock.leftM": "আরও {n} মিনিট", "lock.leftM1": "আরও 1 মিনিট", "lock.admin": "শুধু দাতাদের জন্য — আপনি এটি সবসময় পড়তে পারবেন (আপনি অ্যাডমিন)।", "lock.creator": "শুধু দাতাদের জন্য — আপনি এটি সবসময় পড়তে পারবেন (এটি আপনি প্রকাশ করেছেন)।", "lock.supportNote": "এই টাইটেলটি “শুধু দাতাদের জন্য”: এখানে আপনার দান নথিভুক্ত করুন। আমরা নিশ্চিত করলেই এটি আপনার জন্য 48 ঘণ্টা খোলা থাকবে।", "lock.supportLogin": "এই টাইটেলটি “শুধু দাতাদের জন্য”: দান দিয়ে খুলতে একটি অ্যাকাউন্ট লাগবে।", "lock.donationSaved": "দান নথিভুক্ত হয়েছে। ধন্যবাদ! আমরা নিশ্চিত করলেই “{title}” আপনার জন্য 48 ঘণ্টা খোলা থাকবে।", "lock.notif": "আপনার দান নিশ্চিত করেছে: “{title}” এখন 48 ঘণ্টা আপনার জন্য খোলা", "lock.ended": "“{title}”-এর জন্য আপনার 48 ঘণ্টা শেষ হয়েছে। সমর্থনের জন্য ধন্যবাদ!"});
 Object.assign(STR.ar, {"lock.badge": "للمتبرعين فقط", "lock.badgeOpen": "مفتوح لك", "lock.title": "للمتبرعين فقط", "lock.text": "«{title}» يُفتح بالتبرّع: عندما نؤكّد تبرّعك، يصبح مفتوحًا لك لمدة 48 ساعة.", "lock.donate": "تبرّع لتقرأه", "lock.login": "سجّل الدخول للتبرّع", "lock.pending": "تبرّعك مسجّل: يُفتح فور تأكيدنا له.", "lock.expired": "انتهت ساعاتك الـ48 ({date}). يُفتح من جديد بتبرّع آخر.", "lock.openFor": "مفتوح لك: {left} (حتى {date})", "lock.leftH": "{n} ساعة متبقية", "lock.leftH1": "ساعة واحدة متبقية", "lock.leftM": "{n} دقيقة متبقية", "lock.leftM1": "دقيقة واحدة متبقية", "lock.admin": "للمتبرعين فقط — يمكنك قراءته دائمًا (أنت المشرف).", "lock.creator": "للمتبرعين فقط — يمكنك قراءته دائمًا (أنت من نشره).", "lock.supportNote": "هذا العمل «للمتبرعين فقط»: سجّل تبرّعك هنا. عندما نؤكّده، يصبح مفتوحًا لك لمدة 48 ساعة.", "lock.supportLogin": "هذا العمل «للمتبرعين فقط»: تحتاج إلى حساب لفتحه بالتبرّع.", "lock.donationSaved": "تم تسجيل التبرّع. شكرًا لك! عندما نؤكّده، يصبح «{title}» مفتوحًا لك لمدة 48 ساعة.", "lock.notif": "أكّد تبرّعك: «{title}» مفتوح لك لمدة 48 ساعة", "lock.ended": "انتهت ساعاتك الـ48 لـ«{title}». شكرًا لدعمك!"});
 Object.assign(STR.pnb, {"lock.badge": "صرف دان کرن والیاں لئی", "lock.badgeOpen": "تہاڈے لئی کھلا", "lock.title": "صرف دان کرن والیاں لئی", "lock.text": "«{title}» دان نال کھلدا اے: جدوں اسی پکا کر دیاں گے، ایہہ تہاڈے لئی 48 گھنٹے کھلا رہے گا۔", "lock.donate": "پڑھن لئی دان کرو", "lock.login": "دان کرن لئی لاگ ان کرو", "lock.pending": "تہاڈا دان درج ہو گیا اے: جیویں ای اسی پکا کراں گے، ایہہ کھل جاوے گا۔", "lock.expired": "تہاڈے 48 گھنٹے پورے ہو گئے ({date})۔ اک ہور دان نال ایہہ فیر کھل جاوے گا۔", "lock.openFor": "تہاڈے لئی کھلا: {left} ({date} تک)", "lock.leftH": "{n} گھنٹے باقی", "lock.leftH1": "1 گھنٹا باقی", "lock.leftM": "{n} منٹ باقی", "lock.leftM1": "1 منٹ باقی", "lock.admin": "صرف دان کرن والیاں لئی — تسی ایہنوں ہمیشہ پڑھ سکدے او (تسی ایڈمن او)۔", "lock.creator": "صرف دان کرن والیاں لئی — تسی ایہنوں ہمیشہ پڑھ سکدے او (ایہہ تسی شائع کیتا اے)۔", "lock.supportNote": "ایہہ ٹائٹل «صرف دان کرن والیاں لئی» اے: اپنا دان ایتھے درج کرو۔ جدوں اسی پکا کر دیاں گے، ایہہ تہاڈے لئی 48 گھنٹے کھلا رہے گا۔", "lock.supportLogin": "ایہہ ٹائٹل «صرف دان کرن والیاں لئی» اے: دان نال کھولن لئی اکاؤنٹ چاہیدا اے۔", "lock.donationSaved": "دان درج ہو گیا۔ شکریہ! جدوں اسی پکا کر دیاں گے، «{title}» تہاڈے لئی 48 گھنٹے کھلا رہے گا۔", "lock.notif": "نے تہاڈا دان پکا کر دتا: «{title}» تہاڈے لئی 48 گھنٹے کھلا اے", "lock.ended": "«{title}» لئی تہاڈے 48 گھنٹے پورے ہو گئے۔ ساتھ دین دا شکریہ!"});
+// v258: privacy, regole, accessibilità; «Elimina il mio account»
+Object.assign(STR.it, {"legal.privacy": "Privacy", "legal.terms": "Regole del sito", "legal.a11y": "Accessibilità", "legal.newsConsent": "Iscrivendoti accetti di ricevere le nostre email: ti cancelli quando vuoi.", "legal.privacyLink": "Come usiamo i tuoi dati", "legal.tuRow": "Privacy e regole", "exportData.hint": "Un file con il tuo profilo (anche la data di nascita), le letture, i preferiti, i voti, i commenti, il diario e le richieste — solo per te, da tenere.", "delAcc.title": "Elimina il mio account", "delAcc.hint": "Cancella per sempre il profilo e quello che hai scritto e pubblicato. Prima, se vuoi, scarica i tuoi dati.", "delAcc.button": "Elimina il mio account", "delAcc.confirmTitle": "Eliminare il tuo account?", "delAcc.confirmText": "Non si può annullare. Si cancellano per sempre:", "delAcc.l1": "il profilo, le foto e la data di nascita", "delAcc.l2": "commenti, diario, messaggi e post", "delAcc.l3": "letture, preferiti, voti, amici e persone che segui", "delAcc.keep": "Restano, senza il tuo nome, i server e i gruppi che usano anche altri, e le donazioni e gli acquisti già registrati (per la contabilità).", "delAcc.check": "Ho capito: il mio account sparisce per sempre.", "delAcc.go": "Elimina per sempre", "delAcc.cancel": "Annulla", "delAcc.working": "Sto eliminando…", "delAcc.done": "Il tuo account è stato eliminato. Grazie per essere passato dall'Archivio.", "delAcc.errShared": "Hai creato spazi che usano anche altre persone (per esempio un server): scrivici a {mail} e lo eliminiamo insieme.", "delAcc.errAdmin": "L'account dell'amministratore non si elimina da qui.", "delAcc.errNotReady": "Questa funzione non è ancora attiva: scrivici a {mail} e lo eliminiamo noi.", "delAcc.error": "Non è stato possibile eliminare l'account. Riprova più tardi o scrivici a {mail}."});
+Object.assign(STR.en, {"legal.privacy": "Privacy", "legal.terms": "Site rules", "legal.a11y": "Accessibility", "legal.newsConsent": "By subscribing you agree to receive our emails: unsubscribe any time.", "legal.privacyLink": "How we use your data", "legal.tuRow": "Privacy and rules", "exportData.hint": "A file with your profile (including your date of birth), reading, favorites, ratings, comments, diary and requests — just for you, to keep.", "delAcc.title": "Delete my account", "delAcc.hint": "Permanently deletes your profile and what you wrote and published. If you like, download your data first.", "delAcc.button": "Delete my account", "delAcc.confirmTitle": "Delete your account?", "delAcc.confirmText": "This can't be undone. These are deleted forever:", "delAcc.l1": "your profile, photos and date of birth", "delAcc.l2": "comments, diary, messages and posts", "delAcc.l3": "reading, favorites, ratings, friends and people you follow", "delAcc.keep": "Servers and groups other people use stay, without your name, as do donations and purchases already recorded (for bookkeeping).", "delAcc.check": "I understand: my account will be gone forever.", "delAcc.go": "Delete forever", "delAcc.cancel": "Cancel", "delAcc.working": "Deleting…", "delAcc.done": "Your account has been deleted. Thank you for visiting the Archive.", "delAcc.errShared": "You created spaces other people use too (for example a server): write to us at {mail} and we'll delete it together.", "delAcc.errAdmin": "The admin account can't be deleted from here.", "delAcc.errNotReady": "This feature isn't active yet: write to us at {mail} and we'll delete it for you.", "delAcc.error": "The account couldn't be deleted. Try again later or write to us at {mail}."});
+Object.assign(STR.es, {"legal.privacy": "Privacidad", "legal.terms": "Normas del sitio", "legal.a11y": "Accesibilidad", "legal.newsConsent": "Al suscribirte aceptas recibir nuestros correos: puedes darte de baja cuando quieras.", "legal.privacyLink": "Cómo usamos tus datos", "legal.tuRow": "Privacidad y normas", "exportData.hint": "Un archivo con tu perfil (también la fecha de nacimiento), lecturas, favoritos, valoraciones, comentarios, diario y solicitudes — solo para ti.", "delAcc.title": "Eliminar mi cuenta", "delAcc.hint": "Borra para siempre tu perfil y lo que has escrito y publicado. Antes, si quieres, descarga tus datos.", "delAcc.button": "Eliminar mi cuenta", "delAcc.confirmTitle": "¿Eliminar tu cuenta?", "delAcc.confirmText": "No se puede deshacer. Se borran para siempre:", "delAcc.l1": "el perfil, las fotos y la fecha de nacimiento", "delAcc.l2": "comentarios, diario, mensajes y publicaciones", "delAcc.l3": "lecturas, favoritos, valoraciones, amigos y personas que sigues", "delAcc.keep": "Se quedan, sin tu nombre, los servidores y grupos que usan otras personas, y las donaciones y compras ya registradas (para la contabilidad).", "delAcc.check": "Lo entiendo: mi cuenta desaparecerá para siempre.", "delAcc.go": "Eliminar para siempre", "delAcc.cancel": "Cancelar", "delAcc.working": "Eliminando…", "delAcc.done": "Tu cuenta ha sido eliminada. Gracias por pasar por el Archivo.", "delAcc.errShared": "Has creado espacios que también usan otras personas (por ejemplo, un servidor): escríbenos a {mail} y lo eliminamos juntos.", "delAcc.errAdmin": "La cuenta del administrador no se elimina desde aquí.", "delAcc.errNotReady": "Esta función aún no está activa: escríbenos a {mail} y la eliminamos nosotros.", "delAcc.error": "No se pudo eliminar la cuenta. Inténtalo más tarde o escríbenos a {mail}."});
+Object.assign(STR.fr, {"legal.privacy": "Confidentialité", "legal.terms": "Règles du site", "legal.a11y": "Accessibilité", "legal.newsConsent": "En vous inscrivant, vous acceptez de recevoir nos e-mails : désinscription possible à tout moment.", "legal.privacyLink": "Comment nous utilisons vos données", "legal.tuRow": "Confidentialité et règles", "exportData.hint": "Un fichier avec votre profil (y compris la date de naissance), vos lectures, favoris, notes, commentaires, journal et demandes — pour vous seul.", "delAcc.title": "Supprimer mon compte", "delAcc.hint": "Supprime définitivement votre profil et ce que vous avez écrit et publié. Avant, si vous le souhaitez, téléchargez vos données.", "delAcc.button": "Supprimer mon compte", "delAcc.confirmTitle": "Supprimer votre compte ?", "delAcc.confirmText": "C'est irréversible. Seront supprimés définitivement :", "delAcc.l1": "le profil, les photos et la date de naissance", "delAcc.l2": "commentaires, journal, messages et publications", "delAcc.l3": "lectures, favoris, notes, amis et personnes que vous suivez", "delAcc.keep": "Restent, sans votre nom, les serveurs et groupes utilisés par d'autres, ainsi que les dons et achats déjà enregistrés (pour la comptabilité).", "delAcc.check": "J'ai compris : mon compte disparaîtra définitivement.", "delAcc.go": "Supprimer définitivement", "delAcc.cancel": "Annuler", "delAcc.working": "Suppression…", "delAcc.done": "Votre compte a été supprimé. Merci d'être passé par l'Archive.", "delAcc.errShared": "Vous avez créé des espaces utilisés aussi par d'autres personnes (par exemple un serveur) : écrivez-nous à {mail} et nous le supprimerons ensemble.", "delAcc.errAdmin": "Le compte de l'administrateur ne se supprime pas ici.", "delAcc.errNotReady": "Cette fonction n'est pas encore active : écrivez-nous à {mail} et nous le supprimerons pour vous.", "delAcc.error": "Impossible de supprimer le compte. Réessayez plus tard ou écrivez-nous à {mail}."});
+Object.assign(STR.de, {"legal.privacy": "Datenschutz", "legal.terms": "Regeln der Website", "legal.a11y": "Barrierefreiheit", "legal.newsConsent": "Mit der Anmeldung erhältst du unsere E-Mails: Du kannst dich jederzeit abmelden.", "legal.privacyLink": "Wie wir deine Daten nutzen", "legal.tuRow": "Datenschutz und Regeln", "exportData.hint": "Eine Datei mit deinem Profil (auch dem Geburtsdatum), Gelesenem, Favoriten, Bewertungen, Kommentaren, Tagebuch und Anfragen — nur für dich.", "delAcc.title": "Mein Konto löschen", "delAcc.hint": "Löscht dein Profil und alles, was du geschrieben und veröffentlicht hast, für immer. Lade vorher, wenn du willst, deine Daten herunter.", "delAcc.button": "Mein Konto löschen", "delAcc.confirmTitle": "Dein Konto löschen?", "delAcc.confirmText": "Das lässt sich nicht rückgängig machen. Für immer gelöscht werden:", "delAcc.l1": "dein Profil, deine Fotos und dein Geburtsdatum", "delAcc.l2": "Kommentare, Tagebuch, Nachrichten und Beiträge", "delAcc.l3": "Gelesenes, Favoriten, Bewertungen, Freunde und Personen, denen du folgst", "delAcc.keep": "Server und Gruppen, die auch andere nutzen, bleiben ohne deinen Namen erhalten, ebenso bereits erfasste Spenden und Käufe (für die Buchhaltung).", "delAcc.check": "Ich habe verstanden: Mein Konto verschwindet für immer.", "delAcc.go": "Für immer löschen", "delAcc.cancel": "Abbrechen", "delAcc.working": "Wird gelöscht…", "delAcc.done": "Dein Konto wurde gelöscht. Danke, dass du im Archiv vorbeigeschaut hast.", "delAcc.errShared": "Du hast Bereiche erstellt, die auch andere nutzen (zum Beispiel einen Server): Schreib uns an {mail}, dann löschen wir es gemeinsam.", "delAcc.errAdmin": "Das Konto des Administrators lässt sich hier nicht löschen.", "delAcc.errNotReady": "Diese Funktion ist noch nicht aktiv: Schreib uns an {mail}, dann löschen wir es für dich.", "delAcc.error": "Das Konto konnte nicht gelöscht werden. Versuch es später erneut oder schreib uns an {mail}."});
+Object.assign(STR.pt, {"legal.privacy": "Privacidade", "legal.terms": "Regras do site", "legal.a11y": "Acessibilidade", "legal.newsConsent": "Ao se inscrever, você aceita receber nossos e-mails: cancele quando quiser.", "legal.privacyLink": "Como usamos seus dados", "legal.tuRow": "Privacidade e regras", "exportData.hint": "Um arquivo com seu perfil (inclusive a data de nascimento), leituras, favoritos, avaliações, comentários, diário e solicitações — só para você, para guardar.", "delAcc.title": "Excluir minha conta", "delAcc.hint": "Apaga para sempre seu perfil e o que você escreveu e publicou. Antes, se quiser, baixe seus dados.", "delAcc.button": "Excluir minha conta", "delAcc.confirmTitle": "Excluir sua conta?", "delAcc.confirmText": "Não dá para desfazer. Serão apagados para sempre:", "delAcc.l1": "o perfil, as fotos e a data de nascimento", "delAcc.l2": "comentários, diário, mensagens e posts", "delAcc.l3": "leituras, favoritos, avaliações, amigos e pessoas que você segue", "delAcc.keep": "Ficam, sem o seu nome, os servidores e grupos que outras pessoas usam, e as doações e compras já registradas (para a contabilidade).", "delAcc.check": "Entendi: minha conta vai sumir para sempre.", "delAcc.go": "Excluir para sempre", "delAcc.cancel": "Cancelar", "delAcc.working": "Excluindo…", "delAcc.done": "Sua conta foi excluída. Obrigado por passar pelo Arquivo.", "delAcc.errShared": "Você criou espaços que outras pessoas também usam (por exemplo, um servidor): escreva para {mail} e excluímos juntos.", "delAcc.errAdmin": "A conta do administrador não pode ser excluída por aqui.", "delAcc.errNotReady": "Esta função ainda não está ativa: escreva para {mail} e nós excluímos para você.", "delAcc.error": "Não foi possível excluir a conta. Tente mais tarde ou escreva para {mail}."});
+Object.assign(STR.ru, {"legal.privacy": "Конфиденциальность", "legal.terms": "Правила сайта", "legal.a11y": "Доступность", "legal.newsConsent": "Подписываясь, вы соглашаетесь получать наши письма: отписаться можно в любой момент.", "legal.privacyLink": "Как мы используем ваши данные", "legal.tuRow": "Конфиденциальность и правила", "exportData.hint": "Файл с вашим профилем (включая дату рождения), прочитанным, избранным, оценками, комментариями, дневником и заявками — только для вас, чтобы хранить у себя.", "delAcc.title": "Удалить мой аккаунт", "delAcc.hint": "Навсегда удаляет ваш профиль и всё, что вы написали и опубликовали. Перед этим, если хотите, скачайте свои данные.", "delAcc.button": "Удалить мой аккаунт", "delAcc.confirmTitle": "Удалить ваш аккаунт?", "delAcc.confirmText": "Это нельзя отменить. Навсегда удаляются:", "delAcc.l1": "профиль, фото и дата рождения", "delAcc.l2": "комментарии, дневник, сообщения и записи", "delAcc.l3": "прочитанное, избранное, оценки, друзья и люди, на которых вы подписаны", "delAcc.keep": "Остаются, без вашего имени, серверы и группы, которыми пользуются другие, а также уже зарегистрированные пожертвования и покупки (для бухгалтерии).", "delAcc.check": "Я понимаю: мой аккаунт исчезнет навсегда.", "delAcc.go": "Удалить навсегда", "delAcc.cancel": "Отмена", "delAcc.working": "Удаляем…", "delAcc.done": "Ваш аккаунт удалён. Спасибо, что заглянули в Архив.", "delAcc.errShared": "Вы создали пространства, которыми пользуются и другие (например, сервер): напишите нам на {mail}, и мы удалим его вместе.", "delAcc.errAdmin": "Аккаунт администратора нельзя удалить отсюда.", "delAcc.errNotReady": "Эта функция ещё не работает: напишите нам на {mail}, и мы удалим аккаунт сами.", "delAcc.error": "Не удалось удалить аккаунт. Попробуйте позже или напишите нам на {mail}."});
+Object.assign(STR.ja, {"legal.privacy": "プライバシー", "legal.terms": "サイトのルール", "legal.a11y": "アクセシビリティ", "legal.newsConsent": "登録すると、当サイトからのメールを受け取ることに同意したことになります。いつでも解除できます。", "legal.privacyLink": "データの使い方", "legal.tuRow": "プライバシーとルール", "exportData.hint": "プロフィール（生年月日を含む）、読んだ作品、お気に入り、評価、コメント、日記、リクエストをまとめたファイルです。あなただけのもので、手元に保管できます。", "delAcc.title": "アカウントを削除", "delAcc.hint": "プロフィールと、あなたが書いたり公開したりしたものを完全に削除します。必要なら先にデータをダウンロードしてください。", "delAcc.button": "アカウントを削除", "delAcc.confirmTitle": "アカウントを削除しますか？", "delAcc.confirmText": "元に戻せません。次のものが完全に削除されます：", "delAcc.l1": "プロフィール、写真、生年月日", "delAcc.l2": "コメント、日記、メッセージ、投稿", "delAcc.l3": "読んだ作品、お気に入り、評価、友達、フォロー中の人", "delAcc.keep": "ほかの人も使うサーバーやグループは、あなたの名前を外して残ります。すでに記録された寄付や購入も、会計のために残ります。", "delAcc.check": "理解しました：アカウントは完全に消えます。", "delAcc.go": "完全に削除", "delAcc.cancel": "キャンセル", "delAcc.working": "削除しています…", "delAcc.done": "アカウントを削除しました。アーカイブにお越しいただきありがとうございました。", "delAcc.errShared": "ほかの人も使う場所（サーバーなど）を作成しています。{mail} までご連絡ください。一緒に削除します。", "delAcc.errAdmin": "管理者のアカウントはここでは削除できません。", "delAcc.errNotReady": "この機能はまだ有効になっていません。{mail} までご連絡いただければ、こちらで削除します。", "delAcc.error": "アカウントを削除できませんでした。時間をおいて再度お試しいただくか、{mail} までご連絡ください。"});
+Object.assign(STR.zh, {"legal.privacy": "隐私", "legal.terms": "网站规则", "legal.a11y": "无障碍", "legal.newsConsent": "订阅即表示你同意接收我们的邮件，可随时退订。", "legal.privacyLink": "我们如何使用你的数据", "legal.tuRow": "隐私与规则", "exportData.hint": "一个包含你的个人资料（包括出生日期）、阅读记录、收藏、评分、评论、日记和请求的文件——只属于你，可以自行保存。", "delAcc.title": "删除我的账号", "delAcc.hint": "永久删除你的个人资料以及你写下和发布的内容。如有需要，请先下载你的数据。", "delAcc.button": "删除我的账号", "delAcc.confirmTitle": "要删除你的账号吗？", "delAcc.confirmText": "此操作无法撤销。以下内容将被永久删除：", "delAcc.l1": "个人资料、照片和出生日期", "delAcc.l2": "评论、日记、消息和帖子", "delAcc.l3": "阅读记录、收藏、评分、好友和你关注的人", "delAcc.keep": "其他人也在使用的服务器和群组会保留，但不再显示你的名字；已记录的捐赠和购买也会为记账而保留。", "delAcc.check": "我明白：我的账号将永久消失。", "delAcc.go": "永久删除", "delAcc.cancel": "取消", "delAcc.working": "正在删除…", "delAcc.done": "你的账号已删除。感谢你来过档案馆。", "delAcc.errShared": "你创建了其他人也在使用的空间（例如服务器）：请写信到 {mail}，我们一起删除。", "delAcc.errAdmin": "管理员账号无法在这里删除。", "delAcc.errNotReady": "此功能尚未启用：请写信到 {mail}，我们来帮你删除。", "delAcc.error": "无法删除账号。请稍后再试，或写信到 {mail}。"});
+Object.assign(STR.ar, {"legal.privacy": "الخصوصية", "legal.terms": "قواعد الموقع", "legal.a11y": "إمكانية الوصول", "legal.newsConsent": "بالاشتراك توافق على تلقي رسائلنا الإلكترونية، ويمكنك إلغاء الاشتراك متى شئت.", "legal.privacyLink": "كيف نستخدم بياناتك", "legal.tuRow": "الخصوصية والقواعد", "exportData.hint": "ملف يضم ملفك الشخصي (ومعه تاريخ الميلاد) وقراءاتك ومفضّلتك وتقييماتك وتعليقاتك ويومياتك وطلباتك — لك وحدك، لتحتفظ به.", "delAcc.title": "حذف حسابي", "delAcc.hint": "يحذف نهائيًا ملفك الشخصي وما كتبته ونشرته. قبل ذلك، إن شئت، نزّل بياناتك.", "delAcc.button": "حذف حسابي", "delAcc.confirmTitle": "هل تريد حذف حسابك؟", "delAcc.confirmText": "لا يمكن التراجع عن ذلك. سيُحذف نهائيًا:", "delAcc.l1": "الملف الشخصي والصور وتاريخ الميلاد", "delAcc.l2": "التعليقات واليوميات والرسائل والمنشورات", "delAcc.l3": "القراءات والمفضّلة والتقييمات والأصدقاء ومن تتابعهم", "delAcc.keep": "تبقى الخوادم والمجموعات التي يستخدمها آخرون، من دون اسمك، وكذلك التبرعات والمشتريات المسجّلة (لأغراض المحاسبة).", "delAcc.check": "فهمت: سيختفي حسابي نهائيًا.", "delAcc.go": "حذف نهائي", "delAcc.cancel": "إلغاء", "delAcc.working": "جارٍ الحذف…", "delAcc.done": "تم حذف حسابك. شكرًا لزيارتك الأرشيف.", "delAcc.errShared": "أنشأت مساحات يستخدمها آخرون أيضًا (مثل خادم): راسلنا على {mail} وسنحذفه معًا.", "delAcc.errAdmin": "لا يمكن حذف حساب المسؤول من هنا.", "delAcc.errNotReady": "هذه الميزة غير مفعّلة بعد: راسلنا على {mail} وسنحذفه نحن.", "delAcc.error": "تعذّر حذف الحساب. حاول لاحقًا أو راسلنا على {mail}."});
+Object.assign(STR.hi, {"legal.privacy": "प्राइवेसी", "legal.terms": "साइट के नियम", "legal.a11y": "सुलभता", "legal.newsConsent": "सब्सक्राइब करके आप हमारे ईमेल पाने के लिए सहमत होते हैं: जब चाहें अनसब्सक्राइब कर सकते हैं।", "legal.privacyLink": "हम आपके डेटा का उपयोग कैसे करते हैं", "legal.tuRow": "प्राइवेसी और नियम", "exportData.hint": "एक फ़ाइल जिसमें आपकी प्रोफ़ाइल (जन्म तिथि सहित), पढ़े गए कॉमिक, पसंदीदा, रेटिंग, कमेंट, डायरी और रिक्वेस्ट हैं — सिर्फ़ आपके लिए, अपने पास रखने के लिए।", "delAcc.title": "मेरा अकाउंट डिलीट करें", "delAcc.hint": "आपकी प्रोफ़ाइल और आपने जो लिखा और पब्लिश किया है, वह हमेशा के लिए मिट जाता है। चाहें तो पहले अपना डेटा डाउनलोड कर लें।", "delAcc.button": "मेरा अकाउंट डिलीट करें", "delAcc.confirmTitle": "अपना अकाउंट डिलीट करें?", "delAcc.confirmText": "इसे वापस नहीं किया जा सकता। ये हमेशा के लिए मिट जाएँगे:", "delAcc.l1": "प्रोफ़ाइल, फ़ोटो और जन्म तिथि", "delAcc.l2": "कमेंट, डायरी, मैसेज और पोस्ट", "delAcc.l3": "पढ़े गए कॉमिक, पसंदीदा, रेटिंग, दोस्त और जिन्हें आप फ़ॉलो करते हैं", "delAcc.keep": "दूसरों के इस्तेमाल वाले सर्वर और ग्रुप आपके नाम के बिना बने रहते हैं, और पहले से दर्ज दान व ख़रीदारियाँ भी (हिसाब-किताब के लिए)।", "delAcc.check": "मुझे समझ आ गया: मेरा अकाउंट हमेशा के लिए चला जाएगा।", "delAcc.go": "हमेशा के लिए डिलीट करें", "delAcc.cancel": "रद्द करें", "delAcc.working": "डिलीट हो रहा है…", "delAcc.done": "आपका अकाउंट डिलीट हो गया है। आर्काइव में आने के लिए धन्यवाद।", "delAcc.errShared": "आपने ऐसी जगहें बनाई हैं जिन्हें दूसरे लोग भी इस्तेमाल करते हैं (जैसे कोई सर्वर): हमें {mail} पर लिखें, हम मिलकर इसे डिलीट करेंगे।", "delAcc.errAdmin": "एडमिन का अकाउंट यहाँ से डिलीट नहीं होता।", "delAcc.errNotReady": "यह सुविधा अभी चालू नहीं है: हमें {mail} पर लिखें, हम इसे आपके लिए डिलीट कर देंगे।", "delAcc.error": "अकाउंट डिलीट नहीं हो सका। बाद में फिर कोशिश करें या हमें {mail} पर लिखें।"});
+Object.assign(STR.bn, {"legal.privacy": "গোপনীয়তা", "legal.terms": "সাইটের নিয়ম", "legal.a11y": "অ্যাক্সেসিবিলিটি", "legal.newsConsent": "সাবস্ক্রাইব করলে আপনি আমাদের ইমেল পেতে রাজি হচ্ছেন: যখন খুশি আনসাবস্ক্রাইব করতে পারবেন।", "legal.privacyLink": "আমরা কীভাবে আপনার ডেটা ব্যবহার করি", "legal.tuRow": "গোপনীয়তা ও নিয়ম", "exportData.hint": "আপনার প্রোফাইল (জন্মতারিখসহ), পড়া কমিক, প্রিয়, রেটিং, মন্তব্য, ডায়েরি ও অনুরোধ নিয়ে একটি ফাইল — শুধু আপনার জন্য, রেখে দেওয়ার জন্য।", "delAcc.title": "আমার অ্যাকাউন্ট মুছুন", "delAcc.hint": "আপনার প্রোফাইল এবং আপনি যা লিখেছেন ও প্রকাশ করেছেন তা চিরতরে মুছে যায়। চাইলে আগে আপনার ডেটা ডাউনলোড করে নিন।", "delAcc.button": "আমার অ্যাকাউন্ট মুছুন", "delAcc.confirmTitle": "আপনার অ্যাকাউন্ট মুছবেন?", "delAcc.confirmText": "এটি আর ফেরানো যাবে না। চিরতরে মুছে যাবে:", "delAcc.l1": "প্রোফাইল, ছবি ও জন্মতারিখ", "delAcc.l2": "মন্তব্য, ডায়েরি, মেসেজ ও পোস্ট", "delAcc.l3": "পড়া কমিক, প্রিয়, রেটিং, বন্ধু ও যাদের আপনি ফলো করেন", "delAcc.keep": "অন্যরাও যে সার্ভার ও গ্রুপ ব্যবহার করে সেগুলো আপনার নাম ছাড়া থেকে যায়, আর আগে থেকে নথিভুক্ত দান ও কেনাকাটাও (হিসাবের জন্য)।", "delAcc.check": "আমি বুঝেছি: আমার অ্যাকাউন্ট চিরতরে চলে যাবে।", "delAcc.go": "চিরতরে মুছুন", "delAcc.cancel": "বাতিল", "delAcc.working": "মুছে ফেলা হচ্ছে…", "delAcc.done": "আপনার অ্যাকাউন্ট মুছে ফেলা হয়েছে। আর্কাইভে আসার জন্য ধন্যবাদ।", "delAcc.errShared": "আপনি এমন জায়গা তৈরি করেছেন যা অন্যরাও ব্যবহার করে (যেমন একটি সার্ভার): {mail} ঠিকানায় আমাদের লিখুন, আমরা একসাথে মুছে দেব।", "delAcc.errAdmin": "অ্যাডমিনের অ্যাকাউন্ট এখান থেকে মোছা যায় না।", "delAcc.errNotReady": "এই সুবিধাটি এখনো চালু হয়নি: {mail} ঠিকানায় আমাদের লিখুন, আমরা আপনার হয়ে মুছে দেব।", "delAcc.error": "অ্যাকাউন্টটি মোছা যায়নি। পরে আবার চেষ্টা করুন বা {mail} ঠিকানায় আমাদের লিখুন।"});
+Object.assign(STR.pnb, {"legal.privacy": "پرائیویسی", "legal.terms": "سائٹ دے اصول", "legal.a11y": "رسائی", "legal.newsConsent": "سبسکرائب کر کے تسیں ساڈیاں ای میلاں لین تے راضی ہو: جدوں چاہو ان سبسکرائب کر سکدے ہو۔", "legal.privacyLink": "اسیں تہاڈا ڈیٹا کیویں ورتدے آں", "legal.tuRow": "پرائیویسی تے اصول", "exportData.hint": "اک فائل جس وچ تہاڈا پروفائل (جم دی تاریخ سمیت)، پڑھے ہوئے کامک، پسندیدہ، ریٹنگ، کمنٹ، ڈائری تے درخواستاں نیں — صرف تہاڈے لئی، اپنے کول رکھن واسطے۔", "delAcc.title": "میرا اکاؤنٹ مٹاؤ", "delAcc.hint": "تہاڈا پروفائل تے جو کجھ تسیں لکھیا تے شائع کیتا، ہمیشہ لئی مٹ جاندا اے۔ پہلاں، جے چاہو، اپنا ڈیٹا ڈاؤن لوڈ کر لؤ۔", "delAcc.button": "میرا اکاؤنٹ مٹاؤ", "delAcc.confirmTitle": "اپنا اکاؤنٹ مٹانا اے؟", "delAcc.confirmText": "ایہہ واپس نہیں ہو سکدا۔ ایہہ ہمیشہ لئی مٹ جان گے:", "delAcc.l1": "پروفائل، فوٹواں تے جم دی تاریخ", "delAcc.l2": "کمنٹ، ڈائری، سنیہے تے پوسٹاں", "delAcc.l3": "پڑھے ہوئے کامک، پسندیدہ، ریٹنگ، دوست تے جنہاں نوں تسیں فالو کردے ہو", "delAcc.keep": "جنہاں سرورز تے گروپاں نوں ہور لوک وی ورتدے نیں، اوہ تہاڈے ناں توں بغیر رہندے نیں، نالے پہلاں توں درج دان تے خریداریاں وی (حساب کتاب لئی)۔", "delAcc.check": "مینوں سمجھ آ گئی: میرا اکاؤنٹ ہمیشہ لئی چلا جاوے گا۔", "delAcc.go": "ہمیشہ لئی مٹاؤ", "delAcc.cancel": "منسوخ کرو", "delAcc.working": "مٹایا جا رہیا اے…", "delAcc.done": "تہاڈا اکاؤنٹ مٹا دتا گیا اے۔ آرکائیو وچ آن دا شکریہ۔", "delAcc.errShared": "تسیں اجیہیاں تھاواں بنائیاں نیں جنہاں نوں ہور لوک وی ورتدے نیں (جیویں کوئی سرور): سانوں {mail} تے لکھو، اسیں رل کے مٹا دیاں گے۔", "delAcc.errAdmin": "ایڈمن دا اکاؤنٹ ایتھوں نہیں مٹدا۔", "delAcc.errNotReady": "ایہہ سہولت حالے چالو نہیں: سانوں {mail} تے لکھو، اسیں تہاڈے لئی مٹا دیاں گے۔", "delAcc.error": "اکاؤنٹ نہیں مٹ سکیا۔ بعد وچ فیر کوشش کرو یا سانوں {mail} تے لکھو۔"});
 var CHAR_META = {
   Lucifer:{role:{it:"Il Portatore di Luce",en:"The Light-Bearer",es:"El Portador de Luz",fr:"Le Porteur de Lumière",de:"Der Lichtträger"},
     bio:{it:"Sovrano della collana ammiraglia: potere, caduta e desiderio raccontati su grande scala.",
@@ -3030,7 +3044,8 @@ var SUPABASE_URL = 'https://ukafvwyxdjsfzzoewujq.supabase.co';
 var MUSIC_COVER_FALLBACK = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iIzE1MGQwZSIvPjx0ZXh0IHg9IjUwIiB5PSI2NCIgZm9udC1zaXplPSI0MiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2M5YTI0ZCI+4pmqPC90ZXh0Pjwvc3ZnPg==';
 function coverImgAttrs(){ return ' loading="lazy" onerror="this.onerror=null;this.src=\'' + MUSIC_COVER_FALLBACK + '\';"'; }
 var SUPABASE_ANON_KEY = 'sb_publishable_-jO_WGzMVo-3Xp5J75RwiA__u49YnPr';
-var ADMIN_EMAIL = 'sergio.tradori@outlook.it'; // UI-gating only; real enforcement is server-side RLS
+var ADMIN_EMAIL_SHA256 = 'e924ab1d5b64d55c246632c0129a1211c107b38176e78141afc6bbe241acc97e'; // v258: solo l'«impronta» dell'email dell'amministratore (vedi luxIsAdminEmail); i permessi veri sono sul server
+var luxAdminMemo = { e: null, ok: false };
 
 /* v246: le miniature delle copertine sono file veri, fatti quando la copertina si carica (e da
    «Spazio su Supabase» per quelle già caricate): cover-123-lx.jpg → cover-123-lx-sm.jpg, 480 px.
@@ -3119,7 +3134,7 @@ function setSession(session){
   } else { localStorage.removeItem('lux_session'); }
 }
 function isSignedIn(){ var s = getSession(); return !!(s && s.access_token); }
-function isAdmin(){ var s = getSession(); return isSignedIn() && s.user && s.user.email === ADMIN_EMAIL; }
+function isAdmin(){ var s = getSession(); return !!(isSignedIn() && s.user && luxIsAdminEmail(s.user.email)); } // v258
 function currentUserId(){ var s = getSession(); return s && s.user ? s.user.id : null; }
 function currentUserEmail(){ var s = getSession(); return s && s.user ? s.user.email : null; }
 
@@ -3190,7 +3205,7 @@ function authSignUp(email, password){
   // v255: con i dati del profilo (nickname, nome, nascita, sesso, nazionalità): il database li copia nel profilo
   return luxAuthRequest('/auth/v1/signup', {email:email, password:password, data: Object.assign({ lang: currentLang }, luxRegData(email))}); // data.session è null se serve confermare l'email
 }
-function authSignOut(){ setSession(null); currentProfile = null; luxAppBadge(0); luxLockReset(); } // v257: uscendo, via le pagine sbloccate // v235: uscendo, niente numero sull'icona
+function authSignOut(){ setSession(null); currentProfile = null; luxAppBadge(0); luxLockReset(); luxPrivBirth = { uid: null, v: undefined }; } // v257: uscendo, via le pagine sbloccate (v258: e la data di nascita letta) // v235: uscendo, niente numero sull'icona
 
 /* ============ MATURE CONTENT TOGGLE ============ */
 // Site defaults to all-ages. The 18+ switch is additive, not exclusive: OFF
@@ -6306,7 +6321,7 @@ function buildCoverSignatureNode(item){
     wrap.className = 'cover-signature';
     wrap.setAttribute('style', 'position:absolute;left:0;right:0;bottom:0;z-index:6;display:flex;align-items:center;justify-content:space-between;padding:8px 10px;gap:8px;background:linear-gradient(0deg, rgba(11,6,7,0.92) 0%, rgba(11,6,7,0.62) 60%, transparent 100%);pointer-events:none;');
     wrap.innerHTML = '<span class="cover-signature-text" style="font-family:\'Cinzel Decorative\',\'Cinzel\',serif;font-weight:900;font-size:13px;line-height:1;color:#f3c96a;letter-spacing:0.02em;white-space:nowrap;overflow:hidden;text-shadow:0 1px 4px rgba(0,0,0,0.9);transform:rotate(-2deg);">NoxMorningstar</span>' +
-      '<span class="cover-signature-qr" style="display:block;width:34px;height:34px;min-width:34px;min-height:34px;max-width:34px;max-height:34px;flex-shrink:0;background:#fff;border:2px solid #c9a24d;border-radius:4px;padding:3px;box-shadow:0 2px 8px rgba(0,0,0,0.55);overflow:hidden;box-sizing:border-box;">' + qr.createImgTag(2, 0).replace('<img', '<img style="position:static;inset:auto;width:100%;height:100%;display:block;image-rendering:pixelated;"') + '</span>';
+      '<span class="cover-signature-qr" aria-hidden="true" style="display:block;width:34px;height:34px;min-width:34px;min-height:34px;max-width:34px;max-height:34px;flex-shrink:0;background:#fff;border:2px solid #c9a24d;border-radius:4px;padding:3px;box-shadow:0 2px 8px rgba(0,0,0,0.55);overflow:hidden;box-sizing:border-box;">' + qr.createImgTag(2, 0).replace('<img', '<img alt="" style="position:static;inset:auto;width:100%;height:100%;display:block;image-rendering:pixelated;"') + '</span>';
     _coverSignatureCache[item.id] = wrap;
     return wrap.cloneNode(true);
   } catch(e){
@@ -12060,7 +12075,7 @@ function loadOwnProfile(){
     headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
   })
     .then(function(r){ if(!r.ok) throw new Error('profile read failed'); return r.json(); })
-    .then(function(rows){ currentProfile = rows[0] || null; })
+    .then(function(rows){ currentProfile = rows[0] || null; return luxPrivBirthLoad().then(function(){ luxPrivBirthMerge(currentProfile); }); }) // v258: la data di nascita è privata
     .catch(function(err){ console.warn('Profile load failed:', err); currentProfile = null; });
 }
 function populateProfileForm(){
@@ -12282,7 +12297,7 @@ function saveProfile(){
       });
     });
   }).then(function(rows){
-    currentProfile = rows[0];
+    currentProfile = luxPrivBirthSaved(rows[0], birthDate); // v258: (la data di nascita non torna più col profilo)
     populateProfileForm();
     document.getElementById('fProfileAvatar').value = '';
     document.getElementById('fProfileAvatarHd').value = '';
@@ -12306,7 +12321,7 @@ function genderLabel(g){
 }
 function openAvatarInfo(userId){
   if(!userId) return;
-  fetch(SUPABASE_URL + '/rest/v1/profiles?id=eq.' + encodeURIComponent(userId) + '&select=display_name,avatar_url,avatar_hd_url,birth_date,gender,verified', { headers: communityHeaders() })
+  fetch(SUPABASE_URL + '/rest/v1/profiles?id=eq.' + encodeURIComponent(userId) + '&select=display_name,avatar_url,avatar_hd_url,gender,verified', { headers: communityHeaders() })
     .then(function(r){ if(!r.ok) throw new Error('avatar info read failed'); return r.json(); })
     .then(function(rows){
       var p = rows[0];
@@ -12318,10 +12333,7 @@ function openAvatarInfo(userId){
       var verifiedTag = ' ' + verifiedBadge('verified.commenter', !!p.verified);
       document.getElementById('avatarInfoName').innerHTML = escapeHtml(p.display_name || t('notif.someone')) + verifiedTag;
       var rows2 = '';
-      if(p.birth_date){
-        var d = new Date(p.birth_date);
-        if(!isNaN(d)) rows2 += '<div class="avatar-info-row"><span class="k">' + t('profile.birthDate') + '</span><span class="v">' + d.toLocaleDateString() + '</span></div>';
-      }
+      // v258: la data di nascita non si mostra agli altri
       var gLabel = genderLabel(p.gender);
       if(gLabel) rows2 += '<div class="avatar-info-row"><span class="k">' + t('profile.gender') + '</span><span class="v">' + escapeHtml(gLabel) + '</span></div>';
       document.getElementById('avatarInfoRows').innerHTML = rows2 || '<p class="avatar-info-empty">' + t('profile.avatarInfoEmpty') + '</p>';
@@ -14583,9 +14595,9 @@ function deleteProfilePhoto(id, userId){
 function extractVideoEmbedUrl(url){
   url = (url || '').trim();
   var yt = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/shorts\/)([a-zA-Z0-9_-]{6,})/);
-  if(yt) return 'https://www.youtube.com/embed/' + yt[1];
+  if(yt) return 'https://www.youtube-nocookie.com/embed/' + yt[1]; // v258: modalità con privacy avanzata
   var vimeo = url.match(/vimeo\.com\/(\d+)/);
-  if(vimeo) return 'https://player.vimeo.com/video/' + vimeo[1];
+  if(vimeo) return 'https://player.vimeo.com/video/' + vimeo[1] + '?dnt=1'; // v258: senza tracciamento
   return null;
 }
 
@@ -14605,7 +14617,7 @@ function renderProfileVideos(userId){
         var card = document.createElement('div');
         card.className = 'profile-video-card';
         card.innerHTML =
-          '<iframe src="' + escapeHtml(embedUrl) + '" allowfullscreen loading="lazy"></iframe>' +
+          '<iframe src="' + escapeHtml(embedUrl) + '" title="' + escapeHtml(video.caption || 'Video') + '" allowfullscreen loading="lazy"></iframe>' + // v258: titolo per gli screen reader
           '<div class="cap"><span>' + escapeHtml(video.caption || '') + '</span>' +
           (isOwn ? '<button type="button" class="btn btn-sm btn-ghost" data-del-video="' + video.id + '">' + t('profile.deleteVideo') + '</button>' : '') +
           '</div>';
@@ -25915,7 +25927,7 @@ function luxProfileWrite(fields){
         .then(function(r){ return r.ok ? r.json() : fail(r); })
         .then(function(rows2){ return rows2 && rows2[0]; });
     })
-    .then(function(p){ if(p) currentProfile = p; if(p && p.display_name) displayNameCache[uid] = p.display_name; return p; });
+    .then(function(p){ if(p) currentProfile = luxPrivBirthSaved(p, fields.birth_date); if(p && p.display_name) displayNameCache[uid] = p.display_name; return p; }); // v258
 }
 // il messaggio giusto per un salvataggio non riuscito (nickname preso o non valido, altro)
 function luxProfileSaveErrKey(e){
@@ -27489,7 +27501,7 @@ function luxLockTitleModal(item){
     // le pagine e gli sblocchi non sono ancora arrivati: un attimo
     el.className = 'lux-lock-panel is-wait';
     el.innerHTML = '<p class="lux-lock-wait"><span class="lux-lock-ico">' + LUX_LOCK_SVG + '</span><span>…</span></p>';
-    luxLockLoad().then(function(){ luxLockReopen(item.id); });
+    luxLockLoad().then(function(){ luxLockReopen(item.id, item); });
     return;
   }
   if(why){
@@ -27506,7 +27518,7 @@ function luxLockTitleModal(item){
         if(!luxLockCanRead(item)){ // finite le 48 ore mentre leggeva: si richiude
           clearInterval(luxLockTimer); luxLockTimer = null;
           luxToast(t('lock.ended').replace('{title}', item.title || ''));
-          luxLockReopen(item.id);
+          luxLockReopen(item.id, item);
           return;
         }
         var b = el.querySelector('.lux-lock-bar-txt');
@@ -27528,12 +27540,17 @@ function luxLockTitleModal(item){
   if(isSignedIn()) luxLockStatus(item, el.querySelector('.lux-lock-status'));
 }
 // arrivate (o finite) le 48 ore: la scheda aperta si rifà (pagine, lucchetto, PDF)
-function luxLockReopen(id){
+// (fb: il titolo mostrato, se nel catalogo del telefono non c'è ancora: per esempio aperto da un link prima che il catalogo arrivi)
+function luxLockReopen(id, fb){
   if(!id || currentModalCatalogId !== id) return;
   var modal = document.getElementById('titleModal');
   if(!modal || modal.classList.contains('hidden')) return;
   var fresh = getCatalog(true).find(function(x){ return x.id === id; });
-  if(!fresh) return;
+  if(!fresh){
+    fb = fb && fb.id === id ? fb : (readerItem && readerItem.id === id ? readerItem : null);
+    if(!fb) return;
+    fresh = luxLockOverlay([Object.assign({}, fb)])[0];
+  }
   if(luxLockGate(fresh)){ try { luxZoomClose(); } catch(e){} }
   var was = titleModalRelang;
   titleModalRelang = true; // (come quando cambia la lingua: la scheda si rifà, non è una nuova apertura)
@@ -27745,6 +27762,9 @@ function luxLockAfterCatalog(){
   luxLockPurgeOffline();
   luxLockFormSync();
   luxLockReqRefresh(false);
+  // la scheda aperta (da un link) che aspettava: adesso c'è tutto
+  var el = document.getElementById('luxLockPanel');
+  if(el && !el.hidden && el.classList.contains('is-wait') && currentModalCatalogId) setTimeout(function(){ luxLockReopen(currentModalCatalogId); }, 0);
 }
 // tra i titoli in Amministra
 function luxLockAdmTag(item){ return item && item.donor_lock ? '<span class="adm-tag adm-tag-lock">🔒 Per chi dona</span>' : ''; }
@@ -27806,6 +27826,229 @@ function luxLockAfterAuth(){
   luxLockFormSync();
   if(!isSignedIn()){ luxLockReset(); return; }
   luxLockRefresh();
+}
+
+/* ============ v258: l'email dell'amministratore non si legge più nel codice ============
+   In cima al file c'è solo la sua «impronta» (ADMIN_EMAIL_SHA256: SHA-256 di «lux-admin:» + email). Chi entra viene
+   riconosciuto confrontando l'impronta della sua email: serve solo a mostrare o nascondere i comandi di Amministra,
+   i permessi veri restano sul server (is_site_admin). Calcolo fatto qui (sincrono): isAdmin() si chiama dappertutto. */
+function luxSha256Hex(str){
+  var K = [0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5, 0x3956c25b, 0x59f111f1, 0x923f82a4, 0xab1c5ed5, 0xd807aa98, 0x12835b01, 0x243185be, 0x550c7dc3,
+    0x72be5d74, 0x80deb1fe, 0x9bdc06a7, 0xc19bf174, 0xe49b69c1, 0xefbe4786, 0x0fc19dc6, 0x240ca1cc, 0x2de92c6f, 0x4a7484aa, 0x5cb0a9dc, 0x76f988da,
+    0x983e5152, 0xa831c66d, 0xb00327c8, 0xbf597fc7, 0xc6e00bf3, 0xd5a79147, 0x06ca6351, 0x14292967, 0x27b70a85, 0x2e1b2138, 0x4d2c6dfc, 0x53380d13,
+    0x650a7354, 0x766a0abb, 0x81c2c92e, 0x92722c85, 0xa2bfe8a1, 0xa81a664b, 0xc24b8b70, 0xc76c51a3, 0xd192e819, 0xd6990624, 0xf40e3585, 0x106aa070,
+    0x19a4c116, 0x1e376c08, 0x2748774c, 0x34b0bcb5, 0x391c0cb3, 0x4ed8aa4a, 0x5b9cca4f, 0x682e6ff3, 0x748f82ee, 0x78a5636f, 0x84c87814, 0x8cc70208,
+    0x90befffa, 0xa4506ceb, 0xbef9a3f7, 0xc67178f2];
+  var s = unescape(encodeURIComponent(String(str))), l = s.length, i, j, t1, t2, x, y;
+  var nw = ((l + 9 + 63) >> 6) << 4, words = [], w = [];
+  for(i = 0; i < nw; i++) words[i] = 0;
+  for(i = 0; i < l; i++) words[i >> 2] |= (s.charCodeAt(i) & 255) << (24 - (i & 3) * 8);
+  words[l >> 2] |= 128 << (24 - (l & 3) * 8);
+  words[nw - 1] = l * 8;
+  var h = [0x6a09e667, 0xbb67ae85, 0x3c6ef372, 0xa54ff53a, 0x510e527f, 0x9b05688c, 0x1f83d9ab, 0x5be0cd19];
+  for(i = 0; i < nw; i += 16){
+    var a = h[0], b = h[1], c = h[2], d = h[3], e = h[4], f = h[5], g = h[6], k = h[7];
+    for(j = 0; j < 64; j++){
+      if(j < 16) w[j] = words[i + j] | 0;
+      else {
+        x = w[j - 15]; y = w[j - 2];
+        w[j] = ((((x >>> 7) | (x << 25)) ^ ((x >>> 18) | (x << 14)) ^ (x >>> 3)) + w[j - 16] +
+                (((y >>> 17) | (y << 15)) ^ ((y >>> 19) | (y << 13)) ^ (y >>> 10)) + w[j - 7]) | 0;
+      }
+      t1 = (k + (((e >>> 6) | (e << 26)) ^ ((e >>> 11) | (e << 21)) ^ ((e >>> 25) | (e << 7))) + ((e & f) ^ (~e & g)) + K[j] + w[j]) | 0;
+      t2 = ((((a >>> 2) | (a << 30)) ^ ((a >>> 13) | (a << 19)) ^ ((a >>> 22) | (a << 10))) + ((a & b) ^ (a & c) ^ (b & c))) | 0;
+      k = g; g = f; f = e; e = (d + t1) | 0; d = c; c = b; b = a; a = (t1 + t2) | 0;
+    }
+    h[0] = (h[0] + a) | 0; h[1] = (h[1] + b) | 0; h[2] = (h[2] + c) | 0; h[3] = (h[3] + d) | 0;
+    h[4] = (h[4] + e) | 0; h[5] = (h[5] + f) | 0; h[6] = (h[6] + g) | 0; h[7] = (h[7] + k) | 0;
+  }
+  var out = '';
+  for(i = 0; i < 8; i++) out += ('0000000' + (h[i] >>> 0).toString(16)).slice(-8);
+  return out;
+}
+function luxIsAdminEmail(email){
+  if(!email) return false;
+  var m = luxAdminMemo || (luxAdminMemo = { e: null, ok: false });
+  var e = String(email).trim().toLowerCase();
+  if(m.e !== e){ m.e = e; m.ok = !!ADMIN_EMAIL_SHA256 && luxSha256Hex('lux-admin:' + e) === ADMIN_EMAIL_SHA256; }
+  return m.ok;
+}
+
+/* ============ v258: la data di nascita la vede solo chi la scrive ============
+   Col file SQL della v258 la data di nascita non sta più nel profilo (che leggono tutti) ma in lux_dati_privati,
+   che legge solo il proprietario. Il sito la scrive come sempre nel profilo (un trigger la sposta subito) e, per
+   il proprio profilo, la rilegge da lì. Senza il file SQL la tabella non c'è e tutto resta come prima. */
+var luxPrivBirth = { uid: null, v: undefined }; // v: undefined = non ancora letta, null = non c'è
+function luxPrivBirthLoad(){
+  if(!luxPrivBirth) luxPrivBirth = { uid: null, v: undefined };
+  var uid = currentUserId(), s = getSession();
+  if(!uid || !s || !SUPABASE_URL) return Promise.resolve(null);
+  if(luxPrivBirth.uid === uid && luxPrivBirth.v !== undefined) return Promise.resolve(luxPrivBirth.v);
+  return fetch(SUPABASE_URL + '/rest/v1/lux_dati_privati?user_id=eq.' + encodeURIComponent(uid) + '&select=birth_date', {
+    headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': 'Bearer ' + s.access_token }
+  }).then(function(r){ return r.ok ? r.json() : null; })
+    .then(function(rows){
+      var v = rows && rows[0] && rows[0].birth_date ? String(rows[0].birth_date).slice(0, 10) : null;
+      if(currentUserId() === uid) luxPrivBirth = { uid: uid, v: v };
+      return v;
+    })
+    .catch(function(){ return null; });
+}
+// dopo un salvataggio: la data appena scritta è quella giusta (il profilo che torna indietro non la porta più)
+function luxPrivBirthSaved(p, birth){
+  var uid = currentUserId();
+  if(birth && uid) luxPrivBirth = { uid: uid, v: String(birth).slice(0, 10) };
+  return luxPrivBirthMerge(p);
+}
+function luxPrivBirthMerge(p){
+  if(!luxPrivBirth) return p;
+  if(p && !p.birth_date && luxPrivBirth.v && luxPrivBirth.uid && luxPrivBirth.uid === currentUserId() && (!p.id || p.id === luxPrivBirth.uid)) p.birth_date = luxPrivBirth.v;
+  return p;
+}
+
+/* ============ v258: «Esporta i miei dati» più completo ============
+   Oltre a profilo, preferiti, commenti e richieste: la data di nascita, le letture, i voti, i «mi piace», i
+   personaggi e le persone che segui, il diario e gli sblocchi. Una parte che non si legge (tabella che non c'è,
+   nessun permesso) resta semplicemente vuota. */
+function luxExportUserData(){
+  var session = getSession();
+  var statusEl = document.getElementById('exportDataStatus');
+  if(!session){ if(statusEl) statusEl.textContent = t('exportData.needLogin'); return; }
+  var uid = encodeURIComponent(currentUserId()), headers = communityHeaders();
+  var get = function(path){
+    return fetch(SUPABASE_URL + '/rest/v1/' + path, { headers: headers })
+      .then(function(r){ return r.ok ? r.json() : []; }).catch(function(){ return []; });
+  };
+  if(statusEl) statusEl.textContent = t('exportData.preparing');
+  var parts = [
+    ['profilo', 'profiles?id=eq.' + uid + '&select=*'],
+    ['privati', 'lux_dati_privati?user_id=eq.' + uid + '&select=birth_date'],
+    ['letture', 'reading_progress?user_id=eq.' + uid + '&select=*'],
+    ['preferiti', 'favorites?user_id=eq.' + uid + '&select=*'],
+    ['voti', 'title_ratings?user_id=eq.' + uid + '&select=*'],
+    ['mi_piace', 'likes?user_id=eq.' + uid + '&select=*'],
+    ['personaggi_seguiti', 'character_follows?user_id=eq.' + uid + '&select=*'],
+    ['persone_seguite', 'follows?follower_id=eq.' + uid + '&select=*'],
+    ['commenti', 'comments?user_id=eq.' + uid + '&select=*'],
+    ['diario', 'user_posts?author_id=eq.' + uid + '&select=*'],
+    ['richieste', 'requests?user_id=eq.' + uid + '&select=*'],
+    ['sblocchi', 'donor_unlocks?user_id=eq.' + uid + '&select=*']
+  ];
+  Promise.all(parts.map(function(p){ return get(p[1]); })).then(function(res){
+    var data = { esportato_il: new Date().toISOString() };
+    parts.forEach(function(p, i){ data[p[0]] = res[i]; });
+    data.profilo = (res[0] && res[0][0]) || null;
+    var priv = res[1] && res[1][0];
+    if(data.profilo && priv && priv.birth_date) data.profilo.birth_date = priv.birth_date;
+    delete data.privati;
+    var blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = 'lux-comics-dati-' + new Date().toISOString().slice(0, 10) + '.json';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(function(){ URL.revokeObjectURL(url); }, 4000);
+    if(statusEl) statusEl.textContent = t('exportData.done');
+  }).catch(function(e){
+    console.warn('Export dati fallito:', e);
+    if(statusEl) statusEl.textContent = t('exportData.error') + ' (' + e.message + ')';
+  });
+}
+
+/* ============ v258: «Elimina il mio account» (profile.html, nel proprio profilo, sotto «I tuoi dati») ============
+   Una conferma chiara (con la casella «Ho capito»), poi: le foto del profilo tolte dall'archivio (se si può), e la
+   funzione del server lux_elimina_account() che cancella tutto in un colpo solo (o niente, se qualcosa non va).
+   Fatto: via l'accesso e i dati di questo account salvati sul telefono, e si torna alla home.
+   L'amministratore non lo vede (il suo account non si elimina da qui). */
+var LUX_CONTACT_MAIL = 'sergio.tradori@noxmorningstar.com';
+function luxDelAccInit(){
+  var box = document.getElementById('luxDelAcc'), btn = document.getElementById('btnDeleteAccount');
+  if(!box || !btn) return;
+  box.hidden = !isSignedIn() || isAdmin();
+  if(btn.dataset.ready) return;
+  btn.dataset.ready = '1';
+  btn.addEventListener('click', luxDelAccOpen);
+}
+function luxDelAccOpen(){
+  if(!isSignedIn() || isAdmin()) return;
+  luxSheet('<div class="lux-ask lux-da">' +
+      '<h2 class="las-title">' + escapeHtml(t('delAcc.confirmTitle')) + '</h2>' +
+      '<p class="lux-ask-sub">' + escapeHtml(t('delAcc.confirmText')) + '</p>' +
+      '<ul class="lux-da-list"><li>' + escapeHtml(t('delAcc.l1')) + '</li><li>' + escapeHtml(t('delAcc.l2')) + '</li><li>' + escapeHtml(t('delAcc.l3')) + '</li></ul>' +
+      '<p class="lux-da-keep">' + escapeHtml(t('delAcc.keep')) + '</p>' +
+      '<label class="lux-da-check"><input type="checkbox" id="luxDelOk"><span>' + escapeHtml(t('delAcc.check')) + '</span></label>' +
+      '<div class="form-error" id="luxDelErr" aria-live="polite"></div>' +
+      '<div class="lux-ask-actions"><button type="button" class="las-danger solid lux-da-go" data-del-go disabled>' + escapeHtml(t('delAcc.go')) + '</button>' +
+      '<button type="button" class="las-secondary" data-las-close>' + escapeHtml(t('delAcc.cancel')) + '</button></div></div>',
+    function(body){
+      var ok = body.querySelector('#luxDelOk'), go = body.querySelector('[data-del-go]'), err = body.querySelector('#luxDelErr');
+      ok.addEventListener('change', function(){ go.disabled = !ok.checked; });
+      go.addEventListener('click', function(){ if(ok.checked) luxDelAccRun(body, go, err); });
+    });
+}
+// le foto del profilo (immagine, versione grande, banner, galleria, sfondi della chat): via dall'archivio, se i permessi
+// lo consentono. Mai bloccante: comunque vada, dopo 8 secondi si va avanti.
+function luxDelAccFiles(uid){
+  var spots = [['avatars', uid + '/'], ['profile-gallery', uid + '/'], ['comic-pages', 'chat-backgrounds/' + uid + '/']];
+  var s = getSession(), h = { 'apikey': SUPABASE_ANON_KEY, 'Authorization': 'Bearer ' + (s ? s.access_token : ''), 'Content-Type': 'application/json' };
+  var one = function(bucket, prefix){
+    return fetch(SUPABASE_URL + '/storage/v1/object/list/' + bucket, { method: 'POST', headers: h,
+      body: JSON.stringify({ prefix: prefix, limit: 1000, offset: 0, sortBy: { column: 'name', order: 'asc' } }) })
+      .then(function(r){ return r.ok ? r.json() : []; })
+      .then(function(rows){
+        var paths = (rows || []).filter(function(o){ return o && o.name && o.id != null && o.name !== '.emptyFolderPlaceholder'; })
+          .map(function(o){ return prefix + o.name; });
+        return paths.length ? luxStorageRemove(bucket, paths) : 0;
+      }).catch(function(){ return 0; });
+  };
+  var all = Promise.all(spots.map(function(x){ return one(x[0], x[1]); }));
+  return Promise.race([all, new Promise(function(res){ setTimeout(res, 8000); })]);
+}
+function luxDelAccRun(body, go, err){
+  var s = getSession(), uid = currentUserId();
+  if(!s || !uid) return;
+  go.disabled = true;
+  go.textContent = t('delAcc.working');
+  err.textContent = '';
+  luxDelAccFiles(uid).then(function(){
+    return fetch(SUPABASE_URL + '/rest/v1/rpc/lux_elimina_account', {
+      method: 'POST',
+      headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': 'Bearer ' + s.access_token, 'Content-Type': 'application/json' },
+      body: '{}'
+    });
+  }).then(function(r){
+    if(r.ok) return r.json().catch(function(){ return {}; });
+    return r.text().then(function(tx){ var e = new Error('elimina ' + r.status); e.status = r.status; e.body = tx; throw e; });
+  }).then(function(){
+    luxDelAccDone(body);
+  }).catch(function(e){
+    console.warn('[elimina account]', e);
+    var b = String((e && e.body) || '');
+    var k = /lux_condivisi/.test(b) ? 'delAcc.errShared' : /lux_admin/.test(b) ? 'delAcc.errAdmin'
+      : ((e && e.status === 404) || /PGRST202|Could not find the function/i.test(b)) ? 'delAcc.errNotReady' : 'delAcc.error';
+    err.textContent = t(k).replace('{mail}', LUX_CONTACT_MAIL);
+    go.disabled = false;
+    go.textContent = t('delAcc.go');
+  });
+}
+// fatto: l'accesso e quello che questo account aveva salvato sul telefono se ne vanno (restano lingua, tema, lettore)
+function luxDelAccDone(body){
+  var keep = { lux_lang: 1, lux_theme: 1, lux_text_only: 1, lux_reader_prefs: 1, lux_catalog: 1, lux_catalog_view: 1, lux_taxonomy_chars: 1,
+               lux_taxonomy_cats: 1, lux_zoom_hint: 1, lux_zoom_help: 1, lux_eq: 1, lux_mature_visible: 1, lux_age_ok: 1 };
+  try { authSignOut(); } catch(e){}
+  try { favoriteIds = new Set(); verifiedSupporterCache = null; luxPrivBirth = { uid: null, v: undefined }; } catch(e){}
+  try {
+    var ks = [];
+    for(var i = 0; i < localStorage.length; i++){ var k = localStorage.key(i); if(k && /^lux/i.test(k) && !keep[k]) ks.push(k); }
+    ks.forEach(function(k){ localStorage.removeItem(k); });
+  } catch(e){}
+  try { sessionStorage.clear(); } catch(e){}
+  try { afterAuthChange(); } catch(e){}
+  if(body) body.innerHTML = '<div class="lux-ask lux-da"><h2 class="las-title">' + escapeHtml(t('delAcc.title')) + '</h2>' +
+    '<p class="lux-ask-sub" role="status">' + escapeHtml(t('delAcc.done')) + '</p></div>';
+  setTimeout(function(){ window.location.href = 'index.html'; }, 2600);
 }
 
 function handleAddAnnouncement(){
@@ -29057,6 +29300,7 @@ function __appInit(){
   heartbeatPresence();
   initTextOnlyToggle();
   initExportData();
+  luxDelAccInit(); // v258: «Elimina il mio account»
   initSnoOverlay();
   initBookmarkTab();
   setInterval(function(){ if(!document.hidden) refreshCommunityDot(); }, 60000); // pallino Community
@@ -29404,7 +29648,7 @@ function initExportData(){
   var btn = document.getElementById('btnExportData');
   if(!btn || btn.dataset.ready) return;
   btn.dataset.ready = '1';
-  btn.addEventListener('click', exportUserData);
+  btn.addEventListener('click', luxExportUserData); // v258: più completo
 }
 function exportUserData(){
   var session = getSession();
