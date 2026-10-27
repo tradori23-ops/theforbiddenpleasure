@@ -5540,3 +5540,27 @@ body.theme-light .lux-lock-support{background:rgba(138,26,44,.06);}
 .lux-lock-done{color:#8fd1b0;}
 body.theme-light .lux-lock-done{color:#2f5443;}
 .lux-lock-field-note{margin:6px 0 0;}
+/* ============ v258 ============ */
+/* accessibilità: la scritta sotto il titolo delle finestre («Account personale»…) si legge meglio sul fondo scuro (5,9:1 invece di 3,2:1) */
+.modal .sub{color:#5f9a80;}
+body.theme-light .modal .sub{color:var(--verdigris);}
+/* piede: Privacy · Regole del sito · Accessibilità */
+footer .flegal{margin-top:12px;opacity:1;}
+footer .flegal a{color:inherit;text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(201,162,77,.45);}
+footer .flegal a:hover,footer .flegal a:focus-visible{color:var(--gold-bright);}
+/* newsletter: il consenso, sotto il modulo */
+.newsletter-consent{font-size:13.5px;line-height:1.5;color:var(--parchment-dim);margin:14px auto 0;max-width:470px;}
+.newsletter-consent a{color:var(--gold-bright);text-underline-offset:3px;}
+/* profilo › I tuoi dati › «Elimina il mio account» */
+.lux-da-box{margin-top:28px;border-top:1px solid var(--line);padding-top:20px;}
+.lux-da-box[hidden]{display:none;}
+#profileSection #luxDelAcc .lux-da-btn{border-color:rgba(224,100,90,.5);color:#e78c80;}
+#profileSection #luxDelAcc .lux-da-btn:hover,#profileSection #luxDelAcc .lux-da-btn:focus-visible{border-color:#e78c80;color:#f2a79c;background:transparent;}
+body.theme-light #profileSection #luxDelAcc .lux-da-btn{border-color:rgba(160,40,40,.45);color:#9c2a22;}
+.lux-da-list{margin:0 0 14px;padding-left:22px;color:var(--parchment);font-size:16px;line-height:1.55;}
+.lux-da-list li{margin:0 0 4px;}
+.lux-da-keep{margin:0 0 16px;font-size:14.5px;line-height:1.5;color:var(--parchment-dim);}
+.lux-da-check{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border:1px solid rgba(224,100,90,.35);border-radius:12px;font-size:16px;line-height:1.4;color:var(--parchment);cursor:pointer;margin:0 0 8px;}
+.lux-da-check input{flex:none;width:22px;height:22px;margin:1px 0 0;accent-color:#c0392b;}
+.lux-da-go:disabled{opacity:.45;cursor:not-allowed;}
+body.theme-light .lux-da-list,body.theme-light .lux-da-check{color:#2a1d12;}

@@ -21,10 +21,8 @@
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#6e1423">
 <meta name="description" content="LUX COMICS &amp; MEDUSA COMICS — archivio di fumetti d'autore, edizione riservata.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cinzel+Decorative:wght@700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Space+Mono:wght@400;700&display=swap" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cinzel+Decorative:wght@700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Space+Mono:wght@400;700&display=swap"></noscript>
+<link rel="stylesheet" href="fonts/fonts.css?v=258" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="fonts/fonts.css?v=258"></noscript>
 <!-- style.css è iniettato da loader.js con la versione sempre aggiornata -->
 <!-- Avvio pulito: la pagina resta coperta dal suo colore di fondo finché
      stile e intestazione non sono pronti — la scopre loader.js. Rete di
@@ -99,11 +97,11 @@
         <button type="button" class="title-form-drawer-close" id="btnCloseTitleDrawer">✕</button>
         <div class="admin-grid">
           <div class="field">
-            <label data-i18n="admin.f.title">Titolo</label>
+            <label for="fTitle" data-i18n="admin.f.title">Titolo</label>
             <input type="text" id="fTitle" placeholder="Midnight Cathedral">
           </div>
           <div class="field">
-            <label data-i18n="admin.f.character">Personaggio</label>
+            <label for="fCharacter" data-i18n="admin.f.character">Personaggio</label>
             <select id="fCharacter">
               <option value="Lucifer">Lucifer</option>
               <option value="Lilith">Lilith</option>
@@ -114,27 +112,27 @@
             </select>
           </div>
           <div class="field">
-            <label data-i18n="admin.f.issue">Numero / Volume</label>
+            <label for="fIssue" data-i18n="admin.f.issue">Numero / Volume</label>
             <input type="text" id="fIssue" placeholder="Vol. 1 — Ch. 3">
           </div>
           <div class="field">
-            <label data-i18n="series.f.key">Serie (opzionale — uguale per ogni capitolo collegato)</label>
+            <label for="fSeriesKey" data-i18n="series.f.key">Serie (opzionale — uguale per ogni capitolo collegato)</label>
             <input type="text" id="fSeriesKey" placeholder="Lucio × Samantha">
           </div>
           <div class="field">
-            <label data-i18n="series.f.number">Numero capitolo (opzionale, decide l'ordine)</label>
+            <label for="fChapterNumber" data-i18n="series.f.number">Numero capitolo (opzionale, decide l'ordine)</label>
             <input type="number" id="fChapterNumber" min="1" step="1" placeholder="3">
           </div>
           <div class="field">
-            <label data-i18n="admin.f.date">Data pubblicazione</label>
+            <label for="fDate" data-i18n="admin.f.date">Data pubblicazione</label>
             <input type="date" id="fDate">
           </div>
           <div class="field">
-            <label data-i18n="admin.f.price">Prezzo (EUR, opzionale)</label>
+            <label for="fPrice" data-i18n="admin.f.price">Prezzo (EUR, opzionale)</label>
             <input type="number" id="fPrice" min="0" step="0.01" placeholder="4.99">
           </div>
           <div class="field">
-            <label data-i18n="admin.f.stock">Copie disponibili (vuoto = illimitate/non in vendita)</label>
+            <label for="fStock" data-i18n="admin.f.stock">Copie disponibili (vuoto = illimitate/non in vendita)</label>
             <input type="number" id="fStock" min="0" step="1" placeholder="es. 20">
           </div>
           <div class="field" style="grid-column:1/-1">
@@ -202,7 +200,7 @@
             <button type="button" class="btn btn-ghost btn-sm" id="btnAddCollab">+ Aggiungi collaboratore</button>
           </div>
           <div class="field" style="grid-column:1/-1">
-            <label data-i18n="admin.f.synopsis">Sinossi (inglese — testo delle opere)</label>
+            <label for="fSynopsis" data-i18n="admin.f.synopsis">Sinossi (inglese — testo delle opere)</label>
             <textarea id="fSynopsis" placeholder="A forbidden bond forms in the shadow of the cathedral bells..."></textarea>
           </div>
           <div class="field" style="grid-column:1/-1">
@@ -216,7 +214,7 @@
             </label>
           </div>
           <div class="field" style="grid-column:1/-1">
-            <label data-i18n="cover.label">Copertina (immagine di anteprima nello schedario)</label>
+            <label for="fCover" data-i18n="cover.label">Copertina (immagine di anteprima nello schedario)</label>
             <input type="file" id="fCover" accept="image/*">
             <div class="cover-preview hidden" id="coverPreview">
               <img id="coverPreviewImg" src="" alt="">
@@ -224,13 +222,13 @@
             </div>
           </div>
           <div class="field" style="grid-column:1/-1">
-            <label data-i18n="pages.label">Pagine del fumetto (immagini 1:1, tipo carosello) — trascina per riordinare</label>
+            <label for="fPages" data-i18n="pages.label">Pagine del fumetto (immagini 1:1, tipo carosello) — trascina per riordinare</label>
             <input type="file" id="fPages" accept="image/*" multiple>
             <div class="pages-preview" id="pagesPreview"></div>
             <div class="form-note" id="pagesUploadStatus"></div>
           </div>
           <div class="field" style="grid-column:1/-1">
-            <label data-i18n="pdf.label">Oppure carica il fumetto come PDF (A4) invece delle pagine singole</label>
+            <label for="fPdf" data-i18n="pdf.label">Oppure carica il fumetto come PDF (A4) invece delle pagine singole</label>
             <input type="file" id="fPdf" accept="application/pdf">
             <div class="form-note hidden" id="pdfSelectedNote"></div>
           </div>
@@ -242,9 +240,9 @@
               <input type="text" id="fSongTitle" placeholder="Titolo canzone" style="margin-bottom:6px;">
               <input type="text" id="fSongArtist" placeholder="Artista/etichetta (opzionale)" style="margin-bottom:6px;">
               <input type="text" id="fSongGenre" placeholder="Genere (es. Dark Fantasy, Gotico, Cinematic — opzionale)" style="margin-bottom:6px;">
-              <label style="font-size:11px;color:var(--parchment-dim);display:block;margin-bottom:2px;">Copertina canzone</label>
+              <label for="fSongCover" style="font-size:11px;color:var(--parchment-dim);display:block;margin-bottom:2px;">Copertina canzone</label>
               <input type="file" id="fSongCover" accept="image/*" style="margin-bottom:6px;">
-              <label style="font-size:11px;color:var(--parchment-dim);display:block;margin-bottom:2px;">File audio (mp3) o video (mp4)</label>
+              <label for="fSongAudio" style="font-size:11px;color:var(--parchment-dim);display:block;margin-bottom:2px;">File audio (mp3) o video (mp4)</label>
               <input type="file" id="fSongAudio" accept="audio/*,video/mp4" style="margin-bottom:6px;">
               <textarea id="fSongLyrics" placeholder="Testo della canzone (opzionale)" style="margin-bottom:6px;"></textarea>
               <label style="font-size:11px;color:var(--parchment-dim);display:block;margin-bottom:2px;">Collaboratori (fino a 3 — con ruolo, es. Voce, Testo, Produzione — spunta blu se già verificati)</label>
@@ -302,10 +300,10 @@
             <span data-i18n="social.title">Link social (visibili nel footer)</span>
           </label>
           <div class="admin-grid" style="margin-top:14px;">
-            <div class="field"><label>Instagram</label><input type="url" id="fSocialInstagram" placeholder="https://instagram.com/..."></div>
-            <div class="field"><label>Facebook</label><input type="url" id="fSocialFacebook" placeholder="https://facebook.com/..."></div>
-            <div class="field"><label>LinkedIn</label><input type="url" id="fSocialLinkedin" placeholder="https://linkedin.com/..."></div>
-            <div class="field"><label>Telegram</label><input type="url" id="fSocialTelegram" placeholder="https://t.me/..."></div>
+            <div class="field"><label for="fSocialInstagram">Instagram</label><input type="url" id="fSocialInstagram" placeholder="https://instagram.com/..."></div>
+            <div class="field"><label for="fSocialFacebook">Facebook</label><input type="url" id="fSocialFacebook" placeholder="https://facebook.com/..."></div>
+            <div class="field"><label for="fSocialLinkedin">LinkedIn</label><input type="url" id="fSocialLinkedin" placeholder="https://linkedin.com/..."></div>
+            <div class="field"><label for="fSocialTelegram">Telegram</label><input type="url" id="fSocialTelegram" placeholder="https://t.me/..."></div>
           </div>
           <div class="modal-actions" style="margin-top:10px;">
             <button class="btn btn-ghost btn-sm" id="btnSaveSocial" data-i18n="social.save">Salva link social</button>
@@ -320,8 +318,8 @@
           <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Collaboratori salvati</div>
           <p class="form-note" style="margin-top:0;">Salva qui nickname e link Instagram una volta sola — dopo, digitando lo stesso nickname nel campo "Collaboratori" di un titolo, link e verifica si compilano da soli.</p>
           <div class="admin-grid" style="margin-top:10px;">
-            <div class="field"><label>Nickname</label><input type="text" id="fNewCollabNickname" placeholder="@nomeutente"></div>
-            <div class="field"><label>Link Instagram</label><input type="url" id="fNewCollabUrl" placeholder="https://instagram.com/..."></div>
+            <div class="field"><label for="fNewCollabNickname">Nickname</label><input type="text" id="fNewCollabNickname" placeholder="@nomeutente"></div>
+            <div class="field"><label for="fNewCollabUrl">Link Instagram</label><input type="url" id="fNewCollabUrl" placeholder="https://instagram.com/..."></div>
             <div class="field" style="align-self:end;">
               <label class="mature-toggle" style="cursor:pointer;">
                 <span>Verificato</span>
@@ -355,24 +353,24 @@
           <div data-i18n="announcements.newTitle" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Nuovo annuncio</div>
           <div class="admin-grid">
             <div class="field" style="grid-column:1/-1">
-              <label data-i18n="announcements.f.title">Titolo</label>
+              <label for="fAnnTitle" data-i18n="announcements.f.title">Titolo</label>
               <input type="text" id="fAnnTitle" placeholder="Aggiornamento del sito, evento, pausa uscite...">
             </div>
             <div class="field" style="grid-column:1/-1">
-              <label data-i18n="announcements.f.body">Testo</label>
+              <label for="fAnnBody" data-i18n="announcements.f.body">Testo</label>
               <textarea id="fAnnBody" rows="3"></textarea>
             </div>
             <div class="field" style="grid-column:1/-1">
-              <label data-i18n="announcements.f.link">Link (opzionale)</label>
+              <label for="fAnnLink" data-i18n="announcements.f.link">Link (opzionale)</label>
               <input type="url" id="fAnnLink" placeholder="https://...">
             </div>
             <div class="field" style="grid-column:1/-1">
-              <label data-i18n="announcements.f.image">Immagine (opzionale — qualsiasi proporzione)</label>
+              <label for="fAnnImage" data-i18n="announcements.f.image">Immagine (opzionale — qualsiasi proporzione)</label>
               <input type="file" id="fAnnImage" accept="image/*">
               <img id="fAnnImagePreview" class="hidden" alt="" style="margin-top:10px;max-width:220px;max-height:140px;object-fit:contain;border:1px solid var(--line);">
             </div>
             <div class="field" style="grid-column:1/-1">
-              <label data-i18n="announcements.f.pdf">File PDF (opzionale)</label>
+              <label for="fAnnPdf" data-i18n="announcements.f.pdf">File PDF (opzionale)</label>
               <input type="file" id="fAnnPdf" accept="application/pdf">
             </div>
           </div>
@@ -392,15 +390,15 @@
           <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Nuova playlist</div>
           <div class="admin-grid">
             <div class="field" style="grid-column:1/-1">
-              <label>Titolo playlist</label>
+              <label for="fPlaylistTitle">Titolo playlist</label>
               <input type="text" id="fPlaylistTitle" placeholder="Es. Notturni gotici">
             </div>
             <div class="field" style="grid-column:1/-1">
-              <label>Descrizione (opzionale)</label>
+              <label for="fPlaylistDesc">Descrizione (opzionale)</label>
               <textarea id="fPlaylistDesc" rows="2"></textarea>
             </div>
             <div class="field" style="grid-column:1/-1">
-              <label>Copertina (opzionale)</label>
+              <label for="fPlaylistCover">Copertina (opzionale)</label>
               <input type="file" id="fPlaylistCover" accept="image/*">
             </div>
           </div>
@@ -420,15 +418,15 @@
           <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Nuovo podcast</div>
           <div class="admin-grid">
             <div class="field" style="grid-column:1/-1">
-              <label>Titolo del podcast</label>
+              <label for="fPodcastTitle">Titolo del podcast</label>
               <input type="text" id="fPodcastTitle" placeholder="Es. Dietro le quinte di LUX COMICS">
             </div>
             <div class="field" style="grid-column:1/-1">
-              <label>Descrizione (opzionale)</label>
+              <label for="fPodcastDesc">Descrizione (opzionale)</label>
               <textarea id="fPodcastDesc" rows="2"></textarea>
             </div>
             <div class="field" style="grid-column:1/-1">
-              <label>Copertina (opzionale)</label>
+              <label for="fPodcastCover">Copertina (opzionale)</label>
               <input type="file" id="fPodcastCover" accept="image/*">
             </div>
           </div>
@@ -449,15 +447,15 @@
           <p style="color:var(--parchment-dim);font-size:13px;margin-bottom:14px;">Un server è uno spazio dedicato dentro Community, con i suoi canali propri e un elenco di chi si iscrive. Nessuna chat anonima — i canali funzionano come quelli generali, solo che appartengono a questo server.</p>
           <div class="admin-grid">
             <div class="field">
-              <label>Nome</label>
+              <label for="fServerName">Nome</label>
               <input type="text" id="fServerName" maxlength="40" placeholder="Es. Fan Art">
             </div>
             <div class="field">
-              <label>Icona (un'emoji)</label>
+              <label for="fServerIcon">Icona (un'emoji)</label>
               <input type="text" id="fServerIcon" maxlength="4" placeholder="🎨" value="💬">
             </div>
             <div class="field" style="grid-column:1/-1">
-              <label>Descrizione (opzionale)</label>
+              <label for="fServerDesc">Descrizione (opzionale)</label>
               <textarea id="fServerDesc" rows="2" placeholder="Di cosa parla questo server?"></textarea>
             </div>
           </div>
@@ -478,27 +476,27 @@
           <p style="color:var(--parchment-dim);font-size:13px;margin-bottom:14px;">Fiere, presentazioni, uscite al cinema — mostra un countdown finché non è passata la data, poi diventa solo una traccia di chi ha partecipato.</p>
           <div class="admin-grid">
             <div class="field" style="grid-column:1/-1">
-              <label>Titolo</label>
+              <label for="fEventTitle">Titolo</label>
               <input type="text" id="fEventTitle" maxlength="80" placeholder="Es. Lucca Comics & Games 2026">
             </div>
             <div class="field" style="grid-column:1/-1">
-              <label>Descrizione (opzionale)</label>
+              <label for="fEventDesc">Descrizione (opzionale)</label>
               <textarea id="fEventDesc" rows="2" placeholder="Di cosa si tratta?"></textarea>
             </div>
             <div class="field" style="grid-column:1/-1">
-              <label>Luogo</label>
+              <label for="fEventLocation">Luogo</label>
               <input type="text" id="fEventLocation" maxlength="80" placeholder="Es. Lucca, Italia">
             </div>
             <div class="field">
-              <label>Inizio (data e ora)</label>
+              <label for="fEventDate">Inizio (data e ora)</label>
               <input type="datetime-local" id="fEventDate">
             </div>
             <div class="field">
-              <label>Fine (opzionale, per eventi di più giorni)</label>
+              <label for="fEventEndDate">Fine (opzionale, per eventi di più giorni)</label>
               <input type="datetime-local" id="fEventEndDate">
             </div>
             <div class="field" style="grid-column:1/-1">
-              <label>Immagine (opzionale)</label>
+              <label for="fEventImage">Immagine (opzionale)</label>
               <input type="file" id="fEventImage" accept="image/*">
               <div class="form-note hidden" id="eventImageKeep">Si mantiene l'immagine attuale: scegli un file solo se vuoi cambiarla.</div>
             </div>
@@ -550,15 +548,15 @@
         <div class="notice">
           <div data-i18n="maintenance.scheduleTitle" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Cosa vedono i visitatori</div>
           <p class="form-note" data-i18n="maintenance.scheduleHint">Spiega perché il sito è in pausa e per quanto — resta salvato anche a interruttore spento, così puoi prepararlo prima.</p>
-          <label data-i18n="maintenance.reasonLabel" style="display:block;margin-top:14px;margin-bottom:6px;font-size:12px;color:var(--parchment-dim);">Motivazione (cosa stai facendo)</label>
+          <label for="fMaintenanceReason" data-i18n="maintenance.reasonLabel" style="display:block;margin-top:14px;margin-bottom:6px;font-size:12px;color:var(--parchment-dim);">Motivazione (cosa stai facendo)</label>
           <textarea id="fMaintenanceReason" rows="2" data-i18n-placeholder="maintenance.reasonPh" placeholder="Es. Sto caricando nuovi capitoli e sistemando il lettore pagine."></textarea>
           <div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:14px;">
             <div>
-              <label data-i18n="maintenance.startLabel" style="display:block;margin-bottom:6px;font-size:12px;color:var(--parchment-dim);">Inizio previsto</label>
+              <label for="fMaintenanceStart" data-i18n="maintenance.startLabel" style="display:block;margin-bottom:6px;font-size:12px;color:var(--parchment-dim);">Inizio previsto</label>
               <input type="datetime-local" id="fMaintenanceStart">
             </div>
             <div>
-              <label data-i18n="maintenance.endLabel" style="display:block;margin-bottom:6px;font-size:12px;color:var(--parchment-dim);">Fine prevista</label>
+              <label for="fMaintenanceEnd" data-i18n="maintenance.endLabel" style="display:block;margin-bottom:6px;font-size:12px;color:var(--parchment-dim);">Fine prevista</label>
               <input type="datetime-local" id="fMaintenanceEnd">
             </div>
           </div>
@@ -573,11 +571,11 @@
           <p class="form-note" data-i18n="night.hint">Il sito si blocca da solo ogni notte in questa fascia oraria, per non restare aperto inutilmente, e si riapre da solo al mattino.</p>
           <div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:14px;">
             <div>
-              <label data-i18n="night.startLabel" style="display:block;margin-bottom:6px;font-size:12px;color:var(--parchment-dim);">Chiude alle</label>
+              <label for="fNightStart" data-i18n="night.startLabel" style="display:block;margin-bottom:6px;font-size:12px;color:var(--parchment-dim);">Chiude alle</label>
               <input type="time" id="fNightStart">
             </div>
             <div>
-              <label data-i18n="night.endLabel" style="display:block;margin-bottom:6px;font-size:12px;color:var(--parchment-dim);">Riapre alle</label>
+              <label for="fNightEnd" data-i18n="night.endLabel" style="display:block;margin-bottom:6px;font-size:12px;color:var(--parchment-dim);">Riapre alle</label>
               <input type="time" id="fNightEnd">
             </div>
           </div>

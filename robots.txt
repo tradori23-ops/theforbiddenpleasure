@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /admin.html
+Disallow: /adatta-formato-copertine.html
+Allow: /
+
+Sitemap: https://noxmorningstar.com/sitemap.xml

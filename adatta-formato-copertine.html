@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
 <title>Adatta copertina a formato</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Space+Mono&display=swap');
+  @import url('fonts/fonts.css?v=258');
   :root{
     --void:#0b0607; --void-2:#150d0e; --gold:#c9a24d; --gold-bright:#e3c273;
     --parchment:#f2e8d0; --parchment-dim:#b8a98f; --line:#3a2a24; --wine-deep:#3a0f14;
@@ -98,11 +98,11 @@
 
     <div class="custom-row">
       <div>
-        <label>Largh. mm</label>
+        <label for="customW">Largh. mm</label>
         <input type="number" id="customW" value="100" min="1">
       </div>
       <div>
-        <label>Alt. mm</label>
+        <label for="customH">Alt. mm</label>
         <input type="number" id="customH" value="100" min="1">
       </div>
     </div>
@@ -110,7 +110,7 @@
 
     <h3 style="margin-top:22px;">3. Regola inquadratura</h3>
     <div class="zoom-row">
-      <label>Zoom</label>
+      <label for="zoomSlider">Zoom</label>
       <input type="range" id="zoomSlider" min="100" max="400" value="100">
     </div>
     <div class="hint" style="text-align:left; margin-top:0; margin-bottom:16px;">Trascina l'immagine per riposizionarla dentro il riquadro.</div>
