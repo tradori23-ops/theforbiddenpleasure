@@ -10039,6 +10039,7 @@ function uploadAllPendingPages(comicId, onProgress){
     status.textContent = label;
     if(onProgress) onProgress(0, label); // aggiorna solo l'etichetta: nessun byte nuovo ancora
     var file = pendingPages[i].file;
+    snoImage(pendingPages[i].previewUrl); // v259: la pagina che parte, dentro il cerchio (se la schermata è aperta)
     var pageNum = String(i + 1);
     while(pageNum.length < 3) pageNum = '0' + pageNum;
     // v246: nome nuovo a ogni caricamento («-lx»): filigranata 2000 px, miniatura 240 px, originale leggero
@@ -10786,7 +10787,8 @@ function runTitleUploadSequence(newItem, isEdit){
     if(showsOverlay) snoProgress((sentBytes / Math.max(totalBytes, 1)) * 100);
   }
   function setLabel(label){ if(showsOverlay) document.getElementById('snoStatus').textContent = label; }
-  if(showsOverlay) snoStart(t('sno.uploadStart'), function(){ runTitleUploadSequence(newItem, isEdit); });
+  if(showsOverlay) snoStart(t('sno.uploadStart'), function(){ runTitleUploadSequence(newItem, isEdit); },
+    (pendingCover && pendingCover.previewUrl) || newItem.cover_url || (pendingPages[0] && pendingPages[0].previewUrl) || null); // v259: l'immagine dentro il cerchio
 
   var uploadSteps = Promise.resolve();
 
@@ -10818,6 +10820,7 @@ function runTitleUploadSequence(newItem, isEdit){
     uploadSteps = uploadSteps.then(function(){
       status.textContent = t('cover.uploading');
       setLabel(t('cover.uploading'));
+      if(showsOverlay) snoImage(pendingCover.previewUrl); // v259
       return compressImageFile(pendingCover.file, LUX_COVER_MAX, 0.86).then(function(compressed){
         return classifyFileMaturity(compressed).then(function(isMature){
           if(isMature) newItem.mature = true;
@@ -17889,7 +17892,7 @@ function openTitleModal(item){
         offlineBtn.onclick = function(){
           offlineBtn.disabled = true;
           function attempt(){
-            snoStart(t('sno.downloadStart'), attempt);
+            snoStart(t('sno.downloadStart'), attempt, item.cover_url || null); // v259: la copertina dentro il cerchio
             downloadItemForOffline(item, function(done, total){
               snoProgress((done / total) * 100, t('pages.uploading').replace('{n}', done).replace('{total}', total));
             }).then(function(){
@@ -19251,6 +19254,7 @@ function runLuxSongUpload(session, titleEl, artistEl, genreEl, coverFile, audioF
   var sentBytes = 0;
   function bumpBytes(delta){ sentBytes += delta; snoProgress((sentBytes / Math.max(totalBytes, 1)) * 100); }
   snoStart(t('sno.uploadStart'), function(){ runLuxSongUpload(session, titleEl, artistEl, genreEl, coverFile, audioFile, statusEl); });
+  snoImageFile(coverFile); // v259: la copertina della canzone dentro il cerchio
 
   var uploads = [];
   var audioPath = Date.now() + '-' + audioFile.name.replace(/[^a-zA-Z0-9.\-]/g, '_');
@@ -20615,6 +20619,7 @@ function runCatalogSongUpload(catalogId, session, titleEl, artistEl, genreEl, co
   var sentBytes = 0;
   function bumpBytes(delta){ sentBytes += delta; snoProgress((sentBytes / Math.max(totalBytes, 1)) * 100); }
   snoStart(t('sno.uploadStart'), function(){ runCatalogSongUpload(catalogId, session, titleEl, artistEl, genreEl, coverFile, audioFile, lyricsEl, statusEl); });
+  snoImageFile(coverFile); // v259
 
   var uploads = [];
   var audioPath = catalogId + '/' + Date.now() + '-' + audioFile.name.replace(/[^a-zA-Z0-9.\-]/g, '_');
@@ -24383,12 +24388,15 @@ function luxIgDraw(){
   return Promise.all([luxIgCover(LIG.item.cover_url), luxIgLogo(), luxIgFonts()]).then(function(res){
     if(seq !== LIG.seq || !document.getElementById('luxIgStudio')) return false;
     var row = luxIgLinkRow();
-    luxIgPaint(cv, { fmt: LIG.fmt, item: LIG.item, cover: res[0], logo: res[1], url: luxPromoUrl(row), qr: LIG.qr, adult: LIG.adult && !!LIG.item.mature, tag: LIG.tag });
+    var painted = luxIgPaint(cv, { fmt: LIG.fmt, item: LIG.item, cover: res[0], logo: res[1], url: luxPromoUrl(row), qr: LIG.qr, adult: LIG.adult && !!LIG.item.mature, tag: LIG.tag });
     cv.setAttribute('data-url', LIG.qr ? luxPromoUrl(row) : '');   // (per le prove: cosa c'è nell'immagine)
     cv.setAttribute('data-cover', res[0] ? '1' : '0');
     cv.setAttribute('data-tag', ligTagText({ tag: LIG.tag }));
     cv.setAttribute('data-sub', ligSubText(LIG.item));
     cv.setAttribute('data-drawn', LIG.fmt + ':' + seq);
+    cv.setAttribute('data-title-lines', JSON.stringify(painted.lines)); // v259 (per le prove: le righe del titolo, la copertina)
+    cv.setAttribute('data-title-size', String(painted.size));
+    cv.setAttribute('data-cover-box', [painted.cover.l, painted.cover.t, painted.cover.w, painted.cover.h].join(','));
     wait.hidden = true;
     luxIgControls();
     setTimeout(function(){ if(seq === LIG.seq) luxIgBlob(); }, 0); // il PNG pronto in anticipo: «Condividi» parte dentro il tocco (Safari lo vuole)
@@ -24469,62 +24477,72 @@ function ligRound(x, l, t, w, h, r){
 }
 var LIG_SCRIPT_RE = /[֐-ࣿऀ-෿฀-໿က-႟]/; // scritture che non si spaziano lettera per lettera
 var LIG_CJK_RE = /[぀-ヿ㐀-鿿豈-﫿가-힯]/;
-function ligWrap(x, text, maxW){
+function ligWrap(x, text, maxW, strict){
   text = String(text || '').trim();
   if(!text) return [];
   var cjk = LIG_CJK_RE.test(text);
-  // (la lineetta resta attaccata alla parola prima: «Il Re Geloso —» / «Capitolo 3», non «— Capitolo 3»)
+  // (la lineetta resta attaccata alla parola prima: «Il Re Geloso —» / «Capitolo 3», mai «— Capitolo 3»)
   var words = cjk ? text.replace(/\s+/g, ' ').split('') : text.replace(/[ \t\r\n]+([—–])[ \t\r\n]+/g, ' $1 ').split(/[ \t\r\n]+/);
   var lines = [], cur = '';
   var join = function(a, b){ return a ? a + (cjk ? '' : ' ') + b : b; };
-  words.forEach(function(wd){
-    var tryLine = join(cur, wd);
+  for(var i = 0; i < words.length; i++){
+    var wd = words[i], tryLine = join(cur, wd);
     if(!cur || x.measureText(tryLine).width <= maxW){ cur = tryLine; }
     else { lines.push(cur); cur = wd; }
-    while(x.measureText(cur).width > maxW && cur.length > 1){ // una parola sola più lunga della riga: si spezza
-      var k = cur.length - 1;
-      while(k > 1 && x.measureText(cur.slice(0, k)).width > maxW) k--;
-      lines.push(cur.slice(0, k));
-      cur = cur.slice(k);
+    if(x.measureText(cur).width > maxW && cur.length > 1){
+      // v259: una parola più lunga della riga non si spezza più (ligFit rimpicciolisce le lettere); solo all'ultimo, sì
+      if(strict && !cjk) return null;
+      while(x.measureText(cur).width > maxW && cur.length > 1){
+        var k = cur.length - 1;
+        while(k > 1 && x.measureText(cur.slice(0, k)).width > maxW) k--;
+        lines.push(cur.slice(0, k));
+        cur = cur.slice(k);
+      }
     }
-  });
+  }
   if(cur) lines.push(cur);
   return lines.map(function(l){ return l.trim(); }).filter(Boolean);
 }
-// il titolo: la misura più grande che sta in maxLines righe, senza una parolina sola sull'ultima riga
-// (se si può, rimpicciolendo poco), e con le righe di lunghezza simile
-function ligFit(x, text, font, maxW, maxLines, big, small){
-  var widest = function(ls){ return Math.max.apply(null, ls.map(function(l){ return x.measureText(l).width; })); };
-  var orphan = function(ls){ return ls.length > 1 && x.measureText(ls[ls.length - 1]).width < widest(ls) * .34; };
-  var best = null, size, lines;
-  for(size = big; size >= small; size -= 2){
+// la misura più grande con cui il titolo sta in k righe, senza spezzare le parole
+function ligFitK(x, text, font, maxW, k, big, small){
+  for(var size = big; size >= small; size -= 2){
     x.font = font.replace('{s}', size);
-    lines = ligWrap(x, text, maxW);
-    if(lines.length > maxLines) continue;
-    if(!best) best = { size: size, lines: lines };
-    if(!orphan(lines)){ best = { size: size, lines: lines }; break; }
-    if(size < big * .78) break; // (non troppo più piccolo solo per una parola)
+    var ls = ligWrap(x, text, maxW, true);
+    if(ls && ls.length <= k) return { size: size, lines: ls };
   }
+  return null;
+}
+// v259: il titolo. Meno righe possibile, purché le lettere restino grandi (almeno «ok»); se no, le lettere più grandi
+// che si possono avere in maxLines righe. Le parole non si spezzano più («Primordia / l»); le righe escono di
+// lunghezza simile (niente parolina sola sotto). Solo se proprio non c'è verso: la misura più piccola e i puntini.
+function ligFit(x, text, font, maxW, maxLines, big, small, ok){
+  var cands = [], k, f;
+  for(k = 1; k <= maxLines; k++){
+    f = ligFitK(x, text, font, maxW, k, big, small);
+    if(f && (!cands.length || f.lines.length > cands[cands.length - 1].lines.length)) cands.push(f);
+  }
+  var best = null;
+  for(k = 0; k < cands.length; k++) if(cands[k].size >= (ok || big)){ best = cands[k]; break; }
+  if(!best && cands.length) best = cands.reduce(function(a, b){ return b.size > a.size ? b : a; });
   if(!best){
-    size = small;
-    x.font = font.replace('{s}', size);
-    lines = ligWrap(x, text, maxW);
+    x.font = font.replace('{s}', small);
+    var lines = ligWrap(x, text, maxW, false);
     if(lines.length > maxLines){
       lines = lines.slice(0, maxLines);
       var last = lines[maxLines - 1];
       while(last.length > 1 && x.measureText(last + '…').width > maxW) last = last.slice(0, -1);
       lines[maxLines - 1] = last.replace(/\s+$/, '') + '…';
     }
-    return { size: size, lines: lines };
+    return { size: small, lines: lines };
   }
   // righe equilibrate: la larghezza più stretta che dà lo stesso numero di righe
   x.font = font.replace('{s}', best.size);
   var n = best.lines.length;
-  if(n > 1 && best.lines[n - 1].slice(-1) !== '…'){
-    var lo = maxW * .45, hi = maxW;
-    for(var k = 0; k < 14; k++){ var mid = (lo + hi) / 2; if(ligWrap(x, text, mid).length <= n) hi = mid; else lo = mid; }
-    var bal = ligWrap(x, text, hi);
-    if(bal.length === n) best.lines = bal;
+  if(n > 1){
+    var lo = maxW * .4, hi = maxW;
+    for(var i = 0; i < 14; i++){ var mid = (lo + hi) / 2, tl = ligWrap(x, text, mid, true); if(tl && tl.length <= n) hi = mid; else lo = mid; }
+    var bal = ligWrap(x, text, hi, true);
+    if(bal && bal.length === n) best.lines = bal;
   }
   return best;
 }
@@ -24540,41 +24558,129 @@ function ligSpaced(x, text, px, y, sp, align){
   chars.forEach(function(c, i){ x.fillText(c, start, y); start += widths[i] + sp; });
   return tot;
 }
+function ligSpacedWidth(x, text, sp){
+  text = String(text || '');
+  if(LIG_SCRIPT_RE.test(text) || LIG_CJK_RE.test(text) || !sp) return x.measureText(text).width;
+  return text.split('').reduce(function(a, c){ return a + x.measureText(c).width; }, 0) + sp * (text.length - 1);
+}
 function ligUpper(s){ try { return String(s || '').toLocaleUpperCase(LIG.lang); } catch(e){ return String(s || '').toUpperCase(); } }
+
+/* ---- v259: lo sfondo ----
+   La copertina sfocata la facciamo noi (tre passate di media, quasi una sfocatura gaussiana): uguale su ogni
+   telefono. Safari non sa sfocare dentro l'immagine (ctx.filter) e prima, su iPhone, lo sfondo usciva a quadretti.
+   Si lavora su una copia piccola (un quarto), che poi si ingrandisce già liscia; sopra, un velo di grana fine. */
+function ligBlurPlanes(px, w, h, r, passes){
+  var n = w * h, chan = [new Float32Array(n), new Float32Array(n), new Float32Array(n)], tmp = new Float32Array(n), i, c, p;
+  for(i = 0; i < n; i++){ chan[0][i] = px[i * 4]; chan[1][i] = px[i * 4 + 1]; chan[2][i] = px[i * 4 + 2]; }
+  var k = 1 / (2 * r + 1);
+  function pass(src, dst, len, lines, step, lineStep){
+    for(var l = 0; l < lines; l++){
+      var base = l * lineStep, acc = 0, j, a, b;
+      for(j = -r; j <= r; j++){ a = j < 0 ? 0 : (j >= len ? len - 1 : j); acc += src[base + a * step]; }
+      for(j = 0; j < len; j++){
+        dst[base + j * step] = acc * k;
+        a = j - r; b = j + r + 1;
+        if(a < 0) a = 0;
+        if(b >= len) b = len - 1;
+        acc += src[base + b * step] - src[base + a * step];
+      }
+    }
+  }
+  for(c = 0; c < 3; c++){
+    for(p = 0; p < passes; p++){
+      pass(chan[c], tmp, w, h, 1, w);   // in orizzontale
+      pass(tmp, chan[c], h, w, w, 1);   // in verticale
+    }
+  }
+  for(i = 0; i < n; i++){ px[i * 4] = chan[0][i]; px[i * 4 + 1] = chan[1][i]; px[i * 4 + 2] = chan[2][i]; px[i * 4 + 3] = 255; }
+}
+// la copertina sfocata a tutta pagina, e il suo colore medio (per il bagliore dietro la copertina); una volta per formato
+function ligBlurredCover(im, W, H){
+  var key = W + 'x' + H;
+  if(im.__ligBlur && im.__ligBlur.key === key) return im.__ligBlur;
+  var q = 4, w = Math.max(8, Math.round(W / q)), h = Math.max(8, Math.round(H / q));
+  var c = document.createElement('canvas'); c.width = w; c.height = h;
+  var cx = c.getContext('2d');
+  var s = Math.max(w / im.naturalWidth, h / im.naturalHeight) * 1.08, dw = im.naturalWidth * s, dh = im.naturalHeight * s;
+  cx.imageSmoothingEnabled = true;
+  try { cx.imageSmoothingQuality = 'high'; } catch(e){}
+  cx.drawImage(im, (w - dw) / 2, (h - dh) / 2, dw, dh);
+  var avg = [40, 18, 22];
+  try {
+    var id = cx.getImageData(0, 0, w, h), d = id.data, R = 0, G = 0, B = 0, m = 0;
+    for(var i = 0; i < d.length; i += 16){ R += d[i]; G += d[i + 1]; B += d[i + 2]; m++; }
+    if(m) avg = [R / m, G / m, B / m];
+    ligBlurPlanes(d, w, h, Math.max(4, Math.round(Math.min(w, h) / 22)), 3);
+    cx.putImageData(id, 0, 0);
+  } catch(e){ console.warn('[per instagram] sfocatura:', e); }
+  im.__ligBlur = { key: key, canvas: c, avg: avg };
+  return im.__ligBlur;
+}
+// grana fine (sempre la stessa: le immagini rifatte restano identiche)
+var LIG_GRAIN = null;
+function ligGrain(x, W, H, alpha){
+  if(!LIG_GRAIN){
+    LIG_GRAIN = document.createElement('canvas'); LIG_GRAIN.width = LIG_GRAIN.height = 160;
+    var g = LIG_GRAIN.getContext('2d'), id = g.createImageData(160, 160), d = id.data, seed = 20251;
+    for(var i = 0; i < d.length; i += 4){ seed = (seed * 16807) % 2147483647; var v = 96 + (seed % 64); d[i] = d[i + 1] = d[i + 2] = v; d[i + 3] = 255; }
+    g.putImageData(id, 0, 0);
+  }
+  x.save();
+  x.globalAlpha = alpha;
+  x.globalCompositeOperation = 'overlay';
+  x.fillStyle = x.createPattern(LIG_GRAIN, 'repeat');
+  x.fillRect(0, 0, W, H);
+  x.restore();
+}
+// il colore del bagliore: quello della copertina, un po' più vivo; se la copertina è grigia o scurissima, l'oro della casa
+function ligGlowColor(avg){
+  var r = avg[0], g = avg[1], b = avg[2], mx = Math.max(r, g, b), mn = Math.min(r, g, b);
+  if(mx < 40 || mx - mn < 18) return [201, 162, 77];
+  var k = 210 / mx, mid = (r + g + b) / 3;
+  return [r, g, b].map(function(v){ return Math.max(0, Math.min(255, Math.round((mid + (v - mid) * 1.35) * k))); });
+}
 function ligBg(x, o, W, H){
   x.fillStyle = '#0b0607';
   x.fillRect(0, 0, W, H);
   var im = o.cover;
+  o.glow = [201, 162, 77];
   if(im){
-    var s = Math.max(W / im.naturalWidth, H / im.naturalHeight) * 1.12, dw = im.naturalWidth * s, dh = im.naturalHeight * s;
+    var bl = ligBlurredCover(im, W, H);
+    o.glow = ligGlowColor(bl.avg);
     x.save();
-    if('filter' in x){
-      x.filter = 'blur(42px) saturate(1.15)';
-      x.drawImage(im, (W - dw) / 2, (H - dh) / 2, dw, dh);
-      x.filter = 'none';
-    } else { // (senza filtri: rimpicciolita e ringrandita, che la sfoca)
-      var k = 1 / 24, a = document.createElement('canvas'), b = document.createElement('canvas');
-      a.width = Math.max(4, Math.round(W * k)); a.height = Math.max(4, Math.round(H * k));
-      a.getContext('2d').drawImage(im, (W - dw) / 2 * k, (H - dh) / 2 * k, dw * k, dh * k);
-      b.width = Math.round(W / 6); b.height = Math.round(H / 6);
-      var bx = b.getContext('2d'); bx.imageSmoothingQuality = 'high'; bx.drawImage(a, 0, 0, b.width, b.height);
-      x.imageSmoothingQuality = 'high';
-      x.drawImage(b, 0, 0, W, H);
-    }
+    x.imageSmoothingEnabled = true;
+    try { x.imageSmoothingQuality = 'high'; } catch(e){}
+    x.globalAlpha = .92;
+    x.drawImage(bl.canvas, 0, 0, W, H);
     x.restore();
   } else {
     var g0 = x.createLinearGradient(0, 0, W, H);
     g0.addColorStop(0, '#3a0c16'); g0.addColorStop(.55, '#150a0c'); g0.addColorStop(1, '#2a1a0c');
     x.fillStyle = g0; x.fillRect(0, 0, W, H);
   }
+  // un velo scuro (più forte in basso, dove ci sono le scritte e il biglietto) e i bordi più scuri
   var g = x.createLinearGradient(0, 0, 0, H);
-  g.addColorStop(0, 'rgba(11,6,7,.80)'); g.addColorStop(.42, 'rgba(11,6,7,.50)'); g.addColorStop(1, 'rgba(11,6,7,.90)');
+  g.addColorStop(0, 'rgba(11,6,7,.55)'); g.addColorStop(.36, 'rgba(11,6,7,.32)'); g.addColorStop(.68, 'rgba(11,6,7,.64)'); g.addColorStop(1, 'rgba(11,6,7,.9)');
   x.fillStyle = g; x.fillRect(0, 0, W, H);
-  var rg = x.createRadialGradient(W / 2, H * .45, Math.min(W, H) * .25, W / 2, H * .45, Math.max(W, H) * .78);
-  rg.addColorStop(0, 'rgba(0,0,0,0)'); rg.addColorStop(1, 'rgba(0,0,0,.55)');
+  var rg = x.createRadialGradient(W / 2, H * .42, Math.min(W, H) * .2, W / 2, H * .45, Math.max(W, H) * .8);
+  rg.addColorStop(0, 'rgba(0,0,0,0)'); rg.addColorStop(1, 'rgba(0,0,0,.6)');
   x.fillStyle = rg; x.fillRect(0, 0, W, H);
-  x.strokeStyle = 'rgba(201,162,77,.6)'; x.lineWidth = 3; x.strokeRect(34.5, 34.5, W - 69, H - 69);
-  x.strokeStyle = 'rgba(201,162,77,.24)'; x.lineWidth = 1.5; x.strokeRect(47, 47, W - 94, H - 94);
+  ligGrain(x, W, H, .07);
+}
+// la cornice d'oro doppia; gl/gr: dove lasciare lo spazio in alto (per il sigillo)
+function ligFrame(x, W, H, gl, gr){
+  [[34.5, 3, 'rgba(201,162,77,.6)'], [47, 1.5, 'rgba(201,162,77,.24)']].forEach(function(s){
+    var a = s[0], b = W - a, c = H - a;
+    x.strokeStyle = s[2]; x.lineWidth = s[1];
+    x.beginPath();
+    if(gl != null){ x.moveTo(gl, a); x.lineTo(a, a); x.lineTo(a, c); x.lineTo(b, c); x.lineTo(b, a); x.lineTo(gr, a); }
+    else x.rect(a, a, W - 2 * a, H - 2 * a);
+    x.stroke();
+  });
+  if(gl != null){ // (due puntine d'oro dove la cornice si interrompe)
+    x.fillStyle = 'rgba(227,194,115,.9)';
+    [gl, gr].forEach(function(px){ x.beginPath(); x.moveTo(px, 34.5 - 5); x.lineTo(px + 5, 34.5); x.lineTo(px, 34.5 + 5); x.lineTo(px - 5, 34.5); x.closePath(); x.fill(); });
+  }
 }
 function ligBadge18(x, cx, cy, r){
   x.save();
@@ -24587,23 +24693,42 @@ function ligBadge18(x, cx, cy, r){
   x.restore();
 }
 function ligCoverDims(o, maxW, maxH){
-  var im = o.cover, ar = im ? im.naturalWidth / im.naturalHeight : 2 / 3;
+  var im = o.cover, ar = im ? im.naturalWidth / im.naturalHeight : 1; // (senza copertina: quadrata, come quelle del sito)
   var w = maxW, h = w / ar;
   if(h > maxH){ h = maxH; w = h * ar; }
   return { w: Math.round(w), h: Math.round(h) };
+}
+// il bagliore colorato dietro la copertina
+function ligCoverGlow(x, o, l, t, w, h){
+  var c = o.glow || [201, 162, 77], cx = l + w / 2, cy = t + h / 2, R = Math.max(w, h) * .95;
+  x.save();
+  var gl = x.createRadialGradient(cx, cy, Math.min(w, h) * .25, cx, cy, R);
+  gl.addColorStop(0, 'rgba(' + c.join(',') + ',.5)');
+  gl.addColorStop(.55, 'rgba(' + c.join(',') + ',.14)');
+  gl.addColorStop(1, 'rgba(' + c.join(',') + ',0)');
+  x.globalCompositeOperation = 'screen';
+  x.fillStyle = gl;
+  x.fillRect(cx - R, cy - R, R * 2, R * 2);
+  x.restore();
 }
 // la copertina con la cornice d'oro, larga al massimo maxW e alta al massimo maxH, con il centro in cx e la cima in top
 function ligCover(x, o, cx, top, maxW, maxH){
   var im = o.cover, d = ligCoverDims(o, maxW, maxH), w = d.w, h = d.h;
   var l = Math.round(cx - w / 2);
+  ligCoverGlow(x, o, l, top, w, h);
   x.save();
   x.shadowColor = 'rgba(0,0,0,.7)'; x.shadowBlur = 56; x.shadowOffsetY = 20;
   x.fillStyle = '#c9a24d'; x.fillRect(l - 9, top - 9, w + 18, h + 18);
   x.restore();
   x.fillStyle = '#e3c273'; x.fillRect(l - 9, top - 9, w + 18, 3);
   x.fillStyle = '#140b0c'; x.fillRect(l - 2, top - 2, w + 4, h + 4);
-  if(im) x.drawImage(im, l, top, w, h);
-  else {
+  if(im){
+    x.save();
+    x.imageSmoothingEnabled = true;
+    try { x.imageSmoothingQuality = 'high'; } catch(e){}
+    x.drawImage(im, l, top, w, h);
+    x.restore();
+  } else {
     var g = x.createLinearGradient(l, top, l, top + h);
     g.addColorStop(0, '#4a0d18'); g.addColorStop(1, '#150a0c');
     x.fillStyle = g; x.fillRect(l, top, w, h);
@@ -24612,40 +24737,69 @@ function ligCover(x, o, cx, top, maxW, maxH){
   if(o.adult) ligBadge18(x, l + w - Math.round(Math.min(w, h) * .11) - 6, top + Math.round(Math.min(w, h) * .11) + 6, Math.max(34, Math.round(Math.min(w, h) * .11)));
   return { l: l, t: top, w: w, h: h };
 }
-// il biglietto in basso: il QR e «Inquadra e leggi» con l'indirizzo del sito (senza QR: «Leggi ora» e l'indirizzo)
+// v259: il biglietto in basso, scuro con il bordo d'oro (prima color crema): il QR su un quadrato bianco e
+// «Inquadra e leggi» con l'indirizzo del sito (senza QR: «Leggi ora» e l'indirizzo)
 function ligTicket(x, o, l, t, w, h){
+  var r = Math.round(Math.min(30, h * .15));
   x.save();
-  x.shadowColor = 'rgba(0,0,0,.55)'; x.shadowBlur = 34; x.shadowOffsetY = 12;
-  ligRound(x, l, t, w, h, 26); x.fillStyle = '#f4ecdc'; x.fill();
+  x.shadowColor = 'rgba(0,0,0,.62)'; x.shadowBlur = 44; x.shadowOffsetY = 14;
+  ligRound(x, l, t, w, h, r);
+  var g = x.createLinearGradient(0, t, 0, t + h);
+  g.addColorStop(0, 'rgba(42,18,23,.94)'); g.addColorStop(1, 'rgba(16,8,10,.96)');
+  x.fillStyle = g; x.fill();
   x.restore();
-  ligRound(x, l + 8, t + 8, w - 16, h - 16, 20); x.lineWidth = 2; x.strokeStyle = 'rgba(110,20,35,.35)'; x.stroke();
-  var rtl = luxIgRtl(), pad = 20, tx, tw;
+  ligRound(x, l + 1.5, t + 1.5, w - 3, h - 3, r - 1); x.lineWidth = 3; x.strokeStyle = 'rgba(227,194,115,.92)'; x.stroke();
+  ligRound(x, l + 10, t + 10, w - 20, h - 20, Math.max(6, r - 9)); x.lineWidth = 1.2; x.strokeStyle = 'rgba(227,194,115,.3)'; x.stroke();
+  var rtl = luxIgRtl(), pad = 24, tx, tw;
   if(o.qr){
-    var qs = h - pad * 2, ql = rtl ? l + w - pad - qs : l + pad;
-    luxQrDraw(x, luxQrMake(o.url), ql, t + pad, qs, 3, '#111111', '#ffffff');
-    tx = rtl ? l + 30 : ql + qs + 30; tw = w - qs - pad - 30 - 30;
-  } else { tx = l + 36; tw = w - 72; }
+    var qs = h - pad * 2, ql = rtl ? l + w - pad - qs : l + pad, qt = t + pad;
+    ligRound(x, ql, qt, qs, qs, Math.max(8, Math.round(qs * .07))); x.fillStyle = '#ffffff'; x.fill();
+    luxQrDraw(x, luxQrMake(o.url), ql, qt, qs, 3, '#111111', 'rgba(255,255,255,0)');
+    tx = rtl ? l + 38 : ql + qs + 38; tw = w - qs - pad - 38 - 38;
+  } else { tx = l + 40; tw = w - 80; }
   var label = ligUpper(o.qr ? luxIgT('promo.scan') : luxIgT('rec.readNow')), host = luxPromoHost();
-  var big = Math.round(Math.min(46, h * .2)), lab = Math.round(Math.min(34, h * .15));
+  if(!o.qr){ ligTicketRow(x, label, host, l, t, w, h, rtl); return; }
+  var big = Math.round(Math.min(48, h * .2)), lab = Math.round(Math.min(32, h * .14)), sp = Math.round(lab * .16);
   x.textBaseline = 'alphabetic';
-  x.fillStyle = '#6e1423';
   x.font = '700 ' + lab + 'px "Space Mono", system-ui, sans-serif';
-  var lines = ligWrap(x, label, tw).slice(0, 2);
+  var lines = ligWrap(x, label, tw, false).slice(0, 2);
+  while(lab > 16 && lines.some(function(s){ return ligSpacedWidth(x, s, sp) > tw; })){
+    lab -= 1; sp = Math.round(lab * .16); x.font = '700 ' + lab + 'px "Space Mono", system-ui, sans-serif'; lines = ligWrap(x, label, tw, false).slice(0, 2);
+  }
   var hostSize = big;
   x.font = '700 ' + hostSize + 'px "Cinzel", Georgia, serif';
   while(hostSize > 18 && x.measureText(host).width > tw){ hostSize -= 2; x.font = '700 ' + hostSize + 'px "Cinzel", Georgia, serif'; }
-  var blockH = lines.length * lab * 1.25 + 14 + hostSize, y = t + (h - blockH) / 2 + lab;
-  var ax = !o.qr ? l + w / 2 : rtl ? tx + tw : tx, align = !o.qr ? 'center' : rtl ? 'right' : 'left';
+  var blockH = lines.length * lab * 1.25 + 16 + hostSize, y = t + (h - blockH) / 2 + lab;
+  var ax = rtl ? tx + tw : tx, align = rtl ? 'right' : 'left';
   x.font = '700 ' + lab + 'px "Space Mono", system-ui, sans-serif';
-  x.fillStyle = '#6e1423';
+  x.fillStyle = '#e3c273';
   if(rtl) x.direction = 'rtl';
-  lines.forEach(function(s){ ligSpaced(x, s, ax, y, lab * .14, align); y += lab * 1.25; });
+  lines.forEach(function(s){ ligSpaced(x, s, ax, y, sp, align); y += lab * 1.25; });
   x.direction = 'ltr';
-  y += 14 - lab * .25 + hostSize * .8;
+  y += 16 - lab * .25 + hostSize * .8;
   x.font = '700 ' + hostSize + 'px "Cinzel", Georgia, serif';
-  x.fillStyle = '#1e1410';
+  x.fillStyle = '#f6ead0';
   x.textAlign = align;
   x.fillText(host, ax, y);
+}
+// v259: senza QR il biglietto è basso: «LEGGI ORA ◆ indirizzo» in una riga sola, con lettere grandi (prima minuscole)
+function ligTicketRow(x, label, host, l, t, w, h, rtl){
+  var fl = Math.round(h * .22), fh = Math.round(h * .3), sp, wl, wh, gap;
+  var fontL = function(s){ return '700 ' + s + 'px "Space Mono", system-ui, sans-serif'; }, fontH = function(s){ return '700 ' + s + 'px "Cinzel", Georgia, serif'; };
+  var measure = function(){ sp = Math.round(fl * .16); x.font = fontL(fl); wl = ligSpacedWidth(x, label, sp); x.font = fontH(fh); wh = x.measureText(host).width; gap = Math.round(fh * 1.3); };
+  measure();
+  while(wl + gap + wh > w - 90 && fh > 18){ fl = Math.max(12, fl - 1); fh -= 1; measure(); }
+  var lx = Math.round(l + (w - (wl + gap + wh)) / 2), by = t + h / 2 + fh * .34;
+  var labX = rtl ? lx + wh + gap : lx, hostX = rtl ? lx : lx + wl + gap, dx = rtl ? lx + wh + gap / 2 : lx + wl + gap / 2;
+  x.textBaseline = 'alphabetic';
+  x.font = fontL(fl); x.fillStyle = '#e3c273';
+  if(rtl) x.direction = 'rtl';
+  ligSpaced(x, label, rtl ? labX + wl : labX, by, sp, rtl ? 'right' : 'left');
+  x.direction = 'ltr';
+  var r = fh * .16, cy = by - fh * .33;
+  x.beginPath(); x.moveTo(dx, cy - r); x.lineTo(dx + r, cy); x.lineTo(dx, cy + r); x.lineTo(dx - r, cy); x.closePath(); x.fill();
+  x.font = fontH(fh); x.fillStyle = '#f6ead0'; x.textAlign = 'left';
+  x.fillText(host, hostX, by);
 }
 function ligTagText(o){
   var k = { new: 'lxcover.newChapter', last: 'lxcover.lastChapter', read: 'rec.readNow' }[o.tag];
@@ -24656,29 +24810,52 @@ function ligSubText(item){
   var n = item.chapter_number != null && item.chapter_number !== '' ? luxIgT('series.chapterLabel') + ' ' + item.chapter_number : '';
   return [who, n].filter(Boolean).join(' · ');
 }
-function ligTag(x, text, cx, y, align){
-  if(!text) return;
-  x.font = '700 30px "Space Mono", system-ui, sans-serif';
+// v259: la scritta («CAPITOLO NUOVO»…) in una targhetta a cavallo del bordo della copertina
+function ligPill(x, text, cx, cy, fs, maxW){
+  if(!text) return 0;
+  var font = function(s){ return '700 ' + s + 'px "Space Mono", system-ui, sans-serif'; };
+  var sp = Math.round(fs * .18);
+  x.font = font(fs);
+  var tw = ligSpacedWidth(x, text, sp);
+  while(fs > 16 && tw + fs * 4.4 > maxW){ fs -= 1; sp = Math.round(fs * .18); x.font = font(fs); tw = ligSpacedWidth(x, text, sp); }
+  var h = Math.round(fs * 2.1), w = Math.round(tw + fs * 4.4), l = Math.round(cx - w / 2), t = Math.round(cy - h / 2);
+  x.save();
+  x.shadowColor = 'rgba(0,0,0,.6)'; x.shadowBlur = 20; x.shadowOffsetY = 6;
+  ligRound(x, l, t, w, h, h / 2);
+  var g = x.createLinearGradient(0, t, 0, t + h);
+  g.addColorStop(0, '#62142a'); g.addColorStop(1, '#2c0a12');
+  x.fillStyle = g; x.fill();
+  x.restore();
+  ligRound(x, l + 1, t + 1, w - 2, h - 2, h / 2 - 1); x.lineWidth = 2.5; x.strokeStyle = '#e3c273'; x.stroke();
   x.fillStyle = '#e3c273';
+  [l + fs * 1.15, l + w - fs * 1.15].forEach(function(dx){
+    var r = fs * .2;
+    x.beginPath(); x.moveTo(dx, cy - r); x.lineTo(dx + r, cy); x.lineTo(dx, cy + r); x.lineTo(dx - r, cy); x.closePath(); x.fill();
+  });
+  x.fillStyle = '#f7e6b0';
   x.textBaseline = 'alphabetic';
   if(luxIgRtl()) x.direction = 'rtl';
-  var w = ligSpaced(x, text, cx, y, 5, align);
+  ligSpaced(x, text, cx, cy + fs * .36, sp, 'center');
   x.direction = 'ltr';
-  x.strokeStyle = 'rgba(227,194,115,.6)'; x.lineWidth = 2;
-  if(align === 'center'){
-    x.beginPath(); x.moveTo(cx - w / 2 - 70, y - 10); x.lineTo(cx - w / 2 - 22, y - 10); x.moveTo(cx + w / 2 + 22, y - 10); x.lineTo(cx + w / 2 + 70, y - 10); x.stroke();
-  }
+  return h;
 }
+// v259: il titolo color oro chiaro, riga per riga, con l'ombra
 function ligTitle(x, fit, px, y, align, lh){
   x.font = '900 ' + fit.size + 'px "Cinzel Decorative", "Cinzel", Georgia, serif';
-  x.fillStyle = '#f6ead0';
   x.textAlign = align;
   x.textBaseline = 'alphabetic';
-  x.save();
-  x.shadowColor = 'rgba(0,0,0,.75)'; x.shadowBlur = 18; x.shadowOffsetY = 4;
-  fit.lines.forEach(function(s, i){ x.fillText(s, px, y + i * fit.size * lh); });
-  x.restore();
+  fit.lines.forEach(function(s, i){
+    var by = y + i * fit.size * lh;
+    var g = x.createLinearGradient(0, by - fit.size * .78, 0, by + fit.size * .06);
+    g.addColorStop(0, '#fff8e6'); g.addColorStop(.55, '#f4e1b2'); g.addColorStop(1, '#d6b064');
+    x.save();
+    x.shadowColor = 'rgba(0,0,0,.8)'; x.shadowBlur = 24; x.shadowOffsetY = 5;
+    x.fillStyle = g;
+    x.fillText(s, px, by);
+    x.restore();
+  });
 }
+// il marchio grande (la storia): il sigillo e «LUX COMICS · MEDUSA COMICS» sotto
 function ligBrand(x, o, cx, top, size){
   if(o.logo) x.drawImage(o.logo, cx - size / 2, top, size, size);
   x.font = '600 26px "Cinzel", Georgia, serif';
@@ -24686,68 +24863,77 @@ function ligBrand(x, o, cx, top, size){
   x.textBaseline = 'alphabetic';
   ligSpaced(x, 'LUX COMICS · MEDUSA COMICS', cx, top + size + 46, 6, 'center');
 }
+// v259: il marchio sulla cornice (post e quadrato): il sigillo al centro del bordo in alto, «LUX COMICS» a sinistra
+// e «MEDUSA COMICS» a destra, come un'etichetta (la cornice lascia lo spazio). Non ruba spazio alla copertina.
+function ligBrandSeal(x, o, W, size){
+  var cy = 41, fs = Math.round(size * .33), sp = Math.round(fs * .26), gap = Math.round(size * .28);
+  x.font = '600 ' + fs + 'px "Cinzel", Georgia, serif';
+  var a = 'LUX COMICS', b = 'MEDUSA COMICS', wa = ligSpacedWidth(x, a, sp), wb = ligSpacedWidth(x, b, sp), half = size / 2 + gap;
+  x.fillStyle = '#e0cb94';
+  x.textBaseline = 'alphabetic';
+  ligSpaced(x, a, W / 2 - half - wa, cy + fs * .36, sp, 'left');
+  ligSpaced(x, b, W / 2 + half, cy + fs * .36, sp, 'left');
+  if(o.logo){
+    x.save();
+    x.shadowColor = 'rgba(0,0,0,.6)'; x.shadowBlur = 16;
+    x.drawImage(o.logo, W / 2 - size / 2, cy - size / 2, size, size);
+    x.restore();
+  }
+  return { l: Math.round(W / 2 - half - wa - gap), r: Math.round(W / 2 + half + wb + gap) };
+}
+// v259: tutti e tre i formati in colonna: il marchio, la copertina grande (con la targhetta sul bordo), il titolo su
+// tutta la larghezza, il biglietto col QR. Prima il post e il quadrato avevano la copertina piccola a sinistra e il
+// titolo in una colonna stretta (le parole lunghe si spezzavano). La copertina prende lo spazio che resta.
+var LIG_LAY = {
+  story:  { top: 206, bot: 1700, brand: 'big',  logo: 80, cMaxW: 800, cMaxH: 880, cMinH: 400, tW: 920, tLines: 4, tBig: 84, tSmall: 40, tOk: 66, tag: 30, sub: 44, subN: 2, tkW: 840, tkH: 272, tkH0: 124, gap: 40 },
+  post:   { top: 100, bot: 1266, brand: 'seal', logo: 66, cMaxW: 840, cMaxH: 700, cMinH: 330, tW: 930, tLines: 3, tBig: 80, tSmall: 36, tOk: 54, tag: 26, sub: 38, subN: 2, tkW: 930, tkH: 240, tkH0: 108, gap: 30 },
+  square: { top: 96, bot: 1000, brand: 'seal', logo: 60, cMaxW: 700, cMaxH: 560, cMinH: 270, tW: 930, tLines: 3, tBig: 68, tSmall: 32, tOk: 46, tag: 24, sub: 34, subN: 1, tkW: 930, tkH: 204, tkH0: 98, gap: 24 }
+};
 function luxIgPaint(cv, o){
-  var F = LIG_FMT[o.fmt], W = F.w, H = F.h, x = cv.getContext('2d');
+  var F = LIG_FMT[o.fmt], W = F.w, H = F.h, x = cv.getContext('2d'), L = LIG_LAY[o.fmt] || LIG_LAY.story;
   x.save();
   x.textBaseline = 'alphabetic';
   ligBg(x, o, W, H);
-  var tag = ligTagText(o), sub = ligSubText(o.item), title = String(o.item.title || '').trim();
-  if(o.fmt === 'story'){
-    // la storia: in alto e in basso Instagram mette i suoi pulsanti; tutto sta tra 230 e 1680
-    ligBrand(x, o, W / 2, 228, 92);
-    var tkH = o.qr ? 290 : 120, tkTop = 1680 - tkH;
-    var fit = ligFit(x, title, '900 {s}px "Cinzel Decorative", "Cinzel", Georgia, serif', 900, 4, 78, 42); // (i titoli lunghissimi: fino a quattro righe)
-    var titleH = fit.lines.length * fit.size * 1.12;
-    var block = (tag ? 62 : 0) + titleH + (sub ? 58 : 0);
-    var cTop = 404, cMaxH = Math.max(380, Math.min(800, tkTop - 50 - block - 46 - cTop));
-    var c = ligCover(x, o, W / 2, cTop, 680, cMaxH);
-    var y = c.t + c.h + 46;
-    // (copertine molto larghe: il blocco del testo si centra nello spazio che resta)
-    var free = tkTop - 50 - y - block;
-    if(free > 0) y += Math.round(free / 2);
-    if(tag){ ligTag(x, tag, W / 2, y + 30, 'center'); y += 62; }
-    ligTitle(x, fit, W / 2, y + fit.size * .82, 'center', 1.12);
-    y += titleH;
-    if(sub){ x.font = 'italic 400 44px "Crimson Pro", Georgia, serif'; x.fillStyle = '#d8ccad'; x.textAlign = 'center'; x.fillText(sub, W / 2, y + 44); }
-    ligTicket(x, o, (W - 820) / 2, tkTop, 820, tkH);
-  } else {
-    // il post e il quadrato: la copertina a sinistra, le scritte a destra, il biglietto in basso
-    var sq = o.fmt === 'square', m = 82, tkH2 = o.qr ? (sq ? 226 : 262) : 110, tkTop2 = H - m - tkH2;
-    var colL = sq ? 548 : 576, colR = W - m, colW = colR - colL;
-    var cAreaTop = m + 18, cAreaH = tkTop2 - 46 - cAreaTop, cW = colL - 48 - m - 10;
-    var cd = ligCoverDims(o, cW, cAreaH); // (centrata in altezza nello spazio che ha)
-    ligCover(x, o, m + 10 + cW / 2, cAreaTop + Math.max(0, Math.round((cAreaH - cd.h) / 2)), cW, cAreaH);
-    var rtl = luxIgRtl(), ax = rtl ? colR : colL, al = rtl ? 'right' : 'left';
-    var yy = cAreaTop + 4;
-    var ls = sq ? 68 : 80;
-    if(o.logo) x.drawImage(o.logo, rtl ? colR - ls : colL, yy, ls, ls);
-    x.font = '600 21px "Cinzel", Georgia, serif'; x.fillStyle = '#d9c38e'; x.textBaseline = 'alphabetic';
-    var bx = rtl ? colR - ls - 18 : colL + ls + 18;
-    ligSpaced(x, 'LUX COMICS', bx, yy + ls / 2 - 4, 4, al);
-    ligSpaced(x, '& MEDUSA COMICS', bx, yy + ls / 2 + 24, 3, al);
-    yy += ls + (sq ? 50 : 72);
-    if(tag){
-      x.font = '700 26px "Space Mono", system-ui, sans-serif'; x.fillStyle = '#e3c273';
-      if(rtl) x.direction = 'rtl';
-      var tl = ligWrap(x, tag, colW).slice(0, 2);
-      tl.forEach(function(s){ ligSpaced(x, s, ax, yy + 22, 4, al); yy += 34; });
-      x.direction = 'ltr';
-      x.fillStyle = 'rgba(227,194,115,.7)'; x.fillRect(rtl ? colR - 56 : colL, yy + 2, 56, 3);
-      yy += 30;
-    }
-    var maxTitleH = tkTop2 - 40 - yy - (sub ? 70 : 0);
-    var fit2 = ligFit(x, title, '900 {s}px "Cinzel Decorative", "Cinzel", Georgia, serif', colW, Math.max(1, Math.min(sq ? 4 : 5, Math.floor(maxTitleH / 40))), sq ? 60 : 68, 32);
-    while(fit2.lines.length * fit2.size * 1.12 > maxTitleH && fit2.size > 28){ fit2 = ligFit(x, title, '900 {s}px "Cinzel Decorative", "Cinzel", Georgia, serif', colW, fit2.lines.length, fit2.size - 2, 28); }
-    ligTitle(x, fit2, ax, yy + fit2.size * .86, al, 1.12);
-    yy += fit2.lines.length * fit2.size * 1.12;
-    if(sub){
-      x.font = 'italic 400 36px "Crimson Pro", Georgia, serif'; x.fillStyle = '#d8ccad'; x.textAlign = al;
-      var sl = ligWrap(x, sub, colW).slice(0, 2);
-      sl.forEach(function(s, i){ x.fillText(s, ax, yy + 40 + i * 40); });
-    }
-    ligTicket(x, o, m, tkTop2, W - m * 2, tkH2);
+  var tag = ligTagText(o), sub = ligSubText(o.item), title = String(o.item.title || '').trim() || 'LUX COMICS';
+  // in alto il marchio, in basso il biglietto
+  var yA;
+  if(L.brand === 'big'){ ligFrame(x, W, H); ligBrand(x, o, W / 2, L.top, L.logo); yA = L.top + L.logo + 62; }
+  else { var gp = ligBrandSeal(x, o, W, L.logo); ligFrame(x, W, H, gp.l, gp.r); yA = L.top; }
+  var tkH = o.qr ? L.tkH : L.tkH0, tkTop = L.bot - tkH;
+  // il titolo per primo: decide quanto spazio resta alla copertina
+  var font = '900 {s}px "Cinzel Decorative", "Cinzel", Georgia, serif';
+  var fit = ligFit(x, title, font, L.tW, L.tLines, L.tBig, L.tSmall, L.tOk);
+  var subLines = [];
+  if(sub){ x.font = 'italic 400 ' + L.sub + 'px "Crimson Pro", Georgia, serif'; subLines = ligWrap(x, sub, L.tW, false).slice(0, L.subN); }
+  var FR = 9, pillH = tag ? Math.round(L.tag * 2.1) : 0, pillExt = tag ? Math.round(pillH * .62 + 6) : 0;
+  var textH = function(f){ return f.lines.length * f.size * 1.1 + (subLines.length ? 14 + subLines.length * L.sub * 1.25 : 0); };
+  var avail = tkTop - yA;
+  var room = function(f){ return Math.min(L.cMaxH, avail - textH(f) - pillExt - FR * 2 - L.gap * 3); };
+  var cH = room(fit);
+  while(cH < L.cMinH && fit.size > L.tSmall){ // (titoli lunghissimi: prima si stringe un po' il titolo, poi la copertina)
+    fit = ligFit(x, title, font, L.tW, L.tLines, fit.size - 4, L.tSmall, L.tOk);
+    cH = room(fit);
   }
+  cH = Math.max(cH, 160);
+  var cd = ligCoverDims(o, L.cMaxW, cH);
+  // lo spazio che avanza: la copertina e il titolo restano vicini, il resto sopra e sotto
+  var free = Math.max(0, avail - (cd.h + FR * 2) - pillExt - textH(fit));
+  var gMid = Math.min(Math.max(L.gap, free / 3), L.gap * 1.6), gOut = Math.max(L.gap * .7, (free - gMid) / 2);
+  var c = ligCover(x, o, W / 2, Math.round(yA + gOut + FR), L.cMaxW, cH);
+  var y = c.t + c.h + FR;
+  if(tag) ligPill(x, tag, W / 2, y + pillH * .12, L.tag, W - 220); // (appesa al bordo: copre poco della copertina, mai la firma)
+  y += pillExt + gMid;
+  ligTitle(x, fit, W / 2, y + fit.size * .84, 'center', 1.1);
+  y += fit.lines.length * fit.size * 1.1;
+  if(subLines.length){
+    x.font = 'italic 400 ' + L.sub + 'px "Crimson Pro", Georgia, serif'; x.fillStyle = '#dccfae'; x.textAlign = 'center';
+    if(luxIgRtl()) x.direction = 'rtl';
+    subLines.forEach(function(s, i){ x.fillText(s, W / 2, y + 14 + L.sub * (.95 + i * 1.25)); });
+    x.direction = 'ltr';
+  }
+  ligTicket(x, o, Math.round((W - L.tkW) / 2), tkTop, L.tkW, tkH);
   x.restore();
+  return { lines: fit.lines, size: fit.size, cover: c };
 }
 
 /* ============ v253: LO ZOOM SULLE TAVOLE ============
@@ -29760,28 +29946,69 @@ function snoSpawnSpark(){
   });
   setTimeout(function(){ if(s.parentNode) s.remove(); }, dur * 1000 + 400); // rete di sicurezza
 }
+// v259: i fulmini a zig-zag, con l'alone dorato (prima: una riga grigia sottile, che sembrava un graffio sullo
+// schermo; su iPhone l'alone fatto col filtro non si vedeva). Partono dal bordo e colpiscono il cerchio.
 function snoSpawnBolt(){
-  var stage = document.getElementById('smallnoxOverlay');
-  if(!stage) return;
-  var w = stage.clientWidth, h = stage.clientHeight;
-  var x1 = Math.random() * w, y1 = 0, x2 = x1 + (Math.random() * 160 - 80), y2 = h * 0.5 + Math.random() * h * 0.3;
-  var midx = (x1 + x2) / 2 + (Math.random() * 60 - 30), midy = (y1 + y2) / 2;
+  var stage = document.getElementById('smallnoxOverlay'), circle = stage && stage.querySelector('.sno-circle');
+  if(!stage || !circle || stage.classList.contains('hidden')) return;
+  if(stage.classList.contains('sno-done') && !stage.classList.contains('sno-bad')) return;
+  var w = stage.clientWidth, h = stage.clientHeight, so = stage.getBoundingClientRect(), cr = circle.getBoundingClientRect();
+  if(!w || !h || !cr.width) return;
+  var cx = cr.left - so.left + cr.width / 2, cy = cr.top - so.top + cr.height / 2, rad = cr.width / 2;
+  var side = Math.random(), sx, sy;
+  if(side < .6){ sx = Math.random() * w; sy = 0; }
+  else if(side < .8){ sx = 0; sy = Math.random() * h * .6; }
+  else { sx = w; sy = Math.random() * h * .6; }
+  var ang = Math.atan2(cy - sy, cx - sx), ex = cx - Math.cos(ang) * rad * 1.02, ey = cy - Math.sin(ang) * rad * 1.02;
+  var len = Math.sqrt((ex - sx) * (ex - sx) + (ey - sy) * (ey - sy)), n = 7, jit = Math.min(42, len / 9);
+  var nx = -(ey - sy) / (len || 1), ny = (ex - sx) / (len || 1), pts = [[sx, sy]];
+  for(var i = 1; i < n; i++){
+    var f = i / n, off = (Math.random() - .5) * 2 * jit * (1 - f * .5); // (zig-zag di lato, più calmo vicino al cerchio)
+    pts.push([sx + (ex - sx) * f + nx * off, sy + (ey - sy) * f + ny * off]);
+  }
+  pts.push([ex, ey]);
+  var d = 'M' + pts.map(function(p){ return p[0].toFixed(1) + ',' + p[1].toFixed(1); }).join(' L');
+  // un ramo piccolo, a volte
+  var br = '';
+  if(Math.random() < .5){
+    var k = 2 + Math.floor(Math.random() * 3), p0 = pts[k], bl = len / n * 1.4, ba = ang + (Math.random() < .5 ? -1 : 1) * (.5 + Math.random() * .4);
+    br = ' M' + p0[0].toFixed(1) + ',' + p0[1].toFixed(1) + ' L' + (p0[0] + Math.cos(ba) * bl * .55 + nx * 8).toFixed(1) + ',' + (p0[1] + Math.sin(ba) * bl * .55 + ny * 8).toFixed(1) +
+         ' L' + (p0[0] + Math.cos(ba) * bl).toFixed(1) + ',' + (p0[1] + Math.sin(ba) * bl).toFixed(1);
+  }
   var b = document.createElement('div');
   b.className = 'sno-bolt';
   b.style.cssText = 'left:0;top:0;width:' + w + 'px;height:' + h + 'px;';
-  b.innerHTML = '<svg viewBox="0 0 ' + w + ' ' + h + '"><path d="M' + x1 + ',' + y1 + ' L' + midx + ',' + midy + ' L' + x2 + ',' + y2 + '"/></svg>';
+  b.innerHTML = '<svg viewBox="0 0 ' + w + ' ' + h + '" aria-hidden="true"><path class="sno-bolt-glow" d="' + d + br + '"/><path class="sno-bolt-core" d="' + d + br + '"/></svg>';
   document.getElementById('snoBolts').appendChild(b);
-  requestAnimationFrame(function(){ b.style.transition = 'opacity .08s'; b.style.opacity = '1'; });
-  setTimeout(function(){ b.style.transition = 'opacity .25s'; b.style.opacity = '0'; }, 90);
-  setTimeout(function(){ b.remove(); }, 400);
+  requestAnimationFrame(function(){ b.style.transition = 'opacity .06s'; b.style.opacity = '1'; });
+  setTimeout(function(){ circle.classList.add('sno-hit'); }, 40);
+  setTimeout(function(){ circle.classList.remove('sno-hit'); b.style.transition = 'opacity .3s'; b.style.opacity = '0'; }, 140);
+  setTimeout(function(){ b.remove(); }, 520);
 }
 function snoKillAnimations(el){ if(el && el.getAnimations){ el.getAnimations().forEach(function(a){ a.cancel(); }); } }
+// l'anello che si riempie (raggio 73 nel disegno da 200: 2·π·73)
+var SNO_RING = 458.67;
+function snoRing(pct){
+  var off = (SNO_RING * (1 - Math.max(0, Math.min(100, pct)) / 100)).toFixed(2);
+  Array.prototype.forEach.call(document.querySelectorAll('#smallnoxOverlay .sno-ring-prog'), function(r){ r.style.strokeDashoffset = off; });
+}
+// senza un'immagine da mostrare: SmallNox che compare piano piano (prima il cerchio restava nero: l'immagine non c'era)
+function snoPortraitAt(pct){
+  var overlay = document.getElementById('smallnoxOverlay'), portrait = document.getElementById('snoPortrait');
+  if(overlay.classList.contains('sno-has-img')) return;
+  portrait.style.opacity = String(Math.max(.2, Math.min(pct / 100, .9)));
+  portrait.style.transform = 'scale(' + (1.5 - pct / 100 * .5) + ') rotate(' + ((100 - pct) / 100 * 8) + 'deg)';
+  portrait.style.filter = 'blur(' + (4 * (1 - pct / 100)) + 'px)';
+}
 function snoReset(){
   var overlay = document.getElementById('smallnoxOverlay');
   clearInterval(snoTimers.spark); clearInterval(snoTimers.bolt);
   overlay.className = 'smallnox-overlay sno-shake';
   var portrait = document.getElementById('snoPortrait');
-  portrait.style.opacity = '0';
+  portrait.style.opacity = ''; portrait.style.transform = ''; portrait.style.filter = '';
+  portrait.removeAttribute('data-src');
+  portrait.classList.remove('sno-img-in');
+  portrait.src = 'smallnox-load-calm.jpg';
   var revealImg = document.getElementById('snoRevealImg');
   revealImg.className = 'sno-reveal-img'; revealImg.src = '';
   document.getElementById('snoImpact').setAttribute('class', 'sno-impact');
@@ -29795,33 +30022,58 @@ function snoReset(){
   document.getElementById('snoPct').textContent = '0%';
   document.getElementById('snoStatus').textContent = '';
   document.getElementById('snoActions').classList.add('hidden');
+  snoRing(0);
   void revealImg.offsetWidth; // forza un ridisegno: garantisce che l'animazione riparta ogni volta
 }
-function snoStart(initialStatus, retryFn){
+// image: (facoltativa) l'immagine da mostrare subito nel cerchio
+function snoStart(initialStatus, retryFn, image){
   snoReset();
   snoRetryFn = retryFn || null;
   snoBuildImpactLines();
   document.getElementById('smallnoxOverlay').classList.remove('hidden');
   document.getElementById('snoStatus').textContent = initialStatus || '';
+  snoPortraitAt(0);
+  if(image) snoImage(image);
   snoTimers.spark = setInterval(snoSpawnSpark, 220);
-  snoTimers.bolt = setInterval(function(){ if(Math.random() < 0.5) snoSpawnBolt(); }, 380);
+  snoTimers.bolt = setInterval(function(){ if(Math.random() < .45) snoSpawnBolt(); }, 700);
+}
+// v259: l'immagine che si sta caricando (la copertina, poi le pagine una dopo l'altra), dentro il cerchio
+function snoImage(src){
+  var overlay = document.getElementById('smallnoxOverlay'), im = document.getElementById('snoPortrait');
+  if(!overlay || !im || !src || overlay.classList.contains('hidden') || overlay.classList.contains('sno-done')) return;
+  if(im.getAttribute('data-src') === src) return;
+  im.setAttribute('data-src', src);
+  var pre = new Image();
+  pre.onload = function(){
+    if(im.getAttribute('data-src') !== src || overlay.classList.contains('sno-done')) return; // (nel frattempo è arrivata la pagina dopo)
+    im.style.opacity = ''; im.style.transform = ''; im.style.filter = '';
+    im.src = src;
+    overlay.classList.add('sno-has-img');
+    im.classList.remove('sno-img-in'); void im.offsetWidth; im.classList.add('sno-img-in');
+  };
+  pre.src = src;
+}
+// (un file scelto dal telefono o dal computer, se è un'immagine: per le canzoni, la copertina)
+var snoFileUrl = null;
+function snoImageFile(file){
+  if(!file || !/^image\//.test(file.type || '')) return;
+  if(snoFileUrl){ try { URL.revokeObjectURL(snoFileUrl); } catch(e){} }
+  snoFileUrl = URL.createObjectURL(file);
+  snoImage(snoFileUrl);
 }
 function snoProgress(pct, statusText){
   pct = Math.max(0, Math.min(100, pct));
   document.getElementById('snoPct').textContent = Math.round(pct) + '%';
-  var portrait = document.getElementById('snoPortrait');
-  portrait.style.opacity = String(Math.min(pct / 100, 0.9));
-  portrait.style.transform = 'scale(' + (1.5 - pct / 100 * 0.5) + ') rotate(' + ((100 - pct) / 100 * 8) + 'deg)';
-  portrait.style.filter = 'blur(' + (4 * (1 - pct / 100)) + 'px)';
+  snoRing(pct);
+  snoPortraitAt(pct);
   if(statusText != null) document.getElementById('snoStatus').textContent = statusText;
 }
 function snoFinish(ok, captionText, statusText){
   clearInterval(snoTimers.spark); clearInterval(snoTimers.bolt);
   var overlay = document.getElementById('smallnoxOverlay');
-  var portrait = document.getElementById('snoPortrait');
-  portrait.src = ok ? 'smallnox-load-calm.jpg' : 'smallnox-load-angry.jpg';
-  portrait.style.opacity = '1'; portrait.style.transform = 'scale(1)'; portrait.style.filter = 'blur(0)';
-  document.getElementById('snoPct').textContent = '100%';
+  document.getElementById('snoPct').textContent = ok ? '100%' : document.getElementById('snoPct').textContent;
+  if(ok) snoRing(100); // (se non è riuscito l'anello resta dove si è fermato)
+  overlay.classList.add('sno-done'); // v259: il medaglione dentro il cerchio; sotto, in fila, la scritta, lo stato e «Chiudi»
   if(!ok){
     overlay.classList.add('sno-bad');
     for(var i = 0; i < 3; i++) setTimeout(snoSpawnBolt, i * 70);
