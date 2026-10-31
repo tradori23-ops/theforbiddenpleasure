@@ -5564,3 +5564,37 @@ body.theme-light #profileSection #luxDelAcc .lux-da-btn{border-color:rgba(160,40
 .lux-da-check input{flex:none;width:22px;height:22px;margin:1px 0 0;accent-color:#c0392b;}
 .lux-da-go:disabled{opacity:.45;cursor:not-allowed;}
 body.theme-light .lux-da-list,body.theme-light .lux-da-check{color:#2a1d12;}
+/* ============ v259: la schermata di caricamento (SmallNox) ============
+   Dentro il cerchio si vede l'immagine che si sta caricando (la copertina, poi le pagine una per una);
+   l'anello d'oro si riempie con la percentuale; i fulmini colpiscono il cerchio; alla fine il medaglione
+   di SmallNox compare DENTRO il cerchio e sotto, in fila, la scritta, lo stato e «Chiudi». */
+.sno-circle{width:min(70vw,300px,46vh);height:min(70vw,300px,46vh);flex:none;}
+.sno-ring-track{stroke:rgba(255,255,255,.09) !important;stroke-width:5;}
+.sno-ring-prog{stroke-width:5;stroke-linecap:round;stroke-dasharray:458.67;stroke-dashoffset:458.67;transition:stroke-dashoffset .4s ease;}
+.sno-ring-prog.sno-ring-glow{stroke-width:12;opacity:.22;}
+.sno-circle.sno-hit .sno-ring-outer{opacity:1;stroke-width:2.6;}
+.sno-ring-outer{transition:opacity .15s,stroke-width .15s;}
+.sno-portrait::after{content:"";position:absolute;inset:0;border-radius:50%;box-shadow:inset 0 0 28px rgba(232,200,120,.55);opacity:.35;animation:snoBreath 2.6s ease-in-out infinite;pointer-events:none;}
+@keyframes snoBreath{0%,100%{opacity:.25;}50%{opacity:.7;}}
+.smallnox-overlay.sno-has-img .sno-portrait img{opacity:1;transform:none;filter:none;}
+.sno-portrait img.sno-img-in{animation:snoImgIn .5s cubic-bezier(.2,.8,.3,1) both;}
+@keyframes snoImgIn{from{opacity:0;transform:scale(1.14);}to{opacity:1;transform:scale(1);}}
+/* l'esito: dentro il cerchio */
+.sno-circle .sno-reveal{position:absolute;inset:0;z-index:20;}
+.sno-reveal-img{width:66%;height:66%;}
+.smallnox-overlay.sno-done .sno-portrait{opacity:0;transition:opacity .2s;}
+.smallnox-overlay.sno-done .sno-pct{display:none;}
+.sno-caption{position:relative;bottom:auto;margin-top:18px;max-width:min(92vw,560px);line-height:1.2;}
+.sno-caption:empty{display:none;}
+.smallnox-overlay.sno-done .sno-status{margin-top:8px;}
+.sno-actions{margin-top:22px;}
+/* i fulmini: un alone largo e un filo chiaro (niente filtri: su iPhone non si vedevano) */
+.sno-bolt path{filter:none;fill:none;stroke-linecap:round;stroke-linejoin:round;}
+.sno-bolt path.sno-bolt-glow{stroke:var(--sno-glow,var(--gold-bright));stroke-width:9;opacity:.28;}
+.sno-bolt path.sno-bolt-core{stroke:#fff6dc;stroke-width:2.2;}
+@media (prefers-reduced-motion: reduce){
+  .sno-bolts{display:none;}
+  .smallnox-overlay.sno-shake.go{animation:none;}
+  .sno-portrait::after{animation:none;}
+  .sno-portrait img.sno-img-in{animation:none;}
+}
