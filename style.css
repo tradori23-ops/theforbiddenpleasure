@@ -5598,3 +5598,62 @@ body.theme-light .lux-da-list,body.theme-light .lux-da-check{color:#2a1d12;}
   .sno-portrait::after{animation:none;}
   .sno-portrait img.sno-img-in{animation:none;}
 }
+/* ============ v260: difetti e ritocchi ============ */
+/* tema chiaro: «I più letti» — i titoli erano color crema su bianco, quasi invisibili */
+body.theme-light.has-app-tabbar #topRankedGrid .rank-card-body h5{color:var(--parchment);}
+/* tema chiaro: il logo in alto con colori più pieni («& MEDUSA COMICS» quasi non si leggeva) */
+body.theme-light .topbar .brand .l1{background-image:linear-gradient(90deg,#a3402b,#6e1423 33%,#1d6b55 66%,#a3402b);}
+body.theme-light .topbar .brand .l2{background-image:linear-gradient(90deg,#a3402b,#6b5015 55%,#1d6b55);}
+/* tema chiaro: l'etichetta «18+» di Amministra e le note piccole (erano al 75%) leggibili */
+body.theme-light #adminSection .adm-tag-18,body.theme-light .adm-sheet .adm-tag-18{color:#a3262f;border-color:rgba(163,38,47,.45);}
+body.theme-light .form-note{opacity:.9;}
+body.theme-light .guide-toc button.on{color:#fff8ea;} /* (Guida: la voce scelta, testo chiaro sull'oro scuro) */
+/* la firma «NoxMorningstar» e il QR in proporzione alla copertina: sulle copertine piccole non si tagliano più */
+.card-idx-cover .cover-signature,.latest-card-cover .cover-signature{padding:4cqw 5cqw !important;gap:3.5cqw !important;}
+.card-idx-cover .cover-signature-text,.latest-card-cover .cover-signature-text{font-size:clamp(6px,5.8cqw,13px) !important;}
+.card-idx-cover .cover-signature-qr,.latest-card-cover .cover-signature-qr{width:clamp(20px,19cqw,34px) !important;height:clamp(20px,19cqw,34px) !important;min-width:clamp(20px,19cqw,34px) !important;min-height:clamp(20px,19cqw,34px) !important;max-width:34px !important;max-height:34px !important;padding:2px !important;}
+/* chat: l'ora sotto i messaggi si legge */
+body.has-app-tabbar .chat-bubble .chat-bubble-meta{opacity:1;}
+.chat-bubble.theirs .chat-bubble-meta{color:#a99b86;}
+.chat-bubble.mine .chat-bubble-meta{color:rgba(255,236,222,.8);}
+body.theme-light .chat-bubble.theirs .chat-bubble-meta{color:#76695a;}
+body.theme-light .chat-bubble.mine .chat-bubble-meta{color:rgba(255,246,236,.86);}
+/* le stelline del voto: più grandi e facili da toccare (prima 14 pixel), con l'anteprima passandoci sopra */
+.rating-block .stars{gap:0;font-size:24px;}
+.rating-block .stars button{font-size:inherit;line-height:1;min-width:34px;min-height:38px;display:inline-flex;align-items:center;justify-content:center;transition:color .15s ease,transform .15s ease;}
+.rating-block .stars button:focus-visible{outline:2px solid var(--gold-bright);outline-offset:-4px;border-radius:8px;}
+@media (hover:hover){
+  .rating-block .stars:hover button{color:var(--gold-bright);}
+  .rating-block .stars button:hover ~ button{color:rgba(201,162,77,.3);}
+  .rating-block .stars button:hover{transform:scale(1.15);}
+}
+/* pulsanti piccoli sul telefono: stessa grafica, area da toccare più grande */
+@media (pointer:coarse){
+  .lxc-blurb-dots button{position:relative;}
+  .lxc-blurb-dots button::after{content:"";position:absolute;inset:-9px -2px;}
+  body.has-app-tabbar .chat-bubble .chat-translate-btn{padding:7px 4px;margin:-3px -4px -5px;}
+  #authSwitch,#btnMarkAllRead,.ann-share-btn{padding-top:9px !important;padding-bottom:9px !important;margin-top:-9px !important;margin-bottom:-9px !important;}
+  #cartModalClose{min-width:40px;min-height:40px;}
+  .legal-toc a{display:inline-block;padding:6px 0;}
+}
+/* profilo: sul telefono nome e «Membro da…» hanno tutta la riga, i pulsanti vanno sotto; la spunta accanto al nome */
+body.has-app-tabbar #profileSection .profile-fb-headrow-info{flex:1 1 calc(100% - 100px);}
+#pubProfileName .verified-badge{width:17px;height:17px;margin:0 0 0 7px;top:-2px;}
+body.has-app-tabbar #pubProfileMeta{justify-content:flex-start;margin:2px 0 0;}
+body.has-app-tabbar #pubProfileFriendSlot:empty{display:none;}
+/* diario: «Foto · Stato d'animo · Nota del giorno» vanno a capo invece di uscire tagliati («📝 Not…») */
+body.has-app-tabbar .diary-kind-tabs{flex-wrap:wrap;overflow:visible;}
+/* il pulsante «Scegli una foto» al posto del campo grezzo del browser */
+.lux-file{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:0 0 10px;min-width:0;position:relative;}
+.lux-file-input{position:absolute !important;width:1px !important;height:1px !important;margin:0 !important;padding:0 !important;border:0 !important;opacity:0 !important;pointer-events:none !important;overflow:hidden !important;clip:rect(0 0 0 0) !important;}
+.lux-file-btn{display:inline-flex;align-items:center;gap:8px;min-height:38px;padding:7px 16px;border-radius:19px;border:1px solid rgba(201,162,77,.45);background:rgba(201,162,77,.08);color:var(--gold-bright);font-family:'Crimson Pro',Georgia,serif;font-size:15px;font-weight:600;line-height:1.2;cursor:pointer;}
+.lux-file-btn svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linejoin:round;flex:none;}
+.lux-file-btn:hover{border-color:var(--gold);background:rgba(201,162,77,.14);}
+.lux-file-btn:focus-visible{outline:2px solid var(--gold-bright);outline-offset:2px;}
+.lux-file-name{flex:1 1 120px;min-width:0;font-size:14px;color:var(--parchment-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.lux-file.has-file .lux-file-name::before{content:"✓ ";color:#5fb98a;}
+body.theme-light .lux-file-btn{color:#6b5015;border-color:rgba(138,106,31,.45);background:rgba(138,106,31,.06);}
+/* Dossier: i nomi sotto i sigilli un po' più grandi (erano 9 pixel) */
+.dossier-card-name{font-size:10.5px;}
+/* Privacy: la tabella che scorre si raggiunge anche con la tastiera */
+.legal-wrap:focus-visible{outline:2px solid var(--gold-bright);outline-offset:3px;border-radius:6px;}
