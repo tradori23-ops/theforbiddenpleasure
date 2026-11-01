@@ -6073,3 +6073,14 @@ body.theme-light .gz-com-msg.is-error,body.theme-light .gza-msg.is-error,body.th
 body.theme-light .gza-warn{color:#7a2a0c;background:rgba(184,72,31,.08);}
 body.theme-light .gz-iconbtn{border-color:rgba(138,106,31,.35);}
 @media (prefers-reduced-motion:reduce){ .gz-iconbtn,.gz-filter{transition:none;} }
+/* ============ v264: il logo della Gazzetta (sopra la testata, in home accanto al nome, negli articoli senza foto) ============ */
+.gz-crest{display:block;width:118px;max-width:32vw;height:auto;margin:6px auto 0;filter:drop-shadow(0 8px 18px rgba(0,0,0,.5));}
+.gz-crest-a{display:block;width:max-content;max-width:100%;margin:0 auto;}
+.gz-mast--art .gz-crest{width:78px;}
+@media (max-width:600px){ .gz-crest{width:88px;} .gz-mast--art .gz-crest{width:60px;} }
+body.theme-light .gz-crest,body.theme-light #blogHomeSection .gz-home-crest{filter:drop-shadow(0 5px 12px rgba(90,60,20,.28));}
+.gz-other .gz-other-noimg img{width:64%;height:auto;aspect-ratio:auto;border-radius:0;background:none;object-fit:contain;}
+#blogHomeSection .gz-home-head{display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:14px;align-items:center;}
+#blogHomeSection .gz-home-head > :not(.gz-home-crest){grid-column:2;min-width:0;}
+#blogHomeSection .gz-home-crest{grid-column:1;grid-row:1 / span 2;width:66px;height:auto;filter:drop-shadow(0 6px 14px rgba(0,0,0,.45));}
+@media (max-width:600px){ #blogHomeSection .gz-home-crest{width:54px;} }

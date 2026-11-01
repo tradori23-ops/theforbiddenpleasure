@@ -28666,12 +28666,15 @@ function luxBlogRoute(loaded){
   var id = luxBlogPostParam();
   if(id) luxBlogShowArticle(id, loaded); else luxBlogShowList();
 }
+// v264: il logo della Gazzetta (sopra la testata; nell'articolo riporta alla prima pagina)
+var LUX_GZ_CREST = '<img class="gz-crest" src="gazette-logo-sm.webp" width="240" height="233" alt="" decoding="async">';
 function luxBlogMast(){
   var box = document.getElementById('gzMast');
   if(!box) return;
   var lang = currentLang, art = !!LUX_BLOG.open, now = new Date(), n = luxBlogPublishedCount();
   var nameAttr = ' class="gz-name gz-name--' + luxGzKind(lang) + '" lang="' + luxAttr(lang) + '"';
-  box.innerHTML =
+  box.classList.toggle('gz-mast--art', art);
+  box.innerHTML = (art ? '<a class="gz-crest-a" href="blog.html" data-gz-home tabindex="-1" aria-hidden="true">' + LUX_GZ_CREST + '</a>' : LUX_GZ_CREST) +
     (art ? '<a' + nameAttr + ' href="blog.html" data-gz-home>' : '<h1' + nameAttr + '>') + escapeHtml(t('blog.gazette')) + (art ? '</a>' : '</h1>') +
     '<p class="gz-motto">' + escapeHtml(t('blog.motto')) + '</p>' +
     '<div class="gz-folio">' +
@@ -28900,7 +28903,7 @@ function luxBlogOthers(p, art){
   box.querySelector('.gz-others-list').innerHTML = rows.map(function(x){
     var L = luxBlogLoc(x);
     return '<a class="gz-other" href="' + luxBlogHref(x) + '"' + luxBlogLangAttr(x) + '>' +
-      (x.image_url ? luxBlogImgHtml(x, 300) : '<span class="gz-other-noimg" aria-hidden="true">' + escapeHtml(t('blog.gazette').charAt(0)) + '</span>') +
+      (x.image_url ? luxBlogImgHtml(x, 300) : '<span class="gz-other-noimg" aria-hidden="true"><img src="gazette-logo-sm.webp" alt="" loading="lazy" decoding="async"></span>') +
       '<span class="gz-other-k">' + escapeHtml(luxBlogKicker(x)) + '</span><span class="gz-other-t">' + escapeHtml(L.title) + '</span></a>';
   }).join('');
 }
@@ -29158,10 +29161,10 @@ var GZ_FMT = {
   og: { w: 1200, h: 630, key: 'blog.fmt.og' }
 };
 var GZ_LAY = {
-  story: { pad: 54, name: 150, motto: 28, folio: 23, kick: 27, hBig: 104, hSmall: 54, hOk: 72, hLines: 5, body: 31, cols: 2, gap: 34, qr: 236, img: 0.52, foot: 20 },
-  post: { pad: 48, name: 128, motto: 25, folio: 21, kick: 24, hBig: 90, hSmall: 48, hOk: 62, hLines: 4, body: 28, cols: 2, gap: 30, qr: 206, img: 0.5, foot: 18 },
-  square: { pad: 44, name: 112, motto: 0, folio: 20, kick: 23, hBig: 78, hSmall: 42, hOk: 54, hLines: 3, body: 26, cols: 2, gap: 28, qr: 182, img: 0.46, foot: 17 },
-  og: { pad: 34, name: 82, motto: 0, folio: 18, kick: 19, hBig: 58, hSmall: 32, hOk: 42, hLines: 3, body: 21, cols: 1, gap: 24, qr: 148, img: 0.6, foot: 15 }
+  story: { crest: 168, pad: 54, name: 150, motto: 28, folio: 23, kick: 27, hBig: 104, hSmall: 54, hOk: 72, hLines: 5, body: 31, cols: 2, gap: 34, qr: 236, img: 0.52, foot: 20 },
+  post: { crest: 116, pad: 48, name: 128, motto: 25, folio: 21, kick: 24, hBig: 90, hSmall: 48, hOk: 62, hLines: 4, body: 28, cols: 2, gap: 30, qr: 206, img: 0.5, foot: 18 },
+  square: { crest: 96, ear: 1, pad: 44, name: 112, motto: 0, folio: 20, kick: 23, hBig: 78, hSmall: 42, hOk: 54, hLines: 3, body: 26, cols: 2, gap: 28, qr: 182, img: 0.46, foot: 17 },
+  og: { crest: 80, ear: 1, pad: 34, name: 82, motto: 0, folio: 18, kick: 19, hBig: 58, hSmall: 32, hOk: 42, hLines: 3, body: 21, cols: 1, gap: 24, qr: 148, img: 0.6, foot: 15 }
 };
 var GZ_C = { paper: '#f2ead7', ink: '#1d1611', dim: '#4e4237', wine: '#7a1526' };
 function gzBox(o, x0, w){ return o.rtl ? { x: o.W - x0 - w, w: w } : { x: x0, w: w }; }
@@ -29228,16 +29231,55 @@ function gzCover(x, im, bx, y, w, h){
 }
 // il sigillo della casa, stampato (quando l'articolo non ha una foto)
 function gzSeal(x, o, logo, bx, y, w, h){
-  var s = Math.min(h * 0.86 / logo.naturalHeight, w * 0.5 / logo.naturalWidth), dw = logo.naturalWidth * s, dh = logo.naturalHeight * s;
+  var s = Math.min(h * (logo.__gz ? 0.94 : 0.86) / logo.naturalHeight, w * (logo.__gz ? 0.56 : 0.5) / logo.naturalWidth), dw = logo.naturalWidth * s, dh = logo.naturalHeight * s;
   var cx = bx + w / 2, cy = y + h / 2;
   x.save();
-  x.globalCompositeOperation = 'multiply';
-  x.globalAlpha = 0.92;
+  if(logo.__gz){ x.shadowColor = 'rgba(60,40,15,0.32)'; x.shadowBlur = Math.round(dh * 0.05); x.shadowOffsetY = Math.round(dh * 0.02); } // v264: il logo della Gazzetta
+  else { x.globalCompositeOperation = 'multiply'; x.globalAlpha = 0.92; }
   x.drawImage(logo, cx - dw / 2, cy - dh / 2, dw, dh);
   x.restore();
+  o.info.sealGz = !!logo.__gz;
   var gap = dw / 2 + w * 0.04;
   gzRule(x, bx + w * 0.06, cy - 1, Math.max(0, w / 2 - gap - w * 0.06), 2);
   gzRule(x, cx + gap, cy - 1, Math.max(0, w / 2 - gap - w * 0.06), 2);
+}
+// v264: il logo della Gazzetta sopra la testata (quando c'è la foto: senza foto è grande al centro)
+function gzCrest(x, o, logo, X0, CW, y, size){
+  var dh = size, dw = logo.naturalWidth * size / logo.naturalHeight, cx = X0 + CW / 2;
+  x.save();
+  x.shadowColor = 'rgba(60,40,15,0.3)'; x.shadowBlur = Math.round(size * 0.07); x.shadowOffsetY = Math.round(size * 0.025);
+  x.imageSmoothingEnabled = true;
+  try { x.imageSmoothingQuality = 'high'; } catch(e){}
+  x.drawImage(logo, cx - dw / 2, y, dw, dh);
+  x.restore();
+  o.info.crest = [Math.round(cx - dw / 2), Math.round(y), Math.round(dw), Math.round(dh)];
+  return y + dh;
+}
+// v264: nei formati bassi il logo accanto alla testata (a sinistra; da destra per arabo e panjabi): logo e nome al centro, insieme
+function gzNameEar(x, o, L, X0, CW, y, logo){
+  var name = luxRt(o.lang, 'blog.gazette'), kind = luxGzKind(o.lang);
+  var wt = kind === 'black' ? '400' : kind === 'serif' ? '900' : '700', fam = luxGzNameFont(o.lang);
+  var ch = L.crest, cw = logo.naturalWidth * ch / logo.naturalHeight, gap = Math.round(ch * 0.22);
+  x.font = wt + ' 100px ' + fam;
+  var nw = x.measureText(name).width || 1;
+  var ns = Math.max(30, Math.min(L.name, Math.floor(100 * (CW - cw - gap) / nw)));
+  x.font = wt + ' ' + ns + 'px ' + fam;
+  var m = x.measureText(name), tw = m.width;
+  var asc = m.actualBoundingBoxAscent || ns * 0.74, desc = m.actualBoundingBoxDescent || ns * 0.22, lh = asc + desc;
+  if(ch > lh * 1.6){ ch = Math.round(lh * 1.6); cw = logo.naturalWidth * ch / logo.naturalHeight; gap = Math.round(ch * 0.22); }
+  var total = cw + gap + tw, sx = X0 + Math.max(0, (CW - total) / 2), rowH = Math.max(ch, lh);
+  var crestX = o.rtl ? sx + tw + gap : sx, nameX = o.rtl ? sx : sx + cw + gap, cy = y + (rowH - ch) / 2;
+  x.save();
+  x.shadowColor = 'rgba(60,40,15,0.3)'; x.shadowBlur = Math.round(ch * 0.07); x.shadowOffsetY = Math.round(ch * 0.025);
+  x.imageSmoothingEnabled = true;
+  try { x.imageSmoothingQuality = 'high'; } catch(e){}
+  x.drawImage(logo, crestX, cy, cw, ch);
+  x.restore();
+  x.fillStyle = GZ_C.ink;
+  x.direction = GZ_RTL_RE.test(name) ? 'rtl' : 'ltr'; x.textAlign = 'left';
+  x.fillText(name, nameX, y + (rowH - lh) / 2 + asc);
+  o.info.name = name; o.info.nameSize = ns; o.info.crest = [Math.round(crestX), Math.round(cy), Math.round(cw), Math.round(ch)]; o.info.crestEar = true;
+  return y + rowH;
 }
 function gzPaper(x, sh, W, H){
   x.save();
@@ -29418,7 +29460,11 @@ function luxGzPaint(cv, o){
   var pad = L.pad, X0 = sh.x + pad, CW = sh.w - pad * 2, y = sh.y + pad * 0.8, full = { x: X0, w: CW };
   // 1) la testata
   gzRule(x, X0, y, CW, 1.5);
-  y = gzName(x, o, L, X0, CW, y + 16);
+  var crestOk = !!(o.img && o.logo && o.logo.__gz && L.crest); // v264: il logo in testata (quando c'è la foto)
+  var crestMode = crestOk ? (o.crestMode || (L.ear ? 'ear' : 'above')) : 'none', ear = crestMode === 'ear' || crestMode === 'ear2';
+  if(crestMode === 'above') y = gzCrest(x, o, o.logo, X0, CW, y + 14, L.crest) - 6;
+  y = ear ? gzNameEar(x, o, L, X0, CW, y + 14, o.logo) : gzName(x, o, L, X0, CW, y + 16);
+  o.info.crestMode = ear ? 'ear' : crestMode;
   if(L.motto){
     x.font = (luxGzLatin(o.lang) ? 'italic 400 ' : '400 ') + L.motto + 'px ' + luxGzBodyFont(o.lang);
     x.fillStyle = GZ_C.dim;
@@ -29511,6 +29557,10 @@ function luxGzPaint(cv, o){
     x.font = '600 ' + Math.round(L.foot * 1.05) + 'px ' + luxGzBodyFont(o.lang);
     gzFill(x, o, o.freeInFoot ? luxRt(o.lang, 'blog.free') : o.host, full, fy, 'end');
   }
+  if(o.img && !o.info.photo && o.logo && o.logo.__gz && L.crest){ // v264: sopra, poi accanto, poi senza logo; se la foto non ci sta comunque, il logo accanto
+    var cur = o.crestMode || (L.ear ? 'ear' : 'above'), nxt = { above: 'ear', ear: 'none', none: 'ear2' }[cur];
+    if(nxt){ o.crestMode = nxt; return luxGzPaint(cv, o); }
+  }
   return o.info;
 }
 // l'anteprima dei link (1200×630): a sinistra occhiello, titolo e prime righe; a destra la foto e il QR
@@ -29546,6 +29596,14 @@ function gzPaintOg(x, o, L, X0, CW, y, bottom){
   o.info.imgH = imgH;
 }
 // i caratteri della Gazzetta pronti per il disegno (anche i pezzi per il russo o le lettere accentate)
+function luxGzLogo(){ // v264
+  if(!LUX_BLOG.logoP) LUX_BLOG.logoP = luxIgImg('gazette-logo.webp', false).then(function(im){
+    if(im){ im.__gz = true; return im; }
+    LUX_BLOG.logoP = null; // (la prossima volta si riprova)
+    return luxIgLogo();
+  });
+  return LUX_BLOG.logoP;
+}
 function luxGzFonts(lang, sample){
   if(!document.fonts || !document.fonts.load) return Promise.resolve();
   var s = sample || 'Aa', list = ['900 80px "Playfair Display"', '700 40px "Playfair Display"', '400 40px "Crimson Pro"', 'italic 400 40px "Crimson Pro"', '600 30px "Crimson Pro"', '700 30px "Cinzel"'];
@@ -29568,7 +29626,7 @@ function luxGzRender(cv, p, fmt, lang){
   return luxEnsureLang(lang).then(function(){
     var d = luxGzData(p, lang);
     d.fmt = fmt;
-    return Promise.all([p.image_url ? luxIgCover(p.image_url) : null, luxIgLogo(), luxGzFonts(lang, luxRt(lang, 'blog.gazette') + d.title + d.kicker + 'Aa')]).then(function(res){
+    return Promise.all([p.image_url ? luxIgCover(p.image_url) : null, luxGzLogo(), luxGzFonts(lang, luxRt(lang, 'blog.gazette') + d.title + d.kicker + 'Aa')]).then(function(res){
       d.img = res[0] || null;
       d.logo = res[1] || null;
       return luxGzPaint(cv, d);
@@ -29728,6 +29786,11 @@ function luxBlogHome(){
     rows = (rows || []).filter(function(p){ return p.published !== false; }).slice(0, 3);
     sec.classList.toggle('hidden', !rows.length);
     var nm = sec.querySelector('.gz-home-name');
+    if(nm && nm.parentNode && !sec.querySelector('.gz-home-crest')){ // v264: il logo della Gazzetta accanto al nome
+      var hd = nm.parentNode, cr = document.createElement('img');
+      cr.className = 'gz-home-crest'; cr.src = 'gazette-logo-sm.webp'; cr.alt = ''; cr.width = 240; cr.height = 233; cr.decoding = 'async';
+      hd.classList.add('gz-home-head'); hd.insertBefore(cr, hd.firstChild);
+    }
     if(nm){ nm.className = 'gz-home-name gz-name--' + luxGzKind(currentLang); nm.setAttribute('lang', currentLang); if(rows.length) luxBlogFitName(nm); }
     list.innerHTML = rows.map(function(p){
       var L = luxBlogLoc(p);
