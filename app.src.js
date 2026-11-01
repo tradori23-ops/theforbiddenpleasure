@@ -1145,6 +1145,20 @@ Object.assign(STR.ar, {"legal.privacy": "الخصوصية", "legal.terms": "قو
 Object.assign(STR.hi, {"legal.privacy": "प्राइवेसी", "legal.terms": "साइट के नियम", "legal.a11y": "सुलभता", "legal.newsConsent": "सब्सक्राइब करके आप हमारे ईमेल पाने के लिए सहमत होते हैं: जब चाहें अनसब्सक्राइब कर सकते हैं।", "legal.privacyLink": "हम आपके डेटा का उपयोग कैसे करते हैं", "legal.tuRow": "प्राइवेसी और नियम", "exportData.hint": "एक फ़ाइल जिसमें आपकी प्रोफ़ाइल (जन्म तिथि सहित), पढ़े गए कॉमिक, पसंदीदा, रेटिंग, कमेंट, डायरी और रिक्वेस्ट हैं — सिर्फ़ आपके लिए, अपने पास रखने के लिए।", "delAcc.title": "मेरा अकाउंट डिलीट करें", "delAcc.hint": "आपकी प्रोफ़ाइल और आपने जो लिखा और पब्लिश किया है, वह हमेशा के लिए मिट जाता है। चाहें तो पहले अपना डेटा डाउनलोड कर लें।", "delAcc.button": "मेरा अकाउंट डिलीट करें", "delAcc.confirmTitle": "अपना अकाउंट डिलीट करें?", "delAcc.confirmText": "इसे वापस नहीं किया जा सकता। ये हमेशा के लिए मिट जाएँगे:", "delAcc.l1": "प्रोफ़ाइल, फ़ोटो और जन्म तिथि", "delAcc.l2": "कमेंट, डायरी, मैसेज और पोस्ट", "delAcc.l3": "पढ़े गए कॉमिक, पसंदीदा, रेटिंग, दोस्त और जिन्हें आप फ़ॉलो करते हैं", "delAcc.keep": "दूसरों के इस्तेमाल वाले सर्वर और ग्रुप आपके नाम के बिना बने रहते हैं, और पहले से दर्ज दान व ख़रीदारियाँ भी (हिसाब-किताब के लिए)।", "delAcc.check": "मुझे समझ आ गया: मेरा अकाउंट हमेशा के लिए चला जाएगा।", "delAcc.go": "हमेशा के लिए डिलीट करें", "delAcc.cancel": "रद्द करें", "delAcc.working": "डिलीट हो रहा है…", "delAcc.done": "आपका अकाउंट डिलीट हो गया है। आर्काइव में आने के लिए धन्यवाद।", "delAcc.errShared": "आपने ऐसी जगहें बनाई हैं जिन्हें दूसरे लोग भी इस्तेमाल करते हैं (जैसे कोई सर्वर): हमें {mail} पर लिखें, हम मिलकर इसे डिलीट करेंगे।", "delAcc.errAdmin": "एडमिन का अकाउंट यहाँ से डिलीट नहीं होता।", "delAcc.errNotReady": "यह सुविधा अभी चालू नहीं है: हमें {mail} पर लिखें, हम इसे आपके लिए डिलीट कर देंगे।", "delAcc.error": "अकाउंट डिलीट नहीं हो सका। बाद में फिर कोशिश करें या हमें {mail} पर लिखें।"});
 Object.assign(STR.bn, {"legal.privacy": "গোপনীয়তা", "legal.terms": "সাইটের নিয়ম", "legal.a11y": "অ্যাক্সেসিবিলিটি", "legal.newsConsent": "সাবস্ক্রাইব করলে আপনি আমাদের ইমেল পেতে রাজি হচ্ছেন: যখন খুশি আনসাবস্ক্রাইব করতে পারবেন।", "legal.privacyLink": "আমরা কীভাবে আপনার ডেটা ব্যবহার করি", "legal.tuRow": "গোপনীয়তা ও নিয়ম", "exportData.hint": "আপনার প্রোফাইল (জন্মতারিখসহ), পড়া কমিক, প্রিয়, রেটিং, মন্তব্য, ডায়েরি ও অনুরোধ নিয়ে একটি ফাইল — শুধু আপনার জন্য, রেখে দেওয়ার জন্য।", "delAcc.title": "আমার অ্যাকাউন্ট মুছুন", "delAcc.hint": "আপনার প্রোফাইল এবং আপনি যা লিখেছেন ও প্রকাশ করেছেন তা চিরতরে মুছে যায়। চাইলে আগে আপনার ডেটা ডাউনলোড করে নিন।", "delAcc.button": "আমার অ্যাকাউন্ট মুছুন", "delAcc.confirmTitle": "আপনার অ্যাকাউন্ট মুছবেন?", "delAcc.confirmText": "এটি আর ফেরানো যাবে না। চিরতরে মুছে যাবে:", "delAcc.l1": "প্রোফাইল, ছবি ও জন্মতারিখ", "delAcc.l2": "মন্তব্য, ডায়েরি, মেসেজ ও পোস্ট", "delAcc.l3": "পড়া কমিক, প্রিয়, রেটিং, বন্ধু ও যাদের আপনি ফলো করেন", "delAcc.keep": "অন্যরাও যে সার্ভার ও গ্রুপ ব্যবহার করে সেগুলো আপনার নাম ছাড়া থেকে যায়, আর আগে থেকে নথিভুক্ত দান ও কেনাকাটাও (হিসাবের জন্য)।", "delAcc.check": "আমি বুঝেছি: আমার অ্যাকাউন্ট চিরতরে চলে যাবে।", "delAcc.go": "চিরতরে মুছুন", "delAcc.cancel": "বাতিল", "delAcc.working": "মুছে ফেলা হচ্ছে…", "delAcc.done": "আপনার অ্যাকাউন্ট মুছে ফেলা হয়েছে। আর্কাইভে আসার জন্য ধন্যবাদ।", "delAcc.errShared": "আপনি এমন জায়গা তৈরি করেছেন যা অন্যরাও ব্যবহার করে (যেমন একটি সার্ভার): {mail} ঠিকানায় আমাদের লিখুন, আমরা একসাথে মুছে দেব।", "delAcc.errAdmin": "অ্যাডমিনের অ্যাকাউন্ট এখান থেকে মোছা যায় না।", "delAcc.errNotReady": "এই সুবিধাটি এখনো চালু হয়নি: {mail} ঠিকানায় আমাদের লিখুন, আমরা আপনার হয়ে মুছে দেব।", "delAcc.error": "অ্যাকাউন্টটি মোছা যায়নি। পরে আবার চেষ্টা করুন বা {mail} ঠিকানায় আমাদের লিখুন।"});
 Object.assign(STR.pnb, {"legal.privacy": "پرائیویسی", "legal.terms": "سائٹ دے اصول", "legal.a11y": "رسائی", "legal.newsConsent": "سبسکرائب کر کے تسیں ساڈیاں ای میلاں لین تے راضی ہو: جدوں چاہو ان سبسکرائب کر سکدے ہو۔", "legal.privacyLink": "اسیں تہاڈا ڈیٹا کیویں ورتدے آں", "legal.tuRow": "پرائیویسی تے اصول", "exportData.hint": "اک فائل جس وچ تہاڈا پروفائل (جم دی تاریخ سمیت)، پڑھے ہوئے کامک، پسندیدہ، ریٹنگ، کمنٹ، ڈائری تے درخواستاں نیں — صرف تہاڈے لئی، اپنے کول رکھن واسطے۔", "delAcc.title": "میرا اکاؤنٹ مٹاؤ", "delAcc.hint": "تہاڈا پروفائل تے جو کجھ تسیں لکھیا تے شائع کیتا، ہمیشہ لئی مٹ جاندا اے۔ پہلاں، جے چاہو، اپنا ڈیٹا ڈاؤن لوڈ کر لؤ۔", "delAcc.button": "میرا اکاؤنٹ مٹاؤ", "delAcc.confirmTitle": "اپنا اکاؤنٹ مٹانا اے؟", "delAcc.confirmText": "ایہہ واپس نہیں ہو سکدا۔ ایہہ ہمیشہ لئی مٹ جان گے:", "delAcc.l1": "پروفائل، فوٹواں تے جم دی تاریخ", "delAcc.l2": "کمنٹ، ڈائری، سنیہے تے پوسٹاں", "delAcc.l3": "پڑھے ہوئے کامک، پسندیدہ، ریٹنگ، دوست تے جنہاں نوں تسیں فالو کردے ہو", "delAcc.keep": "جنہاں سرورز تے گروپاں نوں ہور لوک وی ورتدے نیں، اوہ تہاڈے ناں توں بغیر رہندے نیں، نالے پہلاں توں درج دان تے خریداریاں وی (حساب کتاب لئی)۔", "delAcc.check": "مینوں سمجھ آ گئی: میرا اکاؤنٹ ہمیشہ لئی چلا جاوے گا۔", "delAcc.go": "ہمیشہ لئی مٹاؤ", "delAcc.cancel": "منسوخ کرو", "delAcc.working": "مٹایا جا رہیا اے…", "delAcc.done": "تہاڈا اکاؤنٹ مٹا دتا گیا اے۔ آرکائیو وچ آن دا شکریہ۔", "delAcc.errShared": "تسیں اجیہیاں تھاواں بنائیاں نیں جنہاں نوں ہور لوک وی ورتدے نیں (جیویں کوئی سرور): سانوں {mail} تے لکھو، اسیں رل کے مٹا دیاں گے۔", "delAcc.errAdmin": "ایڈمن دا اکاؤنٹ ایتھوں نہیں مٹدا۔", "delAcc.errNotReady": "ایہہ سہولت حالے چالو نہیں: سانوں {mail} تے لکھو، اسیں تہاڈے لئی مٹا دیاں گے۔", "delAcc.error": "اکاؤنٹ نہیں مٹ سکیا۔ بعد وچ فیر کوشش کرو یا سانوں {mail} تے لکھو۔"});
+// v260: i voti a stelle nella lingua del sito
+Object.assign(STR.it, {"rating.votes1": "{n} voto", "rating.votesN": "{n} voti", "rating.starLabel": "Voto: {n} su 5"});
+Object.assign(STR.en, {"rating.votes1": "{n} rating", "rating.votesN": "{n} ratings", "rating.starLabel": "Rating: {n} of 5"});
+Object.assign(STR.es, {"rating.votes1": "{n} voto", "rating.votesN": "{n} votos", "rating.starLabel": "Voto: {n} de 5"});
+Object.assign(STR.fr, {"rating.votes1": "{n} vote", "rating.votesN": "{n} votes", "rating.starLabel": "Note : {n} sur 5"});
+Object.assign(STR.de, {"rating.votes1": "{n} Bewertung", "rating.votesN": "{n} Bewertungen", "rating.starLabel": "Bewertung: {n} von 5"});
+Object.assign(STR.pt, {"rating.votes1": "{n} voto", "rating.votesN": "{n} votos", "rating.starLabel": "Nota: {n} de 5"});
+Object.assign(STR.ru, {"rating.votes1": "Оценок: {n}", "rating.votesN": "Оценок: {n}", "rating.starLabel": "Оценка: {n} из 5"});
+Object.assign(STR.zh, {"rating.votes1": "{n} 个评分", "rating.votesN": "{n} 个评分", "rating.starLabel": "评分：{n}/5"});
+Object.assign(STR.ja, {"rating.votes1": "{n}件の評価", "rating.votesN": "{n}件の評価", "rating.starLabel": "評価：{n}/5"});
+Object.assign(STR.hi, {"rating.votes1": "{n} रेटिंग", "rating.votesN": "{n} रेटिंग", "rating.starLabel": "रेटिंग: 5 में से {n}"});
+Object.assign(STR.bn, {"rating.votes1": "{n}টি রেটিং", "rating.votesN": "{n}টি রেটিং", "rating.starLabel": "রেটিং: ৫-এর মধ্যে {n}"});
+Object.assign(STR.ar, {"rating.votes1": "عدد التقييمات: {n}", "rating.votesN": "عدد التقييمات: {n}", "rating.starLabel": "التقييم: {n} من 5"});
+Object.assign(STR.pnb, {"rating.votes1": "ریٹنگاں: {n}", "rating.votesN": "ریٹنگاں: {n}", "rating.starLabel": "ریٹنگ: 5 وچوں {n}"});
 var CHAR_META = {
   Lucifer:{role:{it:"Il Portatore di Luce",en:"The Light-Bearer",es:"El Portador de Luz",fr:"Le Porteur de Lumière",de:"Der Lichtträger"},
     bio:{it:"Sovrano della collana ammiraglia: potere, caduta e desiderio raccontati su grande scala.",
@@ -12085,8 +12099,8 @@ function populateProfileForm(){
   var p = currentProfile || {};
   document.getElementById('fDisplayName').value = p.display_name || '';
   document.getElementById('fBio').value = p.bio || '';
-  document.getElementById('profileAvatarImg').src = p.avatar_url || '';
-  document.getElementById('profileAvatarImg').style.opacity = p.avatar_url ? '1' : '0.2';
+  document.getElementById('profileAvatarImg').src = p.avatar_url || avatarInitialsDataUri(p.display_name || '?', p.id || currentUserId()); // v260: l'iniziale
+  document.getElementById('profileAvatarImg').style.opacity = '1';
   document.getElementById('fBirthDate').value = p.birth_date || '';
   document.getElementById('fGender').value = p.gender || '';
   document.getElementById('profileBannerImg').src = p.banner_url || '';
@@ -14328,8 +14342,8 @@ function renderPublicProfilePage(){
       bannerImg.src = p.banner_url || '';
       bannerImg.style.opacity = p.banner_url ? '1' : '0';
       var avatarImg = document.getElementById('pubProfileAvatar');
-      avatarImg.src = p.avatar_url || '';
-      avatarImg.style.opacity = p.avatar_url ? '1' : '0.15';
+      avatarImg.src = p.avatar_url || avatarInitialsDataUri(p.display_name || p.username || '?', userId); // v260: senza foto, l'iniziale (prima un cerchio vuoto)
+      avatarImg.style.opacity = '1';
       avatarImg.classList.add('avatar-clickable');
       avatarImg.addEventListener('click', function(){ openAvatarInfo(userId); });
       if(p.bio) document.getElementById('pubProfileBio').textContent = p.bio;
@@ -14348,7 +14362,7 @@ function renderPublicProfilePage(){
       document.getElementById('pubProfileSocials').innerHTML = socialsHtml;
 
       var metaParts = [];
-      metaParts.push(verifiedBadge('verified.commenter', !!p.verified));
+      document.getElementById('pubProfileName').insertAdjacentHTML('beforeend', verifiedBadge('verified.commenter', !!p.verified)); // v260: accanto al nome, come nel resto del sito
       if(p.created_at){
         var joined = new Date(p.created_at);
         if(!isNaN(joined)) metaParts.push('<span class="pub-profile-joined">' + t('pubProfile.memberSince').replace('{date}', joined.toLocaleDateString()) + '</span>');
@@ -17702,9 +17716,9 @@ function renderTitleModalRating(catalogId){
   var myVote = 0;
   function paint(avgStars, votesCount){
     var starsHtml = '';
-    for(var i = 1; i <= 5; i++){ starsHtml += '<button type="button" class="' + (i <= myVote ? 'on' : '') + '" data-star="' + i + '" aria-label="' + i + ' stelle">★</button>'; }
+    for(var i = 1; i <= 5; i++){ starsHtml += '<button type="button" class="' + (i <= myVote ? 'on' : '') + '" data-star="' + i + '" aria-label="' + escapeHtml(t('rating.starLabel').replace('{n}', i)) + '">★</button>'; /* v260 */ }
     box.innerHTML = '<span class="stars">' + starsHtml + '</span><span class="rating-avg mono">' +
-      (votesCount > 0 ? Number(avgStars).toFixed(1) + ' ★ · ' + votesCount + (votesCount === 1 ? ' voto' : ' voti') : t('rating.none')) + '</span>';
+      (votesCount > 0 ? Number(avgStars).toFixed(1) + ' ★ · ' + t(votesCount === 1 ? 'rating.votes1' : 'rating.votesN').replace('{n}', votesCount) : t('rating.none')) /* v260: nella lingua del sito */ + '</span>';
     Array.prototype.forEach.call(box.querySelectorAll('[data-star]'), function(b){
       b.addEventListener('click', function(){
         var v = Number(b.dataset.star);
@@ -28237,6 +28251,48 @@ function luxDelAccDone(body){
   setTimeout(function(){ window.location.href = 'index.html'; }, 2600);
 }
 
+/* ============ v260: i campi «scegli un file» del browser diventano un pulsante del sito ============
+   Prima si vedeva il controllo grezzo del browser («Scegli file · Nessun file selezionato», o in inglese): adesso
+   «📷 Scegli una foto»; scelta la foto, il suo nome con la spunta e «Cambia foto». Il campo vero resta lì sotto
+   (nascosto): il resto del sito lo legge come prima. */
+var LUX_FILE_PRETTY = ['fDiaryPhoto', 'fProfilePhotoUpload', 'fProfileBanner', 'fProfileAvatarHd', 'fLuxCover'];
+function luxFilePretty(input){
+  if(!input || input.__luxPretty || input.type !== 'file' || input.classList.contains('hidden') || !input.parentNode) return;
+  input.__luxPretty = true;
+  var wrap = document.createElement('span'), btn = document.createElement('button'), name = document.createElement('span');
+  wrap.className = 'lux-file';
+  btn.type = 'button';
+  btn.className = 'lux-file-btn';
+  btn.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8.5h3.2l1.9-2.6h5.8l1.9 2.6H20V19H4z"/><circle cx="12" cy="13.4" r="3.4"/></svg><span data-i18n="photo.choose"></span>';
+  name.className = 'lux-file-name';
+  input.parentNode.insertBefore(wrap, input);
+  wrap.appendChild(input); wrap.appendChild(btn); wrap.appendChild(name);
+  input.classList.add('lux-file-input');
+  input.tabIndex = -1;
+  input.setAttribute('aria-hidden', 'true');
+  var lbl = btn.querySelector('[data-i18n]');
+  function sync(){
+    var f = input.files && input.files[0];
+    lbl.setAttribute('data-i18n', f ? 'group.photoChange' : 'photo.choose');
+    lbl.textContent = t(f ? 'group.photoChange' : 'photo.choose');
+    name.textContent = f ? f.name : '';
+    wrap.classList.toggle('has-file', !!f);
+  }
+  btn.addEventListener('click', function(){ input.click(); });
+  input.addEventListener('change', sync);
+  // (quando il sito svuota il campo dopo aver pubblicato, anche il nome se ne va)
+  var d = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value');
+  if(d && d.set && d.get){
+    try { Object.defineProperty(input, 'value', { configurable: true, get: function(){ return d.get.call(this); }, set: function(v){ d.set.call(this, v); sync(); } }); } catch(e){}
+  }
+  sync();
+}
+function luxFilePrettyAll(){
+  LUX_FILE_PRETTY.forEach(function(id){
+    Array.prototype.forEach.call(document.querySelectorAll('input[type="file"]#' + id), luxFilePretty);
+  });
+}
+
 function handleAddAnnouncement(){
   var title = document.getElementById('fAnnTitle').value.trim();
   var body = document.getElementById('fAnnBody').value.trim();
@@ -28362,8 +28418,8 @@ function renderAdminUsers(){
       list.appendChild(summary);
 
       rows.forEach(function(u){
-        var joined = new Date(u.created_at);
-        var daysHere = Math.floor((Date.now() - joined.getTime()) / 86400000);
+        var joined = new Date(u.created_at || NaN), okJoined = !isNaN(joined.getTime()); // v260: (senza data l'elenco si fermava lì)
+        var daysHere = okJoined ? Math.floor((Date.now() - joined.getTime()) / 86400000) : 0;
         var eligible = daysHere >= VERIFICATION_MIN_DAYS;
         var displayLabel = u.display_name ? escapeHtml(u.display_name) : (t('users.noName') + ' ' + u.id.slice(0,8));
         var isOnline = u.last_seen && (Date.now() - new Date(u.last_seen).getTime()) < ONLINE_WINDOW_MS;
@@ -28376,7 +28432,7 @@ function renderAdminUsers(){
         var onlineHtml = isOnline ? '<span class="online-dot" title="' + t('users.onlineTag') + '"></span> ' : '';
         row.innerHTML =
           '<div class="info"><div class="t">' + onlineHtml + displayLabel + ' ' + verifiedBadge('verified.commenter', !!u.verified) + '</div>' +
-          '<div class="m">' + t('users.joined') + ' ' + joined.toISOString().slice(0,10) + ' · ' + t('users.daysHere').replace('{n}', daysHere) + ' · ' + statusHtml + '</div></div>' +
+          '<div class="m">' + t('users.joined') + ' ' + (okJoined ? joined.toISOString().slice(0,10) : '—') + ' · ' + t('users.daysHere').replace('{n}', daysHere) + ' · ' + statusHtml + '</div></div>' +
           '<div class="admin-actions">' +
             '<select class="admin-role-select" data-role-select="' + u.id + '" aria-label="Ruolo">' +
               '<option value=""' + (u.role ? '' : ' selected') + '>' + t('role.none') + '</option>' +
@@ -28998,7 +29054,7 @@ var SOCIAL_ICONS = {
 };
 function fetchSocialLinks(){
   var footer = document.getElementById('footerSocial');
-  if(!SUPABASE_URL) return;
+  if(!footer || !SUPABASE_URL) return; // v260: (Luxtify non ha il piede: niente richiesta inutile)
   fetch(SUPABASE_URL + '/rest/v1/social_links?select=*&enabled=eq.true', {
     headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + SUPABASE_ANON_KEY }
   })
@@ -29487,6 +29543,7 @@ function __appInit(){
   initTextOnlyToggle();
   initExportData();
   luxDelAccInit(); // v258: «Elimina il mio account»
+  luxFilePrettyAll(); // v260: «Scegli una foto» al posto del campo grezzo del browser
   initSnoOverlay();
   initBookmarkTab();
   setInterval(function(){ if(!document.hidden) refreshCommunityDot(); }, 60000); // pallino Community
