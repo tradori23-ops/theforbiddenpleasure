@@ -1173,6 +1173,20 @@ Object.assign(STR.hi, {"fav.add": "सेव करें", "fav.remove": "स�
 Object.assign(STR.bn, {"fav.add": "সেভ করুন", "fav.remove": "সেভ করা হয়েছে", "like.add": "লাইক", "like.remove": "লাইক করা হয়েছে", "offline.short": "ডাউনলোড", "offline.shortSaved": "ডাউনলোড হয়েছে"});
 Object.assign(STR.ar, {"fav.add": "حفظ", "fav.remove": "محفوظ", "like.add": "أعجبني", "like.remove": "تم الإعجاب", "offline.short": "تنزيل", "offline.shortSaved": "تم التنزيل"});
 Object.assign(STR.pnb, {"fav.add": "محفوظ کرو", "fav.remove": "محفوظ شدہ", "like.add": "پسند کرو", "like.remove": "پسند کیتا", "offline.short": "ڈاؤن لوڈ", "offline.shortSaved": "ڈاؤن لوڈ ہو گیا"});
+// v262: l'archivio degli eventi
+Object.assign(STR.it, {"events.pastLabel": "Archivio", "events.attended1": "1 ha partecipato", "events.attendedN": "{n} hanno partecipato"});
+Object.assign(STR.en, {"events.pastLabel": "Archive", "events.attended1": "1 person attended", "events.attendedN": "{n} people attended"});
+Object.assign(STR.es, {"events.pastLabel": "Archivo", "events.attended1": "1 persona asistió", "events.attendedN": "{n} personas asistieron"});
+Object.assign(STR.fr, {"events.pastLabel": "Archives", "events.attended1": "1 personne y était", "events.attendedN": "{n} personnes y étaient"});
+Object.assign(STR.de, {"events.pastLabel": "Archiv", "events.attended1": "1 Person war dabei", "events.attendedN": "{n} Personen waren dabei"});
+Object.assign(STR.pt, {"events.pastLabel": "Arquivo", "events.attended1": "1 pessoa participou", "events.attendedN": "{n} pessoas participaram"});
+Object.assign(STR.ru, {"events.pastLabel": "Архив", "events.attended1": "Был 1 человек", "events.attendedN": "Участников: {n}"});
+Object.assign(STR.zh, {"events.pastLabel": "往期活动", "events.attended1": "1 人参加了", "events.attendedN": "{n} 人参加了"});
+Object.assign(STR.ja, {"events.pastLabel": "アーカイブ", "events.attended1": "1人が参加しました", "events.attendedN": "{n}人が参加しました"});
+Object.assign(STR.hi, {"events.pastLabel": "आर्काइव", "events.attended1": "1 व्यक्ति शामिल हुआ", "events.attendedN": "{n} लोग शामिल हुए"});
+Object.assign(STR.bn, {"events.pastLabel": "আর্কাইভ", "events.attended1": "1 জন অংশ নিয়েছেন", "events.attendedN": "{n} জন অংশ নিয়েছেন"});
+Object.assign(STR.ar, {"events.pastLabel": "الأرشيف", "events.attended1": "شارك شخص واحد", "events.attendedN": "عدد المشاركين: {n}"});
+Object.assign(STR.pnb, {"events.pastLabel": "آرکائیو", "events.attended1": "1 بندے نے حصہ لیا", "events.attendedN": "{n} بندیاں نے حصہ لیا"});
 var CHAR_META = {
   Lucifer:{role:{it:"Il Portatore di Luce",en:"The Light-Bearer",es:"El Portador de Luz",fr:"Le Porteur de Lumière",de:"Der Lichtträger"},
     bio:{it:"Sovrano della collana ammiraglia: potere, caduta e desiderio raccontati su grande scala.",
@@ -13641,7 +13655,7 @@ function renderHomeEvents(){
       events = events.map(function(ev){ return luxLocalized(ev, ['title', 'description']); }); // v227: nella lingua di chi legge
       var now = new Date();
       var upcoming = events.filter(function(ev){ return !eventIsPast(ev, now); });
-      if(upcoming.length === 0){ box.classList.add('hidden'); return; }
+      if(upcoming.length === 0){ box.classList.add('hidden'); list.innerHTML = ''; list.dataset.sig = ''; clearInterval(eventCountdownTimer); return; } // v262: (niente schede finite nascoste)
       box.classList.remove('hidden');
       // link condiviso (?event=<id>): l'evento indicato passa in cima, anche se non sarebbe tra i primi due
       var deepEventId = new URLSearchParams(window.location.search).get('event');
@@ -13666,7 +13680,7 @@ function renderHomeEvents(){
           }, 250);
         }
       }
-      if(upcoming.length > 2){
+      if(upcoming.length > 2 || events.length > upcoming.length){ // v262: anche per arrivare all'archivio degli eventi finiti
         var more = document.createElement('a');
         more.href = 'community.html#communitySection';
         more.className = 'server-channel-link';
@@ -13709,7 +13723,7 @@ function renderEventsTab(){
       }
 
       if(past.length === 0){ pastBox.innerHTML = '<p class="form-note">' + t('events.noPast') + '</p>'; return; }
-      renderEventTraces(pastBox, past.slice(0, 20));
+      renderEventArchive(pastBox, past.slice(0, 20)); // v262: l'archivio (prima solo le «tracce» di chi c'era)
     })
     .catch(function(e){
       upBox.innerHTML = '<p class="form-note">' + t('community.loadError') + '</p>';
@@ -13850,6 +13864,10 @@ function tickEventCountdowns(){
     box.querySelector('[data-cd="m"]').textContent = String(m).padStart(2,'0');
     box.querySelector('[data-cd="s"]').textContent = String(s).padStart(2,'0');
   });
+  // v262: un evento appena finito esce dalla lista (va in archivio) e il suo posto passa al prossimo
+  var ended = [];
+  document.querySelectorAll('.countdown[data-end]').forEach(function(box){ if(now >= parseInt(box.dataset.end, 10)) ended.push(box.closest('.event-card')); });
+  if(ended.length) luxEventsEnded(ended);
 }
 
 function refreshEventAttendState(eventId, btn, countEl){
@@ -20887,11 +20905,12 @@ function loadEventsAdminList(){
       events.forEach(function(e){ adminEventsById[e.id] = e; });
       list.innerHTML = events.map(function(ev){
         var isPast = eventIsPast(ev, now);
-        var dateLabel = formatEventDates(ev) + ' · ' + new Date(ev.event_date).toLocaleTimeString('it-IT', { hour:'2-digit', minute:'2-digit' });
+        var dateLabel = formatEventDates(ev) + ' · ' + new Date(ev.event_date).toLocaleTimeString('it-IT', { hour:'2-digit', minute:'2-digit' }) +
+          (ev.end_date ? ' → ' + new Date(ev.end_date).toLocaleTimeString('it-IT', { hour:'2-digit', minute:'2-digit' }) : ''); // v262: anche l'ora di fine (da lì va in archivio)
         return '<div class="admin-list-row" style="border-bottom:1px solid var(--line);padding:10px 0;display:flex;align-items:center;gap:10px;flex-wrap:wrap;">' +
           (ev.image_url ? '<img src="' + coverThumbUrl(escapeHtml(ev.image_url), 90) + '" style="width:44px;height:44px;object-fit:cover;border-radius:8px;flex-shrink:0;" loading="lazy">' : '<span style="width:44px;height:44px;flex-shrink:0;">🎟️</span>') +
           '<div style="flex:1 1 170px;min-width:0;">' +
-            '<div style="font-weight:600;">' + escapeHtml(ev.title) + (isPast ? ' <span style="color:var(--parchment-dim);font-size:11px;">(passato)</span>' : '') + '</div>' +
+            '<div style="font-weight:600;">' + escapeHtml(ev.title) + (isPast ? ' <span style="color:var(--parchment-dim);font-size:11px;">(in archivio)</span>' : '') + '</div>' +
             '<div style="font-size:11px;color:var(--parchment-dim);">' + dateLabel + (ev.location ? ' · ' + escapeHtml(ev.location) : '') + '</div>' +
             '<div class="form-note" data-ev-status="' + ev.id + '" style="margin-top:4px;"></div>' +
           '</div>' +
@@ -28335,6 +28354,75 @@ function luxActSet(btn, full, short){
   var two = !!(short && short !== full);
   btn.innerHTML = '<span class="act-full">' + escapeHtml(full) + '</span>' + (two ? '<span class="act-short" aria-hidden="true">' + escapeHtml(short) + '</span>' : '');
   btn.classList.toggle('has-short', two);
+}
+
+/* ============ v262: gli eventi finiti vanno in archivio ============
+   Quando un evento finisce (anche con la pagina aperta), la sua scheda esce dalla home e da «In arrivo»:
+   il posto va al prossimo evento e lui passa nell'archivio (Community › Eventi), con chi c'era e le foto. */
+var luxEventsEndTimer = null;
+function luxEventsEnded(cards){
+  if(luxEventsEndTimer) return;
+  cards.forEach(function(c){ if(c) c.classList.add('event-card-ended'); });
+  luxEventsEndTimer = setTimeout(function(){
+    luxEventsEndTimer = null;
+    try { if(document.getElementById('homeEventsList')) renderHomeEvents(); } catch(e){ console.warn('[eventi]', e); }
+    try { if(document.getElementById('eventsUpcomingList')) renderEventsTab(); } catch(e){ console.warn('[eventi]', e); }
+  }, 650);
+}
+// l'archivio: una scheda piccola per ogni evento finito, il più recente in alto (anche senza partecipanti)
+function buildEventArchiveCard(ev){
+  var card = document.createElement('div');
+  card.className = 'event-arch';
+  card.dataset.eventId = String(ev.id);
+  var img = ev.image_url
+    ? '<img class="event-arch-img" src="' + coverThumbUrl(escapeHtml(ev.image_url), 240) + '" alt="" loading="lazy">'
+    : '<span class="event-arch-img event-arch-noimg" aria-hidden="true">✦</span>';
+  card.innerHTML =
+    '<div class="event-arch-head">' + img +
+      '<div class="event-arch-info">' +
+        '<div class="event-arch-title">' + escapeHtml(ev.title) + '</div>' +
+        '<div class="event-arch-when">' + (ev.location ? escapeHtml(ev.location) + ' · ' : '') + escapeHtml(formatEventDates(ev)) + '</div>' +
+        '<div class="event-arch-count" data-arch-count></div>' +
+      '</div>' +
+    '</div>' +
+    '<div class="event-arch-more" data-arch-more></div>';
+  return card;
+}
+function renderEventArchive(box, past){
+  box.innerHTML = '';
+  past.forEach(function(ev){
+    var card = buildEventArchiveCard(ev);
+    box.appendChild(card);
+    fillEventArchiveCard(card, ev);
+  });
+}
+// chi c'era (i nomi portano al profilo) e le foto; chi c'era può aggiungere le sue
+function fillEventArchiveCard(card, ev){
+  var myId = currentUserId();
+  Promise.all([
+    fetch(SUPABASE_URL + '/rest/v1/event_attendees?event_id=eq.' + encodeURIComponent(ev.id) + '&select=user_id,profiles(display_name)', { headers: communityHeaders() }).then(function(r){ return r.ok ? r.json() : []; }),
+    fetch(SUPABASE_URL + '/rest/v1/event_photos?event_id=eq.' + encodeURIComponent(ev.id) + '&select=*&order=created_at.asc', { headers: communityHeaders() }).then(function(r){ return r.ok ? r.json() : []; })
+  ]).then(function(res){
+    var attendees = res[0] || [], photos = res[1] || [];
+    var countEl = card.querySelector('[data-arch-count]'), more = card.querySelector('[data-arch-more]');
+    if(attendees.length){
+      var names = attendees.slice(0, 6).map(function(a){ return luxPersonLink((a.profiles && a.profiles.display_name) || '', a.user_id); }).join(', ');
+      if(attendees.length > 6) names += ' +' + (attendees.length - 6);
+      countEl.innerHTML = escapeHtml(t(attendees.length === 1 ? 'events.attended1' : 'events.attendedN').replace('{n}', attendees.length)) + ': ' + names;
+    }
+    var iAttended = !!(myId && attendees.some(function(a){ return a.user_id === myId; }));
+    if(!photos.length && !iAttended) return;
+    var photosHtml = photos.map(function(p){
+      return '<div class="event-photo"><img src="' + coverThumbUrl(escapeHtml(p.image_url), 240) + '" alt="" loading="lazy"></div>';
+    }).join('');
+    var addHtml = iAttended
+      ? '<label class="event-photo-add" for="evPhotoInput-' + escapeHtml(ev.id) + '">+<span>' + t('events.addPhoto') + '</span></label>' +
+        '<input type="file" id="evPhotoInput-' + escapeHtml(ev.id) + '" accept="image/*" class="hidden" data-event-photo-input="' + escapeHtml(ev.id) + '">'
+      : '';
+    more.innerHTML = '<div class="event-gallery" data-event-photos="' + escapeHtml(ev.id) + '">' + photosHtml + addHtml + '</div>';
+    var fileInput = more.querySelector('[data-event-photo-input]');
+    if(fileInput) fileInput.addEventListener('change', function(){ uploadEventPhoto(ev.id, fileInput, more.querySelector('[data-event-photos]')); });
+  }).catch(function(){});
 }
 
 function handleAddAnnouncement(){
