@@ -5657,3 +5657,129 @@ body.theme-light .lux-file-btn{color:#6b5015;border-color:rgba(138,106,31,.45);b
 .dossier-card-name{font-size:10.5px;}
 /* Privacy: la tabella che scorre si raggiunge anche con la tastiera */
 .legal-wrap:focus-visible{outline:2px solid var(--gold-bright);outline-offset:3px;border-radius:6px;}
+/* ============ v261: ritocchi estetici ============ */
+/* le icone disegnate (stesso tratto delle icone della barra in basso) */
+:root{
+  --lux-ic-heart:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.7' stroke-linejoin='round'%3E%3Cpath d='M12 20.3s-7.8-4.7-7.8-10.4A4.4 4.4 0 0 1 12 7.3a4.4 4.4 0 0 1 7.8 2.6c0 5.7-7.8 10.4-7.8 10.4z'/%3E%3C/svg%3E");
+  --lux-ic-heart-on:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23000' stroke='%23000' stroke-width='1.7' stroke-linejoin='round'%3E%3Cpath d='M12 20.3s-7.8-4.7-7.8-10.4A4.4 4.4 0 0 1 12 7.3a4.4 4.4 0 0 1 7.8 2.6c0 5.7-7.8 10.4-7.8 10.4z'/%3E%3C/svg%3E");
+  --lux-ic-thumb:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.7' stroke-linejoin='round'%3E%3Cpath d='M3.6 10.6H7v9.8H3.6zM7 10.6l3.6-6.5c.3-.6 1-.9 1.6-.7.9.2 1.4 1.1 1.2 1.9l-.8 4.3h5.5c1.2 0 2.1 1.1 1.9 2.3l-1.3 6.6c-.2 1.1-1.1 1.9-2.2 1.9H7'/%3E%3C/svg%3E");
+  --lux-ic-thumb-on:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23000' stroke='%23000' stroke-width='1.7' stroke-linejoin='round'%3E%3Cpath d='M3.6 10.6H7v9.8H3.6zM7 10.6l3.6-6.5c.3-.6 1-.9 1.6-.7.9.2 1.4 1.1 1.2 1.9l-.8 4.3h5.5c1.2 0 2.1 1.1 1.9 2.3l-1.3 6.6c-.2 1.1-1.1 1.9-2.2 1.9H7'/%3E%3C/svg%3E");
+  --lux-ic-down:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 4v10.5M7.5 10.2l4.5 4.5 4.5-4.5M5 19.5h14'/%3E%3C/svg%3E");
+  --lux-ic-done:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 19.5h14M7.3 10.8l3.2 3.2 6.2-6.6'/%3E%3C/svg%3E");
+  --lux-ic-cup:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4.5 9.5H16v4.3a5 5 0 0 1-5 5H9.5a5 5 0 0 1-5-5zM16 11h1.3a2.6 2.6 0 0 1 0 5.2h-1.8M8.3 3.6c-.8 1 .8 2 0 3M11.8 3.6c-.8 1 .8 2 0 3M4 21.2h12.5'/%3E%3C/svg%3E");
+  --lux-ic-share:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 15V3M8 7l4-4 4 4M6 11H5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-8a1 1 0 0 0-1-1h-1'/%3E%3C/svg%3E");
+  --lux-ic-doc:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 3.5h8l4 4v13H6zM14 3.5v4h4M9 13h6M9 16.5h6'/%3E%3C/svg%3E");
+  --lux-ic-cart:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 4h2.5l2.2 11h10.6l2-8H6.6M10 20h.01M17 20h.01'/%3E%3C/svg%3E");
+}
+
+/* divisori con la stellina: la linea si interrompe intorno alla stellina (prima un rettangolo scuro dietro, che si vedeva sugli sfondi sfumati) */
+.ornate-divider{border-image:linear-gradient(90deg,var(--gold) 0,var(--gold) calc(50% - 27px),transparent calc(50% - 27px),transparent calc(50% + 27px),var(--gold) calc(50% + 27px),var(--gold) 100%) 1;}
+.ornate-divider::before{background:none;}
+#novitaArchiveSection.ornate-divider{margin-top:20px;} /* (in Novità la stellina finiva sotto la barra in alto) */
+
+/* il piede: il sigillo al centro come tutto il resto; i link SmallNox come quelli sopra */
+footer img.seal{margin-left:auto;margin-right:auto;}
+footer .fline{text-wrap:balance;}
+footer .fcopy a[href^="smallnox"]{text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(201,162,77,.35);}
+
+/* i pulsanti che sono link (Dona con PayPal / Satispay / Revolut…) senza la sottolineatura dei link */
+a.btn{text-decoration:none;}
+
+/* «Ultimi capitoli»: il titolo subito sotto la copertina (c'era il margine del browser: una fascia vuota) */
+.latest-card-body h5{margin-top:0;}
+@media (min-width:900px){
+  body.has-app-tabbar #latestGrid .latest-card-body{padding:13px 16px 15px;}
+  body.has-app-tabbar #latestGrid .latest-card-body h5{font-size:16px;line-height:1.25;margin-bottom:4px;}
+  body.has-app-tabbar #latestGrid .latest-card-body .character{font-size:10.5px;}
+}
+
+/* «I più letti» dal computer: le due colonne si allineano (un titolo lungo lasciava un buco a sinistra) */
+body.has-app-tabbar #topRankedGrid{align-items:stretch;}
+
+/* i titoli vanno a capo bilanciati (niente parola sola sull'ultima riga), i testi senza parola orfana */
+h1,h2,h3,.support-heading,#titleModalTitle,.announcement-card h4,.latest-card-body h5{text-wrap:balance;}
+.hero .lede,.support-desc,.newsletter-sub,.section-desc,.announcement-card p,#titleModalSynopsis,.founder-text p{text-wrap:pretty;}
+
+/* home: sul telefono il testo d'apertura si ferma alla fine della prima frase */
+body.has-app-tabbar .hero .lede.lede-split{-webkit-line-clamp:6;}
+@media (max-width:640px){ body.has-app-tabbar .hero .lede .lede-rest{display:none;} }
+
+/* le scritte piccole sopra i titoli: tutte in corsivo dorato («Sostieni il progetto» era in caratteri da macchina da scrivere) */
+body.has-app-tabbar .support-eyebrow{margin-bottom:4px;font-family:'Crimson Pro',Georgia,serif;font-size:15px;font-style:italic;letter-spacing:0;text-transform:none;color:var(--gold-bright);}
+
+/* Novità: schede come il resto del sito (prima riquadri a spigoli vivi con il bordo oro pieno) */
+.announcement-card{border-radius:16px;overflow:hidden;border-color:rgba(201,162,77,.28);}
+.announcement-card-img{border-color:rgba(201,162,77,.22);}
+.announcement-card .date{margin-bottom:4px;font-family:'Crimson Pro',Georgia,serif;font-size:15px;font-style:italic;letter-spacing:0;text-transform:none;color:var(--gold-bright);}
+.announcement-card h4{margin:0 0 8px;font-size:19px;line-height:1.25;}
+.announcement-card p{font-size:15.5px;line-height:1.55;}
+.announcement-card-actions{flex-wrap:wrap;gap:10px 16px;margin-top:10px;}
+.announcement-card a.link{font-family:'Crimson Pro',Georgia,serif;font-size:15px;font-weight:600;letter-spacing:0;text-underline-offset:3px;}
+body .announcement-card .ann-share-btn{display:inline-flex;align-items:center;gap:7px;min-height:36px;padding:0 15px !important;margin:0 !important;border:1px solid rgba(201,162,77,.42);border-radius:18px;background:rgba(201,162,77,.07);
+  color:var(--gold-bright);font:600 15px/1 'Crimson Pro',Georgia,serif;letter-spacing:0;text-transform:none;text-decoration:none;}
+.announcement-card .ann-share-btn::before{content:"";flex:none;width:16px;height:16px;background:currentColor;-webkit-mask:var(--lux-ic-share) center/contain no-repeat;mask:var(--lux-ic-share) center/contain no-repeat;}
+.announcement-card .ann-share-btn:hover{border-color:var(--gold);background:rgba(201,162,77,.14);}
+body.theme-light .announcement-card{border-color:rgba(138,106,31,.3);}
+body.theme-light .announcement-card .ann-share-btn{border-color:rgba(138,106,31,.45);background:rgba(138,106,31,.06);}
+
+/* i messaggi «vuoti» (Nessun commento ancora, Ancora nessun post): un riquadro come gli altri, non più scritte minuscole */
+.form-note.lux-empty{margin:6px 0 12px;padding:18px 16px;border-radius:14px;border:1px dashed rgba(201,162,77,.35);font-family:'Crimson Pro',Georgia,serif;font-size:16px;font-style:italic;
+  line-height:1.4;text-align:center;color:var(--parchment-dim);opacity:1;}
+body.theme-light .form-note.lux-empty{border-color:rgba(138,106,31,.4);}
+
+/* l'etichetta «Tutti» sulle copertine più discreta (il «18+» resta rosso pieno) */
+.card-idx-cover .allages{background:rgba(11,6,7,.6);border-color:rgba(127,196,164,.6);color:#d3ece0;-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);}
+body.theme-light .card-idx-cover .allages{color:#e2f3eb;}
+
+/* il lettore sul telefono: i comandi in alto su due righe, tutti visibili e lontani dalla × (prima «Scuro» finiva sotto la × e «Ingrandisci» fuori schermo):
+   in alto «Tavole · Scorrimento» (accanto c'è la ×), sotto «Chiaro · Scuro» e «Ingrandisci» */
+@media (max-width:600px){
+  body.has-app-tabbar #readerCtl{flex-wrap:wrap;overflow:visible;row-gap:4px;}
+  body.has-app-tabbar #readerCtl::before{content:"";order:1;flex:0 0 100%;height:0;}
+  body.has-app-tabbar #readerCtl > *{order:2;}
+  body.has-app-tabbar #readerCtl > .reader-grp-flow{order:0;}
+  body.has-app-tabbar #readerCtl button{padding:0 11px;}
+}
+
+/* i pulsanti della scheda: icone disegnate (prima l'emoji 👍 e simboli diversi) */
+#titleModalFav{--ic:var(--lux-ic-heart);}
+#titleModalFav.active{--ic:var(--lux-ic-heart-on);}
+#titleModalLike{--ic:var(--lux-ic-thumb);}
+#titleModalLike.active{--ic:var(--lux-ic-thumb-on);}
+#titleModalOffline{--ic:var(--lux-ic-down);}
+#titleModalOffline.is-offline{--ic:var(--lux-ic-done);}
+#titleModalSupport{--ic:var(--lux-ic-cup);}
+#titleModalShare{--ic:var(--lux-ic-share);}
+#titleModalPdf{--ic:var(--lux-ic-doc);}
+#titleModalAddCart{--ic:var(--lux-ic-cart);}
+#titleModal .modal-actions .btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;}
+body.lux-share-a #titleModal .modal-actions #titleModalShare{display:none;} /* (c'è già la fila «Condividi su» in alto) */
+#titleModal .modal-actions .btn::before{content:"";flex:none;width:18px;height:18px;background:currentColor;-webkit-mask:var(--ic) center/contain no-repeat;mask:var(--ic) center/contain no-repeat;}
+#titleModal .modal-actions .act-short{display:none;}
+/* sul telefono: quattro pulsanti uguali, icona sopra e nome sotto, tutti dentro lo schermo (prima «Sostieni» usciva tagliato) */
+@media (max-width:600px){
+  body.has-app-tabbar #titleModal .modal-actions{flex-wrap:wrap;overflow:visible;gap:2px;padding:5px 6px calc(5px + env(safe-area-inset-bottom, 0px));}
+  body.has-app-tabbar #titleModal .modal-actions > .btn:not(#titleModalAddCart){flex:1 1 0;min-width:0;min-height:54px;flex-direction:column;gap:4px;padding:5px 2px;border:0;border-radius:12px;
+    background:none;box-shadow:none;color:#cdbf9d;font-size:12.5px;font-weight:600;line-height:1.15;white-space:normal;text-align:center;overflow-wrap:anywhere;}
+  body.has-app-tabbar #titleModal .modal-actions > .btn:not(#titleModalAddCart)::before{width:23px;height:23px;}
+  body.has-app-tabbar #titleModal .modal-actions > .btn.active:not(#titleModalAddCart),body.has-app-tabbar #titleModal .modal-actions > .btn.is-offline:not(#titleModalAddCart){color:var(--gold-bright);}
+  body.has-app-tabbar #titleModal .modal-actions > .btn:not(#titleModalAddCart):active{background:rgba(201,162,77,.12);}
+  body.has-app-tabbar #titleModal .modal-actions > .btn.has-short .act-full{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;}
+  body.has-app-tabbar #titleModal .modal-actions > .btn.has-short .act-short{display:inline;}
+  body.has-app-tabbar #titleModalCounts{display:none;} /* (i numeri restano dal computer; sul telefono erano già fuori schermo) */
+  body.has-app-tabbar #titleModal .modal-actions #titleModalAddCart:not(.hidden){order:-1;flex:1 1 100%;min-height:42px;margin:2px 4px 4px;} /* i titoli in vendita: «Aggiungi al carrello» in una riga sua, sopra */
+  body.theme-light.has-app-tabbar #titleModal .modal-actions > .btn:not(#titleModalAddCart){color:#5c4a38;}
+  body.theme-light.has-app-tabbar #titleModal .modal-actions > .btn.active:not(#titleModalAddCart),body.theme-light.has-app-tabbar #titleModal .modal-actions > .btn.is-offline:not(#titleModalAddCart){color:#6b5015;}
+}
+
+/* il profilo dal computer: «Modifica profilo» un pulsante accanto al nome (prima una barra lunga tutta la pagina) */
+@media (min-width:820px){
+  body.has-app-tabbar #profileSection .profile-fb-headrow-info{flex:1 1 0;}
+  body.has-app-tabbar #btnToggleProfileEdit,body.has-app-tabbar #btnFollowToggle,body.has-app-tabbar #pubProfileFriendSlot{flex:0 0 auto;align-self:flex-end;margin-bottom:-4px;}
+  body.has-app-tabbar #btnToggleProfileEdit{padding-left:22px;padding-right:22px;}
+  /* numeri, schede e diario sullo stesso margine del nome (prima rientrati) */
+  body.has-app-tabbar #profileSection .profile-fb-stats,body.has-app-tabbar #profileSection .profile-fb-panel{padding-left:0;padding-right:0;}
+}
+
+/* tema chiaro: le voci della barra in basso un filo più scure (contrasto 4,25 → 5,2) */
+body.theme-light .app-tab{color:#6b5d48;}
