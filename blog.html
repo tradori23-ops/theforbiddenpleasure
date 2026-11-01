@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, viewport-fit=cover">
+<title>La Gazzetta dell'Archivio — LUX COMICS &amp; MEDUSA COMICS</title>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="LUX COMICS &amp; MEDUSA COMICS">
+<meta property="og:title" content="La Gazzetta dell'Archivio — il blog di LUX COMICS &amp; MEDUSA COMICS">
+<meta property="og:description" content="Notizie, aggiornamenti e letture dall'Archivio e dintorni. Aperto a tutti.">
+<meta property="og:image" content="https://noxmorningstar.com/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://noxmorningstar.com/blog.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="La Gazzetta dell'Archivio — il blog di LUX COMICS &amp; MEDUSA COMICS">
+<meta name="twitter:image" content="https://noxmorningstar.com/og-image.jpg">
+<link rel="canonical" href="https://noxmorningstar.com/blog.html">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#6e1423">
+<meta name="description" content="Il blog di LUX COMICS &amp; MEDUSA COMICS: notizie, aggiornamenti e link dal mondo dei fumetti. Aperto a tutti.">
+<link rel="stylesheet" href="fonts/fonts.css?v=258" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="fonts/fonts.css?v=258"></noscript>
+<!-- style.css è iniettato da loader.js con la versione sempre aggiornata -->
+<!-- Avvio pulito: la pagina resta coperta dal suo colore di fondo finché
+     stile e intestazione non sono pronti — la scopre loader.js. Rete di
+     sicurezza: dopo 5 secondi si mostra comunque. -->
+<style id="luxBoot">.hidden{display:none!important}html{background:#0b0607}html.lux-light{background:#f4efe2}body{visibility:hidden}html.lux-ready body{visibility:visible}html:not(.lux-ready) *,html:not(.lux-ready) *::before,html:not(.lux-ready) *::after{transition:none!important}</style>
+<script>(function(){var d=document.documentElement;try{var t=localStorage.getItem('lux_theme');if(!t&&window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches)t='light';if(t==='light')d.classList.add('lux-light');}catch(e){}setTimeout(function(){d.classList.add('lux-ready');},5000);})();</script>
+<noscript><style>body{visibility:visible}</style></noscript>
+</head>
+<body>
+<div id="app">
+<div id="chrome-top-slot"></div>
+
+  <!-- ============ IL BLOG: «La Gazzetta dell'Archivio» (v263) ============
+       Aperto a tutti: niente copertina d'ingresso, niente account per leggere.
+       blog.html = la prima pagina; blog.html?post=<id> = un articolo. -->
+  <section class="section" id="blogSection">
+    <header class="gz-mast" id="gzMast">
+      <h1 class="gz-name gz-name--serif" lang="it" data-i18n="blog.gazette">La Gazzetta dell'Archivio</h1>
+      <p class="gz-motto" data-i18n="blog.motto">Notizie, aggiornamenti e letture dall'Archivio e dintorni</p>
+      <div class="gz-folio"><span class="gz-folio-free" data-i18n="blog.free">Gratis per tutti</span></div>
+    </header>
+    <div class="gz-filters" id="gzFilters" role="group" aria-label="Sezioni del blog"></div>
+    <div class="gz-list" id="gzList"><p class="gz-note gz-wait">…</p></div>
+    <div class="gz-article" id="gzArticle" hidden></div>
+    <noscript><p class="gz-note">Per leggere il blog serve JavaScript.</p></noscript>
+  </section>
+
+<div id="chrome-footer-slot"></div>
+</div>
+<div id="chrome-modals-slot"></div>
+<script src="loader.js" defer></script>
+<script src="qrcode-lib.js" defer></script>
+</body>
+</html>

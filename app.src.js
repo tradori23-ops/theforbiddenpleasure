@@ -1187,6 +1187,20 @@ Object.assign(STR.hi, {"events.pastLabel": "आर्काइव", "events.atte
 Object.assign(STR.bn, {"events.pastLabel": "আর্কাইভ", "events.attended1": "1 জন অংশ নিয়েছেন", "events.attendedN": "{n} জন অংশ নিয়েছেন"});
 Object.assign(STR.ar, {"events.pastLabel": "الأرشيف", "events.attended1": "شارك شخص واحد", "events.attendedN": "عدد المشاركين: {n}"});
 Object.assign(STR.pnb, {"events.pastLabel": "آرکائیو", "events.attended1": "1 بندے نے حصہ لیا", "events.attendedN": "{n} بندیاں نے حصہ لیا"});
+// v263: il blog («La Gazzetta dell'Archivio»)
+Object.assign(STR.it, {"blog.nav": "Blog", "blog.gazette": "La Gazzetta dell'Archivio", "blog.motto": "Notizie, aggiornamenti e letture dall'Archivio e dintorni", "blog.free": "Gratis per tutti", "blog.issue": "Anno {y} · N. {n}", "blog.editionNight": "Edizione della notte", "blog.editionDay": "Edizione del giorno", "blog.filtersLabel": "Sezioni del blog", "blog.filterAll": "Tutto", "blog.filter.news": "Notizie", "blog.filter.update": "Aggiornamenti", "blog.filter.link": "Dal web", "blog.kind.news": "Notizia", "blog.kind.update": "Aggiornamento", "blog.kind.link": "Dal web", "blog.pinned": "In evidenza", "blog.draft": "Bozza", "blog.draftNote": "Bozza: la vedi solo tu", "blog.empty": "Il blog è appena nato: il primo articolo arriva presto.", "blog.emptyFilter": "Ancora niente in questa sezione.", "blog.error": "Non riesco a leggere il blog in questo momento. Riprova tra poco.", "blog.more": "Altri articoli", "blog.write": "Scrivi un articolo", "blog.edit": "Modifica", "blog.back": "Tutti gli articoli", "blog.by": "di {name}", "blog.updated": "aggiornato il {date}", "blog.readTime": "{n} min di lettura", "blog.translated": "Tradotto in automatico dall'originale ({lang}).", "blog.originalShown": "Stai leggendo l'originale.", "blog.showOriginal": "Leggi l'originale", "blog.showTranslation": "Leggi la traduzione", "blog.source": "Fonte: {name}", "blog.readOn": "Leggi su {site}", "blog.notFound": "Questo articolo non c'è (forse è stato tolto).", "blog.others": "Da leggere anche", "blog.comments1": "1 commento", "blog.commentsN": "{n} commenti", "blog.comLogin": "Per commentare serve un account (è gratis). Per leggere no: il blog è di tutti.", "blog.signup": "Crea un account", "blog.comWrite": "Il tuo commento", "blog.comHint": "Il tuo commento si vede dopo l'approvazione.", "blog.comEmpty": "Scrivi qualcosa prima di inviare.", "blog.comError": "Non riesco a leggere i commenti in questo momento.", "blog.approve": "Approva", "blog.cover": "Copertina con QR", "blog.coverSub": "La prima pagina della Gazzetta con il QR che porta all'articolo: per Instagram, WhatsApp e dove vuoi.", "blog.coverAlt": "Anteprima della copertina con il QR", "blog.fmtLabel": "Formato", "blog.fmt.story": "Storia 9:16", "blog.fmt.post": "Post 4:5", "blog.fmt.square": "Quadrato 1:1", "blog.fmt.og": "Anteprima link", "blog.studioLang": "Lingua della copertina", "blog.studioDl": "Scarica", "blog.studioShare": "Condividi", "blog.studioWait": "Preparo la copertina…", "blog.studioTip": "Sul telefono «Condividi» apre il menu per condividere: lì scegli Instagram, WhatsApp o un'altra app. Nella storia lo spazio in alto e in basso resta libero per i pulsanti di Instagram.", "blog.studioSaved": "Scaricata: {name}", "blog.studioAgain": "Pronta: tocca di nuovo «Condividi».", "blog.studioFail": "Non riesco a creare l'immagine: riprova.", "blog.scan": "Inquadra il QR per leggere l'articolo", "blog.homeEyebrow": "Dal blog", "blog.homeAll": "Leggi il blog →", "notif.blogComment": "ha commentato nel blog: «{title}»", "notif.mentionBlog": "ti ha menzionato nei commenti del blog «{title}»"});
+Object.assign(STR.en, {"blog.nav": "Blog", "blog.gazette": "The Archive Gazette", "blog.motto": "News, updates and reading from the Archive and beyond", "blog.free": "Free for everyone", "blog.issue": "Vol. {y} · No. {n}", "blog.editionNight": "Night edition", "blog.editionDay": "Day edition", "blog.filtersLabel": "Blog sections", "blog.filterAll": "All", "blog.filter.news": "News", "blog.filter.update": "Updates", "blog.filter.link": "From the web", "blog.kind.news": "News", "blog.kind.update": "Update", "blog.kind.link": "From the web", "blog.pinned": "Featured", "blog.draft": "Draft", "blog.draftNote": "Draft: only you can see it", "blog.empty": "The blog has just been born: the first article is coming soon.", "blog.emptyFilter": "Nothing in this section yet.", "blog.error": "Can't load the blog right now. Please try again shortly.", "blog.more": "More articles", "blog.write": "Write an article", "blog.edit": "Edit", "blog.back": "All articles", "blog.by": "by {name}", "blog.updated": "updated {date}", "blog.readTime": "{n} min read", "blog.translated": "Automatically translated from the original ({lang}).", "blog.originalShown": "You're reading the original.", "blog.showOriginal": "Read the original", "blog.showTranslation": "Read the translation", "blog.source": "Source: {name}", "blog.readOn": "Read on {site}", "blog.notFound": "This article isn't here (it may have been removed).", "blog.others": "Also worth reading", "blog.comments1": "1 comment", "blog.commentsN": "{n} comments", "blog.comLogin": "You need an account to comment (it's free). Not to read: the blog is for everyone.", "blog.signup": "Create an account", "blog.comWrite": "Your comment", "blog.comHint": "Your comment appears once it's approved.", "blog.comEmpty": "Write something before sending.", "blog.comError": "Can't load the comments right now.", "blog.approve": "Approve", "blog.cover": "Cover with QR", "blog.coverSub": "The Gazette's front page with a QR code leading to the article: for Instagram, WhatsApp and anywhere else.", "blog.coverAlt": "Preview of the cover with the QR code", "blog.fmtLabel": "Format", "blog.fmt.story": "Story 9:16", "blog.fmt.post": "Post 4:5", "blog.fmt.square": "Square 1:1", "blog.fmt.og": "Link preview", "blog.studioLang": "Cover language", "blog.studioDl": "Download", "blog.studioShare": "Share", "blog.studioWait": "Preparing the cover…", "blog.studioTip": "On your phone, “Share” opens the share menu: pick Instagram, WhatsApp or another app there. In the story, the space at the top and bottom stays clear for Instagram's buttons.", "blog.studioSaved": "Downloaded: {name}", "blog.studioAgain": "Ready: tap “Share” again.", "blog.studioFail": "Couldn't create the image: please try again.", "blog.scan": "Scan the QR code to read the article", "blog.homeEyebrow": "From the blog", "blog.homeAll": "Read the blog →", "notif.blogComment": "commented on the blog: “{title}”", "notif.mentionBlog": "mentioned you in the blog comments on “{title}”"});
+Object.assign(STR.es, {"blog.nav": "Blog", "blog.gazette": "La Gaceta del Archivo", "blog.motto": "Noticias, novedades y lecturas del Archivo y alrededores", "blog.free": "Gratis para todos", "blog.issue": "Año {y} · N.º {n}", "blog.editionNight": "Edición de la noche", "blog.editionDay": "Edición del día", "blog.filtersLabel": "Secciones del blog", "blog.filterAll": "Todo", "blog.filter.news": "Noticias", "blog.filter.update": "Novedades", "blog.filter.link": "De la web", "blog.kind.news": "Noticia", "blog.kind.update": "Novedad", "blog.kind.link": "De la web", "blog.pinned": "Destacado", "blog.draft": "Borrador", "blog.draftNote": "Borrador: solo lo ves tú", "blog.empty": "El blog acaba de nacer: el primer artículo llega pronto.", "blog.emptyFilter": "Todavía no hay nada en esta sección.", "blog.error": "No puedo cargar el blog ahora mismo. Inténtalo de nuevo en un momento.", "blog.more": "Más artículos", "blog.write": "Escribir un artículo", "blog.edit": "Editar", "blog.back": "Todos los artículos", "blog.by": "por {name}", "blog.updated": "actualizado el {date}", "blog.readTime": "{n} min de lectura", "blog.translated": "Traducido automáticamente del original ({lang}).", "blog.originalShown": "Estás leyendo el original.", "blog.showOriginal": "Leer el original", "blog.showTranslation": "Leer la traducción", "blog.source": "Fuente: {name}", "blog.readOn": "Leer en {site}", "blog.notFound": "Este artículo no está (quizá se ha retirado).", "blog.others": "También te puede interesar", "blog.comments1": "1 comentario", "blog.commentsN": "{n} comentarios", "blog.comLogin": "Para comentar necesitas una cuenta (es gratis). Para leer, no: el blog es de todos.", "blog.signup": "Crear una cuenta", "blog.comWrite": "Tu comentario", "blog.comHint": "Tu comentario se verá cuando se apruebe.", "blog.comEmpty": "Escribe algo antes de enviar.", "blog.comError": "No puedo cargar los comentarios ahora mismo.", "blog.approve": "Aprobar", "blog.cover": "Portada con QR", "blog.coverSub": "La portada de la Gaceta con el QR que lleva al artículo: para Instagram, WhatsApp y donde quieras.", "blog.coverAlt": "Vista previa de la portada con el QR", "blog.fmtLabel": "Formato", "blog.fmt.story": "Historia 9:16", "blog.fmt.post": "Publicación 4:5", "blog.fmt.square": "Cuadrado 1:1", "blog.fmt.og": "Vista previa del enlace", "blog.studioLang": "Idioma de la portada", "blog.studioDl": "Descargar", "blog.studioShare": "Compartir", "blog.studioWait": "Preparando la portada…", "blog.studioTip": "En el móvil, «Compartir» abre el menú para compartir: elige ahí Instagram, WhatsApp u otra app. En la historia, el espacio de arriba y de abajo queda libre para los botones de Instagram.", "blog.studioSaved": "Descargada: {name}", "blog.studioAgain": "Lista: toca otra vez «Compartir».", "blog.studioFail": "No he podido crear la imagen: inténtalo de nuevo.", "blog.scan": "Escanea el QR para leer el artículo", "blog.homeEyebrow": "Del blog", "blog.homeAll": "Leer el blog →", "notif.blogComment": "comentó en el blog: «{title}»", "notif.mentionBlog": "te mencionó en los comentarios del blog «{title}»"});
+Object.assign(STR.fr, {"blog.nav": "Blog", "blog.gazette": "La Gazette de l'Archive", "blog.motto": "Nouvelles, mises à jour et lectures de l'Archive et d'ailleurs", "blog.free": "Gratuit pour tous", "blog.issue": "Année {y} · N° {n}", "blog.editionNight": "Édition de nuit", "blog.editionDay": "Édition du jour", "blog.filtersLabel": "Rubriques du blog", "blog.filterAll": "Tout", "blog.filter.news": "Actualités", "blog.filter.update": "Mises à jour", "blog.filter.link": "Sur le web", "blog.kind.news": "Actualité", "blog.kind.update": "Mise à jour", "blog.kind.link": "Sur le web", "blog.pinned": "À la une", "blog.draft": "Brouillon", "blog.draftNote": "Brouillon : vous seul le voyez", "blog.empty": "Le blog vient de naître : le premier article arrive bientôt.", "blog.emptyFilter": "Rien dans cette rubrique pour l'instant.", "blog.error": "Impossible de charger le blog pour le moment. Réessayez dans un instant.", "blog.more": "Plus d'articles", "blog.write": "Écrire un article", "blog.edit": "Modifier", "blog.back": "Tous les articles", "blog.by": "par {name}", "blog.updated": "mis à jour le {date}", "blog.readTime": "{n} min de lecture", "blog.translated": "Traduit automatiquement de l'original ({lang}).", "blog.originalShown": "Vous lisez l'original.", "blog.showOriginal": "Lire l'original", "blog.showTranslation": "Lire la traduction", "blog.source": "Source : {name}", "blog.readOn": "Lire sur {site}", "blog.notFound": "Cet article n'existe pas (il a peut-être été retiré).", "blog.others": "À lire aussi", "blog.comments1": "1 commentaire", "blog.commentsN": "{n} commentaires", "blog.comLogin": "Pour commenter, il faut un compte (c'est gratuit). Pour lire, non : le blog est à tout le monde.", "blog.signup": "Créer un compte", "blog.comWrite": "Votre commentaire", "blog.comHint": "Votre commentaire apparaîtra une fois approuvé.", "blog.comEmpty": "Écrivez quelque chose avant d'envoyer.", "blog.comError": "Impossible de charger les commentaires pour le moment.", "blog.approve": "Approuver", "blog.cover": "Couverture avec QR", "blog.coverSub": "La une de la Gazette avec le QR qui mène à l'article : pour Instagram, WhatsApp et partout ailleurs.", "blog.coverAlt": "Aperçu de la couverture avec le QR", "blog.fmtLabel": "Format", "blog.fmt.story": "Story 9:16", "blog.fmt.post": "Publication 4:5", "blog.fmt.square": "Carré 1:1", "blog.fmt.og": "Aperçu du lien", "blog.studioLang": "Langue de la couverture", "blog.studioDl": "Télécharger", "blog.studioShare": "Partager", "blog.studioWait": "Préparation de la couverture…", "blog.studioTip": "Sur le téléphone, « Partager » ouvre le menu de partage : choisissez-y Instagram, WhatsApp ou une autre app. Dans la story, l'espace en haut et en bas reste libre pour les boutons d'Instagram.", "blog.studioSaved": "Téléchargée : {name}", "blog.studioAgain": "Prête : touchez de nouveau « Partager ».", "blog.studioFail": "Impossible de créer l'image : réessayez.", "blog.scan": "Scannez le QR pour lire l'article", "blog.homeEyebrow": "Du blog", "blog.homeAll": "Lire le blog →", "notif.blogComment": "a commenté sur le blog : « {title} »", "notif.mentionBlog": "vous a mentionné dans les commentaires du blog « {title} »"});
+Object.assign(STR.de, {"blog.nav": "Blog", "blog.gazette": "Die Archiv-Zeitung", "blog.motto": "Nachrichten, Neuigkeiten und Lesestoff aus dem Archiv und darüber hinaus", "blog.free": "Gratis für alle", "blog.issue": "Jahrgang {y} · Nr. {n}", "blog.editionNight": "Nachtausgabe", "blog.editionDay": "Tagesausgabe", "blog.filtersLabel": "Rubriken des Blogs", "blog.filterAll": "Alles", "blog.filter.news": "Nachrichten", "blog.filter.update": "Neuigkeiten", "blog.filter.link": "Aus dem Netz", "blog.kind.news": "Nachricht", "blog.kind.update": "Neuigkeit", "blog.kind.link": "Aus dem Netz", "blog.pinned": "Hervorgehoben", "blog.draft": "Entwurf", "blog.draftNote": "Entwurf: nur für dich sichtbar", "blog.empty": "Der Blog ist gerade erst entstanden: Der erste Artikel kommt bald.", "blog.emptyFilter": "In dieser Rubrik gibt es noch nichts.", "blog.error": "Der Blog lässt sich gerade nicht laden. Versuch es gleich noch einmal.", "blog.more": "Weitere Artikel", "blog.write": "Artikel schreiben", "blog.edit": "Bearbeiten", "blog.back": "Alle Artikel", "blog.by": "von {name}", "blog.updated": "aktualisiert am {date}", "blog.readTime": "{n} Min. Lesezeit", "blog.translated": "Automatisch aus dem Original übersetzt ({lang}).", "blog.originalShown": "Du liest das Original.", "blog.showOriginal": "Original lesen", "blog.showTranslation": "Übersetzung lesen", "blog.source": "Quelle: {name}", "blog.readOn": "Auf {site} lesen", "blog.notFound": "Diesen Artikel gibt es nicht (vielleicht wurde er entfernt).", "blog.others": "Ebenfalls lesenswert", "blog.comments1": "1 Kommentar", "blog.commentsN": "{n} Kommentare", "blog.comLogin": "Zum Kommentieren brauchst du ein Konto (kostenlos). Zum Lesen nicht: Der Blog ist für alle da.", "blog.signup": "Konto erstellen", "blog.comWrite": "Dein Kommentar", "blog.comHint": "Dein Kommentar erscheint, sobald er freigegeben ist.", "blog.comEmpty": "Schreib etwas, bevor du sendest.", "blog.comError": "Die Kommentare lassen sich gerade nicht laden.", "blog.approve": "Freigeben", "blog.cover": "Titelseite mit QR", "blog.coverSub": "Die Titelseite der Zeitung mit dem QR-Code, der zum Artikel führt: für Instagram, WhatsApp und überall sonst.", "blog.coverAlt": "Vorschau der Titelseite mit QR-Code", "blog.fmtLabel": "Format", "blog.fmt.story": "Story 9:16", "blog.fmt.post": "Beitrag 4:5", "blog.fmt.square": "Quadrat 1:1", "blog.fmt.og": "Link-Vorschau", "blog.studioLang": "Sprache der Titelseite", "blog.studioDl": "Herunterladen", "blog.studioShare": "Teilen", "blog.studioWait": "Titelseite wird vorbereitet…", "blog.studioTip": "Auf dem Handy öffnet „Teilen“ das Teilen-Menü: Dort wählst du Instagram, WhatsApp oder eine andere App. In der Story bleibt oben und unten Platz für die Schaltflächen von Instagram.", "blog.studioSaved": "Heruntergeladen: {name}", "blog.studioAgain": "Fertig: Tippe noch einmal auf „Teilen“.", "blog.studioFail": "Das Bild konnte nicht erstellt werden: Versuch es noch einmal.", "blog.scan": "Scanne den QR-Code, um den Artikel zu lesen", "blog.homeEyebrow": "Aus dem Blog", "blog.homeAll": "Zum Blog →", "notif.blogComment": "hat im Blog kommentiert: „{title}“", "notif.mentionBlog": "hat dich in den Blog-Kommentaren zu „{title}“ erwähnt"});
+Object.assign(STR.pt, {"blog.nav": "Blog", "blog.gazette": "A Gazeta do Arquivo", "blog.motto": "Notícias, novidades e leituras do Arquivo e arredores", "blog.free": "Grátis para todos", "blog.issue": "Ano {y} · N.º {n}", "blog.editionNight": "Edição da noite", "blog.editionDay": "Edição do dia", "blog.filtersLabel": "Seções do blog", "blog.filterAll": "Tudo", "blog.filter.news": "Notícias", "blog.filter.update": "Novidades", "blog.filter.link": "Da web", "blog.kind.news": "Notícia", "blog.kind.update": "Novidade", "blog.kind.link": "Da web", "blog.pinned": "Em destaque", "blog.draft": "Rascunho", "blog.draftNote": "Rascunho: só você vê", "blog.empty": "O blog acabou de nascer: o primeiro artigo chega em breve.", "blog.emptyFilter": "Ainda não há nada nesta seção.", "blog.error": "Não consigo carregar o blog agora. Tente de novo daqui a pouco.", "blog.more": "Mais artigos", "blog.write": "Escrever um artigo", "blog.edit": "Editar", "blog.back": "Todos os artigos", "blog.by": "por {name}", "blog.updated": "atualizado em {date}", "blog.readTime": "{n} min de leitura", "blog.translated": "Traduzido automaticamente do original ({lang}).", "blog.originalShown": "Você está lendo o original.", "blog.showOriginal": "Ler o original", "blog.showTranslation": "Ler a tradução", "blog.source": "Fonte: {name}", "blog.readOn": "Ler em {site}", "blog.notFound": "Este artigo não existe (talvez tenha sido removido).", "blog.others": "Leia também", "blog.comments1": "1 comentário", "blog.commentsN": "{n} comentários", "blog.comLogin": "Para comentar é preciso ter uma conta (é grátis). Para ler, não: o blog é de todos.", "blog.signup": "Criar uma conta", "blog.comWrite": "Seu comentário", "blog.comHint": "Seu comentário aparece depois de aprovado.", "blog.comEmpty": "Escreva algo antes de enviar.", "blog.comError": "Não consigo carregar os comentários agora.", "blog.approve": "Aprovar", "blog.cover": "Capa com QR", "blog.coverSub": "A primeira página da Gazeta com o QR que leva ao artigo: para o Instagram, o WhatsApp e onde você quiser.", "blog.coverAlt": "Prévia da capa com o QR", "blog.fmtLabel": "Formato", "blog.fmt.story": "Story 9:16", "blog.fmt.post": "Post 4:5", "blog.fmt.square": "Quadrado 1:1", "blog.fmt.og": "Prévia do link", "blog.studioLang": "Idioma da capa", "blog.studioDl": "Baixar", "blog.studioShare": "Compartilhar", "blog.studioWait": "Preparando a capa…", "blog.studioTip": "No celular, «Compartilhar» abre o menu de compartilhamento: escolha ali o Instagram, o WhatsApp ou outro app. No story, o espaço em cima e embaixo fica livre para os botões do Instagram.", "blog.studioSaved": "Baixada: {name}", "blog.studioAgain": "Pronta: toque de novo em «Compartilhar».", "blog.studioFail": "Não consegui criar a imagem: tente de novo.", "blog.scan": "Leia o QR para abrir o artigo", "blog.homeEyebrow": "Do blog", "blog.homeAll": "Ler o blog →", "notif.blogComment": "comentou no blog: «{title}»", "notif.mentionBlog": "mencionou você nos comentários do blog «{title}»"});
+Object.assign(STR.ru, {"blog.nav": "Блог", "blog.gazette": "Архивная газета", "blog.motto": "Новости, обновления и чтение из Архива и не только", "blog.free": "Бесплатно для всех", "blog.issue": "Год {yn} · № {n}", "blog.editionNight": "Ночной выпуск", "blog.editionDay": "Дневной выпуск", "blog.filtersLabel": "Разделы блога", "blog.filterAll": "Все", "blog.filter.news": "Новости", "blog.filter.update": "Обновления", "blog.filter.link": "Из сети", "blog.kind.news": "Новость", "blog.kind.update": "Обновление", "blog.kind.link": "Из сети", "blog.pinned": "Важное", "blog.draft": "Черновик", "blog.draftNote": "Черновик: его видите только вы", "blog.empty": "Блог только что появился: первая статья выйдет совсем скоро.", "blog.emptyFilter": "В этом разделе пока ничего нет.", "blog.error": "Сейчас не удаётся загрузить блог. Попробуйте чуть позже.", "blog.more": "Ещё статьи", "blog.write": "Написать статью", "blog.edit": "Изменить", "blog.back": "Все статьи", "blog.by": "автор: {name}", "blog.updated": "обновлено {date}", "blog.readTime": "{n} мин чтения", "blog.translated": "Автоматический перевод с оригинала ({lang}).", "blog.originalShown": "Вы читаете оригинал.", "blog.showOriginal": "Читать оригинал", "blog.showTranslation": "Читать перевод", "blog.source": "Источник: {name}", "blog.readOn": "Читать на {site}", "blog.notFound": "Этой статьи нет (возможно, её убрали).", "blog.others": "Читайте также", "blog.comments1": "1 комментарий", "blog.commentsN": "Комментариев: {n}", "blog.comLogin": "Чтобы комментировать, нужен аккаунт (это бесплатно). Читать можно и без него: блог для всех.", "blog.signup": "Создать аккаунт", "blog.comWrite": "Ваш комментарий", "blog.comHint": "Комментарий появится после одобрения.", "blog.comEmpty": "Напишите что-нибудь перед отправкой.", "blog.comError": "Сейчас не удаётся загрузить комментарии.", "blog.approve": "Одобрить", "blog.cover": "Обложка с QR", "blog.coverSub": "Первая полоса газеты с QR-кодом, который ведёт к статье: для Instagram, WhatsApp и куда угодно.", "blog.coverAlt": "Предпросмотр обложки с QR-кодом", "blog.fmtLabel": "Формат", "blog.fmt.story": "История 9:16", "blog.fmt.post": "Пост 4:5", "blog.fmt.square": "Квадрат 1:1", "blog.fmt.og": "Превью ссылки", "blog.studioLang": "Язык обложки", "blog.studioDl": "Скачать", "blog.studioShare": "Поделиться", "blog.studioWait": "Готовлю обложку…", "blog.studioTip": "На телефоне «Поделиться» открывает меню: выберите там Instagram, WhatsApp или другое приложение. В истории место сверху и снизу остаётся свободным для кнопок Instagram.", "blog.studioSaved": "Скачано: {name}", "blog.studioAgain": "Готово: нажмите «Поделиться» ещё раз.", "blog.studioFail": "Не удалось создать изображение: попробуйте ещё раз.", "blog.scan": "Отсканируйте QR-код, чтобы прочитать статью", "blog.homeEyebrow": "Из блога", "blog.homeAll": "Читать блог →", "notif.blogComment": "оставил(а) комментарий в блоге: «{title}»", "notif.mentionBlog": "упомянул(а) вас в комментариях блога «{title}»"});
+Object.assign(STR.zh, {"blog.nav": "博客", "blog.gazette": "档案馆报", "blog.motto": "来自档案馆内外的新闻、动态与好文", "blog.free": "所有人免费", "blog.issue": "第{yn}年 · 第{n}期", "blog.editionNight": "夜间版", "blog.editionDay": "日间版", "blog.filtersLabel": "博客栏目", "blog.filterAll": "全部", "blog.filter.news": "新闻", "blog.filter.update": "动态", "blog.filter.link": "网络精选", "blog.kind.news": "新闻", "blog.kind.update": "动态", "blog.kind.link": "网络精选", "blog.pinned": "置顶", "blog.draft": "草稿", "blog.draftNote": "草稿：只有你能看到", "blog.empty": "博客刚刚诞生：第一篇文章即将发布。", "blog.emptyFilter": "这个栏目还没有内容。", "blog.error": "现在无法加载博客，请稍后再试。", "blog.more": "更多文章", "blog.write": "写一篇文章", "blog.edit": "编辑", "blog.back": "全部文章", "blog.by": "作者：{name}", "blog.updated": "更新于 {date}", "blog.readTime": "阅读约需 {n} 分钟", "blog.translated": "由原文（{lang}）自动翻译。", "blog.originalShown": "你正在阅读原文。", "blog.showOriginal": "阅读原文", "blog.showTranslation": "阅读译文", "blog.source": "来源：{name}", "blog.readOn": "在 {site} 阅读", "blog.notFound": "这篇文章不存在（可能已被删除）。", "blog.others": "延伸阅读", "blog.comments1": "1 条评论", "blog.commentsN": "{n} 条评论", "blog.comLogin": "评论需要账号（免费注册）。阅读则不需要：博客对所有人开放。", "blog.signup": "创建账号", "blog.comWrite": "你的评论", "blog.comHint": "你的评论审核通过后才会显示。", "blog.comEmpty": "请先写点内容再发送。", "blog.comError": "现在无法加载评论。", "blog.approve": "通过", "blog.cover": "带二维码的封面", "blog.coverSub": "报纸头版，附带通往文章的二维码：可用于 Instagram、WhatsApp 等任何地方。", "blog.coverAlt": "带二维码的封面预览", "blog.fmtLabel": "格式", "blog.fmt.story": "快拍 9:16", "blog.fmt.post": "帖子 4:5", "blog.fmt.square": "方形 1:1", "blog.fmt.og": "链接预览", "blog.studioLang": "封面语言", "blog.studioDl": "下载", "blog.studioShare": "分享", "blog.studioWait": "正在生成封面…", "blog.studioTip": "在手机上，“分享”会打开分享菜单：在那里选择 Instagram、WhatsApp 或其他应用。快拍的顶部和底部会留空，留给 Instagram 的按钮。", "blog.studioSaved": "已下载：{name}", "blog.studioAgain": "已准备好：请再点一次“分享”。", "blog.studioFail": "无法生成图片，请重试。", "blog.scan": "扫描二维码阅读文章", "blog.homeEyebrow": "来自博客", "blog.homeAll": "阅读博客 →", "notif.blogComment": "在博客中发表了评论：《{title}》", "notif.mentionBlog": "在博客《{title}》的评论中提到了你"});
+Object.assign(STR.ja, {"blog.nav": "ブログ", "blog.gazette": "アーカイブ新聞", "blog.motto": "アーカイブとその周辺から、ニュース・お知らせ・読みもの", "blog.free": "どなたでも無料", "blog.issue": "第{yn}年 · 第{n}号", "blog.editionNight": "夜版", "blog.editionDay": "昼版", "blog.filtersLabel": "ブログのカテゴリー", "blog.filterAll": "すべて", "blog.filter.news": "ニュース", "blog.filter.update": "お知らせ", "blog.filter.link": "ウェブから", "blog.kind.news": "ニュース", "blog.kind.update": "お知らせ", "blog.kind.link": "ウェブから", "blog.pinned": "注目", "blog.draft": "下書き", "blog.draftNote": "下書き：あなたにだけ表示されています", "blog.empty": "ブログは始まったばかりです。最初の記事はまもなく公開されます。", "blog.emptyFilter": "このカテゴリーにはまだ記事がありません。", "blog.error": "現在ブログを読み込めません。少ししてからもう一度お試しください。", "blog.more": "さらに記事を見る", "blog.write": "記事を書く", "blog.edit": "編集", "blog.back": "すべての記事", "blog.by": "文・{name}", "blog.updated": "{date} 更新", "blog.readTime": "約{n}分で読めます", "blog.translated": "原文（{lang}）からの自動翻訳です。", "blog.originalShown": "原文を表示しています。", "blog.showOriginal": "原文を読む", "blog.showTranslation": "翻訳を読む", "blog.source": "出典：{name}", "blog.readOn": "{site} で読む", "blog.notFound": "この記事は見つかりません（削除された可能性があります）。", "blog.others": "あわせて読みたい", "blog.comments1": "コメント1件", "blog.commentsN": "コメント{n}件", "blog.comLogin": "コメントするにはアカウントが必要です（無料）。読むだけならアカウントは不要です。ブログはどなたでも読めます。", "blog.signup": "アカウントを作成", "blog.comWrite": "コメント", "blog.comHint": "コメントは承認後に表示されます。", "blog.comEmpty": "送信する前に何か書いてください。", "blog.comError": "現在コメントを読み込めません。", "blog.approve": "承認", "blog.cover": "QR付きの表紙", "blog.coverSub": "記事へ案内するQRコード付きの新聞の一面。Instagram、WhatsAppなど、どこでも使えます。", "blog.coverAlt": "QRコード付き表紙のプレビュー", "blog.fmtLabel": "形式", "blog.fmt.story": "ストーリーズ 9:16", "blog.fmt.post": "投稿 4:5", "blog.fmt.square": "正方形 1:1", "blog.fmt.og": "リンクのプレビュー", "blog.studioLang": "表紙の言語", "blog.studioDl": "ダウンロード", "blog.studioShare": "共有", "blog.studioWait": "表紙を準備しています…", "blog.studioTip": "スマートフォンでは「共有」で共有メニューが開きます。そこでInstagramやWhatsAppなどのアプリを選んでください。ストーリーズでは、上下の部分をInstagramのボタン用に空けてあります。", "blog.studioSaved": "ダウンロードしました：{name}", "blog.studioAgain": "準備ができました。もう一度「共有」をタップしてください。", "blog.studioFail": "画像を作成できませんでした。もう一度お試しください。", "blog.scan": "QRコードを読み取って記事を読む", "blog.homeEyebrow": "ブログから", "blog.homeAll": "ブログを読む →", "notif.blogComment": "さんがブログにコメントしました：「{title}」", "notif.mentionBlog": "さんがブログ「{title}」のコメントであなたをメンションしました"});
+Object.assign(STR.hi, {"blog.nav": "ब्लॉग", "blog.gazette": "आर्काइव गज़ट", "blog.motto": "आर्काइव और आसपास से ख़बरें, अपडेट और पढ़ने लायक़ बातें", "blog.free": "सबके लिए मुफ़्त", "blog.issue": "वर्ष {yn} · अंक {n}", "blog.editionNight": "रात्रि संस्करण", "blog.editionDay": "दिन का संस्करण", "blog.filtersLabel": "ब्लॉग के खंड", "blog.filterAll": "सब", "blog.filter.news": "ख़बरें", "blog.filter.update": "अपडेट", "blog.filter.link": "वेब से", "blog.kind.news": "ख़बर", "blog.kind.update": "अपडेट", "blog.kind.link": "वेब से", "blog.pinned": "ख़ास", "blog.draft": "ड्राफ़्ट", "blog.draftNote": "ड्राफ़्ट: सिर्फ़ आप देख सकते हैं", "blog.empty": "ब्लॉग अभी-अभी शुरू हुआ है: पहला लेख जल्द आएगा।", "blog.emptyFilter": "इस खंड में अभी कुछ नहीं है।", "blog.error": "अभी ब्लॉग लोड नहीं हो पा रहा है। थोड़ी देर बाद फिर कोशिश करें।", "blog.more": "और लेख", "blog.write": "लेख लिखें", "blog.edit": "बदलें", "blog.back": "सभी लेख", "blog.by": "लेखक: {name}", "blog.updated": "{date} को अपडेट किया गया", "blog.readTime": "{n} मिनट में पढ़ें", "blog.translated": "मूल ({lang}) से अपने-आप अनुवाद किया गया।", "blog.originalShown": "आप मूल लेख पढ़ रहे हैं।", "blog.showOriginal": "मूल पढ़ें", "blog.showTranslation": "अनुवाद पढ़ें", "blog.source": "स्रोत: {name}", "blog.readOn": "{site} पर पढ़ें", "blog.notFound": "यह लेख मौजूद नहीं है (शायद हटा दिया गया है)।", "blog.others": "यह भी पढ़ें", "blog.comments1": "1 टिप्पणी", "blog.commentsN": "{n} टिप्पणियाँ", "blog.comLogin": "टिप्पणी करने के लिए खाता चाहिए (मुफ़्त है)। पढ़ने के लिए नहीं: ब्लॉग सबके लिए है।", "blog.signup": "खाता बनाएँ", "blog.comWrite": "आपकी टिप्पणी", "blog.comHint": "आपकी टिप्पणी मंज़ूरी के बाद दिखेगी।", "blog.comEmpty": "भेजने से पहले कुछ लिखें।", "blog.comError": "अभी टिप्पणियाँ लोड नहीं हो पा रही हैं।", "blog.approve": "मंज़ूर करें", "blog.cover": "QR वाला कवर", "blog.coverSub": "अख़बार का पहला पन्ना, लेख तक ले जाने वाले QR के साथ: Instagram, WhatsApp और जहाँ चाहें।", "blog.coverAlt": "QR वाले कवर की झलक", "blog.fmtLabel": "फ़ॉर्मैट", "blog.fmt.story": "स्टोरी 9:16", "blog.fmt.post": "पोस्ट 4:5", "blog.fmt.square": "चौकोर 1:1", "blog.fmt.og": "लिंक की झलक", "blog.studioLang": "कवर की भाषा", "blog.studioDl": "डाउनलोड करें", "blog.studioShare": "शेयर करें", "blog.studioWait": "कवर तैयार हो रहा है…", "blog.studioTip": "फ़ोन पर «शेयर करें» शेयर मेन्यू खोलता है: वहाँ Instagram, WhatsApp या कोई और ऐप चुनें। स्टोरी में ऊपर और नीचे की जगह Instagram के बटनों के लिए ख़ाली रहती है।", "blog.studioSaved": "डाउनलोड हो गया: {name}", "blog.studioAgain": "तैयार है: «शेयर करें» फिर से टैप करें।", "blog.studioFail": "तस्वीर नहीं बन पाई: फिर कोशिश करें।", "blog.scan": "लेख पढ़ने के लिए QR स्कैन करें", "blog.homeEyebrow": "ब्लॉग से", "blog.homeAll": "ब्लॉग पढ़ें →", "notif.blogComment": "ने ब्लॉग पर टिप्पणी की: “{title}”", "notif.mentionBlog": "ने ब्लॉग “{title}” की टिप्पणियों में आपको मेंशन किया"});
+Object.assign(STR.bn, {"blog.nav": "ব্লগ", "blog.gazette": "আর্কাইভ গেজেট", "blog.motto": "আর্কাইভ ও তার আশপাশ থেকে খবর, আপডেট আর পড়ার মতো লেখা", "blog.free": "সবার জন্য বিনামূল্যে", "blog.issue": "বর্ষ {yn} · সংখ্যা {n}", "blog.editionNight": "রাতের সংস্করণ", "blog.editionDay": "দিনের সংস্করণ", "blog.filtersLabel": "ব্লগের বিভাগ", "blog.filterAll": "সব", "blog.filter.news": "খবর", "blog.filter.update": "আপডেট", "blog.filter.link": "ওয়েব থেকে", "blog.kind.news": "খবর", "blog.kind.update": "আপডেট", "blog.kind.link": "ওয়েব থেকে", "blog.pinned": "বিশেষ", "blog.draft": "খসড়া", "blog.draftNote": "খসড়া: শুধু আপনি দেখতে পাচ্ছেন", "blog.empty": "ব্লগটি সবে শুরু হয়েছে: প্রথম লেখা শিগগিরই আসছে।", "blog.emptyFilter": "এই বিভাগে এখনও কিছু নেই।", "blog.error": "এই মুহূর্তে ব্লগ লোড করা যাচ্ছে না। একটু পরে আবার চেষ্টা করুন।", "blog.more": "আরও লেখা", "blog.write": "লেখা লিখুন", "blog.edit": "সম্পাদনা", "blog.back": "সব লেখা", "blog.by": "লেখক: {name}", "blog.updated": "{date}-এ আপডেট হয়েছে", "blog.readTime": "{n} মিনিটের পড়া", "blog.translated": "মূল লেখা ({lang}) থেকে স্বয়ংক্রিয় অনুবাদ।", "blog.originalShown": "আপনি মূল লেখা পড়ছেন।", "blog.showOriginal": "মূল লেখা পড়ুন", "blog.showTranslation": "অনুবাদ পড়ুন", "blog.source": "সূত্র: {name}", "blog.readOn": "{site}-এ পড়ুন", "blog.notFound": "এই লেখাটি নেই (হয়তো সরিয়ে ফেলা হয়েছে)।", "blog.others": "আরও পড়ুন", "blog.comments1": "1টি মন্তব্য", "blog.commentsN": "{n}টি মন্তব্য", "blog.comLogin": "মন্তব্য করতে অ্যাকাউন্ট লাগে (বিনামূল্যে)। পড়তে লাগে না: ব্লগ সবার জন্য।", "blog.signup": "অ্যাকাউন্ট তৈরি করুন", "blog.comWrite": "আপনার মন্তব্য", "blog.comHint": "অনুমোদনের পরে আপনার মন্তব্য দেখা যাবে।", "blog.comEmpty": "পাঠানোর আগে কিছু লিখুন।", "blog.comError": "এই মুহূর্তে মন্তব্য লোড করা যাচ্ছে না।", "blog.approve": "অনুমোদন করুন", "blog.cover": "QR সহ প্রচ্ছদ", "blog.coverSub": "পত্রিকার প্রথম পাতা, লেখায় পৌঁছানোর QR সহ: Instagram, WhatsApp আর যেখানে খুশি।", "blog.coverAlt": "QR সহ প্রচ্ছদের প্রিভিউ", "blog.fmtLabel": "ফরম্যাট", "blog.fmt.story": "স্টোরি 9:16", "blog.fmt.post": "পোস্ট 4:5", "blog.fmt.square": "বর্গাকার 1:1", "blog.fmt.og": "লিংকের প্রিভিউ", "blog.studioLang": "প্রচ্ছদের ভাষা", "blog.studioDl": "ডাউনলোড", "blog.studioShare": "শেয়ার করুন", "blog.studioWait": "প্রচ্ছদ তৈরি হচ্ছে…", "blog.studioTip": "ফোনে «শেয়ার করুন» শেয়ার মেনু খোলে: সেখানে Instagram, WhatsApp বা অন্য কোনো অ্যাপ বেছে নিন। স্টোরিতে ওপরের আর নিচের জায়গা Instagram-এর বোতামের জন্য খালি থাকে।", "blog.studioSaved": "ডাউনলোড হয়েছে: {name}", "blog.studioAgain": "তৈরি: আবার «শেয়ার করুন» চাপুন।", "blog.studioFail": "ছবি তৈরি করা গেল না: আবার চেষ্টা করুন।", "blog.scan": "লেখাটি পড়তে QR স্ক্যান করুন", "blog.homeEyebrow": "ব্লগ থেকে", "blog.homeAll": "ব্লগ পড়ুন →", "notif.blogComment": "ব্লগে মন্তব্য করেছেন: “{title}”", "notif.mentionBlog": "ব্লগের “{title}”-এর মন্তব্যে আপনাকে উল্লেখ করেছেন"});
+Object.assign(STR.ar, {"blog.nav": "المدونة", "blog.gazette": "جريدة الأرشيف", "blog.motto": "أخبار ومستجدات وقراءات من الأرشيف وما حوله", "blog.free": "مجانًا للجميع", "blog.issue": "السنة {yn} · العدد {n}", "blog.editionNight": "طبعة الليل", "blog.editionDay": "طبعة النهار", "blog.filtersLabel": "أقسام المدونة", "blog.filterAll": "الكل", "blog.filter.news": "أخبار", "blog.filter.update": "مستجدات", "blog.filter.link": "من الويب", "blog.kind.news": "خبر", "blog.kind.update": "مستجدات", "blog.kind.link": "من الويب", "blog.pinned": "مميّز", "blog.draft": "مسودة", "blog.draftNote": "مسودة: تراها أنت فقط", "blog.empty": "وُلدت المدونة للتو: أول مقال قادم قريبًا.", "blog.emptyFilter": "لا يوجد شيء في هذا القسم بعد.", "blog.error": "تعذّر تحميل المدونة الآن. حاول مرة أخرى بعد قليل.", "blog.more": "مقالات أخرى", "blog.write": "اكتب مقالًا", "blog.edit": "تعديل", "blog.back": "كل المقالات", "blog.by": "بقلم {name}", "blog.updated": "حُدّث في {date}", "blog.readTime": "قراءة في {n} دقيقة", "blog.translated": "ترجمة آلية من النص الأصلي ({lang}).", "blog.originalShown": "أنت تقرأ النص الأصلي.", "blog.showOriginal": "اقرأ الأصل", "blog.showTranslation": "اقرأ الترجمة", "blog.source": "المصدر: {name}", "blog.readOn": "اقرأ على {site}", "blog.notFound": "هذا المقال غير موجود (ربما حُذف).", "blog.others": "اقرأ أيضًا", "blog.comments1": "تعليق واحد", "blog.commentsN": "التعليقات: {n}", "blog.comLogin": "للتعليق تحتاج إلى حساب (مجاني). أما القراءة فلا: المدونة للجميع.", "blog.signup": "أنشئ حسابًا", "blog.comWrite": "تعليقك", "blog.comHint": "يظهر تعليقك بعد الموافقة عليه.", "blog.comEmpty": "اكتب شيئًا قبل الإرسال.", "blog.comError": "تعذّر تحميل التعليقات الآن.", "blog.approve": "موافقة", "blog.cover": "غلاف مع رمز QR", "blog.coverSub": "الصفحة الأولى من الجريدة مع رمز QR يقود إلى المقال: لإنستغرام وواتساب وأي مكان تريده.", "blog.coverAlt": "معاينة الغلاف مع رمز QR", "blog.fmtLabel": "الصيغة", "blog.fmt.story": "قصة 9:16", "blog.fmt.post": "منشور 4:5", "blog.fmt.square": "مربع 1:1", "blog.fmt.og": "معاينة الرابط", "blog.studioLang": "لغة الغلاف", "blog.studioDl": "تنزيل", "blog.studioShare": "مشاركة", "blog.studioWait": "جارٍ تحضير الغلاف…", "blog.studioTip": "على الهاتف يفتح «مشاركة» قائمة المشاركة: اختر منها إنستغرام أو واتساب أو تطبيقًا آخر. في القصة تبقى المساحة في الأعلى والأسفل فارغة لأزرار إنستغرام.", "blog.studioSaved": "تم التنزيل: {name}", "blog.studioAgain": "جاهزة: اضغط «مشاركة» مرة أخرى.", "blog.studioFail": "تعذّر إنشاء الصورة: حاول مرة أخرى.", "blog.scan": "امسح رمز QR لقراءة المقال", "blog.homeEyebrow": "من المدونة", "blog.homeAll": "اقرأ المدونة ←", "notif.blogComment": "علّق في المدونة: «{title}»", "notif.mentionBlog": "أشار إليك في تعليقات المدونة «{title}»"});
+Object.assign(STR.pnb, {"blog.nav": "بلاگ", "blog.gazette": "آرکائیو گزٹ", "blog.motto": "آرکائیو تے اوہدے آل دوالے توں خبراں، اپڈیٹاں تے پڑھن والیاں گلاں", "blog.free": "سب لئی مفت", "blog.issue": "سال {yn} · شمارہ {n}", "blog.editionNight": "رات دا ایڈیشن", "blog.editionDay": "دن دا ایڈیشن", "blog.filtersLabel": "بلاگ دے حصے", "blog.filterAll": "سب", "blog.filter.news": "خبراں", "blog.filter.update": "اپڈیٹاں", "blog.filter.link": "ویب توں", "blog.kind.news": "خبر", "blog.kind.update": "اپڈیٹ", "blog.kind.link": "ویب توں", "blog.pinned": "خاص", "blog.draft": "ڈرافٹ", "blog.draftNote": "ڈرافٹ: صرف تسیں ویکھ سکدے او", "blog.empty": "بلاگ ہنے ای شروع ہویا اے: پہلا مضمون چھیتی آ رہیا اے۔", "blog.emptyFilter": "ایس حصے وچ اجے کجھ نہیں۔", "blog.error": "ہن بلاگ لوڈ نہیں ہو رہیا۔ تھوڑی دیر بعد فیر کوشش کرو۔", "blog.more": "ہور مضمون", "blog.write": "مضمون لکھو", "blog.edit": "بدلو", "blog.back": "سارے مضمون", "blog.by": "لکھاری: {name}", "blog.updated": "{date} نوں اپڈیٹ ہویا", "blog.readTime": "{n} منٹ دی پڑھائی", "blog.translated": "اصل ({lang}) توں آپے ترجمہ کیتا گیا۔", "blog.originalShown": "تسیں اصل پڑھ رہے او۔", "blog.showOriginal": "اصل پڑھو", "blog.showTranslation": "ترجمہ پڑھو", "blog.source": "ذریعہ: {name}", "blog.readOn": "{site} تے پڑھو", "blog.notFound": "ایہ مضمون موجود نہیں (شاید ہٹا دتا گیا اے)۔", "blog.others": "ایہ وی پڑھو", "blog.comments1": "1 تبصرہ", "blog.commentsN": "{n} تبصرے", "blog.comLogin": "تبصرہ کرن لئی اکاؤنٹ چاہیدا اے (مفت اے)۔ پڑھن لئی نہیں: بلاگ سب لئی اے۔", "blog.signup": "اکاؤنٹ بناؤ", "blog.comWrite": "تہاڈا تبصرہ", "blog.comHint": "تہاڈا تبصرہ منظوری توں بعد دسے گا۔", "blog.comEmpty": "بھیجن توں پہلاں کجھ لکھو۔", "blog.comError": "ہن تبصرے لوڈ نہیں ہو رہے۔", "blog.approve": "منظور کرو", "blog.cover": "QR والا سرورق", "blog.coverSub": "اخبار دا پہلا صفحہ، مضمون تک لے جان والے QR نال: انسٹاگرام، واٹس ایپ تے جتھے چاہو۔", "blog.coverAlt": "QR والے سرورق دی جھلک", "blog.fmtLabel": "فارمیٹ", "blog.fmt.story": "سٹوری 9:16", "blog.fmt.post": "پوسٹ 4:5", "blog.fmt.square": "چورس 1:1", "blog.fmt.og": "لنک دی جھلک", "blog.studioLang": "سرورق دی زبان", "blog.studioDl": "ڈاؤن لوڈ", "blog.studioShare": "شیئر کرو", "blog.studioWait": "سرورق تیار ہو رہیا اے…", "blog.studioTip": "فون تے «شیئر کرو» شیئر والا مینیو کھولدا اے: اوتھے انسٹاگرام، واٹس ایپ یا کوئی ہور ایپ چنو۔ سٹوری وچ اتے تے تھلے دی جگہ انسٹاگرام دے بٹناں لئی خالی رہندی اے۔", "blog.studioSaved": "ڈاؤن لوڈ ہو گیا: {name}", "blog.studioAgain": "تیار اے: «شیئر کرو» نوں فیر دباؤ۔", "blog.studioFail": "تصویر نہیں بن سکی: فیر کوشش کرو۔", "blog.scan": "مضمون پڑھن لئی QR سکین کرو", "blog.homeEyebrow": "بلاگ توں", "blog.homeAll": "بلاگ پڑھو ←", "notif.blogComment": "نے بلاگ تے تبصرہ کیتا: «{title}»", "notif.mentionBlog": "نے بلاگ «{title}» دے تبصریاں وچ تہاڈا ذکر کیتا"});
 var CHAR_META = {
   Lucifer:{role:{it:"Il Portatore di Luce",en:"The Light-Bearer",es:"El Portador de Luz",fr:"Le Porteur de Lumière",de:"Der Lichtträger"},
     bio:{it:"Sovrano della collana ammiraglia: potere, caduta e desiderio raccontati su grande scala.",
@@ -1285,6 +1299,7 @@ function setLang(lang){
   try { luxCoverRelang(); } catch(e){} // v237: la copertina nella lingua nuova
   try { luxResetRelang(); } catch(e){} // v242: la finestra «Scegli una nuova password»
   try { var cm = document.getElementById('cartModal'); if(cm && !cm.classList.contains('hidden')) renderCartModal(); } catch(e){} // v246: il carrello aperto
+  try { luxBlogRelang(); } catch(e){} // v263: il blog e «Dal blog» in home
 }
 var titleModalRelang = false; // v227: la scheda si rifà per la lingua, non è una nuova apertura
 
@@ -1303,6 +1318,7 @@ function showEntryModeGate(opts){
   if(luxCoverBot() || document.getElementById('entryModeGate')) return; // v248: i motori di ricerca non scelgono; e ce n'è una sola
   try { if(sessionStorage.getItem('lux_entry_mode')) return; } catch(e){ return; } // già scelto in questa apertura
   if(luxArriveSkipGate()){ try { sessionStorage.setItem('lux_entry_mode', 'online'); } catch(e){} return; } // v251: chi arriva da un link (un capitolo, un QR) è online
+  if(document.getElementById('blogSection') && navigator.onLine !== false){ try { sessionStorage.setItem('lux_entry_mode', 'online'); } catch(e){} return; } // v263: il blog è aperto a tutti: si entra e basta
   // v248: con la copertina sopra è la seconda pagina dell'albo: sta sotto di lei. L'illustrazione è quella
   // verticale sui telefoni e sugli schermi più alti che larghi, l'orizzontale sugli altri: se è la stessa
   // della copertina (anche in alta definizione) si usa quella, già scaricata
@@ -1423,7 +1439,7 @@ var luxCoverResizeT = 0;
 
 function luxCoverBot(){ return /bot|crawl|spider|slurp|headless|lighthouse|bingpreview|facebookexternalhit|embedly/i.test(navigator.userAgent || ''); }
 function luxCoverSkipPage(){
-  return !!(document.getElementById('luxtifySection') || document.getElementById('legalSection') || document.getElementById('statusSection'));
+  return !!(document.getElementById('luxtifySection') || document.getElementById('legalSection') || document.getElementById('statusSection') || document.getElementById('blogSection')); // v263: anche il blog
 }
 function luxCoverWanted(){
   if(luxCoverSkipPage() || luxCoverBot()) return false;
@@ -3752,6 +3768,7 @@ function refreshCommunityDot(){
 
 function refreshAuthUI(){
   try { luxCoverSyncButtons(); } catch(e){} // v242: «Chiudi l'albo» accanto a «Esci»
+  try { luxBlogAuthChanged(); } catch(e){} // v263: il blog (commentare, le cose dell'amministratore)
   var chip = document.getElementById('acctChip');
   if(!chip) return; // pagina senza il menu principale (es. luxtify.html) — niente da aggiornare qui
   homeRailAuthCheck();
@@ -8457,7 +8474,7 @@ function luxLocalized(row, fields){
   fields.forEach(function(f){ if(typeof tr[f] === 'string' && tr[f]) out[f] = tr[f]; });
   return out;
 }
-var LUX_I18N_FIELDS = { community_events: ['title', 'description'], announcements: ['title', 'body'] };
+var LUX_I18N_FIELDS = { community_events: ['title', 'description'], announcements: ['title', 'body'], blog_posts: ['title', 'body'] }; // v263: anche il blog
 function luxPatchRowI18n(table, id, i18n){
   var s = getSession();
   if(!s) return Promise.reject(luxTrErr(401, { code: 'auth' }));
@@ -11639,6 +11656,7 @@ function luxShareFlash(btn, ok){
 function luxShareNative(s, withFile){
   if(!navigator.share) return Promise.reject(new Error('no share'));
   var data = { title: s.title, text: s.text, url: s.url };
+  if(withFile && s.file && navigator.canShare){ try { if(navigator.canShare({ files: [s.file] })) data.files = [s.file]; } catch(e){} return navigator.share(data); } // v263: la copertina con il QR, già pronta
   if(!withFile || !s.cover || !navigator.canShare) return navigator.share(data);
   return fetchAsBlob(s.cover).then(function(blob){
     var file = new File([blob], 'copertina.' + ((blob.type && blob.type.split('/')[1]) || 'jpg'), { type: blob.type || 'image/jpeg' });
@@ -11703,6 +11721,7 @@ function openSharePanel(s){
     '</div>';
   box.querySelector('.lux-share-x').addEventListener('click', closeSharePanel);
   wireShareButtons(box, s);
+  if(s.extra) try { s.extra(box); } catch(e){ console.warn('[condividi]', e); } // v263: per il blog, la copertina con il QR
   box.hidden = false;
   var first = box.querySelector('.lux-share-btn');
   if(first) setTimeout(function(){ first.focus(); }, 30);
@@ -12580,7 +12599,7 @@ function renderNotifPanel(){
 function openNotification(n){
   deleteNotification(n.id);
   document.getElementById('notifPanel').classList.add('hidden');
-  if(n.link && /^(mention|mention_collab|group_message|group_added)$/.test(n.type || '') && luxNotifOpenLink(n)) return; // v255: il gruppo, il post, il canale
+  if(n.link && /^(mention|mention_collab|group_message|group_added|blog_comment)$/.test(n.type || '') && luxNotifOpenLink(n)) return; // v255: il gruppo, il post, il canale
   if(n.type === 'dm_message' && n.source_id){
     if(document.getElementById('chatSection')){
       openChatWithUser(n.source_id, true);
@@ -23252,6 +23271,7 @@ function switchAdminTab(tabName){
   if(tabName === 'moderation') renderCommunityModeration();
   if(tabName === 'stats'){ renderSongStatsLeaderboard(); renderStatsPanel(); luxPromoStatsBox(); } // v250: con i numeri freschi (v251: e «Da Instagram»)
   if(tabName === 'promo') luxPromoRender(true); // v251: Link e QR
+  if(tabName === 'blog') luxBlogAdminRender(true); // v263: il blog
   if(tabName === 'artists') renderAdminArtistsList();
   if(tabName === 'servers') loadServersAdminList();
   if(tabName === 'events') loadEventsAdminList();
@@ -26453,11 +26473,13 @@ function luxNotifText(n){
     if((m = /^ti ha menzionato nel canale (#.*?): «([\s\S]*)»$/.exec(msg))) return t('notif.mentionChannel').replace('{name}', m[1]) + ex(m[2]);
     if((m = /^ti ha menzionato nel server «(.*?)»: «([\s\S]*)»$/.exec(msg))) return t('notif.mentionServer').replace('{name}', m[1]) + ex(m[2]);
     if((m = /^ti ha menzionato nei commenti di «(.*?)»: «([\s\S]*)»$/.exec(msg))) return t('notif.mentionComments').replace('{title}', m[1]) + ex(m[2]);
+    if((m = /^ti ha menzionato nei commenti del blog «(.*?)»: «([\s\S]*)»$/.exec(msg))) return t('notif.mentionBlog').replace('{title}', m[1]) + ex(m[2]); // v263
     return t('notif.mention');
   }
   if(n.type === 'mention_collab' && (m = /^ti ha messo tra i collaboratori di «([\s\S]*)»$/.exec(msg))) return t('notif.mentionCollab').replace('{title}', m[1]);
   if(n.type === 'group_added' && (m = /^ti ha aggiunto al gruppo «([\s\S]*)»$/.exec(msg))) return t('notif.groupAdded').replace('{name}', m[1]);
   if(n.type === 'donor_unlock') return luxLockNotifText(n); // v257
+  if(n.type === 'blog_comment' && (m = /^ha commentato nel blog: «([\s\S]*)»$/.exec(msg))) return t('notif.blogComment').replace('{title}', m[1]); // v263
   if(n.type === 'group_message') return '— ' + msg.replace(/: 📷 Foto$/, ': 📷 ' + t('chat.photo')).replace(/: 📎 File$/, ': 📎 ' + t('chat.file'));
   return msg;
 }
@@ -28425,6 +28447,1830 @@ function fillEventArchiveCard(card, ev){
   }).catch(function(){});
 }
 
+/* ============ v263: IL BLOG — «La Gazzetta dell'Archivio» ============
+   blog.html: notizie, aggiornamenti e link ad altri siti. È aperto a tutti: niente account, niente donazioni e niente
+   copertina d'ingresso (luxCoverSkipPage). Per commentare serve l'account; i commenti degli altri li approva
+   l'amministratore (sotto l'articolo stesso, o in Amministra › Commenti). Ogni articolo si condivide fuori (WhatsApp,
+   Telegram, Facebook, Instagram…) e ha la sua «copertina con QR»: la prima pagina della Gazzetta, con la testata nello
+   stile dei giornali della lingua scelta (gotica per inglese, francese e tedesco; un bodoni per italiano, spagnolo,
+   portoghese e russo; i caratteri del telefono per le altre scritture). L'amministratore scrive in Amministra › Blog:
+   pubblicando, l'articolo si traduce e si prepara l'anteprima per i social (b/<id>.html, funzione generate-blog-preview). */
+var LUX_BLOG = { rows: null, idx: null, err: null, loading: null, more: false, filter: 'all', shown: 13, open: null, single: {}, pv: {}, orig: {}, auth: null };
+var LUX_GZ_STYLE = { en: 'black', fr: 'black', de: 'black', it: 'serif', es: 'serif', pt: 'serif', ru: 'serif', zh: 'cjk', ja: 'cjk', hi: 'indic', bn: 'indic', ar: 'arabic', pnb: 'arabic' };
+var LUX_GZ_FONTS = {
+  black: '"UnifrakturMaguntia", "Old English Text MT", "Playfair Display", Georgia, serif',
+  serif: '"Playfair Display", "Bodoni 72", Didot, Georgia, serif',
+  body: '"Crimson Pro", Georgia, serif',
+  zh: '"Noto Serif SC", "Noto Serif CJK SC", "Source Han Serif SC", "Songti SC", STSong, SimSun, serif',
+  ja: '"Noto Serif JP", "Noto Serif CJK JP", "Hiragino Mincho ProN", "Yu Mincho", "MS Mincho", serif',
+  hi: '"Noto Serif Devanagari", "Kohinoor Devanagari", "Nirmala UI", Mangal, serif',
+  bn: '"Noto Serif Bengali", "Kohinoor Bangla", "Nirmala UI", Vrinda, serif',
+  ar: '"Noto Naskh Arabic", Amiri, "Geeza Pro", "Traditional Arabic", "Times New Roman", serif',
+  pnb: '"Noto Nastaliq Urdu", "Noto Naskh Arabic", "Geeza Pro", "Times New Roman", serif'
+};
+function luxGzKind(lang){ return LUX_GZ_STYLE[lang] || 'serif'; }
+function luxGzLatin(lang){ var k = luxGzKind(lang); return k === 'black' || k === 'serif'; }
+function luxGzNameFont(lang){ var k = luxGzKind(lang); return k === 'black' ? LUX_GZ_FONTS.black : k === 'serif' ? LUX_GZ_FONTS.serif : (LUX_GZ_FONTS[lang] || 'serif'); }
+// (per le altre scritture prima il carattere latino: un titolo rimasto in italiano esce comunque col bodoni)
+function luxGzHeadFont(lang){ return luxGzLatin(lang) ? LUX_GZ_FONTS.serif : '"Playfair Display", ' + (LUX_GZ_FONTS[lang] || 'serif'); }
+function luxGzBodyFont(lang){ return luxGzLatin(lang) ? LUX_GZ_FONTS.body : '"Crimson Pro", ' + (LUX_GZ_FONTS[lang] || 'serif'); }
+function luxGzRoman(n){
+  var r = '', v = [[1000, 'M'], [900, 'CM'], [500, 'D'], [400, 'CD'], [100, 'C'], [90, 'XC'], [50, 'L'], [40, 'XL'], [10, 'X'], [9, 'IX'], [5, 'V'], [4, 'IV'], [1, 'I']];
+  n = Math.max(1, n | 0);
+  v.forEach(function(p){ while(n >= p[0]){ r += p[1]; n -= p[0]; } });
+  return r;
+}
+// «Anno I · N. 7» (l'anno della Gazzetta: il 2026 è il primo)
+function luxGzIssue(lang, d, n){
+  var y = Math.max(1, d.getFullYear() - 2025);
+  return luxRt(lang, 'blog.issue').replace('{y}', luxGzRoman(y)).replace('{yn}', String(y)).replace('{n}', String(n));
+}
+// «Domenica 1 novembre 2026», nella lingua scelta
+function luxGzDate(lang, d){
+  var s = '';
+  try { s = d.toLocaleDateString(luxLocaleOf(lang), { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }); } catch(e){ s = d.toDateString(); }
+  if(luxGzLatin(lang)) try { s = s.charAt(0).toLocaleUpperCase(lang) + s.slice(1); } catch(e){}
+  return s;
+}
+// un valore sicuro dentro un attributo HTML (escapeHtml non tocca le virgolette)
+function luxAttr(s){ return escapeHtml(s == null ? '' : String(s)).replace(/"/g, '&quot;').replace(/'/g, '&#39;'); }
+
+/* ---- gli articoli: lettura ---- */
+function luxBlogTs(p){ var v = Date.parse((p && (p.published_at || p.created_at)) || ''); return isNaN(v) ? 0 : v; }
+function luxBlogSort(rows){
+  return rows.slice().sort(function(a, b){
+    if(!!a.pinned !== !!b.pinned) return a.pinned ? -1 : 1;
+    return luxBlogTs(b) - luxBlogTs(a);
+  });
+}
+function luxBlogGet(q){
+  return fetch(SUPABASE_URL + '/rest/v1/blog_posts?' + q, { headers: communityHeaders() }).then(function(r){
+    if(r.status === 404){ var e = new Error('missing'); e.missing = true; throw e; }
+    if(!r.ok) throw new Error('blog ' + r.status);
+    return r.json();
+  });
+}
+var LUX_BLOG_PAGE = 80;
+// gli articoli (le bozze le legge solo l'amministratore) e l'indice per i numeri delle uscite
+function luxBlogLoad(force){
+  if(LUX_BLOG.loading && !force) return LUX_BLOG.loading;
+  if(!SUPABASE_URL){ LUX_BLOG.rows = []; LUX_BLOG.idx = []; return (LUX_BLOG.loading = Promise.resolve([])); }
+  LUX_BLOG.loading = Promise.all([
+    luxBlogGet('select=*&order=pinned.desc,published_at.desc&limit=' + LUX_BLOG_PAGE),
+    luxBlogGet('select=id,published_at,published&order=published_at.asc&limit=3000')
+  ]).then(function(res){
+    LUX_BLOG.err = null;
+    LUX_BLOG.rows = luxBlogSort(res[0] || []);
+    LUX_BLOG.more = (res[0] || []).length >= LUX_BLOG_PAGE;
+    LUX_BLOG.idx = res[1] || [];
+    return LUX_BLOG.rows;
+  }).catch(function(e){
+    if(!(e && e.missing)) console.warn('[blog]', e);
+    LUX_BLOG.err = e && e.missing ? 'missing' : 'error';
+    if(!LUX_BLOG.rows) LUX_BLOG.rows = [];
+    if(!LUX_BLOG.idx) LUX_BLOG.idx = [];
+    return LUX_BLOG.rows;
+  });
+  return LUX_BLOG.loading;
+}
+function luxBlogLoadMore(){
+  if(!LUX_BLOG.more || LUX_BLOG.moreBusy) return Promise.resolve();
+  LUX_BLOG.moreBusy = true;
+  return luxBlogGet('select=*&order=pinned.desc,published_at.desc&limit=' + LUX_BLOG_PAGE + '&offset=' + (LUX_BLOG.rows || []).length).then(function(rows){
+    var have = {};
+    (LUX_BLOG.rows || []).forEach(function(p){ have[p.id] = 1; });
+    LUX_BLOG.rows = luxBlogSort((LUX_BLOG.rows || []).concat((rows || []).filter(function(p){ return !have[p.id]; })));
+    LUX_BLOG.more = (rows || []).length >= LUX_BLOG_PAGE;
+  }).catch(function(e){ console.warn('[blog] altri articoli', e); }).then(function(){ LUX_BLOG.moreBusy = false; });
+}
+function luxBlogFind(id){
+  id = String(id || '').toLowerCase();
+  var rows = LUX_BLOG.rows || [];
+  for(var i = 0; i < rows.length; i++) if(String(rows[i].id).toLowerCase() === id) return rows[i];
+  return LUX_BLOG.single[id] || null;
+}
+function luxBlogFetchOne(id){
+  if(!SUPABASE_URL) return Promise.resolve(null);
+  return luxBlogGet('id=eq.' + encodeURIComponent(id) + '&select=*')
+    .then(function(rows){ var p = (rows && rows[0]) || null; LUX_BLOG.single[String(id).toLowerCase()] = p || false; return p; })
+    .catch(function(e){ if(e && e.missing) LUX_BLOG.err = 'missing'; LUX_BLOG.single[String(id).toLowerCase()] = false; return null; });
+}
+// il numero dell'uscita: quanti articoli sono usciti fino a questo (compreso)
+function luxBlogNum(p){
+  var t0 = luxBlogTs(p), n = 0;
+  (LUX_BLOG.idx || []).forEach(function(r){ if(r.published !== false && (Date.parse(r.published_at || '') || 0) <= t0) n++; });
+  if(p && p.published === false) n++;
+  return Math.max(1, n);
+}
+function luxBlogPublishedCount(){ return (LUX_BLOG.idx || []).filter(function(r){ return r.published !== false; }).length; }
+
+/* ---- testi ---- */
+// nella lingua di chi legge (la traduzione), o l'originale se l'articolo è scritto nella sua lingua o se l'ha chiesto
+function luxBlogLoc(p){
+  if(!p || LUX_BLOG.orig[p.id] || (p.lang || 'it') === currentLang) return p;
+  return luxLocalized(p, ['title', 'body']);
+}
+function luxBlogIsTranslated(p){
+  var tr = p && p.i18n && p.i18n[currentLang];
+  return !!(tr && (tr.title || tr.body)) && (p.lang || 'it') !== currentLang;
+}
+// il nome della lingua nella lingua di chi legge («inglese», «anglais»…); se il browser non lo sa, quello della lingua stessa («English»)
+function luxBlogLangName(code){
+  try {
+    if(window.Intl && Intl.DisplayNames){
+      var n = new Intl.DisplayNames([currentLang], { type: 'language' }).of(code);
+      if(n && n.toLowerCase() !== String(code).toLowerCase()) return n;
+    }
+  } catch(e){}
+  for(var i = 0; i < LUX_LANGS.length; i++) if(LUX_LANGS[i].code === code) return LUX_LANGS[i].name;
+  return code;
+}
+function luxBlogDomain(u){ try { return new URL(u).hostname.replace(/^www\./i, ''); } catch(e){ return ''; } }
+function luxBlogSource(p){ return String((p && p.source_name) || '').trim() || luxBlogDomain(p && p.link_url); }
+function luxBlogKicker(p, lang){
+  var k = luxRt(lang || currentLang, 'blog.kind.' + (LUX_BLOG_KINDS.indexOf(p.kind) === -1 ? 'news' : p.kind));
+  var src = p.kind === 'link' ? luxBlogSource(p) : '';
+  return src ? k + ' · ' + src : k;
+}
+var LUX_BLOG_KINDS = ['news', 'update', 'link'];
+function luxBlogDate(p, lang){
+  var d = new Date(luxBlogTs(p));
+  if(!luxBlogTs(p)) return '';
+  try { return d.toLocaleDateString(luxLocaleOf(lang || currentLang), { day: 'numeric', month: 'long', year: 'numeric' }); } catch(e){ return d.toDateString(); }
+}
+function luxBlogExcerpt(text, n){
+  var s = String(text || '').replace(/\s+/g, ' ').trim();
+  if(s.length <= n) return s;
+  s = s.slice(0, n);
+  var i = s.lastIndexOf(' ');
+  return (i > n * 0.6 ? s.slice(0, i) : s).replace(/[\s,.;:!?–—-]+$/, '') + '…';
+}
+function luxBlogMinutes(text){
+  var s = String(text || '');
+  var n = LIG_CJK_RE.test(s) ? s.replace(/\s+/g, '').length / 400 : s.split(/\s+/).filter(Boolean).length / 220;
+  return Math.max(1, Math.round(n));
+}
+// i link nel testo (solo http/https; le virgolette non possono stare nell'indirizzo)
+function luxBlogLinkify(html){
+  return html.replace(/(^|[\s(>;])(https?:\/\/[^\s<"']+[^\s<"'.,;:!?)\]»])/g, function(all, lead, url){
+    var shown = url.replace(/^https?:\/\/(www\.)?/i, '').replace(/&amp;/g, '&');
+    if(shown.length > 48) shown = shown.slice(0, 45) + '…';
+    return lead + '<a href="' + url + '" target="_blank" rel="noopener nofollow ugc">' + escapeHtml(shown) + '</a>';
+  });
+}
+function luxBlogBodyHtml(text){
+  return String(text || '').replace(/\r\n?/g, '\n').split(/\n[ \t]*\n+/).map(function(p){
+    p = p.replace(/^\s+|\s+$/g, '');
+    if(!p) return '';
+    return '<p>' + luxMentionLinks(luxBlogLinkify(escapeHtml(p))).replace(/\n/g, '<br>') + '</p>';
+  }).join('');
+}
+// la miniatura caricata insieme all'immagine (img-123.jpg → img-123-sm.jpg); se manca, l'immagine intera (data-fallback)
+function luxBlogThumb(url){ return String(url || '').replace(/(\/blog\/[^/?#]+\/img-\d+)\.jpg((?:[?#].*)?)$/i, '$1-sm.jpg$2'); }
+function luxBlogHref(p){ return 'blog.html?post=' + encodeURIComponent(p.id); }
+function luxBlogAbs(id){ return luxPromoBase() + 'blog.html?post=' + encodeURIComponent(id); }
+function luxBlogComLabel(n){ return n === 1 ? t('blog.comments1') : t('blog.commentsN').replace('{n}', String(n)); }
+function luxBlogLangAttr(p){
+  var lang = luxBlogLoc(p) === p ? (p.lang || 'it') : currentLang;
+  return ' lang="' + luxAttr(lang) + '"' + (luxIsRtl(lang) ? ' dir="rtl"' : luxIsRtl(currentLang) ? ' dir="ltr"' : '');
+}
+function luxBlogTags(p){
+  return (p.pinned ? '<span class="gz-tag">' + escapeHtml(t('blog.pinned')) + '</span>' : '') +
+    (p.published === false ? '<span class="gz-tag gz-tag-draft">' + escapeHtml(t('blog.draft')) + '</span>' : '');
+}
+function luxBlogMetaHtml(p){
+  var bits = [escapeHtml(luxBlogDate(p))];
+  if(p.comment_count > 0) bits.push(escapeHtml(luxBlogComLabel(p.comment_count)));
+  return '<p class="gz-meta">' + bits.join('<span class="gz-dot" aria-hidden="true"> · </span>') +
+    '<button type="button" class="gz-iconbtn" data-gz-share="' + luxAttr(p.id) + '" aria-label="' + luxAttr(t('share.title')) + '">' + LPR_I.share + '</button></p>';
+}
+function luxBlogImgHtml(p, w){
+  if(!p.image_url) return '';
+  return '<img src="' + luxAttr(w > 600 ? p.image_url : luxBlogThumb(p.image_url)) + '" data-fallback="' + luxAttr(p.image_url) + '" alt="" loading="lazy" decoding="async">';
+}
+
+/* ---- la pagina del blog ---- */
+function luxBlogPostParam(){ var m = /[?&]post=([0-9a-zA-Z-]{6,40})/.exec(window.location.search || ''); return m ? m[1].toLowerCase() : null; }
+function luxBlogPageInit(){
+  var sec = document.getElementById('blogSection');
+  if(!sec || sec.__gz) return;
+  sec.__gz = true;
+  LUX_BLOG.auth = isSignedIn() ? currentUserId() : '';
+  sec.addEventListener('click', luxBlogClick);
+  window.addEventListener('popstate', function(){ luxBlogRoute(); });
+  luxBlogFilters();
+  luxBlogRoute();
+  luxBlogLoad().then(function(){ luxBlogRoute(true); });
+}
+function luxBlogRoute(loaded){
+  var id = luxBlogPostParam();
+  if(id) luxBlogShowArticle(id, loaded); else luxBlogShowList();
+}
+function luxBlogMast(){
+  var box = document.getElementById('gzMast');
+  if(!box) return;
+  var lang = currentLang, art = !!LUX_BLOG.open, now = new Date(), n = luxBlogPublishedCount();
+  var nameAttr = ' class="gz-name gz-name--' + luxGzKind(lang) + '" lang="' + luxAttr(lang) + '"';
+  box.innerHTML =
+    (art ? '<a' + nameAttr + ' href="blog.html" data-gz-home>' : '<h1' + nameAttr + '>') + escapeHtml(t('blog.gazette')) + (art ? '</a>' : '</h1>') +
+    '<p class="gz-motto">' + escapeHtml(t('blog.motto')) + '</p>' +
+    '<div class="gz-folio">' +
+      '<span class="gz-folio-date">' + escapeHtml(luxGzDate(lang, now)) + '</span>' +
+      '<span class="gz-folio-ed"><span class="gz-ed-night">' + escapeHtml(t('blog.editionNight')) + '</span><span class="gz-ed-day">' + escapeHtml(t('blog.editionDay')) + '</span>' +
+        (n ? '<span class="gz-dot" aria-hidden="true"> · </span>' + escapeHtml(luxGzIssue(lang, now, n)) : '') + '</span>' +
+      '<span class="gz-folio-free">' + escapeHtml(t('blog.free')) + '</span>' +
+    '</div>';
+  luxBlogFitName(box.querySelector('.gz-name'));
+}
+// la testata su una riga sola: se non ci sta, le lettere un po' più piccole (quando i caratteri sono arrivati, e se la finestra cambia)
+function luxBlogFitName(el){
+  if(!el) return;
+  var fit = function(){
+    if(!el.isConnected) return;
+    el.style.fontSize = '';
+    el.style.whiteSpace = 'nowrap';
+    var w = el.clientWidth, sw = el.scrollWidth;
+    if(w && sw > w){
+      var max = parseFloat(window.getComputedStyle(el).fontSize) || 60;
+      el.style.fontSize = Math.max(24, Math.floor(max * w / sw * 0.98)) + 'px';
+      if(el.scrollWidth > el.clientWidth) el.style.whiteSpace = '';
+    }
+  };
+  fit();
+  try { if(document.fonts && document.fonts.ready) document.fonts.ready.then(fit); } catch(e){}
+  if(!luxBlogFitName.on){
+    luxBlogFitName.on = true;
+    var tm = 0;
+    window.addEventListener('resize', function(){
+      clearTimeout(tm);
+      tm = setTimeout(function(){ Array.prototype.forEach.call(document.querySelectorAll('.gz-name, .gz-home-name'), luxBlogFitName); }, 150);
+    });
+  }
+}
+function luxBlogFilters(){
+  var box = document.getElementById('gzFilters');
+  if(!box) return;
+  var opts = [['all', 'blog.filterAll'], ['news', 'blog.filter.news'], ['update', 'blog.filter.update'], ['link', 'blog.filter.link']];
+  box.setAttribute('aria-label', t('blog.filtersLabel'));
+  box.innerHTML = opts.map(function(o){
+    var on = LUX_BLOG.filter === o[0];
+    return '<button type="button" class="gz-filter' + (on ? ' on' : '') + '" data-gz-filter="' + o[0] + '" aria-pressed="' + on + '">' + escapeHtml(t(o[1])) + '</button>';
+  }).join('');
+}
+function luxBlogVisible(){
+  var f = LUX_BLOG.filter, adm = isAdmin();
+  return (LUX_BLOG.rows || []).filter(function(p){ return (adm || p.published !== false) && (f === 'all' || p.kind === f); });
+}
+function luxBlogShowList(){
+  var list = document.getElementById('gzList'), art = document.getElementById('gzArticle'), fl = document.getElementById('gzFilters');
+  if(!list || !art) return;
+  LUX_BLOG.open = null;
+  art.hidden = true; art.innerHTML = '';
+  list.hidden = false;
+  if(fl) fl.hidden = false;
+  document.title = t('blog.gazette') + ' — LUX COMICS & MEDUSA COMICS';
+  luxBlogMast();
+  if(LUX_BLOG.rows === null){ list.innerHTML = '<p class="gz-note gz-wait">…</p>'; return; }
+  var rows = luxBlogVisible();
+  var admin = isAdmin() ? '<p class="gz-note"><a class="btn btn-ghost btn-sm" href="admin.html" data-gz-write>' + escapeHtml(t('blog.write')) + '</a></p>' : '';
+  if(!rows.length){
+    var key = LUX_BLOG.err === 'error' ? 'blog.error' : (LUX_BLOG.filter === 'all' ? 'blog.empty' : 'blog.emptyFilter');
+    list.innerHTML = '<p class="gz-note gz-empty">' + escapeHtml(t(key)) + '</p>' + admin;
+    return;
+  }
+  var shown = rows.slice(0, LUX_BLOG.shown);
+  list.innerHTML = luxBlogLeadHtml(shown[0]) +
+    (shown.length > 1 ? '<div class="gz-grid">' + shown.slice(1).map(luxBlogItemHtml).join('') + '</div>' : '') +
+    (rows.length > shown.length || LUX_BLOG.more ? '<div class="gz-more"><button type="button" class="btn btn-ghost" data-gz-more>' + escapeHtml(t('blog.more')) + '</button></div>' : '') +
+    admin;
+}
+function luxBlogLeadHtml(p){
+  var L = luxBlogLoc(p);
+  return '<article class="gz-lead' + (p.published === false ? ' is-draft' : '') + '" data-gz-id="' + luxAttr(p.id) + '">' +
+    (p.image_url ? '<a class="gz-lead-img" href="' + luxBlogHref(p) + '" tabindex="-1" aria-hidden="true">' + luxBlogImgHtml(p, 900).replace(' loading="lazy"', '') + '</a>' : '') +
+    '<div class="gz-lead-txt"' + luxBlogLangAttr(p) + '>' +
+      '<p class="gz-kicker">' + luxBlogTags(p) + '<span>' + escapeHtml(luxBlogKicker(p)) + '</span></p>' +
+      '<h2 class="gz-lead-h"><a href="' + luxBlogHref(p) + '">' + escapeHtml(L.title) + '</a></h2>' +
+      (L.body ? '<p class="gz-lead-ex">' + escapeHtml(luxBlogExcerpt(L.body, 280)) + '</p>' : '') +
+    '</div>' +
+    luxBlogMetaHtml(p) +
+  '</article>';
+}
+function luxBlogItemHtml(p){
+  var L = luxBlogLoc(p);
+  return '<article class="gz-item' + (p.image_url ? ' has-img' : '') + (p.published === false ? ' is-draft' : '') + '" data-gz-id="' + luxAttr(p.id) + '">' +
+    '<div class="gz-item-txt"' + luxBlogLangAttr(p) + '>' +
+      '<p class="gz-kicker">' + luxBlogTags(p) + '<span>' + escapeHtml(luxBlogKicker(p)) + '</span></p>' +
+      '<h2 class="gz-item-h"><a href="' + luxBlogHref(p) + '">' + escapeHtml(L.title) + '</a></h2>' +
+      (L.body ? '<p class="gz-item-ex">' + escapeHtml(luxBlogExcerpt(L.body, 150)) + '</p>' : '') +
+    '</div>' +
+    (p.image_url ? '<a class="gz-item-img" href="' + luxBlogHref(p) + '" tabindex="-1" aria-hidden="true">' + luxBlogImgHtml(p, 300) + '</a>' : '') +
+    luxBlogMetaHtml(p) +
+  '</article>';
+}
+function luxBlogGo(id, fromList){
+  var url = id ? 'blog.html?post=' + encodeURIComponent(id) : 'blog.html';
+  try { window.history.pushState({ gz: id || '', fromList: !!fromList }, '', url); } catch(e){ window.location.href = url; return; }
+  luxBlogRoute();
+  try { window.scrollTo(0, 0); } catch(e){}
+}
+function luxBlogClick(e){
+  var tg = e.target, c = function(sel){ return tg.closest ? tg.closest(sel) : null; };
+  var f = c('[data-gz-filter]');
+  if(f){ LUX_BLOG.filter = f.getAttribute('data-gz-filter'); LUX_BLOG.shown = 13; luxBlogFilters(); luxBlogShowList(); return; }
+  if(c('[data-gz-more]')){
+    LUX_BLOG.shown += 12;
+    if(LUX_BLOG.shown > luxBlogVisible().length && LUX_BLOG.more) luxBlogLoadMore().then(luxBlogShowList); else luxBlogShowList();
+    return;
+  }
+  var sh = c('[data-gz-share]');
+  if(sh){ e.preventDefault(); var p = luxBlogFind(sh.getAttribute('data-gz-share')); if(p) luxBlogShare(p); return; }
+  var cv = c('[data-gz-cover]');
+  if(cv){ e.preventDefault(); var p2 = luxBlogFind(cv.getAttribute('data-gz-cover')); if(p2) luxGzStudioOpen(p2); return; }
+  var ed = c('[data-gz-edit]');
+  if(ed){ e.preventDefault(); luxBlogEditInAdmin(ed.getAttribute('data-gz-edit')); return; }
+  if(c('[data-gz-write]')){ e.preventDefault(); luxBlogEditInAdmin(''); return; }
+  var og = c('[data-gz-orig]');
+  if(og){ var id0 = og.getAttribute('data-gz-orig'); LUX_BLOG.orig[id0] = !LUX_BLOG.orig[id0]; luxBlogShowArticle(id0, false, true); return; }
+  if(c('[data-gz-back]')){
+    e.preventDefault();
+    if(history.state && history.state.fromList){ history.back(); return; }
+    luxBlogGo(null);
+    return;
+  }
+  if(c('[data-gz-home]') && !e.metaKey && !e.ctrlKey){ e.preventDefault(); luxBlogGo(null); return; }
+  var a = c('a[href^="blog.html?post="]');
+  if(a){
+    if(e.metaKey || e.ctrlKey || e.shiftKey || e.button) return;
+    e.preventDefault();
+    var m = /post=([^&#]+)/.exec(a.getAttribute('href'));
+    if(m) luxBlogGo(decodeURIComponent(m[1]), !LUX_BLOG.open);
+    return;
+  }
+  var card = c('[data-gz-id]');
+  if(card && !c('a,button,input,textarea,select,label')) luxBlogGo(card.getAttribute('data-gz-id'), !LUX_BLOG.open);
+}
+// dal blog ad Amministra › Blog (con l'articolo da cambiare già aperto)
+function luxBlogEditInAdmin(id){
+  try {
+    sessionStorage.setItem('lux_pending_admin_tab', 'blog');
+    if(id) sessionStorage.setItem('lux_blog_edit', id); else sessionStorage.removeItem('lux_blog_edit');
+  } catch(e){}
+  window.location.href = 'admin.html';
+}
+
+/* ---- l'articolo ---- */
+function luxBlogShowArticle(id, loaded, relang){
+  var list = document.getElementById('gzList'), art = document.getElementById('gzArticle'), fl = document.getElementById('gzFilters');
+  if(!art) return;
+  list.hidden = true;
+  if(fl) fl.hidden = true;
+  art.hidden = false;
+  var p = luxBlogFind(id);
+  if(!p){
+    if(LUX_BLOG.single[id] === undefined){
+      LUX_BLOG.open = { id: id, post: null };
+      luxBlogMast();
+      art.innerHTML = '<p class="gz-note gz-wait">…</p>';
+      luxBlogFetchOne(id).then(function(){ if(luxBlogPostParam() === id) luxBlogShowArticle(id); });
+      return;
+    }
+    if(LUX_BLOG.rows === null) return; // aspetta l'elenco
+    LUX_BLOG.open = { id: id, post: null };
+    luxBlogMast();
+    art.innerHTML = '<nav class="gz-art-nav"><a href="blog.html" class="gz-back" data-gz-back>' + escapeHtml(t('blog.back')) + '</a></nav>' +
+      '<p class="gz-note gz-empty">' + escapeHtml(t(LUX_BLOG.err === 'error' ? 'blog.error' : 'blog.notFound')) + '</p>';
+    document.title = t('blog.gazette') + ' — LUX COMICS & MEDUSA COMICS';
+    return;
+  }
+  var same = LUX_BLOG.open && LUX_BLOG.open.post === p && art.querySelector('.gz-art');
+  LUX_BLOG.open = { id: id, post: p };
+  luxBlogMast();
+  if(same && loaded && !relang){ luxBlogOthers(p, art); return; } // l'elenco è arrivato dopo: solo «Da leggere anche»
+  var L = luxBlogLoc(p), la = luxBlogLangAttr(p);
+  var src = luxBlogSource(p), dom = luxBlogDomain(p.link_url), link = /^https?:\/\//i.test(p.link_url || '') ? p.link_url : '';
+  var ts = luxBlogTs(p), upd = Date.parse(p.updated_at || '') || 0;
+  var by = p.author_name ? escapeHtml(t('blog.by')).replace('{name}', luxPersonLink(p.author_name, p.created_by)) : '';
+  var meta = [by, ts ? '<time datetime="' + luxAttr(new Date(ts).toISOString()) + '">' + escapeHtml(luxBlogDate(p)) + '</time>' : '',
+    upd - ts > 3600000 ? escapeHtml(t('blog.updated').replace('{date}', luxBlogDate({ published_at: p.updated_at }))) : '',
+    L.body ? escapeHtml(t('blog.readTime').replace('{n}', luxBlogMinutes(L.body))) : ''].filter(Boolean);
+  var tr = luxBlogIsTranslated(p) ? '<p class="gz-trnote">' + escapeHtml(LUX_BLOG.orig[p.id] ? t('blog.originalShown') : t('blog.translated').replace('{lang}', luxBlogLangName(p.lang || 'it'))) +
+    ' <button type="button" class="gz-linkbtn" data-gz-orig="' + luxAttr(p.id) + '">' + escapeHtml(LUX_BLOG.orig[p.id] ? t('blog.showTranslation') : t('blog.showOriginal')) + '</button></p>' : '';
+  art.innerHTML =
+    '<nav class="gz-art-nav"><a href="blog.html" class="gz-back" data-gz-back>' + escapeHtml(t('blog.back')) + '</a></nav>' +
+    '<article class="gz-art' + (p.published === false ? ' is-draft' : '') + '">' +
+      '<header class="gz-art-head"' + la + '>' +
+        '<p class="gz-kicker">' + luxBlogTags(p) + '<span>' + escapeHtml(luxBlogKicker(p)) + '</span></p>' +
+        '<h1 class="gz-art-h">' + escapeHtml(L.title) + '</h1>' +
+        '<p class="gz-byline">' + meta.join('<span class="gz-dot" aria-hidden="true"> · </span>') + '</p>' +
+        tr +
+      '</header>' +
+      (p.image_url ? '<figure class="gz-fig"><img src="' + luxAttr(p.image_url) + '" alt="" decoding="async">' +
+        (p.kind === 'link' && src ? '<figcaption>' + escapeHtml(t('blog.source').replace('{name}', src)) + '</figcaption>' : '') + '</figure>' : '') +
+      (L.body ? '<div class="gz-body' + (luxGzLatin(luxBlogLoc(p) === p ? (p.lang || 'it') : currentLang) ? ' gz-dropcap' : '') + '"' + la + '>' + luxBlogBodyHtml(L.body) + '</div>' : '') +
+      (link ? '<aside class="gz-src"><p class="gz-src-l">' + escapeHtml(t('blog.source').replace('{name}', src || dom)) +
+          (src && dom && src.toLowerCase() !== dom.toLowerCase() ? ' <span class="gz-src-d">' + escapeHtml(dom) + '</span>' : '') + '</p>' +
+        '<a class="btn btn-primary gz-src-go" href="' + luxAttr(link) + '" target="_blank" rel="noopener nofollow">' + escapeHtml(t('blog.readOn').replace('{site}', dom || src)) +
+        '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 5h5v5M19 5l-8 8M17 14v5H5V7h5"/></svg></a></aside>' : '') +
+      '<div class="gz-share" data-gz-sharerow></div>' +
+      (isAdmin() ? '<div class="gz-adminbar"><button type="button" class="btn btn-ghost btn-sm" data-gz-edit="' + luxAttr(p.id) + '">' + escapeHtml(t('blog.edit')) + '</button>' +
+        (p.published === false ? '<span class="gz-tag gz-tag-draft">' + escapeHtml(t('blog.draftNote')) + '</span>' : '') + '</div>' : '') +
+    '</article>' +
+    '<section class="gz-com" id="commenti" aria-labelledby="gzComH">' +
+      '<h2 class="gz-com-h" id="gzComH">' + escapeHtml(t('comments.title')) + ' <span class="gz-com-n" data-gz-comn></span></h2>' +
+      '<div class="gz-com-form" data-gz-comform></div><div class="gz-com-list" data-gz-comlist></div>' +
+    '</section>' +
+    '<section class="gz-others" data-gz-others hidden aria-labelledby="gzOthH"><h2 class="gz-others-h" id="gzOthH">' + escapeHtml(t('blog.others')) + '</h2><div class="gz-others-list"></div></section>';
+  document.title = L.title + ' — ' + t('blog.gazette');
+  luxBlogShareRow(p, art.querySelector('[data-gz-sharerow]'));
+  if(!relang) luxBlogComLoad(p, art.querySelector('.gz-com')); else luxBlogComRelang(p, art.querySelector('.gz-com'));
+  luxBlogOthers(p, art);
+  luxBlogCount(p, 'view');
+  luxBlogCheckPreview(p);
+  if(!relang && /^#(commenti|c-)/.test(window.location.hash || '')){
+    setTimeout(function(){ var el = document.getElementById(window.location.hash.slice(1)) || document.getElementById('commenti'); try { if(el) el.scrollIntoView({ block: 'start' }); } catch(e){} }, 400);
+  }
+}
+// «Da leggere anche»: altri tre articoli
+function luxBlogOthers(p, art){
+  var box = art.querySelector('[data-gz-others]');
+  if(!box) return;
+  var rows = (LUX_BLOG.rows || []).filter(function(x){ return x.id !== p.id && x.published !== false; }).slice(0, 3);
+  box.hidden = !rows.length;
+  box.querySelector('.gz-others-list').innerHTML = rows.map(function(x){
+    var L = luxBlogLoc(x);
+    return '<a class="gz-other" href="' + luxBlogHref(x) + '"' + luxBlogLangAttr(x) + '>' +
+      (x.image_url ? luxBlogImgHtml(x, 300) : '<span class="gz-other-noimg" aria-hidden="true">' + escapeHtml(t('blog.gazette').charAt(0)) + '</span>') +
+      '<span class="gz-other-k">' + escapeHtml(luxBlogKicker(x)) + '</span><span class="gz-other-t">' + escapeHtml(L.title) + '</span></a>';
+  }).join('');
+}
+// letture e condivisioni (una lettura per articolo e per telefono; le tue non contano)
+function luxBlogCount(p, what){
+  if(!SUPABASE_URL || !p || p.published === false || isAdmin()) return;
+  if(what === 'view'){
+    var seen = [];
+    try { seen = JSON.parse(localStorage.getItem('lux_blog_seen') || '[]') || []; } catch(e){}
+    if(seen.indexOf(p.id) !== -1) return;
+    seen.push(p.id);
+    try { localStorage.setItem('lux_blog_seen', JSON.stringify(seen.slice(-400))); } catch(e){}
+  }
+  fetch(SUPABASE_URL + '/rest/v1/rpc/lux_blog_conta', {
+    method: 'POST', keepalive: true,
+    headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': 'Bearer ' + SUPABASE_ANON_KEY, 'Content-Type': 'application/json' },
+    body: JSON.stringify({ p_id: p.id, p_cosa: what })
+  }).catch(function(){});
+}
+// cambia la lingua del sito: la pagina del blog nella lingua nuova
+function luxBlogRelang(){
+  luxBlogHome();
+  if(!document.getElementById('blogSection')) return;
+  luxBlogFilters();
+  var id = luxBlogPostParam();
+  if(id) luxBlogShowArticle(id, false, true); else luxBlogShowList();
+}
+// entrato o uscito dall'account: il riquadro per commentare (e le cose dell'amministratore)
+function luxBlogAuthChanged(){
+  var now = isSignedIn() ? currentUserId() : '';
+  if(LUX_BLOG.auth === null || now === LUX_BLOG.auth) { LUX_BLOG.auth = now; return; }
+  LUX_BLOG.auth = now;
+  luxBlogIo();
+  if(!document.getElementById('blogSection')) return;
+  luxBlogLoad(true).then(function(){ luxBlogRoute(); });
+}
+/* ---- i commenti (con l'account; quelli degli altri li approva l'amministratore) ---- */
+function luxBlogComProfiles(rows){
+  var ids = [];
+  rows.forEach(function(c){ if(c.user_id && ids.indexOf(c.user_id) === -1) ids.push(c.user_id); });
+  if(!ids.length) return Promise.resolve({});
+  return fetch(SUPABASE_URL + '/rest/v1/profiles?id=in.(' + ids.map(encodeURIComponent).join(',') + ')&select=id,verified,role', { headers: communityHeaders() })
+    .then(function(r){ return r.ok ? r.json() : []; }, function(){ return []; })
+    .then(function(ps){ var m = {}; (ps || []).forEach(function(x){ m[x.id] = x; }); return m; });
+}
+function luxBlogComLoad(p, box){
+  if(!box) return;
+  var list = box.querySelector('[data-gz-comlist]'), cn = box.querySelector('[data-gz-comn]');
+  luxBlogComForm(p, box.querySelector('[data-gz-comform]'));
+  if(!SUPABASE_URL){ list.innerHTML = ''; return; }
+  list.innerHTML = '<p class="gz-note gz-wait">…</p>';
+  var seq = (box.__seq = (box.__seq || 0) + 1);
+  fetch(SUPABASE_URL + '/rest/v1/blog_comments?post_id=eq.' + encodeURIComponent(p.id) + '&select=*&order=created_at.desc', { headers: communityHeaders() })
+    .then(function(r){ if(!r.ok) throw new Error('commenti ' + r.status); return r.json(); })
+    .then(function(rows){ return luxBlogComProfiles(rows).then(function(pr){ return { rows: rows, pr: pr }; }); })
+    .then(function(d){
+      if(seq !== box.__seq || !box.isConnected) return;
+      var ok = d.rows.filter(function(c){ return c.approved; }).length;
+      cn.textContent = ok ? '(' + ok + ')' : '';
+      list.innerHTML = '';
+      if(!d.rows.length){ list.innerHTML = '<p class="gz-note lux-empty">' + escapeHtml(t('comments.empty')) + '</p>'; return; }
+      d.rows.forEach(function(c){ list.appendChild(luxBlogComItem(p, c, d.pr[c.user_id] || {}, box)); });
+    })
+    .catch(function(e){
+      if(seq !== box.__seq) return;
+      console.warn('[blog] commenti', e);
+      list.innerHTML = '<p class="gz-note">' + escapeHtml(t('blog.comError')) + '</p>';
+    });
+}
+function luxBlogComRelang(p, box){ luxBlogComLoad(p, box); }
+function luxBlogComItem(p, c, prof, box){
+  var div = document.createElement('div');
+  div.className = 'comment-item gz-c' + (c.approved ? '' : ' is-pending');
+  div.id = 'c-' + c.id;
+  div.innerHTML = '<div class="gz-c-head">' + commentAuthorHtml(c.author_name, c.user_id) + verifiedBadge('verified.commenter', !!prof.verified) + roleBadgeHtml(prof.role) +
+      (!c.approved ? '<span class="pending-tag">' + escapeHtml(t('comments.pending')) + '</span>' : '') +
+      '<span class="gz-c-when">' + escapeHtml(c.created_at ? notifTimeAgo(c.created_at) : '') + '</span></div>' +
+    '<div class="body" dir="auto">' + renderBodyHtml(c.body) + '</div>' +
+    '<div class="gz-c-acts"></div>';
+  var acts = div.querySelector('.gz-c-acts');
+  var btn = function(cls, key, fn){
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = cls; b.textContent = t(key);
+    b.addEventListener('click', function(){ fn(b); });
+    acts.appendChild(b);
+    return b;
+  };
+  if(isSignedIn() && c.approved && c.user_id !== currentUserId()){
+    btn('comment-reply-btn', 'comments.reply', function(){ luxBlogReply(c, box); });
+  }
+  if(isAdmin() && !c.approved){
+    btn('gz-approve', 'blog.approve', function(b){
+      b.disabled = true;
+      luxBlogComPatch(c.id, { approved: true }).then(function(){ luxBlogComLoad(p, box); luxBlogBump(p, 1); }, function(){ b.disabled = false; luxToast(t('net.actionFailed')); });
+    });
+  }
+  if(isSignedIn() && c.id && (c.user_id === currentUserId() || isAdmin())){
+    btn('lux-del-btn comment-del-btn', 'common.delete', function(b){
+      if(!window.confirm(t('del.confirmComment'))) return;
+      b.disabled = true;
+      luxDelete('blog_comments?id=eq.' + encodeURIComponent(c.id)).then(function(){
+        if(c.approved) luxBlogBump(p, -1);
+        luxBlogComLoad(p, box);
+      }, function(err){ b.disabled = false; luxDeleteFail(err); });
+    });
+  }
+  if(!acts.children.length) acts.remove();
+  return div;
+}
+function luxBlogBump(p, d){ p.comment_count = Math.max(0, (p.comment_count || 0) + d); }
+function luxBlogComPatch(id, body){
+  var s = getSession();
+  if(!s) return Promise.reject(new Error('auth'));
+  return fetch(SUPABASE_URL + '/rest/v1/blog_comments?id=eq.' + encodeURIComponent(id), {
+    method: 'PATCH',
+    headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': 'Bearer ' + s.access_token, 'Content-Type': 'application/json', 'Prefer': 'return=representation' },
+    body: JSON.stringify(body)
+  }).then(function(r){
+    if(!r.ok) throw new Error('commento ' + r.status);
+    return r.json().catch(function(){ return []; });
+  }).then(function(rows){ if(Array.isArray(rows) && !rows.length) throw new Error('niente cambiato'); return rows; });
+}
+// «Rispondi»: @nickname di chi ha scritto (così riceve l'avviso), poi si scrive
+function luxBlogReply(c, box){
+  var ta = box.querySelector('#gzComBody');
+  if(!ta) return;
+  luxNickOf(c.user_id).then(function(nick){
+    var m = '@' + (nick || String(c.author_name || '').replace(/\s+/g, '_')) + ' ';
+    if(ta.value.indexOf(m) !== 0) ta.value = m + ta.value;
+    try { ta.focus({ preventScroll: true }); } catch(e){ ta.focus(); }
+    ta.setSelectionRange(ta.value.length, ta.value.length);
+    try { ta.scrollIntoView({ behavior: 'smooth', block: 'center' }); } catch(e){}
+  });
+}
+function luxBlogComForm(p, box){
+  if(!box) return;
+  // (già pronto per questo articolo e questa persona: resta com'è, col testo che si sta scrivendo e il messaggio)
+  var who = isSignedIn() ? (currentUserId() || 'x') : '';
+  if(box.children.length && box.getAttribute('data-who') === who && box.getAttribute('data-post') === String(p.id)) return;
+  box.setAttribute('data-who', who);
+  box.setAttribute('data-post', String(p.id));
+  if(!isSignedIn()){
+    box.innerHTML = '<div class="gz-com-login"><p>' + escapeHtml(t('blog.comLogin')) + '</p>' +
+      '<div class="gz-com-login-b"><button type="button" class="btn btn-primary btn-sm" data-gz-login>' + escapeHtml(t('nav.login')) + '</button>' +
+      '<button type="button" class="btn btn-ghost btn-sm" data-gz-signup>' + escapeHtml(t('blog.signup')) + '</button></div></div>';
+    box.querySelector('[data-gz-login]').addEventListener('click', function(){ openAuth('login'); });
+    box.querySelector('[data-gz-signup]').addEventListener('click', function(){ openAuth('register'); });
+    return;
+  }
+  box.innerHTML = '<label class="gz-com-lab" for="gzComBody">' + escapeHtml(t('blog.comWrite')) + '</label>' +
+    '<textarea id="gzComBody" class="gz-com-ta" rows="3" maxlength="2000" data-mention="1" dir="auto" placeholder="' + luxAttr(t('comments.placeholder')) + '"></textarea>' +
+    '<div class="gz-com-row"><p class="gz-com-msg" role="status" aria-live="polite"></p>' +
+    '<button type="button" class="btn btn-primary btn-sm" data-gz-send>' + escapeHtml(t('comments.submit')) + '</button></div>' +
+    (isAdmin() ? '' : '<p class="gz-com-hint">' + escapeHtml(t('blog.comHint')) + '</p>');
+  var ta = box.querySelector('textarea'), msg = box.querySelector('.gz-com-msg'), send = box.querySelector('[data-gz-send]');
+  send.addEventListener('click', function(){
+    var body = ta.value.trim();
+    msg.textContent = '';
+    msg.classList.remove('is-error');
+    if(!body){ msg.textContent = t('blog.comEmpty'); msg.classList.add('is-error'); ta.focus(); return; }
+    if(!isSignedIn()){ openAuth('login'); return; }
+    var mine = isAdmin();
+    send.disabled = true;
+    refreshSessionIfNeeded().then(function(){
+      var who = currentProfile !== null ? Promise.resolve(currentProfile) : loadOwnProfile().then(function(){ return currentProfile; });
+      return who;
+    }).then(function(profile){
+      var s = getSession();
+      return fetch(SUPABASE_URL + '/rest/v1/blog_comments', {
+        method: 'POST',
+        headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': 'Bearer ' + s.access_token, 'Content-Type': 'application/json', 'Prefer': 'return=representation' },
+        body: JSON.stringify({ post_id: p.id, user_id: currentUserId(), author_name: publicDisplayName(profile), body: body, approved: mine })
+      });
+    }).then(function(r){
+      if(!r.ok) throw new Error('commento ' + r.status);
+      ta.value = '';
+      msg.textContent = mine ? t('comments.submittedPublished') : t('comments.submittedPending');
+      if(mine) luxBlogBump(p, 1);
+      luxBlogComLoad(p, box.closest('.gz-com'));
+    }).catch(function(e){
+      console.warn('[blog] commento non inviato', e);
+      msg.textContent = t('comments.sendError');
+      msg.classList.add('is-error');
+    }).then(function(){ send.disabled = false; });
+  });
+}
+
+/* ---- condividere: le app, il link con l'anteprima, la copertina con il QR ---- */
+// la pagina d'anteprima b/<id>.html c'è? (la fa la funzione generate-blog-preview quando pubblichi)
+function luxBlogCheckPreview(p){
+  if(!p || LUX_BLOG.pv[p.id] !== undefined) return Promise.resolve(p ? LUX_BLOG.pv[p.id] : false);
+  if(!p.og_image || p.published === false){ LUX_BLOG.pv[p.id] = false; return Promise.resolve(false); }
+  return fetch(previewPagePath('b', p.id), { method: 'HEAD', cache: 'no-store' })
+    .then(function(r){ return (LUX_BLOG.pv[p.id] = r.ok); }, function(){ return (LUX_BLOG.pv[p.id] = false); });
+}
+function luxBlogShareUrl(p){ return LUX_BLOG.pv[p.id] === true ? previewPagePath('b', p.id) : luxBlogAbs(p.id); }
+function luxBlogShareData(p){
+  var L = luxBlogLoc(p);
+  return {
+    title: L.title,
+    text: L.title + ' — ' + t('blog.gazette'),
+    url: luxBlogShareUrl(p),
+    image: p.image_url ? luxBlogThumb(p.image_url) : '',
+    cover: p.image_url || '',
+    sub: luxBlogKicker(p),
+    onShare: function(){ luxBlogCount(p, 'share'); },
+    gz: p,
+    extra: function(box){ luxBlogShareExtra(box, p); }
+  };
+}
+// nel pannello «Condividi»: la copertina con il QR (per Instagram, o da mandare come immagine)
+function luxBlogShareExtra(box, p){
+  var grid = box.querySelector('.lux-share-grid');
+  if(!grid) return;
+  var b = document.createElement('button');
+  b.type = 'button';
+  b.className = 'gz-share-cover';
+  b.innerHTML = LPR_I.qr + '<span><b>' + escapeHtml(t('blog.cover')) + '</b><small>' + escapeHtml(t('blog.coverSub')) + '</small></span>';
+  b.addEventListener('click', function(){ closeSharePanel(); luxGzStudioOpen(p); });
+  grid.parentNode.insertBefore(b, grid.nextSibling);
+}
+function luxBlogShare(p){
+  var s = luxBlogShareData(p);
+  luxGzPrepFile(p, s); // per Instagram e «Altro…» dal telefono: la storia con il QR, pronta in anticipo
+  openSharePanel(s);
+}
+// sotto l'articolo: le app principali già in vista, «Altre app»; sotto, la copertina con il QR
+function luxBlogShareRow(p, el){
+  if(!el) return;
+  var s = luxBlogShareData(p);
+  var keep = { whatsapp: 1, telegram: 1, instagram: 1, facebook: 1 };
+  el.innerHTML = '<div class="lux-share-row gz-share-row"><span class="lux-share-row-label">' + escapeHtml(t('share.rowLabel')) + '</span>' +
+    luxShareTargets().filter(function(tg){ return keep[tg.id]; }).map(function(tg){ return luxShareButton(tg, s); }).join('') +
+    '<button type="button" class="lux-share-btn" data-gz-more-share><span class="lux-share-ic" style="background:#3b2a1f">' + luxShareIcon('more') + '</span><span class="lux-share-lbl">' + escapeHtml(t('share.others')) + '</span></button></div>' +
+    '<button type="button" class="gz-share-cover" data-gz-cover="' + luxAttr(p.id) + '">' + LPR_I.qr + '<span><b>' + escapeHtml(t('blog.cover')) + '</b><small>' + escapeHtml(t('blog.coverSub')) + '</small></span></button>';
+  wireShareButtons(el, s);
+  el.querySelector('[data-gz-more-share]').addEventListener('click', function(){ luxBlogShare(p); });
+  luxGzPrepFile(p, s);
+  // quando si sa se c'è la pagina d'anteprima, i pulsanti mandano quella (con la copertina «da giornale»)
+  luxBlogCheckPreview(p).then(function(ok){
+    if(!ok || !el.isConnected) return;
+    s.url = luxBlogShareUrl(p);
+    Array.prototype.forEach.call(el.querySelectorAll('a[data-share]'), function(a){ var h = luxShareHref(a.getAttribute('data-share'), s); if(h) a.setAttribute('href', h); });
+  });
+}
+/* ---- la copertina «da giornale» con il QR ----
+   La prima pagina della Gazzetta: testata, riga della data, occhiello, titolo, foto (o il sigillo stampato), le prime
+   righe dell'articolo in colonne e il QR che porta all'articolo. Quattro formati: la storia (un foglio sul tavolo scuro
+   dell'Archivio, con lo spazio libero in alto e in basso per i pulsanti di Instagram), il post, il quadrato e
+   l'anteprima dei link (1200×630, quella che si vede nelle chat). Arabo e panjabi da destra a sinistra. */
+var GZ_FMT = {
+  story: { w: 1080, h: 1920, key: 'blog.fmt.story' },
+  post: { w: 1080, h: 1350, key: 'blog.fmt.post' },
+  square: { w: 1080, h: 1080, key: 'blog.fmt.square' },
+  og: { w: 1200, h: 630, key: 'blog.fmt.og' }
+};
+var GZ_LAY = {
+  story: { pad: 54, name: 150, motto: 28, folio: 23, kick: 27, hBig: 104, hSmall: 54, hOk: 72, hLines: 5, body: 31, cols: 2, gap: 34, qr: 236, img: 0.52, foot: 20 },
+  post: { pad: 48, name: 128, motto: 25, folio: 21, kick: 24, hBig: 90, hSmall: 48, hOk: 62, hLines: 4, body: 28, cols: 2, gap: 30, qr: 206, img: 0.5, foot: 18 },
+  square: { pad: 44, name: 112, motto: 0, folio: 20, kick: 23, hBig: 78, hSmall: 42, hOk: 54, hLines: 3, body: 26, cols: 2, gap: 28, qr: 182, img: 0.46, foot: 17 },
+  og: { pad: 34, name: 82, motto: 0, folio: 18, kick: 19, hBig: 58, hSmall: 32, hOk: 42, hLines: 3, body: 21, cols: 1, gap: 24, qr: 148, img: 0.6, foot: 15 }
+};
+var GZ_C = { paper: '#f2ead7', ink: '#1d1611', dim: '#4e4237', wine: '#7a1526' };
+function gzBox(o, x0, w){ return o.rtl ? { x: o.W - x0 - w, w: w } : { x: x0, w: w }; }
+var GZ_RTL_RE = /[\u0590-\u08FF\uFB1D-\uFDFF\uFE70-\uFEFF]/;
+function gzFill(x, o, s, bx, y, align){
+  x.direction = o.rtl && GZ_RTL_RE.test(s) ? 'rtl' : 'ltr'; // (un titolo italiano su una copertina araba: da sinistra a destra, ma allineato a destra)
+  if(align === 'center'){ x.textAlign = 'center'; x.fillText(s, bx.x + bx.w / 2, y); return; }
+  var left = (align !== 'end') !== !!o.rtl;
+  x.textAlign = left ? 'left' : 'right';
+  x.fillText(s, left ? bx.x : bx.x + bx.w, y);
+}
+function gzRule(x, x0, y, w, t){ x.fillStyle = GZ_C.ink; x.fillRect(Math.round(x0), Math.round(y), Math.round(w), t); }
+function gzUpper(s, lang){ if(!luxGzLatin(lang)) return s; try { return String(s).toLocaleUpperCase(lang); } catch(e){ return String(s).toUpperCase(); } }
+function gzFitText(x, s, w){
+  s = String(s || '');
+  if(x.measureText(s).width <= w) return s;
+  while(s.length > 1 && x.measureText(s + '…').width > w) s = s.slice(0, -1);
+  return s.replace(/[\s,.;:·–—-]+$/, '') + '…';
+}
+// le righe di un testo in colonne di larghezza widthAt(riga); al massimo maxLines (poi «…»)
+function gzLines(x, text, widthAt, maxLines){
+  var s = String(text || '').replace(/\s+/g, ' ').trim();
+  var lines = [];
+  if(!s) return lines; // (maxLines 0 o vuoto: senza limite)
+  var cjk = LIG_CJK_RE.test(s), toks = cjk ? Array.from(s) : s.split(' '), cur = '';
+  var full = function(){ return maxLines && lines.length >= maxLines; };
+  for(var i = 0; i < toks.length; i++){
+    var tk = toks[i], W = widthAt(lines.length), tryL = cur ? cur + (cjk ? '' : ' ') + tk : tk;
+    if(x.measureText(tryL).width <= W){ cur = tryL; continue; }
+    if(cur){ lines.push(cur); cur = ''; if(full()) return gzEllipsis(x, lines, widthAt); W = widthAt(lines.length); }
+    while(x.measureText(tk).width > W && tk.length > 1){ // una parola (o un indirizzo) più lunga della riga
+      var k = tk.length - 1;
+      while(k > 1 && x.measureText(tk.slice(0, k)).width > W) k--;
+      lines.push(tk.slice(0, k)); tk = tk.slice(k);
+      if(full()) return gzEllipsis(x, lines, widthAt);
+      W = widthAt(lines.length);
+    }
+    cur = tk;
+  }
+  if(cur){ if(full()) return gzEllipsis(x, lines, widthAt); lines.push(cur); }
+  return lines;
+}
+function gzEllipsis(x, lines, widthAt){
+  var i = lines.length - 1, l = lines[i], W = widthAt(i);
+  while(l.length > 1 && x.measureText(l + '…').width > W) l = l.slice(0, -1);
+  lines[i] = l.replace(/[\s,.;:!?–—-]+$/, '') + '…';
+  lines.cut = true;
+  return lines;
+}
+function gzCover(x, im, bx, y, w, h){
+  var s = Math.max(w / im.naturalWidth, h / im.naturalHeight), dw = im.naturalWidth * s, dh = im.naturalHeight * s;
+  x.save();
+  x.beginPath(); x.rect(bx, y, w, h); x.clip();
+  x.imageSmoothingEnabled = true;
+  try { x.imageSmoothingQuality = 'high'; } catch(e){}
+  x.drawImage(im, bx + (w - dw) / 2, y + (h - dh) * 0.4, dw, dh);
+  // stampata sulla carta: un velo del colore della carta
+  x.globalCompositeOperation = 'multiply';
+  x.fillStyle = 'rgba(242,234,215,0.55)';
+  x.fillRect(bx, y, w, h);
+  x.restore();
+  x.strokeStyle = GZ_C.ink; x.lineWidth = 2;
+  x.strokeRect(bx + 1, y + 1, w - 2, h - 2);
+}
+// il sigillo della casa, stampato (quando l'articolo non ha una foto)
+function gzSeal(x, o, logo, bx, y, w, h){
+  var s = Math.min(h * 0.86 / logo.naturalHeight, w * 0.5 / logo.naturalWidth), dw = logo.naturalWidth * s, dh = logo.naturalHeight * s;
+  var cx = bx + w / 2, cy = y + h / 2;
+  x.save();
+  x.globalCompositeOperation = 'multiply';
+  x.globalAlpha = 0.92;
+  x.drawImage(logo, cx - dw / 2, cy - dh / 2, dw, dh);
+  x.restore();
+  var gap = dw / 2 + w * 0.04;
+  gzRule(x, bx + w * 0.06, cy - 1, Math.max(0, w / 2 - gap - w * 0.06), 2);
+  gzRule(x, cx + gap, cy - 1, Math.max(0, w / 2 - gap - w * 0.06), 2);
+}
+function gzPaper(x, sh, W, H){
+  x.save();
+  x.beginPath(); x.rect(sh.x, sh.y, sh.w, sh.h); x.clip();
+  x.fillStyle = GZ_C.paper; x.fillRect(sh.x, sh.y, sh.w, sh.h);
+  var cx = sh.x + sh.w / 2, cy = sh.y + sh.h / 2;
+  var g = x.createRadialGradient(cx, cy, Math.min(sh.w, sh.h) * 0.2, cx, cy, Math.max(sh.w, sh.h) * 0.78);
+  g.addColorStop(0, 'rgba(255,251,238,0.45)'); g.addColorStop(1, 'rgba(140,110,60,0.24)');
+  x.fillStyle = g; x.fillRect(sh.x, sh.y, sh.w, sh.h);
+  ligGrain(x, W, H, 0.22);
+  x.restore();
+}
+// la testata: il nome della Gazzetta largo quanto la pagina (con un massimo)
+function gzName(x, o, L, X0, CW, y){
+  var name = luxRt(o.lang, 'blog.gazette'), kind = luxGzKind(o.lang);
+  var wt = kind === 'black' ? '400' : kind === 'serif' ? '900' : '700', fam = luxGzNameFont(o.lang);
+  x.font = wt + ' 100px ' + fam;
+  var nw = x.measureText(name).width || 1;
+  var ns = Math.max(34, Math.min(L.name, Math.floor(100 * CW / nw)));
+  x.font = wt + ' ' + ns + 'px ' + fam;
+  var m = x.measureText(name);
+  var asc = m.actualBoundingBoxAscent || ns * 0.74, desc = m.actualBoundingBoxDescent || ns * 0.22;
+  x.fillStyle = GZ_C.ink;
+  gzFill(x, o, name, { x: X0, w: CW }, y + asc, 'center');
+  o.info.name = name; o.info.nameSize = ns;
+  return y + asc + desc;
+}
+// la riga della data: data · uscita · «Gratis per tutti» (se non ci stanno tutte e tre, «Gratis» va in fondo alla pagina)
+function gzFolio(x, o, L, X0, CW, y){
+  var fs = L.folio, box = { x: X0, w: CW };
+  gzRule(x, X0, y, CW, 2);
+  y += 2 + fs * 1.3;
+  x.font = '600 ' + fs + 'px ' + luxGzBodyFont(o.lang);
+  x.fillStyle = GZ_C.ink;
+  var dT = luxGzDate(o.lang, o.date), iT = luxGzIssue(o.lang, o.date, o.issue), fT = luxRt(o.lang, 'blog.free');
+  var wD = x.measureText(dT).width, wI = x.measureText(iT).width, wF = x.measureText(fT).width;
+  if(wD + wI + wF + fs * 3 <= CW){
+    gzFill(x, o, dT, box, y, 'start'); gzFill(x, o, iT, box, y, 'center'); gzFill(x, o, fT, box, y, 'end');
+    o.freeInFoot = false;
+  } else {
+    gzFill(x, o, gzFitText(x, dT, CW - wI - fs * 1.5), box, y, 'start'); gzFill(x, o, iT, box, y, 'end');
+    o.freeInFoot = true;
+  }
+  o.info.folio = [dT, iT, o.freeInFoot ? '' : fT];
+  y += fs * 0.6;
+  gzRule(x, X0, y, CW, 4);
+  y += 7;
+  gzRule(x, X0, y, CW, 1.5);
+  return y + 1.5;
+}
+// l'occhiello (Notizia, Aggiornamento, Dal web · La Stampa) con il quadratino rosso vino
+function gzKicker(x, o, L, bx, y){
+  var fs = L.kick, latin = luxGzLatin(o.lang), sq = Math.round(fs * 0.62);
+  var tx = latin ? gzUpper(o.kicker, o.lang) : o.kicker;
+  x.font = '700 ' + fs + 'px ' + luxGzHeadFont(o.lang);
+  x.fillStyle = GZ_C.wine;
+  var base = y + fs * 0.82, sqY = base - sq - fs * 0.04;
+  var sqX = o.rtl ? bx.x + bx.w - sq : bx.x;
+  x.fillRect(sqX, sqY, sq, sq);
+  var tb = { x: o.rtl ? bx.x : bx.x + sq + fs * 0.45, w: bx.w - sq - fs * 0.45 };
+  var sp = latin ? Math.round(fs * 0.1) : 0;
+  tx = gzFitText(x, tx, tb.w - sp * tx.length);
+  x.direction = o.rtl ? 'rtl' : 'ltr';
+  if(o.rtl){ x.textAlign = 'right'; x.fillText(tx, tb.x + tb.w, base); }
+  else ligSpaced(x, tx, tb.x, base, sp, 'left');
+  o.info.kicker = tx;
+  return y + fs * 1.12;
+}
+function gzHeadline(x, o, L, bx, y, maxLines){
+  var latin = luxGzLatin(o.lang);
+  var font = (latin ? '900' : '700') + ' {s}px ' + luxGzHeadFont(o.lang);
+  var fit = ligFit(x, o.title, font, bx.w, maxLines || L.hLines, L.hBig, L.hSmall, L.hOk);
+  x.font = font.replace('{s}', fit.size);
+  x.fillStyle = GZ_C.ink;
+  var lh = Math.round(fit.size * (latin ? 1.06 : 1.28)), first = fit.size * (latin ? 0.84 : 0.95);
+  fit.lines.forEach(function(line, i){ gzFill(x, o, line, bx, y + first + i * lh, 'start'); });
+  o.info.titleLines = fit.lines; o.info.titleSize = fit.size;
+  return y + first + (fit.lines.length - 1) * lh + fit.size * (latin ? 0.26 : 0.4);
+}
+// il QR con la sua didascalia: «Inquadra il QR…», il QR, l'indirizzo
+function gzQrMetrics(x, o, L, w){
+  var q = Math.min(L.qr, Math.floor(w));
+  var cs = Math.round(L.body * 0.8);
+  x.font = '700 ' + cs + 'px ' + luxGzBodyFont(o.lang);
+  var cap = gzLines(x, luxRt(o.lang, 'blog.scan'), function(){ return w; }, 3);
+  var clh = Math.round(cs * (luxGzLatin(o.lang) ? 1.2 : 1.45)), us = Math.round(L.body * 0.66);
+  return { q: q, cs: cs, cap: cap, clh: clh, us: us, h: cap.length * clh + 12 + q + 10 + us * 1.2 };
+}
+function gzQrBlock(x, o, M, bx, y){
+  x.font = '700 ' + M.cs + 'px ' + luxGzBodyFont(o.lang);
+  x.fillStyle = GZ_C.ink;
+  M.cap.forEach(function(l, i){ gzFill(x, o, l, bx, y + M.cs * 0.9 + i * M.clh, 'center'); });
+  var qy = y + M.cap.length * M.clh + 12, qx = Math.round(bx.x + (bx.w - M.q) / 2);
+  var qr = luxQrMake(o.url);
+  if(qr) luxQrDraw(x, qr, qx, qy, M.q, 2, GZ_C.ink, GZ_C.paper);
+  o.info.qr = qr ? [qx, qy, M.q] : null;
+  x.font = '600 ' + M.us + 'px ' + LUX_GZ_FONTS.body;
+  x.fillStyle = GZ_C.dim;
+  x.direction = 'ltr'; x.textAlign = 'center';
+  x.fillText(o.host + '/blog', bx.x + bx.w / 2, qy + M.q + 8 + M.us);
+}
+// la riga del QR (testi brevi): sopra un filo; da un lato «Inquadra il QR…» e l'indirizzo, dall'altro il QR
+function gzQrRowMetrics(x, o, L, w){
+  var q = Math.round(L.qr * 0.86), cs = Math.round(L.body * 0.92), capW = w - q - L.gap;
+  x.font = '700 ' + cs + 'px ' + luxGzBodyFont(o.lang);
+  var cap = gzLines(x, luxRt(o.lang, 'blog.scan'), function(){ return capW; }, 3);
+  var clh = Math.round(cs * (luxGzLatin(o.lang) ? 1.22 : 1.45)), us = Math.round(L.body * 0.72);
+  var textH = cap.length * clh + 10 + us * 1.3;
+  return { q: q, cs: cs, cap: cap, clh: clh, us: us, capW: capW, textH: textH, h: 18 + Math.max(q, textH) };
+}
+function gzQrRow(x, o, R, bx, y){
+  gzRule(x, bx.x, y, bx.w, 1.5);
+  var top = y + 18, qx = o.rtl ? bx.x : bx.x + bx.w - R.q;
+  var qr = luxQrMake(o.url);
+  if(qr) luxQrDraw(x, qr, qx, top, R.q, 2, GZ_C.ink, GZ_C.paper);
+  o.info.qr = qr ? [qx, top, R.q] : null;
+  var cb = { x: o.rtl ? bx.x + R.q + (bx.w - R.q - R.capW) : bx.x, w: R.capW };
+  var ty = top + Math.max(0, (R.q - R.textH) / 2);
+  x.font = '700 ' + R.cs + 'px ' + luxGzBodyFont(o.lang);
+  x.fillStyle = GZ_C.ink;
+  R.cap.forEach(function(l, i){ gzFill(x, o, l, cb, ty + R.cs * 0.9 + i * R.clh, 'start'); });
+  x.font = '600 ' + R.us + 'px ' + LUX_GZ_FONTS.body;
+  x.fillStyle = GZ_C.dim;
+  gzFill(x, o, o.host + '/blog', cb, ty + R.cap.length * R.clh + 10 + R.us, 'start');
+}
+// le prime righe dell'articolo, in colonne; nella prima la lettera grande (per le lingue latine e il russo)
+function gzColumns(x, o, L, cols, top, bottoms){
+  var latin = luxGzLatin(o.lang), fs = L.body, lh = Math.round(fs * (latin ? 1.36 : 1.62));
+  var text = String(o.body || '').replace(/\s+/g, ' ').trim();
+  if(!text) return 0;
+  var caps = bottoms.map(function(b){ return Math.max(0, Math.floor((b - top) / lh)); });
+  var total = caps.reduce(function(a, b){ return a + b; }, 0);
+  if(!total) return 0;
+  var drop = null;
+  var m0 = /^\p{L}/u.exec(text);
+  if(latin && m0 && caps[0] >= 4 && !o.rtl && o.dropOk !== false){
+    var dsz = Math.round(lh * 2.45);
+    x.font = '900 ' + dsz + 'px ' + LUX_GZ_FONTS.serif;
+    drop = { ch: m0[0], size: dsz, w: x.measureText(m0[0]).width + fs * 0.45 };
+    text = text.slice(m0[0].length);
+  }
+  x.font = '400 ' + fs + 'px ' + luxGzBodyFont(o.lang);
+  var colOf = function(i){ var k = 0; while(k < caps.length - 1 && i >= caps[k]){ i -= caps[k]; k++; } return [k, i]; };
+  var widthAt = function(i){ var ci = colOf(i); return cols[ci[0]].w - (drop && ci[0] === 0 && ci[1] < 3 ? drop.w : 0); };
+  var lines = gzLines(x, text, widthAt, total);
+  x.fillStyle = GZ_C.ink;
+  lines.forEach(function(l, i){
+    var ci = colOf(i), c = cols[ci[0]], off = drop && ci[0] === 0 && ci[1] < 3 ? drop.w : 0;
+    gzFill(x, o, l, { x: c.x + (o.rtl ? 0 : off), w: c.w - off }, top + fs * 0.86 + ci[1] * lh, 'start');
+  });
+  if(drop){
+    x.font = '900 ' + drop.size + 'px ' + LUX_GZ_FONTS.serif;
+    x.fillStyle = GZ_C.wine;
+    x.direction = 'ltr'; x.textAlign = 'left';
+    x.fillText(drop.ch, cols[0].x - drop.size * 0.02, top + fs * 0.86 + 2 * lh);
+  }
+  o.info.bodyLines = lines.length; o.info.bodyCut = !!lines.cut; o.info.drop = drop ? drop.ch : '';
+  return lines.length;
+}
+function luxGzPaint(cv, o){
+  var F = GZ_FMT[o.fmt] || GZ_FMT.story, L = GZ_LAY[o.fmt] || GZ_LAY.story, W = F.w, H = F.h;
+  cv.width = W; cv.height = H;
+  var x = cv.getContext('2d');
+  o.W = W; o.rtl = luxIsRtl(o.lang); o.info = { fmt: o.fmt, lang: o.lang, url: o.url };
+  o.host = o.host || luxPromoHost();
+  x.textBaseline = 'alphabetic';
+  var sh;
+  if(o.fmt === 'story'){ // il foglio sul tavolo scuro dell'Archivio
+    x.fillStyle = '#0b0607'; x.fillRect(0, 0, W, H);
+    var gl = x.createRadialGradient(W / 2, H * 0.48, 40, W / 2, H * 0.48, H * 0.72);
+    gl.addColorStop(0, 'rgba(201,162,77,0.24)'); gl.addColorStop(1, 'rgba(201,162,77,0)');
+    x.fillStyle = gl; x.fillRect(0, 0, W, H);
+    sh = { x: 46, y: 176, w: W - 92, h: H - 176 - 152 };
+    x.save(); x.shadowColor = 'rgba(0,0,0,0.75)'; x.shadowBlur = 60; x.shadowOffsetY = 24;
+    x.fillStyle = GZ_C.paper; x.fillRect(sh.x, sh.y, sh.w, sh.h); x.restore();
+  } else sh = { x: 0, y: 0, w: W, h: H };
+  gzPaper(x, sh, W, H);
+  var pad = L.pad, X0 = sh.x + pad, CW = sh.w - pad * 2, y = sh.y + pad * 0.8, full = { x: X0, w: CW };
+  // 1) la testata
+  gzRule(x, X0, y, CW, 1.5);
+  y = gzName(x, o, L, X0, CW, y + 16);
+  if(L.motto){
+    x.font = (luxGzLatin(o.lang) ? 'italic 400 ' : '400 ') + L.motto + 'px ' + luxGzBodyFont(o.lang);
+    x.fillStyle = GZ_C.dim;
+    gzFill(x, o, gzFitText(x, luxRt(o.lang, 'blog.motto'), CW), full, y + L.motto * 1.25, 'center');
+    y += L.motto * 1.55;
+  }
+  y = gzFolio(x, o, L, X0, CW, y + 14);
+  var footH = o.fmt === 'og' ? 0 : L.foot * 2.4;
+  var bottom = sh.y + sh.h - pad * 0.75 - footH;
+  if(o.fmt === 'og') gzPaintOg(x, o, L, X0, CW, y + L.gap * 0.7, bottom);
+  else {
+    // 2) occhiello e titolo
+    y = gzKicker(x, o, L, full, y + L.gap * 0.8);
+    y = gzHeadline(x, o, L, full, y + L.kick * 0.3, o.body ? L.hLines : L.hLines + 1);
+    y += L.gap * 0.55;
+    // 3) la foto (o il sigillo) e il testo. Un testo breve sta in una colonna sola, con il QR in una riga sotto;
+    //    uno lungo in due colonne, con il QR in fondo all'ultima. La foto (o il sigillo) prende lo spazio che il testo
+    //    non usa: la pagina resta piena, senza buchi.
+    var latin = luxGzLatin(o.lang), fs = L.body, lh = Math.round(fs * (latin ? 1.36 : 1.62));
+    var colW = (CW - L.gap * (L.cols - 1)) / L.cols;
+    x.font = '400 ' + fs + 'px ' + luxGzBodyFont(o.lang);
+    var nFull = o.body ? gzLines(x, o.body, function(){ return CW; }, 0).length : 0;
+    var nCol = o.body ? gzLines(x, o.body, function(){ return colW; }, 0).length : 0;
+    var avail = bottom - y, capH = o.img && o.caption ? Math.round(L.body * 0.68 * 1.6) : 0;
+    var row = nFull <= (o.fmt === 'story' ? 7 : o.fmt === 'post' ? 5 : 4);
+    var M = null, Rw = null, need, minRest;
+    if(row){
+      Rw = gzQrRowMetrics(x, o, L, CW);
+      need = (nFull ? nFull * lh + L.gap * 0.7 : 0) + Rw.h;
+      minRest = Rw.h + (nFull ? Math.min(nFull, 3) * lh + L.gap * 0.7 : 0);
+    } else {
+      M = gzQrMetrics(x, o, L, colW);
+      var capOf = function(h){ var c = 0; for(var i = 0; i < L.cols; i++) c += Math.max(0, Math.floor((i === L.cols - 1 ? h - M.h - L.gap * 0.5 : h) / lh)); return c; };
+      var colH = M.h;
+      while(capOf(colH) < nCol + 1 && colH < avail) colH += lh;
+      need = colH;
+      minRest = M.h + lh * 2;
+    }
+    var imgH = 0;
+    if(o.img || o.logo){
+      var pref = o.img ? Math.round(avail * L.img) : Math.round(Math.min(avail * 0.3, 360));
+      var most = o.img ? Math.round(avail * 0.66) : Math.round(Math.min(avail * 0.44, 440));
+      imgH = Math.max(pref, Math.round(avail - need - capH - L.gap * 0.55)); // un testo breve lascia più posto alla foto
+      imgH = Math.min(imgH, most, Math.round(avail - minRest - capH - L.gap * 0.55));
+      if(imgH < (o.img ? 170 : 150)) imgH = 0;
+    }
+    // (un testo breve con la foto già grande quanto può: lo spazio che avanza si divide fra titolo, foto e testo)
+    var slack = row ? Math.max(0, Math.round(avail - (imgH ? imgH + capH + L.gap * 0.55 : 0) - need - 4)) : 0;
+    var s1 = imgH ? Math.round(slack * 0.3) : Math.round(slack * 0.25), s2 = imgH ? Math.round(slack * 0.3) : 0;
+    y += s1;
+    if(imgH){
+      if(o.img){ gzCover(x, o.img, X0, y, CW, imgH); o.info.photo = true; }
+      else { gzSeal(x, o, o.logo, X0, y, CW, imgH); o.info.seal = true; }
+      y += imgH;
+      if(capH){
+        var cs = Math.round(L.body * 0.68);
+        x.font = (latin ? 'italic 400 ' : '400 ') + cs + 'px ' + luxGzBodyFont(o.lang);
+        x.fillStyle = GZ_C.dim;
+        gzFill(x, o, gzFitText(x, o.caption, CW), full, y + cs * 1.25, 'end');
+        y += capH;
+      }
+      y += L.gap * 0.55 + s2;
+    }
+    o.info.imgH = imgH; o.info.layout = row ? 'row' : 'cols';
+    var colBot = bottom - 4;
+    if(row){
+      var qrY = colBot - Rw.h;
+      o.dropOk = nFull >= 4;
+      if(nFull) gzColumns(x, o, L, [full], y, [qrY - L.gap * 0.5]);
+      gzQrRow(x, o, Rw, full, qrY);
+    } else {
+      var cols = [];
+      for(var i = 0; i < L.cols; i++) cols.push(gzBox(o, X0 + i * (colW + L.gap), colW));
+      var qrTop = colBot - M.h;
+      var bots = cols.map(function(c, i){ return i === cols.length - 1 ? qrTop - L.gap * 0.5 : colBot; });
+      o.dropOk = true;
+      gzColumns(x, o, L, cols, y, bots);
+      for(var k = 1; k < cols.length; k++){ // il filo fra le colonne
+        var lx = gzBox(o, X0 + k * (colW + L.gap) - L.gap / 2, 0).x;
+        x.fillStyle = 'rgba(29,22,17,0.55)'; x.fillRect(Math.round(lx), y, 1.2, colBot - y);
+      }
+      gzQrBlock(x, o, M, cols[cols.length - 1], qrTop);
+    }
+    // 4) il piede: la casa e il sito
+    var fy = sh.y + sh.h - pad * 0.75;
+    gzRule(x, X0, fy - L.foot * 1.55, CW, 1.5);
+    x.font = '700 ' + L.foot + 'px "Cinzel", Georgia, serif';
+    x.fillStyle = GZ_C.ink;
+    gzFill(x, o, 'LUX COMICS & MEDUSA COMICS', full, fy, 'start');
+    x.font = '600 ' + Math.round(L.foot * 1.05) + 'px ' + luxGzBodyFont(o.lang);
+    gzFill(x, o, o.freeInFoot ? luxRt(o.lang, 'blog.free') : o.host, full, fy, 'end');
+  }
+  return o.info;
+}
+// l'anteprima dei link (1200×630): a sinistra occhiello, titolo e prime righe; a destra la foto e il QR
+function gzPaintOg(x, o, L, X0, CW, y, bottom){
+  var leftW = Math.round(CW * 0.58), rightW = CW - leftW - L.gap;
+  var LB = gzBox(o, X0, leftW), RB = gzBox(o, X0 + leftW + L.gap, rightW);
+  var rx = gzBox(o, X0 + leftW + L.gap / 2, 0).x;
+  x.fillStyle = 'rgba(29,22,17,0.55)'; x.fillRect(Math.round(rx), y, 1.2, bottom - y);
+  var ly = gzKicker(x, o, L, LB, y);
+  ly = gzHeadline(x, o, L, LB, ly + L.kick * 0.25, L.hLines);
+  if(o.body) gzColumns(x, o, L, [LB], ly + L.gap * 0.5, [bottom]);
+  // a destra: il QR in basso (con la didascalia accanto), sopra la foto o il sigillo
+  var q = Math.min(L.qr, Math.round((bottom - y) * 0.48));
+  var capW = RB.w - q - 16;
+  var cs = Math.round(L.body * 0.82);
+  x.font = '700 ' + cs + 'px ' + luxGzBodyFont(o.lang);
+  var cap = gzLines(x, luxRt(o.lang, 'blog.scan'), function(){ return capW; }, 4);
+  var qy = bottom - q, qx = o.rtl ? RB.x : RB.x + RB.w - q;
+  var qr = luxQrMake(o.url);
+  if(qr) luxQrDraw(x, qr, qx, qy, q, 2, GZ_C.ink, GZ_C.paper);
+  o.info.qr = qr ? [qx, qy, q] : null;
+  var cb = { x: o.rtl ? RB.x + q + 16 : RB.x, w: capW }, clh = Math.round(cs * 1.25);
+  x.fillStyle = GZ_C.ink;
+  cap.forEach(function(l, i){ gzFill(x, o, l, cb, qy + cs + i * clh, 'start'); });
+  x.font = '600 ' + Math.round(cs * 0.86) + 'px ' + LUX_GZ_FONTS.body;
+  x.fillStyle = GZ_C.dim;
+  gzFill(x, o, o.host + '/blog', cb, bottom - 4, 'start');
+  var imgH = qy - y - L.gap * 0.6;
+  if(imgH > 90){
+    if(o.img){ gzCover(x, o.img, RB.x, y, RB.w, imgH); o.info.photo = true; }
+    else if(o.logo){ gzSeal(x, o, o.logo, RB.x, y, RB.w, imgH); o.info.seal = true; }
+  }
+  o.info.imgH = imgH;
+}
+// i caratteri della Gazzetta pronti per il disegno (anche i pezzi per il russo o le lettere accentate)
+function luxGzFonts(lang, sample){
+  if(!document.fonts || !document.fonts.load) return Promise.resolve();
+  var s = sample || 'Aa', list = ['900 80px "Playfair Display"', '700 40px "Playfair Display"', '400 40px "Crimson Pro"', 'italic 400 40px "Crimson Pro"', '600 30px "Crimson Pro"', '700 30px "Cinzel"'];
+  if(luxGzKind(lang) === 'black') list.push('400 80px "UnifrakturMaguntia"');
+  return Promise.all(list.map(function(f){ return document.fonts.load(f, s).catch(function(){}); })).then(function(){}, function(){});
+}
+// tutto quello che serve per disegnare la copertina di un articolo, in una lingua
+function luxGzData(p, lang){
+  var tr = (p.lang || 'it') === lang ? null : (p.i18n && p.i18n[lang]);
+  var title = (tr && tr.title) || p.title || '', body = (tr && tr.body) || p.body || '';
+  var src = p.kind === 'link' ? luxBlogSource(p) : '';
+  return {
+    lang: lang, title: title, body: body, kicker: luxBlogKicker(p, lang),
+    caption: src ? luxRt(lang, 'blog.source').replace('{name}', src) : '',
+    url: luxBlogAbs(p.id), issue: luxBlogNum(p), date: new Date(luxBlogTs(p) || Date.now())
+  };
+}
+// disegna (img: la foto dell'articolo, se c'è; logo: il sigillo); prima la lingua (le scritte), poi foto, sigillo e caratteri
+function luxGzRender(cv, p, fmt, lang){
+  return luxEnsureLang(lang).then(function(){
+    var d = luxGzData(p, lang);
+    d.fmt = fmt;
+    return Promise.all([p.image_url ? luxIgCover(p.image_url) : null, luxIgLogo(), luxGzFonts(lang, luxRt(lang, 'blog.gazette') + d.title + d.kicker + 'Aa')]).then(function(res){
+      d.img = res[0] || null;
+      d.logo = res[1] || null;
+      return luxGzPaint(cv, d);
+    });
+  });
+}
+function luxGzBlob(cv, name){
+  return new Promise(function(res){
+    try {
+      cv.toBlob(function(b){
+        if(!b){ res(null); return; }
+        var f = b;
+        try { f = new File([b], name, { type: 'image/jpeg' }); } catch(e){ f.name = name; }
+        res(f);
+      }, 'image/jpeg', 0.9);
+    } catch(e){ console.warn('[gazzetta]', e); res(null); }
+  });
+}
+function luxGzFileName(p, fmt, lang){ return 'gazzetta-' + luxSlug(luxGzData(p, lang).title) + '-' + fmt + '.jpg'; }
+// la storia con il QR pronta in anticipo, per Instagram e «Altro…» dal telefono (Safari vuole il file già pronto al tocco);
+// una volta per articolo e lingua, un attimo dopo che la pagina si è aperta
+function luxGzPrepFile(p, s){
+  if(!navigator.share || !navigator.canShare || !p) return;
+  var lang = STR[currentLang] ? currentLang : 'it', key = p.id + ':' + lang + ':' + (p.updated_at || '') + ':' + (p.image_url || '');
+  LUX_BLOG.files = LUX_BLOG.files || {};
+  if(!LUX_BLOG.files[key]){
+    LUX_BLOG.files[key] = new Promise(function(res){ setTimeout(res, 700); }).then(function(){
+      var cv = document.createElement('canvas');
+      return luxGzRender(cv, p, 'story', lang).then(function(){ return luxGzBlob(cv, luxGzFileName(p, 'story', lang)); });
+    }).catch(function(){ return null; });
+  }
+  LUX_BLOG.files[key].then(function(f){ if(f) s.file = f; });
+}
+
+/* ---- «Copertina con QR»: si sceglie il formato e la lingua, si scarica o si condivide ---- */
+var GZS = { post: null, fmt: 'story', lang: 'it', seq: 0, file: null, fileSeq: -1, busy: false };
+function luxGzStudioOpen(p){
+  if(!p) return;
+  GZS.post = p; GZS.fmt = 'story'; GZS.file = null; GZS.fileSeq = -1; GZS.busy = false;
+  GZS.lang = STR[currentLang] ? currentLang : 'it';
+  var w = document.getElementById('luxGzStudio');
+  if(w) w.remove();
+  w = document.createElement('div');
+  w.id = 'luxGzStudio';
+  w.className = 'lig gzs';
+  w.innerHTML = '<div class="lig-backdrop" data-gzs-close></div>' +
+    '<div class="lig-panel" role="dialog" aria-modal="true" aria-labelledby="gzsTitle">' +
+      '<div class="lig-head"><div><small>' + escapeHtml(t('blog.cover')) + '</small><b id="gzsTitle">' + escapeHtml(luxBlogLoc(p).title || '') + '</b></div>' +
+        '<button type="button" class="adm-sheet-x" data-gzs-close aria-label="' + luxAttr(t('share.close')) + '">' + LPR_I.x + '</button></div>' +
+      '<div class="lig-fmts" role="tablist" aria-label="' + luxAttr(t('blog.fmtLabel')) + '">' + Object.keys(GZ_FMT).map(function(k){
+        return '<button type="button" role="tab" class="lig-fmt" data-gzs-fmt="' + k + '">' + escapeHtml(t(GZ_FMT[k].key)) + '</button>';
+      }).join('') + '</div>' +
+      '<div class="lig-body">' +
+        '<div class="lig-stage"><canvas class="lig-canvas gzs-canvas" width="1080" height="1920" role="img" aria-label="' + luxAttr(t('blog.coverAlt')) + '"></canvas><p class="lig-wait" hidden>' + escapeHtml(t('blog.studioWait')) + '</p></div>' +
+        '<div class="lig-side">' +
+          '<p class="gzs-sub">' + escapeHtml(t('blog.coverSub')) + '</p>' +
+          '<label class="lig-f"><span>' + escapeHtml(t('blog.studioLang')) + '</span><select data-gzs-lang>' + LUX_LANGS.map(function(l){ return '<option value="' + l.code + '">' + escapeHtml(l.name) + '</option>'; }).join('') + '</select></label>' +
+          '<div class="lig-acts"><button type="button" class="btn btn-primary" data-gzs-dl>' + LPR_I.dl + '<span>' + escapeHtml(t('blog.studioDl')) + '</span></button>' +
+            '<button type="button" class="btn btn-ghost" data-gzs-share hidden>' + LPR_I.share + '<span>' + escapeHtml(t('blog.studioShare')) + '</span></button></div>' +
+          '<p class="lig-msg" data-gzs-msg hidden role="status"></p>' +
+          '<p class="lig-tip">' + escapeHtml(t('blog.studioTip')) + '</p>' +
+        '</div>' +
+      '</div>' +
+    '</div>';
+  document.body.appendChild(w);
+  document.documentElement.classList.add('lig-on');
+  w.addEventListener('click', function(e){
+    if(e.target.closest && e.target.closest('[data-gzs-close]')){ luxGzStudioClose(); return; }
+    var f = e.target.closest ? e.target.closest('[data-gzs-fmt]') : null;
+    if(f){ GZS.fmt = f.getAttribute('data-gzs-fmt'); luxGzStudioControls(); luxGzStudioDraw(); }
+  });
+  var sel = w.querySelector('[data-gzs-lang]');
+  sel.addEventListener('change', function(){ GZS.lang = this.value; luxGzStudioDraw(); });
+  w.querySelector('[data-gzs-dl]').addEventListener('click', function(){ luxGzStudioExport(false); });
+  w.querySelector('[data-gzs-share]').addEventListener('click', function(){ luxGzStudioExport(true); });
+  w._key = function(e){ if(e.key === 'Escape') luxGzStudioClose(); };
+  document.addEventListener('keydown', w._key);
+  luxGzStudioControls();
+  luxGzStudioDraw();
+  try { w.querySelector('.adm-sheet-x').focus({ preventScroll: true }); } catch(e){}
+}
+function luxGzStudioClose(){
+  var w = document.getElementById('luxGzStudio');
+  if(!w) return;
+  if(w._key) document.removeEventListener('keydown', w._key);
+  w.remove();
+  document.documentElement.classList.remove('lig-on');
+}
+function luxGzStudioControls(){
+  var w = document.getElementById('luxGzStudio');
+  if(!w) return;
+  Array.prototype.forEach.call(w.querySelectorAll('[data-gzs-fmt]'), function(b){
+    var on = b.getAttribute('data-gzs-fmt') === GZS.fmt;
+    b.classList.toggle('on', on);
+    b.setAttribute('aria-selected', on ? 'true' : 'false');
+  });
+  w.querySelector('[data-gzs-lang]').value = GZS.lang;
+  w.querySelector('[data-gzs-share]').hidden = !(navigator.canShare && navigator.share);
+}
+function luxGzStudioDraw(){
+  var w = document.getElementById('luxGzStudio');
+  if(!w || !GZS.post) return Promise.resolve(false);
+  var seq = ++GZS.seq, cv = w.querySelector('.gzs-canvas'), wait = w.querySelector('.lig-wait');
+  w.querySelector('.lig-stage').setAttribute('data-fmt', GZS.fmt);
+  wait.hidden = false;
+  var off = document.createElement('canvas');
+  return luxGzRender(off, GZS.post, GZS.fmt, GZS.lang).then(function(info){
+    if(seq !== GZS.seq || !document.getElementById('luxGzStudio')) return false;
+    cv.width = off.width; cv.height = off.height;
+    cv.getContext('2d').drawImage(off, 0, 0);
+    cv.setAttribute('data-drawn', GZS.fmt + ':' + GZS.lang + ':' + seq); // (per le prove: cosa c'è nell'immagine)
+    cv.setAttribute('data-info', JSON.stringify(info));
+    wait.hidden = true;
+    GZS.file = null;
+    setTimeout(function(){ if(seq === GZS.seq) luxGzBlob(cv, luxGzFileName(GZS.post, GZS.fmt, GZS.lang)).then(function(f){ if(seq === GZS.seq){ GZS.file = f; GZS.fileSeq = seq; } }); }, 0);
+    return true;
+  }, function(e){ console.warn('[gazzetta]', e); wait.hidden = true; return false; });
+}
+function luxGzStudioExport(share){
+  var w = document.getElementById('luxGzStudio');
+  if(!w || GZS.busy) return;
+  var msg = w.querySelector('[data-gzs-msg]');
+  var say = function(tx, bad){ msg.hidden = !tx; msg.textContent = tx || ''; msg.classList.toggle('is-error', !!bad); };
+  say('');
+  var deliver = function(file){
+    if(share && navigator.canShare && navigator.share){
+      var ok = false;
+      try { ok = navigator.canShare({ files: [file] }); } catch(e){}
+      if(ok){
+        try {
+          navigator.share({ files: [file], title: luxBlogLoc(GZS.post).title || t('blog.gazette') }).then(function(){ luxBlogCount(GZS.post, 'share'); }, function(err){
+            if(err && err.name === 'NotAllowedError') say(t('blog.studioAgain'));
+          });
+        } catch(e){ say(t('blog.studioAgain')); }
+        return;
+      }
+    }
+    luxDownloadBlob(file, file.name || luxGzFileName(GZS.post, GZS.fmt, GZS.lang));
+    say(t('blog.studioSaved').replace('{name}', file.name || ''));
+  };
+  if(GZS.file && GZS.fileSeq === GZS.seq && w.querySelector('.lig-wait').hidden){ deliver(GZS.file); return; } // pronta: subito, dentro il tocco
+  GZS.busy = true;
+  luxGzStudioDraw().then(function(){
+    var cv = w.querySelector('.gzs-canvas');
+    return luxGzBlob(cv, luxGzFileName(GZS.post, GZS.fmt, GZS.lang));
+  }).then(function(f){
+    GZS.busy = false;
+    if(!f){ say(t('blog.studioFail'), true); return; }
+    deliver(f);
+  });
+}
+/* ---- in home: «Dal blog», gli ultimi tre articoli ---- */
+function luxBlogHome(){
+  var list = document.getElementById('blogHomeList'), sec = document.getElementById('blogHomeSection');
+  if(!list || !sec || !SUPABASE_URL) return Promise.resolve();
+  var draw = function(rows){
+    rows = (rows || []).filter(function(p){ return p.published !== false; }).slice(0, 3);
+    sec.classList.toggle('hidden', !rows.length);
+    var nm = sec.querySelector('.gz-home-name');
+    if(nm){ nm.className = 'gz-home-name gz-name--' + luxGzKind(currentLang); nm.setAttribute('lang', currentLang); if(rows.length) luxBlogFitName(nm); }
+    list.innerHTML = rows.map(function(p){
+      var L = luxBlogLoc(p);
+      return '<a class="gz-hitem' + (p.image_url ? ' has-img' : '') + '" href="' + luxBlogHref(p) + '"' + luxBlogLangAttr(p) + '>' +
+        (p.image_url ? luxBlogImgHtml(p, 300) : '') +
+        '<span class="gz-hitem-t"><span class="gz-kicker">' + escapeHtml(luxBlogKicker(p)) + '</span>' +
+        '<span class="gz-hitem-h">' + escapeHtml(L.title) + '</span><span class="gz-hitem-d">' + escapeHtml(luxBlogDate(p)) + '</span></span></a>';
+    }).join('');
+  };
+  if(!LUX_BLOG.homeP){
+    LUX_BLOG.homeP = fetch(SUPABASE_URL + '/rest/v1/blog_posts?published=eq.true&select=id,kind,title,link_url,source_name,image_url,lang,i18n,pinned,published,published_at&order=pinned.desc,published_at.desc&limit=3', { headers: communityHeaders() })
+      .then(function(r){ return r.ok ? r.json() : []; }, function(){ return []; });
+  }
+  return LUX_BLOG.homeP.then(draw).catch(function(){ sec.classList.add('hidden'); });
+}
+
+/* ---- gli avvisi a te: il database deve sapere chi è l'amministratore (una volta al giorno, quando entri) ---- */
+function luxBlogIo(force){
+  if(!SUPABASE_URL || !isAdmin()) return;
+  var k = 'lux_blog_io:' + currentUserId(), last = 0;
+  try { last = +(localStorage.getItem(k) || 0); } catch(e){}
+  if(!force && Date.now() - last < 20 * 3600000) return;
+  var s = getSession();
+  fetch(SUPABASE_URL + '/rest/v1/rpc/lux_blog_sono_io', {
+    method: 'POST',
+    headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': 'Bearer ' + s.access_token, 'Content-Type': 'application/json' },
+    body: '{}'
+  }).then(function(r){ if(r.ok) try { localStorage.setItem(k, String(Date.now())); } catch(e){} }).catch(function(){});
+}
+
+/* ---- Amministra › Commenti: anche quelli del blog ---- */
+function luxBlogModQueue(){
+  var q = document.getElementById('modQueue');
+  if(!q || !q.parentNode || !SUPABASE_URL || !isAdmin()) return;
+  var box = document.getElementById('modQueueBlog');
+  if(!box){ box = document.createElement('div'); box.id = 'modQueueBlog'; box.className = 'gz-modq'; box.hidden = true; q.parentNode.insertBefore(box, q.nextSibling); }
+  fetch(SUPABASE_URL + '/rest/v1/blog_comments?approved=eq.false&select=*&order=created_at.asc', { headers: communityHeaders() })
+    .then(function(r){ return r.ok ? r.json() : []; })
+    .then(function(rows){
+      if(!rows.length){ box.innerHTML = ''; box.hidden = true; return; }
+      return luxBlogLoad().then(function(){
+        box.hidden = false;
+        box.innerHTML = '<div class="gz-modq-h">Dal blog</div>';
+        rows.forEach(function(c){
+          var p = luxBlogFind(c.post_id), row = document.createElement('div');
+          row.className = 'mod-row';
+          row.innerHTML = '<div><div class="who">' + escapeHtml(c.author_name) + ' · <a href="blog.html?post=' + luxAttr(c.post_id) + '#c-' + luxAttr(c.id) + '" target="_blank" rel="noopener">' + escapeHtml(p ? p.title : 'Blog') + '</a></div>' +
+            '<div class="txt">' + escapeHtml(c.body) + '</div></div>' +
+            '<div class="admin-actions"><button class="btn btn-sm btn-ghost" data-ok aria-label="Approva">✓</button><button class="btn btn-sm btn-ghost" data-no aria-label="Elimina">×</button></div>';
+          row.querySelector('[data-ok]').addEventListener('click', function(){ luxBlogComPatch(c.id, { approved: true }).then(function(){ if(p) luxBlogBump(p, 1); luxBlogModQueue(); luxBlogAdmPending(); }, function(){ luxToast(t('net.actionFailed')); }); });
+          row.querySelector('[data-no]').addEventListener('click', function(){ luxDelete('blog_comments?id=eq.' + encodeURIComponent(c.id)).then(function(){ luxBlogModQueue(); luxBlogAdmPending(); }, luxDeleteFail); });
+          box.appendChild(row);
+        });
+      });
+    })
+    .catch(function(e){ console.warn('[blog] commenti da approvare', e); });
+}
+
+/* ---- Amministra › Blog ---- */
+var LUX_BLOG_ADM = { form: null, editing: null, status: {}, pending: 0, pendingBy: {}, busy: false };
+var LUX_BLOG_SOURCES = {
+  'lastampa.it': 'La Stampa', 'corriere.it': 'Corriere della Sera', 'repubblica.it': 'la Repubblica', 'ilpost.it': 'Il Post', 'ansa.it': 'ANSA',
+  'ilsole24ore.com': 'Il Sole 24 Ore', 'gazzetta.it': 'La Gazzetta dello Sport', 'ilfattoquotidiano.it': 'Il Fatto Quotidiano', 'rainews.it': 'RaiNews',
+  'skytg24.sky.it': 'Sky TG24', 'tgcom24.mediaset.it': 'TGCom24', 'ilmessaggero.it': 'Il Messaggero', 'ilgiornale.it': 'il Giornale', 'avvenire.it': 'Avvenire',
+  'thetimes.com': 'The Times', 'thetimes.co.uk': 'The Times', 'theguardian.com': 'The Guardian', 'nytimes.com': 'The New York Times', 'bbc.com': 'BBC',
+  'bbc.co.uk': 'BBC', 'washingtonpost.com': 'The Washington Post', 'reuters.com': 'Reuters', 'apnews.com': 'AP News', 'lemonde.fr': 'Le Monde',
+  'lefigaro.fr': 'Le Figaro', 'elpais.com': 'El País', 'elmundo.es': 'El Mundo', 'spiegel.de': 'Der Spiegel', 'faz.net': 'FAZ', 'zeit.de': 'Die Zeit',
+  'luccacomicsandgames.com': 'Lucca Comics & Games', 'youtube.com': 'YouTube', 'youtu.be': 'YouTube', 'instagram.com': 'Instagram', 'tiktok.com': 'TikTok',
+  'facebook.com': 'Facebook', 'x.com': 'X', 'twitter.com': 'X', 'wikipedia.org': 'Wikipedia', 'medium.com': 'Medium', 'substack.com': 'Substack'
+};
+// il nome della fonte dal link (lastampa.it → La Stampa); se non lo conosco, il dominio
+function luxBlogNiceSource(u){
+  var d = luxBlogDomain(u).toLowerCase();
+  if(!d) return '';
+  var parts = d.split('.');
+  for(var i = 0; i < parts.length - 1; i++){ var k = parts.slice(i).join('.'); if(LUX_BLOG_SOURCES[k]) return LUX_BLOG_SOURCES[k]; }
+  return d;
+}
+function luxUuid(){
+  try { if(window.crypto && crypto.randomUUID) return crypto.randomUUID(); } catch(e){}
+  var b = new Uint8Array(16);
+  try { crypto.getRandomValues(b); } catch(e){ for(var i = 0; i < 16; i++) b[i] = Math.random() * 256 | 0; }
+  b[6] = (b[6] & 15) | 64; b[8] = (b[8] & 63) | 128;
+  var h = Array.prototype.map.call(b, function(v){ return ('0' + v.toString(16)).slice(-2); }).join('');
+  return h.slice(0, 8) + '-' + h.slice(8, 12) + '-' + h.slice(12, 16) + '-' + h.slice(16, 20) + '-' + h.slice(20);
+}
+function luxBlogAdmEmpty(){
+  var me = (currentProfile && currentProfile.display_name) || 'Nox Morningstar';
+  return { id: luxUuid(), kind: 'news', title: '', body: '', link_url: '', source_name: '', srcAuto: true, image_url: null, file: null, fileUrl: '', removeImg: false,
+    lang: 'it', pinned: false, author_name: me };
+}
+function luxBlogTabInit(){
+  var tabs = document.getElementById('adminTabs');
+  if(!tabs || tabs.querySelector('.admin-tab[data-tab="blog"]')) return;
+  var ann = tabs.querySelector('.admin-tab[data-tab="announcements"]');
+  var b = document.createElement('button');
+  b.type = 'button';
+  b.className = 'admin-tab';
+  b.setAttribute('data-tab', 'blog');
+  b.textContent = 'Blog';
+  tabs.insertBefore(b, ann ? ann.nextSibling : null);
+  var ap = document.querySelector('.admin-tab-panel[data-tab-panel="announcements"]') || document.querySelector('.admin-tab-panel');
+  if(!ap || !ap.parentNode) return;
+  var p = document.createElement('div');
+  p.className = 'admin-tab-panel hidden';
+  p.setAttribute('data-tab-panel', 'blog');
+  p.innerHTML = '<div class="gza" id="luxBlogAdmin"></div>';
+  ap.parentNode.insertBefore(p, ap.nextSibling);
+}
+function luxBlogAdminRender(load){
+  var box = document.getElementById('luxBlogAdmin');
+  if(!box || !isAdmin()) return;
+  if(!LUX_BLOG_ADM.form) LUX_BLOG_ADM.form = luxBlogAdmEmpty();
+  if(!box.dataset.ready){
+    box.dataset.ready = '1';
+    box.innerHTML =
+      '<div class="gza-intro"><h3>Blog <span>· ' + escapeHtml(luxRt('it', 'blog.gazette')) + '</span></h3>' +
+        '<p>Notizie, aggiornamenti e link ad altri siti. Li legge chiunque, anche senza account; per commentare serve l\'account e i commenti degli altri li approvi tu. <a href="blog.html" target="_blank" rel="noopener">Apri il blog</a></p></div>' +
+      '<p class="gza-warn" data-gza-warn hidden></p>' +
+      '<p class="gza-pending" data-gza-pending hidden></p>' +
+      '<div class="gza-form" role="group" aria-labelledby="gzaFormH">' +
+        '<div class="gza-form-h" id="gzaFormH" data-gza-formh>Nuovo articolo</div>' +
+        '<div class="gza-f"><span id="gzaKindL">Tipo</span><div class="gza-kinds" role="radiogroup" aria-labelledby="gzaKindL">' +
+          '<button type="button" role="radio" class="gza-kind" data-gza-kind="news">Notizia</button>' +
+          '<button type="button" role="radio" class="gza-kind" data-gza-kind="update">Aggiornamento</button>' +
+          '<button type="button" role="radio" class="gza-kind" data-gza-kind="link">Link da un altro sito</button></div></div>' +
+        '<label class="gza-f"><span data-gza-linkl>Link (facoltativo)</span><input type="url" inputmode="url" data-gza-link placeholder="https://…" autocomplete="off" spellcheck="false"></label>' +
+        '<label class="gza-f" data-gza-srcf hidden><span>Fonte <small>(il nome del giornale o del sito: si scrive da solo dal link)</small></span><input type="text" data-gza-src maxlength="80" placeholder="La Stampa"></label>' +
+        '<label class="gza-f"><span>Titolo</span><input type="text" data-gza-title maxlength="300" autocomplete="off"></label>' +
+        '<label class="gza-f"><span data-gza-bodyl>Testo</span><textarea data-gza-body rows="8" maxlength="20000"></textarea>' +
+          '<small class="gza-hint">Una riga vuota fa un paragrafo nuovo. I link (https://…) diventano cliccabili.</small></label>' +
+        '<div class="gza-f"><span>Immagine <small>(facoltativa: va in cima all\'articolo e sulla copertina con il QR)</small></span>' +
+          '<div class="gza-img"><img data-gza-imgprev alt="" hidden><input type="file" accept="image/*" data-gza-file>' +
+          '<button type="button" class="btn btn-ghost btn-sm" data-gza-imgdel hidden>Togli l\'immagine</button></div></div>' +
+        '<div class="gza-row2">' +
+          '<label class="gza-f"><span>Lingua in cui scrivi</span><select data-gza-lang>' + LUX_LANGS.map(function(l){ return '<option value="' + l.code + '">' + escapeHtml(l.name) + '</option>'; }).join('') + '</select></label>' +
+          '<label class="gza-f"><span>Firma</span><input type="text" data-gza-author maxlength="80" autocomplete="off"></label>' +
+        '</div>' +
+        '<label class="gza-c"><input type="checkbox" data-gza-pin> <span>In evidenza: resta in cima al blog</span></label>' +
+        '<div class="gza-acts">' +
+          '<button type="button" class="btn btn-primary" data-gza-pub>Pubblica</button>' +
+          '<button type="button" class="btn btn-ghost" data-gza-draft>Salva come bozza</button>' +
+          '<button type="button" class="btn btn-ghost gza-coverbtn" data-gza-cover>' + LPR_I.qr + '<span>Copertina con QR</span></button>' +
+          '<button type="button" class="btn btn-ghost" data-gza-cancel hidden>Annulla modifica</button>' +
+        '</div>' +
+        '<p class="gza-msg" data-gza-msg role="status" hidden></p>' +
+      '</div>' +
+      '<div class="gza-list-h">Articoli <small data-gza-count></small></div>' +
+      '<div class="gza-list" data-gza-list></div>' +
+      '<p class="gza-note">Quando pubblichi, l\'articolo si traduce da solo nelle altre lingue del sito e si prepara l\'anteprima per i social: la copertina «da giornale» con il QR, che WhatsApp, Telegram e Facebook mostrano insieme al link (è online dopo 1–2 minuti).</p>';
+    luxBlogAdmWire(box);
+  }
+  luxBlogAdmFormFill();
+  luxBlogAdmList();
+  if(load){
+    luxBlogIo(true);
+    luxBlogAdmPending();
+    luxBlogLoad(true).then(function(){ luxBlogAdmList(); luxBlogAdmEditPending(); });
+  }
+}
+// arrivando dal blog con «Modifica»: l'articolo già nel modulo
+function luxBlogAdmEditPending(){
+  var id = null;
+  try { id = sessionStorage.getItem('lux_blog_edit'); sessionStorage.removeItem('lux_blog_edit'); } catch(e){}
+  var p = id && luxBlogFind(id);
+  if(p) luxBlogAdmEdit(p);
+}
+function luxBlogAdmQ(sel){ return document.querySelector('#luxBlogAdmin ' + sel); }
+function luxBlogAdmSay(tx, bad){
+  var m = luxBlogAdmQ('[data-gza-msg]');
+  if(!m) return;
+  m.hidden = !tx; m.textContent = tx || ''; m.classList.toggle('is-error', !!bad);
+}
+function luxBlogAdmWire(box){
+  var q = function(s){ return box.querySelector(s); };
+  var F = function(){ return LUX_BLOG_ADM.form; };
+  box.querySelector('.gza-kinds').addEventListener('click', function(e){
+    var b = e.target.closest ? e.target.closest('[data-gza-kind]') : null;
+    if(!b) return;
+    F().kind = b.getAttribute('data-gza-kind');
+    luxBlogAdmFormFill();
+    if(F().kind === 'link' && !F().link_url) try { q('[data-gza-link]').focus(); } catch(err){}
+  });
+  q('[data-gza-link]').addEventListener('input', function(){
+    var f = F();
+    f.link_url = this.value.trim();
+    if(f.srcAuto){ f.source_name = luxBlogNiceSource(f.link_url); q('[data-gza-src]').value = f.source_name; }
+    q('[data-gza-srcf]').hidden = !f.link_url && f.kind !== 'link';
+  });
+  q('[data-gza-src]').addEventListener('input', function(){ F().source_name = this.value; F().srcAuto = !this.value.trim(); });
+  q('[data-gza-title]').addEventListener('input', function(){ F().title = this.value; });
+  q('[data-gza-body]').addEventListener('input', function(){ F().body = this.value; });
+  q('[data-gza-lang]').addEventListener('change', function(){ F().lang = this.value; });
+  q('[data-gza-author]').addEventListener('input', function(){ F().author_name = this.value; });
+  q('[data-gza-pin]').addEventListener('change', function(){ F().pinned = this.checked; });
+  var file = q('[data-gza-file]');
+  try { luxFilePretty(file); } catch(e){}
+  file.addEventListener('change', function(){
+    var f = F(), fl = this.files && this.files[0];
+    if(f.fileUrl) try { URL.revokeObjectURL(f.fileUrl); } catch(e){}
+    f.file = fl || null;
+    f.fileUrl = fl ? URL.createObjectURL(fl) : '';
+    if(fl) f.removeImg = false;
+    luxBlogAdmFormFill(true);
+  });
+  q('[data-gza-imgdel]').addEventListener('click', function(){
+    var f = F();
+    if(f.fileUrl) try { URL.revokeObjectURL(f.fileUrl); } catch(e){}
+    f.file = null; f.fileUrl = ''; f.image_url = null; f.removeImg = true;
+    file.value = '';
+    luxBlogAdmFormFill(true);
+  });
+  q('[data-gza-pub]').addEventListener('click', function(){ luxBlogAdmSave(true); });
+  q('[data-gza-draft]').addEventListener('click', function(){ luxBlogAdmSave(false); });
+  q('[data-gza-cover]').addEventListener('click', function(){
+    var f = F();
+    if(!f.title.trim()){ luxBlogAdmSay('Scrivi prima il titolo: va in prima pagina.', true); try { q('[data-gza-title]').focus(); } catch(e){} return; }
+    luxGzStudioOpen(luxBlogAdmDraftPost());
+  });
+  q('[data-gza-cancel]').addEventListener('click', function(){ luxBlogAdmReset(); luxBlogAdmSay(''); });
+  box.addEventListener('click', function(e){
+    if(e.target.closest && e.target.closest('[data-gza-gocom]')){ switchAdminTab('comments'); renderModerationQueue(); return; }
+    var a = e.target.closest ? e.target.closest('[data-gza-act]') : null;
+    if(!a) return;
+    var p = luxBlogFind(a.getAttribute('data-id'));
+    if(p) luxBlogAdmAct(a.getAttribute('data-gza-act'), p, a);
+  });
+}
+// l'articolo com'è nel modulo (per la copertina prima di salvare)
+function luxBlogAdmDraftPost(){
+  var f = LUX_BLOG_ADM.form, ed = LUX_BLOG_ADM.editing;
+  return { id: ed ? ed.id : f.id, kind: f.kind, title: f.title.trim(), body: f.body.trim(), link_url: f.link_url || null,
+    source_name: f.source_name || (f.link_url ? luxBlogNiceSource(f.link_url) : ''), image_url: f.fileUrl || (f.removeImg ? null : f.image_url),
+    lang: f.lang, i18n: ed ? (ed.i18n || {}) : {}, published: true, published_at: ed ? ed.published_at : new Date().toISOString(), updated_at: '' };
+}
+function luxBlogAdmFormFill(imgOnly){
+  var box = document.getElementById('luxBlogAdmin');
+  if(!box || !box.dataset.ready) return;
+  var f = LUX_BLOG_ADM.form, q = function(s){ return box.querySelector(s); }, ed = LUX_BLOG_ADM.editing;
+  var prev = q('[data-gza-imgprev]'), src = f.fileUrl || (f.removeImg ? '' : f.image_url || '');
+  prev.hidden = !src;
+  if(src && prev.getAttribute('src') !== src) prev.src = src;
+  if(!src) prev.removeAttribute('src');
+  q('[data-gza-imgdel]').hidden = !src;
+  if(imgOnly) return;
+  Array.prototype.forEach.call(box.querySelectorAll('[data-gza-kind]'), function(b){
+    var on = b.getAttribute('data-gza-kind') === f.kind;
+    b.classList.toggle('on', on); b.setAttribute('aria-checked', on ? 'true' : 'false');
+  });
+  q('[data-gza-linkl]').textContent = f.kind === 'link' ? 'Link dell\'articolo (quello da leggere sull\'altro sito)' : 'Link (facoltativo)';
+  q('[data-gza-bodyl]').textContent = f.kind === 'link' ? 'Il tuo commento o un riassunto (facoltativo)' : 'Testo';
+  q('[data-gza-link]').value = f.link_url;
+  q('[data-gza-src]').value = f.source_name;
+  q('[data-gza-srcf]').hidden = !f.link_url && f.kind !== 'link';
+  q('[data-gza-title]').value = f.title;
+  q('[data-gza-body]').value = f.body;
+  q('[data-gza-lang]').value = f.lang;
+  q('[data-gza-author]').value = f.author_name;
+  q('[data-gza-pin]').checked = !!f.pinned;
+  q('[data-gza-formh]').textContent = ed ? 'Modifica: «' + (ed.title || '') + '»' : 'Nuovo articolo';
+  q('[data-gza-cancel]').hidden = !ed;
+  q('[data-gza-pub]').textContent = ed ? (ed.published === false ? 'Pubblica' : 'Salva e pubblica') : 'Pubblica';
+}
+function luxBlogAdmReset(){
+  var f = LUX_BLOG_ADM.form;
+  if(f && f.fileUrl) try { URL.revokeObjectURL(f.fileUrl); } catch(e){}
+  LUX_BLOG_ADM.form = luxBlogAdmEmpty();
+  LUX_BLOG_ADM.editing = null;
+  var file = luxBlogAdmQ('[data-gza-file]');
+  if(file) file.value = '';
+  luxBlogAdmFormFill();
+}
+function luxBlogAdmEdit(p){
+  luxBlogAdmReset();
+  var f = LUX_BLOG_ADM.form;
+  LUX_BLOG_ADM.editing = p;
+  f.id = p.id; f.kind = p.kind || 'news'; f.title = p.title || ''; f.body = p.body || ''; f.link_url = p.link_url || '';
+  f.source_name = p.source_name || ''; f.srcAuto = !p.source_name; f.image_url = p.image_url || null; f.lang = p.lang || 'it';
+  f.pinned = !!p.pinned; f.author_name = p.author_name || '';
+  luxBlogAdmFormFill();
+  luxBlogAdmSay('');
+  var h = luxBlogAdmQ('.gza-form');
+  try { if(h) h.scrollIntoView({ block: 'start', behavior: 'smooth' }); } catch(e){}
+  setTimeout(function(){ var ti = luxBlogAdmQ('[data-gza-title]'); try { if(ti) ti.focus({ preventScroll: true }); } catch(e){} }, 350);
+}
+function luxBlogAdmErr(e){
+  e = e || {};
+  if(e.code === 'sql') return 'Il blog non c\'è ancora su Supabase: lancia il file blog_v263.sql (SQL Editor → incolla tutto → Run), poi riprova.';
+  if(e.code === 'network') return 'Non riesco a raggiungere Supabase: controlla la connessione e riprova.';
+  if(e.code === 'auth') return 'Accesso scaduto: esci, rientra e riprova.';
+  if(e.code === 'denied') return 'Supabase non l\'ha salvato (permessi): sei entrato con l\'account dell\'amministratore?';
+  if(e.stage === 'upload' || e.stage === 'network') return 'L\'immagine non si è caricata (' + (e.status || 'rete') + '): riprova, o pubblica senza immagine.';
+  if(e.code === 'check') return 'Supabase non accetta questo articolo: ' + (e.text || 'controlla titolo e link') + '.';
+  return 'Non salvato (' + (e.status || '?') + '): ' + (e.text || 'riprova tra poco') + '.';
+}
+// scrive un articolo (nuovo o cambiato): risponde con la riga salvata
+function luxBlogAdmWrite(method, id, row){
+  return refreshSessionIfNeeded().then(function(){
+    var s = getSession();
+    if(!s) throw { code: 'auth' };
+    return fetch(SUPABASE_URL + '/rest/v1/blog_posts' + (method === 'PATCH' ? '?id=eq.' + encodeURIComponent(id) : ''), {
+      method: method,
+      headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': 'Bearer ' + s.access_token, 'Content-Type': 'application/json', 'Prefer': 'return=representation' },
+      body: JSON.stringify(row)
+    }).then(null, function(){ throw { code: 'network' }; });
+  }).then(function(r){
+    return r.text().then(function(tx){
+      if(r.status === 404 || /PGRST205|42P01/.test(tx)) throw { code: 'sql' };
+      if(r.status === 401) throw { code: 'auth' };
+      if(/23514|check constraint/.test(tx)) throw { code: 'check', text: (/blog_posts_(\w+)_ok/.exec(tx) || [])[1] === 'link' ? 'il link deve cominciare con https://' : 'controlla titolo e link' };
+      if(!r.ok) throw { code: 'save', status: r.status, text: tx.slice(0, 160) };
+      var rows = [];
+      try { rows = JSON.parse(tx); } catch(e){}
+      if(!Array.isArray(rows) || !rows.length) throw { code: 'denied' };
+      return rows[0];
+    });
+  });
+}
+function luxBlogAdmUpload(id, file){
+  var base = 'blog/' + id + '/img-' + Date.now();
+  return Promise.all([luxShrinkImage(file, 1600, 0.85, 500000), luxShrinkImage(file, 560, 0.8, 70000)]).then(function(f){
+    return luxUploadPublicImage(base + '.jpg', f[0]).then(function(url){
+      return luxUploadPublicImage(base + '-sm.jpg', f[1]).then(function(){ return url; }, function(){ return url; });
+    });
+  });
+}
+function luxBlogAdmMerge(row){
+  if(!row || !row.id) return;
+  var rows = LUX_BLOG.rows || [], hit = false;
+  for(var i = 0; i < rows.length; i++) if(rows[i].id === row.id){ for(var k in row) rows[i][k] = row[k]; hit = true; break; }
+  if(!hit) rows.unshift(row);
+  LUX_BLOG.rows = luxBlogSort(rows);
+  delete LUX_BLOG.single[String(row.id).toLowerCase()];
+}
+function luxBlogAdmBusy(on){
+  LUX_BLOG_ADM.busy = on;
+  Array.prototype.forEach.call(document.querySelectorAll('#luxBlogAdmin [data-gza-pub], #luxBlogAdmin [data-gza-draft]'), function(b){ b.disabled = on; });
+}
+function luxBlogAdmSave(publish){
+  if(LUX_BLOG_ADM.busy) return;
+  var f = LUX_BLOG_ADM.form, ed = LUX_BLOG_ADM.editing;
+  var title = f.title.trim(), link = f.link_url.trim();
+  var focus = function(sel){ var el = luxBlogAdmQ(sel); try { if(el) el.focus(); } catch(e){} };
+  if(!title){ luxBlogAdmSay('Scrivi il titolo.', true); focus('[data-gza-title]'); return; }
+  if(link && !/^https?:\/\/[^\s"'<>]+$/i.test(link)){ luxBlogAdmSay('Il link deve cominciare con https:// (copialo intero dalla barra del browser).', true); focus('[data-gza-link]'); return; }
+  if(f.kind === 'link' && !link){ luxBlogAdmSay('Per un link da un altro sito serve il link.', true); focus('[data-gza-link]'); return; }
+  if(!SUPABASE_URL || !getSession()){ luxBlogAdmSay('Entra con il tuo account e riprova.', true); return; }
+  var id = ed ? ed.id : f.id;
+  luxBlogAdmBusy(true);
+  luxBlogAdmSay(f.file ? 'Carico l\'immagine…' : 'Salvo…');
+  var img = f.file ? luxBlogAdmUpload(id, f.file) : Promise.resolve(f.removeImg ? null : (ed ? ed.image_url || null : null));
+  img.then(function(imageUrl){
+    luxBlogAdmSay('Salvo…');
+    var row = { kind: f.kind, title: title, body: f.body.replace(/\s+$/, ''), link_url: link || null,
+      source_name: link ? (f.source_name.trim() || luxBlogNiceSource(link)) : null, image_url: imageUrl, lang: f.lang,
+      pinned: !!f.pinned, published: !!publish, author_name: f.author_name.trim() || null };
+    if(!ed){ row.id = id; row.created_by = currentUserId(); row.published_at = new Date().toISOString(); }
+    else if(publish && ed.published === false) row.published_at = new Date().toISOString(); // una bozza che esce adesso: con la data di oggi
+    return luxBlogAdmWrite(ed ? 'PATCH' : 'POST', id, row);
+  }).then(function(saved){
+    var prev = ed ? JSON.parse(JSON.stringify(ed)) : null;
+    if(ed && f.image_url && f.image_url !== saved.image_url) luxBlogAdmDropFiles([f.image_url, luxBlogThumb(f.image_url)]); // l'immagine vecchia, sostituita o tolta
+    luxBlogAdmMerge(saved);
+    luxBlogAdmReset();
+    luxBlogAdmSay(publish ? 'Pubblicato. Adesso lo traduco e preparo l\'anteprima per i social (lo vedi qui sotto).' : 'Salvato come bozza: lo vedi solo tu (nel blog ha la scritta «Bozza»).');
+    luxBlogAdmList();
+    return luxBlogLoad(true).then(function(){ luxBlogAdmList(); luxBlogAdmAfter(luxBlogFind(saved.id) || saved, prev, publish); });
+  }).catch(function(e){
+    console.warn('[blog] salvataggio', e);
+    luxBlogAdmSay(luxBlogAdmErr(e), true);
+  }).then(function(){ luxBlogAdmBusy(false); });
+}
+function luxBlogAdmDropFiles(urls){
+  var paths = (urls || []).map(function(u){ return luxPubPath(u, 'comic-pages'); }).filter(function(p){ return p && /^blog\//.test(p); });
+  if(paths.length) luxStorageRemove('comic-pages', paths).catch(function(e){ console.warn('[blog] file vecchi', e); });
+}
+// dopo il salvataggio: le traduzioni e l'anteprima per i social (o, se è tornato bozza, via l'anteprima)
+function luxBlogAdmAfter(row, prev, publish){
+  var st = LUX_BLOG_ADM.status[row.id] = LUX_BLOG_ADM.status[row.id] || {};
+  if(!publish){
+    if(prev && prev.published !== false && prev.og_image) luxBlogEdge(row.id, 'delete').then(function(){ delete LUX_BLOG.pv[row.id]; }, function(){});
+    return Promise.resolve();
+  }
+  var keys = ['title', 'body', 'link_url', 'source_name', 'image_url', 'kind', 'lang'];
+  var changed = !prev || keys.some(function(k){ return (prev[k] || '') !== (row[k] || ''); });
+  var needTr = !prev || (prev.title || '') !== (row.title || '') || (prev.body || '') !== (row.body || '') || prev.lang !== row.lang || !row.i18n || !Object.keys(row.i18n).length;
+  var needOg = changed || !row.og_image || (prev && prev.published === false);
+  if(needTr) st.tr = 'run';
+  if(needOg) st.og = 'run';
+  luxBlogAdmList();
+  var tr = needTr ? luxTranslateRow('blog_posts', row, { prev: prev && prev.lang === row.lang ? prev : null })
+      .then(function(){ st.tr = 'ok'; }, function(e){ st.tr = 'err'; st.trMsg = luxTrMessage(e); })
+    : Promise.resolve();
+  var og = needOg ? luxBlogAdmOg(row) : Promise.resolve();
+  return Promise.all([tr.then(luxBlogAdmList), og.then(luxBlogAdmList)]);
+}
+// la copertina per i link (1200×630) nella lingua dell'articolo, su Supabase; poi la pagina b/<id>.html su GitHub
+function luxBlogAdmOg(row){
+  var st = LUX_BLOG_ADM.status[row.id] = LUX_BLOG_ADM.status[row.id] || {};
+  st.og = 'run';
+  var cv = document.createElement('canvas'), lang = row.lang || 'it';
+  return luxGzRender(cv, row, 'og', lang).then(function(){ return luxGzBlob(cv, 'og.jpg'); }).then(function(f){
+    if(!f) throw { code: 'canvas' };
+    return luxUploadPublicImage('blog/' + row.id + '/og-' + lang + '-' + Date.now() + '.jpg', f).then(null, function(e){ throw { code: 'upload', status: e && e.status }; });
+  }).then(function(url){
+    var old = row.og_image;
+    return luxBlogAdmWrite('PATCH', row.id, { og_image: url }).then(function(saved){
+      luxBlogAdmMerge(saved);
+      row.og_image = saved.og_image;
+      if(old && old !== saved.og_image) luxBlogAdmDropFiles([old]);
+    });
+  }).then(function(){
+    return luxBlogEdge(row.id, 'create');
+  }).then(function(){
+    st.og = 'ok'; st.ogAt = Date.now();
+    delete LUX_BLOG.pv[row.id];
+  }, function(e){
+    console.warn('[blog] anteprima social', e);
+    st.og = 'err'; st.ogMsg = luxBlogEdgeMsg(e);
+  });
+}
+function luxBlogEdge(id, action){
+  return refreshSessionIfNeeded().then(function(){
+    var s = getSession();
+    if(!s) throw { code: 'auth' };
+    return fetch(SUPABASE_URL + '/functions/v1/generate-blog-preview', {
+      method: 'POST',
+      headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': 'Bearer ' + s.access_token, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ post_id: id, action: action || 'create' })
+    }).then(null, function(){ throw { code: 'network' }; });
+  }).then(function(r){
+    return r.json().catch(function(){ return {}; }).then(function(j){
+      if(r.status === 404 && !(j && j.error)) throw { code: 'missing' };
+      if(r.status === 401) throw { code: 'auth' };
+      if(!r.ok) throw { code: 'fail', status: r.status, detail: (j && (j.error || j.message)) || '' };
+      return j;
+    });
+  });
+}
+function luxBlogEdgeMsg(e){
+  e = e || {};
+  if(e.code === 'missing' || e.code === 'network') return 'manca la funzione generate-blog-preview su Supabase (o non risponde): vedi il LEGGIMI. Intanto si condivide il link semplice.';
+  if(e.code === 'auth') return 'accesso scaduto: esci, rientra e tocca «Rifai l\'anteprima».';
+  if(e.code === 'upload') return 'la copertina non si è caricata (' + (e.status || 'rete') + ').';
+  if(e.code === 'canvas') return 'non riesco a disegnare la copertina.';
+  if(e.status === 403) return 'Supabase dice che non sei l\'amministratore (403).';
+  if(e.status === 409) return 'è una bozza: prima pubblicala.';
+  return 'non è riuscita' + (e.detail ? ' (' + e.detail + ')' : e.status ? ' (' + e.status + ')' : '') + '.';
+}
+function luxBlogAdmPending(){
+  if(!SUPABASE_URL || !isAdmin()) return Promise.resolve();
+  return fetch(SUPABASE_URL + '/rest/v1/blog_comments?approved=eq.false&select=id,post_id', { headers: communityHeaders() })
+    .then(function(r){ return r.ok ? r.json() : []; }, function(){ return []; })
+    .then(function(rows){
+      var by = {};
+      rows.forEach(function(c){ by[c.post_id] = (by[c.post_id] || 0) + 1; });
+      LUX_BLOG_ADM.pendingBy = by;
+      LUX_BLOG_ADM.pending = rows.length;
+      var el = luxBlogAdmQ('[data-gza-pending]');
+      if(el){
+        el.hidden = !rows.length;
+        el.innerHTML = rows.length ? escapeHtml(rows.length === 1 ? 'Un commento aspetta la tua approvazione.' : rows.length + ' commenti aspettano la tua approvazione.') +
+          ' <button type="button" class="btn btn-ghost btn-sm" data-gza-gocom>Vai ai commenti</button>' : '';
+      }
+      luxBlogAdmList();
+    });
+}
+function luxBlogAdmList(){
+  var box = luxBlogAdmQ('[data-gza-list]');
+  if(!box) return;
+  var warn = luxBlogAdmQ('[data-gza-warn]'), cnt = luxBlogAdmQ('[data-gza-count]');
+  warn.hidden = LUX_BLOG.err !== 'missing';
+  warn.textContent = 'Il blog non c\'è ancora su Supabase: lancia il file blog_v263.sql (SQL Editor → incolla tutto → Run), poi ricarica questa pagina.';
+  var rows = LUX_BLOG.rows;
+  if(rows === null){ box.innerHTML = '<p class="form-note">…</p>'; return; }
+  cnt.textContent = rows.length ? '(' + rows.length + ')' : '';
+  if(!rows.length){ box.innerHTML = '<p class="form-note">Ancora nessun articolo: scrivi il primo qui sopra.</p>'; return; }
+  var KIND = { news: 'Notizia', update: 'Aggiornamento', link: 'Link' };
+  box.innerHTML = rows.map(function(p){
+    var st = LUX_BLOG_ADM.status[p.id] || {}, pend = LUX_BLOG_ADM.pendingBy[p.id] || 0, id = luxAttr(p.id), draft = p.published === false;
+    var trN = Object.keys(p.i18n || {}).filter(function(l){ return l !== (p.lang || 'it') && p.i18n[l] && p.i18n[l].title; }).length;
+    var tr = st.tr === 'run' ? 'Traduzioni: in corso…' : st.tr === 'err' ? 'Traduzioni non riuscite: ' + (st.trMsg || '') : trN ? 'Tradotto in ' + trN + (trN === 1 ? ' lingua' : ' lingue') : (draft ? '' : 'Non ancora tradotto');
+    var og = draft ? 'Anteprima social: quando lo pubblichi' : st.og === 'run' ? 'Anteprima social: la preparo…' : st.og === 'err' ? 'Anteprima social non pronta: ' + (st.ogMsg || '') :
+      p.og_image ? 'Anteprima social: pronta' + (st.og === 'ok' && st.ogAt && Date.now() - st.ogAt < 5 * 60000 ? ' (online tra 1–2 minuti)' : '') : 'Anteprima social: non ancora fatta';
+    return '<div class="gza-row' + (draft ? ' is-draft' : '') + '" data-gza-row="' + id + '">' +
+      (p.image_url ? '<img class="gza-thumb" src="' + luxAttr(luxBlogThumb(p.image_url)) + '" data-fallback="' + luxAttr(p.image_url) + '" alt="" loading="lazy">' : '<span class="gza-thumb gza-thumb-no" aria-hidden="true">' + escapeHtml(KIND[p.kind] ? KIND[p.kind].charAt(0) : 'N') + '</span>') +
+      '<div class="gza-row-main">' +
+        '<div class="gza-row-t">' + escapeHtml(p.title || '') + '</div>' +
+        '<div class="gza-row-m">' + escapeHtml(KIND[p.kind] || 'Notizia') + ' · ' + escapeHtml(luxBlogDate(p, 'it')) +
+          (draft ? ' <span class="gza-flag is-draft">Bozza</span>' : '') + (p.pinned ? ' <span class="gza-flag">In evidenza</span>' : '') + '</div>' +
+        '<div class="gza-row-n">' + (p.view_count || 0) + ' letture · ' + (p.share_count || 0) + ' condivisioni · ' + (p.comment_count || 0) + ' commenti' +
+          (pend ? ' · <b>' + pend + ' da approvare</b>' : '') + '</div>' +
+        '<div class="gza-row-s' + (st.og === 'err' || st.tr === 'err' ? ' is-error' : '') + '" data-gza-st>' + escapeHtml(og) + (tr ? '<br>' + escapeHtml(tr) : '') + '</div>' +
+        '<div class="gza-row-acts">' +
+          '<a class="btn btn-ghost btn-sm" href="' + luxBlogHref(p) + '" target="_blank" rel="noopener">Apri</a>' +
+          '<button type="button" class="btn btn-ghost btn-sm" data-gza-act="edit" data-id="' + id + '">Modifica</button>' +
+          '<button type="button" class="btn btn-ghost btn-sm" data-gza-act="cover" data-id="' + id + '">Copertina</button>' +
+          '<button type="button" class="btn btn-ghost btn-sm" data-gza-act="pin" data-id="' + id + '">' + (p.pinned ? 'Togli da in evidenza' : 'In evidenza') + '</button>' +
+          '<button type="button" class="btn btn-ghost btn-sm" data-gza-act="' + (draft ? 'pub' : 'unpub') + '" data-id="' + id + '">' + (draft ? 'Pubblica' : 'Rendi bozza') + '</button>' +
+          (draft ? '' : '<button type="button" class="btn btn-ghost btn-sm" data-gza-act="og" data-id="' + id + '">Rifai l\'anteprima</button>') +
+          '<button type="button" class="btn btn-ghost btn-sm gza-del" data-gza-act="del" data-id="' + id + '">Elimina</button>' +
+        '</div>' +
+      '</div>' +
+    '</div>';
+  }).join('');
+}
+function luxBlogAdmAct(act, p, btn){
+  if(act === 'edit'){ luxBlogAdmEdit(p); return; }
+  if(act === 'cover'){ luxGzStudioOpen(p); return; }
+  if(act === 'og'){ luxBlogAdmOg(p).then(luxBlogAdmList); luxBlogAdmList(); return; }
+  if(act === 'pin' || act === 'pub' || act === 'unpub'){
+    var body = act === 'pin' ? { pinned: !p.pinned } : { published: act === 'pub' };
+    if(act === 'pub') body.published_at = new Date().toISOString();
+    var prev = JSON.parse(JSON.stringify(p));
+    btn.disabled = true;
+    luxBlogAdmWrite('PATCH', p.id, body).then(function(saved){
+      luxBlogAdmMerge(saved);
+      luxBlogAdmList();
+      if(act === 'pub') return luxBlogLoad(true).then(function(){ return luxBlogAdmAfter(luxBlogFind(saved.id) || saved, prev, true); });
+      if(act === 'unpub') return luxBlogAdmAfter(saved, prev, false);
+    }).catch(function(e){ btn.disabled = false; luxToast(luxBlogAdmErr(e)); }).then(luxBlogAdmList);
+    return;
+  }
+  if(act === 'del'){
+    if(!window.confirm('Eliminare «' + (p.title || '') + '»? Si cancellano anche i suoi commenti, e il link non funzionerà più.')) return;
+    btn.disabled = true;
+    luxDelete('blog_posts?id=eq.' + encodeURIComponent(p.id)).then(function(){
+      LUX_BLOG.rows = (LUX_BLOG.rows || []).filter(function(x){ return x.id !== p.id; });
+      if(LUX_BLOG_ADM.editing && LUX_BLOG_ADM.editing.id === p.id) luxBlogAdmReset();
+      luxBlogAdmDropFiles([p.image_url, p.image_url ? luxBlogThumb(p.image_url) : null, p.og_image]);
+      if(p.og_image && p.published !== false) luxBlogEdge(p.id, 'delete').catch(function(e){ console.warn('[blog] anteprima da togliere', e); });
+      luxBlogAdmList();
+      luxToast('Articolo eliminato.');
+    }, function(err){ btn.disabled = false; luxDeleteFail(err); });
+  }
+}
+
+/* ---- all'avvio (su ogni pagina; fa qualcosa solo dove serve) ---- */
+function luxBlogInit(){
+  luxBlogPageInit();
+  luxBlogIo();
+}
+
 function handleAddAnnouncement(){
   var title = document.getElementById('fAnnTitle').value.trim();
   var body = document.getElementById('fAnnBody').value.trim();
@@ -28808,6 +30654,7 @@ function renderAdminRequests(){
 function renderModerationQueue(){
   var box = document.getElementById('modQueue');
   if(!box || !SUPABASE_URL || !isAdmin()) return;
+  try { luxBlogModQueue(); } catch(e){} // v263: anche i commenti del blog
   var session = getSession();
   fetch(SUPABASE_URL + '/rest/v1/comments?approved=eq.false&select=*&order=created_at.asc', {
     headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer ' + session.access_token }
@@ -29381,6 +31228,7 @@ function __appInit(){
   });
 
   luxPromoTabInit(); // v251: Amministra › Link e QR
+  luxBlogTabInit(); // v263: Amministra › Blog
   document.querySelectorAll('.admin-tab').forEach(function(btn){
     btn.addEventListener('click', function(){ switchAdminTab(btn.dataset.tab); });
   });
@@ -29664,7 +31512,7 @@ function __appInit(){
   // novità ed eventi non sono arrivati, poi compaiono insieme al loro posto
   // (prima arrivavano in ordine sparso e spingevano giù quello che guardavi)
   if(document.body.classList.contains('home-loading')){
-    luxHomeReveal([luxCatalogLoad, annLoad, document.getElementById('homeEventsList') ? fetchHomeEventsOnce().catch(function(){}) : null]);
+    luxHomeReveal([luxCatalogLoad, annLoad, document.getElementById('homeEventsList') ? fetchHomeEventsOnce().catch(function(){}) : null, luxBlogHome()]); // v263: anche «Dal blog»
   }
   fetchMaintenanceStatus();
   fetchRegistrationQuizSetting();
@@ -29676,6 +31524,7 @@ function __appInit(){
   initExportData();
   luxDelAccInit(); // v258: «Elimina il mio account»
   luxFilePrettyAll(); // v260: «Scegli una foto» al posto del campo grezzo del browser
+  try { luxBlogInit(); luxBlogHome(); } catch(e){ console.warn('[blog]', e); } // v263: il blog
   initSnoOverlay();
   initBookmarkTab();
   setInterval(function(){ if(!document.hidden) refreshCommunityDot(); }, 60000); // pallino Community

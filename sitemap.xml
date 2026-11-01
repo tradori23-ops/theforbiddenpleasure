@@ -2,6 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://noxmorningstar.com/</loc><lastmod>2026-10-26</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>
   <url><loc>https://noxmorningstar.com/schedario.html</loc><lastmod>2026-10-26</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://noxmorningstar.com/blog.html</loc><lastmod>2026-11-01</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
   <url><loc>https://noxmorningstar.com/novita.html</loc><lastmod>2026-10-26</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://noxmorningstar.com/community.html</loc><lastmod>2026-10-26</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://noxmorningstar.com/luxtify.html</loc><lastmod>2026-10-26</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>

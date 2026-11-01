@@ -91,7 +91,7 @@
   // hai visto live sul sito prima di caricare — questo file parte da una
   // copia salvata in sessione e potrebbe non riflettere bump fatti nel
   // frattempo direttamente su GitHub.
-  var V = "262";
+  var V = "263";
 
   // style.css iniettato qui (non più con un <link> scritto a mano in ogni
   // pagina) così la sua versione segue sempre la stessa V di app.js,
@@ -223,7 +223,7 @@
     } catch (e) { return; }
     if (navigator.onLine === false) return;
     if (/bot|crawl|spider|slurp|headless|lighthouse|bingpreview|facebookexternalhit|embedly/i.test(navigator.userAgent || "")) return;
-    if (document.getElementById("luxtifySection") || document.getElementById("legalSection") || document.getElementById("statusSection")) return;
+    if (document.getElementById("luxtifySection") || document.getElementById("legalSection") || document.getElementById("statusSection") || document.getElementById("blogSection")) return; // v263: il blog è aperto a tutti
     document.documentElement.classList.add("lux-cover-wait");
     // l'immagine della copertina parte subito (non su 2G: lì ha la precedenza app.js)
     if (NET !== "slow" && !/[?&]title=/.test(location.search || "")) { // v252: dal link di un capitolo si va dritti alle pagine (la copertina, di solito, non c'è)
