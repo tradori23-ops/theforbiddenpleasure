@@ -1159,6 +1159,20 @@ Object.assign(STR.hi, {"rating.votes1": "{n} रेटिंग", "rating.votesN
 Object.assign(STR.bn, {"rating.votes1": "{n}টি রেটিং", "rating.votesN": "{n}টি রেটিং", "rating.starLabel": "রেটিং: ৫-এর মধ্যে {n}"});
 Object.assign(STR.ar, {"rating.votes1": "عدد التقييمات: {n}", "rating.votesN": "عدد التقييمات: {n}", "rating.starLabel": "التقييم: {n} من 5"});
 Object.assign(STR.pnb, {"rating.votes1": "ریٹنگاں: {n}", "rating.votesN": "ریٹنگاں: {n}", "rating.starLabel": "ریٹنگ: 5 وچوں {n}"});
+// v261: «Salva / Mi piace» senza simboli (le icone le disegna il sito), nomi corti per il telefono, maiuscole italiane
+Object.assign(STR.it, {"fav.add": "Salva", "fav.remove": "Salvato", "like.add": "Mi piace", "like.remove": "Ti piace", "offline.short": "Scarica", "offline.shortSaved": "Scaricato", "founder.eyebrow": "Casa editrice", "support.eyebrow": "Sostieni il progetto", "admin.eyebrow": "Area riservata", "announcements.eyebrow": "Dalla redazione", "novitaArchive.eyebrow": "Dalla redazione", "latest.eyebrow": "Appena pubblicato", "newsletter.eyebrow": "Resta aggiornato", "mycomics.tab.continue": "Continua a leggere", "mycomics.tab.purchases": "I miei acquisti"});
+Object.assign(STR.en, {"fav.add": "Save", "fav.remove": "Saved", "like.add": "Like", "like.remove": "Liked", "offline.short": "Download", "offline.shortSaved": "Downloaded"});
+Object.assign(STR.es, {"fav.add": "Guardar", "fav.remove": "Guardado", "like.add": "Me gusta", "like.remove": "Te gusta", "offline.short": "Descargar", "offline.shortSaved": "Descargado"});
+Object.assign(STR.fr, {"fav.add": "Enregistrer", "fav.remove": "Enregistré", "like.add": "J'aime", "like.remove": "Aimé", "offline.short": "Télécharger", "offline.shortSaved": "Téléchargé"});
+Object.assign(STR.de, {"fav.add": "Speichern", "fav.remove": "Gespeichert", "like.add": "Gefällt mir", "like.remove": "Gefällt dir", "offline.short": "Download", "offline.shortSaved": "Geladen"});
+Object.assign(STR.pt, {"fav.add": "Salvar", "fav.remove": "Salvo", "like.add": "Curtir", "like.remove": "Curtido", "offline.short": "Baixar", "offline.shortSaved": "Baixado"});
+Object.assign(STR.ru, {"fav.add": "Сохранить", "fav.remove": "Сохранено", "like.add": "Нравится", "like.remove": "Понравилось", "offline.short": "Скачать", "offline.shortSaved": "Скачано"});
+Object.assign(STR.zh, {"fav.add": "收藏", "fav.remove": "已收藏", "like.add": "点赞", "like.remove": "已赞", "offline.short": "下载", "offline.shortSaved": "已下载"});
+Object.assign(STR.ja, {"fav.add": "保存", "fav.remove": "保存済み", "like.add": "いいね", "like.remove": "いいね済み", "offline.short": "ダウンロード", "offline.shortSaved": "DL済み"});
+Object.assign(STR.hi, {"fav.add": "सेव करें", "fav.remove": "सेव किया", "like.add": "लाइक", "like.remove": "लाइक किया", "offline.short": "डाउनलोड", "offline.shortSaved": "डाउनलोड हुआ"});
+Object.assign(STR.bn, {"fav.add": "সেভ করুন", "fav.remove": "সেভ করা হয়েছে", "like.add": "লাইক", "like.remove": "লাইক করা হয়েছে", "offline.short": "ডাউনলোড", "offline.shortSaved": "ডাউনলোড হয়েছে"});
+Object.assign(STR.ar, {"fav.add": "حفظ", "fav.remove": "محفوظ", "like.add": "أعجبني", "like.remove": "تم الإعجاب", "offline.short": "تنزيل", "offline.shortSaved": "تم التنزيل"});
+Object.assign(STR.pnb, {"fav.add": "محفوظ کرو", "fav.remove": "محفوظ شدہ", "like.add": "پسند کرو", "like.remove": "پسند کیتا", "offline.short": "ڈاؤن لوڈ", "offline.shortSaved": "ڈاؤن لوڈ ہو گیا"});
 var CHAR_META = {
   Lucifer:{role:{it:"Il Portatore di Luce",en:"The Light-Bearer",es:"El Portador de Luz",fr:"Le Porteur de Lumière",de:"Der Lichtträger"},
     bio:{it:"Sovrano della collana ammiraglia: potere, caduta e desiderio raccontati su grande scala.",
@@ -1229,6 +1243,7 @@ function applyI18n(){
   document.documentElement.classList.toggle('lux-rtl', luxIsRtl()); // v226: testo da destra a sinistra (vedi style.css)
   var langSelectEl = document.getElementById('langSelect');
   if(langSelectEl) langSelectEl.value = currentLang;
+  try { luxLedeFit(); } catch(e){} // v261: sul telefono fino alla fine della prima frase (prima tagliato a metà parola)
 }
 function setLang(lang){
   currentLang = lang;
@@ -4300,7 +4315,7 @@ function fetchAnnouncements(){
         var card = document.createElement('div');
         card.className = 'announcement-card';
         card.setAttribute('data-ann-id', a.id);
-        var dateStr = a.created_at ? a.created_at.slice(0,10) : '';
+        var dateStr = a.created_at ? escapeHtml(luxNiceDate(a.created_at)) : ''; // v261
         var linkHtml = a.link_url ? '<a class="link" href="' + escapeHtml(a.link_url) + '" target="_blank" rel="noopener">' + t('announcements.readMore') + ' →</a>' : '';
         var pdfHtml = a.pdf_url ? '<a class="link" href="' + escapeHtml(a.pdf_url) + '" target="_blank" rel="noopener" download>' + t('announcements.downloadPdf') + '</a>' : '';
         var imageHtml = a.image_url ? '<div class="announcement-card-img" style="--img-url:url(\'' + escapeHtml(a.image_url) + '\')"><img src="' + escapeHtml(a.image_url) + '" alt="" loading="lazy"></div>' : '';
@@ -5589,7 +5604,7 @@ function buildTomeCardHtml(item){
   var soldOutBadge = soldOut ? '<span class="sold-out-badge">'+t('stock.soldOut')+'</span>' : '';
   var stockTxt = hasStock && !soldOut ? '<span class="card-idx-stock">'+item.stock+' '+t('stock.left')+'</span>' : '';
   var priceTxt = item.price ? '€'+Number(item.price).toFixed(2) : '';
-  var dateTxt = item.date ? '<span class="meta-row-piece">'+item.date+'</span>' : '';
+  var dateTxt = item.date ? '<span class="meta-row-piece">'+escapeHtml(luxNiceDate(item.date))+'</span>' : ''; // v261
   var coverInner = item.cover_url
     ? '<img class="cover-img" src="'+coverThumbUrl(item.cover_url, 500)+'" data-fallback="'+escapeHtml(item.cover_url)+'" alt="" loading="lazy" decoding="async" onload="this.style.opacity=1">'
     : '<span class="init">'+item.character.charAt(0)+'</span>';
@@ -14128,7 +14143,7 @@ function renderDiaryFeed(posts, containerId){
   if(!feed) return;
   feed.innerHTML = '';
   if(posts.length === 0){
-    feed.innerHTML = '<p class="form-note">' + t('diary.empty') + '</p>';
+    feed.innerHTML = '<p class="form-note lux-empty">' + t('diary.empty') + '</p>';
     return;
   }
   if(!feed.dataset.authorClickWired){
@@ -14179,7 +14194,7 @@ function renderDiaryFeed(posts, containerId){
       delPost.disabled = true;
       luxDelete('user_posts?id=eq.' + encodeURIComponent(p.id)).then(function(){
         card.remove();
-        if(!feed.querySelector('.diary-post')) feed.innerHTML = '<p class="form-note">' + t('diary.empty') + '</p>';
+        if(!feed.querySelector('.diary-post')) feed.innerHTML = '<p class="form-note lux-empty">' + t('diary.empty') + '</p>';
       }).catch(function(err){ delPost.disabled = false; luxDeleteFail(err); });
     });
     card.querySelector('[data-comments]').addEventListener('click', function(){ toggleDiaryComments(p.id); });
@@ -17763,7 +17778,7 @@ function openTitleModal(item){
   item = luxLockFresh(item); // v257: con le pagine, se le può leggere
   currentModalCatalogId = item.id;
   document.getElementById('titleModalTitle').textContent = item.title;
-  document.getElementById('titleModalMeta').textContent = item.character + ' · ' + (item.issue || '') + ' · ' + (item.date || '');
+  document.getElementById('titleModalMeta').textContent = [item.character, item.issue, luxNiceDate(item.date)].filter(Boolean).join(' · '); // v261: «31 ottobre 2026», e niente «· ·» senza numero
   document.getElementById('titleModalSynopsis').innerHTML = renderBodyHtml(synopsisForCurrentLang(item));
   renderTitleModalSeries(item);
   renderTitleModalRating(item.id);
@@ -17892,7 +17907,7 @@ function openTitleModal(item){
     offlineBtn.classList.remove('hidden');
     function refreshOfflineBtnState(){
       if(isItemOfflineFresh(item.id)){
-        offlineBtn.textContent = t('offline.remove');
+        luxActSet(offlineBtn, t('offline.remove'), t('offline.shortSaved')); offlineBtn.classList.add('is-offline'); // v261
         offlineBtn.onclick = function(){
           offlineBtn.disabled = true;
           removeItemFromOffline(item.id).then(function(){
@@ -17902,7 +17917,7 @@ function openTitleModal(item){
           });
         };
       } else {
-        offlineBtn.textContent = t('offline.download');
+        luxActSet(offlineBtn, t('offline.download'), t('offline.short')); offlineBtn.classList.remove('is-offline'); // v261
         offlineBtn.onclick = function(){
           offlineBtn.disabled = true;
           function attempt(){
@@ -22611,13 +22626,13 @@ function showReaderPage(idx){
 function refreshTitleModalFav(catalogId){
   var btn = document.getElementById('titleModalFav');
   var active = favoriteIds.has(catalogId);
-  btn.textContent = active ? t('fav.remove') : t('fav.add');
+  luxActSet(btn, active ? t('fav.remove') : t('fav.add')); // v261
   btn.classList.toggle('active', active);
 }
 function refreshTitleModalLike(catalogId){
   var btn = document.getElementById('titleModalLike');
   var active = likedIds.has(catalogId);
-  btn.textContent = active ? t('like.remove') : t('like.add');
+  luxActSet(btn, active ? t('like.remove') : t('like.add')); // v261
   btn.classList.toggle('active', active);
   updateEngagementCountsLabel(catalogId);
 }
@@ -22661,7 +22676,7 @@ function loadComments(catalogId){
     .then(function(data){
       var rows = data.rows, verifiedIds = data.verifiedIds, roleIds = data.roleIds;
       list.innerHTML = '';
-      if(rows.length === 0){ list.innerHTML = '<p class="form-note">' + t('comments.empty') + '</p>'; return; }
+      if(rows.length === 0){ list.innerHTML = '<p class="form-note lux-empty">' + t('comments.empty') + '</p>'; return; }
       rows.forEach(function(c){
         var div = document.createElement('div');
         div.className = 'comment-item';
@@ -28293,6 +28308,35 @@ function luxFilePrettyAll(){
   });
 }
 
+/* ============ v261: ritocchi estetici ============ */
+// le date per le persone: «31 ottobre 2026», nella lingua del sito (prima «2026-10-31»)
+function luxNiceDate(s){
+  s = String(s || '');
+  if(!s) return '';
+  var d = /^\d{4}-\d{2}-\d{2}$/.test(s) ? new Date(+s.slice(0, 4), +s.slice(5, 7) - 1, +s.slice(8, 10)) : new Date(s);
+  if(isNaN(d.getTime())) return s.slice(0, 10);
+  var o = { day: 'numeric', month: 'long', year: 'numeric' };
+  try { return d.toLocaleDateString(luxLocale(), o); }
+  catch(e){ try { return d.toLocaleDateString(undefined, o); } catch(e2){ return s.slice(0, 10); } }
+}
+// home: il testo d'apertura diviso dopo la prima frase; sul telefono si vede solo quella (prima era tagliato a metà parola)
+function luxLedeFit(){
+  var el = document.querySelector('.hero .lede');
+  if(!el) return;
+  var txt = el.textContent || '';
+  var m = txt.match(/^([\s\S]{30,}?(?:[.!?](?=\s)|[。！？।؟]))(\s*)([\s\S]+)$/);
+  el.classList.toggle('lede-split', !!m);
+  if(!m) return;
+  el.innerHTML = escapeHtml(m[1]) + '<span class="lede-rest">' + escapeHtml(m[2] + m[3]) + '</span>';
+}
+// i pulsanti della scheda del titolo: il nome intero e, se serve, quello corto per il telefono
+function luxActSet(btn, full, short){
+  if(!btn) return;
+  var two = !!(short && short !== full);
+  btn.innerHTML = '<span class="act-full">' + escapeHtml(full) + '</span>' + (two ? '<span class="act-short" aria-hidden="true">' + escapeHtml(short) + '</span>' : '');
+  btn.classList.toggle('has-short', two);
+}
+
 function handleAddAnnouncement(){
   var title = document.getElementById('fAnnTitle').value.trim();
   var body = document.getElementById('fAnnBody').value.trim();
@@ -29859,7 +29903,7 @@ function renderNovitaArchive(){
       if(rows.length === 0){ grid.innerHTML = '<p class="novita-archive-empty">' + t('novitaArchive.empty') + '</p>'; return; }
       var nowIso = new Date().toISOString();
       grid.innerHTML = rows.map(function(a){
-        var dateStr = a.created_at ? a.created_at.slice(0, 10) : '';
+        var dateStr = a.created_at ? escapeHtml(luxNiceDate(a.created_at)) : ''; // v261
         var expired = !!(a.expires_at && a.expires_at <= nowIso);
         var linkHtml = a.link_url ? '<a class="link" href="' + escapeHtml(a.link_url) + '" target="_blank" rel="noopener">' + t('announcements.readMore') + ' →</a>' : '';
         var pdfHtml = a.pdf_url ? '<a class="link" href="' + escapeHtml(a.pdf_url) + '" target="_blank" rel="noopener" download>' + t('announcements.downloadPdf') + '</a>' : '';
