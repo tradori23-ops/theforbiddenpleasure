@@ -6122,3 +6122,72 @@ html.lux-rtl .gz-like-big.on .gz-like-n{border-right-color:currentColor;}
 body.theme-light button.gz-like{border-color:rgba(138,106,31,.38);}
 body.theme-light button.gz-like.on{border-color:var(--gz-like);}
 @media (prefers-reduced-motion:reduce){ .gz-like.pop .gz-like-i{animation:none;} }
+/* ============ v266: «Ultima notizia» (in home, la finestra con l'ultimo articolo del blog) ============ */
+.lnp{position:fixed;inset:0;z-index:1250;display:flex;align-items:flex-end;justify-content:center;}
+.lnp[hidden]{display:none;}
+.lnp-scrim{position:absolute;inset:0;background:rgba(5,2,3,.66);opacity:0;transition:opacity .28s ease;}
+.lnp.on .lnp-scrim{opacity:1;}
+/* sul telefono sale dal basso (come «Condividi»); dal computer è al centro */
+.lnp-panel{position:relative;box-sizing:border-box;width:100%;max-width:520px;max-height:92vh;max-height:92dvh;overflow-y:auto;overscroll-behavior:contain;
+  padding-block:16px calc(18px + env(safe-area-inset-bottom,0px));padding-left:max(18px,env(safe-area-inset-left,0px));padding-right:max(18px,env(safe-area-inset-right,0px));
+  border-radius:22px 22px 0 0;background:#170d0f;color:var(--parchment);border:1px solid rgba(227,194,115,.3);border-bottom:0;
+  box-shadow:0 -18px 50px rgba(0,0,0,.55);transform:translateY(104%);transition:transform .34s cubic-bezier(.2,.8,.2,1);}
+.lnp.on .lnp-panel{transform:translateY(0);}
+.lnp-panel:focus{outline:none;}
+@media (min-width:641px){
+  .lnp{align-items:center;padding:24px;}
+  .lnp-panel{max-width:480px;max-height:88vh;max-height:88dvh;padding:20px 22px 22px;border-radius:22px;border-bottom:1px solid rgba(227,194,115,.3);
+    box-shadow:0 28px 70px rgba(0,0,0,.6);transform:translateY(14px) scale(.985);opacity:0;transition:transform .3s cubic-bezier(.2,.8,.2,1),opacity .22s ease;}
+  .lnp.on .lnp-panel{transform:none;opacity:1;}
+}
+/* la testata: il logo, il nome della Gazzetta, «Ultima notizia» e la data, la X */
+.lnp-mast{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;column-gap:12px;margin:0 0 14px;padding:0 0 12px;border-bottom:4px double rgba(201,162,77,.55);}
+.lnp-crest{display:block;width:50px;height:auto;filter:drop-shadow(0 5px 12px rgba(0,0,0,.45));}
+.lnp-mast-t{display:flex;flex-direction:column;gap:6px;min-width:0;}
+:where(.lnp-name,.lnp-h){--gz-head:'Playfair Display','Bodoni 72',Didot,Georgia,serif;}
+.lnp-name{display:block;overflow:hidden;white-space:nowrap;font-family:var(--gz-head);font-weight:900;font-size:23px;line-height:1.12;letter-spacing:0;color:var(--parchment);}
+.lnp-name--black{font-family:'UnifrakturMaguntia','Old English Text MT',serif;font-weight:400;font-size:27px;}
+.lnp-name--cjk,.lnp-name--indic,.lnp-name--arabic{font-weight:700;line-height:1.3;}
+.lnp-line{display:flex;flex-wrap:wrap;align-items:center;gap:4px 10px;}
+.lnp .gz-tag.lnp-tag{background:#8a1a2c;color:#f6ead2;font-family:'Crimson Pro',Georgia,serif;font-size:14px;font-weight:600;}
+.lnp-date{font-family:'Crimson Pro',Georgia,serif;font-style:italic;font-size:15px;line-height:1.3;color:var(--parchment-dim);}
+.lnp-x{align-self:start;display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;margin:0;padding:0;border:0;border-radius:50%;
+  background:rgba(236,226,198,.08);color:var(--parchment);cursor:pointer;}
+.lnp-x svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;}
+.lnp-x:hover{background:rgba(236,226,198,.16);}
+/* l'articolo */
+.lnp-fig{display:block;margin:0 0 14px;aspect-ratio:16 / 9;overflow:hidden;border-radius:8px;background:#1e1215;}
+.lnp-fig img{display:block;width:100%;height:100%;object-fit:cover;}
+.lnp-txt{text-align:start;}
+.lnp-kicker{margin:0 0 6px;}
+.lnp-h{margin:0;font-family:var(--gz-head);font-weight:900;font-size:clamp(23px,6.2vw,29px);line-height:1.13;letter-spacing:-.003em;color:var(--parchment);text-wrap:balance;overflow-wrap:anywhere;}
+.lnp-h a{color:inherit;text-decoration:none;}
+.lnp-h a:hover{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px;}
+.lnp-ex{margin:8px 0 0;font-family:'Crimson Pro',Georgia,serif;font-size:17.5px;line-height:1.5;color:var(--parchment-dim);
+  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
+/* i pulsanti */
+.lnp-acts{display:flex;flex-direction:column;gap:10px;margin:18px 0 0;}
+.lnp-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px;}
+.lnp-btn{display:flex;align-items:center;justify-content:center;box-sizing:border-box;min-height:50px;margin:0;padding:6px 14px;border-radius:14px;
+  font-family:'Crimson Pro',Georgia,serif;font-size:17px;font-weight:600;line-height:1.2;text-align:center;text-decoration:none;cursor:pointer;}
+.lnp-go{border:0;background:#8a1a2c;color:#f3e9d2;}
+.lnp-go:hover{background:#a3223a;color:#fff;}
+.lnp-sec{border:1px solid rgba(201,162,77,.35);background:transparent;color:var(--parchment);}
+.lnp-sec:hover{border-color:var(--gold-bright);color:var(--gold-bright);}
+.lnp-btn:focus-visible,.lnp-x:focus-visible{outline:2px solid var(--gold-bright);outline-offset:2px;}
+.lnp-where{margin:2px 0 0;font-family:'Crimson Pro',Georgia,serif;font-style:italic;font-size:15px;line-height:1.4;color:var(--parchment-dim);text-align:center;}
+html.lnp-lock,html.lnp-lock body{overflow:hidden;}
+/* schermi bassi (telefono girato): la foto più stretta, l'inizio più corto */
+@media (max-height:700px){ .lnp-fig{aspect-ratio:2 / 1;} .lnp-ex{-webkit-line-clamp:2;} }
+@media (max-height:520px){ .lnp-fig{aspect-ratio:3 / 1;} .lnp-acts{margin-top:14px;} }
+/* tema chiaro */
+body.theme-light .lnp-scrim{background:rgba(42,29,18,.45);}
+body.theme-light .lnp-panel{background:#fbf6ea;border-color:rgba(138,106,31,.3);box-shadow:0 -14px 44px rgba(80,60,40,.25);}
+body.theme-light .lnp-mast{border-bottom-color:rgba(110,80,21,.6);}
+body.theme-light .lnp-crest{filter:drop-shadow(0 4px 10px rgba(90,60,20,.28));}
+body.theme-light .lnp-fig{background:#efe4cc;}
+body.theme-light .lnp-x{background:rgba(42,29,18,.07);color:#2a1d12;}
+body.theme-light .lnp-x:hover{background:rgba(42,29,18,.13);}
+body.theme-light .lnp-sec{border-color:rgba(138,106,31,.45);}
+@media (min-width:641px){ body.theme-light .lnp-panel{box-shadow:0 24px 60px rgba(80,60,40,.28);} }
+@media (prefers-reduced-motion:reduce){ .lnp-scrim,.lnp-panel{transition:none;} .lnp-panel{transform:none;} }

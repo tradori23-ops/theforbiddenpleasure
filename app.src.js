@@ -1215,6 +1215,20 @@ Object.assign(STR.hi, {"blog.reads1": "1 बार पढ़ा गया", "blo
 Object.assign(STR.bn, {"blog.reads1": "1 বার পড়া হয়েছে", "blog.readsN": "{n} বার পড়া হয়েছে", "blog.like": "পছন্দ", "blog.liked": "আপনার পছন্দ", "blog.likeAdd": "পছন্দ করুন", "blog.likeRemove": "পছন্দ সরান", "blog.likes1": "1টি পছন্দ", "blog.likesN": "{n}টি পছন্দ", "blog.likeErr": "পছন্দ সংরক্ষণ হয়নি: একটু পরে আবার চেষ্টা করুন।"});
 Object.assign(STR.ar, {"blog.reads1": "قراءة واحدة", "blog.readsN": "عدد القراءات: {n}", "blog.like": "إعجاب", "blog.liked": "أعجبك", "blog.likeAdd": "أعجبني", "blog.likeRemove": "إلغاء الإعجاب", "blog.likes1": "إعجاب واحد", "blog.likesN": "الإعجابات: {n}", "blog.likeErr": "لم يُحفظ الإعجاب: حاول مرة أخرى بعد قليل."});
 Object.assign(STR.pnb, {"blog.reads1": "1 وار پڑھیا گیا", "blog.readsN": "{n} وار پڑھیا گیا", "blog.like": "پسند", "blog.liked": "تہانوں پسند اے", "blog.likeAdd": "پسند کرو", "blog.likeRemove": "پسند ہٹاؤ", "blog.likes1": "1 پسند", "blog.likesN": "{n} پسند", "blog.likeErr": "پسند محفوظ نہیں ہوئی: تھوڑی دیر بعد فیر کوشش کرو۔"});
+// v266: «Ultima notizia» in home
+Object.assign(STR.it, {"blog.popTag": "Ultima notizia", "blog.popRead": "Leggi l'articolo", "blog.popWhere": "Il blog lo trovi sempre in «{you}» › «{blog}»."});
+Object.assign(STR.en, {"blog.popTag": "Latest news", "blog.popRead": "Read the article", "blog.popWhere": "You'll always find the blog under “{you}” › “{blog}”."});
+Object.assign(STR.es, {"blog.popTag": "Última noticia", "blog.popRead": "Leer el artículo", "blog.popWhere": "El blog siempre está en «{you}» › «{blog}»."});
+Object.assign(STR.fr, {"blog.popTag": "Dernière nouvelle", "blog.popRead": "Lire l'article", "blog.popWhere": "Le blog est toujours dans « {you} » › « {blog} »."});
+Object.assign(STR.de, {"blog.popTag": "Neueste Meldung", "blog.popRead": "Artikel lesen", "blog.popWhere": "Den Blog findest du immer unter „{you}“ › „{blog}“."});
+Object.assign(STR.pt, {"blog.popTag": "Última notícia", "blog.popRead": "Ler o artigo", "blog.popWhere": "O blog está sempre em “{you}” › “{blog}”."});
+Object.assign(STR.ru, {"blog.popTag": "Последняя новость", "blog.popRead": "Читать статью", "blog.popWhere": "Блог всегда в разделе «{you}» › «{blog}»."});
+Object.assign(STR.zh, {"blog.popTag": "最新消息", "blog.popRead": "阅读文章", "blog.popWhere": "博客随时可在「{you}」›「{blog}」中找到。"});
+Object.assign(STR.ja, {"blog.popTag": "最新ニュース", "blog.popRead": "記事を読む", "blog.popWhere": "ブログはいつでも「{you}」›「{blog}」から開けます。"});
+Object.assign(STR.hi, {"blog.popTag": "ताज़ा ख़बर", "blog.popRead": "लेख पढ़ें", "blog.popWhere": "ब्लॉग हमेशा “{you}” › “{blog}” में मिलेगा।"});
+Object.assign(STR.bn, {"blog.popTag": "সর্বশেষ খবর", "blog.popRead": "নিবন্ধটি পড়ুন", "blog.popWhere": "ব্লগটি সবসময় “{you}” › “{blog}”-এ পাবেন।"});
+Object.assign(STR.ar, {"blog.popTag": "آخر الأخبار", "blog.popRead": "اقرأ المقال", "blog.popWhere": "تجد المدونة دائمًا في «{you}» › «{blog}»."});
+Object.assign(STR.pnb, {"blog.popTag": "تازہ خبر", "blog.popRead": "مضمون پڑھو", "blog.popWhere": "بلاگ ہمیشہ «{you}» › «{blog}» وچ ملے گا۔"});
 var CHAR_META = {
   Lucifer:{role:{it:"Il Portatore di Luce",en:"The Light-Bearer",es:"El Portador de Luz",fr:"Le Porteur de Lumière",de:"Der Lichtträger"},
     bio:{it:"Sovrano della collana ammiraglia: potere, caduta e desiderio raccontati su grande scala.",
@@ -2651,6 +2665,7 @@ function luxNudgeOpen(id){ var x = document.getElementById(id); return !!(x && !
 // i due inviti aspettano anche che si chiuda il fumetto o la finestra aperta (l'avviso dei 5 minuti no)
 function luxNudgeBlocked(i){
   if(luxCoverEl || document.getElementById('entryModeGate')) return true;
+  if(luxNewsOpen()) return true; // v266: né sopra «Ultima notizia»
   if(['authModal', 'matureModal', 'maintenanceLock', 'nightClosureLock', 'luxResetModal'].some(luxNudgeOpen)) return true;
   var tu = document.getElementById('appTuSheet');
   if(tu && tu.classList.contains('open')) return true;
@@ -11947,6 +11962,7 @@ function closeBottomCard(id){
 function a2hsBlockedNow(){
   // mai sopra il lettore, la chat a schermo intero o una finestra aperta
   if(luxCoverEl) return true; // v237: né sopra la copertina
+  if(luxNewsOpen()) return true; // v266: né sopra «Ultima notizia»
   var reader = document.getElementById('pageReader');
   if(reader && !reader.classList.contains('hidden')) return true;
   if(document.body.classList.contains('chat-fullscreen')) return true;
@@ -16581,8 +16597,10 @@ function checkForSiteUpdates(){
     .then(function(r){ if(!r.ok) throw new Error('site updates read failed'); return r.json(); })
     .then(function(rows){
       if(rows.length === 0) return;
-      renderSiteUpdatesModal(rows);
-      document.getElementById('smallnoxUpdatesModal').classList.remove('hidden');
+      luxNewsAfter(function(){ // v266: se c'è «Ultima notizia», dopo
+        renderSiteUpdatesModal(rows);
+        document.getElementById('smallnoxUpdatesModal').classList.remove('hidden');
+      });
     })
     .catch(function(e){ console.warn('Site updates check failed:', e); });
 }
@@ -26286,12 +26304,13 @@ function luxProfileAsk(delay){
   setTimeout(function look(){
     if(!isSignedIn()) return;
     // non sopra la copertina, il lettore, un'altra finestra aperta o l'installazione dell'app
-    var busy = luxCoverEl || document.getElementById('entryModeGate') || document.querySelector('.modal-backdrop:not(.hidden)') || (document.getElementById('luxAdminSheet') && document.getElementById('luxAdminSheet').classList.contains('open')) ||
+    var busy = luxCoverEl || luxNewsOpen() || document.getElementById('entryModeGate') || document.querySelector('.modal-backdrop:not(.hidden)') || (document.getElementById('luxAdminSheet') && document.getElementById('luxAdminSheet').classList.contains('open')) ||
       (document.getElementById('profileEditPanel') && !document.getElementById('profileEditPanel').classList.contains('hidden')) ||
       (document.getElementById('pageReader') && !document.getElementById('pageReader').classList.contains('hidden'));
     if(busy){ if(++tries < 40) setTimeout(look, 1500); return; }
     loadOwnProfile().then(function(){
       if(!luxProfileMissing(currentProfile)) return;
+      if(luxNewsOpen() || document.querySelector('.modal-backdrop:not(.hidden)')){ if(++tries < 40) setTimeout(look, 1500); return; } // v266: intanto si è aperta un'altra finestra: dopo
       try { if(sessionStorage.getItem('lux_profile_ask')) return; sessionStorage.setItem('lux_profile_ask', '1'); } catch(e){ return; }
       luxProfileAskOpen(currentProfile);
     });
@@ -30492,6 +30511,188 @@ function luxBlogLike(p, btn){
   });
 }
 
+/* ---- v266: «Ultima notizia» — in home, la finestra con l'ultimo articolo del blog ----
+   Chi apre la home vede l'ultima notizia della Gazzetta: la foto, l'occhiello, il titolo, l'inizio, «Leggi l'articolo»
+   e «Tutti gli articoli» (e sul telefono dove trovare il blog: «Tu» › Blog). Una volta sola per ogni articolo nuovo.
+   Arriva quando la home è libera: dopo la copertina e la scelta online/offline, con la pagina in vista. Mai due finestre
+   di fila: se nel frattempo se n'è aperta un'altra (la finestra delle novità, «Completa il tuo profilo», un fumetto…)
+   aspetta la prossima volta in home. Non compare se quell'articolo è già stato letto su questo dispositivo, se ha più
+   di 30 giorni, nella versione offline e ai motori di ricerca.
+   Sul dispositivo: lux_news_at = la data dell'ultimo articolo mostrato (le notizie fino a quella data sono già viste). */
+var LUX_NEWS = { p: null, el: null, prev: null, after: [], started: false, gone: false, img: null };
+var LUX_NEWS_DAYS = 30;
+function luxNewsOpen(){ return !!(LUX_NEWS.el && !LUX_NEWS.el.hidden); }
+// le altre finestre automatiche aspettano che questa si chiuda
+function luxNewsAfter(fn){ if(luxNewsOpen()) LUX_NEWS.after.push(fn); else fn(); }
+function luxNewsSeenAt(){ var v = 0; try { v = +(localStorage.getItem('lux_news_at') || 0) || 0; } catch(e){} return v; }
+function luxNewsMark(p){ var ts = luxBlogTs(p); try { if(ts > luxNewsSeenAt()) localStorage.setItem('lux_news_at', String(ts)); } catch(e){} }
+function luxNewsWasRead(id){
+  var seen = [];
+  try { seen = JSON.parse(localStorage.getItem('lux_blog_seen') || '[]') || []; } catch(e){}
+  id = String(id).toLowerCase();
+  return seen.some(function(x){ return String(x).toLowerCase() === id; });
+}
+function luxNewsWanted(r){
+  var ts = luxBlogTs(r);
+  return !!(r && r.id && ts && ts > luxNewsSeenAt() && Date.now() - ts < LUX_NEWS_DAYS * 86400000 && !luxNewsWasRead(r.id));
+}
+// solo in home: prima una domanda piccola (l'ultimo articolo e la sua data), l'articolo intero solo se va mostrato
+function luxNewsCheck(){
+  if(LUX_NEWS.started) return;
+  LUX_NEWS.started = true;
+  if(!SUPABASE_URL || !document.getElementById('blogHomeSection') || luxCoverBot() || navigator.onLine === false) return;
+  try { if(sessionStorage.getItem('lux_entry_mode') === 'offline') return; } catch(e){}
+  luxBlogGet('published=eq.true&select=id,published_at&order=published_at.desc&limit=1').then(function(rows){
+    var r = rows && rows[0];
+    if(!luxNewsWanted(r)) return;
+    return luxBlogGet('id=eq.' + encodeURIComponent(r.id) + '&published=eq.true&select=id,kind,title,body,link_url,source_name,image_url,lang,i18n,pinned,published,published_at').then(function(full){
+      var p = full && full[0];
+      if(!p || !luxNewsWanted(p)) return;
+      LUX_NEWS.p = p;
+      if(p.image_url){ var im = new Image(); im.decoding = 'async'; im.onerror = function(){ p._noImg = true; }; im.src = p.image_url; LUX_NEWS.img = im; } // (pronta quando serve)
+      luxNewsWait();
+    });
+  }).catch(function(e){ if(!(e && e.missing)) console.warn('[notizia]', e); });
+}
+// c'è qualcos'altro sullo schermo? 'wait' = la copertina, la seconda pagina, la home che si sta preparando (si aspetta);
+// 'other' = un'altra finestra (questa volta niente: mai due di fila)
+function luxNewsVis(el){
+  if(!el || !el.isConnected || el.hidden) return false;
+  var r = el.getBoundingClientRect();
+  if(r.width < 2 || r.height < 2 || r.bottom <= 0 || r.right <= 0 || r.top >= window.innerHeight || r.left >= window.innerWidth) return false;
+  for(var n = el; n && n.nodeType === 1; n = n.parentElement){
+    var cs = window.getComputedStyle(n);
+    if(cs.display === 'none' || cs.visibility === 'hidden' || +cs.opacity < 0.05) return false;
+  }
+  return true;
+}
+function luxNewsBusy(){
+  var de = document.documentElement, b = document.body;
+  if(document.hidden || !de.classList.contains('lux-ready') || b.classList.contains('home-loading')) return 'wait';
+  if(luxCoverEl || document.getElementById('entryModeGate') || de.classList.contains('lux-cover-wait')) return 'wait';
+  var on = function(id){ var x = document.getElementById(id); return !!(x && !x.hidden && !x.classList.contains('hidden')); };
+  if(document.querySelector('.modal-backdrop:not(.hidden)')) return 'other';
+  if(['maintenanceLock', 'nightClosureLock', 'pageReader', 'profileEditPanel', 'luxReceiptModal', 'luxResetModal'].some(on)) return 'other';
+  var sh = document.getElementById('luxAdminSheet'), tu = document.getElementById('appTuSheet');
+  if((sh && sh.classList.contains('open')) || (tu && tu.classList.contains('open')) || b.classList.contains('chat-fullscreen')) return 'other';
+  var dl = document.querySelectorAll('[aria-modal="true"]');
+  for(var i = 0; i < dl.length; i++){
+    if(LUX_NEWS.el && LUX_NEWS.el.contains(dl[i])) continue;
+    if(luxNewsVis(dl[i])) return 'other';
+  }
+  return '';
+}
+function luxNewsWait(){
+  var calm = 0, t0 = Date.now();
+  (function look(){
+    if(!LUX_NEWS.p || LUX_NEWS.gone || luxNewsOpen()) return;
+    var b = luxNewsBusy();
+    if(b === 'other'){ LUX_NEWS.gone = true; return; }
+    calm = b ? 0 : calm + 1;
+    if(calm >= 2){ luxNewsShow(LUX_NEWS.p); return; } // (la home libera da un momento)
+    if(Date.now() - t0 < 20 * 60000) setTimeout(look, 700);
+  })();
+}
+var LNP_X = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>';
+function luxNewsHtml(p){
+  var L = luxBlogLoc(p), href = luxAttr(luxBlogHref(p)), kind = luxGzKind(currentLang);
+  var ex = luxBlogExcerpt(L.body || '', 220);
+  var img = p.image_url && !p._noImg;
+  // (dove il blog non si vede in alto né nella colonna a sinistra, sta in «Tu»: lo si dice)
+  var tab = luxNewsVis(document.getElementById('appTabTu')) && !luxNewsVis(document.getElementById('navBlog')) && !luxNewsVis(document.querySelector('.app-side-link[href="blog.html"]'));
+  return '<div class="lnp-scrim" data-lnp-x></div>' +
+    '<div class="lnp-panel" role="dialog" aria-modal="true" tabindex="-1" aria-labelledby="lnpTag lnpH"' + (ex ? ' aria-describedby="lnpEx"' : '') + '>' +
+      '<div class="lnp-mast">' +
+        '<img class="lnp-crest" src="gazette-logo-sm.webp" alt="" width="240" height="233" decoding="async">' +
+        '<div class="lnp-mast-t"><span class="lnp-name lnp-name--' + kind + '" lang="' + luxAttr(currentLang) + '">' + escapeHtml(t('blog.gazette')) + '</span>' +
+          '<span class="lnp-line"><span class="gz-tag lnp-tag" id="lnpTag">' + escapeHtml(t('blog.popTag')) + '</span><span class="lnp-date">' + escapeHtml(luxBlogDate(p)) + '</span></span></div>' +
+        '<button type="button" class="lnp-x" data-lnp-x aria-label="' + luxAttr(t('apptu.close')) + '">' + LNP_X + '</button>' +
+      '</div>' +
+      (img ? '<a class="lnp-fig" href="' + href + '" data-lnp-go tabindex="-1" aria-hidden="true"><img src="' + luxAttr(p.image_url) + '" alt="" decoding="async"></a>' : '') +
+      '<div class="lnp-txt"' + luxBlogLangAttr(p) + '>' +
+        '<p class="gz-kicker lnp-kicker">' + escapeHtml(luxBlogKicker(p)) + '</p>' +
+        '<h2 class="lnp-h" id="lnpH"><a href="' + href + '" data-lnp-go tabindex="-1">' + escapeHtml(L.title || '') + '</a></h2>' +
+        (ex ? '<p class="lnp-ex" id="lnpEx">' + escapeHtml(ex) + '</p>' : '') +
+      '</div>' +
+      '<div class="lnp-acts">' +
+        '<a class="lnp-btn lnp-go" href="' + href + '" data-lnp-go>' + escapeHtml(t('blog.popRead')) + '</a>' +
+        '<div class="lnp-row"><a class="lnp-btn lnp-sec" href="blog.html" data-lnp-all>' + escapeHtml(t('blog.back')) + '</a>' +
+          '<button type="button" class="lnp-btn lnp-sec" data-lnp-x>' + escapeHtml(t('apptu.close')) + '</button></div>' +
+        (tab ? '<p class="lnp-where">' + escapeHtml(t('blog.popWhere').replace('{you}', t('apptab.you')).replace('{blog}', t('blog.nav'))) + '</p>' : '') +
+      '</div>' +
+    '</div>';
+}
+// il nome della Gazzetta su una riga: se non ci sta, più piccolo
+function luxNewsFitName(el){
+  if(!el) return;
+  var fit = function(){
+    if(!el.isConnected) return;
+    el.style.fontSize = '';
+    var w = el.clientWidth, sw = el.scrollWidth;
+    if(w && sw > w){ var max = parseFloat(window.getComputedStyle(el).fontSize) || 24; el.style.fontSize = Math.max(15, Math.floor(max * w / sw * 0.97)) + 'px'; }
+  };
+  fit();
+  try { if(document.fonts && document.fonts.ready) document.fonts.ready.then(fit); } catch(e){}
+}
+function luxNewsShow(p){
+  if(luxNewsOpen() || !p) return;
+  var el = LUX_NEWS.el;
+  if(!el){
+    el = LUX_NEWS.el = document.createElement('div');
+    el.id = 'luxNewsPop';
+    el.className = 'lnp';
+    el.hidden = true;
+    el.addEventListener('click', function(e){
+      var c = function(s){ return e.target.closest ? e.target.closest(s) : null; };
+      if(c('[data-lnp-x]')){ e.preventDefault(); luxNewsClose(); return; }
+      if(c('[data-lnp-go]') || c('[data-lnp-all]')) luxNewsClose(true); // (il link apre il blog)
+    });
+    el.addEventListener('keydown', function(e){
+      if(e.key === 'Escape'){ e.preventDefault(); luxNewsClose(); return; }
+      if(e.key !== 'Tab') return;
+      var f = Array.prototype.filter.call(el.querySelectorAll('a[href], button'), function(x){ return x.tabIndex !== -1 && x.offsetParent !== null; });
+      if(!f.length) return;
+      var i = f.indexOf(document.activeElement); // (-1: la finestra stessa, appena aperta)
+      if(e.shiftKey && i <= 0){ e.preventDefault(); f[f.length - 1].focus(); }
+      else if(!e.shiftKey && (i === -1 || i === f.length - 1)){ e.preventDefault(); f[0].focus(); }
+    });
+    document.body.appendChild(el);
+  }
+  el.setAttribute('dir', luxIsRtl(currentLang) ? 'rtl' : 'ltr');
+  el.innerHTML = luxNewsHtml(p);
+  var im = el.querySelector('.lnp-fig img');
+  if(im) im.addEventListener('error', function(){ var f = el.querySelector('.lnp-fig'); if(f) f.remove(); });
+  luxNewsMark(p); // (vista: non torna più, nemmeno ricaricando)
+  LUX_NEWS.prev = document.activeElement;
+  el.classList.remove('on');
+  el.hidden = false;
+  document.documentElement.classList.add('lnp-lock');
+  luxNewsFitName(el.querySelector('.lnp-name'));
+  void el.offsetWidth; // (così entra scorrendo)
+  el.classList.add('on');
+  // (il lettore di schermo legge «Ultima notizia» e il titolo; con Tab si va ai pulsanti)
+  try { el.querySelector('.lnp-panel').focus({ preventScroll: true }); } catch(e){}
+}
+function luxNewsClose(leaving){
+  var el = LUX_NEWS.el;
+  if(!el || el.hidden) return;
+  LUX_NEWS.gone = true;
+  el.classList.remove('on');
+  document.documentElement.classList.remove('lnp-lock');
+  var done = function(){
+    if(el.classList.contains('on')) return;
+    el.hidden = true;
+    var q = LUX_NEWS.after; LUX_NEWS.after = [];
+    q.forEach(function(fn){ try { fn(); } catch(e){ console.warn('[notizia]', e); } });
+  };
+  if(leaving){ done(); return; }
+  var pv = LUX_NEWS.prev;
+  try { if(pv && pv.isConnected && pv.focus) pv.focus({ preventScroll: true }); } catch(e){}
+  var reduced = false;
+  try { reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch(e){}
+  if(reduced) done(); else setTimeout(done, 280);
+}
+
 function handleAddAnnouncement(){
   var title = document.getElementById('fAnnTitle').value.trim();
   var body = document.getElementById('fAnnBody').value.trim();
@@ -31746,6 +31947,7 @@ function __appInit(){
   luxDelAccInit(); // v258: «Elimina il mio account»
   luxFilePrettyAll(); // v260: «Scegli una foto» al posto del campo grezzo del browser
   try { luxBlogInit(); luxBlogHome(); } catch(e){ console.warn('[blog]', e); } // v263: il blog
+  try { luxNewsCheck(); } catch(e){ console.warn('[notizia]', e); } // v266: «Ultima notizia» (solo in home)
   initSnoOverlay();
   initBookmarkTab();
   setInterval(function(){ if(!document.hidden) refreshCommunityDot(); }, 60000); // pallino Community
