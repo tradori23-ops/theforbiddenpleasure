@@ -6084,3 +6084,41 @@ body.theme-light .gz-crest,body.theme-light #blogHomeSection .gz-home-crest{filt
 #blogHomeSection .gz-home-head > :not(.gz-home-crest){grid-column:2;min-width:0;}
 #blogHomeSection .gz-home-crest{grid-column:1;grid-row:1 / span 2;width:66px;height:auto;filter:drop-shadow(0 6px 14px rgba(0,0,0,.45));}
 @media (max-width:600px){ #blogHomeSection .gz-home-crest{width:54px;} }
+/* ============ v265: le letture e i «Mi piace» (in fondo agli articoli e nelle schede del blog) ============ */
+:root{--gz-like:#e3576f;}
+body.theme-light{--gz-like:#a61f39;}
+.gz-sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;}
+.gz-meta-t{min-width:0;}
+.gz-meta-n{display:inline-flex;align-items:center;gap:4px;margin-inline-start:auto;}
+.gz-meta .gz-meta-n + .gz-iconbtn{margin:0;margin-inline-start:6px;}
+.gz-mini{display:inline-flex;align-items:center;gap:5px;min-height:40px;padding:0 8px;border-radius:999px;font-family:'Crimson Pro',Georgia,serif;font-size:15px;line-height:1;font-variant-numeric:tabular-nums;color:var(--parchment-dim);}
+.gz-mini svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;}
+.gz-mini-i,.gz-like-i{display:inline-flex;}
+button.gz-like{appearance:none;-webkit-appearance:none;margin:0;cursor:pointer;background:none;border:1px solid rgba(201,162,77,.32);color:var(--parchment);font-family:'Crimson Pro',Georgia,serif;}
+button.gz-like.gz-mini{padding:0 12px;}
+button.gz-like:hover{border-color:var(--gold-bright);}
+button.gz-like.on{border-color:var(--gz-like);color:var(--gz-like);}
+button.gz-like.on svg{fill:currentColor;}
+button.gz-like:focus-visible{outline:2px solid var(--gold-bright);outline-offset:2px;}
+.gz-like.pop .gz-like-i{animation:gzLikePop .38s ease-out;}
+@keyframes gzLikePop{0%{transform:scale(1);}40%{transform:scale(1.35);}100%{transform:scale(1);}}
+/* in fondo all'articolo: le letture e il «Mi piace» grande */
+.gz-stats{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px 16px;margin:28px 0 0;padding:16px 0 0;border-top:1px solid var(--line);}
+.gz-reads{display:inline-flex;align-items:center;gap:8px;font-family:'Crimson Pro',Georgia,serif;font-size:17px;font-variant-numeric:tabular-nums;color:var(--parchment-dim);}
+.gz-reads svg{flex:none;width:21px;height:21px;fill:none;stroke:var(--gold-bright);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;}
+button.gz-like-big{display:inline-flex;align-items:center;gap:9px;min-height:46px;padding:0 20px;border-radius:999px;border-color:rgba(201,162,77,.5);font-size:17px;font-weight:600;line-height:1;}
+.gz-like-big svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linejoin:round;}
+.gz-like-big .gz-like-n{font-variant-numeric:tabular-nums;color:var(--gold-bright);padding-inline-start:10px;border-inline-start:1px solid rgba(201,162,77,.35);}
+.gz-like-big.on .gz-like-n{color:inherit;border-color:currentColor;}
+.gz-stats + .gz-share{margin-top:16px;}
+/* arabo e panjabi: da destra (le letture a destra, il cuore e Condividi a sinistra) */
+html.lux-rtl .gz-stats,html.lux-rtl .gz-meta,html.lux-rtl .gz-meta-n{flex-direction:row-reverse;}
+html.lux-rtl .gz-meta .gz-meta-n{margin-left:0;margin-right:auto;}
+html.lux-rtl .gz-meta .gz-iconbtn{margin-right:0;}
+html.lux-rtl .gz-meta .gz-meta-n + .gz-iconbtn{margin:0 6px 0 0;}
+html.lux-rtl button.gz-like-big{flex-direction:row-reverse;}
+html.lux-rtl .gz-like-big .gz-like-n{border-left:0;padding-left:0;border-right:1px solid rgba(201,162,77,.35);padding-right:10px;}
+html.lux-rtl .gz-like-big.on .gz-like-n{border-right-color:currentColor;}
+body.theme-light button.gz-like{border-color:rgba(138,106,31,.38);}
+body.theme-light button.gz-like.on{border-color:var(--gz-like);}
+@media (prefers-reduced-motion:reduce){ .gz-like.pop .gz-like-i{animation:none;} }
