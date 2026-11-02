@@ -1201,6 +1201,20 @@ Object.assign(STR.hi, {"blog.nav": "ब्लॉग", "blog.gazette": "आर्
 Object.assign(STR.bn, {"blog.nav": "ব্লগ", "blog.gazette": "আর্কাইভ গেজেট", "blog.motto": "আর্কাইভ ও তার আশপাশ থেকে খবর, আপডেট আর পড়ার মতো লেখা", "blog.free": "সবার জন্য বিনামূল্যে", "blog.issue": "বর্ষ {yn} · সংখ্যা {n}", "blog.editionNight": "রাতের সংস্করণ", "blog.editionDay": "দিনের সংস্করণ", "blog.filtersLabel": "ব্লগের বিভাগ", "blog.filterAll": "সব", "blog.filter.news": "খবর", "blog.filter.update": "আপডেট", "blog.filter.link": "ওয়েব থেকে", "blog.kind.news": "খবর", "blog.kind.update": "আপডেট", "blog.kind.link": "ওয়েব থেকে", "blog.pinned": "বিশেষ", "blog.draft": "খসড়া", "blog.draftNote": "খসড়া: শুধু আপনি দেখতে পাচ্ছেন", "blog.empty": "ব্লগটি সবে শুরু হয়েছে: প্রথম লেখা শিগগিরই আসছে।", "blog.emptyFilter": "এই বিভাগে এখনও কিছু নেই।", "blog.error": "এই মুহূর্তে ব্লগ লোড করা যাচ্ছে না। একটু পরে আবার চেষ্টা করুন।", "blog.more": "আরও লেখা", "blog.write": "লেখা লিখুন", "blog.edit": "সম্পাদনা", "blog.back": "সব লেখা", "blog.by": "লেখক: {name}", "blog.updated": "{date}-এ আপডেট হয়েছে", "blog.readTime": "{n} মিনিটের পড়া", "blog.translated": "মূল লেখা ({lang}) থেকে স্বয়ংক্রিয় অনুবাদ।", "blog.originalShown": "আপনি মূল লেখা পড়ছেন।", "blog.showOriginal": "মূল লেখা পড়ুন", "blog.showTranslation": "অনুবাদ পড়ুন", "blog.source": "সূত্র: {name}", "blog.readOn": "{site}-এ পড়ুন", "blog.notFound": "এই লেখাটি নেই (হয়তো সরিয়ে ফেলা হয়েছে)।", "blog.others": "আরও পড়ুন", "blog.comments1": "1টি মন্তব্য", "blog.commentsN": "{n}টি মন্তব্য", "blog.comLogin": "মন্তব্য করতে অ্যাকাউন্ট লাগে (বিনামূল্যে)। পড়তে লাগে না: ব্লগ সবার জন্য।", "blog.signup": "অ্যাকাউন্ট তৈরি করুন", "blog.comWrite": "আপনার মন্তব্য", "blog.comHint": "অনুমোদনের পরে আপনার মন্তব্য দেখা যাবে।", "blog.comEmpty": "পাঠানোর আগে কিছু লিখুন।", "blog.comError": "এই মুহূর্তে মন্তব্য লোড করা যাচ্ছে না।", "blog.approve": "অনুমোদন করুন", "blog.cover": "QR সহ প্রচ্ছদ", "blog.coverSub": "পত্রিকার প্রথম পাতা, লেখায় পৌঁছানোর QR সহ: Instagram, WhatsApp আর যেখানে খুশি।", "blog.coverAlt": "QR সহ প্রচ্ছদের প্রিভিউ", "blog.fmtLabel": "ফরম্যাট", "blog.fmt.story": "স্টোরি 9:16", "blog.fmt.post": "পোস্ট 4:5", "blog.fmt.square": "বর্গাকার 1:1", "blog.fmt.og": "লিংকের প্রিভিউ", "blog.studioLang": "প্রচ্ছদের ভাষা", "blog.studioDl": "ডাউনলোড", "blog.studioShare": "শেয়ার করুন", "blog.studioWait": "প্রচ্ছদ তৈরি হচ্ছে…", "blog.studioTip": "ফোনে «শেয়ার করুন» শেয়ার মেনু খোলে: সেখানে Instagram, WhatsApp বা অন্য কোনো অ্যাপ বেছে নিন। স্টোরিতে ওপরের আর নিচের জায়গা Instagram-এর বোতামের জন্য খালি থাকে।", "blog.studioSaved": "ডাউনলোড হয়েছে: {name}", "blog.studioAgain": "তৈরি: আবার «শেয়ার করুন» চাপুন।", "blog.studioFail": "ছবি তৈরি করা গেল না: আবার চেষ্টা করুন।", "blog.scan": "লেখাটি পড়তে QR স্ক্যান করুন", "blog.homeEyebrow": "ব্লগ থেকে", "blog.homeAll": "ব্লগ পড়ুন →", "notif.blogComment": "ব্লগে মন্তব্য করেছেন: “{title}”", "notif.mentionBlog": "ব্লগের “{title}”-এর মন্তব্যে আপনাকে উল্লেখ করেছেন"});
 Object.assign(STR.ar, {"blog.nav": "المدونة", "blog.gazette": "جريدة الأرشيف", "blog.motto": "أخبار ومستجدات وقراءات من الأرشيف وما حوله", "blog.free": "مجانًا للجميع", "blog.issue": "السنة {yn} · العدد {n}", "blog.editionNight": "طبعة الليل", "blog.editionDay": "طبعة النهار", "blog.filtersLabel": "أقسام المدونة", "blog.filterAll": "الكل", "blog.filter.news": "أخبار", "blog.filter.update": "مستجدات", "blog.filter.link": "من الويب", "blog.kind.news": "خبر", "blog.kind.update": "مستجدات", "blog.kind.link": "من الويب", "blog.pinned": "مميّز", "blog.draft": "مسودة", "blog.draftNote": "مسودة: تراها أنت فقط", "blog.empty": "وُلدت المدونة للتو: أول مقال قادم قريبًا.", "blog.emptyFilter": "لا يوجد شيء في هذا القسم بعد.", "blog.error": "تعذّر تحميل المدونة الآن. حاول مرة أخرى بعد قليل.", "blog.more": "مقالات أخرى", "blog.write": "اكتب مقالًا", "blog.edit": "تعديل", "blog.back": "كل المقالات", "blog.by": "بقلم {name}", "blog.updated": "حُدّث في {date}", "blog.readTime": "قراءة في {n} دقيقة", "blog.translated": "ترجمة آلية من النص الأصلي ({lang}).", "blog.originalShown": "أنت تقرأ النص الأصلي.", "blog.showOriginal": "اقرأ الأصل", "blog.showTranslation": "اقرأ الترجمة", "blog.source": "المصدر: {name}", "blog.readOn": "اقرأ على {site}", "blog.notFound": "هذا المقال غير موجود (ربما حُذف).", "blog.others": "اقرأ أيضًا", "blog.comments1": "تعليق واحد", "blog.commentsN": "التعليقات: {n}", "blog.comLogin": "للتعليق تحتاج إلى حساب (مجاني). أما القراءة فلا: المدونة للجميع.", "blog.signup": "أنشئ حسابًا", "blog.comWrite": "تعليقك", "blog.comHint": "يظهر تعليقك بعد الموافقة عليه.", "blog.comEmpty": "اكتب شيئًا قبل الإرسال.", "blog.comError": "تعذّر تحميل التعليقات الآن.", "blog.approve": "موافقة", "blog.cover": "غلاف مع رمز QR", "blog.coverSub": "الصفحة الأولى من الجريدة مع رمز QR يقود إلى المقال: لإنستغرام وواتساب وأي مكان تريده.", "blog.coverAlt": "معاينة الغلاف مع رمز QR", "blog.fmtLabel": "الصيغة", "blog.fmt.story": "قصة 9:16", "blog.fmt.post": "منشور 4:5", "blog.fmt.square": "مربع 1:1", "blog.fmt.og": "معاينة الرابط", "blog.studioLang": "لغة الغلاف", "blog.studioDl": "تنزيل", "blog.studioShare": "مشاركة", "blog.studioWait": "جارٍ تحضير الغلاف…", "blog.studioTip": "على الهاتف يفتح «مشاركة» قائمة المشاركة: اختر منها إنستغرام أو واتساب أو تطبيقًا آخر. في القصة تبقى المساحة في الأعلى والأسفل فارغة لأزرار إنستغرام.", "blog.studioSaved": "تم التنزيل: {name}", "blog.studioAgain": "جاهزة: اضغط «مشاركة» مرة أخرى.", "blog.studioFail": "تعذّر إنشاء الصورة: حاول مرة أخرى.", "blog.scan": "امسح رمز QR لقراءة المقال", "blog.homeEyebrow": "من المدونة", "blog.homeAll": "اقرأ المدونة ←", "notif.blogComment": "علّق في المدونة: «{title}»", "notif.mentionBlog": "أشار إليك في تعليقات المدونة «{title}»"});
 Object.assign(STR.pnb, {"blog.nav": "بلاگ", "blog.gazette": "آرکائیو گزٹ", "blog.motto": "آرکائیو تے اوہدے آل دوالے توں خبراں، اپڈیٹاں تے پڑھن والیاں گلاں", "blog.free": "سب لئی مفت", "blog.issue": "سال {yn} · شمارہ {n}", "blog.editionNight": "رات دا ایڈیشن", "blog.editionDay": "دن دا ایڈیشن", "blog.filtersLabel": "بلاگ دے حصے", "blog.filterAll": "سب", "blog.filter.news": "خبراں", "blog.filter.update": "اپڈیٹاں", "blog.filter.link": "ویب توں", "blog.kind.news": "خبر", "blog.kind.update": "اپڈیٹ", "blog.kind.link": "ویب توں", "blog.pinned": "خاص", "blog.draft": "ڈرافٹ", "blog.draftNote": "ڈرافٹ: صرف تسیں ویکھ سکدے او", "blog.empty": "بلاگ ہنے ای شروع ہویا اے: پہلا مضمون چھیتی آ رہیا اے۔", "blog.emptyFilter": "ایس حصے وچ اجے کجھ نہیں۔", "blog.error": "ہن بلاگ لوڈ نہیں ہو رہیا۔ تھوڑی دیر بعد فیر کوشش کرو۔", "blog.more": "ہور مضمون", "blog.write": "مضمون لکھو", "blog.edit": "بدلو", "blog.back": "سارے مضمون", "blog.by": "لکھاری: {name}", "blog.updated": "{date} نوں اپڈیٹ ہویا", "blog.readTime": "{n} منٹ دی پڑھائی", "blog.translated": "اصل ({lang}) توں آپے ترجمہ کیتا گیا۔", "blog.originalShown": "تسیں اصل پڑھ رہے او۔", "blog.showOriginal": "اصل پڑھو", "blog.showTranslation": "ترجمہ پڑھو", "blog.source": "ذریعہ: {name}", "blog.readOn": "{site} تے پڑھو", "blog.notFound": "ایہ مضمون موجود نہیں (شاید ہٹا دتا گیا اے)۔", "blog.others": "ایہ وی پڑھو", "blog.comments1": "1 تبصرہ", "blog.commentsN": "{n} تبصرے", "blog.comLogin": "تبصرہ کرن لئی اکاؤنٹ چاہیدا اے (مفت اے)۔ پڑھن لئی نہیں: بلاگ سب لئی اے۔", "blog.signup": "اکاؤنٹ بناؤ", "blog.comWrite": "تہاڈا تبصرہ", "blog.comHint": "تہاڈا تبصرہ منظوری توں بعد دسے گا۔", "blog.comEmpty": "بھیجن توں پہلاں کجھ لکھو۔", "blog.comError": "ہن تبصرے لوڈ نہیں ہو رہے۔", "blog.approve": "منظور کرو", "blog.cover": "QR والا سرورق", "blog.coverSub": "اخبار دا پہلا صفحہ، مضمون تک لے جان والے QR نال: انسٹاگرام، واٹس ایپ تے جتھے چاہو۔", "blog.coverAlt": "QR والے سرورق دی جھلک", "blog.fmtLabel": "فارمیٹ", "blog.fmt.story": "سٹوری 9:16", "blog.fmt.post": "پوسٹ 4:5", "blog.fmt.square": "چورس 1:1", "blog.fmt.og": "لنک دی جھلک", "blog.studioLang": "سرورق دی زبان", "blog.studioDl": "ڈاؤن لوڈ", "blog.studioShare": "شیئر کرو", "blog.studioWait": "سرورق تیار ہو رہیا اے…", "blog.studioTip": "فون تے «شیئر کرو» شیئر والا مینیو کھولدا اے: اوتھے انسٹاگرام، واٹس ایپ یا کوئی ہور ایپ چنو۔ سٹوری وچ اتے تے تھلے دی جگہ انسٹاگرام دے بٹناں لئی خالی رہندی اے۔", "blog.studioSaved": "ڈاؤن لوڈ ہو گیا: {name}", "blog.studioAgain": "تیار اے: «شیئر کرو» نوں فیر دباؤ۔", "blog.studioFail": "تصویر نہیں بن سکی: فیر کوشش کرو۔", "blog.scan": "مضمون پڑھن لئی QR سکین کرو", "blog.homeEyebrow": "بلاگ توں", "blog.homeAll": "بلاگ پڑھو ←", "notif.blogComment": "نے بلاگ تے تبصرہ کیتا: «{title}»", "notif.mentionBlog": "نے بلاگ «{title}» دے تبصریاں وچ تہاڈا ذکر کیتا"});
+// v265: le letture e i «Mi piace» del blog
+Object.assign(STR.it, {"blog.reads1": "1 lettura", "blog.readsN": "{n} letture", "blog.like": "Mi piace", "blog.liked": "Ti piace", "blog.likeAdd": "Metti «Mi piace»", "blog.likeRemove": "Togli «Mi piace»", "blog.likes1": "1 mi piace", "blog.likesN": "{n} mi piace", "blog.likeErr": "«Mi piace» non salvato: riprova tra poco."});
+Object.assign(STR.en, {"blog.reads1": "1 read", "blog.readsN": "{n} reads", "blog.like": "Like", "blog.liked": "Liked", "blog.likeAdd": "Like this article", "blog.likeRemove": "Remove your like", "blog.likes1": "1 like", "blog.likesN": "{n} likes", "blog.likeErr": "Your like wasn't saved: try again in a moment."});
+Object.assign(STR.es, {"blog.reads1": "1 lectura", "blog.readsN": "{n} lecturas", "blog.like": "Me gusta", "blog.liked": "Te gusta", "blog.likeAdd": "Dar «Me gusta»", "blog.likeRemove": "Quitar «Me gusta»", "blog.likes1": "1 me gusta", "blog.likesN": "{n} me gusta", "blog.likeErr": "No se guardó el «Me gusta»: inténtalo de nuevo en un momento."});
+Object.assign(STR.fr, {"blog.reads1": "1 lecture", "blog.readsN": "{n} lectures", "blog.like": "J'aime", "blog.liked": "Vous aimez", "blog.likeAdd": "Aimer cet article", "blog.likeRemove": "Retirer votre « J'aime »", "blog.likes1": "1 j'aime", "blog.likesN": "{n} j'aime", "blog.likeErr": "« J'aime » non enregistré : réessayez dans un instant."});
+Object.assign(STR.de, {"blog.reads1": "1-mal gelesen", "blog.readsN": "{n}-mal gelesen", "blog.like": "Gefällt mir", "blog.liked": "Gefällt dir", "blog.likeAdd": "„Gefällt mir“ geben", "blog.likeRemove": "„Gefällt mir“ entfernen", "blog.likes1": "1 „Gefällt mir“", "blog.likesN": "{n} „Gefällt mir“", "blog.likeErr": "„Gefällt mir“ nicht gespeichert: bitte gleich noch einmal versuchen."});
+Object.assign(STR.pt, {"blog.reads1": "1 leitura", "blog.readsN": "{n} leituras", "blog.like": "Curtir", "blog.liked": "Curtido", "blog.likeAdd": "Curtir este artigo", "blog.likeRemove": "Descurtir", "blog.likes1": "1 curtida", "blog.likesN": "{n} curtidas", "blog.likeErr": "A curtida não foi salva: tente de novo daqui a pouco."});
+Object.assign(STR.ru, {"blog.reads1": "Прочтений: 1", "blog.readsN": "Прочтений: {n}", "blog.like": "Нравится", "blog.liked": "Вам нравится", "blog.likeAdd": "Поставить «Нравится»", "blog.likeRemove": "Убрать «Нравится»", "blog.likes1": "«Нравится»: 1", "blog.likesN": "«Нравится»: {n}", "blog.likeErr": "Не удалось сохранить «Нравится»: попробуйте чуть позже."});
+Object.assign(STR.zh, {"blog.reads1": "1 次阅读", "blog.readsN": "{n} 次阅读", "blog.like": "赞", "blog.liked": "已赞", "blog.likeAdd": "点赞", "blog.likeRemove": "取消点赞", "blog.likes1": "1 个赞", "blog.likesN": "{n} 个赞", "blog.likeErr": "点赞没有保存，请稍后再试。"});
+Object.assign(STR.ja, {"blog.reads1": "閲覧 1", "blog.readsN": "閲覧 {n}", "blog.like": "いいね", "blog.liked": "いいね済み", "blog.likeAdd": "いいねする", "blog.likeRemove": "いいねを取り消す", "blog.likes1": "いいね 1", "blog.likesN": "いいね {n}", "blog.likeErr": "いいねを保存できませんでした。少ししてからもう一度お試しください。"});
+Object.assign(STR.hi, {"blog.reads1": "1 बार पढ़ा गया", "blog.readsN": "{n} बार पढ़ा गया", "blog.like": "पसंद", "blog.liked": "आपको पसंद है", "blog.likeAdd": "पसंद करें", "blog.likeRemove": "पसंद हटाएँ", "blog.likes1": "1 पसंद", "blog.likesN": "{n} पसंद", "blog.likeErr": "पसंद सहेजी नहीं गई: थोड़ी देर में फिर कोशिश करें।"});
+Object.assign(STR.bn, {"blog.reads1": "1 বার পড়া হয়েছে", "blog.readsN": "{n} বার পড়া হয়েছে", "blog.like": "পছন্দ", "blog.liked": "আপনার পছন্দ", "blog.likeAdd": "পছন্দ করুন", "blog.likeRemove": "পছন্দ সরান", "blog.likes1": "1টি পছন্দ", "blog.likesN": "{n}টি পছন্দ", "blog.likeErr": "পছন্দ সংরক্ষণ হয়নি: একটু পরে আবার চেষ্টা করুন।"});
+Object.assign(STR.ar, {"blog.reads1": "قراءة واحدة", "blog.readsN": "عدد القراءات: {n}", "blog.like": "إعجاب", "blog.liked": "أعجبك", "blog.likeAdd": "أعجبني", "blog.likeRemove": "إلغاء الإعجاب", "blog.likes1": "إعجاب واحد", "blog.likesN": "الإعجابات: {n}", "blog.likeErr": "لم يُحفظ الإعجاب: حاول مرة أخرى بعد قليل."});
+Object.assign(STR.pnb, {"blog.reads1": "1 وار پڑھیا گیا", "blog.readsN": "{n} وار پڑھیا گیا", "blog.like": "پسند", "blog.liked": "تہانوں پسند اے", "blog.likeAdd": "پسند کرو", "blog.likeRemove": "پسند ہٹاؤ", "blog.likes1": "1 پسند", "blog.likesN": "{n} پسند", "blog.likeErr": "پسند محفوظ نہیں ہوئی: تھوڑی دیر بعد فیر کوشش کرو۔"});
 var CHAR_META = {
   Lucifer:{role:{it:"Il Portatore di Luce",en:"The Light-Bearer",es:"El Portador de Luz",fr:"Le Porteur de Lumière",de:"Der Lichtträger"},
     bio:{it:"Sovrano della collana ammiraglia: potere, caduta e desiderio raccontati su grande scala.",
@@ -28455,7 +28469,7 @@ function fillEventArchiveCard(card, ev){
    stile dei giornali della lingua scelta (gotica per inglese, francese e tedesco; un bodoni per italiano, spagnolo,
    portoghese e russo; i caratteri del telefono per le altre scritture). L'amministratore scrive in Amministra › Blog:
    pubblicando, l'articolo si traduce e si prepara l'anteprima per i social (b/<id>.html, funzione generate-blog-preview). */
-var LUX_BLOG = { rows: null, idx: null, err: null, loading: null, more: false, filter: 'all', shown: 13, open: null, single: {}, pv: {}, orig: {}, auth: null };
+var LUX_BLOG = { rows: null, idx: null, err: null, loading: null, more: false, filter: 'all', shown: 13, open: null, single: {}, pv: {}, orig: {}, auth: null, liked: null, likesOn: false, likeBusy: {} };
 var LUX_GZ_STYLE = { en: 'black', fr: 'black', de: 'black', it: 'serif', es: 'serif', pt: 'serif', ru: 'serif', zh: 'cjk', ja: 'cjk', hi: 'indic', bn: 'indic', ar: 'arabic', pnb: 'arabic' };
 var LUX_GZ_FONTS = {
   black: '"UnifrakturMaguntia", "Old English Text MT", "Playfair Display", Georgia, serif',
@@ -28523,6 +28537,8 @@ function luxBlogLoad(force){
     LUX_BLOG.rows = luxBlogSort(res[0] || []);
     LUX_BLOG.more = (res[0] || []).length >= LUX_BLOG_PAGE;
     LUX_BLOG.idx = res[1] || [];
+    luxBlogLikesCheck(LUX_BLOG.rows); // v265
+    if(document.getElementById('blogSection')) luxBlogLikedLoad();
     return LUX_BLOG.rows;
   }).catch(function(e){
     if(!(e && e.missing)) console.warn('[blog]', e);
@@ -28540,6 +28556,7 @@ function luxBlogLoadMore(){
     var have = {};
     (LUX_BLOG.rows || []).forEach(function(p){ have[p.id] = 1; });
     LUX_BLOG.rows = luxBlogSort((LUX_BLOG.rows || []).concat((rows || []).filter(function(p){ return !have[p.id]; })));
+    luxBlogLikesCheck(rows); // v265
     LUX_BLOG.more = (rows || []).length >= LUX_BLOG_PAGE;
   }).catch(function(e){ console.warn('[blog] altri articoli', e); }).then(function(){ LUX_BLOG.moreBusy = false; });
 }
@@ -28552,7 +28569,7 @@ function luxBlogFind(id){
 function luxBlogFetchOne(id){
   if(!SUPABASE_URL) return Promise.resolve(null);
   return luxBlogGet('id=eq.' + encodeURIComponent(id) + '&select=*')
-    .then(function(rows){ var p = (rows && rows[0]) || null; LUX_BLOG.single[String(id).toLowerCase()] = p || false; return p; })
+    .then(function(rows){ var p = (rows && rows[0]) || null; LUX_BLOG.single[String(id).toLowerCase()] = p || false; luxBlogLikesCheck(rows); return p; })
     .catch(function(e){ if(e && e.missing) LUX_BLOG.err = 'missing'; LUX_BLOG.single[String(id).toLowerCase()] = false; return null; });
 }
 // il numero dell'uscita: quanti articoli sono usciti fino a questo (compreso)
@@ -28641,7 +28658,7 @@ function luxBlogTags(p){
 function luxBlogMetaHtml(p){
   var bits = [escapeHtml(luxBlogDate(p))];
   if(p.comment_count > 0) bits.push(escapeHtml(luxBlogComLabel(p.comment_count)));
-  return '<p class="gz-meta">' + bits.join('<span class="gz-dot" aria-hidden="true"> · </span>') +
+  return '<p class="gz-meta"><span class="gz-meta-t">' + bits.join('<span class="gz-dot" aria-hidden="true"> · </span>') + '</span>' + luxBlogStatsMini(p) + // v265
     '<button type="button" class="gz-iconbtn" data-gz-share="' + luxAttr(p.id) + '" aria-label="' + luxAttr(t('share.title')) + '">' + LPR_I.share + '</button></p>';
 }
 function luxBlogImgHtml(p, w){
@@ -28779,6 +28796,8 @@ function luxBlogGo(id, fromList){
 }
 function luxBlogClick(e){
   var tg = e.target, c = function(sel){ return tg.closest ? tg.closest(sel) : null; };
+  var lk = c('[data-gz-like]'); // v265: «Mi piace»
+  if(lk){ e.preventDefault(); var pl = luxBlogFind(lk.getAttribute('data-gz-like')); if(pl) luxBlogLike(pl, lk); return; }
   var f = c('[data-gz-filter]');
   if(f){ LUX_BLOG.filter = f.getAttribute('data-gz-filter'); LUX_BLOG.shown = 13; luxBlogFilters(); luxBlogShowList(); return; }
   if(c('[data-gz-more]')){
@@ -28875,6 +28894,7 @@ function luxBlogShowArticle(id, loaded, relang){
           (src && dom && src.toLowerCase() !== dom.toLowerCase() ? ' <span class="gz-src-d">' + escapeHtml(dom) + '</span>' : '') + '</p>' +
         '<a class="btn btn-primary gz-src-go" href="' + luxAttr(link) + '" target="_blank" rel="noopener nofollow">' + escapeHtml(t('blog.readOn').replace('{site}', dom || src)) +
         '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 5h5v5M19 5l-8 8M17 14v5H5V7h5"/></svg></a></aside>' : '') +
+      luxBlogStatsBar(p) + // v265: le letture e il «Mi piace»
       '<div class="gz-share" data-gz-sharerow></div>' +
       (isAdmin() ? '<div class="gz-adminbar"><button type="button" class="btn btn-ghost btn-sm" data-gz-edit="' + luxAttr(p.id) + '">' + escapeHtml(t('blog.edit')) + '</button>' +
         (p.published === false ? '<span class="gz-tag gz-tag-draft">' + escapeHtml(t('blog.draftNote')) + '</span>' : '') + '</div>' : '') +
@@ -30265,6 +30285,10 @@ function luxBlogAdmList(){
   warn.hidden = LUX_BLOG.err !== 'missing';
   warn.textContent = 'Il blog non c\'è ancora su Supabase: lancia il file blog_v263.sql (SQL Editor → incolla tutto → Run), poi ricarica questa pagina.';
   var rows = LUX_BLOG.rows;
+  if(warn.hidden && rows && rows.length && !luxBlogLikesOn()){ // v265
+    warn.hidden = false;
+    warn.textContent = 'I «Mi piace» non sono ancora attivi: lancia il file likes_blog_v265.sql (SQL Editor → incolla tutto → Run), poi ricarica questa pagina. Le letture si vedono già.';
+  }
   if(rows === null){ box.innerHTML = '<p class="form-note">…</p>'; return; }
   cnt.textContent = rows.length ? '(' + rows.length + ')' : '';
   if(!rows.length){ box.innerHTML = '<p class="form-note">Ancora nessun articolo: scrivi il primo qui sopra.</p>'; return; }
@@ -30281,7 +30305,7 @@ function luxBlogAdmList(){
         '<div class="gza-row-t">' + escapeHtml(p.title || '') + '</div>' +
         '<div class="gza-row-m">' + escapeHtml(KIND[p.kind] || 'Notizia') + ' · ' + escapeHtml(luxBlogDate(p, 'it')) +
           (draft ? ' <span class="gza-flag is-draft">Bozza</span>' : '') + (p.pinned ? ' <span class="gza-flag">In evidenza</span>' : '') + '</div>' +
-        '<div class="gza-row-n">' + (p.view_count || 0) + ' letture · ' + (p.share_count || 0) + ' condivisioni · ' + (p.comment_count || 0) + ' commenti' +
+        '<div class="gza-row-n">' + (p.view_count || 0) + ' letture · ' + (p.share_count || 0) + ' condivisioni · ' + (p.comment_count || 0) + ' commenti' + (p.like_count != null ? ' · ' + p.like_count + ' mi piace' : '') + // v265
           (pend ? ' · <b>' + pend + ' da approvare</b>' : '') + '</div>' +
         '<div class="gza-row-s' + (st.og === 'err' || st.tr === 'err' ? ' is-error' : '') + '" data-gza-st>' + escapeHtml(og) + (tr ? '<br>' + escapeHtml(tr) : '') + '</div>' +
         '<div class="gza-row-acts">' +
@@ -30332,6 +30356,140 @@ function luxBlogAdmAct(act, p, btn){
 function luxBlogInit(){
   luxBlogPageInit();
   luxBlogIo();
+}
+
+/* ---- v265: le letture e i «Mi piace» (in fondo a ogni articolo e nella riga in basso di ogni scheda) ----
+   Le letture si contano come prima (una per articolo e per telefono o computer; le tue no). Il «Mi piace» lo mette
+   chiunque: con l'account uno per account, senza account uno per dispositivo (un codice casuale salvato sul dispositivo).
+   Senza il file likes_blog_v265.sql su Supabase gli articoli non hanno like_count: il cuore non si mostra. */
+var LUX_GZ_EYE = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/></svg>';
+var LUX_GZ_HEART = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.3s-7.4-4.5-9.1-9.2C1.7 7.6 4 4.6 7.3 4.6c2 0 3.6 1.1 4.7 2.8 1.1-1.7 2.7-2.8 4.7-2.8 3.3 0 5.6 3 4.4 6.5-1.7 4.7-9.1 9.2-9.1 9.2z"/></svg>';
+function luxBlogFmtN(n){
+  n = Math.max(0, Math.round(+n || 0));
+  try { return new Intl.NumberFormat(luxLocaleOf(currentLang) + '-u-nu-latn', n >= 10000 ? { notation: 'compact', maximumFractionDigits: 1 } : {}).format(n); }
+  catch(e){ return String(n); }
+}
+function luxBlogReadsLabel(n){ n = +n || 0; return n === 1 ? t('blog.reads1') : t('blog.readsN').replace('{n}', luxBlogFmtN(n)); }
+function luxBlogLikesLabel(n){ n = +n || 0; return n === 1 ? t('blog.likes1') : t('blog.likesN').replace('{n}', luxBlogFmtN(n)); }
+function luxBlogLikesOn(){ return LUX_BLOG.likesOn === true; }
+function luxBlogIsLiked(id){ return !!(LUX_BLOG.liked && LUX_BLOG.liked[String(id).toLowerCase()]); }
+function luxBlogLikeAria(p){ return t(luxBlogIsLiked(p.id) ? 'blog.likeRemove' : 'blog.likeAdd') + ' · ' + luxBlogLikesLabel(p.like_count || 0); }
+// i «Mi piace» ci sono se gli articoli hanno like_count (il file likes_blog_v265.sql lanciato)
+function luxBlogLikesCheck(rows){
+  if((rows || []).some(function(p){ return p && Object.prototype.hasOwnProperty.call(p, 'like_count'); })) LUX_BLOG.likesOn = true;
+}
+// nella riga in basso delle schede: l'occhio con le letture, il cuore con i «Mi piace»
+function luxBlogStatsMini(p){
+  if(!p || p.published === false) return '';
+  var v = p.view_count || 0;
+  return '<span class="gz-meta-n">' +
+    '<span class="gz-mini"><span class="gz-mini-i">' + LUX_GZ_EYE + '</span><span aria-hidden="true">' + escapeHtml(luxBlogFmtN(v)) + '</span>' +
+      '<span class="gz-sr">' + escapeHtml(luxBlogReadsLabel(v)) + '</span></span>' +
+    (luxBlogLikesOn() ? luxBlogLikeBtn(p, false) : '') +
+  '</span>';
+}
+function luxBlogLikeBtn(p, big){
+  var on = luxBlogIsLiked(p.id);
+  return '<button type="button" class="gz-like ' + (big ? 'gz-like-big' : 'gz-mini') + (on ? ' on' : '') + '" data-gz-like="' + luxAttr(p.id) + '" aria-pressed="' + on + '" aria-label="' + luxAttr(luxBlogLikeAria(p)) + '">' +
+    '<span class="gz-like-i">' + LUX_GZ_HEART + '</span>' +
+    (big ? '<span class="gz-like-t" data-gz-liket>' + escapeHtml(t(on ? 'blog.liked' : 'blog.like')) + '</span>' : '') +
+    '<span class="gz-like-n" data-gz-likes>' + escapeHtml(luxBlogFmtN(p.like_count || 0)) + '</span></button>';
+}
+// in fondo all'articolo: le letture e il «Mi piace» grande
+function luxBlogStatsBar(p){
+  if(!p || p.published === false) return '';
+  return '<div class="gz-stats" data-gz-stats>' +
+    '<span class="gz-reads">' + LUX_GZ_EYE + '<span data-gz-reads>' + escapeHtml(luxBlogReadsLabel(p.view_count || 0)) + '</span></span>' +
+    (luxBlogLikesOn() ? luxBlogLikeBtn(p, true) : '') +
+  '</div>';
+}
+// il codice del dispositivo (per chi non ha l'account): 32 cifre esadecimali a caso, salvato sul dispositivo
+function luxBlogDevice(make){
+  var k = 'lux_blog_dev', v = '';
+  try { v = localStorage.getItem(k) || ''; } catch(e){}
+  if(/^[0-9a-f]{32}$/.test(v)) return v;
+  if(!make) return '';
+  var b = new Uint8Array(16);
+  try { crypto.getRandomValues(b); } catch(e){ for(var i = 0; i < 16; i++) b[i] = Math.random() * 256 | 0; }
+  v = Array.prototype.map.call(b, function(x){ return ('0' + x.toString(16)).slice(-2); }).join('');
+  try { localStorage.setItem(k, v); } catch(e){}
+  return v;
+}
+function luxBlogLikedLocal(){
+  var o = {};
+  try { (JSON.parse(localStorage.getItem('lux_blog_liked') || '[]') || []).forEach(function(id){ o[String(id).toLowerCase()] = true; }); } catch(e){}
+  return o;
+}
+function luxBlogLikedSave(){ try { localStorage.setItem('lux_blog_liked', JSON.stringify(Object.keys(LUX_BLOG.liked || {}).slice(-500))); } catch(e){} }
+function luxBlogRpc(fn, args){
+  return (isSignedIn() ? refreshSessionIfNeeded() : Promise.resolve()).then(function(){
+    var s = isSignedIn() ? getSession() : null;
+    return fetch(SUPABASE_URL + '/rest/v1/rpc/' + fn, {
+      method: 'POST',
+      headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': 'Bearer ' + (s && s.access_token ? s.access_token : SUPABASE_ANON_KEY), 'Content-Type': 'application/json' },
+      body: JSON.stringify(args || {})
+    });
+  }).then(function(r){
+    return r.json().catch(function(){ return null; }).then(function(j){ if(!r.ok) throw { status: r.status, body: j }; return j; });
+  });
+}
+// quali articoli piacciono a chi guarda: subito quelli ricordati sul dispositivo, poi la risposta di Supabase
+function luxBlogLikedLoad(){
+  if(!LUX_BLOG.liked) LUX_BLOG.liked = luxBlogLikedLocal();
+  if(!SUPABASE_URL || !luxBlogLikesOn()) return Promise.resolve();
+  var dev = luxBlogDevice(false);
+  if(!dev && !isSignedIn()){ LUX_BLOG.liked = {}; luxBlogLikedSave(); luxBlogLikeRefresh(); return Promise.resolve(); }
+  var seq = LUX_BLOG.likedSeq = (LUX_BLOG.likedSeq || 0) + 1;
+  return luxBlogRpc('lux_blog_miei_mi_piace', { p_device: dev || null }).then(function(ids){
+    if(seq !== LUX_BLOG.likedSeq || !Array.isArray(ids)) return;
+    var o = {};
+    ids.forEach(function(x){ var id = x && typeof x === 'object' ? x[Object.keys(x)[0]] : x; if(id) o[String(id).toLowerCase()] = true; });
+    Object.keys(LUX_BLOG.likeBusy || {}).forEach(function(id){ if(LUX_BLOG.liked[id]) o[id] = true; else delete o[id]; }); // (un tocco appena fatto vince)
+    LUX_BLOG.liked = o;
+    luxBlogLikedSave();
+    luxBlogLikeRefresh();
+  }, function(e){ console.warn('[blog] mi piace', e); });
+}
+// tutti i cuori di quell'articolo (scheda e articolo) dicono la stessa cosa
+function luxBlogLikeRefresh(id){
+  var sel = id ? '[data-gz-like="' + String(id).replace(/[^0-9a-zA-Z-]/g, '') + '"]' : '[data-gz-like]';
+  Array.prototype.forEach.call(document.querySelectorAll(sel), function(b){
+    var pid = b.getAttribute('data-gz-like'), p = luxBlogFind(pid);
+    if(!p) return;
+    var on = luxBlogIsLiked(pid);
+    b.classList.toggle('on', on);
+    b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    b.setAttribute('aria-label', luxBlogLikeAria(p));
+    var n = b.querySelector('[data-gz-likes]'); if(n) n.textContent = luxBlogFmtN(p.like_count || 0);
+    var tl = b.querySelector('[data-gz-liket]'); if(tl) tl.textContent = t(on ? 'blog.liked' : 'blog.like');
+  });
+}
+function luxBlogLikeSet(p, on, n){
+  var id = String(p.id).toLowerCase();
+  [p, luxBlogFind(id)].forEach(function(x){ if(x) x.like_count = Math.max(0, +n || 0); });
+  if(!LUX_BLOG.liked) LUX_BLOG.liked = {};
+  if(on) LUX_BLOG.liked[id] = true; else delete LUX_BLOG.liked[id];
+  luxBlogLikedSave();
+  luxBlogLikeRefresh(id);
+}
+function luxBlogLike(p, btn){
+  if(!p || !SUPABASE_URL || !luxBlogLikesOn() || p.published === false) return;
+  var id = String(p.id).toLowerCase();
+  LUX_BLOG.likeBusy = LUX_BLOG.likeBusy || {};
+  if(LUX_BLOG.likeBusy[id]) return;
+  var on = !luxBlogIsLiked(id), before = p.like_count || 0, dev = luxBlogDevice(true);
+  LUX_BLOG.likeBusy[id] = true;
+  luxBlogLikeSet(p, on, before + (on ? 1 : -1)); // subito: il cuore e il numero; poi quello vero
+  if(on && btn){ btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop'); }
+  luxBlogRpc('lux_blog_mi_piace', { p_id: p.id, p_device: dev || null, p_on: on }).then(function(n){
+    delete LUX_BLOG.likeBusy[id];
+    luxBlogLikeSet(p, on, typeof n === 'number' ? n : (p.like_count || 0));
+  }, function(e){
+    delete LUX_BLOG.likeBusy[id];
+    console.warn('[blog] mi piace', e);
+    luxBlogLikeSet(p, !on, before);
+    luxToast(t('blog.likeErr'));
+  });
 }
 
 function handleAddAnnouncement(){
