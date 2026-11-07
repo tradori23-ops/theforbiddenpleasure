@@ -5807,14 +5807,14 @@ body.theme-light .event-arch-img{background:#efe4cc;border-color:rgba(138,106,31
 body.theme-light .btn-attend:not(.going){background:#6b5015;color:#fff8ea;}
 .event-arch .event-photo-add{font-family:'Crimson Pro',Georgia,serif;font-size:13.5px;letter-spacing:0;}
 /* ============ v263: il Blog — «La Gazzetta dell'Archivio» ============ */
-/* i caratteri della Gazzetta (si scaricano solo dove servono: sul blog e per le copertine) — licenza OFL, vedi fonts/LICENSE-OFL.txt */
-@font-face{font-family:'Playfair Display';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/playfair-display-latin-ext-700-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
-@font-face{font-family:'Playfair Display';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/playfair-display-latin-700-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
-@font-face{font-family:'Playfair Display';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/playfair-display-cyrillic-700-normal.woff2) format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;}
-@font-face{font-family:'Playfair Display';font-style:normal;font-weight:900;font-display:swap;src:url(fonts/playfair-display-latin-ext-900-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
-@font-face{font-family:'Playfair Display';font-style:normal;font-weight:900;font-display:swap;src:url(fonts/playfair-display-latin-900-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
-@font-face{font-family:'Playfair Display';font-style:normal;font-weight:900;font-display:swap;src:url(fonts/playfair-display-cyrillic-900-normal.woff2) format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;}
-@font-face{font-family:'UnifrakturMaguntia';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/unifrakturmaguntia-latin-400-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+/* i caratteri della Gazzetta (si scaricano solo dove servono: sul blog e per le copertine) — licenza OFL, vedi LICENSE-OFL.txt */
+@font-face{font-family:'Playfair Display';font-style:normal;font-weight:700;font-display:swap;src:url(playfair-display-latin-ext-700-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+@font-face{font-family:'Playfair Display';font-style:normal;font-weight:700;font-display:swap;src:url(playfair-display-latin-700-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+@font-face{font-family:'Playfair Display';font-style:normal;font-weight:700;font-display:swap;src:url(playfair-display-cyrillic-700-normal.woff2) format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;}
+@font-face{font-family:'Playfair Display';font-style:normal;font-weight:900;font-display:swap;src:url(playfair-display-latin-ext-900-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+@font-face{font-family:'Playfair Display';font-style:normal;font-weight:900;font-display:swap;src:url(playfair-display-latin-900-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+@font-face{font-family:'Playfair Display';font-style:normal;font-weight:900;font-display:swap;src:url(playfair-display-cyrillic-900-normal.woff2) format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;}
+@font-face{font-family:'UnifrakturMaguntia';font-style:normal;font-weight:400;font-display:swap;src:url(unifrakturmaguntia-latin-400-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
 
 /* il carattere dei titoli: un bodoni per le lingue latine e il russo, quelli del telefono per le altre scritture */
 .gz-name,.gz-home-name,.gz-lead-h,.gz-item-h,.gz-art-h,.gz-other-t,.gz-hitem-h{--gz-head:'Playfair Display','Bodoni 72',Didot,Georgia,serif;}
@@ -6191,3 +6191,60 @@ body.theme-light .lnp-x:hover{background:rgba(42,29,18,.13);}
 body.theme-light .lnp-sec{border-color:rgba(138,106,31,.45);}
 @media (min-width:641px){ body.theme-light .lnp-panel{box-shadow:0 24px 60px rgba(80,60,40,.28);} }
 @media (prefers-reduced-motion:reduce){ .lnp-scrim,.lnp-panel{transition:none;} .lnp-panel{transform:none;} }
+/* ============ v267: i PDF negli articoli del blog ============ */
+/* l'icona del documento (con la fascia «PDF») */
+.gz-doc-svg{display:block;flex:none;width:34px;height:42px;overflow:visible;}
+.gz-doc-page{fill:rgba(236,226,198,.05);stroke:var(--gold-bright);stroke-width:1.5;stroke-linejoin:round;}
+.gz-doc-fold{fill:none;stroke:var(--gold-bright);stroke-width:1.5;stroke-linejoin:round;}
+.gz-doc-band{fill:#8a1a2c;}
+.gz-doc-txt{fill:#f6ead2;font:700 8.8px 'Crimson Pro',Georgia,serif;letter-spacing:.05em;}
+/* in fondo all'articolo: «Documento» / «Documenti» */
+.gz-docs{margin:26px 0 0;padding:16px 0 0;border-top:1px solid var(--line);}
+.gz-docs-h{margin:0 0 12px;font-family:'Crimson Pro',Georgia,serif;font-style:italic;font-size:18px;font-weight:600;letter-spacing:0;text-transform:none;color:var(--gold-bright);}
+.gz-docs-list{display:flex;flex-direction:column;gap:10px;margin:0;padding:0;list-style:none;}
+.gz-doc{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;column-gap:14px;row-gap:12px;padding:12px 14px;border:1px solid rgba(201,162,77,.3);border-radius:14px;background:var(--void-2);}
+.gz-doc-t{display:flex;flex-direction:column;gap:3px;min-width:0;text-align:start;}
+.gz-doc-n{font-family:'Crimson Pro',Georgia,serif;font-size:17.5px;font-weight:700;line-height:1.25;color:var(--parchment);overflow-wrap:anywhere;}
+.gz-doc-m{font-family:'Crimson Pro',Georgia,serif;font-size:14.5px;line-height:1.3;color:var(--parchment-dim);font-variant-numeric:tabular-nums;}
+.gz-doc-acts{display:flex;gap:8px;}
+.gz-doc-btn{display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;min-height:44px;margin:0;padding:0 18px;border-radius:999px;
+  font-family:'Crimson Pro',Georgia,serif;font-size:16.5px;font-weight:600;line-height:1;letter-spacing:0;text-transform:none;text-decoration:none;white-space:nowrap;}
+.gz-doc-open{border:1px solid #8a1a2c;background:#8a1a2c;color:#f3e9d2;}
+.gz-doc-open:hover{border-color:#a3223a;background:#a3223a;color:#fff;}
+.gz-doc-get{border:1px solid rgba(201,162,77,.45);background:transparent;color:var(--parchment);}
+.gz-doc-get:hover{border-color:var(--gold-bright);color:var(--gold-bright);}
+.gz-doc-btn:focus-visible{outline:2px solid var(--gold-bright);outline-offset:2px;}
+@media (max-width:600px){
+  .gz-doc{grid-template-columns:auto minmax(0,1fr);}
+  .gz-doc-acts{grid-column:1 / -1;}
+  .gz-doc-acts .gz-doc-btn{flex:1 1 0;}
+}
+.gz-docs + .gz-stats{margin-top:22px;}
+/* il segno «PDF» sulle schede e sopra il titolo */
+.gz-tag.gz-tag-pdf{background:rgba(138,26,44,.55);color:#f6ead2;}
+/* Amministra › Blog: i PDF nel modulo */
+.gza-pdf-warn{margin:0;padding:10px 14px;border-radius:12px;background:rgba(212,98,47,.14);border:1px solid rgba(212,98,47,.45);color:#ffc7ab;font-family:'Crimson Pro',Georgia,serif;font-size:15.5px;font-weight:400;line-height:1.45;}
+.gza-pdf-warn[hidden]{display:none;}
+.gza-pdfs{display:flex;flex-direction:column;gap:8px;margin:0;padding:0;list-style:none;}
+.gza-pdfs:empty{display:none;}
+.gza-pdf{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;column-gap:10px;row-gap:3px;padding:8px 10px;border:1px solid rgba(201,162,77,.25);border-radius:12px;background:#1e1215;}
+.gza-pdf .gz-doc-svg{grid-row:1 / span 2;width:26px;height:32px;}
+.gza-pdf input[type="text"]{grid-column:2;min-height:42px;}
+.gza-pdf-m{grid-column:2;font-family:'Crimson Pro',Georgia,serif;font-size:14px;font-weight:400;color:var(--parchment-dim);}
+.gza-pdf.is-new .gza-pdf-m{color:var(--gold-bright);}
+.gza-pdf-del{grid-column:3;grid-row:1 / span 2;margin:0;}
+.gza-pdf-add{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;}
+.gza-pdf-addbtn{display:inline-flex;align-items:center;gap:8px;min-height:44px;margin:0;}
+.gza-pdf-addbtn .gz-doc-svg{width:18px;height:22px;}
+.gza-pdf-addbtn[disabled]{opacity:.5;cursor:not-allowed;}
+@media (max-width:600px){
+  .gza-pdf{grid-template-columns:auto minmax(0,1fr);}
+  .gza-pdf-del{grid-column:1 / -1;grid-row:auto;justify-self:start;}
+}
+/* tema chiaro */
+body.theme-light .gz-doc{background:#fffdf7;border-color:rgba(138,106,31,.3);}
+body.theme-light .gz-doc-page{fill:#fbf3e2;}
+body.theme-light .gz-doc-get{border-color:rgba(138,106,31,.45);}
+body.theme-light .gz-tag.gz-tag-pdf{background:rgba(138,26,44,.12);color:#7a1426;}
+body.theme-light .gza-pdf{background:#fffdf7;border-color:rgba(138,106,31,.3);}
+body.theme-light .gza-pdf-warn{color:#7a2a0c;background:rgba(184,72,31,.08);}

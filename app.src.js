@@ -1229,6 +1229,20 @@ Object.assign(STR.hi, {"blog.popTag": "ताज़ा ख़बर", "blog.popR
 Object.assign(STR.bn, {"blog.popTag": "সর্বশেষ খবর", "blog.popRead": "নিবন্ধটি পড়ুন", "blog.popWhere": "ব্লগটি সবসময় “{you}” › “{blog}”-এ পাবেন।"});
 Object.assign(STR.ar, {"blog.popTag": "آخر الأخبار", "blog.popRead": "اقرأ المقال", "blog.popWhere": "تجد المدونة دائمًا في «{you}» › «{blog}»."});
 Object.assign(STR.pnb, {"blog.popTag": "تازہ خبر", "blog.popRead": "مضمون پڑھو", "blog.popWhere": "بلاگ ہمیشہ «{you}» › «{blog}» وچ ملے گا۔"});
+// v267: i PDF negli articoli del blog
+Object.assign(STR.it, {"blog.doc1": "Documento", "blog.docN": "Documenti", "blog.docOpen": "Apri", "blog.docGet": "Scarica", "blog.docOpenAria": "Apri il PDF «{name}»", "blog.docGetAria": "Scarica il PDF «{name}»"});
+Object.assign(STR.en, {"blog.doc1": "Document", "blog.docN": "Documents", "blog.docOpen": "Open", "blog.docGet": "Download", "blog.docOpenAria": "Open the PDF “{name}”", "blog.docGetAria": "Download the PDF “{name}”"});
+Object.assign(STR.es, {"blog.doc1": "Documento", "blog.docN": "Documentos", "blog.docOpen": "Abrir", "blog.docGet": "Descargar", "blog.docOpenAria": "Abrir el PDF «{name}»", "blog.docGetAria": "Descargar el PDF «{name}»"});
+Object.assign(STR.fr, {"blog.doc1": "Document", "blog.docN": "Documents", "blog.docOpen": "Ouvrir", "blog.docGet": "Télécharger", "blog.docOpenAria": "Ouvrir le PDF « {name} »", "blog.docGetAria": "Télécharger le PDF « {name} »"});
+Object.assign(STR.de, {"blog.doc1": "Dokument", "blog.docN": "Dokumente", "blog.docOpen": "Öffnen", "blog.docGet": "Herunterladen", "blog.docOpenAria": "PDF „{name}“ öffnen", "blog.docGetAria": "PDF „{name}“ herunterladen"});
+Object.assign(STR.pt, {"blog.doc1": "Documento", "blog.docN": "Documentos", "blog.docOpen": "Abrir", "blog.docGet": "Baixar", "blog.docOpenAria": "Abrir o PDF “{name}”", "blog.docGetAria": "Baixar o PDF “{name}”"});
+Object.assign(STR.ru, {"blog.doc1": "Документ", "blog.docN": "Документы", "blog.docOpen": "Открыть", "blog.docGet": "Скачать", "blog.docOpenAria": "Открыть PDF «{name}»", "blog.docGetAria": "Скачать PDF «{name}»"});
+Object.assign(STR.zh, {"blog.doc1": "文件", "blog.docN": "文件", "blog.docOpen": "打开", "blog.docGet": "下载", "blog.docOpenAria": "打开 PDF「{name}」", "blog.docGetAria": "下载 PDF「{name}」"});
+Object.assign(STR.ja, {"blog.doc1": "資料", "blog.docN": "資料", "blog.docOpen": "開く", "blog.docGet": "ダウンロード", "blog.docOpenAria": "PDF「{name}」を開く", "blog.docGetAria": "PDF「{name}」をダウンロード"});
+Object.assign(STR.hi, {"blog.doc1": "दस्तावेज़", "blog.docN": "दस्तावेज़", "blog.docOpen": "खोलें", "blog.docGet": "डाउनलोड करें", "blog.docOpenAria": "PDF “{name}” खोलें", "blog.docGetAria": "PDF “{name}” डाउनलोड करें"});
+Object.assign(STR.bn, {"blog.doc1": "নথি", "blog.docN": "নথিগুলো", "blog.docOpen": "খুলুন", "blog.docGet": "ডাউনলোড", "blog.docOpenAria": "PDF “{name}” খুলুন", "blog.docGetAria": "PDF “{name}” ডাউনলোড করুন"});
+Object.assign(STR.ar, {"blog.doc1": "مستند", "blog.docN": "مستندات", "blog.docOpen": "فتح", "blog.docGet": "تنزيل", "blog.docOpenAria": "فتح ملف PDF «{name}»", "blog.docGetAria": "تنزيل ملف PDF «{name}»"});
+Object.assign(STR.pnb, {"blog.doc1": "دستاویز", "blog.docN": "دستاویزاں", "blog.docOpen": "کھولو", "blog.docGet": "ڈاؤن لوڈ کرو", "blog.docOpenAria": "PDF «{name}» کھولو", "blog.docGetAria": "PDF «{name}» ڈاؤن لوڈ کرو"});
 var CHAR_META = {
   Lucifer:{role:{it:"Il Portatore di Luce",en:"The Light-Bearer",es:"El Portador de Luz",fr:"Le Porteur de Lumière",de:"Der Lichtträger"},
     bio:{it:"Sovrano della collana ammiraglia: potere, caduta e desiderio raccontati su grande scala.",
@@ -28488,7 +28502,7 @@ function fillEventArchiveCard(card, ev){
    stile dei giornali della lingua scelta (gotica per inglese, francese e tedesco; un bodoni per italiano, spagnolo,
    portoghese e russo; i caratteri del telefono per le altre scritture). L'amministratore scrive in Amministra › Blog:
    pubblicando, l'articolo si traduce e si prepara l'anteprima per i social (b/<id>.html, funzione generate-blog-preview). */
-var LUX_BLOG = { rows: null, idx: null, err: null, loading: null, more: false, filter: 'all', shown: 13, open: null, single: {}, pv: {}, orig: {}, auth: null, liked: null, likesOn: false, likeBusy: {} };
+var LUX_BLOG = { rows: null, idx: null, err: null, loading: null, more: false, filter: 'all', shown: 13, open: null, single: {}, pv: {}, orig: {}, auth: null, liked: null, likesOn: false, likeBusy: {}, pdfOn: null };
 var LUX_GZ_STYLE = { en: 'black', fr: 'black', de: 'black', it: 'serif', es: 'serif', pt: 'serif', ru: 'serif', zh: 'cjk', ja: 'cjk', hi: 'indic', bn: 'indic', ar: 'arabic', pnb: 'arabic' };
 var LUX_GZ_FONTS = {
   black: '"UnifrakturMaguntia", "Old English Text MT", "Playfair Display", Georgia, serif',
@@ -28672,7 +28686,7 @@ function luxBlogLangAttr(p){
 }
 function luxBlogTags(p){
   return (p.pinned ? '<span class="gz-tag">' + escapeHtml(t('blog.pinned')) + '</span>' : '') +
-    (p.published === false ? '<span class="gz-tag gz-tag-draft">' + escapeHtml(t('blog.draft')) + '</span>' : '');
+    (p.published === false ? '<span class="gz-tag gz-tag-draft">' + escapeHtml(t('blog.draft')) + '</span>' : '') + luxBlogPdfTag(p); // v267
 }
 function luxBlogMetaHtml(p){
   var bits = [escapeHtml(luxBlogDate(p))];
@@ -28913,6 +28927,7 @@ function luxBlogShowArticle(id, loaded, relang){
           (src && dom && src.toLowerCase() !== dom.toLowerCase() ? ' <span class="gz-src-d">' + escapeHtml(dom) + '</span>' : '') + '</p>' +
         '<a class="btn btn-primary gz-src-go" href="' + luxAttr(link) + '" target="_blank" rel="noopener nofollow">' + escapeHtml(t('blog.readOn').replace('{site}', dom || src)) +
         '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 5h5v5M19 5l-8 8M17 14v5H5V7h5"/></svg></a></aside>' : '') +
+      luxBlogDocsHtml(p) + // v267: i PDF
       luxBlogStatsBar(p) + // v265: le letture e il «Mi piace»
       '<div class="gz-share" data-gz-sharerow></div>' +
       (isAdmin() ? '<div class="gz-adminbar"><button type="button" class="btn btn-ghost btn-sm" data-gz-edit="' + luxAttr(p.id) + '">' + escapeHtml(t('blog.edit')) + '</button>' +
@@ -29919,7 +29934,7 @@ function luxUuid(){
 function luxBlogAdmEmpty(){
   var me = (currentProfile && currentProfile.display_name) || 'Nox Morningstar';
   return { id: luxUuid(), kind: 'news', title: '', body: '', link_url: '', source_name: '', srcAuto: true, image_url: null, file: null, fileUrl: '', removeImg: false,
-    lang: 'it', pinned: false, author_name: me };
+    lang: 'it', pinned: false, author_name: me, pdfs: [] };
 }
 function luxBlogTabInit(){
   var tabs = document.getElementById('adminTabs');
@@ -29964,6 +29979,7 @@ function luxBlogAdminRender(load){
         '<div class="gza-f"><span>Immagine <small>(facoltativa: va in cima all\'articolo e sulla copertina con il QR)</small></span>' +
           '<div class="gza-img"><img data-gza-imgprev alt="" hidden><input type="file" accept="image/*" data-gza-file>' +
           '<button type="button" class="btn btn-ghost btn-sm" data-gza-imgdel hidden>Togli l\'immagine</button></div></div>' +
+        luxBlogAdmPdfHtml() + // v267: i PDF
         '<div class="gza-row2">' +
           '<label class="gza-f"><span>Lingua in cui scrivi</span><select data-gza-lang>' + LUX_LANGS.map(function(l){ return '<option value="' + l.code + '">' + escapeHtml(l.name) + '</option>'; }).join('') + '</select></label>' +
           '<label class="gza-f"><span>Firma</span><input type="text" data-gza-author maxlength="80" autocomplete="off"></label>' +
@@ -29986,6 +30002,7 @@ function luxBlogAdminRender(load){
   luxBlogAdmList();
   if(load){
     luxBlogIo(true);
+    luxBlogPdfProbe(); // v267
     luxBlogAdmPending();
     luxBlogLoad(true).then(function(){ luxBlogAdmList(); luxBlogAdmEditPending(); });
   }
@@ -30005,6 +30022,7 @@ function luxBlogAdmSay(tx, bad){
 }
 function luxBlogAdmWire(box){
   var q = function(s){ return box.querySelector(s); };
+  luxBlogAdmPdfWire(box); // v267
   var F = function(){ return LUX_BLOG_ADM.form; };
   box.querySelector('.gza-kinds').addEventListener('click', function(e){
     var b = e.target.closest ? e.target.closest('[data-gza-kind]') : null;
@@ -30092,10 +30110,12 @@ function luxBlogAdmFormFill(imgOnly){
   q('[data-gza-formh]').textContent = ed ? 'Modifica: «' + (ed.title || '') + '»' : 'Nuovo articolo';
   q('[data-gza-cancel]').hidden = !ed;
   q('[data-gza-pub]').textContent = ed ? (ed.published === false ? 'Pubblica' : 'Salva e pubblica') : 'Pubblica';
+  luxBlogAdmPdfFill(); // v267
 }
 function luxBlogAdmReset(){
   var f = LUX_BLOG_ADM.form;
   if(f && f.fileUrl) try { URL.revokeObjectURL(f.fileUrl); } catch(e){}
+  if(f) luxBlogAdmDropFiles((f.pdfs || []).filter(function(d){ return d.fresh && d.url; }).map(function(d){ return d.url; })); // v267: caricati e mai salvati
   LUX_BLOG_ADM.form = luxBlogAdmEmpty();
   LUX_BLOG_ADM.editing = null;
   var file = luxBlogAdmQ('[data-gza-file]');
@@ -30109,6 +30129,7 @@ function luxBlogAdmEdit(p){
   f.id = p.id; f.kind = p.kind || 'news'; f.title = p.title || ''; f.body = p.body || ''; f.link_url = p.link_url || '';
   f.source_name = p.source_name || ''; f.srcAuto = !p.source_name; f.image_url = p.image_url || null; f.lang = p.lang || 'it';
   f.pinned = !!p.pinned; f.author_name = p.author_name || '';
+  f.pdfs = luxBlogPdfs(p).map(function(d){ return { key: luxBlogPdfKey(), url: d.url, name: d.name, size: d.size || 0 }; }); // v267
   luxBlogAdmFormFill();
   luxBlogAdmSay('');
   var h = luxBlogAdmQ('.gza-form');
@@ -30117,6 +30138,7 @@ function luxBlogAdmEdit(p){
 }
 function luxBlogAdmErr(e){
   e = e || {};
+  if(e.stage === 'pdf') return luxBlogAdmPdfErr(e); // v267
   if(e.code === 'sql') return 'Il blog non c\'è ancora su Supabase: lancia il file blog_v263.sql (SQL Editor → incolla tutto → Run), poi riprova.';
   if(e.code === 'network') return 'Non riesco a raggiungere Supabase: controlla la connessione e riprova.';
   if(e.code === 'auth') return 'Accesso scaduto: esci, rientra e riprova.';
@@ -30167,6 +30189,7 @@ function luxBlogAdmMerge(row){
 function luxBlogAdmBusy(on){
   LUX_BLOG_ADM.busy = on;
   Array.prototype.forEach.call(document.querySelectorAll('#luxBlogAdmin [data-gza-pub], #luxBlogAdmin [data-gza-draft]'), function(b){ b.disabled = on; });
+  luxBlogAdmPdfFill(); // v267: anche «Aggiungi PDF» e «Togli»
 }
 function luxBlogAdmSave(publish){
   if(LUX_BLOG_ADM.busy) return;
@@ -30177,21 +30200,25 @@ function luxBlogAdmSave(publish){
   if(link && !/^https?:\/\/[^\s"'<>]+$/i.test(link)){ luxBlogAdmSay('Il link deve cominciare con https:// (copialo intero dalla barra del browser).', true); focus('[data-gza-link]'); return; }
   if(f.kind === 'link' && !link){ luxBlogAdmSay('Per un link da un altro sito serve il link.', true); focus('[data-gza-link]'); return; }
   if(!SUPABASE_URL || !getSession()){ luxBlogAdmSay('Entra con il tuo account e riprova.', true); return; }
+  var noName = luxBlogAdmPdfBad(); // v267
+  if(noName){ luxBlogAdmSay('Dai un nome a ogni PDF: è quello che vede chi legge.', true); focus('[data-gza-pdfname="' + noName + '"]'); return; }
   var id = ed ? ed.id : f.id;
   luxBlogAdmBusy(true);
   luxBlogAdmSay(f.file ? 'Carico l\'immagine…' : 'Salvo…');
   var img = f.file ? luxBlogAdmUpload(id, f.file) : Promise.resolve(f.removeImg ? null : (ed ? ed.image_url || null : null));
-  img.then(function(imageUrl){
+  img.then(function(imageUrl){ return luxBlogAdmPdfUpload(id).then(function(){ return imageUrl; }); }).then(function(imageUrl){ // v267: prima i PDF nuovi
     luxBlogAdmSay('Salvo…');
     var row = { kind: f.kind, title: title, body: f.body.replace(/\s+$/, ''), link_url: link || null,
       source_name: link ? (f.source_name.trim() || luxBlogNiceSource(link)) : null, image_url: imageUrl, lang: f.lang,
       pinned: !!f.pinned, published: !!publish, author_name: f.author_name.trim() || null };
+    if(luxBlogPdfOn()) row.pdfs = luxBlogAdmPdfRow(); // v267
     if(!ed){ row.id = id; row.created_by = currentUserId(); row.published_at = new Date().toISOString(); }
     else if(publish && ed.published === false) row.published_at = new Date().toISOString(); // una bozza che esce adesso: con la data di oggi
     return luxBlogAdmWrite(ed ? 'PATCH' : 'POST', id, row);
   }).then(function(saved){
     var prev = ed ? JSON.parse(JSON.stringify(ed)) : null;
     if(ed && f.image_url && f.image_url !== saved.image_url) luxBlogAdmDropFiles([f.image_url, luxBlogThumb(f.image_url)]); // l'immagine vecchia, sostituita o tolta
+    luxBlogAdmPdfSaved(ed, saved); // v267: quelli tolti escono dall'archivio
     luxBlogAdmMerge(saved);
     luxBlogAdmReset();
     luxBlogAdmSay(publish ? 'Pubblicato. Adesso lo traduco e preparo l\'anteprima per i social (lo vedi qui sotto).' : 'Salvato come bozza: lo vedi solo tu (nel blog ha la scritta «Bozza»).');
@@ -30323,7 +30350,8 @@ function luxBlogAdmList(){
       '<div class="gza-row-main">' +
         '<div class="gza-row-t">' + escapeHtml(p.title || '') + '</div>' +
         '<div class="gza-row-m">' + escapeHtml(KIND[p.kind] || 'Notizia') + ' · ' + escapeHtml(luxBlogDate(p, 'it')) +
-          (draft ? ' <span class="gza-flag is-draft">Bozza</span>' : '') + (p.pinned ? ' <span class="gza-flag">In evidenza</span>' : '') + '</div>' +
+          (draft ? ' <span class="gza-flag is-draft">Bozza</span>' : '') + (p.pinned ? ' <span class="gza-flag">In evidenza</span>' : '') +
+          (luxBlogPdfs(p).length ? ' <span class="gza-flag">' + luxBlogPdfs(p).length + ' PDF</span>' : '') + '</div>' + // v267
         '<div class="gza-row-n">' + (p.view_count || 0) + ' letture · ' + (p.share_count || 0) + ' condivisioni · ' + (p.comment_count || 0) + ' commenti' + (p.like_count != null ? ' · ' + p.like_count + ' mi piace' : '') + // v265
           (pend ? ' · <b>' + pend + ' da approvare</b>' : '') + '</div>' +
         '<div class="gza-row-s' + (st.og === 'err' || st.tr === 'err' ? ' is-error' : '') + '" data-gza-st>' + escapeHtml(og) + (tr ? '<br>' + escapeHtml(tr) : '') + '</div>' +
@@ -30358,12 +30386,12 @@ function luxBlogAdmAct(act, p, btn){
     return;
   }
   if(act === 'del'){
-    if(!window.confirm('Eliminare «' + (p.title || '') + '»? Si cancellano anche i suoi commenti, e il link non funzionerà più.')) return;
+    if(!window.confirm('Eliminare «' + (p.title || '') + '»? Si cancellano anche i suoi commenti' + (luxBlogPdfs(p).length ? ' e i suoi PDF' : '') + ', e il link non funzionerà più.')) return;
     btn.disabled = true;
     luxDelete('blog_posts?id=eq.' + encodeURIComponent(p.id)).then(function(){
       LUX_BLOG.rows = (LUX_BLOG.rows || []).filter(function(x){ return x.id !== p.id; });
       if(LUX_BLOG_ADM.editing && LUX_BLOG_ADM.editing.id === p.id) luxBlogAdmReset();
-      luxBlogAdmDropFiles([p.image_url, p.image_url ? luxBlogThumb(p.image_url) : null, p.og_image]);
+      luxBlogAdmDropFiles([p.image_url, p.image_url ? luxBlogThumb(p.image_url) : null, p.og_image].concat(luxBlogPdfs(p).map(function(d){ return d.url; }))); // v267: anche i PDF
       if(p.og_image && p.published !== false) luxBlogEdge(p.id, 'delete').catch(function(e){ console.warn('[blog] anteprima da togliere', e); });
       luxBlogAdmList();
       luxToast('Articolo eliminato.');
@@ -30396,6 +30424,7 @@ function luxBlogLikeAria(p){ return t(luxBlogIsLiked(p.id) ? 'blog.likeRemove' :
 // i «Mi piace» ci sono se gli articoli hanno like_count (il file likes_blog_v265.sql lanciato)
 function luxBlogLikesCheck(rows){
   if((rows || []).some(function(p){ return p && Object.prototype.hasOwnProperty.call(p, 'like_count'); })) LUX_BLOG.likesOn = true;
+  luxBlogPdfCheck(rows); // v267: e i PDF?
 }
 // nella riga in basso delle schede: l'occhio con le letture, il cuore con i «Mi piace»
 function luxBlogStatsMini(p){
@@ -30691,6 +30720,240 @@ function luxNewsClose(leaving){
   var reduced = false;
   try { reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch(e){}
   if(reduced) done(); else setTimeout(done, 280);
+}
+
+/* ---- v267: i PDF negli articoli del blog ----
+   In Amministra › Blog si allegano uno o più PDF a ogni articolo (fino a 10, ognuno fino a 50 MB): vanno nell'archivio
+   comic-pages (blog/<id>/…pdf), come le immagini, e l'articolo ne tiene l'elenco (pdfs: indirizzo, nome, peso).
+   Chi legge li trova in fondo all'articolo, con «Apri» (nel visore del telefono o del computer) e «Scarica».
+   Senza il file pdf_blog_v267.sql su Supabase gli articoli non hanno pdfs: niente riquadro, e Amministra lo dice. */
+var LUX_BLOG_PDF_MAX = 50 * 1024 * 1024, LUX_BLOG_PDF_N = 10;
+var LUX_GZ_PDF = '<svg class="gz-doc-svg" viewBox="0 0 36 44" aria-hidden="true"><path class="gz-doc-page" d="M6 1.5h17.5L33 11v29.5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-37a2 2 0 0 1 2-2z"/>' +
+  '<path class="gz-doc-fold" d="M23.5 1.5V11H33"/><rect class="gz-doc-band" x="1" y="21.5" width="27" height="12.5" rx="2.5"/><text class="gz-doc-txt" x="14.5" y="30.9" text-anchor="middle">PDF</text></svg>';
+function luxBlogPdfs(p){
+  return Array.isArray(p && p.pdfs) ? p.pdfs.filter(function(d){ return d && /^https:\/\/[^\s"'<>]+$/i.test(d.url || '') && String(d.name || '').trim(); }) : [];
+}
+function luxBlogPdfOn(){ return LUX_BLOG.pdfOn === true; }
+// i PDF ci sono se gli articoli hanno pdfs (il file pdf_blog_v267.sql lanciato)
+function luxBlogPdfCheck(rows){
+  if((rows || []).some(function(p){ return p && Object.prototype.hasOwnProperty.call(p, 'pdfs'); })) LUX_BLOG.pdfOn = true;
+}
+// in Amministra, anche senza articoli: c'è la colonna pdfs?
+function luxBlogPdfProbe(){
+  if(!SUPABASE_URL || LUX_BLOG.pdfOn === true) return Promise.resolve();
+  return fetch(SUPABASE_URL + '/rest/v1/blog_posts?select=pdfs&limit=1', { headers: communityHeaders() }).then(function(r){
+    if(r.ok) LUX_BLOG.pdfOn = true;
+    else if(LUX_BLOG.pdfOn !== true && (r.status === 400 || r.status === 404)) LUX_BLOG.pdfOn = false;
+  }, function(){}).then(function(){ luxBlogAdmPdfFill(); });
+}
+// «2,4 MB», «830 kB», nella lingua di chi legge
+function luxBlogPdfSize(n){
+  n = Math.max(0, +n || 0);
+  var mb = n >= 1000 * 1024, v = mb ? n / 1048576 : Math.max(1, Math.round(n / 1024));
+  try { return new Intl.NumberFormat(luxLocaleOf(currentLang) + '-u-nu-latn', { style: 'unit', unit: mb ? 'megabyte' : 'kilobyte', unitDisplay: 'short', maximumFractionDigits: mb ? 1 : 0 }).format(v); }
+  catch(e){ return (mb ? (Math.round(v * 10) / 10) : v) + (mb ? ' MB' : ' kB'); }
+}
+function luxBlogPdfFile(name){ // il nome del file scaricato (solo lettere semplici: va bene a ogni telefono)
+  var s = String(name || '').replace(/\.pdf$/i, '');
+  try { s = s.normalize('NFD').replace(/[̀-ͯ]/g, ''); } catch(e){}
+  s = s.replace(/[^A-Za-z0-9 ._()-]+/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 80).trim();
+  return (s || 'documento') + '.pdf';
+}
+function luxBlogPdfDl(d){ return d.url + (d.url.indexOf('?') === -1 ? '?' : '&') + 'download=' + encodeURIComponent(luxBlogPdfFile(d.name)); }
+function luxBlogPdfTag(p){
+  var n = luxBlogPdfs(p).length;
+  return n ? '<span class="gz-tag gz-tag-pdf">' + (n > 1 ? n + ' PDF' : 'PDF') + '</span>' : '';
+}
+// in fondo all'articolo: i documenti
+function luxBlogDocsHtml(p){
+  var list = luxBlogPdfs(p);
+  if(!list.length) return '';
+  return '<section class="gz-docs" aria-labelledby="gzDocsH"' + (luxIsRtl(currentLang) ? ' dir="rtl"' : '') + '>' +
+    '<h2 class="gz-docs-h" id="gzDocsH">' + escapeHtml(t(list.length === 1 ? 'blog.doc1' : 'blog.docN')) + '</h2>' +
+    '<ul class="gz-docs-list">' + list.map(function(d){
+      var meta = 'PDF' + (d.size ? ' · ' + luxBlogPdfSize(d.size) : '');
+      return '<li class="gz-doc">' + LUX_GZ_PDF +
+        '<span class="gz-doc-t"><span class="gz-doc-n" dir="auto">' + escapeHtml(d.name) + '</span><span class="gz-doc-m">' + escapeHtml(meta) + '</span></span>' +
+        '<span class="gz-doc-acts">' +
+          '<a class="gz-doc-btn gz-doc-open" href="' + luxAttr(d.url) + '" target="_blank" rel="noopener" data-gz-pdf="open" aria-label="' + luxAttr(t('blog.docOpenAria').replace('{name}', d.name)) + '">' + escapeHtml(t('blog.docOpen')) + '</a>' +
+          '<a class="gz-doc-btn gz-doc-get" href="' + luxAttr(luxBlogPdfDl(d)) + '" download="' + luxAttr(luxBlogPdfFile(d.name)) + '" data-gz-pdf="get" aria-label="' + luxAttr(t('blog.docGetAria').replace('{name}', d.name)) + '">' + escapeHtml(t('blog.docGet')) + '</a>' +
+        '</span></li>';
+    }).join('') + '</ul></section>';
+}
+
+/* ---- Amministra › Blog: i PDF nel modulo ---- */
+function luxBlogPdfKey(){ return 'p' + Math.random().toString(36).slice(2, 10); }
+function luxBlogPdfNice(fileName){ // «Regolamento_concorso.pdf» → «Regolamento concorso»
+  var s = String(fileName || '').replace(/\.pdf$/i, '').replace(/_+/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 200).trim();
+  return s || 'Documento';
+}
+function luxBlogPdfSlug(s){ // per il nome del file nell'archivio
+  s = String(s || '').replace(/\.pdf$/i, '');
+  try { s = s.normalize('NFD').replace(/[̀-ͯ]/g, ''); } catch(e){}
+  s = s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 50).replace(/-+$/, '');
+  return s || 'documento';
+}
+// è davvero un PDF? (all'inizio del file c'è «%PDF-»)
+function luxBlogPdfMagic(file){
+  return new Promise(function(res){
+    try {
+      var rd = new FileReader();
+      rd.onload = function(){ var s = ''; try { var b = new Uint8Array(rd.result); for(var i = 0; i < b.length; i++) s += String.fromCharCode(b[i]); } catch(e){} res(s.indexOf('%PDF-') !== -1); };
+      rd.onerror = function(){ res(true); }; // (se non si riesce a leggere, decide Supabase)
+      rd.readAsArrayBuffer(file.slice(0, 1024));
+    } catch(e){ res(true); }
+  });
+}
+function luxBlogAdmPdfHtml(){
+  return '<div class="gza-f gza-pdff" role="group" aria-labelledby="gzaPdfL">' +
+    '<span id="gzaPdfL">PDF <small>(facoltativi: vanno in fondo all\'articolo, chi legge li apre o li scarica · fino a ' + LUX_BLOG_PDF_N + ', ognuno fino a 50 MB)</small></span>' +
+    '<p class="gza-pdf-warn" data-gza-pdfwarn hidden></p>' +
+    '<ul class="gza-pdfs" data-gza-pdfs></ul>' +
+    '<div class="gza-pdf-add"><input type="file" accept="application/pdf,.pdf" multiple data-gza-pdffile hidden>' +
+      '<button type="button" class="btn btn-ghost btn-sm gza-pdf-addbtn" data-gza-pdfadd disabled>' + LUX_GZ_PDF + '<span>Aggiungi PDF</span></button>' +
+      '<small class="gza-hint" data-gza-pdfhint>Il nome che scrivi è quello che vede chi legge.</small></div>' +
+  '</div>';
+}
+function luxBlogAdmPdfList(){
+  var ul = luxBlogAdmQ('[data-gza-pdfs]');
+  if(!ul) return;
+  var f = LUX_BLOG_ADM.form || {}, busy = !!LUX_BLOG_ADM.busy;
+  ul.innerHTML = (f.pdfs || []).map(function(d){
+    var st = d.url ? (d.fresh ? 'caricato: si salva con l\'articolo' : 'nell\'articolo') : 'si carica quando pubblichi o salvi';
+    return '<li class="gza-pdf' + (d.url ? '' : ' is-new') + '" data-gza-pdf="' + luxAttr(d.key) + '">' + LUX_GZ_PDF +
+      '<input type="text" maxlength="200" value="' + luxAttr(d.name) + '" data-gza-pdfname="' + luxAttr(d.key) + '" aria-label="Nome del PDF (lo vede chi legge)" autocomplete="off"' + (busy ? ' disabled' : '') + '>' +
+      '<span class="gza-pdf-m">' + escapeHtml((d.size ? luxBlogPdfSize(d.size) + ' · ' : '') + st) + '</span>' +
+      '<button type="button" class="btn btn-ghost btn-sm gza-pdf-del" data-gza-pdfdel="' + luxAttr(d.key) + '"' + (busy ? ' disabled' : '') + ' aria-label="Togli il PDF «' + luxAttr(d.name) + '»">Togli</button></li>';
+  }).join('');
+}
+function luxBlogAdmPdfFill(){
+  var w = luxBlogAdmQ('[data-gza-pdfwarn]'), add = luxBlogAdmQ('[data-gza-pdfadd]');
+  if(!w || !add) return;
+  var f = LUX_BLOG_ADM.form || {}, n = (f.pdfs || []).length;
+  w.hidden = LUX_BLOG.pdfOn !== false;
+  w.textContent = 'Per allegare i PDF lancia prima il file pdf_blog_v267.sql (SQL Editor → incolla tutto → Run), poi ricarica questa pagina.';
+  add.disabled = !luxBlogPdfOn() || !!LUX_BLOG_ADM.busy || n >= LUX_BLOG_PDF_N;
+  var hint = luxBlogAdmQ('[data-gza-pdfhint]');
+  if(hint) hint.textContent = n >= LUX_BLOG_PDF_N ? 'Ci sono già ' + LUX_BLOG_PDF_N + ' PDF: è il massimo per un articolo.' : 'Il nome che scrivi è quello che vede chi legge.';
+  luxBlogAdmPdfList();
+}
+function luxBlogAdmPdfAdd(files){
+  var f = LUX_BLOG_ADM.form;
+  f.pdfs = f.pdfs || [];
+  var list = Array.prototype.slice.call(files || []);
+  return Promise.all(list.map(function(file){
+    var nm = String(file.name || '');
+    if(!/\.pdf$/i.test(nm) && file.type !== 'application/pdf') return { file: file, bad: 'type' };
+    if(!file.size) return { file: file, bad: 'empty' };
+    if(file.size > LUX_BLOG_PDF_MAX) return { file: file, bad: 'size' };
+    return luxBlogPdfMagic(file).then(function(isPdf){ return isPdf ? { file: file } : { file: file, bad: 'type' }; });
+  })).then(function(res){
+    var msgs = [], full = false, added = 0;
+    res.forEach(function(r){
+      var nm = '«' + (r.file.name || 'file') + '»';
+      if(r.bad === 'type'){ msgs.push(nm + ' non è un PDF.'); return; }
+      if(r.bad === 'empty'){ msgs.push(nm + ' è vuoto.'); return; }
+      if(r.bad === 'size'){ msgs.push(nm + ' è troppo pesante (' + luxBlogPdfSize(r.file.size) + '): al massimo 50 MB.'); return; }
+      if(f.pdfs.length >= LUX_BLOG_PDF_N){ full = true; return; }
+      f.pdfs.push({ key: luxBlogPdfKey(), name: luxBlogPdfNice(r.file.name), size: r.file.size, file: r.file });
+      added++;
+    });
+    if(full) msgs.push('Al massimo ' + LUX_BLOG_PDF_N + ' PDF per articolo.');
+    luxBlogAdmPdfFill();
+    if(msgs.length) luxBlogAdmSay(msgs.join(' '), true);
+    else if(added) luxBlogAdmSay(added === 1 ? 'PDF aggiunto: si carica quando pubblichi o salvi.' : added + ' PDF aggiunti: si caricano quando pubblichi o salvi.');
+  });
+}
+function luxBlogAdmPdfWire(box){
+  var inp = box.querySelector('[data-gza-pdffile]'), add = box.querySelector('[data-gza-pdfadd]');
+  if(!inp || !add) return;
+  add.addEventListener('click', function(){ if(!add.disabled) inp.click(); });
+  inp.addEventListener('change', function(){
+    var fl = inp.files;
+    luxBlogAdmPdfAdd(fl).then(function(){ inp.value = ''; });
+  });
+  box.addEventListener('input', function(e){
+    var k = e.target && e.target.getAttribute ? e.target.getAttribute('data-gza-pdfname') : null;
+    if(!k) return;
+    (LUX_BLOG_ADM.form.pdfs || []).forEach(function(d){ if(d.key === k) d.name = e.target.value; });
+  });
+  box.addEventListener('click', function(e){
+    var b = e.target.closest ? e.target.closest('[data-gza-pdfdel]') : null;
+    if(!b || b.disabled) return;
+    var f = LUX_BLOG_ADM.form, k = b.getAttribute('data-gza-pdfdel');
+    (f.pdfs || []).forEach(function(d){ if(d.key === k && d.fresh && d.url) luxBlogAdmDropFiles([d.url]); }); // (caricato ora e mai salvato: via subito)
+    f.pdfs = (f.pdfs || []).filter(function(d){ return d.key !== k; });
+    luxBlogAdmPdfFill();
+    luxBlogAdmSay('PDF tolto' + (LUX_BLOG_ADM.editing ? ': salva l\'articolo per toglierlo anche dal blog.' : '.'));
+    try { add.focus(); } catch(err){}
+  });
+}
+function luxBlogAdmPdfBad(){
+  var d = (LUX_BLOG_ADM.form.pdfs || []).filter(function(x){ return !String(x.name || '').trim(); })[0];
+  return d ? d.key : null;
+}
+// carica nell'archivio (con l'avanzamento): risponde l'indirizzo pubblico
+function luxBlogAdmPdfPut(path, file, onp){
+  var session = getSession();
+  return new Promise(function(resolve, reject){
+    if(!session){ reject({ stage: 'pdf', code: 'auth' }); return; }
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', SUPABASE_URL + '/storage/v1/object/comic-pages/' + path, true);
+    xhr.setRequestHeader('apikey', SUPABASE_ANON_KEY);
+    xhr.setRequestHeader('Authorization', 'Bearer ' + session.access_token);
+    xhr.setRequestHeader('Content-Type', 'application/pdf');
+    xhr.setRequestHeader('x-upsert', 'true');
+    if(onp && xhr.upload) xhr.upload.onprogress = function(ev){ if(ev.lengthComputable && ev.total) onp(ev.loaded / ev.total); };
+    xhr.onload = function(){
+      if(xhr.status >= 200 && xhr.status < 300) resolve(luxPublicUrl('comic-pages', path));
+      else reject({ stage: 'pdf', status: xhr.status, text: String(xhr.responseText || '').slice(0, 300) });
+    };
+    xhr.onerror = function(){ reject({ stage: 'pdf', code: 'network' }); };
+    xhr.send(file);
+  });
+}
+// prima di salvare l'articolo: i PDF nuovi, uno alla volta
+function luxBlogAdmPdfUpload(id){
+  var f = LUX_BLOG_ADM.form, todo = (f.pdfs || []).filter(function(d){ return d.file && !d.url; });
+  if(!todo.length || !luxBlogPdfOn()) return Promise.resolve();
+  var i = 0;
+  return refreshSessionIfNeeded().then(function next(){
+    if(i >= todo.length) return;
+    var d = todo[i], n = i + 1;
+    var say = function(fr){ luxBlogAdmSay('Carico il PDF «' + d.name + '»' + (todo.length > 1 ? ' (' + n + ' di ' + todo.length + ')' : '') + '… ' + Math.min(100, Math.round(fr * 100)) + '%'); };
+    say(0);
+    var path = 'blog/' + id + '/' + luxBlogPdfSlug(d.file.name || d.name) + '-' + Math.random().toString(36).slice(2, 8) + '.pdf';
+    return luxBlogAdmPdfPut(path, d.file, say).then(function(url){
+      d.url = url; d.fresh = true; d.file = null;
+      i++;
+      luxBlogAdmPdfList();
+      return next();
+    }, function(e){ e = e || {}; e.name = d.name; throw e; });
+  });
+}
+function luxBlogAdmPdfRow(){
+  return (LUX_BLOG_ADM.form.pdfs || []).filter(function(d){ return d.url; }).map(function(d){
+    var o = { url: d.url, name: String(d.name || '').trim().slice(0, 200) };
+    if(d.size) o.size = Math.round(d.size);
+    return o;
+  });
+}
+// salvato: i PDF caricati adesso sono dell'articolo; quelli tolti escono anche dall'archivio
+function luxBlogAdmPdfSaved(ed, saved){
+  (LUX_BLOG_ADM.form.pdfs || []).forEach(function(d){ d.fresh = false; });
+  if(!ed || !saved || !Array.isArray(saved.pdfs)) return;
+  var now = {};
+  saved.pdfs.forEach(function(d){ if(d && d.url) now[d.url] = 1; });
+  luxBlogAdmDropFiles(luxBlogPdfs(ed).map(function(d){ return d.url; }).filter(function(u){ return !now[u]; }));
+}
+function luxBlogAdmPdfErr(e){
+  var nm = e.name ? 'Il PDF «' + e.name + '»' : 'Il PDF', tx = String(e.text || '');
+  if(e.code === 'auth') return 'Accesso scaduto: esci, rientra e riprova (i PDF già caricati restano).';
+  if(e.code === 'network') return nm + ' non si è caricato (rete): riprova. Quelli già caricati restano.';
+  if(e.status === 413 || /too large|exceed|maximum allowed size|payload/i.test(tx)) return nm + ' è troppo pesante per Supabase: prova con un file più leggero.';
+  if(e.status === 415 || /mime|content.type/i.test(tx)) return 'Supabase non accetta ancora i PDF nell\'archivio: lancia il file pdf_blog_v267.sql (SQL Editor → incolla tutto → Run) e riprova.';
+  if(e.status === 401 || e.status === 403 || /row-level security|unauthorized/i.test(tx)) return 'Supabase non ha accettato ' + (e.name ? 'il PDF «' + e.name + '»' : 'il PDF') + ' (permessi): sei entrato con l\'account dell\'amministratore?';
+  return nm + ' non si è caricato (' + (e.status || '?') + '): riprova.';
 }
 
 function handleAddAnnouncement(){
