@@ -6257,3 +6257,11 @@ body.theme-light .gza-pdf-warn{color:#7a2a0c;background:rgba(184,72,31,.08);}
 .lpr-sum.is-4{grid-template-columns:repeat(4,minmax(0,1fr));}
 @media (max-width:520px){ .lpr-sum.is-4{grid-template-columns:repeat(2,minmax(0,1fr));} }
 body.theme-light .lpr-pt{color:#6b5015;}
+/* ============ v269: AMMINISTRA AL TELEFONO IN VERTICALE ============ */
+/* Al telefono la colonna di Amministra prende sempre tutta la larghezza dello schermo. Prima un sottotitolo
+   lungo (che sta su una riga sola) la allargava oltre lo schermo: la parte a destra, con i «⋯», restava
+   tagliata fuori e non si poteva toccare. Ora il sottotitolo finisce con «…» e i «⋯» si vedono. */
+@media (max-width:760px){
+  #adminSection .admin-shell{align-items:stretch;}
+  #adminSection .admin-shell-content{width:100%;max-width:100%;min-width:0;}
+}
