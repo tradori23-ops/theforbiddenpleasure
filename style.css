@@ -6265,3 +6265,16 @@ body.theme-light .lpr-pt{color:#6b5015;}
   #adminSection .admin-shell{align-items:stretch;}
   #adminSection .admin-shell-content{width:100%;max-width:100%;min-width:0;}
 }
+/* ============ v270: AL TELEFONO NIENTE OLTRE LO SCHERMO (RICHIESTE, CAMPANELLA) ============ */
+@media (max-width:760px){
+  /* Amministra › Richieste (e i commenti da approvare): se i pulsanti non stanno accanto al testo vanno sotto,
+     invece di uscire dallo schermo («🔓 Sbloccato fino a…» li spingeva fuori: non si potevano toccare) */
+  .mod-row{flex-wrap:wrap;}
+  .mod-row > :first-child{flex:1 1 200px;min-width:0;overflow-wrap:anywhere;}
+  .mod-row > .admin-actions{flex:0 1 auto;min-width:0;max-width:100%;}
+  .mod-row .admin-actions .req-done-tag{white-space:normal;}
+}
+@media (max-width:640px){
+  /* la campanella: sui telefoni stretti (360 e meno) la finestra delle notifiche usciva a sinistra */
+  header.topbar .notif-panel{right:-8px;width:min(340px, calc(100vw - 24px - var(--sar, 0px)));max-width:none;}
+}
