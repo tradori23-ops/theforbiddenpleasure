@@ -1243,6 +1243,20 @@ Object.assign(STR.hi, {"blog.doc1": "दस्तावेज़", "blog.docN": 
 Object.assign(STR.bn, {"blog.doc1": "নথি", "blog.docN": "নথিগুলো", "blog.docOpen": "খুলুন", "blog.docGet": "ডাউনলোড", "blog.docOpenAria": "PDF “{name}” খুলুন", "blog.docGetAria": "PDF “{name}” ডাউনলোড করুন"});
 Object.assign(STR.ar, {"blog.doc1": "مستند", "blog.docN": "مستندات", "blog.docOpen": "فتح", "blog.docGet": "تنزيل", "blog.docOpenAria": "فتح ملف PDF «{name}»", "blog.docGetAria": "تنزيل ملف PDF «{name}»"});
 Object.assign(STR.pnb, {"blog.doc1": "دستاویز", "blog.docN": "دستاویزاں", "blog.docOpen": "کھولو", "blog.docGet": "ڈاؤن لوڈ کرو", "blog.docOpenAria": "PDF «{name}» کھولو", "blog.docGetAria": "PDF «{name}» ڈاؤن لوڈ کرو"});
+// v268: il QR su Patreon (le scritte dell'immagine per Instagram)
+Object.assign(STR.it, {"promo.scanPatreon": "Inquadra e seguimi su Patreon", "promo.onPatreon": "Su Patreon"});
+Object.assign(STR.en, {"promo.scanPatreon": "Scan and follow me on Patreon", "promo.onPatreon": "On Patreon"});
+Object.assign(STR.es, {"promo.scanPatreon": "Escanea y sígueme en Patreon", "promo.onPatreon": "En Patreon"});
+Object.assign(STR.fr, {"promo.scanPatreon": "Scannez et suivez-moi sur Patreon", "promo.onPatreon": "Sur Patreon"});
+Object.assign(STR.de, {"promo.scanPatreon": "Scannen und mir auf Patreon folgen", "promo.onPatreon": "Auf Patreon"});
+Object.assign(STR.pt, {"promo.scanPatreon": "Escaneie e me siga no Patreon", "promo.onPatreon": "No Patreon"});
+Object.assign(STR.ru, {"promo.scanPatreon": "Сканируйте и подписывайтесь на меня в Patreon", "promo.onPatreon": "На Patreon"});
+Object.assign(STR.zh, {"promo.scanPatreon": "扫码在 Patreon 上关注我", "promo.onPatreon": "在 Patreon 上"});
+Object.assign(STR.ja, {"promo.scanPatreon": "スキャンしてPatreonでフォロー", "promo.onPatreon": "Patreonで公開中"});
+Object.assign(STR.hi, {"promo.scanPatreon": "स्कैन करें और Patreon पर मुझे फ़ॉलो करें", "promo.onPatreon": "Patreon पर"});
+Object.assign(STR.bn, {"promo.scanPatreon": "স্ক্যান করে Patreon-এ আমাকে ফলো করুন", "promo.onPatreon": "Patreon-এ"});
+Object.assign(STR.ar, {"promo.scanPatreon": "امسح الرمز وتابعني على Patreon", "promo.onPatreon": "على Patreon"});
+Object.assign(STR.pnb, {"promo.scanPatreon": "سکین کرو تے Patreon اُتے مینوں فالو کرو", "promo.onPatreon": "Patreon اُتے"});
 var CHAR_META = {
   Lucifer:{role:{it:"Il Portatore di Luce",en:"The Light-Bearer",es:"El Portador de Luz",fr:"Le Porteur de Lumière",de:"Der Lichtträger"},
     bio:{it:"Sovrano della collana ammiraglia: potere, caduta e desiderio raccontati su grande scala.",
@@ -23804,8 +23818,16 @@ function luxEndAfterAuth(){
      Dal pannello del capitolo il QR è un link nuovo (uno per formato), che si salva in Link e QR quando lo si scarica.
    - In Statistiche, in cima, il riassunto «Da Instagram». Senza il file link_e_qr_v251.sql su Supabase QR e immagini
      si fanno lo stesso (portano al capitolo), ma non si contano. */
-var LUX_PROMO = { rows: null, err: null, at: 0, req: null, sort: 'new', arch: false, fresh: null, form: { dest: null, place: 'storia', name: '', dirty: false } };
+var LUX_PROMO = { rows: null, err: null, destMissing: null, at: 0, req: null, sort: 'new', arch: false, fresh: null, form: { to: 'sito', dest: null, place: 'storia', name: '', dirty: false } };
 var LPR_PLACES = [['storia', 'Storia'], ['post', 'Post'], ['reel', 'Reel'], ['bio', 'Bio'], ['altro', 'Altro']];
+/* v268: il QR può portare anche su Patreon. Il link passa da patreon.html, che conta chi lo apre (come gli altri:
+   una volta per telefono o computer, mai l'amministratore) e porta subito al Patreon. Nella riga del link dest = 'patreon'
+   (file patreon_v268.sql); senza, il QR porta su Patreon lo stesso, ma non si conta. */
+var LUX_PATREON = { url: 'https://www.patreon.com/noxmorningstar?utm_campaign=creatorshare_creator', host: 'patreon.com/noxmorningstar', page: 'patreon.html' };
+var LPR_TO = [['sito', 'Al sito'], ['patreon', 'Su Patreon']];
+function luxPromoIsPatreon(row){ return !!row && row.dest === 'patreon'; }
+// la colonna dest c'è? (le righe lette la hanno tutte, se c'è)
+function luxPromoDestCheck(rows){ if(rows && rows.length) LUX_PROMO.destMissing = !Object.prototype.hasOwnProperty.call(rows[0], 'dest'); }
 var LPR_I = (function(){
   var s = function(d){ return '<svg viewBox="0 0 24 24" aria-hidden="true">' + d + '</svg>'; };
   return {
@@ -23827,6 +23849,7 @@ function luxPromoBase(){ var o = window.location.origin; return /^https?:\/\//.t
 function luxPromoHost(){ var h = window.location.host; return /^https?:$/.test(window.location.protocol || '') && h ? h : 'noxmorningstar.com'; }
 // row: { code, catalog_id } (senza code: il link semplice del capitolo, che non si conta)
 function luxPromoUrl(row){
+  if(luxPromoIsPatreon(row)) return luxPromoBase() + LUX_PATREON.page + (row.code ? '?da=' + encodeURIComponent(row.code) : ''); // v268: su Patreon, da patreon.html
   var p = [];
   if(row && row.catalog_id) p.push('title=' + encodeURIComponent(row.catalog_id));
   if(row && row.code) p.push('da=' + encodeURIComponent(row.code));
@@ -23851,7 +23874,7 @@ function luxPromoLoad(force){
   }).then(function(r){
     if(r.status === 404 || r.status === 400){ LUX_PROMO.err = 'missing'; LUX_PROMO.rows = []; LUX_PROMO.at = Date.now(); return; }
     if(!r.ok) throw new Error('HTTP ' + r.status);
-    return r.json().then(function(rows){ LUX_PROMO.rows = Array.isArray(rows) ? rows : []; LUX_PROMO.err = null; LUX_PROMO.at = Date.now(); });
+    return r.json().then(function(rows){ LUX_PROMO.rows = Array.isArray(rows) ? rows : []; LUX_PROMO.err = null; LUX_PROMO.at = Date.now(); luxPromoDestCheck(LUX_PROMO.rows); });
   }).catch(function(e){ console.warn('[link e qr]', e); if(!LUX_PROMO.rows) LUX_PROMO.err = 'net'; })
     .then(function(){ LUX_PROMO.req = null; });
   return LUX_PROMO.req;
@@ -23865,9 +23888,11 @@ function luxPromoInsert(row, tries){
   }).then(function(r){
     if(r.status === 409 && tries < 4){ row.code = luxPromoNewCode(); return luxPromoInsert(row, tries + 1); } // (codice già usato: un altro)
     if(r.status === 404){ LUX_PROMO.err = 'missing'; throw new Error('missing'); }
+    if(r.status === 400 && row.dest) return r.text().then(function(tx){ if(/dest/i.test(tx || '')) LUX_PROMO.destMissing = true; throw new Error(LUX_PROMO.destMissing ? 'dest' : 'HTTP 400'); }); // v268: manca patreon_v268.sql
     if(!r.ok) throw new Error('HTTP ' + r.status);
     return r.json().then(function(rows){
       var saved = (Array.isArray(rows) && rows[0]) || row;
+      if(row.dest && Object.prototype.hasOwnProperty.call(saved, 'dest') && saved !== row) LUX_PROMO.destMissing = false; // v268
       LUX_PROMO.rows = [saved].concat((LUX_PROMO.rows || []).filter(function(x){ return x.code !== saved.code; }));
       LUX_PROMO.err = null;
       return saved;
@@ -23907,8 +23932,9 @@ function luxPromoDay(ms){
   try { return d.toLocaleDateString('it-IT', { day: 'numeric', month: 'short' }); } catch(e){ return d.getDate() + '/' + (d.getMonth() + 1); }
 }
 function luxPromoPlaceName(p){ var n = ''; LPR_PLACES.forEach(function(x){ if(x[0] === p) n = x[1]; }); return n; }
-function luxPromoAutoName(placeLabel, item){
-  return luxPromoUniqueName([placeLabel, item ? (item.title || '') : 'Home del sito', luxPromoDay()].filter(Boolean).join(' · '));
+function luxPromoAutoName(placeLabel, item, to){
+  var pt = to === 'patreon'; // v268: «Post · Patreon · …»
+  return luxPromoUniqueName([placeLabel, pt ? 'Patreon' : '', item ? (item.title || '') : (pt ? '' : 'Home del sito'), luxPromoDay()].filter(Boolean).join(' · '));
 }
 // due link con lo stesso nome non si distinguerebbero: al secondo «· 2», e così via
 function luxPromoUniqueName(name){
@@ -24010,11 +24036,14 @@ function luxPromoRender(load){
   if(!box.dataset.ready){
     box.dataset.ready = '1';
     box.innerHTML =
-      '<div class="lpr-intro"><h3>Link e QR</h3><p>Per ogni post, storia o reel crea il suo link: qui vedi quante persone arrivano da ognuno, quante leggono e quante creano l\'account. Il QR lo scarichi già pronto, e «Per Instagram» fa anche l\'immagine.</p></div>' +
+      '<div class="lpr-intro"><h3>Link e QR</h3><p>Per ogni post, storia o reel crea il suo link: qui vedi quante persone arrivano da ognuno, quante leggono e quante creano l\'account. Il QR lo scarichi già pronto, e «Per Instagram» fa anche l\'immagine. Il QR può portare al sito o al tuo Patreon.</p></div>' +
       '<p class="lpr-warn" data-lpr-warn hidden></p>' +
       '<div class="lpr-new" role="group" aria-labelledby="lprNewH">' +
         '<div class="lpr-new-h" id="lprNewH">Nuovo link</div>' +
-        '<label class="lpr-f"><span>Porta a</span><select data-lpr-dest></select></label>' +
+        '<div class="lpr-f"><span id="lprToL">Il QR porta</span><div class="lpr-to" role="radiogroup" aria-labelledby="lprToL">' + // v268: al sito o su Patreon
+          LPR_TO.map(function(p){ return '<button type="button" class="lpr-place" role="radio" data-lpr-to="' + p[0] + '">' + p[1] + '</button>'; }).join('') + '</div>' +
+          '<small class="lpr-to-note" data-lpr-tonote hidden></small></div>' +
+        '<label class="lpr-f"><span data-lpr-destl>Porta a</span><select data-lpr-dest></select></label>' +
         '<div class="lpr-f"><span id="lprPlaceL">Dove lo metti</span><div class="lpr-places" role="radiogroup" aria-labelledby="lprPlaceL">' +
           LPR_PLACES.map(function(p){ return '<button type="button" class="lpr-place" role="radio" data-lpr-place="' + p[0] + '">' + p[1] + '</button>'; }).join('') + '</div></div>' +
         '<label class="lpr-f"><span>Nome <small>(per ritrovarlo: lo vedi solo tu)</small></span><input type="text" data-lpr-name maxlength="120" autocomplete="off" enterkeyhint="done"></label>' +
@@ -24043,6 +24072,12 @@ function luxPromoWire(box){
     F.place = b.getAttribute('data-lpr-place');
     luxPromoFormFill();
   });
+  box.querySelector('.lpr-to').addEventListener('click', function(e){ // v268
+    var b = e.target.closest ? e.target.closest('[data-lpr-to]') : null;
+    if(!b) return;
+    F.to = b.getAttribute('data-lpr-to') === 'patreon' ? 'patreon' : 'sito';
+    luxPromoFormFill();
+  });
   q('[data-lpr-name]').addEventListener('input', function(){ F.name = this.value; F.dirty = !!this.value.trim(); });
   q('[data-lpr-name]').addEventListener('keydown', function(e){ if(e.key === 'Enter'){ e.preventDefault(); luxPromoCreate(); } });
   q('[data-lpr-create]').addEventListener('click', luxPromoCreate);
@@ -24069,7 +24104,8 @@ function luxPromoFormFill(){
   var latest = items.filter(function(i){ return !luxIsScheduled(i); })[0] || items[0]; // di solito si promuove l'ultimo capitolo uscito
   if(F.dest === null) F.dest = latest ? latest.id : '';
   if(F.dest && !items.some(function(i){ return i.id === F.dest; })) F.dest = latest ? latest.id : '';
-  var h = '<option value="">La home del sito</option>';
+  var pt = F.to === 'patreon'; // v268
+  var h = '<option value="">' + (pt ? 'Nessuno: solo Patreon' : 'La home del sito') + '</option>';
   if(items.length) h += '<optgroup label="Un capitolo">' + items.map(function(i){
     var s = luxIsScheduled(i) ? ' (esce ' + luxSchedShort(luxSchedMs(i)) + ')' : '';
     return '<option value="' + escapeHtml(i.id) + '">' + escapeHtml((i.title || '—') + s) + '</option>';
@@ -24081,19 +24117,33 @@ function luxPromoFormFill(){
     b.classList.toggle('on', on);
     b.setAttribute('aria-checked', on ? 'true' : 'false');
   });
+  Array.prototype.forEach.call(box.querySelectorAll('[data-lpr-to]'), function(b){ // v268
+    var on = b.getAttribute('data-lpr-to') === (pt ? 'patreon' : 'sito');
+    b.classList.toggle('on', on);
+    b.setAttribute('aria-checked', on ? 'true' : 'false');
+  });
+  box.querySelector('[data-lpr-destl]').innerHTML = pt ? 'Cosa promuovi <small>(la sua copertina va nell\'immagine per Instagram)</small>' : 'Porta a';
+  var tn = box.querySelector('[data-lpr-tonote]');
+  tn.hidden = !pt;
+  tn.textContent = pt ? 'Chi inquadra il QR o tocca il link va sul tuo Patreon (' + LUX_PATREON.host + '). Qui vedi quanti lo aprono.' : '';
   luxPromoFormName();
   var warn = box.querySelector('[data-lpr-warn]'), miss = LUX_PROMO.err === 'missing';
   warn.hidden = !miss && LUX_PROMO.err !== 'net';
   warn.textContent = miss ? 'Per contare chi arriva serve il file link_e_qr_v251.sql su Supabase (una volta sola). Intanto QR e immagini per Instagram si fanno lo stesso: portano al capitolo, ma non si contano.'
     : LUX_PROMO.err === 'net' ? 'Non riesco a leggere i tuoi link: controlla la connessione e riprova tra poco.' : '';
   box.querySelector('[data-lpr-create]').textContent = miss ? 'Crea il QR' : 'Crea link e QR';
+  if(!miss && LUX_PROMO.err !== 'net' && pt && LUX_PROMO.destMissing){ // v268
+    warn.hidden = false;
+    warn.textContent = 'Per contare chi va su Patreon serve il file patreon_v268.sql su Supabase (una volta sola). Intanto il QR porta su Patreon lo stesso, ma non si conta.';
+    box.querySelector('[data-lpr-create]').textContent = 'Crea il QR';
+  }
 }
 function luxPromoFormName(){
   var box = document.getElementById('luxPromoPanel');
   if(!box) return;
   var F = LUX_PROMO.form, inp = box.querySelector('[data-lpr-name]');
   if(!F.dirty){
-    F.name = luxPromoAutoName(luxPromoPlaceName(F.place), F.dest ? luxPromoItem(F.dest) : null);
+    F.name = luxPromoAutoName(luxPromoPlaceName(F.place), F.dest ? luxPromoItem(F.dest) : null, F.to);
     if(inp.value !== F.name) inp.value = F.name;
   }
 }
@@ -24102,10 +24152,12 @@ function luxPromoCreate(){
   if(!box) return;
   var F = LUX_PROMO.form, btn = box.querySelector('[data-lpr-create]'), msg = box.querySelector('[data-lpr-msg]');
   var say = function(t, bad){ msg.hidden = !t; msg.textContent = t || ''; msg.classList.toggle('is-error', !!bad); };
-  var name = luxPromoUniqueName(String(box.querySelector('[data-lpr-name]').value || '').trim().slice(0, 120) || luxPromoAutoName(luxPromoPlaceName(F.place), F.dest ? luxPromoItem(F.dest) : null));
+  var pt = F.to === 'patreon'; // v268
+  var name = luxPromoUniqueName(String(box.querySelector('[data-lpr-name]').value || '').trim().slice(0, 120) || luxPromoAutoName(luxPromoPlaceName(F.place), F.dest ? luxPromoItem(F.dest) : null, F.to));
   var row = { code: luxPromoNewCode(), name: name, catalog_id: F.dest || null, place: F.place || null };
-  if(LUX_PROMO.err === 'missing'){ // senza il file SQL: il QR del link semplice, che non si salva
-    luxPromoSheetOpen({ code: null, name: name, catalog_id: row.catalog_id, place: row.place });
+  if(pt) row.dest = 'patreon';
+  if(LUX_PROMO.err === 'missing' || (pt && LUX_PROMO.destMissing)){ // senza il file SQL: il QR del link semplice, che non si salva
+    luxPromoSheetOpen({ code: null, name: name, catalog_id: row.catalog_id, place: row.place, dest: row.dest });
     return;
   }
   btn.disabled = true;
@@ -24121,7 +24173,7 @@ function luxPromoCreate(){
     luxPromoSheetOpen(saved);
   }).catch(function(e){
     btn.disabled = false;
-    if(LUX_PROMO.err === 'missing'){ luxPromoFormFill(); say(''); luxPromoSheetOpen({ code: null, name: name, catalog_id: row.catalog_id, place: row.place }); return; }
+    if(LUX_PROMO.err === 'missing' || (pt && LUX_PROMO.destMissing)){ luxPromoFormFill(); say(''); luxPromoSheetOpen({ code: null, name: name, catalog_id: row.catalog_id, place: row.place, dest: row.dest }); return; }
     console.warn('[link e qr] nuovo link:', e);
     say('Non creato: controlla la connessione e riprova.', true);
   });
@@ -24138,8 +24190,12 @@ function luxPromoSorted(){
   return rows;
 }
 function luxPromoTotals(rows){
-  var t0 = { opens: 0, readers: 0, finishers: 0, signups: 0, n: 0 };
-  rows.forEach(function(x){ t0.n++; t0.opens += +x.opens || 0; t0.readers += +x.readers || 0; t0.finishers += +x.finishers || 0; t0.signups += +x.signups || 0; });
+  var t0 = { opens: 0, readers: 0, finishers: 0, signups: 0, n: 0, pt: 0, ptn: 0 };
+  rows.forEach(function(x){
+    t0.n++;
+    if(luxPromoIsPatreon(x)){ t0.ptn++; t0.pt += +x.opens || 0; return; } // v268: chi va su Patreon si conta a parte
+    t0.opens += +x.opens || 0; t0.readers += +x.readers || 0; t0.finishers += +x.finishers || 0; t0.signups += +x.signups || 0;
+  });
   return t0;
 }
 function luxPromoListRender(){
@@ -24153,7 +24209,9 @@ function luxPromoListRender(){
   var tot = luxPromoTotals(live);
   sum.innerHTML = LUX_PROMO.rows === null ? '' : live.length ?
     '<div><b>' + luxPromoNum(tot.opens) + '</b><span>persone arrivate</span></div><div><b>' + luxPromoNum(tot.readers) + '</b><span>hanno letto</span></div>' +
-    '<div><b>' + luxPromoNum(tot.signups) + '</b><span>account creati</span></div>' : '';
+    '<div><b>' + luxPromoNum(tot.signups) + '</b><span>account creati</span></div>' +
+    (tot.ptn ? '<div><b>' + luxPromoNum(tot.pt) + '</b><span>verso Patreon</span></div>' : '') : ''; // v268
+  sum.classList.toggle('is-4', !!tot.ptn);
   if(LUX_PROMO.rows === null){ list.innerHTML = '<p class="lpr-empty">…</p>'; return; }
   var rows = luxPromoSorted();
   if(!rows.length){
@@ -24172,25 +24230,25 @@ function luxPromoListRender(){
   }
 }
 function luxPromoCardHtml(row){
-  var item = row.catalog_id ? luxPromoItem(row.catalog_id) : null, I = LPR_I;
+  var item = row.catalog_id ? luxPromoItem(row.catalog_id) : null, I = LPR_I, pt = luxPromoIsPatreon(row); // v268
   var dest = row.catalog_id ? (item ? item.title : 'un capitolo che non è più nel sito') : 'la home del sito';
   var src = item && item.cover_url ? coverThumbUrl(item.cover_url, 80) : '';
   var opens = +row.opens || 0, pct = function(v){ return opens ? Math.max(v ? 3 : 0, Math.round(v / opens * 100)) : 0; };
-  var bars = [['Aperto', opens], ['Hanno letto', +row.readers || 0], ['Fino in fondo', +row.finishers || 0], ['Account creati', +row.signups || 0]].map(function(b, i){
+  var bars = (pt ? [['Aperto', opens]] : [['Aperto', opens], ['Hanno letto', +row.readers || 0], ['Fino in fondo', +row.finishers || 0], ['Account creati', +row.signups || 0]]).map(function(b, i){
     return '<div class="lpr-b"><span>' + b[0] + '</span><i><em style="width:' + (i === 0 ? (opens ? 100 : 0) : pct(b[1])) + '%"></em></i><b>' + luxPromoNum(b[1]) + '</b></div>';
-  }).join('');
+  }).join('') + (pt ? '<p class="lpr-pt-note">Chi legge e chi si iscrive lo vedi su Patreon.</p>' : ''); // v268: il resto succede su Patreon
   var when = row.created_at ? luxPromoDay(Date.parse(row.created_at)) : '', last = row.last_open_at ? relativeTimeShort(row.last_open_at) : '';
   var acts = row.archived
     ? '<button type="button" data-lpr-act="unarch">' + I.back + '<span>Rimetti in uso</span></button><button type="button" class="is-danger" data-lpr-act="del">' + I.trash + '<span>Elimina</span></button>'
     : '<button type="button" data-lpr-act="qr">' + I.qr + '<span>QR e link</span></button><button type="button" data-lpr-act="copy">' + I.copy + '<span>Copia link</span></button>' +
-      (item ? '<button type="button" data-lpr-act="ig">' + I.insta + '<span>Per Instagram</span></button>' : '') +
+      (item || pt ? '<button type="button" data-lpr-act="ig">' + I.insta + '<span>Per Instagram</span></button>' : '') +
       '<button type="button" data-lpr-act="arch">' + I.arch + '<span>Archivia</span></button>';
   return '<article class="lpr-card' + (row.code === LUX_PROMO.fresh ? ' is-fresh' : '') + '" data-lpr-code="' + escapeHtml(row.code) + '">' +
     '<button type="button" class="lpr-qr" data-lpr-act="qr" aria-label="Il QR di «' + escapeHtml(row.name || row.code) + '»"><canvas width="168" height="168"></canvas></button>' +
     '<div class="lpr-head">' +
       '<b class="lpr-name">' + escapeHtml(row.name || row.code) + '</b>' +
       '<span class="lpr-meta">' + (row.place ? '<span class="lpr-tag">' + escapeHtml(luxPromoPlaceName(row.place) || row.place) + '</span>' : '') +
-        (src ? '<img alt="" src="' + escapeHtml(src) + '" data-full="' + escapeHtml(item.cover_url) + '">' : '') + '<span>→ ' + escapeHtml(dest) + (when ? ' · ' + escapeHtml(when) : '') + '</span></span>' +
+        (src ? '<img alt="" src="' + escapeHtml(src) + '" data-full="' + escapeHtml(item.cover_url) + '">' : '') + '<span>→ ' + (pt ? '<b class="lpr-pt">Patreon</b>' + (item ? ' · ' + escapeHtml(item.title) : '') : escapeHtml(dest)) + (when ? ' · ' + escapeHtml(when) : '') + '</span></span>' +
       (last ? '<span class="lpr-last">Ultimo arrivo: ' + escapeHtml(last) + '</span>' : '') +
     '</div>' +
     '<div class="lpr-bars">' + bars + '</div>' +
@@ -24200,7 +24258,7 @@ function luxPromoCardHtml(row){
 function luxPromoAct(act, row, btn){
   if(act === 'qr'){ luxPromoSheetOpen(row); return; }
   if(act === 'copy'){ luxCopyText(luxPromoUrl(row)).then(function(ok){ luxToast(ok ? 'Link copiato: incollalo nel post o nella storia' : 'Non riesco a copiarlo: aprilo con «QR e link»'); }); return; }
-  if(act === 'ig'){ var it = luxPromoItem(row.catalog_id); if(it) luxIgOpen({ item: it, row: row }); return; }
+  if(act === 'ig'){ var it = row.catalog_id ? luxPromoItem(row.catalog_id) : null; if(it || luxPromoIsPatreon(row)) luxIgOpen({ item: it || luxIgPatreonItem(), row: row }); return; } // v268
   if(act === 'arch' || act === 'unarch'){
     btn.disabled = true;
     luxPromoPatch(row.code, { archived: act === 'arch' }).then(function(){
@@ -24245,10 +24303,10 @@ function luxPromoSheetAct(a, row, b){
   } else if(a === 'copy'){
     luxCopyText(url).then(function(ok){ luxToast(ok ? 'Link copiato' : 'Non riesco a copiarlo: tienilo premuto e copialo da qui'); });
   } else if(a === 'share'){
-    try { navigator.share({ title: item ? item.title : 'LUX COMICS', url: url }).catch(function(){}); } catch(err){}
+    try { navigator.share({ title: luxPromoIsPatreon(row) ? 'Nox Morningstar su Patreon' : item ? item.title : 'LUX COMICS', url: url }).catch(function(){}); } catch(err){}
   } else if(a === 'ig'){
     luxPromoSheetClose();
-    if(item) luxIgOpen({ item: item, row: row.code ? row : null });
+    if(item || luxPromoIsPatreon(row)) luxIgOpen({ item: item || luxIgPatreonItem(), row: row.code ? row : null, to: luxPromoIsPatreon(row) ? 'patreon' : 'sito' }); // v268
   } else if(a === 'rename'){
     var rn = body.querySelector('[data-lpr-rn]');
     if(!rn) return;
@@ -24265,22 +24323,23 @@ function luxPromoSheetAct(a, row, b){
   }
 }
 function luxPromoSheetOpen(row){
-  var w = luxPromoSheetEl(), body = w.querySelector('.adm-sheet-body'), url = luxPromoUrl(row), item = row.catalog_id ? luxPromoItem(row.catalog_id) : null, I = LPR_I;
+  var w = luxPromoSheetEl(), body = w.querySelector('.adm-sheet-body'), url = luxPromoUrl(row), item = row.catalog_id ? luxPromoItem(row.catalog_id) : null, I = LPR_I, pt = luxPromoIsPatreon(row); // v268
   luxPromoSheetRow = row;
   var canShare = !!navigator.share;
   body.innerHTML =
     '<div class="adm-sheet-grab" aria-hidden="true"></div>' +
     '<div class="adm-sheet-head"><div class="adm-sheet-ttl"><b id="lprSheetTitle">' + escapeHtml(row.name || 'Il QR') + '</b>' +
-      '<span>' + (item ? '→ ' + escapeHtml(item.title) : row.catalog_id ? '→ un capitolo che non è più nel sito' : '→ la home del sito') + '</span></div>' +
+      '<span>' + (pt ? '→ Patreon (' + escapeHtml(LUX_PATREON.host) + ')' + (item ? ' · ' + escapeHtml(item.title) : '') : item ? '→ ' + escapeHtml(item.title) : row.catalog_id ? '→ un capitolo che non è più nel sito' : '→ la home del sito') + '</span></div>' +
       '<button type="button" class="adm-sheet-x" data-lpr-close aria-label="Chiudi">' + I.x + '</button></div>' +
     '<div class="lpr-big"><canvas width="560" height="560" aria-label="QR del link"></canvas></div>' +
     '<label class="lpr-url"><span>Il link</span><input type="text" readonly value="' + escapeHtml(url) + '"></label>' +
-    (row.code ? '' : '<p class="lpr-sheet-note">Link semplice: porta al ' + (row.catalog_id ? 'capitolo' : 'sito') + ', ma non si conta (manca il file link_e_qr_v251.sql su Supabase).</p>') +
+    (row.code ? '' : pt ? '<p class="lpr-sheet-note">Link semplice: porta su Patreon, ma non si conta (manca il file ' + (LUX_PROMO.err === 'missing' ? 'link_e_qr_v251.sql' : 'patreon_v268.sql') + ' su Supabase).</p>' : // v268
+      '<p class="lpr-sheet-note">Link semplice: porta al ' + (row.catalog_id ? 'capitolo' : 'sito') + ', ma non si conta (manca il file link_e_qr_v251.sql su Supabase).</p>') +
     '<div class="lpr-sheet-acts">' +
       '<button type="button" class="btn btn-primary" data-lpr-s="dl">' + I.dl + '<span>Scarica il QR</span></button>' +
       '<button type="button" class="btn btn-ghost" data-lpr-s="copy">' + I.copy + '<span>Copia il link</span></button>' +
       (canShare ? '<button type="button" class="btn btn-ghost" data-lpr-s="share">' + I.share + '<span>Condividi</span></button>' : '') +
-      (item ? '<button type="button" class="btn btn-ghost" data-lpr-s="ig">' + I.insta + '<span>Per Instagram</span></button>' : '') +
+      (item || pt ? '<button type="button" class="btn btn-ghost" data-lpr-s="ig">' + I.insta + '<span>Per Instagram</span></button>' : '') +
     '</div>' +
     (row.code ? '<label class="lpr-rename"><span>Nome</span><span class="lpr-rename-row"><input type="text" maxlength="120" data-lpr-rn value="' + escapeHtml(row.name || '') + '">' +
       '<button type="button" class="btn btn-ghost btn-sm" data-lpr-s="rename" disabled>Salva</button></span></label>' : '') +
@@ -24331,9 +24390,11 @@ function luxPromoStatsBox(){
     if(!rows.length){ box.innerHTML = head + '<p class="lpr-stats-p">Crea un link (e il suo QR) per ogni post o storia: qui vedrai quali funzionano di più.</p><button type="button" class="btn btn-ghost btn-sm" data-lpr-go>Crea il primo link</button>'; return; }
     var top = rows.slice().sort(function(a, b){ return (+b.opens || 0) - (+a.opens || 0) || (+b.readers || 0) - (+a.readers || 0); }).slice(0, 3);
     box.innerHTML = head +
-      '<div class="lpr-sum"><div><b>' + luxPromoNum(tot.opens) + '</b><span>persone arrivate</span></div><div><b>' + luxPromoNum(tot.readers) + '</b><span>hanno letto</span></div><div><b>' + luxPromoNum(tot.signups) + '</b><span>account creati</span></div></div>' +
+      '<div class="lpr-sum' + (tot.ptn ? ' is-4' : '') + '"><div><b>' + luxPromoNum(tot.opens) + '</b><span>persone arrivate</span></div><div><b>' + luxPromoNum(tot.readers) + '</b><span>hanno letto</span></div><div><b>' + luxPromoNum(tot.signups) + '</b><span>account creati</span></div>' +
+        (tot.ptn ? '<div><b>' + luxPromoNum(tot.pt) + '</b><span>verso Patreon</span></div>' : '') + '</div>' + // v268
       '<ol class="lpr-top">' + top.map(function(x){
-        return '<li><b>' + escapeHtml(x.name || x.code) + '</b><span>' + luxPromoNum(x.opens) + ' arrivati · ' + luxPromoNum(x.readers) + ' letto · ' + luxPromoNum(x.signups) + ' account</span></li>';
+        return '<li><b>' + escapeHtml(x.name || x.code) + '</b><span>' + (luxPromoIsPatreon(x) ? luxPromoNum(x.opens) + ' aperti · su Patreon' : // v268
+          luxPromoNum(x.opens) + ' arrivati · ' + luxPromoNum(x.readers) + ' letto · ' + luxPromoNum(x.signups) + ' account') + '</span></li>';
       }).join('') + '</ol>' +
       '<button type="button" class="btn btn-ghost btn-sm" data-lpr-go>Tutti i link e i QR</button>';
   };
@@ -24347,20 +24408,25 @@ var LIG_FMT = {
   post: { w: 1080, h: 1350, label: 'Post', tab: 'Post 4:5', place: 'post' },
   square: { w: 1080, h: 1080, label: 'Quadrato', tab: 'Quadrato 1:1', place: 'post' }
 };
-var LIG = { item: null, row: null, fmt: 'story', tag: 'new', lang: 'it', qr: true, adult: false, codes: {}, saved: {}, covers: {}, logo: null, seq: 0, busy: false };
+var LIG = { item: null, row: null, fmt: 'story', tag: 'new', tag0: 'new', to: 'sito', lang: 'it', qr: true, adult: false, codes: {}, saved: {}, covers: {}, logo: null, seq: 0, busy: false };
+// v268: «Per Instagram» per un link su Patreon senza un capitolo: al posto della copertina il sigillo
+function luxIgPatreonItem(){ return { id: null, title: 'Nox Morningstar', cover_url: null, mature: false, patreon: true }; }
+function luxIgKey(){ return LIG.fmt + (LIG.to === 'patreon' ? ':pt' : ''); } // (un link per formato e per destinazione)
 function luxIgT(key){ var d = STR[LIG.lang] || STR.it; return (d && d[key]) || STR.it[key] || ''; }
 function luxIgRtl(){ return LIG.lang === 'ar' || LIG.lang === 'pnb'; }
 // il link del QR: quello scelto (da Link e QR), un link nuovo per questo formato (si salva quando si scarica), o quello semplice
 function luxIgLinkRow(){
   if(LIG.row) return LIG.row;
-  var base = { catalog_id: LIG.item.id };
-  if(LUX_PROMO.err === 'missing') return base;
-  if(LIG.saved[LIG.fmt]) return LIG.saved[LIG.fmt];
-  if(!LIG.codes[LIG.fmt]) LIG.codes[LIG.fmt] = luxPromoNewCode();
-  base.code = LIG.codes[LIG.fmt];
+  var pt = LIG.to === 'patreon', k = luxIgKey(); // v268
+  var base = { catalog_id: LIG.item.id || null };
+  if(pt) base.dest = 'patreon';
+  if(LUX_PROMO.err === 'missing' || (pt && LUX_PROMO.destMissing)) return base;
+  if(LIG.saved[k]) return LIG.saved[k];
+  if(!LIG.codes[k]) LIG.codes[k] = luxPromoNewCode();
+  base.code = LIG.codes[k];
   return base;
 }
-function luxIgAutoName(){ return luxPromoAutoName(LIG_FMT[LIG.fmt].label, LIG.item); }
+function luxIgAutoName(){ return luxPromoAutoName(LIG_FMT[LIG.fmt].label, LIG.item && LIG.item.id ? LIG.item : null, LIG.to); }
 function luxIgOpen(o){
   var item = o && o.item;
   if(!item) return;
@@ -24371,6 +24437,9 @@ function luxIgOpen(o){
   LIG.lang = STR[currentLang] ? currentLang : 'it';
   var days = luxCoverDaysAgo(String(item.date || item.created_at || '').slice(0, 10));
   LIG.tag = luxIsScheduled(item) || (days !== null && days <= 30) ? 'new' : 'read';
+  LIG.tag0 = LIG.tag; // v268: il QR su Patreon?
+  LIG.to = (LIG.row && luxPromoIsPatreon(LIG.row)) || o.to === 'patreon' || item.patreon ? 'patreon' : 'sito';
+  if(LIG.to === 'patreon') LIG.tag = 'patreon';
   LIG.qr = true;
   LIG.adult = !!item.mature;
   if(!LIG.row && LUX_PROMO.rows === null) luxPromoLoad().then(function(){ if(document.getElementById('luxIgStudio')){ luxIgControls(); luxIgDraw(); } });
@@ -24389,7 +24458,8 @@ function luxIgOpen(o){
       '<div class="lig-body">' +
         '<div class="lig-stage"><canvas class="lig-canvas" width="1080" height="1920" aria-label="Anteprima dell\'immagine"></canvas><p class="lig-wait" hidden>Preparo l\'immagine…</p></div>' +
         '<div class="lig-side">' +
-          '<label class="lig-f"><span>Scritta in alto</span><select data-lig-tag><option value="new">Capitolo nuovo</option><option value="last">Ultimo capitolo</option><option value="read">Leggi ora</option><option value="none">Nessuna</option></select></label>' +
+          (LIG.row || item.patreon ? '' : '<label class="lig-f"><span>Il QR porta</span><select data-lig-to><option value="sito">Al capitolo</option><option value="patreon">Su Patreon</option></select></label>') + // v268
+          '<label class="lig-f"><span>Scritta in alto</span><select data-lig-tag><option value="new">Capitolo nuovo</option><option value="last">Ultimo capitolo</option><option value="read">Leggi ora</option><option value="patreon">Su Patreon</option><option value="none">Nessuna</option></select></label>' +
           '<label class="lig-f"><span>Lingua delle scritte</span><select data-lig-lang>' + LUX_LANGS.map(function(l){ return '<option value="' + l.code + '">' + escapeHtml(l.name) + '</option>'; }).join('') + '</select></label>' +
           '<label class="lig-c"><input type="checkbox" data-lig-qr> <span>Con il QR</span></label>' +
           (item.mature ? '<label class="lig-c"><input type="checkbox" data-lig-adult> <span>Segno 18+</span></label>' : '') +
@@ -24411,6 +24481,12 @@ function luxIgOpen(o){
     if(f){ LIG.fmt = f.getAttribute('data-lig-fmt'); luxIgControls(); luxIgDraw(); }
   });
   q('[data-lig-tag]').addEventListener('change', function(){ LIG.tag = this.value; luxIgDraw(); });
+  var toSel = q('[data-lig-to]');
+  if(toSel) toSel.addEventListener('change', function(){ // v268: al capitolo o su Patreon (e la scritta in alto di conseguenza)
+    LIG.to = this.value === 'patreon' ? 'patreon' : 'sito';
+    if(LIG.to === 'patreon') LIG.tag = 'patreon'; else if(LIG.tag === 'patreon') LIG.tag = LIG.tag0;
+    luxIgControls(); luxIgDraw();
+  });
   q('[data-lig-lang]').addEventListener('change', function(){
     var l = this.value;
     var go = function(){ LIG.lang = STR[l] ? l : 'it'; luxIgDraw(); };
@@ -24445,17 +24521,22 @@ function luxIgControls(){
     b.setAttribute('aria-selected', on ? 'true' : 'false');
   });
   q('[data-lig-tag]').value = LIG.tag;
+  if(q('[data-lig-to]')) q('[data-lig-to]').value = LIG.to; // v268
   q('[data-lig-lang]').value = LIG.lang;
   q('[data-lig-qr]').checked = LIG.qr;
   var ad = q('[data-lig-adult]');
   if(ad) ad.checked = LIG.adult;
-  var link = q('[data-lig-link]'), row = luxIgLinkRow();
-  if(!LIG.qr) link.textContent = 'Senza QR: sotto il titolo resta l\'indirizzo del sito.';
+  var link = q('[data-lig-link]'), row = luxIgLinkRow(), pt = LIG.to === 'patreon', k = luxIgKey(); // v268
+  if(!LIG.qr) link.textContent = pt ? 'Senza QR: sotto il titolo resta l\'indirizzo del tuo Patreon.' : 'Senza QR: sotto il titolo resta l\'indirizzo del sito.';
+  else if(pt && LIG.row) link.textContent = 'Il QR porta su Patreon con il link «' + (LIG.row.name || LIG.row.code) + '»: chi lo apre si conta lì.';
+  else if(pt && !row.code) link.textContent = 'Il QR porta su Patreon (link semplice: non si conta, manca il file ' + (LUX_PROMO.err === 'missing' ? 'link_e_qr_v251.sql' : 'patreon_v268.sql') + ' su Supabase).';
+  else if(pt && LIG.saved[k]) link.textContent = 'Il QR porta su Patreon con il link «' + LIG.saved[k].name + '», già in Link e QR con i suoi numeri.';
+  else if(pt) link.textContent = 'Il QR porta su Patreon con un link nuovo, «' + luxIgAutoName() + '»: quando scarichi l\'immagine lo trovi in Link e QR, con i suoi numeri.';
   else if(LIG.row) link.textContent = 'Il QR porta al link «' + (LIG.row.name || LIG.row.code) + '»: chi arriva da qui si conta lì.';
   else if(!row.code) link.textContent = 'Il QR porta al capitolo (link semplice: non si conta, manca il file link_e_qr_v251.sql su Supabase).';
-  else if(LIG.saved[LIG.fmt]) link.textContent = 'Il QR porta al link «' + LIG.saved[LIG.fmt].name + '», già in Link e QR con i suoi numeri.';
+  else if(LIG.saved[k]) link.textContent = 'Il QR porta al link «' + LIG.saved[k].name + '», già in Link e QR con i suoi numeri.';
   else link.textContent = 'Il QR porta a un link nuovo, «' + luxIgAutoName() + '»: quando scarichi l\'immagine lo trovi in Link e QR, con i suoi numeri.';
-  if(luxIsScheduled(LIG.item)) link.textContent += ' Il capitolo esce ' + luxSchedWhen(luxSchedMs(LIG.item)) + ': fino ad allora il link porta alla home.';
+  if(!pt && luxIsScheduled(LIG.item)) link.textContent += ' Il capitolo esce ' + luxSchedWhen(luxSchedMs(LIG.item)) + ': fino ad allora il link porta alla home.';
   var sh = q('[data-lig-share]');
   sh.hidden = !(navigator.canShare && navigator.share);
 }
@@ -24502,7 +24583,8 @@ function luxIgDraw(){
   return Promise.all([luxIgCover(LIG.item.cover_url), luxIgLogo(), luxIgFonts()]).then(function(res){
     if(seq !== LIG.seq || !document.getElementById('luxIgStudio')) return false;
     var row = luxIgLinkRow();
-    var painted = luxIgPaint(cv, { fmt: LIG.fmt, item: LIG.item, cover: res[0], logo: res[1], url: luxPromoUrl(row), qr: LIG.qr, adult: LIG.adult && !!LIG.item.mature, tag: LIG.tag });
+    var painted = luxIgPaint(cv, { fmt: LIG.fmt, item: LIG.item, cover: res[0], logo: res[1], url: luxPromoUrl(row), qr: LIG.qr, adult: LIG.adult && !!LIG.item.mature, tag: LIG.tag, to: LIG.to });
+    cv.setAttribute('data-to', LIG.to); // v268
     cv.setAttribute('data-url', LIG.qr ? luxPromoUrl(row) : '');   // (per le prove: cosa c'è nell'immagine)
     cv.setAttribute('data-cover', res[0] ? '1' : '0');
     cv.setAttribute('data-tag', ligTagText({ tag: LIG.tag }));
@@ -24517,7 +24599,7 @@ function luxIgDraw(){
     return true;
   });
 }
-function luxIgFileName(){ return 'lux-' + LIG_FMT[LIG.fmt].label.toLowerCase() + '-' + luxSlug(LIG.item.title) + '.png'; }
+function luxIgFileName(){ return 'lux-' + LIG_FMT[LIG.fmt].label.toLowerCase() + '-' + luxSlug(LIG.item.title) + (LIG.to === 'patreon' ? '-patreon' : '') + '.png'; }
 // il PNG dell'immagine sullo schermo (uno per disegno)
 function luxIgBlob(){
   var w = document.getElementById('luxIgStudio'), seq = LIG.seq;
@@ -24560,14 +24642,16 @@ function luxIgExport(share){
   var say = function(t, bad){ msg.hidden = !t; msg.textContent = t || ''; msg.classList.toggle('is-error', !!bad); };
   var busy = function(on){ LIG.busy = on; Array.prototype.forEach.call(btns, function(b){ b.disabled = on; }); };
   say('');
-  var fmt = LIG.fmt;
-  var need = LIG.qr && !LIG.row && LUX_PROMO.err !== 'missing' && !LIG.saved[fmt];
+  var fmt = LIG.fmt, pt = LIG.to === 'patreon', k = luxIgKey(); // v268
+  var need = LIG.qr && !LIG.row && LUX_PROMO.err !== 'missing' && !(pt && LUX_PROMO.destMissing) && !LIG.saved[k];
+  var nrow = { code: LIG.codes[k] || luxPromoNewCode(), name: luxIgAutoName(), catalog_id: LIG.item.id || null, place: LIG_FMT[fmt].place };
+  if(pt) nrow.dest = 'patreon';
   // già pronta (il link c'è, l'immagine è quella sullo schermo): subito, dentro il tocco
   if(!need && LIG.file && LIG.fileSeq === LIG.seq && w.querySelector('.lig-wait').hidden){ luxIgDeliver(LIG.file, share, say); return; }
   busy(true);
-  var step = need ? luxPromoInsert({ code: LIG.codes[fmt] || luxPromoNewCode(), name: luxIgAutoName(), catalog_id: LIG.item.id, place: LIG_FMT[fmt].place })
-      .then(function(saved){ LIG.saved[fmt] = saved; LIG.codes[fmt] = saved.code; luxPromoListRender(); return true; })
-      .catch(function(e){ console.warn('[per instagram] link:', e); return LUX_PROMO.err === 'missing'; })
+  var step = need ? luxPromoInsert(nrow)
+      .then(function(saved){ LIG.saved[k] = saved; LIG.codes[k] = saved.code; luxPromoListRender(); return true; })
+      .catch(function(e){ console.warn('[per instagram] link:', e); return LUX_PROMO.err === 'missing' || (pt && LUX_PROMO.destMissing); })
     : Promise.resolve(true);
   step.then(function(ok){
     if(!ok){ busy(false); say('Non riesco a salvare il link del QR: controlla la connessione e riprova.', true); return; }
@@ -24871,7 +24955,8 @@ function ligTicket(x, o, l, t, w, h){
     luxQrDraw(x, luxQrMake(o.url), ql, qt, qs, 3, '#111111', 'rgba(255,255,255,0)');
     tx = rtl ? l + 38 : ql + qs + 38; tw = w - qs - pad - 38 - 38;
   } else { tx = l + 40; tw = w - 80; }
-  var label = ligUpper(o.qr ? luxIgT('promo.scan') : luxIgT('rec.readNow')), host = luxPromoHost();
+  var pt = o.to === 'patreon'; // v268: «Inquadra e seguimi su Patreon» e l'indirizzo del Patreon
+  var label = ligUpper(o.qr ? luxIgT(pt ? 'promo.scanPatreon' : 'promo.scan') : luxIgT(pt ? 'promo.onPatreon' : 'rec.readNow')), host = pt ? LUX_PATREON.host : luxPromoHost();
   if(!o.qr){ ligTicketRow(x, label, host, l, t, w, h, rtl); return; }
   var big = Math.round(Math.min(48, h * .2)), lab = Math.round(Math.min(32, h * .14)), sp = Math.round(lab * .16);
   x.textBaseline = 'alphabetic';
@@ -24916,7 +25001,7 @@ function ligTicketRow(x, label, host, l, t, w, h, rtl){
   x.fillText(host, hostX, by);
 }
 function ligTagText(o){
-  var k = { new: 'lxcover.newChapter', last: 'lxcover.lastChapter', read: 'rec.readNow' }[o.tag];
+  var k = { new: 'lxcover.newChapter', last: 'lxcover.lastChapter', read: 'rec.readNow', patreon: 'promo.onPatreon' }[o.tag]; // v268: «Su Patreon»
   return k ? ligUpper(luxIgT(k)) : '';
 }
 function ligSubText(item){

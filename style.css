@@ -6248,3 +6248,12 @@ body.theme-light .gz-doc-get{border-color:rgba(138,106,31,.45);}
 body.theme-light .gz-tag.gz-tag-pdf{background:rgba(138,26,44,.12);color:#7a1426;}
 body.theme-light .gza-pdf{background:#fffdf7;border-color:rgba(138,106,31,.3);}
 body.theme-light .gza-pdf-warn{color:#7a2a0c;background:rgba(184,72,31,.08);}
+/* ============ v268: LINK E QR VERSO PATREON ============ */
+.lpr-to{display:flex;flex-wrap:wrap;gap:8px;}
+.lpr-to-note{display:block;margin-top:2px;font:400 italic 14.5px/1.35 'Crimson Pro',Georgia,serif;color:var(--parchment-dim);}
+.lpr-to-note[hidden]{display:none;}
+.lpr-pt{font-weight:700;color:var(--gold-bright);}
+.lpr-pt-note{margin:2px 0 0;font:400 italic 14px/1.35 'Crimson Pro',Georgia,serif;color:var(--parchment-dim);}
+.lpr-sum.is-4{grid-template-columns:repeat(4,minmax(0,1fr));}
+@media (max-width:520px){ .lpr-sum.is-4{grid-template-columns:repeat(2,minmax(0,1fr));} }
+body.theme-light .lpr-pt{color:#6b5015;}
